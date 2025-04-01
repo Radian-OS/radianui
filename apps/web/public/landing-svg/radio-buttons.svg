@@ -1,0 +1,28 @@
+<svg width="282" height="228" viewBox="0 0 282 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="282" height="228" fill="#F4F4F5"/>
+<rect y="126" width="282" height="64" fill="url(#paint0_linear_2304_16600)"/>
+<rect x="61" y="64" width="24" height="24" rx="12" fill="#9985FF"/>
+<rect x="67" y="70" width="12" height="12" rx="6" fill="white"/>
+<rect opacity="0.7" x="99" y="70" width="116" height="4" rx="2" fill="#DADADD"/>
+<rect opacity="0.4" x="99" y="78" width="53" height="4" rx="2" fill="#DADADD"/>
+<g opacity="0.5">
+<rect x="61.6" y="102.6" width="22.8" height="22.8" rx="11.4" fill="#ABA9B1"/>
+<rect x="61.6" y="102.6" width="22.8" height="22.8" rx="11.4" stroke="#EAE9EC" stroke-width="1.2"/>
+<rect x="67" y="108" width="12" height="12" rx="6" fill="white"/>
+</g>
+<rect opacity="0.7" x="99" y="108" width="116" height="4" rx="2" fill="#DADADD"/>
+<rect opacity="0.4" x="99" y="116" width="53" height="4" rx="2" fill="#DADADD"/>
+<g opacity="0.5">
+<rect x="61.6" y="140.6" width="22.8" height="22.8" rx="11.4" fill="#ABA9B1"/>
+<rect x="61.6" y="140.6" width="22.8" height="22.8" rx="11.4" stroke="#EAE9EC" stroke-width="1.2"/>
+<rect x="67" y="146" width="12" height="12" rx="6" fill="white"/>
+</g>
+<rect opacity="0.7" x="99" y="146" width="116" height="4" rx="2" fill="#DADADD"/>
+<rect opacity="0.4" x="99" y="154" width="53" height="4" rx="2" fill="#DADADD"/>
+<defs>
+<linearGradient id="paint0_linear_2304_16600" x1="141" y1="126" x2="141" y2="190" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F4F4F5" stop-opacity="0"/>
+<stop offset="1" stop-color="#F4F4F5"/>
+</linearGradient>
+</defs>
+</svg>

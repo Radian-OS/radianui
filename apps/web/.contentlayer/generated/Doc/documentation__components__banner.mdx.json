@@ -1,0 +1,20 @@
+{
+  "title": "Banner",
+  "description": "Banner Description",
+  "source": "https://github.com/Radian-os",
+  "body": {
+    "raw": "\n<BannerPreview />\n\n##### Installation\n\n<Code language=\"bash\" code={`npx radianos add banner`} />\n\n##### Imports\n\n<Code language=\"tsx\" code={`import {Alert} from \"@/components/ui/alert\"`} />\n\n##### Props\n\n| Prop Name | Default Values | Values                  |\n| --------- | -------------- | ----------------------- |\n| variant   | dark           | dark, transparent, soft |\n| message   | false          | true/false              |\n| children  | -              | -                       |\n\n##### Usage\n\n<Code\n\tlanguage=\"tsx\"\n\tcode={`<Banner closable variant=\"dark\" >\nThis is Banner Message\n</Banner>`}\n/>\n",
+    "code": "var Component=(()=>{var m=Object.create;var i=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var g=Object.getPrototypeOf,x=Object.prototype.hasOwnProperty;var b=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),_=(t,e)=>{for(var r in e)i(t,r,{get:e[r],enumerable:!0})},o=(t,e,r,d)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let a of f(e))!x.call(t,a)&&a!==r&&i(t,a,{get:()=>e[a],enumerable:!(d=p(e,a))||d.enumerable});return t};var B=(t,e,r)=>(r=t!=null?m(g(t)):{},o(e||!t||!t.__esModule?i(r,\"default\",{value:t,enumerable:!0}):r,t)),j=t=>o(i({},\"__esModule\",{value:!0}),t);var l=b((M,c)=>{c.exports=_jsx_runtime});var v={};_(v,{default:()=>u,frontmatter:()=>y});var n=B(l()),y={title:\"Banner\",description:\"Banner Description\",source:\"https://github.com/Radian-os\"};function h(t){let e={h5:\"h5\",table:\"table\",tbody:\"tbody\",td:\"td\",th:\"th\",thead:\"thead\",tr:\"tr\",...t.components},{BannerPreview:r,Code:d}=e;return r||s(\"BannerPreview\",!0),d||s(\"Code\",!0),(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(r,{}),`\n`,(0,n.jsx)(e.h5,{children:\"Installation\"}),`\n`,(0,n.jsx)(d,{language:\"bash\",code:\"npx radianos add banner\"}),`\n`,(0,n.jsx)(e.h5,{children:\"Imports\"}),`\n`,(0,n.jsx)(d,{language:\"tsx\",code:'import {Alert} from \"@/components/ui/alert\"'}),`\n`,(0,n.jsx)(e.h5,{children:\"Props\"}),`\n`,(0,n.jsxs)(e.table,{children:[(0,n.jsx)(e.thead,{children:(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.th,{children:\"Prop Name\"}),(0,n.jsx)(e.th,{children:\"Default Values\"}),(0,n.jsx)(e.th,{children:\"Values\"})]})}),(0,n.jsxs)(e.tbody,{children:[(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"variant\"}),(0,n.jsx)(e.td,{children:\"dark\"}),(0,n.jsx)(e.td,{children:\"dark, transparent, soft\"})]}),(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"message\"}),(0,n.jsx)(e.td,{children:\"false\"}),(0,n.jsx)(e.td,{children:\"true/false\"})]}),(0,n.jsxs)(e.tr,{children:[(0,n.jsx)(e.td,{children:\"children\"}),(0,n.jsx)(e.td,{children:\"-\"}),(0,n.jsx)(e.td,{children:\"-\"})]})]})]}),`\n`,(0,n.jsx)(e.h5,{children:\"Usage\"}),`\n`,(0,n.jsx)(d,{language:\"tsx\",code:`<Banner closable variant=\"dark\" >\nThis is Banner Message\n</Banner>`})]})}function u(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(h,{...t})}):h(t)}function s(t,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+t+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return j(v);})();\n;return Component;"
+  },
+  "_id": "documentation/components/banner.mdx",
+  "_raw": {
+    "sourceFilePath": "documentation/components/banner.mdx",
+    "sourceFileName": "banner.mdx",
+    "sourceFileDir": "documentation/components",
+    "contentType": "mdx",
+    "flattenedPath": "documentation/components/banner"
+  },
+  "type": "Doc",
+  "slug": "/documentation/components/banner",
+  "slugAsParams": "components/banner"
+}

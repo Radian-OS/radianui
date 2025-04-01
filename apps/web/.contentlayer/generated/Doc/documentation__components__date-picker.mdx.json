@@ -1,0 +1,19 @@
+{
+  "title": "Date Picker",
+  "description": "UI for selecting a date",
+  "body": {
+    "raw": "",
+    "code": "var Component=(()=>{var f=Object.create;var a=Object.defineProperty;var d=Object.getOwnPropertyDescriptor;var _=Object.getOwnPropertyNames;var l=Object.getPrototypeOf,p=Object.prototype.hasOwnProperty;var g=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),j=(t,e)=>{for(var n in e)a(t,n,{get:e[n],enumerable:!0})},i=(t,e,n,c)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of _(e))!p.call(t,o)&&o!==n&&a(t,o,{get:()=>e[o],enumerable:!(c=d(e,o))||c.enumerable});return t};var D=(t,e,n)=>(n=t!=null?f(l(t)):{},i(e||!t||!t.__esModule?a(n,\"default\",{value:t,enumerable:!0}):n,t)),M=t=>i(a({},\"__esModule\",{value:!0}),t);var m=g((h,s)=>{s.exports=_jsx_runtime});var F={};j(F,{default:()=>x,frontmatter:()=>C});var r=D(m()),C={title:\"Date Picker\",description:\"UI for selecting a date\"};function u(t){return(0,r.jsx)(r.Fragment,{})}function x(t={}){let{wrapper:e}=t.components||{};return e?(0,r.jsx)(e,{...t,children:(0,r.jsx)(u,{...t})}):u(t)}return M(F);})();\n;return Component;"
+  },
+  "_id": "documentation/components/date-picker.mdx",
+  "_raw": {
+    "sourceFilePath": "documentation/components/date-picker.mdx",
+    "sourceFileName": "date-picker.mdx",
+    "sourceFileDir": "documentation/components",
+    "contentType": "mdx",
+    "flattenedPath": "documentation/components/date-picker"
+  },
+  "type": "Doc",
+  "slug": "/documentation/components/date-picker",
+  "slugAsParams": "components/date-picker"
+}

@@ -1,0 +1,37 @@
+---
+title: Buttongroup
+description: Combination of Grouped Button
+source: https://github.com/Radian-os
+---
+
+<ButtonGroupPreview />
+
+##### Installation
+
+<Code language="bash" code={`npx radianos add buttongroup`} />
+
+##### Imports
+
+<Code language="tsx" code={`import {Buttongroup,Button} from "@/components/ui/Buttongroup"`} />
+
+##### Props
+
+| Prop Name | Default Values | Values                                        |
+| --------- | -------------- | --------------------------------------------- |
+| variant   | strong         | strong, soft, outline, ghost, neutral-outline |
+| size      | base           | 32, 36, 40, 44, 48, 56                        |
+| rounded   | rounded        | square, rounded, full                         |
+| isIcon    | false          | true/false                                    |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={`<Button variant="strong" size="base" rounded="rounded"/>
+<Button>Button1</Button>
+<Button>Button2</Button>
+<Button>Button3</Button>
+<Button>Button4</Button>
+ </Button>
+ `}
+/>

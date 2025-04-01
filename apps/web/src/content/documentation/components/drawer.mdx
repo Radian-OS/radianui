@@ -1,0 +1,55 @@
+---
+title: Drawer
+description: Slide in panel for additional content or navigation
+source: https://github.com/Radian-os
+externalSiteRef: https://vaul.emilkowal.ski/
+---
+
+<DrawerPreview />
+
+##### Installation
+
+<Code language="bash" code={`npx radianos add drawer`} />
+
+##### Imports
+
+<Code
+	language="tsx"
+	code={`import 
+  {DrawerWrapper,
+  DrawerHeader,
+  DrawerBody,
+  DrawerFooter,
+  DrawerClose} 
+  from "@components/ui/Drawer"`}
+/>
+
+##### Props
+
+| Prop Name | Default Values | Values                       |
+| --------- | -------------- | ---------------------------- |
+| variant   | default        | float, default, rounded      |
+| handle    | false          | true,false                   |
+| position  | right          | top, bottom, left, right     |
+| backdrop  | overlay        | backdrop, overlay, undefined |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={`<Drawer
+ trigger={<h1>Trigger</h1>}
+ variant="default"
+ handle={false} 
+ position="right" 
+ backdrop="overlay"
+ >
+<DrawerHeader>
+   Drawer Header
+   <DrawerClose><h1>Close</h1></DrawerClose>
+</DrawerHeader>
+  <DrawerBody>Drawer Body</DrawerBody>
+  <DrawerFooter>Drawer Footer</DrawerFooter>
+  </Drawer>
+ `}
+/>

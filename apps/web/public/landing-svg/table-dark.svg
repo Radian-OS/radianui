@@ -1,0 +1,69 @@
+<svg width="282" height="228" viewBox="0 0 282 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="282" height="228" fill="#19181B"/>
+<g filter="url(#filter0_d_2303_13407)">
+<g clip-path="url(#clip0_2303_13407)">
+<rect x="38" y="50" width="206" height="128" rx="8" fill="#28272B"/>
+<rect x="38" y="50" width="206" height="32" stroke="#19181B"/>
+<path d="M38 50H106.667V82H38V50Z" fill="#403F46"/>
+<path d="M38.5 82V50H37.5V82H38.5Z" fill="#54525B"/>
+<rect opacity="0.34" x="54" y="64" width="36.6667" height="4" rx="2" fill="#ABA9B1"/>
+<path d="M106.667 50H175.333V82H106.667V50Z" fill="#403F46"/>
+<path d="M107.167 82V50H106.167V82H107.167Z" fill="#54525B"/>
+<rect opacity="0.34" x="122.667" y="64" width="36.6667" height="4" rx="2" fill="#ABA9B1"/>
+<path d="M175.333 50H244V82H175.333V50Z" fill="#403F46"/>
+<path d="M175.833 82V50H174.833V82H175.833Z" fill="#54525B"/>
+<rect opacity="0.34" x="191.333" y="64" width="36.6667" height="4" rx="2" fill="#ABA9B1"/>
+<rect x="38" y="82" width="68.6667" height="32" fill="#28272B"/>
+<rect x="38" y="82" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="50" y="93" width="10" height="10" rx="2" fill="#403F46"/>
+<rect opacity="0.5" x="68" y="96" width="26.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="106.667" y="82" width="68.6667" height="32" fill="#28272B"/>
+<rect x="106.667" y="82" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="122.667" y="96" width="36.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="175.333" y="82" width="68.6667" height="32" fill="#28272B"/>
+<rect x="175.333" y="82" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="191.333" y="96" width="36.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="38" y="114" width="68.6667" height="32" fill="#28272B"/>
+<rect x="38" y="114" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="50" y="125" width="10" height="10" rx="2" fill="#403F46"/>
+<rect opacity="0.5" x="68" y="128" width="26.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="106.667" y="114" width="68.6667" height="32" fill="#28272B"/>
+<rect x="106.667" y="114" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="122.667" y="128" width="36.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="175.333" y="114" width="68.6667" height="32" fill="#28272B"/>
+<rect x="175.333" y="114" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="191.333" y="128" width="36.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="38" y="146" width="68.6667" height="32" fill="#28272B"/>
+<rect x="38" y="146" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="50" y="157" width="10" height="10" rx="2" fill="#403F46"/>
+<rect opacity="0.5" x="68" y="160" width="26.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="106.667" y="146" width="68.6667" height="32" fill="#28272B"/>
+<rect x="106.667" y="146" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="122.667" y="160" width="36.6667" height="4" rx="2" fill="#403F46"/>
+<rect x="175.333" y="146" width="68.6667" height="32" fill="#28272B"/>
+<rect x="175.333" y="146" width="68.6667" height="32" stroke="#403F46"/>
+<rect opacity="0.5" x="191.333" y="160" width="36.6667" height="4" rx="2" fill="#403F46"/>
+</g>
+<rect x="38.5" y="50.5" width="205" height="127" rx="7.5" stroke="#403F46"/>
+</g>
+<rect y="126" width="282" height="64" fill="url(#paint0_linear_2303_13407)"/>
+<defs>
+<filter id="filter0_d_2303_13407" x="34" y="47" width="214" height="136" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2303_13407"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2303_13407" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_2303_13407" x1="141" y1="126" x2="141" y2="190" gradientUnits="userSpaceOnUse">
+<stop stop-color="#19181B" stop-opacity="0"/>
+<stop offset="1" stop-color="#19181B"/>
+</linearGradient>
+<clipPath id="clip0_2303_13407">
+<rect x="38" y="50" width="206" height="128" rx="8" fill="white"/>
+</clipPath>
+</defs>
+</svg>

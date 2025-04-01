@@ -1,0 +1,20 @@
+{
+  "title": "Badge",
+  "description": "Highlight statuses or counts with compact labels",
+  "source": "https://github.com/Radian-os",
+  "body": {
+    "raw": "\n<BadgePreview />\n\n##### Installation\n\n<Code language=\"bash\" code={`npx radianos add badge`} />\n\n##### Imports\n\n<Code language=\"tsx\" code={`import {Badge} from \"@/components/ui/Badge\"`} />\n\n##### Props\n\n| Prop Name | Default Values | Values         |\n| --------- | -------------- | -------------- |\n| size      | 24             | 20, 24, 28, 32 |\n| variant   | outline        | outline,strong |\n| rounded   | false          | true/false     |\n| closable  | false          | true/false     |\n\n##### Usage\n\n<Code\n\tlanguage=\"tsx\"\n\tcode={`<Badge variant=\"strong\" size=\"24\" rounded={false}>\n Badge Example\n </Badge>\n `}\n/>\n",
+    "code": "var Component=(()=>{var g=Object.create;var o=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,x=Object.prototype.hasOwnProperty;var b=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),B=(n,e)=>{for(var r in e)o(n,r,{get:e[r],enumerable:!0})},a=(n,e,r,d)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let i of f(e))!x.call(n,i)&&i!==r&&o(n,i,{get:()=>e[i],enumerable:!(d=m(e,i))||d.enumerable});return n};var _=(n,e,r)=>(r=n!=null?g(p(n)):{},a(e||!n||!n.__esModule?o(r,\"default\",{value:n,enumerable:!0}):r,n)),j=n=>a(o({},\"__esModule\",{value:!0}),n);var c=b((C,l)=>{l.exports=_jsx_runtime});var y={};B(y,{default:()=>u,frontmatter:()=>w});var t=_(c()),w={title:\"Badge\",description:\"Highlight statuses or counts with compact labels\",source:\"https://github.com/Radian-os\"};function h(n){let e={h5:\"h5\",table:\"table\",tbody:\"tbody\",td:\"td\",th:\"th\",thead:\"thead\",tr:\"tr\",...n.components},{BadgePreview:r,Code:d}=e;return r||s(\"BadgePreview\",!0),d||s(\"Code\",!0),(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(r,{}),`\n`,(0,t.jsx)(e.h5,{children:\"Installation\"}),`\n`,(0,t.jsx)(d,{language:\"bash\",code:\"npx radianos add badge\"}),`\n`,(0,t.jsx)(e.h5,{children:\"Imports\"}),`\n`,(0,t.jsx)(d,{language:\"tsx\",code:'import {Badge} from \"@/components/ui/Badge\"'}),`\n`,(0,t.jsx)(e.h5,{children:\"Props\"}),`\n`,(0,t.jsxs)(e.table,{children:[(0,t.jsx)(e.thead,{children:(0,t.jsxs)(e.tr,{children:[(0,t.jsx)(e.th,{children:\"Prop Name\"}),(0,t.jsx)(e.th,{children:\"Default Values\"}),(0,t.jsx)(e.th,{children:\"Values\"})]})}),(0,t.jsxs)(e.tbody,{children:[(0,t.jsxs)(e.tr,{children:[(0,t.jsx)(e.td,{children:\"size\"}),(0,t.jsx)(e.td,{children:\"24\"}),(0,t.jsx)(e.td,{children:\"20, 24, 28, 32\"})]}),(0,t.jsxs)(e.tr,{children:[(0,t.jsx)(e.td,{children:\"variant\"}),(0,t.jsx)(e.td,{children:\"outline\"}),(0,t.jsx)(e.td,{children:\"outline,strong\"})]}),(0,t.jsxs)(e.tr,{children:[(0,t.jsx)(e.td,{children:\"rounded\"}),(0,t.jsx)(e.td,{children:\"false\"}),(0,t.jsx)(e.td,{children:\"true/false\"})]}),(0,t.jsxs)(e.tr,{children:[(0,t.jsx)(e.td,{children:\"closable\"}),(0,t.jsx)(e.td,{children:\"false\"}),(0,t.jsx)(e.td,{children:\"true/false\"})]})]})]}),`\n`,(0,t.jsx)(e.h5,{children:\"Usage\"}),`\n`,(0,t.jsx)(d,{language:\"tsx\",code:`<Badge variant=\"strong\" size=\"24\" rounded={false}>\nBadge Example\n</Badge>\n`})]})}function u(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(h,{...n})}):h(n)}function s(n,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+n+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return j(y);})();\n;return Component;"
+  },
+  "_id": "documentation/components/badge.mdx",
+  "_raw": {
+    "sourceFilePath": "documentation/components/badge.mdx",
+    "sourceFileName": "badge.mdx",
+    "sourceFileDir": "documentation/components",
+    "contentType": "mdx",
+    "flattenedPath": "documentation/components/badge"
+  },
+  "type": "Doc",
+  "slug": "/documentation/components/badge",
+  "slugAsParams": "components/badge"
+}

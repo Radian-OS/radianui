@@ -1,0 +1,19 @@
+{
+  "title": "Figma",
+  "description": "This is the description of figma",
+  "body": {
+    "raw": "\nThis is the content area for figma.\n\n##### Figma community edition\n\nThe base radian file is more than enough for most teams building software. It consists of all the basic and complex components that teams need to build an excellent software.\n\n##### Figma professional edition\n\nThe professional files is for the people that want that bit extra push. We encourage large teams to get the professional or anyone who has a professional key to the software.\n",
+    "code": "var Component=(()=>{var f=Object.create;var a=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var d=Object.getOwnPropertyNames;var u=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var x=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),_=(t,e)=>{for(var o in e)a(t,o,{get:e[o],enumerable:!0})},r=(t,e,o,i)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let s of d(e))!g.call(t,s)&&s!==o&&a(t,s,{get:()=>e[s],enumerable:!(i=p(e,s))||i.enumerable});return t};var w=(t,e,o)=>(o=t!=null?f(u(t)):{},r(e||!t||!t.__esModule?a(o,\"default\",{value:t,enumerable:!0}):o,t)),b=t=>r(a({},\"__esModule\",{value:!0}),t);var c=x((T,h)=>{h.exports=_jsx_runtime});var F={};_(F,{default:()=>m,frontmatter:()=>j});var n=w(c()),j={title:\"Figma\",description:\"This is the description of figma\"};function l(t){let e={h5:\"h5\",p:\"p\",...t.components};return(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)(e.p,{children:\"This is the content area for figma.\"}),`\n`,(0,n.jsx)(e.h5,{children:\"Figma community edition\"}),`\n`,(0,n.jsx)(e.p,{children:\"The base radian file is more than enough for most teams building software. It consists of all the basic and complex components that teams need to build an excellent software.\"}),`\n`,(0,n.jsx)(e.h5,{children:\"Figma professional edition\"}),`\n`,(0,n.jsx)(e.p,{children:\"The professional files is for the people that want that bit extra push. We encourage large teams to get the professional or anyone who has a professional key to the software.\"})]})}function m(t={}){let{wrapper:e}=t.components||{};return e?(0,n.jsx)(e,{...t,children:(0,n.jsx)(l,{...t})}):l(t)}return b(F);})();\n;return Component;"
+  },
+  "_id": "documentation/figma.mdx",
+  "_raw": {
+    "sourceFilePath": "documentation/figma.mdx",
+    "sourceFileName": "figma.mdx",
+    "sourceFileDir": "documentation",
+    "contentType": "mdx",
+    "flattenedPath": "documentation/figma"
+  },
+  "type": "Doc",
+  "slug": "/documentation/figma",
+  "slugAsParams": "figma"
+}
