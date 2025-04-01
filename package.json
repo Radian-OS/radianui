@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "radian-monorepo",
   "private": true,
   "scripts": {
     "build": "turbo run build",
