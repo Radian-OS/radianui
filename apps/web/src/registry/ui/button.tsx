@@ -83,23 +83,25 @@ function ButtonGroup({ className, children, variant = "outline", size = "40", ro
 			const isLast = index === React.Children.count(children) - 1
 			const borderRightClass = variant === "outline" || variant === "neutral-outline" ? "border-r" : ""
 
-			return React.cloneElement(child as React.ReactElement<ButtonProps>, {
-				variant,
-				size,
-				className: cn(
-					child.props.className,
-					"relative focus:z-10",
-					borderRightClass,
-					"rounded-none",
-					isFirst && rounded === "rounded" && "rounded-l-md",
-					isFirst && rounded === "square" && "rounded-l-xs",
-					isFirst && rounded === "full" && "rounded-l-full",
-					isLast && rounded === "rounded" && "rounded-r-md",
-					isLast && rounded === "square" && "rounded-r-xs",
-					isLast && rounded === "full" && "rounded-r-full",
-					!isFirst && "-ml-px"
-				),
-			})
+			if (React.isValidElement<ButtonProps>(child)) {
+				return React.cloneElement(child, {
+					variant,
+					size,
+					className: cn(
+						child.props.className,
+						"relative focus:z-10",
+						borderRightClass,
+						"rounded-none",
+						isFirst && rounded === "rounded" && "rounded-l-md",
+						isFirst && rounded === "square" && "rounded-l-xs",
+						isFirst && rounded === "full" && "rounded-l-full",
+						isLast && rounded === "rounded" && "rounded-r-md",
+						isLast && rounded === "square" && "rounded-r-xs",
+						isLast && rounded === "full" && "rounded-r-full",
+						!isFirst && "-ml-px"
+					),
+				})
+			}
 		}
 		return child
 	})
