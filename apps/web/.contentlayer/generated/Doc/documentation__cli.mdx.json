@@ -1,8 +1,8 @@
 {
   "title": "CLI",
-  "description": "Use the CLI to add components to your project.",
+  "description": "Use the CLI to add components to your project.\r",
   "body": {
-    "raw": "\n<Cli />\n",
+    "raw": "\r\n<Cli />\r\n",
     "code": "var Component=(()=>{var p=Object.create;var r=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var a=Object.getOwnPropertyNames;var l=Object.getPrototypeOf,C=Object.prototype.hasOwnProperty;var j=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),_=(t,e)=>{for(var o in e)r(t,o,{get:e[o],enumerable:!0})},s=(t,e,o,c)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let n of a(e))!C.call(t,n)&&n!==o&&r(t,n,{get:()=>e[n],enumerable:!(c=x(e,n))||c.enumerable});return t};var y=(t,e,o)=>(o=t!=null?p(l(t)):{},s(e||!t||!t.__esModule?r(o,\"default\",{value:t,enumerable:!0}):o,t)),M=t=>s(r({},\"__esModule\",{value:!0}),t);var u=j((g,d)=>{d.exports=_jsx_runtime});var L={};_(L,{default:()=>m,frontmatter:()=>h});var i=y(u()),h={title:\"CLI\",description:\"Use the CLI to add components to your project.\"};function f(t){let{Cli:e}=t.components||{};return e||w(\"Cli\",!0),(0,i.jsx)(e,{})}function m(t={}){let{wrapper:e}=t.components||{};return e?(0,i.jsx)(e,{...t,children:(0,i.jsx)(f,{...t})}):f(t)}function w(t,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+t+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return M(L);})();\n;return Component;"
   },
   "_id": "documentation/cli.mdx",

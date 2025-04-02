@@ -1,8 +1,8 @@
 {
   "title": "Changelog",
-  "description": "Latest updates and announcements",
+  "description": "Latest updates and announcements\r",
   "body": {
-    "raw": "\n##### Version 0.0.1 Internal Beta\n\nThe base version of Radian before release.\n",
+    "raw": "\r\n##### Version 0.0.1 Internal Beta\r\n\r\nThe base version of Radian before release.\r\n",
     "code": "var Component=(()=>{var l=Object.create;var s=Object.defineProperty;var u=Object.getOwnPropertyDescriptor;var x=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,f=Object.prototype.hasOwnProperty;var _=(e,n)=>()=>(n||e((n={exports:{}}).exports,n),n.exports),j=(e,n)=>{for(var o in n)s(e,o,{get:n[o],enumerable:!0})},c=(e,n,o,a)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let r of x(n))!f.call(e,r)&&r!==o&&s(e,r,{get:()=>n[r],enumerable:!(a=u(n,r))||a.enumerable});return e};var g=(e,n,o)=>(o=e!=null?l(p(e)):{},c(n||!e||!e.__esModule?s(o,\"default\",{value:e,enumerable:!0}):o,e)),C=e=>c(s({},\"__esModule\",{value:!0}),e);var d=_((F,i)=>{i.exports=_jsx_runtime});var b={};j(b,{default:()=>h,frontmatter:()=>M});var t=g(d()),M={title:\"Changelog\",description:\"Latest updates and announcements\"};function m(e){let n={h5:\"h5\",p:\"p\",...e.components};return(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(n.h5,{children:\"Version 0.0.1 Internal Beta\"}),`\n`,(0,t.jsx)(n.p,{children:\"The base version of Radian before release.\"})]})}function h(e={}){let{wrapper:n}=e.components||{};return n?(0,t.jsx)(n,{...e,children:(0,t.jsx)(m,{...e})}):m(e)}return C(b);})();\n;return Component;"
   },
   "_id": "documentation/changelog.mdx",

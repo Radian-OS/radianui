@@ -154,20 +154,23 @@ interface MdxProps {
 	code: string
 }
 
+const ErrorComponent = () => <div className="text-error-text">Error rendering content</div>;
+ErrorComponent.displayName = "ErrorComponent";
+
 export function Mdx({ code }: MdxProps) {
 	const Component = useMemo(() => {
 		if (!code) return () => null
 		try {
-		  return getMDXComponent(code)
+			return getMDXComponent(code)
 		} catch (error) {
-		  console.error("Error rendering MDX component:", error)
-		  return () => <div className="text-error-text">Error rendering content</div>
+			console.error("Error rendering MDX component:", error)
+			return ErrorComponent
 		}
-	  }, [code])
-	
-	  return (
-		  <Component components={components} />
-	  )
-	
+	}, [code])
+
+	return (
+		<Component className="flex flex-col gap-12" components={components} />
+	)
+
 }
 

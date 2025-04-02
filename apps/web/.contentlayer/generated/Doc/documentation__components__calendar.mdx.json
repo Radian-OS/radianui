@@ -1,6 +1,6 @@
 {
   "title": "Calendar",
-  "description": "Display and select dates with interactive calendar + Select dates from a calendar",
+  "description": "Display and select dates with interactive calendar + Select dates from a calendar\r",
   "body": {
     "raw": "",
     "code": "var Component=(()=>{var u=Object.create;var o=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var j=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),C=(t,e)=>{for(var n in e)o(t,n,{get:e[n],enumerable:!0})},i=(t,e,n,c)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let a of f(e))!_.call(t,a)&&a!==n&&o(t,a,{get:()=>e[a],enumerable:!(c=x(e,a))||c.enumerable});return t};var D=(t,e,n)=>(n=t!=null?u(p(t)):{},i(e||!t||!t.__esModule?o(n,\"default\",{value:t,enumerable:!0}):n,t)),M=t=>i(o({},\"__esModule\",{value:!0}),t);var d=j((y,s)=>{s.exports=_jsx_runtime});var h={};C(h,{default:()=>m,frontmatter:()=>g});var r=D(d()),g={title:\"Calendar\",description:\"Display and select dates with interactive calendar + Select dates from a calendar\"};function l(t){return(0,r.jsx)(r.Fragment,{})}function m(t={}){let{wrapper:e}=t.components||{};return e?(0,r.jsx)(e,{...t,children:(0,r.jsx)(l,{...t})}):l(t)}return M(h);})();\n;return Component;"

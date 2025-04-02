@@ -1,8 +1,8 @@
 {
   "title": "Installation",
-  "description": "Learn how to install and set up the project.",
+  "description": "Learn how to install and set up the project.\r",
   "body": {
-    "raw": "\n<Installation />\n",
+    "raw": "\r\n<Installation />\r\n",
     "code": "var Component=(()=>{var f=Object.create;var r=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var x=Object.getPrototypeOf,j=Object.prototype.hasOwnProperty;var _=(t,n)=>()=>(n||t((n={exports:{}}).exports,n),n.exports),h=(t,n)=>{for(var e in n)r(t,e,{get:n[e],enumerable:!0})},a=(t,n,e,s)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let o of m(n))!j.call(t,o)&&o!==e&&r(t,o,{get:()=>n[o],enumerable:!(s=p(n,o))||s.enumerable});return t};var w=(t,n,e)=>(e=t!=null?f(x(t)):{},a(n||!t||!t.__esModule?r(e,\"default\",{value:t,enumerable:!0}):e,t)),M=t=>a(r({},\"__esModule\",{value:!0}),t);var l=_((C,c)=>{c.exports=_jsx_runtime});var b={};h(b,{default:()=>d,frontmatter:()=>y});var i=w(l()),y={title:\"Installation\",description:\"Learn how to install and set up the project.\"};function u(t){let{Installation:n}=t.components||{};return n||I(\"Installation\",!0),(0,i.jsx)(n,{})}function d(t={}){let{wrapper:n}=t.components||{};return n?(0,i.jsx)(n,{...t,children:(0,i.jsx)(u,{...t})}):u(t)}function I(t,n){throw new Error(\"Expected \"+(n?\"component\":\"object\")+\" `\"+t+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return M(b);})();\n;return Component;"
   },
   "_id": "documentation/installation.mdx",

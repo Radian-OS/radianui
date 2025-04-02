@@ -1,8 +1,8 @@
 {
   "title": "Iconography",
-  "description": "Iconography will be added soon",
+  "description": "Iconography will be added soon\r",
   "body": {
-    "raw": "\nContent area here\n",
+    "raw": "\r\nContent area here\r\n",
     "code": "var Component=(()=>{var u=Object.create;var r=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var f=Object.getPrototypeOf,h=Object.prototype.hasOwnProperty;var _=(t,n)=>()=>(n||t((n={exports:{}}).exports,n),n.exports),j=(t,n)=>{for(var e in n)r(t,e,{get:n[e],enumerable:!0})},i=(t,n,e,a)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let o of l(n))!h.call(t,o)&&o!==e&&r(t,o,{get:()=>n[o],enumerable:!(a=x(n,o))||a.enumerable});return t};var y=(t,n,e)=>(e=t!=null?u(f(t)):{},i(n||!t||!t.__esModule?r(e,\"default\",{value:t,enumerable:!0}):e,t)),C=t=>i(r({},\"__esModule\",{value:!0}),t);var p=_((D,s)=>{s.exports=_jsx_runtime});var g={};j(g,{default:()=>m,frontmatter:()=>M});var c=y(p()),M={title:\"Iconography\",description:\"Iconography will be added soon\"};function d(t){let n={p:\"p\",...t.components};return(0,c.jsx)(n.p,{children:\"Content area here\"})}function m(t={}){let{wrapper:n}=t.components||{};return n?(0,c.jsx)(n,{...t,children:(0,c.jsx)(d,{...t})}):d(t)}return C(g);})();\n;return Component;"
   },
   "_id": "documentation/iconography.mdx",
