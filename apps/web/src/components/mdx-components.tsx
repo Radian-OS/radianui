@@ -1,8 +1,7 @@
 "use client"
-
-import { HTMLAttributes } from "react"
+import { HTMLAttributes, useMemo } from "react"
 import { MDXComponents } from "mdx/types"
-import { useMDXComponent } from "next-contentlayer2/hooks"
+import { getMDXComponent } from "mdx-bundler/client"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
@@ -10,7 +9,7 @@ import AvatargroupPreview from "@/component-preview/avatargroup-preview"
 import BadgePreview from "@/component-preview/badge-preview"
 import BannerPreview from "@/component-preview/banner-preview"
 import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
-import ButtonGroupPreview from "@/component-preview/button-group-review"
+import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
 import CheckboxgroupPreview from "@/component-preview/checkbox-group-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
@@ -156,6 +155,19 @@ interface MdxProps {
 }
 
 export function Mdx({ code }: MdxProps) {
-	const Component = useMDXComponent(code)
-	return <Component className="flex flex-col gap-12" components={components} />
+	const Component = useMemo(() => {
+		if (!code) return () => null
+		try {
+		  return getMDXComponent(code)
+		} catch (error) {
+		  console.error("Error rendering MDX component:", error)
+		  return () => <div className="text-error-text">Error rendering content</div>
+		}
+	  }, [code])
+	
+	  return (
+		  <Component components={components} />
+	  )
+	
 }
+
