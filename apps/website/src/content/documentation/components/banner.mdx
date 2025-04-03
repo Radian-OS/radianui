@@ -1,0 +1,32 @@
+---
+title: Banner
+description: Banner Description
+source: https://github.com/Radian-os
+---
+
+<BannerPreview />
+
+##### Installation
+
+<Code language="bash" code={`npx radianos add banner`} />
+
+##### Imports
+
+<Code language="tsx" code={`import {Alert} from "@/components/ui/alert"`} />
+
+##### Props
+
+| Prop Name | Default Values | Values                  |
+| --------- | -------------- | ----------------------- |
+| variant   | dark           | dark, transparent, soft |
+| message   | false          | true/false              |
+| children  | -              | -                       |
+
+##### Usage
+
+<Code
+  language="tsx"
+  code={`<Banner closable variant="dark" >
+This is Banner Message
+</Banner>`}
+/>

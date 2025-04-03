@@ -1,0 +1,38 @@
+---
+title: Dropdown
+description: Reveal additional actions or content
+---
+
+<DropdownPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add dropdown`} />
+
+##### Imports
+
+<Code
+  language="tsx"
+  code={`import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSub, DropdownSubTrigger, DropdownSubContent } from "@/components/ui/tabs"`}
+/>
+
+##### Props
+
+| Prop Name     | Default Values | Values           |
+| ------------- | -------------- | ---------------- |
+| selectionMode | undefined      | single, multiple |
+
+##### Usage
+
+<Code
+  language="tsx"
+  code={`<Dropdown>
+        <DropdownTrigger>Dropdown</DropdownTrigger>
+        <DropdownContent>
+            <DropdownItem>This week</DropdownItem>
+            <DropdownItem>This month</DropdownItem>
+            <DropdownItem>This quarter</DropdownItem>
+        </DropdownContent>
+</Dropdown>
+`}
+/>

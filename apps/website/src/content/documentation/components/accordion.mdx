@@ -1,0 +1,45 @@
+---
+title: Accordion
+description: Expand and collapse sections for organized content
+apiref: https://github.com/Radian-os/
+source: https://github.com/Radian-os
+externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
+---
+
+<AccordionPreview />
+
+##### Installation
+
+<Code language="bash" code={`npx radianos add accordion`} />
+
+##### Imports
+
+<Code
+  language="tsx"
+  code={`import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"`}
+  showLineNumbers
+/>
+
+##### Props
+
+| Prop Name | Default Values | Values        |
+| --------- | -------------- | ------------- |
+| Icon      | Plus           | Plus, Chevron |
+| Animation | Yes            | Yes/No        |
+| Size      | Default        | Values        |
+| Source    | -              | -             |
+| Style     | Default        | Boxes, XYZ    |
+
+##### Syntax
+
+| Prop Name     | Props                         | Description             |
+| ------------- | ----------------------------- | ----------------------- |
+| `<Accordion>` | Icon, Animation, Size, Styles | Main Container          |
+| `<AccItem>`   | -                             | Container for each item |
+| `<AccHead>`   | -                             | Headers                 |
+| `<AccBody>`   | -                             | Body                    |

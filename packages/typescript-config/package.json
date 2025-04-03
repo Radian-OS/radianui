@@ -1,9 +1,12 @@
 {
-  "name": "@repo/typescript-config",
+  "name": "@radianos/typescript-config",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "files": [
+    "nextjs.json"
+  ]
 }

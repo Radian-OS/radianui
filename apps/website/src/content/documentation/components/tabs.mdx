@@ -1,0 +1,40 @@
+---
+title: Tabs
+description: Organize content into navigable sections
+---
+
+<TabsPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add tabs`} />
+
+##### Imports
+
+<Code
+  language="tsx"
+  code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`}
+/>
+
+##### Props
+
+| Prop Name | Default Values | Values                        |
+| --------- | -------------- | ----------------------------- |
+| variant   | default        | default, open, outline, ghost |
+| size      | base           | small, base                   |
+| width     | fit            | fit, full                     |
+
+##### Usage
+
+<Code
+  language="tsx"
+  code={`<Tabs>
+        <TabsList>
+            <TabsTrigger value="one">Tab One</TabsTrigger>
+            <TabsTrigger value="two">Tab Two</TabsTrigger>
+        </TabsList>
+        <TabsContent value="one">Content of tab one</TabsContent>
+        <TabsContent value="two">Content of tab two</TabsContent>
+</Tabs>
+`}
+/>
