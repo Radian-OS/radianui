@@ -211,28 +211,30 @@ function Select({
    * Helper function to extract value and label information from children.
    * This flattens out both SelectItem and nested SelectGroup components.
    */
-  function getChildrenArray(children: React.ReactNode) {
+  function getChildrenArray(children: React.ReactNode): { value: string; label: string }[] {
     const childrenArr: { value: string; label: string }[] = [];
-
-    React.Children.forEach(children, function (child) {
+    React.Children.forEach(children, (child) => {
       if (React.isValidElement(child)) {
-        if (child.type === SelectItem) {
-          // Extract the value and label from the SelectItem
+        // Cast the child as a React element with props of either SelectItemProps or SelectGroupProps.
+        const childElement = child as React.ReactElement<SelectItemProps | SelectGroupProps>;
+        if (childElement.type === SelectItem) {
+          const props = childElement.props as SelectItemProps;
           childrenArr.push({
-            value: child.props.value,
-            label: child.props.children,
+            value: props.value,
+            label: String(props.children),
           });
         }
-
-        // If the child is a SelectGroup, recurse into it
-        if (child.type === SelectGroup) {
-          childrenArr.push(...getChildrenArray(child.props.children));
+        if (childElement.type === SelectGroup) {
+          const groupProps = childElement.props as SelectGroupProps;
+          childrenArr.push(...getChildrenArray(groupProps.children));
         }
       }
     });
-
     return childrenArr;
   }
+  
+  
+  
   const childrenArr = getChildrenArray(children);
 
   /* Always use this values instead of internalSelectedValues */

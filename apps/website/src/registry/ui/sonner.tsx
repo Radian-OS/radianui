@@ -126,7 +126,7 @@ const Sonners: React.FC<ToastProps> = function ({
               {/* Render icon if provided */}
               {icon && (
                 <div
-                  className={`${React.isValidElement(icon) && icon.props?.className ? "" : "h-5 w-5"} flex items-center justify-center`}
+                  className={`${React.isValidElement(icon) && (icon.props as { className?: string })?.className ? "" : "h-5 w-5"} flex items-center justify-center`}
                 >
                   {icon}
                 </div>

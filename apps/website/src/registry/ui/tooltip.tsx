@@ -185,28 +185,35 @@ function Tooltip({
     : null;
 
   return (
-    <>
-      {React.cloneElement(children, {
-        ref: function (node: HTMLElement | null) {
-          childRef.current = node;
-          if (typeof children.type === "string") return;
-
-          const childWithRef = children as React.ReactElement & {
-            ref?: React.Ref<HTMLElement>;
-          };
-          if (typeof childWithRef.ref === "function") childWithRef.ref(node);
-          else if (childWithRef.ref)
-            (childWithRef.ref as MutableRefObject<HTMLElement | null>).current =
-              node;
-        },
-        onMouseEnter: handleMouseEnter,
-        onMouseLeave: handleMouseLeave,
-        onFocus: handleFocus,
-        onBlur: handleBlur,
-        "aria-describedby": showTooltip ? "tooltip-content" : undefined,
-        tabIndex: 0,
-      })}
-
+<>
+      {React.isValidElement(children) &&
+        React.cloneElement(children as React.ReactElement<React.HTMLAttributes<HTMLElement> & {
+          ref?: React.Ref<HTMLElement>;
+          onMouseEnter?: () => void;
+          onMouseLeave?: () => void;
+          onFocus?: () => void;
+          onBlur?: () => void;
+        }>, {
+          ref: (node: HTMLElement | null) => {
+            childRef.current = node;
+            if (typeof children.type === "string") return;
+            const childWithRef = children as React.ReactElement & {
+              ref?: React.Ref<HTMLElement>;
+            };
+            if (typeof childWithRef.ref === "function") {
+              childWithRef.ref(node);
+            } else if (childWithRef.ref) {
+              (childWithRef.ref as MutableRefObject<HTMLElement | null>).current =
+                node;
+            }
+          },
+          onMouseEnter: handleMouseEnter,
+          onMouseLeave: handleMouseLeave,
+          onFocus: handleFocus,
+          onBlur: handleBlur,
+          "aria-describedby": showTooltip ? "tooltip-content" : undefined,
+          tabIndex: 0,
+        })}
       {tooltip}
     </>
   );

@@ -1,6 +1,6 @@
 {
   "title": "Laravel",
-  "description": "Install and configure Laravel with Inertia\r",
+  "description": "Install and configure Laravel with Inertia",
   "body": {
     "raw": "",
     "code": "var Component=(()=>{var x=Object.create;var o=Object.defineProperty;var f=Object.getOwnPropertyDescriptor;var d=Object.getOwnPropertyNames;var _=Object.getPrototypeOf,p=Object.prototype.hasOwnProperty;var g=(t,n)=>()=>(n||t((n={exports:{}}).exports,n),n.exports),j=(t,n)=>{for(var e in n)o(t,e,{get:n[e],enumerable:!0})},c=(t,n,e,i)=>{if(n&&typeof n==\"object\"||typeof n==\"function\")for(let a of d(n))!p.call(t,a)&&a!==e&&o(t,a,{get:()=>n[a],enumerable:!(i=f(n,a))||i.enumerable});return t};var L=(t,n,e)=>(e=t!=null?x(_(t)):{},c(n||!t||!t.__esModule?o(e,\"default\",{value:t,enumerable:!0}):e,t)),M=t=>c(o({},\"__esModule\",{value:!0}),t);var u=g((C,s)=>{s.exports=_jsx_runtime});var v={};j(v,{default:()=>m,frontmatter:()=>h});var r=L(u()),h={title:\"Laravel\",description:\"Install and configure Laravel with Inertia\"};function l(t){return(0,r.jsx)(r.Fragment,{})}function m(t={}){let{wrapper:n}=t.components||{};return n?(0,r.jsx)(n,{...t,children:(0,r.jsx)(l,{...t})}):l(t)}return M(v);})();\n;return Component;"
