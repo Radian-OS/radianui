@@ -1,8 +1,8 @@
 {
   "title": "Next.js",
-  "description": "Install and configure Next.js.\r",
+  "description": "Install and configure Next.js.",
   "body": {
-    "raw": "\r\n<Nextjs />\r\n",
+    "raw": "\n<Nextjs />\n",
     "code": "var Component=(()=>{var a=Object.create;var r=Object.defineProperty;var m=Object.getOwnPropertyDescriptor;var j=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,l=Object.prototype.hasOwnProperty;var _=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),M=(t,e)=>{for(var n in e)r(t,n,{get:e[n],enumerable:!0})},c=(t,e,n,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of j(e))!l.call(t,o)&&o!==n&&r(t,o,{get:()=>e[o],enumerable:!(s=m(e,o))||s.enumerable});return t};var N=(t,e,n)=>(n=t!=null?a(p(t)):{},c(e||!t||!t.__esModule?r(n,\"default\",{value:t,enumerable:!0}):n,t)),g=t=>c(r({},\"__esModule\",{value:!0}),t);var f=_((C,x)=>{x.exports=_jsx_runtime});var b={};M(b,{default:()=>d,frontmatter:()=>w});var i=N(f()),w={title:\"Next.js\",description:\"Install and configure Next.js.\"};function u(t){let{Nextjs:e}=t.components||{};return e||y(\"Nextjs\",!0),(0,i.jsx)(e,{})}function d(t={}){let{wrapper:e}=t.components||{};return e?(0,i.jsx)(e,{...t,children:(0,i.jsx)(u,{...t})}):u(t)}function y(t,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+t+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return g(b);})();\n;return Component;"
   },
   "_id": "documentation/installation/next.mdx",

@@ -1,6 +1,6 @@
 {
   "title": "Progress Bar",
-  "description": "Show progress inidicator for tasks visually\r",
+  "description": "Show progress inidicator for tasks visually",
   "body": {
     "raw": "",
     "code": "var Component=(()=>{var f=Object.create;var s=Object.defineProperty;var d=Object.getOwnPropertyDescriptor;var l=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var g=(t,r)=>()=>(r||t((r={exports:{}}).exports,r),r.exports),j=(t,r)=>{for(var e in r)s(t,e,{get:r[e],enumerable:!0})},i=(t,r,e,a)=>{if(r&&typeof r==\"object\"||typeof r==\"function\")for(let o of l(r))!_.call(t,o)&&o!==e&&s(t,o,{get:()=>r[o],enumerable:!(a=d(r,o))||a.enumerable});return t};var M=(t,r,e)=>(e=t!=null?f(p(t)):{},i(r||!t||!t.__esModule?s(e,\"default\",{value:t,enumerable:!0}):e,t)),h=t=>i(s({},\"__esModule\",{value:!0}),t);var u=g((D,c)=>{c.exports=_jsx_runtime});var y={};j(y,{default:()=>x,frontmatter:()=>w});var n=M(u()),w={title:\"Progress Bar\",description:\"Show progress inidicator for tasks visually\"};function m(t){return(0,n.jsx)(n.Fragment,{})}function x(t={}){let{wrapper:r}=t.components||{};return r?(0,n.jsx)(r,{...t,children:(0,n.jsx)(m,{...t})}):m(t)}return h(y);})();\n;return Component;"

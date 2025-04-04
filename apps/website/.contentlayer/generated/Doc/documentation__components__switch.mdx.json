@@ -1,6 +1,6 @@
 {
   "title": "Switch",
-  "description": "Toggle between two states seamlessly\r",
+  "description": "Toggle between two states seamlessly",
   "body": {
     "raw": "",
     "code": "var Component=(()=>{var l=Object.create;var s=Object.defineProperty;var f=Object.getOwnPropertyDescriptor;var _=Object.getOwnPropertyNames;var d=Object.getPrototypeOf,g=Object.prototype.hasOwnProperty;var p=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),w=(t,e)=>{for(var n in e)s(t,n,{get:e[n],enumerable:!0})},c=(t,e,n,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of _(e))!g.call(t,o)&&o!==n&&s(t,o,{get:()=>e[o],enumerable:!(a=f(e,o))||a.enumerable});return t};var j=(t,e,n)=>(n=t!=null?l(d(t)):{},c(e||!t||!t.__esModule?s(n,\"default\",{value:t,enumerable:!0}):n,t)),M=t=>c(s({},\"__esModule\",{value:!0}),t);var m=p((D,i)=>{i.exports=_jsx_runtime});var y={};w(y,{default:()=>x,frontmatter:()=>h});var r=j(m()),h={title:\"Switch\",description:\"Toggle between two states seamlessly\"};function u(t){return(0,r.jsx)(r.Fragment,{})}function x(t={}){let{wrapper:e}=t.components||{};return e?(0,r.jsx)(e,{...t,children:(0,r.jsx)(u,{...t})}):u(t)}return M(y);})();\n;return Component;"

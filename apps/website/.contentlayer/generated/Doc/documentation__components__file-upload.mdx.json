@@ -1,6 +1,6 @@
 {
   "title": "File Upload",
-  "description": "Allow users to upload files\r",
+  "description": "Allow users to upload files",
   "body": {
     "raw": "",
     "code": "var Component=(()=>{var x=Object.create;var a=Object.defineProperty;var d=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var j=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),F=(t,e)=>{for(var n in e)a(t,n,{get:e[n],enumerable:!0})},i=(t,e,n,s)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let r of f(e))!_.call(t,r)&&r!==n&&a(t,r,{get:()=>e[r],enumerable:!(s=d(e,r))||s.enumerable});return t};var M=(t,e,n)=>(n=t!=null?x(p(t)):{},i(e||!t||!t.__esModule?a(n,\"default\",{value:t,enumerable:!0}):n,t)),g=t=>i(a({},\"__esModule\",{value:!0}),t);var u=j((X,l)=>{l.exports=_jsx_runtime});var C={};F(C,{default:()=>m,frontmatter:()=>w});var o=M(u()),w={title:\"File Upload\",description:\"Allow users to upload files\"};function c(t){return(0,o.jsx)(o.Fragment,{})}function m(t={}){let{wrapper:e}=t.components||{};return e?(0,o.jsx)(e,{...t,children:(0,o.jsx)(c,{...t})}):c(t)}return g(C);})();\n;return Component;"

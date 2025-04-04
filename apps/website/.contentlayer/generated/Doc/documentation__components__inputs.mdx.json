@@ -1,6 +1,6 @@
 {
   "title": "Inputs",
-  "description": "Capture text or data with customizable inputs\r",
+  "description": "Capture text or data with customizable inputs",
   "body": {
     "raw": "",
     "code": "var Component=(()=>{var p=Object.create;var a=Object.defineProperty;var d=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var _=Object.getPrototypeOf,l=Object.prototype.hasOwnProperty;var j=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),C=(t,e)=>{for(var n in e)a(t,n,{get:e[n],enumerable:!0})},s=(t,e,n,i)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of f(e))!l.call(t,o)&&o!==n&&a(t,o,{get:()=>e[o],enumerable:!(i=d(e,o))||i.enumerable});return t};var M=(t,e,n)=>(n=t!=null?p(_(t)):{},s(e||!t||!t.__esModule?a(n,\"default\",{value:t,enumerable:!0}):n,t)),g=t=>s(a({},\"__esModule\",{value:!0}),t);var c=j((F,u)=>{u.exports=_jsx_runtime});var w={};C(w,{default:()=>x,frontmatter:()=>h});var r=M(c()),h={title:\"Inputs\",description:\"Capture text or data with customizable inputs\"};function m(t){return(0,r.jsx)(r.Fragment,{})}function x(t={}){let{wrapper:e}=t.components||{};return e?(0,r.jsx)(e,{...t,children:(0,r.jsx)(m,{...t})}):m(t)}return g(w);})();\n;return Component;"

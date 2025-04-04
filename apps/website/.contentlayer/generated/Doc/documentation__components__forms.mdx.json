@@ -1,6 +1,6 @@
 {
   "title": "Forms",
-  "description": "Collect user inputs and validate them in structured fields\r",
+  "description": "Collect user inputs and validate them in structured fields",
   "body": {
     "raw": "",
     "code": "var Component=(()=>{var l=Object.create;var s=Object.defineProperty;var x=Object.getOwnPropertyDescriptor;var f=Object.getOwnPropertyNames;var p=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var j=(t,e)=>()=>(e||t((e={exports:{}}).exports,e),e.exports),C=(t,e)=>{for(var n in e)s(t,n,{get:e[n],enumerable:!0})},i=(t,e,n,a)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of f(e))!_.call(t,o)&&o!==n&&s(t,o,{get:()=>e[o],enumerable:!(a=x(e,o))||a.enumerable});return t};var F=(t,e,n)=>(n=t!=null?l(p(t)):{},i(e||!t||!t.__esModule?s(n,\"default\",{value:t,enumerable:!0}):n,t)),M=t=>i(s({},\"__esModule\",{value:!0}),t);var c=j((X,u)=>{u.exports=_jsx_runtime});var h={};C(h,{default:()=>d,frontmatter:()=>g});var r=F(c()),g={title:\"Forms\",description:\"Collect user inputs and validate them in structured fields\"};function m(t){return(0,r.jsx)(r.Fragment,{})}function d(t={}){let{wrapper:e}=t.components||{};return e?(0,r.jsx)(e,{...t,children:(0,r.jsx)(m,{...t})}):m(t)}return M(h);})();\n;return Component;"

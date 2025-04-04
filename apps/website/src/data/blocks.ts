@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 
-export interface Block {
+type Block = {
   slug: string;
   title: string;
   category: string;
