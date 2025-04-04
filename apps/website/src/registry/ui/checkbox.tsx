@@ -116,10 +116,13 @@ function Checkbox({
             checked ? "opacity-100" : "opacity-0",
           )}
         >
-          {React.cloneElement(icon, {
-            size: size === "sm" ? 12 : size === "md" ? 16 : 20,
-            className: "",
-          })}
+         {React.isValidElement(icon) &&
+            React.cloneElement(icon as React.ReactElement<
+              React.ComponentProps<"svg"> & { size?: number }
+            >, {
+              size: size === "sm" ? 12 : size === "md" ? 16 : 20,
+              className: "",
+            })}
         </div>
       </button>
       {children && (
