@@ -84,8 +84,8 @@ Learn more about the power of Turborepo:
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
 
 
-# For website(build)
+# For website (build)
 pnpm turbo build --filter=radian-web
 
-# For webapp(build)
+# For webapp (build)
 pnpm turbo build --filter=radian-app
