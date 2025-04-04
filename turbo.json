@@ -36,6 +36,14 @@
     "format:write": {
       "cache": false,
       "outputs": []
+    },
+    "db:generate": {
+      "dependsOn": [],
+      "outputs": []
+    },
+    "db:migrate": {
+      "dependsOn": [],
+      "outputs": []
     }
   }
 }

@@ -20,7 +20,7 @@
         "slug": "/documentation/changelog",
         "slugAsParams": "changelog"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665559800",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -44,7 +44,7 @@
         "slug": "/documentation/cli",
         "slugAsParams": "cli"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665559851",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -68,7 +68,7 @@
         "slug": "/documentation/colors",
         "slugAsParams": "colors"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665559860",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -92,7 +92,7 @@
         "slug": "/documentation/default-theme",
         "slugAsParams": "default-theme"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560487",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -116,7 +116,7 @@
         "slug": "/documentation/figma",
         "slugAsParams": "figma"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560504",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -140,7 +140,7 @@
         "slug": "/documentation/frameworks",
         "slugAsParams": "frameworks"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560514",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -164,7 +164,7 @@
         "slug": "/documentation/iconography",
         "slugAsParams": "iconography"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560523",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -188,7 +188,7 @@
         "slug": "/documentation/installation",
         "slugAsParams": "installation"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560535",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -212,7 +212,7 @@
         "slug": "/documentation/introduction",
         "slugAsParams": "introduction"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560595",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -236,7 +236,7 @@
         "slug": "/documentation/typography",
         "slugAsParams": "typography"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560606",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -263,7 +263,7 @@
         "slug": "/documentation/components/accordion",
         "slugAsParams": "components/accordion"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665559903",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -288,7 +288,7 @@
         "slug": "/documentation/components/alert",
         "slugAsParams": "components/alert"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665559931",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -314,7 +314,7 @@
         "slug": "/documentation/components/avatar",
         "slugAsParams": "components/avatar"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665559955",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -339,7 +339,7 @@
         "slug": "/documentation/components/badge",
         "slugAsParams": "components/badge"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665559990",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -364,7 +364,7 @@
         "slug": "/documentation/components/banner",
         "slugAsParams": "components/banner"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560014",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -389,7 +389,7 @@
         "slug": "/documentation/components/breadcrumb",
         "slugAsParams": "components/breadcrumb"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560039",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -414,7 +414,7 @@
         "slug": "/documentation/components/button-group",
         "slugAsParams": "components/button-group"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560060",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -439,7 +439,7 @@
         "slug": "/documentation/components/buttons",
         "slugAsParams": "components/buttons"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560082",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -463,7 +463,7 @@
         "slug": "/documentation/components/calendar",
         "slugAsParams": "components/calendar"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560090",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -489,7 +489,7 @@
         "slug": "/documentation/components/checkbox",
         "slugAsParams": "components/checkbox"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560105",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -516,7 +516,7 @@
         "slug": "/documentation/components/code-area",
         "slugAsParams": "components/code-area"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560124",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -540,7 +540,7 @@
         "slug": "/documentation/components/date-picker",
         "slugAsParams": "components/date-picker"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560132",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -565,7 +565,7 @@
         "slug": "/documentation/components/divider",
         "slugAsParams": "components/divider"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560146",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -591,7 +591,7 @@
         "slug": "/documentation/components/drawer",
         "slugAsParams": "components/drawer"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560163",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -615,7 +615,7 @@
         "slug": "/documentation/components/dropdown",
         "slugAsParams": "components/dropdown"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560179",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -639,7 +639,7 @@
         "slug": "/documentation/components/file-upload",
         "slugAsParams": "components/file-upload"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560190",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -663,7 +663,7 @@
         "slug": "/documentation/components/forms",
         "slugAsParams": "components/forms"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560199",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -687,7 +687,7 @@
         "slug": "/documentation/components/hover-card",
         "slugAsParams": "components/hover-card"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560209",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -711,7 +711,7 @@
         "slug": "/documentation/components/inputs",
         "slugAsParams": "components/inputs"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560223",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -737,7 +737,7 @@
         "slug": "/documentation/components/modal",
         "slugAsParams": "components/modal"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560237",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -761,7 +761,7 @@
         "slug": "/documentation/components/pagination",
         "slugAsParams": "components/pagination"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560263",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -787,7 +787,7 @@
         "slug": "/documentation/components/popover",
         "slugAsParams": "components/popover"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560275",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -811,7 +811,7 @@
         "slug": "/documentation/components/progress-bar",
         "slugAsParams": "components/progress-bar"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560291",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -835,7 +835,7 @@
         "slug": "/documentation/components/radio-group",
         "slugAsParams": "components/radio-group"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560306",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -859,7 +859,7 @@
         "slug": "/documentation/components/resizable",
         "slugAsParams": "components/resizable"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560322",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -883,7 +883,7 @@
         "slug": "/documentation/components/skeleton",
         "slugAsParams": "components/skeleton"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560340",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -907,7 +907,7 @@
         "slug": "/documentation/components/slider",
         "slugAsParams": "components/slider"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560351",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -931,7 +931,7 @@
         "slug": "/documentation/components/sonner",
         "slugAsParams": "components/sonner"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560375",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -955,7 +955,7 @@
         "slug": "/documentation/components/switch",
         "slugAsParams": "components/switch"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560383",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -979,7 +979,7 @@
         "slug": "/documentation/components/table",
         "slugAsParams": "components/table"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560422",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -1003,7 +1003,7 @@
         "slug": "/documentation/components/tabs",
         "slugAsParams": "components/tabs"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560457",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -1027,7 +1027,7 @@
         "slug": "/documentation/components/tooltip",
         "slugAsParams": "components/tooltip"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560477",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -1051,7 +1051,7 @@
         "slug": "/documentation/installation/laravel",
         "slugAsParams": "installation/laravel"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560550",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -1075,7 +1075,7 @@
         "slug": "/documentation/installation/manual",
         "slugAsParams": "installation/manual"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560565",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -1099,7 +1099,7 @@
         "slug": "/documentation/installation/next",
         "slugAsParams": "installation/next"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560575",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     },
@@ -1123,7 +1123,7 @@
         "slug": "/documentation/installation/vite",
         "slugAsParams": "installation/vite"
       },
-      "documentHash": "1743667162132",
+      "documentHash": "1743665560582",
       "hasWarnings": false,
       "documentTypeName": "Doc"
     }

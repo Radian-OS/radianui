@@ -1,5 +1,5 @@
-import "dotenv/config";
-import { Config, defineConfig } from "drizzle-kit";
+import "dotenv/config"
+import { Config, defineConfig } from "drizzle-kit"
 
 export default defineConfig({
   out: "./src/db/migrations",
@@ -7,9 +7,6 @@ export default defineConfig({
   dialect: "postgresql",
   dbCredentials: {
     url: process.env.DATABASE_URL!,
-    ssl:
-      process.env.NODE_ENV === "production"
-        ? { rejectUnauthorized: false }
-        : false,
+    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
   },
-} satisfies Config);
+} satisfies Config)

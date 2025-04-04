@@ -1,5 +1,5 @@
-import packageJson from "../../package.json";
+import packageJson from "../../package.json"
 
 export const getPackageVersion = () => {
-  return packageJson.version;
-};
+	return packageJson.version
+}

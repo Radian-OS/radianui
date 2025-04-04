@@ -1,318 +1,275 @@
-"use client";
+"use client"
 
-import React from "react";
-import * as SliderPrimitive from "@radix-ui/react-slider";
-import { Minus, Plus } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "./button";
-import NumberInput from "./number";
-import Tooltip from "./tooltip";
+import React from "react"
+import * as SliderPrimitive from "@radix-ui/react-slider"
+import { Minus, Plus } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Button } from "./button"
+import NumberInput from "./number"
+import Tooltip from "./tooltip"
 
-const DEFAULT_STEPPER_VALUE = 5;
+const DEFAULT_STEPPER_VALUE = 5
 
 type Mark = {
-  value: number;
-  label: React.ReactNode;
-};
+	value: number
+	label: React.ReactNode
+}
 
 type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
-  label?: string;
-  withInput?: boolean;
-  showSteppers?: boolean;
-  marks?: Mark[];
-  prefixIcon?: React.ReactNode;
-  suffixIcon?: React.ReactNode;
-  showTooltip?: boolean;
-  classNames?: {
-    base?: string /* The div that wraps the component */;
-    label?: string /* The label of the slider */;
-    sliderWrapper?: string /* The wrapper for the slider track, thumbs, and optional steppers or input */;
-    sliderRoot?: string /* The root of the slider */;
-    sliderTrack?: string /* The track of the slider */;
-    sliderRange?: string /* The filled portion of the slider */;
-    sliderThumb?: string /* The draggable handle of the slider */;
-    input?: string /* The number input element (displayed when `withInput` is true) */;
-    mark?: string /* The mark element rendered along the slider track */;
-  };
-};
+	label?: string
+	withInput?: boolean
+	showSteppers?: boolean
+	marks?: Mark[]
+	prefixIcon?: React.ReactNode
+	suffixIcon?: React.ReactNode
+	showTooltip?: boolean
+	classNames?: {
+		base?: string /* The div that wraps the component */
+		label?: string /* The label of the slider */
+		sliderWrapper?: string /* The wrapper for the slider track, thumbs, and optional steppers or input */
+		sliderRoot?: string /* The root of the slider */
+		sliderTrack?: string /* The track of the slider */
+		sliderRange?: string /* The filled portion of the slider */
+		sliderThumb?: string /* The draggable handle of the slider */
+		input?: string /* The number input element (displayed when `withInput` is true) */
+		mark?: string /* The mark element rendered along the slider track */
+	}
+}
 
 function Slider({
-  className,
-  label,
-  withInput = false,
-  showSteppers = false,
-  marks,
-  min = 0,
-  max = 100,
-  prefixIcon,
-  suffixIcon,
-  showTooltip = true,
-  classNames,
-  ref,
-  ...props
+	className,
+	label,
+	withInput = false,
+	showSteppers = false,
+	marks,
+	min = 0,
+	max = 100,
+	prefixIcon,
+	suffixIcon,
+	showTooltip = true,
+	classNames,
+	ref,
+	...props
 }: SliderProps) {
-  const [internalValue, setInternalValue] = React.useState<number[]>(
-    props.value ?? props.defaultValue ?? [0],
-  );
-  const [input, setInput] = React.useState<number | null>(null);
-  const currentValue = props.value || internalValue;
+	const [internalValue, setInternalValue] = React.useState<number[]>(props.value ?? props.defaultValue ?? [0])
+	const [input, setInput] = React.useState<number | null>(null)
+	const currentValue = props.value || internalValue
 
-  const isSingleThumb = currentValue.length == 1;
+	const isSingleThumb = currentValue.length == 1
 
-  function handleValueChange(value: number[]) {
-    setInternalValue(value);
-    props.onValueChange?.(value);
-  }
+	function handleValueChange(value: number[]) {
+		setInternalValue(value)
+		props.onValueChange?.(value)
+	}
 
-  /**
-   * Handler for changes in the number input.
-   * Only applicable when a single-thumb slider is used.
-   *
-   * @param value - The new numeric value from the input
-   */
-  function handleInputChange(value: number | null) {
-    setInput(value);
-    if (value) handleValueChange([value]);
-  }
+	/**
+	 * Handler for changes in the number input.
+	 * Only applicable when a single-thumb slider is used.
+	 *
+	 * @param value - The new numeric value from the input
+	 */
+	function handleInputChange(value: number | null) {
+		setInput(value)
+		if (value) handleValueChange([value])
+	}
 
-  /**
-   * Handler for when the number input loses focus.
-   * Sets the input to 0 if it is null.
-   */
-  function handleInputBlur() {
-    if (input == null) {
-      setInput(0);
-      handleValueChange([0]);
-    }
-  }
+	/**
+	 * Handler for when the number input loses focus.
+	 * Sets the input to 0 if it is null.
+	 */
+	function handleInputBlur() {
+		if (input == null) {
+			setInput(0)
+			handleValueChange([0])
+		}
+	}
 
-  function handleLabelClick(mark: Mark) {
-    if (props.disabled) return;
+	function handleLabelClick(mark: Mark) {
+		if (props.disabled) return
 
-    if (isSingleThumb) {
-      handleValueChange([mark.value]);
-    } else {
-      const distances = currentValue.map((value) =>
-        Math.abs(value - mark.value),
-      );
-      const closestValueIndex = distances.indexOf(Math.min(...distances));
-      const newValue = [...currentValue];
-      newValue[closestValueIndex] = mark.value;
-      handleValueChange(newValue);
-    }
-  }
+		if (isSingleThumb) {
+			handleValueChange([mark.value])
+		} else {
+			const distances = currentValue.map((value) => Math.abs(value - mark.value))
+			const closestValueIndex = distances.indexOf(Math.min(...distances))
+			const newValue = [...currentValue]
+			newValue[closestValueIndex] = mark.value
+			handleValueChange(newValue)
+		}
+	}
 
-  /* When the slider is single-thumb, keep the input in sync with the slider value */
-  React.useEffect(
-    function () {
-      if (currentValue.length == 1) setInput(currentValue[0]);
-    },
-    [currentValue],
-  );
+	/* When the slider is single-thumb, keep the input in sync with the slider value */
+	React.useEffect(
+		function () {
+			if (currentValue.length == 1) setInput(currentValue[0])
+		},
+		[currentValue]
+	)
 
-  props.orientation = props.orientation ?? "horizontal";
-  const orientation = props.orientation;
+	props.orientation = props.orientation ?? "horizontal"
+	const orientation = props.orientation
 
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-2",
-        {
-          "w-full": orientation === "horizontal",
-          "h-full w-fit items-start": orientation === "vertical",
-          "cursor-not-allowed": props.disabled,
-        },
-        className,
-        classNames?.base,
-      )}
-    >
-      {label && (
-        <label
-          className={cn(
-            "body-sm font-medium",
-            { "text-fg3": props.disabled },
-            classNames?.label,
-          )}
-        >
-          {label}
-        </label>
-      )}
-      <div
-        className={cn(
-          "flex gap-2",
-          {
-            "w-full items-center": orientation === "horizontal",
-            "h-full w-fit flex-col items-center": orientation === "vertical",
-          },
-          classNames?.sliderWrapper,
-        )}
-      >
-        {showSteppers && isSingleThumb && (
-          <Button
-            isIcon
-            className={cn("size-8", {
-              "pointer-events-none cursor-not-allowed opacity-80":
-                props.disabled,
-            })}
-            variant="neutral-outline"
-            onClick={function () {
-              setInternalValue([
-                Math.max(
-                  min,
-                  internalValue[0] - (props.step || DEFAULT_STEPPER_VALUE),
-                ),
-              ]);
-            }}
-            disabled={props.disabled}
-          >
-            <Minus size={16} />
-          </Button>
-        )}
-        {prefixIcon}
-        <div
-          className={cn("relative h-full", {
-            "flex-1": orientation === "horizontal",
-            "flex flex-row": orientation === "vertical",
-          })}
-        >
-          <SliderPrimitive.Root
-            ref={ref}
-            className={cn(
-              "relative flex w-full touch-none items-center select-none data-disabled:opacity-80 data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
-              classNames?.sliderRoot,
-            )}
-            value={currentValue}
-            onValueChange={handleValueChange}
-            min={min}
-            max={max}
-            {...props}
-          >
-            <SliderPrimitive.Track
-              className={cn(
-                "border-stroke bg-bg3 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
-                classNames?.sliderTrack,
-              )}
-            >
-              <SliderPrimitive.Range
-                className={cn(
-                  "bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-8",
-                  classNames?.sliderRange,
-                )}
-              />
-            </SliderPrimitive.Track>
-            {currentValue?.map((value, index) =>
-              showTooltip ? (
-                <Tooltip content={value.toString()} key={index} variant="arrow">
-                  <SliderPrimitive.Thumb
-                    className={cn(
-                      "border-primary bg-bg1 block size-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
-                      classNames?.sliderThumb,
-                    )}
-                  />
-                </Tooltip>
-              ) : (
-                <SliderPrimitive.Thumb
-                  key={index}
-                  className={cn(
-                    "border-primary bg-bg1 block h-5 w-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
-                    classNames?.sliderThumb,
-                  )}
-                />
-              ),
-            )}
-          </SliderPrimitive.Root>
-          {/* Render marks below the slider track if provided */}
-          {marks && marks.length > 0 && (
-            <div
-              className={cn({
-                "relative mx-auto mt-2 mb-3 w-[95%]":
-                  orientation === "horizontal",
-                "relative my-auto h-[95%]": orientation === "vertical",
-              })}
-            >
-              {marks.map(function (mark) {
-                // Calculate the position of the mark as a percentage
-                const percent = ((mark.value - min) / (max - min)) * 100;
-                return (
-                  <div
-                    key={mark.value}
-                    className={cn(
-                      "body-xs text-fg2 absolute cursor-pointer font-medium",
-                      {
-                        "-translate-x-1/2": orientation === "horizontal",
-                        "ml-2 translate-y-1/2": orientation === "vertical",
-                        "cursor-not-allowed opacity-80": props.disabled,
-                      },
-                      classNames?.mark,
-                    )}
-                    style={
-                      orientation === "horizontal"
-                        ? { left: `${percent}%` }
-                        : { bottom: `${percent}%` }
-                    }
-                    onClick={function () {
-                      handleLabelClick(mark);
-                    }}
-                  >
-                    {mark.label}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-        {suffixIcon}
-        {showSteppers && isSingleThumb && (
-          <Button
-            isIcon
-            className={cn("size-8", {
-              "pointer-events-none cursor-not-allowed opacity-80":
-                props.disabled,
-            })}
-            variant="neutral-outline"
-            onClick={function () {
-              setInternalValue([
-                Math.min(
-                  max || 100,
-                  internalValue[0] + (props.step || DEFAULT_STEPPER_VALUE),
-                ),
-              ]);
-            }}
-          >
-            <Plus size={16} />
-          </Button>
-        )}
-        {withInput && isSingleThumb && (
-          <NumberInput
-            showStepper={false}
-            classNames={{ base: cn("w-20") }}
-            value={input ?? ""}
-            onBlur={handleInputBlur}
-            onChange={function (e) {
-              const value = e.target.value;
-              if (!value) handleInputChange(null);
+	return (
+		<div
+			className={cn(
+				"flex flex-col gap-2",
+				{
+					"w-full": orientation === "horizontal",
+					"h-full w-fit items-start": orientation === "vertical",
+					"cursor-not-allowed": props.disabled,
+				},
+				className,
+				classNames?.base
+			)}>
+			{label && <label className={cn("body-sm font-medium", { "text-fg3": props.disabled }, classNames?.label)}>{label}</label>}
+			<div
+				className={cn(
+					"flex gap-2",
+					{
+						"w-full items-center": orientation === "horizontal",
+						"h-full w-fit flex-col items-center": orientation === "vertical",
+					},
+					classNames?.sliderWrapper
+				)}>
+				{showSteppers && isSingleThumb && (
+					<Button
+						isIcon
+						className={cn("size-8", {
+							"pointer-events-none cursor-not-allowed opacity-80": props.disabled,
+						})}
+						variant="neutral-outline"
+						onClick={function () {
+							setInternalValue([Math.max(min, internalValue[0] - (props.step || DEFAULT_STEPPER_VALUE))])
+						}}
+						disabled={props.disabled}>
+						<Minus size={16} />
+					</Button>
+				)}
+				{prefixIcon}
+				<div
+					className={cn("relative h-full", {
+						"flex-1": orientation === "horizontal",
+						"flex flex-row": orientation === "vertical",
+					})}>
+					<SliderPrimitive.Root
+						ref={ref}
+						className={cn(
+							"relative flex w-full touch-none items-center select-none data-disabled:opacity-80 data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
+							classNames?.sliderRoot
+						)}
+						value={currentValue}
+						onValueChange={handleValueChange}
+						min={min}
+						max={max}
+						{...props}>
+						<SliderPrimitive.Track
+							className={cn(
+								"border-stroke bg-bg3 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
+								classNames?.sliderTrack
+							)}>
+							<SliderPrimitive.Range
+								className={cn("bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-8", classNames?.sliderRange)}
+							/>
+						</SliderPrimitive.Track>
+						{currentValue?.map((value, index) =>
+							showTooltip ? (
+								<Tooltip content={value.toString()} key={index} variant="arrow">
+									<SliderPrimitive.Thumb
+										className={cn(
+											"border-primary bg-bg1 block size-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
+											classNames?.sliderThumb
+										)}
+									/>
+								</Tooltip>
+							) : (
+								<SliderPrimitive.Thumb
+									key={index}
+									className={cn(
+										"border-primary bg-bg1 block h-5 w-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
+										classNames?.sliderThumb
+									)}
+								/>
+							)
+						)}
+					</SliderPrimitive.Root>
+					{/* Render marks below the slider track if provided */}
+					{marks && marks.length > 0 && (
+						<div
+							className={cn({
+								"relative mx-auto mt-2 mb-3 w-[95%]": orientation === "horizontal",
+								"relative my-auto h-[95%]": orientation === "vertical",
+							})}>
+							{marks.map(function (mark) {
+								// Calculate the position of the mark as a percentage
+								const percent = ((mark.value - min) / (max - min)) * 100
+								return (
+									<div
+										key={mark.value}
+										className={cn(
+											"body-xs text-fg2 absolute cursor-pointer font-medium",
+											{
+												"-translate-x-1/2": orientation === "horizontal",
+												"ml-2 translate-y-1/2": orientation === "vertical",
+												"cursor-not-allowed opacity-80": props.disabled,
+											},
+											classNames?.mark
+										)}
+										style={orientation === "horizontal" ? { left: `${percent}%` } : { bottom: `${percent}%` }}
+										onClick={function () {
+											handleLabelClick(mark)
+										}}>
+										{mark.label}
+									</div>
+								)
+							})}
+						</div>
+					)}
+				</div>
+				{suffixIcon}
+				{showSteppers && isSingleThumb && (
+					<Button
+						isIcon
+						className={cn("size-8", {
+							"pointer-events-none cursor-not-allowed opacity-80": props.disabled,
+						})}
+						variant="neutral-outline"
+						onClick={function () {
+							setInternalValue([Math.min(max || 100, internalValue[0] + (props.step || DEFAULT_STEPPER_VALUE))])
+						}}>
+						<Plus size={16} />
+					</Button>
+				)}
+				{withInput && isSingleThumb && (
+					<NumberInput
+						showStepper={false}
+						classNames={{ base: cn("w-20") }}
+						value={input ?? ""}
+						onBlur={handleInputBlur}
+						onChange={function (e) {
+							const value = e.target.value
+							if (!value) handleInputChange(null)
 
-              let validValue = parseFloat(value);
-              if (parseFloat(value) < min) {
-                validValue = min;
-              } else if (parseFloat(value) > max) {
-                validValue = max;
-              }
-              handleInputChange(validValue);
-            }}
-            onKeyDown={function (e) {
-              if (e.key === "Enter") {
-                handleInputBlur();
-                e.currentTarget.blur();
-              }
-            }}
-            disabled={props.disabled}
-          />
-        )}
-      </div>
-    </div>
-  );
+							let validValue = parseFloat(value)
+							if (parseFloat(value) < min) {
+								validValue = min
+							} else if (parseFloat(value) > max) {
+								validValue = max
+							}
+							handleInputChange(validValue)
+						}}
+						onKeyDown={function (e) {
+							if (e.key === "Enter") {
+								handleInputBlur()
+								e.currentTarget.blur()
+							}
+						}}
+						disabled={props.disabled}
+					/>
+				)}
+			</div>
+		</div>
+	)
 }
-Slider.displayName = "Slider";
+Slider.displayName = "Slider"
 
-export default Slider;
+export default Slider
