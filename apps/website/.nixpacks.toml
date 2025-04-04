@@ -1,0 +1,5 @@
+[phases.install]
+cmds = ['npm install -g pnpm', 'pnpm install']
+
+[phases.build]
+cmds = ['pnpm website:build']
