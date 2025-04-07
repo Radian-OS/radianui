@@ -1,14 +1,21 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "ui": "tui",
+  "globalDependencies": [
+    ".env"
+  ],
   "tasks": {
     "build": {
       "dependsOn": [
         "^build"
       ],
+      "env": [
+        "DATABASE_URL",
+        "NEXT_PUBLIC_POSTHOG_KEY"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
-        ".env*"
+        ".env"
       ],
       "outputs": [
         ".next/**",
