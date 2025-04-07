@@ -1,28 +1,32 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const rootEnvPath = path.join(__dirname, '.env');
-const targetAppEnvPath = path.join(__dirname, 'apps', 'website', '.env'); // Adjust the path to your Next.js app
+const targetAppEnvPath = path.join(__dirname, 'apps', 'website', '.env'); 
 
-// Function to copy the .env file
 function copyEnvFile() {
     return new Promise((resolve, reject) => {
-        fs.copyFile(rootEnvPath, targetAppEnvPath, (err) => {
+        fs.copyFile(rootEnvPath, targetAppEnvPath, (err: NodeJS.ErrnoException | null) => {
             if (err) {
                 reject(err);
             } else {
-                resolve();
+                resolve(undefined);
             }
         });
     });
 }
 
-// Function to check if the .env file exists
+
 function envFileExists() {
     return fs.existsSync(targetAppEnvPath);
 }
 
-// Main function to check and copy the .env file
+
 async function main() {
     try {
         if (!envFileExists()) {
@@ -37,5 +41,5 @@ async function main() {
     }
 }
 
-// Call the main function and exit afterward
-main().then(() => process.exit(0)); 
+
+main().then(() => process.exit(0));
