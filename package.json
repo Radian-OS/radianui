@@ -10,12 +10,12 @@
     "webapp:dev": "turbo run dev --filter=webapp",
     "webapp:build": "turbo run build --filter=webapp",
     "webapp:start": "turbo run start --filter=webapp",
-    "lint": "turbo run lint",
-    "format:write": "turbo run format:write",
-    "format:check": "turbo run format:check",
-    "check-types": "turbo run check-types",
     "db:generate": "turbo run db:generate --filter=website",
-    "db:migrate": "turbo run db:migrate --filter=website"
+    "db:migrate": "turbo run db:migrate --filter=website",
+    "format:check": "turbo run format:check",
+    "format:write": "turbo run format:write",
+    "check-types": "turbo run check-types",
+    "lint": "turbo run lint"
   },
   "resolutions": {
     "react": "19.1.0",
@@ -30,5 +30,8 @@
   "packageManager": "pnpm@9.0.0",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv-cli": "^8.0.0"
   }
 }
