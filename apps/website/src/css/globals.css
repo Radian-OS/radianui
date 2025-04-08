@@ -9,82 +9,82 @@ layer(base);
 
 :root {
 	/* primary */
-	--color-primary-50: hsla(250, 100%, 98%, 1);
-	--color-primary-100: hsla(250, 100%, 95%, 1);
-	--color-primary-200: hsla(250, 100%, 92%, 1);
-	--color-primary-300: hsla(250, 100%, 86%, 1);
-	--color-primary-400: hsla(250, 100%, 76%, 1);
-	--color-primary-500: hsla(250, 100%, 68%, 1);
-	--color-primary-600: hsla(250, 80%, 60%, 1);
-	--color-primary-700: hsla(250, 60%, 52%, 1);
-	--color-primary-800: hsla(250, 55%, 44%, 1);
-	--color-primary-900: hsla(250, 50%, 24%, 1);
-	--color-primary-950: hsla(250, 50%, 15%, 1);
+	--color-primary-50: #f7f5ff;
+	--color-primary-100: #e9e5ff;
+	--color-primary-200: #ddd6ff;
+	--color-primary-300: #c4b8ff;
+	--color-primary-400: #9985ff;
+	--color-primary-500: #775cff;
+	--color-primary-600: #6347eb;
+	--color-primary-700: #543bce;
+	--color-primary-800: #4732ae;
+	--color-primary-900: #291f5c;
+	--color-primary-950: #1a1339;
 
 	/* information */
-	--color-information-50: hsla(210, 100%, 98%, 1);
-	--color-information-100: hsla(210, 100%, 95%, 1);
-	--color-information-200: hsla(210, 100%, 92%, 1);
-	--color-information-300: hsla(210, 100%, 86%, 1);
-	--color-information-400: hsla(210, 100%, 76%, 1);
-	--color-information-500: hsla(210, 100%, 68%, 1);
-	--color-information-600: hsla(210, 100%, 60%, 1);
-	--color-information-700: hsla(210, 100%, 50%, 1);
-	--color-information-800: hsla(210, 80%, 42%, 1);
-	--color-information-900: hsla(210, 60%, 24%, 1);
-	--color-information-950: hsla(210, 50%, 16%, 1);
+	--color-information-50: #f5faff;
+	--color-information-100: #e5f2ff;
+	--color-information-200: #d6eaff;
+	--color-information-300: #b8dbff;
+	--color-information-400: #85c2ff;
+	--color-information-500: #5cadff;
+	--color-information-600: #3399ff;
+	--color-information-700: #007fff;
+	--color-information-800: #156bc1;
+	--color-information-900: #193d62;
+	--color-information-950: #14293d;
 
 	/* success */
-	--color-success-50: hsla(135, 100%, 98%, 1);
-	--color-success-100: hsla(135, 80%, 95%, 1);
-	--color-success-200: hsla(135, 80%, 95%, 1);
-	--color-success-300: hsla(135, 80%, 95%, 1);
-	--color-success-400: hsla(135, 80%, 95%, 1);
-	--color-success-500: hsla(135, 80%, 95%, 1);
-	--color-success-600: hsla(135, 70%, 56%, 1);
-	--color-success-700: hsla(135, 70%, 56%, 1);
-	--color-success-800: hsla(135, 50%, 44%, 1);
-	--color-success-900: hsla(135, 50%, 24%, 1);
-	--color-success-950: hsla(135, 50%, 16%, 1);
+	--color-success-50: #f5fff7;
+	--color-success-100: #e8fced;
+	--color-success-200: #dafbe2;
+	--color-success-300: #bff8cd;
+	--color-success-400: #8bf9a6;
+	--color-success-500: #55f17c;
+	--color-success-600: #40dd68;
+	--color-success-700: #33cc59;
+	--color-success-800: #38a854;
+	--color-success-900: #1f5c2e;
+	--color-success-950: #143d1f;
 
 	/* error */
-	--color-error-50: hsla(0, 100%, 98%, 1);
-	--color-error-100: hsla(0, 100%, 95%, 1);
-	--color-error-200: hsla(0, 100%, 92%, 1);
-	--color-error-300: hsla(0, 100%, 86%, 1);
-	--color-error-400: hsla(0, 100%, 86%, 1);
-	--color-error-500: hsla(0, 90%, 68%, 1);
-	--color-error-600: hsla(0, 90%, 68%, 1);
-	--color-error-700: hsla(0, 70%, 52%, 1);
-	--color-error-800: hsla(0, 65%, 44%, 1);
-	--color-error-900: hsla(0, 60%, 24%, 1);
-	--color-error-950: hsla(0, 50%, 16%, 1);
+	--color-error-50: #fff5f5;
+	--color-error-100: #ffe5e5;
+	--color-error-200: #ffd6d6;
+	--color-error-300: #ffb8b8;
+	--color-error-400: #f98b8b;
+	--color-error-500: #f25a5a;
+	--color-error-600: #eb4747;
+	--color-error-700: #da2f2f;
+	--color-error-800: #b92727;
+	--color-error-900: #621818;
+	--color-error-950: #3d1414;
 
 	/* warning */
-	--color-warning-50: hsla(35, 100%, 98%, 1);
-	--color-warning-100: hsla(35, 100%, 95%, 1);
-	--color-warning-200: hsla(35, 100%, 92%, 1);
-	--color-warning-300: hsla(35, 100%, 92%, 1);
-	--color-warning-400: hsla(35, 100%, 76%, 1);
-	--color-warning-500: hsla(35, 100%, 68%, 1);
-	--color-warning-600: hsla(35, 100%, 60%, 1);
-	--color-warning-700: hsla(35, 100%, 50%, 1);
-	--color-warning-800: hsla(35, 80%, 44%, 1);
-	--color-warning-900: hsla(35, 70%, 24%, 1);
-	--color-warning-950: hsla(35, 50%, 16%, 1);
+	--color-warning-50: #fffbf5;
+	--color-warning-100: #fff4e5;
+	--color-warning-200: #ffeed6;
+	--color-warning-300: #ffe1b8;
+	--color-warning-400: #ffcc85;
+	--color-warning-500: #ffbb5c;
+	--color-warning-600: #ffaa33;
+	--color-warning-700: #ff9500;
+	--color-warning-800: #ca7f16;
+	--color-warning-900: #684412;
+	--color-warning-950: #3d2c14;
 
 	/* neutral */
-	--color-neutral-50: hsla(0, 0%, 98%, 1);
-	--color-neutral-100: hsla(250, 5%, 96%, 1);
-	--color-neutral-200: hsla(250, 6%, 92%, 1);
-	--color-neutral-300: hsla(250, 5%, 86%, 1);
-	--color-neutral-400: hsla(250, 5%, 68%, 1);
-	--color-neutral-500: hsla(250, 5%, 46%, 1);
-	--color-neutral-600: hsla(250, 5%, 34%, 1);
-	--color-neutral-700: hsla(250, 5%, 26%, 1);
-	--color-neutral-800: hsla(250, 5%, 16%, 1);
-	--color-neutral-900: hsla(250, 6%, 10%, 1);
-	--color-neutral-950: hsla(250, 4%, 4%, 1);
+	--color-neutral-50: #f7f7f7;
+	--color-neutral-100: #f2f2f3;
+	--color-neutral-200: #e5e4e7;
+	--color-neutral-300: #dadadd;
+	--color-neutral-400: #aba9b1;
+	--color-neutral-500: #716f7b;
+	--color-neutral-600: #54525b;
+	--color-neutral-700: #3b3a40;
+	--color-neutral-800: #28272b;
+	--color-neutral-900: #1d1d20;
+	--color-neutral-950: #141415;
 
 	/* static */
 	--color-static-white: hsl(0 0% 100%);
