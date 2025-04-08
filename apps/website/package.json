@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "dotenv -e ../../.env -- next dev --port 3000",
 		"build": "dotenv -e ../../.env -- contentlayer2 build && next build",
-		"start": "dotenv -e ../../.env -- next start && pnpm bd:generate && pnpm db:migrate",
+		"start": "dotenv -e ../../.env -- next start",
 		"db:generate": "dotenv -e ../../.env -- drizzle-kit generate",
 		"db:migrate": "dotenv -e ../../.env -- drizzle-kit migrate",
 		"format:write": "prettier --log-level silent --write \"**/*.{ts,tsx,mdx}\" --cache",
