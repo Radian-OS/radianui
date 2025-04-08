@@ -554,4 +554,13 @@ Variable used in website only
 	.svg-color {
 		fill: var(--color-fg1);
 	}
+
+	.steps {
+		counter-reset: step;
+	}
+
+	.step::before {
+		counter-increment: step;
+		content: counter(step);
+	}
 }

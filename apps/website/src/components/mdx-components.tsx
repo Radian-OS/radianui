@@ -36,6 +36,8 @@ import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
+import { FrameworkDocs } from "./framework-docs"
+import Link from "next/link"
 
 type MdxProps = {
 	code: string
@@ -152,6 +154,46 @@ const components: MDXComponents = {
 		<div className={cn("mb-5 flex min-h-[30rem] items-center justify-center rounded-lg border p-10", className)} {...props}>
 			<div className="w-full">{children}</div>
 		</div>
+	),
+	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
+		<h3
+			className={cn(
+				"step relative mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
+				"before:absolute before:left-[-2.9rem] before:top-1/2 before:-translate-y-1/2",
+				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
+				"before:rounded-full before:bg-gray-200 before:text-sm before:font-medium before:text-gray-800",
+				"before:content-[counter(step)] before:counter-increment-[step]",
+				className
+			)}
+			{...props}
+		/>
+	),
+	Steps: ({ ...props }) => (
+		<div
+			className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8"
+			{...props}
+		/>
+	),
+	FrameworkDocs: ({
+		className,
+		...props
+	}: React.ComponentProps<typeof FrameworkDocs>) => (
+		<FrameworkDocs className={cn(className)} {...props} />
+	),
+	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
+		<Link
+			className={cn("font-medium underline underline-offset-4", className)}
+			{...props}
+		/>
+	),
+	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
+		<Link
+			className={cn(
+				"flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10",
+				className
+			)}
+			{...props}
+		/>
 	),
 }
 
