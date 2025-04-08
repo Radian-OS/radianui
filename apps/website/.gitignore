@@ -10,8 +10,8 @@
 /build
 
 # misc
-.contentlayer
-.turbo
+contentlayer
+.turbo/
 
 # env files (can opt-in for commiting if needed)
 .env*
