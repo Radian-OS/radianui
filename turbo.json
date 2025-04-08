@@ -12,7 +12,7 @@
       "env": [
         "DATABASE_URL",
         "NEXT_PUBLIC_POSTHOG_KEY",
-        "WEBAPP_URL"
+        "NEXT_PUBLIC_WEBAPP_URL"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
@@ -35,7 +35,11 @@
     },
     "dev": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".env"
+      ]
     },
     "start": {
       "cache": false,
