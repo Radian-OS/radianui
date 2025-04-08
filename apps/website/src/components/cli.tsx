@@ -39,7 +39,7 @@ Success! Project initialization completed. You may now add components.`}
 initialize your project and install dependencies
 
 Arguments:
-  components         the components to add or a url to the component.
+  components  the components to add or a url to the component.
 
 Options:
   -y, --yes         skip confirmation prompt. (default: false)
