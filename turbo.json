@@ -11,7 +11,8 @@
       ],
       "env": [
         "DATABASE_URL",
-        "NEXT_PUBLIC_POSTHOG_KEY"
+        "NEXT_PUBLIC_POSTHOG_KEY",
+        "WEBAPP_URL"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",

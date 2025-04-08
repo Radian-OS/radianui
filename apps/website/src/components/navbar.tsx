@@ -173,6 +173,11 @@ export default function Navbar() {
 					</ModalContent>
 				</Modal>
 
+				
+				<Link href={`${process.env.NEXT_PUBLIC_WEBAPP_URL!}`}>
+					<Button size={"40"} >Sign Up</Button>
+				</Link>
+
 				<DesktopThemeToggler />
 
 				<Drawer
