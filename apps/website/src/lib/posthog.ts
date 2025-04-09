@@ -6,6 +6,6 @@ export default function PostHogClient() {
 		flushAt: 1,
 		flushInterval: 0,
 	})
-	
+
 	return posthogClient
 }
