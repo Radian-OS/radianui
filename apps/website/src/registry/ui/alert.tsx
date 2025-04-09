@@ -12,7 +12,7 @@ type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 const alertVariants = cva("w-full rounded-md p-4 flex gap-3", {
 	variants: {
 		type: {
-			neutral: "border bg-bg2",
+			neutral: "bg-bg2",
 			info: "border-information bg-information/10 text-information",
 			success: "border-success bg-success/10 text-success",
 			danger: "border-error bg-error/10 text-error",
