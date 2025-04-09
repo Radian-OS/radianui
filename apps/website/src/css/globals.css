@@ -157,7 +157,6 @@ layer(base);
 	/* primary */
 	--color-primary: var(--color-primary-600);
 	--color-primary-accent: var(--color-primary-50);
-	--color-primary-accent-secondary: var(--color-primary-100);
 	--color-primary-focus: var(--color-primary-100);
 	--color-primary-stroke: var(--color-primary-500);
 	--color-primary-hover: var(--color-primary-500);
@@ -166,7 +165,6 @@ layer(base);
 	/* information */
 	--color-information: var(--color-information-700);
 	--color-information-accent: var(--color-information-50);
-	--color-information-accent-secondary: var(--color-information-100);
 	--color-information-focus: var(--color-information-200);
 	--color-information-stroke: var(--color-information-400);
 	--color-information-hover: var(--color-information-600);
@@ -175,7 +173,6 @@ layer(base);
 	/* success */
 	--color-success: var(--color-success-700);
 	--color-success-accent: var(--color-success-50);
-	--color-success-accent-secondary: var(--color-success-100);
 	--color-success-focus: var(--color-success-100);
 	--color-success-stroke: var(--color-success-600);
 	--color-success-hover: var(--color-success-600);
@@ -184,7 +181,6 @@ layer(base);
 	/* error */
 	--color-error: var(--color-error-600);
 	--color-error-accent: var(--color-error-50);
-	--color-error-accent-secondary: var(--color-error-100);
 	--color-error-focus: var(--color-error-100);
 	--color-error-stroke: var(--color-error-500);
 	--color-error-hover: var(--color-error-500);
@@ -193,7 +189,6 @@ layer(base);
 	/* warning */
 	--color-warning: var(--color-warning-700);
 	--color-warning-accent: var(--color-warning-50);
-	--color-warning-accent-secondary: var(--color-warning-100);
 	--color-warning-focus: var(--color-warning-100);
 	--color-warning-stroke: var(--color-warning-600);
 	--color-warning-hover: var(--color-warning-600);
