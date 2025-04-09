@@ -229,6 +229,10 @@ layer(base);
 	--color-fill-inverse-3: var(--color-white-alpha-8);
 	--color-fill-inverse-4: var(--color-white-alpha-16);
 
+	/* static */
+	--color-static-white: var(--color-white-1);
+	--color-static-black: var(--color-black-9);
+
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
 
@@ -344,6 +348,11 @@ layer(base);
 	--color-fill-inverse-2: var(--color-black-alpha-4);
 	--color-fill-inverse-3: var(--color-black-alpha-8);
 	--color-fill-inverse-4: var(--color-black-alpha-16);
+
+	/* static */
+	--color-static-white: var(--color-white-1);
+	--color-static-black: var(--color-black-9);
+
 }
 
 /*
