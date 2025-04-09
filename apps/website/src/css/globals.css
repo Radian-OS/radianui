@@ -9,86 +9,144 @@ layer(base);
 
 :root {
 	/* primary */
-	--color-primary-50: hsla(250, 100%, 98%, 1);
-	--color-primary-100: hsla(250, 100%, 95%, 1);
-	--color-primary-200: hsla(250, 100%, 92%, 1);
-	--color-primary-300: hsla(250, 100%, 86%, 1);
-	--color-primary-400: hsla(250, 100%, 76%, 1);
-	--color-primary-500: hsla(250, 100%, 68%, 1);
-	--color-primary-600: hsla(250, 80%, 60%, 1);
-	--color-primary-700: hsla(250, 60%, 52%, 1);
-	--color-primary-800: hsla(250, 55%, 44%, 1);
-	--color-primary-900: hsla(250, 50%, 24%, 1);
-	--color-primary-950: hsla(250, 50%, 15%, 1);
+	--color-primary-50: #f7f5ff;
+	--color-primary-100: #e9e5ff;
+	--color-primary-200: #ddd6ff;
+	--color-primary-300: #c4b8ff;
+	--color-primary-400: #9985ff;
+	--color-primary-500: #775cff;
+	--color-primary-600: #6347eb;
+	--color-primary-700: #543bce;
+	--color-primary-800: #4732ae;
+	--color-primary-900: #291f5c;
+	--color-primary-950: #1a1339;
 
 	/* information */
-	--color-information-50: hsla(210, 100%, 98%, 1);
-	--color-information-100: hsla(210, 100%, 95%, 1);
-	--color-information-200: hsla(210, 100%, 92%, 1);
-	--color-information-300: hsla(210, 100%, 86%, 1);
-	--color-information-400: hsla(210, 100%, 76%, 1);
-	--color-information-500: hsla(210, 100%, 68%, 1);
-	--color-information-600: hsla(210, 100%, 60%, 1);
-	--color-information-700: hsla(210, 100%, 50%, 1);
-	--color-information-800: hsla(210, 80%, 42%, 1);
-	--color-information-900: hsla(210, 60%, 24%, 1);
-	--color-information-950: hsla(210, 50%, 16%, 1);
+	--color-information-50: #f5faff;
+	--color-information-100: #e5f2ff;
+	--color-information-200: #d6eaff;
+	--color-information-300: #b8dbff;
+	--color-information-400: #85c2ff;
+	--color-information-500: #5cadff;
+	--color-information-600: #3399ff;
+	--color-information-700: #007fff;
+	--color-information-800: #156bc1;
+	--color-information-900: #193d62;
+	--color-information-950: #14293d;
 
 	/* success */
-	--color-success-50: hsla(135, 100%, 98%, 1);
-	--color-success-100: hsla(135, 80%, 95%, 1);
-	--color-success-200: hsla(135, 80%, 95%, 1);
-	--color-success-300: hsla(135, 80%, 95%, 1);
-	--color-success-400: hsla(135, 80%, 95%, 1);
-	--color-success-500: hsla(135, 80%, 95%, 1);
-	--color-success-600: hsla(135, 70%, 56%, 1);
-	--color-success-700: hsla(135, 70%, 56%, 1);
-	--color-success-800: hsla(135, 50%, 44%, 1);
-	--color-success-900: hsla(135, 50%, 24%, 1);
-	--color-success-950: hsla(135, 50%, 16%, 1);
+	--color-success-50: #f5fff7;
+	--color-success-100: #e8fced;
+	--color-success-200: #dafbe2;
+	--color-success-300: #bff8cd;
+	--color-success-400: #8bf9a6;
+	--color-success-500: #55f17c;
+	--color-success-600: #40dd68;
+	--color-success-700: #33cc59;
+	--color-success-800: #38a854;
+	--color-success-900: #1f5c2e;
+	--color-success-950: #143d1f;
 
 	/* error */
-	--color-error-50: hsla(0, 100%, 98%, 1);
-	--color-error-100: hsla(0, 100%, 95%, 1);
-	--color-error-200: hsla(0, 100%, 92%, 1);
-	--color-error-300: hsla(0, 100%, 86%, 1);
-	--color-error-400: hsla(0, 100%, 86%, 1);
-	--color-error-500: hsla(0, 90%, 68%, 1);
-	--color-error-600: hsla(0, 90%, 68%, 1);
-	--color-error-700: hsla(0, 70%, 52%, 1);
-	--color-error-800: hsla(0, 65%, 44%, 1);
-	--color-error-900: hsla(0, 60%, 24%, 1);
-	--color-error-950: hsla(0, 50%, 16%, 1);
+	--color-error-50: #fff5f5;
+	--color-error-100: #ffe5e5;
+	--color-error-200: #ffd6d6;
+	--color-error-300: #ffb8b8;
+	--color-error-400: #f98b8b;
+	--color-error-500: #f25a5a;
+	--color-error-600: #eb4747;
+	--color-error-700: #da2f2f;
+	--color-error-800: #b92727;
+	--color-error-900: #621818;
+	--color-error-950: #3d1414;
 
 	/* warning */
-	--color-warning-50: hsla(35, 100%, 98%, 1);
-	--color-warning-100: hsla(35, 100%, 95%, 1);
-	--color-warning-200: hsla(35, 100%, 92%, 1);
-	--color-warning-300: hsla(35, 100%, 92%, 1);
-	--color-warning-400: hsla(35, 100%, 76%, 1);
-	--color-warning-500: hsla(35, 100%, 68%, 1);
-	--color-warning-600: hsla(35, 100%, 60%, 1);
-	--color-warning-700: hsla(35, 100%, 50%, 1);
-	--color-warning-800: hsla(35, 80%, 44%, 1);
-	--color-warning-900: hsla(35, 70%, 24%, 1);
-	--color-warning-950: hsla(35, 50%, 16%, 1);
+	--color-warning-50: #fffbf5;
+	--color-warning-100: #fff4e5;
+	--color-warning-200: #ffeed6;
+	--color-warning-300: #ffe1b8;
+	--color-warning-400: #ffcc85;
+	--color-warning-500: #ffbb5c;
+	--color-warning-600: #ffaa33;
+	--color-warning-700: #ff9500;
+	--color-warning-800: #ca7f16;
+	--color-warning-900: #684412;
+	--color-warning-950: #3d2c14;
 
 	/* neutral */
-	--color-neutral-50: hsla(0, 0%, 98%, 1);
-	--color-neutral-100: hsla(250, 5%, 96%, 1);
-	--color-neutral-200: hsla(250, 6%, 92%, 1);
-	--color-neutral-300: hsla(250, 5%, 86%, 1);
-	--color-neutral-400: hsla(250, 5%, 68%, 1);
-	--color-neutral-500: hsla(250, 5%, 46%, 1);
-	--color-neutral-600: hsla(250, 5%, 34%, 1);
-	--color-neutral-700: hsla(250, 5%, 26%, 1);
-	--color-neutral-800: hsla(250, 5%, 16%, 1);
-	--color-neutral-900: hsla(250, 6%, 10%, 1);
-	--color-neutral-950: hsla(250, 4%, 4%, 1);
+	--color-neutral-50: #f7f7f7;
+	--color-neutral-100: #f2f2f3;
+	--color-neutral-200: #e5e4e7;
+	--color-neutral-300: #dadadd;
+	--color-neutral-400: #aba9b1;
+	--color-neutral-500: #716f7b;
+	--color-neutral-600: #54525b;
+	--color-neutral-700: #3b3a40;
+	--color-neutral-800: #28272b;
+	--color-neutral-900: #1d1d20;
+	--color-neutral-950: #141415;
 
-	/* static */
-	--color-static-white: hsl(0 0% 100%);
-	--color-static-black: hsla(250, 4%, 4%, 1);
+	/* alpha white variants */
+	--color-white-alpha-2: #ffffff05;
+	--color-white-alpha-4: #ffffff0a;
+	--color-white-alpha-6: #ffffff0f;
+	--color-white-alpha-8: #ffffff15;
+	--color-white-alpha-10: #ffffff1a;
+	--color-white-alpha-12: #ffffff1f;
+	--color-white-alpha-16: #ffffff29;
+	--color-white-alpha-20: #ffffff33;
+	--color-white-alpha-30: #ffffff4d;
+	--color-white-alpha-40: #ffffff66;
+	--color-white-alpha-50: #ffffff80;
+	--color-white-alpha-60: #ffffff99;
+	--color-white-alpha-70: #ffffffb3;
+	--color-white-alpha-80: #ffffffcc;
+	--color-white-alpha-90: #ffffffe6;
+
+	/* alpha black variants */
+	--color-black-alpha-2: #00000005;
+	--color-black-alpha-4: #0000000a;
+	--color-black-alpha-6: #0000000f;
+	--color-black-alpha-8: #00000015;
+	--color-black-alpha-10: #0000001a;
+	--color-black-alpha-12: #0000001f;
+	--color-black-alpha-16: #00000029;
+	--color-black-alpha-20: #00000033;
+	--color-black-alpha-30: #0000004d;
+	--color-black-alpha-40: #00000066;
+	--color-black-alpha-50: #00000080;
+	--color-black-alpha-60: #00000099;
+	--color-black-alpha-70: #000000b3;
+	--color-black-alpha-80: #000000cc;
+	--color-black-alpha-90: #000000e6;
+
+	/* extended white */
+	--color-white-1: #ffffff;
+	--color-white-2: #f7f7f8;
+	--color-white-3: #f2f1f3;
+	--color-white-4: #eaeaec;
+	--color-white-5: #d7d7db;
+	--color-white-6: #cac9cf;
+	--color-white-7: #bdbcc2;
+	--color-white-8: #b0afb6;
+	--color-white-9: #a3a1aa;
+	--color-white-10: #96949e;
+	--color-white-11: #888792;
+	--color-white-12: #7b7986;
+
+	/* extended */
+	--color-black-1: #7a7887;
+	--color-black-2: #6e6c7a;
+	--color-black-3: #62606c;
+	--color-black-4: #56545f;
+	--color-black-5: #494851;
+	--color-black-6: #3d3c44;
+	--color-black-7: #313036;
+	--color-black-8: #252428;
+	--color-black-9: #19181b;
+	--color-black-10: #141415;
+	--color-black-11: #0a0a0b;
+	--color-black-12: #000000;
 
 	/* font */
 	--heading-font: "Inter Display", system-ui, sans-serif;
@@ -100,10 +158,10 @@ layer(base);
 	--color-primary: var(--color-primary-600);
 	--color-primary-accent: var(--color-primary-50);
 	--color-primary-accent-secondary: var(--color-primary-100);
-	--color-primary-focus: var(--color-primary-200);
-	--color-primary-stroke: var(--color-primary-400);
+	--color-primary-focus: var(--color-primary-100);
+	--color-primary-stroke: var(--color-primary-500);
 	--color-primary-hover: var(--color-primary-500);
-	--color-primary-text: var(--color-primary-800);
+	--color-primary-text: var(--color-primary-700);
 
 	/* information */
 	--color-information: var(--color-information-700);
@@ -111,46 +169,47 @@ layer(base);
 	--color-information-accent-secondary: var(--color-information-100);
 	--color-information-focus: var(--color-information-200);
 	--color-information-stroke: var(--color-information-400);
-	--color-information-hover: var(--color-information-500);
-	--color-information-text: var(--color-information-800);
+	--color-information-hover: var(--color-information-600);
+	--color-information-text: var(--color-information-700);
 
 	/* success */
 	--color-success: var(--color-success-700);
 	--color-success-accent: var(--color-success-50);
 	--color-success-accent-secondary: var(--color-success-100);
-	--color-success-focus: var(--color-success-200);
-	--color-success-stroke: var(--color-success-400);
-	--color-success-hover: var(--color-success-500);
-	--color-success-text: var(--color-success-800);
+	--color-success-focus: var(--color-success-100);
+	--color-success-stroke: var(--color-success-600);
+	--color-success-hover: var(--color-success-600);
+	--color-success-text: var(--color-success-900);
 
 	/* error */
 	--color-error: var(--color-error-600);
 	--color-error-accent: var(--color-error-50);
 	--color-error-accent-secondary: var(--color-error-100);
-	--color-error-focus: var(--color-error-200);
-	--color-error-stroke: var(--color-error-400);
+	--color-error-focus: var(--color-error-100);
+	--color-error-stroke: var(--color-error-500);
 	--color-error-hover: var(--color-error-500);
-	--color-error-text: var(--color-error-800);
+	--color-error-text: var(--color-error-700);
 
 	/* warning */
 	--color-warning: var(--color-warning-700);
 	--color-warning-accent: var(--color-warning-50);
 	--color-warning-accent-secondary: var(--color-warning-100);
-	--color-warning-focus: var(--color-warning-200);
-	--color-warning-stroke: var(--color-warning-400);
-	--color-warning-hover: var(--color-warning-500);
+	--color-warning-focus: var(--color-warning-100);
+	--color-warning-stroke: var(--color-warning-600);
+	--color-warning-hover: var(--color-warning-600);
 	--color-warning-text: var(--color-warning-800);
 
 	/* background */
-	--color-bg1: var(--color-static-white);
-	--color-bg2: var(--color-neutral-50);
-	--color-bg3: var(--color-neutral-100);
-	--color-bg4: var(--color-neutral-200);
+	--color-bg1: var(--color-white-2);
+	--color-bg2: var(--color-white-1);
+	--color-bg3: var(--color-white-1);
+	--color-bg4: var(--color-white-1);
 
 	/* foreground */
-	--color-fg1: var(--color-neutral-950);
-	--color-fg2: var(--color-neutral-700);
-	--color-fg3: var(--color-neutral-400);
+	--color-fg1: var(--color-black-9);
+	--color-fg2: var(--color-black-4);
+	--color-fg3: var(--color-black-1);
+	--color-fg4: var(--color-white-8);
 
 	/* text */
 	--color-text-primary: var(--color-neutral-950);
@@ -158,8 +217,10 @@ layer(base);
 	--color-text-disabled: var(--color-neutral-500);
 
 	/* stroke */
-	--color-stroke: var(--color-neutral-300);
-	--color-stroke-decorative: var(--color-neutral-200);
+	--color-stroke: var(--color-white-4);
+	--color-stroke-decorative: var(--color-white-3);
+	--color-stroke-decorative-alpha: var(--color-black-alpha-6);
+	--color-stroke-alpha: var(--color-black-alpha-12);
 
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
@@ -203,37 +264,37 @@ layer(base);
 
 .dark {
 	/* primary */
-	--color-primary: var(--color-primary-600);
+	--color-primary: var(--color-primary-500);
 	--color-primary-accent: var(--color-primary-950);
 	--color-primary-accent-secondary: var(--color-primary-900);
-	--color-primary-focus: var(--color-primary-800);
+	--color-primary-focus: var(--color-primary-900);
 	--color-primary-stroke: var(--color-primary-800);
 	--color-primary-hover: var(--color-primary-400);
 	--color-primary-text: var(--color-primary-400);
 
 	/* information */
-	--color-information: var(--color-information-700);
+	--color-information: var(--color-information-600);
 	--color-information-accent: var(--color-information-950);
 	--color-information-accent-secondary: var(--color-information-900);
-	--color-information-focus: var(--color-information-800);
+	--color-information-focus: var(--color-information-900);
 	--color-information-stroke: var(--color-information-800);
-	--color-information-hover: var(--color-information-400);
+	--color-information-hover: var(--color-information-500);
 	--color-information-text: var(--color-information-400);
 
 	/* success */
 	--color-success: var(--color-success-700);
 	--color-success-accent: var(--color-success-950);
 	--color-success-accent-secondary: var(--color-success-900);
-	--color-success-focus: var(--color-success-800);
+	--color-success-focus: var(--color-success-900);
 	--color-success-stroke: var(--color-success-800);
-	--color-success-hover: var(--color-success-400);
+	--color-success-hover: var(--color-success-500);
 	--color-success-text: var(--color-success-400);
 
 	/* error */
 	--color-error: var(--color-error-600);
 	--color-error-accent: var(--color-error-950);
 	--color-error-accent-secondary: var(--color-error-900);
-	--color-error-focus: var(--color-error-800);
+	--color-error-focus: var(--color-error-900);
 	--color-error-stroke: var(--color-error-800);
 	--color-error-hover: var(--color-error-400);
 	--color-error-text: var(--color-error-400);
@@ -242,25 +303,28 @@ layer(base);
 	--color-warning: var(--color-warning-700);
 	--color-warning-accent: var(--color-warning-950);
 	--color-warning-accent-secondary: var(--color-warning-900);
-	--color-warning-focus: var(--color-warning-800);
+	--color-warning-focus: var(--color-warning-900);
 	--color-warning-stroke: var(--color-warning-800);
-	--color-warning-hover: var(--color-warning-400);
+	--color-warning-hover: var(--color-warning-500);
 	--color-warning-text: var(--color-warning-400);
 
 	/* Background */
-	--color-bg1: var(--color-static-black);
-	--color-bg2: var(--color-neutral-900);
-	--color-bg3: var(--color-neutral-800);
-	--color-bg4: var(--color-neutral-700);
+	--color-bg1: var(--color-black-10);
+	--color-bg2: var(--color-black-9);
+	--color-bg3: var(--color-black-8);
+	--color-bg4: var(--color-black-7);
 
 	/* foreground */
-	--color-fg1: var(--color-neutral-50);
-	--color-fg2: var(--color-neutral-400);
-	--color-fg3: var(--color-neutral-700);
+	--color-fg1: var(--color-white-1);
+	--color-fg2: var(--color-white-10);
+	--color-fg3: var(--color-black-2);
+	--color-fg4: var(--color-black-5);
 
 	/* stroke */
-	--color-stroke: var(--color-neutral-800);
-	--color-stroke-decorative: var(--color-neutral-900);
+	--color-stroke: var(--color-black-7);
+	--color-stroke-decorative: var(--color-black-8);
+	--color-stroke-decorative-alpha: var(--color-white-alpha-6);
+	--color-stroke-alpha: var(--color-white-alpha-12);
 }
 
 /*
@@ -553,5 +617,14 @@ Variable used in website only
 
 	.svg-color {
 		fill: var(--color-fg1);
+	}
+
+	.steps {
+		counter-reset: step;
+	}
+
+	.step::before {
+		counter-increment: step;
+		content: counter(step);
 	}
 }
