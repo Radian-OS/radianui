@@ -217,6 +217,18 @@ layer(base);
 	--color-stroke-decorative-alpha: var(--color-black-alpha-6);
 	--color-stroke-alpha: var(--color-black-alpha-12);
 
+	/* fill */
+	--color-fill1: var(--color-black-alpha-2);
+	--color-fill2: var(--color-black-alpha-4);
+	--color-fill3: var(--color-black-alpha-8);
+	--color-fill4: var(--color-black-alpha-16);
+	
+	/* fill-inverse */
+	--color-fill-inverse-1: var(--color-white-alpha-2);
+	--color-fill-inverse-2: var(--color-white-alpha-4);
+	--color-fill-inverse-3: var(--color-white-alpha-8);
+	--color-fill-inverse-4: var(--color-white-alpha-16);
+
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
 
@@ -320,6 +332,18 @@ layer(base);
 	--color-stroke-decorative: var(--color-black-8);
 	--color-stroke-decorative-alpha: var(--color-white-alpha-6);
 	--color-stroke-alpha: var(--color-white-alpha-12);
+
+	/* fill */
+	--color-fill1: var(--color-white-alpha-2);
+	--color-fill2: var(--color-white-alpha-4);
+	--color-fill3: var(--color-white-alpha-8);
+	--color-fill4: var(--color-white-alpha-16);
+
+	/* fill-inverse */
+	--color-fill-inverse-1: var(--color-black-alpha-2);
+	--color-fill-inverse-2: var(--color-black-alpha-4);
+	--color-fill-inverse-3: var(--color-black-alpha-8);
+	--color-fill-inverse-4: var(--color-black-alpha-16);
 }
 
 /*
