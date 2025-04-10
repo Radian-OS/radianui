@@ -19,7 +19,7 @@ const Manual = () => {
 		<div className="ml-[0.4rem] px-2 py-6 md:ml-[1rem] md:px-0">
 			<div className="flex flex-col gap-[30px] border-l pl-[2rem]">
 				<div className="relative flex flex-col gap-6">
-					<span className="heading-6 bg-border absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">1</span>
+					<span className="heading-6 absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">1</span>
 					<h1 className="heading-6">Add Tailwind CSS</h1>
 					<p>Components are styled using Tailwind CSS. You need to install Tailwind CSS in your project.</p>
 					<Link href="https://tailwindcss.com/docs/installation" className="underline underline-offset-4" target="_blank" rel="noopener noreferrer">
