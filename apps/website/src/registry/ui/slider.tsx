@@ -6,7 +6,7 @@ import { Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import NumberInput from "./number"
-import Tooltip from "./tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 
 const DEFAULT_STEPPER_VALUE = 5
 
@@ -173,13 +173,18 @@ function Slider({
 						</SliderPrimitive.Track>
 						{currentValue?.map((value, index) =>
 							showTooltip ? (
-								<Tooltip content={value.toString()} key={index} variant="arrow">
-									<SliderPrimitive.Thumb
-										className={cn(
-											"border-primary bg-bg1 block size-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
-											classNames?.sliderThumb
-										)}
-									/>
+								<Tooltip key={index} withArrow>
+									<TooltipTrigger asChild>
+										<SliderPrimitive.Thumb
+											className={cn(
+												"border-primary bg-bg1 block size-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
+												classNames?.sliderThumb
+											)}
+										/>
+									</TooltipTrigger>
+									<TooltipContent>
+										{value.toString()}
+									</TooltipContent>
 								</Tooltip>
 							) : (
 								<SliderPrimitive.Thumb

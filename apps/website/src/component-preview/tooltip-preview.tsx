@@ -12,11 +12,14 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import Tooltip from "@/registry/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 const TooltipPreview = () => {
 	const [position, setPosition] = useState<"top" | "left" | "right" | "bottom">("top")
-	const [variant, setVariant] = useState<"default" | "arrow">("default")
+	const [variant, setVariant] = useState<"start" | "end" | "center">("center")
+	const [withArrow, setWithArrow] = useState<"true" | "false">("false")
+	const [key, setKey] = useState(0)
+
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -43,15 +46,33 @@ const TooltipPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Variant</DropdownSubTrigger>
+									<DropdownSubTrigger>Align</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
 											onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
 											minSelectionCount={1}
 											selectedValues={[variant]}>
-											<DropdownItem value="default">Default</DropdownItem>
-											<DropdownItem value="arrow">Arrow</DropdownItem>
+											<DropdownItem value="start">Start</DropdownItem>
+											<DropdownItem value="center">Center</DropdownItem>
+											<DropdownItem value="end">End</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>With Arrow</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setWithArrow(Array.from(keys)[0] as typeof withArrow)
+												setKey((k) => k + 1)
+											}}
+											minSelectionCount={1}
+											selectedValues={[withArrow]}>
+											<DropdownItem value="false">False</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -68,8 +89,13 @@ const TooltipPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="mx-auto max-h-[200px] max-w-3xl">
-						<Tooltip content="I am a tooltip" position={`${position}`} variant={`${variant}`}>
-							<Button variant="neutral-outline">Hover me</Button>
+						<Tooltip side={`${position}`} withArrow={withArrow === "true"} align={`${variant}`}>
+							<TooltipTrigger asChild>
+								<Button key={key} variant="neutral-outline">Hover me</Button>
+							</TooltipTrigger>
+							<TooltipContent>
+								I am a tooltip
+							</TooltipContent>
 						</Tooltip>
 					</div>
 				</div>

@@ -4,7 +4,7 @@ import { Toaster as Sonner, toast } from "sonner"
 import { Button } from "./button"
 
 // Define the styles for the toast using `class-variance-authority`
-const SonnerVariant = cva("relative group toast rounded-lg w-full h-auto text-xl group-[.toaster]:text-fg0", {
+const SonnerVariant = cva("relative group toast rounded-lg w-full h-auto text-xl group-[.toaster]:text-fg1", {
 	variants: {
 		variant: {
 			default: "bg-bg1 text-black",
@@ -58,10 +58,10 @@ const Sonners: React.FC<ToastProps> = function ({
 }) {
 	// Create a toast with the provided content
 	const toastId = toast(
-		<div className="w-full">
+		<div className=" w-full min-[375px]:w-88">
 			{content ? (
 				// Render custom content if provided
-				<div>
+				<div className=" w-full">
 					<div className={SonnerVariant({ variant })}>{content}</div>
 					<div className="flex gap-2 pr-2">
 						{/* Render buttons if provided */}
@@ -87,7 +87,7 @@ const Sonners: React.FC<ToastProps> = function ({
 							onClick={function () {
 								toast.dismiss(toastId)
 							}}
-							className={`absolute top-2.5 right-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-fg0`}>
+							className={`absolute top-2.5 right-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-fg1`}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="14"
@@ -106,71 +106,72 @@ const Sonners: React.FC<ToastProps> = function ({
 				</div>
 			) : (
 				// Render default toast content if no custom content is provided
-				<>
-					<div
-						className={`group toast relative rounded-lg ${variant === "default" ? "bg-bg1" : `bg-${variant}`} flex h-auto w-full items-center justify-between gap-3 p-4 text-xl ${variant === "default" ? "text-black" : "text-white!"} group-[.toaster]:text-fg0`}>
-						<div className="flex items-center justify-center gap-2 text-sm/5">
-							{/* Render icon if provided */}
-							{icon && (
-								<div
-									className={`${React.isValidElement(icon) && (icon.props as { className?: string })?.className ? "" : "h-5 w-5"} flex items-center justify-center`}>
-									{icon}
-								</div>
-							)}
-							{/* Render title and description */}
-							{title && description && (
-								<div className="flex flex-col">
-									<p className="font-semibold">{title}</p>
-									{description && <p className="">{description}</p>}
-								</div>
-							)}
-
-							{!title && description && <p className="font-semibold">{description}</p>}
-						</div>
-						{/* Render close button if closable */}
-						{closable && (
+				<div
+					className={` group w-full toast relative rounded-lg ${variant === "default" ? "bg-bg1" : `bg-${variant}`} flex h-auto 
+						items-center justify-between gap-3 p-4 text-xl ${variant === "default" ? "text-black" : "text-white!"} 
+						group-[.toaster]:text-fg1`}>
+					<div className="flex items-center justify-center gap-2 text-sm/5">
+						{/* Render icon if provided */}
+						{icon && (
 							<div
-								onClick={function () {
-									toast.dismiss(toastId)
-								}}
-								className={`absolute top-2.5 right-2.5 cursor-pointer`}>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="14"
-									height="14"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round">
-									<path d="M18 6 6 18" />
-									<path d="m6 6 12 12" />
-								</svg>
+								className={`${React.isValidElement(icon) && (icon.props as { className?: string })?.className ? "" : "h-5 w-5"} flex 
+									items-center justify-center`}>
+								{icon}
 							</div>
 						)}
-						{/* Render buttons if provided */}
-						<div className="flex gap-2 pr-2">
-							{buttons?.map(function (btn, index) {
-								return (
-									<Button
-										variant="outline"
-										size="32"
-										className={`${variant === "default" ? "border-stroke!" : "border-white!"} text-sm font-semibold`}
-										key={index}
-										onClick={() => {
-											btn.onClick(toastId)
-											if (btn.dismiss) {
-												toast.dismiss(toastId)
-											}
-										}}>
-										{btn.label}
-									</Button>
-								)
-							})}
-						</div>
+						{/* Render title and description */}
+						{title && description && (
+							<div className="flex flex-col">
+								<p className="font-semibold">{title}</p>
+								{description && <p className="">{description}</p>}
+							</div>
+						)}
+
+						{!title && description && <p className="font-semibold">{description}</p>}
 					</div>
-				</>
+					{/* Render close button if closable */}
+					{closable && (
+						<div
+							onClick={function () {
+								toast.dismiss(toastId)
+							}}
+							className={`absolute top-2.5 right-2.5 cursor-pointer`}>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round">
+								<path d="M18 6 6 18" />
+								<path d="m6 6 12 12" />
+							</svg>
+						</div>
+					)}
+					{/* Render buttons if provided */}
+					<div className="flex gap-2 pr-2">
+						{buttons?.map(function (btn, index) {
+							return (
+								<Button
+									variant="outline"
+									size="32"
+									className={`${variant === "default" ? "border-stroke!" : "border-white!"} text-sm font-semibold`}
+									key={index}
+									onClick={() => {
+										btn.onClick(toastId)
+										if (btn.dismiss) {
+											toast.dismiss(toastId)
+										}
+									}}>
+									{btn.label}
+								</Button>
+							)
+						})}
+					</div>
+				</div>
 			)}
 		</div>,
 		{
@@ -184,7 +185,7 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 	bgColor?: string | null
 }
 // Define the styles for the toaster using `class-variance-authority`
-const toastClass = cva("group !p-0 toast w-96 group-[.toaster]:text-fg0", {
+const toastClass = cva("group !p-0 toast group-[.toaster]:text-fg1", {
 	variants: {
 		bgColor: {
 			default: "group-[.toaster]:!bg-bg1 group-[.toaster]:!border-stroke",
