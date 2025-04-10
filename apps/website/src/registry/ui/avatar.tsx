@@ -21,7 +21,7 @@ type AvatarGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	className?: string
 }
 
-const avatarVariants = cva("flex items-center justify-center shrink-0 overflow-hidden font-semibold text-fg2", {
+const avatarVariants = cva("flex items-center justify-center shrink-0 overflow-hidden font-semibold text-fg1", {
 	variants: {
 		size: {
 			"20": "size-5 text-[0.5rem]",
@@ -71,7 +71,7 @@ const onlineIndicatorVariants = cva("absolute z-20 border-bg1 box-content rounde
 		},
 		status: {
 			true: "bg-success",
-			false: "bg-bg4",
+			false: "bg-bg3",
 		},
 	},
 	defaultVariants: {
@@ -122,7 +122,7 @@ function Avatar({ src, name, className, size = "40", variant = "circle", onlineS
 
 	return (
 		<div data-slot="avatar" className="relative">
-			<div className={cn(avatarVariants({ size, variant }), "bg-bg3", className)}>
+			<div className={cn(avatarVariants({ size, variant }), "bg-bg2", className)}>
 				{src && imageStatus === "loaded" && <img src={src} alt={name} className="size-full object-cover" />}
 
 				{imageStatus !== "loaded" && (

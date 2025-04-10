@@ -166,8 +166,8 @@ function FileUpload({
 		<div className={cn("flex w-90 flex-col gap-2", containerClassName)}>
 			{label && (
 				<label
-					className={cn("body-sm w-fit font-medium", {
-						"text-fg3": props.disabled,
+					className={cn("text-sm w-fit font-medium", {
+						"text-fg2": props.disabled,
 					})}>
 					{label}
 				</label>
@@ -182,7 +182,7 @@ function FileUpload({
 							"rounded-none": rounded === "square",
 							"border-primary bg-primary/5": isDragging,
 							"border-error bg-error/5": error,
-							"bg-bg2": props.disabled,
+							"bg-bg0": props.disabled,
 							"hover:border-primary hover:bg-primary/5": !props.disabled,
 						},
 						dropzoneClassName
@@ -209,22 +209,22 @@ function FileUpload({
 						<span className={cn("border-stroke bg-bg1 size-10 rounded-lg border p-2 drop-shadow-xs", { "border-error": error })}>
 							<Upload
 								size={24}
-								className={cn("stroke-fg2 stroke-[1.5]", {
+								className={cn("stroke-fg1 stroke-[1.5]", {
 									"stroke-error": error,
-									"stroke-fg3": props.disabled,
+									"stroke-fg2": props.disabled,
 								})}
 							/>
 						</span>
 						<div className="text-muted-foreground flex flex-col text-sm">
 							<span
-								className={cn("body-sm text-fg1 font-medium", {
-									"text-fg3": props.disabled,
+								className={cn("text-sm text-fg0 font-medium", {
+									"text-fg2": props.disabled,
 								})}>
 								Upload an image or video
 							</span>
 							<span
-								className={cn("body-xs text-fg2 font-normal", {
-									"text-fg3": props.disabled,
+								className={cn("text-xs text-fg1 font-normal", {
+									"text-fg2": props.disabled,
 								})}>
 								or click to browse ({formatFileSize(maxSize)} max)
 							</span>
@@ -257,21 +257,21 @@ function FileUpload({
 // FilePreview component definition
 function FilePreview({ file, onRemove, status }: { file: File; onRemove: () => void; status: FileUploadStatus | undefined }) {
 	return (
-		<div className={cn("bg-bg3 flex flex-col items-center justify-start gap-3 rounded-lg p-3", { "bg-error/5": status?.status === "error" })}>
+		<div className={cn("bg-bg2 flex flex-col items-center justify-start gap-3 rounded-lg p-3", { "bg-error/5": status?.status === "error" })}>
 			<div>
 				<div className="flex w-full items-center gap-3">
 					<span className="border-stroke bg-bg1 size-10 rounded-lg border p-2 drop-shadow-xs">
-						<File className="stroke-fg2" size={24} />
+						<File className="stroke-fg1" size={24} />
 					</span>
 					<div className="w-full">
 						<div className="flex w-full justify-between gap-1">
-							<span className="body-sm text-fg1 font-medium">{file.name}</span>
+							<span className="text-sm text-fg0 font-medium">{file.name}</span>
 
 							<button type="button" onClick={onRemove} className="bg-bg1 size-5 rounded-full p-1">
-								<X size={12} className="stroke-fg3" />
+								<X size={12} className="stroke-fg2" />
 							</button>
 						</div>
-						<div className="body-xs text-fg2 flex gap-2 font-normal">
+						<div className="text-xs text-fg1 flex gap-2 font-normal">
 							{status && status.status === "uploading" && <span>Uploading</span>}
 							{status && status.status === "success" && <span>{formatFileSize(file.size)}</span>}
 							{status && status.status === "error" && <span className="text-error">Error while uploading</span>}

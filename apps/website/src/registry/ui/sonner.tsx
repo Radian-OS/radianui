@@ -4,7 +4,7 @@ import { Toaster as Sonner, toast } from "sonner"
 import { Button } from "./button"
 
 // Define the styles for the toast using `class-variance-authority`
-const SonnerVariant = cva("relative group toast rounded-lg w-full h-auto text-xl group-[.toaster]:text-fg1", {
+const SonnerVariant = cva("relative group toast rounded-lg w-full h-auto text-xl group-[.toaster]:text-fg0", {
 	variants: {
 		variant: {
 			default: "bg-bg1 text-black",
@@ -87,7 +87,7 @@ const Sonners: React.FC<ToastProps> = function ({
 							onClick={function () {
 								toast.dismiss(toastId)
 							}}
-							className={`absolute top-2.5 right-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-fg1`}>
+							className={`absolute top-2.5 right-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-fg0`}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="14"
@@ -108,7 +108,7 @@ const Sonners: React.FC<ToastProps> = function ({
 				// Render default toast content if no custom content is provided
 				<>
 					<div
-						className={`group toast relative rounded-lg ${variant === "default" ? "bg-bg1" : `bg-${variant}`} flex h-auto w-full items-center justify-between gap-3 p-4 text-xl ${variant === "default" ? "text-black" : "text-white!"} group-[.toaster]:text-fg1`}>
+						className={`group toast relative rounded-lg ${variant === "default" ? "bg-bg1" : `bg-${variant}`} flex h-auto w-full items-center justify-between gap-3 p-4 text-xl ${variant === "default" ? "text-black" : "text-white!"} group-[.toaster]:text-fg0`}>
 						<div className="flex items-center justify-center gap-2 text-sm/5">
 							{/* Render icon if provided */}
 							{icon && (
@@ -184,7 +184,7 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 	bgColor?: string | null
 }
 // Define the styles for the toaster using `class-variance-authority`
-const toastClass = cva("group !p-0 toast w-96 group-[.toaster]:text-fg1", {
+const toastClass = cva("group !p-0 toast w-96 group-[.toaster]:text-fg0", {
 	variants: {
 		bgColor: {
 			default: "group-[.toaster]:!bg-bg1 group-[.toaster]:!border-stroke",

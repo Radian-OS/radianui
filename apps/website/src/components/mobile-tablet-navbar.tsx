@@ -29,7 +29,7 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 				<TabletMobileThemeToggler />
 			</div>
 
-			<ul className="body-sm text-fg2 flex flex-col items-start gap-2 px-3 font-medium">
+			<ul className="text-sm text-fg1 flex flex-col items-start gap-2 px-3 font-medium">
 				<li>
 					<Link href="/documentation/components">Components</Link>
 				</li>
@@ -52,7 +52,7 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 					<AccordionItem value={section.title} key={section.title}>
 						<section>
 							<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-								<h1 className="body-sm flex items-center gap-1.5 px-1.5 font-medium">
+								<h1 className="text-sm flex items-center gap-1.5 px-1.5 font-medium">
 									<ChevronRight className="duration-300 ease-in-out" size={12} />
 									{section.title}
 								</h1>
@@ -61,9 +61,9 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 								{section.items.map((item) => (
 									<AccordionContent
 										key={item.link}
-										className={` ${pathname === item.link ? "bg-bg2 rounded-[0.375rem] font-medium" : ""} body-sm w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+										className={` ${pathname === item.link ? "bg-bg0 rounded-[0.375rem] font-medium" : ""} text-sm w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
 										<Link
-											className={`${pathname === item.link ? "text-fg1" : ""} text-fg2`}
+											className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`}
 											href={item.link}
 											onClick={() => setIsMobileNavVisible(false)}>
 											{item.name}

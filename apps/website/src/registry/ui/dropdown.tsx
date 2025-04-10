@@ -36,13 +36,13 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 	return (
 		<DropdownMenuPrimitive.Trigger
 			className={cn(
-				"body-sm bg-bg1 text-fg1 flex w-fit",
+				"text-sm bg-bg1 text-fg0 flex w-fit",
 				"border-stroke items-center justify-start gap-2 rounded-lg border",
 				"px-3 py-2.5 font-medium drop-shadow-xs"
 			)}
 			{...props}>
 			<span className="flex-1">{children}</span>
-			<ChevronDown size={20} className="text-fg3" />
+			<ChevronDown size={20} className="text-fg2" />
 		</DropdownMenuPrimitive.Trigger>
 	)
 }
@@ -120,7 +120,7 @@ function DropdownItem({
 	return (
 		<DropdownMenuPrimitive.Item
 			className={cn(
-				"focus:text-primary-foreground body-sm hover:bg-bg3 relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 outline-hidden transition-colors data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
+				"focus:text-primary-foreground text-sm hover:bg-bg2 relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 outline-hidden transition-colors data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
 			)}
@@ -136,12 +136,12 @@ function DropdownItem({
 					{shortcut && (
 						<label
 							className={cn(
-								"border-stroke text-fg2 ml-auto flex h-5 items-center justify-center rounded-sm border px-1.5 py-0 text-xs/4.5 drop-shadow-xs"
+								"border-stroke text-fg1 ml-auto flex h-5 items-center justify-center rounded-sm border px-1.5 py-0 text-xs/4.5 drop-shadow-xs"
 							)}>
 							{shortcut}
 						</label>
 					)}
-					{isSelectable && <span className="flex h-2.5 w-3.5 items-center">{isSelected && <Check className="text-fg1" size={20} />}</span>}
+					{isSelectable && <span className="flex h-2.5 w-3.5 items-center">{isSelected && <Check className="text-fg0" size={20} />}</span>}
 				</>
 			)}
 		</DropdownMenuPrimitive.Item>
@@ -195,7 +195,7 @@ function DropdownGroup({
 		<>
 			<DropdownCtx.Provider value={contextValue}>
 				<DropdownMenuPrimitive.Group className={cn(className, "bg-bg1 z-50 flex flex-col items-stretch justify-start px-0 py-0")} {...props}>
-					{title && <label className="text-fg3 flex h-7 items-center px-2 py-2.5 text-xs/4.5 font-medium uppercase">{title}</label>}
+					{title && <label className="text-fg2 flex h-7 items-center px-2 py-2.5 text-xs/4.5 font-medium uppercase">{title}</label>}
 					{children}
 				</DropdownMenuPrimitive.Group>
 			</DropdownCtx.Provider>
@@ -234,7 +234,7 @@ function DropdownSubTrigger({
 		<DropdownMenuPrimitive.SubTrigger
 			disabled={disabled}
 			className={cn(
-				"body-sm focus:text-primary-foreground focus:bg-bg3 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+				"text-sm focus:text-primary-foreground focus:bg-bg2 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 				className
 			)}
 			{...props}>

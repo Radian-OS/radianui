@@ -148,7 +148,7 @@ const components: MDXComponents = {
 		</td>
 	),
 	ul: ({ children }: { children?: React.ReactNode }) => (
-		<ul className="[&>li>strong]:text-fg2 mt-2 ml-4 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
+		<ul className="[&>li>strong]:text-fg1 mt-2 ml-4 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
 	),
 	Preview: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
 		<div className={cn("mb-5 flex min-h-[30rem] items-center justify-center rounded-lg border p-10", className)} {...props}>

@@ -89,7 +89,7 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 	const { closeIconVisibility } = useModalContext()
 
 	const closeButtonClass = cn(
-		"absolute right-5 top-5 rounded-sm border p-1 ring-offset-bg1 focus:outline-hidden focus:ring-2 focus:ring-fg1 disabled:pointer-events-none data-[state=open]:bg-bg1 data-[state=open]:text-fg3 transition-opacity duration-200",
+		"absolute right-5 top-5 rounded-sm border p-1 ring-offset-bg1 focus:outline-hidden focus:ring-2 focus:ring-fg0 disabled:pointer-events-none data-[state=open]:bg-bg1 data-[state=open]:text-fg2 transition-opacity duration-200",
 		{
 			hidden: closeIconVisibility === "hidden",
 			"opacity-0 group-hover:opacity-100": closeIconVisibility === "hover",
@@ -134,7 +134,7 @@ function ModalTitle({ className, ...props }: ModalTitleProps) {
 ModalTitle.displayName = DialogPrimitive.Title.displayName
 
 function ModalDescription({ className, ...props }: ModalDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-fg2 text-sm leading-tight", className)} {...props} />
+	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-fg1 text-sm leading-tight", className)} {...props} />
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName
 

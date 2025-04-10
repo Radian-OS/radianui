@@ -57,20 +57,20 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 			{label && (
 				<Label
 					className={cn(
-						"text-fg1 text-sm font-medium",
+						"text-fg0 text-sm font-medium",
 						{
-							"text-fg3": disabled,
+							"text-fg2": disabled,
 						},
 						classNames?.label
 					)}>
 					{label}
 				</Label>
 			)}
-			<DateInputRC className={cn(dateInputStyles({ size, rounded }), { "text-fg3 cursor-not-allowed": disabled }, classNames?.dateInput)}>
+			<DateInputRC className={cn(dateInputStyles({ size, rounded }), { "text-fg2 cursor-not-allowed": disabled }, classNames?.dateInput)}>
 				{(segment) => (
 					<DateSegment
 						className={cn(
-							"body-sm focus:bg-primary data-placeholder:text-fg3 rounded-sm px-0 py-0.5 text-end tabular-nums focus:text-white focus:caret-transparent focus:outline-hidden data-[type=dayPeriod]:mx-0.5 data-[type=hour]:ml-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5",
+							"text-sm focus:bg-primary data-placeholder:text-fg2 rounded-sm px-0 py-0.5 text-end tabular-nums focus:text-white focus:caret-transparent focus:outline-hidden data-[type=dayPeriod]:mx-0.5 data-[type=hour]:ml-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5",
 							classNames?.dateSegment
 						)}
 						segment={segment}

@@ -39,8 +39,8 @@ const navigatorStyles = ["button", "selector"] as const
 
 const page = () => {
 	return (
-		<div className="text-fg1 px-[6rem] py-[3rem]">
-			<h4 className="font-heading text-fg1 mb-6 text-[2rem] font-bold">Input</h4>
+		<div className="text-fg0 px-[6rem] py-[3rem]">
+			<h4 className="font-heading text-fg0 mb-6 text-[2rem] font-bold">Input</h4>
 
 			<div className="flex flex-col gap-[40px]">
 				<InputComp />
@@ -175,7 +175,7 @@ const SearchInputComp = () => {
 		const items = searchResults.map((result) => (
 			<div
 				key={result.id}
-				className="body-sm hover:bg-border relative flex cursor-pointer items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] font-normal outline-hidden select-none [&_svg]:shrink-0">
+				className="text-sm hover:bg-border relative flex cursor-pointer items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] font-normal outline-hidden select-none [&_svg]:shrink-0">
 				<p>{result.title}</p>
 			</div>
 		))

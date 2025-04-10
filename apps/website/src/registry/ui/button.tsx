@@ -23,8 +23,8 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 			soft: "bg-primary/10 font-medium text-primary hover:bg-primary/15 active:bg-primary/20",
 			outline: "bg-bg1 font-medium border border-primary text-primary hover:bg-primary/5 active:bg-primary/10",
 			ghost: "bg-transparent text-primary font-medium hover:bg-primary/10 active:bg-primary/20",
-			"neutral-soft": "bg-bg2 font-medium hover:bg-bg3 active:bg-bg4",
-			"neutral-outline": "bg-bg1 font-medium border drop-shadow-xs hover:border-stroke-decorative active:bg-bg2 active:border-stroke-decorative",
+			"neutral-soft": "bg-bg0 font-medium hover:bg-bg2 active:bg-bg3",
+			"neutral-outline": "bg-bg1 font-medium border drop-shadow-xs hover:border-stroke-decorative active:bg-bg0 active:border-stroke-decorative",
 		},
 		rounded: {
 			square: "rounded-xs",
@@ -32,12 +32,12 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 			full: "rounded-full",
 		},
 		size: {
-			"32": "[&>svg]:size-5 body-sm", // 32px (formerly xs)
-			"36": "[&>svg]:size-5 body-sm", // 36px (formerly sm)
-			"40": "[&>svg]:size-5 body-sm", // 40px (formerly base)
-			"44": "[&>svg]:size-6 body-base", // 44px (formerly lg)
-			"48": "[&>svg]:size-6 body-base", // 48px (formerly xl)
-			"56": "[&>svg]:size-6 body-base", // 56px (formerly 2xl)
+			"32": "[&>svg]:size-5 text-sm", // 32px (formerly xs)
+			"36": "[&>svg]:size-5 text-sm", // 36px (formerly sm)
+			"40": "[&>svg]:size-5 text-sm", // 40px (formerly base)
+			"44": "[&>svg]:size-6 text-base", // 44px (formerly lg)
+			"48": "[&>svg]:size-6 text-base", // 48px (formerly xl)
+			"56": "[&>svg]:size-6 text-base", // 56px (formerly 2xl)
 		},
 		isIcon: {
 			true: "",

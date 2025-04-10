@@ -36,7 +36,7 @@ export default async function DocPage({ params }: DocPageProps) {
 		<div className="mx-auto">
 			<div className="flex flex-col">
 				<h4 className="heading-4 mb-1">{doc.title}</h4>
-				<p className="text-fg2 mb-5 text-base">{doc.description}</p>
+				<p className="text-fg1 mb-5 text-base">{doc.description}</p>
 				<section className="mb-10 flex items-center gap-2">
 					{doc.apiref && (
 						<Badge className="flex w-fit cursor-pointer items-center gap-1">

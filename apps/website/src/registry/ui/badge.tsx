@@ -19,10 +19,10 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border", {
 			strong: "bg-primary text-white font-semibold",
 		},
 		size: {
-			"20": "h-5 px-1.5 body-xs",
-			"24": "h-6 px-2 body-sm",
-			"28": "h-7 px-2.5 body-sm",
-			"32": "h-8 px-3 body-sm",
+			"20": "h-5 px-1.5 text-xs",
+			"24": "h-6 px-2 text-sm",
+			"28": "h-7 px-2.5 text-sm",
+			"32": "h-8 px-3 text-sm",
 		},
 		rounded: {
 			true: "rounded-full",
@@ -64,7 +64,7 @@ function Badge({ variant = "outline", size = "24", rounded = false, closable = f
 					{closable && (
 						<X
 							onClick={() => setShowBadge(false)}
-							className={cn(variant === "outline" ? "text-fg2" : "text-white", iconSizeMap[size], "cursor-pointer font-extrabold")}
+							className={cn(variant === "outline" ? "text-fg1" : "text-white", iconSizeMap[size], "cursor-pointer font-extrabold")}
 						/>
 					)}
 				</div>

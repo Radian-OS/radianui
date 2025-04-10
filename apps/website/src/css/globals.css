@@ -195,16 +195,16 @@ layer(base);
 	--color-warning-text: var(--color-warning-800);
 
 	/* background */
-	--color-bg1: var(--color-white-2);
+	--color-bg0: var(--color-white-2);
+	--color-bg1: var(--color-white-1);
 	--color-bg2: var(--color-white-1);
 	--color-bg3: var(--color-white-1);
-	--color-bg4: var(--color-white-1);
 
 	/* foreground */
-	--color-fg1: var(--color-black-9);
-	--color-fg2: var(--color-black-4);
-	--color-fg3: var(--color-black-1);
-	--color-fg4: var(--color-white-8);
+	--color-fg0: var(--color-black-9);
+	--color-fg1: var(--color-black-4);
+	--color-fg2: var(--color-black-1);
+	--color-fg3: var(--color-white-8);
 
 	/* text */
 	--color-text-primary: var(--color-neutral-950);
@@ -321,15 +321,15 @@ layer(base);
 
 	/* Background */
 	--color-bg1: var(--color-black-10);
-	--color-bg2: var(--color-black-9);
-	--color-bg3: var(--color-black-8);
-	--color-bg4: var(--color-black-7);
+	--color-bg0: var(--color-black-9);
+	--color-bg2: var(--color-black-8);
+	--color-bg3: var(--color-black-7);
 
 	/* foreground */
-	--color-fg1: var(--color-white-1);
-	--color-fg2: var(--color-white-10);
-	--color-fg3: var(--color-black-2);
-	--color-fg4: var(--color-black-5);
+	--color-fg0: var(--color-white-1);
+	--color-fg1: var(--color-white-10);
+	--color-fg2: var(--color-black-2);
+	--color-fg3: var(--color-black-5);
 
 	/* stroke */
 	--color-stroke: var(--color-black-7);
@@ -496,20 +496,20 @@ Variable used in website only
 	}
 }
 
-@utility body-lg {
+/* @utility text-lg { */
 	/* Body text styles */
-	@apply font-body text-[1.125rem] leading-[1.75rem];
-}
+	/* @apply font-body text-[1.125rem] leading-[1.75rem]; */
+/* } */
 
-@utility body-base {
+/* @utility text-base {
 	@apply font-body text-[1rem] leading-[1.5rem];
-}
+} */
 
 @utility body-15 {
 	@apply font-body text-[0.9375rem] leading-[1.375];
 }
 
-@utility body-sm {
+@utility text-paragraph {
 	@apply font-body text-[0.875rem] leading-[1.25rem];
 }
 
@@ -517,9 +517,9 @@ Variable used in website only
 	@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
 
-@utility body-xs {
+/* @utility text-xs {
 	@apply font-body text-[0.75rem] leading-[1rem];
-}
+} */
 
 @utility no-scrollbar {
 	-ms-overflow-style: none;
@@ -572,7 +572,7 @@ Variable used in website only
 	}
 
 	body {
-		@apply bg-bg1 text-fg1;
+		@apply bg-bg1 text-fg0;
 	}
 
 	code[data-line-numbers] {
@@ -644,7 +644,7 @@ Variable used in website only
 	}
 
 	.svg-color {
-		fill: var(--color-fg1);
+		fill: var(--color-fg0);
 	}
 
 	.steps {
