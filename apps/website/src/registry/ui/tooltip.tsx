@@ -49,7 +49,7 @@ const TooltipContent = ({ className, sideOffset = 10, children, ...props }: Tool
 			sideOffset={sideOffset}
 			className={cn(
 				"relative",
-				"dark:bg-white bg-black dark:text-black text-white px-2 py-1 text-xs text-center",
+				"dark:bg-white dark:text-black bg-black  text-white px-2 py-1 text-xs text-center",
 				// Base animations
 				"animate-in fade-in-20 zoom-in-95",
 				// Side-specific slide animations
@@ -93,10 +93,13 @@ const TooltipContent = ({ className, sideOffset = 10, children, ...props }: Tool
 						"z-60 h-2 w-4 fill-black dark:fill-white absolute top-[-2px]",
 						{
 							"left-1/2 -translate-x-1/2": align === "center",
-							"-translate-x-full": align === "start" && (side === "top" || side === "right"),
+							"-translate-x-full": align === "start" && "right",
 							"translate-x-2": align === "end" && side === "top",
-							" -translate-x-3.5": align === "end" && side === "left",
-
+							"-translate-x-4": align === "end" && side === "left",
+							"-translate-x-6": align === "start" && side === "top",
+							"-translate-x-1.2": align === "start" && side === "left",
+							"translate-x-3": align === "start" && side === "bottom",
+							"-translate-x-5": align === "end" && side === "bottom",
 						}
 					)}
 

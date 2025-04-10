@@ -89,7 +89,7 @@ const TooltipPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="mx-auto max-h-[200px] max-w-3xl">
-						<Tooltip side={`${position}`} withArrow={withArrow !== "true"} align={`${variant}`}>
+						<Tooltip side={`${position}`} withArrow={withArrow === "true"} align={`${variant}`}>
 							<TooltipTrigger asChild>
 								<Button key={key} variant="neutral-outline">Hover me</Button>
 							</TooltipTrigger>
