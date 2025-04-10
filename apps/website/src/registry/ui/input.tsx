@@ -15,19 +15,19 @@ export const cvaInputVariants = {
 		full: "rounded-full",
 	},
 	size: {
-		"32": "h-8 body-sm px-3 py-1.5",
-		"36": "h-9 body-sm px-3 py-2",
-		"40": "h-10 body-sm px-3 py-2.5",
-		"44": "h-11 body-base py-2.5 px-3.5",
-		"48": "h-12 body-base py-3 px-3.5",
-		"56": "h-14 body-base py-4 px-3.5",
+		"32": "h-8 text-sm px-3 py-1.5",
+		"36": "h-9 text-sm px-3 py-2",
+		"40": "h-10 text-sm px-3 py-2.5",
+		"44": "h-11 text-base py-2.5 px-3.5",
+		"48": "h-12 text-base py-3 px-3.5",
+		"56": "h-14 text-base py-4 px-3.5",
 	},
 }
 
 export const defaultInputSize = "40"
 export const defaultInputRadius = "rounded"
 // Creating a variant for input styles using cva
-const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border hover:bg-bg2 drop-shadow-xs bg-bg1 cursor-text", {
+const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border hover:bg-bg0 drop-shadow-xs bg-bg1 cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -82,9 +82,9 @@ function Input({
 	if (id) htmlId = id
 
 	return (
-		<div className={cn("body-sm text-fg-1 flex w-full flex-col gap-1.5", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
+		<div className={cn("text-sm text-fg-1 flex w-full flex-col gap-1.5", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
-				<Label id={htmlId} className={cn({ "text-fg3": disabled }, classNames?.label)}>
+				<Label id={htmlId} className={cn({ "text-fg2": disabled }, classNames?.label)}>
 					{label}
 				</Label>
 			)}
@@ -95,7 +95,7 @@ function Input({
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError,
 						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-stroke-decorative focus-within:ring-2": !hasError,
-						"text-fg3 pointer-events-none": disabled,
+						"text-fg2 pointer-events-none": disabled,
 					},
 					classNames?.wrapper
 				)}>
@@ -103,9 +103,9 @@ function Input({
 				<input
 					id={htmlId}
 					className={cn(
-						"text-fg-1 placeholder-fg3 h-fit w-full border border-none bg-transparent p-0 outline-hidden select-none placeholder:text-sm placeholder:font-normal focus:ring-0",
+						"text-fg-1 placeholder-fg2 h-fit w-full border border-none bg-transparent p-0 outline-hidden select-none placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
-							"text-fg3 cursor-not-allowed": disabled,
+							"text-fg2 cursor-not-allowed": disabled,
 						},
 						classNames?.input
 					)}
@@ -115,7 +115,7 @@ function Input({
 				/>
 				{suffixIcon && <span className="ml-auto">{suffixIcon}</span>}
 			</label>
-			{hasError && <Label className={cn("body-xs text-error font-medium", className)}>{errorMsg}</Label>}
+			{hasError && <Label className={cn("text-xs text-error font-medium", className)}>{errorMsg}</Label>}
 		</div>
 	)
 }

@@ -199,12 +199,12 @@ const phoneVariants = cva("", {
 	variants: {
 		...cvaInputVariants,
 		size: {
-			"32": "h-8 body-sm",
-			"36": "h-9 body-sm",
-			"40": "h-10 body-sm",
-			"44": "h-11 body-base",
-			"48": "h-12 body-base",
-			"56": "h-14 body-base",
+			"32": "h-8 text-sm",
+			"36": "h-9 text-sm",
+			"40": "h-10 text-sm",
+			"44": "h-11 text-base",
+			"48": "h-12 text-base",
+			"56": "h-14 text-base",
 		},
 	},
 	defaultVariants: {
@@ -265,7 +265,7 @@ function PhoneNumber({
 				rounded={rounded}
 				variant="neutral-soft"
 				className={cn(
-					"body-sm border-stroke text-fg1 flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
+					"text-sm border-stroke text-fg0 flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
 					{
 						"border-r-primary border-r": isFocused,
 						"pointer-events-none": disabled,
@@ -316,8 +316,8 @@ function PhoneNumber({
 								{data.icon}
 								<span>{data.country}</span>
 							</span>
-							{internalCode === data.code && <Check size={20} className="stroke-fg1" />}
-							<span className="text-fg2">{data.code}</span>
+							{internalCode === data.code && <Check size={20} className="stroke-fg0" />}
+							<span className="text-fg1">{data.code}</span>
 						</SelectItem>
 					))}
 				</SelectGroup>

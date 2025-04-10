@@ -129,12 +129,12 @@ function CalendarComponent({
 		month: "flex flex-col gap-3",
 		month_grid: "flex flex-col gap-1.5 items-center",
 		weekdays: "w-full flex gap-1.5",
-		weekday: "text-fg3 body-sm font-medium size-8 shrink-0 flex items-center justify-center",
+		weekday: "text-fg2 text-sm font-medium size-8 shrink-0 flex items-center justify-center",
 		weeks: "w-full flex flex-col gap-1.5",
 		week: "w-full flex gap-1.5",
 		day: "size-8 p-0 shrink-0 group text-sm aria-selected:opacity-100",
 		day_button:
-			"text-center rounded-lg text-fg1 body-sm font-medium hover:bg-bg3 size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-fg3 group-data-selected:text-white group-data-disabled:text-fg3 group-data-outside:text-fg3 group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-fg1 group-data-selected:group-data-outside:text-white",
+			"text-center rounded-lg text-fg0 text-sm font-medium hover:bg-bg2 size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-fg2 group-data-selected:text-white group-data-disabled:text-fg2 group-data-outside:text-fg2 group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-fg0 group-data-selected:group-data-outside:text-white",
 		button_previous: cn("border rounded-lg border-stroke drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
 			"pointer-events-none": props.disabled,
 		}),
@@ -156,8 +156,8 @@ function CalendarComponent({
 	// Merged components including custom ones
 	const mergedComponents = {
 		Chevron: (props: ChevronProps) => {
-			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg1" />
-			return <ChevronRight size={16} className="stroke-fg1" />
+			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg0" />
+			return <ChevronRight size={16} className="stroke-fg0" />
 		},
 		...customComponents,
 		...components,

@@ -19,16 +19,16 @@ const otpSlotVariants = cva("", {
 	variants: {
 		...cvaInputVariants,
 		variant: {
-			box: cn("relative text-fg1", "flex items-center justify-center transition-all duration-300", "border border-stroke bg-bg1 drop-shadow-xs"),
+			box: cn("relative text-fg0", "flex items-center justify-center transition-all duration-300", "border border-stroke bg-bg1 drop-shadow-xs"),
 			flat: "",
 		},
 		size: {
-			"32": "size-8 body-sm px-3 py-1.5",
-			"36": "size-9 body-sm px-3 py-2",
-			"40": "size-10 body-sm px-3 py-2.5",
-			"44": "size-11 body-base py-2.5 px-3.5",
-			"48": "size-12 body-base py-3 px-3.5",
-			"56": "size-14 body-base py-4 px-3.5",
+			"32": "size-8 text-sm px-3 py-1.5",
+			"36": "size-9 text-sm px-3 py-2",
+			"40": "size-10 text-sm px-3 py-2.5",
+			"44": "size-11 text-base py-2.5 px-3.5",
+			"48": "size-12 text-base py-3 px-3.5",
+			"56": "size-14 text-base py-4 px-3.5",
 		},
 	},
 	defaultVariants: { variant: "box", size: defaultInputSize },
@@ -110,8 +110,8 @@ function OTPInput({
 		<div className={cn("flex flex-col gap-1.5", className)}>
 			{label && (
 				<Label
-					className={cn("body-sm w-fit font-medium", {
-						"text-fg3": props.disabled,
+					className={cn("text-sm w-fit font-medium", {
+						"text-fg2": props.disabled,
 					})}>
 					{label}
 				</Label>

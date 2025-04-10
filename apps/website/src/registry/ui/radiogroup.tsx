@@ -62,11 +62,11 @@ function RadioGroupItem({ className, size: itemSize, children, ...props }: Radio
 	}
 
 	return (
-		<label className={cn("flex max-w-fit items-center gap-2 text-sm", props.disabled ? "text-fg3 cursor-not-allowed" : "cursor-pointer")}>
+		<label className={cn("flex max-w-fit items-center gap-2 text-sm", props.disabled ? "text-fg2 cursor-not-allowed" : "cursor-pointer")}>
 			<RadioGroupPrimitive.Item
 				data-slot="radio-item"
 				className={cn(
-					"data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-fg3 aspect-square rounded-full border outline-hidden transition-all duration-200 data-[state=checked]:border-none",
+					"data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-fg2 aspect-square rounded-full border outline-hidden transition-all duration-200 data-[state=checked]:border-none",
 					"flex items-center justify-center",
 					sizeClasses[size],
 					"border-stroke",

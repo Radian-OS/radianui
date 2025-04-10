@@ -121,7 +121,7 @@ function Slider({
 				className,
 				classNames?.base
 			)}>
-			{label && <label className={cn("body-sm font-medium", { "text-fg3": props.disabled }, classNames?.label)}>{label}</label>}
+			{label && <label className={cn("text-sm font-medium", { "text-fg2": props.disabled }, classNames?.label)}>{label}</label>}
 			<div
 				className={cn(
 					"flex gap-2",
@@ -164,7 +164,7 @@ function Slider({
 						{...props}>
 						<SliderPrimitive.Track
 							className={cn(
-								"border-stroke bg-bg3 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
+								"border-stroke bg-bg2 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
 								classNames?.sliderTrack
 							)}>
 							<SliderPrimitive.Range
@@ -211,7 +211,7 @@ function Slider({
 									<div
 										key={mark.value}
 										className={cn(
-											"body-xs text-fg2 absolute cursor-pointer font-medium",
+											"text-xs text-fg1 absolute cursor-pointer font-medium",
 											{
 												"-translate-x-1/2": orientation === "horizontal",
 												"ml-2 translate-y-1/2": orientation === "vertical",

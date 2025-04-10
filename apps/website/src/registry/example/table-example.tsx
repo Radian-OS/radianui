@@ -268,7 +268,7 @@ const columnsData = [
 				<Badge
 					rounded={true}
 					size="20"
-					className={cn(row.original.status === "Inactive" && "bg-bg3 text-fg2", row.original.status === "Active" && "bg-white text-black")}>
+					className={cn(row.original.status === "Inactive" && "bg-bg2 text-fg1", row.original.status === "Active" && "bg-white text-black")}>
 					{row.original.status}
 				</Badge>
 			</>
