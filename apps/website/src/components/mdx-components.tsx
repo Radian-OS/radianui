@@ -3,6 +3,7 @@
 import { HTMLAttributes, useMemo } from "react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
+import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
@@ -37,7 +38,6 @@ import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-import Link from "next/link"
 
 type MdxProps = {
 	code: string
@@ -159,37 +159,24 @@ const components: MDXComponents = {
 		<h3
 			className={cn(
 				"step relative mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-				"before:absolute before:left-[-2.9rem] before:top-1/2 before:-translate-y-1/2",
+				"before:absolute before:top-1/2 before:left-[-2.9rem] before:-translate-y-1/2",
 				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
 				"before:rounded-full before:bg-gray-200 before:text-sm before:font-medium before:text-gray-800",
-				"before:content-[counter(step)] before:counter-increment-[step]",
+				"before:counter-increment-[step] before:content-[counter(step)]",
 				className
 			)}
 			{...props}
 		/>
 	),
-	Steps: ({ ...props }) => (
-		<div
-			className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8"
-			{...props}
-		/>
-	),
-	FrameworkDocs: ({
-		className,
-		...props
-	}: React.ComponentProps<typeof FrameworkDocs>) => (
-		<FrameworkDocs className={cn(className)} {...props} />
-	),
+	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
+	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-		<Link
-			className={cn("font-medium underline underline-offset-4", className)}
-			{...props}
-		/>
+		<Link className={cn("font-medium underline underline-offset-4", className)} {...props} />
 	),
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
 			className={cn(
-				"flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10",
+				"bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10",
 				className
 			)}
 			{...props}
