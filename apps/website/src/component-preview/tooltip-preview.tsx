@@ -106,12 +106,13 @@ const TooltipPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Tooltip content="I am a tooltip" 
-    position="${position}"
-    variant="${variant}">
-        <Button variant="neutral-outline">
-            Hover me
-        </Button>
+					code={`<Tooltip side="${position}" withArrow={${withArrow}} align="${variant}">
+	<TooltipTrigger asChild>
+		<Button key={key} variant="neutral-outline">Hover me</Button>
+	</TooltipTrigger>
+	<TooltipContent>
+		I am a tooltip
+	</TooltipContent>
 </Tooltip>`}
 				/>
 			</TabsContent>

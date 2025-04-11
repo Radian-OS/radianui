@@ -39,7 +39,7 @@ const TooltipTrigger = TooltipPrimitive.Trigger
 TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
 type TooltipContentProps = React.ComponentProps<typeof TooltipPrimitive.Content>
-const TooltipContent = ({ className, sideOffset = 10, children, ...props }: TooltipContentProps) => {
+const TooltipContent = ({ className, sideOffset = 6, children, ...props }: TooltipContentProps) => {
 	const { align, side, withArrow } = useTooltipContext()
 
 	return (
@@ -94,12 +94,12 @@ const TooltipContent = ({ className, sideOffset = 10, children, ...props }: Tool
 						{
 							"left-1/2 -translate-x-1/2": align === "center",
 							"-translate-x-full": align === "start" && "right",
-							"translate-x-2": align === "end" && side === "top",
+							"translate-x-6": align === "end" && side === "top",
+							"-translate-x-10": align === "start" && side === "top",
 							"-translate-x-4": align === "end" && side === "left",
-							"-translate-x-6": align === "start" && side === "top",
 							"-translate-x-1.2": align === "start" && side === "left",
-							"translate-x-3": align === "start" && side === "bottom",
-							"-translate-x-5": align === "end" && side === "bottom",
+							"translate-x-5": align === "start" && side === "bottom",
+							"-translate-x-9": align === "end" && side === "bottom",
 						}
 					)}
 
