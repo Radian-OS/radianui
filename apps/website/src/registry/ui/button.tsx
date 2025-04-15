@@ -46,7 +46,7 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 	},
 	defaultVariants: {
 		variant: "strong",
-		size: "40",
+		size: "36",
 		rounded: "rounded",
 		isIcon: false,
 	},

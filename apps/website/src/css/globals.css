@@ -292,10 +292,10 @@ layer(base);
 	--color-warning-text: var(--color-warning-400);
 
 	/* Background */
+	--color-bg-level0: var(--color-black-11);
 	--color-bg-base: var(--color-black-10);
-	--color-bg-level0: var(--color-black-9);
-	--color-bg-level1: var(--color-black-8);
-	--color-bg-level2: var(--color-black-7);
+	--color-bg-level1: var(--color-black-9);
+	--color-bg-level2: var(--color-black-8);
 
 	/* foreground */
 	--color-text: var(--color-white-1);
