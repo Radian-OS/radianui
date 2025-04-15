@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ButtonGroupPreview = () => {
 	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
-	type sizes = "32" | "36" | "40" | "44" | "48" | "56"
+	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type roundness = "square" | "rounded" | "full"
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("40")
