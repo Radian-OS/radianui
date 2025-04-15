@@ -6,13 +6,14 @@ import { Button, ButtonGroup } from "@/registry/ui/button"
 
 // Types for variant, size, and rounded options
 type VariantOptions = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
-type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
+// Added "28" to the size options
+type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 type RoundedOptions = "square" | "rounded" | "full"
 
 const ButtonExample = () => {
 	// State for button properties
 	const [variant, setVariant] = useState<VariantOptions>("strong")
-	const [size, setSize] = useState<SizeOptions>("40")
+	const [size, setSize] = useState<SizeOptions>("36")
 	const [rounded, setRounded] = useState<RoundedOptions>("rounded")
 	const [includeIcon, setIncludeIcon] = useState<boolean>(true)
 
@@ -39,7 +40,11 @@ const ButtonExample = () => {
 					<label htmlFor="variant" className="mb-2 block text-sm font-medium">
 						Variant:
 					</label>
-					<select id="variant" value={variant} onChange={(e) => setVariant(e.target.value as VariantOptions)} className="w-full rounded border p-2">
+					<select
+						id="variant"
+						value={variant}
+						onChange={(e) => setVariant(e.target.value as VariantOptions)}
+						className="bg-bg-base w-full rounded border-border p-2">
 						<option value="strong">Strong</option>
 						<option value="soft">Soft</option>
 						<option value="outline">Outline</option>
@@ -53,13 +58,17 @@ const ButtonExample = () => {
 					<label htmlFor="size" className="mb-2 block text-sm font-medium">
 						Size:
 					</label>
-					<select id="size" value={size} onChange={(e) => setSize(e.target.value as SizeOptions)} className="w-full rounded border p-2">
+					<select
+						id="size"
+						value={size}
+						onChange={(e) => setSize(e.target.value as SizeOptions)}
+						className="w-full rounded border-border p-2 bg-bg-base">
+						<option value="28">28</option>
 						<option value="32">32</option>
 						<option value="36">36</option>
 						<option value="40">40</option>
 						<option value="44">44</option>
 						<option value="48">48</option>
-						<option value="56">56</option>
 					</select>
 				</div>
 
@@ -67,7 +76,11 @@ const ButtonExample = () => {
 					<label htmlFor="rounded" className="mb-2 block text-sm font-medium">
 						Rounded:
 					</label>
-					<select id="rounded" value={rounded} onChange={(e) => setRounded(e.target.value as RoundedOptions)} className="w-full rounded border p-2">
+					<select
+						id="rounded"
+						value={rounded}
+						onChange={(e) => setRounded(e.target.value as RoundedOptions)}
+						className="w-full rounded border-border bg-bg-base p-2">
 						<option value="square">Square</option>
 						<option value="rounded">Rounded</option>
 						<option value="full">Full</option>
@@ -78,7 +91,13 @@ const ButtonExample = () => {
 					<div>
 						<label className="mb-2 block text-sm font-medium">Include Icon:</label>
 						<div className="flex items-center">
-							<input id="include-icon" type="checkbox" checked={includeIcon} onChange={() => setIncludeIcon((prev) => !prev)} className="mr-2" />
+							<input
+								id="include-icon"
+								type="checkbox"
+								checked={includeIcon}
+								onChange={() => setIncludeIcon((prev) => !prev)}
+								className="mr-2"
+							/>
 							<span>{includeIcon ? "Yes" : "No"}</span>
 						</div>
 					</div>

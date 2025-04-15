@@ -16,13 +16,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ButtonPreview = () => {
 	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
-	type sizes = "32" | "36" | "40" | "44" | "48" | "56"
+	// Updated sizes type to include "28"
+	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type roundness = "square" | "rounded" | "full"
 	type isIconType = "true" | "false"
+	type disabledType = "true" | "false"
+
 	const [variant, setVariant] = useState<variants>("strong")
-	const [size, setSize] = useState<sizes>("40")
+	const [size, setSize] = useState<sizes>("36")
 	const [rounded, setRounded] = useState<roundness>("rounded")
 	const [isIcon, setIsIcon] = useState<isIconType>("false")
+	const [disabled, setDisabled] = useState<disabledType>("false")
+
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -60,12 +65,13 @@ const ButtonPreview = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[size]}>
+										{/* New 28 option */}
+										<DropdownItem value="28">28</DropdownItem>
 										<DropdownItem value="32">32</DropdownItem>
 										<DropdownItem value="36">36</DropdownItem>
 										<DropdownItem value="40">40</DropdownItem>
 										<DropdownItem value="44">44</DropdownItem>
 										<DropdownItem value="48">48</DropdownItem>
-										<DropdownItem value="56">56</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -102,6 +108,22 @@ const ButtonPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>disabled</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[disabled]}
+										onSelectedChange={(keys) => {
+											setDisabled(Array.from(keys)[0] as disabledType)
+										}}>
+										<DropdownItem value="true">true</DropdownItem>
+										<DropdownItem value="false">false</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -112,7 +134,7 @@ const ButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Button isIcon={isIcon === "true" ? true : false} rounded={rounded} variant={variant} size={size}>
+					<Button isIcon={isIcon === "true"} rounded={rounded} variant={variant} size={size} disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
 				</div>
@@ -122,8 +144,13 @@ const ButtonPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Button size="${size}" rounded="${rounded}" variant="${variant}" isIcon={${isIcon === "true" ? true : false}} >
-${isIcon === "true" ? ` <CirclePlus />` : "Button"}
+					code={`<Button 
+  size="${size}" 
+  rounded="${rounded}" 
+  variant="${variant}" 
+  isIcon={${isIcon === "true"}}
+  disabled={${disabled === "true"}}>
+  ${isIcon === "true" ? `<CirclePlus />` : "Button"}
 </Button>`}
 				/>
 			</TabsContent>

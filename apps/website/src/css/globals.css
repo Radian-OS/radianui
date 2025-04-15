@@ -4,6 +4,7 @@ layer(base);
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/forms";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -173,20 +174,13 @@ layer(base);
 	--color-text-tertiary: var(--color-black-1);
 	--color-text-disabled: var(--color-white-8);
 
-
-	/* text */
-	--color-text-primary: var(--color-black-9);
-	--color-text-paragraph: var(--color-black-4);
-	--color-text-disabled: var(--color-black-1);
-	--color-text-4: var(--color-white-8) ;
 	
 	/* stroke */
-	/* left  */
 	--color-border: var(--color-white-4);
 	--color-border-alpha:  color-mix(in srgb, var(--color-black-9), transparent 88%); /* 2% opacity */;
 
 	/* fill */
-  --color-fill-level1: var(--color-black-9);
+  --color-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%);
   --color-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%); 
   --color-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%); 
   --color-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%);
