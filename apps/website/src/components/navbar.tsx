@@ -21,7 +21,7 @@ export default function Navbar() {
 	const [searchTerm, setSearchTerm] = useState<string>("")
 	const [selectedIndex, setSelectedIndex] = useState(-1) // Track selected item
 
-	const itemRefs = useRef<(HTMLLIElement | null)[]>([]) // Store refs for items
+	const itemRefs = useRef<(HTMLLIElement | null)[]>([]) // 
 
 	// Filter sidebar items based on the search term
 	const filteredItems = sideBarItems
