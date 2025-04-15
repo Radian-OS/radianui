@@ -89,7 +89,7 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 	const { closeIconVisibility } = useModalContext()
 
 	const closeButtonClass = cn(
-		"absolute right-5 top-5 rounded-sm border p-1 ring-offset-bg1 focus:outline-hidden focus:ring-2 focus:ring-fg0 disabled:pointer-events-none data-[state=open]:bg-bg1 data-[state=open]:text-fg2 transition-opacity duration-200",
+		"absolute right-5 top-5 rounded-sm border p-1 ring-offset-bg-base focus:outline-hidden focus:ring-2 focus:ring-text disabled:pointer-events-none data-[state=open]:bg-bg-base data-[state=open]:text-text-tertiary transition-opacity duration-200",
 		{
 			hidden: closeIconVisibility === "hidden",
 			"opacity-0 group-hover:opacity-100": closeIconVisibility === "hover",
@@ -101,7 +101,7 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 			<DialogPrimitive.Content
 				data-slot="modal-content"
 				className={cn(
-					"group bg-bg1 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					"group bg-bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
 					className
 				)}
 				{...props}>
@@ -134,7 +134,7 @@ function ModalTitle({ className, ...props }: ModalTitleProps) {
 ModalTitle.displayName = DialogPrimitive.Title.displayName
 
 function ModalDescription({ className, ...props }: ModalDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-fg1 text-sm leading-tight", className)} {...props} />
+	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm leading-tight", className)} {...props} />
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName
 

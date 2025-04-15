@@ -15,8 +15,8 @@ export default function ComponentCard({ svgUrl, darkModeSvgUrl, title, descripti
 				<img alt="Light mode picture" src={svgUrl} className="rounded-md dark:hidden" loading="eager" />
 				<img alt="Dark mode picture" src={darkModeSvgUrl} className="hidden rounded-md dark:block" loading="eager" />
 				<div className="text-sm flex flex-col gap-1">
-					<p className="text-fg0 font-semibold">{title}</p>
-					<p className="text-fg1 font-normal">{description}</p>
+					<p className="text-text font-semibold">{title}</p>
+					<p className="text-text-secondary font-normal">{description}</p>
 				</div>
 			</div>
 		</Link>

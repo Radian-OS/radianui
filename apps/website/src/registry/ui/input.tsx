@@ -27,7 +27,7 @@ export const cvaInputVariants = {
 export const defaultInputSize = "40"
 export const defaultInputRadius = "rounded"
 // Creating a variant for input styles using cva
-const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border hover:bg-bg0 drop-shadow-xs bg-bg1 cursor-text", {
+const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border hover:bg-bg-level0 drop-shadow-xs bg-bg-base cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -84,7 +84,7 @@ function Input({
 	return (
 		<div className={cn("text-sm text-fg-1 flex w-full flex-col gap-1.5", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
-				<Label id={htmlId} className={cn({ "text-fg2": disabled }, classNames?.label)}>
+				<Label id={htmlId} className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>
 					{label}
 				</Label>
 			)}
@@ -95,7 +95,7 @@ function Input({
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError,
 						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-stroke-decorative focus-within:ring-2": !hasError,
-						"text-fg2 pointer-events-none": disabled,
+						"text-text-tertiary pointer-events-none": disabled,
 					},
 					classNames?.wrapper
 				)}>
@@ -103,9 +103,9 @@ function Input({
 				<input
 					id={htmlId}
 					className={cn(
-						"text-fg-1 placeholder-fg2 h-fit w-full border border-none bg-transparent p-0 outline-hidden select-none placeholder:text-sm placeholder:font-normal focus:ring-0",
+						"text-fg-1 placeholder-text-tertiary h-fit w-full border border-none bg-transparent p-0 outline-hidden select-none placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
-							"text-fg2 cursor-not-allowed": disabled,
+							"text-text-tertiary cursor-not-allowed": disabled,
 						},
 						classNames?.input
 					)}

@@ -75,14 +75,14 @@ const drawerVariants = cva("fixed bg-transparent z-50", {
 			direction: "right",
 			className: "top-2 right-2 h-[calc(100%-1rem)]",
 		},
-		{ type: "default", direction: "top", className: "bg-bg1" },
-		{ type: "default", direction: "bottom", className: "bg-bg1" },
-		{ type: "default", direction: "left", className: "bg-bg1" },
-		{ type: "default", direction: "right", className: "bg-bg1" },
-		{ type: "rounded", direction: "top", className: "bg-bg1 rounded-b-xl" },
-		{ type: "rounded", direction: "bottom", className: "bg-bg1 rounded-t-xl" },
-		{ type: "rounded", direction: "left", className: "bg-bg1 rounded-r-xl" },
-		{ type: "rounded", direction: "right", className: "bg-bg1 rounded-l-xl" },
+		{ type: "default", direction: "top", className: "bg-bg-base" },
+		{ type: "default", direction: "bottom", className: "bg-bg-base" },
+		{ type: "default", direction: "left", className: "bg-bg-base" },
+		{ type: "default", direction: "right", className: "bg-bg-base" },
+		{ type: "rounded", direction: "top", className: "bg-bg-base rounded-b-xl" },
+		{ type: "rounded", direction: "bottom", className: "bg-bg-base rounded-t-xl" },
+		{ type: "rounded", direction: "left", className: "bg-bg-base rounded-r-xl" },
+		{ type: "rounded", direction: "right", className: "bg-bg-base rounded-l-xl" },
 	],
 })
 
@@ -184,7 +184,7 @@ function Drawer({
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 					<div
 						className={cn(
-							"bg-bg1 relative flex h-full w-full flex-col border drop-shadow-2xl",
+							"bg-bg-base relative flex h-full w-full flex-col border drop-shadow-2xl",
 							getRoundedClass(),
 							getDefaultClass(),
 							getPaddingClass(),

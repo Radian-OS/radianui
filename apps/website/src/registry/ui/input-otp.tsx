@@ -19,7 +19,7 @@ const otpSlotVariants = cva("", {
 	variants: {
 		...cvaInputVariants,
 		variant: {
-			box: cn("relative text-fg0", "flex items-center justify-center transition-all duration-300", "border border-stroke bg-bg1 drop-shadow-xs"),
+			box: cn("relative text-text", "flex items-center justify-center transition-all duration-300", "border border-stroke bg-bg-base drop-shadow-xs"),
 			flat: "",
 		},
 		size: {
@@ -111,7 +111,7 @@ function OTPInput({
 			{label && (
 				<Label
 					className={cn("text-sm w-fit font-medium", {
-						"text-fg2": props.disabled,
+						"text-text-tertiary": props.disabled,
 					})}>
 					{label}
 				</Label>

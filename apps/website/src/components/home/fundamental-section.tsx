@@ -74,8 +74,8 @@ export default function FundamentalSection() {
 		<React.Fragment>
 			<div className="mx-auto max-w-310">
 				<div id="header" className="flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10 lg:py-7.5">
-					<h6 className="heading-6 text-fg0">Fundamentals</h6>
-					<p className="body-15 text-fg1 font-normal">Universal settings for building a strong foundation for a digital product</p>
+					<h6 className="heading-6 text-text">Fundamentals</h6>
+					<p className="body-15 text-text-secondary font-normal">Universal settings for building a strong foundation for a digital product</p>
 				</div>
 				<div className="bg-stroke-decorative -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>

@@ -98,7 +98,7 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
-					"group bg-bg1 text-fg0 flex flex-1 cursor-pointer items-center justify-between text-left font-medium outline-hidden",
+					"group bg-bg-base text-text flex flex-1 cursor-pointer items-center justify-between text-left font-medium outline-hidden",
 					size === "sm" ? "p-3" : "p-4",
 					className
 				)}
@@ -106,7 +106,7 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 				{children}
 				<ChevronDownIcon
 					className={classNames(
-						"text-fg1 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180",
+						"text-text-secondary shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180",
 						size === "sm" ? "size-5" : "size-6"
 					)}
 					aria-hidden
@@ -124,7 +124,7 @@ function AccordionContent({ children, className, ...props }: AccordionContentPro
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
 			className={classNames(
-				"text-fg1 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all",
+				"text-text-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all",
 				className
 			)}
 			{...props}>

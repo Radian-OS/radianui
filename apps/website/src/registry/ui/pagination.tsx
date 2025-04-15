@@ -107,7 +107,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 							placeholder="..."
 							selectedValues={[]}
 							onSelectedChange={handleSelectChange}
-							className="text-fg0 flex h-8 w-8 items-center justify-center bg-transparent">
+							className="text-text flex h-8 w-8 items-center justify-center bg-transparent">
 							{hiddenPages.map((page) => (
 								<SelectItem key={page} value={page.toString()}>
 									{page}
@@ -148,7 +148,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 							selectedValues={[]}
 							size="32"
 							onSelectedChange={handleSelectChange}
-							className="text-fg0 flex h-8 w-8 items-center justify-center bg-transparent">
+							className="text-text flex h-8 w-8 items-center justify-center bg-transparent">
 							{hiddenPages.map((page) => (
 								<SelectItem key={page} value={page.toString()}>
 									{page}
@@ -165,7 +165,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 					onClick={function () {
 						handlePageChange(totalPages)
 					}}
-					className="text-fg0 h-8 w-8 bg-transparent">
+					className="text-text h-8 w-8 bg-transparent">
 					{totalPages}
 				</Button>
 			)

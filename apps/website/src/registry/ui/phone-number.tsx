@@ -265,7 +265,7 @@ function PhoneNumber({
 				rounded={rounded}
 				variant="neutral-soft"
 				className={cn(
-					"text-sm border-stroke text-fg0 flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
+					"text-sm border-stroke text-text flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
 					{
 						"border-r-primary border-r": isFocused,
 						"pointer-events-none": disabled,
@@ -316,8 +316,8 @@ function PhoneNumber({
 								{data.icon}
 								<span>{data.country}</span>
 							</span>
-							{internalCode === data.code && <Check size={20} className="stroke-fg0" />}
-							<span className="text-fg1">{data.code}</span>
+							{internalCode === data.code && <Check size={20} className="stroke-text" />}
+							<span className="text-text-secondary">{data.code}</span>
 						</SelectItem>
 					))}
 				</SelectGroup>

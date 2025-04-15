@@ -66,8 +66,8 @@ const ApplicationComponent = () => {
 		<React.Fragment>
 			<div className="mx-auto max-w-310">
 				<div id="header" className="flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10 lg:py-7.5">
-					<h6 className="heading-6 text-fg0">Application Components</h6>
-					<p className="body-15 text-fg1 font-normal">Fundamentals & building blocks of Websites</p>
+					<h6 className="heading-6 text-text">Application Components</h6>
+					<p className="body-15 text-text-secondary font-normal">Fundamentals & building blocks of Websites</p>
 				</div>
 
 				<div className="bg-stroke-decorative -ml-[99rem] h-[1px] w-[calc(100%+999rem)]"></div>

@@ -19,7 +19,7 @@ interface CustomSelectProps {
 const CustomSelect = ({ label, value, onChange, options }: CustomSelectProps) => (
 	<div className="flex flex-col">
 		<label className="mb-2 text-sm font-medium">{label}</label>
-		<select value={value} onChange={(e) => onChange(e.target.value)} className="bg-bg0 rounded-md border p-2">
+		<select value={value} onChange={(e) => onChange(e.target.value)} className="bg-bg-level0 rounded-md border p-2">
 			{options.map((option) => (
 				<option key={option.value} value={option.value}>
 					{option.label}

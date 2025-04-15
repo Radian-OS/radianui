@@ -4,10 +4,10 @@ import { Toaster as Sonner, toast } from "sonner"
 import { Button } from "./button"
 
 // Define the styles for the toast using `class-variance-authority`
-const SonnerVariant = cva("relative group toast rounded-lg w-full h-auto text-xl group-[.toaster]:text-fg1", {
+const SonnerVariant = cva("relative group toast rounded-lg w-full h-auto text-xl group-[.toaster]:text-text-secondary", {
 	variants: {
 		variant: {
-			default: "bg-bg1 text-black",
+			default: "bg-bg-base text-black",
 			success: "bg-success text-white!",
 			error: "bg-error text-white!",
 			warning: "bg-warning text-white!",
@@ -87,7 +87,7 @@ const Sonners: React.FC<ToastProps> = function ({
 							onClick={function () {
 								toast.dismiss(toastId)
 							}}
-							className={`absolute top-2.5 right-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-fg1`}>
+							className={`absolute top-2.5 right-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-text-secondary`}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="14"
@@ -107,9 +107,9 @@ const Sonners: React.FC<ToastProps> = function ({
 			) : (
 				// Render default toast content if no custom content is provided
 				<div
-					className={` group w-full toast relative rounded-lg ${variant === "default" ? "bg-bg1" : `bg-${variant}`} flex h-auto 
+					className={` group w-full toast relative rounded-lg ${variant === "default" ? "bg-bg-base" : `bg-${variant}`} flex h-auto 
 						items-center justify-between gap-3 p-4 text-xl ${variant === "default" ? "text-black" : "text-white!"} 
-						group-[.toaster]:text-fg1`}>
+						group-[.toaster]:text-text-secondary`}>
 					<div className="flex items-center justify-center gap-2 text-sm/5">
 						{/* Render icon if provided */}
 						{icon && (
@@ -185,10 +185,10 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 	bgColor?: string | null
 }
 // Define the styles for the toaster using `class-variance-authority`
-const toastClass = cva("group !p-0 toast group-[.toaster]:text-fg1", {
+const toastClass = cva("group !p-0 toast group-[.toaster]:text-text-secondary", {
 	variants: {
 		bgColor: {
-			default: "group-[.toaster]:!bg-bg1 group-[.toaster]:!border-stroke",
+			default: "group-[.toaster]:!bg-bg-base group-[.toaster]:!border-stroke",
 			success: "group-[.toaster]:!bg-success group-[.toaster]:!border-none",
 			error: "group-[.toaster]:!bg-error group-[.toaster]:!border-none",
 			warning: "group-[.toaster]:!bg-warning group-[.toaster]:!border-none",

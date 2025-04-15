@@ -162,16 +162,16 @@ layer(base);
 	--color-warning-text: var(--color-warning-800);
 
 	/* background */
-	--color-bg0: var(--color-white-3);
-	--color-bg1: var(--color-white-1);
-	--color-bg2: var(--color-white-1);
-	--color-bg3: var(--color-white-1);
+	--color-bg-level0: var(--color-white-3);
+	--color-bg-base: var(--color-white-1);
+	--color-bg-level1: var(--color-white-1);
+	--color-bg-level2: var(--color-white-1);
 
 	/* foreground */
-	--color-fg0: var(--color-black-9);
-	--color-fg1: var(--color-black-4);
-	--color-fg2: var(--color-black-1);
-	--color-fg3: var(--color-white-8);
+	--color-text: var(--color-black-9);
+	--color-text-secondary: var(--color-black-4);
+	--color-text-tertiary: var(--color-black-1);
+	--color-text-disabled: var(--color-white-8);
 
 
 	/* text */
@@ -180,27 +180,32 @@ layer(base);
 	--color-text-disabled: var(--color-black-1);
 	--color-text-4: var(--color-white-8) ;
 	
-	/* stroke */ 
+	/* stroke */
+	/* left  */
 	--color-stroke: var(--color-white-4);
 	--color-stroke-decorative: var(--color-white-3);
 	--color-stroke-decorative-alpha: var(--color-black-alpha-6);
 	--color-stroke-alpha: var(--color-black-alpha-12);
 
 	/* fill */
-  --color-fill1: var(--color-black-9);
-  --color-fill2: color-mix(in srgb, var(--color-black-9), transparent 96%); 
-  --color-fill3: color-mix(in srgb, var(--color-black-9), transparent 92%); 
-  --color-fill4: color-mix(in srgb, var(--color-black-9), transparent 84%);
+  --color-fill-level1: var(--color-black-9);
+  --color-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%); 
+  --color-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%); 
+  --color-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%);
 
 	/* fill-inverse */
-	--color-fill-inverse-1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
-	--color-fill-inverse-2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
-	--color-fill-inverse-3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
-	--color-fill-inverse-4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
+	--color-inverse-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
+	--color-inverse-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
+	--color-inverse-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
+	--color-inverse-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
 
 	/* static */
 	--color-static-white: var(--color-white-1);
 	--color-static-black: var(--color-black-9);
+
+	/* inverse */
+    --color-inverse-black: var(--color-black-9);
+	--color-inverse-white: var(--color-white-1);
 
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
@@ -289,16 +294,16 @@ layer(base);
 	--color-warning-text: var(--color-warning-400);
 
 	/* Background */
-	--color-bg1: var(--color-black-10);
-	--color-bg0: var(--color-black-9);
-	--color-bg2: var(--color-black-8);
-	--color-bg3: var(--color-black-7);
+	--color-bg-base: var(--color-black-10);
+	--color-bg-level0: var(--color-black-9);
+	--color-bg-level1: var(--color-black-8);
+	--color-bg-level2: var(--color-black-7);
 
 	/* foreground */
-	--color-fg0: var(--color-white-1);
-	--color-fg1: var(--color-white-10);
-	--color-fg2: var(--color-black-2);
-	--color-fg3: var(--color-black-5);
+	--color-text: var(--color-white-1);
+	--color-text-secondary: var(--color-white-10);
+	--color-text-tertiary: var(--color-black-2);
+	--color-text-disabled: var(--color-black-5);
 
 	/* stroke */
 	--color-stroke: var(--color-black-7);
@@ -307,17 +312,25 @@ layer(base);
 	--color-stroke-alpha: var(--color-white-alpha-12);
 
 	/* fill */
-	--color-fill1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
-	--color-fill2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
-	--color-fill3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
-	--color-fill4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
+	--color-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
+	--color-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
+	--color-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
+	--color-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
 	
 
 	/* fill-inverse */
-	--color-fill-inverse-1: color-mix(in srgb, var(--color-black-9), transparent 98%); /* 2% opacity */
-	--color-fill-inverse-2: color-mix(in srgb, var(--color-black-9), transparent 96%); /* 4% opacity */
-	--color-fill-inverse-3: color-mix(in srgb, var(--color-black-9), transparent 92%); /* 8% opacity */
-	--color-fill-inverse-4: color-mix(in srgb, var(--color-black-9), transparent 84%); /* 16% opacity */
+	--color-inverse-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%); /* 2% opacity */
+	--color-inverse-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%); /* 4% opacity */
+	--color-inverse-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%); /* 8% opacity */
+	--color-inverse-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%); /* 16% opacity */
+
+	/* static */
+	--color-static-white: var(--color-white-1);
+	--color-static-black: var(--color-black-9);
+
+	/* inverse */
+    --color-inverse-black: var(--color-white-1);
+	--color-inverse-white: var(--color-black-9);
 
 	--color-text-primary: var(--color-white-1);
 	--color-text-paragraph: var(--color-white-10);
@@ -543,7 +556,7 @@ Variable used in website only
 	}
 
 	body {
-		@apply bg-bg1 text-fg0;
+		@apply bg-bg-base text-text;
 	}
 
 	code[data-line-numbers] {
@@ -615,7 +628,7 @@ Variable used in website only
 	}
 
 	.svg-color {
-		fill: var(--color-fg0);
+		fill: var(--color-text);
 	}
 
 	.steps {

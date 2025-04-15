@@ -48,7 +48,7 @@ function SearchInput({
 			<PopoverTrigger asChild>
 				<div>
 					<Input
-						prefixIcon={<Search size={20} className="stroke-fg2" />}
+						prefixIcon={<Search size={20} className="stroke-text-tertiary" />}
 						label={label}
 						errorMsg={errorMsg}
 						hasError={hasError}

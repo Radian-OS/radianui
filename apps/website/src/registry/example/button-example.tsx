@@ -24,12 +24,12 @@ const ButtonExample = () => {
 			<div className="flex gap-4">
 				<button
 					onClick={() => setActiveSection("single")}
-					className={`rounded px-4 py-2 ${activeSection === "single" ? "bg-primary text-white" : "bg-bg0"}`}>
+					className={`rounded px-4 py-2 ${activeSection === "single" ? "bg-primary text-white" : "bg-bg-level0"}`}>
 					Single Button
 				</button>
 				<button
 					onClick={() => setActiveSection("group")}
-					className={`rounded px-4 py-2 ${activeSection === "group" ? "bg-primary text-white" : "bg-bg0"}`}>
+					className={`rounded px-4 py-2 ${activeSection === "group" ? "bg-primary text-white" : "bg-bg-level0"}`}>
 					Button Group
 				</button>
 			</div>

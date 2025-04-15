@@ -87,7 +87,7 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 				<label
 					htmlFor={switchId}
 					className={cn("text-sm font-normal select-none", {
-						"text-fg2 cursor-not-allowed": disabled,
+						"text-text-tertiary cursor-not-allowed": disabled,
 					})}>
 					{children}
 				</label>

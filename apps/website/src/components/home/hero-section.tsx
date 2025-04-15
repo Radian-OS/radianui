@@ -34,7 +34,7 @@ export default function HeroSection() {
 					<span>Under Development</span>
 				</Badge>
 				<h1 className="heading-1">Ship next generation of world class products and solutions</h1>
-				<p className="text-lg text-fg1 font-normal">
+				<p className="text-lg text-text-secondary font-normal">
 					Radian is a high quality design and development library to build systems that scale quickly. Get from design to product in few hours.
 				</p>
 				<div className="z-30 flex flex-col gap-3">
@@ -45,7 +45,7 @@ export default function HeroSection() {
 						</Button>
 					</form>
 					<p
-						className={cn("text-fg2 text-xs font-normal", {
+						className={cn("text-text-tertiary text-xs font-normal", {
 							"text-error-text": subscriptionResult?.success == false,
 						})}>
 						{subscriptionResult?.message ? subscriptionResult.message : "Alpha release. Subscribe for latest updates"}

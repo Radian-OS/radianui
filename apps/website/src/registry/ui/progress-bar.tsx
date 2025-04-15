@@ -11,7 +11,7 @@ type ProgressBarProps = React.ComponentPropsWithRef<typeof ProgressPrimitive.Roo
 function ProgressBar({ value, rootClassName, indicatorClassName, ...props }: ProgressBarProps) {
 	return (
 		<ProgressPrimitive.Root
-			className={cn("border-stroke bg-bg2 relative h-2 w-full translate-z-0 transform overflow-hidden rounded-full border", rootClassName)}
+			className={cn("border-stroke bg-bg-level1 relative h-2 w-full translate-z-0 transform overflow-hidden rounded-full border", rootClassName)}
 			value={value}
 			{...props}>
 			<ProgressPrimitive.Indicator

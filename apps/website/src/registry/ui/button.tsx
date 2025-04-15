@@ -21,10 +21,10 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 		variant: {
 			strong: "bg-primary font-semibold text-white hover:bg-primary-500 active:bg-primary-700",
 			soft: "bg-primary/10 font-medium text-primary hover:bg-primary/15 active:bg-primary/20",
-			outline: "bg-bg1 font-medium border border-primary text-primary hover:bg-primary/5 active:bg-primary/10",
+			outline: "bg-bg-base font-medium border border-primary text-primary hover:bg-primary/5 active:bg-primary/10",
 			ghost: "bg-transparent text-primary font-medium hover:bg-primary/10 active:bg-primary/20",
-			"neutral-soft": "bg-bg0 font-medium hover:bg-bg2 active:bg-bg3",
-			"neutral-outline": "bg-bg1 font-medium border drop-shadow-xs hover:border-stroke-decorative active:bg-bg0 active:border-stroke-decorative",
+			"neutral-soft": "bg-bg-level0 font-medium hover:bg-bg-level1 active:bg-bg-level2",
+			"neutral-outline": "bg-bg-base font-medium border drop-shadow-xs hover:border-stroke-decorative active:bg-bg-level0 active:border-stroke-decorative",
 		},
 		rounded: {
 			square: "rounded-xs",

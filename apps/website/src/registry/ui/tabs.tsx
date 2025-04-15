@@ -14,7 +14,7 @@ const tabsListStyles = cva("inline-flex h-10 items-center justify-start max-w-fu
 			base: "",
 		},
 		variant: {
-			default: "rounded-lg bg-bg0 w-fit p-1",
+			default: "rounded-lg bg-bg-level0 w-fit p-1",
 			open: "border-b border-stroke",
 			outline: "w-fit",
 			ghost: "w-fit",
@@ -50,17 +50,17 @@ const tabsListStyles = cva("inline-flex h-10 items-center justify-start max-w-fu
 const tabsTriggerStyles = cva(
 	"focus-visible:ring-ring inline-flex items-center justify-center gap-1.5 whitespace-nowrap \
 				px-3 py-1.5 text-sm font-medium ring-offset-background \
-				text-fg1 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none \
-				disabled:opacity-50 data-[state=active]:text-fg0 w-fit",
+				text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none \
+				disabled:opacity-50 data-[state=active]:text-text w-fit",
 	{
 		variants: {
 			variant: {
 				default:
-					"data-[state=active]:bg-bg1 rounded-sm border border-transparent data-[state=active]:rounded-md data-[state=active]:border data-[state=active]:border-stroke data-[state=active]:drop-shadow-xs",
+					"data-[state=active]:bg-bg-base rounded-sm border border-transparent data-[state=active]:rounded-md data-[state=active]:border data-[state=active]:border-stroke data-[state=active]:drop-shadow-xs",
 				outline:
-					"border-b border-t first:rounded-l-lg last:rounded-r-lg last:border-l last:border-r last:border-stroke data-[state=active]:bg-bg0 not-last:border-l not-last:border-stroke",
+					"border-b border-t first:rounded-l-lg last:rounded-r-lg last:border-l last:border-r last:border-stroke data-[state=active]:bg-bg-level0 not-last:border-l not-last:border-stroke",
 				open: "h-full border-b-0 data-[state=active]:border-b-2 data-[state=active]:border-primary",
-				ghost: "data-[state=active]:rounded-md data-[state=active]:bg-bg2",
+				ghost: "data-[state=active]:rounded-md data-[state=active]:bg-bg-level1",
 			},
 		},
 		defaultVariants: {
@@ -153,15 +153,15 @@ function TabsTrigger({ className, icon, counter, disabled = false, children, ...
 			className={cn(
 				tabsTriggerStyles({ variant: tabsCtx.variant }),
 				{
-					"text-border-secondary text-fg2 pointer-events-none cursor-not-allowed": disabled,
+					"text-border-secondary text-text-tertiary pointer-events-none cursor-not-allowed": disabled,
 				},
 				className
 			)}
 			{...props}>
-			{icon != undefined && <span className={cn("text-fg1 [&>svg]:size-5", { "text-fg2": disabled })}>{icon}</span>}
+			{icon != undefined && <span className={cn("text-text-secondary [&>svg]:size-5", { "text-text-tertiary": disabled })}>{icon}</span>}
 			{children}
 			{counter != undefined && (
-				<span className="text-xs border-stroke bg-bg1 text-fg1 flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0">
+				<span className="text-xs border-stroke bg-bg-base text-text-secondary flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0">
 					{counter}
 				</span>
 			)}

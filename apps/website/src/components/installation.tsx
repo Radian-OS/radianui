@@ -11,7 +11,7 @@ export default function Installation() {
 					<Link
 						key={item.name}
 						href={item.link}
-						className="hover:bg-bg2 flex flex-col items-center justify-center gap-2 rounded-lg border px-6 py-10">
+						className="hover:bg-bg-level1 flex flex-col items-center justify-center gap-2 rounded-lg border px-6 py-10">
 						<svg
 							role="img"
 							viewBox={item.name === "Laravel" ? "0 0 62 65" : "0 0 24 24"}

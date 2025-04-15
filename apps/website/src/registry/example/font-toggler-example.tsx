@@ -69,7 +69,7 @@
 //     }, [selectedFont]);
 
 //     return (
-//         <div className="max-w-4xl mx-auto p-4 bg-bg0 shadow-lg rounded-lg">
+//         <div className="max-w-4xl mx-auto p-4 bg-bg-level0 shadow-lg rounded-lg">
 //             <h1 className="text-2xl font-bold mb-4">Google Fonts Previewer</h1>
 
 //             {/* Category Selector */}
@@ -81,7 +81,7 @@
 //                     id="category-select"
 //                     value={selectedCategory}
 //                     onChange={(e) => setSelectedCategory(e.target.value)}
-//                     className="w-full p-2 border rounded bg-bg0"
+//                     className="w-full p-2 border rounded bg-bg-level0"
 //                 >
 //                     {categories.map((category) => (
 //                         <option key={category} value={category}>
@@ -100,7 +100,7 @@
 //                     id="font-select"
 //                     value={selectedFont}
 //                     onChange={(e) => setSelectedFont(e.target.value)}
-//                     className="w-full p-2 border rounded bg-bg0"
+//                     className="w-full p-2 border rounded bg-bg-level0"
 //                 >
 //                     {fonts.map((font) => (
 //                         <option key={font.family} value={font.family}>
@@ -127,7 +127,7 @@
 //             {/* Font Preview */}
 //             {selectedFont && (
 //                 <div
-//                     className="p-6 border rounded bg-bg3 text-center"
+//                     className="p-6 border rounded bg-bg-level2 text-center"
 //                     style={{ fontFamily: `var(--heading-font), sans-serif` }}
 //                 >
 //                     <h2 className="text-xl font-bold mb-2">{selectedFont}</h2>

@@ -32,10 +32,10 @@ export default function Sidebar() {
 								</AccordionTrigger>
 								<ul className="flex flex-col">
 									{section.items.map((item) => (
-										<Link className={`${pathName === item.link ? "bg-bg0" : ""} rounded-md`} href={item.link} key={item.link}>
-											<li className="text-sm text-fg1">
+										<Link className={`${pathName === item.link ? "bg-bg-level0" : ""} rounded-md`} href={item.link} key={item.link}>
+											<li className="text-sm text-text-secondary">
 												<AccordionContent
-													className={` ${pathName === item.link ? "text-fg0" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+													className={` ${pathName === item.link ? "text-text" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
 													{item.name}
 												</AccordionContent>
 											</li>

@@ -21,7 +21,7 @@ type AvatarGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	className?: string
 }
 
-const avatarVariants = cva("flex items-center justify-center shrink-0 overflow-hidden font-semibold text-fg1", {
+const avatarVariants = cva("flex items-center justify-center shrink-0 overflow-hidden font-semibold text-text-secondary", {
 	variants: {
 		size: {
 			"20": "size-5 text-[0.5rem]",
@@ -56,7 +56,7 @@ const avatarVariants = cva("flex items-center justify-center shrink-0 overflow-h
 	},
 })
 
-const onlineIndicatorVariants = cva("absolute z-20 border-bg1 box-content rounded-full", {
+const onlineIndicatorVariants = cva("absolute z-20 border-bg-base box-content rounded-full", {
 	variants: {
 		size: {
 			"20": "size-1 border-2 -bottom-0.5 -right-0.5",
@@ -71,7 +71,7 @@ const onlineIndicatorVariants = cva("absolute z-20 border-bg1 box-content rounde
 		},
 		status: {
 			true: "bg-success",
-			false: "bg-bg3",
+			false: "bg-bg-level2",
 		},
 	},
 	defaultVariants: {
@@ -122,7 +122,7 @@ function Avatar({ src, name, className, size = "40", variant = "circle", onlineS
 
 	return (
 		<div data-slot="avatar" className="relative">
-			<div className={cn(avatarVariants({ size, variant }), "bg-bg2", className)}>
+			<div className={cn(avatarVariants({ size, variant }), "bg-bg-level1", className)}>
 				{src && imageStatus === "loaded" && <img src={src} alt={name} className="size-full object-cover" />}
 
 				{imageStatus !== "loaded" && (
@@ -155,9 +155,9 @@ Avatar.displayName = "Avatar"
 
 function AvatarGroup({ children, size = "24", max = 4, className, ...props }: AvatarGroupProps) {
 	const getBorderStyles = (size: string): string | null => {
-		if (size === "20") return "border-2 border-bg1"
-		if (size === "24") return "border-2 border-bg1"
-		if (size === "32") return "border-4 border-bg1"
+		if (size === "20") return "border-2 border-bg-base"
+		if (size === "24") return "border-2 border-bg-base"
+		if (size === "32") return "border-4 border-bg-base"
 		return null
 	}
 

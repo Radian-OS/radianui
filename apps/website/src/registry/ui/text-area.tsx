@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const textareaStyles = cva(
-	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-stroke bg-bg1 px-3 py-2.5 font-normal drop-shadow-xs hover:border-stroke-decorative hover:bg-bg0 focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/10",
+	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-stroke bg-bg-base px-3 py-2.5 font-normal drop-shadow-xs hover:border-stroke-decorative hover:bg-bg-level0 focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/10",
 	{
 		variants: {
 			rounded: {
@@ -34,7 +34,7 @@ function TextArea({ label, className, classNames, rounded = "rounded", rows = 4,
 	return (
 		<div className={cn("flex w-full flex-col gap-1", className, classNames?.base)}>
 			{label && (
-				<label className={cn("text-sm font-medium", { "text-fg2": props.disabled }, classNames?.label)} htmlFor={id}>
+				<label className={cn("text-sm font-medium", { "text-text-tertiary": props.disabled }, classNames?.label)} htmlFor={id}>
 					{label}
 				</label>
 			)}
@@ -44,7 +44,7 @@ function TextArea({ label, className, classNames, rounded = "rounded", rows = 4,
 					textareaStyles({ rounded }),
 					{
 						"resize-none": resizable === false,
-						"hover:border-stroke hover:bg-bg1 cursor-not-allowed": props.disabled,
+						"hover:border-stroke hover:bg-bg-base cursor-not-allowed": props.disabled,
 					},
 					classNames?.textarea
 				)}

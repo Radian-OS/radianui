@@ -64,7 +64,7 @@ function Badge({ variant = "outline", size = "24", rounded = false, closable = f
 					{closable && (
 						<X
 							onClick={() => setShowBadge(false)}
-							className={cn(variant === "outline" ? "text-fg1" : "text-white", iconSizeMap[size], "cursor-pointer font-extrabold")}
+							className={cn(variant === "outline" ? "text-text-secondary" : "text-white", iconSizeMap[size], "cursor-pointer font-extrabold")}
 						/>
 					)}
 				</div>
