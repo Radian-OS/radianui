@@ -176,7 +176,7 @@ function FileUpload({
 			{((value.length == 0 && !multiple) || multiple) && (
 				<div
 					className={cn(
-						"border-stroke-decorative bg-bg-base relative flex h-full max-h-50 w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
+						"border-border-alpha bg-bg-base relative flex h-full max-h-50 w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
 						{
 							"rounded-lg": rounded === "rounded",
 							"rounded-none": rounded === "square",
@@ -206,7 +206,7 @@ function FileUpload({
 					/>
 
 					<div className="flex flex-col items-center justify-center gap-4">
-						<span className={cn("border-stroke bg-bg-base size-10 rounded-lg border p-2 drop-shadow-xs", { "border-error": error })}>
+						<span className={cn("border-border bg-bg-base size-10 rounded-lg border p-2 drop-shadow-xs", { "border-error": error })}>
 							<Upload
 								size={24}
 								className={cn("stroke-text-secondary stroke-[1.5]", {
@@ -260,7 +260,7 @@ function FilePreview({ file, onRemove, status }: { file: File; onRemove: () => v
 		<div className={cn("bg-bg-level1 flex flex-col items-center justify-start gap-3 rounded-lg p-3", { "bg-error/5": status?.status === "error" })}>
 			<div>
 				<div className="flex w-full items-center gap-3">
-					<span className="border-stroke bg-bg-base size-10 rounded-lg border p-2 drop-shadow-xs">
+					<span className="border-border bg-bg-base size-10 rounded-lg border p-2 drop-shadow-xs">
 						<File className="stroke-text-secondary" size={24} />
 					</span>
 					<div className="w-full">

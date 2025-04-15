@@ -182,10 +182,8 @@ layer(base);
 	
 	/* stroke */
 	/* left  */
-	--color-stroke: var(--color-white-4);
-	--color-stroke-decorative: var(--color-white-3);
-	--color-stroke-decorative-alpha: var(--color-black-alpha-6);
-	--color-stroke-alpha: var(--color-black-alpha-12);
+	--color-border: var(--color-white-4);
+	--color-border-alpha:  color-mix(in srgb, var(--color-black-9), transparent 88%); /* 2% opacity */;
 
 	/* fill */
   --color-fill-level1: var(--color-black-9);
@@ -306,10 +304,8 @@ layer(base);
 	--color-text-disabled: var(--color-black-5);
 
 	/* stroke */
-	--color-stroke: var(--color-black-7);
-	--color-stroke-decorative: var(--color-black-8);
-	--color-stroke-decorative-alpha: var(--color-white-alpha-6);
-	--color-stroke-alpha: var(--color-white-alpha-12);
+	--color-border: var(--color-black-7);
+	--color-border-alpha:  color-mix(in srgb, var(--color-white-1), transparent 88%);
 
 	/* fill */
 	--color-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
@@ -545,7 +541,7 @@ Variable used in website only
 
 @layer base {
 	* {
-		@apply border-stroke;
+		@apply border-border;
 		scrollbar-width: thin;
 		scrollbar-color: hsl(var(--border)) transparent;
 		scroll-behavior: smooth;

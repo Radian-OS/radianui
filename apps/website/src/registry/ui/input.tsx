@@ -94,7 +94,7 @@ function Input({
 					inputVariants({ size, rounded }),
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError,
-						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-stroke-decorative focus-within:ring-2": !hasError,
+						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-border-alpha focus-within:ring-2": !hasError,
 						"text-text-tertiary pointer-events-none": disabled,
 					},
 					classNames?.wrapper

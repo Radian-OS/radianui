@@ -66,7 +66,7 @@ function Accordion({ size = "sm", variant = "box", interaction = "single", class
 		<AccordionContext.Provider value={{ size, variant }}>
 			<AccordionPrimitive.Root
 				data-slot="accordion"
-				className={classNames("w-full", size === "sm" ? "text-sm" : "text-base", variant === "table" && "border-stroke rounded-xl border", className)}
+				className={classNames("w-full", size === "sm" ? "text-sm" : "text-base", variant === "table" && "border-border rounded-xl border", className)}
 				{...rootProps}>
 				{children}
 			</AccordionPrimitive.Root>
@@ -79,7 +79,7 @@ Accordion.displayName = "Accordion"
 function AccordionItem({ children, className, ...props }: AccordionItemProps) {
 	const { variant } = useAccordion()
 	const borderClass =
-		variant === "box" ? "mb-2 rounded-md border border-stroke last:mb-0" : "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0"
+		variant === "box" ? "mb-2 rounded-md border border-border last:mb-0" : "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0"
 
 	return (
 		<AccordionPrimitive.Item data-slot="accordion-item" className={classNames("overflow-hidden", borderClass, className)} {...props}>

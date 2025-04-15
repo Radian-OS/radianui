@@ -37,7 +37,7 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 		<DropdownMenuPrimitive.Trigger
 			className={cn(
 				"text-sm bg-bg-base text-text flex w-fit",
-				"border-stroke items-center justify-start gap-2 rounded-lg border",
+				"border-border items-center justify-start gap-2 rounded-lg border",
 				"px-3 py-2.5 font-medium drop-shadow-xs"
 			)}
 			{...props}>
@@ -54,7 +54,7 @@ function DropdownContent({ className, children, ...props }: DropdownMenuContentP
 			<DropdownMenuPrimitive.Content
 				align="start"
 				className={cn(
-					"no-scrollbar border-stroke bg-bg-base z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5 drop-shadow-xs",
+					"no-scrollbar border-border bg-bg-base z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5 drop-shadow-xs",
 					className
 				)}
 				sideOffset={8}
@@ -136,7 +136,7 @@ function DropdownItem({
 					{shortcut && (
 						<label
 							className={cn(
-								"border-stroke text-text-secondary ml-auto flex h-5 items-center justify-center rounded-sm border px-1.5 py-0 text-xs/4.5 drop-shadow-xs"
+								"border-border text-text-secondary ml-auto flex h-5 items-center justify-center rounded-sm border px-1.5 py-0 text-xs/4.5 drop-shadow-xs"
 							)}>
 							{shortcut}
 						</label>
@@ -252,7 +252,7 @@ function DropdownSubContent({ children, className, ...props }: DropdownMenuSubCo
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.SubContent
 				className={cn(
-					"border-stroke bg-bg-base z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5 drop-shadow-xs",
+					"border-border bg-bg-base z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5 drop-shadow-xs",
 					className
 				)}
 				sideOffset={10}

@@ -127,23 +127,23 @@ const components: MDXComponents = {
 	),
 	table: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
 		<div className="no-scrollbar overflow-x-scroll">
-			<table className={cn("border-stroke w-full table-auto border", className)} {...props}>
+			<table className={cn("border-border w-full table-auto border", className)} {...props}>
 				{children}
 			</table>
 		</div>
 	),
 	th: ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-		<th className={cn("border-stroke border px-3 py-2.5 text-left text-sm font-semibold", className)} {...props}>
+		<th className={cn("border-border border px-3 py-2.5 text-left text-sm font-semibold", className)} {...props}>
 			{children}
 		</th>
 	),
 	tr: ({ children, className, ...props }: HTMLAttributes<HTMLTableRowElement>) => (
-		<tr className={cn("border-stroke border", className)} {...props}>
+		<tr className={cn("border-border border", className)} {...props}>
 			{children}
 		</tr>
 	),
 	td: ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-		<td className={cn("border-stroke border px-3 py-2.5 text-sm", className)} {...props}>
+		<td className={cn("border-border border px-3 py-2.5 text-sm", className)} {...props}>
 			{children}
 		</td>
 	),

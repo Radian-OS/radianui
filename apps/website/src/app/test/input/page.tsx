@@ -258,7 +258,7 @@ const PasswordComp = () => {
 					</DropdownSub>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<Password
 					label={label ? "Password" : undefined} // Conditionally render label
 					size={size}
@@ -336,7 +336,7 @@ const CalendarComp = () => {
 				</DropdownContent>
 			</Dropdown>
 
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				{mode === "single" && <Calendar mode={"single"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
 				{mode === "multiple" && <Calendar mode={"multiple"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
 				{mode === "range" && <Calendar mode={"range"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
@@ -369,7 +369,7 @@ const DateInputComp = () => {
 					/>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<DateInput rounded={rounded} size={size} disabled={disabled} label={label ? "Enter date below" : undefined} />
 			</div>
 		</div>
@@ -433,7 +433,7 @@ const TimeComp = () => {
 				</DropdownContent>
 			</Dropdown>
 
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<TimePicker
 					label="Label here"
 					rounded={rounded as RoundedOptions}
@@ -501,7 +501,7 @@ const NumberComp = () => {
 					</DropdownSub>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<NumberInput
 					classNames={{ base: "w-[320px]" }}
 					rounded={rounded}
@@ -583,7 +583,7 @@ const InputComp = () => {
 					</DropdownSub>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<Input
 					classNames={{ base: "w-[320px]" }}
 					rounded={rounded}
@@ -684,7 +684,7 @@ const DatePickerComp = () => {
 				</DropdownContent>
 			</Dropdown>
 
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<DatePicker
 					mode={mode}
 					placeholder="Select Date"
@@ -763,7 +763,7 @@ const FileUploadComp = () => {
 					</DropdownSub>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<FileUpload
 					label={label ? "Label here" : undefined}
 					rounded={rounded}
@@ -926,7 +926,7 @@ const SliderComp = () => {
 					</DropdownSub>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-[300px] w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
+			<div className="border-border bg-bg-base flex h-[300px] w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
 				<Slider
 					label={label ? "Select volume label" : undefined}
 					disabled={disabled}
@@ -1012,7 +1012,7 @@ const SwitchComp = () => {
 					</DropdownSub>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
 				<Switch size={size} disabled={disabled}>
 					{label ? "Enable notifications" : undefined}
 				</Switch>
@@ -1111,7 +1111,7 @@ const TextAreaComp = () => {
 					</DropdownSub>
 				</DropdownContent>
 			</Dropdown>
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
 				<TextArea
 					label={label ? "Label here" : undefined}
 					disabled={disabled}
@@ -1150,7 +1150,7 @@ const CurrencyComp = () => {
 				</DropdownContent>
 			</Dropdown>
 
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<CurrencyInput
 					disabled={disabled}
 					size={size}
@@ -1221,7 +1221,7 @@ const OTPComp = () => {
 				</DropdownContent>
 			</Dropdown>
 
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<OTPInput
 					label={label ? "Label here" : undefined}
 					disabled={disabled}
@@ -1315,7 +1315,7 @@ const SelectComp = () => {
 				</DropdownContent>
 			</Dropdown>
 
-			<div className="border-stroke bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<Select
 					label={label ? "Choose your favourite framework" : undefined}
 					placeholder="Pick an option"

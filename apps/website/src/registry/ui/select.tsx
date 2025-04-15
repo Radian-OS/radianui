@@ -81,7 +81,7 @@ function SelectGroup({ label, children }: SelectGroupProps) {
 	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
 }
 // Variants for the Select trigger styling using class variance authority
-const SelectTriggerVariations = cva("active:bg-background justify-start gap-2 border-stroke px-3 py-2.5 text-text drop-shadow-xs hover:bg-bg-base", {
+const SelectTriggerVariations = cva("active:bg-background justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-bg-base", {
 	variants: {
 		...cvaInputVariants,
 	},

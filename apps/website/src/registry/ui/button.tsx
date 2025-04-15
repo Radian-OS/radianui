@@ -24,7 +24,7 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 			outline: "bg-bg-base font-medium border border-primary text-primary hover:bg-primary/5 active:bg-primary/10",
 			ghost: "bg-transparent text-primary font-medium hover:bg-primary/10 active:bg-primary/20",
 			"neutral-soft": "bg-bg-level0 font-medium hover:bg-bg-level1 active:bg-bg-level2",
-			"neutral-outline": "bg-bg-base font-medium border drop-shadow-xs hover:border-stroke-decorative active:bg-bg-level0 active:border-stroke-decorative",
+			"neutral-outline": "bg-bg-base font-medium border drop-shadow-xs hover:border-border-alpha active:bg-bg-level0 active:border-border-alpha",
 		},
 		rounded: {
 			square: "rounded-xs",

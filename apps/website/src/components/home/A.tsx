@@ -23,7 +23,7 @@ function A({ className }: { className?: string }) {
 	const [activeItem, setActiveItem] = useState<string>("dashboard")
 
 	return (
-		<div className={cn("border-stroke top-20 right-38 flex h-200 w-90 overflow-hidden rounded-2xl border transition-all duration-1000", className)}>
+		<div className={cn("border-border top-20 right-38 flex h-200 w-90 overflow-hidden rounded-2xl border transition-all duration-1000", className)}>
 			<div className="bg-bg-level1 flex w-fit flex-col justify-between px-2 py-3">
 				<div className="flex h-full flex-col items-center justify-between">
 					<div className="flex flex-col items-center gap-3">

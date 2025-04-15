@@ -164,7 +164,7 @@ function Slider({
 						{...props}>
 						<SliderPrimitive.Track
 							className={cn(
-								"border-stroke bg-bg-level1 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
+								"border-border bg-bg-level1 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
 								classNames?.sliderTrack
 							)}>
 							<SliderPrimitive.Range

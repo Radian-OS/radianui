@@ -204,7 +204,7 @@ function DatePicker({
 				</Button>
 			</PopoverTrigger>
 
-			<PopoverContent className={cn("border-stroke bg-bg-base flex w-fit flex-col gap-3 rounded-xl border p-0 shadow-none drop-shadow-xs")}>
+			<PopoverContent className={cn("border-border bg-bg-base flex w-fit flex-col gap-3 rounded-xl border p-0 shadow-none drop-shadow-xs")}>
 				{mode === "single" && (
 					<Calendar
 						mode="single"
@@ -276,7 +276,7 @@ type DateRangeShortcutProps = {
 // DateRangeShortcut component definition
 function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
-		<div className="text-sm border-stroke text-text flex flex-col border-r p-2 font-medium">
+		<div className="text-sm border-border text-text flex flex-col border-r p-2 font-medium">
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					key={value}

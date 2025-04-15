@@ -265,7 +265,7 @@ function PhoneNumber({
 				rounded={rounded}
 				variant="neutral-soft"
 				className={cn(
-					"text-sm border-stroke text-text flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
+					"text-sm border-border text-text flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
 					{
 						"border-r-primary border-r": isFocused,
 						"pointer-events-none": disabled,
@@ -286,10 +286,10 @@ function PhoneNumber({
 	return (
 		<div
 			className={cn(
-				"border-stroke focus-within:border-primary! focus-within:ring-primary/10 hover:border-stroke-decorative border focus-within:ring-2",
+				"border-border focus-within:border-primary! focus-within:ring-primary/10 hover:border-border-alpha border focus-within:ring-2",
 				phoneVariants({ size, rounded }),
 				"inline-flex overflow-hidden p-0",
-				{ "hover:border-stroke cursor-not-allowed": disabled },
+				{ "hover:border-border cursor-not-allowed": disabled },
 				className,
 				classNames?.base
 			)}>

@@ -19,7 +19,7 @@ const otpSlotVariants = cva("", {
 	variants: {
 		...cvaInputVariants,
 		variant: {
-			box: cn("relative text-text", "flex items-center justify-center transition-all duration-300", "border border-stroke bg-bg-base drop-shadow-xs"),
+			box: cn("relative text-text", "flex items-center justify-center transition-all duration-300", "border border-border bg-bg-base drop-shadow-xs"),
 			flat: "",
 		},
 		size: {
@@ -147,11 +147,11 @@ function Slot(
 	React.useEffect(function () {
 		if (slotRef.current) {
 			slotRef.current.addEventListener("mouseenter", () => {
-				slotRef.current?.classList.add("border-stroke-decorative!")
+				slotRef.current?.classList.add("border-border-alpha!")
 				slotRef.current?.classList.add("border-2")
 			})
 
-			slotRef.current.addEventListener("mouseleave", () => slotRef.current?.classList.remove("border-stroke-decorative!"))
+			slotRef.current.addEventListener("mouseleave", () => slotRef.current?.classList.remove("border-border-alpha!"))
 		}
 	}, [])
 

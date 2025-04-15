@@ -69,7 +69,7 @@ const Sonners: React.FC<ToastProps> = function ({
 							<Button
 								variant="outline"
 								size="32"
-								className={`${variant === "default" ? "border-stroke!" : "border-white!"} text-sm font-semibold`}
+								className={`${variant === "default" ? "border-border!" : "border-white!"} text-sm font-semibold`}
 								key={index}
 								onClick={function () {
 									btn.onClick(toastId)
@@ -158,7 +158,7 @@ const Sonners: React.FC<ToastProps> = function ({
 								<Button
 									variant="outline"
 									size="32"
-									className={`${variant === "default" ? "border-stroke!" : "border-white!"} text-sm font-semibold`}
+									className={`${variant === "default" ? "border-border!" : "border-white!"} text-sm font-semibold`}
 									key={index}
 									onClick={() => {
 										btn.onClick(toastId)
@@ -188,7 +188,7 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 const toastClass = cva("group !p-0 toast group-[.toaster]:text-text-secondary", {
 	variants: {
 		bgColor: {
-			default: "group-[.toaster]:!bg-bg-base group-[.toaster]:!border-stroke",
+			default: "group-[.toaster]:!bg-bg-base group-[.toaster]:!border-border",
 			success: "group-[.toaster]:!bg-success group-[.toaster]:!border-none",
 			error: "group-[.toaster]:!bg-error group-[.toaster]:!border-none",
 			warning: "group-[.toaster]:!bg-warning group-[.toaster]:!border-none",

@@ -23,7 +23,7 @@ function B({ className }: { className?: string }) {
 	return (
 		<div
 			className={cn(
-				"bg-bg-base border-stroke top-48 right-10 flex h-200 w-80 scale-90 flex-col justify-between rounded-2xl border duration-1000",
+				"bg-bg-base border-border top-48 right-10 flex h-200 w-80 scale-90 flex-col justify-between rounded-2xl border duration-1000",
 				className
 			)}>
 			<div className="flex flex-col">

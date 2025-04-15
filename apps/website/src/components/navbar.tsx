@@ -77,7 +77,7 @@ export default function Navbar() {
 	]
 
 	return (
-		<nav className="bg-bg-base border-stroke-decorative flex items-center justify-between border-b px-4 py-3 lg:h-15.5">
+		<nav className="bg-bg-base border-border-alpha flex items-center justify-between border-b px-4 py-3 lg:h-15.5">
 			<div className="flex h-9 flex-shrink-0 items-center gap-2">
 				<Link href="/" style={{ fill: "white", color: "white" }}>
 					<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />

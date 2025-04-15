@@ -15,7 +15,7 @@ const tabsListStyles = cva("inline-flex h-10 items-center justify-start max-w-fu
 		},
 		variant: {
 			default: "rounded-lg bg-bg-level0 w-fit p-1",
-			open: "border-b border-stroke",
+			open: "border-b border-border",
 			outline: "w-fit",
 			ghost: "w-fit",
 		},
@@ -56,9 +56,9 @@ const tabsTriggerStyles = cva(
 		variants: {
 			variant: {
 				default:
-					"data-[state=active]:bg-bg-base rounded-sm border border-transparent data-[state=active]:rounded-md data-[state=active]:border data-[state=active]:border-stroke data-[state=active]:drop-shadow-xs",
+					"data-[state=active]:bg-bg-base rounded-sm border border-transparent data-[state=active]:rounded-md data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
 				outline:
-					"border-b border-t first:rounded-l-lg last:rounded-r-lg last:border-l last:border-r last:border-stroke data-[state=active]:bg-bg-level0 not-last:border-l not-last:border-stroke",
+					"border-b border-t first:rounded-l-lg last:rounded-r-lg last:border-l last:border-r last:border-border data-[state=active]:bg-bg-level0 not-last:border-l not-last:border-border",
 				open: "h-full border-b-0 data-[state=active]:border-b-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:rounded-md data-[state=active]:bg-bg-level1",
 			},
@@ -161,7 +161,7 @@ function TabsTrigger({ className, icon, counter, disabled = false, children, ...
 			{icon != undefined && <span className={cn("text-text-secondary [&>svg]:size-5", { "text-text-tertiary": disabled })}>{icon}</span>}
 			{children}
 			{counter != undefined && (
-				<span className="text-xs border-stroke bg-bg-base text-text-secondary flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0">
+				<span className="text-xs border-border bg-bg-base text-text-secondary flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0">
 					{counter}
 				</span>
 			)}

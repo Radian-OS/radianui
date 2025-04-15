@@ -37,13 +37,13 @@ const TableFooter = React.forwardRef<HTMLTableSectionElement, React.HTMLAttribut
 	{ className, ...props },
 	ref
 ) {
-	return <tfoot ref={ref} className={cn("border-stroke bg-muted/50 border-t font-medium last:[&>tr]:border-b-0", className)} {...props} />
+	return <tfoot ref={ref} className={cn("border-border bg-muted/50 border-t font-medium last:[&>tr]:border-b-0", className)} {...props} />
 })
 TableFooter.displayName = "TableFooter"
 
 const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(function TableRow({ className, ...props }, ref) {
 	return (
-		<tr ref={ref} className={cn("border-stroke hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors", className)} {...props} />
+		<tr ref={ref} className={cn("border-border hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors", className)} {...props} />
 	)
 })
 
@@ -315,7 +315,7 @@ const DraggableTableHeader = function <TData>({
 	return (
 		<TableHead
 			ref={setNodeRef}
-			className={`before:bg-border relative before:absolute before:inset-y-0 before:start-0 first:before:bg-transparent ${dense ? "bg-bg-level0" : ""} ${(verticalLine && headerGroup) || (resizable && headerGroup) ? "border-stroke border-r" : ""} `}
+			className={`before:bg-border relative before:absolute before:inset-y-0 before:start-0 first:before:bg-transparent ${dense ? "bg-bg-level0" : ""} ${(verticalLine && headerGroup) || (resizable && headerGroup) ? "border-border border-r" : ""} `}
 			style={{ ...style, width: header.getSize() }}
 			colSpan={header.colSpan}>
 			{header.column.id !== "select" ? (
@@ -408,7 +408,7 @@ const DragAlongCell = function <TData>({
 	}
 
 	return (
-		<TableCell ref={setNodeRef} className={`truncate ${verticalLine && !isLastVisibleColumn ? "border-stroke border-r" : ""} `} style={style}>
+		<TableCell ref={setNodeRef} className={`truncate ${verticalLine && !isLastVisibleColumn ? "border-border border-r" : ""} `} style={style}>
 			{cell.column.id === "select" ? (
 				<div className="flex items-center">
 					<Checkbox
