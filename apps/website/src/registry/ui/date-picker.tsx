@@ -174,7 +174,7 @@ function DatePicker({
 						},
 						triggerClassName
 					)}
-					size={size}
+					size={size as "32" | "36" | "40" | "44" | "48" | "28" | null | undefined}
 					disabled={props.disabled}>
 					<span className="w-full truncate text-left">
 						{currentSelected === undefined && placeholder}
