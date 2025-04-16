@@ -262,7 +262,6 @@ function PhoneNumber({
 		const selectedCountry = FILTERED_COUNTRY_CODES.find((data) => data.country == selectedValues[0])
 		return (
 			<Button
-				rounded={rounded}
 				variant="neutral-soft"
 				className={cn(
 					"text-sm border-border text-text flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
