@@ -21,12 +21,16 @@ const ButtonPreview = () => {
 	type roundness = "square" | "rounded" | "full"
 	type isIconType = "true" | "false"
 	type disabledType = "true" | "false"
+	// New colors type; neutral is removed.
+	type colors = "primary" | "information" | "success" | "error" | "warning"
 
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("36")
 	const [rounded, setRounded] = useState<roundness>("rounded")
 	const [isIcon, setIsIcon] = useState<isIconType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
+	// New state for color
+	const [color, setColor] = useState<colors>("primary")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -94,6 +98,25 @@ const ButtonPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
+								<DropdownSubTrigger>color</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setColor(Array.from(keys)[0] as colors)
+										}}
+										minSelectionCount={1}
+										selectedValues={[color]}>
+										<DropdownItem value="primary">primary</DropdownItem>
+										<DropdownItem value="information">information</DropdownItem>
+										<DropdownItem value="success">success</DropdownItem>
+										<DropdownItem value="error">error</DropdownItem>
+										<DropdownItem value="warning">warning</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
 								<DropdownSubTrigger>isIcon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
@@ -134,7 +157,13 @@ const ButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Button isIcon={isIcon === "true"} rounded={rounded} variant={variant} size={size} disabled={disabled === "true"}>
+					<Button
+						isIcon={isIcon === "true"}
+						rounded={rounded}
+						variant={variant}
+						size={size}
+						color={color}
+						disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
 				</div>
@@ -148,6 +177,7 @@ const ButtonPreview = () => {
   size="${size}" 
   rounded="${rounded}" 
   variant="${variant}" 
+  color="${color}"
   isIcon={${isIcon === "true"}}
   disabled={${disabled === "true"}}>
   ${isIcon === "true" ? `<CirclePlus />` : "Button"}

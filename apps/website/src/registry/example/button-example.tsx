@@ -4,17 +4,19 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight, CirclePlus, Settings } from "lucide-react"
 import { Button, ButtonGroup } from "@/registry/ui/button"
 
-// Types for variant, size, and rounded options
+// Types for variant, size, rounded, and color options
 type VariantOptions = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
-// Added "28" to the size options
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 type RoundedOptions = "square" | "rounded" | "full"
+// Removed "neutral" from the color options.
+type ColorOptions = "primary" | "information" | "success" | "error" | "warning"
 
 const ButtonExample = () => {
 	// State for button properties
 	const [variant, setVariant] = useState<VariantOptions>("strong")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [rounded, setRounded] = useState<RoundedOptions>("rounded")
+	const [color, setColor] = useState<ColorOptions>("primary")
 	const [includeIcon, setIncludeIcon] = useState<boolean>(true)
 
 	// Controls rendering
@@ -87,6 +89,23 @@ const ButtonExample = () => {
 					</select>
 				</div>
 
+				<div>
+					<label htmlFor="color" className="mb-2 block text-sm font-medium">
+						Color:
+					</label>
+					<select
+						id="color"
+						value={color}
+						onChange={(e) => setColor(e.target.value as ColorOptions)}
+						className="w-full rounded border-border bg-bg-base p-2">
+						<option value="primary">Primary</option>
+						<option value="information">Information</option>
+						<option value="success">Success</option>
+						<option value="error">Error</option>
+						<option value="warning">Warning</option>
+					</select>
+				</div>
+
 				{activeSection === "single" && (
 					<div>
 						<label className="mb-2 block text-sm font-medium">Include Icon:</label>
@@ -110,7 +129,7 @@ const ButtonExample = () => {
 		<div className="space-y-4">
 			<h3 className="text-lg font-medium">Regular Button</h3>
 			<div className="flex items-center gap-4">
-				<Button variant={variant} size={size} rounded={rounded}>
+				<Button variant={variant} size={size} rounded={rounded} color={color}>
 					{includeIcon && <CirclePlus />}
 					Button Label
 				</Button>
@@ -118,7 +137,7 @@ const ButtonExample = () => {
 
 			<h3 className="mt-6 text-lg font-medium">Icon Button</h3>
 			<div className="flex items-center gap-4">
-				<Button variant={variant} size={size} rounded={rounded} isIcon>
+				<Button variant={variant} size={size} rounded={rounded} color={color} isIcon>
 					<CirclePlus />
 				</Button>
 			</div>
@@ -129,7 +148,7 @@ const ButtonExample = () => {
 		<div className="space-y-6">
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Navigation Group</h3>
-				<ButtonGroup variant={variant} size={size} rounded={rounded}>
+				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
 					<Button>
 						<ChevronLeft />
 						Previous
@@ -144,7 +163,7 @@ const ButtonExample = () => {
 
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Action Group</h3>
-				<ButtonGroup variant={variant} size={size} rounded={rounded}>
+				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
 					<Button>Save</Button>
 					<Button>
 						<Settings />
@@ -159,7 +178,7 @@ const ButtonExample = () => {
 
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Icon Group</h3>
-				<ButtonGroup variant={variant} size={size} rounded={rounded}>
+				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
 					<Button isIcon>
 						<ChevronLeft />
 					</Button>
@@ -180,7 +199,9 @@ const ButtonExample = () => {
 
 			<ControlPanel />
 
-			<div className="border-t pt-6">{activeSection === "single" ? <SingleButtonPreview /> : <ButtonGroupPreview />}</div>
+			<div className="border-t pt-6">
+				{activeSection === "single" ? <SingleButtonPreview /> : <ButtonGroupPreview />}
+			</div>
 		</div>
 	)
 }
