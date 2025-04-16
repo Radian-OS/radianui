@@ -62,7 +62,6 @@ const ButtonGroupPreview = () => {
 										<DropdownItem value="40">40</DropdownItem>
 										<DropdownItem value="44">44</DropdownItem>
 										<DropdownItem value="48">48</DropdownItem>
-										<DropdownItem value="56">56</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

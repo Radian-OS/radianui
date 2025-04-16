@@ -7,7 +7,6 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 		className?: string
 		children: React.ReactNode
 		isIcon?: boolean
-		// Removed "neutral" from the color options below.
 		color?: "primary" | "information" | "success" | "error" | "warning"
 	}
 
@@ -15,12 +14,11 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	children: React.ReactNode
 	variant?: ButtonProps["variant"]
 	size?: ButtonProps["size"]
-	// Removed rounded prop
-	// Removed "neutral" from the color options here, too.
+	rounded?: "square" | "rounded" | "full" // Keep rounded for ButtonGroup only
 	color?: ButtonProps["color"]
 }
 
-const buttonVariants = cva("inline-flex items-center justify-center box-border transition duration-200 transform rounded-radius-lg", {
+const buttonVariants = cva("inline-flex items-center justify-center box-border transition duration-200 transform rounded-lg", {
 	variants: {
 		variant: {
 			strong: "",
@@ -42,7 +40,6 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border t
 			true: "",
 			false: "",
 		},
-		// Removed the neutral color option from here.
 		color: {
 			primary: "",
 			information: "",
@@ -125,6 +122,7 @@ function ButtonGroup({
 	children,
 	variant = "outline",
 	size = "36",
+	rounded = "rounded", // Keep rounded prop for ButtonGroup
 	color = "primary",
 	...props
 }: ButtonGroupProps) {
@@ -133,6 +131,21 @@ function ButtonGroup({
 			const isFirst = index === 0
 			const isLast = index === React.Children.count(children) - 1
 			const borderRightClass = variant === "outline" || variant === "neutral-outline" ? "border-r" : ""
+
+			// Define rounded corners based on the ButtonGroup's rounded prop
+			let firstButtonRounding = ""
+			let lastButtonRounding = ""
+
+			if (rounded === "rounded") {
+				firstButtonRounding = "rounded-l-lg"
+				lastButtonRounding = "rounded-r-lg"
+			} else if (rounded === "square") {
+				firstButtonRounding = "rounded-l-xs"
+				lastButtonRounding = "rounded-r-xs"
+			} else if (rounded === "full") {
+				firstButtonRounding = "rounded-l-full"
+				lastButtonRounding = "rounded-r-full"
+			}
 
 			if (React.isValidElement<ButtonProps>(child)) {
 				return React.cloneElement(child, {
@@ -143,9 +156,9 @@ function ButtonGroup({
 						child.props.className,
 						"relative focus:z-10",
 						borderRightClass,
-						"rounded-none",
-						isFirst && "rounded-l-lg",
-						isLast && "rounded-r-lg",
+						"rounded-none", // Remove default rounding
+						isFirst && firstButtonRounding,
+						isLast && lastButtonRounding,
 						!isFirst && "-ml-px"
 					),
 				})

@@ -7,15 +7,16 @@ import { Button, ButtonGroup } from "@/registry/ui/button"
 // Types for variant, size, and color options
 type VariantOptions = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-// Removed RoundedOptions type
-// Removed "neutral" from the color options.
+// Kept RoundedOptions for ButtonGroup only
+type RoundedOptions = "square" | "rounded" | "full"
 type ColorOptions = "primary" | "information" | "success" | "error" | "warning"
 
 const ButtonExample = () => {
 	// State for button properties
 	const [variant, setVariant] = useState<VariantOptions>("strong")
 	const [size, setSize] = useState<SizeOptions>("36")
-	// Removed rounded state
+	// Kept rounded state for ButtonGroup
+	const [rounded, setRounded] = useState<RoundedOptions>("rounded")
 	const [color, setColor] = useState<ColorOptions>("primary")
 	const [includeIcon, setIncludeIcon] = useState<boolean>(true)
 
@@ -73,6 +74,24 @@ const ButtonExample = () => {
 						<option value="48">48</option>
 					</select>
 				</div>
+
+				{/* Only show rounded control for ButtonGroup */}
+				{activeSection === "group" && (
+					<div>
+						<label htmlFor="rounded" className="mb-2 block text-sm font-medium">
+							Rounded:
+						</label>
+						<select
+							id="rounded"
+							value={rounded}
+							onChange={(e) => setRounded(e.target.value as RoundedOptions)}
+							className="w-full rounded border-border bg-bg-base p-2">
+							<option value="square">Square</option>
+							<option value="rounded">Rounded</option>
+							<option value="full">Full</option>
+						</select>
+					</div>
+				)}
 
 				<div>
 					<label htmlFor="color" className="mb-2 block text-sm font-medium">
@@ -133,7 +152,7 @@ const ButtonExample = () => {
 		<div className="space-y-6">
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Navigation Group</h3>
-				<ButtonGroup variant={variant} size={size} color={color}>
+				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
 					<Button>
 						<ChevronLeft />
 						Previous
@@ -148,7 +167,7 @@ const ButtonExample = () => {
 
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Action Group</h3>
-				<ButtonGroup variant={variant} size={size} color={color}>
+				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
 					<Button>Save</Button>
 					<Button>
 						<Settings />
@@ -163,7 +182,7 @@ const ButtonExample = () => {
 
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Icon Group</h3>
-				<ButtonGroup variant={variant} size={size} color={color}>
+				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
 					<Button isIcon>
 						<ChevronLeft />
 					</Button>
