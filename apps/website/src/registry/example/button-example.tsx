@@ -4,10 +4,10 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight, CirclePlus, Settings } from "lucide-react"
 import { Button, ButtonGroup } from "@/registry/ui/button"
 
-// Types for variant, size, rounded, and color options
+// Types for variant, size, and color options
 type VariantOptions = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-type RoundedOptions = "square" | "rounded" | "full"
+// Removed RoundedOptions type
 // Removed "neutral" from the color options.
 type ColorOptions = "primary" | "information" | "success" | "error" | "warning"
 
@@ -15,7 +15,7 @@ const ButtonExample = () => {
 	// State for button properties
 	const [variant, setVariant] = useState<VariantOptions>("strong")
 	const [size, setSize] = useState<SizeOptions>("36")
-	const [rounded, setRounded] = useState<RoundedOptions>("rounded")
+	// Removed rounded state
 	const [color, setColor] = useState<ColorOptions>("primary")
 	const [includeIcon, setIncludeIcon] = useState<boolean>(true)
 
@@ -75,21 +75,6 @@ const ButtonExample = () => {
 				</div>
 
 				<div>
-					<label htmlFor="rounded" className="mb-2 block text-sm font-medium">
-						Rounded:
-					</label>
-					<select
-						id="rounded"
-						value={rounded}
-						onChange={(e) => setRounded(e.target.value as RoundedOptions)}
-						className="w-full rounded border-border bg-bg-base p-2">
-						<option value="square">Square</option>
-						<option value="rounded">Rounded</option>
-						<option value="full">Full</option>
-					</select>
-				</div>
-
-				<div>
 					<label htmlFor="color" className="mb-2 block text-sm font-medium">
 						Color:
 					</label>
@@ -129,7 +114,7 @@ const ButtonExample = () => {
 		<div className="space-y-4">
 			<h3 className="text-lg font-medium">Regular Button</h3>
 			<div className="flex items-center gap-4">
-				<Button variant={variant} size={size} rounded={rounded} color={color}>
+				<Button variant={variant} size={size} color={color}>
 					{includeIcon && <CirclePlus />}
 					Button Label
 				</Button>
@@ -137,7 +122,7 @@ const ButtonExample = () => {
 
 			<h3 className="mt-6 text-lg font-medium">Icon Button</h3>
 			<div className="flex items-center gap-4">
-				<Button variant={variant} size={size} rounded={rounded} color={color} isIcon>
+				<Button variant={variant} size={size} color={color} isIcon>
 					<CirclePlus />
 				</Button>
 			</div>
@@ -148,7 +133,7 @@ const ButtonExample = () => {
 		<div className="space-y-6">
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Navigation Group</h3>
-				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
+				<ButtonGroup variant={variant} size={size} color={color}>
 					<Button>
 						<ChevronLeft />
 						Previous
@@ -163,7 +148,7 @@ const ButtonExample = () => {
 
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Action Group</h3>
-				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
+				<ButtonGroup variant={variant} size={size} color={color}>
 					<Button>Save</Button>
 					<Button>
 						<Settings />
@@ -178,7 +163,7 @@ const ButtonExample = () => {
 
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Icon Group</h3>
-				<ButtonGroup variant={variant} size={size} rounded={rounded} color={color}>
+				<ButtonGroup variant={variant} size={size} color={color}>
 					<Button isIcon>
 						<ChevronLeft />
 					</Button>

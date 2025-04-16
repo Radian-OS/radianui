@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CirclePlus } from "lucide-react"
+import { CirclePlus} from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
@@ -18,18 +18,15 @@ const ButtonPreview = () => {
 	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
 	// Updated sizes type to include "28"
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
-	type roundness = "square" | "rounded" | "full"
 	type isIconType = "true" | "false"
 	type disabledType = "true" | "false"
-	// New colors type; neutral is removed.
+	// Colors type; neutral is removed.
 	type colors = "primary" | "information" | "success" | "error" | "warning"
 
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("36")
-	const [rounded, setRounded] = useState<roundness>("rounded")
 	const [isIcon, setIsIcon] = useState<isIconType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
-	// New state for color
 	const [color, setColor] = useState<colors>("primary")
 
 	return (
@@ -53,9 +50,18 @@ const ButtonPreview = () => {
 										<DropdownItem value="soft">soft</DropdownItem>
 										<DropdownItem value="outline">outline</DropdownItem>
 										<DropdownItem value="ghost">ghost</DropdownItem>
+									</DropdownGroup>
+									<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setVariant(Array.from(keys)[0] as variants)
+									}}
+									minSelectionCount={1}
+									selectedValues={[variant]}
+									 title="neutral">
 										<DropdownItem value="neutral-soft">neutral-soft</DropdownItem>
 										<DropdownItem value="neutral-outline">neutral-outline</DropdownItem>
-									</DropdownGroup>
+										</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
@@ -69,30 +75,12 @@ const ButtonPreview = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[size]}>
-										{/* New 28 option */}
 										<DropdownItem value="28">28</DropdownItem>
 										<DropdownItem value="32">32</DropdownItem>
 										<DropdownItem value="36">36</DropdownItem>
 										<DropdownItem value="40">40</DropdownItem>
 										<DropdownItem value="44">44</DropdownItem>
 										<DropdownItem value="48">48</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>rounded</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setRounded(Array.from(keys)[0] as roundness)
-										}}
-										minSelectionCount={1}
-										selectedValues={[rounded]}>
-										<DropdownItem value="rounded">rounded</DropdownItem>
-										<DropdownItem value="square">square</DropdownItem>
-										<DropdownItem value="full">full</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -156,10 +144,9 @@ const ButtonPreview = () => {
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
+				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
 					<Button
 						isIcon={isIcon === "true"}
-						rounded={rounded}
 						variant={variant}
 						size={size}
 						color={color}
@@ -175,7 +162,6 @@ const ButtonPreview = () => {
 					className="h-[420px]"
 					code={`<Button 
   size="${size}" 
-  rounded="${rounded}" 
   variant="${variant}" 
   color="${color}"
   isIcon={${isIcon === "true"}}

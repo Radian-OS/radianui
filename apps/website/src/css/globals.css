@@ -119,9 +119,20 @@ layer(base);
 	/* font */
 	--heading-font: "Inter Display", system-ui, sans-serif;
 	--body-font: "Inter", system-ui, sans-serif;
+
+	
 }
 
 @theme {
+
+	/* Border radius variables */
+	--radius-radius-xs: 2px;
+	--radius-radius-sm: 4px;
+	--radius-radius-md: 6px;
+	--radius-radius-lg: 8px;
+	--radius-radius-xl: 12px;
+	--radius-radius-2xl: 16px;
+
 	/* primary */
 	--color-primary: var(--color-primary-600);
 	--color-primary-accent: var(--color-primary-50);

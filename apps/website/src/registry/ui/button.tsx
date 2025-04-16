@@ -15,12 +15,12 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	children: React.ReactNode
 	variant?: ButtonProps["variant"]
 	size?: ButtonProps["size"]
-	rounded?: ButtonProps["rounded"]
+	// Removed rounded prop
 	// Removed "neutral" from the color options here, too.
 	color?: ButtonProps["color"]
 }
 
-const buttonVariants = cva("inline-flex items-center justify-center box-border", {
+const buttonVariants = cva("inline-flex items-center justify-center box-border transition duration-200 transform rounded-radius-lg", {
 	variants: {
 		variant: {
 			strong: "",
@@ -29,11 +29,6 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 			ghost: "",
 			"neutral-soft": "bg-bg-base font-medium hover:bg-fill-level1 active:bg-bg-level0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border disabled:bg-fill-level1/50 disabled:text-text-secondary/50 disabled:cursor-not-allowed disabled:drop-shadow-sm",
 			"neutral-outline": "bg-bg-base font-medium border drop-shadow-xs hover:border-stroke-decorative active:bg-bg-base active:border-stroke-decorative focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border disabled:border-border/50 disabled:bg-bg-base disabled:text-text-secondary/50 disabled:cursor-not-allowed",
-		},
-		rounded: {
-			square: "rounded-xs",
-			rounded: "rounded-md",
-			full: "rounded-full",
 		},
 		size: {
 			"28": "[&>svg]:size-4 text-xs", // 28px
@@ -59,7 +54,6 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 	defaultVariants: {
 		variant: "strong",
 		size: "36",
-		rounded: "rounded",
 		isIcon: false,
 		color: "primary",
 	},
@@ -112,7 +106,6 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border",
 function Button({
 	variant = "strong",
 	size = "36",
-	rounded = "rounded",
 	isIcon = false,
 	color = "primary",
 	className,
@@ -120,7 +113,7 @@ function Button({
 	...props
 }: ButtonProps) {
 	return (
-		<button className={cn(buttonVariants({ variant, size, rounded, isIcon, color }), className)} {...props}>
+		<button className={cn(buttonVariants({ variant, size, isIcon, color }), className)} {...props}>
 			{children}
 		</button>
 	)
@@ -132,7 +125,6 @@ function ButtonGroup({
 	children,
 	variant = "outline",
 	size = "36",
-	rounded = "rounded",
 	color = "primary",
 	...props
 }: ButtonGroupProps) {
@@ -152,12 +144,8 @@ function ButtonGroup({
 						"relative focus:z-10",
 						borderRightClass,
 						"rounded-none",
-						isFirst && rounded === "rounded" && "rounded-l-md",
-						isFirst && rounded === "square" && "rounded-l-xs",
-						isFirst && rounded === "full" && "rounded-l-full",
-						isLast && rounded === "rounded" && "rounded-r-md",
-						isLast && rounded === "square" && "rounded-r-xs",
-						isLast && rounded === "full" && "rounded-r-full",
+						isFirst && "rounded-l-lg",
+						isLast && "rounded-r-lg",
 						!isFirst && "-ml-px"
 					),
 				})
