@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
@@ -26,7 +28,7 @@ const buttonVariants = cva("inline-flex items-center justify-center box-border t
 			outline: "",
 			ghost: "",
 			"neutral-soft": "bg-bg-base font-medium hover:bg-fill-level1 active:bg-bg-level0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border disabled:bg-fill-level1/50 disabled:text-text-secondary/50 disabled:cursor-not-allowed disabled:drop-shadow-sm",
-			"neutral-outline": "bg-bg-base font-medium border drop-shadow-xs hover:border-stroke-decorative active:bg-bg-base active:border-stroke-decorative focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border disabled:border-border/50 disabled:bg-bg-base disabled:text-text-secondary/50 disabled:cursor-not-allowed",
+			"neutral-outline": "bg-bg-base outline-transparent font-medium border drop-shadow-xs hover:border-stroke-decorative hover:bg-fill-level2  active:bg-bg-base active:border-stroke-decorative focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-border disabled:border-border/50 disabled:bg-bg-base disabled:text-text-secondary/50 disabled:cursor-not-allowed",
 		},
 		size: {
 			"28": "[&>svg]:size-4 text-xs", // 28px
