@@ -21,7 +21,7 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center box-border transition duration-200 transform rounded-lg disabled:opacity-50  focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "inline-flex items-center justify-center box-border transition duration-200 transform rounded-lg disabled:opacity-50  focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-fit",
   {
     variants: {
       variant: {
@@ -75,7 +75,7 @@ const buttonVariants = cva(
 
       // Strong variant + colors
       { variant: "strong", color: "primary", className: "bg-primary font-semibold text-static-white hover:bg-primary-hover active:bg-primary  focus-visible:ring-primary focus-visible:outline-none" },
-      { variant: "strong", color: "information", className: "bg-information font-semibold text-static-white hover:bg-information-hover active:bg-information  focus-visible:outline-information" },
+      { variant: "strong", color: "information", className: "bg-information font-semibold text-static-white hover:bg-information-hover active:bg-information  focus-visible:ring-information focus-visible:outline-none" },
       { variant: "strong", color: "success", className: "bg-success font-semibold text-static-white hover:bg-success-hover active:bg-success  focus-visible:ring-success focus-visible:outline-none" },
       { variant: "strong", color: "error", className: "bg-error font-semibold text-static-white hover:bg-error-hover active:bg-error  focus-visible:ring-error focus-visible:outline-none" },
       { variant: "strong", color: "warning", className: "bg-warning font-semibold text-static-white hover:bg-warning-hover active:bg-warning  focus-visible:ring-warning focus-visible:outline-none" },
