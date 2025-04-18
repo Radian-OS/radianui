@@ -55,10 +55,10 @@ function SelectItem({ value, children, ref, ...props }: SelectItemProps & React.
 					setValues(isSelected ? values.filter((v) => v !== currentValue) : [...values, currentValue])
 				}
 			}}
-			className="text-fg1 flex cursor-pointer gap-2"
+			className="text-text flex cursor-pointer gap-2"
 			{...props}>
 			<span className="flex flex-1 items-center gap-2 truncate [&_svg]:size-5">{children}</span>
-			{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-fg1" /> : <span className="size-5" />)}
+			{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : <span className="size-5" />)}
 		</CommandItem>
 	)
 }
@@ -81,7 +81,7 @@ function SelectGroup({ label, children }: SelectGroupProps) {
 	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
 }
 // Variants for the Select trigger styling using class variance authority
-const SelectTriggerVariations = cva("active:bg-background justify-start gap-2 border-stroke px-3 py-2.5 text-fg1 drop-shadow-xs hover:bg-bg1", {
+const SelectTriggerVariations = cva("active:bg-background justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-bg-base", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -200,7 +200,7 @@ function Select({
 				showSelectedCheck,
 			}}>
 			<div className={cn("flex h-full w-full flex-col gap-1", className, classNames?.base)}>
-				{label && <Label className={cn({ "text-fg3": disabled }, classNames?.label)}>{label}</Label>}
+				{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
 				<Popover open={open} onOpenChange={setOpen} align="start">
 					<PopoverTrigger asChild>
 						{renderTrigger ? (
@@ -211,7 +211,7 @@ function Select({
 								className={cn(
 									SelectTriggerVariations({ size, rounded }),
 									{
-										"text-fg3 cursor-not-allowed": disabled,
+										"text-text-tertiary cursor-not-allowed": disabled,
 										"border-primary ring-primary/10 border ring-2": open,
 									},
 									"w-full truncate",
@@ -219,14 +219,14 @@ function Select({
 								)}
 								disabled={disabled}>
 								<span
-									className={cn("text-fg1 flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
-										"body-base": size === "44" || size === "48" || size === "56",
+									className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
+										"text-base": size === "44" || size === "48" || size === "56",
 									})}>
 									{selectedLabels.length == 0 && placeholder}
 									{selectionMode === "single" && selectedLabels.length == 1 && selectedLabels[0]}
 									{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
 								</span>
-								{!open ? <ChevronDown size={16} className="text-fg3" /> : <ChevronUp size={16} className="text-fg3" />}
+								{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
 							</Button>
 						)}
 					</PopoverTrigger>
@@ -252,7 +252,7 @@ function SelectDivider() {
 }
 // Command component that wraps the CommandPrimitive with additional styling
 function Command({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive>) {
-	return <CommandPrimitive className={cn("bg-bg1 text-fg1 flex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
+	return <CommandPrimitive className={cn("bg-bg-base text-text flex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
 }
 Command.displayName = CommandPrimitive.displayName
 // CommandInput component that renders an input field with a search icon
@@ -262,7 +262,7 @@ function CommandInput({ className, ...props }: React.ComponentPropsWithRef<typeo
 			<Search className="h-5 w-5 shrink-0 opacity-50" />
 			<CommandPrimitive.Input
 				className={cn(
-					"body-sm placeholder:text-fg3 flex h-8 w-full rounded-md bg-transparent py-3 font-normal outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+					"text-sm placeholder:text-text-tertiary flex h-8 w-full rounded-md bg-transparent py-3 font-normal outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -286,7 +286,7 @@ function CommandGroup({ className, ...props }: React.ComponentPropsWithRef<typeo
 	return (
 		<CommandPrimitive.Group
 			className={cn(
-				"[&_[cmdk-group-heading]]:body-xs text-fg1 [&_[cmdk-group-heading]]:text-fg3 overflow-hidden p-0 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
+				"[&_[cmdk-group-heading]]:text-xs text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
 				className
 			)}
 			{...props}
@@ -299,7 +299,7 @@ function CommandItem({ className, ...props }: React.ComponentPropsWithRef<typeof
 	return (
 		<CommandPrimitive.Item
 			className={cn(
-				"body-sm hover:bg-bg3 relative flex cursor-default items-center gap-2 rounded-sm px-2.5 py-1.5 font-normal outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"text-sm hover:bg-bg-level1 relative flex cursor-default items-center gap-2 rounded-sm px-2.5 py-1.5 font-normal outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}

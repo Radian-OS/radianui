@@ -13,7 +13,7 @@ import { Button } from "@/registry/ui/button"
 export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMobileNavVisible: React.Dispatch<React.SetStateAction<boolean>> }) {
 	const pathname = usePathname()
 	return (
-		<nav className="bg-bg1 fixed top-0 left-0 z-10 flex h-screen w-full flex-col gap-3 overflow-y-scroll px-4 md:px-5">
+		<nav className="bg-bg-base fixed top-0 left-0 z-10 flex h-screen w-full flex-col gap-3 overflow-y-scroll px-4 md:px-5">
 			<div className="flex min-h-20 items-center justify-between">
 				<Link href="/" style={{ fill: "white", color: "white" }}>
 					<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
@@ -29,7 +29,7 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 				<TabletMobileThemeToggler />
 			</div>
 
-			<ul className="body-sm text-fg2 flex flex-col items-start gap-2 px-3 font-medium">
+			<ul className="text-sm text-text-secondary flex flex-col items-start gap-2 px-3 font-medium">
 				<li>
 					<Link href="/documentation/components">Components</Link>
 				</li>
@@ -52,7 +52,7 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 					<AccordionItem value={section.title} key={section.title}>
 						<section>
 							<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-								<h1 className="body-sm flex items-center gap-1.5 px-1.5 font-medium">
+								<h1 className="text-sm flex items-center gap-1.5 px-1.5 font-medium">
 									<ChevronRight className="duration-300 ease-in-out" size={12} />
 									{section.title}
 								</h1>
@@ -61,9 +61,9 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 								{section.items.map((item) => (
 									<AccordionContent
 										key={item.link}
-										className={` ${pathname === item.link ? "bg-bg2 rounded-[0.375rem] font-medium" : ""} body-sm w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+										className={` ${pathname === item.link ? "bg-bg-level0 rounded-[0.375rem] font-medium" : ""} text-sm w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
 										<Link
-											className={`${pathname === item.link ? "text-fg1" : ""} text-fg2`}
+											className={`${pathname === item.link ? "text-text" : ""} text-text-secondary`}
 											href={item.link}
 											onClick={() => setIsMobileNavVisible(false)}>
 											{item.name}

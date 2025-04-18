@@ -21,7 +21,7 @@ export default function Navbar() {
 	const [searchTerm, setSearchTerm] = useState<string>("")
 	const [selectedIndex, setSelectedIndex] = useState(-1) // Track selected item
 
-	const itemRefs = useRef<(HTMLLIElement | null)[]>([]) // Store refs for items
+	const itemRefs = useRef<(HTMLLIElement | null)[]>([]) // 
 
 	// Filter sidebar items based on the search term
 	const filteredItems = sideBarItems
@@ -77,7 +77,7 @@ export default function Navbar() {
 	]
 
 	return (
-		<nav className="bg-bg1 border-stroke-decorative flex items-center justify-between border-b px-4 py-3 lg:h-15.5">
+		<nav className="bg-bg-base border-stroke-decorative flex items-center justify-between border-b px-4 py-3 lg:h-15.5">
 			<div className="flex h-9 flex-shrink-0 items-center gap-2">
 				<Link href="/" style={{ fill: "white", color: "white" }}>
 					<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
@@ -88,10 +88,10 @@ export default function Navbar() {
 
 			<div className="flex w-full items-center justify-end gap-2 md:w-fit md:justify-between">
 				<section className="hidden items-center px-10 lg:flex">
-					<ul className="body-sm text-fg2 flex items-center gap-9 font-medium">
+					<ul className="text-sm text-fg1 flex items-center gap-9 font-medium">
 						{navLinks.map((item) => (
 							<li key={item.link}>
-								<Link className={`${pathname === item.link ? "text-fg1" : ""} text-fg2`} href={item.link}>
+								<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
 									{item.name}
 								</Link>
 							</li>
@@ -103,8 +103,8 @@ export default function Navbar() {
 					<ModalTrigger asChild>
 						<Button isIcon variant="neutral-outline" className="gap-2">
 							<Search />
-							<span className="text-fg2 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
-							<Badge className="bg-bg4 text-fg2 hidden items-center justify-center border-none lg:flex" size="20">
+							<span className="text-fg1 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
+							<Badge className="bg-bg3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
 								CTRL + K
 							</Badge>
 						</Button>
@@ -112,7 +112,7 @@ export default function Navbar() {
 					<ModalContent className="px-0 py-2">
 						<ModalTitle className="hidden">Plain</ModalTitle>
 						<div className="flex h-100 flex-col overflow-y-scroll rounded-lg">
-							<div className="bg-bg1 sticky top-0 flex flex-col">
+							<div className="bg-bg-base sticky top-0 flex flex-col">
 								<div className="flex items-center gap-2 px-3.5 py-1.5">
 									<Search className="size-5 shrink-0 opacity-50" />
 									<input
@@ -131,7 +131,7 @@ export default function Navbar() {
 											// If there are results, move hover (selectedIndex) to the first item
 											setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
 										}}
-										className="body-sm placeholder:text-fg3 flex w-full rounded-md bg-transparent py-1 font-normal outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
+										className="text-sm placeholder:text-fg2 flex w-full rounded-md bg-transparent py-1 font-normal outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
 									/>
 								</div>
 								<Divider />
@@ -140,7 +140,7 @@ export default function Navbar() {
 								filteredItems.map((section, sectionIndex) => (
 									<main key={section.title} className="text-sm font-normal">
 										<div className="px-2.5">
-											<h1 className="text-fg3 flex items-center gap-1.5 px-1.75 py-1.5">{section.title}</h1>
+											<h1 className="text-fg2 flex items-center gap-1.5 px-1.75 py-1.5">{section.title}</h1>
 											<ul className="flex flex-col gap-1.25">
 												{section.items.map((item, itemIndex) => {
 													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
@@ -152,7 +152,7 @@ export default function Navbar() {
 																	ref={(el) => {
 																		itemRefs.current[globalIndex] = el
 																	}}
-																	className={`body-sm text-fg1 hover:bg-border flex h-10 items-center rounded-md px-2 ${
+																	className={`text-sm text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 ${
 																		selectedIndex === globalIndex ? "bg-border" : ""
 																	}`}>
 																	{item.name}
@@ -167,7 +167,7 @@ export default function Navbar() {
 									</main>
 								))
 							) : (
-								<div className="text-fg2 flex h-full items-center justify-center">No items found</div>
+								<div className="text-fg1 flex h-full items-center justify-center">No items found</div>
 							)}
 						</div>
 					</ModalContent>
@@ -189,7 +189,7 @@ export default function Navbar() {
 							<HamburgerMenuIcon className="size-6" />
 						</Button>
 					}>
-					<nav className="bg-bg1 fixed top-0 left-0 z-0 flex h-screen w-full flex-col gap-3 overflow-y-scroll px-4 md:px-5">
+					<nav className="bg-bg-base fixed top-0 left-0 z-0 flex h-screen w-full flex-col gap-3 overflow-y-scroll px-4 md:px-5">
 						<div className="flex min-h-[5rem] items-center justify-between">
 							<Link href="/" style={{ fill: "white", color: "white" }}>
 								<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
@@ -207,11 +207,11 @@ export default function Navbar() {
 							<TabletMobileThemeToggler />
 						</div>
 
-						<ul className="body-sm text-fg2 flex flex-col items-start gap-2 px-3 font-medium">
+						<ul className="text-sm text-fg1 flex flex-col items-start gap-2 px-3 font-medium">
 							{navLinks.map((item) => (
 								<li key={item.link}>
 									<DrawerClose>
-										<Link className={`${pathname === item.link ? "text-fg1" : ""} text-fg2`} href={item.link}>
+										<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
 											{item.name}
 										</Link>
 									</DrawerClose>
@@ -224,7 +224,7 @@ export default function Navbar() {
 								<AccordionItem value={section.title} key={section.title}>
 									<section>
 										<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-											<h1 className="body-sm flex items-center gap-[0.375rem] px-[6px] font-medium">
+											<h1 className="text-sm flex items-center gap-[0.375rem] px-[6px] font-medium">
 												<ChevronRight className="duration-300 ease-in-out" size={12} />
 												{section.title}
 											</h1>
@@ -233,9 +233,9 @@ export default function Navbar() {
 											{section.items.map((item) => (
 												<AccordionContent
 													key={item.link}
-													className={` ${pathname === item.link ? "bg-bg2 rounded-[0.375rem] font-medium" : ""} body-sm w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+													className={` ${pathname === item.link ? "bg-bg-bg-level0 rounded-[0.375rem] font-medium" : ""} text-sm w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
 													<DrawerClose>
-														<Link className={`${pathname === item.link ? "text-fg1" : ""} text-fg2`} href={item.link}>
+														<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
 															{item.name}
 														</Link>
 													</DrawerClose>

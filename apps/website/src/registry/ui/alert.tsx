@@ -12,7 +12,7 @@ type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 const alertVariants = cva("w-full rounded-md p-4 flex gap-3", {
 	variants: {
 		type: {
-			neutral: "bg-bg2",
+			neutral: "bg-bg-level0",
 			info: "border-information bg-information/10 text-information",
 			success: "border-success bg-success/10 text-success",
 			danger: "border-error bg-error/10 text-error",
@@ -49,8 +49,8 @@ function Alert({ type = "neutral", variant = "default", title, message, classNam
 		<section className={cn(alertVariants({ type, variant, className }))} {...props}>
 			<div>{icons[type as keyof typeof icons]}</div>
 			<div className="flex flex-col gap-0.5">
-				<p className="body-sm font-medium">{title}</p>
-				<p className={cn("body-sm", type === "neutral" && "text-fg2")}>{message}</p>
+				<p className="text-sm font-medium">{title}</p>
+				<p className={cn("text-sm", type === "neutral" && "text-text-secondary")}>{message}</p>
 			</div>
 		</section>
 	)

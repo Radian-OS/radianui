@@ -76,7 +76,7 @@ function Checkbox({
 	}
 
 	return (
-		<label className={cn("inline-flex w-fit cursor-pointer items-center gap-2 text-sm", disabled ? "text-fg3 cursor-not-allowed" : "cursor-pointer")}>
+		<label className={cn("inline-flex w-fit cursor-pointer items-center gap-2 text-sm", disabled ? "text-text-tertiary cursor-not-allowed" : "cursor-pointer")}>
 			<button
 				type="button"
 				role="checkbox"
@@ -89,9 +89,9 @@ function Checkbox({
 					"relative",
 					sizeClasses[size],
 					"border outline-hidden transition-all duration-200",
-					disabled ? "bg-bg3 cursor-not-allowed" : "cursor-pointer",
+					disabled ? "bg-bg-level1 cursor-not-allowed" : "cursor-pointer",
 					checked && "bg-primary border-none",
-					checked && disabled && "bg-fg3 border-none",
+					checked && disabled && "bg-text-tertiary border-none",
 					className
 				)}
 				{...props}>
@@ -109,7 +109,7 @@ function Checkbox({
 						})}
 				</div>
 			</button>
-			{children && <span className={cn("select-none", disabled ? "text-fg3" : "text-primary-foreground")}>{children}</span>}
+			{children && <span className={cn("select-none", disabled ? "text-text-tertiary" : "text-primary-foreground")}>{children}</span>}
 		</label>
 	)
 }

@@ -25,17 +25,17 @@ export default function Sidebar() {
 						<AccordionItem className="mb-0 border-none" value={section.title} key={section.title}>
 							<main className="">
 								<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-									<h1 className="body-sm flex items-center gap-1.5 px-1.5 font-medium">
+									<h1 className="text-sm flex items-center gap-1.5 px-1.5 font-medium">
 										<ChevronRight className="duration-300 ease-in-out" size={12} />
 										{section.title}
 									</h1>
 								</AccordionTrigger>
 								<ul className="flex flex-col">
 									{section.items.map((item) => (
-										<Link className={`${pathName === item.link ? "bg-bg2" : ""} rounded-md`} href={item.link} key={item.link}>
-											<li className="body-sm text-fg2">
+										<Link className={`${pathName === item.link ? "bg-fill-level3" : ""} rounded-md`} href={item.link} key={item.link}>
+											<li className="text-sm text-text-secondary">
 												<AccordionContent
-													className={` ${pathName === item.link ? "text-fg1" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+													className={` ${pathName === item.link ? "text-text" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
 													{item.name}
 												</AccordionContent>
 											</li>

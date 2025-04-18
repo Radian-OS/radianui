@@ -4,6 +4,7 @@ layer(base);
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/forms";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -86,39 +87,6 @@ layer(base);
 	--color-neutral-900: #1d1d20;
 	--color-neutral-950: #141415;
 
-	/* alpha white variants */
-	--color-white-alpha-2: #ffffff05;
-	--color-white-alpha-4: #ffffff0a;
-	--color-white-alpha-6: #ffffff0f;
-	--color-white-alpha-8: #ffffff15;
-	--color-white-alpha-10: #ffffff1a;
-	--color-white-alpha-12: #ffffff1f;
-	--color-white-alpha-16: #ffffff29;
-	--color-white-alpha-20: #ffffff33;
-	--color-white-alpha-30: #ffffff4d;
-	--color-white-alpha-40: #ffffff66;
-	--color-white-alpha-50: #ffffff80;
-	--color-white-alpha-60: #ffffff99;
-	--color-white-alpha-70: #ffffffb3;
-	--color-white-alpha-80: #ffffffcc;
-	--color-white-alpha-90: #ffffffe6;
-
-	/* alpha black variants */
-	--color-black-alpha-2: #00000005;
-	--color-black-alpha-4: #0000000a;
-	--color-black-alpha-6: #0000000f;
-	--color-black-alpha-8: #00000015;
-	--color-black-alpha-10: #0000001a;
-	--color-black-alpha-12: #0000001f;
-	--color-black-alpha-16: #00000029;
-	--color-black-alpha-20: #00000033;
-	--color-black-alpha-30: #0000004d;
-	--color-black-alpha-40: #00000066;
-	--color-black-alpha-50: #00000080;
-	--color-black-alpha-60: #00000099;
-	--color-black-alpha-70: #000000b3;
-	--color-black-alpha-80: #000000cc;
-	--color-black-alpha-90: #000000e6;
 
 	/* extended white */
 	--color-white-1: #ffffff;
@@ -151,13 +119,23 @@ layer(base);
 	/* font */
 	--heading-font: "Inter Display", system-ui, sans-serif;
 	--body-font: "Inter", system-ui, sans-serif;
+
+	
 }
 
 @theme {
+
+	/* Border radius variables */
+	--radius-radius-xs: 2px;
+	--radius-radius-sm: 4px;
+	--radius-radius-md: 6px;
+	--radius-radius-lg: 8px;
+	--radius-radius-xl: 12px;
+	--radius-radius-2xl: 16px;
+
 	/* primary */
 	--color-primary: var(--color-primary-600);
 	--color-primary-accent: var(--color-primary-50);
-	--color-primary-accent-secondary: var(--color-primary-100);
 	--color-primary-focus: var(--color-primary-100);
 	--color-primary-stroke: var(--color-primary-500);
 	--color-primary-hover: var(--color-primary-500);
@@ -166,7 +144,6 @@ layer(base);
 	/* information */
 	--color-information: var(--color-information-700);
 	--color-information-accent: var(--color-information-50);
-	--color-information-accent-secondary: var(--color-information-100);
 	--color-information-focus: var(--color-information-200);
 	--color-information-stroke: var(--color-information-400);
 	--color-information-hover: var(--color-information-600);
@@ -175,7 +152,6 @@ layer(base);
 	/* success */
 	--color-success: var(--color-success-700);
 	--color-success-accent: var(--color-success-50);
-	--color-success-accent-secondary: var(--color-success-100);
 	--color-success-focus: var(--color-success-100);
 	--color-success-stroke: var(--color-success-600);
 	--color-success-hover: var(--color-success-600);
@@ -184,7 +160,6 @@ layer(base);
 	/* error */
 	--color-error: var(--color-error-600);
 	--color-error-accent: var(--color-error-50);
-	--color-error-accent-secondary: var(--color-error-100);
 	--color-error-focus: var(--color-error-100);
 	--color-error-stroke: var(--color-error-500);
 	--color-error-hover: var(--color-error-500);
@@ -193,34 +168,47 @@ layer(base);
 	/* warning */
 	--color-warning: var(--color-warning-700);
 	--color-warning-accent: var(--color-warning-50);
-	--color-warning-accent-secondary: var(--color-warning-100);
 	--color-warning-focus: var(--color-warning-100);
 	--color-warning-stroke: var(--color-warning-600);
 	--color-warning-hover: var(--color-warning-600);
 	--color-warning-text: var(--color-warning-800);
 
 	/* background */
-	--color-bg1: var(--color-white-2);
-	--color-bg2: var(--color-white-1);
-	--color-bg3: var(--color-white-1);
-	--color-bg4: var(--color-white-1);
+	--color-bg-level0: var(--color-white-3);
+	--color-bg-base: var(--color-white-1);
+	--color-bg-level1: var(--color-white-1);
+	--color-bg-level2: var(--color-white-1);
 
 	/* foreground */
-	--color-fg1: var(--color-black-9);
-	--color-fg2: var(--color-black-4);
-	--color-fg3: var(--color-black-1);
-	--color-fg4: var(--color-white-8);
+	--color-text: var(--color-black-9);
+	--color-text-secondary: var(--color-black-4);
+	--color-text-tertiary: var(--color-black-1);
+	--color-text-disabled: var(--color-white-8);
 
-	/* text */
-	--color-text-primary: var(--color-neutral-950);
-	--color-text-paragraph: var(--color-neutral-700);
-	--color-text-disabled: var(--color-neutral-500);
-
+	
 	/* stroke */
-	--color-stroke: var(--color-white-4);
-	--color-stroke-decorative: var(--color-white-3);
-	--color-stroke-decorative-alpha: var(--color-black-alpha-6);
-	--color-stroke-alpha: var(--color-black-alpha-12);
+	--color-border: var(--color-white-4);
+	--color-border-alpha:  color-mix(in srgb, var(--color-black-9), transparent 88%); /* 2% opacity */;
+
+	/* fill */
+  --color-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%);
+  --color-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%); 
+  --color-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%); 
+  --color-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%);
+
+	/* fill-inverse */
+	--color-inverse-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
+	--color-inverse-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
+	--color-inverse-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
+	--color-inverse-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
+
+	/* static */
+	--color-static-white: var(--color-white-1);
+	--color-static-black: var(--color-black-9);
+
+	/* inverse */
+    --color-inverse-black: var(--color-black-9);
+	--color-inverse-white: var(--color-white-1);
 
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
@@ -309,22 +297,47 @@ layer(base);
 	--color-warning-text: var(--color-warning-400);
 
 	/* Background */
-	--color-bg1: var(--color-black-10);
-	--color-bg2: var(--color-black-9);
-	--color-bg3: var(--color-black-8);
-	--color-bg4: var(--color-black-7);
+	--color-bg-level0: var(--color-black-11);
+	--color-bg-base: var(--color-black-10);
+	--color-bg-level1: var(--color-black-9);
+	--color-bg-level2: var(--color-black-8);
 
 	/* foreground */
-	--color-fg1: var(--color-white-1);
-	--color-fg2: var(--color-white-10);
-	--color-fg3: var(--color-black-2);
-	--color-fg4: var(--color-black-5);
+	--color-text: var(--color-white-1);
+	--color-text-secondary: var(--color-white-10);
+	--color-text-tertiary: var(--color-black-2);
+	--color-text-disabled: var(--color-black-5);
 
 	/* stroke */
-	--color-stroke: var(--color-black-7);
-	--color-stroke-decorative: var(--color-black-8);
-	--color-stroke-decorative-alpha: var(--color-white-alpha-6);
-	--color-stroke-alpha: var(--color-white-alpha-12);
+	--color-border: var(--color-black-7);
+	--color-border-alpha:  color-mix(in srgb, var(--color-white-1), transparent 88%);
+
+	/* fill */
+	--color-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
+	--color-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
+	--color-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
+	--color-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
+	
+
+	/* fill-inverse */
+	--color-inverse-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%); /* 2% opacity */
+	--color-inverse-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%); /* 4% opacity */
+	--color-inverse-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%); /* 8% opacity */
+	--color-inverse-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%); /* 16% opacity */
+
+	/* static */
+	--color-static-white: var(--color-white-1);
+	--color-static-black: var(--color-black-9);
+
+	/* inverse */
+    --color-inverse-black: var(--color-white-1);
+	--color-inverse-white: var(--color-black-9);
+
+	--color-text-primary: var(--color-white-1);
+	--color-text-paragraph: var(--color-white-10);
+	--color-text-disabled: var(--color-black-2);
+	--color-text-4: var(--color-black-5) /* static */ --color-static-white: var(--color-white-1);
+	--color-static-black: var(--color-black-9);
 }
 
 /*
@@ -468,30 +481,30 @@ Variable used in website only
 	}
 }
 
-@utility body-lg {
-	/* Body text styles */
-	@apply font-body text-[1.125rem] leading-[1.75rem];
-}
+/* @utility text-lg { */
+/* Body text styles */
+/* @apply font-body text-[1.125rem] leading-[1.75rem]; */
+/* } */
 
-@utility body-base {
+/* @utility text-base {
 	@apply font-body text-[1rem] leading-[1.5rem];
-}
+} */
 
 @utility body-15 {
 	@apply font-body text-[0.9375rem] leading-[1.375];
 }
 
-@utility body-sm {
-	@apply font-body text-[0.875rem] leading-[1.25rem];
+@utility text-sm-p {
+	@apply font-body text-sm leading-[1.25rem];
 }
 
 @utility body-13 {
 	@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
 
-@utility body-xs {
+/* @utility text-xs {
 	@apply font-body text-[0.75rem] leading-[1rem];
-}
+} */
 
 @utility no-scrollbar {
 	-ms-overflow-style: none;
@@ -533,7 +546,7 @@ Variable used in website only
 
 @layer base {
 	* {
-		@apply border-stroke;
+		@apply border-border;
 		scrollbar-width: thin;
 		scrollbar-color: hsl(var(--border)) transparent;
 		scroll-behavior: smooth;
@@ -544,7 +557,7 @@ Variable used in website only
 	}
 
 	body {
-		@apply bg-bg1 text-fg1;
+		@apply bg-bg-base text-text;
 	}
 
 	code[data-line-numbers] {
@@ -616,7 +629,7 @@ Variable used in website only
 	}
 
 	.svg-color {
-		fill: var(--color-fg1);
+		fill: var(--color-text);
 	}
 
 	.steps {

@@ -38,6 +38,7 @@ import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+import SocialButtonPreview from "@/component-preview/social-button-preview"
 
 type MdxProps = {
 	code: string
@@ -74,7 +75,7 @@ const components: MDXComponents = {
 	Cli: () => <Cli />,
 	Installation: () => <Installation />,
 	Manual: () => <Manual />,
-
+	SocialButtonPreview:()=><SocialButtonPreview/>,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
@@ -127,28 +128,28 @@ const components: MDXComponents = {
 	),
 	table: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
 		<div className="no-scrollbar overflow-x-scroll">
-			<table className={cn("border-stroke w-full table-auto border", className)} {...props}>
+			<table className={cn("border-border w-full table-auto border", className)} {...props}>
 				{children}
 			</table>
 		</div>
 	),
 	th: ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-		<th className={cn("border-stroke border px-3 py-2.5 text-left text-sm font-semibold", className)} {...props}>
+		<th className={cn("border-border border px-3 py-2.5 text-left text-sm font-semibold", className)} {...props}>
 			{children}
 		</th>
 	),
 	tr: ({ children, className, ...props }: HTMLAttributes<HTMLTableRowElement>) => (
-		<tr className={cn("border-stroke border", className)} {...props}>
+		<tr className={cn("border-border border", className)} {...props}>
 			{children}
 		</tr>
 	),
 	td: ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-		<td className={cn("border-stroke border px-3 py-2.5 text-sm", className)} {...props}>
+		<td className={cn("border-border border px-3 py-2.5 text-sm", className)} {...props}>
 			{children}
 		</td>
 	),
 	ul: ({ children }: { children?: React.ReactNode }) => (
-		<ul className="[&>li>strong]:text-fg2 mt-2 ml-4 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
+		<ul className="[&>li>strong]:text-text-secondary mt-2 ml-4 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
 	),
 	Preview: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
 		<div className={cn("mb-5 flex min-h-[30rem] items-center justify-center rounded-lg border p-10", className)} {...props}>

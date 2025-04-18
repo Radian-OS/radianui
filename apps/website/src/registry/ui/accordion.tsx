@@ -136,7 +136,7 @@ function AccordionContent({ children, className, ...props }: AccordionContentPro
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
 			className={classNames(
-				"text-fg2 data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all",
+				"text-text-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all",
 				className
 			)}
 			{...props}>

@@ -6,7 +6,7 @@ import { Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import NumberInput from "./number"
-import Tooltip from "./tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 
 const DEFAULT_STEPPER_VALUE = 5
 
@@ -121,7 +121,7 @@ function Slider({
 				className,
 				classNames?.base
 			)}>
-			{label && <label className={cn("body-sm font-medium", { "text-fg3": props.disabled }, classNames?.label)}>{label}</label>}
+			{label && <label className={cn("text-sm font-medium", { "text-text-tertiary": props.disabled }, classNames?.label)}>{label}</label>}
 			<div
 				className={cn(
 					"flex gap-2",
@@ -164,7 +164,7 @@ function Slider({
 						{...props}>
 						<SliderPrimitive.Track
 							className={cn(
-								"border-stroke bg-bg3 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
+								"border-border bg-bg-level1 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
 								classNames?.sliderTrack
 							)}>
 							<SliderPrimitive.Range
@@ -173,19 +173,24 @@ function Slider({
 						</SliderPrimitive.Track>
 						{currentValue?.map((value, index) =>
 							showTooltip ? (
-								<Tooltip content={value.toString()} key={index} variant="arrow">
-									<SliderPrimitive.Thumb
-										className={cn(
-											"border-primary bg-bg1 block size-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
-											classNames?.sliderThumb
-										)}
-									/>
+								<Tooltip key={index} withArrow>
+									<TooltipTrigger asChild>
+										<SliderPrimitive.Thumb
+											className={cn(
+												"border-primary bg-bg-base block size-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
+												classNames?.sliderThumb
+											)}
+										/>
+									</TooltipTrigger>
+									<TooltipContent>
+										{value.toString()}
+									</TooltipContent>
 								</Tooltip>
 							) : (
 								<SliderPrimitive.Thumb
 									key={index}
 									className={cn(
-										"border-primary bg-bg1 block h-5 w-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
+										"border-primary bg-bg-base block h-5 w-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
 										classNames?.sliderThumb
 									)}
 								/>
@@ -206,7 +211,7 @@ function Slider({
 									<div
 										key={mark.value}
 										className={cn(
-											"body-xs text-fg2 absolute cursor-pointer font-medium",
+											"text-xs text-text-secondary absolute cursor-pointer font-medium",
 											{
 												"-translate-x-1/2": orientation === "horizontal",
 												"ml-2 translate-y-1/2": orientation === "vertical",

@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ButtonGroupPreview = () => {
 	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
-	type sizes = "32" | "36" | "40" | "44" | "48" | "56"
+	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type roundness = "square" | "rounded" | "full"
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("40")
@@ -62,7 +62,6 @@ const ButtonGroupPreview = () => {
 										<DropdownItem value="40">40</DropdownItem>
 										<DropdownItem value="44">44</DropdownItem>
 										<DropdownItem value="48">48</DropdownItem>
-										<DropdownItem value="56">56</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

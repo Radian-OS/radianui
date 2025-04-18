@@ -58,7 +58,7 @@ const InputExample = () => {
 		const items = searchResults.map((result) => (
 			<div
 				key={result.id}
-				className="body-sm hover:bg-border relative flex cursor-pointer items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] font-normal outline-hidden select-none [&_svg]:shrink-0">
+				className="text-sm hover:bg-border relative flex cursor-pointer items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] font-normal outline-hidden select-none [&_svg]:shrink-0">
 				<p>{result.title}</p>
 			</div>
 		))

@@ -81,7 +81,7 @@ function Breadcrumb({ children, className = "", separatorType = "default", maxIt
 											</DropdownContent>
 										</Dropdown>
 									</BreadcrumbItem>
-									{separatorType === "slash" ? <Slash size={14} className="stroke-fg3" /> : <ChevronRight size={14} className="stroke-fg3" />}
+									{separatorType === "slash" ? <Slash size={14} className="stroke-text-tertiary" /> : <ChevronRight size={14} className="stroke-text-tertiary" />}
 								</>
 							)}
 						</React.Fragment>
@@ -111,8 +111,8 @@ function BreadcrumbItem({
 				<Comp
 					href={href}
 					className={cn(
-						"body-sm flex items-center gap-1 font-medium transition-colors",
-						isCurrent ? "font-medium" : "text-fg2",
+						"text-sm flex items-center gap-1 font-medium transition-colors",
+						isCurrent ? "font-medium" : "text-text-secondary",
 						href && "hover:underline",
 						"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
 						className
@@ -120,7 +120,7 @@ function BreadcrumbItem({
 					{children}
 				</Comp>
 			</li>
-			{showSeparator && <SeparatorIcon size={14} className="stroke-fg3" />}
+			{showSeparator && <SeparatorIcon size={14} className="stroke-text-tertiary" />}
 		</>
 	)
 }

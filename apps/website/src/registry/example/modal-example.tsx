@@ -91,10 +91,10 @@ const Modal3 = () => (
 					<TabsTrigger value="followers">Followers</TabsTrigger>
 					<TabsTrigger value="invites">Invites</TabsTrigger>
 				</TabsList>
-				<TabsContent value="view" className="bg-bg3 h-[67px] rounded-lg" />
-				<TabsContent value="mentions" className="bg-bg3 h-[67px] rounded-lg" />
-				<TabsContent value="followers" className="bg-bg3 h-[67px] rounded-lg" />
-				<TabsContent value="invites" className="bg-bg3 h-[67px] rounded-lg" />
+				<TabsContent value="view" className="bg-bg-level1 h-[67px] rounded-lg" />
+				<TabsContent value="mentions" className="bg-bg-level1 h-[67px] rounded-lg" />
+				<TabsContent value="followers" className="bg-bg-level1 h-[67px] rounded-lg" />
+				<TabsContent value="invites" className="bg-bg-level1 h-[67px] rounded-lg" />
 			</Tabs>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -117,9 +117,9 @@ const Modal4 = () => (
 				<ModalDescription>Select a template to start working on your project</ModalDescription>
 			</ModalHeader>
 			<div className="flex flex-col gap-4">
-				<div className="bg-bg3 h-[100px] rounded-lg" />
-				<div className="bg-bg3 h-[100px] rounded-lg" />
-				<div className="bg-bg3 h-[100px] rounded-lg" />
+				<div className="bg-bg-level1 h-[100px] rounded-lg" />
+				<div className="bg-bg-level1 h-[100px] rounded-lg" />
+				<div className="bg-bg-level1 h-[100px] rounded-lg" />
 			</div>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -138,7 +138,7 @@ const Modal5 = () => (
 		</ModalTrigger>
 		<ModalContent>
 			<ModalTitle className="hidden">Plain</ModalTitle>
-			<div className="bg-bg3 flex h-[100px] items-center justify-center rounded-lg">
+			<div className="bg-bg-level1 flex h-[100px] items-center justify-center rounded-lg">
 				<span>Content Area</span>
 			</div>
 		</ModalContent>
@@ -226,7 +226,7 @@ const Modal8 = () => (
 			<Button>Modal8</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg3 h-[220px] w-full rounded-lg" />
+			<div className="bg-bg-level1 h-[220px] w-full rounded-lg" />
 			<ModalHeader className="text-center">
 				<ModalTitle>Create a new account</ModalTitle>
 				<ModalDescription>This is a sample modal to stress test the xyz container in a modal. Here is a sample</ModalDescription>
@@ -251,7 +251,7 @@ const Modal9 = () => (
 			<Button>Modal9</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg3 h-[220px] w-full rounded-lg" />
+			<div className="bg-bg-level1 h-[220px] w-full rounded-lg" />
 			<ModalHeader>
 				<ModalTitle>Unlock Unlimited Access</ModalTitle>
 				<ModalDescription>Join the Radian team to unlock unlimited features and subsets of products</ModalDescription>
@@ -275,7 +275,7 @@ const Modal10 = () => (
 			<Button>Modal10</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg3 h-[220px] w-full rounded-lg" />
+			<div className="bg-bg-level1 h-[220px] w-full rounded-lg" />
 			<ModalHeader>
 				<ModalTitle>Unlock Unlimited Access</ModalTitle>
 				<ModalDescription>Join the Radian team to unlock unlimited features and subsets of products</ModalDescription>

@@ -2,14 +2,18 @@
 
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
-import Tooltip from "@/registry/ui/tooltip"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
+
 
 type TooltipPosition = "top" | "left" | "right" | "bottom"
-type TooltipVariant = "default" | "arrow"
+type TooltipAlign = "start" | "end" | "center"
+
 
 const TooltipExample = () => {
 	const [selectedVariant, setSelectedVariant] = useState<TooltipPosition>("top")
-	const [showArrow, setShowArrow] = useState<TooltipVariant>("default")
+	const [selectedAlign, setSelectedAlign] = useState<TooltipAlign>("center")
+
+	const [showArrow, setShowArrow] = useState<boolean>(false)
 
 	const tooltipPositions: TooltipPosition[] = ["top", "left", "right", "bottom"]
 
@@ -32,17 +36,35 @@ const TooltipExample = () => {
 
 				<label className="flex flex-col gap-2">
 					<span>Show Arrow:</span>
-					<select value={showArrow} onChange={(e) => setShowArrow(e.target.value as TooltipVariant)} className="w-max rounded border p-2">
-						<option value="default">default</option>
-						<option value="arrow">arrow</option>
+					<select value={showArrow.toString()} onChange={(e) => setShowArrow(e.target.value === "true")} className="w-max rounded border p-2">
+						<option value="true">True</option>
+						<option value="false">False</option>
+					</select>
+				</label>
+
+				<label className="flex flex-col gap-2">
+					<span>Align:</span>
+					<select
+						value={selectedAlign}
+						onChange={(e) => setSelectedAlign(e.target.value as TooltipAlign)}
+						className="w-max rounded border p-2">
+						<option value="start">Start</option>
+						<option value="end">End</option>
+						<option value="center">Center</option>
 					</select>
 				</label>
 			</div>
 
-			<Tooltip content="I am a tooltip" position={selectedVariant} variant={showArrow}>
-				<Button className="w-max" variant="outline">
-					{`Position: ${selectedVariant}, Arrow: ${showArrow}`}
-				</Button>
+			<Tooltip side={selectedVariant} withArrow={showArrow} align={selectedAlign}>
+				<TooltipTrigger asChild>
+					<Button className="w-max" variant="outline">
+						Hover
+					</Button>
+
+				</TooltipTrigger>
+				<TooltipContent>
+					Hoverbjbjbjb
+				</TooltipContent>
 			</Tooltip>
 		</div>
 	)

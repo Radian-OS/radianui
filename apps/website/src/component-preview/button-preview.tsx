@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CirclePlus } from "lucide-react"
+import { CirclePlus} from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
@@ -16,13 +16,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ButtonPreview = () => {
 	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
-	type sizes = "32" | "36" | "40" | "44" | "48" | "56"
-	type roundness = "square" | "rounded" | "full"
+	// Updated sizes type to include "28"
+	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type isIconType = "true" | "false"
+	type disabledType = "true" | "false"
+	// Colors type; neutral is removed.
+	type colors = "primary" | "information" | "success" | "error" | "warning"
+
 	const [variant, setVariant] = useState<variants>("strong")
-	const [size, setSize] = useState<sizes>("40")
-	const [rounded, setRounded] = useState<roundness>("rounded")
+	const [size, setSize] = useState<sizes>("36")
 	const [isIcon, setIsIcon] = useState<isIconType>("false")
+	const [disabled, setDisabled] = useState<disabledType>("false")
+	const [color, setColor] = useState<colors>("primary")
+
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -44,9 +50,18 @@ const ButtonPreview = () => {
 										<DropdownItem value="soft">soft</DropdownItem>
 										<DropdownItem value="outline">outline</DropdownItem>
 										<DropdownItem value="ghost">ghost</DropdownItem>
+									</DropdownGroup>
+									<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setVariant(Array.from(keys)[0] as variants)
+									}}
+									minSelectionCount={1}
+									selectedValues={[variant]}
+									 title="neutral">
 										<DropdownItem value="neutral-soft">neutral-soft</DropdownItem>
 										<DropdownItem value="neutral-outline">neutral-outline</DropdownItem>
-									</DropdownGroup>
+										</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
@@ -60,29 +75,31 @@ const ButtonPreview = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[size]}>
+										<DropdownItem value="28">28</DropdownItem>
 										<DropdownItem value="32">32</DropdownItem>
 										<DropdownItem value="36">36</DropdownItem>
 										<DropdownItem value="40">40</DropdownItem>
 										<DropdownItem value="44">44</DropdownItem>
 										<DropdownItem value="48">48</DropdownItem>
-										<DropdownItem value="56">56</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>rounded</DropdownSubTrigger>
+								<DropdownSubTrigger>color</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setRounded(Array.from(keys)[0] as roundness)
+											setColor(Array.from(keys)[0] as colors)
 										}}
 										minSelectionCount={1}
-										selectedValues={[rounded]}>
-										<DropdownItem value="rounded">rounded</DropdownItem>
-										<DropdownItem value="square">square</DropdownItem>
-										<DropdownItem value="full">full</DropdownItem>
+										selectedValues={[color]}>
+										<DropdownItem value="primary">primary</DropdownItem>
+										<DropdownItem value="information">information</DropdownItem>
+										<DropdownItem value="success">success</DropdownItem>
+										<DropdownItem value="error">error</DropdownItem>
+										<DropdownItem value="warning">warning</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -102,6 +119,22 @@ const ButtonPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>disabled</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[disabled]}
+										onSelectedChange={(keys) => {
+											setDisabled(Array.from(keys)[0] as disabledType)
+										}}>
+										<DropdownItem value="true">true</DropdownItem>
+										<DropdownItem value="false">false</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -111,8 +144,13 @@ const ButtonPreview = () => {
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Button isIcon={isIcon === "true" ? true : false} rounded={rounded} variant={variant} size={size}>
+				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
+					<Button
+						isIcon={isIcon === "true"}
+						variant={variant}
+						size={size}
+						color={color}
+						disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
 				</div>
@@ -122,8 +160,13 @@ const ButtonPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Button size="${size}" rounded="${rounded}" variant="${variant}" isIcon={${isIcon === "true" ? true : false}} >
-${isIcon === "true" ? ` <CirclePlus />` : "Button"}
+					code={`<Button 
+  size="${size}" 
+  variant="${variant}" 
+  color="${color}"
+  isIcon={${isIcon === "true"}}
+  disabled={${disabled === "true"}}>
+  ${isIcon === "true" ? `<CirclePlus />` : "Button"}
 </Button>`}
 				/>
 			</TabsContent>

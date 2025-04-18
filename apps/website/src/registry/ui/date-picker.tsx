@@ -166,7 +166,7 @@ function DatePicker({
 				<Button
 					variant="neutral-outline"
 					className={cn(
-						"body-sm text-fg1 w-fit max-w-full items-center justify-between gap-2 font-normal",
+						"text-sm text-text w-fit max-w-full items-center justify-between gap-2 font-normal",
 						{
 							"rounded-lg": rounded === "rounded",
 							"rounded-none": rounded === "square",
@@ -174,7 +174,7 @@ function DatePicker({
 						},
 						triggerClassName
 					)}
-					size={size}
+					size={size as "32" | "36" | "40" | "44" | "48" | "28" | null | undefined}
 					disabled={props.disabled}>
 					<span className="w-full truncate text-left">
 						{currentSelected === undefined && placeholder}
@@ -200,11 +200,11 @@ function DatePicker({
 							currentSelected instanceof CalendarDate &&
 							`${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time ? time.toString() : ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`}
 					</span>
-					<CalendarIcon size={20} className="stroke-fg3" />
+					<CalendarIcon size={20} className="stroke-text-tertiary" />
 				</Button>
 			</PopoverTrigger>
 
-			<PopoverContent className={cn("border-stroke bg-bg1 flex w-fit flex-col gap-3 rounded-xl border p-0 shadow-none drop-shadow-xs")}>
+			<PopoverContent className={cn("border-border bg-bg-base flex w-fit flex-col gap-3 rounded-xl border p-0 shadow-none drop-shadow-xs")}>
 				{mode === "single" && (
 					<Calendar
 						mode="single"
@@ -276,7 +276,7 @@ type DateRangeShortcutProps = {
 // DateRangeShortcut component definition
 function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
-		<div className="body-sm border-stroke text-fg1 flex flex-col border-r p-2 font-medium">
+		<div className="text-sm border-border text-text flex flex-col border-r p-2 font-medium">
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					key={value}
@@ -304,11 +304,11 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className="group hover:bg-bg3 flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
+			className="group hover:bg-bg-level1 flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
 			data-value={value}
 			onClick={onClick}>
 			{label}
-			{selectedValue == value ? <Check className="stroke-fg2" size={16} /> : <span className="size-4" />}
+			{selectedValue == value ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
 		</span>
 	)
 }

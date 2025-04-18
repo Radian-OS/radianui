@@ -32,7 +32,7 @@ function Password({
 						onClick={function () {
 							toggleShowPassword()
 						}}
-						className={cn("text-fg3 cursor-pointer", {
+						className={cn("text-text-tertiary cursor-pointer", {
 							"cursor-not-allowed": disabled,
 						})}
 					/>
@@ -42,7 +42,7 @@ function Password({
 							toggleShowPassword()
 						}}
 						size={20}
-						className={cn("text-fg3 cursor-pointer", {
+						className={cn("text-text-tertiary cursor-pointer", {
 							"cursor-not-allowed": disabled,
 						})}
 					/>

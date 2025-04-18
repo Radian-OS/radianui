@@ -6,7 +6,7 @@ export default function VersionDisplay() {
 
 	return (
 		<div className="hidden items-center justify-center md:flex">
-			<Badge className="body-xs" size="24">
+			<Badge className="text-xs" size="24">
 				Version {version}
 			</Badge>
 		</div>

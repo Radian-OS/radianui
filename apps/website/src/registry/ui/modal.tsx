@@ -146,7 +146,7 @@ function ModalTitle({ className, ...props }: ModalTitleProps) {
 ModalTitle.displayName = DialogPrimitive.Title.displayName
 
 function ModalDescription({ className, ...props }: ModalDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-fg2 text-sm leading-tight", className)} {...props} />
+	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm leading-tight", className)} {...props} />
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName
 

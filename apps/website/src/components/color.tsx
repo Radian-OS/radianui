@@ -14,12 +14,12 @@ type ColorProps = {
 export default function Color({ variants, name, defaultWeight = 600 }: ColorProps) {
 	return (
 		<div className="mb-5 flex min-h-24.5 flex-col items-start justify-start gap-2">
-			<h1 className="body-base font-semibold">{name}</h1>
+			<h1 className="text-base font-semibold">{name}</h1>
 			<div className="flex w-full flex-wrap items-center justify-start gap-1.75">
 				{variants?.map((variant, index) => (
 					<div
 						key={index}
-						className={`body-xs relative flex size-16.5 cursor-pointer flex-col items-center justify-center rounded-lg transition-all duration-200`}
+						className={`text-xs relative flex size-16.5 cursor-pointer flex-col items-center justify-center rounded-lg transition-all duration-200`}
 						style={{ background: variant.hex }}>
 						{variant.weight === defaultWeight && (
 							<div

@@ -32,7 +32,7 @@ export default function EmailSection() {
 				<div className="flex w-full flex-col items-center justify-center gap-8 rounded-xl border px-6 py-6 text-center md:px-10 md:py-15 lg:flex-row lg:justify-between">
 					<div className="flex flex-col gap-2 sm:gap-3">
 						<h4 className="heading-4">Get notified when new stuff drops.</h4>
-						<p className="body-base text-fg2">Subscribe to get latest updates, tips, & exclusive offers from Radian.</p>
+						<p className="text-base text-text-secondary">Subscribe to get latest updates, tips, & exclusive offers from Radian.</p>
 					</div>
 					<form className="flex flex-col gap-2 text-start" onSubmit={handleSubscribe}>
 						<div className="flex w-full flex-col gap-3 sm:w-fit sm:flex-row">
@@ -51,7 +51,7 @@ export default function EmailSection() {
 						</div>
 						<div>
 							<p
-								className={cn("text-fg3 body-xs font-normal", {
+								className={cn("text-text-tertiary text-xs font-normal", {
 									"text-error-text": subscriptionResult?.success == false,
 								})}>
 								{subscriptionResult?.message && subscriptionResult.message}
