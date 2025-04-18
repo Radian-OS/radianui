@@ -4,21 +4,20 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+import { Separator } from "react-aria-components"
 import { cn } from "@/lib/utils"
 
-type CloseIconVisibility = "visible" | "hidden" | "hover"
+type closeIcon = "visible" | "hidden" | "hover"
 
 type Backdrop = VariantProps<typeof backdropVariants>["backdrop"]
 
 type ModalContext = {
-	closeIconVisibility?: CloseIconVisibility
+	closeIcon?: closeIcon
 	backdrop?: Backdrop
+	withSeparator?: boolean
 }
 
-type ModalProps = DialogPrimitive.DialogProps & {
-	closeIconVisibility?: CloseIconVisibility
-	backdrop?: Backdrop
-}
+type ModalProps = DialogPrimitive.DialogProps & ModalContext
 
 type ModalOverlayProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
 
@@ -57,10 +56,10 @@ function useModalContext() {
 	return context
 }
 
-function Modal({ closeIconVisibility = "visible", backdrop = "overlay", children, ...props }: ModalProps) {
+function Modal({ closeIcon = "visible", backdrop = "overlay", withSeparator = false, children, ...props }: ModalProps) {
 	return (
 		<DialogPrimitive.Root {...props}>
-			<ModalContext.Provider value={{ closeIconVisibility: closeIconVisibility, backdrop: backdrop }}>{children}</ModalContext.Provider>
+			<ModalContext.Provider value={{ closeIcon: closeIcon, backdrop: backdrop, withSeparator: withSeparator }}>{children}</ModalContext.Provider>
 		</DialogPrimitive.Root>
 	)
 }
@@ -86,13 +85,13 @@ function ModalOverlay({ className, ...props }: ModalOverlayProps) {
 ModalOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 function ModalContent({ className, children, ...props }: ModalContentProps) {
-	const { closeIconVisibility } = useModalContext()
+	const { closeIcon, withSeparator } = useModalContext()
 
 	const closeButtonClass = cn(
-		"absolute right-5 top-5 rounded-sm border p-1 ring-offset-bg1 focus:outline-hidden focus:ring-2 focus:ring-fg1 disabled:pointer-events-none data-[state=open]:bg-bg1 data-[state=open]:text-fg3 transition-opacity duration-200",
+		"absolute right-5 top-5 text-disabled transition-opacity duration-200",
 		{
-			hidden: closeIconVisibility === "hidden",
-			"opacity-0 group-hover:opacity-100": closeIconVisibility === "hover",
+			hidden: closeIcon === "hidden",
+			"opacity-0 group-hover:opacity-100": closeIcon === "hover",
 		}
 	)
 	return (
@@ -102,11 +101,12 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 				data-slot="modal-content"
 				className={cn(
 					"group bg-bg1 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					{"p-0 gap-0":withSeparator},
 					className
 				)}
 				{...props}>
 				{children}
-				{closeIconVisibility !== "hidden" && (
+				{closeIcon !== "hidden" && (
 					<DialogPrimitive.Close className={closeButtonClass}>
 						<X className="h-4 w-4" />
 						<span className="sr-only">Close</span>
@@ -119,12 +119,24 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 ModalContent.displayName = DialogPrimitive.Content.displayName
 
 function ModalHeader({ className, ...props }: ModalHeaderProps) {
-	return <div className={cn("flex flex-col gap-1 text-left", className)} {...props} />
+	const { withSeparator } = useModalContext()
+	return (
+		<>
+			<div className={cn("flex flex-col gap-1 text-left", {"p-5":withSeparator}, className)} {...props} />
+			{withSeparator && <Separator orientation="horizontal"/>}
+		</>
+	)
 }
 ModalHeader.displayName = "DialogHeader"
 
 function ModalFooter({ className, ...props }: ModalFooterProps) {
-	return <div className={cn("flex justify-end gap-2", className)} {...props} />
+	const { withSeparator } = useModalContext()
+	return (
+		<>
+			{withSeparator && <Separator orientation="horizontal"/>}
+			<div className={cn("flex justify-end gap-2", {"p-5":withSeparator}, className)} {...props} />
+		</>
+	)
 }
 ModalFooter.displayName = "DialogFooter"
 

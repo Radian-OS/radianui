@@ -5,6 +5,7 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "../ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import { CircleAlert } from "lucide-react"
 
 const ModalExample = () => (
 	<div className="my-4 flex flex-row flex-wrap gap-2">
@@ -23,16 +24,24 @@ const ModalExample = () => (
 )
 
 const Modal1 = () => (
-	<Modal>
+	<Modal withSeparator={true}>
 		<ModalTrigger asChild>
 			<Button>Modal 1</Button>
 		</ModalTrigger>
 		<ModalContent>
 			<ModalHeader>
-				<ModalTitle>This is sample header</ModalTitle>
-				<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
+				<div className="flex gap-3">
+					<div className="rounded-sm border p-2">
+						<CircleAlert className="size-6 text-fg2" />
+					</div>
+					<div>
+					<ModalTitle>This is sample header</ModalTitle>
+					<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
+					</div>
+				</div>
+				
 			</ModalHeader>
-			<div className="bg-bg3 h-[155px] rounded-lg"></div>
+			<div className="bg-bg3 m-5 h-40 rounded-lg"></div>
 			<ModalFooter>
 				<ModalClose asChild>
 					<Button variant="neutral-outline">Cancel</Button>
@@ -54,7 +63,7 @@ const Modal2 = () => (
 				<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
 			</ModalHeader>
 			<Divider className="-mx-5 my-0 w-100" />
-			<div className="bg-bg3 h-[155px] rounded-lg"></div>
+			<div className="bg-bg3 h-40 rounded-lg"></div>
 			<Divider className="-mx-5 my-0 w-100" />
 			<ModalFooter>
 				<ModalClose asChild>
@@ -98,7 +107,7 @@ const Modal3 = () => (
 )
 
 const Modal4 = () => (
-	<Modal closeIconVisibility="hover">
+	<Modal closeIcon="hover">
 		<ModalTrigger asChild>
 			<Button>Modal 4</Button>
 		</ModalTrigger>
@@ -123,7 +132,7 @@ const Modal4 = () => (
 )
 
 const Modal5 = () => (
-	<Modal closeIconVisibility="hidden">
+	<Modal closeIcon="hidden">
 		<ModalTrigger asChild>
 			<Button>Modal 5</Button>
 		</ModalTrigger>
@@ -137,7 +146,7 @@ const Modal5 = () => (
 )
 
 const Modal6 = () => (
-	<Modal closeIconVisibility="hidden">
+	<Modal closeIcon="hidden">
 		<ModalTrigger asChild>
 			<Button>Modal 6</Button>
 		</ModalTrigger>
@@ -158,7 +167,7 @@ const Modal6 = () => (
 )
 
 const Modal7 = () => (
-	<Modal closeIconVisibility="hover">
+	<Modal closeIcon="hover">
 		<ModalTrigger asChild>
 			<Button>Modal 7</Button>
 		</ModalTrigger>
@@ -212,7 +221,7 @@ const Modal7 = () => (
 )
 
 const Modal8 = () => (
-	<Modal closeIconVisibility="hidden">
+	<Modal closeIcon="hidden">
 		<ModalTrigger asChild>
 			<Button>Modal8</Button>
 		</ModalTrigger>
@@ -237,7 +246,7 @@ const Modal8 = () => (
 )
 
 const Modal9 = () => (
-	<Modal closeIconVisibility="hidden">
+	<Modal closeIcon="hidden">
 		<ModalTrigger asChild>
 			<Button>Modal9</Button>
 		</ModalTrigger>
@@ -261,7 +270,7 @@ const Modal9 = () => (
 	</Modal>
 )
 const Modal10 = () => (
-	<Modal closeIconVisibility="hidden">
+	<Modal closeIcon="hidden">
 		<ModalTrigger asChild>
 			<Button>Modal10</Button>
 		</ModalTrigger>

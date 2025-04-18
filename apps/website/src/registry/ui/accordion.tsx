@@ -66,7 +66,12 @@ function Accordion({ size = "sm", variant = "box", interaction = "single", class
 		<AccordionContext.Provider value={{ size, variant }}>
 			<AccordionPrimitive.Root
 				data-slot="accordion"
-				className={classNames("w-full", size === "sm" ? "text-sm/6" : "text-base/7", variant === "table" && "border-stroke rounded-xl border", className)}
+				className={classNames(
+					"w-full",
+					size === "sm" ? "text-sm/6" : "text-base/7",
+					variant === "table" && "border-stroke rounded-xl border",
+					className
+				)}
 				{...rootProps}>
 				{children}
 			</AccordionPrimitive.Root>

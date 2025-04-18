@@ -45,7 +45,7 @@ const HoverCardContent = ({ className, sideOffset = 6, children, ...props }: Hov
 			)}
 			{...props}>
 			{children}
-			{withArrow && <HoverCardPrimitive.Arrow className="fill-bg-1 z-50" />}
+			{withArrow && <HoverCardPrimitive.Arrow width={10} className="z-50 fill-black dark:fill-white" />}
 		</HoverCardPrimitive.Content>
 	)
 }
