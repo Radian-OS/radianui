@@ -14,8 +14,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgePreview = () => {
-	const [variant, setVariant] = useState<"strong" | "outline">("strong")
-	const [rounded, setRounded] = useState<"true" | "false">("false")
+	const [variant, setVariant] = useState<"strong" | "neutral-outline"|"outline">("strong")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [size, setSize] = useState<"24" | "20" | "28" | "32">("24")
 	const [key, setKey] = useState(0)
@@ -32,13 +31,14 @@ const BadgePreview = () => {
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as "outline" | "strong")
+											setVariant(Array.from(keys)[0] as "neutral-outline" | "strong")
 											setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[variant]}>
-										<DropdownItem value="outline">Outline</DropdownItem>
+										<DropdownItem value="neutral-outline">Neutral-outline</DropdownItem>
 										<DropdownItem value="strong">Strong</DropdownItem>
+										<DropdownItem value="outline">Outline</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -58,23 +58,6 @@ const BadgePreview = () => {
 										<DropdownItem value="24">24</DropdownItem>
 										<DropdownItem value="28">28</DropdownItem>
 										<DropdownItem value="32">32</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setRounded(Array.from(keys)[0] as "true" | "false")
-											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[rounded]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -105,7 +88,7 @@ const BadgePreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Badge key={key} closable={closable === "true" ? true : false} rounded={rounded === "true" ? true : false} variant={variant} size={size}>
+					<Badge key={key} closable={closable === "true" ? true : false}  variant={variant} size={size}>
 						Badge Example
 					</Badge>
 				</div>
@@ -119,7 +102,7 @@ const BadgePreview = () => {
  size="${size}" 
  variant="${variant}" 
  closable={${closable}}
- rounded={${rounded}} >
+ >
  Badge Example
 </Badge>`}
 				/>
