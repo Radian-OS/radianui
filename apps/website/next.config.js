@@ -46,9 +46,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "github.githubassets.com",
+        hostname: "cdn.pixabay.com",
         port: "",
-        pathname: "/assets/**",
+        pathname: "/photo/**",
         search: "",
       },
     ],

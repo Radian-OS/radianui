@@ -3,6 +3,7 @@
 import { HTMLAttributes, useMemo } from "react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
+import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
@@ -24,6 +25,7 @@ import PaginationPreview from "@/component-preview/pagination-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
+import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SonnerPreview from "@/component-preview/sonner-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
@@ -35,11 +37,17 @@ import Manual from "@/components/manual"
 import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
+import DeleteModalExample from "@/registry/example/modal/delete-modal"
+import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+<<<<<<< HEAD
 import Link from "next/link"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import BadgePlaygroundPreview from "@/component-preview/badge-playground-preview"
+=======
+import InputPreview from "@/component-preview/input-preview"
+>>>>>>> origin/dev
 
 type MdxProps = {
 	code: string
@@ -59,6 +67,8 @@ const components: MDXComponents = {
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	ModalPreview: () => <ModalPreview />,
+	DeleteModalExample: () => <DeleteModalExample />,
+	GithubIntegrationModalExample: () => <GithubIntegrationModalExample />,
 	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	SonnerPreview: () => <SonnerPreview />,
@@ -76,8 +86,13 @@ const components: MDXComponents = {
 	Cli: () => <Cli />,
 	Installation: () => <Installation />,
 	Manual: () => <Manual />,
+<<<<<<< HEAD
 	SocialButtonPreview:()=><SocialButtonPreview/>,
 	BadgePlaygroundPreview:()=><BadgePlaygroundPreview/>,
+=======
+	SocialButtonPreview: () => <SocialButtonPreview />,
+	InputPreview: () => <InputPreview />,
+>>>>>>> origin/dev
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
@@ -114,12 +129,12 @@ const components: MDXComponents = {
 		</h4>
 	),
 	h5: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h5 className={cn("heading-5 mt-9 mb-4 font-semibold!", className)} {...props}>
+		<h5 className={cn("heading-5 font-semibold! mb-4 mt-9", className)} {...props}>
 			{children}
 		</h5>
 	),
 	h6: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h6 className={cn("heading-6", className)} {...props}>
+		<h6 className={cn("heading-6 font-semibold! mb-4", className)} {...props}>
 			{children}
 		</h6>
 	),
@@ -151,7 +166,7 @@ const components: MDXComponents = {
 		</td>
 	),
 	ul: ({ children }: { children?: React.ReactNode }) => (
-		<ul className="[&>li>strong]:text-text-secondary mt-2 ml-4 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
+		<ul className="[&>li>strong]:text-text-secondary ml-4 mt-2 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
 	),
 	Preview: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
 		<div className={cn("mb-5 flex min-h-[30rem] items-center justify-center rounded-lg border p-10", className)} {...props}>
@@ -165,34 +180,21 @@ const components: MDXComponents = {
 				"before:absolute before:left-[-2.9rem] before:top-1/2 before:-translate-y-1/2",
 				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
 				"before:rounded-full before:bg-gray-200 before:text-sm before:font-medium before:text-gray-800",
-				"before:content-[counter(step)] before:counter-increment-[step]",
+				"before:counter-increment-[step] before:content-[counter(step)]",
 				className
 			)}
 			{...props}
 		/>
 	),
-	Steps: ({ ...props }) => (
-		<div
-			className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8"
-			{...props}
-		/>
-	),
-	FrameworkDocs: ({
-		className,
-		...props
-	}: React.ComponentProps<typeof FrameworkDocs>) => (
-		<FrameworkDocs className={cn(className)} {...props} />
-	),
+	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
+	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-		<Link
-			className={cn("font-medium underline underline-offset-4", className)}
-			{...props}
-		/>
+		<Link className={cn("font-medium underline underline-offset-4", className)} {...props} />
 	),
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
 			className={cn(
-				"flex w-full flex-col items-center rounded-xl border bg-card p-6 text-card-foreground shadow transition-colors hover:bg-muted/50 sm:p-10",
+				"bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10",
 				className
 			)}
 			{...props}

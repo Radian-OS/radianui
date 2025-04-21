@@ -23,7 +23,7 @@ const sizes = ["32", "36", "40", "44", "48", "56"] as const
 
 const InputExample = () => {
 	const [size, setSize] = React.useState<SizeOptions>("40")
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("md")
 	const [phone, setPhone] = React.useState("")
 	const [query, setQuery] = React.useState("")
 	const [searchResults, setSearchResults] = React.useState<{ id: string; title: string }[]>([])
@@ -58,7 +58,7 @@ const InputExample = () => {
 		const items = searchResults.map((result) => (
 			<div
 				key={result.id}
-				className="text-sm hover:bg-border relative flex cursor-pointer items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] font-normal outline-hidden select-none [&_svg]:shrink-0">
+				className="hover:bg-border outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] text-sm font-normal [&_svg]:shrink-0">
 				<p>{result.title}</p>
 			</div>
 		))
@@ -67,7 +67,7 @@ const InputExample = () => {
 	}
 
 	return (
-		<div className="mt-4 mb-20 flex max-w-[25rem] flex-col gap-2">
+		<div className="mb-20 mt-4 flex max-w-[25rem] flex-col gap-2">
 			<div className="flex flex-col gap-4 md:flex-row">
 				<div>
 					<Select placeholder="Size" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} label="Size">
@@ -175,7 +175,7 @@ const InputExample = () => {
 				multiple
 				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
 				url="http://localhost:8000/upload"
-				// headers={{ "Content-Type": "application/json" }}
+			// headers={{ "Content-Type": "application/json" }}
 			/>
 
 			<ProgressBar value={progress} />

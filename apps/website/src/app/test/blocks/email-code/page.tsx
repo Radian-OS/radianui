@@ -29,7 +29,7 @@ const EmailCode = () => {
 								label="Confirmation Code"
 								length={6}
 								variant="box"
-								rounded="rounded"
+								rounded="sm"
 								size="44"
 								className="w-[320px]"
 								placeholder="Confirmation Code"

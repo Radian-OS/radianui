@@ -6,13 +6,16 @@ import { cn } from "@/lib/utils"
 import { Label } from "./label"
 
 export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
-export type RoundedOptions = "square" | "rounded" | "full"
+export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 // Variants for input styles based on size and rounded options
 export const cvaInputVariants = {
 	rounded: {
-		square: "rounded-none",
-		rounded: "rounded-md",
-		full: "rounded-full",
+		xs: "rounded-xs",
+		sm: "rounded-sm",
+		md: "rounded-md",
+		lg: "rounded-lg",
+		xl: "rounded-xl",
+		"2xl": "rounded-2xl",
 	},
 	size: {
 		"32": "h-8 text-sm px-3 py-1.5",
@@ -25,9 +28,9 @@ export const cvaInputVariants = {
 }
 
 export const defaultInputSize = "40"
-export const defaultInputRadius = "rounded"
+export const defaultInputRadius = "md"
 // Creating a variant for input styles using cva
-const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border hover:bg-bg-level0 drop-shadow-xs bg-bg-base cursor-text", {
+const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -54,8 +57,8 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
 	*/
-	prefixIcon?: React.ReactNode
-	suffixIcon?: React.ReactNode
+	leadIcon?: React.ReactNode
+	trialIcon?: React.ReactNode
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	id?: string
@@ -69,8 +72,8 @@ function Input({
 	errorMsg,
 	hasError = false,
 	type = "text",
-	prefixIcon,
-	suffixIcon,
+	leadIcon,
+	trialIcon,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
 	id,
@@ -82,30 +85,29 @@ function Input({
 	if (id) htmlId = id
 
 	return (
-		<div className={cn("text-sm text-fg-1 flex w-full flex-col gap-1.5", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
+		<div className={cn("text-fg-1 flex w-full flex-col gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
-				<Label id={htmlId} className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>
+				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, classNames?.label)}>
 					{label}
 				</Label>
 			)}
 			<label
-				htmlFor={htmlId}
 				className={cn(
 					inputVariants({ size, rounded }),
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError,
 						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-border-alpha focus-within:ring-2": !hasError,
-						"text-text-tertiary pointer-events-none": disabled,
+						"text-text-disabled cursor-not-allowed": disabled,
 					},
 					classNames?.wrapper
 				)}>
-				{prefixIcon && <span>{prefixIcon}</span>}
+				{leadIcon && <span>{leadIcon}</span>}
 				<input
 					id={htmlId}
 					className={cn(
-						"text-fg-1 placeholder-text-tertiary h-fit w-full border border-none bg-transparent p-0 outline-hidden select-none placeholder:text-sm placeholder:font-normal focus:ring-0",
+						"text-fg-1 text-sm placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
-							"text-text-tertiary cursor-not-allowed": disabled,
+							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
 						},
 						classNames?.input
 					)}
@@ -113,9 +115,9 @@ function Input({
 					disabled={disabled}
 					{...props}
 				/>
-				{suffixIcon && <span className="ml-auto">{suffixIcon}</span>}
+				{trialIcon && <span className="ml-auto">{trialIcon}</span>}
 			</label>
-			{hasError && <Label className={cn("text-xs text-error font-medium", className)}>{errorMsg}</Label>}
+			{hasError && <Label className={cn("text-error text-xs font-medium", className)}>{errorMsg}</Label>}
 		</div>
 	)
 }

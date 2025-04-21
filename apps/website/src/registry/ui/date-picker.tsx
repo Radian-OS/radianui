@@ -166,10 +166,10 @@ function DatePicker({
 				<Button
 					variant="neutral-outline"
 					className={cn(
-						"text-sm text-text w-fit max-w-full items-center justify-between gap-2 font-normal",
+						"text-text w-fit max-w-full items-center justify-between gap-2 text-sm font-normal",
 						{
-							"rounded-lg": rounded === "rounded",
-							"rounded-none": rounded === "square",
+							"rounded-lg": rounded === "lg",
+							"rounded-none": rounded === "xs",
 							"cursor-not-allowed": props.disabled,
 						},
 						triggerClassName
@@ -191,9 +191,9 @@ function DatePicker({
 							isCalendarRange(currentSelected) &&
 							(showDateRangeShortcut && selectedShortcut && selectedShortcut != "custom"
 								? selectedShortcut
-										.split("_")
-										.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-										.join(" ")
+									.split("_")
+									.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+									.join(" ")
 								: `${format((currentSelected as CalendarRange).from.toDate(getLocalTimeZone()), "MMM dd")} - ${format((currentSelected as CalendarRange).to!.toDate(getLocalTimeZone()), "MMM dd")}`)}
 						{currentSelected &&
 							mode === "time" &&
@@ -204,7 +204,7 @@ function DatePicker({
 				</Button>
 			</PopoverTrigger>
 
-			<PopoverContent className={cn("border-border bg-bg-base flex w-fit flex-col gap-3 rounded-xl border p-0 shadow-none drop-shadow-xs")}>
+			<PopoverContent className={cn("border-border bg-bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border p-0 shadow-none")}>
 				{mode === "single" && (
 					<Calendar
 						mode="single"
@@ -276,7 +276,7 @@ type DateRangeShortcutProps = {
 // DateRangeShortcut component definition
 function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
-		<div className="text-sm border-border text-text flex flex-col border-r p-2 font-medium">
+		<div className="border-border text-text flex flex-col border-r p-2 text-sm font-medium">
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					key={value}
@@ -304,7 +304,7 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className="group hover:bg-bg-level1 flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
+			className="hover:bg-bg-level1 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
 			data-value={value}
 			onClick={onClick}>
 			{label}

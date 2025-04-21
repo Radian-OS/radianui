@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap")
-layer(base);
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap") layer(base);
 
 @import "tailwindcss";
 
@@ -120,7 +119,7 @@ layer(base);
 	--heading-font: "Inter Display", system-ui, sans-serif;
 	--body-font: "Inter", system-ui, sans-serif;
 
-	
+
 }
 
 @theme {
@@ -185,29 +184,35 @@ layer(base);
 	--color-text-tertiary: var(--color-black-1);
 	--color-text-disabled: var(--color-white-8);
 
-	
+
 	/* stroke */
 	--color-border: var(--color-white-4);
-	--color-border-alpha:  color-mix(in srgb, var(--color-black-9), transparent 88%); /* 2% opacity */;
+	--color-border-alpha: color-mix(in srgb, var(--color-black-9), transparent 88%);
+	/* 2% opacity */
+	;
 
 	/* fill */
-  --color-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%);
-  --color-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%); 
-  --color-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%); 
-  --color-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%);
+	--color-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%);
+	--color-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%);
+	--color-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%);
+	--color-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%);
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
+	--color-inverse-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%);
+	/* 2% opacity */
+	--color-inverse-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%);
+	/* 4% opacity */
+	--color-inverse-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%);
+	/* 8% opacity */
+	--color-inverse-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%);
+	/* 16% opacity */
 
 	/* static */
 	--color-static-white: var(--color-white-1);
 	--color-static-black: var(--color-black-9);
 
 	/* inverse */
-    --color-inverse-black: var(--color-black-9);
+	--color-inverse-black: var(--color-black-9);
 	--color-inverse-white: var(--color-white-1);
 
 	/* Breakpoints */
@@ -222,6 +227,7 @@ layer(base);
 		from {
 			height: 0;
 		}
+
 		to {
 			height: var(--radix-accordion-content-height);
 		}
@@ -231,12 +237,14 @@ layer(base);
 		from {
 			height: var(--radix-accordion-content-height);
 		}
+
 		to {
 			height: 0;
 		}
 	}
 
 	@keyframes caret-blink {
+
 		0%,
 		70%,
 		100% {
@@ -310,33 +318,43 @@ layer(base);
 
 	/* stroke */
 	--color-border: var(--color-black-7);
-	--color-border-alpha:  color-mix(in srgb, var(--color-white-1), transparent 88%);
+	--color-border-alpha: color-mix(in srgb, var(--color-white-1), transparent 88%);
 
 	/* fill */
-	--color-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%); /* 2% opacity */
-	--color-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%); /* 4% opacity */
-	--color-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%); /* 8% opacity */
-	--color-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%); /* 16% opacity */
-	
+	--color-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%);
+	/* 2% opacity */
+	--color-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%);
+	/* 4% opacity */
+	--color-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%);
+	/* 8% opacity */
+	--color-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%);
+	/* 16% opacity */
+
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%); /* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%); /* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%); /* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%); /* 16% opacity */
+	--color-inverse-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%);
+	/* 2% opacity */
+	--color-inverse-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%);
+	/* 4% opacity */
+	--color-inverse-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%);
+	/* 8% opacity */
+	--color-inverse-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%);
+	/* 16% opacity */
 
 	/* static */
 	--color-static-white: var(--color-white-1);
 	--color-static-black: var(--color-black-9);
 
 	/* inverse */
-    --color-inverse-black: var(--color-white-1);
+	--color-inverse-black: var(--color-white-1);
 	--color-inverse-white: var(--color-black-9);
 
 	--color-text-primary: var(--color-white-1);
 	--color-text-paragraph: var(--color-white-10);
 	--color-text-disabled: var(--color-black-2);
-	--color-text-4: var(--color-black-5) /* static */ --color-static-white: var(--color-white-1);
+	--color-text-4: var(--color-black-5)
+		/* static */
+		--color-static-white: var(--color-white-1);
 	--color-static-black: var(--color-black-9);
 }
 
@@ -350,10 +368,12 @@ Variable used in website only
 	--animate-float: float 2s ease-in-out infinite;
 
 	@keyframes float {
+
 		0%,
 		100% {
 			translate: 0 0;
 		}
+
 		50% {
 			translate: 0 -12px;
 		}
@@ -378,6 +398,7 @@ Variable used in website only
   color utility to any element that depends on these defaults.
 */
 @layer base {
+
 	*,
 	::after,
 	::before,
@@ -400,12 +421,12 @@ Variable used in website only
 	/* Heading styles */
 	@apply font-heading text-[2.25rem] leading-[2.75rem] font-bold;
 
-	@media (width >= theme(--breakpoint-sm)) {
+	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 3rem;
 		line-height: 3.5rem;
 	}
 
-	@media (width >= theme(--breakpoint-lg)) {
+	@media (width >=theme(--breakpoint-lg)) {
 		font-size: 4rem;
 		line-height: 4.5rem;
 	}
@@ -414,12 +435,12 @@ Variable used in website only
 @utility heading-2 {
 	@apply font-heading text-[2rem] leading-[2.5rem] font-bold;
 
-	@media (width >= theme(--breakpoint-sm)) {
+	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 2.5rem;
 		line-height: 3rem;
 	}
 
-	@media (width >= theme(--breakpoint-lg)) {
+	@media (width >=theme(--breakpoint-lg)) {
 		font-size: 3rem;
 		line-height: 3.5rem;
 	}
@@ -428,12 +449,12 @@ Variable used in website only
 @utility heading-3 {
 	@apply font-heading text-[1.875rem] leading-[2.375rem] font-bold;
 
-	@media (width >= theme(--breakpoint-sm)) {
+	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 2.25rem;
 		line-height: 2.75rem;
 	}
 
-	@media (width >= theme(--breakpoint-lg)) {
+	@media (width >=theme(--breakpoint-lg)) {
 		font-size: 2.5rem;
 		line-height: 3rem;
 	}
@@ -442,12 +463,12 @@ Variable used in website only
 @utility heading-4 {
 	@apply font-heading text-[1.75rem] leading-[2.25rem] font-bold;
 
-	@media (width >= theme(--breakpoint-sm)) {
+	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 1.875rem;
 		line-height: 2.375rem;
 	}
 
-	@media (width >= theme(--breakpoint-lg)) {
+	@media (width >=theme(--breakpoint-lg)) {
 		font-size: 2rem;
 		line-height: 2.5rem;
 	}
@@ -456,12 +477,12 @@ Variable used in website only
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] leading-[2rem] font-bold;
 
-	@media (width >= theme(--breakpoint-sm)) {
+	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 1.5rem;
 		line-height: 2rem;
 	}
 
-	@media (width >= theme(--breakpoint-lg)) {
+	@media (width >=theme(--breakpoint-lg)) {
 		font-size: 1.5rem;
 		line-height: 2rem;
 	}
@@ -470,12 +491,12 @@ Variable used in website only
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] leading-[1.75rem] font-bold;
 
-	@media (width >= theme(--breakpoint-sm)) {
+	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 1.25rem;
 		line-height: 1.75rem;
 	}
 
-	@media (width >= theme(--breakpoint-lg)) {
+	@media (width >=theme(--breakpoint-lg)) {
 		font-size: 1.25rem;
 		line-height: 1.75rem;
 	}
@@ -519,17 +540,20 @@ Variable used in website only
 }
 
 @utility hide-stepper {
+
 	/* Hide the number stepper for input[type="number"] */
 	&input[type="number"]::-webkit-outer-spin-button {
 		-webkit-appearance: none;
 		margin: 0;
 		-moz-appearance: textfield !important;
 	}
+
 	& input[type="number"]::-webkit-inner-spin-button {
 		-webkit-appearance: none;
 		margin: 0;
 		-moz-appearance: textfield !important;
 	}
+
 	& input[type="number"] {
 		-webkit-appearance: none;
 		margin: 0;
@@ -538,6 +562,7 @@ Variable used in website only
 }
 
 @layer base {
+
 	button:not(:disabled),
 	[role="button"]:not(:disabled) {
 		cursor: pointer;
@@ -564,7 +589,7 @@ Variable used in website only
 		counter-reset: line;
 	}
 
-	code[data-line-numbers] > [data-line]::before {
+	code[data-line-numbers]>[data-line]::before {
 		counter-increment: line;
 		content: counter(line);
 
@@ -576,20 +601,21 @@ Variable used in website only
 		color: gray;
 	}
 
-	code[data-line-numbers-max-digits="2"] > [data-line]::before {
+	code[data-line-numbers-max-digits="2"]>[data-line]::before {
 		width: 1.25rem;
 	}
 
-	code[data-line-numbers-max-digits="3"] > [data-line]::before {
+	code[data-line-numbers-max-digits="3"]>[data-line]::before {
 		width: 1.75rem;
 	}
 
-	code[data-line-numbers-max-digits="4"] > [data-line]::before {
+	code[data-line-numbers-max-digits="4"]>[data-line]::before {
 		width: 2.25rem;
 	}
 }
 
 @layer utilities {
+
 	/* Custom scrollbar styling. */
 	::-webkit-scrollbar {
 		width: 6px;

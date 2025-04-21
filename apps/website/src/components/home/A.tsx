@@ -23,7 +23,7 @@ function A({ className }: { className?: string }) {
 	const [activeItem, setActiveItem] = useState<string>("dashboard")
 
 	return (
-		<div className={cn("border-border top-20 right-38 flex h-200 w-90 overflow-hidden rounded-2xl border transition-all duration-1000", className)}>
+		<div className={cn("border-border right-38 h-200 w-90 top-20 flex overflow-hidden rounded-2xl border transition-all duration-1000", className)}>
 			<div className="bg-bg-level1 flex w-fit flex-col justify-between px-2 py-3">
 				<div className="flex h-full flex-col items-center justify-between">
 					<div className="flex flex-col items-center gap-3">
@@ -91,9 +91,9 @@ function A({ className }: { className?: string }) {
 
 			{/* Workspace Panel */}
 			<div className="bg-bg-base flex w-full flex-col">
-				<span className="w-full px-4 py-5 text-base leading-6 font-medium">My Workspace</span>
+				<span className="w-full px-4 py-5 text-base font-medium leading-6">My Workspace</span>
 				<div className="text-text-secondary flex flex-col gap-0.5 px-3">
-					<span className="text-text-disabled px-2 py-2.25 text-xs font-medium">USER PANEL</span>
+					<span className="text-text-disabled py-2.25 px-2 text-xs font-medium">USER PANEL</span>
 					<Item id="dashboard" icon={<Cube />} text="Dashboard" active={activeItem === "dashboard"} onClick={() => setActiveItem("dashboard")} />
 					<Item
 						id="components"
@@ -122,7 +122,7 @@ function A({ className }: { className?: string }) {
 				<Divider spacing="8" />
 				<div className="bg-bg-base flex w-full flex-col">
 					<div className="text-text-secondary flex flex-col gap-0.5 px-3">
-						<span className="text-text-disabled px-2 py-2.25 text-xs font-medium">ADMIN</span>
+						<span className="text-text-disabled py-2.25 px-2 text-xs font-medium">ADMIN</span>
 						<Item
 							id="analytics-admin"
 							icon={<LineChart />}
@@ -157,7 +157,10 @@ function Item({ id, icon, text, active, onClick }: ItemProps) {
 		<div
 			id={id}
 			onClick={onClick}
-			className={cn("flex cursor-default items-center gap-3 rounded-md p-2 text-sm font-medium", { "bg-bg-level1": active, "hover:bg-bg-level0": !active })}>
+			className={cn("flex cursor-default items-center gap-3 rounded-md p-2 text-sm font-medium", {
+				"bg-bg-level1": active,
+				"hover:bg-bg-level0": !active,
+			})}>
 			{icon} <span>{text}</span>
 		</div>
 	)

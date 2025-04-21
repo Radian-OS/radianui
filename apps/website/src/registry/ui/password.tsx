@@ -12,10 +12,10 @@ function Password({
 	errorMsg,
 	hasError = false,
 	size = "40",
-	rounded = "rounded",
+	rounded = "md",
 	id,
 	...props
-}: Omit<InputProps, "prefixIcon" | "suffixIcon">) {
+}: Omit<InputProps, "leadIcon" | "trialIcon">) {
 	const [showPassword, setShowPassword] = React.useState(false)
 	function toggleShowPassword() {
 		if (!disabled) {
@@ -25,7 +25,7 @@ function Password({
 
 	return (
 		<Input
-			suffixIcon={
+			trialIcon={
 				showPassword ? (
 					<Eye
 						size={20}

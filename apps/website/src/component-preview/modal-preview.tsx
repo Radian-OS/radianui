@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Image from "next/image"
+import { CircleAlert } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
@@ -12,16 +12,17 @@ import {
 	DropdownSubTrigger,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
-import { Input } from "@/registry/ui/input"
-import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import { Modal, ModalBody, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type CloseIconVisibility = "hidden" | "hover" | "visible"
 type Backdrop = "overlay" | "blur" | "transparent"
+type WithSeparator = "true" | "false"
 
 const PopoverPreview = () => {
-	const [closeIconVisibility, setCloseIconVisibility] = useState<CloseIconVisibility>("hidden")
+	const [closeIcon, setCloseIcon] = useState<CloseIconVisibility>("hidden")
 	const [backdrop, setBackdrop] = useState<Backdrop>("overlay")
+	const [withSeparator, setWithSeparator] = useState<WithSeparator>("false")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -31,13 +32,13 @@ const PopoverPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>CloseIconVisibility</DropdownSubTrigger>
+								<DropdownSubTrigger>CloseIcon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setCloseIconVisibility(Array.from(keys)[0] as CloseIconVisibility)}
+										onSelectedChange={(keys) => setCloseIcon(Array.from(keys)[0] as CloseIconVisibility)}
 										minSelectionCount={1}
-										selectedValues={[closeIconVisibility]}>
+										selectedValues={[closeIcon]}>
 										<DropdownItem value="hidden">Hidden</DropdownItem>
 										<DropdownItem value="visible">Visible</DropdownItem>
 										<DropdownItem value="hover">Hover</DropdownItem>
@@ -58,6 +59,19 @@ const PopoverPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>WithSeparator</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setWithSeparator(Array.from(keys)[0] as WithSeparator)}
+										minSelectionCount={1}
+										selectedValues={[withSeparator]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -69,38 +83,30 @@ const PopoverPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Modal backdrop={backdrop} closeIconVisibility={closeIconVisibility}>
+					<Modal backdrop={backdrop} closeIcon={closeIcon} withSeparator={withSeparator === "true" ? true : false}>
 						<ModalTrigger asChild>
 							<Button>Modal</Button>
 						</ModalTrigger>
 						<ModalContent>
-							<div className="flex items-center justify-center gap-2 pt-6">
-								<Image
-									className="rounded-2xl"
-									src={"https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"}
-									alt="radian"
-									height={60}
-									width={60}
-								/>
-							</div>
-							<ModalHeader className="text-center">
-								<ModalTitle>Connect account to Github</ModalTitle>
-								<ModalDescription>Streamline your API requests by using Github SDK’s and automate all your tickets</ModalDescription>
+							<ModalHeader>
+								<div className="flex gap-3">
+									<div className="flex items-center justify-center rounded-sm border p-2">
+										<CircleAlert className="text-fg2 size-6" />
+									</div>
+									<div>
+										<ModalTitle>This is sample header</ModalTitle>
+										<ModalDescription>Are you sure you want to change the content?</ModalDescription>
+									</div>
+								</div>
 							</ModalHeader>
-							<div className="flex flex-col gap-4">
-								<Input label="Account Name" placeholder="e.g. John Doe" type="text" name="account-name" />
-								<Input label="API Key" placeholder="e.g.0405a-5598e-gg54gg " type="text" name="account-name" />
-								<Input label="Workspace URL" placeholder="e.g. radianos.com/workspace" type="email" name="account-name" />
-							</div>
-							<ModalFooter className="justify-start">
+							<ModalBody>
+								<div className="bg-bg-level0 h-40 rounded-lg" />
+							</ModalBody>
+							<ModalFooter>
 								<ModalClose asChild>
-									<Button variant="neutral-outline" className="w-1/2">
-										Close Modal
-									</Button>
+									<Button variant="neutral-outline">Cancel</Button>
 								</ModalClose>
-								<Button variant={"strong"} className="w-1/2">
-									Submit Action
-								</Button>
+								<Button variant={"strong"}>Continue</Button>
 							</ModalFooter>
 						</ModalContent>
 					</Modal>
@@ -108,7 +114,38 @@ const PopoverPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={``} />
+				<CodeArea
+					language="tsx"
+					showLineNumbers
+					className="h-[420px]"
+					code={`<Modal backdrop="${backdrop}" closeIcon="${closeIcon}" ${withSeparator === "true"?"withSeparator":""}>
+	<ModalTrigger asChild>
+		<Button>Modal</Button>
+	</ModalTrigger>
+	<ModalContent>
+		<ModalHeader>
+			<div className="flex gap-3">
+				<div className="flex items-center justify-center rounded-sm border p-2">
+					<CircleAlert className="text-fg2 size-6" />
+				</div>
+				<div>
+					<ModalTitle>This is sample header</ModalTitle>
+					<ModalDescription>Are you sure you want to change the content?</ModalDescription>
+				</div>
+			</div>
+		</ModalHeader>
+		<ModalBody>
+			<div className="bg-bg-level0 h-40 rounded-lg" />
+		</ModalBody>
+		<ModalFooter>
+			<ModalClose asChild>
+				<Button variant="neutral-outline">Cancel</Button>
+			</ModalClose>
+			<Button variant={"strong"}>Continue</Button>
+		</ModalFooter>
+	</ModalContent>
+</Modal>`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)

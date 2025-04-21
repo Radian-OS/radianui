@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils"
 
 type ButtonProps = VariantProps<typeof buttonVariants> &
   React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  className?: string
-  children: React.ReactNode
-  isIcon?: boolean
-  color?: "primary" | "information" | "success" | "error" | "warning"
-}
+    className?: string
+    children: React.ReactNode
+    isIcon?: boolean
+    color?: "primary" | "information" | "success" | "error" | "warning"
+  }
 
 type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode
@@ -104,15 +104,7 @@ const buttonVariants = cva(
   }
 )
 
-function Button({
-  variant = "strong",
-  size = "36",
-  isIcon = false,
-  color = "primary",
-  className,
-  children,
-  ...props
-}: ButtonProps) {
+function Button({ variant = "strong", size = "36", isIcon = false, color = "primary", className, children, ...props }: ButtonProps) {
   return (
     <button className={cn(buttonVariants({ variant, size, isIcon, color }), className)} {...props}>
       {children}
@@ -121,15 +113,7 @@ function Button({
 }
 Button.displayName = "Button"
 
-function ButtonGroup({
-  className,
-  children,
-  variant = "outline",
-  size = "36",
-  rounded = "rounded",
-  color = "primary",
-  ...props
-}: ButtonGroupProps) {
+function ButtonGroup({ className, children, variant = "outline", size = "36", rounded = "rounded", color = "primary", ...props }: ButtonGroupProps) {
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
       const isFirst = index === 0

@@ -20,7 +20,7 @@ function SearchInput({
 	errorMsg = "",
 	hasError = false,
 	size = "40",
-	rounded = "rounded",
+	rounded = "md",
 	id,
 	renderSearchResults,
 	value,
@@ -48,7 +48,7 @@ function SearchInput({
 			<PopoverTrigger asChild>
 				<div>
 					<Input
-						prefixIcon={<Search size={20} className="stroke-text-tertiary" />}
+						leadIcon={<Search size={20} className="stroke-text-tertiary" />}
 						label={label}
 						errorMsg={errorMsg}
 						hasError={hasError}
@@ -64,7 +64,7 @@ function SearchInput({
 				onOpenAutoFocus={function (e) {
 					e.preventDefault()
 				}}
-				className={cn("no-scrollbar z-50 max-h-88 overflow-y-scroll p-0", props.classNames?.searchResults)}
+				className={cn("no-scrollbar max-h-88 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
 				onInteractOutside={function () {
 					setShowResults(false)
 				}}>

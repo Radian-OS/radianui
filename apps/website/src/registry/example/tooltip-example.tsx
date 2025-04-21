@@ -4,10 +4,8 @@ import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip"
 
-
 type TooltipPosition = "top" | "left" | "right" | "bottom"
 type TooltipAlign = "start" | "end" | "center"
-
 
 const TooltipExample = () => {
 	const [selectedVariant, setSelectedVariant] = useState<TooltipPosition>("top")
@@ -44,10 +42,7 @@ const TooltipExample = () => {
 
 				<label className="flex flex-col gap-2">
 					<span>Align:</span>
-					<select
-						value={selectedAlign}
-						onChange={(e) => setSelectedAlign(e.target.value as TooltipAlign)}
-						className="w-max rounded border p-2">
+					<select value={selectedAlign} onChange={(e) => setSelectedAlign(e.target.value as TooltipAlign)} className="w-max rounded border p-2">
 						<option value="start">Start</option>
 						<option value="end">End</option>
 						<option value="center">Center</option>
@@ -60,11 +55,8 @@ const TooltipExample = () => {
 					<Button className="w-max" variant="outline">
 						Hover
 					</Button>
-
 				</TooltipTrigger>
-				<TooltipContent>
-					Hoverbjbjbjb
-				</TooltipContent>
+				<TooltipContent>Hoverbjbjbjb</TooltipContent>
 			</Tooltip>
 		</div>
 	)
