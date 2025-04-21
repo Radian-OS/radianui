@@ -12,8 +12,7 @@ import {
     DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import { Dot } from "lucide-react"
-import { Avatar } from "@/registry/ui/avatar"
+
 
 const BadgePlaygroundPreview = () => {
     const [example, setExample] = useState<'Destructive' | 'Dot' | 'Avatar' | 'Close Icon'>("Destructive")
