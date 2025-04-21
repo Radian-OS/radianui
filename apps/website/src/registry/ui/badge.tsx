@@ -76,7 +76,8 @@ function Badge({
             onClick={() => setShowBadge(false)}
             className={cn(
               iconSizeMap[size],
-              "cursor-pointer font-extrabold"
+              "cursor-pointer font-extrabold",
+              variant === "neutral-outline" && "text-text-disabled"
             )}
           />
         )}
