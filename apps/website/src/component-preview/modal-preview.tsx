@@ -69,7 +69,9 @@ const PopoverPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Modal backdrop={backdrop} closeIconVisibility={closeIconVisibility}>
+					<Modal backdrop={backdrop}
+					// closeIconVisibility={closeIconVisibility}
+					>
 						<ModalTrigger asChild>
 							<Button>Modal</Button>
 						</ModalTrigger>

@@ -12,7 +12,7 @@ const dateInputStyles = cva(
 			...cvaInputVariants,
 		},
 		defaultVariants: {
-			rounded: "rounded",
+			rounded: "md",
 			size: "40",
 		},
 	}

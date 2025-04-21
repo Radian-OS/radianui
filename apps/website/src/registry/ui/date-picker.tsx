@@ -168,8 +168,8 @@ function DatePicker({
 					className={cn(
 						"text-text w-fit max-w-full items-center justify-between gap-2 text-sm font-normal",
 						{
-							"rounded-lg": rounded === "rounded",
-							"rounded-none": rounded === "square",
+							"rounded-lg": rounded === "lg",
+							"rounded-none": rounded === "xs",
 							"cursor-not-allowed": props.disabled,
 						},
 						triggerClassName
@@ -191,9 +191,9 @@ function DatePicker({
 							isCalendarRange(currentSelected) &&
 							(showDateRangeShortcut && selectedShortcut && selectedShortcut != "custom"
 								? selectedShortcut
-										.split("_")
-										.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-										.join(" ")
+									.split("_")
+									.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+									.join(" ")
 								: `${format((currentSelected as CalendarRange).from.toDate(getLocalTimeZone()), "MMM dd")} - ${format((currentSelected as CalendarRange).to!.toDate(getLocalTimeZone()), "MMM dd")}`)}
 						{currentSelected &&
 							mode === "time" &&

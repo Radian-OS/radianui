@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
+// import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -93,11 +93,11 @@ const AvatargroupPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<AvatarGroup max={4} size={size}>
+					{/* <AvatarGroup max={4} size={size}>
 						{people.map((person) => (
 							<Avatar src={person.image} name={person.name} key={person.image} />
 						))}
-					</AvatarGroup>
+					</AvatarGroup> */}
 				</div>
 			</TabsContent>
 

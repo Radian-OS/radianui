@@ -12,7 +12,7 @@ function Password({
 	errorMsg,
 	hasError = false,
 	size = "40",
-	rounded = "rounded",
+	rounded = "md",
 	id,
 	...props
 }: Omit<InputProps, "prefixIcon" | "suffixIcon">) {

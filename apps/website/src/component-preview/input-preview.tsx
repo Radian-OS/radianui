@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { Alert } from "@/registry/ui/alert"
 import { CodeArea } from "@/registry/ui/code"
 import {
     Dropdown,

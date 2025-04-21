@@ -4,7 +4,6 @@ import React from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { Label } from "./label"
-import { smallint } from "drizzle-orm/gel-core"
 
 export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"

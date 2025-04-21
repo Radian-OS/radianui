@@ -29,7 +29,7 @@ import Switch from "@/registry/ui/switch"
 import TextArea from "@/registry/ui/text-area"
 import TimePicker from "@/registry/ui/time-picker"
 
-const roundedOptions = ["rounded", "square", "full"]
+const roundedOptions = ["sm", "square", "full"]
 const sizes = ["32", "36", "40", "44", "48", "56"]
 const intervalOptions = ["15", "30", "60"]
 const selectionModes = ["single", "multiple"]
@@ -147,7 +147,7 @@ const CommonProperty = ({ rounded, setRounded, size, setSize, disabled, setDisab
 const SearchInputComp = () => {
 	const [searchValue, setSearchValue] = React.useState("")
 	const [size, setSize] = React.useState<SizeOptions>("40")
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [disabled, setDisabled] = React.useState(false)
 	const [label, setLabel] = React.useState(true)
 	const [searchResults, setSearchResults] = React.useState<{ id: string; title: string }[]>([])
@@ -222,7 +222,7 @@ const SearchInputComp = () => {
 
 const PasswordComp = () => {
 	const [size, setSize] = React.useState<SizeOptions>("40")
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [disabled, setDisabled] = React.useState(false)
 	const [label, setLabel] = React.useState(true)
 	const [hasError, setHasError] = React.useState<boolean>(false)
@@ -346,7 +346,7 @@ const CalendarComp = () => {
 }
 
 const DateInputComp = () => {
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [disabled, setDisabled] = React.useState<boolean>(false)
 	const [label, setLabel] = React.useState<boolean>(true)
@@ -377,7 +377,7 @@ const DateInputComp = () => {
 }
 
 const TimeComp = () => {
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [disabled, setDisabled] = React.useState<boolean>(false)
 	const [is24Hour, setIs24Hour] = React.useState<boolean>(false)
@@ -450,7 +450,7 @@ const TimeComp = () => {
 }
 
 const NumberComp = () => {
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [disabled, setDisabled] = React.useState<boolean>(false)
 	const [hasError, setHasError] = React.useState<boolean>(false)
@@ -519,7 +519,7 @@ const NumberComp = () => {
 }
 
 const InputComp = () => {
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [disabled, setDisabled] = React.useState<boolean>(false)
 	const [suffixIcon, setSuffixIcon] = React.useState<boolean>(false)
@@ -602,7 +602,7 @@ const InputComp = () => {
 }
 
 const DatePickerComp = () => {
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [disabled, setDisabled] = React.useState<boolean>(false)
 	const [label, setLabel] = React.useState<boolean>(true)
@@ -774,7 +774,7 @@ const FileUploadComp = () => {
 					disabled={disabled === "true"}
 					// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
 					url="http://localhost:8000/upload"
-					// headers={{ "Content-Type": "application/json" }}
+				// headers={{ "Content-Type": "application/json" }}
 				/>
 			</div>
 		</div>
@@ -937,13 +937,13 @@ const SliderComp = () => {
 					marks={
 						showMarks
 							? [
-									{ value: 0, label: "0%" },
-									{ value: 20, label: "20%" },
-									{ value: 40, label: "40%" },
-									{ value: 60, label: "60%" },
-									{ value: 80, label: "80%" },
-									{ value: 100, label: "100%" },
-								]
+								{ value: 0, label: "0%" },
+								{ value: 20, label: "20%" },
+								{ value: 40, label: "40%" },
+								{ value: 60, label: "60%" },
+								{ value: 80, label: "80%" },
+								{ value: 100, label: "100%" },
+							]
 							: undefined
 					}
 					prefixIcon={startContent ? <VolumeX /> : undefined}
@@ -1127,7 +1127,7 @@ const TextAreaComp = () => {
 
 const CurrencyComp = () => {
 	const [size, setSize] = React.useState<SizeOptions>("40")
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [disabled, setDisabled] = React.useState<boolean>(false)
 	const [label, setLabel] = React.useState<boolean>(true)
 
@@ -1170,7 +1170,7 @@ const OTPComp = () => {
 	const [label, setLabel] = React.useState<boolean>(true)
 	const [length, setLength] = React.useState<number>(6)
 	const [variant, setVariant] = React.useState<"box" | "flat">("box")
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 
 	return (
 		<div className="flex flex-col gap-2">
@@ -1238,7 +1238,7 @@ const OTPComp = () => {
 }
 
 const SelectComp = () => {
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [disabled, setDisabled] = React.useState<boolean>(false)
 	const [label, setLabel] = React.useState<boolean>(true)
