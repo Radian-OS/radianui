@@ -4,8 +4,8 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
-import { Separator } from "react-aria-components"
 import { cn } from "@/lib/utils"
+import { Divider } from "./divider"
 
 type closeIcon = "visible" | "hidden" | "hover"
 
@@ -117,18 +117,18 @@ ModalContent.displayName = DialogPrimitive.Content.displayName
 
 function ModalHeader({ className, ...props }: ModalHeaderProps) {
 	const { withSeparator } = useModalContext()
-	return (
-		<>
-			<div className={cn("flex flex-col gap-1 text-left", { "p-5": withSeparator }, className)} {...props} />
-			{withSeparator && <Separator orientation="horizontal" />}
-		</>
-	)
+	return <div className={cn("flex flex-col gap-1 text-left", { "p-5": withSeparator }, className)} {...props} />
 }
 ModalHeader.displayName = "DialogHeader"
 
 function ModalBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
 	const { withSeparator } = useModalContext()
-	return <div data-slot="modal-body" className={cn({ "p-5": withSeparator }, className)} {...props} />
+	return (
+		<>
+			{withSeparator && <Divider orientation="horizontal" />}
+			<div data-slot="modal-body" className={cn({ "p-5": withSeparator }, className)} {...props} />
+		</>
+	)
 }
 ModalBody.displayName = "DialogBody"
 
@@ -136,7 +136,7 @@ function ModalFooter({ className, ...props }: ModalFooterProps) {
 	const { withSeparator } = useModalContext()
 	return (
 		<>
-			{withSeparator && <Separator orientation="horizontal" />}
+			{withSeparator && <Divider orientation="horizontal" />}
 			<div className={cn("flex justify-end gap-2", { "p-5": withSeparator }, className)} {...props} />
 		</>
 	)
@@ -150,7 +150,7 @@ ModalTitle.displayName = DialogPrimitive.Title.displayName
 
 function ModalDescription({ className, ...props }: ModalDescriptionProps) {
 	return (
-		<DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm leading-tight", className)} {...props} />
+		<DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm/5 leading-tight", className)} {...props} />
 	)
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName

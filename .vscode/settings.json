@@ -9,6 +9,9 @@
   ],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
   "tailwindCSS.experimental.classRegex": [
     [
       "cva\\(((?:[^()]|\\([^()]*\\))*)\\)",
@@ -18,5 +21,9 @@
       "cx\\(((?:[^()]|\\([^()]*\\))*)\\)",
       "(?:'|\"|`)([^']*)(?:'|\"|`)"
     ]
-  ]
+  ],
+  "files.associations": {
+    "*.css": "tailwindcss",
+  },
+  "tailwindCSS.experimental.configFile": "apps/website/src/css/globals.css"
 }

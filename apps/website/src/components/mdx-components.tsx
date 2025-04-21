@@ -37,6 +37,8 @@ import Manual from "@/components/manual"
 import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
+import DeleteModalExample from "@/registry/example/modal/delete-modal"
+import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 
@@ -58,6 +60,8 @@ const components: MDXComponents = {
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	ModalPreview: () => <ModalPreview />,
+	DeleteModalExample: () => <DeleteModalExample />,
+	GithubIntegrationModalExample: () => <GithubIntegrationModalExample />,
 	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	SonnerPreview: () => <SonnerPreview />,
@@ -117,7 +121,7 @@ const components: MDXComponents = {
 		</h5>
 	),
 	h6: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h6 className={cn("heading-6", className)} {...props}>
+		<h6 className={cn("heading-6 font-semibold! mb-4", className)} {...props}>
 			{children}
 		</h6>
 	),

@@ -56,13 +56,14 @@ export const people = [
 	},
 ]
 
-type Size = "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80" | "120"
+type Size = "16" | "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80"
 type Variant = "circle" | "square"
+type Status = "online" | "offline" | "verified" | "plus"
 
 const AvatarPreview = () => {
 	const [size, setSize] = useState<Size>("32")
 	const [variant, setVariant] = useState<Variant>("circle")
-	const [onlineStatus, setOnlineStatus] = useState<"true" | "false">("false")
+	const [status, setStatus] = useState<Status>("verified")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -79,6 +80,7 @@ const AvatarPreview = () => {
 										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)}
 										minSelectionCount={1}
 										selectedValues={[size]}>
+										<DropdownItem value="16">16</DropdownItem>
 										<DropdownItem value="20">20</DropdownItem>
 										<DropdownItem value="24">24</DropdownItem>
 										<DropdownItem value="32">32</DropdownItem>
@@ -87,7 +89,6 @@ const AvatarPreview = () => {
 										<DropdownItem value="48">48</DropdownItem>
 										<DropdownItem value="64">64</DropdownItem>
 										<DropdownItem value="80">80</DropdownItem>
-										<DropdownItem value="120">120</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -109,15 +110,17 @@ const AvatarPreview = () => {
 
 							{/* Dropdown for 'onlineIndicator' */}
 							<DropdownSub>
-								<DropdownSubTrigger>Online Indicator</DropdownSubTrigger>
+								<DropdownSubTrigger>Status</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setOnlineStatus(Array.from(keys)[0] as "true" | "false")}
+										onSelectedChange={(keys) => setStatus(Array.from(keys)[0] as Status)}
 										minSelectionCount={1}
-										selectedValues={[onlineStatus]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
+										selectedValues={[status]}>
+										<DropdownItem value="online">Online</DropdownItem>
+										<DropdownItem value="offline">Offline</DropdownItem>
+										<DropdownItem value="verified">Verified</DropdownItem>
+										<DropdownItem value="plus">Plus</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -132,7 +135,7 @@ const AvatarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Avatar src={people[0].image} name={people[0].name} size={size} variant={variant} onlineStatus={onlineStatus === "true"} />
+					<Avatar src={people[0].image} name={people[0].name} size={size} variant={variant} status={status} />
 				</div>
 			</TabsContent>
 
