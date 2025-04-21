@@ -66,7 +66,7 @@ function RadioGroupItem({ className, size: itemSize, children, ...props }: Radio
 			<RadioGroupPrimitive.Item
 				data-slot="radio-item"
 				className={cn(
-					"data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-text-tertiary aspect-square rounded-full border outline-hidden transition-all duration-200 data-[state=checked]:border-none",
+					"data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-text-tertiary outline-hidden aspect-square rounded-full border transition-all duration-200 data-[state=checked]:border-none",
 					"flex items-center justify-center",
 					sizeClasses[size],
 					"border-border",

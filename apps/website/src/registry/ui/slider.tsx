@@ -154,7 +154,7 @@ function Slider({
 					<SliderPrimitive.Root
 						ref={ref}
 						className={cn(
-							"relative flex w-full touch-none items-center select-none data-disabled:opacity-80 data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
+							"data-disabled:opacity-80 relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
 							classNames?.sliderRoot
 						)}
 						value={currentValue}
@@ -164,7 +164,7 @@ function Slider({
 						{...props}>
 						<SliderPrimitive.Track
 							className={cn(
-								"border-border bg-bg-level1 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-2",
+								"border-border bg-bg-level1 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-2",
 								classNames?.sliderTrack
 							)}>
 							<SliderPrimitive.Range
@@ -177,20 +177,18 @@ function Slider({
 									<TooltipTrigger asChild>
 										<SliderPrimitive.Thumb
 											className={cn(
-												"border-primary bg-bg-base block size-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
+												"border-primary bg-bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-5 cursor-pointer rounded-full border-2 transition-colors",
 												classNames?.sliderThumb
 											)}
 										/>
 									</TooltipTrigger>
-									<TooltipContent>
-										{value.toString()}
-									</TooltipContent>
+									<TooltipContent>{value.toString()}</TooltipContent>
 								</Tooltip>
 							) : (
 								<SliderPrimitive.Thumb
 									key={index}
 									className={cn(
-										"border-primary bg-bg-base block h-5 w-5 cursor-pointer rounded-full border-2 drop-shadow-xs transition-colors focus-visible:outline-hidden data-disabled:cursor-not-allowed",
+										"border-primary bg-bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block h-5 w-5 cursor-pointer rounded-full border-2 transition-colors",
 										classNames?.sliderThumb
 									)}
 								/>
@@ -201,7 +199,7 @@ function Slider({
 					{marks && marks.length > 0 && (
 						<div
 							className={cn({
-								"relative mx-auto mt-2 mb-3 w-[95%]": orientation === "horizontal",
+								"relative mx-auto mb-3 mt-2 w-[95%]": orientation === "horizontal",
 								"relative my-auto h-[95%]": orientation === "vertical",
 							})}>
 							{marks.map(function (mark) {
@@ -211,7 +209,7 @@ function Slider({
 									<div
 										key={mark.value}
 										className={cn(
-											"text-xs text-text-secondary absolute cursor-pointer font-medium",
+											"text-text-secondary absolute cursor-pointer text-xs font-medium",
 											{
 												"-translate-x-1/2": orientation === "horizontal",
 												"ml-2 translate-y-1/2": orientation === "vertical",

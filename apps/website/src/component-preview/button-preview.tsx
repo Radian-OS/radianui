@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CirclePlus} from "lucide-react"
+import { CirclePlus } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
@@ -52,16 +52,16 @@ const ButtonPreview = () => {
 										<DropdownItem value="ghost">ghost</DropdownItem>
 									</DropdownGroup>
 									<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setVariant(Array.from(keys)[0] as variants)
-									}}
-									minSelectionCount={1}
-									selectedValues={[variant]}
-									 title="neutral">
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setVariant(Array.from(keys)[0] as variants)
+										}}
+										minSelectionCount={1}
+										selectedValues={[variant]}
+										title="neutral">
 										<DropdownItem value="neutral-soft">neutral-soft</DropdownItem>
 										<DropdownItem value="neutral-outline">neutral-outline</DropdownItem>
-										</DropdownGroup>
+									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
@@ -145,12 +145,7 @@ const ButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
-					<Button
-						isIcon={isIcon === "true"}
-						variant={variant}
-						size={size}
-						color={color}
-						disabled={disabled === "true"}>
+					<Button isIcon={isIcon === "true"} variant={variant} size={size} color={color} disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
 				</div>

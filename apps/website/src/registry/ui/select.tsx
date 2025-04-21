@@ -262,7 +262,7 @@ function CommandInput({ className, ...props }: React.ComponentPropsWithRef<typeo
 			<Search className="h-5 w-5 shrink-0 opacity-50" />
 			<CommandPrimitive.Input
 				className={cn(
-					"text-sm placeholder:text-text-tertiary flex h-8 w-full rounded-md bg-transparent py-3 font-normal outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
+					"placeholder:text-text-tertiary outline-hidden flex h-8 w-full rounded-md bg-transparent py-3 text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -273,7 +273,7 @@ function CommandInput({ className, ...props }: React.ComponentPropsWithRef<typeo
 CommandInput.displayName = CommandPrimitive.Input.displayName
 // CommandList component that renders a list of command items
 function CommandList({ className, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.List>) {
-	return <CommandPrimitive.List className={cn("no-scrollbar h-fit max-h-100 w-full overflow-x-hidden overflow-y-auto p-1.5", className)} {...props} />
+	return <CommandPrimitive.List className={cn("no-scrollbar max-h-100 h-fit w-full overflow-y-auto overflow-x-hidden p-1.5", className)} {...props} />
 }
 CommandList.displayName = CommandPrimitive.List.displayName
 // CommandEmpty component that displays a message when the command list is empty
@@ -286,7 +286,7 @@ function CommandGroup({ className, ...props }: React.ComponentPropsWithRef<typeo
 	return (
 		<CommandPrimitive.Group
 			className={cn(
-				"[&_[cmdk-group-heading]]:text-xs text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
+				"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
 				className
 			)}
 			{...props}
@@ -299,7 +299,7 @@ function CommandItem({ className, ...props }: React.ComponentPropsWithRef<typeof
 	return (
 		<CommandPrimitive.Item
 			className={cn(
-				"text-sm hover:bg-bg-level1 relative flex cursor-default items-center gap-2 rounded-sm px-2.5 py-1.5 font-normal outline-hidden select-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"hover:bg-bg-level1 outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm font-normal data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}

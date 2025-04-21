@@ -16,14 +16,14 @@ export default function Home() {
 	const [heroesHover, setHeroesHover] = React.useState(false)
 	return (
 		<div className="w-full overflow-x-hidden">
-			<div className="border-border-alpha mx-auto box-border max-w-310 border-r border-l">
+			<div className="border-border-alpha max-w-310 mx-auto box-border border-l border-r">
 				<div className="relative">
-					<div className="relative overflow-hidden pt-12 pb-20">
+					<div className="relative overflow-hidden pb-20 pt-12">
 						<HeroSection />
 						<div className="group hidden xl:block" onMouseOver={() => setHeroesHover(true)} onMouseLeave={() => setHeroesHover(false)}>
 							<A
 								className={cn(
-									"animate-float absolute top-10 right-25 scale-90 -skew-x-14 skew-y-5 duration-2500 group-hover:-skew-x-6 group-hover:skew-y-4 group-hover:duration-700",
+									"animate-float right-25 -skew-x-14 skew-y-5 duration-2500 group-hover:skew-y-4 absolute top-10 scale-90 group-hover:-skew-x-6 group-hover:duration-700",
 									{
 										"animation-pause": heroesHover,
 									}
@@ -31,7 +31,7 @@ export default function Home() {
 							/>
 							<B
 								className={cn(
-									"animate-float absolute top-32 -right-5 scale-90 -skew-x-14 skew-y-5 duration-2500 group-hover:-skew-x-6 group-hover:skew-y-4 group-hover:duration-700",
+									"animate-float -skew-x-14 skew-y-5 duration-2500 group-hover:skew-y-4 absolute -right-5 top-32 scale-90 group-hover:-skew-x-6 group-hover:duration-700",
 									{
 										"animation-pause": heroesHover,
 									}
@@ -40,7 +40,7 @@ export default function Home() {
 						</div>
 					</div>
 					{/* For gradient background */}
-					<div className="from-hero-fade-gradient-from to-hero-fade-gradient-to absolute bottom-0 -ml-396 w-[calc(100%+999rem)] bg-linear-to-b md:h-25 lg:h-50"></div>
+					<div className="from-hero-fade-gradient-from to-hero-fade-gradient-to -ml-396 bg-linear-to-b md:h-25 lg:h-50 absolute bottom-0 w-[calc(100%+999rem)]"></div>
 				</div>
 				<FundamentalSection />
 				<UiComponentsSection />

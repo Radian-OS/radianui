@@ -25,6 +25,7 @@ import PaginationPreview from "@/component-preview/pagination-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
+import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SonnerPreview from "@/component-preview/sonner-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
@@ -38,7 +39,6 @@ import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-import SocialButtonPreview from "@/component-preview/social-button-preview"
 
 type MdxProps = {
 	code: string
@@ -75,7 +75,7 @@ const components: MDXComponents = {
 	Cli: () => <Cli />,
 	Installation: () => <Installation />,
 	Manual: () => <Manual />,
-	SocialButtonPreview:()=><SocialButtonPreview/>,
+	SocialButtonPreview: () => <SocialButtonPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
@@ -112,7 +112,7 @@ const components: MDXComponents = {
 		</h4>
 	),
 	h5: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h5 className={cn("heading-5 mt-9 mb-4 font-semibold!", className)} {...props}>
+		<h5 className={cn("heading-5 font-semibold! mb-4 mt-9", className)} {...props}>
 			{children}
 		</h5>
 	),
@@ -149,7 +149,7 @@ const components: MDXComponents = {
 		</td>
 	),
 	ul: ({ children }: { children?: React.ReactNode }) => (
-		<ul className="[&>li>strong]:text-text-secondary mt-2 ml-4 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
+		<ul className="[&>li>strong]:text-text-secondary ml-4 mt-2 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
 	),
 	Preview: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
 		<div className={cn("mb-5 flex min-h-[30rem] items-center justify-center rounded-lg border p-10", className)} {...props}>
@@ -160,7 +160,7 @@ const components: MDXComponents = {
 		<h3
 			className={cn(
 				"step relative mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-				"before:absolute before:top-1/2 before:left-[-2.9rem] before:-translate-y-1/2",
+				"before:absolute before:left-[-2.9rem] before:top-1/2 before:-translate-y-1/2",
 				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
 				"before:rounded-full before:bg-gray-200 before:text-sm before:font-medium before:text-gray-800",
 				"before:counter-increment-[step] before:content-[counter(step)]",

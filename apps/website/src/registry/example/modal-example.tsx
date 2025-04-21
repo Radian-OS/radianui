@@ -1,3 +1,4 @@
+import { CircleAlert } from "lucide-react"
 import Image from "next/image"
 import { Button } from "../ui/button"
 import { Divider } from "../ui/divider"
@@ -5,7 +6,6 @@ import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Modal, ModalBody, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "../ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
-import { CircleAlert } from "lucide-react"
 
 const ModalExample = () => (
 	<div className="my-4 flex flex-row flex-wrap gap-2">
@@ -31,17 +31,17 @@ const Modal1 = () => (
 		<ModalContent>
 			<ModalHeader>
 				<div className="flex gap-3">
-					<div className="rounded-sm border p-2 flex items-center justify-center">
-						<CircleAlert className="size-6 text-fg2" />
+					<div className="flex items-center justify-center rounded-sm border p-2">
+						<CircleAlert className="text-fg2 size-6" />
 					</div>
 					<div>
-					<ModalTitle>This is sample header</ModalTitle>
-					<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
+						<ModalTitle>This is sample header</ModalTitle>
+						<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
 					</div>
 				</div>
 			</ModalHeader>
 			<ModalBody>
-				<div className="bg-bg-level0 h-40 rounded-lg"/>
+				<div className="bg-bg-level0 h-40 rounded-lg" />
 			</ModalBody>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -63,9 +63,9 @@ const Modal2 = () => (
 				<ModalTitle>This is sample header</ModalTitle>
 				<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
 			</ModalHeader>
-			<Divider className="-mx-5 my-0 w-100" />
+			<Divider className="w-100 -mx-5 my-0" />
 			<div className="bg-bg-level0 h-40 rounded-lg"></div>
-			<Divider className="-mx-5 my-0 w-100" />
+			<Divider className="w-100 -mx-5 my-0" />
 			<ModalFooter>
 				<ModalClose asChild>
 					<Button variant="neutral-outline">Cancel</Button>

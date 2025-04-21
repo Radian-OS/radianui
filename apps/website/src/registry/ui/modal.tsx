@@ -87,28 +87,25 @@ ModalOverlay.displayName = DialogPrimitive.Overlay.displayName
 function ModalContent({ className, children, ...props }: ModalContentProps) {
 	const { closeIcon, withSeparator } = useModalContext()
 
-	const closeButtonClass = cn(
-		"absolute right-5 top-5 text-disabled transition-opacity duration-200",
-		{
-			hidden: closeIcon === "hidden",
-			"opacity-0 group-hover:opacity-100": closeIcon === "hover",
-		}
-	)
+	const closeButtonClass = cn("absolute right-5 top-5 text-disabled transition-opacity duration-200", {
+		hidden: closeIcon === "hidden",
+		"opacity-0 group-hover:opacity-100": closeIcon === "hover",
+	})
 	return (
 		<ModalPortal>
 			<ModalOverlay />
 			<DialogPrimitive.Content
 				data-slot="modal-content"
 				className={cn(
-					"group bg-bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border border-border-alpa p-5 shadow-lg duration-200",
-					{"p-0 gap-0":withSeparator},
+					"bg-bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-border-alpa group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					{ "gap-0 p-0": withSeparator },
 					className
 				)}
 				{...props}>
 				{children}
 				{closeIcon !== "hidden" && (
 					<DialogPrimitive.Close className={closeButtonClass}>
-						<X className="h-4 w-4 text-text-disabled" />
+						<X className="text-text-disabled h-4 w-4" />
 						<span className="sr-only">Close</span>
 					</DialogPrimitive.Close>
 				)}
@@ -122,8 +119,8 @@ function ModalHeader({ className, ...props }: ModalHeaderProps) {
 	const { withSeparator } = useModalContext()
 	return (
 		<>
-			<div className={cn("flex flex-col gap-1 text-left", {"p-5":withSeparator}, className)} {...props} />
-			{withSeparator && <Separator orientation="horizontal"/>}
+			<div className={cn("flex flex-col gap-1 text-left", { "p-5": withSeparator }, className)} {...props} />
+			{withSeparator && <Separator orientation="horizontal" />}
 		</>
 	)
 }
@@ -131,7 +128,7 @@ ModalHeader.displayName = "DialogHeader"
 
 function ModalBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
 	const { withSeparator } = useModalContext()
-	return <div data-slot="modal-body" className={cn({"p-5":withSeparator}, className)} {...props} />
+	return <div data-slot="modal-body" className={cn({ "p-5": withSeparator }, className)} {...props} />
 }
 ModalBody.displayName = "DialogBody"
 
@@ -139,8 +136,8 @@ function ModalFooter({ className, ...props }: ModalFooterProps) {
 	const { withSeparator } = useModalContext()
 	return (
 		<>
-			{withSeparator && <Separator orientation="horizontal"/>}
-			<div className={cn("flex justify-end gap-2", {"p-5":withSeparator}, className)} {...props} />
+			{withSeparator && <Separator orientation="horizontal" />}
+			<div className={cn("flex justify-end gap-2", { "p-5": withSeparator }, className)} {...props} />
 		</>
 	)
 }
@@ -152,8 +149,10 @@ function ModalTitle({ className, ...props }: ModalTitleProps) {
 ModalTitle.displayName = DialogPrimitive.Title.displayName
 
 function ModalDescription({ className, ...props }: ModalDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm leading-tight", className)} {...props} />
+	return (
+		<DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm leading-tight", className)} {...props} />
+	)
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName
 
-export { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader,ModalBody, ModalOverlay, ModalPortal, ModalTitle, ModalTrigger }
+export { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalBody, ModalOverlay, ModalPortal, ModalTitle, ModalTrigger }

@@ -264,7 +264,7 @@ function PhoneNumber({
 			<Button
 				variant="neutral-soft"
 				className={cn(
-					"text-sm border-border text-text flex h-full w-full shrink-0 items-center justify-start gap-2 rounded-r-none border-r px-3 py-2.5 font-normal whitespace-nowrap",
+					"border-border text-text flex h-full w-full shrink-0 items-center justify-start gap-2 whitespace-nowrap rounded-r-none border-r px-3 py-2.5 text-sm font-normal",
 					{
 						"border-r-primary border-r": isFocused,
 						"pointer-events-none": disabled,

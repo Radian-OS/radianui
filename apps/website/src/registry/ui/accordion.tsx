@@ -110,7 +110,7 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
-					"group bg-bg1 text-fg1 flex flex-1 cursor-pointer items-center justify-between text-left font-medium outline-hidden",
+					"bg-bg1 text-fg1 outline-hidden group flex flex-1 cursor-pointer items-center justify-between text-left font-medium",
 					variant === "open" ? (size === "sm" ? "px-0 py-3" : "px-0 py-4") : size === "sm" ? "px-4 py-3" : "p-4",
 					className
 				)}

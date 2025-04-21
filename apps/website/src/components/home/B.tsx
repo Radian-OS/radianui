@@ -23,7 +23,7 @@ function B({ className }: { className?: string }) {
 	return (
 		<div
 			className={cn(
-				"bg-bg-base border-border top-48 right-10 flex h-200 w-80 scale-90 flex-col justify-between rounded-2xl border duration-1000",
+				"bg-bg-base border-border h-200 right-10 top-48 flex w-80 scale-90 flex-col justify-between rounded-2xl border duration-1000",
 				className
 			)}>
 			<div className="flex flex-col">
@@ -45,7 +45,7 @@ function B({ className }: { className?: string }) {
 					</div>
 				</div>
 				<div className="flex flex-col gap-0.5 px-3 py-1">
-					<span className="text-text-disabled px-2 py-1 text-xs leading-4.5 font-medium">USER PANEL</span>
+					<span className="text-text-disabled leading-4.5 px-2 py-1 text-xs font-medium">USER PANEL</span>
 					<Item
 						id="dashboard"
 						prefix={<Cube className="text-text-secondary" />}
@@ -103,7 +103,7 @@ function B({ className }: { className?: string }) {
 				</div>
 				<Divider />
 				<div className="flex flex-col gap-0.5 px-3 py-1">
-					<span className="text-text-disabled px-2 py-1 text-xs leading-4.5 font-medium">ADMIN</span>
+					<span className="text-text-disabled leading-4.5 px-2 py-1 text-xs font-medium">ADMIN</span>
 					<Item
 						id="analytics"
 						prefix={<LineChart className="text-text-secondary" />}
@@ -141,7 +141,7 @@ function AccordionTextItem({ text, active, onClick }: AccordionTextItemProps) {
 	return (
 		<span
 			onClick={onClick}
-			className={cn("cursor-default rounded-md py-2 pr-2 pl-11 text-sm transition-colors", {
+			className={cn("cursor-default rounded-md py-2 pl-11 pr-2 text-sm transition-colors", {
 				"bg-bg-level1": active,
 				"hover:bg-bg-level0": !active,
 			})}>

@@ -82,7 +82,7 @@ function Input({
 	if (id) htmlId = id
 
 	return (
-		<div className={cn("text-sm text-fg-1 flex w-full flex-col gap-1.5", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
+		<div className={cn("text-fg-1 flex w-full flex-col gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
 				<Label id={htmlId} className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>
 					{label}
@@ -103,7 +103,7 @@ function Input({
 				<input
 					id={htmlId}
 					className={cn(
-						"text-fg-1 placeholder-text-tertiary h-fit w-full border border-none bg-transparent p-0 outline-hidden select-none placeholder:text-sm placeholder:font-normal focus:ring-0",
+						"text-fg-1 placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
 							"text-text-tertiary cursor-not-allowed": disabled,
 						},
@@ -115,7 +115,7 @@ function Input({
 				/>
 				{suffixIcon && <span className="ml-auto">{suffixIcon}</span>}
 			</label>
-			{hasError && <Label className={cn("text-xs text-error font-medium", className)}>{errorMsg}</Label>}
+			{hasError && <Label className={cn("text-error text-xs font-medium", className)}>{errorMsg}</Label>}
 		</div>
 	)
 }

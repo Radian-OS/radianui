@@ -47,7 +47,7 @@ const ButtonExample = () => {
 						id="variant"
 						value={variant}
 						onChange={(e) => setVariant(e.target.value as VariantOptions)}
-						className="bg-bg-base w-full rounded border-border p-2">
+						className="bg-bg-base border-border w-full rounded p-2">
 						<option value="strong">Strong</option>
 						<option value="soft">Soft</option>
 						<option value="outline">Outline</option>
@@ -65,7 +65,7 @@ const ButtonExample = () => {
 						id="size"
 						value={size}
 						onChange={(e) => setSize(e.target.value as SizeOptions)}
-						className="w-full rounded border-border p-2 bg-bg-base">
+						className="border-border bg-bg-base w-full rounded p-2">
 						<option value="28">28</option>
 						<option value="32">32</option>
 						<option value="36">36</option>
@@ -85,7 +85,7 @@ const ButtonExample = () => {
 							id="rounded"
 							value={rounded}
 							onChange={(e) => setRounded(e.target.value as RoundedOptions)}
-							className="w-full rounded border-border bg-bg-base p-2">
+							className="border-border bg-bg-base w-full rounded p-2">
 							<option value="square">Square</option>
 							<option value="rounded">Rounded</option>
 							<option value="full">Full</option>
@@ -101,7 +101,7 @@ const ButtonExample = () => {
 						id="color"
 						value={color}
 						onChange={(e) => setColor(e.target.value as ColorOptions)}
-						className="w-full rounded border-border bg-bg-base p-2">
+						className="border-border bg-bg-base w-full rounded p-2">
 						<option value="primary">Primary</option>
 						<option value="information">Information</option>
 						<option value="success">Success</option>
@@ -114,13 +114,7 @@ const ButtonExample = () => {
 					<div>
 						<label className="mb-2 block text-sm font-medium">Include Icon:</label>
 						<div className="flex items-center">
-							<input
-								id="include-icon"
-								type="checkbox"
-								checked={includeIcon}
-								onChange={() => setIncludeIcon((prev) => !prev)}
-								className="mr-2"
-							/>
+							<input id="include-icon" type="checkbox" checked={includeIcon} onChange={() => setIncludeIcon((prev) => !prev)} className="mr-2" />
 							<span>{includeIcon ? "Yes" : "No"}</span>
 						</div>
 					</div>
@@ -203,9 +197,7 @@ const ButtonExample = () => {
 
 			<ControlPanel />
 
-			<div className="border-t pt-6">
-				{activeSection === "single" ? <SingleButtonPreview /> : <ButtonGroupPreview />}
-			</div>
+			<div className="border-t pt-6">{activeSection === "single" ? <SingleButtonPreview /> : <ButtonGroupPreview />}</div>
 		</div>
 	)
 }

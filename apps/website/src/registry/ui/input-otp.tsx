@@ -110,7 +110,7 @@ function OTPInput({
 		<div className={cn("flex flex-col gap-1.5", className)}>
 			{label && (
 				<Label
-					className={cn("text-sm w-fit font-medium", {
+					className={cn("w-fit text-sm font-medium", {
 						"text-text-tertiary": props.disabled,
 					})}>
 					{label}

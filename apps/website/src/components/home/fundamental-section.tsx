@@ -72,18 +72,18 @@ const componentsList: ComponentListItem[] = [
 export default function FundamentalSection() {
 	return (
 		<React.Fragment>
-			<div className="mx-auto max-w-310">
-				<div id="header" className="flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10 lg:py-7.5">
+			<div className="max-w-310 mx-auto">
+				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
 					<h6 className="heading-6 text-fg0">Fundamentals</h6>
 					<p className="body-15 text-fg1 font-normal">Universal settings for building a strong foundation for a digital product</p>
 				</div>
 				<div className="bg-stroke-decorative -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>
 
-			<div className="mx-auto max-w-310">
+			<div className="max-w-310 mx-auto">
 				<div
 					id="body"
-					className="grid grid-cols-1 gap-4 px-4 pt-6 pb-8 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10 lg:pb-15">
+					className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
 					{componentsList.map((item, idx) => (
 						<ComponentCard
 							key={item.title + idx}

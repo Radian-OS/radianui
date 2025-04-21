@@ -70,7 +70,7 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 				{(segment) => (
 					<DateSegment
 						className={cn(
-							"text-sm focus:bg-primary data-placeholder:text-text-tertiary rounded-sm px-0 py-0.5 text-end tabular-nums focus:text-white focus:caret-transparent focus:outline-hidden data-[type=dayPeriod]:mx-0.5 data-[type=hour]:ml-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5",
+							"focus:bg-primary data-placeholder:text-text-tertiary focus:outline-hidden rounded-sm px-0 py-0.5 text-end text-sm tabular-nums focus:text-white focus:caret-transparent data-[type=dayPeriod]:mx-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5 data-[type=hour]:ml-0.5",
 							classNames?.dateSegment
 						)}
 						segment={segment}

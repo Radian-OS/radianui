@@ -20,7 +20,6 @@ const TooltipPreview = () => {
 	const [withArrow, setWithArrow] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
 
-
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -91,11 +90,11 @@ const TooltipPreview = () => {
 					<div className="mx-auto max-h-[200px] max-w-3xl">
 						<Tooltip side={`${position}`} withArrow={withArrow === "true"} align={`${variant}`}>
 							<TooltipTrigger asChild>
-								<Button key={key} variant="neutral-outline">Hover me</Button>
+								<Button key={key} variant="neutral-outline">
+									Hover me
+								</Button>
 							</TooltipTrigger>
-							<TooltipContent>
-								I am a tooltip
-							</TooltipContent>
+							<TooltipContent>I am a tooltip</TooltipContent>
 						</Tooltip>
 					</div>
 				</div>

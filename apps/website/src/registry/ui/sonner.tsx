@@ -58,10 +58,10 @@ const Sonners: React.FC<ToastProps> = function ({
 }) {
 	// Create a toast with the provided content
 	const toastId = toast(
-		<div className=" w-full min-[375px]:w-88">
+		<div className="min-[375px]:w-88 w-full">
 			{content ? (
 				// Render custom content if provided
-				<div className=" w-full">
+				<div className="w-full">
 					<div className={SonnerVariant({ variant })}>{content}</div>
 					<div className="flex gap-2 pr-2">
 						{/* Render buttons if provided */}
@@ -87,7 +87,7 @@ const Sonners: React.FC<ToastProps> = function ({
 							onClick={function () {
 								toast.dismiss(toastId)
 							}}
-							className={`absolute top-2.5 right-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-text-secondary`}>
+							className={`absolute right-2.5 top-2.5 cursor-pointer ${variant === "default" ? "text-black" : "!text-white"} group-[.toaster]:text-text-secondary`}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="14"
@@ -107,15 +107,12 @@ const Sonners: React.FC<ToastProps> = function ({
 			) : (
 				// Render default toast content if no custom content is provided
 				<div
-					className={` group w-full toast relative rounded-lg ${variant === "default" ? "bg-bg-base" : `bg-${variant}`} flex h-auto 
-						items-center justify-between gap-3 p-4 text-xl ${variant === "default" ? "text-black" : "text-white!"} 
-						group-[.toaster]:text-text-secondary`}>
+					className={`toast group relative w-full rounded-lg ${variant === "default" ? "bg-bg-base" : `bg-${variant}`} flex h-auto items-center justify-between gap-3 p-4 text-xl ${variant === "default" ? "text-black" : "text-white!"} group-[.toaster]:text-text-secondary`}>
 					<div className="flex items-center justify-center gap-2 text-sm/5">
 						{/* Render icon if provided */}
 						{icon && (
 							<div
-								className={`${React.isValidElement(icon) && (icon.props as { className?: string })?.className ? "" : "h-5 w-5"} flex 
-									items-center justify-center`}>
+								className={`${React.isValidElement(icon) && (icon.props as { className?: string })?.className ? "" : "h-5 w-5"} flex items-center justify-center`}>
 								{icon}
 							</div>
 						)}
@@ -135,7 +132,7 @@ const Sonners: React.FC<ToastProps> = function ({
 							onClick={function () {
 								toast.dismiss(toastId)
 							}}
-							className={`absolute top-2.5 right-2.5 cursor-pointer`}>
+							className={`absolute right-2.5 top-2.5 cursor-pointer`}>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="14"
