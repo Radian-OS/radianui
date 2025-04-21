@@ -4,11 +4,11 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-type BadgeProps = React.HTMLAttributes<HTMLDivElement> & 
-  Omit<VariantProps<typeof badgeVariants>, "size"> & { 
-    closable?: boolean 
-    size?: BadgeSize 
-    className?: string 
+type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
+  Omit<VariantProps<typeof badgeVariants>, "size"> & {
+    closable?: boolean
+    size?: BadgeSize
+    className?: string
   }
 
 type BadgeSize = "20" | "24" | "28" | "32"
@@ -18,7 +18,8 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border round
     variant: {
       "neutral-outline": "outline outline-border-alpha",
       strong: "bg-primary text-white font-semibold",
-      outline: "text-primary-text outline outline-primary"
+      outline: "text-primary-text outline outline-primary",
+      pastel: "bg-primary-focus text-primary"
     },
     size: {
       "20": "h-5 px-1.5 text-xs",
@@ -40,16 +41,16 @@ const iconSizeMap: Record<BadgeSize, string> = {
   "32": "size-4",
 }
 
-function Badge({ 
-  variant = "neutral-outline", 
-  size = "24", 
-  closable = false, 
-  className, 
-  children, 
-  ...props 
+function Badge({
+  variant = "neutral-outline",
+  size = "24",
+  closable = false,
+  className,
+  children,
+  ...props
 }: BadgeProps) {
   const [showBadge, setShowBadge] = useState(true)
-  
+
   return (
     showBadge && (
       <div
@@ -62,14 +63,14 @@ function Badge({
       >
         {Array.isArray(children)
           ? children.map((child, index) =>
-              typeof child === "object" &&
+            typeof child === "object" &&
               "type" in child &&
               (child.type === "svg" || typeof child.type === "function") ? (
-                <span key={index}>{child}</span>
-              ) : (
-                child
-              )
+              <span key={index}>{child}</span>
+            ) : (
+              child
             )
+          )
           : children}
         {closable && (
           <X

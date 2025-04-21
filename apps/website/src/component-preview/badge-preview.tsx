@@ -14,7 +14,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgePreview = () => {
-	const [variant, setVariant] = useState<"strong" | "neutral-outline"|"outline">("strong")
+	const [variant, setVariant] = useState<"strong" | "neutral-outline" | "outline" | "pastel">("strong")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [size, setSize] = useState<"24" | "20" | "28" | "32">("24")
 	const [key, setKey] = useState(0)
@@ -39,6 +39,7 @@ const BadgePreview = () => {
 										<DropdownItem value="neutral-outline">Neutral-outline</DropdownItem>
 										<DropdownItem value="strong">Strong</DropdownItem>
 										<DropdownItem value="outline">Outline</DropdownItem>
+										<DropdownItem value="pastel">Pastel</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -88,7 +89,7 @@ const BadgePreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Badge key={key} closable={closable === "true" ? true : false}  variant={variant} size={size}>
+					<Badge key={key} closable={closable === "true" ? true : false} variant={variant} size={size}>
 						Badge Example
 					</Badge>
 				</div>

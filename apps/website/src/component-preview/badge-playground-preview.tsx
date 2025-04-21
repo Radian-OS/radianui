@@ -12,6 +12,8 @@ import {
     DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Dot } from "lucide-react"
+import { Avatar } from "@/registry/ui/avatar"
 
 
 const BadgePlaygroundPreview = () => {
@@ -23,17 +25,60 @@ const BadgePlaygroundPreview = () => {
         switch (example) {
             case "Destructive":
                 return (<Badge key={key} closable={true} size={size} >
+                    <Dot size={36} className="stroke-error" />
                     Destructive
                 </Badge>
                 )
             case "Dot":
-                return <Badge key={key} size={size} >Dot</Badge>
+                return <Badge key={key} size={size} closable={true} >
+                    <Dot size={36} className="stroke-success" />
+                    Label
+                </Badge>
             case "Avatar":
-                return <Badge key={key} size={size} >Avatar</Badge>
+                return <Badge variant="strong" className="bg-information" key={key} size={size} >
+                    <Avatar status="online" src="/avatar.png" name="Roman Shrestha" size={'16'} />
+                    Roman Shrestha
+                </Badge>
             case "Close Icon":
-                return <Badge key={key} size={size} >Close Icon</Badge>
+                return <Badge variant="pastel" className="outline outline-warning text-warning-text bg-warning-focus" closable key={key} size={size} >
+                    <Avatar status="online" src="/avatar.png" name="Roman Shrestha" size={'16'} />
+                    My Custom Badge
+                </Badge>
         }
     }
+
+    const getExampleBadgeCode = () => {
+        switch (example) {
+            case "Destructive":
+                return `<Badge  closable={true} size={${size}} >
+<Dot size={36} className="stroke-error" >
+Destructive
+</Badge>`
+
+            case "Dot":
+                return `<Badge size={${size}} closable={true} >
+<Dot size={36} className="stroke-success" >
+Label
+</Badge>`
+
+            case "Avatar":
+                return `<Badge variant="strong" className="bg-information" size={${size}} >
+<Avatar status="online" src="/avatar.png" name="Roman Shrestha" size={'16'} >
+Roman Shrestha
+</Badge>`
+            case "Close Icon":
+                return `<Badge 
+variant="pastel" 
+className="outline outline-warning text-warning-text bg-warning-focus"
+closable size={${size}} >
+<Avatar status="online" src="/avatar.png" name="Roman Shrestha" size={'16'}>
+My Custom Badge
+</Badge>`
+
+        }
+    }
+
+
 
 
     return (
@@ -98,11 +143,7 @@ const BadgePlaygroundPreview = () => {
                     language="tsx"
                     showLineNumbers
                     className="h-[420px]"
-                    code={`<Badge 
- size="${size}" 
- >
- Badge Example
-</Badge>`}
+                    code={getExampleBadgeCode()!}
                 />
             </TabsContent>
         </Tabs>
