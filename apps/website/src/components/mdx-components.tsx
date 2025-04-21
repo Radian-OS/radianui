@@ -39,6 +39,7 @@ import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 import Link from "next/link"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
+import InputPreview from "@/component-preview/input-preview"
 
 type MdxProps = {
 	code: string
@@ -75,7 +76,8 @@ const components: MDXComponents = {
 	Cli: () => <Cli />,
 	Installation: () => <Installation />,
 	Manual: () => <Manual />,
-	SocialButtonPreview:()=><SocialButtonPreview/>,
+	SocialButtonPreview: () => <SocialButtonPreview />,
+	InputPreview: () => <InputPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

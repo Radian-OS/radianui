@@ -4,15 +4,19 @@ import React from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { Label } from "./label"
+import { smallint } from "drizzle-orm/gel-core"
 
 export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
-export type RoundedOptions = "square" | "rounded" | "full"
+export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 // Variants for input styles based on size and rounded options
 export const cvaInputVariants = {
 	rounded: {
-		square: "rounded-none",
-		rounded: "rounded-md",
-		full: "rounded-full",
+		xs: "rounded-xs",
+		sm: "rounded-sm",
+		md: "rounded-md",
+		lg: "rounded-lg",
+		xl: "rounded-xl",
+		"2xl": "rounded-2xl",
 	},
 	size: {
 		"32": "h-8 text-sm px-3 py-1.5",
@@ -25,7 +29,7 @@ export const cvaInputVariants = {
 }
 
 export const defaultInputSize = "40"
-export const defaultInputRadius = "rounded"
+export const defaultInputRadius = "md"
 // Creating a variant for input styles using cva
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border hover:bg-bg-level0 drop-shadow-xs bg-bg-base cursor-text", {
 	variants: {
