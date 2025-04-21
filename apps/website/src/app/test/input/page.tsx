@@ -591,8 +591,8 @@ const InputComp = () => {
 					disabled={disabled}
 					label={label ? "Username" : undefined}
 					placeholder="Enter your username here"
-					prefixIcon={prefixIcon ? <CircleUserRound /> : null}
-					suffixIcon={suffixIcon ? <CircleUserRound /> : null}
+					leadIcon={prefixIcon ? <CircleUserRound /> : null}
+					trialIcon={suffixIcon ? <CircleUserRound /> : null}
 					hasError={hasError}
 					errorMsg={hasError ? "There is an error" : undefined}
 				/>
