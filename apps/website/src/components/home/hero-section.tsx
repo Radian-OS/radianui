@@ -29,7 +29,7 @@ export default function HeroSection() {
 	return (
 		<div className="relative box-border flex flex-col gap-1 px-4 pt-6 pb-4 md:px-6 lg:px-10 lg:py-16">
 			<section className="flex max-w-187 flex-col justify-between gap-6">
-				<Badge rounded size="32" className="bg-primary-focus  text-primary-text text-sm w-fit font-medium">
+				<Badge  size="32" className="bg-primary-focus  text-primary-text text-sm w-fit font-medium">
 					<Box size={20} />
 					<span>Under Development</span>
 				</Badge>
