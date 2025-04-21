@@ -1,5 +1,5 @@
 import { useState } from "react"
-// import { Avatar } from "@/registry/ui/avatar"
+import { Avatar } from "@/registry/ui/avatar"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -133,11 +133,11 @@ const AvatarPreview = () => {
 				</TabsList>
 			</div>
 
-			{/* <TabsContent value="preview">
+			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Avatar src={people[0].image} name={people[0].name} size={size} variant={variant} status={status} />
 				</div>
-			</TabsContent> */}
+			</TabsContent>
 
 			<TabsContent value="code">
 				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={``} />
