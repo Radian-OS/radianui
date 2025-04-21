@@ -41,13 +41,8 @@ import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-<<<<<<< HEAD
-import Link from "next/link"
-import SocialButtonPreview from "@/component-preview/social-button-preview"
 import BadgePlaygroundPreview from "@/component-preview/badge-playground-preview"
-=======
 import InputPreview from "@/component-preview/input-preview"
->>>>>>> origin/dev
 
 type MdxProps = {
 	code: string
@@ -86,13 +81,10 @@ const components: MDXComponents = {
 	Cli: () => <Cli />,
 	Installation: () => <Installation />,
 	Manual: () => <Manual />,
-<<<<<<< HEAD
-	SocialButtonPreview:()=><SocialButtonPreview/>,
-	BadgePlaygroundPreview:()=><BadgePlaygroundPreview/>,
-=======
 	SocialButtonPreview: () => <SocialButtonPreview />,
+	BadgePlaygroundPreview: () => <BadgePlaygroundPreview />,
 	InputPreview: () => <InputPreview />,
->>>>>>> origin/dev
+
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
