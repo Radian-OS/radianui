@@ -189,7 +189,10 @@ const TablePreview = () => {
 					<Badge
 						rounded={true}
 						size="20"
-						className={cn(row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary", row.original.status === "Active" && "bg-white text-black")}>
+						className={cn(
+							row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary",
+							row.original.status === "Active" && "bg-white text-black"
+						)}>
 						{row.original.status}
 					</Badge>
 				</>

@@ -330,7 +330,7 @@ const DraggableTableHeader = function <TData>({
 					</span>
 					{enableSorting && (
 						<button
-							className="group text-text-secondary -mr-1 bg-transparent py-0 shadow-none"
+							className="text-text-secondary group -mr-1 bg-transparent py-0 shadow-none"
 							onClick={header.column.getToggleSortingHandler()}
 							onKeyDown={(e) => {
 								// Enhanced keyboard handling for sorting
@@ -372,7 +372,7 @@ const DraggableTableHeader = function <TData>({
 					onDoubleClick={() => header.column.resetSize()}
 					onMouseDown={header.getResizeHandler()}
 					onTouchStart={header.getResizeHandler()}
-					className="user-select-none before:bg-border absolute top-0 -right-2 z-10 flex h-full w-4 cursor-col-resize touch-none justify-center before:absolute before:inset-y-0 before:w-px before:translate-x-px"
+					className="user-select-none before:bg-border absolute -right-2 top-0 z-10 flex h-full w-4 cursor-col-resize touch-none justify-center before:absolute before:inset-y-0 before:w-px before:translate-x-px"
 				/>
 			)}
 		</TableHead>

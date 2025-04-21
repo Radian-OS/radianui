@@ -64,7 +64,7 @@ function SearchInput({
 				onOpenAutoFocus={function (e) {
 					e.preventDefault()
 				}}
-				className={cn("no-scrollbar z-50 max-h-88 overflow-y-scroll p-0", props.classNames?.searchResults)}
+				className={cn("no-scrollbar max-h-88 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
 				onInteractOutside={function () {
 					setShowResults(false)
 				}}>

@@ -4,21 +4,20 @@ import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+import { Separator } from "react-aria-components"
 import { cn } from "@/lib/utils"
 
-type CloseIconVisibility = "visible" | "hidden" | "hover"
+type closeIcon = "visible" | "hidden" | "hover"
 
 type Backdrop = VariantProps<typeof backdropVariants>["backdrop"]
 
 type ModalContext = {
-	closeIconVisibility?: CloseIconVisibility
+	closeIcon?: closeIcon
 	backdrop?: Backdrop
+	withSeparator?: boolean
 }
 
-type ModalProps = DialogPrimitive.DialogProps & {
-	closeIconVisibility?: CloseIconVisibility
-	backdrop?: Backdrop
-}
+type ModalProps = DialogPrimitive.DialogProps & ModalContext
 
 type ModalOverlayProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
 
@@ -57,10 +56,10 @@ function useModalContext() {
 	return context
 }
 
-function Modal({ closeIconVisibility = "visible", backdrop = "overlay", children, ...props }: ModalProps) {
+function Modal({ closeIcon = "hidden", backdrop = "overlay", withSeparator = false, children, ...props }: ModalProps) {
 	return (
 		<DialogPrimitive.Root {...props}>
-			<ModalContext.Provider value={{ closeIconVisibility: closeIconVisibility, backdrop: backdrop }}>{children}</ModalContext.Provider>
+			<ModalContext.Provider value={{ closeIcon: closeIcon, backdrop: backdrop, withSeparator: withSeparator }}>{children}</ModalContext.Provider>
 		</DialogPrimitive.Root>
 	)
 }
@@ -86,29 +85,27 @@ function ModalOverlay({ className, ...props }: ModalOverlayProps) {
 ModalOverlay.displayName = DialogPrimitive.Overlay.displayName
 
 function ModalContent({ className, children, ...props }: ModalContentProps) {
-	const { closeIconVisibility } = useModalContext()
+	const { closeIcon, withSeparator } = useModalContext()
 
-	const closeButtonClass = cn(
-		"absolute right-5 top-5 rounded-sm border p-1 ring-offset-bg-base focus:outline-hidden focus:ring-2 focus:ring-text disabled:pointer-events-none data-[state=open]:bg-bg-base data-[state=open]:text-text-tertiary transition-opacity duration-200",
-		{
-			hidden: closeIconVisibility === "hidden",
-			"opacity-0 group-hover:opacity-100": closeIconVisibility === "hover",
-		}
-	)
+	const closeButtonClass = cn("absolute right-5 top-5 text-disabled transition-opacity duration-200", {
+		hidden: closeIcon === "hidden",
+		"opacity-0 group-hover:opacity-100": closeIcon === "hover",
+	})
 	return (
 		<ModalPortal>
 			<ModalOverlay />
 			<DialogPrimitive.Content
 				data-slot="modal-content"
 				className={cn(
-					"group bg-bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					"bg-bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-border-alpa group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					{ "gap-0 p-0": withSeparator },
 					className
 				)}
 				{...props}>
 				{children}
-				{closeIconVisibility !== "hidden" && (
+				{closeIcon !== "hidden" && (
 					<DialogPrimitive.Close className={closeButtonClass}>
-						<X className="h-4 w-4" />
+						<X className="text-text-disabled h-4 w-4" />
 						<span className="sr-only">Close</span>
 					</DialogPrimitive.Close>
 				)}
@@ -119,12 +116,30 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 ModalContent.displayName = DialogPrimitive.Content.displayName
 
 function ModalHeader({ className, ...props }: ModalHeaderProps) {
-	return <div className={cn("flex flex-col gap-1 text-left", className)} {...props} />
+	const { withSeparator } = useModalContext()
+	return (
+		<>
+			<div className={cn("flex flex-col gap-1 text-left", { "p-5": withSeparator }, className)} {...props} />
+			{withSeparator && <Separator orientation="horizontal" />}
+		</>
+	)
 }
 ModalHeader.displayName = "DialogHeader"
 
+function ModalBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+	const { withSeparator } = useModalContext()
+	return <div data-slot="modal-body" className={cn({ "p-5": withSeparator }, className)} {...props} />
+}
+ModalBody.displayName = "DialogBody"
+
 function ModalFooter({ className, ...props }: ModalFooterProps) {
-	return <div className={cn("flex justify-end gap-2", className)} {...props} />
+	const { withSeparator } = useModalContext()
+	return (
+		<>
+			{withSeparator && <Separator orientation="horizontal" />}
+			<div className={cn("flex justify-end gap-2", { "p-5": withSeparator }, className)} {...props} />
+		</>
+	)
 }
 ModalFooter.displayName = "DialogFooter"
 
@@ -134,8 +149,10 @@ function ModalTitle({ className, ...props }: ModalTitleProps) {
 ModalTitle.displayName = DialogPrimitive.Title.displayName
 
 function ModalDescription({ className, ...props }: ModalDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm leading-tight", className)} {...props} />
+	return (
+		<DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm leading-tight", className)} {...props} />
+	)
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName
 
-export { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalOverlay, ModalPortal, ModalTitle, ModalTrigger }
+export { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalBody, ModalOverlay, ModalPortal, ModalTitle, ModalTrigger }

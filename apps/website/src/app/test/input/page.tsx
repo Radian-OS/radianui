@@ -175,7 +175,7 @@ const SearchInputComp = () => {
 		const items = searchResults.map((result) => (
 			<div
 				key={result.id}
-				className="text-sm hover:bg-border relative flex cursor-pointer items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] font-normal outline-hidden select-none [&_svg]:shrink-0">
+				className="hover:bg-border outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] text-sm font-normal [&_svg]:shrink-0">
 				<p>{result.title}</p>
 			</div>
 		))

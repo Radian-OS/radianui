@@ -27,14 +27,14 @@ export default function HeroSection() {
 	}
 
 	return (
-		<div className="relative box-border flex flex-col gap-1 px-4 pt-6 pb-4 md:px-6 lg:px-10 lg:py-16">
-			<section className="flex max-w-187 flex-col justify-between gap-6">
-				<Badge rounded size="32" className="bg-primary-focus  text-primary-text text-sm w-fit font-medium">
+		<div className="relative box-border flex flex-col gap-1 px-4 pb-4 pt-6 md:px-6 lg:px-10 lg:py-16">
+			<section className="max-w-187 flex flex-col justify-between gap-6">
+				<Badge rounded size="32" className="bg-primary-focus text-primary-text w-fit text-sm font-medium">
 					<Box size={20} />
 					<span>Under Development</span>
 				</Badge>
 				<h1 className="heading-1">Ship next generation of world class products and solutions</h1>
-				<p className="text-lg text-text-secondary font-normal">
+				<p className="text-text-secondary text-lg font-normal">
 					Radian is a high quality design and development library to build systems that scale quickly. Get from design to product in few hours.
 				</p>
 				<div className="z-30 flex flex-col gap-3">

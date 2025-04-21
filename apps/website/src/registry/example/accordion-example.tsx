@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const AccordionExample = () => {
 	return (
 		<div className="flex flex-col gap-5">
-			<Accordion>
+			<Accordion dir="rtl">
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>

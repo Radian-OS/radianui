@@ -22,8 +22,11 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.14.0",
+    "pettier": "^1.1.0",
     "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "turbo": "^2.4.4",
     "typescript": "5.8.2"
   },

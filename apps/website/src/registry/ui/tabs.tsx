@@ -161,7 +161,7 @@ function TabsTrigger({ className, icon, counter, disabled = false, children, ...
 			{icon != undefined && <span className={cn("text-text-secondary [&>svg]:size-5", { "text-text-tertiary": disabled })}>{icon}</span>}
 			{children}
 			{counter != undefined && (
-				<span className="text-xs border-border bg-bg-base text-text-secondary flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0">
+				<span className="border-border bg-bg-base text-text-secondary flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0 text-xs">
 					{counter}
 				</span>
 			)}
@@ -174,7 +174,7 @@ function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof
 	return (
 		<TabsPrimitive.Content
 			className={cn(
-				"focus-visible:ring-ring ring-offset-background m-0 max-w-full p-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden",
+				"focus-visible:ring-ring ring-offset-background focus-visible:outline-hidden m-0 max-w-full p-0 focus-visible:ring-2 focus-visible:ring-offset-2",
 				className
 			)}
 			{...props}
