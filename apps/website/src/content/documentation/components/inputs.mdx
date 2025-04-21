@@ -1,4 +1,45 @@
 ---
 title: Inputs
 description: Capture text or data with customizable inputs
+source: https://github.com/Radian-os
 ---
+
+<InputPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add input`} />
+
+##### Imports
+
+<Code language="tsx" code={`import Input from "@/components/ui/input"`} />
+
+##### Props
+
+| Prop Name  | Default Values | Values     |
+| ---------- | -------------- | ---------- |
+| rounded    |                |            |
+| size       |                |            |
+| label      | false          | true/false |
+| disabled   | false          | true/false |
+| prefixIcon | icon           | true/false |
+| suffixIcon | icon           | true/false |
+| hasError   | false          | true/false |
+| errorMsg   |                |            |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={`<Input 
+    rounded=""
+    size=""
+    disabled=""
+    label=""
+    placeholder="Enter your username here"
+    prefixIcon=""
+    suffixIcon=""
+    hasError=""
+    errorMsg=""
+/>`}
+/>

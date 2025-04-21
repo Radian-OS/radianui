@@ -20,7 +20,7 @@ function SearchInput({
 	errorMsg = "",
 	hasError = false,
 	size = "40",
-	rounded = "rounded",
+	rounded = "md",
 	id,
 	renderSearchResults,
 	value,

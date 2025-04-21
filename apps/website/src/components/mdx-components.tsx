@@ -41,6 +41,7 @@ import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+import InputPreview from "@/component-preview/input-preview"
 
 type MdxProps = {
 	code: string
@@ -80,6 +81,7 @@ const components: MDXComponents = {
 	Installation: () => <Installation />,
 	Manual: () => <Manual />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
+	InputPreview: () => <InputPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

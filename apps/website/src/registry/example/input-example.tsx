@@ -23,7 +23,7 @@ const sizes = ["32", "36", "40", "44", "48", "56"] as const
 
 const InputExample = () => {
 	const [size, setSize] = React.useState<SizeOptions>("40")
-	const [rounded, setRounded] = React.useState<RoundedOptions>("rounded")
+	const [rounded, setRounded] = React.useState<RoundedOptions>("md")
 	const [phone, setPhone] = React.useState("")
 	const [query, setQuery] = React.useState("")
 	const [searchResults, setSearchResults] = React.useState<{ id: string; title: string }[]>([])
@@ -175,7 +175,7 @@ const InputExample = () => {
 				multiple
 				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
 				url="http://localhost:8000/upload"
-				// headers={{ "Content-Type": "application/json" }}
+			// headers={{ "Content-Type": "application/json" }}
 			/>
 
 			<ProgressBar value={progress} />
