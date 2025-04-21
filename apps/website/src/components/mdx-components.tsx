@@ -39,8 +39,6 @@ import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-import Link from "next/link"
-import SocialButtonPreview from "@/component-preview/social-button-preview"
 import InputPreview from "@/component-preview/input-preview"
 
 type MdxProps = {
