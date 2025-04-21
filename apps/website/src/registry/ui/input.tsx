@@ -30,7 +30,7 @@ export const cvaInputVariants = {
 export const defaultInputSize = "40"
 export const defaultInputRadius = "md"
 // Creating a variant for input styles using cva
-const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border hover:bg-bg-level0 drop-shadow-xs bg-bg-base cursor-text", {
+const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -57,8 +57,8 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
 	*/
-	prefixIcon?: React.ReactNode
-	suffixIcon?: React.ReactNode
+	leadIcon?: React.ReactNode
+	trialIcon?: React.ReactNode
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	id?: string
@@ -72,8 +72,8 @@ function Input({
 	errorMsg,
 	hasError = false,
 	type = "text",
-	prefixIcon,
-	suffixIcon,
+	leadIcon,
+	trialIcon,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
 	id,
@@ -87,28 +87,27 @@ function Input({
 	return (
 		<div className={cn("text-fg-1 flex w-full flex-col gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
-				<Label id={htmlId} className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>
+				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, classNames?.label)}>
 					{label}
 				</Label>
 			)}
 			<label
-				htmlFor={htmlId}
 				className={cn(
 					inputVariants({ size, rounded }),
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError,
 						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-border-alpha focus-within:ring-2": !hasError,
-						"text-text-tertiary pointer-events-none": disabled,
+						"text-text-disabled cursor-not-allowed": disabled,
 					},
 					classNames?.wrapper
 				)}>
-				{prefixIcon && <span>{prefixIcon}</span>}
+				{leadIcon && <span>{leadIcon}</span>}
 				<input
 					id={htmlId}
 					className={cn(
-						"text-fg-1 placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 placeholder:text-sm placeholder:font-normal focus:ring-0",
+						"text-fg-1 text-sm placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
-							"text-text-tertiary cursor-not-allowed": disabled,
+							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
 						},
 						classNames?.input
 					)}
@@ -116,7 +115,7 @@ function Input({
 					disabled={disabled}
 					{...props}
 				/>
-				{suffixIcon && <span className="ml-auto">{suffixIcon}</span>}
+				{trialIcon && <span className="ml-auto">{trialIcon}</span>}
 			</label>
 			{hasError && <Label className={cn("text-error text-xs font-medium", className)}>{errorMsg}</Label>}
 		</div>

@@ -103,7 +103,7 @@ const InputPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>SuffixIcon</DropdownSubTrigger>
+                                <DropdownSubTrigger>TrailIcon</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
@@ -116,7 +116,7 @@ const InputPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>PrefixIcon</DropdownSubTrigger>
+                                <DropdownSubTrigger>LeadIcon</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
@@ -158,8 +158,8 @@ const InputPreview = () => {
                         disabled={disabled}
                         label={label ? "Username" : undefined}
                         placeholder="Enter your username here"
-                        prefixIcon={prefixIcon ? <CircleUserRound /> : null}
-                        suffixIcon={suffixIcon ? <CircleUserRound /> : null}
+                        leadIcon={prefixIcon ? <CircleUserRound /> : null}
+                        trialIcon={suffixIcon ? <CircleUserRound /> : null}
                         hasError={hasError}
                         errorMsg={hasError ? "There is an error" : undefined} />
                 </div>
