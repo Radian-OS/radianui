@@ -56,7 +56,7 @@ function useModalContext() {
 	return context
 }
 
-function Modal({ closeIcon = "visible", backdrop = "overlay", withSeparator = false, children, ...props }: ModalProps) {
+function Modal({ closeIcon = "hidden", backdrop = "overlay", withSeparator = false, children, ...props }: ModalProps) {
 	return (
 		<DialogPrimitive.Root {...props}>
 			<ModalContext.Provider value={{ closeIcon: closeIcon, backdrop: backdrop, withSeparator: withSeparator }}>{children}</ModalContext.Provider>
@@ -100,7 +100,7 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 			<DialogPrimitive.Content
 				data-slot="modal-content"
 				className={cn(
-					"group bg-bg1 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					"group bg-bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-1/2 left-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border border-border-alpa p-5 shadow-lg duration-200",
 					{"p-0 gap-0":withSeparator},
 					className
 				)}
@@ -108,7 +108,7 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 				{children}
 				{closeIcon !== "hidden" && (
 					<DialogPrimitive.Close className={closeButtonClass}>
-						<X className="h-4 w-4" />
+						<X className="h-4 w-4 text-text-disabled" />
 						<span className="sr-only">Close</span>
 					</DialogPrimitive.Close>
 				)}
@@ -128,6 +128,12 @@ function ModalHeader({ className, ...props }: ModalHeaderProps) {
 	)
 }
 ModalHeader.displayName = "DialogHeader"
+
+function ModalBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+	const { withSeparator } = useModalContext()
+	return <div data-slot="modal-body" className={cn({"p-5":withSeparator}, className)} {...props} />
+}
+ModalBody.displayName = "DialogBody"
 
 function ModalFooter({ className, ...props }: ModalFooterProps) {
 	const { withSeparator } = useModalContext()
@@ -150,4 +156,4 @@ function ModalDescription({ className, ...props }: ModalDescriptionProps) {
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName
 
-export { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalOverlay, ModalPortal, ModalTitle, ModalTrigger }
+export { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader,ModalBody, ModalOverlay, ModalPortal, ModalTitle, ModalTrigger }

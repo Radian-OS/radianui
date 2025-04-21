@@ -41,12 +41,12 @@ const AvatarFallbackIcon = ({ className, variant }: { className: string; variant
 				</clipPath>
 			</defs>
 			<g clipPath="url(#clip0_5846_11264)">
-				<path d="M5.3999 36C5.3999 29.0536 10.7999 23.4 17.9999 23.4C25.1999 23.4 30.5999 29.0536 30.5999 36" className="fill-bg1" />
+				<path d="M5.3999 36C5.3999 29.0536 10.7999 23.4 17.9999 23.4C25.1999 23.4 30.5999 29.0536 30.5999 36" className="fill-bg-base" />
 				<path
 					d="M18.0081 19.8C21.9759 19.8 25.1998 16.5761 25.1998 12.6083C25.1998 8.64044 21.9759 5.40002 18.0081 5.40002C14.0402 5.40002 10.7998 8.6239 10.7998 12.5918C10.7998 16.5596 14.0237 19.7835 17.9915 19.7835C18.0081 19.8"
-					className="fill-bg1"
+					className="fill-bg-base"
 				/>
-				<rect x="1" y="1" width="34" height="34" rx={borderRadiusSecondRect} ry={borderRadiusSecondRect} className="stroke-fg4" strokeWidth={2} />
+				<rect x="1" y="1" width="34" height="34" rx={borderRadiusSecondRect} ry={borderRadiusSecondRect} className="stroke-text-disabled" strokeWidth={2} />
 			</g>
 		</svg>
 	)
@@ -70,7 +70,7 @@ const VerifiedIcon = ({ className }: { className?: string }) => {
 const OnlineIndicator = ({ className }: { className?: string }) => {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" width={120} height={120} overflow={"visible"} viewBox="0 0 20 20" fill="none" className={className}>
-			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-bg1" />
+			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-bg-base" />
 			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" className="fill-success" />
 		</svg>
 	)
@@ -159,28 +159,28 @@ function Avatar({ src, name, className, size = "40", variant = "circle", status 
 	}, [src])
 
 	return (
-		<div data-slot="avatar" className={cn(avatarVariants({ size, variant }), className, "bg-fg4 relative")}>
+		<div data-slot="avatar" className={cn(avatarVariants({ size, variant }), className, "bg-text-disabled relative")}>
 			{src && imageStatus === "loaded" ? (
 				<img src={src} alt={name} className="size-full rounded-[inherit] object-cover" />
 			) : (
 				<span
 					className={cn(
 						"flex size-full items-center justify-center rounded-[inherit]",
-						name ? "bg-primary truncate px-1 overflow-ellipsis text-white" : "text-fg2 overflow-hidden bg-[inherit]"
+						name ? "bg-primary truncate px-1 overflow-ellipsis text-white" : "text-text-level2 overflow-hidden bg-[inherit]"
 					)}>
-					{name ? getInitials(name, size) : <AvatarFallbackIcon variant={variant} className={"text-bg1 size-full"} />}
+					{name ? getInitials(name, size) : <AvatarFallbackIcon variant={variant} className={"text-bg-base size-full"} />}
 				</span>
 			)}
 
 			{/*Render indicator based on status */}
 			{status !== undefined && (
 				<>
-					{status === "verified" && <VerifiedIcon className={cn(indicatorVariants({ size }), "stroke-bg1 fill-information")} />}
-					{status === "online" && <OnlineIndicator className={cn(indicatorVariants({ size }), "stroke-bg1 fill-success")} />}
+					{status === "verified" && <VerifiedIcon className={cn(indicatorVariants({ size }), "stroke-bg-base fill-information")} />}
+					{status === "online" && <OnlineIndicator className={cn(indicatorVariants({ size }), "stroke-bg-base fill-success")} />}
 					{status === "offline" && (
-						<Circle overflow={"visible"} clipPath="none" className={cn(indicatorVariants({ size }), "stroke-bg1 fill-fg4 stroke-10")} />
+						<Circle overflow={"visible"} clipPath="none" className={cn(indicatorVariants({ size }), "stroke-bg-base fill-text-disabled stroke-10")} />
 					)}
-					{status === "plus" && <CirclePlus className={cn(indicatorVariants({ size }), "fill-primary stroke-bg1 rounded-full stroke-3")} />}
+					{status === "plus" && <CirclePlus className={cn(indicatorVariants({ size }), "fill-primary stroke-bg-base rounded-full stroke-3")} />}
 				</>
 			)}
 		</div>

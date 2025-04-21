@@ -3,7 +3,7 @@ import { Button } from "../ui/button"
 import { Divider } from "../ui/divider"
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
-import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "../ui/modal"
+import { Modal, ModalBody, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "../ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 import { CircleAlert } from "lucide-react"
 
@@ -31,7 +31,7 @@ const Modal1 = () => (
 		<ModalContent>
 			<ModalHeader>
 				<div className="flex gap-3">
-					<div className="rounded-sm border p-2">
+					<div className="rounded-sm border p-2 flex items-center justify-center">
 						<CircleAlert className="size-6 text-fg2" />
 					</div>
 					<div>
@@ -39,9 +39,10 @@ const Modal1 = () => (
 					<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
 					</div>
 				</div>
-				
 			</ModalHeader>
-			<div className="bg-bg3 m-5 h-40 rounded-lg"></div>
+			<ModalBody>
+				<div className="bg-bg-level0 h-40 rounded-lg"/>
+			</ModalBody>
 			<ModalFooter>
 				<ModalClose asChild>
 					<Button variant="neutral-outline">Cancel</Button>
@@ -63,7 +64,7 @@ const Modal2 = () => (
 				<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
 			</ModalHeader>
 			<Divider className="-mx-5 my-0 w-100" />
-			<div className="bg-bg3 h-40 rounded-lg"></div>
+			<div className="bg-bg-level0 h-40 rounded-lg"></div>
 			<Divider className="-mx-5 my-0 w-100" />
 			<ModalFooter>
 				<ModalClose asChild>
@@ -91,10 +92,10 @@ const Modal3 = () => (
 					<TabsTrigger value="followers">Followers</TabsTrigger>
 					<TabsTrigger value="invites">Invites</TabsTrigger>
 				</TabsList>
-				<TabsContent value="view" className="bg-bg-level1 h-[67px] rounded-lg" />
-				<TabsContent value="mentions" className="bg-bg-level1 h-[67px] rounded-lg" />
-				<TabsContent value="followers" className="bg-bg-level1 h-[67px] rounded-lg" />
-				<TabsContent value="invites" className="bg-bg-level1 h-[67px] rounded-lg" />
+				<TabsContent value="view" className="bg-bg-level0 h-[67px] rounded-lg" />
+				<TabsContent value="mentions" className="bg-bg-level0 h-[67px] rounded-lg" />
+				<TabsContent value="followers" className="bg-bg-level0 h-[67px] rounded-lg" />
+				<TabsContent value="invites" className="bg-bg-level0 h-[67px] rounded-lg" />
 			</Tabs>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -117,9 +118,9 @@ const Modal4 = () => (
 				<ModalDescription>Select a template to start working on your project</ModalDescription>
 			</ModalHeader>
 			<div className="flex flex-col gap-4">
-				<div className="bg-bg-level1 h-[100px] rounded-lg" />
-				<div className="bg-bg-level1 h-[100px] rounded-lg" />
-				<div className="bg-bg-level1 h-[100px] rounded-lg" />
+				<div className="bg-bg-level0 h-[100px] rounded-lg" />
+				<div className="bg-bg-level0 h-[100px] rounded-lg" />
+				<div className="bg-bg-level0 h-[100px] rounded-lg" />
 			</div>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -138,7 +139,7 @@ const Modal5 = () => (
 		</ModalTrigger>
 		<ModalContent>
 			<ModalTitle className="hidden">Plain</ModalTitle>
-			<div className="bg-bg-level1 flex h-[100px] items-center justify-center rounded-lg">
+			<div className="bg-bg-level0 flex h-[100px] items-center justify-center rounded-lg">
 				<span>Content Area</span>
 			</div>
 		</ModalContent>
@@ -146,13 +147,15 @@ const Modal5 = () => (
 )
 
 const Modal6 = () => (
-	<Modal closeIcon="hidden">
+	<Modal closeIcon="hidden" withSeparator>
 		<ModalTrigger asChild>
 			<Button>Modal 6</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<ModalTitle>Share Project</ModalTitle>
-			<div className="flex flex-col gap-2">
+			<ModalHeader>
+				<ModalTitle>Share Project</ModalTitle>
+			</ModalHeader>
+			<div className="flex flex-col gap-2 p-5">
 				<Label htmlFor="project">Enter Recipients</Label>
 				<Input type="text" id="project" />
 			</div>
@@ -226,7 +229,7 @@ const Modal8 = () => (
 			<Button>Modal8</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg-level1 h-[220px] w-full rounded-lg" />
+			<div className="bg-bg-level0 h-[220px] w-full rounded-lg" />
 			<ModalHeader className="text-center">
 				<ModalTitle>Create a new account</ModalTitle>
 				<ModalDescription>This is a sample modal to stress test the xyz container in a modal. Here is a sample</ModalDescription>
@@ -251,7 +254,7 @@ const Modal9 = () => (
 			<Button>Modal9</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg-level1 h-[220px] w-full rounded-lg" />
+			<div className="bg-bg-level0 h-[220px] w-full rounded-lg" />
 			<ModalHeader>
 				<ModalTitle>Unlock Unlimited Access</ModalTitle>
 				<ModalDescription>Join the Radian team to unlock unlimited features and subsets of products</ModalDescription>
@@ -270,12 +273,12 @@ const Modal9 = () => (
 	</Modal>
 )
 const Modal10 = () => (
-	<Modal closeIcon="hidden">
+	<Modal closeIcon="hidden" withSeparator>
 		<ModalTrigger asChild>
 			<Button>Modal10</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg-level1 h-[220px] w-full rounded-lg" />
+			<div className="bg-bg-level0 h-[220px] w-full rounded-lg" />
 			<ModalHeader>
 				<ModalTitle>Unlock Unlimited Access</ModalTitle>
 				<ModalDescription>Join the Radian team to unlock unlimited features and subsets of products</ModalDescription>
@@ -293,7 +296,7 @@ const Modal10 = () => (
 const DeleteModal = () => (
 	<Modal>
 		<ModalTrigger asChild>
-			<Button className="bg-[#f20808]">Delete</Button>
+			<Button className="bg-red-800 hover:bg-red-700/90">Delete</Button>
 		</ModalTrigger>
 		<ModalContent>
 			<ModalHeader>

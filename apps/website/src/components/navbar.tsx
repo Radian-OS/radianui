@@ -99,7 +99,7 @@ export default function Navbar() {
 					</ul>
 				</section>
 
-				<Modal open={isOpen} onOpenChange={setIsOpen} closeIconVisibility="hidden">
+				<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
 					<ModalTrigger asChild>
 						<Button isIcon variant="neutral-outline" className="gap-2">
 							<Search />
