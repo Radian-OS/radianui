@@ -24,8 +24,7 @@ const BadgePlaygroundPreview = () => {
     const getExampleBadges = () => {
         switch (example) {
             case "Destructive":
-                return (<Badge key={key} closable={true} size={size} >
-                    <Dot size={36} className="stroke-error" />
+                return (<Badge variant="pastel" className="bg-error-focus text-error-text" key={key} size={size} >
                     Destructive
                 </Badge>
                 )
@@ -50,8 +49,10 @@ const BadgePlaygroundPreview = () => {
     const getExampleBadgeCode = () => {
         switch (example) {
             case "Destructive":
-                return `<Badge  closable={true} size={${size}} >
-<Dot size={36} className="stroke-error" >
+                return `<Badge
+variant="pastel" 
+className="bg-error-focus text-error-text"  
+size={${size}} >
 Destructive
 </Badge>`
 

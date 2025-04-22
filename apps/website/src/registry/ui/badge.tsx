@@ -34,12 +34,7 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border round
   },
 })
 
-const iconSizeMap: Record<BadgeSize, string> = {
-  "20": "size-3",
-  "24": "size-3",
-  "28": "size-4",
-  "32": "size-4",
-}
+
 
 function Badge({
   variant = "neutral-outline",
@@ -76,7 +71,7 @@ function Badge({
           <X
             onClick={() => setShowBadge(false)}
             className={cn(
-              iconSizeMap[size],
+              "w-4 h-4",
               "cursor-pointer font-extrabold",
               variant === "neutral-outline" && "text-text-disabled"
             )}
