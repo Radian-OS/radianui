@@ -39,7 +39,7 @@ export default function EmailSection() {
 							<Input
 								className="w-full sm:w-80"
 								placeholder="Enter your email"
-								prefixIcon={<Mail className="stroke-stroke" />}
+								leadIcon={<Mail className="stroke-stroke" />}
 								value={email}
 								type="email"
 								onChange={(e) => setEmail(e.target.value)}

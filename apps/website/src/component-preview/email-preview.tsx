@@ -12,64 +12,28 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Input } from "@/registry/ui/input"
-import { CircleUserRound } from "lucide-react"
+import { ArrowRight, Mail } from "lucide-react"
 
 
 export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
-const sizes = ["32", "36", "40", "44", "48", "56"]
 const booleanOptions = ["true", "false"]
+export type iconOptions = "Mail" | "Arrow"
 
-const InputPreview = () => {
-    const [rounded, setRounded] = useState<RoundedOptions>("lg")
-    const [size, setSize] = useState<SizeOptions>("40")
+const EmailPreview = () => {
     const [disabled, setDisabled] = useState<boolean>(false)
-    const [suffixIcon, setSuffixIcon] = useState<boolean>(false)
-    const [prefixIcon, setPrefixIcon] = useState<boolean>(false)
+    const [suffixIcon, setSuffixIcon] = useState<iconOptions>("Mail")
     const [hasError, setHasError] = useState<boolean>(false)
     const [label, setLabel] = useState<boolean>(true)
 
 
     return (
-        <Tabs defaultValue="preview" className="mb-10">
+        <Tabs defaultValue="preview" className="mb-10 mt-2">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <Dropdown>
                         <DropdownTrigger>Properties</DropdownTrigger>
                         <DropdownContent>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Rounded</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[rounded]}
-                                        onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-                                        minSelectionCount={1}>
-                                        {roundedOptions.map((roundedOption) => (
-                                            <DropdownItem value={roundedOption} key={roundedOption}>
-                                                {roundedOption}
-                                            </DropdownItem>
-                                        ))}
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Size</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[size]}
-                                        onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-                                        minSelectionCount={1}>
-                                        {sizes.map((size) => (
-                                            <DropdownItem value={size} key={size}>
-                                                {size}
-                                            </DropdownItem>
-                                        ))}
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
                             <DropdownSub>
                                 <DropdownSubTrigger>Label</DropdownSubTrigger>
                                 <DropdownSubContent>
@@ -103,28 +67,15 @@ const InputPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>TrailIcon</DropdownSubTrigger>
+                                <DropdownSubTrigger>Icon</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
                                         selectedValues={[String(suffixIcon)]}
-                                        onSelectedChange={(values) => setSuffixIcon(values[0] === "true")}
+                                        onSelectedChange={(values) => setSuffixIcon(values[0] as iconOptions)}
                                         minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>LeadIcon</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(prefixIcon)]}
-                                        onSelectedChange={(values) => setPrefixIcon(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
+                                        <DropdownItem value="Mail">Mail</DropdownItem>
+                                        <DropdownItem value="Arrow">Arrow</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
@@ -153,15 +104,13 @@ const InputPreview = () => {
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <Input classNames={{ base: "w-[320px]" }}
-                        rounded={rounded}
-                        size={size}
+                        type="email"
                         disabled={disabled}
-                        label={label ? "Username" : undefined}
-                        placeholder="Enter your username here"
-                        leadIcon={prefixIcon ? <CircleUserRound /> : null}
-                        trialIcon={suffixIcon ? <CircleUserRound /> : null}
+                        label={label ? "Email" : undefined}
+                        placeholder="designer@radianos.com"
+                        trialIcon={suffixIcon === "Mail" ? <Mail /> : <ArrowRight />}
                         hasError={hasError}
-                        errorMsg={hasError ? "There is an error" : undefined} />
+                        errorMsg={hasError ? "Invalid Email" : undefined} />
                 </div>
             </TabsContent>
 
@@ -171,15 +120,13 @@ const InputPreview = () => {
                     showLineNumbers
                     className="h-[420px]"
                     code={`<Input 
-    rounded="${rounded}"
-    size="${size}"
+    type="email"
     disabled="${disabled}"
     label="${label ? "Username" : undefined}"
     placeholder="Enter your username here"
+    trialIcon="${suffixIcon === "Mail" ? "<Mail />" : "<ArrowRight />"}"
     hasError="${hasError}"
     errorMsg="${hasError ? "There is an error" : undefined}"
-    ${prefixIcon ? 'leadIcon="<CircleUserRound />"' : ''}
-    ${suffixIcon ? 'trailIcon="<CircleUserRound />"' : ''}
 />`}
                 />
             </TabsContent>
@@ -187,4 +134,4 @@ const InputPreview = () => {
     )
 }
 
-export default InputPreview
+export default EmailPreview

@@ -13,7 +13,7 @@ const alertVariants = cva("w-full rounded-md p-4 flex gap-3", {
 	variants: {
 		type: {
 			neutral: "bg-bg-level0",
-			info: "border-information bg-information/10 text-information",
+			info: "border-info bg-info/10 text-info",
 			success: "border-success bg-success/10 text-success",
 			danger: "border-error bg-error/10 text-error",
 			warning: "border-warning bg-warning/10 text-warning",

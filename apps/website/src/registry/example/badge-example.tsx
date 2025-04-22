@@ -110,7 +110,7 @@ const BadgeDemo = () => {
 			<div className="space-y-4">
 				<div className="text-sm font-medium">Preview:</div>
 				<div className="flex items-center justify-center rounded-lg border p-8">
-					<Badge variant={variant} size={size} rounded={rounded} closable={closable}>
+					<Badge variant={variant} size={size}  closable={closable}>
 						{getIcon()}
 						Badge Example
 					</Badge>

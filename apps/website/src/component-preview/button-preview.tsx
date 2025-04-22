@@ -21,7 +21,7 @@ const ButtonPreview = () => {
 	type isIconType = "true" | "false"
 	type disabledType = "true" | "false"
 	// Colors type; neutral is removed.
-	type colors = "primary" | "information" | "success" | "error" | "warning"
+	type colors = "primary" | "info" | "success" | "error" | "warning"
 
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("36")
@@ -96,7 +96,7 @@ const ButtonPreview = () => {
 										minSelectionCount={1}
 										selectedValues={[color]}>
 										<DropdownItem value="primary">primary</DropdownItem>
-										<DropdownItem value="information">information</DropdownItem>
+										<DropdownItem value="info">info</DropdownItem>
 										<DropdownItem value="success">success</DropdownItem>
 										<DropdownItem value="error">error</DropdownItem>
 										<DropdownItem value="warning">warning</DropdownItem>

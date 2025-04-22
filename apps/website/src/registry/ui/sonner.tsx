@@ -11,7 +11,7 @@ const SonnerVariant = cva("relative group toast rounded-lg w-full h-auto text-xl
 			success: "bg-success text-white!",
 			error: "bg-error text-white!",
 			warning: "bg-warning text-white!",
-			information: "bg-information text-white!",
+			information: "bg-info text-white!",
 		},
 	},
 	defaultVariants: {
@@ -189,7 +189,7 @@ const toastClass = cva("group !p-0 toast group-[.toaster]:text-text-secondary", 
 			success: "group-[.toaster]:!bg-success group-[.toaster]:!border-none",
 			error: "group-[.toaster]:!bg-error group-[.toaster]:!border-none",
 			warning: "group-[.toaster]:!bg-warning group-[.toaster]:!border-none",
-			information: "group-[.toaster]:!bg-information group-[.toaster]:!border-none",
+			information: "group-[.toaster]:!bg-info group-[.toaster]:!border-none",
 		},
 		position: {
 			bottom: "group-[.toaster]:!shadow-[0_-10px_10px_-5px_rgba(0,0,0,0.1),0_-10px_10px_-5px_rgba(0,0,0,0.04)]",
