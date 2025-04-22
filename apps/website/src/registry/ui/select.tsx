@@ -112,6 +112,8 @@ export type SelectClassNames = {
 
 export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" | "size" | "rounded" | "disabled" | "className"> & {
 	selectedValues?: string[]
+	variant?: "strong" | "outline" | "soft" | "ghost" | "neutral-soft" | "neutral-outline" | null
+	disableOpenStyle?: boolean
 	onSelectedChange?: (values: string[]) => void
 	selectionMode?: "single" | "multiple"
 	isSearchable?: boolean
@@ -128,6 +130,8 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 function Select({
 	children,
 	label,
+	variant = "outline",
+	disableOpenStyle = false,
 	placeholder,
 	selectedValues,
 	onSelectedChange,
@@ -207,12 +211,13 @@ function Select({
 							renderTrigger(values)
 						) : (
 							<Button
-								variant="outline"
+								variant={variant}
 								className={cn(
 									SelectTriggerVariations({ size, rounded }),
 									{
 										"text-text-tertiary cursor-not-allowed": disabled,
-										"border-primary ring-primary/10 border ring-2": open,
+										"border-primary ring-primary/10 border ring-2": open && !disableOpenStyle,
+										"px-0": disableOpenStyle
 									},
 									"w-full truncate",
 									classNames?.trigger

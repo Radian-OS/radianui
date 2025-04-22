@@ -42,6 +42,8 @@ import GithubIntegrationModalExample from "@/registry/example/modal/github-integ
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 import InputPreview from "@/component-preview/input-preview"
+import EmailPreview from "@/component-preview/email-preview"
+import UrlPreview from "@/component-preview/url-preview"
 
 type MdxProps = {
 	code: string
@@ -82,6 +84,8 @@ const components: MDXComponents = {
 	Manual: () => <Manual />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	InputPreview: () => <InputPreview />,
+	UrlPreview: () => <UrlPreview />,
+	EmailPreview: () => <EmailPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
