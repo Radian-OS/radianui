@@ -19,7 +19,9 @@ export default function DeleteModalExample() {
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
 					<Modal>
 						<ModalTrigger asChild>
-							<Button className="bg-red-800 hover:bg-red-700/90">Delete</Button>
+							<Button variant={"strong"} color={"error"}>
+								Delete
+							</Button>
 						</ModalTrigger>
 						<ModalContent>
 							<ModalHeader>
@@ -30,7 +32,9 @@ export default function DeleteModalExample() {
 								<ModalClose asChild>
 									<Button variant="neutral-outline">Cancel</Button>
 								</ModalClose>
-								<Button variant={"strong"}>Delete</Button>
+								<Button variant={"strong"} color={"error"}>
+									Delete
+								</Button>
 							</ModalFooter>
 						</ModalContent>
 					</Modal>
@@ -44,7 +48,7 @@ export default function DeleteModalExample() {
 					className="h-105"
 					code={`<Modal>
 	<ModalTrigger asChild>
-		<Button className="bg-red-800 hover:bg-red-700/90">Delete</Button>
+		<Button variant={"strong"}  color={"error"}>Delete</Button>
 	</ModalTrigger>
 	<ModalContent>
 		<ModalHeader>
@@ -55,7 +59,7 @@ export default function DeleteModalExample() {
 			<ModalClose asChild>
 				<Button variant="neutral-outline">Cancel</Button>
 			</ModalClose>
-			<Button variant={"strong"}>Delete</Button>
+			<Button variant={"strong"}  color={"error"}>Delete</Button>
 		</ModalFooter>
 	</ModalContent>
 </Modal>`}

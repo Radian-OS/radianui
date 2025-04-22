@@ -5,3 +5,4 @@ build
 .contentlayer
 .husky
 public
+tailwind.config.ts

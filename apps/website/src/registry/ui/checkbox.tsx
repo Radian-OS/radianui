@@ -71,15 +71,17 @@ function Checkbox({
 
 	const sizeClasses: Record<string, string> = {
 		sm: "size-4 rounded-sm",
-		md: "size-5 rounded-md",
-		lg: "size-6 rounded-lg",
+		md: "size-5 rounded-sm",
+		lg: "size-6 rounded-md",
 	}
 
 	return (
 		<label
 			className={cn(
-				"inline-flex w-fit cursor-pointer items-center gap-2 text-sm",
-				disabled ? "text-text-tertiary cursor-not-allowed" : "cursor-pointer"
+				"inline-flex w-fit cursor-pointer gap-2",
+				disabled ? "text-text-tertiary cursor-not-allowed" : "cursor-pointer",
+				size === "lg" ? "text-base" : "text-sm",
+				className
 			)}>
 			<button
 				type="button"
@@ -90,25 +92,27 @@ function Checkbox({
 				onClick={handleClick}
 				onKeyDown={handleKeyDown}
 				className={cn(
-					"relative",
+					"focus-visible:ring-primary focus-visible:ring-offset-bg-base outline-hidden relative box-border border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
 					sizeClasses[size],
-					"outline-hidden border transition-all duration-200",
-					disabled ? "bg-bg-level1 cursor-not-allowed" : "cursor-pointer",
-					checked && "bg-primary border-none",
-					checked && disabled && "bg-text-tertiary border-none",
-					className
+					{
+						"bg-bg-level1 cursor-not-allowed": disabled,
+						"cursor-pointer": !disabled,
+						"bg-primary border-none": checked && !disabled,
+						"bg-text-tertiary border-none": checked && disabled,
+					}
 				)}
 				{...props}>
 				<input type="checkbox" checked={checked} name={name} value={value} hidden readOnly />
 
 				<div
 					className={cn(
-						"absolute inset-[1px] flex items-center justify-center text-white transition-opacity",
-						checked ? "opacity-100" : "opacity-0"
+						"absolute flex items-center justify-center text-white transition-opacity",
+						checked ? "opacity-100" : "opacity-0",
+						size === "sm" ? "inset-0.25" : size === "md" ? "inset-0.5" : size === "lg" ? "inset-1" : ""
 					)}>
 					{React.isValidElement(icon) &&
 						React.cloneElement(icon as React.ReactElement<React.ComponentProps<"svg"> & { size?: number }>, {
-							size: size === "sm" ? 12 : size === "md" ? 16 : 20,
+							size: size === "sm" ? 14 : 16,
 							className: "",
 						})}
 				</div>

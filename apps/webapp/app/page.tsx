@@ -31,7 +31,7 @@ export default function Home() {
 					priority
 				/>
 				<ol>
-					<li>
+					<li className="text-blue-800">
 						Get started by editing <code>apps/docs/app/page.tsx</code>
 					</li>
 					<li>Save and see your changes instantly.</li>

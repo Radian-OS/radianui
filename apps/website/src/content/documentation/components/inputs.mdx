@@ -6,6 +6,14 @@ source: https://github.com/Radian-os
 
 <InputPreview />
 
+#### Email Input
+
+<EmailPreview />
+
+#### Url Input
+
+<UrlPreview />
+
 ##### Installation
 
 <Code language="bash" tabs={true} code={`radianos add input`} />
@@ -16,30 +24,30 @@ source: https://github.com/Radian-os
 
 ##### Props
 
-| Prop Name  | Default Values | Values     |
-| ---------- | -------------- | ---------- |
-| rounded    |                |            |
-| size       |                |            |
-| label      | false          | true/false |
-| disabled   | false          | true/false |
-| prefixIcon | icon           | true/false |
-| suffixIcon | icon           | true/false |
-| hasError   | false          | true/false |
-| errorMsg   |                |            |
+| Prop Name | Default Values | Values     |
+| --------- | -------------- | ---------- |
+| rounded   |                |            |
+| size      |                |            |
+| label     | false          | true/false |
+| disabled  | false          | true/false |
+| leadIcon  | icon           |            |
+| trailIcon | icon           |            |
+| hasError  | false          | true/false |
+| errorMsg  |                |            |
 
 ##### Usage
 
 <Code
 	language="tsx"
 	code={`<Input 
-    rounded=""
-    size=""
-    disabled=""
-    label=""
+    rounded="sm"
+    size="32"
+    disabled="false"
+    label="Username"
     placeholder="Enter your username here"
-    prefixIcon=""
-    suffixIcon=""
-    hasError=""
-    errorMsg=""
+    leadIcon="<Mail/>"
+    trailIcon="<ArrowRight"
+    hasError="false"
+    errorMsg="There is a error"
 />`}
 />
