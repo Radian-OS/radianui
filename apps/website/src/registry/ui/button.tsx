@@ -9,7 +9,7 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
     className?: string
     children: React.ReactNode
     isIcon?: boolean
-    color?: "primary" | "information" | "success" | "error" | "warning"
+    color?: "primary" | "info" | "success" | "error" | "warning"
   }
 
 type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -21,7 +21,7 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center box-border transition duration-200 transform rounded-lg disabled:opacity-50  focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-fit",
+  "inline-flex items-center justify-center box-border transition duration-200 transform rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-fit",
   {
     variants: {
       variant: {
@@ -46,7 +46,7 @@ const buttonVariants = cva(
       },
       color: {
         primary: "",
-        information: "",
+        info: "",
         success: "",
         error: "",
         warning: "",
@@ -75,28 +75,28 @@ const buttonVariants = cva(
 
       // Strong variant + colors
       { variant: "strong", color: "primary", className: "bg-primary font-semibold text-static-white enabled:hover:bg-primary-hover   focus-visible:ring-primary focus-visible:outline-none" },
-      { variant: "strong", color: "information", className: "bg-information font-semibold text-static-white enabled:hover:bg-information-hover   focus-visible:ring-information focus-visible:outline-none" },
+      { variant: "strong", color: "info", className: "bg-info font-semibold text-static-white enabled:hover:bg-info-hover   focus-visible:ring-info focus-visible:outline-none" },
       { variant: "strong", color: "success", className: "bg-success font-semibold text-static-white enabled:hover:bg-success-hover   focus-visible:ring-success focus-visible:outline-none" },
       { variant: "strong", color: "error", className: "bg-error font-semibold text-static-white enabled:hover:bg-error-hover   focus-visible:ring-error focus-visible:outline-none" },
       { variant: "strong", color: "warning", className: "bg-warning font-semibold text-static-white enabled:hover:bg-warning-hover   focus-visible:ring-warning focus-visible:outline-none" },
 
       // Soft variant + colors
       { variant: "soft", color: "primary", className: "bg-primary-accent font-medium text-primary enabled:hover:bg-primary/15   focus-visible:ring-primary-focus focus-visible:outline-none" },
-      { variant: "soft", color: "information", className: "bg-information-accent font-medium text-information enabled:hover:bg-information/15   focus-visible:ring-information-focus focus-visible:outline-none" },
+      { variant: "soft", color: "info", className: "bg-info-accent font-medium text-info enabled:hover:bg-info/15   focus-visible:ring-info-focus focus-visible:outline-none" },
       { variant: "soft", color: "success", className: "bg-success-accent font-medium text-success enabled:hover:bg-success/15   focus-visible:ring-success-focus focus-visible:outline-none" },
       { variant: "soft", color: "error", className: "bg-error-accent font-medium text-error enabled:hover:bg-error/15   focus-visible:ring-error-focus focus-visible:outline-none" },
       { variant: "soft", color: "warning", className: "bg-warning-accent font-medium text-warning enabled:hover:bg-warning/15   focus-visible:ring-warning-focus focus-visible:outline-none" },
 
       // Outline variant + colors (updated to use outline & ring)
       { variant: "outline", color: "primary", className: "bg-bg-base font-medium outline outline-primary-stroke text-primary enabled:hover:bg-primary-accent   focus-visible:ring-primary-stroke" },
-      { variant: "outline", color: "information", className: "bg-bg-base font-medium outline outline-information-stroke text-information enabled:hover:bg-information-accent   focus-visible:ring-information-stroke" },
+      { variant: "outline", color: "info", className: "bg-bg-base font-medium outline outline-info-stroke text-info enabled:hover:bg-info-accent   focus-visible:ring-info-stroke" },
       { variant: "outline", color: "success", className: "bg-bg-base font-medium outline outline-success-stroke text-success enabled:hover:bg-success-accent   focus-visible:ring-success-stroke" },
       { variant: "outline", color: "error", className: "bg-bg-base font-medium outline outline-error-stroke text-error enabled:hover:bg-error-accent   focus-visible:ring-error-stroke" },
       { variant: "outline", color: "warning", className: "bg-bg-base font-medium outline outline-warning-stroke text-warning enabled:hover:bg-warning-accent   focus-visible:ring-warning-stroke" },
 
       // Ghost variant + colors
       { variant: "ghost", color: "primary", className: "bg-transparent text-primary font-medium enabled:hover:bg-primary/10" },
-      { variant: "ghost", color: "information", className: "bg-transparent text-information font-medium enabled:hover:bg-information/10" },
+      { variant: "ghost", color: "info", className: "bg-transparent text-info font-medium enabled:hover:bg-info/10" },
       { variant: "ghost", color: "success", className: "bg-transparent text-success font-medium enabled:hover:bg-success/10" },
       { variant: "ghost", color: "error", className: "bg-transparent text-error font-medium enabled:hover:bg-error/10" },
       { variant: "ghost", color: "warning", className: "bg-transparent text-warning font-medium enabled:hover:bg-warning/10" },

@@ -35,7 +35,7 @@ const BadgePlaygroundPreview = () => {
                     Label
                 </Badge>
             case "Avatar":
-                return <Badge variant="strong" className="bg-information" key={key} size={size} >
+                return <Badge variant="strong" className="bg-info" key={key} size={size} >
                     <Avatar status="online" src="/avatar.png" name="Roman Shrestha" size={'16'} />
                     Roman Shrestha
                 </Badge>
@@ -62,7 +62,7 @@ Label
 </Badge>`
 
             case "Avatar":
-                return `<Badge variant="strong" className="bg-information" size={${size}} >
+                return `<Badge variant="strong" className="bg-info" size={${size}} >
 <Avatar status="online" src="/avatar.png" name="Roman Shrestha" size={'16'} >
 Roman Shrestha
 </Badge>`
