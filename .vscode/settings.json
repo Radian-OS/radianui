@@ -23,7 +23,10 @@
     ]
   ],
   "files.associations": {
-    "*.css": "tailwindcss",
+    "*.css": "tailwindcss"
   },
-  "tailwindCSS.experimental.configFile": "apps/website/src/css/globals.css"
+  "tailwindCSS.experimental.configFile": {
+    "apps/website/src/css/globals.css": "apps/website/**",
+    "apps/webapp/app/globals.css": "apps/website/**",
+  }
 }
