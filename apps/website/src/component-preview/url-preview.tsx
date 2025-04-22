@@ -123,6 +123,7 @@ const UrlPreview = () => {
                         <Input
                             classNames={{ base: "w-full" }}
                             type="url"
+                            label={label ? "Url" : undefined}
                             disabled={disabled}
                             placeholder="radianos.com"
                             leadIcon={prefixIcon ? "https://" : null}
@@ -131,7 +132,7 @@ const UrlPreview = () => {
                             trialIcon={
                                 suffixIcon ? (
                                     <Select
-                                        variant="ghost"
+                                        variant="neutral-soft"
                                         disabled={disabled}
                                         selectedValues={[domain]}
                                         disableOpenStyle={true}
@@ -159,13 +160,13 @@ const UrlPreview = () => {
                     code={`<Input 
     type="url"
     disabled="${disabled}"
-    label="${label ? "Username" : undefined}"
-    placeholder="Enter your username here"
+    label="${label ? "Url" : undefined}"
+    placeholder="Enter your url here"
     leadIcon="${prefixIcon ? "https://" : "false"}"
     trailIcon=${suffixIcon ? (
                             `{ 
         <Select
-                variant="ghost"
+                variant="neutral-soft"
                 disabled=${disabled}
                 selectedValues={[domain]}
                 disableOpenStyle={true}
