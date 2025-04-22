@@ -12,7 +12,6 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Input } from "@/registry/ui/input"
-import { CircleUserRound } from "lucide-react"
 import { Select, SelectItem } from "@/registry/ui/select"
 
 
