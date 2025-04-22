@@ -9,7 +9,7 @@ type VariantOptions = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" |
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 // Kept RoundedOptions for ButtonGroup only
 type RoundedOptions = "square" | "rounded" | "full"
-type ColorOptions = "primary" | "information" | "success" | "error" | "warning"
+type ColorOptions = "primary" | "info" | "success" | "error" | "warning"
 
 const ButtonExample = () => {
 	// State for button properties

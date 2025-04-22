@@ -104,7 +104,7 @@ export default function Navbar() {
 						<Button isIcon variant="neutral-outline" className="gap-2">
 							<Search />
 							<span className="text-fg1 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
-							<Badge className="bg-bg3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
+							<Badge className="bg-bg-level3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
 								CTRL + K
 							</Badge>
 						</Button>

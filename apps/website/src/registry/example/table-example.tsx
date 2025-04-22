@@ -266,7 +266,6 @@ const columnsData = [
 		cell: ({ row }: { row: { original: PersonData } }) => (
 			<>
 				<Badge
-					rounded={true}
 					size="20"
 					className={cn(
 						row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary",
