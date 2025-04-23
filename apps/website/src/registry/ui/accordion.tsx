@@ -90,8 +90,8 @@ function AccordionItem({ children, className, ...props }: AccordionItemProps) {
 				"overflow-hidden",
 				variant === "box"
 					? size === "sm"
-						? "border-stroke mb-1.5 rounded-md border shadow-sm last:mb-0"
-						: "border-stroke mb-2 rounded-md border shadow-sm last:mb-0"
+						? "border-stroke shadow-2xs mb-1.5 rounded-md border last:mb-0"
+						: "border-stroke shadow-2xs mb-2 rounded-md border last:mb-0"
 					: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
 				className
 			)}

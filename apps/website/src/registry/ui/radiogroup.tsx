@@ -2,40 +2,39 @@
 
 import * as React from "react"
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
-import { Circle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type RadioGroupSize = "sm" | "md" | "lg"
 
-type RadioGroupContext = {
-	size: RadioGroupSize
+type RadioGroupItemProps = React.ComponentProps<typeof RadioGroupPrimitive.Item> & {
+	size?: RadioGroupSize
 }
 
 type RadioGroupProps = React.ComponentProps<typeof RadioGroupPrimitive.Root> & {
 	label?: string
 	size?: RadioGroupSize
+	disabled?: boolean
 }
 
-type RadioGroupItemProps = React.ComponentProps<typeof RadioGroupPrimitive.Item> & { size?: RadioGroupSize }
+type RadioGroupContextType = {
+	size: RadioGroupSize
+	disabled?: boolean
+}
 
-const RadioGroupContext = React.createContext<RadioGroupContext | null>(null)
+const RadioGroupContext = React.createContext<RadioGroupContextType | null>(null)
 
 function useRadioGroup() {
-	const context = React.use(RadioGroupContext)
-
-	if (!context) {
-		throw new Error("useRadioGroup must be used within a <RadioGroup />")
-	}
-
+	const context = React.useContext(RadioGroupContext)
+	if (!context) throw new Error("useRadioGroup must be used within a <RadioGroup />")
 	return context
 }
 
-function RadioGroup({ className, size = "md", label, children, ...props }: RadioGroupProps) {
+function RadioGroup({ className, label, size = "md", disabled, children, ...props }: RadioGroupProps) {
 	return (
 		<div className="flex flex-col gap-3">
 			{label && <span className="text-sm font-medium">{label}</span>}
-			<RadioGroupContext.Provider value={{ size }}>
-				<RadioGroupPrimitive.Root className={cn("flex flex-col gap-2", className)} data-slot="radio-group" {...props}>
+			<RadioGroupContext.Provider value={{ size, disabled }}>
+				<RadioGroupPrimitive.Root disabled={disabled} className={cn("flex flex-col gap-3", className)} data-slot="radio-group" {...props}>
 					{children}
 				</RadioGroupPrimitive.Root>
 			</RadioGroupContext.Provider>
@@ -45,43 +44,46 @@ function RadioGroup({ className, size = "md", label, children, ...props }: Radio
 
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
 
-function RadioGroupItem({ className, size: itemSize, children, ...props }: RadioGroupItemProps) {
-	const { size: groupSize } = useRadioGroup()
+function RadioGroupItem({ className, size: itemSize, disabled: itemDisabled, children, ...props }: RadioGroupItemProps) {
+	const { size: groupSize, disabled: groupDisabled } = useRadioGroup()
 	const size = itemSize ?? groupSize
-
-	const sizeClasses: Record<string, string> = {
-		sm: "size-4",
-		md: "size-5",
-		lg: "size-6",
-	}
-
-	const indicatorSizeClasses: Record<string, string> = {
-		sm: "size-2",
-		md: "size-2.5",
-		lg: "size-3",
-	}
+	const disabled = itemDisabled ?? groupDisabled
 
 	return (
-		<label className={cn("flex max-w-fit items-center gap-2 text-sm", props.disabled ? "text-text-tertiary cursor-not-allowed" : "cursor-pointer")}>
+		<label
+			className={cn(
+				"flex max-w-fit cursor-pointer items-center gap-2 text-sm font-medium",
+				{ 
+					"text-text-tertiary cursor-not-allowed": disabled ,
+					"text-base":size==="lg"
+				},
+				className
+			)}>
 			<RadioGroupPrimitive.Item
+				disabled={disabled}
 				data-slot="radio-item"
 				className={cn(
-					"data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-text-tertiary outline-hidden aspect-square rounded-full border transition-all duration-200 data-[state=checked]:border-none",
-					"flex items-center justify-center",
-					sizeClasses[size],
-					"border-border",
-					"disabled:cursor-not-allowed",
-					className
+					"outline-hidden border-border-alpha data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-text-tertiary focus-visible:ring-primary focus-visible:ring-offset-bg-base flex aspect-square items-center justify-center rounded-full border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed data-[state=checked]:border-none",
+					{
+						"size-4": size === "sm",
+						"size-5": size === "md",
+						"size-6": size === "lg",
+					}
 				)}
 				{...props}>
-				<RadioGroupPrimitive.Indicator className={cn("flex items-center justify-center", indicatorSizeClasses[size])}>
-					<Circle className="fill-white stroke-0" />
-				</RadioGroupPrimitive.Indicator>
+				<RadioGroupPrimitive.Indicator
+					className={cn("bg-bg-base flex items-center justify-center rounded-full", {
+						"size-2": size === "sm",
+						"size-2.5": size === "md",
+						"size-3": size === "lg",
+					})}
+				/>
 			</RadioGroupPrimitive.Item>
 			{children && <span>{children}</span>}
 		</label>
 	)
 }
+
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
 
 export { RadioGroup, RadioGroupItem }

@@ -47,9 +47,12 @@ import IndeterminateCheckboxExample from "@/registry/example/checkbox/indetermin
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
+import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
+import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example/banner-example-preview3"
+import DatePickerPreview from "@/component-preview/date-picker-preview"
 
 type MdxProps = {
 	code: string
@@ -81,6 +84,8 @@ const components: MDXComponents = {
 	TablePreview: () => <TablePreview />,
 	DrawerPreview: () => <DrawerPreview />,
 	RadiogroupPreview: () => <RadiogroupPreview />,
+	ARMRadiogroupExample: () => <ARMRadiogroupExample />,
+	DisabledRadiogroupExample: () => <DisabledRadiogroupExample />,
 	DisplayColor: () => <DisplayColor />,
 	HovercardPreview: () => <HovercardPreview />,
 	TabsPreview: () => <TabsPreview />,

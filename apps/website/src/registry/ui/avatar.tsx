@@ -147,7 +147,7 @@ function getInitials(name: string, size: AvatarProps["size"]) {
 	return size && parseInt(size) < 32 ? initials[0] : initials.slice(0, 2).join("")
 }
 
-function Avatar({ src, name, className, size = "40", variant = "circle", status }: AvatarProps) {
+function Avatar({ src, name, className, size = "36", variant = "circle", status }: AvatarProps) {
 	const [imageStatus, setImageStatus] = React.useState<ImageStatus>("loading")
 
 	React.useEffect(() => {
@@ -212,14 +212,14 @@ function AvatarGroup({ children, size = "20", max = 4, className, ...props }: Av
 				<div key={index}>
 					{React.cloneElement(child as React.ReactElement<AvatarProps>, {
 						size,
-						className: cn("border-2 border-bg1 box-content", (child as React.ReactElement<AvatarProps>).props.className),
+						className: cn("border-2 border-bg-base box-content", (child as React.ReactElement<AvatarProps>).props.className),
 					})}
 				</div>
 			))}
 
 			{/* Show remaining count if any */}
 			{remainingCount > 0 && (
-				<Avatar name={visibleCount} size={size} className={"border-bg1 bg-primary box-content border-2 font-normal text-white"} />
+				<Avatar name={visibleCount} size={size} className={"border-bg-base bg-primary box-content border-2 font-normal text-white"} />
 			)}
 		</div>
 	)
