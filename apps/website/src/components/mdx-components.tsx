@@ -8,7 +8,7 @@ import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
-import BadgePlaygroundPreview from "@/component-preview/badge-playground-preview"
+import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BadgePreview from "@/component-preview/badge-preview"
 import BannerPreview from "@/component-preview/banner-preview"
 import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
@@ -88,7 +88,7 @@ const components: MDXComponents = {
 	Installation: () => <Installation />,
 	Manual: () => <Manual />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
-	BadgePlaygroundPreview: () => <BadgePlaygroundPreview />,
+	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,

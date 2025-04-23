@@ -95,11 +95,11 @@ const buttonVariants = cva(
       { variant: "outline", color: "warning", className: "bg-transparent font-medium outline outline-warning-stroke text-warning hover:bg-warning-accent focus-visible:ring-warning-stroke" },
 
       // Ghost variant + colors
-      { variant: "ghost", color: "primary", className: "bg-transparent text-primary font-medium hover:bg-primary/10 focus-visible:ring-primary-focus" },
-      { variant: "ghost", color: "info", className: "bg-transparent text-info font-medium hover:bg-info/10 focus-visible:ring-info-focus" },
-      { variant: "ghost", color: "success", className: "bg-transparent text-success font-medium hover:bg-success/10 focus-visible:ring-success-focus" },
-      { variant: "ghost", color: "error", className: "bg-transparent text-error font-medium hover:bg-error/10 focus-visible:ring-error-focus" },
-      { variant: "ghost", color: "warning", className: "bg-transparent text-warning font-medium hover:bg-warning/10 focus-visible:ring-warning-focus" },
+      { variant: "ghost", color: "primary", className: "bg-transparent text-primary font-medium hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-primary-focus" },
+      { variant: "ghost", color: "info", className: "bg-transparent text-info font-medium hover:bg-info/10 focus-visible:outline-none focus-visible:ring-info-focus" },
+      { variant: "ghost", color: "success", className: "bg-transparent text-success font-medium hover:bg-success/10 focus-visible:outline-none focus-visible:ring-success-focus" },
+      { variant: "ghost", color: "error", className: "bg-transparent text-error font-medium hover:bg-error/10 focus-visible:outline-none focus-visible:ring-error-focus" },
+      { variant: "ghost", color: "warning", className: "bg-transparent text-warning font-medium hover:bg-warning/10 focus-visible:outline-none focus-visible:ring-warning-focus" },
     ],
   }
 )
