@@ -12,32 +12,64 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Input } from "@/registry/ui/input"
-import { Select, SelectItem } from "@/registry/ui/select"
-import { Label } from "@/registry/ui/label"
+import { CircleUserRound } from "lucide-react"
 
 
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
+const sizes = ["28", "32", "36", "40", "44", "48"]
 const booleanOptions = ["true", "false"]
-export type domainOption = ".com" | ".org" | ".net"
 
-
-const UrlPreview = () => {
+const DatePickerPreview = () => {
+    const [rounded, setRounded] = useState<RoundedOptions>("lg")
+    const [size, setSize] = useState<SizeOptions>("40")
     const [disabled, setDisabled] = useState<boolean>(false)
     const [suffixIcon, setSuffixIcon] = useState<boolean>(false)
-    const [prefixIcon, setPrefixIcon] = useState<boolean>(true)
+    const [prefixIcon, setPrefixIcon] = useState<boolean>(false)
     const [hasError, setHasError] = useState<boolean>(false)
     const [label, setLabel] = useState<boolean>(true)
-    const [domain, setDomain] = useState<domainOption>(".com")
-
 
 
     return (
-        <Tabs defaultValue="preview" className="mb-10 mt-2">
+        <Tabs defaultValue="preview" className="mb-10">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <Dropdown>
                         <DropdownTrigger>Properties</DropdownTrigger>
                         <DropdownContent>
+                            <DropdownSub>
+                                <DropdownSubTrigger>Rounded</DropdownSubTrigger>
+                                <DropdownSubContent>
+                                    <DropdownGroup
+                                        selectionMode="single"
+                                        selectedValues={[rounded]}
+                                        onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
+                                        minSelectionCount={1}>
+                                        {roundedOptions.map((roundedOption) => (
+                                            <DropdownItem value={roundedOption} key={roundedOption}>
+                                                {roundedOption}
+                                            </DropdownItem>
+                                        ))}
+                                    </DropdownGroup>
+                                </DropdownSubContent>
+                            </DropdownSub>
+                            <DropdownSub>
+                                <DropdownSubTrigger>Size</DropdownSubTrigger>
+                                <DropdownSubContent>
+                                    <DropdownGroup
+                                        selectionMode="single"
+                                        selectedValues={[size]}
+                                        onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
+                                        minSelectionCount={1}>
+                                        {sizes.map((size) => (
+                                            <DropdownItem value={size} key={size}>
+                                                {size}
+                                            </DropdownItem>
+                                        ))}
+                                    </DropdownGroup>
+                                </DropdownSubContent>
+                            </DropdownSub>
                             <DropdownSub>
                                 <DropdownSubTrigger>Label</DropdownSubTrigger>
                                 <DropdownSubContent>
@@ -71,12 +103,12 @@ const UrlPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>LeadOptions</DropdownSubTrigger>
+                                <DropdownSubTrigger>Trail</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
-                                        selectedValues={[String(prefixIcon)]}
-                                        onSelectedChange={(values) => setPrefixIcon(values[0] === "true")}
+                                        selectedValues={[String(suffixIcon)]}
+                                        onSelectedChange={(values) => setSuffixIcon(values[0] === "true")}
                                         minSelectionCount={1}>
                                         <DropdownItem value="true">Yes</DropdownItem>
                                         <DropdownItem value="false">No</DropdownItem>
@@ -84,12 +116,12 @@ const UrlPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>TrailOptions</DropdownSubTrigger>
+                                <DropdownSubTrigger>Lead</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
-                                        selectedValues={[String(suffixIcon)]}
-                                        onSelectedChange={(values) => setSuffixIcon(values[0] === "true")}
+                                        selectedValues={[String(prefixIcon)]}
+                                        onSelectedChange={(values) => setPrefixIcon(values[0] === "true")}
                                         minSelectionCount={1}>
                                         <DropdownItem value="true">Yes</DropdownItem>
                                         <DropdownItem value="false">No</DropdownItem>
@@ -120,38 +152,17 @@ const UrlPreview = () => {
 
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-                    <div className="*:not-first:mt-2">
-                        {label && (<Label>Url</Label>)}
-                        <div className="flex rounded-md shadow-xs">
-                            <Input
-                                size="36"
-                                disabled={disabled}
-                                className="-me-px rounded-e-none shadow-none"
-                                placeholder="radianos"
-                                type="text"
-                                lead={prefixIcon ? "https://" : ""}
-                                hasError={hasError}
-                                errorMsg={hasError ? "Invalid Email" : undefined}
-                            />
-                            {
-                                suffixIcon && (
-                                    <Select
-                                        selectedValues={[domain]}
-                                        onSelectedChange={(values) => setDomain(values[0] as domainOption)}
-                                        disabled={disabled}
-                                        disableOpenStyle={true}
-                                        size="36"
-                                        className=" -ms-2 w-fit">
-                                        <SelectItem value=".com">.com</SelectItem>
-                                        <SelectItem value=".org">.org</SelectItem>
-                                        <SelectItem value=".net">.net</SelectItem>
-                                    </Select>
-                                )
-                            }
-                        </div>
-                    </div>
+                    <Input classNames={{ base: "w-[320px]" }}
+                        rounded={rounded}
+                        size={size}
+                        disabled={disabled}
+                        label={label ? "Username" : undefined}
+                        placeholder="Enter your username here"
+                        lead={prefixIcon ? <CircleUserRound /> : null}
+                        trial={suffixIcon ? <CircleUserRound /> : null}
+                        hasError={hasError}
+                        errorMsg={hasError ? "There is an error" : undefined} />
                 </div>
-
             </TabsContent>
 
             <TabsContent value="code">
@@ -159,49 +170,21 @@ const UrlPreview = () => {
                     language="tsx"
                     showLineNumbers
                     className="h-[420px]"
-                    code={suffixIcon ? (
-                        `
-<div className="*:not-first:mt-2">
-    {label && <Label>Url</Label>}
-    <div className="flex rounded-md shadow-xs">
-        <Input
-            size="36"
-            className="-me-px rounded-e-none shadow-none"
-            placeholder="radianos"
-            type="text"
-            />
-                {suffixIcon && (
-                    <Select
-                        selectedValues={[domain]}
-                        onSelectedChange={(values) => setDomain(values[0] as domainOption)}
-                        disabled={disabled}
-                        disableOpenStyle={true}
-                        size="36"
-                        className="-ms-2 w-fit"
-                    >
-                        <SelectItem value=".com">.com</SelectItem>
-                        <SelectItem value=".org">.org</SelectItem>
-                        <SelectItem value=".net">.net</SelectItem>
-                    </Select>
-            )}
-    </div>
-</div>`
-                    ) : (
-                        `
-<Input
-    type="url"
-    disabled={disabled}
-    label={label ? "Url" : undefined}
-    placeholder="Enter your url here"
-    lead={prefixIcon ? "https://" : undefined}
-    hasError={hasError}
-    errorMsg={hasError ? "There is an error" : undefined}
-/>`
-                    )}
+                    code={`<Input 
+    rounded="${rounded}"
+    size="${size}"
+    disabled="${disabled}"
+    label="${label ? "Username" : undefined}"
+    placeholder="Enter your username here"
+    hasError="${hasError}"
+    errorMsg="${hasError ? "There is an error" : undefined}"
+    ${prefixIcon ? 'leadIcon="<CircleUserRound />"' : ''}
+    ${suffixIcon ? 'trailIcon="<CircleUserRound />"' : ''}
+/>`}
                 />
             </TabsContent>
         </Tabs>
     )
 }
 
-export default UrlPreview
+export default DatePickerPreview

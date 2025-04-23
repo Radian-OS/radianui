@@ -5,7 +5,6 @@ import { cva } from "class-variance-authority"
 import { Command as CommandPrimitive } from "cmdk"
 import { Check, ChevronDown, ChevronUp, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 import { Divider } from "./divider"
 import { InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
@@ -130,7 +129,6 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 function Select({
 	children,
 	label,
-	variant = "outline",
 	disableOpenStyle = false,
 	placeholder,
 	selectedValues,
