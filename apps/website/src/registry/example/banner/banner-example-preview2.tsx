@@ -15,7 +15,7 @@ const BannerExamplePreview2 = () => {
             </TabsList>
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-                    <Banner className="flex items-center justify-center gap-3" variant="primary">
+                    <Banner className="flex flex-col sm:flex-row items-center justify-center gap-3" variant="primary">
                         <Moon />
                         Radian is now available at 20% for all users in Nepal. Claim your subscription now
                         <Button variant="outline" className="text-static-white outline outline-static-white hover:text-static-white hover:bg-primary-hover" >

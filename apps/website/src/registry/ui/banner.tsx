@@ -3,12 +3,14 @@
 import { HTMLAttributes, ReactNode, useState } from "react"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 type BannerProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof bannerVariants> & {
 		children: ReactNode
 		variant?: 'primary' | 'outline' | 'gray' | 'destructive'
 		closable?: boolean
+		className?: string
 	}
 
 const bannerVariants = cva("py-2 px-4 flex items-center justify-center gap-2.5 relative text-sm w-full", {
@@ -25,7 +27,7 @@ const bannerVariants = cva("py-2 px-4 flex items-center justify-center gap-2.5 r
 	},
 })
 
-function Banner({ children, variant = "gray", closable, ...props }: BannerProps) {
+function Banner({ children, variant = "gray", closable, className = '', ...props }: BannerProps) {
 	const [showBanner, setShowBanner] = useState(true)
 	function getClosableVariant() {
 		if (["primary", "destructive"].includes(variant)) {
@@ -38,7 +40,7 @@ function Banner({ children, variant = "gray", closable, ...props }: BannerProps)
 
 	return (
 		showBanner && (
-			<div {...props} className={bannerVariants({ variant })}>
+			<div {...props} className={cn(bannerVariants({ variant }), className)} >
 				{children}
 				{closable && <X size={20} onClick={() => setShowBanner(false)} className={`${getClosableVariant()}  absolute right-4 cursor-pointer`} />}
 			</div>
