@@ -22,6 +22,8 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import EmailPreview from "@/component-preview/email-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
+import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
+import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import InputPreview from "@/component-preview/input-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
@@ -47,6 +49,7 @@ import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+import BannerExamplePreview3 from "@/registry/example/banner/banner-example/banner-example-preview3"
 
 type MdxProps = {
 	code: string
@@ -92,6 +95,9 @@ const components: MDXComponents = {
 	InputPreview: () => <InputPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
+	BannerExamplePreview1: () => <BannerExamplePreview1 />,
+	BannerExamplePreview2: () => <BannerExamplePreview2 />,
+	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
