@@ -7,31 +7,40 @@ import { X } from "lucide-react"
 type BannerProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof bannerVariants> & {
 		children: ReactNode
-		variant?: "dark" | "transparent" | "soft"
+		variant?: 'primary' | 'outline' | 'gray' | 'destructive'
 		closable?: boolean
 	}
 
 const bannerVariants = cva("py-2 px-4 flex items-center justify-center gap-2.5 relative text-sm w-full", {
 	variants: {
 		variant: {
-			dark: "bg-black text-white",
-			transparent: "bg-transparent border-b",
-			soft: "bg-bg-level2",
+			gray: "bg-fill-level2",
+			primary: "bg-primary text-static-white",
+			outline: "bg-base  border-b",
+			destructive: "bg-error text-static-white",
 		},
 	},
 	defaultVariants: {
-		variant: "dark",
+		variant: "gray",
 	},
 })
 
-function Banner({ children, variant = "dark", closable, ...props }: BannerProps) {
+function Banner({ children, variant = "gray", closable, ...props }: BannerProps) {
 	const [showBanner, setShowBanner] = useState(true)
+	function getClosableVariant() {
+		if (["primary", "destructive"].includes(variant)) {
+			return "text-static-white"
+		}
+		if (["outline", "gray"].includes(variant)) {
+			return "text-text-disabled"
+		}
+	}
 
 	return (
 		showBanner && (
 			<div {...props} className={bannerVariants({ variant })}>
 				{children}
-				{closable && <X size={16} onClick={() => setShowBanner(false)} className="stroke-text-tertiary absolute right-4 cursor-pointer" />}
+				{closable && <X size={20} onClick={() => setShowBanner(false)} className={`${getClosableVariant()}  absolute right-4 cursor-pointer`} />}
 			</div>
 		)
 	)
