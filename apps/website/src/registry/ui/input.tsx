@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { Label } from "./label"
 
-export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 // Variants for input styles based on size and rounded options
 export const cvaInputVariants = {
@@ -18,17 +18,27 @@ export const cvaInputVariants = {
 		"2xl": "rounded-2xl",
 	},
 	size: {
+		"28": "h-7 text-xs p-1.5",
 		"32": "h-8 text-sm px-3 py-1.5",
 		"36": "h-9 text-sm px-3 py-2",
 		"40": "h-10 text-sm px-3 py-2.5",
 		"44": "h-11 text-base py-2.5 px-3.5",
 		"48": "h-12 text-base py-3 px-3.5",
-		"56": "h-14 text-base py-4 px-3.5",
-	},
+	}
 }
 
 export const defaultInputSize = "40"
 export const defaultInputRadius = "md"
+
+const sizeHeightMapping = {
+	28: "h-4 w-4",
+	32: "h-5 w-5",
+	36: "h-5 w-5",
+	40: "h-5 w-5",
+	44: "h-6 w-6",
+	48: "h-6 w-6",
+};
+
 // Creating a variant for input styles using cva
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
 	variants: {
@@ -57,8 +67,8 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
 	*/
-	leadIcon?: React.ReactNode
-	trialIcon?: React.ReactNode
+	lead?: React.ReactNode
+	trial?: React.ReactNode
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	id?: string
@@ -72,8 +82,8 @@ function Input({
 	errorMsg,
 	hasError = false,
 	type = "text",
-	leadIcon,
-	trialIcon,
+	lead,
+	trial,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
 	id,
@@ -87,7 +97,7 @@ function Input({
 	return (
 		<div className={cn("text-fg-1 flex w-full flex-col gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
-				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, classNames?.label)}>
+				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed ": disabled }, classNames?.label)}>
 					{label}
 				</Label>
 			)}
@@ -97,11 +107,23 @@ function Input({
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError,
 						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-border-alpha focus-within:ring-2": !hasError,
-						"text-text-disabled cursor-not-allowed": disabled,
+						"text-text-disabled cursor-not-allowed bg-fill-level1": disabled,
 					},
 					classNames?.wrapper
 				)}>
-				{leadIcon && <span>{leadIcon}</span>}
+				{lead && (
+					<span className={cn("flex items-center justify-center p-1 rounded",
+						{
+							" text-text-tertiary": !disabled,
+							" text-text-disabled": disabled,
+						})}>
+						{React.isValidElement(lead)
+							? React.cloneElement(lead as React.ReactElement<{ className?: string }>, {
+								className: cn("h-full w-auto", (lead as React.ReactElement<{ className?: string }>)?.props?.className || ""),
+							})
+							: lead}
+					</span>
+				)}
 				<input
 					id={htmlId}
 					className={cn(
@@ -115,7 +137,18 @@ function Input({
 					disabled={disabled}
 					{...props}
 				/>
-				{trialIcon && <span className="ml-auto">{trialIcon}</span>}
+				{trial && (
+					<span className={cn("flex items-center justify-center p-1 rounded", {
+						" text-text-tertiary": !disabled,
+						" text-text-disabled": disabled,
+					})}>
+						{React.isValidElement(trial)
+							? React.cloneElement(trial as React.ReactElement<{ className?: string }>, {
+								className: cn((trial as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
+							})
+							: trial}
+					</span>
+				)}
 			</label>
 			{hasError && <Label className={cn("text-error text-xs font-medium", className)}>{errorMsg}</Label>}
 		</div>

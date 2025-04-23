@@ -18,11 +18,11 @@ import { ArrowRight, Mail } from "lucide-react"
 export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const booleanOptions = ["true", "false"]
-export type iconOptions = "Mail" | "Arrow"
+export type iconOptions = "Mail" | "Arrow" | "Default"
 
 const EmailPreview = () => {
     const [disabled, setDisabled] = useState<boolean>(false)
-    const [suffixIcon, setSuffixIcon] = useState<iconOptions>("Mail")
+    const [suffixIcon, setSuffixIcon] = useState<iconOptions>("Default")
     const [hasError, setHasError] = useState<boolean>(false)
     const [label, setLabel] = useState<boolean>(true)
 
@@ -67,13 +67,14 @@ const EmailPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>Icon</DropdownSubTrigger>
+                                <DropdownSubTrigger>Variant</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
                                         selectedValues={[String(suffixIcon)]}
                                         onSelectedChange={(values) => setSuffixIcon(values[0] as iconOptions)}
                                         minSelectionCount={1}>
+                                        <DropdownItem value="Default">Default</DropdownItem>
                                         <DropdownItem value="Mail">Mail</DropdownItem>
                                         <DropdownItem value="Arrow">Arrow</DropdownItem>
                                     </DropdownGroup>
@@ -108,8 +109,15 @@ const EmailPreview = () => {
                         disabled={disabled}
                         label={label ? "Email" : undefined}
                         placeholder="designer@radianos.com"
-                        trialIcon={suffixIcon === "Mail" ? <Mail /> : <ArrowRight />}
-                        hasError={hasError}
+                        trial={
+                            suffixIcon === "Mail" ? (
+                                <Mail />
+                            ) : suffixIcon === "Arrow" ? (
+                                <ArrowRight />
+                            ) : (
+                                ""
+                            )
+                        } hasError={hasError}
                         errorMsg={hasError ? "Invalid Email" : undefined} />
                 </div>
             </TabsContent>
@@ -122,8 +130,8 @@ const EmailPreview = () => {
                     code={`<Input 
     type="email"
     disabled="${disabled}"
-    label="${label ? "Username" : undefined}"
-    placeholder="Enter your username here"
+    label="${label ? "Email" : undefined}"
+    placeholder="Enter your email here"
     trialIcon="${suffixIcon === "Mail" ? "<Mail />" : "<ArrowRight />"}"
     hasError="${hasError}"
     errorMsg="${hasError ? "There is an error" : undefined}"
