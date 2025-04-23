@@ -15,10 +15,10 @@ import { Input } from "@/registry/ui/input"
 import { CircleUserRound } from "lucide-react"
 
 
-export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
-const sizes = ["32", "36", "40", "44", "48", "56"]
+const sizes = ["28", "32", "36", "40", "44", "48"]
 const booleanOptions = ["true", "false"]
 
 const InputPreview = () => {
@@ -103,7 +103,7 @@ const InputPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>TrailIcon</DropdownSubTrigger>
+                                <DropdownSubTrigger>Trail</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
@@ -116,7 +116,7 @@ const InputPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>LeadIcon</DropdownSubTrigger>
+                                <DropdownSubTrigger>Lead</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
@@ -158,8 +158,8 @@ const InputPreview = () => {
                         disabled={disabled}
                         label={label ? "Username" : undefined}
                         placeholder="Enter your username here"
-                        leadIcon={prefixIcon ? <CircleUserRound /> : null}
-                        trialIcon={suffixIcon ? <CircleUserRound /> : null}
+                        lead={prefixIcon ? <CircleUserRound /> : null}
+                        trial={suffixIcon ? <CircleUserRound /> : null}
                         hasError={hasError}
                         errorMsg={hasError ? "There is an error" : undefined} />
                 </div>
