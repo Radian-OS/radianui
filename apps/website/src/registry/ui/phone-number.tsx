@@ -199,12 +199,12 @@ const phoneVariants = cva("", {
 	variants: {
 		...cvaInputVariants,
 		size: {
+			"28": "h-7 text-xs",
 			"32": "h-8 text-sm",
 			"36": "h-9 text-sm",
 			"40": "h-10 text-sm",
 			"44": "h-11 text-base",
 			"48": "h-12 text-base",
-			"56": "h-14 text-base",
 		},
 	},
 	defaultVariants: {
@@ -241,8 +241,8 @@ function PhoneNumber({
 	// Filters the country codes based on allowedCountries prop
 	const FILTERED_COUNTRY_CODES = allowedCountries
 		? COUNTRY_CODES.filter(function (data) {
-				allowedCountries.includes(data.countryCode)
-			})
+			allowedCountries.includes(data.countryCode)
+		})
 		: COUNTRY_CODES
 	// State management for focus and internal country code/number
 	const [isFocused, setIsFocused] = React.useState(false)

@@ -5,7 +5,6 @@ import { cva } from "class-variance-authority"
 import { Command as CommandPrimitive } from "cmdk"
 import { Check, ChevronDown, ChevronUp, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 import { Divider } from "./divider"
 import { InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
@@ -130,7 +129,6 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 function Select({
 	children,
 	label,
-	variant = "outline",
 	disableOpenStyle = false,
 	placeholder,
 	selectedValues,
@@ -205,34 +203,37 @@ function Select({
 			}}>
 			<div className={cn("flex h-full w-full flex-col gap-1", className, classNames?.base)}>
 				{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
-				<Popover open={open} onOpenChange={setOpen} align="start">
+				<Popover open={open} onOpenChange={(newOpen) => {
+					if (!disabled) {
+						setOpen(newOpen);
+					}
+				}} align="start">
 					<PopoverTrigger asChild>
 						{renderTrigger ? (
 							renderTrigger(values)
 						) : (
-							<Button
-								variant={variant}
-								className={cn(
+							<div
+								className={cn(" border bg-bg-level1 flex items-center justify-center h-full cursor-pointer",
 									SelectTriggerVariations({ size, rounded }),
 									{
-										"text-text-tertiary cursor-not-allowed": disabled,
+										"text-text-disabled cursor-not-allowed": disabled,
 										"border-primary ring-primary/10 border ring-2": open && !disableOpenStyle,
-										"px-0": disableOpenStyle
+										[`border rounded-l-radius-xs rounded-r-radius-${rounded}`]: disableOpenStyle,
+										[`border-primary ring-primary/10 border ring-2 rounded-l-radius-xs rounded-r-radius-${rounded}`]: open && disableOpenStyle,
 									},
 									"w-full truncate",
 									classNames?.trigger
-								)}
-								disabled={disabled}>
+								)}>
 								<span
 									className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
-										"text-base": size === "44" || size === "48" || size === "56",
+										"text-base": size === "44" || size === "48",
 									})}>
 									{selectedLabels.length == 0 && placeholder}
 									{selectionMode === "single" && selectedLabels.length == 1 && selectedLabels[0]}
 									{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
 								</span>
 								{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
-							</Button>
+							</div>
 						)}
 					</PopoverTrigger>
 					<PopoverContent className="w-fit p-0">

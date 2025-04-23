@@ -13,11 +13,12 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Input } from "@/registry/ui/input"
 import { Select, SelectItem } from "@/registry/ui/select"
+import { Label } from "@/registry/ui/label"
 
 
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const booleanOptions = ["true", "false"]
-export type domainOption = ".com" | ".  org" | ".net"
+export type domainOption = ".com" | ".org" | ".net"
 
 
 const UrlPreview = () => {
@@ -119,35 +120,36 @@ const UrlPreview = () => {
 
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-                    <div className="relative w-[320px]">
-                        <Input
-                            classNames={{ base: "w-full" }}
-                            type="url"
-                            label={label ? "Url" : undefined}
-                            disabled={disabled}
-                            placeholder="radianos.com"
-                            leadIcon={prefixIcon ? "https://" : null}
-                            hasError={hasError}
-                            errorMsg={hasError ? "Invalid Url" : undefined}
-                            trialIcon={
-                                suffixIcon ? (
+                    <div className="*:not-first:mt-2">
+                        {label && (<Label>Url</Label>)}
+                        <div className="flex rounded-md shadow-xs">
+                            <Input
+                                size="36"
+                                disabled={disabled}
+                                className="-me-px rounded-e-none shadow-none"
+                                placeholder="radianos"
+                                type="text"
+                                lead={prefixIcon ? "https://" : ""}
+                                hasError={hasError}
+                                errorMsg={hasError ? "Invalid Email" : undefined}
+                            />
+                            {
+                                suffixIcon && (
                                     <Select
-                                        variant="neutral-soft"
-                                        disabled={disabled}
                                         selectedValues={[domain]}
+                                        onSelectedChange={(values) => setDomain(values[0] as domainOption)}
+                                        disabled={disabled}
                                         disableOpenStyle={true}
                                         size="36"
-                                        onSelectedChange={([value]) => setDomain(value as domainOption)}
-                                    >
+                                        className=" -ms-2 w-fit">
                                         <SelectItem value=".com">.com</SelectItem>
                                         <SelectItem value=".org">.org</SelectItem>
                                         <SelectItem value=".net">.net</SelectItem>
                                     </Select>
-                                ) : null
+                                )
                             }
-                        />
+                        </div>
                     </div>
-
                 </div>
 
             </TabsContent>
@@ -157,30 +159,45 @@ const UrlPreview = () => {
                     language="tsx"
                     showLineNumbers
                     className="h-[420px]"
-                    code={`<Input 
+                    code={suffixIcon ? (
+                        `
+<div className="*:not-first:mt-2">
+    {label && <Label>Url</Label>}
+    <div className="flex rounded-md shadow-xs">
+        <Input
+            size="36"
+            className="-me-px rounded-e-none shadow-none"
+            placeholder="radianos"
+            type="text"
+            />
+                {suffixIcon && (
+                    <Select
+                        selectedValues={[domain]}
+                        onSelectedChange={(values) => setDomain(values[0] as domainOption)}
+                        disabled={disabled}
+                        disableOpenStyle={true}
+                        size="36"
+                        className="-ms-2 w-fit"
+                    >
+                        <SelectItem value=".com">.com</SelectItem>
+                        <SelectItem value=".org">.org</SelectItem>
+                        <SelectItem value=".net">.net</SelectItem>
+                    </Select>
+            )}
+    </div>
+</div>`
+                    ) : (
+                        `
+<Input
     type="url"
-    disabled="${disabled}"
-    label="${label ? "Url" : undefined}"
+    disabled={disabled}
+    label={label ? "Url" : undefined}
     placeholder="Enter your url here"
-    leadIcon="${prefixIcon ? "https://" : "false"}"
-    trailIcon=${suffixIcon ? (
-                            `{ 
-        <Select
-                variant="neutral-soft"
-                disabled=${disabled}
-                selectedValues={[domain]}
-                disableOpenStyle={true}
-                size="36"
-                onSelectedChange={([value]) => setDomain(value as domainOption)}>
-            <SelectItem value=".com">.com</SelectItem>
-            <SelectItem value=".org">.org</SelectItem>
-            <SelectItem value=".net">.net</SelectItem>
-        </Select>}`
-                        ) : "false"
-                        }
-    hasError="${hasError}"
-    errorMsg="${hasError ? "There is an error" : undefined}"
-/>`}
+    lead={prefixIcon ? "https://" : undefined}
+    hasError={hasError}
+    errorMsg={hasError ? "There is an error" : undefined}
+/>`
+                    )}
                 />
             </TabsContent>
         </Tabs>

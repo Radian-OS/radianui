@@ -25,7 +25,7 @@ function Password({
 
 	return (
 		<Input
-			trialIcon={
+			trial={
 				showPassword ? (
 					<Eye
 						size={20}
