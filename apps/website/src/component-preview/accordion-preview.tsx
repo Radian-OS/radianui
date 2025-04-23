@@ -13,10 +13,18 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+type Size = "sm" | "lg"
+type Variant = "open" | "box" | "table"
+type Interaction = "single" | "multiple"
+
+const DEFAULT_SIZE: Size = "sm"
+const DEFAULT_VARIANT: Variant = "box"
+const DEFAULT_INTERACTION: Interaction = "single"
+
 export default function AccordionPreview() {
-	const [size, setSize] = useState<"sm" | "lg">("sm")
-	const [variant, setVariant] = useState<"open" | "box" | "table">("box")
-	const [interaction, setInteraction] = useState<"single" | "multiple">("single")
+	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
+	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
+	const [interaction, setInteraction] = useState<Interaction>(DEFAULT_INTERACTION)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -25,12 +33,13 @@ export default function AccordionPreview() {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
+							{/* Dropdown for 'size' */}
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as "sm" | "lg")}
+										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)}
 										minSelectionCount={1}
 										selectedValues={[size]}>
 										<DropdownItem value="sm">Small</DropdownItem>
@@ -39,12 +48,13 @@ export default function AccordionPreview() {
 								</DropdownSubContent>
 							</DropdownSub>
 
+							{/* Dropdown for 'variant' */}
 							<DropdownSub>
 								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as "open" | "box" | "table")}
+										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)}
 										minSelectionCount={1}
 										selectedValues={[variant]}>
 										<DropdownItem value="open">Open</DropdownItem>
@@ -54,12 +64,13 @@ export default function AccordionPreview() {
 								</DropdownSubContent>
 							</DropdownSub>
 
+							{/* Dropdown for 'interaction' */}
 							<DropdownSub>
 								<DropdownSubTrigger>Interaction</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setInteraction(Array.from(keys)[0] as "single" | "multiple")}
+										onSelectedChange={(keys) => setInteraction(Array.from(keys)[0] as Interaction)}
 										minSelectionCount={1}
 										selectedValues={[interaction.toString()]}>
 										<DropdownItem value="single">Single</DropdownItem>
@@ -78,7 +89,10 @@ export default function AccordionPreview() {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Accordion variant={variant} interaction={interaction} size={size}>
+					<Accordion
+						{...(variant !== DEFAULT_VARIANT && { variant: variant })}
+						{...(interaction !== DEFAULT_INTERACTION && { interaction: interaction })}
+						{...(size !== DEFAULT_SIZE && { size: size })}>
 						<AccordionItem value="value 1">
 							<AccordionTrigger>What is Radian?</AccordionTrigger>
 							<AccordionContent>
@@ -106,7 +120,7 @@ export default function AccordionPreview() {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Accordion variant="${variant}" size="${size}" interaction="${interaction}">
+					code={`<Accordion${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${interaction !== DEFAULT_INTERACTION ? ` interaction="${interaction}"` : ""} >
 	<AccordionItem value="value 1">
 		<AccordionTrigger>What is Radian?</AccordionTrigger>
 		<AccordionContent>

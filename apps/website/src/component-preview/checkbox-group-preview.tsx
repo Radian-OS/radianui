@@ -15,8 +15,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "sm" | "md" | "lg"
 
+const DEFAULT_SIZE: Size = "md"
+
 const CheckboxPreview = () => {
-	const [size, setSize] = useState<Size>("sm")
+	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -50,7 +52,7 @@ const CheckboxPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<CheckboxGroup size={size} label="Select Options">
+					<CheckboxGroup {...(size !== DEFAULT_SIZE && { size: size })} label="Select Options">
 						<Checkbox value="1">Option 1</Checkbox>
 						<Checkbox value="2">Option 2</Checkbox>
 						<Checkbox value="3">Option 3</Checkbox>
@@ -66,7 +68,7 @@ const CheckboxPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<CheckboxGroup size="${size}" label="Select Options">
+					code={`<CheckboxGroup ${size !== DEFAULT_SIZE ? `size="${size}"` : ""} label="Select Options">
 	<Checkbox value="1">Option 1</Checkbox>
 	<Checkbox value="2">Option 2</Checkbox>
 	<Checkbox value="3">Option 3</Checkbox>

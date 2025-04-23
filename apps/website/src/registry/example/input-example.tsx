@@ -9,6 +9,7 @@ import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"
 import { Input, type RoundedOptions, type SizeOptions } from "../ui/input"
 import OTPInput from "../ui/input-otp"
+import {OTPInput as NewOTPInput} from "../ui/otp-input"
 import NumberInput from "../ui/number"
 import { Password } from "../ui/password"
 import PhoneNumber from "../ui/phone-number"
@@ -152,6 +153,8 @@ const InputExample = () => {
 
 			<OTPInput size={size} rounded={rounded} length={6} label="Verification Code - Box Variant" />
 			<OTPInput size={size} rounded={rounded} variant="flat" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
+
+				<NewOTPInput length={6} variant="flat" label="Verification Code - Box Variant" />
 
 			<TimePicker interval={25} placeholder="Select Time" className="w-[10rem]" size={size} rounded={rounded} />
 

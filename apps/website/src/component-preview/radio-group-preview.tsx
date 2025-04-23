@@ -15,8 +15,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "sm" | "md" | "lg"
 
+const DEFAULT_SIZE: Size = "md"
+
 const RadiogroupPreview = () => {
-	const [size, setSize] = useState<Size>("sm")
+	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -50,7 +52,7 @@ const RadiogroupPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<RadioGroup size={size} defaultValue="1" label="Notify me about...">
+					<RadioGroup {...(size !== DEFAULT_SIZE && { size: size })} defaultValue="1" label="Notify me about...">
 						<RadioGroupItem value="1">All new messages</RadioGroupItem>
 						<RadioGroupItem value="2">Direct messages and mentions</RadioGroupItem>
 						<RadioGroupItem value="3">Nothing</RadioGroupItem>
@@ -63,7 +65,7 @@ const RadiogroupPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<RadioGroup size="${size}" defaultValue="1" label="Notify me about...">
+					code={`<RadioGroup ${size !== DEFAULT_SIZE ? `size="${size}"` : ``} defaultValue="1" label="Notify me about...">
 	<RadioGroupItem value="1">All new messages</RadioGroupItem>
 	<RadioGroupItem value="2">Direct messages and mentions</RadioGroupItem>
 	<RadioGroupItem value="3">Nothing</RadioGroupItem>
