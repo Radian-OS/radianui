@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils"
 
 type OTPInputProps = React.ComponentProps<typeof OTP.Root> & {
 	length?: number
-	variant?: "box" | "flat"
 	size?: "28" | "32" | "36" | "40" | "44" | "48" | "56"
-	rounded?: "none" | "sm" | "md" | "lg" | "full"
 	placeholder?: string
 	label?: string
 	className?: string
@@ -33,31 +31,7 @@ const otpInputVariants = cva(
 	}
 )
 
-const sizeClasses: Record<string, string> = {
-	sm: "h-8 w-8 text-sm",
-	md: "h-9 w-9 text-base",
-	lg: "h-10 w-10 text-lg",
-}
-
-const roundedClasses: Record<string, string> = {
-	none: "rounded-none",
-	sm: "rounded-sm",
-	md: "rounded-md",
-	lg: "rounded-lg",
-	full: "rounded-full",
-}
-
-function OTPInput({
-	length = 6,
-	variant = "box",
-	size = "44",
-	rounded = "md",
-	placeholder = "123456",
-	label,
-	className,
-	inputClassName,
-	...props
-}: OTPInputProps) {
+function OTPInput({ length = 6, size = "44", label, className, inputClassName, ...props }: OTPInputProps) {
 	return (
 		<div className="flex flex-col gap-2">
 			{label && <label className="text-sm font-medium">{label}</label>}
