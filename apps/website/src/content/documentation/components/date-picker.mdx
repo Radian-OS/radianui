@@ -1,4 +1,44 @@
 ---
 title: Date Picker
 description: UI for selecting a date
+source: https://github.com/Radian-os/Radianos
 ---
+
+<DatePickerPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add date-picker`} />
+
+##### Imports
+
+<Code language="tsx" code={`import DatePicker from "@/components/ui/date-picker"`} />
+
+##### Props
+
+| Prop Name             | Default Values | Values     |
+| --------------------- | -------------- | ---------- |
+| rounded               | sm             |            |
+| size                  |                |            |
+| label                 | false          | true/false |
+| disabled              | false          | true/false |
+| showDateRangeShortcut | false          |            |
+| doubleCalendar        | false          |            |
+| navigatorStyle        | button         |            |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={` 
+<DatePicker
+    mode="single"
+    placeholder="Select Date"
+    showDateRangeShortcut="false"
+    disabled="false"
+    doubleCalendar="false"
+    navigatorStyle="button"
+    size="40"
+    rounded="sm"
+/>`}
+/>

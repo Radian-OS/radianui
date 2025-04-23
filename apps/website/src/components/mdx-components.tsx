@@ -47,6 +47,7 @@ import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+import DatePickerPreview from "@/component-preview/date-picker-preview"
 
 type MdxProps = {
 	code: string
@@ -92,6 +93,7 @@ const components: MDXComponents = {
 	InputPreview: () => <InputPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
+	DatePickerPreview: () => <DatePickerPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
