@@ -29,10 +29,7 @@ const SocialButtonPreview = () => {
 
   const getCodeDisplay = () => {
     if (socials === "google" && variant === "strong") {
-      return `<Button 
-disabled={${disabled}}
-size={${size}}
-variant="strong" 
+      return `<Button ${disabled === "true" ? "disabled" : ""} size={${size}} variant="strong" 
 className="bg-[#3B7DED] hover:bg-[#3B7DED]/90  focus-visible:ring-[#3B7DED]">
 <GoogleIcon/>
 Continue with Google
@@ -255,7 +252,7 @@ Continue with Facebook
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Dropdown>
-            <DropdownTrigger>Properties</DropdownTrigger>
+            <DropdownTrigger>Interact</DropdownTrigger>
             <DropdownContent className="min-w-20">
               {/* Size Selector */}
               <DropdownSub>
