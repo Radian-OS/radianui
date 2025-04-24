@@ -18,7 +18,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerPreview = () => {
-	const [variant, setVariant] = useState<"dark" | "transparent" | "soft">("dark")
+	const [variant, setVariant] = useState<'primary' | 'outline' | 'gray' | 'destructive'>("gray")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
 
@@ -35,14 +35,15 @@ const BannerPreview = () => {
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as "dark" | "transparent" | "soft")
+											setVariant(Array.from(keys)[0] as 'primary' | 'outline' | 'gray' | 'destructive')
 											setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[variant]}>
-										<DropdownItem value="dark">Dark</DropdownItem>
-										<DropdownItem value="transparent">Transparent</DropdownItem>
-										<DropdownItem value="soft">Soft</DropdownItem>
+										<DropdownItem value="primary">Primary</DropdownItem>
+										<DropdownItem value="outline">Outline</DropdownItem>
+										<DropdownItem value="gray">Gray</DropdownItem>
+										<DropdownItem value="destructive">Destructive</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -88,11 +89,11 @@ const BannerPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<Banner 
- variant="${variant}"
- closable={${closable}}>
-    <Sparkles size={20} className="stroke-warning" />
-    <p>This is a sample banner for design</p>
-    <Link className="underline" href="#" >Upgrade</Link>
+variant="${variant}"
+closable={${closable}}>
+<Sparkles size={20} className="stroke-warning" />
+<p>This is a sample banner for design</p>
+<Link className="underline" href="#" >Upgrade</Link>
 </Banner>`}
 				/>
 			</TabsContent>
