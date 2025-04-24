@@ -13,6 +13,14 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+type Size = "16" | "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80"
+type Variant = "circle" | "square"
+type Status = "online" | "offline" | "verified" | "plus" | "none"
+
+const DEFAULT_SIZE: Size = "36"
+const DEFAULT_VARIANT: Variant = "circle"
+const DEFAULT_STATUS: Status = "none"
+
 export const people = [
 	{
 		name: "John Doe",
@@ -56,14 +64,10 @@ export const people = [
 	},
 ]
 
-type Size = "16" | "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80"
-type Variant = "circle" | "square"
-type Status = "online" | "offline" | "verified" | "plus"
-
 const AvatarPreview = () => {
-	const [size, setSize] = useState<Size>("32")
-	const [variant, setVariant] = useState<Variant>("circle")
-	const [status, setStatus] = useState<Status>("verified")
+	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
+	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
+	const [status, setStatus] = useState<Status>(DEFAULT_STATUS)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -72,6 +76,7 @@ const AvatarPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
+							{/* Dropdown for 'size' */}
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -108,7 +113,7 @@ const AvatarPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 
-							{/* Dropdown for 'onlineIndicator' */}
+							{/* Dropdown for 'status' */}
 							<DropdownSub>
 								<DropdownSubTrigger>Status</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -121,6 +126,7 @@ const AvatarPreview = () => {
 										<DropdownItem value="offline">Offline</DropdownItem>
 										<DropdownItem value="verified">Verified</DropdownItem>
 										<DropdownItem value="plus">Plus</DropdownItem>
+										<DropdownItem value="none">None</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -135,12 +141,23 @@ const AvatarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Avatar src={people[0].image} name={people[0].name} size={size} variant={variant} status={status} />
+					<Avatar
+						src={people[0].image}
+						name={people[0].name}
+						{...(size !== DEFAULT_SIZE && { size: size })}
+						{...(variant !== DEFAULT_VARIANT && { variant: variant })}
+						{...(status !== DEFAULT_STATUS && { status: status })}
+					/>
 				</div>
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={``} />
+				<CodeArea
+					language="tsx"
+					showLineNumbers
+					className="h-[420px]"
+					code={`<Avatar src="${people[0].image}" name="${people[0].name}"${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${status !== DEFAULT_STATUS ? ` status="${status}"` : ""} />`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)

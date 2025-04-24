@@ -1,5 +1,5 @@
 import { useState } from "react"
-// import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
+import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -56,10 +56,12 @@ export const people = [
 	},
 ]
 
-type Size = "20" | "24" | "32"
+type Size = "16" | "20" | "24"
+
+const DEFAULT_SIZE: Size = "20"
 
 const AvatargroupPreview = () => {
-	const [size, setSize] = useState<Size>("20")
+	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -76,9 +78,9 @@ const AvatargroupPreview = () => {
 										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)}
 										minSelectionCount={1}
 										selectedValues={[size]}>
+										<DropdownItem value="16">16</DropdownItem>
 										<DropdownItem value="20">20</DropdownItem>
 										<DropdownItem value="24">24</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -93,11 +95,11 @@ const AvatargroupPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					{/* <AvatarGroup max={4} size={size}>
+					<AvatarGroup {...(size !== DEFAULT_SIZE && { size })}>
 						{people.map((person) => (
 							<Avatar src={person.image} name={person.name} key={person.image} />
 						))}
-					</AvatarGroup> */}
+					</AvatarGroup>
 				</div>
 			</TabsContent>
 

@@ -78,7 +78,7 @@ function Checkbox({
 	return (
 		<label
 			className={cn(
-				"inline-flex w-fit cursor-pointer gap-2",
+				"inline-flex w-fit cursor-pointer items-center gap-2",
 				disabled ? "text-text-tertiary cursor-not-allowed" : "cursor-pointer",
 				size === "lg" ? "text-base" : "text-sm",
 				className
