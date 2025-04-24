@@ -154,7 +154,8 @@ const InputExample = () => {
 			<OTPInput size={size} rounded={rounded} length={6} label="Verification Code - Box Variant" />
 			<OTPInput size={size} rounded={rounded} variant="flat" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
 
-			<NewOTPInput length={6} label="Verification Code - Box Variant" />
+			<NewOTPInput length={6} size="56" label="Verification Code - Box Variant" placeholder="1234567" disabled
+			/>
 
 			<TimePicker interval={25} placeholder="Select Time" className="w-[10rem]" size={size} rounded={rounded} />
 

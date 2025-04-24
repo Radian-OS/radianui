@@ -15,7 +15,7 @@ type OTPInputProps = React.ComponentProps<typeof OTP.Root> & {
 }
 
 const otpInputVariants = cva(
-	"rounded-lg shadow-2xs text-center transition-all disabled:cursor-not-allowed outline-none focus:outline-0 border-border-alpha focus:border-primary",
+	"rounded-lg shadow-2xs bg-bg-base text-text text-center placeholder:select-none appearance-none transition-all disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary-focus focus:border-primary border border-border-alpha",
 	{
 		variants: {
 			size: {
@@ -34,10 +34,17 @@ const otpInputVariants = cva(
 function OTPInput({ length = 6, size = "44", label, className, inputClassName, ...props }: OTPInputProps) {
 	return (
 		<div className="flex flex-col gap-2">
-			{label && <label className="text-sm font-medium">{label}</label>}
-			<OTP.Root className={cn("flex gap-2", className)} {...props} validationType="alphanumeric">
+			{label && <label className={cn("text-sm font-medium", { "text-text-tertiary": props.disabled })}>{label}</label>}
+			<OTP.Root className={cn("flex flex-nowrap gap-2", className)} {...props} validationType="alphanumeric" disabled={true}>
 				{Array.from({ length }).map((_, i) => (
-					<OTP.Input key={i} className={cn(otpInputVariants({ size: size }), inputClassName)} />
+					<OTP.Input
+						key={i}
+						className={cn(
+							otpInputVariants({ size: size }),
+							{ "bg-bg-level0 pointer-events-none cursor-not-allowed": props.disabled },
+							inputClassName
+						)}
+					/>
 				))}
 				<OTP.HiddenInput />
 			</OTP.Root>

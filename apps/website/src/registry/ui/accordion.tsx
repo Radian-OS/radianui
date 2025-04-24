@@ -118,7 +118,7 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 				{children}
 				<ChevronDownIcon
 					className={classNames(
-						"text-fg3 shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180",
+						"text-text-tertiary shrink-0 transition-transform duration-200 ease-[cubic-bezier(0.87,_0,_0.13,_1)] group-data-[state=open]:rotate-180",
 						size === "sm" ? "size-5" : "size-6"
 					)}
 					aria-hidden
