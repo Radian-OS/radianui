@@ -62,6 +62,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	label?: string
 	errorMsg?: string
 	hasError?: boolean
+	custom?: boolean
 	type?: "text" | "email" | "url" | "number" | "password"
 	/* 
 	It is not recommended to use type=password, instead use the <Password> component,
@@ -80,6 +81,7 @@ function Input({
 	label,
 	disabled,
 	errorMsg,
+	custom = false,
 	hasError = false,
 	type = "text",
 	lead,
@@ -105,9 +107,17 @@ function Input({
 				className={cn(
 					inputVariants({ size, rounded }),
 					{
-						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError,
-						"focus-within:border-primary! focus-within:ring-primary/10 hover:border-border-alpha focus-within:ring-2": !hasError,
-						"text-text-disabled cursor-not-allowed bg-fill-level1": disabled,
+						// Only show error focus ring when not disabled
+						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disabled,
+
+						// Only show regular focus ring when not disabled
+						"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": !hasError && !disabled,
+
+						// Apply disabled styles
+						"text-text-disabled cursor-not-allowed bg-fill-level1 drop-shadow-none": disabled,
+
+						[` rounded-r-none`]: custom,
+
 					},
 					classNames?.wrapper
 				)}>
@@ -119,7 +129,7 @@ function Input({
 						})}>
 						{React.isValidElement(lead)
 							? React.cloneElement(lead as React.ReactElement<{ className?: string }>, {
-								className: cn("h-full w-auto", (lead as React.ReactElement<{ className?: string }>)?.props?.className || ""),
+								className: cn((lead as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
 							})
 							: lead}
 					</span>
@@ -130,6 +140,11 @@ function Input({
 						"text-fg-1 text-sm placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
 							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
+						},
+						size && {
+							"text-xs placeholder:text-xs": size === "28",
+							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
+							"text-base placeholder:text-base": ["44", "48"].includes(size),
 						},
 						classNames?.input
 					)}
