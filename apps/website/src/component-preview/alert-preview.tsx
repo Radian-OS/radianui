@@ -12,16 +12,33 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { CircleCheck, Info, Star, Trash2, TriangleAlert, Bookmark } from "lucide-react"
+import { Button } from "@/registry/ui/button"
 
 const AlertPreview = () => {
-	const [type, setType] = useState<"neutral" | "info" | "success" | "warning" | "danger">("neutral")
-	const [variant, setVariant] = useState<"default" | "bordered">("default")
+	const [color, setColor] = useState<"neutral" | "primary" | "info" | "success" | "warning" | "danger">("neutral")
+	const [variant, setVariant] = useState<"default" | "bordered" | "colored">("default")
+	const [showIcon, setShowIcon] = useState(true)
+	const [showEndContent, setShowEndContent] = useState(true)
+
+	const icons = {
+		neutral: <Star />,
+		primary: <Bookmark />,
+		info: <Info />,
+		success: <CircleCheck />,
+		warning: <TriangleAlert />,
+		danger: <Trash2 />
+	}
 
 	const getAlertContent = (type: string) => {
 		const contents = {
 			neutral: {
 				title: "Neutral Alert",
 				message: "This is a standard notification message",
+			},
+			primary: {
+				title: "Primary Alert",
+				message: "This is a primary notification with important information",
 			},
 			info: {
 				title: "Information Available",
@@ -40,11 +57,42 @@ const AlertPreview = () => {
 				message: "Unable to complete the requested operation. Please try again",
 			},
 		}
-
 		return contents[type as keyof typeof contents]
 	}
 
-	const alertContent = getAlertContent(type)
+	const alertContent = getAlertContent(color)
+	const selectedIcon = icons[color as keyof typeof icons]
+
+	const generateCode = () => {
+		let code = `<Alert
+  color=\"${color}\"
+  variant=\"${variant}\"
+  title=\"${alertContent.title}\"
+  message=\"${alertContent.message}\"`
+
+		if (showEndContent) {
+			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
+			code += `
+  endContent={<Button color='${btnColor}'>Action</Button>}`
+		}
+
+		if (showIcon) {
+			const iconComponent = {
+				neutral: "Star",
+				primary: "Bookmark",
+				info: "Info",
+				success: "CircleCheck",
+				warning: "TriangleAlert",
+				danger: "Trash2"
+			}[color]
+			code += `
+  icon={<${iconComponent} />}`
+		}
+
+		code += `
+/>`
+		return code
+	}
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -55,14 +103,15 @@ const AlertPreview = () => {
 						<DropdownContent className="min-w-20">
 							<DropdownGroup>
 								<DropdownSub>
-									<DropdownSubTrigger>Type</DropdownSubTrigger>
+									<DropdownSubTrigger>Color</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
-											onSelectedChange={(keys) => setType(Array.from(keys)[0] as typeof type)}
+											onSelectedChange={(keys) => setColor(Array.from(keys)[0] as typeof color)}
 											minSelectionCount={1}
-											selectedValues={[type]}>
+											selectedValues={[color]}>
 											<DropdownItem value="neutral">Neutral</DropdownItem>
+											<DropdownItem value="primary">Primary</DropdownItem>
 											<DropdownItem value="info">Information</DropdownItem>
 											<DropdownItem value="success">Success</DropdownItem>
 											<DropdownItem value="warning">Warning</DropdownItem>
@@ -70,7 +119,6 @@ const AlertPreview = () => {
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
-
 								<DropdownSub>
 									<DropdownSubTrigger>Variant</DropdownSubTrigger>
 									<DropdownSubContent>
@@ -81,6 +129,33 @@ const AlertPreview = () => {
 											selectedValues={[variant]}>
 											<DropdownItem value="default">Default (Shaded)</DropdownItem>
 											<DropdownItem value="bordered">Bordered</DropdownItem>
+											<DropdownItem value="colored">Colored</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Icon</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => setShowIcon(Array.from(keys)[0] === "show")}
+											minSelectionCount={1}
+											selectedValues={[showIcon ? "show" : "hide"]}>
+											<DropdownItem value="show">Show Icon</DropdownItem>
+											<DropdownItem value="hide">Hide Icon</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>End Content</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => setShowEndContent(Array.from(keys)[0] === "show")}
+											minSelectionCount={1}
+											selectedValues={[showEndContent ? "show" : "hide"]}>
+											<DropdownItem value="show">show</DropdownItem>
+											<DropdownItem value="hide">hide</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -93,24 +168,25 @@ const AlertPreview = () => {
 					<TabsTrigger value="code">Code</TabsTrigger>
 				</TabsList>
 			</div>
-
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Alert title={alertContent.title} message={alertContent.message} type={type} variant={variant} />
+					<Alert
+						title={alertContent.title}
+						message={alertContent.message}
+						color={color}
+						variant={variant}
+						icon={showIcon ? selectedIcon : undefined}
+						{...(showEndContent ? { endContent: <Button color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>Action</Button> } : {})}
+					/>
+
 				</div>
 			</TabsContent>
-
 			<TabsContent value="code">
 				<CodeArea
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Alert
-  type="${type}"
-  variant="${variant}"
-  title="${alertContent.title}"
-  message="${alertContent.message}"
-/>`}
+					code={generateCode()}
 				/>
 			</TabsContent>
 		</Tabs>

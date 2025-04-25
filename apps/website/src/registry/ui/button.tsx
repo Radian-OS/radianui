@@ -123,22 +123,31 @@ Button.displayName = "Button"
 function ButtonGroup({ className, children, variant = "outline", size = "36", rounded = "rounded", color = "primary", ...props }: ButtonGroupProps) {
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
-      const isFirst = index === 0
-      const isLast = index === React.Children.count(children) - 1
-      const borderRightClass = variant === "outline" || variant === "neutral-outline" ? "border-r" : ""
+      const isFirst = index === 0;
+      const isLast = index === React.Children.count(children) - 1;
+      const totalChildren = React.Children.count(children);
 
-      let firstButtonRounding = ""
-      let lastButtonRounding = ""
-
+      // Define border radius based on rounded option
+      let borderRadiusClass = "";
       if (rounded === "rounded") {
-        firstButtonRounding = "rounded-l-lg"
-        lastButtonRounding = "rounded-r-lg"
+        borderRadiusClass = isFirst ? "rounded-l-lg" : isLast ? "rounded-r-lg" : "rounded-none";
       } else if (rounded === "square") {
-        firstButtonRounding = "rounded-l-xs"
-        lastButtonRounding = "rounded-r-xs"
+        borderRadiusClass = isFirst ? "rounded-l-xs" : isLast ? "rounded-r-xs" : "rounded-none";
       } else if (rounded === "full") {
-        firstButtonRounding = "rounded-l-full"
-        lastButtonRounding = "rounded-r-full"
+        borderRadiusClass = isFirst ? "rounded-l-full" : isLast ? "rounded-r-full" : "rounded-none";
+      }
+
+      // Set position for proper z-index layering
+      const positionClass = isFirst ? "relative z-10" : `relative z-[${totalChildren - index}]`;
+
+      // Special handling for different variants
+      let borderFixClass = "";
+      if (variant === "outline" || variant === "neutral-outline") {
+        // For outline variants, we need to completely eliminate double borders
+        borderFixClass = !isFirst ? "border-l-0 -ml-[1px]" : "";
+      } else if (variant === "strong" || variant === "neutral-soft") {
+        // For solid variants
+        borderFixClass = !isFirst ? "-ml-[1px]" : "";
       }
 
       if (React.isValidElement<ButtonProps>(child)) {
@@ -147,25 +156,33 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", ro
           size,
           color,
           className: cn(
-            child.props.className,
-            "relative focus:z-10",
-            borderRightClass,
             "rounded-none",
-            isFirst && firstButtonRounding,
-            isLast && lastButtonRounding,
-            !isFirst && "-ml-px"
+            borderRadiusClass,
+            positionClass,
+            borderFixClass,
+            (variant === "outline") && "outline-0 border border-current",
+            (variant === "neutral-outline") && "outline-0 border border-border-alpha",
+            "hover:z-20 focus:z-30",
+            child.props.className
           ),
-        })
+        });
       }
     }
-    return child
-  })
+    return child;
+  });
 
   return (
-    <div className={cn("inline-flex", className)} role="group" {...props}>
+    <div
+      className={cn(
+        "inline-flex",
+        className
+      )}
+      role="group"
+      {...props}
+    >
       {modifiedChildren}
     </div>
-  )
+  );
 }
 ButtonGroup.displayName = "ButtonGroup"
 
