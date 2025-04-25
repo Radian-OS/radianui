@@ -16,7 +16,7 @@ export default function Home() {
 	const [heroesHover, setHeroesHover] = React.useState(false)
 	return (
 		<div className="w-full overflow-x-hidden">
-			<div className="border-border-alpha max-w-310 mx-auto box-border border-l border-r">
+			<div className="border-border-alpha border max-w-310 mx-auto box-border border-l border-r">
 				<div className="relative">
 					<div className="relative overflow-hidden pb-20 pt-12">
 						<HeroSection />

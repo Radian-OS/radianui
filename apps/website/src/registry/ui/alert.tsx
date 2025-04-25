@@ -1,58 +1,116 @@
 import React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
-import { CircleCheck, Info, Star, Trash2, TriangleAlert } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof alertVariants> & {
 		title: string
 		message: string
+		icon?: React.ReactNode
+		endContent?: React.ReactNode
 	}
 
-const alertVariants = cva("w-full rounded-md p-4 flex gap-3", {
+const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
 	variants: {
-		type: {
-			neutral: "bg-bg-level0",
-			info: "border-info bg-info/10 text-info",
-			success: "border-success bg-success/10 text-success",
-			danger: "border-error bg-error/10 text-error",
-			warning: "border-warning bg-warning/10 text-warning",
+		color: {
+			neutral: "bg-fill-level2",
+			primary: "border-primary bg-primary/10 text-primary-text",
+			info: "border-info bg-info/10 text-info-text",
+			success: "border-success bg-success/10 text-success-text",
+			danger: "border-error bg-error/10 text-error-text",
+			warning: "border-warning bg-warning/10 text-warning-text",
 		},
 		variant: {
 			default: "",
 			bordered: "border bg-transparent",
+			colored: "",
+			"neutral-outline": "border border-border bg-transparent"
 		},
 	},
 	defaultVariants: {
-		type: "neutral",
+		color: "neutral",
 		variant: "default",
 	},
 	compoundVariants: [
 		{
-			type: "neutral",
+			color: "neutral",
 			variant: "bordered",
 			className: "border bg-transparent",
 		},
+		{
+			color: "primary",
+			variant: "colored",
+			className: "bg-primary text-static-white",
+		},
+		{
+			color: "info",
+			variant: "colored",
+			className: "bg-info text-static-white",
+		},
+		{
+			color: "success",
+			variant: "colored",
+			className: "bg-success text-static-white",
+		},
+		{
+			color: "warning",
+			variant: "colored",
+			className: "bg-warning text-static-white",
+		},
+		{
+			color: "danger",
+			variant: "colored",
+			className: "bg-error text-static-white",
+		},
+		{
+			color: "neutral",
+			variant: "colored",
+			className: "bg-text text-inverse-white",
+		}
 	],
 })
 
-const icons = {
-	neutral: <Star className="h-5 w-5" />,
-	info: <Info className="h-5 w-5" />,
-	success: <CircleCheck className="h-5 w-5" />,
-	danger: <Trash2 className="h-5 w-5" />,
-	warning: <TriangleAlert className="h-5 w-5" />,
-}
+function Alert({
+	color = "neutral",
+	variant = "default",
+	title,
+	message,
+	icon,
+	endContent,
+	className,
+	...props
+}: AlertProps) {
+	const isNeutralOutline = variant === "neutral-outline";
+	const hasCustomTextColor = className?.includes("text-");
 
-function Alert({ type = "neutral", variant = "default", title, message, className, ...props }: AlertProps) {
 	return (
-		<section className={cn(alertVariants({ type, variant, className }))} {...props}>
-			<div>{icons[type as keyof typeof icons]}</div>
-			<div className="flex flex-col gap-0.5">
-				<p className="text-sm font-medium">{title}</p>
-				<p className={cn("text-sm", type === "neutral" && "text-text-secondary")}>{message}</p>
+		<div
+			className={cn(alertVariants({ color, variant }), className)}
+			{...props}
+		>
+			{icon && <div className="flex-shrink-0">{icon}</div>}
+			<div className="flex flex-col flex-grow">
+				<h5 className={cn(
+					"text-sm font-semibold",
+					isNeutralOutline && "text-text",
+					isNeutralOutline && hasCustomTextColor && "!text-current"
+				)}>
+					{title}
+				</h5>
+				<p className={cn(
+					"text-sm",
+					isNeutralOutline && "text-text-secondary",
+					isNeutralOutline && hasCustomTextColor && "!text-current opacity-80"
+				)}>
+					{message}
+				</p>
 			</div>
-		</section>
+			{endContent && (
+				<div className="flex-shrink-0">
+					{endContent}
+				</div>
+			)}
+		</div>
 	)
 }
 
