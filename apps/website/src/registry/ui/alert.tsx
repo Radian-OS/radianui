@@ -10,20 +10,21 @@ type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 		endContent?: React.ReactNode
 	}
 
-const alertVariants = cva("w-full rounded-md p-4 flex items-center justify-center gap-3", {
+const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
 	variants: {
 		color: {
 			neutral: "bg-fill-level2",
-			primary: "border-primary bg-primary/10 text-primary",
-			info: "border-info bg-info/10 text-info",
-			success: "border-success bg-success/10 text-success",
-			danger: "border-error bg-error/10 text-error",
-			warning: "border-warning bg-warning/10 text-warning",
+			primary: "border-primary bg-primary/10 text-primary-text",
+			info: "border-info bg-info/10 text-info-text",
+			success: "border-success bg-success/10 text-success-text",
+			danger: "border-error bg-error/10 text-error-text",
+			warning: "border-warning bg-warning/10 text-warning-text",
 		},
 		variant: {
 			default: "",
 			bordered: "border bg-transparent",
-			colored: ""
+			colored: "",
+			"neutral-outline": "border border-border bg-transparent"
 		},
 	},
 	defaultVariants: {
@@ -79,27 +80,37 @@ function Alert({
 	className,
 	...props
 }: AlertProps) {
+	const isNeutralOutline = variant === "neutral-outline";
 	const hasCustomTextColor = className?.includes("text-");
 
 	return (
-		<section className={cn(alertVariants({ color, variant, className }), "items-start")} {...props}>
-			{icon && <div className="flex-shrink-0 [&>svg]:h-5 [&>svg]:w-5">{icon}</div>}
-			<div className="flex flex-col gap-0.5 flex-grow">
-				<p className="text-sm font-semibold">{title}</p>
+		<div
+			className={cn(alertVariants({ color, variant }), className)}
+			{...props}
+		>
+			{icon && <div className="flex-shrink-0">{icon}</div>}
+			<div className="flex flex-col flex-grow">
+				<h5 className={cn(
+					"text-sm font-semibold",
+					isNeutralOutline && "text-text",
+					isNeutralOutline && hasCustomTextColor && "!text-current"
+				)}>
+					{title}
+				</h5>
 				<p className={cn(
 					"text-sm",
-					!hasCustomTextColor && color === "neutral" && variant !== "colored" && "text-text-secondary",
-					!hasCustomTextColor && color === "neutral" && variant === "colored" && "text-inverse-white"
+					isNeutralOutline && "text-text-secondary",
+					isNeutralOutline && hasCustomTextColor && "!text-current opacity-80"
 				)}>
 					{message}
 				</p>
 			</div>
 			{endContent && (
-				<div>
+				<div className="flex-shrink-0">
 					{endContent}
 				</div>
 			)}
-		</section>
+		</div>
 	)
 }
 

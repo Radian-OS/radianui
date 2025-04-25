@@ -16,7 +16,6 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode
   variant?: ButtonProps["variant"]
   size?: ButtonProps["size"]
-  rounded?: "square" | "rounded" | "full"
   color?: ButtonProps["color"]
 }
 
@@ -120,22 +119,15 @@ function Button({ variant = "strong", size = "36", isIcon = false, color = "prim
 }
 Button.displayName = "Button"
 
-function ButtonGroup({ className, children, variant = "outline", size = "36", rounded = "rounded", color = "primary", ...props }: ButtonGroupProps) {
+function ButtonGroup({ className, children, variant = "outline", size = "36", color = "primary", ...props }: ButtonGroupProps) {
   const modifiedChildren = React.Children.map(children, (child, index) => {
     if (React.isValidElement(child)) {
       const isFirst = index === 0;
       const isLast = index === React.Children.count(children) - 1;
       const totalChildren = React.Children.count(children);
 
-      // Define border radius based on rounded option
-      let borderRadiusClass = "";
-      if (rounded === "rounded") {
-        borderRadiusClass = isFirst ? "rounded-l-lg" : isLast ? "rounded-r-lg" : "rounded-none";
-      } else if (rounded === "square") {
-        borderRadiusClass = isFirst ? "rounded-l-xs" : isLast ? "rounded-r-xs" : "rounded-none";
-      } else if (rounded === "full") {
-        borderRadiusClass = isFirst ? "rounded-l-full" : isLast ? "rounded-r-full" : "rounded-none";
-      }
+      // Define border radius class consistently
+      const borderRadiusClass = isFirst ? "rounded-l-lg" : isLast ? "rounded-r-lg" : "rounded-none";
 
       // Set position for proper z-index layering
       const positionClass = isFirst ? "relative z-10" : `relative z-[${totalChildren - index}]`;
@@ -150,11 +142,12 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", ro
         borderFixClass = !isFirst ? "-ml-[1px]" : "";
       }
 
+      // Check if this is a Button component that should receive our props
       if (React.isValidElement<ButtonProps>(child)) {
         return React.cloneElement(child, {
           variant,
           size,
-          color,
+          color, // Ensure color is passed to child buttons
           className: cn(
             "rounded-none",
             borderRadiusClass,

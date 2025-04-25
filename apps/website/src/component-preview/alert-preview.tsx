@@ -17,7 +17,7 @@ import { Button } from "@/registry/ui/button"
 
 const AlertPreview = () => {
 	const [color, setColor] = useState<"neutral" | "primary" | "info" | "success" | "warning" | "danger">("neutral")
-	const [variant, setVariant] = useState<"default" | "bordered" | "colored">("default")
+	const [variant, setVariant] = useState<"default" | "bordered" | "colored" | "neutral-outline">("default")
 	const [showIcon, setShowIcon] = useState(true)
 	const [showEndContent, setShowEndContent] = useState(true)
 
@@ -130,6 +130,7 @@ const AlertPreview = () => {
 											<DropdownItem value="default">Default (Shaded)</DropdownItem>
 											<DropdownItem value="bordered">Bordered</DropdownItem>
 											<DropdownItem value="colored">Colored</DropdownItem>
+											<DropdownItem value="neutral-outline">Neutral Outline</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -141,8 +142,8 @@ const AlertPreview = () => {
 											onSelectedChange={(keys) => setShowIcon(Array.from(keys)[0] === "show")}
 											minSelectionCount={1}
 											selectedValues={[showIcon ? "show" : "hide"]}>
-											<DropdownItem value="show">Show Icon</DropdownItem>
-											<DropdownItem value="hide">Hide Icon</DropdownItem>
+											<DropdownItem value="show">true</DropdownItem>
+											<DropdownItem value="hide">false</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -154,8 +155,8 @@ const AlertPreview = () => {
 											onSelectedChange={(keys) => setShowEndContent(Array.from(keys)[0] === "show")}
 											minSelectionCount={1}
 											selectedValues={[showEndContent ? "show" : "hide"]}>
-											<DropdownItem value="show">show</DropdownItem>
-											<DropdownItem value="hide">hide</DropdownItem>
+											<DropdownItem value="show">true</DropdownItem>
+											<DropdownItem value="hide">false</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -178,7 +179,15 @@ const AlertPreview = () => {
 						icon={showIcon ? selectedIcon : undefined}
 						{...(showEndContent ? { endContent: <Button color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>Action</Button> } : {})}
 					/>
-
+					{/* <Alert
+						title="{alertContent.title}"
+						message="{alertContent.message}"
+						color={color}
+						variant={variant}
+						className="mt-2"
+						icon={showIcon ? selectedIcon : undefined}
+						endContent={<Button className="bg-inverse-fill-level4" >Test</Button>}
+					/> */}
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
