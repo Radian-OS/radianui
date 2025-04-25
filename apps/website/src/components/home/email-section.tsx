@@ -29,7 +29,7 @@ export default function EmailSection() {
 		<div className="max-w-310 mx-auto">
 			<div id="body" className="lg:pb-15 flex flex-col gap-8 px-4 py-6 md:px-6 lg:p-10">
 				<div className="bg-stroke-decorative -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block" />
-				<div className="md:py-15 flex w-full flex-col items-center justify-center gap-8 rounded-xl border px-6 py-6 text-center md:px-10 lg:flex-row lg:justify-between">
+				<div className="md:py-15 flex w-full flex-col items-center justify-center gap-8 rounded-xl border border-border px-6 py-6 text-center md:px-10 lg:flex-row lg:justify-between">
 					<div className="flex flex-col gap-2 sm:gap-3">
 						<h4 className="heading-4">Get notified when new stuff drops.</h4>
 						<p className="text-text-secondary text-base">Subscribe to get latest updates, tips, & exclusive offers from Radian.</p>

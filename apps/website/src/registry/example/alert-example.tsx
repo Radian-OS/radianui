@@ -11,19 +11,19 @@ const AlertExample = () => {
 				</TabsList>
 
 				<TabsContent value="default-variant" className="space-y-4">
-					<Alert type="neutral" title="Default Alert" message="This is a generic alert message." />
-					<Alert type="info" title="Information" message="Your message has been successfully sent to the recipient." />
-					<Alert type="success" title="Operation Info" message="Your operation was completed successfully." />
-					<Alert type="warning" title="Warning" message="Please check the details before proceeding." />
-					<Alert type="danger" title="Error" message="Something went wrong with your operation." />
+					<Alert color="neutral" title="Default Alert" message="This is a generic alert message." />
+					<Alert color="info" title="Information" message="Your message has been successfully sent to the recipient." />
+					<Alert color="success" title="Operation Info" message="Your operation was completed successfully." />
+					<Alert color="warning" title="Warning" message="Please check the details before proceeding." />
+					<Alert color="danger" title="Error" message="Something went wrong with your operation." />
 				</TabsContent>
 
 				<TabsContent value="bordered-variant" className="space-y-4">
-					<Alert variant="bordered" type="neutral" title="Default Alert" message="This is a generic alert message." />
-					<Alert variant="bordered" type="info" title="Information" message="Your message has been successfully sent to the recipient." />
-					<Alert variant="bordered" type="success" title="Operation Info" message="Your operation was completed successfully." />
-					<Alert variant="bordered" type="warning" title="Warning" message="Please check the details before proceeding." />
-					<Alert variant="bordered" type="danger" title="Error" message="Something went wrong with your operation." />
+					<Alert variant="bordered" color="neutral" title="Default Alert" message="This is a generic alert message." />
+					<Alert variant="bordered" color="info" title="Information" message="Your message has been successfully sent to the recipient." />
+					<Alert variant="bordered" color="success" title="Operation Info" message="Your operation was completed successfully." />
+					<Alert variant="bordered" color="warning" title="Warning" message="Please check the details before proceeding." />
+					<Alert variant="bordered" color="danger" title="Error" message="Something went wrong with your operation." />
 				</TabsContent>
 			</Tabs>
 		</div>

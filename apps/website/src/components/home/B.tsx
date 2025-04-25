@@ -35,7 +35,7 @@ function B({ className }: { className?: string }) {
 					<Image className="hidden dark:block" src={"/radian-dark.svg"} width={90} height={24} alt="Radian Logo" />
 				</div>
 				<div className="flex items-center justify-center px-3 py-1">
-					<div className="border-stoke text-text flex w-full items-center justify-center gap-3 rounded-lg border px-3 py-2.5">
+					<div className="border-border text-text flex w-full items-center justify-center gap-3 rounded-lg border px-3 py-2.5">
 						<Image src="/hero-section-avatar.png" width={32} height={32} alt="Avatar" />
 						<div className="flex flex-1 flex-col">
 							<span className="text-sm font-medium">Radian OS</span>

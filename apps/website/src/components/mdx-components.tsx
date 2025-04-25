@@ -51,7 +51,7 @@ import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-e
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-import BannerExamplePreview3 from "@/registry/example/banner/banner-example/banner-example-preview3"
+import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 
 type MdxProps = {
@@ -155,7 +155,7 @@ const components: MDXComponents = {
 		</p>
 	),
 	table: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-		<div className="no-scrollbar overflow-x-scroll">
+		<div className="no-scrollbar overflow-x-scroll mb-9">
 			<table className={cn("border-border w-full table-auto border", className)} {...props}>
 				{children}
 			</table>
