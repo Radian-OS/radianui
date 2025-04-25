@@ -9,6 +9,7 @@ import { Divider } from "./divider"
 import { InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
+import { Button } from "./button"
 
 // Type definition for the SelectItem component props
 type SelectItemProps = {
@@ -212,14 +213,16 @@ function Select({
 						{renderTrigger ? (
 							renderTrigger(values)
 						) : (
-							<div
-								className={cn(" border bg-bg-level1 flex items-center justify-center h-full cursor-pointer",
+							<Button
+								variant="ghost"
+								disabled={disabled}
+								className={cn(" border flex items-center justify-center h-full cursor-pointer",
 									SelectTriggerVariations({ size, rounded }),
 									{
-										"text-text-disabled cursor-not-allowed": disabled,
-										"border-primary ring-primary/10 border ring-2": open && !disableOpenStyle,
-										[`border rounded-l-radius-xs rounded-r-radius-${rounded}`]: disableOpenStyle,
-										[`border-primary ring-primary/10 border ring-2 rounded-l-radius-xs rounded-r-radius-${rounded}`]: open && disableOpenStyle,
+										"text-text-disabled cursor-not-allowed bg-fill-level1 drop-shadow-none": disabled,
+										"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
+										"rounded-l-none": disableOpenStyle,
+										[`border-primary ring-primary/10 border ring-2 rounded-l-none`]: open && disableOpenStyle,
 									},
 									"w-full truncate",
 									classNames?.trigger
@@ -233,7 +236,7 @@ function Select({
 									{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
 								</span>
 								{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
-							</div>
+							</Button>
 						)}
 					</PopoverTrigger>
 					<PopoverContent className="w-fit p-0">

@@ -67,7 +67,7 @@ const EmailPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>Variant</DropdownSubTrigger>
+                                <DropdownSubTrigger>Example</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
