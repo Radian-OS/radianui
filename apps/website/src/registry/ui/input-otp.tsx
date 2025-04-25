@@ -2,7 +2,7 @@
 
 import React from "react"
 import { cva } from "class-variance-authority"
-import { OTPInput as OTP, REGEXP_ONLY_DIGITS, SlotProps } from "input-otp"
+import { OTPInput as OTP, REGEXP_ONLY_DIGITS, REGEXP_ONLY_DIGITS_AND_CHARS, type SlotProps } from "input-otp"
 import { cn } from "@/lib/utils"
 import { Input, RoundedOptions, SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
@@ -10,7 +10,7 @@ import { Label } from "./label"
 // Variants for the container of the OTP input
 const otpContainerVariants = cva("", {
 	variants: {
-		variant: { box: "flex w-fit gap-1.5", flat: "" },
+		variant: { box: "flex w-fit gap-1.5 select-none", flat: "" },
 	},
 	defaultVariants: { variant: "box" },
 })
@@ -19,16 +19,17 @@ const otpSlotVariants = cva("", {
 	variants: {
 		...cvaInputVariants,
 		variant: {
-			box: cn("relative text-text", "flex items-center justify-center transition-all duration-300", "border border-border bg-bg-base drop-shadow-xs"),
+			box: "relative text-text flex items-center justify-center transition-all duration-300 border border-border bg-bg-base drop-shadow-xs",
 			flat: "",
 		},
 		size: {
-			"28": "size-7 text-xs p-1.5",
-			"32": "size-8 text-sm px-3 py-1.5",
-			"36": "size-9 text-sm px-3 py-2",
-			"40": "size-10 text-sm px-3 py-2.5",
-			"44": "size-11 text-base py-2.5 px-3.5",
-			"48": "size-12 text-base py-3 px-3.5",
+			"28": "size-7 text-xs",
+			"32": "size-8 text-sm",
+			"36": "size-9 text-sm",
+			"40": "size-10 text-sm",
+			"44": "size-11 text-sm",
+			"48": "size-12 text-base",
+			"56": "size-14 text-base",
 		},
 	},
 	defaultVariants: { variant: "box", size: defaultInputSize },
@@ -50,7 +51,6 @@ type OTPInputProps = Pick<
 	| "className"
 	| "disabled"
 > & {
-	maxLength?: number
 	length?: number
 	variant?: "box" | "flat"
 	label?: string
@@ -61,7 +61,6 @@ type OTPInputProps = Pick<
 }
 // OTPInput component definition
 function OTPInput({
-	maxLength = 12,
 	length = 6,
 	variant = "box",
 	label,
@@ -88,16 +87,23 @@ function OTPInput({
 				rounded={rounded}
 				className={cn(otpContainerVariants({ variant }), className)}
 				onChange={(e) => {
-					const value = e.target.value
-					const regex = props.inputMode === "numeric" ? new RegExp(`^\\d{0,${length}}$`) : new RegExp("")
+					const rawValue = e.target.value
+					const regex = props.inputMode === "numeric" ? new RegExp(REGEXP_ONLY_DIGITS) : new RegExp(REGEXP_ONLY_DIGITS_AND_CHARS)
 
-					if (regex.test(value)) {
-						setValue(value)
-						onChange?.(value)
-						if (value.length === length) {
-							inputRef.current?.blur()
-							props.onComplete?.(value)
-						}
+					if (rawValue !== "" && !regex.test(rawValue)) return
+
+					let newValue = rawValue.slice(0, length)
+
+					// If already at max length, replace the last character
+					if (newValue.length > length - 1) {
+						newValue = value.slice(0, length - 1) + newValue.charAt(newValue.length - 1)
+					}
+
+					setValue(newValue)
+					onChange?.(newValue)
+
+					if (newValue.length === length) {
+						props.onComplete?.(newValue)
 					}
 				}}
 				id={id}
@@ -124,8 +130,9 @@ function OTPInput({
 						))}
 					</div>
 				)}
-				maxLength={maxLength}
-				pattern={props.inputMode === "numeric" ? REGEXP_ONLY_DIGITS : undefined}
+				placeholder={placeholder}
+				maxLength={length}
+				pattern={props.inputMode === "numeric" ? REGEXP_ONLY_DIGITS : REGEXP_ONLY_DIGITS_AND_CHARS}
 				onChange={onChange}
 				disabled={props.disabled}
 				className={cn({ "cursor-not-allowed": props.disabled })}
@@ -164,7 +171,7 @@ function Slot(
 					rounded: props.rounded,
 				}),
 				{
-					"border-primary ring-primary/10 ring-2": props.isActive,
+					"border-primary ring-primary-focus ring-2": props.isActive,
 				}
 			)}
 			ref={slotRef}>

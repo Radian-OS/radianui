@@ -221,7 +221,6 @@ layer(base);
 		from {
 			height: 0;
 		}
-
 		to {
 			height: var(--radix-accordion-content-height);
 		}
@@ -231,7 +230,6 @@ layer(base);
 		from {
 			height: var(--radix-accordion-content-height);
 		}
-
 		to {
 			height: 0;
 		}

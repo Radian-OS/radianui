@@ -23,8 +23,34 @@ source: https://github.com/Radian-os
 
 ###### Indeterminate Checkbox Example
 
-<IndeterminateCheckboxExample/>
+<IndeterminateCheckboxExample />
 
 ###### Select Member Example (Checkbox Group)
 
-<SelectMemberCheckboxgroupExample/>
+<SelectMemberCheckboxgroupExample />
+
+##### Props
+
+###### Checkbox Props
+
+| Prop Name      | Default Value | Possible Values              |
+| -------------- | ------------- | ---------------------------- |
+| name           | -             | string                       |
+| value          | -             | string or number             |
+| checked        | false         | boolean                      |
+| defaultChecked | false         | boolean                      |
+| onChange       | -             | `(checked: boolean) => void` |
+| disabled       | false         | boolean                      |
+| size           | "md"          | "sm", "md", "lg"             |
+| icon           | `<Check/>`    | React.ReactElement           |
+
+###### CheckboxGroup Props
+
+| Prop Name    | Default Value | Possible Values              |
+| ------------ | ------------- | ---------------------------- |
+| label        | -             | string                       |
+| size         | "md"          | "sm", "md", "lg"             |
+| defaultValue | -             | string[]                     |
+| value        | -             | string                       |
+| onChange     | -             | `(values: string[]) => void` |
+| disabled     | false         | boolean                      |

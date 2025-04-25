@@ -128,9 +128,9 @@ const indicatorVariants = cva("absolute z-10box-content bottom-0 right-0", {
 const avatarGroupVariants = cva("flex items-center", {
 	variants: {
 		size: {
-			"16": "-space-x-1",
-			"20": "-space-x-1",
-			"24": "-space-x-1.5",
+			"16": "-space-x-2",
+			"20": "-space-x-2",
+			"24": "-space-x-2.5",
 		},
 	},
 	defaultVariants: {
