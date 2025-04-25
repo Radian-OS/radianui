@@ -1,21 +1,20 @@
 "use client"
 
 import * as React from "react"
-import * as OTP from "@radix-ui/react-one-time-password-field"
+import { OTPInput as Root,OTPInputContext,REGEXP_ONLY_CHARS,REGEXP_ONLY_DIGITS_AND_CHARS,REGEXP_ONLY_DIGITS,type OTPInputProps,type SlotProps } from "input-otp"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-type OTPInputProps = React.ComponentProps<typeof OTP.Root> & {
+type OTPInput = React.ComponentProps<typeof Root> & {
 	length?: number
 	size?: "28" | "32" | "36" | "40" | "44" | "48" | "56"
 	placeholder?: string
 	label?: string
 	className?: string
-	inputClassName?: string
 }
 
-const otpInputVariants = cva(
-	"rounded-lg shadow-2xs bg-bg-base text-text text-center placeholder:select-none appearance-none transition-all disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary-focus focus:border-primary border border-border-alpha",
+const slotVariants = cva(
+	"relative rounded-lg shadow-2xs bg-bg-base text-text flex items-center justify-center placeholder:select-none appearance-none transition-all disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-primary-focus focus:border-primary border border-border-alpha",
 	{
 		variants: {
 			size: {
@@ -31,27 +30,29 @@ const otpInputVariants = cva(
 	}
 )
 
-function OTPInput({ length = 6, size = "44", label, className, inputClassName, ...props }: OTPInputProps) {
-	return (
-		<div className="flex flex-col gap-2">
-			{label && <label className={cn("text-sm font-medium", { "text-text-tertiary": props.disabled })}>{label}</label>}
-			<OTP.Root className={cn("flex flex-nowrap gap-2", className)} {...props} validationType="alphanumeric" disabled={true}>
-				{Array.from({ length }).map((_, i) => (
-					<OTP.Input
-						key={i}
-						className={cn(
-							otpInputVariants({ size: size }),
-							{ "bg-bg-level0 pointer-events-none cursor-not-allowed": props.disabled },
-							inputClassName
-						)}
-					/>
-				))}
-				<OTP.HiddenInput />
-			</OTP.Root>
-		</div>
-	)
+function OTPInput(){
+
 }
 
-OTPInput.displayName = "OTPInput"
+
+function Slot(props: SlotProps) {
+	return (
+	  <div
+		className={cn()}
+	  >
+		{props.char !== null && <div>{props.char}</div>}
+		{props.hasFakeCaret && <FakeCaret />}
+	  </div>
+	)
+  }
+
+
+  function FakeCaret() {
+	return (
+	  <div className="absolute pointer-events-none inset-0 flex items-center justify-center animate-caret-blink">
+		<div className="w-px h-8 bg-white" />
+	  </div>
+	)
+  }
 
 export { OTPInput }
