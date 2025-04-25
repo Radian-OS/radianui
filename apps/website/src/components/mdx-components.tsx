@@ -155,7 +155,7 @@ const components: MDXComponents = {
 		</p>
 	),
 	table: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-		<div className="no-scrollbar overflow-x-scroll">
+		<div className="no-scrollbar overflow-x-scroll mb-9">
 			<table className={cn("border-border w-full table-auto border", className)} {...props}>
 				{children}
 			</table>

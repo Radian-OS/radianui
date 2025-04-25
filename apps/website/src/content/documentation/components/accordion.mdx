@@ -27,19 +27,31 @@ externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
 
 ##### Props
 
-| Prop Name | Default Values | Values        |
-| --------- | -------------- | ------------- |
-| Icon      | Plus           | Plus, Chevron |
-| Animation | Yes            | Yes/No        |
-| Size      | Default        | Values        |
-| Source    | -              | -             |
-| Style     | Default        | Boxes, XYZ    |
+###### Accordion
 
-##### Syntax
+| Prop Name   | Default Value | Possible Values        |
+| ----------- | ------------- | ---------------------- |
+| size        | `"sm"`        | `"sm", "lg"`           |
+| variant     | "box"         | "box", "table", "open" |
+| interaction | "single"      | "single", "multiple"   |
+| disabled    | false         | boolean                |
 
-| Prop Name     | Props                         | Description             |
-| ------------- | ----------------------------- | ----------------------- |
-| `<Accordion>` | Icon, Animation, Size, Styles | Main Container          |
-| `<AccItem>`   | -                             | Container for each item |
-| `<AccHead>`   | -                             | Headers                 |
-| `<AccBody>`   | -                             | Body                    |
+###### AccordionItem
+
+| Prop Name | Default Value | Possible Values |
+| --------- | ------------- | --------------- |
+| value*     | -             | string          |
+| disabled  | false         | boolean         |
+
+###### AccordionTrigger
+
+| Prop Name | Default Value | Possible Values |
+| --------- | ------------- | --------------- |
+| asChild   | false         | boolean         |
+
+###### AccordionContent
+
+| Prop Name | Default Value | Possible Values |
+| --------- | ------------- | --------------- |
+| asChild   | false         | boolean         |
+

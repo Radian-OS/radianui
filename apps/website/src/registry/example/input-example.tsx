@@ -151,11 +151,13 @@ const InputExample = () => {
 				currency="JPY"
 			/>
 
-			<OTPInput size={size} rounded={rounded} length={6} label="Verification Code - Box Variant" />
-			<OTPInput size={size} rounded={rounded} variant="flat" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
+			<OTPInput size={size} rounded={rounded} placeholder="12345678" inputMode="numeric" length={6} label="Verification Code - Box Variant" />
+			<OTPInput size={size} rounded={rounded} variant="flat" inputMode="numeric" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
 
-			<NewOTPInput length={6} size="56" label="Verification Code - Box Variant" placeholder="1234567" disabled
-			/>
+
+			<OTPInput size={"48"} rounded={rounded} placeholder="12345678" inputMode="numeric" length={6} label="Verification Code - Box Variant" />
+			<OTPInput size={"48"} rounded={rounded} variant="flat" inputMode="numeric" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
+
 
 			<TimePicker interval={25} placeholder="Select Time" className="w-[10rem]" size={size} rounded={rounded} />
 
