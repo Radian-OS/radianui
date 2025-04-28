@@ -56,6 +56,7 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/dropdown", name: "Dropdown" },
 			{ link: "/documentation/components/drawer", name: "Drawer" },
 			{ link: "/documentation/components/inputs", name: "Inputs" },
+			{ link: "/documentation/components/input-otp", name: "Input OTP" },
 			{ link: "/documentation/components/file-upload", name: "File Upload" },
 			{ link: "/documentation/components/forms", name: "Forms" },
 			{ link: "/documentation/components/hover-card", name: "Hover Card" },

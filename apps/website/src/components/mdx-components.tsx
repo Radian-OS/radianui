@@ -8,7 +8,6 @@ import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
-import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BadgePreview from "@/component-preview/badge-preview"
 import BannerPreview from "@/component-preview/banner-preview"
 import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
@@ -17,13 +16,13 @@ import ButtonPreview from "@/component-preview/button-preview"
 import CheckboxgroupPreview from "@/component-preview/checkbox-group-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
+import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import EmailPreview from "@/component-preview/email-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
-import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
-import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
+import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
@@ -43,6 +42,10 @@ import Manual from "@/components/manual"
 import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
+import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
+import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
+import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
+import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import DeleteModalExample from "@/registry/example/modal/delete-modal"
@@ -51,8 +54,6 @@ import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-e
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
-import DatePickerPreview from "@/component-preview/date-picker-preview"
 
 type MdxProps = {
 	code: string
@@ -88,6 +89,7 @@ const components: MDXComponents = {
 	DisabledRadiogroupExample: () => <DisabledRadiogroupExample />,
 	DisplayColor: () => <DisplayColor />,
 	HovercardPreview: () => <HovercardPreview />,
+	InputOtpPreview: () => <InputOtpPreview />,
 	TabsPreview: () => <TabsPreview />,
 	DropdownPreview: () => <DropdownPreview />,
 	ResizablePreview: () => <ResizablePreview />,
@@ -155,7 +157,7 @@ const components: MDXComponents = {
 		</p>
 	),
 	table: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-		<div className="no-scrollbar overflow-x-scroll mb-9">
+		<div className="no-scrollbar mb-9 overflow-x-scroll">
 			<table className={cn("border-border w-full table-auto border", className)} {...props}>
 				{children}
 			</table>
