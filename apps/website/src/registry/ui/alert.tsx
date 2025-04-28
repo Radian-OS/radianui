@@ -23,7 +23,7 @@ const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-cente
 		variant: {
 			default: "",
 			bordered: "border bg-transparent",
-			colored: "",
+			strong: "",
 			"neutral-outline": "border border-border bg-transparent"
 		},
 	},
@@ -39,32 +39,32 @@ const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-cente
 		},
 		{
 			color: "primary",
-			variant: "colored",
+			variant: "strong",
 			className: "bg-primary text-static-white",
 		},
 		{
 			color: "info",
-			variant: "colored",
+			variant: "strong",
 			className: "bg-info text-static-white",
 		},
 		{
 			color: "success",
-			variant: "colored",
+			variant: "strong",
 			className: "bg-success text-static-white",
 		},
 		{
 			color: "warning",
-			variant: "colored",
+			variant: "strong",
 			className: "bg-warning text-static-white",
 		},
 		{
 			color: "danger",
-			variant: "colored",
+			variant: "strong",
 			className: "bg-error text-static-white",
 		},
 		{
 			color: "neutral",
-			variant: "colored",
+			variant: "strong",
 			className: "bg-text text-inverse-white",
 		}
 	],
