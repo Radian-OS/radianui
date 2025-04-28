@@ -18,13 +18,15 @@ import {
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 // const booleanOptions = ["true", "false"]
 export type domainOption = ".com" | ".org" | ".net"
+export type typeOptions = "trail" | "lead" | "default"
+
 
 
 const UrlPreview = () => {
     const [domain, setDomain] = useState<domainOption>(".com")
-    const [suffixIcon, setSuffixIcon] = useState<boolean>(false)
-    const [prefixIcon, setPrefixIcon] = useState<boolean>(false)
+    const [types, setType] = useState<typeOptions>("default")
     const [hasError, setHasError] = useState<boolean>(false)
+    console.log("domain", types)
 
 
 
@@ -36,28 +38,16 @@ const UrlPreview = () => {
                         <DropdownTrigger>Properties</DropdownTrigger>
                         <DropdownContent>
                             <DropdownSub>
-                                <DropdownSubTrigger>LeadOptions</DropdownSubTrigger>
+                                <DropdownSubTrigger>Examples</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
-                                        selectedValues={[String(prefixIcon)]}
-                                        onSelectedChange={(values) => setPrefixIcon(values[0] === "true")}
+                                        selectedValues={[String(types)]}
+                                        onSelectedChange={(values) => setType(values[0] as typeOptions)}
                                         minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>TrailOptions</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(suffixIcon)]}
-                                        onSelectedChange={(values) => setSuffixIcon(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
+                                        <DropdownItem value="default">Default</DropdownItem>
+                                        <DropdownItem value="trail">Trail</DropdownItem>
+                                        <DropdownItem value="lead">Lead</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
@@ -91,16 +81,16 @@ const UrlPreview = () => {
                             <Input
                                 classNames={{ base: "w-[320px]" }}
                                 size="36"
-                                custom={suffixIcon ? true : false}
+                                custom={types === "trail" ? true : false}
                                 placeholder="radianos.com"
                                 type="url"
-                                lead={prefixIcon ? "https://" : ""}
+                                lead={types === "lead" ? "https://" : ""}
                                 hasError={hasError}
                                 errorMsg={hasError ? "There is an error" : undefined}
                             />
 
                             {
-                                suffixIcon ? (
+                                types === "trail" ? (
                                     <Select
                                         selectedValues={[domain]}
                                         onSelectedChange={(values) => setDomain(values[0] as domainOption)}
@@ -125,7 +115,7 @@ const UrlPreview = () => {
                     language="tsx"
                     showLineNumbers
                     className="h-[420px]"
-                    code={`<div className="*:not-first:mt-2">
+                    code={types === "lead" ? (`<div className="*:not-first:mt-2">
     <Label>Url</Label>
     <div className="flex rounded-md shadow-xs">
         <Input
@@ -146,7 +136,14 @@ const UrlPreview = () => {
         </Select>
 
     </div>
-</div>`}
+</div>`) : (
+                        `<Input
+    size="36"
+    placeholder="radianos.com"
+    type="url"
+    lead="https://"
+/>`
+                    )}
                 />
             </TabsContent>
         </Tabs>
