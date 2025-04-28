@@ -72,8 +72,9 @@ const AlertPreview = () => {
 
 		if (showEndContent) {
 			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
+			const btnClassName = variant === "colored" && color !== "neutral" ? ' className="bg-static-white/30"' : ''
 			code += `
-  endContent={<Button color='${btnColor}'>Action</Button>}`
+  endContent={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
 		}
 
 		if (showIcon) {
@@ -177,17 +178,8 @@ const AlertPreview = () => {
 						color={color}
 						variant={variant}
 						icon={showIcon ? selectedIcon : undefined}
-						{...(showEndContent ? { endContent: <Button color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>Action</Button> } : {})}
+						{...(showEndContent ? { endContent: <Button className={`${variant === "colored" && color !== "neutral" ? 'bg-static-white/30' : ''}`} color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>Action</Button> } : {})}
 					/>
-					{/* <Alert
-						title="{alertContent.title}"
-						message="{alertContent.message}"
-						color={color}
-						variant={variant}
-						className="mt-2"
-						icon={showIcon ? selectedIcon : undefined}
-						endContent={<Button className="bg-inverse-fill-level4" >Test</Button>}
-					/> */}
 				</div>
 			</TabsContent>
 			<TabsContent value="code">

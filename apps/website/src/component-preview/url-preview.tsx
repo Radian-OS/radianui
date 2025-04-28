@@ -16,7 +16,7 @@ import {
 } from "@/registry/ui/dropdown"
 
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-const booleanOptions = ["true", "false"]
+// const booleanOptions = ["true", "false"]
 export type domainOption = ".com" | ".org" | ".net"
 
 
