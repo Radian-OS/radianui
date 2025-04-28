@@ -15,15 +15,11 @@ description: Display and select dates with interactive calendar + Select dates f
 
 ##### Props
 
-| Prop Name             | Default Values | Values     |
-| --------------------- | -------------- | ---------- |
-| rounded               | sm             |            |
-| size                  |                |            |
-| label                 | false          | true/false |
-| disabled              | false          | true/false |
-| showDateRangeShortcut | false          |            |
-| doubleCalendar        | false          |            |
-| navigatorStyle        | button         |            |
+| Prop Name      | Default Values | Values          |
+| -------------- | -------------- | --------------- |
+| mode           | single         | single,multiple |
+| doubleCalendar | false          | true/false      |
+| navigatorStyle | false          | true/false      |
 
 ##### Usage
 
@@ -32,12 +28,7 @@ description: Display and select dates with interactive calendar + Select dates f
 	code={` 
 <Calendar
     mode="single"
-    placeholder="Select Date"
-    showDateRangeShortcut="false"
-    disabled="false"
-    doubleCalendar="false"
-    navigatorStyle="button"
-    size="40"
-    rounded="sm"
+    doubleCalendar=false
+    navigatorStyle=false
 />`}
 />

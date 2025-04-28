@@ -17,16 +17,9 @@ import Calendar from "@/registry/ui/calendar"
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type DatePickerModes = "single" | "multiple" | "range" | "time"
-const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
-const sizes = ["28", "32", "36", "40", "44", "48"]
-const booleanOptions = ["true", "false"]
 
 const CalendarPreview = () => {
-    const [rounded, setRounded] = useState<RoundedOptions>("sm")
-    const [size, setSize] = useState<SizeOptions>("40")
-    const [disabled, setDisabled] = useState<boolean>(false)
     const [mode, setMode] = useState<DatePickerModes>("single")
-    const [showDateRangeShortcut, setShowDateRangeShortcut] = useState<boolean>(false)
     const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
     const [navigatorStyle, setNavigatorStyle] = useState<"button" | "selector">("button")
 
@@ -48,7 +41,6 @@ const CalendarPreview = () => {
                                         minSelectionCount={1}>
                                         <DropdownItem value="single">Single</DropdownItem>
                                         <DropdownItem value="multiple">Multiple</DropdownItem>
-                                        <DropdownItem value="range">Range</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
@@ -93,7 +85,6 @@ const CalendarPreview = () => {
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     {mode === "single" && <Calendar mode={"single"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
                     {mode === "multiple" && <Calendar mode={"multiple"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
-                    {mode === "range" && <Calendar mode={"range"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
                 </div>
             </TabsContent>
 
@@ -103,15 +94,10 @@ const CalendarPreview = () => {
                     showLineNumbers
                     className="h-[420px]"
                     code={`  
-<DatePicker
+<Calendar
     mode="${mode}"
-    placeholder="Select Date"
-    showDateRangeShortcut="${showDateRangeShortcut}"
-    disabled="${disabled}"
     doubleCalendar="${doubleCalendar}"
     navigatorStyle="${navigatorStyle}"
-    size="${size}"
-    rounded="${rounded}"
 />`}
                 />
             </TabsContent>
