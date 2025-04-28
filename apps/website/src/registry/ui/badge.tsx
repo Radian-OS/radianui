@@ -13,11 +13,11 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 
 type BadgeSize = "20" | "24" | "28" | "32"
 
-const badgeVariants = cva("inline-flex items-center font-medium box-border rounded-md w-fit", {
+const badgeVariants = cva("inline-flex items-center font-medium box-border rounded-md w-fit whitespace-nowrap", {
   variants: {
     variant: {
       "neutral-outline": "outline outline-border-alpha",
-      strong: "bg-primary text-white font-semibold",
+      strong: "bg-primary text-static-white font-semibold",
       outline: "text-primary-text outline outline-primary",
       pastel: "bg-primary-focus text-primary-text"
     },
