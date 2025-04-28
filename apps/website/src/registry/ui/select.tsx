@@ -216,13 +216,13 @@ function Select({
 							<Button
 								variant="ghost"
 								disabled={disabled}
-								className={cn(" border flex items-center justify-center h-full cursor-pointer",
+								className={cn("focus-visible:border-primary  focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 border flex items-center justify-center h-full cursor-pointer",
 									SelectTriggerVariations({ size, rounded }),
 									{
 										"text-text-disabled cursor-not-allowed bg-fill-level1 drop-shadow-none": disabled,
 										"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
 										"rounded-l-none": disableOpenStyle,
-										[`border-primary ring-primary/10 border ring-2 rounded-l-none`]: open && disableOpenStyle,
+										[`border rounded-l-none border-primary`]: open && disableOpenStyle,
 									},
 									"w-full truncate",
 									classNames?.trigger
