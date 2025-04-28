@@ -45,7 +45,6 @@ import { cn } from "@/lib/utils"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
-import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import DeleteModalExample from "@/registry/example/modal/delete-modal"
@@ -54,6 +53,8 @@ import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-e
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
+import CalendarPreview from "@/component-preview/calendar-preview"
 
 type MdxProps = {
 	code: string
@@ -106,6 +107,7 @@ const components: MDXComponents = {
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
+	CalendarPreview: () => <CalendarPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

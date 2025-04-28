@@ -116,13 +116,14 @@ function Input({
 						// Apply disabled styles
 						"text-text-disabled cursor-not-allowed bg-fill-level1 drop-shadow-none": disabled,
 
-						[` rounded-r-none`]: custom,
+						[`rounded-r-none`]: custom,
 
 					},
+					size === "28" ? "gap-1.5" : "gap-2",
 					classNames?.wrapper
 				)}>
 				{lead && (
-					<span className={cn("flex items-center justify-center p-1 rounded",
+					<span className={cn("flex items-center justify-center rounded",
 						{
 							" text-text-tertiary": !disabled,
 							" text-text-disabled": disabled,
@@ -153,7 +154,7 @@ function Input({
 					{...props}
 				/>
 				{trial && (
-					<span className={cn("flex items-center justify-center p-1 rounded", {
+					<span className={cn("flex items-center justify-center rounded", {
 						" text-text-tertiary": !disabled,
 						" text-text-disabled": disabled,
 					})}>
