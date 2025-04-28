@@ -181,7 +181,7 @@ const InputExample = () => {
 				multiple
 				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
 				url="http://localhost:8000/upload"
-				// headers={{ "Content-Type": "application/json" }}
+			// headers={{ "Content-Type": "application/json" }}
 			/>
 
 			<ProgressBar value={progress} />

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { OTPInput as Root,OTPInputContext,REGEXP_ONLY_CHARS,REGEXP_ONLY_DIGITS_AND_CHARS,REGEXP_ONLY_DIGITS,type OTPInputProps,type SlotProps } from "input-otp"
+import { OTPInput as Root, OTPInputContext, REGEXP_ONLY_CHARS, REGEXP_ONLY_DIGITS_AND_CHARS, REGEXP_ONLY_DIGITS, type OTPInputProps, type SlotProps } from "input-otp"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
@@ -30,29 +30,29 @@ const slotVariants = cva(
 	}
 )
 
-function OTPInput(){
+function OTPInput() {
 
 }
 
 
 function Slot(props: SlotProps) {
 	return (
-	  <div
-		className={cn()}
-	  >
-		{props.char !== null && <div>{props.char}</div>}
-		{props.hasFakeCaret && <FakeCaret />}
-	  </div>
+		<div
+			className={cn()}
+		>
+			{props.char !== null && <div>{props.char}</div>}
+			{props.hasFakeCaret && <FakeCaret />}
+		</div>
 	)
-  }
+}
 
 
-  function FakeCaret() {
+function FakeCaret() {
 	return (
-	  <div className="absolute pointer-events-none inset-0 flex items-center justify-center animate-caret-blink">
-		<div className="w-px h-8 bg-white" />
-	  </div>
+		<div className="absolute pointer-events-none inset-0 flex items-center justify-center animate-caret-blink">
+			<div className="w-px h-8 bg-white" />
+		</div>
 	)
-  }
+}
 
 export { OTPInput }
