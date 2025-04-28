@@ -2,3 +2,42 @@
 title: Calendar
 description: Display and select dates with interactive calendar + Select dates from a calendar
 ---
+
+<CalendarPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add calendar`} />
+
+##### Imports
+
+<Code language="tsx" code={`import Calendar from "@/components/ui/calendar"`} />
+
+##### Props
+
+| Prop Name             | Default Values | Values     |
+| --------------------- | -------------- | ---------- |
+| rounded               | sm             |            |
+| size                  |                |            |
+| label                 | false          | true/false |
+| disabled              | false          | true/false |
+| showDateRangeShortcut | false          |            |
+| doubleCalendar        | false          |            |
+| navigatorStyle        | button         |            |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={` 
+<Calendar
+    mode="single"
+    placeholder="Select Date"
+    showDateRangeShortcut="false"
+    disabled="false"
+    doubleCalendar="false"
+    navigatorStyle="button"
+    size="40"
+    rounded="sm"
+/>`}
+/>

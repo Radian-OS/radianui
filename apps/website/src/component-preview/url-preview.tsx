@@ -23,7 +23,7 @@ export type domainOption = ".com" | ".org" | ".net"
 const UrlPreview = () => {
     const [domain, setDomain] = useState<domainOption>(".com")
     const [suffixIcon, setSuffixIcon] = useState<boolean>(false)
-    const [prefixIcon, setPrefixIcon] = useState<boolean>(true)
+    const [prefixIcon, setPrefixIcon] = useState<boolean>(false)
     const [hasError, setHasError] = useState<boolean>(false)
 
 
@@ -87,25 +87,32 @@ const UrlPreview = () => {
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <div className="*:not-first:mt-2">
                         <Label>Url</Label>
-                        <div className="flex rounded-md shadow-xs">
+                        <div className="flex rounded-md">
                             <Input
+                                classNames={{ base: "w-[320px]" }}
                                 size="36"
-                                custom={true}
-                                placeholder="radianos"
+                                custom={suffixIcon ? true : false}
+                                placeholder="radianos.com"
                                 type="url"
-                                lead="https://"
+                                lead={prefixIcon ? "https://" : ""}
+                                hasError={hasError}
+                                errorMsg={hasError ? "There is an error" : undefined}
                             />
 
-                            <Select
-                                selectedValues={[domain]}
-                                onSelectedChange={(values) => setDomain(values[0] as domainOption)}
-                                disableOpenStyle={true}
-                                size="36"
-                                className=" -ms-0 w-fit">
-                                <SelectItem value=".com">.com</SelectItem>
-                                <SelectItem value=".org">.org</SelectItem>
-                                <SelectItem value=".net">.net</SelectItem>
-                            </Select>
+                            {
+                                suffixIcon ? (
+                                    <Select
+                                        selectedValues={[domain]}
+                                        onSelectedChange={(values) => setDomain(values[0] as domainOption)}
+                                        disableOpenStyle={true}
+                                        size="36"
+                                        className=" -ms-0 w-fit">
+                                        <SelectItem value=".com">.com</SelectItem>
+                                        <SelectItem value=".org">.org</SelectItem>
+                                        <SelectItem value=".net">.net</SelectItem>
+                                    </Select>
+                                ) : ""
+                            }
 
                         </div>
                     </div>
