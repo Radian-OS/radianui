@@ -2,7 +2,7 @@
 
 import React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
-import { Circle, CirclePlus } from "lucide-react"
+import { CirclePlus } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type AvatarVariant = NonNullable<VariantProps<typeof avatarVariants>["variant"]>
@@ -76,11 +76,19 @@ const VerifiedIcon = ({ className }: { className?: string }) => {
 	)
 }
 
-const OnlineIndicator = ({ className }: { className?: string }) => {
+const OnlineIcon = ({ className }: { className?: string }) => {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" width={120} height={120} overflow={"visible"} viewBox="0 0 20 20" fill="none" className={className}>
 			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-bg-base" />
 			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" className="fill-success" />
+		</svg>
+	)
+}
+const OfflineIcon = ({ className }: { className?: string }) => {
+	return (
+		<svg xmlns="http://www.w3.org/2000/svg" width={120} height={120} overflow={"visible"} viewBox="0 0 20 20" fill="none" className={className}>
+			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-bg-base" />
+			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" className="fill-text-disabled" />
 		</svg>
 	)
 }
@@ -185,10 +193,8 @@ function Avatar({ src, name, className, size = "36", variant = "circle", status 
 			{status !== undefined && (
 				<>
 					{status === "verified" && <VerifiedIcon className={cn(indicatorVariants({ size }), "stroke-bg-base fill-info")} />}
-					{status === "online" && <OnlineIndicator className={cn(indicatorVariants({ size }), "stroke-bg-base fill-success")} />}
-					{status === "offline" && (
-						<Circle overflow={"visible"} clipPath="none" className={cn(indicatorVariants({ size }), "stroke-bg-base fill-text-disabled stroke-10")} />
-					)}
+					{status === "online" && <OnlineIcon className={cn(indicatorVariants({ size }), "stroke-bg-base fill-success")} />}
+					{status === "offline" && <OfflineIcon className={cn(indicatorVariants({ size }), "stroke-bg-base fill-text-disabled")} />}
 					{status === "plus" && <CirclePlus className={cn(indicatorVariants({ size }), "fill-primary stroke-bg-base stroke-3 rounded-full")} />}
 				</>
 			)}
