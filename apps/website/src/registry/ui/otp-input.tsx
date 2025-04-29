@@ -68,7 +68,6 @@ function InputOtp({ size = "40", length = 6, label, disabled, hasError, ...props
 					<Label
 						className={cn("w-fit text-sm font-medium", {
 							"text-text-disabled cursor-not-allowed select-none": disabled,
-							"text-error-text": hasError,
 						})}>
 						{label}
 					</Label>
@@ -110,7 +109,7 @@ function Slot({ isActive, hasFakeCaret, char }: SlotProps) {
 
 function FakeCaret() {
 	return (
-		<div className="pointer-events-none absolute inset-0 flex animate-pulse items-center justify-center">
+		<div className="pointer-events-none absolute inset-0 flex animate-[caret-blink_1.2s_steps(1)_infinite] items-center justify-center">
 			<div className="bg-text h-6 w-px" />
 		</div>
 	)

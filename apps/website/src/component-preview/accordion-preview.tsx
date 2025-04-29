@@ -13,6 +13,24 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+const items = [
+	{
+		value: "value 1",
+		trigger: "What is Radian?",
+		content: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.`,
+	},
+	{
+		value: "value 2",
+		trigger: "How can Radian speed up my development process?",
+		content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.",
+	},
+	{
+		value: "value 3",
+		trigger: "Is Radian suitable for developers of all skill levels?",
+		content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.",
+	},
+]
+
 type Size = "sm" | "lg"
 type Variant = "open" | "box" | "table"
 type Interaction = "single" | "multiple"
@@ -93,24 +111,12 @@ export default function AccordionPreview() {
 						{...(variant !== DEFAULT_VARIANT && { variant: variant })}
 						{...(interaction !== DEFAULT_INTERACTION && { interaction: interaction })}
 						{...(size !== DEFAULT_SIZE && { size: size })}>
-						<AccordionItem value="value 1">
-							<AccordionTrigger>What is Radian?</AccordionTrigger>
-							<AccordionContent>
-								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum
-								magni illum consequatur quae doloribus.
-							</AccordionContent>
-						</AccordionItem>
-
-						<AccordionItem value="value 2">
-							<AccordionTrigger>How can Radian speed up my development process?</AccordionTrigger>
-							<AccordionContent>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.</AccordionContent>
-						</AccordionItem>
-
-						<AccordionItem value="value 3">
-							<AccordionTrigger>Is Radian suitable for developers of all skill levels?</AccordionTrigger>
-							<AccordionContent>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.</AccordionContent>
-						</AccordionItem>
+						{items.map((item) => (
+							<AccordionItem key={item.value} value={item.value}>
+								<AccordionTrigger>{item.trigger}</AccordionTrigger>
+								<AccordionContent>{item.content}</AccordionContent>
+							</AccordionItem>
+						))}
 					</Accordion>
 				</div>
 			</TabsContent>
@@ -120,25 +126,31 @@ export default function AccordionPreview() {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Accordion${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${interaction !== DEFAULT_INTERACTION ? ` interaction="${interaction}"` : ""} >
-	<AccordionItem value="value 1">
-		<AccordionTrigger>What is Radian?</AccordionTrigger>
-		<AccordionContent>
-			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur
-			adipisicing elit. Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos
-			sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.
-		</AccordionContent>
-	</AccordionItem>
+					code={`const items = [
+  {
+    value: "value 1",
+    trigger: "What is Radian?",
+    content: \`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.\`,
+  },
+  {
+    value: "value 2",
+    trigger: "How can Radian speed up my development process?",
+    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.",
+  },
+  {
+    value: "value 3",
+    trigger: "Is Radian suitable for developers of all skill levels?",
+    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.",
+  },
+]
 
-	<AccordionItem value="value 2">
-		<AccordionTrigger>How can Radian speed up my development process?</AccordionTrigger>
-		<AccordionContent>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.</AccordionContent>
-	</AccordionItem>
-
-	<AccordionItem value="value 3">
-		<AccordionTrigger>Is Radian suitable for developers of all skill levels?</AccordionTrigger>
-		<AccordionContent>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.</AccordionContent>
-	</AccordionItem>
+<Accordion${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${interaction !== DEFAULT_INTERACTION ? ` interaction="${interaction}"` : ""}>
+  {items.map((item) => (
+    <AccordionItem key={item.value} value={item.value}>
+      <AccordionTrigger>{item.trigger}</AccordionTrigger>
+      <AccordionContent>{item.content}</AccordionContent>
+    </AccordionItem>
+  ))}
 </Accordion>`}
 				/>
 			</TabsContent>

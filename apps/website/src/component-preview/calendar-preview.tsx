@@ -16,12 +16,14 @@ import Calendar from "@/registry/ui/calendar"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-export type DatePickerModes = "single" | "multiple" | "range" | "time"
+export type DatePickerModes = "single" | "multiple" | "range"
 
 const CalendarPreview = () => {
-    const [mode, setMode] = useState<DatePickerModes>("single")
+    const [mode, setMode] = useState<DatePickerModes>("range")
     const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
-    const [navigatorStyle, setNavigatorStyle] = useState<"button" | "selector">("button")
+    const [showTime, setShowTime] = useState<boolean>(false)
+    const [showShortcut, setShowShortCut] = useState<boolean>(true)
+
 
 
     return (
@@ -41,11 +43,12 @@ const CalendarPreview = () => {
                                         minSelectionCount={1}>
                                         <DropdownItem value="single">Single</DropdownItem>
                                         <DropdownItem value="multiple">Multiple</DropdownItem>
+                                        <DropdownItem value="range">Range</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>doubleCalendar</DropdownSubTrigger>
+                                <DropdownSubTrigger>Dual Calendar</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
@@ -58,20 +61,31 @@ const CalendarPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>navigatorStyle</DropdownSubTrigger>
+                                <DropdownSubTrigger>Show Time</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
-                                        selectedValues={[navigatorStyle]}
-                                        onSelectedChange={(values) => setNavigatorStyle(values[0] as "button" | "selector")}
+                                        selectedValues={[String(showTime)]}
+                                        onSelectedChange={(values) => setShowTime(values[0] === "true")}
                                         minSelectionCount={1}>
-                                        <DropdownItem value="button">Button</DropdownItem>
-                                        <DropdownItem value="selector">Selector</DropdownItem>
+                                        <DropdownItem value="true">Yes</DropdownItem>
+                                        <DropdownItem value="false">No</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
-
-
+                            <DropdownSub>
+                                <DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+                                <DropdownSubContent>
+                                    <DropdownGroup
+                                        selectionMode="single"
+                                        selectedValues={[String(showShortcut)]}
+                                        onSelectedChange={(values) => setShowShortCut(values[0] === "true")}
+                                        minSelectionCount={1}>
+                                        <DropdownItem value="true">Yes</DropdownItem>
+                                        <DropdownItem value="false">No</DropdownItem>
+                                    </DropdownGroup>
+                                </DropdownSubContent>
+                            </DropdownSub>
                         </DropdownContent>
                     </Dropdown>
                 </div>
@@ -83,8 +97,9 @@ const CalendarPreview = () => {
 
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-                    {mode === "single" && <Calendar mode={"single"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
-                    {mode === "multiple" && <Calendar mode={"multiple"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
+                    {mode === "single" && <Calendar showShortcut={showShortcut} mode={"single"} showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
+                    {mode === "multiple" && <Calendar showShortcut={showShortcut} mode={"multiple"} showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
+                    {mode === "range" && <Calendar showShortcut={showShortcut} mode={"range"} showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
                 </div>
             </TabsContent>
 
@@ -96,8 +111,9 @@ const CalendarPreview = () => {
                     code={`  
 <Calendar
     mode="${mode}"
-    doubleCalendar="${doubleCalendar}"
-    navigatorStyle="${navigatorStyle}"
+    dualCalendar=${doubleCalendar}
+    showTime=${showTime}
+    showShortcut=${showShortcut}
 />`}
                 />
             </TabsContent>

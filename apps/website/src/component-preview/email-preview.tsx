@@ -17,14 +17,11 @@ import { ArrowRight, Mail } from "lucide-react"
 
 export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-const booleanOptions = ["true", "false"]
 export type iconOptions = "Mail" | "Arrow" | "Default"
 
 const EmailPreview = () => {
-    const [disabled, setDisabled] = useState<boolean>(false)
     const [suffixIcon, setSuffixIcon] = useState<iconOptions>("Default")
     const [hasError, setHasError] = useState<boolean>(false)
-    const [label, setLabel] = useState<boolean>(true)
 
 
     return (
@@ -34,38 +31,6 @@ const EmailPreview = () => {
                     <Dropdown>
                         <DropdownTrigger>Properties</DropdownTrigger>
                         <DropdownContent>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Label</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(label)]}
-                                        onSelectedChange={(values) => setLabel(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        {booleanOptions.map((val) => (
-                                            <DropdownItem value={val} key={val}>
-                                                {val}
-                                            </DropdownItem>
-                                        ))}
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Disabled</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(disabled)]}
-                                        onSelectedChange={(values) => setDisabled(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        {booleanOptions.map((option) => (
-                                            <DropdownItem key={option} value={option}>
-                                                {option}
-                                            </DropdownItem>
-                                        ))}
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
                             <DropdownSub>
                                 <DropdownSubTrigger>Example</DropdownSubTrigger>
                                 <DropdownSubContent>
@@ -106,8 +71,7 @@ const EmailPreview = () => {
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <Input classNames={{ base: "w-[320px]" }}
                         type="email"
-                        disabled={disabled}
-                        label={label ? "Email" : undefined}
+                        label={"Email"}
                         placeholder="designer@radianos.com"
                         trial={
                             suffixIcon === "Mail" ? (
@@ -129,8 +93,7 @@ const EmailPreview = () => {
                     className="h-[420px]"
                     code={`<Input 
     type="email"
-    disabled="${disabled}"
-    label="${label ? "Email" : undefined}"
+    label="Email"
     placeholder="Enter your email here"
     trialIcon="${suffixIcon === "Mail" ? "<Mail />" : "<ArrowRight />"}"
     hasError="${hasError}"
