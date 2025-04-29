@@ -25,10 +25,10 @@ const DatePickerPreview = () => {
     const [rounded, setRounded] = useState<RoundedOptions>("sm")
     const [size, setSize] = useState<SizeOptions>("40")
     const [disabled, setDisabled] = useState<boolean>(false)
-    const [mode, setMode] = useState<DatePickerModes>("single")
+    const [mode, setMode] = useState<DatePickerModes>("range")
     const [showDateRangeShortcut, setShowDateRangeShortcut] = useState<boolean>(false)
     const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
-    const [navigatorStyle, setNavigatorStyle] = useState<"button" | "selector">("button")
+    const [showTime, setShowTime] = useState<boolean>(false)
 
 
     return (
@@ -98,12 +98,11 @@ const DatePickerPreview = () => {
                                         <DropdownItem value="single">Single</DropdownItem>
                                         <DropdownItem value="multiple">Multiple</DropdownItem>
                                         <DropdownItem value="range">Range</DropdownItem>
-                                        <DropdownItem value="time">Time</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>showDateRangeShortcut</DropdownSubTrigger>
+                                <DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
@@ -116,7 +115,7 @@ const DatePickerPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>doubleCalendar</DropdownSubTrigger>
+                                <DropdownSubTrigger>dualCalendar</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
@@ -129,20 +128,18 @@ const DatePickerPreview = () => {
                                 </DropdownSubContent>
                             </DropdownSub>
                             <DropdownSub>
-                                <DropdownSubTrigger>navigatorStyle</DropdownSubTrigger>
+                                <DropdownSubTrigger>Show Time</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
-                                        selectedValues={[navigatorStyle]}
-                                        onSelectedChange={(values) => setNavigatorStyle(values[0] as "button" | "selector")}
+                                        selectedValues={[String(showTime)]}
+                                        onSelectedChange={(values) => setShowTime(values[0] === "true")}
                                         minSelectionCount={1}>
-                                        <DropdownItem value="button">Button</DropdownItem>
-                                        <DropdownItem value="selector">Selector</DropdownItem>
+                                        <DropdownItem value="true">Yes</DropdownItem>
+                                        <DropdownItem value="false">No</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
-
-
                         </DropdownContent>
                     </Dropdown>
                 </div>
@@ -160,8 +157,8 @@ const DatePickerPreview = () => {
                         triggerClassName="w-[320px]"
                         showDateRangeShortcut={showDateRangeShortcut}
                         disabled={disabled}
-                        doubleCalendar={doubleCalendar}
-                        navigatorStyle={navigatorStyle}
+                        dualCalendar={doubleCalendar}
+                        showTime={showTime}
                         size={size}
                         rounded={rounded}
                     />
@@ -177,10 +174,10 @@ const DatePickerPreview = () => {
 <DatePicker
     mode="${mode}"
     placeholder="Select Date"
-    showDateRangeShortcut="${showDateRangeShortcut}"
-    disabled="${disabled}"
-    doubleCalendar="${doubleCalendar}"
-    navigatorStyle="${navigatorStyle}"
+    showDateRangeShortcut=${showDateRangeShortcut}
+    disabled=${disabled}
+    dualCalendar=${doubleCalendar}
+    showTime=${showTime}
     size="${size}"
     rounded="${rounded}"
 />`}
