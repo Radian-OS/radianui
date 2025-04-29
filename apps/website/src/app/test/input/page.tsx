@@ -337,9 +337,9 @@ const CalendarComp = () => {
 			</Dropdown>
 
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
-				{mode === "single" && <Calendar mode={"single"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
-				{mode === "multiple" && <Calendar mode={"multiple"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
-				{mode === "range" && <Calendar mode={"range"} doubleCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
+				{mode === "single" && <Calendar mode={"single"} dualCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
+				{mode === "multiple" && <Calendar mode={"multiple"} dualCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
+				{mode === "range" && <Calendar mode={"range"} dualCalendar={doubleCalendar} navigatorStyle={navigatorStyle} showOutsideDays />}
 			</div>
 		</div>
 	)
@@ -691,7 +691,7 @@ const DatePickerComp = () => {
 					triggerClassName="w-[320px]"
 					showDateRangeShortcut={showDateRangeShortcut}
 					disabled={disabled}
-					doubleCalendar={doubleCalendar}
+					dualCalendar={doubleCalendar}
 					navigatorStyle={navigatorStyle}
 					size={size}
 					rounded={rounded}

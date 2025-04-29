@@ -13,7 +13,7 @@ import { Select, SelectItem, SelectProps } from "./select"
 import TimePicker, { TimePickerProps } from "./time-picker"
 
 // Mock mouse click event
-function mockMouseClick(): React.MouseEvent {
+export function mockMouseClick(): React.MouseEvent {
 	return new MouseEvent("click") as unknown as React.MouseEvent
 }
 
@@ -29,7 +29,7 @@ Intl.supportedValuesOf("timeZone").map(function (zone) {
 const TIME_ZONES = Intl.supportedValuesOf("timeZone")
 
 const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
-type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
+export type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
 
 export type DatePickerModes = "single" | "multiple" | "range" | "time"
 // Type definition for DatePickerProps props
@@ -49,12 +49,14 @@ type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	mode?: DatePickerModes
+	showTime?: boolean
 }
 // DatePicker component definition
 function DatePicker({
 	selected,
 	mode = "single",
 	onSelect,
+	showTime,
 	triggerClassName,
 	showDateRangeShortcut = false,
 	defaultDateRangeShortcutValue,
@@ -102,6 +104,7 @@ function DatePicker({
 		}
 		setSelectedShortcut(shortcut)
 	}
+
 
 	// Function to handle the selection of the date
 	function onSelectHandler(
@@ -204,12 +207,14 @@ function DatePicker({
 				</Button>
 			</PopoverTrigger>
 
-			<PopoverContent className={cn("border-border bg-bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border p-0 shadow-none")}>
+			<PopoverContent className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
 				{mode === "single" && (
 					<Calendar
 						mode="single"
 						selected={currentSelected as CalendarDate}
 						onSelect={onSelectHandler}
+						showTime={showTime}
+						showShortcut={showDateRangeShortcut}
 						className="border-none drop-shadow-none"
 						{...props}
 					/>
@@ -219,27 +224,19 @@ function DatePicker({
 						mode="multiple"
 						selected={currentSelected as CalendarDate[]}
 						onSelect={onSelectHandler}
+						showTime={showTime}
+						showShortcut={showDateRangeShortcut}
 						className="border-none drop-shadow-none"
 						{...props}
 					/>
 				)}
-				{mode === "range" && showDateRangeShortcut && (
-					<div className="flex">
-						<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
-						<Calendar
-							mode="range"
-							className="border-none drop-shadow-none"
-							selected={currentSelected as CalendarRange}
-							onSelect={onSelectHandler}
-							{...props}
-						/>
-					</div>
-				)}
-				{mode === "range" && !showDateRangeShortcut && (
+				{mode === "range" && (
 					<Calendar
 						mode="range"
 						selected={currentSelected as CalendarRange}
 						className="border-none drop-shadow-none"
+						showTime={showTime}
+						showShortcut={showDateRangeShortcut}
 						onSelect={onSelectHandler}
 						{...props}
 					/>
@@ -251,6 +248,7 @@ function DatePicker({
 							selected={currentSelected as CalendarDate}
 							onSelect={onSelectHandler}
 							className="border-none pb-0 drop-shadow-none"
+							showTime={showTime}
 							{...props}
 						/>
 						<TimePickerWrapper
@@ -274,9 +272,10 @@ type DateRangeShortcutProps = {
 	selectedValue: string | null
 }
 // DateRangeShortcut component definition
-function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
+export function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
 		<div className="border-border text-text flex flex-col border-r p-2 text-sm font-medium">
+			<p className=" pl-2 text-text-tertiary">Select Date</p>
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					key={value}

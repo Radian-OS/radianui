@@ -9,7 +9,7 @@ import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"
 import { Input, type RoundedOptions, type SizeOptions } from "../ui/input"
 import OTPInput from "../ui/input-otp"
-import {InputOtp} from "../ui/otp-input"
+import { InputOtp } from "../ui/otp-input"
 import NumberInput from "../ui/number"
 import { Password } from "../ui/password"
 import PhoneNumber from "../ui/phone-number"
@@ -155,7 +155,7 @@ const InputExample = () => {
 			<OTPInput size={size} rounded={rounded} variant="flat" inputMode="numeric" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
 
 
-			<InputOtp size={"56"} label="Enter 6 digit number" length={8} placeholder="467856"/>
+			<InputOtp size={"56"} label="Enter 6 digit number" length={8} placeholder="467856" />
 
 
 			<TimePicker interval={25} placeholder="Select Time" className="w-[10rem]" size={size} rounded={rounded} />
@@ -171,7 +171,7 @@ const InputExample = () => {
 			<div className="flex flex-col gap-3">
 				<DatePicker placeholder="Default datepicker" navigatorStyle="selector" />
 				<DatePicker triggerClassName="w-[10rem]" navigatorStyle="selector" mode="single" placeholder="Single Date" />
-				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" doubleCalendar={true} showDateRangeShortcut={true} />
+				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" dualCalendar={true} showDateRangeShortcut={true} />
 			</div>
 			<FileUpload
 				value={file}

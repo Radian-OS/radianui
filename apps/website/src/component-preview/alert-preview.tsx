@@ -17,7 +17,7 @@ import { Button } from "@/registry/ui/button"
 
 const AlertPreview = () => {
 	const [color, setColor] = useState<"neutral" | "primary" | "info" | "success" | "warning" | "danger">("neutral")
-	const [variant, setVariant] = useState<"default" | "bordered" | "colored" | "neutral-outline">("default")
+	const [variant, setVariant] = useState<"default" | "bordered" | "strong" | "neutral-outline">("default")
 	const [showIcon, setShowIcon] = useState(true)
 	const [showEndContent, setShowEndContent] = useState(true)
 
@@ -72,7 +72,7 @@ const AlertPreview = () => {
 
 		if (showEndContent) {
 			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
-			const btnClassName = variant === "colored" && color !== "neutral" ? ' className="bg-static-white/30"' : ''
+			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-static-white/30 hover:bg-static-white/40"' : ''
 			code += `
   endContent={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
 		}
@@ -130,7 +130,7 @@ const AlertPreview = () => {
 											selectedValues={[variant]}>
 											<DropdownItem value="default">Default (Shaded)</DropdownItem>
 											<DropdownItem value="bordered">Bordered</DropdownItem>
-											<DropdownItem value="colored">Colored</DropdownItem>
+											<DropdownItem value="strong">Strong</DropdownItem>
 											<DropdownItem value="neutral-outline">Neutral Outline</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
@@ -178,7 +178,7 @@ const AlertPreview = () => {
 						color={color}
 						variant={variant}
 						icon={showIcon ? selectedIcon : undefined}
-						{...(showEndContent ? { endContent: <Button className={`${variant === "colored" && color !== "neutral" ? 'bg-static-white/30' : ''}`} color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>Action</Button> } : {})}
+						{...(showEndContent ? { endContent: <Button className={`${variant === "strong" && color !== "neutral" ? 'bg-static-white/30 hover:bg-static-white/40' : ''}`} color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>Action</Button> } : {})}
 					/>
 				</div>
 			</TabsContent>

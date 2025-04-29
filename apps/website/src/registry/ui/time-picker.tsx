@@ -22,7 +22,7 @@ export type TimePickerProps = Pick<
  * @param time - The Dayjs object to format.
  * @returns The formatted time string.
  */
-function serializeTime(time: Time) {
+export function serializeTime(time: Time) {
 	const hour = String(time.hour).padStart(2, "0")
 	const minute = String(time.minute).padStart(2, "0")
 	return `${hour}:${minute}`
