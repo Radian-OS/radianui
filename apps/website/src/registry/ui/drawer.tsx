@@ -1,6 +1,4 @@
 "use client"
-
-// import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
@@ -192,10 +190,8 @@ function Drawer({
 							getPaddingClass(),
 							className
 						)}>
-						{/* Remove Scrollbar */}
-						<div className="no-scrollbar flex flex-col gap-5 overflow-auto">
-							{children}
-						</div>
+						{/* Structure changed to separate fixed and scrollable parts */}
+						{children}
 					</div>
 				</DrawerPrimitives.Content>
 			</DrawerPrimitives.Portal>
@@ -204,23 +200,23 @@ function Drawer({
 }
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
-	return <div className={cn("", className)}>{children}</div>
+	return <div className={cn("flex flex-col mb-5", className)}>{children}</div>
 }
 
 function DrawerTitle({ children, className }: DrawerTitleProps) {
-	return <DrawerPrimitives.Title className={cn("", className)}>{children}</DrawerPrimitives.Title>
+	return <DrawerPrimitives.Title className={cn("text-lg font-semibold", className)}>{children}</DrawerPrimitives.Title>
 }
 
 function DrawerDescription({ children, className }: DrawerDescriptionProps) {
-	return <DrawerPrimitives.Description className={cn("", className)}>{children}</DrawerPrimitives.Description>
+	return <DrawerPrimitives.Description className={cn("text-sm text-text-secondary gap-1", className)}>{children}</DrawerPrimitives.Description>
 }
 
 function DrawerBody({ children, className }: DrawerDescriptionProps) {
-	return <div className={cn("", className)}>{children}</div>
+	return <div className={cn("flex-grow overflow-auto no-scrollbar", className)}>{children}</div>
 }
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {
-	return <section className={cn("", className)}>{children}</section>
+	return <div className={cn("mt-5 flex items-end justify-end gap-2", className)}>{children}</div>
 }
 
 function DrawerClose({ children }: DrawerCloseProps) {

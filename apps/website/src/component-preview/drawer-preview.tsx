@@ -25,89 +25,27 @@ const DrawerPreview = () => {
 	const [backdrop, setBackdrop] = useState<"blur" | "overlay" | null | undefined>("overlay")
 
 	const code = `<Drawer
-type='${variant}'
-direction='${position}'
-handle={${handle}}
-backdrop='${backdrop}'
-trigger={<Button>Open Drawer</Button>}
-className="relative"
->
+ type='${variant}'
+ direction='${position}'
+ handle={${handle}}
+ backdrop='${backdrop}'
+ trigger={<Button>Open Drawer</Button>}
+ className="relative"
+ >
 <DrawerHeader>
-<DrawerTitle className="text-lg font-semibold" >Component Sample</DrawerTitle>
-<DrawerDescription className="text-text-secondary text-sm" >Stress testing the drawer component with an example</DrawerDescription>
+ <DrawerTitle>This is a drawer header</DrawerTitle>
+ <DrawerDescription>This is a drawer description message.</DrawerDescription>
 </DrawerHeader>
-<DrawerBody>
-<Tabs defaultValue="invoice">
-<TabsList width="full">
-<TabsTrigger value="invoice">Invoice Details</TabsTrigger>
-<TabsTrigger value="updates">Updates</TabsTrigger>
-</TabsList>
-<TabsContent value="invoice">
-<div className="flex flex-col gap-3" >
-<div className="bg-bg-level1 flex gap-4 rounded-radius-md py-4">
-<Avatar name="avatar" size={"48"} variant="circle" src="/avatar.png" />
-<div>
-<h1 className="text-base font-semibold">Anna Mureum</h1>
-<p className="text-text-secondary text-sm">Head of Engineering</p>
-</div>
-</div>
-<div>
-<ul className="flex flex-col gap-3">
-<li className="flex gap-2 py-2">
-<span className="text-text-tertiary w-1/2 text-sm">Status</span>
-<span className="w-1/2">
-<Badge className="bg-success border-none text-white" size="20">
-Paid
-</Badge>
-</span>
-</li>
-<li className="flex gap-2 py-2">
-<span className="text-text-tertiary w-1/2 text-sm">Customer ID</span>
-<span className="w-1/2 text-sm">1200322201A</span>
-</li>
-<li className="flex gap-2 py-2">
-<span className="text-text-tertiary w-1/2 text-sm">Invoice ID</span>
-<span className="w-1/2 text-sm">44440000AY</span>
-</li>
-<li className="flex gap-2 py-2">
-<span className="text-text-tertiary w-1/2 text-sm">Payment Method</span>
-<span className="w-1/2 text-sm">Credit card ending with 0044</span>
-</li>
-<li className="flex gap-2 py-2">
-<span className="text-text-tertiary w-1/2 text-sm">Due Date</span>
-<span className="w-1/2 text-sm">Jan 12, 2024</span>
-</li>
-</ul>
-</div>
-<div>
-<Divider orientation="horizontal" spacing="8" />
-</div>
-<div className="text-sm font-semibold py-2">More details about the invoice</div>
-<div className="text-text-tertiary bg-fill-level2 flex items-center justify-center rounded-[0.75rem] p-5 mt-2 text-sm">Sample Container</div>
-	
-</div>
-</TabsContent>
-<TabsContent value="updates">
-<div className="py-4 flex flex-col gap-3 items-center" >
-<div className="h-[108px] w-[163px]">
-<Image src="/loader.png" className="h-full w-full object-cover" width={100} height={100} alt="loader" />
-</div>
-<div className="flex flex-col gap-1 text-center">
-<h1 className="text-lg font-semibold">No new updates</h1>
-<span className="text-text-secondary text-sm">This content sample does not have any new updates, please check at a later time</span>
-</div>
-<div className="flex gap-3">
-<Button>Refresh</Button>
-</div>
-</div>
-</TabsContent>
-</Tabs>
+<DrawerBody className="flex flex-col gap-3" >
+ <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+ <div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
+ <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
 </DrawerBody>
-<DrawerFooter className="absolute bottom-2 right-2 gap-1 flex items-end justify-end p-1" >
-<Button>Refresh</Button>
-<DrawerClose>
-<Button variant="outline" >Close</Button>
-</DrawerClose>
+<DrawerFooter>
+ <DrawerClose>
+  <Button variant="neutral-outline" >Close Drawer</Button>
+ </DrawerClose>
+  <Button>Submit Action</Button>
 </DrawerFooter>
 </Drawer>`
 
@@ -186,87 +124,25 @@ Paid
 					<Drawer
 						type={variant}
 						direction={position}
-						handle={handle === "true"}
+						handle={handle === "true" ? true : false}
 						backdrop={backdrop}
 						trigger={<Button>Open Drawer</Button>}
 						className="relative"
 					>
 						<DrawerHeader>
-							<DrawerTitle className="text-lg font-semibold" >Component Sample</DrawerTitle>
-							<DrawerDescription className="text-text-secondary text-sm" >Stress testing the drawer component with an example</DrawerDescription>
+							<DrawerTitle>This is a drawer header</DrawerTitle>
+							<DrawerDescription>This is a drawer description message.</DrawerDescription>
 						</DrawerHeader>
-						<DrawerBody>
-							<Tabs defaultValue="invoice">
-								<TabsList width="full">
-									<TabsTrigger value="invoice">Invoice Details</TabsTrigger>
-									<TabsTrigger value="updates">Updates</TabsTrigger>
-								</TabsList>
-								<TabsContent value="invoice">
-									<div className="flex flex-col gap-3" >
-										<div className="bg-bg-level1 flex gap-4 rounded-radius-md py-4">
-											<Avatar name="avatar" size={"48"} variant="circle" src="/avatar.png" />
-											<div>
-												<h1 className="text-base font-semibold">Anna Mureum</h1>
-												<p className="text-text-secondary text-sm">Head of Engineering</p>
-											</div>
-										</div>
-										<div>
-											<ul className="flex flex-col gap-3">
-												<li className="flex gap-2 py-2">
-													<span className="text-text-tertiary w-1/2 text-sm">Status</span>
-													<span className="w-1/2">
-														<Badge className="bg-success border-none text-white" size="20">
-															Paid
-														</Badge>
-													</span>
-												</li>
-												<li className="flex gap-2 py-2">
-													<span className="text-text-tertiary w-1/2 text-sm">Customer ID</span>
-													<span className="w-1/2 text-sm">1200322201A</span>
-												</li>
-												<li className="flex gap-2 py-2">
-													<span className="text-text-tertiary w-1/2 text-sm">Invoice ID</span>
-													<span className="w-1/2 text-sm">44440000AY</span>
-												</li>
-												<li className="flex gap-2 py-2">
-													<span className="text-text-tertiary w-1/2 text-sm">Payment Method</span>
-													<span className="w-1/2 text-sm">Credit card ending with 0044</span>
-												</li>
-												<li className="flex gap-2 py-2">
-													<span className="text-text-tertiary w-1/2 text-sm">Due Date</span>
-													<span className="w-1/2 text-sm">Jan 12, 2024</span>
-												</li>
-											</ul>
-										</div>
-										<div>
-											<Divider orientation="horizontal" spacing="8" />
-										</div>
-										<div className="text-sm font-semibold py-2">More details about the invoice</div>
-										<div className="text-text-tertiary bg-fill-level2 flex items-center justify-center rounded-[0.75rem] p-5 mt-2 text-sm">Sample Container</div>
-
-									</div>
-								</TabsContent>
-								<TabsContent value="updates">
-									<div className="py-4 flex flex-col gap-3 items-center" >
-										<div className="h-[108px] w-[163px]">
-											<Image src="/loader.png" className="h-full w-full object-cover" width={100} height={100} alt="loader" />
-										</div>
-										<div className="flex flex-col gap-1 text-center">
-											<h1 className="text-lg font-semibold">No new updates</h1>
-											<span className="text-text-secondary text-sm">This content sample does not have any new updates, please check at a later time</span>
-										</div>
-										<div className="flex gap-3">
-											<Button>Refresh</Button>
-										</div>
-									</div>
-								</TabsContent>
-							</Tabs>
+						<DrawerBody className="flex flex-col gap-3" >
+							<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+							<div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
+							<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
 						</DrawerBody>
-						<DrawerFooter className="absolute bottom-2 right-2 gap-1 flex items-end justify-end p-1" >
-							<Button>Refresh</Button>
+						<DrawerFooter>
 							<DrawerClose>
-								<Button variant="outline" >Close</Button>
+								<Button variant="neutral-outline" >Close Drawer</Button>
 							</DrawerClose>
+							<Button>Submit Action</Button>
 						</DrawerFooter>
 					</Drawer>
 				</div>
