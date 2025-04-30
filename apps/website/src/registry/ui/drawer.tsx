@@ -1,6 +1,6 @@
 "use client"
 
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+// import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
@@ -18,6 +18,11 @@ type DrawerWrapperProps = VariantProps<typeof drawerVariants> & {
 }
 
 type DrawerHeaderProps = {
+	children: React.ReactNode
+	className?: string
+}
+
+type DrawerTitleProps = {
 	children: React.ReactNode
 	className?: string
 }
@@ -178,9 +183,6 @@ function Drawer({
 			<DrawerPrimitives.Portal>
 				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
 				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }))}>
-					<VisuallyHidden>
-						<DrawerPrimitives.Title />
-					</VisuallyHidden>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 					<div
 						className={cn(
@@ -191,11 +193,10 @@ function Drawer({
 							className
 						)}>
 						{/* Remove Scrollbar */}
-						<div className="no-scrollbar flex flex-col gap-5 overflow-auto">{children}</div>
+						<div className="no-scrollbar flex flex-col gap-5 overflow-auto">
+							{children}
+						</div>
 					</div>
-					<VisuallyHidden>
-						<DrawerPrimitives.Description />
-					</VisuallyHidden>
 				</DrawerPrimitives.Content>
 			</DrawerPrimitives.Portal>
 		</DrawerPrimitives.Root>
@@ -203,11 +204,19 @@ function Drawer({
 }
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
+	return <div className={cn("", className)}>{children}</div>
+}
+
+function DrawerTitle({ children, className }: DrawerTitleProps) {
 	return <DrawerPrimitives.Title className={cn("", className)}>{children}</DrawerPrimitives.Title>
 }
 
-function DrawerBody({ children, className }: DrawerDescriptionProps) {
+function DrawerDescription({ children, className }: DrawerDescriptionProps) {
 	return <DrawerPrimitives.Description className={cn("", className)}>{children}</DrawerPrimitives.Description>
+}
+
+function DrawerBody({ children, className }: DrawerDescriptionProps) {
+	return <div className={cn("", className)}>{children}</div>
 }
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {
@@ -218,4 +227,4 @@ function DrawerClose({ children }: DrawerCloseProps) {
 	return <DrawerPrimitives.Close asChild>{children}</DrawerPrimitives.Close>
 }
 
-export { Drawer, DrawerBody, DrawerClose, DrawerFooter, DrawerHeader }
+export { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle }
