@@ -1,11 +1,10 @@
 import React from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
-import { format } from "date-fns"
-import { format as formatTZ } from "date-fns-tz"
-import { Calendar as CalendarIcon, Check } from "lucide-react"
+// import { format } from "date-fns"
+// import { format as formatTZ } from "date-fns-tz"
+import { Calendar as CalendarIcon } from "lucide-react"
 import { Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 import Calendar, { type CalendarProps, CalendarRange } from "./calendar"
 import { Input, RoundedOptions, SizeOptions, defaultInputRadius, defaultInputSize } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
@@ -60,7 +59,7 @@ function DatePicker({
 	triggerClassName,
 	showDateRangeShortcut = false,
 	defaultDateRangeShortcutValue,
-	placeholder = "Select Date",
+	// placeholder = "Select Date",
 	timePickerProps,
 	timeZoneProps,
 	onSelectTime,
@@ -73,7 +72,7 @@ function DatePicker({
 	const [internalSelected, setInternalSelected] = React.useState<CalendarDate | CalendarDate[] | CalendarRange | undefined>(selected || undefined)
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? selected : internalSelected
-	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
+	const [, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
 	const [time, setTime] = React.useState<Time | null>(null)
 	const [timezone, setTimezone] = React.useState<string | null>(null)
 	const currenTimezone = selectedTimezone || timezone
@@ -153,48 +152,47 @@ function DatePicker({
 	)
 
 	// Type guard for CalendarRange
-	function isCalendarRange(value: CalendarDate | CalendarDate[] | CalendarRange): value is CalendarRange {
-		return (
-			typeof value === "object" &&
-			value !== null &&
-			"from" in value &&
-			value.from instanceof CalendarDate &&
-			("to" in value ? value.to instanceof CalendarDate : true)
-		)
-	}
+	// function isCalendarRange(value: CalendarDate | CalendarDate[] | CalendarRange): value is CalendarRange {
+	// 	return (
+	// 		typeof value === "object" &&
+	// 		value !== null &&
+	// 		"from" in value &&
+	// 		value.from instanceof CalendarDate &&
+	// 		("to" in value ? value.to instanceof CalendarDate : true)
+	// 	)
+	// }
 
-	const getDisplayText = () => {
-		if (!currentSelected) return placeholder;
+	// const getDisplayText = () => {
+	// 	if (!currentSelected) return placeholder;
 
-		if (mode === "single" && currentSelected instanceof CalendarDate) {
-			return format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy");
-		}
+	// 	if (mode === "single" && currentSelected instanceof CalendarDate) {
+	// 		return format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy");
+	// 	}
 
-		if (mode === "multiple" && Array.isArray(currentSelected)) {
-			return currentSelected.map((date) =>
-				format(date.toDate(getLocalTimeZone()), "MMM dd")
-			).join(", ");
-		}
+	// 	if (mode === "multiple" && Array.isArray(currentSelected)) {
+	// 		return currentSelected.map((date) =>
+	// 			format(date.toDate(getLocalTimeZone()), "MMM dd")
+	// 		).join(", ");
+	// 	}
 
-		if (mode === "range" && isCalendarRange(currentSelected)) {
-			if (showDateRangeShortcut && selectedShortcut && selectedShortcut !== "custom") {
-				return selectedShortcut
-					.split("_")
-					.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-					.join(" ");
-			} else {
-				return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`;
-			}
-		}
+	// 	if (mode === "range" && isCalendarRange(currentSelected)) {
+	// 		if (showDateRangeShortcut && selectedShortcut && selectedShortcut !== "custom") {
+	// 			return selectedShortcut
+	// 				.split("_")
+	// 				.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+	// 				.join(" ");
+	// 		} else {
+	// 			return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`;
+	// 		}
+	// 	}
 
-		if (mode === "time" && currentSelected instanceof CalendarDate) {
-			return `${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time?.toString() || ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`;
-		}
+	// 	if (mode === "time" && currentSelected instanceof CalendarDate) {
+	// 		return `${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time?.toString() || ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`;
+	// 	}
 
-		return placeholder;
-	};
+	// 	return placeholder;
+	// };
 
-	const displayText = getDisplayText();
 
 	return (
 		<Popover align="start">
