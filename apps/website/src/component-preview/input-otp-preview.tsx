@@ -126,12 +126,18 @@ export default function InputOtpPreview() {
 						{...(label && { label: "Enter One-Time-Password" })}
 						{...(disabled && { disabled: true })}
 						{...(hasError && { hasError: true })}
+						{...(hasError && { errorMsg: "This is an error message" })}
 					/>
 				</div>
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={`<InputOtp ${size !== DEFAULT_SIZE ? `size="${size}"` : ""} />`} />
+				<CodeArea
+					language="tsx"
+					showLineNumbers
+					className="h-[420px]"
+					code={`<InputOtp ${size !== DEFAULT_SIZE ? `size="${size}"` : ""} ${length !== DEFAULT_LENGTH ? `length="${length}"` : ""} ${label ? `label="Enter One-Time-Password"` : ""} ${disabled ? `disabled=${disabled}` : ""} ${hasError ? `hasError=${hasError}` : ""} ${hasError ? `errorMsg="This is an error mmessage"` : ""}/>`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)
