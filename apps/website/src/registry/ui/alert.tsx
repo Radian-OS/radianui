@@ -4,10 +4,11 @@ import { cn } from "@/lib/utils"
 
 type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof alertVariants> & {
-		title: string
-		message: string
+		title?: string
+		message?: string
 		icon?: React.ReactNode
 		endContent?: React.ReactNode
+		children?: React.ReactNode
 	}
 
 const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
@@ -78,10 +79,14 @@ function Alert({
 	icon,
 	endContent,
 	className,
+	children,
 	...props
 }: AlertProps) {
 	const isNeutralOutline = variant === "neutral-outline";
 	const hasCustomTextColor = className?.includes("text-");
+
+	// Check if we're using the children pattern
+	const hasChildrenOnly = children && !title && !message;
 
 	return (
 		<div
@@ -89,22 +94,37 @@ function Alert({
 			{...props}
 		>
 			{icon && <div className="flex-shrink-0">{icon}</div>}
-			<div className="flex flex-col flex-grow">
-				<h5 className={cn(
-					"text-sm font-semibold",
-					isNeutralOutline && "text-text",
-					isNeutralOutline && hasCustomTextColor && "!text-current"
-				)}>
-					{title}
-				</h5>
-				<p className={cn(
-					"text-sm",
-					isNeutralOutline && "text-text-secondary",
-					isNeutralOutline && hasCustomTextColor && "!text-current opacity-80"
-				)}>
-					{message}
-				</p>
-			</div>
+
+			{hasChildrenOnly ? (
+				// Render children directly when no title/message provided
+				<div className="flex-grow text-sm">
+					{children}
+				</div>
+			) : (
+				// Original title/message structure
+				<div className="flex flex-col flex-grow">
+					{title && (
+						<h5 className={cn(
+							"text-sm font-semibold",
+							isNeutralOutline && "text-text",
+							isNeutralOutline && hasCustomTextColor && "!text-current"
+						)}>
+							{title}
+						</h5>
+					)}
+					{message && (
+						<p className={cn(
+							"text-sm",
+							isNeutralOutline && "text-text-secondary",
+							isNeutralOutline && hasCustomTextColor && "!text-current opacity-80"
+						)}>
+							{message}
+						</p>
+					)}
+					{children}
+				</div>
+			)}
+
 			{endContent && (
 				<div className="flex-shrink-0">
 					{endContent}

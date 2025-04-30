@@ -1,11 +1,7 @@
 import { useState } from "react"
-import Image from "next/image"
-import { Avatar } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import { Divider } from "@/registry/ui/divider"
-import { Drawer, DrawerBody, DrawerClose, DrawerFooter, DrawerHeader } from "@/registry/ui/drawer"
+import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
 import {
 	Dropdown,
 	DropdownContent,
@@ -25,63 +21,28 @@ const DrawerPreview = () => {
 	const [backdrop, setBackdrop] = useState<"blur" | "overlay" | null | undefined>("overlay")
 
 	const code = `<Drawer
-type="${variant}"
-direction="${position}"
-handle={${handle === "true" ? true : false}}
-backdrop="${backdrop}"
-trigger={<Button>Open Drawer</Button>}
->
+ type='${variant}'
+ direction='${position}'
+ handle={${handle}}
+ backdrop='${backdrop}'
+ trigger={<Button>Open Drawer</Button>}
+ className="relative"
+ >
 <DrawerHeader>
-<span className="text-lg font-semibold">Component Sample</span>
-<p className="text-sm text-text-secondary">Stress testing the drawer component with an example</p>
+ <DrawerTitle>This is a drawer header</DrawerTitle>
+ <DrawerDescription>This is a drawer description message.</DrawerDescription>
 </DrawerHeader>
-
-<Tabs defaultValue="invoice">
-<DrawerBody>
-<TabsList width="full">
-<TabsTrigger value="invoice">Invoice Details</TabsTrigger>
-<TabsTrigger value="updates">Updates</TabsTrigger> 
-</TabsList>
+<DrawerBody className="flex flex-col gap-3" >
+ <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+ <div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
+ <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
 </DrawerBody>
 <DrawerFooter>
-<TabsContent className="flex flex-col gap-4" value="invoice">
-<div className="p-4 flex gap-4 rounded-[0.5rem] bg-bg-level1">
-<Avatar name="avatar" size={"48"} variant="circle" src="/avatar.png" />
-<div>
-<span className="text-base font-semibold">Anna Mureum</span>
-<p className="text-sm text-text-secondary">Head of Engineering</p>
-</div>
-</div>
-<div>
-<ul className="flex flex-col gap-3">
-<li className="flex gap-2"><span className="text-text-tertiary text-sm w-1/2">Status</span><span className="w-1/2"><Badge className="bg-success border-none text-white" size="20">Paid</Badge></span></li>
-<li className="flex gap-2"><span className="text-text-tertiary text-sm w-1/2">Customer ID</span><span className="w-1/2 text-sm">1200322201A</span></li>
-<li className="flex gap-2"><span className="text-text-tertiary text-sm w-1/2">Invoice ID</span><span className="w-1/2 text-sm">44440000AY</span></li>
-<li className="flex gap-2"><span className="text-text-tertiary text-sm w-1/2">Payment Method</span><span className="w-1/2 text-sm">Credit card ending with 0044</span></li>
-<li className="flex gap-2"><span className="text-text-tertiary text-sm w-1/2">Due Date</span><span className="text-sm w-1/2">Jan 12, 2024</span></li>
-</ul>
-</div>
-<div><Divider orientation="horizontal" spacing="8" /></div>
-<div className="text-sm font-semibold">More details about the invoice</div>
-<div className="p-5 flex items-center justify-center text-sm text-text-tertiary bg-bg-level1 rounded-[0.75rem]">Sample Container</div>
-</TabsContent>
-<TabsContent value="updates" className="flex flex-col items-center justify-center gap-8">
-<div className="w-[163px] h-[108px]">
-<Image src="/loader.png" className="h-full w-full object-cover" width={100} height={100} alt="loader" />
-</div>
-<div className="flex flex-col text-center gap-1">
-<h1 className="text-lg font-semibold">No new updates</h1>
-<p className="text-sm text-text-secondary">This content sample does not have any new updates, please check at a later time</p>
-</div>
-<div className="flex gap-3">
-<DrawerClose>
-<Button variant="neutral-outline">Close Drawer</Button>
-</DrawerClose>
-<Button>Refresh</Button>
-</div>
-</TabsContent>
+ <DrawerClose>
+  <Button variant="neutral-outline" >Close Drawer</Button>
+ </DrawerClose>
+  <Button>Submit Action</Button>
 </DrawerFooter>
-</Tabs>
 </Drawer>`
 
 	return (
@@ -162,82 +123,23 @@ trigger={<Button>Open Drawer</Button>}
 						handle={handle === "true" ? true : false}
 						backdrop={backdrop}
 						trigger={<Button>Open Drawer</Button>}
-						// rounded={rounded}
+						className="relative"
 					>
 						<DrawerHeader>
-							<span className="text-lg font-semibold">Component Sample</span>
-							<p className="text-text-secondary text-sm">Stress testing the drawer component with an example</p>
+							<DrawerTitle>This is a drawer header</DrawerTitle>
+							<DrawerDescription>This is a drawer description message.</DrawerDescription>
 						</DrawerHeader>
-
-						<Tabs defaultValue="invoice">
-							<DrawerBody>
-								<TabsList width="full">
-									<TabsTrigger value="invoice">Invoice Details</TabsTrigger>
-									<TabsTrigger value="updates">Updates</TabsTrigger>
-								</TabsList>
-							</DrawerBody>
-							<DrawerFooter>
-								<TabsContent className="flex flex-col gap-4" value="invoice">
-									<div className="bg-bg-level1 flex gap-4 rounded-[0.5rem] p-4">
-										<Avatar name="avatar" size={"48"} variant="circle" src="/avatar.png" />
-										<div>
-											<span className="text-base font-semibold">Anna Mureum</span>
-											<p className="text-text-secondary text-sm">Head of Engineering</p>
-										</div>
-									</div>
-									<div>
-										<ul className="flex flex-col gap-3">
-											<li className="flex gap-2">
-												<span className="text-text-tertiary w-1/2 text-sm">Status</span>
-												<span className="w-1/2">
-													<Badge className="bg-success border-none text-white" size="20">
-														Paid
-													</Badge>
-												</span>
-											</li>
-											<li className="flex gap-2">
-												<span className="text-text-tertiary w-1/2 text-sm">Customer ID</span>
-												<span className="w-1/2 text-sm">1200322201A</span>
-											</li>
-											<li className="flex gap-2">
-												<span className="text-text-tertiary w-1/2 text-sm">Invoice ID</span>
-												<span className="w-1/2 text-sm">44440000AY</span>
-											</li>
-											<li className="flex gap-2">
-												<span className="text-text-tertiary w-1/2 text-sm">Payment Method</span>
-												<span className="w-1/2 text-sm">Credit card ending with 0044</span>
-											</li>
-											<li className="flex gap-2">
-												<span className="text-text-tertiary w-1/2 text-sm">Due Date</span>
-												<span className="w-1/2 text-sm">Jan 12, 2024</span>
-											</li>
-										</ul>
-									</div>
-									<div>
-										<Divider orientation="horizontal" spacing="8" />
-									</div>
-									<div className="text-sm font-semibold">More details about the invoice</div>
-									<div className="text-text-tertiary bg-bg-level1 flex items-center justify-center rounded-[0.75rem] p-5 text-sm">
-										Sample Container
-									</div>
-								</TabsContent>
-								<TabsContent value="updates" className="flex flex-col items-center justify-center gap-8">
-									<div className="h-[108px] w-[163px]">
-										<Image src="/loader.png" className="h-full w-full object-cover" width={100} height={100} alt="loader" />
-									</div>
-									<div className="flex flex-col gap-1 text-center">
-										<h1 className="text-lg font-semibold">No new updates</h1>
-										<p className="text-text-secondary text-sm">This content sample does not have any new updates, please check at a later time</p>
-									</div>
-									<div className="flex gap-3">
-										<DrawerClose>
-											<Button variant="neutral-outline">Close Drawer</Button>
-										</DrawerClose>
-										<Button>Refresh</Button>
-									</div>
-								</TabsContent>
-							</DrawerFooter>
-						</Tabs>
+						<DrawerBody className="flex flex-col gap-3" >
+							<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+							<div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
+							<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+						</DrawerBody>
+						<DrawerFooter>
+							<DrawerClose>
+								<Button variant="neutral-outline" >Close Drawer</Button>
+							</DrawerClose>
+							<Button>Submit Action</Button>
+						</DrawerFooter>
 					</Drawer>
 				</div>
 			</TabsContent>

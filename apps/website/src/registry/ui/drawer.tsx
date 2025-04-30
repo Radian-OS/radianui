@@ -1,6 +1,4 @@
 "use client"
-
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
@@ -18,6 +16,11 @@ type DrawerWrapperProps = VariantProps<typeof drawerVariants> & {
 }
 
 type DrawerHeaderProps = {
+	children: React.ReactNode
+	className?: string
+}
+
+type DrawerTitleProps = {
 	children: React.ReactNode
 	className?: string
 }
@@ -178,9 +181,6 @@ function Drawer({
 			<DrawerPrimitives.Portal>
 				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
 				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }))}>
-					<VisuallyHidden>
-						<DrawerPrimitives.Title />
-					</VisuallyHidden>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 					<div
 						className={cn(
@@ -190,12 +190,9 @@ function Drawer({
 							getPaddingClass(),
 							className
 						)}>
-						{/* Remove Scrollbar */}
-						<div className="no-scrollbar flex flex-col gap-5 overflow-auto">{children}</div>
+						{/* Structure changed to separate fixed and scrollable parts */}
+						{children}
 					</div>
-					<VisuallyHidden>
-						<DrawerPrimitives.Description />
-					</VisuallyHidden>
 				</DrawerPrimitives.Content>
 			</DrawerPrimitives.Portal>
 		</DrawerPrimitives.Root>
@@ -203,19 +200,27 @@ function Drawer({
 }
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
-	return <DrawerPrimitives.Title className={cn("", className)}>{children}</DrawerPrimitives.Title>
+	return <div className={cn("flex flex-col mb-5", className)}>{children}</div>
+}
+
+function DrawerTitle({ children, className }: DrawerTitleProps) {
+	return <DrawerPrimitives.Title className={cn("text-lg font-semibold", className)}>{children}</DrawerPrimitives.Title>
+}
+
+function DrawerDescription({ children, className }: DrawerDescriptionProps) {
+	return <DrawerPrimitives.Description className={cn("text-sm text-text-secondary gap-1", className)}>{children}</DrawerPrimitives.Description>
 }
 
 function DrawerBody({ children, className }: DrawerDescriptionProps) {
-	return <DrawerPrimitives.Description className={cn("", className)}>{children}</DrawerPrimitives.Description>
+	return <div className={cn("flex-grow overflow-auto no-scrollbar", className)}>{children}</div>
 }
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {
-	return <section className={cn("", className)}>{children}</section>
+	return <div className={cn("mt-5 flex items-end justify-end gap-2", className)}>{children}</div>
 }
 
 function DrawerClose({ children }: DrawerCloseProps) {
 	return <DrawerPrimitives.Close asChild>{children}</DrawerPrimitives.Close>
 }
 
-export { Drawer, DrawerBody, DrawerClose, DrawerFooter, DrawerHeader }
+export { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle }

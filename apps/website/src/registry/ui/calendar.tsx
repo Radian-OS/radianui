@@ -316,7 +316,7 @@ function CalendarComponent({
 					}
 				</div>
 				<div className="p-3 flex gap-2 w-full justify-end">
-					<Button variant="outline" className=" text-text-secondary">Cancel</Button>
+					<Button variant="neutral-outline">Cancel</Button>
 					<Button>Apply</Button>
 				</div>
 			</div>
@@ -364,7 +364,7 @@ function CalendarComponent({
 					}
 				</div>
 				<div className="p-3 flex gap-2 w-full justify-end">
-					<Button variant="outline" className=" text-text-secondary">Cancel</Button>
+					<Button variant="neutral-outline">Cancel</Button>
 					<Button>Apply</Button>
 				</div>
 			</div>
@@ -411,7 +411,7 @@ function CalendarComponent({
 				}
 			</div>
 			<div className="p-3 flex gap-2 w-full justify-end">
-				<Button variant="outline" className=" text-text-secondary">Cancel</Button>
+				<Button variant="neutral-outline">Cancel</Button>
 				<Button>Apply</Button>
 			</div>
 		</div>
