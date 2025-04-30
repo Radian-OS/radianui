@@ -2,12 +2,11 @@ import React from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { format as formatTZ } from "date-fns-tz"
-import { Calendar as CalendarIcon, Check } from "lucide-react"
+import { Calendar as CalendarIcon } from "lucide-react"
 import { Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 import Calendar, { type CalendarProps, CalendarRange } from "./calendar"
-import { RoundedOptions, SizeOptions, defaultInputRadius, defaultInputSize } from "./input"
+import { Input, RoundedOptions, SizeOptions, defaultInputRadius, defaultInputSize } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { Select, SelectItem, SelectProps } from "./select"
 import TimePicker, { TimePickerProps } from "./time-picker"
@@ -56,7 +55,7 @@ function DatePicker({
 	selected,
 	mode = "single",
 	onSelect,
-	showTime,
+	showTime = true,
 	triggerClassName,
 	showDateRangeShortcut = false,
 	defaultDateRangeShortcutValue,
@@ -163,48 +162,55 @@ function DatePicker({
 		)
 	}
 
+	const getDisplayText = () => {
+		if (!currentSelected) return placeholder;
+
+		if (mode === "single" && currentSelected instanceof CalendarDate) {
+			return format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy");
+		}
+
+		if (mode === "multiple" && Array.isArray(currentSelected)) {
+			return currentSelected.map((date) =>
+				format(date.toDate(getLocalTimeZone()), "MMM dd")
+			).join(", ");
+		}
+
+		if (mode === "range" && isCalendarRange(currentSelected)) {
+			if (showDateRangeShortcut && selectedShortcut && selectedShortcut !== "custom") {
+				return selectedShortcut
+					.split("_")
+					.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+					.join(" ");
+			} else {
+				return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`;
+			}
+		}
+
+		if (mode === "time" && currentSelected instanceof CalendarDate) {
+			return `${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time?.toString() || ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`;
+		}
+
+		return placeholder;
+	};
+	const displayText = getDisplayText();
+
+
 	return (
 		<Popover align="start">
 			<PopoverTrigger asChild disabled={props.disabled}>
-				<Button
-					variant="neutral-outline"
+				<Input
+					size={size}
+					label="Date Picker"
+					rounded={rounded}
+					disabled={props.disabled}
 					className={cn(
-						"text-text w-fit max-w-full items-center justify-between gap-2 text-sm font-normal",
-						{
-							"rounded-lg": rounded === "lg",
-							"rounded-none": rounded === "xs",
-							"cursor-not-allowed": props.disabled,
-						},
+						"text-text text-sm font-normal",
 						triggerClassName
 					)}
-					size={size as "32" | "36" | "40" | "44" | "48" | "28" | null | undefined}
-					disabled={props.disabled}>
-					<span className="w-full truncate text-left">
-						{currentSelected === undefined && placeholder}
-						{currentSelected &&
-							mode === "single" &&
-							currentSelected instanceof CalendarDate &&
-							format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")}
-						{currentSelected &&
-							mode === "multiple" &&
-							currentSelected instanceof Array &&
-							(currentSelected as CalendarDate[]).map((date) => format(date.toDate(getLocalTimeZone()), "MMM dd")).join(", ")}
-						{currentSelected &&
-							mode === "range" &&
-							isCalendarRange(currentSelected) &&
-							(showDateRangeShortcut && selectedShortcut && selectedShortcut != "custom"
-								? selectedShortcut
-									.split("_")
-									.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-									.join(" ")
-								: `${format((currentSelected as CalendarRange).from.toDate(getLocalTimeZone()), "MMM dd")} - ${format((currentSelected as CalendarRange).to!.toDate(getLocalTimeZone()), "MMM dd")}`)}
-						{currentSelected &&
-							mode === "time" &&
-							currentSelected instanceof CalendarDate &&
-							`${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time ? time.toString() : ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`}
-					</span>
-					<CalendarIcon size={20} className="stroke-text-tertiary" />
-				</Button>
+					value={displayText}
+					placeholder="Date picker"
+					trial={<CalendarIcon size={20} className="stroke-text-tertiary" />}
+				/>
 			</PopoverTrigger>
 
 			<PopoverContent className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
@@ -215,7 +221,6 @@ function DatePicker({
 						onSelect={onSelectHandler}
 						showTime={showTime}
 						showShortcut={showDateRangeShortcut}
-						className="border-none drop-shadow-none"
 						{...props}
 					/>
 				)}
@@ -226,7 +231,6 @@ function DatePicker({
 						onSelect={onSelectHandler}
 						showTime={showTime}
 						showShortcut={showDateRangeShortcut}
-						className="border-none drop-shadow-none"
 						{...props}
 					/>
 				)}
@@ -234,7 +238,6 @@ function DatePicker({
 					<Calendar
 						mode="range"
 						selected={currentSelected as CalendarRange}
-						className="border-none drop-shadow-none"
 						showTime={showTime}
 						showShortcut={showDateRangeShortcut}
 						onSelect={onSelectHandler}
@@ -274,42 +277,29 @@ type DateRangeShortcutProps = {
 // DateRangeShortcut component definition
 export function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
-		<div className="border-border text-text flex flex-col border-r p-2 text-sm font-medium">
-			<p className=" pl-2 text-text-tertiary">Select Date</p>
-			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
-				<DateRangeShortcutItem
-					key={value}
-					label={value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1)}
-					value={value}
-					onClick={function () {
-						handleShortcutSelect(value)
-					}}
-					selectedValue={selectedValue}
-				/>
-			))}
-		</div>
-	)
-}
-
-// Type definition for DateRangeShortcutItemProps props
-type DateRangeShortcutItemProps = {
-	selectedValue: string | null
-	onClick: (e: React.MouseEvent<HTMLSpanElement>) => void
-	value: string
-	label: string
-}
-
-// DateRangeShortcutItem component definition
-function DateRangeShortcutItem({ selectedValue, onClick, label, value }: DateRangeShortcutItemProps) {
-	return (
-		<span
-			className="hover:bg-bg-level1 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
-			data-value={value}
-			onClick={onClick}>
-			{label}
-			{selectedValue == value ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
-		</span>
-	)
+		<Select
+			label="SELECT DATE"
+			placeholder="Select Date Range"
+			selectedValues={selectedValue ? [selectedValue] : []}
+			onSelectedChange={(values) => handleShortcutSelect(values[0] as DateRangeShortcutValues)}
+			isSearchable={false}
+			selectionMode="single"
+			className="w-[12rem] p-3 pr-0"
+		>
+			{DATE_RANGE_SHORTCUT_VALUES.map((value) => {
+				const label = value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1);
+				return (
+					<SelectItem
+						key={value}
+						value={value}
+						onClick={() => handleShortcutSelect(value)} // Custom click per item
+					>
+						{label}
+					</SelectItem>
+				);
+			})}
+		</Select>
+	);
 }
 
 // Type definition for TimePickerWrapperProps props

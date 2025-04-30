@@ -115,7 +115,7 @@ const UrlPreview = () => {
                     language="tsx"
                     showLineNumbers
                     className="h-[420px]"
-                    code={types === "lead" ? (`<div className="*:not-first:mt-2">
+                    code={types === "trail" ? (`<div className="*:not-first:mt-2">
     <Label>Url</Label>
     <div className="flex rounded-md shadow-xs">
         <Input
@@ -136,12 +136,18 @@ const UrlPreview = () => {
         </Select>
 
     </div>
-</div>`) : (
+</div>`) : types === "lead" ? (
                         `<Input
     size="36"
     placeholder="radianos.com"
     type="url"
     lead="https://"
+/>`
+                    ) : (
+                        `<Input
+    size="36"
+    placeholder="radianos.com"
+    type="url"
 />`
                     )}
                 />
