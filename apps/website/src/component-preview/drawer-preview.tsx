@@ -1,10 +1,6 @@
 import { useState } from "react"
-import Image from "next/image"
-import { Avatar } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import { Divider } from "@/registry/ui/divider"
 import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
 import {
 	Dropdown,

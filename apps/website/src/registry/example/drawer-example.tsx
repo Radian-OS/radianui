@@ -1,14 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
-import { Avatar } from "../ui/avatar"
-import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
-import { Divider } from "../ui/divider"
 import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "../ui/drawer"
 import { Select, SelectItem } from "../ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 
 
 // const DrawerExample = () => {
