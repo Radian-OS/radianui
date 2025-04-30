@@ -118,7 +118,7 @@
 	--body-font: "Inter", system-ui, sans-serif;
 }
 
-@theme inline {
+@theme {
 	/* Border radius variables */
 	--radius-radius-xs: 2px;
 	--radius-radius-sm: 4px;
