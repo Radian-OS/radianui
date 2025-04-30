@@ -22,6 +22,11 @@ type DrawerHeaderProps = {
 	className?: string
 }
 
+type DrawerTitleProps = {
+	children: React.ReactNode
+	className?: string
+}
+
 type DrawerDescriptionProps = {
 	children: React.ReactNode
 	className?: string
@@ -75,14 +80,14 @@ const drawerVariants = cva("fixed bg-transparent z-50", {
 			direction: "right",
 			className: "top-2 right-2 h-[calc(100%-1rem)]",
 		},
-		{ type: "default", direction: "top", className: "bg-bg-base border border-bg-base" },
-		{ type: "default", direction: "bottom", className: "bg-bg-base border border-bg-base" },
-		{ type: "default", direction: "left", className: "bg-bg-base border border-bg-base" },
-		{ type: "default", direction: "right", className: "bg-bg-base border border-bg-base" },
-		{ type: "rounded", direction: "top", className: "bg-bg-base rounded-b-xl border border-bg-base" },
-		{ type: "rounded", direction: "bottom", className: "bg-bg-base rounded-t-xl border border-bg-base" },
-		{ type: "rounded", direction: "left", className: "bg-bg-base rounded-r-xl border border-bg-base" },
-		{ type: "rounded", direction: "right", className: "bg-bg-base rounded-l-xl border border-bg-base" },
+		{ type: "default", direction: "top", className: "bg-bg-base" },
+		{ type: "default", direction: "bottom", className: "bg-bg-base" },
+		{ type: "default", direction: "left", className: "bg-bg-base" },
+		{ type: "default", direction: "right", className: "bg-bg-base" },
+		{ type: "rounded", direction: "top", className: "bg-bg-base rounded-b-xl" },
+		{ type: "rounded", direction: "bottom", className: "bg-bg-base rounded-t-xl" },
+		{ type: "rounded", direction: "left", className: "bg-bg-base rounded-r-xl" },
+		{ type: "rounded", direction: "right", className: "bg-bg-base rounded-l-xl" },
 	],
 })
 
@@ -178,9 +183,6 @@ function Drawer({
 			<DrawerPrimitives.Portal>
 				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
 				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }))}>
-					<VisuallyHidden>
-						<DrawerPrimitives.Title />
-					</VisuallyHidden>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 					<div
 						className={cn(
@@ -191,11 +193,10 @@ function Drawer({
 							className
 						)}>
 						{/* Remove Scrollbar */}
-						<div className="no-scrollbar flex flex-col gap-5 overflow-auto">{children}</div>
+						<div className="no-scrollbar flex flex-col gap-5 overflow-auto">
+							{children}
+						</div>
 					</div>
-					<VisuallyHidden>
-						<DrawerPrimitives.Description />
-					</VisuallyHidden>
 				</DrawerPrimitives.Content>
 			</DrawerPrimitives.Portal>
 		</DrawerPrimitives.Root>
@@ -203,11 +204,19 @@ function Drawer({
 }
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
+	return <div className={cn("", className)}>{children}</div>
+}
+
+function DrawerTitle({ children, className }: DrawerTitleProps) {
 	return <DrawerPrimitives.Title className={cn("", className)}>{children}</DrawerPrimitives.Title>
 }
 
-function DrawerBody({ children, className }: DrawerDescriptionProps) {
+function DrawerDescription({ children, className }: DrawerDescriptionProps) {
 	return <DrawerPrimitives.Description className={cn("", className)}>{children}</DrawerPrimitives.Description>
+}
+
+function DrawerBody({ children, className }: DrawerDescriptionProps) {
+	return <div className={cn("", className)}>{children}</div>
 }
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {
@@ -218,4 +227,4 @@ function DrawerClose({ children }: DrawerCloseProps) {
 	return <DrawerPrimitives.Close asChild>{children}</DrawerPrimitives.Close>
 }
 
-export { Drawer, DrawerBody, DrawerClose, DrawerFooter, DrawerHeader }
+export { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle }

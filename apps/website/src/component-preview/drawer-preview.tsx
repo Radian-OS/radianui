@@ -5,7 +5,7 @@ import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Divider } from "@/registry/ui/divider"
-import { Drawer, DrawerBody, DrawerClose, DrawerFooter, DrawerHeader } from "@/registry/ui/drawer"
+import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
 import {
 	Dropdown,
 	DropdownContent,
@@ -25,27 +25,25 @@ const DrawerPreview = () => {
 	const [backdrop, setBackdrop] = useState<"blur" | "overlay" | null | undefined>("overlay")
 
 	const code = `<Drawer
-type="${variant}"
-direction="${position}"
+type='${variant}'
+direction='${position}'
 handle={${handle}}
-backdrop="${backdrop}"
+backdrop='${backdrop}'
 trigger={<Button>Open Drawer</Button>}
+className="relative"
 >
 <DrawerHeader>
-<div className="text-lg font-semibold">Component Sample</div>
-<div className="text-text-secondary text-sm">Stress testing the drawer component with an example</div>
+<DrawerTitle className="text-lg font-semibold" >Component Sample</DrawerTitle>
+<DrawerDescription className="text-text-secondary text-sm" >Stress testing the drawer component with an example</DrawerDescription>
 </DrawerHeader>
-	
-<Tabs defaultValue="invoice">
 <DrawerBody>
+<Tabs defaultValue="invoice">
 <TabsList width="full">
 <TabsTrigger value="invoice">Invoice Details</TabsTrigger>
 <TabsTrigger value="updates">Updates</TabsTrigger>
 </TabsList>
-</DrawerBody>
-<DrawerFooter>
-<TabsContent className="flex flex-col gap-4" value="invoice">
-<div className="flex flex-col" >
+<TabsContent value="invoice">
+<div className="flex flex-col gap-3" >
 <div className="bg-bg-level1 flex gap-4 rounded-radius-md py-4">
 <Avatar name="avatar" size={"48"} variant="circle" src="/avatar.png" />
 <div>
@@ -55,7 +53,7 @@ trigger={<Button>Open Drawer</Button>}
 </div>
 <div>
 <ul className="flex flex-col gap-3">
-<li className="flex gap-2">
+<li className="flex gap-2 py-2">
 <span className="text-text-tertiary w-1/2 text-sm">Status</span>
 <span className="w-1/2">
 <Badge className="bg-success border-none text-white" size="20">
@@ -63,19 +61,19 @@ Paid
 </Badge>
 </span>
 </li>
-<li className="flex gap-2">
+<li className="flex gap-2 py-2">
 <span className="text-text-tertiary w-1/2 text-sm">Customer ID</span>
 <span className="w-1/2 text-sm">1200322201A</span>
 </li>
-<li className="flex gap-2">
+<li className="flex gap-2 py-2">
 <span className="text-text-tertiary w-1/2 text-sm">Invoice ID</span>
 <span className="w-1/2 text-sm">44440000AY</span>
 </li>
-<li className="flex gap-2">
+<li className="flex gap-2 py-2">
 <span className="text-text-tertiary w-1/2 text-sm">Payment Method</span>
 <span className="w-1/2 text-sm">Credit card ending with 0044</span>
 </li>
-<li className="flex gap-2">
+<li className="flex gap-2 py-2">
 <span className="text-text-tertiary w-1/2 text-sm">Due Date</span>
 <span className="w-1/2 text-sm">Jan 12, 2024</span>
 </li>
@@ -84,8 +82,9 @@ Paid
 <div>
 <Divider orientation="horizontal" spacing="8" />
 </div>
-<div className="text-sm font-semibold">More details about the invoice</div>
+<div className="text-sm font-semibold py-2">More details about the invoice</div>
 <div className="text-text-tertiary bg-fill-level2 flex items-center justify-center rounded-[0.75rem] p-5 mt-2 text-sm">Sample Container</div>
+	
 </div>
 </TabsContent>
 <TabsContent value="updates">
@@ -98,15 +97,18 @@ Paid
 <span className="text-text-secondary text-sm">This content sample does not have any new updates, please check at a later time</span>
 </div>
 <div className="flex gap-3">
-<DrawerClose>
-<Button variant="neutral-outline">Close Drawer</Button>
-</DrawerClose>
 <Button>Refresh</Button>
 </div>
 </div>
 </TabsContent>
-</DrawerFooter>
 </Tabs>
+</DrawerBody>
+<DrawerFooter className="absolute bottom-2 right-2 gap-1 flex items-end justify-end p-1" >
+<Button>Refresh</Button>
+<DrawerClose>
+<Button variant="outline" >Close</Button>
+</DrawerClose>
+</DrawerFooter>
 </Drawer>`
 
 	return (
@@ -187,23 +189,20 @@ Paid
 						handle={handle === "true"}
 						backdrop={backdrop}
 						trigger={<Button>Open Drawer</Button>}
-					// rounded={rounded}
+						className="relative"
 					>
 						<DrawerHeader>
-							<div className="text-lg font-semibold">Component Sample</div>
-							<div className="text-text-secondary text-sm">Stress testing the drawer component with an example</div>
+							<DrawerTitle className="text-lg font-semibold" >Component Sample</DrawerTitle>
+							<DrawerDescription className="text-text-secondary text-sm" >Stress testing the drawer component with an example</DrawerDescription>
 						</DrawerHeader>
-
-						<Tabs defaultValue="invoice">
-							<DrawerBody>
+						<DrawerBody>
+							<Tabs defaultValue="invoice">
 								<TabsList width="full">
 									<TabsTrigger value="invoice">Invoice Details</TabsTrigger>
 									<TabsTrigger value="updates">Updates</TabsTrigger>
 								</TabsList>
-							</DrawerBody>
-							<DrawerFooter>
-								<TabsContent className="flex flex-col gap-4" value="invoice">
-									<div className="flex flex-col" >
+								<TabsContent value="invoice">
+									<div className="flex flex-col gap-3" >
 										<div className="bg-bg-level1 flex gap-4 rounded-radius-md py-4">
 											<Avatar name="avatar" size={"48"} variant="circle" src="/avatar.png" />
 											<div>
@@ -213,7 +212,7 @@ Paid
 										</div>
 										<div>
 											<ul className="flex flex-col gap-3">
-												<li className="flex gap-2">
+												<li className="flex gap-2 py-2">
 													<span className="text-text-tertiary w-1/2 text-sm">Status</span>
 													<span className="w-1/2">
 														<Badge className="bg-success border-none text-white" size="20">
@@ -221,19 +220,19 @@ Paid
 														</Badge>
 													</span>
 												</li>
-												<li className="flex gap-2">
+												<li className="flex gap-2 py-2">
 													<span className="text-text-tertiary w-1/2 text-sm">Customer ID</span>
 													<span className="w-1/2 text-sm">1200322201A</span>
 												</li>
-												<li className="flex gap-2">
+												<li className="flex gap-2 py-2">
 													<span className="text-text-tertiary w-1/2 text-sm">Invoice ID</span>
 													<span className="w-1/2 text-sm">44440000AY</span>
 												</li>
-												<li className="flex gap-2">
+												<li className="flex gap-2 py-2">
 													<span className="text-text-tertiary w-1/2 text-sm">Payment Method</span>
 													<span className="w-1/2 text-sm">Credit card ending with 0044</span>
 												</li>
-												<li className="flex gap-2">
+												<li className="flex gap-2 py-2">
 													<span className="text-text-tertiary w-1/2 text-sm">Due Date</span>
 													<span className="w-1/2 text-sm">Jan 12, 2024</span>
 												</li>
@@ -242,8 +241,9 @@ Paid
 										<div>
 											<Divider orientation="horizontal" spacing="8" />
 										</div>
-										<div className="text-sm font-semibold">More details about the invoice</div>
+										<div className="text-sm font-semibold py-2">More details about the invoice</div>
 										<div className="text-text-tertiary bg-fill-level2 flex items-center justify-center rounded-[0.75rem] p-5 mt-2 text-sm">Sample Container</div>
+
 									</div>
 								</TabsContent>
 								<TabsContent value="updates">
@@ -256,15 +256,18 @@ Paid
 											<span className="text-text-secondary text-sm">This content sample does not have any new updates, please check at a later time</span>
 										</div>
 										<div className="flex gap-3">
-											<DrawerClose>
-												<Button variant="neutral-outline">Close Drawer</Button>
-											</DrawerClose>
 											<Button>Refresh</Button>
 										</div>
 									</div>
 								</TabsContent>
-							</DrawerFooter>
-						</Tabs>
+							</Tabs>
+						</DrawerBody>
+						<DrawerFooter className="absolute bottom-2 right-2 gap-1 flex items-end justify-end p-1" >
+							<Button>Refresh</Button>
+							<DrawerClose>
+								<Button variant="outline" >Close</Button>
+							</DrawerClose>
+						</DrawerFooter>
 					</Drawer>
 				</div>
 			</TabsContent>

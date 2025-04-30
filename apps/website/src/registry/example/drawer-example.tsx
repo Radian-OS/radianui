@@ -6,11 +6,12 @@ import { Avatar } from "../ui/avatar"
 import { Badge } from "../ui/badge"
 import { Button } from "../ui/button"
 import { Divider } from "../ui/divider"
-import { Drawer, DrawerBody, DrawerClose, DrawerFooter, DrawerHeader } from "../ui/drawer"
+import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "../ui/drawer"
 import { Select, SelectItem } from "../ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
 
-export default function DrawerExample() {
+
+const DrawerExample = () => {
 	const [selectVariants, setSelectVariants] = useState<string[]>(["default"])
 	const [selectPosition, setSelectPosition] = useState<string[]>(["right"])
 	const [selectHandle, setSelectHandle] = useState<string[]>(["hide"])
@@ -20,7 +21,6 @@ export default function DrawerExample() {
 	const position = selectPosition[0] as "right" | "bottom" | "left" | "top" | undefined
 	const handle = selectHandle[0] === "show"
 	const backdrop = selectBackdrop[0] === "null" ? null : (selectBackdrop[0] as "blur" | "overlay" | undefined)
-
 	return (
 		<div className="flex flex-col gap-4 p-5">
 			<h1 className="heading-4">Drawer Example</h1>
@@ -46,7 +46,6 @@ export default function DrawerExample() {
 					<SelectItem value="overlay">Overlay</SelectItem>
 				</Select>
 			</div>
-
 			{variant && position && (
 				<Drawer
 					type={variant}
@@ -54,23 +53,20 @@ export default function DrawerExample() {
 					handle={handle}
 					backdrop={backdrop}
 					trigger={<Button>Open Drawer</Button>}
-				// rounded={rounded}
+					className="relative"
 				>
 					<DrawerHeader>
-						<div className="text-lg font-semibold">Component Sample</div>
-						<div className="text-text-secondary text-sm">Stress testing the drawer component with an example</div>
+						<DrawerTitle className="text-lg font-semibold" >Component Sample</DrawerTitle>
+						<DrawerDescription className="text-text-secondary text-sm" >Stress testing the drawer component with an example</DrawerDescription>
 					</DrawerHeader>
-
-					<Tabs defaultValue="invoice">
-						<DrawerBody>
+					<DrawerBody>
+						<Tabs defaultValue="invoice">
 							<TabsList width="full">
 								<TabsTrigger value="invoice">Invoice Details</TabsTrigger>
 								<TabsTrigger value="updates">Updates</TabsTrigger>
 							</TabsList>
-						</DrawerBody>
-						<DrawerFooter>
-							<TabsContent className="flex flex-col gap-4" value="invoice">
-								<div className="flex flex-col" >
+							<TabsContent value="invoice">
+								<div className="flex flex-col gap-3" >
 									<div className="bg-bg-level1 flex gap-4 rounded-radius-md py-4">
 										<Avatar name="avatar" size={"48"} variant="circle" src="/avatar.png" />
 										<div>
@@ -80,7 +76,7 @@ export default function DrawerExample() {
 									</div>
 									<div>
 										<ul className="flex flex-col gap-3">
-											<li className="flex gap-2">
+											<li className="flex gap-2 py-2">
 												<span className="text-text-tertiary w-1/2 text-sm">Status</span>
 												<span className="w-1/2">
 													<Badge className="bg-success border-none text-white" size="20">
@@ -88,19 +84,19 @@ export default function DrawerExample() {
 													</Badge>
 												</span>
 											</li>
-											<li className="flex gap-2">
+											<li className="flex gap-2 py-2">
 												<span className="text-text-tertiary w-1/2 text-sm">Customer ID</span>
 												<span className="w-1/2 text-sm">1200322201A</span>
 											</li>
-											<li className="flex gap-2">
+											<li className="flex gap-2 py-2">
 												<span className="text-text-tertiary w-1/2 text-sm">Invoice ID</span>
 												<span className="w-1/2 text-sm">44440000AY</span>
 											</li>
-											<li className="flex gap-2">
+											<li className="flex gap-2 py-2">
 												<span className="text-text-tertiary w-1/2 text-sm">Payment Method</span>
 												<span className="w-1/2 text-sm">Credit card ending with 0044</span>
 											</li>
-											<li className="flex gap-2">
+											<li className="flex gap-2 py-2">
 												<span className="text-text-tertiary w-1/2 text-sm">Due Date</span>
 												<span className="w-1/2 text-sm">Jan 12, 2024</span>
 											</li>
@@ -109,8 +105,9 @@ export default function DrawerExample() {
 									<div>
 										<Divider orientation="horizontal" spacing="8" />
 									</div>
-									<div className="text-sm font-semibold">More details about the invoice</div>
+									<div className="text-sm font-semibold py-2">More details about the invoice</div>
 									<div className="text-text-tertiary bg-fill-level2 flex items-center justify-center rounded-[0.75rem] p-5 mt-2 text-sm">Sample Container</div>
+
 								</div>
 							</TabsContent>
 							<TabsContent value="updates">
@@ -123,17 +120,21 @@ export default function DrawerExample() {
 										<span className="text-text-secondary text-sm">This content sample does not have any new updates, please check at a later time</span>
 									</div>
 									<div className="flex gap-3">
-										<DrawerClose>
-											<Button variant="neutral-outline">Close Drawer</Button>
-										</DrawerClose>
 										<Button>Refresh</Button>
 									</div>
 								</div>
 							</TabsContent>
-						</DrawerFooter>
-					</Tabs>
+						</Tabs>
+					</DrawerBody>
+					<DrawerFooter className="absolute bottom-2 right-2 gap-1 flex items-end justify-end p-1" >
+						<Button>Refresh</Button>
+						<DrawerClose>
+							<Button variant="outline" >Close</Button>
+						</DrawerClose>
+					</DrawerFooter>
 				</Drawer>
 			)}
 		</div>
 	)
 }
+export default DrawerExample
