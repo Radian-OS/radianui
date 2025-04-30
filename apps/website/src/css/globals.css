@@ -116,13 +116,9 @@
 	/* font */
 	--heading-font: "Inter Display", system-ui, sans-serif;
 	--body-font: "Inter", system-ui, sans-serif;
-
-	/* temporary not working for some reason in theme */
-	--color-inverse-black: var(--color-black-9);
-	--color-inverse-white: var(--color-white-1);
 }
 
-@theme {
+@theme inline {
 	/* Border radius variables */
 	--radius-radius-xs: 2px;
 	--radius-radius-sm: 4px;
