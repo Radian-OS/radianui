@@ -184,7 +184,7 @@ function Drawer({
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 					<div
 						className={cn(
-							"bg-bg-base relative flex h-full w-full flex-col border drop-shadow-2xl",
+							"bg-bg-base relative flex h-full w-full flex-col gap-5 border drop-shadow-2xl",
 							getRoundedClass(),
 							getDefaultClass(),
 							getPaddingClass(),
@@ -200,7 +200,7 @@ function Drawer({
 }
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
-	return <div className={cn("flex flex-col mb-5", className)}>{children}</div>
+	return <div className={cn("flex flex-col gap-1", className)}>{children}</div>
 }
 
 function DrawerTitle({ children, className }: DrawerTitleProps) {
@@ -216,7 +216,7 @@ function DrawerBody({ children, className }: DrawerDescriptionProps) {
 }
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {
-	return <div className={cn("mt-5 flex items-end justify-end gap-2", className)}>{children}</div>
+	return <div className={cn("flex items-end justify-end gap-2", className)}>{children}</div>
 }
 
 function DrawerClose({ children }: DrawerCloseProps) {
