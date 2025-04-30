@@ -1,6 +1,6 @@
 "use client"
 
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+// import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
