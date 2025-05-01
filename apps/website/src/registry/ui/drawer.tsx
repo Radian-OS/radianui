@@ -39,12 +39,12 @@ type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed bg-transparent z-[51] outline outline-border", {
+const drawerVariants = cva("fixed bg-transparent z-[51] ", {
 	variants: {
 		type: {
 			float: "",
-			default: "",
-			rounded: "",
+			default: "outline outline-border",
+			rounded: "outline outline-border",
 		},
 		direction: {
 			top: "top-0 w-full max-h-100 h-full left-0", // 100 = 400px
@@ -145,7 +145,7 @@ function Drawer({
 
 		// Handle float type
 		if (type === "float") {
-			return cn(baseClasses, "rounded-xl shadow-lg")
+			return cn(baseClasses, "rounded-xl shadow-lg outline outline-border")
 		}
 
 		// Handle rounded type
@@ -197,6 +197,7 @@ function Drawer({
 								getContentClass(),
 								getPaddingClass(),
 								"h-full w-full",
+
 								className
 							)}>
 							{children}
