@@ -1,11 +1,10 @@
 import React, { useState } from "react"
 import { CalendarDate, getLocalTimeZone, parseDate, Time, today } from "@internationalized/date"
 import { format } from "date-fns"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Check, ChevronLeft, ChevronRight } from "lucide-react"
 import { ChevronProps, CustomComponents, DateRange, DayPicker, Modifiers, useDayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
 import { Select, SelectItem } from "./select"
-import { Button } from "./button"
 import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./date-picker"
 
 /**
@@ -90,6 +89,7 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		showTime?: boolean
 		defaultDateRangeShortcutValue?: DateRangeShortcutValues
 		showShortcut?: boolean
+		footer?: React.ReactNode
 
 	}
 
@@ -108,6 +108,7 @@ function CalendarComponent({
 	dualCalendar = false,
 	defaultDateRangeShortcutValue,
 	className,
+	footer,
 	...props
 }: CalendarProps) {
 	const [internalSelected, setInternalSelected] = React.useState<Date | Date[] | DateRange | undefined>(convertToNativeDate(selected))
@@ -274,11 +275,49 @@ function CalendarComponent({
 		}
 	}, [])
 
+	type TimeSelectorProps = {
+		showTime: boolean;
+		timeOptions: Time[]; // Updated to accept Time[]
+		selectedIndex: number | null;
+		setSelectedIndex: (index: number | null) => void;
+		formatTime: (time: Time) => string; // Updated to accept Time
+	};
+
+	function TimeSelector(props: TimeSelectorProps) {
+		const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime } = props;
+
+		if (!showTime) return null;
+
+		return (
+			<div className="flex pt-3 flex-col px-1 h-72 w-30 overflow-y-scroll text-text no-scrollbar text-sm font-medium">
+				{timeOptions.map((time, index) => {
+					const formatted = formatTime(time);
+					const isSelected = selectedIndex === index;
+
+					return (
+						<span
+							key={index}
+							className={`hover:bg-bg-level1 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5`}
+							data-value={time}
+							onClick={() => setSelectedIndex(index)}
+						>
+							{formatted}
+							{isSelected ? (
+								<Check className="stroke-text-secondary" size={16} />
+							) : (
+								<span className="size-4" />
+							)}
+						</span>
+					);
+				})}
+			</div>
+		);
+	}
 
 	if (mode === "single") {
 		return (
 			<div className="w-fit rounded-xl bg-bg-base drop-shadow-xs border border-border">
-				<div className=" flex overflow-hidden border-b">
+				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{
 						showShortcut && (
 							<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
@@ -298,27 +337,17 @@ function CalendarComponent({
 					/>
 					{
 						showTime && (
-							<div className=" flex pt-3 flex-col gap-2 px-1 h-72 w-30 overflow-y-scroll no-scrollbar">
-								{timeOptions.map((time, index) => {
-									const formatted = formatTime(time)
-									return (
-										<span onClick={() => setSelectedIndex(index)}
-											className={`px-2 py-1.5 flex gap-2 text-sm cursor-pointer rounded-md
-										  ${selectedIndex === index ? " bg-primary text-white" : "bg-transparent"}
-										`}
-											key={index}>
-											{formatted}
-										</span>
-									)
-								})}
-							</div>
+							<TimeSelector
+								timeOptions={timeOptions}
+								selectedIndex={selectedIndex}
+								setSelectedIndex={setSelectedIndex}
+								formatTime={formatTime}
+								showTime={showTime}
+							/>
 						)
 					}
 				</div>
-				<div className="p-3 flex gap-2 w-full justify-end">
-					<Button variant="neutral-outline">Cancel</Button>
-					<Button>Apply</Button>
-				</div>
+				{footer && footer}
 			</div>
 
 		)
@@ -327,7 +356,7 @@ function CalendarComponent({
 	if (mode == "multiple") {
 		return (
 			<div className="w-fit rounded-xl bg-bg-base drop-shadow-xs border border-border">
-				<div className=" flex overflow-hidden border-b">
+				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{
 						showShortcut && (
 							<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
@@ -347,33 +376,24 @@ function CalendarComponent({
 					/>
 					{
 						showTime && (
-							<div className=" flex pt-3 flex-col gap-2 px-1 h-72 w-30 overflow-y-scroll no-scrollbar">
-								{timeOptions.map((time, index) => {
-									const formatted = formatTime(time)
-									return (
-										<span onClick={() => setSelectedIndex(index)}
-											className={`px-2 py-1.5 flex gap-2 cursor-pointer rounded-md text-sm
-									  ${selectedIndex === index ? " bg-primary text-white" : "bg-transparent"}
-									`} key={index}>
-											{formatted}
-										</span>
-									)
-								})}
-							</div>
+							<TimeSelector
+								timeOptions={timeOptions}
+								selectedIndex={selectedIndex}
+								setSelectedIndex={setSelectedIndex}
+								formatTime={formatTime}
+								showTime={showTime}
+							/>
 						)
 					}
 				</div>
-				<div className="p-3 flex gap-2 w-full justify-end">
-					<Button variant="neutral-outline">Cancel</Button>
-					<Button>Apply</Button>
-				</div>
+				{footer && footer}
 			</div>
 		)
 	}
 
 	return (
 		<div className="w-fit rounded-xl bg-bg-base drop-shadow-xs border border-border">
-			<div className=" flex border-b overflow-hidden">
+			<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 				{
 					showShortcut && (
 						<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
@@ -393,27 +413,17 @@ function CalendarComponent({
 				/>
 				{
 					showTime && (
-						<div className=" flex pt-3 flex-col gap-2 px-1 h-72 w-30 overflow-y-scroll no-scrollbar">
-							{timeOptions.map((time, index) => {
-								const formatted = formatTime(time)
-								return (
-									<span onClick={() => setSelectedIndex(index)}
-										className={`px-2 py-1.5 text-sm flex gap-2 cursor-pointer rounded-md
-								  ${selectedIndex === index ? " bg-primary text-white" : "bg-transparent"}
-								`}
-										key={index}>
-										{formatted}
-									</span>
-								)
-							})}
-						</div>
+						<TimeSelector
+							timeOptions={timeOptions}
+							selectedIndex={selectedIndex}
+							setSelectedIndex={setSelectedIndex}
+							formatTime={formatTime}
+							showTime={showTime}
+						/>
 					)
 				}
 			</div>
-			<div className="p-3 flex gap-2 w-full justify-end">
-				<Button variant="neutral-outline">Cancel</Button>
-				<Button>Apply</Button>
-			</div>
+			{footer && footer}
 		</div>
 	)
 }
