@@ -30,6 +30,7 @@ type OTPInput = Pick<
 
 type OTPInputContextType = {
 	size?: SlotSize
+	errorMsg?: string
 	disabled?: boolean
 	hasError?: boolean
 }
@@ -60,7 +61,7 @@ function useOTPInputContext() {
 	return context
 }
 
-function InputOtp({ size = "40", length = 6, label, disabled, hasError, ...props }: OTPInput) {
+function InputOtp({ size = "40", length = 6, label, disabled, hasError, errorMsg, ...props }: OTPInput) {
 	return (
 		<OTPInputContext.Provider value={{ size: size, disabled: disabled, hasError: hasError }}>
 			<div className="flex w-fit flex-col gap-1.5">
@@ -74,6 +75,7 @@ function InputOtp({ size = "40", length = 6, label, disabled, hasError, ...props
 				)}
 				<Root
 					maxLength={length}
+					className="disabled:cursor-not-allowed"
 					containerClassName="group flex items-center w-fit"
 					render={({ slots }) => (
 						<>
@@ -87,6 +89,7 @@ function InputOtp({ size = "40", length = 6, label, disabled, hasError, ...props
 					disabled={disabled}
 					{...props}
 				/>
+				{hasError && <Label className={cn("text-error text-xs font-medium")}>{errorMsg}</Label>}
 			</div>
 		</OTPInputContext.Provider>
 	)

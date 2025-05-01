@@ -1,6 +1,4 @@
 "use client"
-
-// import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
@@ -41,12 +39,12 @@ type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed bg-transparent z-50", {
+const drawerVariants = cva("fixed bg-transparent z-[51] ", {
 	variants: {
 		type: {
 			float: "",
-			default: "",
-			rounded: "",
+			default: "outline outline-border",
+			rounded: "outline outline-border",
 		},
 		direction: {
 			top: "top-0 w-full max-h-100 h-full left-0", // 100 = 400px
@@ -117,6 +115,21 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! roun
 	},
 })
 
+// New wrapper variant to ensure proper sizing
+const wrapperVariants = cva("", {
+	variants: {
+		direction: {
+			top: "w-full h-full",
+			bottom: "w-full h-full",
+			left: "w-full h-full",
+			right: "w-full h-full",
+		},
+	},
+	defaultVariants: {
+		direction: "right",
+	},
+})
+
 function Drawer({
 	direction = "right",
 	type = "default",
@@ -127,38 +140,32 @@ function Drawer({
 	handle = false,
 	...props
 }: DrawerWrapperProps) {
-	function getRoundedClass() {
-		if (type === "float") return "rounded-xl"
+	function getContentClass() {
+		const baseClasses = "bg-bg-base flex flex-col gap-5 overflow-hidden"
+
+		// Handle float type
+		if (type === "float") {
+			return cn(baseClasses, "rounded-xl shadow-lg outline outline-border")
+		}
+
+		// Handle rounded type
 		if (type === "rounded") {
 			switch (direction) {
 				case "top":
-					return "rounded-b-xl border-t-transparent"
+					return cn(baseClasses, "rounded-b-xl shadow-lg")
 				case "bottom":
-					return "rounded-t-xl border-b-transparent"
+					return cn(baseClasses, "rounded-t-xl shadow-lg")
 				case "left":
-					return "rounded-r-xl border-l-transparent"
+					return cn(baseClasses, "rounded-r-xl shadow-lg")
 				case "right":
-					return "rounded-l-xl border-r-transparent"
+					return cn(baseClasses, "rounded-l-xl shadow-lg")
 				default:
-					return ""
+					return baseClasses
 			}
 		}
-	}
 
-	function getDefaultClass() {
-		if (type !== "default") return ""
-		switch (direction) {
-			case "top":
-				return "border-t-transparent"
-			case "bottom":
-				return "border-b-transparent"
-			case "left":
-				return "border-l-transparent"
-			case "right":
-				return "border-r-transparent"
-			default:
-				return ""
-		}
+		// Default type
+		return baseClasses
 	}
 
 	function getPaddingClass() {
@@ -184,16 +191,15 @@ function Drawer({
 				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
 				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }))}>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
-					<div
-						className={cn(
-							"bg-bg-base relative flex h-full w-full flex-col border drop-shadow-2xl",
-							getRoundedClass(),
-							getDefaultClass(),
-							getPaddingClass(),
-							className
-						)}>
-						{/* Remove Scrollbar */}
-						<div className="no-scrollbar flex flex-col gap-5 overflow-auto">
+					<div className={cn(wrapperVariants({ direction }), "h-full w-full")}>
+						<div
+							className={cn(
+								getContentClass(),
+								getPaddingClass(),
+								"h-full w-full",
+
+								className
+							)}>
 							{children}
 						</div>
 					</div>
@@ -204,23 +210,23 @@ function Drawer({
 }
 
 function DrawerHeader({ children, className }: DrawerHeaderProps) {
-	return <div className={cn("", className)}>{children}</div>
+	return <div className={cn("flex flex-col gap-1", className)}>{children}</div>
 }
 
 function DrawerTitle({ children, className }: DrawerTitleProps) {
-	return <DrawerPrimitives.Title className={cn("", className)}>{children}</DrawerPrimitives.Title>
+	return <DrawerPrimitives.Title className={cn("text-lg font-semibold", className)}>{children}</DrawerPrimitives.Title>
 }
 
 function DrawerDescription({ children, className }: DrawerDescriptionProps) {
-	return <DrawerPrimitives.Description className={cn("", className)}>{children}</DrawerPrimitives.Description>
+	return <DrawerPrimitives.Description className={cn("text-sm text-text-secondary gap-1", className)}>{children}</DrawerPrimitives.Description>
 }
 
 function DrawerBody({ children, className }: DrawerDescriptionProps) {
-	return <div className={cn("", className)}>{children}</div>
+	return <div className={cn("flex-grow overflow-auto no-scrollbar", className)}>{children}</div>
 }
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {
-	return <section className={cn("", className)}>{children}</section>
+	return <div className={cn("flex items-end justify-end gap-2", className)}>{children}</div>
 }
 
 function DrawerClose({ children }: DrawerCloseProps) {
