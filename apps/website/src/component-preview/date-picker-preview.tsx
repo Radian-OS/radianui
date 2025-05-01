@@ -167,7 +167,7 @@ const DatePickerPreview = () => {
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <DatePicker
-                        mode={mode}
+                        mode={showDateRangeShortcut ? "range" : mode}
                         triggerClassName="w-[320px]"
                         showDateRangeShortcut={showDateRangeShortcut}
                         disabled={disabled}
@@ -175,7 +175,7 @@ const DatePickerPreview = () => {
                         showTime={showTime}
                         size={size}
                         rounded={rounded}
-                        footer={footer && (<div className="p-3 flex gap-2 w-full justify-end">
+                        footer={footer && (<div className="p-3 flex gap-2">
                             <Button variant="neutral-outline">Cancel</Button>
                             <Button>Apply</Button>
                         </div>)}

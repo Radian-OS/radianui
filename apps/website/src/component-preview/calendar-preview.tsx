@@ -110,25 +110,24 @@ const CalendarPreview = () => {
             </div>
 
             <TabsContent value="preview">
-                <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+                <div className={`flex h-[420px] flex-col ${doubleCalendar && showShortcut ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
                     {mode === "single" && <Calendar showShortcut={showShortcut}
-                        mode={"single"}
-                        footer={footer && (<div className="p-3 flex gap-2 w-full justify-end">
+                        mode={showShortcut ? "range" : "single"}
+                        footer={footer && (<div className="p-3 flex gap-2">
                             <Button variant="neutral-outline">Cancel</Button>
                             <Button>Apply</Button>
                         </div>)}
                         showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
                     {mode === "multiple" && <Calendar showShortcut={showShortcut}
-                        mode={"multiple"}
-                        showTime={showTime}
-                        footer={footer && (<div className="p-3 flex gap-2 w-full justify-end">
+                        mode={showShortcut ? "range" : "multiple"} showTime={showTime}
+                        footer={footer && (<div className="p-3 flex gap-2">
                             <Button variant="neutral-outline">Cancel</Button>
                             <Button>Apply</Button>
                         </div>)}
                         dualCalendar={doubleCalendar} showOutsideDays />}
                     {mode === "range" && <Calendar showShortcut={showShortcut}
                         mode={"range"}
-                        footer={footer && (<div className="p-3 flex gap-2 w-full justify-end">
+                        footer={footer && (<div className="p-3 flex gap-2">
                             <Button variant="neutral-outline">Cancel</Button>
                             <Button>Apply</Button>
                         </div>)}
@@ -148,7 +147,7 @@ const CalendarPreview = () => {
     showTime=${showTime}
     showShortcut=${showShortcut}
     footer=${footer && `{
-            <div className="p-3 flex gap-2 w-full justify-end">
+            <div className="p-3 flex gap-2">
                 <Button variant="neutral-outline">Cancel</Button>
                 <Button>Apply</Button>
             </div>

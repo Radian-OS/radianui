@@ -289,7 +289,7 @@ type DateRangeShortcutProps = {
 export function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
 		<div className="border-border w-50 text-text flex flex-col border-r p-2 text-sm font-medium">
-			<p className=" pl-2 text-text-tertiary">Select Date</p>
+			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary">Select Date</p>
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					key={value}
@@ -315,7 +315,7 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className="hover:bg-bg-level1 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
+			className="hover:bg-fill-level2 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
 			data-value={value}
 			onClick={onClick}>
 			{label}
