@@ -1,7 +1,7 @@
 import { CodeArea } from "../ui/code"
 
 export default async function CodeAreaExample() {
-	const codeExample = `import {Accordion, AccordionItem} from "@radian-os/react";
+  const codeExample = `import {Accordion, AccordionItem} from "@radian-os/react";
 export default function App() {
   const defaultContent =
     "I am Ashmit3"
@@ -20,13 +20,13 @@ export default function App() {
   );
 }`
 
-	return (
-		<div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-3 py-12">
-			<CodeArea showLineNumbers theme="one-dark-pro" code={codeExample} language="tsx" />
-			<CodeArea showLineNumbers copiable={false} code={codeExample} language="typescript" />
-			<CodeArea showLineNumbers code="npm radianos@beta initttt" language="bash" />
-			<CodeArea code="npm radianos@beta initttt" language="shell" />
-			<CodeArea theme="github-light" language="tsx" copiable={false} showLineNumbers code={codeExample} />
-		</div>
-	)
+  return (
+    <div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-3 py-12">
+      <CodeArea showLineNumbers theme="one-dark-pro" code={codeExample} language="tsx" />
+      <CodeArea showLineNumbers theme="github-dark-high-contrast" copiable={false} code={codeExample} language="tsx" />
+      <CodeArea showLineNumbers code="npm radianos@beta initttt" language="bash" />
+      <CodeArea code="npm radianos@beta initttt" language="shell" />
+      <CodeArea theme="github-light" language="tsx" copiable={false} showLineNumbers code={codeExample} />
+    </div>
+  )
 }
