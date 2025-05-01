@@ -153,7 +153,6 @@ const DatePickerPreview = () => {
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <DatePicker
                         mode={mode}
-                        placeholder="Select Date"
                         triggerClassName="w-[320px]"
                         showDateRangeShortcut={showDateRangeShortcut}
                         disabled={disabled}

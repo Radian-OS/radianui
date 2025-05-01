@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { format as formatTZ } from "date-fns-tz"
-import { Calendar as CalendarIcon } from "lucide-react"
+import { Calendar as CalendarIcon, Check } from "lucide-react"
 import { Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
 import Calendar, { type CalendarProps, CalendarRange } from "./calendar"
@@ -59,7 +59,7 @@ function DatePicker({
 	triggerClassName,
 	showDateRangeShortcut = false,
 	defaultDateRangeShortcutValue,
-	placeholder = "Select Date",
+	placeholder,
 	timePickerProps,
 	timeZoneProps,
 	onSelectTime,
@@ -194,78 +194,86 @@ function DatePicker({
 	};
 	const displayText = getDisplayText();
 
+	const [inputValue, setInputValue] = useState(displayText || "");
+
+	useEffect(() => {
+		setInputValue(displayText || "");
+	}, [displayText]);
 
 	return (
-		<Popover align="start">
-			<PopoverTrigger asChild disabled={props.disabled}>
-				<Input
-					size={size}
-					label="Date Picker"
-					rounded={rounded}
-					disabled={props.disabled}
-					className={cn(
-						"text-text text-sm font-normal",
-						triggerClassName
-					)}
-					value={displayText}
-					placeholder="Date picker"
-					trial={<CalendarIcon size={20} className="stroke-text-tertiary" />}
-				/>
-			</PopoverTrigger>
+		<div className="relative">
+			<Input
+				size={size}
+				label="Date Picker"
+				rounded={rounded}
+				disabled={props.disabled}
+				className={cn(
+					"text-text text-sm font-normal",
+					triggerClassName
+				)}
+				value={inputValue}
+				onChange={(e) => setInputValue(e.target.value)}
+				placeholder="Date picker"
+			/>
+			<Popover align="start">
+				<PopoverTrigger asChild disabled={props.disabled}>
+					<CalendarIcon size={20} className="stroke-text-tertiary cursor-pointer absolute bottom-3 right-3" />
+				</PopoverTrigger>
 
-			<PopoverContent className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
-				{mode === "single" && (
-					<Calendar
-						mode="single"
-						selected={currentSelected as CalendarDate}
-						onSelect={onSelectHandler}
-						showTime={showTime}
-						showShortcut={showDateRangeShortcut}
-						{...props}
-					/>
-				)}
-				{mode === "multiple" && (
-					<Calendar
-						mode="multiple"
-						selected={currentSelected as CalendarDate[]}
-						onSelect={onSelectHandler}
-						showTime={showTime}
-						showShortcut={showDateRangeShortcut}
-						{...props}
-					/>
-				)}
-				{mode === "range" && (
-					<Calendar
-						mode="range"
-						selected={currentSelected as CalendarRange}
-						showTime={showTime}
-						showShortcut={showDateRangeShortcut}
-						onSelect={onSelectHandler}
-						{...props}
-					/>
-				)}
-				{mode === "time" && (
-					<React.Fragment>
+				<PopoverContent className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
+					{mode === "single" && (
 						<Calendar
 							mode="single"
 							selected={currentSelected as CalendarDate}
 							onSelect={onSelectHandler}
-							className="border-none pb-0 drop-shadow-none"
 							showTime={showTime}
+							showShortcut={showDateRangeShortcut}
 							{...props}
 						/>
-						<TimePickerWrapper
-							value={time}
-							onValueChange={handleTimeChange}
-							timezone={currenTimezone}
-							setTimezone={handleTimezoneChange}
-							timePickerProps={timePickerProps}
-							timeZoneProps={timeZoneProps}
+					)}
+					{mode === "multiple" && (
+						<Calendar
+							mode="multiple"
+							selected={currentSelected as CalendarDate[]}
+							onSelect={onSelectHandler}
+							showTime={showTime}
+							showShortcut={showDateRangeShortcut}
+							{...props}
 						/>
-					</React.Fragment>
-				)}
-			</PopoverContent>
-		</Popover>
+					)}
+					{mode === "range" && (
+						<Calendar
+							mode="range"
+							selected={currentSelected as CalendarRange}
+							showTime={showTime}
+							showShortcut={showDateRangeShortcut}
+							onSelect={onSelectHandler}
+							{...props}
+						/>
+					)}
+					{mode === "time" && (
+						<React.Fragment>
+							<Calendar
+								mode="single"
+								selected={currentSelected as CalendarDate}
+								onSelect={onSelectHandler}
+								className="border-none pb-0 drop-shadow-none"
+								showTime={showTime}
+								{...props}
+							/>
+							<TimePickerWrapper
+								value={time}
+								onValueChange={handleTimeChange}
+								timezone={currenTimezone}
+								setTimezone={handleTimezoneChange}
+								timePickerProps={timePickerProps}
+								timeZoneProps={timeZoneProps}
+							/>
+						</React.Fragment>
+					)}
+				</PopoverContent>
+			</Popover>
+		</div>
 	)
 }
 
@@ -277,29 +285,40 @@ type DateRangeShortcutProps = {
 // DateRangeShortcut component definition
 export function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
-		<Select
-			label="SELECT DATE"
-			placeholder="Select Date Range"
-			selectedValues={selectedValue ? [selectedValue] : []}
-			onSelectedChange={(values) => handleShortcutSelect(values[0] as DateRangeShortcutValues)}
-			isSearchable={false}
-			selectionMode="single"
-			className="w-[12rem] p-3 pr-0"
-		>
-			{DATE_RANGE_SHORTCUT_VALUES.map((value) => {
-				const label = value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1);
-				return (
-					<SelectItem
-						key={value}
-						value={value}
-						onClick={() => handleShortcutSelect(value)} // Custom click per item
-					>
-						{label}
-					</SelectItem>
-				);
-			})}
-		</Select>
+		<div className="border-border w-50 text-text flex flex-col border-r p-2 text-sm font-medium">
+			<p className=" pl-2 text-text-tertiary">Select Date</p>
+			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
+				<DateRangeShortcutItem
+					key={value}
+					label={value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1)}
+					value={value}
+					onClick={function () {
+						handleShortcutSelect(value)
+					}}
+					selectedValue={selectedValue}
+				/>
+			))}
+		</div>
 	);
+}
+type DateRangeShortcutItemProps = {
+	selectedValue: string | null
+	onClick: (e: React.MouseEvent<HTMLSpanElement>) => void
+	value: string
+	label: string
+}
+
+// DateRangeShortcutItem component definition
+function DateRangeShortcutItem({ selectedValue, onClick, label, value }: DateRangeShortcutItemProps) {
+	return (
+		<span
+			className="hover:bg-bg-level1 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
+			data-value={value}
+			onClick={onClick}>
+			{label}
+			{selectedValue == value ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
+		</span>
+	)
 }
 
 // Type definition for TimePickerWrapperProps props
