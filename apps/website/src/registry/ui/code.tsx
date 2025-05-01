@@ -17,7 +17,7 @@ type CodeAreaProps = {
 	tabs?: boolean
 }
 
-const DEFAULT_THEME = "github-dark-default"
+const DEFAULT_THEME = "github-dark-high-contrast"
 
 function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNumbers = false, copiable = true }: CodeAreaProps) {
 	const [highlightedCode, setHighlightedCode] = useState<string>("")
