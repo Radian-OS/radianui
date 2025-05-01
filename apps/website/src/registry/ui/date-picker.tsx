@@ -201,7 +201,7 @@ function DatePicker({
 	}, [displayText]);
 
 	return (
-		<div className="relative">
+		<div>
 			<Input
 				size={size}
 				label="Date Picker"
@@ -211,68 +211,71 @@ function DatePicker({
 					"text-text text-sm font-normal",
 					triggerClassName
 				)}
+				trial={
+					<Popover align="end">
+						<PopoverTrigger disabled={props.disabled}>
+							<CalendarIcon size={20} className="stroke-text-tertiary cursor-pointer" />
+						</PopoverTrigger>
+
+						<PopoverContent className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
+							{mode === "single" && (
+								<Calendar
+									mode="single"
+									selected={currentSelected as CalendarDate}
+									onSelect={onSelectHandler}
+									showTime={showTime}
+									showShortcut={showDateRangeShortcut}
+									{...props}
+								/>
+							)}
+							{mode === "multiple" && (
+								<Calendar
+									mode="multiple"
+									selected={currentSelected as CalendarDate[]}
+									onSelect={onSelectHandler}
+									showTime={showTime}
+									showShortcut={showDateRangeShortcut}
+									{...props}
+								/>
+							)}
+							{mode === "range" && (
+								<Calendar
+									mode="range"
+									selected={currentSelected as CalendarRange}
+									showTime={showTime}
+									showShortcut={showDateRangeShortcut}
+									onSelect={onSelectHandler}
+									{...props}
+								/>
+							)}
+							{mode === "time" && (
+								<React.Fragment>
+									<Calendar
+										mode="single"
+										selected={currentSelected as CalendarDate}
+										onSelect={onSelectHandler}
+										className="border-none pb-0 drop-shadow-none"
+										showTime={showTime}
+										{...props}
+									/>
+									<TimePickerWrapper
+										value={time}
+										onValueChange={handleTimeChange}
+										timezone={currenTimezone}
+										setTimezone={handleTimezoneChange}
+										timePickerProps={timePickerProps}
+										timeZoneProps={timeZoneProps}
+									/>
+								</React.Fragment>
+							)}
+						</PopoverContent>
+					</Popover>
+				}
 				value={inputValue}
 				onChange={(e) => setInputValue(e.target.value)}
 				placeholder="Date picker"
 			/>
-			<Popover align="start">
-				<PopoverTrigger asChild disabled={props.disabled}>
-					<CalendarIcon size={20} className="stroke-text-tertiary cursor-pointer absolute bottom-3 right-3" />
-				</PopoverTrigger>
 
-				<PopoverContent className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
-					{mode === "single" && (
-						<Calendar
-							mode="single"
-							selected={currentSelected as CalendarDate}
-							onSelect={onSelectHandler}
-							showTime={showTime}
-							showShortcut={showDateRangeShortcut}
-							{...props}
-						/>
-					)}
-					{mode === "multiple" && (
-						<Calendar
-							mode="multiple"
-							selected={currentSelected as CalendarDate[]}
-							onSelect={onSelectHandler}
-							showTime={showTime}
-							showShortcut={showDateRangeShortcut}
-							{...props}
-						/>
-					)}
-					{mode === "range" && (
-						<Calendar
-							mode="range"
-							selected={currentSelected as CalendarRange}
-							showTime={showTime}
-							showShortcut={showDateRangeShortcut}
-							onSelect={onSelectHandler}
-							{...props}
-						/>
-					)}
-					{mode === "time" && (
-						<React.Fragment>
-							<Calendar
-								mode="single"
-								selected={currentSelected as CalendarDate}
-								onSelect={onSelectHandler}
-								className="border-none pb-0 drop-shadow-none"
-								showTime={showTime}
-								{...props}
-							/>
-							<TimePickerWrapper
-								value={time}
-								onValueChange={handleTimeChange}
-								timezone={currenTimezone}
-								setTimezone={handleTimezoneChange}
-								timePickerProps={timePickerProps}
-								timeZoneProps={timeZoneProps}
-							/>
-						</React.Fragment>
-					)}
-				</PopoverContent>
-			</Popover>
 		</div>
 	)
 }
