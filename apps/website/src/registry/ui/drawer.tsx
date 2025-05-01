@@ -39,12 +39,12 @@ type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed bg-transparent z-[51] ", {
+const drawerVariants = cva("fixed bg-transparent z-[51]", {
 	variants: {
 		type: {
 			float: "",
 			default: "outline outline-border",
-			rounded: "outline outline-border",
+			rounded: "rounded-xl", // No outline for rounded type to avoid the border issue
 		},
 		direction: {
 			top: "top-0 w-full max-h-100 h-full left-0", // 100 = 400px
@@ -82,10 +82,10 @@ const drawerVariants = cva("fixed bg-transparent z-[51] ", {
 		{ type: "default", direction: "bottom", className: "bg-bg-base" },
 		{ type: "default", direction: "left", className: "bg-bg-base" },
 		{ type: "default", direction: "right", className: "bg-bg-base" },
-		{ type: "rounded", direction: "top", className: "bg-bg-base rounded-b-xl" },
-		{ type: "rounded", direction: "bottom", className: "bg-bg-base rounded-t-xl" },
-		{ type: "rounded", direction: "left", className: "bg-bg-base rounded-r-xl" },
-		{ type: "rounded", direction: "right", className: "bg-bg-base rounded-l-xl" },
+		{ type: "rounded", direction: "top", className: "bg-bg-base" }, // Rounded is now handled within content
+		{ type: "rounded", direction: "bottom", className: "bg-bg-base" },
+		{ type: "rounded", direction: "left", className: "bg-bg-base" },
+		{ type: "rounded", direction: "right", className: "bg-bg-base" },
 	],
 })
 
@@ -152,13 +152,13 @@ function Drawer({
 		if (type === "rounded") {
 			switch (direction) {
 				case "top":
-					return cn(baseClasses, "rounded-b-xl shadow-lg")
+					return cn(baseClasses, "outline outline-border rounded-b-xl")
 				case "bottom":
-					return cn(baseClasses, "rounded-t-xl shadow-lg")
+					return cn(baseClasses, "outline outline-border rounded-t-xl")
 				case "left":
-					return cn(baseClasses, "rounded-r-xl shadow-lg")
+					return cn(baseClasses, "outline outline-border rounded-r-xl")
 				case "right":
-					return cn(baseClasses, "rounded-l-xl shadow-lg")
+					return cn(baseClasses, "outline outline-border rounded-l-xl")
 				default:
 					return baseClasses
 			}
@@ -197,7 +197,6 @@ function Drawer({
 								getContentClass(),
 								getPaddingClass(),
 								"h-full w-full",
-
 								className
 							)}>
 							{children}
