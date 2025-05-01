@@ -39,7 +39,7 @@ type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed bg-transparent z-50", {
+const drawerVariants = cva("fixed bg-transparent z-[51] outline outline-border", {
 	variants: {
 		type: {
 			float: "",
@@ -115,6 +115,21 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! roun
 	},
 })
 
+// New wrapper variant to ensure proper sizing
+const wrapperVariants = cva("", {
+	variants: {
+		direction: {
+			top: "w-full h-full",
+			bottom: "w-full h-full",
+			left: "w-full h-full",
+			right: "w-full h-full",
+		},
+	},
+	defaultVariants: {
+		direction: "right",
+	},
+})
+
 function Drawer({
 	direction = "right",
 	type = "default",
@@ -125,38 +140,32 @@ function Drawer({
 	handle = false,
 	...props
 }: DrawerWrapperProps) {
-	function getRoundedClass() {
-		if (type === "float") return "rounded-xl"
+	function getContentClass() {
+		const baseClasses = "bg-bg-base flex flex-col gap-5 overflow-hidden"
+
+		// Handle float type
+		if (type === "float") {
+			return cn(baseClasses, "rounded-xl shadow-lg")
+		}
+
+		// Handle rounded type
 		if (type === "rounded") {
 			switch (direction) {
 				case "top":
-					return "rounded-b-xl border-t-transparent"
+					return cn(baseClasses, "rounded-b-xl shadow-lg")
 				case "bottom":
-					return "rounded-t-xl border-b-transparent"
+					return cn(baseClasses, "rounded-t-xl shadow-lg")
 				case "left":
-					return "rounded-r-xl border-l-transparent"
+					return cn(baseClasses, "rounded-r-xl shadow-lg")
 				case "right":
-					return "rounded-l-xl border-r-transparent"
+					return cn(baseClasses, "rounded-l-xl shadow-lg")
 				default:
-					return ""
+					return baseClasses
 			}
 		}
-	}
 
-	function getDefaultClass() {
-		if (type !== "default") return ""
-		switch (direction) {
-			case "top":
-				return "border-t-transparent"
-			case "bottom":
-				return "border-b-transparent"
-			case "left":
-				return "border-l-transparent"
-			case "right":
-				return "border-r-transparent"
-			default:
-				return ""
-		}
+		// Default type
+		return baseClasses
 	}
 
 	function getPaddingClass() {
@@ -182,16 +191,16 @@ function Drawer({
 				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
 				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }))}>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
-					<div
-						className={cn(
-							"bg-bg-base relative flex h-full w-full flex-col gap-5 border drop-shadow-2xl",
-							getRoundedClass(),
-							getDefaultClass(),
-							getPaddingClass(),
-							className
-						)}>
-						{/* Structure changed to separate fixed and scrollable parts */}
-						{children}
+					<div className={cn(wrapperVariants({ direction }), "h-full w-full")}>
+						<div
+							className={cn(
+								getContentClass(),
+								getPaddingClass(),
+								"h-full w-full",
+								className
+							)}>
+							{children}
+						</div>
 					</div>
 				</DrawerPrimitives.Content>
 			</DrawerPrimitives.Portal>

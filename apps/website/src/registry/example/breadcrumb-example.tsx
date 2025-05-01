@@ -25,7 +25,7 @@ const BreadcrumbExample = () => {
 				<BreadcrumbItem href="/components">Components</BreadcrumbItem>
 				<BreadcrumbItem isCurrent>Breadcrumbs</BreadcrumbItem>
 			</Breadcrumb>
-			<Breadcrumb separatorType="slash">
+			<Breadcrumb separator="slash">
 				<BreadcrumbItem href="/">
 					<House />
 				</BreadcrumbItem>
@@ -37,12 +37,12 @@ const BreadcrumbExample = () => {
 				<BreadcrumbItem href="/components">Components</BreadcrumbItem>
 				<BreadcrumbItem isCurrent>Breadcrumbs</BreadcrumbItem>
 			</Breadcrumb>
-			<Breadcrumb separatorType="slash">
+			<Breadcrumb separator="slash">
 				<BreadcrumbItem href="/">Home</BreadcrumbItem>
 				<BreadcrumbItem href="/components">Components</BreadcrumbItem>
 				<BreadcrumbItem isCurrent>Breadcrumbs</BreadcrumbItem>
 			</Breadcrumb>
-			<Breadcrumb separatorType="slash">
+			<Breadcrumb separator="slash">
 				<BreadcrumbItem href="/">
 					<HouseIcon />
 					Home

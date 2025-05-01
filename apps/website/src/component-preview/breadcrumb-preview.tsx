@@ -14,7 +14,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BreadCrumbPreview = () => {
-	const [separatorType, setSeparatorType] = useState<"default" | "slash">("default")
+	const [separator, setSeparatorType] = useState<"default" | "slash">("default")
 	const [maxItems, setMaxItems] = useState<"2" | "3" | "4" | "5">("5")
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -24,13 +24,13 @@ const BreadCrumbPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>separatorType</DropdownSubTrigger>
+								<DropdownSubTrigger>separator</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										minSelectionCount={1}
 										onSelectedChange={(keys) => setSeparatorType(Array.from(keys)[0] as "default" | "slash")}
-										selectedValues={[separatorType]}>
+										selectedValues={[separator]}>
 										<DropdownItem value="default">Default</DropdownItem>
 										<DropdownItem value="slash">Slash</DropdownItem>
 									</DropdownGroup>
@@ -63,7 +63,7 @@ const BreadCrumbPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Breadcrumb separatorType={separatorType} maxItems={parseInt(maxItems)}>
+					<Breadcrumb separator={separator} maxItems={parseInt(maxItems)}>
 						<BreadcrumbItem href="#">Home</BreadcrumbItem>
 						<BreadcrumbItem href="#">About</BreadcrumbItem>
 						<BreadcrumbItem href="#">Contact</BreadcrumbItem>
@@ -77,7 +77,7 @@ const BreadCrumbPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Breadcrumb separatorType="${separatorType}" maxItems={${maxItems}} >
+					code={`<Breadcrumb separator="${separator}" maxItems={${maxItems}} >
 <BreadcrumbItem href="#" >Home</BreadcrumbItem>
 <BreadcrumbItem href="#" >About</BreadcrumbItem>
 <BreadcrumbItem href="#" >Contact</BreadcrumbItem>
