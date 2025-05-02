@@ -95,7 +95,7 @@ ${example === "default" ?
   label="Password"
   placeholder="Enter your password"
   ${hasError ? `hasError={true}
-  errorMsg="Password must be at least 8 characters"` : ''}
+  errorMsg="Password must be at least 8 characters"`: ''}
 />` :
                             `<Password
   label="Password"
