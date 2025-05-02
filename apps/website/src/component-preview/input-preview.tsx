@@ -162,7 +162,6 @@ const InputPreview = () => {
                         trial={suffixIcon ? <CircleUserRound /> : null}
                         hasError={hasError}
                         errorMsg={hasError ? "There is an error" : undefined} />
-                    <Input label="Password" type="password" placeholder="Enter Your Password" className="w-80 mt-2" />
                 </div>
             </TabsContent>
 

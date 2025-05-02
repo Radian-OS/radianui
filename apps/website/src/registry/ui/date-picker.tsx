@@ -49,12 +49,18 @@ type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	rounded?: RoundedOptions
 	mode?: DatePickerModes
 	showTime?: boolean
+	label?: string
+	hasError?: boolean
+	disabled?: boolean
 }
 // DatePicker component definition
 function DatePicker({
 	selected,
 	mode = "single",
 	onSelect,
+	disabled,
+	label,
+	hasError = false,
 	showTime = true,
 	triggerClassName,
 	showDateRangeShortcut = false,
@@ -200,24 +206,49 @@ function DatePicker({
 		setInputValue(displayText || "");
 	}, [displayText]);
 
+
+	console.log(inputValue)
+	const sizeHeightMapping = {
+		28: "h-4 w-4",
+		32: "h-5 w-5",
+		36: "h-5 w-5",
+		40: "h-5 w-5",
+		44: "h-6 w-6",
+		48: "h-6 w-6",
+	};
+
 	return (
 		<div>
 			<Input
 				size={size}
-				label="Date Picker"
+				label={label}
 				rounded={rounded}
-				disabled={props.disabled}
+				disabled={disabled}
+				hasError={hasError}
+				errorMsg={hasError ? "There is an error" : undefined}
 				className={cn(
-					"text-text text-sm font-normal",
 					triggerClassName
 				)}
+				value={inputValue}
+				// onChange={(e) => {
+				// 	setInputValue(e.target.value);
+				// }}
+				placeholder="Date picker"
 				trial={
-					<Popover align="end">
-						<PopoverTrigger disabled={props.disabled}>
-							<CalendarIcon size={20} className="stroke-text-tertiary cursor-pointer" />
+					< Popover align="end" sideOffset={14} >
+						<PopoverTrigger disabled={disabled}>
+							<CalendarIcon className={cn(
+								sizeHeightMapping[size],
+								"cursor-pointer stroke-text-tertiary",
+								{
+									"text-text-tertiary": !disabled,
+									"text-text-disabled cursor-not-allowed": disabled,
+								}
+							)}
+							/>
 						</PopoverTrigger>
 
-						<PopoverContent className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
+						<PopoverContent alignOffset={20} className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
 							{mode === "single" && (
 								<Calendar
 									mode="single"
@@ -271,12 +302,9 @@ function DatePicker({
 						</PopoverContent>
 					</Popover>
 				}
-				value={inputValue}
-				onChange={(e) => setInputValue(e.target.value)}
-				placeholder="Date picker"
 			/>
 
-		</div>
+		</div >
 	)
 }
 
@@ -288,8 +316,8 @@ type DateRangeShortcutProps = {
 // DateRangeShortcut component definition
 export function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
 	return (
-		<div className="border-border w-50 text-text flex flex-col border-r p-2 text-sm font-medium">
-			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary">Select Date</p>
+		<div className="border-border w-50 text-text flex flex-col border-r px-1.5 py-1">
+			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT DATE</p>
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					key={value}
@@ -315,7 +343,7 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className="hover:bg-fill-level2 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5"
+			className="hover:bg-fill-level2 group text-text flex leading-5 cursor-pointer font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5"
 			data-value={value}
 			onClick={onClick}>
 			{label}

@@ -33,6 +33,11 @@ const DatePickerPreview = () => {
     const [footer, setFooter] = useState<boolean>(false)
 
 
+    const [label, setLabel] = useState<boolean>(true)
+    const [hasError, setHasError] = useState<boolean>(false)
+
+
+
     return (
         <Tabs defaultValue="preview" className="mb-10">
             <div className="flex items-center justify-between">
@@ -40,39 +45,56 @@ const DatePickerPreview = () => {
                     <Dropdown>
                         <DropdownTrigger>Properties</DropdownTrigger>
                         <DropdownContent>
+                            <DropdownGroup title="input">
+                                <DropdownSub>
+                                    <DropdownSubTrigger>Rounded</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[rounded]}
+                                            onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
+                                            minSelectionCount={1}>
+                                            {roundedOptions.map((roundedOption) => (
+                                                <DropdownItem value={roundedOption} key={roundedOption}>
+                                                    {roundedOption}
+                                                </DropdownItem>
+                                            ))}
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
+                                <DropdownSub>
+                                    <DropdownSubTrigger>Size</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[size]}
+                                            onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
+                                            minSelectionCount={1}>
+                                            {sizes.map((size) => (
+                                                <DropdownItem value={size} key={size}>
+                                                    {size}
+                                                </DropdownItem>
+                                            ))}
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
+                            </DropdownGroup>
                             <DropdownSub>
-                                <DropdownSubTrigger>Rounded</DropdownSubTrigger>
+                                <DropdownSubTrigger>Label</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
-                                        selectedValues={[rounded]}
-                                        onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
+                                        selectedValues={[String(label)]}
+                                        onSelectedChange={(values) => setLabel(values[0] === "true")}
                                         minSelectionCount={1}>
-                                        {roundedOptions.map((roundedOption) => (
-                                            <DropdownItem value={roundedOption} key={roundedOption}>
-                                                {roundedOption}
+                                        {booleanOptions.map((val) => (
+                                            <DropdownItem value={val} key={val}>
+                                                {val}
                                             </DropdownItem>
                                         ))}
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Size</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[size]}
-                                        onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-                                        minSelectionCount={1}>
-                                        {sizes.map((size) => (
-                                            <DropdownItem value={size} key={size}>
-                                                {size}
-                                            </DropdownItem>
-                                        ))}
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-
                             <DropdownSub>
                                 <DropdownSubTrigger>Disabled</DropdownSubTrigger>
                                 <DropdownSubContent>
@@ -89,72 +111,89 @@ const DatePickerPreview = () => {
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
+
                             <DropdownSub>
-                                <DropdownSubTrigger>mode</DropdownSubTrigger>
+                                <DropdownSubTrigger>HasError</DropdownSubTrigger>
                                 <DropdownSubContent>
                                     <DropdownGroup
                                         selectionMode="single"
-                                        selectedValues={[mode]}
-                                        onSelectedChange={(values) => setMode(values[0] as DatePickerModes)}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="single">Single</DropdownItem>
-                                        <DropdownItem value="multiple">Multiple</DropdownItem>
-                                        <DropdownItem value="range">Range</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(showDateRangeShortcut)]}
-                                        onSelectedChange={(values) => setShowDateRangeShortcut(values[0] === "true")}
+                                        selectedValues={[String(hasError)]}
+                                        onSelectedChange={(values) => setHasError(values[0] === "true")}
                                         minSelectionCount={1}>
                                         <DropdownItem value="true">Yes</DropdownItem>
                                         <DropdownItem value="false">No</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>dualCalendar</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(doubleCalendar)]}
-                                        onSelectedChange={(values) => setDoubleCalendar(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Show Time</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(showTime)]}
-                                        onSelectedChange={(values) => setShowTime(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Footer</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(footer)]}
-                                        onSelectedChange={(values) => setFooter(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
+
+                            <DropdownGroup title="date picker">
+                                <DropdownSub>
+                                    <DropdownSubTrigger>mode</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[mode]}
+                                            onSelectedChange={(values) => setMode(values[0] as DatePickerModes)}
+                                            minSelectionCount={1}>
+                                            <DropdownItem value="single">Single</DropdownItem>
+                                            <DropdownItem value="multiple">Multiple</DropdownItem>
+                                            <DropdownItem value="range">Range</DropdownItem>
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
+                                <DropdownSub>
+                                    <DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[String(showDateRangeShortcut)]}
+                                            onSelectedChange={(values) => setShowDateRangeShortcut(values[0] === "true")}
+                                            minSelectionCount={1}>
+                                            <DropdownItem value="true">Yes</DropdownItem>
+                                            <DropdownItem value="false">No</DropdownItem>
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
+                                <DropdownSub>
+                                    <DropdownSubTrigger>dualCalendar</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[String(doubleCalendar)]}
+                                            onSelectedChange={(values) => setDoubleCalendar(values[0] === "true")}
+                                            minSelectionCount={1}>
+                                            <DropdownItem value="true">Yes</DropdownItem>
+                                            <DropdownItem value="false">No</DropdownItem>
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
+                                <DropdownSub>
+                                    <DropdownSubTrigger>Show Time</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[String(showTime)]}
+                                            onSelectedChange={(values) => setShowTime(values[0] === "true")}
+                                            minSelectionCount={1}>
+                                            <DropdownItem value="true">Yes</DropdownItem>
+                                            <DropdownItem value="false">No</DropdownItem>
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
+                                <DropdownSub>
+                                    <DropdownSubTrigger>Footer</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[String(footer)]}
+                                            onSelectedChange={(values) => setFooter(values[0] === "true")}
+                                            minSelectionCount={1}>
+                                            <DropdownItem value="true">Yes</DropdownItem>
+                                            <DropdownItem value="false">No</DropdownItem>
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
+                            </DropdownGroup>
                         </DropdownContent>
                     </Dropdown>
                 </div>
@@ -168,9 +207,11 @@ const DatePickerPreview = () => {
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <DatePicker
                         mode={showDateRangeShortcut ? "range" : mode}
+                        label={label ? "Date picker" : undefined}
+                        hasError={hasError}
+                        disabled={disabled}
                         triggerClassName="w-[320px]"
                         showDateRangeShortcut={showDateRangeShortcut}
-                        disabled={disabled}
                         dualCalendar={doubleCalendar}
                         showTime={showTime}
                         size={size}
