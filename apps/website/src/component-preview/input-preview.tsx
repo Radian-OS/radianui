@@ -163,7 +163,6 @@ const InputPreview = () => {
                         trial={suffixIcon ? <CircleUserRound /> : null}
                         hasError={hasError}
                         errorMsg={hasError ? "There is an error" : undefined} />
-
                 </div>
             </TabsContent>
 

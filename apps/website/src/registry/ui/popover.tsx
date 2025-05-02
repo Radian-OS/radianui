@@ -4,12 +4,12 @@ import * as React from "react"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
 import { cn } from "@/lib/utils"
 
-type PopoverContext = Pick<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side">
+type PopoverContext = Pick<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side" | "sideOffset">
 
 type PopoverProps = React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Root> &
-	Pick<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side">
+	Pick<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side" | "sideOffset">
 
-type PopoverContentProps = Omit<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side" | "sideOffset">
+type PopoverContentProps = Omit<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side">
 
 const PopoverContext = React.createContext<PopoverContext | null>(null)
 
@@ -19,10 +19,12 @@ function usePopoverContext() {
 	return context
 }
 
-function Popover({ align = "center", side = "bottom", children, ...props }: PopoverProps) {
+function Popover({ align = "start", side = "bottom", sideOffset = 4, children, ...props }: PopoverProps) {
 	return (
 		<PopoverPrimitive.Root {...props}>
-			<PopoverContext.Provider value={{ align, side }}>{children}</PopoverContext.Provider>
+			<PopoverContext.Provider value={{ align, side, sideOffset }}>
+				{children}
+			</PopoverContext.Provider>
 		</PopoverPrimitive.Root>
 	)
 }
@@ -31,14 +33,14 @@ Popover.displayName = PopoverPrimitive.Root.displayName
 const PopoverTrigger = PopoverPrimitive.Trigger
 
 function PopoverContent({ className, ...props }: PopoverContentProps) {
-	const { align, side } = usePopoverContext()
+	const { align, side, sideOffset } = usePopoverContext()
 	return (
 		<PopoverPrimitive.Portal>
 			<PopoverPrimitive.Content
 				data-slot="popover-content"
 				align={align}
 				side={side}
-				sideOffset={8}
+				sideOffset={sideOffset}
 				className={cn(
 					"text-fg1 bg-bg1 outline-hidden z-50 w-72 rounded-md border p-4 shadow-md",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out",

@@ -36,7 +36,7 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 	return (
 		<DropdownMenuPrimitive.Trigger
 			className={cn(
-				"bg-bg-base text-text flex w-fit text-sm",
+				"bg-bg-level1 text-text flex w-fit text-sm",
 				"border-border items-center justify-start gap-2 rounded-lg border",
 				"drop-shadow-xs px-3 py-2.5 font-medium"
 			)}
@@ -54,10 +54,10 @@ function DropdownContent({ className, children, ...props }: DropdownMenuContentP
 			<DropdownMenuPrimitive.Content
 				align="start"
 				className={cn(
-					"no-scrollbar border-border bg-bg-base drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5",
+					"no-scrollbar border-border bg-bg-level1 drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5",
 					className
 				)}
-				sideOffset={8}
+				sideOffset={4}
 				{...props}>
 				{children}
 			</DropdownMenuPrimitive.Content>
@@ -194,7 +194,7 @@ function DropdownGroup({
 	return (
 		<>
 			<DropdownCtx.Provider value={contextValue}>
-				<DropdownMenuPrimitive.Group className={cn(className, "bg-bg-base z-50 flex flex-col items-stretch justify-start px-0 py-0")} {...props}>
+				<DropdownMenuPrimitive.Group className={cn(className, "bg-bg-level1 z-50 flex flex-col items-stretch justify-start px-0 py-0")} {...props}>
 					{title && <label className="text-text-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
 					{children}
 				</DropdownMenuPrimitive.Group>
@@ -252,7 +252,7 @@ function DropdownSubContent({ children, className, ...props }: DropdownMenuSubCo
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.SubContent
 				className={cn(
-					"border-border bg-bg-base drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
+					"border-border bg-bg-level1 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
 					className
 				)}
 				sideOffset={10}

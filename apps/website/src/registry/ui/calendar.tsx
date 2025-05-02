@@ -124,12 +124,12 @@ function CalendarComponent({
 		[selected]
 	)
 
-	const mergedClassName = cn(`p-3 ${showTime ? " border-r" : ""}`, className)
+	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
 
 	// Merged class names for styling
 	const mergedClassNames: Record<string, string> = {
 		root: cn({ "cursor-not-allowed": props.disabled }),
-		months: cn("relative flex flex-col bg-bg-base w-full gap-5 p-0", {
+		months: cn("relative flex flex-col bg-bg-level1 w-full gap-5 p-0", {
 			"flex-row pt-10": navigatorStyle === "selector",
 			"sm:flex-row": navigatorStyle !== "selector",
 		}),
@@ -289,7 +289,8 @@ function CalendarComponent({
 		if (!showTime) return null;
 
 		return (
-			<div className="flex pt-3 flex-col px-1 h-72 w-30 overflow-y-scroll text-text no-scrollbar text-sm font-medium">
+			<div className="flex flex-col px-1.5 py-1 h-72 w-30 overflow-y-scroll text-text no-scrollbar text-sm font-medium">
+				<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT TIME</p>
 				{timeOptions.map((time, index) => {
 					const formatted = formatTime(time);
 					const isSelected = selectedIndex === index;
@@ -297,7 +298,7 @@ function CalendarComponent({
 					return (
 						<span
 							key={index}
-							className={`hover:bg-bg-level1 group flex h-8 cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-2.5`}
+							className="hover:bg-fill-level2 group text-text flex leading-5 cursor-pointer font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5"
 							data-value={time}
 							onClick={() => setSelectedIndex(index)}
 						>
@@ -316,7 +317,7 @@ function CalendarComponent({
 
 	if (mode === "single") {
 		return (
-			<div className="w-fit rounded-xl bg-bg-base drop-shadow-xs border border-border">
+			<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{
 						showShortcut && (
@@ -347,7 +348,9 @@ function CalendarComponent({
 						)
 					}
 				</div>
-				{footer && footer}
+				<div className=" flex w-full justify-end">
+					{footer && footer}
+				</div>
 			</div>
 
 		)
@@ -355,12 +358,11 @@ function CalendarComponent({
 
 	if (mode == "multiple") {
 		return (
-			<div className="w-fit rounded-xl bg-bg-base drop-shadow-xs border border-border">
+			<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{
 						showShortcut && (
 							<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
-
 						)
 					}
 					<DayPicker
@@ -386,13 +388,15 @@ function CalendarComponent({
 						)
 					}
 				</div>
-				{footer && footer}
+				<div className=" flex w-full justify-end">
+					{footer && footer}
+				</div>
 			</div>
 		)
 	}
 
 	return (
-		<div className="w-fit rounded-xl bg-bg-base drop-shadow-xs border border-border">
+		<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
 			<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 				{
 					showShortcut && (
@@ -423,7 +427,9 @@ function CalendarComponent({
 					)
 				}
 			</div>
-			{footer && footer}
+			<div className=" flex w-full justify-end">
+				{footer && footer}
+			</div>
 		</div>
 	)
 }

@@ -28,7 +28,7 @@ export const cvaInputVariants = {
 }
 
 export const defaultInputSize = "40"
-export const defaultInputRadius = "md"
+export const defaultInputRadius = "lg"
 
 const sizeHeightMapping = {
 	28: "h-4 w-4",
@@ -63,7 +63,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	errorMsg?: string
 	hasError?: boolean
 	custom?: boolean
-	type?: "text" | "email" | "url" | "number" | "password"
+	type?: "text" | "email" | "url" | "number" | "password" | "date"
 	/* 
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
