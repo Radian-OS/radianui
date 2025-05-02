@@ -15,6 +15,7 @@ import { Input } from "@/registry/ui/input"
 import { CircleUserRound } from "lucide-react"
 
 
+
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
@@ -162,7 +163,7 @@ const InputPreview = () => {
                         trial={suffixIcon ? <CircleUserRound /> : null}
                         hasError={hasError}
                         errorMsg={hasError ? "There is an error" : undefined} />
-                    <Input label="Password" type="password" placeholder="Enter Your Password" className="w-80 mt-2" />
+
                 </div>
             </TabsContent>
 
