@@ -15,7 +15,7 @@ import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./da
  */
 
 // Function to convert CalendarDate to native Date object
-function convertToNativeDate(
+export function convertToNativeDate(
 	selected: CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate }
 ): Date | Date[] | undefined | DateRange {
 	const timeZone = getLocalTimeZone() // Get the local time zone
@@ -92,6 +92,84 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		footer?: React.ReactNode
 
 	}
+const minTime = "00:00"
+const maxTime = "23:59"
+const interval = 15
+
+
+export function generateTimeOptions() {
+	const times: Time[] = []
+	const [minHour, minMinute] = minTime.split(":").map(Number)
+	const [maxHour, maxMinute] = maxTime.split(":").map(Number)
+
+	let currentHour = minHour
+	let currentMinute = minMinute
+
+	while (currentHour < maxHour || (currentHour === maxHour && currentMinute <= maxMinute)) {
+		const time = new Time(currentHour, currentMinute)
+		times.push(time)
+
+		currentMinute += interval
+		if (currentMinute >= 60) {
+			currentHour += Math.floor(currentMinute / 60)
+			currentMinute %= 60
+		}
+	}
+
+	return times
+}
+
+export const timeOptions = generateTimeOptions()
+
+export function formatTime(time: Time) {
+	let hour = time.hour
+	const minute = String(time.minute).padStart(2, "0")
+
+	const period = hour >= 12 ? "pm" : "am"
+	hour = hour % 12
+	hour = hour === 0 ? 12 : hour // 12 am/pm handling
+	return `${String(hour).padStart(2, "0")}:${minute} ${period}`
+
+}
+
+type TimeSelectorProps = {
+	showTime: boolean;
+	timeOptions: Time[]; // Updated to accept Time[]
+	selectedIndex: number | null;
+	setSelectedIndex: (index: number | null) => void;
+	formatTime: (time: Time) => string; // Updated to accept Time
+};
+export function TimeSelector(props: TimeSelectorProps) {
+	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime } = props;
+
+	if (!showTime) return null;
+
+	return (
+		<div className="flex flex-col px-1.5 py-1 h-72 w-30 overflow-y-scroll text-text no-scrollbar text-sm font-medium">
+			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT TIME</p>
+			{timeOptions.map((time, index) => {
+				const formatted = formatTime(time);
+				const isSelected = selectedIndex === index;
+
+				return (
+					<span
+						key={index}
+						className="hover:bg-fill-level2 group text-text flex leading-5 cursor-pointer font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5"
+						data-value={time}
+						onClick={() => setSelectedIndex(index)}
+					>
+						{formatted}
+						{isSelected ? (
+							<Check className="stroke-text-secondary" size={16} />
+						) : (
+							<span className="size-4" />
+						)}
+					</span>
+				);
+			})}
+		</div>
+	);
+}
 
 // Calendar component definition
 function CalendarComponent({
@@ -116,6 +194,9 @@ function CalendarComponent({
 	const currentSelected = isControlled ? convertToNativeDate(selected) : internalSelected
 	let hideCaption: boolean = false
 
+	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+
 	// Effect to update internal selected state when external selected changes
 	React.useEffect(
 		function () {
@@ -123,6 +204,7 @@ function CalendarComponent({
 		},
 		[selected]
 	)
+
 
 	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
 
@@ -188,44 +270,8 @@ function CalendarComponent({
 		const convertedTriggerDate = parseDate(format(triggerDate, "yyyy-MM-dd"))
 		customOnSelect?.(convertedSelected as CalendarDate & CalendarDate[] & CalendarRange, convertedTriggerDate, modifiers, e)
 	}
-	const minTime = "00:00"
-	const maxTime = "23:59"
-	const interval = 15
-	function generateTimeOptions() {
-		const times: Time[] = []
-		const [minHour, minMinute] = minTime.split(":").map(Number)
-		const [maxHour, maxMinute] = maxTime.split(":").map(Number)
 
-		let currentHour = minHour
-		let currentMinute = minMinute
 
-		while (currentHour < maxHour || (currentHour === maxHour && currentMinute <= maxMinute)) {
-			const time = new Time(currentHour, currentMinute)
-			times.push(time)
-
-			currentMinute += interval
-			if (currentMinute >= 60) {
-				currentHour += Math.floor(currentMinute / 60)
-				currentMinute %= 60
-			}
-		}
-
-		return times
-	}
-
-	const timeOptions = generateTimeOptions()
-
-	function formatTime(time: Time) {
-		let hour = time.hour
-		const minute = String(time.minute).padStart(2, "0")
-
-		const period = hour >= 12 ? "pm" : "am"
-		hour = hour % 12
-		hour = hour === 0 ? 12 : hour // 12 am/pm handling
-		return `${String(hour).padStart(2, "0")}:${minute} ${period}`
-
-	}
-	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
 
 	function handleShortcutSelect(shortcut: DateRangeShortcutValues) {
@@ -275,45 +321,8 @@ function CalendarComponent({
 		}
 	}, [])
 
-	type TimeSelectorProps = {
-		showTime: boolean;
-		timeOptions: Time[]; // Updated to accept Time[]
-		selectedIndex: number | null;
-		setSelectedIndex: (index: number | null) => void;
-		formatTime: (time: Time) => string; // Updated to accept Time
-	};
 
-	function TimeSelector(props: TimeSelectorProps) {
-		const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime } = props;
 
-		if (!showTime) return null;
-
-		return (
-			<div className="flex flex-col px-1.5 py-1 h-72 w-30 overflow-y-scroll text-text no-scrollbar text-sm font-medium">
-				<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT TIME</p>
-				{timeOptions.map((time, index) => {
-					const formatted = formatTime(time);
-					const isSelected = selectedIndex === index;
-
-					return (
-						<span
-							key={index}
-							className="hover:bg-fill-level2 group text-text flex leading-5 cursor-pointer font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5"
-							data-value={time}
-							onClick={() => setSelectedIndex(index)}
-						>
-							{formatted}
-							{isSelected ? (
-								<Check className="stroke-text-secondary" size={16} />
-							) : (
-								<span className="size-4" />
-							)}
-						</span>
-					);
-				})}
-			</div>
-		);
-	}
 
 	if (mode === "single") {
 		return (
@@ -321,7 +330,7 @@ function CalendarComponent({
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{
 						showShortcut && (
-							<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
+							<DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
 
 						)
 					}
@@ -362,7 +371,7 @@ function CalendarComponent({
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{
 						showShortcut && (
-							<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
+							<DateRangeShortcut mode="multiple" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
 						)
 					}
 					<DayPicker
@@ -434,7 +443,7 @@ function CalendarComponent({
 	)
 }
 
-function SelectorNavigator({
+export function SelectorNavigator({
 	localeCode = "en-US",
 	minYear = new Date().getFullYear() - 5,
 	maxYear = new Date().getFullYear() + 5,

@@ -27,8 +27,8 @@ export const cvaInputVariants = {
 	}
 }
 
-export const defaultInputSize = "40"
-export const defaultInputRadius = "md"
+export const defaultInputSize = "36"
+export const defaultInputRadius = "lg"
 
 const sizeHeightMapping = {
 	28: "h-4 w-4",
@@ -97,7 +97,7 @@ function Input({
 	if (id) htmlId = id
 
 	return (
-		<div className={cn("text-fg-1 flex w-full flex-col gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
+		<div className={cn("text-fg-1 flex w-full flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
 				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed ": disabled }, classNames?.label)}>
 					{label}
@@ -123,7 +123,7 @@ function Input({
 					classNames?.wrapper
 				)}>
 				{lead && (
-					<span className={cn("flex items-center justify-center rounded",
+					<span className={cn("flex items-center justify-center rounded cursor-pointer",
 						{
 							" text-text-tertiary": !disabled,
 							" text-text-disabled": disabled,
@@ -154,7 +154,7 @@ function Input({
 					{...props}
 				/>
 				{trial && (
-					<span className={cn("flex items-center justify-center rounded", {
+					<span className={cn("flex items-center justify-center rounded cursor-pointer", {
 						" text-text-tertiary": !disabled,
 						" text-text-disabled": disabled,
 					})}>
@@ -166,7 +166,7 @@ function Input({
 					</span>
 				)}
 			</label>
-			{hasError && <Label className={cn("text-error text-xs font-medium", className)}>{errorMsg}</Label>}
+			{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{errorMsg}</Label>}
 		</div>
 	)
 }

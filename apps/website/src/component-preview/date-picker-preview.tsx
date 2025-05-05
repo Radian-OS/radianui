@@ -23,14 +23,16 @@ const sizes = ["28", "32", "36", "40", "44", "48"]
 const booleanOptions = ["true", "false"]
 
 const DatePickerPreview = () => {
-    const [rounded, setRounded] = useState<RoundedOptions>("sm")
-    const [size, setSize] = useState<SizeOptions>("40")
+    const [rounded, setRounded] = useState<RoundedOptions>("lg")
+    const [size, setSize] = useState<SizeOptions>("36")
     const [disabled, setDisabled] = useState<boolean>(false)
     const [mode, setMode] = useState<DatePickerModes>("range")
     const [showDateRangeShortcut, setShowDateRangeShortcut] = useState<boolean>(false)
     const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
     const [showTime, setShowTime] = useState<boolean>(false)
     const [footer, setFooter] = useState<boolean>(false)
+    const [typeable, setTypeable] = useState<boolean>(false)
+
 
 
     const [label, setLabel] = useState<boolean>(true)
@@ -193,6 +195,19 @@ const DatePickerPreview = () => {
                                         </DropdownGroup>
                                     </DropdownSubContent>
                                 </DropdownSub>
+                                <DropdownSub>
+                                    <DropdownSubTrigger>Typeable</DropdownSubTrigger>
+                                    <DropdownSubContent>
+                                        <DropdownGroup
+                                            selectionMode="single"
+                                            selectedValues={[String(typeable)]}
+                                            onSelectedChange={(values) => setTypeable(values[0] === "true")}
+                                            minSelectionCount={1}>
+                                            <DropdownItem value="true">Yes</DropdownItem>
+                                            <DropdownItem value="false">No</DropdownItem>
+                                        </DropdownGroup>
+                                    </DropdownSubContent>
+                                </DropdownSub>
                             </DropdownGroup>
                         </DropdownContent>
                     </Dropdown>
@@ -214,6 +229,7 @@ const DatePickerPreview = () => {
                         showDateRangeShortcut={showDateRangeShortcut}
                         dualCalendar={doubleCalendar}
                         showTime={showTime}
+                        typeable={typeable}
                         size={size}
                         rounded={rounded}
                         footer={footer && (<div className="p-3 flex gap-2">

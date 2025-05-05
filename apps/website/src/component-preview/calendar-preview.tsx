@@ -23,7 +23,7 @@ const CalendarPreview = () => {
     const [mode, setMode] = useState<DatePickerModes>("range")
     const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
     const [showTime, setShowTime] = useState<boolean>(false)
-    const [showShortcut, setShowShortCut] = useState<boolean>(true)
+    const [showShortcut, setShowShortCut] = useState<boolean>(false)
     const [footer, setFooter] = useState<boolean>(false)
 
 
@@ -112,14 +112,14 @@ const CalendarPreview = () => {
             <TabsContent value="preview">
                 <div className={`flex h-[420px] flex-col ${doubleCalendar && showShortcut ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
                     {mode === "single" && <Calendar showShortcut={showShortcut}
-                        mode={showShortcut ? "range" : "single"}
+                        mode={"single"}
                         footer={footer && (<div className="p-3 flex gap-2">
                             <Button variant="neutral-outline">Cancel</Button>
                             <Button>Apply</Button>
                         </div>)}
                         showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
                     {mode === "multiple" && <Calendar showShortcut={showShortcut}
-                        mode={showShortcut ? "range" : "multiple"} showTime={showTime}
+                        mode={"multiple"} showTime={showTime}
                         footer={footer && (<div className="p-3 flex gap-2">
                             <Button variant="neutral-outline">Cancel</Button>
                             <Button>Apply</Button>

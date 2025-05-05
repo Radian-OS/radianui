@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { format } from "date-fns"
-import { format as formatTZ } from "date-fns-tz"
 import { Calendar as CalendarIcon, Check } from "lucide-react"
 import { Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
 import Calendar, { type CalendarProps, CalendarRange } from "./calendar"
 import { Input, RoundedOptions, SizeOptions, defaultInputRadius, defaultInputSize } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { Select, SelectItem, SelectProps } from "./select"
-import TimePicker, { TimePickerProps } from "./time-picker"
+import { SelectProps } from "./select"
+import { TimePickerProps } from "./time-picker"
+import { TypeableDatePicker } from "../example/typeable-date-picker"
 
 // Mock mouse click event
 export function mockMouseClick(): React.MouseEvent {
@@ -25,14 +25,14 @@ Intl.supportedValuesOf("timeZone").map(function (zone) {
 		.map((part) => part.replace(/_/g, " ").replace(/(^|\s)\S/g, (t) => t.toUpperCase()))
 		.join("/")
 })
-const TIME_ZONES = Intl.supportedValuesOf("timeZone")
+// const TIME_ZONES = Intl.supportedValuesOf("timeZone")
 
 const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
 export type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
 
 export type DatePickerModes = "single" | "multiple" | "range" | "time"
 // Type definition for DatePickerProps props
-type DatePickerProps = Omit<CalendarProps, "mode"> & {
+export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	triggerClassName?: string
 	showDateRangeShortcut?: boolean
 	defaultDateRangeShortcutValue?: DateRangeShortcutValues
@@ -52,6 +52,8 @@ type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	label?: string
 	hasError?: boolean
 	disabled?: boolean
+	typeable?: boolean
+	disables?: boolean
 }
 // DatePicker component definition
 function DatePicker({
@@ -66,22 +68,23 @@ function DatePicker({
 	showDateRangeShortcut = false,
 	defaultDateRangeShortcutValue,
 	placeholder,
-	timePickerProps,
-	timeZoneProps,
-	onSelectTime,
-	selectedTimezone,
-	onSelectTimezone,
+	// timePickerProps,
+	// timeZoneProps,
+	// onSelectTime,
+	// selectedTimezone,
+	// onSelectTimezone,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
+	typeable = false,
 	...props
 }: DatePickerProps) {
 	const [internalSelected, setInternalSelected] = React.useState<CalendarDate | CalendarDate[] | CalendarRange | undefined>(selected || undefined)
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? selected : internalSelected
 	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
-	const [time, setTime] = React.useState<Time | null>(null)
-	const [timezone, setTimezone] = React.useState<string | null>(null)
-	const currenTimezone = selectedTimezone || timezone
+	// const [time, setTime] = React.useState<Time | null>(null)
+	// const [timezone, setTimezone] = React.useState<string | null>(null)
+	// const currenTimezone = selectedTimezone || timezone
 
 	/**
 	 * This function manipulates the selected date according
@@ -137,16 +140,16 @@ function DatePicker({
 	}, [])
 
 	// Function to handle the change in time zone
-	function handleTimezoneChange(timezone: string | null) {
-		setTimezone(timezone)
-		onSelectTimezone?.(timezone)
-	}
+	// function handleTimezoneChange(timezone: string | null) {
+	// 	setTimezone(timezone)
+	// 	onSelectTimezone?.(timezone)
+	// }
 
 	// Function to handle the change in time
-	function handleTimeChange(time: Time | null) {
-		setTime(time)
-		onSelectTime?.(time)
-	}
+	// function handleTimeChange(time: Time | null) {
+	// 	setTime(time)
+	// 	onSelectTime?.(time)
+	// }
 
 	// Effect hook to update the internal selected state based on the selected time zone and time
 	React.useEffect(
@@ -192,9 +195,9 @@ function DatePicker({
 			}
 		}
 
-		if (mode === "time" && currentSelected instanceof CalendarDate) {
-			return `${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time?.toString() || ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`;
-		}
+		// if (mode === "time" && currentSelected instanceof CalendarDate) {
+		// 	return `${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time?.toString() || ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`;
+		// }
 
 		return placeholder;
 	};
@@ -203,11 +206,11 @@ function DatePicker({
 	const [inputValue, setInputValue] = useState(displayText || "");
 
 	useEffect(() => {
-		setInputValue(displayText || "");
+		const todayFormatted = format(new Date(), "MMMM dd, yyyy");
+		setInputValue(displayText || todayFormatted);
 	}, [displayText]);
 
 
-	console.log(inputValue)
 	const sizeHeightMapping = {
 		28: "h-4 w-4",
 		32: "h-5 w-5",
@@ -217,69 +220,82 @@ function DatePicker({
 		48: "h-6 w-6",
 	};
 
+	;
+
 	return (
 		<div>
-			<Input
-				size={size}
-				label={label}
-				rounded={rounded}
-				disabled={disabled}
-				hasError={hasError}
-				errorMsg={hasError ? "There is an error" : undefined}
-				className={cn(
-					triggerClassName
-				)}
-				value={inputValue}
-				// onChange={(e) => {
-				// 	setInputValue(e.target.value);
-				// }}
-				placeholder="Date picker"
-				trial={
-					< Popover align="end" sideOffset={14} >
-						<PopoverTrigger disabled={disabled}>
-							<CalendarIcon className={cn(
-								sizeHeightMapping[size],
-								"cursor-pointer stroke-text-tertiary",
-								{
-									"text-text-tertiary": !disabled,
-									"text-text-disabled cursor-not-allowed": disabled,
-								}
-							)}
-							/>
-						</PopoverTrigger>
+			{
+				typeable ? (<>
+					<TypeableDatePicker
+						size={size}
+						label={label}
+						rounded={rounded}
+						disables={disabled}
+						hasError={hasError}
+						showTime={showTime}
+						{...props}
 
-						<PopoverContent alignOffset={20} className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
-							{mode === "single" && (
-								<Calendar
-									mode="single"
-									selected={currentSelected as CalendarDate}
-									onSelect={onSelectHandler}
-									showTime={showTime}
-									showShortcut={showDateRangeShortcut}
-									{...props}
-								/>
+					/>
+				</>) : (
+					<>
+						<Input
+							size={size}
+							label={label}
+							rounded={rounded}
+							disabled={disabled}
+							hasError={hasError}
+							errorMsg={hasError ? "There is an error" : undefined}
+							className={cn(
+								triggerClassName
 							)}
-							{mode === "multiple" && (
-								<Calendar
-									mode="multiple"
-									selected={currentSelected as CalendarDate[]}
-									onSelect={onSelectHandler}
-									showTime={showTime}
-									showShortcut={showDateRangeShortcut}
-									{...props}
-								/>
-							)}
-							{mode === "range" && (
-								<Calendar
-									mode="range"
-									selected={currentSelected as CalendarRange}
-									showTime={showTime}
-									showShortcut={showDateRangeShortcut}
-									onSelect={onSelectHandler}
-									{...props}
-								/>
-							)}
-							{mode === "time" && (
+							value={inputValue}
+							placeholder="Date picker"
+							trial={
+								< Popover align="end" sideOffset={14} >
+									<PopoverTrigger disabled={disabled}>
+										<CalendarIcon className={cn(
+											sizeHeightMapping[size],
+											"cursor-pointer stroke-text-tertiary",
+											{
+												"text-text-tertiary": !disabled,
+												"text-text-disabled cursor-not-allowed": disabled,
+											}
+										)}
+										/>
+									</PopoverTrigger>
+
+									<PopoverContent alignOffset={props.dualCalendar === true ? -259 : 20} className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
+										{mode === "single" && (
+											<Calendar
+												mode="single"
+												selected={currentSelected as CalendarDate}
+												onSelect={onSelectHandler}
+												showTime={showTime}
+												showShortcut={showDateRangeShortcut}
+												{...props}
+											/>
+										)}
+										{mode === "multiple" && (
+											<Calendar
+												mode="multiple"
+												selected={currentSelected as CalendarDate[]}
+												onSelect={onSelectHandler}
+												showTime={showTime}
+												showShortcut={showDateRangeShortcut}
+												{...props}
+											/>
+										)}
+										{mode === "range" && (
+											<Calendar
+												mode="range"
+												selected={currentSelected as CalendarRange}
+												showTime={showTime}
+												showShortcut={showDateRangeShortcut}
+												onSelect={onSelectHandler}
+												{...props}
+											/>
+										)}
+										{/* {mode === "time" && (
 								<React.Fragment>
 									<Calendar
 										mode="single"
@@ -298,11 +314,14 @@ function DatePicker({
 										timeZoneProps={timeZoneProps}
 									/>
 								</React.Fragment>
-							)}
-						</PopoverContent>
-					</Popover>
-				}
-			/>
+							)} */}
+									</PopoverContent>
+								</Popover>
+							}
+						/>
+					</>
+				)
+			}
 
 		</div >
 	)
@@ -312,14 +331,17 @@ function DatePicker({
 type DateRangeShortcutProps = {
 	handleShortcutSelect: (shortcut: DateRangeShortcutValues) => void
 	selectedValue: string | null
+	mode?: string
 }
 // DateRangeShortcut component definition
-export function DateRangeShortcut({ selectedValue, handleShortcutSelect }: DateRangeShortcutProps) {
+export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }: DateRangeShortcutProps) {
 	return (
-		<div className="border-border w-50 text-text flex flex-col border-r px-1.5 py-1">
+		<div className={`border-border w-50 flex flex-col border-r px-1.5 py-1
+		${mode === "single" || mode === "multiple" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : " text-text"}`}>
 			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT DATE</p>
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
+					mode={mode}
 					key={value}
 					label={value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1)}
 					value={value}
@@ -337,61 +359,71 @@ type DateRangeShortcutItemProps = {
 	onClick: (e: React.MouseEvent<HTMLSpanElement>) => void
 	value: string
 	label: string
+	mode?: string
 }
 
 // DateRangeShortcutItem component definition
-function DateRangeShortcutItem({ selectedValue, onClick, label, value }: DateRangeShortcutItemProps) {
+function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className="hover:bg-fill-level2 group text-text flex leading-5 cursor-pointer font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5"
+			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill-level2 cursor-pointer"} group flex leading-5 font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5`}
 			data-value={value}
-			onClick={onClick}>
+			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}
+		>
 			{label}
-			{selectedValue == value ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
+			{selectedValue === value ? (
+				mode !== "single" && mode !== "multiple" ? (
+					<Check className="stroke-text-secondary" size={16} />
+				) : (
+					<span className="size-4" />
+				)
+			) : (
+				<span className="size-4" />
+			)}
 		</span>
 	)
 }
 
 // Type definition for TimePickerWrapperProps props
-type TimePickerWrapperProps = Pick<TimePickerProps, "value" | "onValueChange"> & {
-	timezone: string | null
-	setTimezone: (timezone: string | null) => void
-} & Pick<DatePickerProps, "timePickerProps" | "timeZoneProps">
+// type TimePickerWrapperProps = Pick<TimePickerProps, "value" | "onValueChange"> & {
+// 	timezone: string | null
+// 	setTimezone: (timezone: string | null) => void
+// } & Pick<DatePickerProps, "timePickerProps" | "timeZoneProps">
 
-// TimePickerWrapper component definition
-function TimePickerWrapper({ value, onValueChange, timezone, setTimezone, timePickerProps, timeZoneProps }: TimePickerWrapperProps) {
-	const allowedTimezones = timeZoneProps?.allowedTimezones || Object.keys(timeZones)
+// // TimePickerWrapper component definition
+// function TimePickerWrapper({ value, onValueChange, timezone, setTimezone, timePickerProps, timeZoneProps }: TimePickerWrapperProps) {
+// 	const allowedTimezones = timeZoneProps?.allowedTimezones || Object.keys(timeZones)
 
-	return (
-		<div className="flex w-full flex-1 gap-3 px-3 pb-3 shadow-none">
-			<TimePicker
-				size="36"
-				className="w-31"
-				classNames={{ content: "max-h-80" }}
-				placeholder="Time"
-				value={value}
-				onValueChange={onValueChange}
-				{...timePickerProps}
-			/>
-			<Select
-				size="36"
-				className="w-31"
-				classNames={{ content: "max-h-80" }}
-				placeholder="Timezone"
-				selectedValues={timezone ? [timezone] : []}
-				onSelectedChange={(values) => (values.length > 0 ? setTimezone(values[0]) : setTimezone(null))}
-				{...timeZoneProps}>
-				{TIME_ZONES.filter((timezone) => allowedTimezones.includes(timezone)).map((timezone) => (
-					<SelectItem key={timezone} value={timezone}>
-						{timezone
-							.split("/")
-							.map((part) => part.replace(/_/g, " ").replace(/(^|\s)\S/g, (t) => t.toUpperCase()))
-							.join("/")}
-					</SelectItem>
-				))}
-			</Select>
-		</div>
-	)
-}
+// 	return (
+// 		<div className="flex w-full flex-1 gap-3 px-3 pb-3 shadow-none">
+// 			<TimePicker
+// 				size="36"
+// 				className="w-31"
+// 				classNames={{ content: "max-h-80" }}
+// 				placeholder="Time"
+// 				value={value}
+// 				onValueChange={onValueChange}
+// 				{...timePickerProps}
+// 			/>
+// 			<Select
+// 				size="36"
+// 				className="w-31"
+// 				classNames={{ content: "max-h-80" }}
+// 				placeholder="Timezone"
+// 				selectedValues={timezone ? [timezone] : []}
+// 				onSelectedChange={(values) => (values.length > 0 ? setTimezone(values[0]) : setTimezone(null))}
+// 				{...timeZoneProps}>
+// 				{TIME_ZONES.filter((timezone) => allowedTimezones.includes(timezone)).map((timezone) => (
+// 					<SelectItem key={timezone} value={timezone}>
+// 						{timezone
+// 							.split("/")
+// 							.map((part) => part.replace(/_/g, " ").replace(/(^|\s)\S/g, (t) => t.toUpperCase()))
+// 							.join("/")}
+// 					</SelectItem>
+// 				))}
+// 			</Select>
+// 		</div>
+// 	)
+// }
 
 export default DatePicker
