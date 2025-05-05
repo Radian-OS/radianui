@@ -1,75 +1,114 @@
 import { CodeArea } from "@/registry/ui/code"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { Password } from "@/registry/ui/password"
+import Link from "next/link"
+import ProgressBar from "@/registry/ui/progress-bar"
+import { CircleCheck } from "lucide-react"
 
 export type SizeOptions = "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type ExampleOptions = "default" | "disabled"
 
 const PasswordInputPreview = () => {
-    const [example, setExample] = useState<ExampleOptions>("default")
-    const [hasError, setHasError] = useState<boolean>(false)
+    const codeCn1 = "`size-4 ${allMinLength ? 'text-success' : 'text-text-tertiary'}`"
+    const codeCn2 = "`size-4 ${allHasNumber ? 'text-success' : 'text-text-tertiary'}`"
+    const codeCn3 = "`size-4 ${allHasLower ? 'text-success' : 'text-text-tertiary'}`"
+    const codeCn4 = "`size-4 ${allHasUpper ? 'text-success' : 'text-text-tertiary'}`"
+    const [password1, setPassword1] = useState("")
+    const [password2, setPassword2] = useState("")
+    const [password3, setPassword3] = useState("")
 
-    // Determine props based on selected example
-    const getPasswordProps = () => {
-        const baseProps = {
-            rounded: "md" as RoundedOptions,
-            size: "40" as SizeOptions,
-            placeholder: "Enter your password",
-            hasError: hasError,
-            errorMsg: hasError ? "Password must be at least 8 characters" : undefined,
-            className: "w-[320px]",
-            label: "Password"
-        }
+    const allMinLength = useMemo(() => [password1, password2, password3].every(pw => pw.length >= 8), [password1, password2, password3])
+    const allHasNumber = useMemo(() => [password1, password2, password3].every(pw => /[0-9]/.test(pw)), [password1, password2, password3])
+    const allHasLower = useMemo(() => [password1, password2, password3].every(pw => /[a-z]/.test(pw)), [password1, password2, password3])
+    const allHasUpper = useMemo(() => [password1, password2, password3].every(pw => /[A-Z]/.test(pw)), [password1, password2, password3])
 
-        if (example === "disabled") {
-            return {
-                ...baseProps,
-                disabled: true
-            }
-        }
+    // compute progress dynamically: 4 rules total
+    const progress = useMemo(() => {
+        const checks = [allMinLength, allHasNumber, allHasLower, allHasUpper]
+        const passed = checks.filter(Boolean).length
+        return (passed / checks.length) * 100
+    }, [allMinLength, allHasNumber, allHasLower, allHasUpper])
 
-        return baseProps
+
+    const handleChange = (value: string, setter: (v: string) => void) => {
+        setter(value)
     }
+
+    const code = `"use client"
+
+import { Password } from "@/registry/ui/password"
+import { useState, useMemo } from "react"
+import Link from "next/link"
+import ProgressBar from "@/registry/ui/progress-bar"
+import { CircleCheck } from "lucide-react"
+    
+const PasswordInputPreview = () => {
+
+const [password1, setPassword1] = useState("")
+const [password2, setPassword2] = useState("")
+const [password3, setPassword3] = useState("")
+
+const allMinLength = useMemo(() => [password1, password2, password3].every(pw => pw.length >= 8), [password1, password2, password3])
+const allHasNumber = useMemo(() => [password1, password2, password3].every(pw => /[0-9]/.test(pw)), [password1, password2, password3])
+const allHasLower = useMemo(() => [password1, password2, password3].every(pw => /[a-z]/.test(pw)), [password1, password2, password3])
+const allHasUpper = useMemo(() => [password1, password2, password3].every(pw => /[A-Z]/.test(pw)), [password1, password2, password3])
+
+// compute progress dynamically: 4 rules total
+const progress = useMemo(() => {
+const checks = [allMinLength, allHasNumber, allHasLower, allHasUpper]
+const passed = checks.filter(Boolean).length
+return (passed / checks.length) * 100
+}, [allMinLength, allHasNumber, allHasLower, allHasUpper])
+
+ const handleChange = (value: string, setter: (v: string) => void) => {
+        setter(value)
+}
+
+return (  
+<div className="flex h-[450px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+ <div className="flex flex-col items-center w-full gap-4">
+    <div className="flex flex-col items-center gap-5 w-full">
+        <Password
+            trial={false}
+            value={password1}
+            onChange={(e) => handleChange(e.target.value, setPassword1)}
+        />
+        <div className="relative w-full">
+            <Link href="#" className="text-primary text-sm absolute right-0">Forgot Password ?</Link>
+            <Password
+                trial={false}
+                value={password2}
+                onChange={(e) => handleChange(e.target.value, setPassword2)}
+            />
+        </div>
+        <Password
+            trial={false}
+            value={password3}
+            onChange={(e) => handleChange(e.target.value, setPassword3)}
+        />
+    </div>
+    <div className="flex flex-col w-full gap-2">
+        <ProgressBar value={progress} />
+          <h3 className="text-sm font-semibold">Your Password Must Contain (all three)</h3>
+          <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={${codeCn1}}/>At least 8 Characters</p>
+          <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={${codeCn2}}/>At least 1 Number</p>
+          <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={${codeCn3}}/>At least 1 lowercase letter</p>
+          <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={${codeCn4}}/>At least 1 uppercase letter</p>
+    </div>
+ </div>
+</div>
+  )
+}
+
+export default PasswordInputPreview`
+
+
 
     return (
         <Tabs defaultValue="preview" className="mb-10 mt-2">
-            <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <Dropdown>
-                        <DropdownTrigger>Properties</DropdownTrigger>
-                        <DropdownContent>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Examples</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(example)]}
-                                        onSelectedChange={(values) => setExample(values[0] as ExampleOptions)}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="default">Default</DropdownItem>
-                                        <DropdownItem value="disabled">Disabled</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                            <DropdownSub>
-                                <DropdownSubTrigger>Has Error</DropdownSubTrigger>
-                                <DropdownSubContent>
-                                    <DropdownGroup
-                                        selectionMode="single"
-                                        selectedValues={[String(hasError)]}
-                                        onSelectedChange={(values) => setHasError(values[0] === "true")}
-                                        minSelectionCount={1}>
-                                        <DropdownItem value="true">Yes</DropdownItem>
-                                        <DropdownItem value="false">No</DropdownItem>
-                                    </DropdownGroup>
-                                </DropdownSubContent>
-                            </DropdownSub>
-                        </DropdownContent>
-                    </Dropdown>
-                </div>
+            <div className="flex items-center justify-end">
                 <TabsList>
                     <TabsTrigger value="preview">Preview</TabsTrigger>
                     <TabsTrigger value="code">Code</TabsTrigger>
@@ -77,9 +116,36 @@ const PasswordInputPreview = () => {
             </div>
 
             <TabsContent value="preview">
-                <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-                    <div className="flex flex-col items-center">
-                        <Password {...getPasswordProps()} />
+                <div className="flex h-[450px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+                    <div className="flex flex-col items-center w-full gap-4">
+                        <div className="flex flex-col items-center gap-5 w-full">
+                            <Password
+                                trial={false}
+                                value={password1}
+                                onChange={(e) => handleChange(e.target.value, setPassword1)}
+                            />
+                            <div className="relative w-full">
+                                <Link href="#" className="text-primary text-sm absolute right-0">Forgot Password ?</Link>
+                                <Password
+                                    trial={false}
+                                    value={password2}
+                                    onChange={(e) => handleChange(e.target.value, setPassword2)}
+                                />
+                            </div>
+                            <Password
+                                trial={false}
+                                value={password3}
+                                onChange={(e) => handleChange(e.target.value, setPassword3)}
+                            />
+                        </div>
+                        <div className="flex flex-col w-full gap-2">
+                            <ProgressBar value={progress} />
+                            <h3 className="text-sm font-semibold">Your Password Must Contain (all three)</h3>
+                            <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={`size-4 ${allMinLength ? 'text-success' : 'text-text-tertiary'}`} />At least 8 Characters</p>
+                            <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={`size-4 ${allHasNumber ? 'text-success' : 'text-text-tertiary'}`} />At least 1 Number</p>
+                            <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={`size-4 ${allHasLower ? 'text-success' : 'text-text-tertiary'}`} />At least 1 lowercase letter</p>
+                            <p className="flex items-center gap-2 text-text-tertiary"><CircleCheck className={`size-4 ${allHasUpper ? 'text-success' : 'text-text-tertiary'}`} />At least 1 uppercase letter</p>
+                        </div>
                     </div>
                 </div>
             </TabsContent>
@@ -89,21 +155,7 @@ const PasswordInputPreview = () => {
                     language="tsx"
                     showLineNumbers
                     className="h-[420px]"
-                    code={`// Example usage of the Password component
-${example === "default" ?
-                            `<Password
-  label="Password"
-  placeholder="Enter your password"
-  ${hasError ? `hasError={true}
-  errorMsg="Password must be at least 8 characters"`: ''}
-/>` :
-                            `<Password
-  label="Password"
-  placeholder="Enter your password"
-  disabled={true}
-  ${hasError ? `hasError={true}
-  errorMsg="Password must be at least 8 characters"` : ''}
-/>`}`}
+                    code={code}
                 />
             </TabsContent>
         </Tabs>

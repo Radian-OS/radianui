@@ -7,7 +7,7 @@ import { Label } from "./label"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-// Variants for input styles based on size and rounded options
+
 export const cvaInputVariants = {
 	rounded: {
 		xs: "rounded-xs",
@@ -28,7 +28,7 @@ export const cvaInputVariants = {
 }
 
 export const defaultInputSize = "40"
-export const defaultInputRadius = "lg"
+export const defaultInputRadius = "md"
 
 const sizeHeightMapping = {
 	28: "h-4 w-4",
@@ -63,7 +63,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	errorMsg?: string
 	hasError?: boolean
 	custom?: boolean
-	type?: "text" | "email" | "url" | "number" | "password" | "date"
+	type?: "text" | "email" | "url" | "number" | "password"
 	/* 
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
