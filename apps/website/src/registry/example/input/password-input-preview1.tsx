@@ -16,7 +16,7 @@ const PasswordInputPreview = () => {
     const [size, setSize] = useState<SizeOptions>("36")
     const [disabled, setDisabled] = useState<DisabledOptions>("false")
     const [label, setLabel] = useState<LabelOptions>("true")
-    const [error, setError] = useState<ErrorOptions>("true")
+    const [error, setError] = useState<ErrorOptions>("false")
 
 
     const code = `<Password
