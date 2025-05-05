@@ -55,7 +55,9 @@ import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import CalendarPreview from "@/component-preview/calendar-preview"
-import PasswordInputPreview from "@/registry/example/input/password-input-preview"
+import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
+import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
+import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 
 type MdxProps = {
 	code: string
@@ -110,6 +112,8 @@ const components: MDXComponents = {
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
+	PasswordInputPreview2: () => <PasswordInputPreview2 />,
+	PasswordInputPreview3: () => <PasswordInputPreview3 />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
