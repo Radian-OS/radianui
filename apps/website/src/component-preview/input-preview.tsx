@@ -24,7 +24,7 @@ const booleanOptions = ["true", "false"]
 
 const InputPreview = () => {
     const [rounded, setRounded] = useState<RoundedOptions>("lg")
-    const [size, setSize] = useState<SizeOptions>("40")
+    const [size, setSize] = useState<SizeOptions>("36")
     const [disabled, setDisabled] = useState<boolean>(false)
     const [suffixIcon, setSuffixIcon] = useState<boolean>(false)
     const [prefixIcon, setPrefixIcon] = useState<boolean>(false)

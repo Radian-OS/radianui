@@ -15,8 +15,8 @@ const PasswordInputPreview = () => {
     // Determine props based on selected example
     const getPasswordProps = () => {
         const baseProps = {
-            rounded: "md" as RoundedOptions,
-            size: "40" as SizeOptions,
+            rounded: "lg" as RoundedOptions,
+            size: "36" as SizeOptions,
             placeholder: "Enter your password",
             hasError: hasError,
             errorMsg: hasError ? "Password must be at least 8 characters" : undefined,
