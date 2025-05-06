@@ -5,10 +5,13 @@ import { Eye, EyeOff } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Input, InputProps } from "./input"
 
-// Password component definition
-function Password({
+/**
+ * Password shows a toggle icon only when the input is focused,
+ * and prevents blur when clicking the icon so toggling works.
+ */
+export function Password({
 	label,
-	disabled,
+	disabled = false,
 	errorMsg,
 	hasError = false,
 	size = "40",
@@ -16,51 +19,51 @@ function Password({
 	id,
 	...props
 }: Omit<InputProps, "leadIcon" | "trialIcon">) {
-	const [showPassword, setShowPassword] = React.useState(false)
-	function toggleShowPassword() {
-		if (!disabled) {
-			setShowPassword((prevValue) => !prevValue)
-		}
+	const [isFocused, setIsFocused] = React.useState(false)
+	const [isPasswordVisible, setIsPasswordVisible] = React.useState(false)
+
+	function handleToggleVisibility() {
+		if (!disabled) setIsPasswordVisible((v) => !v)
 	}
 
 	return (
 		<Input
-			trial={
-				showPassword ? (
-					<Eye
-						size={20}
-						onClick={function () {
-							toggleShowPassword()
-						}}
-						className={cn("text-text-tertiary cursor-pointer", {
-							"cursor-not-allowed": disabled,
-						})}
-					/>
-				) : (
-					<EyeOff
-						onClick={function () {
-							toggleShowPassword()
-						}}
-						size={20}
-						className={cn("text-text-tertiary cursor-pointer", {
-							"cursor-not-allowed": disabled,
-						})}
-					/>
-				)
-			}
+			id={id}
 			label={label}
-			errorMsg={errorMsg}
-			hasError={hasError}
-			disabled={disabled}
 			size={size}
 			rounded={rounded}
-			type={showPassword ? "text" : "password"}
-			id={id}
+			disabled={disabled}
+			hasError={hasError}
+			errorMsg={errorMsg}
+			type={isPasswordVisible ? "text" : "password"}
+			onFocus={() => setIsFocused(true)}
+			onBlur={() => setIsFocused(false)}
+			trial={
+				isFocused && (
+					isPasswordVisible ? (
+						<Eye
+							size={20}
+							onMouseDown={(e) => e.preventDefault()} // prevent blur
+							onClick={handleToggleVisibility}
+							className={cn("text-text-tertiary cursor-pointer", {
+								"cursor-not-allowed": disabled,
+							})}
+						/>
+					) : (
+						<EyeOff
+							size={20}
+							onMouseDown={(e) => e.preventDefault()} // prevent blur
+							onClick={handleToggleVisibility}
+							className={cn("text-text-tertiary cursor-pointer", {
+								"cursor-not-allowed": disabled,
+							})}
+						/>
+					)
+				)
+			}
 			{...props}
 		/>
 	)
 }
 
 Password.displayName = "Password"
-
-export { Password }

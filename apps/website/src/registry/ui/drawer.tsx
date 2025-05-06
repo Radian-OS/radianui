@@ -92,7 +92,7 @@ const drawerVariants = cva("fixed bg-transparent z-[51]", {
 const backdropVariants = cva("z-50 fixed", {
 	variants: {
 		backdrop: {
-			overlay: "inset-0 bg-black/50",
+			overlay: "inset-0 bg-static-black/50",
 			blur: "backdrop-blur-sm inset-0",
 		},
 	},
