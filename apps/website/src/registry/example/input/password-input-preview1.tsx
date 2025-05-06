@@ -4,29 +4,26 @@ import { Password } from "@/registry/ui/password"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { useState } from "react"
 
-export type SizeOptions = "32" | "36" | "40" | "44" | "48"
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type LabelOptions = "true" | "false"
 export type DisabledOptions = "true" | "false"
 export type ErrorOptions = "true" | "false"
-
-
+export type TrialOptions = "true" | "false"
 
 const PasswordInputPreview = () => {
-
     const [size, setSize] = useState<SizeOptions>("36")
     const [disabled, setDisabled] = useState<DisabledOptions>("false")
     const [label, setLabel] = useState<LabelOptions>("true")
     const [error, setError] = useState<ErrorOptions>("false")
-
+    const [trial, setTrial] = useState<TrialOptions>("true")
 
     const code = `<Password
     ${label === "true" ? 'label="Password"' : ''}
     ${disabled === "true" ? 'disabled={true}' : ''}
     ${size !== "36" ? `size="${size}"` : ''}
+    ${trial === "false" ? 'trial={false}' : ''}
     ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ''}
   />`
-
-
 
     return (
         <Tabs defaultValue="preview" className="mb-10 mt-2">
@@ -45,6 +42,7 @@ const PasswordInputPreview = () => {
                                         }}
                                         minSelectionCount={1}
                                         selectedValues={[size]}>
+                                        <DropdownItem value="28">28</DropdownItem>
                                         <DropdownItem value="32">32</DropdownItem>
                                         <DropdownItem value="36">36</DropdownItem>
                                         <DropdownItem value="40">40</DropdownItem>
@@ -101,6 +99,22 @@ const PasswordInputPreview = () => {
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
+
+                            <DropdownSub>
+                                <DropdownSubTrigger>Trial</DropdownSubTrigger>
+                                <DropdownSubContent>
+                                    <DropdownGroup
+                                        selectionMode="single"
+                                        onSelectedChange={(keys) => {
+                                            setTrial(Array.from(keys)[0] as TrialOptions)
+                                        }}
+                                        minSelectionCount={1}
+                                        selectedValues={[trial]}>
+                                        <DropdownItem value="true">True</DropdownItem>
+                                        <DropdownItem value="false">False</DropdownItem>
+                                    </DropdownGroup>
+                                </DropdownSubContent>
+                            </DropdownSub>
                         </DropdownContent>
                     </Dropdown>
                 </div>
@@ -112,14 +126,16 @@ const PasswordInputPreview = () => {
 
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-                    <div className="flex flex-col items-center w-full gap-4">
-                        <div className="flex flex-col items-center gap-5 w-full">
+                    <div className="flex flex-col items-center gap-4">
+                        <div className="flex flex-col items-center gap-5">
                             <Password
                                 label={label === "true" ? "Password" : ''}
                                 disabled={disabled === "true"}
                                 size={size}
                                 hasError={error === "true"}
-                                errorMsg="Error Occoured"
+                                errorMsg="Error Occurred"
+                                className="w-80"
+                                {...(trial === "false" ? { trial: false } : {})}
                             />
                         </div>
                     </div>
