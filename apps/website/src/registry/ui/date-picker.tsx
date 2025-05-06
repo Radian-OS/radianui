@@ -205,10 +205,6 @@ function DatePicker({
 
 	const [inputValue, setInputValue] = useState(displayText || "");
 
-	useEffect(() => {
-		const todayFormatted = format(new Date(), "MMMM dd, yyyy");
-		setInputValue(displayText || todayFormatted);
-	}, [displayText]);
 
 
 	const sizeHeightMapping = {
@@ -221,6 +217,18 @@ function DatePicker({
 	};
 
 	const [open, setOpen] = useState<boolean>(false);
+	const [time, setTime] = useState<string>("");
+
+
+	useEffect(() => {
+		const todayFormatted = format(new Date(), "MMMM dd, yyyy");
+		const datePart = displayText || todayFormatted;
+		const combined = time ? `${datePart}  ${time}` : datePart;
+		setInputValue(combined);
+	}, [displayText, time]);
+
+
+
 	const alignOffset = useMemo(() => {
 		if (showTime && showDateRangeShortcut && props.dualCalendar) return -581;
 		if (props.dualCalendar && showTime) return -378;
@@ -279,6 +287,11 @@ function DatePicker({
 									<PopoverContent alignOffset={alignOffset} className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
 										{mode === "single" && (
 											<Calendar
+												onIndexChange={(value) => {
+													if (value !== null) {
+														setTime?.(value);
+													}
+												}}
 												mode="single"
 												selected={currentSelected as CalendarDate}
 												onSelect={onSelectHandler}
@@ -290,6 +303,11 @@ function DatePicker({
 										{mode === "multiple" && (
 											<Calendar
 												mode="multiple"
+												onIndexChange={(value) => {
+													if (value !== null) {
+														setTime?.(value);
+													}
+												}}
 												selected={currentSelected as CalendarDate[]}
 												onSelect={onSelectHandler}
 												showTime={showTime}
@@ -300,6 +318,11 @@ function DatePicker({
 										{mode === "range" && (
 											<Calendar
 												mode="range"
+												onIndexChange={(value) => {
+													if (value !== null) {
+														setTime?.(value);
+													}
+												}}
 												selected={currentSelected as CalendarRange}
 												showTime={showTime}
 												showShortcut={showDateRangeShortcut}

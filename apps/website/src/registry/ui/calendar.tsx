@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { CalendarDate, getLocalTimeZone, parseDate, Time, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
@@ -6,6 +6,7 @@ import { ChevronProps, CustomComponents, DateRange, DayPicker, Modifiers, useDay
 import { cn } from "@/lib/utils"
 import { Select, SelectItem } from "./select"
 import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./date-picker"
+import { on } from "events"
 
 /**
  * Convert different form of Date object to
@@ -13,6 +14,8 @@ import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./da
  * @param selected
  * @returns native Date object in original provided form
  */
+
+
 
 // Function to convert CalendarDate to native Date object
 export function convertToNativeDate(
@@ -63,6 +66,8 @@ export type CalendarSingleSelect = {
 	mode?: "single"
 	selected?: CalendarDate
 	onSelect?: OnSelectHandler<CalendarDate | undefined>
+	onTimeSelected?: (selectedTime: string) => void;
+	onSelectIndex?: (index: number) => void;
 }
 
 // Type definition for CalendarMultipleSelect props
@@ -90,6 +95,7 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		defaultDateRangeShortcutValue?: DateRangeShortcutValues
 		showShortcut?: boolean
 		footer?: React.ReactNode
+		onIndexChange?: (value: string | null) => void;
 
 	}
 const minTime = "00:00"
@@ -138,6 +144,8 @@ type TimeSelectorProps = {
 	selectedIndex: number | null;
 	setSelectedIndex: (index: number | null) => void;
 	formatTime: (time: Time) => string; // Updated to accept Time
+	onTimeSelect?: (formattedTime: string) => void; // 🔥 Add this
+
 };
 export function TimeSelector(props: TimeSelectorProps) {
 	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime } = props;
@@ -156,7 +164,10 @@ export function TimeSelector(props: TimeSelectorProps) {
 						key={index}
 						className="hover:bg-fill-level2 group text-text flex leading-5 cursor-pointer font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5"
 						data-value={time}
-						onClick={() => setSelectedIndex(index)}
+						onClick={() => {
+							setSelectedIndex(index);
+							props.onTimeSelect?.(formatted);
+						}}
 					>
 						{formatted}
 						{isSelected ? (
@@ -187,14 +198,15 @@ function CalendarComponent({
 	defaultDateRangeShortcutValue,
 	className,
 	footer,
+	onIndexChange,
 	...props
 }: CalendarProps) {
+	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
 	const [internalSelected, setInternalSelected] = React.useState<Date | Date[] | DateRange | undefined>(convertToNativeDate(selected))
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? convertToNativeDate(selected) : internalSelected
 	let hideCaption: boolean = false
-
-	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
 
 	// Effect to update internal selected state when external selected changes
@@ -323,7 +335,6 @@ function CalendarComponent({
 
 
 
-
 	if (mode === "single") {
 		return (
 			<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
@@ -353,6 +364,9 @@ function CalendarComponent({
 								setSelectedIndex={setSelectedIndex}
 								formatTime={formatTime}
 								showTime={showTime}
+								onTimeSelect={(formatted) => {
+									onIndexChange?.(formatted)
+								}}
 							/>
 						)
 					}
@@ -393,6 +407,9 @@ function CalendarComponent({
 								setSelectedIndex={setSelectedIndex}
 								formatTime={formatTime}
 								showTime={showTime}
+								onTimeSelect={(formatted) => {
+									onIndexChange?.(formatted)
+								}}
 							/>
 						)
 					}
@@ -432,6 +449,9 @@ function CalendarComponent({
 							setSelectedIndex={setSelectedIndex}
 							formatTime={formatTime}
 							showTime={showTime}
+							onTimeSelect={(formatted) => {
+								onIndexChange?.(formatted)
+							}}
 						/>
 					)
 				}
