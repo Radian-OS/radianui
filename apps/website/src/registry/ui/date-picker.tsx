@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, Check } from "lucide-react"
@@ -220,7 +220,17 @@ function DatePicker({
 		48: "h-6 w-6",
 	};
 
-	;
+	const [open, setOpen] = useState<boolean>(false);
+	const alignOffset = useMemo(() => {
+		if (showTime && showDateRangeShortcut && props.dualCalendar) return -581;
+		if (props.dualCalendar && showTime) return -378;
+		if (props.dualCalendar && showDateRangeShortcut) return -458;
+		if (showTime && showDateRangeShortcut) return -298;
+		if (props.dualCalendar) return -259;
+		if (showTime) return -98;
+		if (showDateRangeShortcut) return -178;
+		return 20;
+	}, [props.dualCalendar, showTime, showDateRangeShortcut]);
 
 	return (
 		<div>
@@ -240,6 +250,7 @@ function DatePicker({
 					<>
 						<Input
 							size={size}
+							onClick={() => !disabled && setOpen(true)}
 							label={label}
 							rounded={rounded}
 							disabled={disabled}
@@ -248,10 +259,11 @@ function DatePicker({
 							className={cn(
 								triggerClassName
 							)}
+							readOnly
 							value={inputValue}
 							placeholder="Date picker"
 							trial={
-								< Popover align="end" sideOffset={14} >
+								< Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14} >
 									<PopoverTrigger disabled={disabled}>
 										<CalendarIcon className={cn(
 											sizeHeightMapping[size],
@@ -264,7 +276,7 @@ function DatePicker({
 										/>
 									</PopoverTrigger>
 
-									<PopoverContent alignOffset={props.dualCalendar === true ? -259 : 20} className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
+									<PopoverContent alignOffset={alignOffset} className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
 										{mode === "single" && (
 											<Calendar
 												mode="single"
