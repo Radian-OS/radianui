@@ -83,8 +83,6 @@ export function TypeableDatePicker({
     // Function to handle calendar opening
     // const handleCalendarToggle = () => {
     //     setOpen(!open)
-
-
     // }
 
     const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
@@ -142,7 +140,7 @@ export function TypeableDatePicker({
                 setOpen(newOpen)
             }
         }}>
-            <PopoverTrigger>
+            <PopoverTrigger disabled={disables}>
                 <Input
                     size={size}
                     label={label}
@@ -159,7 +157,8 @@ export function TypeableDatePicker({
                         "w-[320px]",
                         date && !isEditing ? "border-primary" : "border-input",
                     )}
-                    trial={<CalendarIcon />}
+                    trial={<CalendarIcon className={cn(disables ? "cursor-not-allowed" : "cursor-pointer")}
+                    />}
                 />
             </PopoverTrigger>
 
