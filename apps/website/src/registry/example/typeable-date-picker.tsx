@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { format, isValid, parse } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { ChevronProps, DayPicker } from "react-day-picker"
@@ -48,8 +48,8 @@ export function TypeableDatePicker({
         }
     }, [date, isEditing])
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let value = e.target.value;
-        let lower = value.toLowerCase();
+        const value = e.target.value;
+        const lower = value.toLowerCase();
 
         // Track if A or P was typed as last character
         const endsWithA = lower.endsWith("a");

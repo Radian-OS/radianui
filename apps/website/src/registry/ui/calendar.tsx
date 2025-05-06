@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { CalendarDate, getLocalTimeZone, parseDate, Time, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
@@ -6,7 +6,6 @@ import { ChevronProps, CustomComponents, DateRange, DayPicker, Modifiers, useDay
 import { cn } from "@/lib/utils"
 import { Select, SelectItem } from "./select"
 import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./date-picker"
-import { on } from "events"
 
 /**
  * Convert different form of Date object to
