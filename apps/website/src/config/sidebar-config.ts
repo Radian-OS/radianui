@@ -62,6 +62,7 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/hover-card", name: "Hover Card" },
 			{ link: "/documentation/components/modal", name: "Modal" },
 			{ link: "/documentation/components/pagination", name: "Pagination" },
+			{ link: "/documentation/components/password", name: "Password" },
 			{ link: "/documentation/components/popover", name: "Popover" },
 			{ link: "/documentation/components/progress-bar", name: "Progress Bar" },
 			{ link: "/documentation/components/radio-group", name: "Radio Group" },
