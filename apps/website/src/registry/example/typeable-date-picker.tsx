@@ -162,7 +162,6 @@ export function TypeableDatePicker({
                 />
             </PopoverTrigger>
 
-
             <PopoverContent className="w-auto p-0 border-none">
                 <div className="w-fit rounded-xl bg-bg-level1 border border-border drop-shadow-xs overflow-hidden">
                     <div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
