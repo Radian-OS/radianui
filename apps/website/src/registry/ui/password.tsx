@@ -6,7 +6,8 @@ import { cn } from "@/lib/utils"
 import { Input, InputProps } from "./input"
 
 /**
- * PasswordInput shows a toggle icon only when the input is focused.
+ * Password shows a toggle icon only when the input is focused,
+ * and prevents blur when clicking the icon so toggling works.
  */
 export function Password({
 	label,
@@ -42,6 +43,7 @@ export function Password({
 					isPasswordVisible ? (
 						<Eye
 							size={20}
+							onMouseDown={(e) => e.preventDefault()} // prevent blur
 							onClick={handleToggleVisibility}
 							className={cn("text-text-tertiary cursor-pointer", {
 								"cursor-not-allowed": disabled,
@@ -50,6 +52,7 @@ export function Password({
 					) : (
 						<EyeOff
 							size={20}
+							onMouseDown={(e) => e.preventDefault()} // prevent blur
 							onClick={handleToggleVisibility}
 							className={cn("text-text-tertiary cursor-pointer", {
 								"cursor-not-allowed": disabled,
