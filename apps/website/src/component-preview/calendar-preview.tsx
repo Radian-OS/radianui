@@ -12,6 +12,7 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import Calendar from "@/registry/ui/calendar"
+import { Button } from "@/registry/ui/button"
 
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -22,8 +23,8 @@ const CalendarPreview = () => {
     const [mode, setMode] = useState<DatePickerModes>("range")
     const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
     const [showTime, setShowTime] = useState<boolean>(false)
-    const [showShortcut, setShowShortCut] = useState<boolean>(true)
-
+    const [showShortcut, setShowShortCut] = useState<boolean>(false)
+    const [footer, setFooter] = useState<boolean>(false)
 
 
     return (
@@ -86,6 +87,19 @@ const CalendarPreview = () => {
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
+                            <DropdownSub>
+                                <DropdownSubTrigger>Footer</DropdownSubTrigger>
+                                <DropdownSubContent>
+                                    <DropdownGroup
+                                        selectionMode="single"
+                                        selectedValues={[String(footer)]}
+                                        onSelectedChange={(values) => setFooter(values[0] === "true")}
+                                        minSelectionCount={1}>
+                                        <DropdownItem value="true">Yes</DropdownItem>
+                                        <DropdownItem value="false">No</DropdownItem>
+                                    </DropdownGroup>
+                                </DropdownSubContent>
+                            </DropdownSub>
                         </DropdownContent>
                     </Dropdown>
                 </div>
@@ -96,10 +110,28 @@ const CalendarPreview = () => {
             </div>
 
             <TabsContent value="preview">
-                <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-                    {mode === "single" && <Calendar showShortcut={showShortcut} mode={"single"} showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
-                    {mode === "multiple" && <Calendar showShortcut={showShortcut} mode={"multiple"} showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
-                    {mode === "range" && <Calendar showShortcut={showShortcut} mode={"range"} showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
+                <div className={`flex h-[420px] flex-col ${doubleCalendar && showShortcut ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
+                    {mode === "single" && <Calendar showShortcut={showShortcut}
+                        mode={"single"}
+                        footer={footer && (<div className="p-3 flex gap-2">
+                            <Button variant="neutral-outline">Cancel</Button>
+                            <Button>Apply</Button>
+                        </div>)}
+                        showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
+                    {mode === "multiple" && <Calendar showShortcut={showShortcut}
+                        mode={"multiple"} showTime={showTime}
+                        footer={footer && (<div className="p-3 flex gap-2">
+                            <Button variant="neutral-outline">Cancel</Button>
+                            <Button>Apply</Button>
+                        </div>)}
+                        dualCalendar={doubleCalendar} showOutsideDays />}
+                    {mode === "range" && <Calendar showShortcut={showShortcut}
+                        mode={"range"}
+                        footer={footer && (<div className="p-3 flex gap-2">
+                            <Button variant="neutral-outline">Cancel</Button>
+                            <Button>Apply</Button>
+                        </div>)}
+                        showTime={showTime} dualCalendar={doubleCalendar} showOutsideDays />}
                 </div>
             </TabsContent>
 
@@ -114,6 +146,12 @@ const CalendarPreview = () => {
     dualCalendar=${doubleCalendar}
     showTime=${showTime}
     showShortcut=${showShortcut}
+    footer=${footer && `{
+            <div className="p-3 flex gap-2">
+                <Button variant="neutral-outline">Cancel</Button>
+                <Button>Apply</Button>
+            </div>
+            }`}
 />`}
                 />
             </TabsContent>

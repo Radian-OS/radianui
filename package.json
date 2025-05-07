@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.1.8",
-    "dotenv-cli": "^8.0.0"
+    "dotenv-cli": "^8.0.0",
+    "zod": "^3.24.4"
   }
 }

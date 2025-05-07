@@ -27,7 +27,7 @@ const profile = {
 
 const PopoverPreview = () => {
 	const [side, setSide] = useState<Side>("bottom")
-	const [align, setAlign] = useState<Align>("center")
+	const [align, setAlign] = useState<Align>("start")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">

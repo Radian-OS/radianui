@@ -15,6 +15,7 @@ import { Input } from "@/registry/ui/input"
 import { CircleUserRound } from "lucide-react"
 
 
+
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
@@ -23,7 +24,7 @@ const booleanOptions = ["true", "false"]
 
 const InputPreview = () => {
     const [rounded, setRounded] = useState<RoundedOptions>("lg")
-    const [size, setSize] = useState<SizeOptions>("40")
+    const [size, setSize] = useState<SizeOptions>("36")
     const [disabled, setDisabled] = useState<boolean>(false)
     const [suffixIcon, setSuffixIcon] = useState<boolean>(false)
     const [prefixIcon, setPrefixIcon] = useState<boolean>(false)

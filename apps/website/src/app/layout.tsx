@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Navbar from "@/components/navbar"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
-import Banner from "@/components/under-development-banner"
+// import Banner from "@/components/under-development-banner"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 import { generatePalette, PaletteScheme } from "@/lib/rainbow/palette-generator"
@@ -41,7 +41,7 @@ export default async function RootLayout({
 				<PostHogProvider>
 					<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 						<header className="sticky top-0 z-50 w-full">
-							<Banner />
+							{/* <Banner /> */}
 							<Navbar />
 						</header>
 						{children}

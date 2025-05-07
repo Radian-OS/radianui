@@ -20,7 +20,7 @@ import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
-import EmailPreview from "@/component-preview/email-preview"
+import EmailPreview from "@/registry/example/input/email-input-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -34,7 +34,7 @@ import SonnerPreview from "@/component-preview/sonner-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
-import UrlPreview from "@/component-preview/url-preview"
+import UrlPreview from "@/registry/example/input/url-input-preview"
 import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
@@ -55,6 +55,10 @@ import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import CalendarPreview from "@/component-preview/calendar-preview"
+import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
+import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
+import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
+import SliderPreview from "@/component-preview/slider-preview"
 
 type MdxProps = {
 	code: string
@@ -108,6 +112,10 @@ const components: MDXComponents = {
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,
+	PasswordInputPreview: () => <PasswordInputPreview />,
+	PasswordInputPreview2: () => <PasswordInputPreview2 />,
+	PasswordInputPreview3: () => <PasswordInputPreview3 />,
+	SliderPreview: () => <SliderPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

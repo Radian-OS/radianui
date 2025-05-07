@@ -12,7 +12,7 @@ type BaseProps = React.HTMLAttributes<HTMLElement> & {
 }
 
 type BreadcrumbProps = BaseProps & {
-	separatorType?: "default" | "slash"
+	separator?: "default" | "slash"
 	maxItems?: number
 }
 
@@ -20,10 +20,10 @@ type BreadcrumbItemProps = BaseProps & {
 	href?: string
 	isCurrent?: boolean
 	showSeparator?: boolean
-	separatorType?: "default" | "slash"
+	separator?: "default" | "slash"
 }
 
-function Breadcrumb({ children, className = "", separatorType = "default", maxItems: maxItemsProp = 5, ...props }: BreadcrumbProps) {
+function Breadcrumb({ children, className = "", separator = "default", maxItems: maxItemsProp = 5, ...props }: BreadcrumbProps) {
 	const [maxItems, setMaxItems] = useState(maxItemsProp)
 
 	useEffect(() => {
@@ -55,7 +55,7 @@ function Breadcrumb({ children, className = "", separatorType = "default", maxIt
 							{React.cloneElement(child, {
 								...child.props,
 								showSeparator: !isLast || showEllipsis,
-								separatorType,
+								separator,
 							})}
 							{showEllipsis && (
 								<>
@@ -81,7 +81,7 @@ function Breadcrumb({ children, className = "", separatorType = "default", maxIt
 											</DropdownContent>
 										</Dropdown>
 									</BreadcrumbItem>
-									{separatorType === "slash" ? (
+									{separator === "slash" ? (
 										<Slash size={14} className="stroke-text-tertiary" />
 									) : (
 										<ChevronRight size={14} className="stroke-text-tertiary" />
@@ -103,11 +103,11 @@ function BreadcrumbItem({
 	isCurrent = false,
 	className = "",
 	showSeparator = false,
-	separatorType = "default",
+	separator = "default",
 	...props
 }: BreadcrumbItemProps) {
 	const Comp = href ? "a" : "span"
-	const SeparatorIcon = separatorType === "slash" ? Slash : ChevronRight
+	const SeparatorIcon = separator === "slash" ? Slash : ChevronRight
 
 	return (
 		<>

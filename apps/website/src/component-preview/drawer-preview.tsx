@@ -26,7 +26,6 @@ const DrawerPreview = () => {
  handle={${handle}}
  backdrop='${backdrop}'
  trigger={<Button>Open Drawer</Button>}
- className="relative"
  >
 <DrawerHeader>
  <DrawerTitle>This is a drawer header</DrawerTitle>
@@ -123,7 +122,6 @@ const DrawerPreview = () => {
 						handle={handle === "true" ? true : false}
 						backdrop={backdrop}
 						trigger={<Button>Open Drawer</Button>}
-						className="relative"
 					>
 						<DrawerHeader>
 							<DrawerTitle>This is a drawer header</DrawerTitle>
