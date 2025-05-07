@@ -44,17 +44,68 @@ export function TypeableDatePicker({
     // Only update if we're not currently editing the input
     useEffect(() => {
         if (date && !isEditing) {
-            setInputValue(format(date, "MM/dd/yyyy"))
+            setInputValue(format(date, "dd/MM/yyyy"))
         }
     }, [date, isEditing])
-
-    // Handle input change without immediate date parsing
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = e.target.value
-        setInputValue(value)
+        const value = e.target.value;
+        const lower = value.toLowerCase();
 
-        // Don't try to parse while editing - just update the input value
-    }
+        // Track if A or P was typed as last character
+        const endsWithA = lower.endsWith("a");
+        const endsWithP = lower.endsWith("p");
+
+        // Remove all non-digit characters except 'a' or 'p'
+        let raw = lower.replace(/[^0-9ap]/g, "");
+
+        // Handle AM/PM shortcut
+        let meridian = "";
+        if (endsWithA) {
+            meridian = " AM";
+            raw = raw.replace(/a/g, "");
+        } else if (endsWithP) {
+            meridian = " PM";
+            raw = raw.replace(/p/g, "");
+        }
+
+        // Limit digits to 12 (DDMMYYYYHHMM)
+        raw = raw.slice(0, 12);
+
+        let dd = raw.slice(0, 2);
+        let mm = raw.slice(2, 4);
+        const yyyy = raw.slice(4, 8);
+        let hh = raw.slice(8, 10);
+        let min = raw.slice(10, 12);
+
+        // Normalize day
+        if (dd.length === 1 && parseInt(dd, 10) > 3) dd = "0" + dd;
+        else if (dd.length === 2 && parseInt(dd, 10) > 31) return;
+
+        // Normalize month
+        if (mm.length === 1 && parseInt(mm, 10) > 1) mm = "0" + mm;
+        else if (mm.length === 2 && parseInt(mm, 10) > 12) return;
+
+        // Normalize hour (12-hour format)
+        if (hh.length === 1 && parseInt(hh, 10) > 1) hh = "0" + hh;
+        else if (hh.length === 2 && parseInt(hh, 10) > 12) return;
+
+        // Normalize minute
+        if (min.length === 1 && parseInt(min, 10) > 5) min = "0" + min;
+        else if (min.length === 2 && parseInt(min, 10) > 59) return;
+
+        // Build formatted output
+        let formatted = dd;
+        if (mm) formatted += `/${mm}`;
+        if (yyyy) formatted += `/${yyyy}`;
+        if (hh) formatted += ` ${hh}`;
+        if (min) formatted += `:${min}`;
+        if (meridian) formatted += meridian;
+
+        setInputValue(formatted);
+    };
+
+
+
 
     // Parse the date when the input loses focus
     const handleInputBlur = () => {
@@ -63,7 +114,7 @@ export function TypeableDatePicker({
         try {
             // Only try to parse if we have something close to a complete date
             if (inputValue.length >= 8) {
-                const parsedDate = parse(inputValue, "MM/dd/yyyy", new Date())
+                const parsedDate = parse(inputValue, "dd/MM/yyyy", new Date())
 
                 if (isValid(parsedDate)) {
                     setDate(new Date(parsedDate))
@@ -152,7 +203,7 @@ export function TypeableDatePicker({
                     onFocus={handleInputFocus}
                     onBlur={handleInputBlur}
                     errorMsg={hasError ? "There is an error" : undefined}
-                    placeholder="MM/DD/YYYY"
+                    placeholder="DD/MM/YYYY"
                     className={cn(
                         "w-[320px]",
                         date && !isEditing ? "border-primary" : "border-input",
@@ -161,7 +212,6 @@ export function TypeableDatePicker({
                     />}
                 />
             </PopoverTrigger>
-
 
             <PopoverContent className="w-auto p-0 border-none">
                 <div className="w-fit rounded-xl bg-bg-level1 border border-border drop-shadow-xs overflow-hidden">
@@ -173,7 +223,7 @@ export function TypeableDatePicker({
                             onSelect={(selectedDate) => {
                                 if (selectedDate) {
                                     setDate(selectedDate)
-                                    setInputValue(format(selectedDate, "MM/dd/yyyy"))
+                                    setInputValue(format(selectedDate, "dd/MM/yyyy"))
                                     setIsEditing(false)
                                 }
                             }}

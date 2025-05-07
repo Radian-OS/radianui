@@ -221,7 +221,7 @@ const DatePickerPreview = () => {
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <DatePicker
-                        mode={showDateRangeShortcut ? "range" : mode}
+                        mode={mode}
                         label={label ? "Date picker" : undefined}
                         hasError={hasError}
                         disabled={disabled}
@@ -255,6 +255,12 @@ const DatePickerPreview = () => {
     showTime=${showTime}
     size="${size}"
     rounded="${rounded}"
+    typeable="${typeable}"
+    footer=${footer && (`
+       {<div className="p-3 flex gap-2">
+            <Button variant="neutral-outline">Cancel</Button>
+            <Button>Apply</Button>
+        </div>}`)}
 />`}
                 />
             </TabsContent>
