@@ -18,9 +18,6 @@ import Switch from "@/registry/ui/switch"
 const SwitchPreview = () => {
     type sizeProps = "20" | "24"
     type disabledType = "true" | "false"
-    // const [variant, setVariant] = useState<'primary' | 'outline' | 'gray' | 'destructive'>("gray")
-    // const [closable, setClosable] = useState<"true" | "false">("false")
-    // const [key, setKey] = useState(0)
     const [size, setSize] = useState<sizeProps>("20")
     const [disabled, setDisabled] = useState<disabledType>("false")
 

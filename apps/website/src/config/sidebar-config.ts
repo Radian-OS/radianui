@@ -47,7 +47,7 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/banner", name: "Banner" },
 			{ link: "/documentation/components/breadcrumb", name: "Breadcrumb" },
 			{ link: "/documentation/components/buttons", name: "Buttons" },
-			{ link: "/documentation/components/button-group", name: "Buttongroup" },
+			// { link: "/documentation/components/button-group", name: "Buttongroup" },
 			{ link: "/documentation/components/calendar", name: "Calendar" },
 			{ link: "/documentation/components/code-area", name: "Code Area" },
 			{ link: "/documentation/components/checkbox", name: "Check Box" },
