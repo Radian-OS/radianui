@@ -1,9 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Sparkles } from "lucide-react"
-import Link from "next/link"
-import { Banner } from "@/registry/ui/banner"
 import { CodeArea } from "@/registry/ui/code"
 import {
     Dropdown,
