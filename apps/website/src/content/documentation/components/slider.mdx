@@ -1,4 +1,46 @@
 ---
 title: Slider
 description: Select values by dragging a handle along a track
+source: https://github.com/Radian-os/Radianos
 ---
+
+<SliderPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add slider`} />
+
+##### Imports
+
+<Code language="tsx" code={`import Slider from "@/components/ui/slider"`} />
+
+##### Props
+
+| Prop Name             | Default Values | Values     |
+| --------------------- | -------------- | ---------- |
+| rounded               | sm             |            |
+| size                  |                |            |
+| label                 | false          | true/false |
+| disabled              | false          | true/false |
+| showDateRangeShortcut | false          |            |
+| doubleCalendar        | false          |            |
+| footer                |                |            |
+| typeable              | false          | true/false |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={` 
+<Slider
+    mode="single"
+    placeholder="Select Date"
+    showDateRangeShortcut=false
+    disabled=false
+    doubleCalendar=false
+    navigatorStyle="button"
+    size="40"
+    rounded="sm"
+    typeable=false
+/>`}
+/>

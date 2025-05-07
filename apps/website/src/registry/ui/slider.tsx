@@ -126,7 +126,7 @@ function Slider({
 				className={cn(
 					"flex gap-2",
 					{
-						"w-full items-center": orientation === "horizontal",
+						"w-full justify-center items-center": orientation === "horizontal",
 						"h-full w-fit flex-col items-center": orientation === "vertical",
 					},
 					classNames?.sliderWrapper
@@ -147,9 +147,9 @@ function Slider({
 				)}
 				{prefixIcon}
 				<div
-					className={cn("relative h-full", {
+					className={cn("relative", {
 						"flex-1": orientation === "horizontal",
-						"flex flex-row": orientation === "vertical",
+						"flex flex-row h-40": orientation === "vertical",
 					})}>
 					<SliderPrimitive.Root
 						ref={ref}
