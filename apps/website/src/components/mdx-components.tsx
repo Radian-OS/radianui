@@ -59,6 +59,7 @@ import PasswordInputPreview from "@/registry/example/input/password-input-previe
 import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import SliderPreview from "@/component-preview/slider-preview"
+import SwitchPreview from "@/component-preview/switch-preview"
 
 type MdxProps = {
 	code: string
@@ -116,6 +117,7 @@ const components: MDXComponents = {
 	PasswordInputPreview2: () => <PasswordInputPreview2 />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
 	SliderPreview: () => <SliderPreview />,
+	SwitchPreview: () => <SwitchPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

@@ -134,7 +134,7 @@ const PasswordInputPreview2 = () => {
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <div className="relative">
-                        <Link href="#" className="text-primary text-sm absolute right-0">Forgot Password ?</Link>
+                        <Link href="#" className="text-primary-text text-sm absolute right-0">Forgot Password ?</Link>
                         <Password
                             label={label === "true" ? "Password" : ''}
                             disabled={disabled === "true"}
