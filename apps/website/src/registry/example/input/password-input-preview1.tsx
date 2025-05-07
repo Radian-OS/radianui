@@ -8,7 +8,7 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type LabelOptions = "true" | "false"
 export type DisabledOptions = "true" | "false"
 export type ErrorOptions = "true" | "false"
-export type TrialOptions = "true" | "false"
+export type TrialOptions = "true" | "false" | "visibilityIcon"
 
 const PasswordInputPreview = () => {
     const [size, setSize] = useState<SizeOptions>("36")
@@ -21,7 +21,7 @@ const PasswordInputPreview = () => {
     ${label === "true" ? 'label="Password"' : ''}
     ${disabled === "true" ? 'disabled={true}' : ''}
     ${size !== "36" ? `size="${size}"` : ''}
-    ${trial === "false" ? 'trial={false}' : ''}
+    ${trial === "false" ? 'trial={false}' : trial === "visibilityIcon" ? 'trial="visibilityIcon"' : ''}
     ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ''}
   />`
 
@@ -112,6 +112,7 @@ const PasswordInputPreview = () => {
                                         selectedValues={[trial]}>
                                         <DropdownItem value="true">True</DropdownItem>
                                         <DropdownItem value="false">False</DropdownItem>
+                                        <DropdownItem value="visibilityIcon">Visibility Icon</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
@@ -135,7 +136,7 @@ const PasswordInputPreview = () => {
                                 hasError={error === "true"}
                                 errorMsg="Error Occurred"
                                 className="w-80"
-                                {...(trial === "false" ? { trial: false } : {})}
+                                {...(trial === "false" ? { trial: false } : trial === "visibilityIcon" ? { trial: "visibilityIcon" } : {})}
                             />
                         </div>
                     </div>
