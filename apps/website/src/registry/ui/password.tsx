@@ -6,8 +6,11 @@ import { cn } from "@/lib/utils"
 import { Input, InputProps } from "./input"
 
 /**
- * Password shows a toggle icon only when the input is focused,
- * and prevents blur when clicking the icon so toggling works.
+ * Password shows a toggle icon:
+ * - When trial="visibilityIcon", the icon is always visible
+ * - When trial is not specified or true, the icon only appears when input is focused
+ * - When trial is false, no icon is shown
+ * Prevents blur when clicking the icon so toggling works.
  */
 export function Password({
 	label,
@@ -17,6 +20,7 @@ export function Password({
 	size = "40",
 	rounded = "md",
 	id,
+	trial,
 	...props
 }: Omit<InputProps, "leadIcon" | "trialIcon">) {
 	const [isFocused, setIsFocused] = React.useState(false)
@@ -24,6 +28,60 @@ export function Password({
 
 	function handleToggleVisibility() {
 		if (!disabled) setIsPasswordVisible((v) => !v)
+	}
+
+	// Determine what to show in the trial prop
+	let trialContent = null
+
+	// When trial is explicitly false, don't show any icon
+	if (trial === false) {
+		trialContent = null;
+	}
+	// When visibilityIcon is specified, always show the icon
+	else if (trial === "visibilityIcon") {
+		trialContent = isPasswordVisible ? (
+			<Eye
+				size={20}
+				onMouseDown={(e) => e.preventDefault()} // prevent blur
+				onClick={handleToggleVisibility}
+				className={cn("text-text-tertiary cursor-pointer", {
+					"cursor-not-allowed": disabled,
+				})}
+			/>
+		) : (
+			<EyeOff
+				size={20}
+				onMouseDown={(e) => e.preventDefault()} // prevent blur
+				onClick={handleToggleVisibility}
+				className={cn("text-text-tertiary cursor-pointer", {
+					"cursor-not-allowed": disabled,
+				})}
+			/>
+		)
+	}
+	// Default behavior: show only when focused
+	else {
+		trialContent = isFocused && (
+			isPasswordVisible ? (
+				<Eye
+					size={20}
+					onMouseDown={(e) => e.preventDefault()} // prevent blur
+					onClick={handleToggleVisibility}
+					className={cn("text-text-tertiary cursor-pointer", {
+						"cursor-not-allowed": disabled,
+					})}
+				/>
+			) : (
+				<EyeOff
+					size={20}
+					onMouseDown={(e) => e.preventDefault()} // prevent blur
+					onClick={handleToggleVisibility}
+					className={cn("text-text-tertiary cursor-pointer", {
+						"cursor-not-allowed": disabled,
+					})}
+				/>
+			)
+		)
 	}
 
 	return (
@@ -38,29 +96,7 @@ export function Password({
 			type={isPasswordVisible ? "text" : "password"}
 			onFocus={() => setIsFocused(true)}
 			onBlur={() => setIsFocused(false)}
-			trial={
-				isFocused && (
-					isPasswordVisible ? (
-						<Eye
-							size={20}
-							onMouseDown={(e) => e.preventDefault()} // prevent blur
-							onClick={handleToggleVisibility}
-							className={cn("text-text-tertiary cursor-pointer", {
-								"cursor-not-allowed": disabled,
-							})}
-						/>
-					) : (
-						<EyeOff
-							size={20}
-							onMouseDown={(e) => e.preventDefault()} // prevent blur
-							onClick={handleToggleVisibility}
-							className={cn("text-text-tertiary cursor-pointer", {
-								"cursor-not-allowed": disabled,
-							})}
-						/>
-					)
-				)
-			}
+			trial={trialContent}
 			{...props}
 		/>
 	)

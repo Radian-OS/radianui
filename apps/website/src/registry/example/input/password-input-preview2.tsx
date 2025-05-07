@@ -9,7 +9,7 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type LabelOptions = "true" | "false"
 export type DisabledOptions = "true" | "false"
 export type ErrorOptions = "true" | "false"
-export type TrialOptions = "true" | "false"
+export type TrialOptions = "true" | "false" | "visibilityIcon"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type ExampleOptions = "default" | "disabled"
 
@@ -26,7 +26,7 @@ const PasswordInputPreview2 = () => {
     ${label === "true" ? 'label="Password"' : ''}
     ${disabled === "true" ? 'disabled={true}' : ''}
     ${size !== "36" ? `size="${size}"` : ''}
-    ${trial === "false" ? 'trial={false}' : ''}
+    ${trial === "false" ? 'trial={false}' : trial === "visibilityIcon" ? 'trial="visibilityIcon"' : ''}
     ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ''}
   />
 </div>`
@@ -118,6 +118,7 @@ const PasswordInputPreview2 = () => {
                                         selectedValues={[trial]}>
                                         <DropdownItem value="true">True</DropdownItem>
                                         <DropdownItem value="false">False</DropdownItem>
+                                        <DropdownItem value="visibilityIcon">Visibility Icon</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
@@ -133,7 +134,7 @@ const PasswordInputPreview2 = () => {
             <TabsContent value="preview">
                 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
                     <div className="relative">
-                        <Link href="#" className="text-primary text-sm absolute right-0">Forgot Password ?</Link>
+                        <Link href="#" className="text-primary-text text-sm absolute right-0">Forgot Password ?</Link>
                         <Password
                             label={label === "true" ? "Password" : ''}
                             disabled={disabled === "true"}
@@ -141,7 +142,7 @@ const PasswordInputPreview2 = () => {
                             hasError={error === "true"}
                             errorMsg={error === "true" ? "Error Occurred" : undefined}
                             className="w-80"
-                            {...(trial === "false" ? { trial: false } : {})}
+                            {...(trial === "false" ? { trial: false } : trial === "visibilityIcon" ? { trial: "visibilityIcon" } : {})}
                         />
                     </div>
                 </div>

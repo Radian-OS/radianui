@@ -23,7 +23,7 @@ const PasswordInputPreview = () => {
     type LabelOptions = "true" | "false"
     type DisabledOptions = "true" | "false"
     type ErrorOptions = "true" | "false"
-    type TrialOptions = "true" | "false"
+    type TrialOptions = "true" | "false" | "visibilityIcon"
 
 
     const [password, setPassword] = useState("")
@@ -99,7 +99,7 @@ return (
 ${label === "true" ? 'label="Password"' : ''}
 ${disabled === "true" ? 'disabled={true}' : ''}
 ${size !== "36" ? `size="${size}"` : ''}
-${trial === "false" ? 'trial={false}' : ''}
+${trial === "false" ? 'trial={false}' : trial === "visibilityIcon" ? 'trial="visibilityIcon"' : ''}
 ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ''}
 value={password}
 onChange={(e) => setPassword(e.target.value)}
@@ -217,6 +217,7 @@ export default PasswordInputPreview
                                         selectedValues={[trial]}>
                                         <DropdownItem value="true">True</DropdownItem>
                                         <DropdownItem value="false">False</DropdownItem>
+                                        <DropdownItem value="visibilityIcon">Visibility Icon</DropdownItem>
                                     </DropdownGroup>
                                 </DropdownSubContent>
                             </DropdownSub>
@@ -242,7 +243,7 @@ export default PasswordInputPreview
                             size={size}
                             hasError={error === "true"}
                             errorMsg="Error Occurred"
-                            {...(trial === "false" ? { trial: false } : {})}
+                            {...(trial === "false" ? { trial: false } : trial === "visibilityIcon" ? { trial: "visibilityIcon" } : {})}
                         />
                         {/* Make sure the progress bar has a specified height and visible styling */}
                         <ProgressBar
