@@ -9,7 +9,6 @@ import { Input, RoundedOptions, SizeOptions, defaultInputRadius, defaultInputSiz
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { SelectProps } from "./select"
 import { TimePickerProps } from "./time-picker"
-import { TypeableDatePicker } from "../example/typeable-date-picker"
 
 // Mock mouse click event
 export function mockMouseClick(): React.MouseEvent {
@@ -462,3 +461,182 @@ function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: D
 // }
 
 export default DatePicker
+
+
+import { ChevronProps, DayPicker } from "react-day-picker"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import { formatTime, timeOptions, TimeSelector } from "../ui/calendar"
+import { dateInputStyles } from "../ui/date-input"
+import { DateField, DateInput as DateInputRC, DateSegment, DateValue } from "react-aria-components"
+import { CalendarDateTime, parseZonedDateTime, ZonedDateTime } from "@internationalized/date"
+
+function TypeableDatePicker({
+	size,
+	// label,
+	rounded,
+	disables,
+	// hasError,
+	classNames,
+	components,
+	navigatorStyle = "button",
+	showTime = false,
+	dualCalendar = false,
+	className,
+	footer,
+	...props
+}: DatePickerProps) {
+
+	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
+	const hideCaption: boolean = false
+
+	// Merged class names for styling
+	const mergedClassNames: Record<string, string> = {
+		root: cn({ "cursor-not-allowed": props.disabled }),
+		months: cn("relative flex flex-col bg-bg-level1 w-full gap-5 p-0", {
+			"flex-row pt-10": navigatorStyle === "selector",
+			"sm:flex-row": navigatorStyle !== "selector",
+		}),
+		month_caption: cn("mx-10 flex items-center justify-center z-20 p-0 text-sm font-semibold h-7", {
+			hidden: props.hideNavigation || hideCaption || (navigatorStyle === "selector" && !dualCalendar),
+		}),
+		nav: "absolute top-0 flex w-full justify-between z-10 p-0",
+		month: "flex flex-col gap-3",
+		month_grid: "flex flex-col gap-1.5 items-center",
+		weekdays: "w-full flex gap-1.5",
+		weekday: "text-text-tertiary text-sm font-medium size-8 shrink-0 flex items-center justify-center",
+		weeks: "w-full flex flex-col gap-1.5",
+		week: "w-full flex gap-1.5",
+		day: "size-8 p-0 shrink-0 group text-sm aria-selected:opacity-100",
+		day_button:
+			"text-center rounded-lg text-text text-sm font-medium hover:bg-bg-level1 size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-text-tertiary group-data-selected:text-white group-data-disabled:text-text-tertiary group-data-outside:text-text-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-text group-data-selected:group-data-outside:text-white",
+		button_previous: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
+			"pointer-events-none": props.disabled,
+		}),
+		button_next: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
+			"pointer-events-none": props.disabled,
+		}),
+		range_start: "range-start",
+		range_middle: "range-middle",
+		range_end: "range-end",
+		...classNames,
+	}
+
+	// Merged components including custom ones
+	const mergedComponents = {
+		Chevron: (props: ChevronProps) => {
+			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-text" />
+			return <ChevronRight size={16} className="stroke-text" />
+		},
+		// ...customComponents,
+		...components,
+	}
+
+	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+
+	// Convert Date to DateValue for the DateField
+	const [dateTime, setDateTime] = useState<ZonedDateTime | null>(
+		parseZonedDateTime("2023-10-10T12:30[America/Los_Angeles]")
+	);
+
+	const dateTimeValue = dateTime
+		? new CalendarDateTime(
+			dateTime.year,
+			dateTime.month,
+			dateTime.day,
+			dateTime.hour,
+			dateTime.minute
+		)
+		: null;
+
+	// Handle time change
+	const handleDateTimeChange = (value: DateValue | null) => {
+		if (!value) {
+			setDateTime(null);
+			return;
+		}
+
+		const newDateTime = parseZonedDateTime(
+			`${value.year}-${String(value.month).padStart(2, '0')}-${String(value.day).padStart(2, '0')}`
+			+ `T${String('hour' in value ? value.hour : 0).padStart(2, '0')}:${String('minute' in value ? value.minute : 0).padStart(2, '0')}`
+			+ `[America/Los_Angeles]`
+		);
+		setDateTime(newDateTime);
+	};
+
+	return (
+		<Popover>
+			<PopoverTrigger disabled={disables}>
+				<div className={cn("w-[320px]", dateInputStyles({ size, rounded }))}>
+					<DateField
+						granularity="minute"
+						className={cn("flex flex-col gap-1 border-none")}
+						value={dateTimeValue}
+						onChange={handleDateTimeChange}
+						{...props}
+					>
+						<DateInputRC>
+							{(segment) => (
+								<DateSegment
+									className={cn(
+										"rounded-sm px-0 py-0.5 text-end text-sm tabular-nums",
+										"data-[focused]:bg-bg-level2 data-[focused]:text-white",
+										"data-placeholder:text-text-tertiary",
+										"focus:outline-hidden focus:caret-transparent",
+										"data-[type=dayPeriod]:mx-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5 data-[type=hour]:ml-0.5",
+									)}
+									segment={segment}
+								/>
+							)}
+						</DateInputRC>
+					</DateField>
+					<CalendarIcon className={cn()} />
+				</div>
+			</PopoverTrigger>
+
+			<PopoverContent className="w-auto p-0 border-none">
+				<div className="w-fit rounded-xl bg-bg-level1 border border-border drop-shadow-xs overflow-hidden">
+					<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
+						<DayPicker
+							mode="single"
+							selected={dateTime ? new Date(dateTime.year, dateTime.month - 1, dateTime.day) : undefined}
+							month={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
+							onSelect={(selectedDate) => {
+								if (selectedDate) {
+									const currentTime = dateTime
+										? {
+											hour: dateTime.hour,
+											minute: dateTime.minute
+										}
+										: { hour: 0, minute: 0 };
+
+									const newDateTime = parseZonedDateTime(
+										`${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, '0')}-${String(selectedDate.getDate()).padStart(2, '0')}`
+										+ `T${String(currentTime.hour).padStart(2, '0')}:${String(currentTime.minute).padStart(2, '0')}`
+										+ `[America/Los_Angeles]`
+									);
+									setDateTime(newDateTime);
+								}
+							}}
+							className={mergedClassName}
+							showOutsideDays
+							defaultMonth={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
+							components={mergedComponents}
+							classNames={mergedClassNames}
+						/>
+						<TimeSelector
+							timeOptions={timeOptions}
+							selectedIndex={selectedIndex}
+							setSelectedIndex={setSelectedIndex}
+							formatTime={formatTime}
+							showTime={showTime}
+						/>
+					</div>
+					<div className="flex w-full justify-end">
+						{footer && footer}
+					</div>
+				</div>
+			</PopoverContent>
+		</Popover>
+	)
+}

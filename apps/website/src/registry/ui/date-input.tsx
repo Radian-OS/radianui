@@ -3,10 +3,11 @@ import { cva } from "class-variance-authority"
 import { DateField, DateInput as DateInputRC, DateSegment, DateValue, Label } from "react-aria-components"
 import { cn } from "@/lib/utils"
 import { RoundedOptions, SizeOptions, cvaInputVariants } from "./input"
+import { CalendarIcon } from "lucide-react"
 
 // Creating a variant for date input styles using cva
-const dateInputStyles = cva(
-	"border-gray flex items-center w-fit whitespace-nowrap rounded-lg border focus-within:outline-2 focus-within:-outline-offset-1 focus-within:outline-primary focus-within:ring-2 focus-within:ring-primary/20",
+export const dateInputStyles = cva(
+	"border-gray flex items-center justify-between whitespace-nowrap rounded-lg border focus-within:outline-2 focus-within:-outline-offset-1 focus-within:outline-primary focus-within:ring-2 focus-within:ring-primary/20",
 	{
 		variants: {
 			...cvaInputVariants,
@@ -46,38 +47,56 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 
 	const currentValue = isControlled ? value : internalDate
 
+
+
 	return (
-		<DateField
-			className={cn("flex w-fit flex-col gap-1", classNames?.base)}
-			onChange={handleChange}
-			value={currentValue}
-			isDisabled={disabled}
-			ref={ref}
-			{...props}>
-			{label && (
-				<Label
-					className={cn(
-						"text-text text-sm font-medium",
-						{
-							"text-text-tertiary": disabled,
-						},
-						classNames?.label
-					)}>
-					{label}
-				</Label>
-			)}
-			<DateInputRC className={cn(dateInputStyles({ size, rounded }), { "text-text-tertiary cursor-not-allowed": disabled }, classNames?.dateInput)}>
-				{(segment) => (
-					<DateSegment
+		<div className={cn("w-[320px]",
+			dateInputStyles({ size, rounded }),
+			{ "text-text-tertiary cursor-not-allowed": disabled },
+			classNames?.dateInput
+		)}>
+			<DateField
+				granularity="minute"
+				className={cn("flex flex-col gap-1 border-none")}
+				onChange={handleChange}
+				value={currentValue}
+				isDisabled={disabled}
+				ref={ref}
+				{...props}
+			>
+				{label && (
+					<Label
 						className={cn(
-							"focus:bg-primary data-placeholder:text-text-tertiary focus:outline-hidden rounded-sm px-0 py-0.5 text-end text-sm tabular-nums focus:text-white focus:caret-transparent data-[type=dayPeriod]:mx-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5 data-[type=hour]:ml-0.5",
-							classNames?.dateSegment
+							"text-text text-sm font-medium",
+							{ "text-text-tertiary": disabled },
+							classNames?.label
 						)}
-						segment={segment}
-					/>
+					>
+						{label}
+					</Label>
 				)}
-			</DateInputRC>
-		</DateField>
+				<DateInputRC>
+					{(segment) => (
+						<DateSegment
+							className={cn(
+								"rounded-sm px-0 py-0.5 text-end text-sm tabular-nums",
+								"data-[focused]:bg-red-500 data-[focused]:text-white",
+								"data-placeholder:text-text-tertiary",
+								"focus:outline-hidden focus:caret-transparent",
+								"data-[type=dayPeriod]:mx-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5 data-[type=hour]:ml-0.5",
+								classNames?.dateSegment
+							)}
+							segment={segment}
+						/>
+					)}
+				</DateInputRC>
+			</DateField>
+			<CalendarIcon
+				className={cn(
+					disabled ? "cursor-not-allowed" : "cursor-pointer"
+				)}
+			/>
+		</div>
 	)
 }
 
