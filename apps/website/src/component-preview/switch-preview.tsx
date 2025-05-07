@@ -79,7 +79,9 @@ const SwitchPreview = () => {
                     language="tsx"
                     showLineNumbers
                     className="h-[420px]"
-                    code={``}
+                    code={`<Switch size={${size}} disabled={${disabled === "true"}} >
+Switch Label
+</Switch>`}
                 />
             </TabsContent>
         </Tabs>
