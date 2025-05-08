@@ -104,7 +104,11 @@ const AvatargroupPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={`const people = [
+				<CodeArea
+					language="tsx"
+					showLineNumbers
+					className="h-[420px]"
+					code={`const people = [
 	{
 		name: "John Doe",
 		image: "https://randomuser.me/api/portraits/men/1.jpg",
@@ -150,19 +154,17 @@ const AvatargroupPreview = () => {
 
 export function AvatarGroupPreview() {
 	return (
-		<AvatarGroup ${(size !== DEFAULT_SIZE?`size="${size}"`:"")}>
+		<AvatarGroup ${size !== DEFAULT_SIZE ? `size="${size}"` : ""}>
 			{people.map((person) => (
 				<Avatar src={person.image} name={person.name} key={person.image} />
 			))}
 		</AvatarGroup>
 	)
-}`} />
+}`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
 
 export default AvatargroupPreview
-
-
-

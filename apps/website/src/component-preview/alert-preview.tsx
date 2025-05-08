@@ -1,5 +1,7 @@
 import { useState } from "react"
+import { Bookmark, CircleCheck, Info, Star, Trash2, TriangleAlert } from "lucide-react"
 import { Alert } from "@/registry/ui/alert"
+import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -12,8 +14,6 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import { CircleCheck, Info, Star, Trash2, TriangleAlert, Bookmark } from "lucide-react"
-import { Button } from "@/registry/ui/button"
 
 const AlertPreview = () => {
 	const [color, setColor] = useState<"neutral" | "primary" | "info" | "success" | "warning" | "danger">("neutral")
@@ -27,7 +27,7 @@ const AlertPreview = () => {
 		info: <Info />,
 		success: <CircleCheck />,
 		warning: <TriangleAlert />,
-		danger: <Trash2 />
+		danger: <Trash2 />,
 	}
 
 	const getAlertContent = (type: string) => {
@@ -72,7 +72,7 @@ const AlertPreview = () => {
 
 		if (showEndContent) {
 			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
-			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-static-white/30 hover:bg-static-white/40"' : ''
+			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-static-white/30 hover:bg-static-white/40"' : ""
 			code += `
   endContent={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
 		}
@@ -84,7 +84,7 @@ const AlertPreview = () => {
 				info: "Info",
 				success: "CircleCheck",
 				warning: "TriangleAlert",
-				danger: "Trash2"
+				danger: "Trash2",
 			}[color]
 			code += `
   icon={<${iconComponent} />}`
@@ -178,17 +178,22 @@ const AlertPreview = () => {
 						color={color}
 						variant={variant}
 						icon={showIcon ? selectedIcon : undefined}
-						{...(showEndContent ? { endContent: <Button className={`${variant === "strong" && color !== "neutral" ? 'bg-static-white/30 hover:bg-static-white/40' : ''}`} color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>Action</Button> } : {})}
+						{...(showEndContent
+							? {
+									endContent: (
+										<Button
+											className={`${variant === "strong" && color !== "neutral" ? "bg-static-white/30 hover:bg-static-white/40" : ""}`}
+											color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>
+											Action
+										</Button>
+									),
+								}
+							: {})}
 					/>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-[420px]"
-					code={generateCode()}
-				/>
+				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={generateCode()} />
 			</TabsContent>
 		</Tabs>
 	)

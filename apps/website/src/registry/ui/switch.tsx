@@ -1,5 +1,6 @@
 "use client"
-import React, { useEffect, useId, useState, useRef } from "react"
+
+import React, { useEffect, useId, useRef, useState } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
@@ -18,20 +19,17 @@ const switchStyles = cva(
 	}
 )
 
-const sliderStyles = cva(
-	"absolute select-none rounded-full bg-static-white transition-all duration-[400ms] ease-in-out",
-	{
-		variants: {
-			size: {
-				"20": "size-3.5",
-				"24": "size-4.5",
-			},
+const sliderStyles = cva("absolute select-none rounded-full bg-static-white transition-all duration-[400ms] ease-in-out", {
+	variants: {
+		size: {
+			"20": "size-3.5",
+			"24": "size-4.5",
 		},
-		defaultVariants: {
-			size: "24",
-		},
-	}
-)
+	},
+	defaultVariants: {
+		size: "24",
+	},
+})
 
 type SwitchProps = React.HTMLAttributes<HTMLInputElement> & {
 	children?: string
@@ -63,7 +61,7 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 						setSelected(e.target.checked)
 						onValueChange?.(e.target.checked)
 					}}
-					className="sr-only peer" // Add peer class here
+					className="peer sr-only" // Add peer class here
 					type="checkbox"
 					id={switchId}
 					disabled={disabled}
@@ -75,20 +73,19 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 					className={cn(
 						switchStyles({ size }),
 						// Add focus styles using peer selector
-						"peer-focus-visible:ring-2 peer-focus-visible:ring-primary peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-bg-base",
+						"peer-focus-visible:ring-primary peer-focus-visible:ring-offset-bg-base text-text peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
 						{
 							"bg-primary": selected,
 							"cursor-not-allowed": disabled,
 							"opacity-50": disabled && selected,
-							"peer-focus-visible:ring-2 peer-focus-visible:ring-border peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-bg-base": !selected
+							"peer-focus-visible:ring-border peer-focus-visible:ring-offset-bg-base peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2":
+								!selected,
 						}
-					)}
-				>
+					)}>
 					<span
 						className={cn(sliderStyles({ size }), {
 							"translate-x-4": selected && size === "20",
 							"translate-x-4.5": selected && size === "24",
-							"opacity-60": disabled,
 						})}
 					/>
 				</label>
@@ -96,10 +93,11 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 			{children && (
 				<label
 					htmlFor={switchId}
-					className={cn("select-none text-sm font-normal", {
-						"text-text-tertiary cursor-not-allowed": disabled,
-					})}
-				>
+					className={cn("select-none font-normal", {
+						"text-text-disabled cursor-not-allowed": disabled,
+						"text-sm": size === "20",
+						"text-base": size === "24",
+					})}>
 					{children}
 				</label>
 			)}

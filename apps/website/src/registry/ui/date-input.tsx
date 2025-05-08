@@ -1,9 +1,9 @@
 import React from "react"
 import { cva } from "class-variance-authority"
+import { CalendarIcon } from "lucide-react"
 import { DateField, DateInput as DateInputRC, DateSegment, DateValue, Label } from "react-aria-components"
 import { cn } from "@/lib/utils"
 import { RoundedOptions, SizeOptions, cvaInputVariants } from "./input"
-import { CalendarIcon } from "lucide-react"
 
 // Creating a variant for date input styles using cva
 export const dateInputStyles = cva(
@@ -47,14 +47,9 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 
 	const currentValue = isControlled ? value : internalDate
 
-
-
 	return (
-		<div className={cn("w-[320px]",
-			dateInputStyles({ size, rounded }),
-			{ "text-text-tertiary cursor-not-allowed": disabled },
-			classNames?.dateInput
-		)}>
+		<div
+			className={cn("w-[320px]", dateInputStyles({ size, rounded }), { "text-text-tertiary cursor-not-allowed": disabled }, classNames?.dateInput)}>
 			<DateField
 				granularity="minute"
 				className={cn("flex flex-col gap-1 border-none")}
@@ -62,19 +57,8 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 				value={currentValue}
 				isDisabled={disabled}
 				ref={ref}
-				{...props}
-			>
-				{label && (
-					<Label
-						className={cn(
-							"text-text text-sm font-medium",
-							{ "text-text-tertiary": disabled },
-							classNames?.label
-						)}
-					>
-						{label}
-					</Label>
-				)}
+				{...props}>
+				{label && <Label className={cn("text-text text-sm font-medium", { "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
 				<DateInputRC>
 					{(segment) => (
 						<DateSegment
@@ -91,11 +75,7 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 					)}
 				</DateInputRC>
 			</DateField>
-			<CalendarIcon
-				className={cn(
-					disabled ? "cursor-not-allowed" : "cursor-pointer"
-				)}
-			/>
+			<CalendarIcon className={cn(disabled ? "cursor-not-allowed" : "cursor-pointer")} />
 		</div>
 	)
 }

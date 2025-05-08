@@ -11,7 +11,6 @@ export default function Sidebar() {
 	const [accordionValue, setAccordionValue] = React.useState("")
 	const pathName = usePathname()
 	const activeSection = sideBarItems.find((section) => section.items.some((item) => item.link === pathName))
-
 	React.useEffect(() => {
 		setAccordionValue(activeSection ? activeSection.title : sideBarItems[0].title)
 	}, [pathName, activeSection])

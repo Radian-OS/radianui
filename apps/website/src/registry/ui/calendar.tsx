@@ -1,11 +1,11 @@
 import React, { useState } from "react"
-import { CalendarDate, getLocalTimeZone, parseDate, Time, today } from "@internationalized/date"
+import { CalendarDate, Time, getLocalTimeZone, parseDate, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
 import { ChevronProps, CustomComponents, DateRange, DayPicker, Modifiers, useDayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { Select, SelectItem } from "./select"
 import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./date-picker"
+import { Select, SelectItem } from "./select"
 
 /**
  * Convert different form of Date object to
@@ -13,8 +13,6 @@ import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./da
  * @param selected
  * @returns native Date object in original provided form
  */
-
-
 
 // Function to convert CalendarDate to native Date object
 export function convertToNativeDate(
@@ -65,8 +63,8 @@ export type CalendarSingleSelect = {
 	mode?: "single"
 	selected?: CalendarDate
 	onSelect?: OnSelectHandler<CalendarDate | undefined>
-	onTimeSelected?: (selectedTime: string) => void;
-	onSelectIndex?: (index: number) => void;
+	onTimeSelected?: (selectedTime: string) => void
+	onSelectIndex?: (index: number) => void
 }
 
 // Type definition for CalendarMultipleSelect props
@@ -94,13 +92,11 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		defaultDateRangeShortcutValue?: DateRangeShortcutValues
 		showShortcut?: boolean
 		footer?: React.ReactNode
-		onIndexChange?: (value: string | null) => void;
-
+		onIndexChange?: (value: string | null) => void
 	}
 const minTime = "00:00"
 const maxTime = "23:59"
 const interval = 15
-
 
 export function generateTimeOptions() {
 	const times: Time[] = []
@@ -134,52 +130,46 @@ export function formatTime(time: Time) {
 	hour = hour % 12
 	hour = hour === 0 ? 12 : hour // 12 am/pm handling
 	return `${String(hour).padStart(2, "0")}:${minute} ${period}`
-
 }
 
 type TimeSelectorProps = {
-	showTime: boolean;
-	timeOptions: Time[]; // Updated to accept Time[]
-	selectedIndex: number | null;
-	setSelectedIndex: (index: number | null) => void;
-	formatTime: (time: Time) => string; // Updated to accept Time
-	onTimeSelect?: (formattedTime: string) => void;
+	showTime: boolean
+	timeOptions: Time[] // Updated to accept Time[]
+	selectedIndex: number | null
+	setSelectedIndex: (index: number | null) => void
+	formatTime: (time: Time) => string // Updated to accept Time
+	onTimeSelect?: (formattedTime: string) => void
 	mode?: string
-
-};
+}
 export function TimeSelector(props: TimeSelectorProps) {
-	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode } = props;
+	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode } = props
 
-	if (!showTime) return null;
+	if (!showTime) return null
 
 	return (
-		<div className={`flex flex-col px-1.5 py-1 h-72 w-30 overflow-y-scroll no-scrollbar text-sm font-medium ${mode === "type" ? " bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
-			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT TIME</p>
+		<div
+			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
+			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT TIME</p>
 			{timeOptions.map((time, index) => {
-				const formatted = formatTime(time);
-				const isSelected = selectedIndex === index;
+				const formatted = formatTime(time)
+				const isSelected = selectedIndex === index
 
 				return (
 					<span
 						key={index}
-						className={`${mode === "type" ? "text-text-disabled cursor-not-allowed" : "text-text hover:bg-fill-level2 cursor-pointer"}  group text-text flex leading-5  font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5`}
+						className={`${mode === "type" ? "text-text-disabled cursor-not-allowed" : "text-text hover:bg-fill-level2 cursor-pointer"} text-text group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
 						data-value={time}
 						onClick={() => {
-							setSelectedIndex(index);
-							props.onTimeSelect?.(formatted);
-						}}
-					>
+							setSelectedIndex(index)
+							props.onTimeSelect?.(formatted)
+						}}>
 						{formatted}
-						{isSelected && (mode !== "type") ? (
-							<Check className="stroke-text-secondary" size={16} />
-						) : (
-							<span className="size-4" />
-						)}
+						{isSelected && mode !== "type" ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
 					</span>
-				);
+				)
 			})}
 		</div>
-	);
+	)
 }
 
 type GetMergedClassNamesParams = {
@@ -250,13 +240,12 @@ function CalendarComponent({
 	onIndexChange,
 	...props
 }: CalendarProps) {
-	const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
 	const [internalSelected, setInternalSelected] = React.useState<Date | Date[] | DateRange | undefined>(convertToNativeDate(selected))
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? convertToNativeDate(selected) : internalSelected
 	let hideCaption: boolean = false
-
 
 	// Effect to update internal selected state when external selected changes
 	React.useEffect(
@@ -265,7 +254,6 @@ function CalendarComponent({
 		},
 		[selected]
 	)
-
 
 	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
 
@@ -309,7 +297,6 @@ function CalendarComponent({
 		customOnSelect?.(convertedSelected as CalendarDate & CalendarDate[] & CalendarRange, convertedTriggerDate, modifiers, e)
 	}
 
-
 	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
 
 	function handleShortcutSelect(shortcut: DateRangeShortcutValues) {
@@ -345,7 +332,7 @@ function CalendarComponent({
 			onSelect?.(undefined, triggerDate, modifiers, e)
 			return
 		}
-		const convertedSelected = convertToNativeDate(selected);
+		const convertedSelected = convertToNativeDate(selected)
 
 		setInternalSelected(convertedSelected)
 		onSelect?.(selected as CalendarDate & CalendarDate[] & CalendarRange, triggerDate, modifiers, e)
@@ -359,16 +346,11 @@ function CalendarComponent({
 		}
 	}, [])
 
-
 	if (mode === "single") {
 		return (
-			<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
+			<div className="bg-bg-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-					{
-						showShortcut && (
-							<DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
-						)
-					}
+					{showShortcut && <DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
 						classNames={mergedClassNames}
 						components={mergedComponents}
@@ -380,38 +362,29 @@ function CalendarComponent({
 						numberOfMonths={dualCalendar ? 2 : 1}
 						{...props}
 					/>
-					{
-						showTime && (
-							<TimeSelector
-								timeOptions={timeOptions}
-								selectedIndex={selectedIndex}
-								setSelectedIndex={setSelectedIndex}
-								formatTime={formatTime}
-								showTime={showTime}
-								onTimeSelect={(formatted) => {
-									onIndexChange?.(formatted)
-								}}
-							/>
-						)
-					}
+					{showTime && (
+						<TimeSelector
+							timeOptions={timeOptions}
+							selectedIndex={selectedIndex}
+							setSelectedIndex={setSelectedIndex}
+							formatTime={formatTime}
+							showTime={showTime}
+							onTimeSelect={(formatted) => {
+								onIndexChange?.(formatted)
+							}}
+						/>
+					)}
 				</div>
-				<div className=" flex w-full justify-end">
-					{footer && footer}
-				</div>
+				<div className="flex w-full justify-end">{footer && footer}</div>
 			</div>
-
 		)
 	}
 
 	if (mode == "multiple") {
 		return (
-			<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
+			<div className="bg-bg-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-					{
-						showShortcut && (
-							<DateRangeShortcut mode="multiple" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
-						)
-					}
+					{showShortcut && <DateRangeShortcut mode="multiple" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
 						classNames={mergedClassNames}
 						components={mergedComponents}
@@ -423,36 +396,28 @@ function CalendarComponent({
 						numberOfMonths={dualCalendar ? 2 : 1}
 						{...props}
 					/>
-					{
-						showTime && (
-							<TimeSelector
-								timeOptions={timeOptions}
-								selectedIndex={selectedIndex}
-								setSelectedIndex={setSelectedIndex}
-								formatTime={formatTime}
-								showTime={showTime}
-								onTimeSelect={(formatted) => {
-									onIndexChange?.(formatted)
-								}}
-							/>
-						)
-					}
+					{showTime && (
+						<TimeSelector
+							timeOptions={timeOptions}
+							selectedIndex={selectedIndex}
+							setSelectedIndex={setSelectedIndex}
+							formatTime={formatTime}
+							showTime={showTime}
+							onTimeSelect={(formatted) => {
+								onIndexChange?.(formatted)
+							}}
+						/>
+					)}
 				</div>
-				<div className=" flex w-full justify-end">
-					{footer && footer}
-				</div>
+				<div className="flex w-full justify-end">{footer && footer}</div>
 			</div>
 		)
 	}
 
 	return (
-		<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
+		<div className="bg-bg-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 			<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-				{
-					showShortcut && (
-						<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
-					)
-				}
+				{showShortcut && <DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 				<DayPicker
 					classNames={mergedClassNames}
 					components={mergedComponents}
@@ -464,24 +429,20 @@ function CalendarComponent({
 					numberOfMonths={dualCalendar ? 2 : 1}
 					{...props}
 				/>
-				{
-					showTime && (
-						<TimeSelector
-							timeOptions={timeOptions}
-							selectedIndex={selectedIndex}
-							setSelectedIndex={setSelectedIndex}
-							formatTime={formatTime}
-							showTime={showTime}
-							onTimeSelect={(formatted) => {
-								onIndexChange?.(formatted)
-							}}
-						/>
-					)
-				}
+				{showTime && (
+					<TimeSelector
+						timeOptions={timeOptions}
+						selectedIndex={selectedIndex}
+						setSelectedIndex={setSelectedIndex}
+						formatTime={formatTime}
+						showTime={showTime}
+						onTimeSelect={(formatted) => {
+							onIndexChange?.(formatted)
+						}}
+					/>
+				)}
 			</div>
-			<div className=" flex w-full justify-end">
-				{footer && footer}
-			</div>
+			<div className="flex w-full justify-end">{footer && footer}</div>
 		</div>
 	)
 }

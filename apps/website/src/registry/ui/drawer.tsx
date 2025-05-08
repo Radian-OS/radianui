@@ -1,4 +1,5 @@
 "use client"
+
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
@@ -192,15 +193,7 @@ function Drawer({
 				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }))}>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 					<div className={cn(wrapperVariants({ direction }), "h-full w-full")}>
-						<div
-							className={cn(
-								getContentClass(),
-								getPaddingClass(),
-								"h-full w-full",
-								className
-							)}>
-							{children}
-						</div>
+						<div className={cn(getContentClass(), getPaddingClass(), "h-full w-full", className)}>{children}</div>
 					</div>
 				</DrawerPrimitives.Content>
 			</DrawerPrimitives.Portal>
@@ -217,11 +210,11 @@ function DrawerTitle({ children, className }: DrawerTitleProps) {
 }
 
 function DrawerDescription({ children, className }: DrawerDescriptionProps) {
-	return <DrawerPrimitives.Description className={cn("text-sm text-text-secondary gap-1", className)}>{children}</DrawerPrimitives.Description>
+	return <DrawerPrimitives.Description className={cn("text-text-secondary gap-1 text-sm", className)}>{children}</DrawerPrimitives.Description>
 }
 
 function DrawerBody({ children, className }: DrawerDescriptionProps) {
-	return <div className={cn("flex-grow overflow-auto no-scrollbar", className)}>{children}</div>
+	return <div className={cn("no-scrollbar flex-grow overflow-auto", className)}>{children}</div>
 }
 
 function DrawerFooter({ children, className }: DrawerFooterProps) {

@@ -1,6 +1,7 @@
 "use client"
 
-import React from "react" // Ensure React is imported for JSX to work
+import React from "react"
+// Ensure React is imported for JSX to work
 import { Box } from "lucide-react"
 import { subscribe } from "@/app/api/email/actions"
 import { cn } from "@/lib/utils"
@@ -27,9 +28,9 @@ export default function HeroSection() {
 	}
 
 	return (
-		<div className="relative box-border flex flex-col gap-1 px-4 pt-6 pb-4 md:px-6 lg:px-10 lg:py-16">
-			<section className="flex max-w-187 flex-col justify-between gap-6">
-				<Badge size="32" className="bg-primary-focus  text-primary-text text-sm w-fit font-medium">
+		<div className="relative box-border flex flex-col gap-1 px-4 pb-4 pt-6 md:px-6 lg:px-10 lg:py-16">
+			<section className="max-w-187 flex flex-col justify-between gap-6">
+				<Badge size="32" className="bg-primary-focus text-primary-text w-fit text-sm font-medium">
 					<Box size={20} />
 					<span>Under Development</span>
 				</Badge>
@@ -39,8 +40,16 @@ export default function HeroSection() {
 				</p>
 				<div className="z-30 flex flex-col gap-3">
 					<form className="flex flex-col gap-3 sm:flex-row" onSubmit={handleSubscribe}>
-						<Input className="sm:w-80" type="email" required placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
-						<Button disabled={isPending} type="submit">
+						<Input
+							size="40"
+							className="sm:w-80"
+							type="email"
+							required
+							placeholder="Email Address"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+						/>
+						<Button size="40" disabled={isPending} type="submit">
 							{isPending ? "Subscribing" : "Subscribe"}
 						</Button>
 					</form>
