@@ -15,8 +15,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { formatTime, timeOptions, TimeSelector } from "../ui/calendar"
 import { dateInputStyles } from "../ui/date-input"
 import { DateField, DateInput as DateInputRC, DateSegment, DateValue } from "react-aria-components"
-import { CalendarDateTime, parseZonedDateTime, ZonedDateTime } from "@internationalized/date"
-import { Label } from "./label"
 
 // Mock mouse click event
 export function mockMouseClick(): React.MouseEvent {
