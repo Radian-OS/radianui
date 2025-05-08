@@ -1,4 +1,6 @@
+#!/usr/bin/env bash
 #!/bin/sh
+
 # Standalone pre-commit script that works without husky.sh
 # This will work on both Windows and Linux environments
 echo ":rocket: Running pre-commit checks..."
