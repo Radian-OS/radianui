@@ -1,10 +1,9 @@
 "use client"
 
-import React, { useEffect, useId, useState } from "react"
+import React, { useEffect, useId, useRef, useState } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-// Define styles for the switch component
 const switchStyles = cva(
 	"relative flex cursor-pointer items-center gap-2.5 rounded-full bg-border p-0.75 transition-all duration-[400ms] ease-in-out",
 	{
@@ -19,8 +18,8 @@ const switchStyles = cva(
 		},
 	}
 )
-// Define styles for the slider component
-const sliderStyles = cva("absolute select-none rounded-full bg-white transition-all duration-[400ms] ease-in-out", {
+
+const sliderStyles = cva("absolute select-none rounded-full bg-static-white transition-all duration-[400ms] ease-in-out", {
 	variants: {
 		size: {
 			"20": "size-3.5",
@@ -45,7 +44,8 @@ type SwitchProps = React.HTMLAttributes<HTMLInputElement> & {
 function Switch({ size = "24", defaultSelected = false, isSelected, onValueChange, disabled = false, className, children, ...props }: SwitchProps) {
 	const switchId = useId()
 	const [selected, setSelected] = useState<boolean>(defaultSelected)
-	// Effect to update local state when isSelected prop changes
+	const inputRef = useRef<HTMLInputElement>(null)
+
 	useEffect(() => {
 		if (isSelected !== undefined) {
 			setSelected(isSelected)
@@ -53,48 +53,57 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 	}, [isSelected])
 
 	return (
-		<label className={cn("box-border flex items-center gap-2", className)}>
-			<input
-				onChange={function (e) {
-					setSelected(e.target.checked)
-					if (onValueChange !== undefined) {
-						onValueChange(e.target.checked)
-					}
-				}}
-				className={cn("h-0 w-0 opacity-0")}
-				type="checkbox"
-				id={switchId}
-				disabled={disabled}
-				checked={selected}
-				{...props}
-			/>
-			<label
-				htmlFor={switchId}
-				className={cn(switchStyles({ size }), {
-					"bg-success": selected,
-					"cursor-not-allowed": disabled,
-					"opacity-20": disabled && selected,
-				})}>
-				<span
-					className={cn(sliderStyles({ size }), {
-						"translate-x-4": selected && size == "20",
-						"translate-x-4.5": selected && size == "24",
-						"opacity-60": disabled,
-					})}
+		<div className={cn("box-border flex items-center gap-2", className)}>
+			<div className="relative">
+				<input
+					ref={inputRef}
+					onChange={(e) => {
+						setSelected(e.target.checked)
+						onValueChange?.(e.target.checked)
+					}}
+					className="peer sr-only" // Add peer class here
+					type="checkbox"
+					id={switchId}
+					disabled={disabled}
+					checked={selected}
+					{...props}
 				/>
-			</label>
+				<label
+					htmlFor={switchId}
+					className={cn(
+						switchStyles({ size }),
+						// Add focus styles using peer selector
+						"peer-focus-visible:ring-primary peer-focus-visible:ring-offset-bg-base text-text peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
+						{
+							"bg-primary": selected,
+							"cursor-not-allowed": disabled,
+							"opacity-50": disabled && selected,
+							"peer-focus-visible:ring-border peer-focus-visible:ring-offset-bg-base peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2":
+								!selected,
+						}
+					)}>
+					<span
+						className={cn(sliderStyles({ size }), {
+							"translate-x-4": selected && size === "20",
+							"translate-x-4.5": selected && size === "24",
+						})}
+					/>
+				</label>
+			</div>
 			{children && (
 				<label
 					htmlFor={switchId}
-					className={cn("select-none text-sm font-normal", {
-						"text-text-tertiary cursor-not-allowed": disabled,
+					className={cn("select-none font-normal", {
+						"text-text-disabled cursor-not-allowed": disabled,
+						"text-sm": size === "20",
+						"text-base": size === "24",
 					})}>
 					{children}
 				</label>
 			)}
-		</label>
+		</div>
 	)
 }
-Switch.displayName = "Switch"
 
+Switch.displayName = "Switch"
 export default Switch

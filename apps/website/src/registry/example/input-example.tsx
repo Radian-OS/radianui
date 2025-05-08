@@ -9,8 +9,8 @@ import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"
 import { Input, type RoundedOptions, type SizeOptions } from "../ui/input"
 import OTPInput from "../ui/input-otp"
-import { InputOtp } from "../ui/otp-input"
 import NumberInput from "../ui/number"
+import { InputOtp } from "../ui/otp-input"
 import { Password } from "../ui/password"
 import PhoneNumber from "../ui/phone-number"
 import ProgressBar from "../ui/progress-bar"
@@ -152,11 +152,16 @@ const InputExample = () => {
 			/>
 
 			<OTPInput size={size} rounded={rounded} placeholder="12345678" inputMode="numeric" length={6} label="Verification Code - Box Variant" />
-			<OTPInput size={size} rounded={rounded} variant="flat" inputMode="numeric" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
-
+			<OTPInput
+				size={size}
+				rounded={rounded}
+				variant="flat"
+				inputMode="numeric"
+				placeholder="Enter 6-digit code here"
+				label="Verification Code - Flat Variant"
+			/>
 
 			<InputOtp size={"56"} label="Enter 6 digit number" length={8} placeholder="467856" />
-
 
 			<TimePicker interval={25} placeholder="Select Time" className="w-[10rem]" size={size} rounded={rounded} />
 
@@ -180,7 +185,7 @@ const InputExample = () => {
 				multiple
 				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
 				url="http://localhost:8000/upload"
-			// headers={{ "Content-Type": "application/json" }}
+				// headers={{ "Content-Type": "application/json" }}
 			/>
 
 			<ProgressBar value={progress} />

@@ -64,7 +64,7 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 					{showLineNumbers && (
 						<div className="w-12 flex-none">
 							{lines.map((_, i) => (
-								<div key={i} className="text-left select-none" style={{ color: lineNumberColor }}>
+								<div key={i} className="select-none text-left" style={{ color: lineNumberColor }}>
 									{i + 1}
 								</div>
 							))}
@@ -75,7 +75,7 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 				{copiable && (
 					<Button
 						onClick={handleCopy}
-						className="absolute top-3 right-3 rounded-md bg-transparent p-1.5 text-white! hover:bg-[#ffffff1a]"
+						className="text-white! absolute right-3 top-3 rounded-md bg-transparent p-1.5 hover:bg-[#ffffff1a]"
 						aria-label="copy button"
 						size="32"
 						variant="neutral-soft">

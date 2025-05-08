@@ -5,8 +5,6 @@ import { Button } from "../ui/button"
 import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "../ui/drawer"
 import { Select, SelectItem } from "../ui/select"
 
-
-
 const DrawerExample = () => {
 	const [selectVariants, setSelectVariants] = useState<string[]>(["default"])
 	const [selectPosition, setSelectPosition] = useState<string[]>(["right"])
@@ -43,26 +41,19 @@ const DrawerExample = () => {
 				</Select>
 			</div>
 			{variant && position && (
-				<Drawer
-					type={variant}
-					direction={position}
-					handle={handle}
-					backdrop={backdrop}
-					trigger={<Button>Open Drawer</Button>}
-					className="relative"
-				>
+				<Drawer type={variant} direction={position} handle={handle} backdrop={backdrop} trigger={<Button>Open Drawer</Button>} className="relative">
 					<DrawerHeader>
 						<DrawerTitle>This is a drawer header</DrawerTitle>
 						<DrawerDescription>This is a drawer description message.</DrawerDescription>
 					</DrawerHeader>
-					<DrawerBody className="flex flex-col gap-3" >
-						<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
-						<div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
-						<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+					<DrawerBody className="flex flex-col gap-3">
+						<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
+						<div className="bg-fill-level3 rounded-radius-xl h-64"></div>
+						<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
 					</DrawerBody>
 					<DrawerFooter>
 						<DrawerClose>
-							<Button variant="neutral-outline" >Close Drawer</Button>
+							<Button variant="neutral-outline">Close Drawer</Button>
 						</DrawerClose>
 						<Button>Submit Action</Button>
 					</DrawerFooter>

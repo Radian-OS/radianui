@@ -18,7 +18,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerPreview = () => {
-	const [variant, setVariant] = useState<'primary' | 'outline' | 'gray' | 'destructive'>("gray")
+	const [variant, setVariant] = useState<"primary" | "outline" | "gray" | "destructive">("gray")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
 
@@ -35,7 +35,7 @@ const BannerPreview = () => {
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as 'primary' | 'outline' | 'gray' | 'destructive')
+											setVariant(Array.from(keys)[0] as "primary" | "outline" | "gray" | "destructive")
 											setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}

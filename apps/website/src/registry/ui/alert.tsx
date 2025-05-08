@@ -25,7 +25,7 @@ const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-cente
 			default: "",
 			bordered: "border bg-transparent",
 			strong: "",
-			"neutral-outline": "border border-border bg-transparent"
+			"neutral-outline": "border border-border bg-transparent",
 		},
 	},
 	defaultVariants: {
@@ -67,57 +67,39 @@ const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-cente
 			color: "neutral",
 			variant: "strong",
 			className: "bg-text text-inverse-white",
-		}
+		},
 	],
 })
 
-function Alert({
-	color = "neutral",
-	variant = "default",
-	title,
-	message,
-	icon,
-	endContent,
-	className,
-	children,
-	...props
-}: AlertProps) {
-	const isNeutralOutline = variant === "neutral-outline";
-	const hasCustomTextColor = className?.includes("text-");
+function Alert({ color = "neutral", variant = "default", title, message, icon, endContent, className, children, ...props }: AlertProps) {
+	const isNeutralOutline = variant === "neutral-outline"
+	const hasCustomTextColor = className?.includes("text-")
 
 	// Check if we're using the children pattern
-	const hasChildrenOnly = children && !title && !message;
+	const hasChildrenOnly = children && !title && !message
 
 	return (
-		<div
-			className={cn(alertVariants({ color, variant }), className)}
-			{...props}
-		>
+		<div className={cn(alertVariants({ color, variant }), className)} {...props}>
 			{icon && <div className="flex-shrink-0">{icon}</div>}
 
 			{hasChildrenOnly ? (
 				// Render children directly when no title/message provided
-				<div className="flex-grow text-sm">
-					{children}
-				</div>
+				<div className="flex-grow text-sm">{children}</div>
 			) : (
 				// Original title/message structure
-				<div className="flex flex-col flex-grow">
+				<div className="flex flex-grow flex-col">
 					{title && (
-						<h5 className={cn(
-							"text-sm font-semibold",
-							isNeutralOutline && "text-text",
-							isNeutralOutline && hasCustomTextColor && "!text-current"
-						)}>
+						<h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-text", isNeutralOutline && hasCustomTextColor && "!text-current")}>
 							{title}
 						</h5>
 					)}
 					{message && (
-						<p className={cn(
-							"text-sm",
-							isNeutralOutline && "text-text-secondary",
-							isNeutralOutline && hasCustomTextColor && "!text-current opacity-80"
-						)}>
+						<p
+							className={cn(
+								"text-sm",
+								isNeutralOutline && "text-text-secondary",
+								isNeutralOutline && hasCustomTextColor && "!text-current opacity-80"
+							)}>
 							{message}
 						</p>
 					)}
@@ -125,11 +107,7 @@ function Alert({
 				</div>
 			)}
 
-			{endContent && (
-				<div className="flex-shrink-0">
-					{endContent}
-				</div>
-			)}
+			{endContent && <div className="flex-shrink-0">{endContent}</div>}
 		</div>
 	)
 }

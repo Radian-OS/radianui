@@ -64,7 +64,7 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 	return (
 		<section className="group mb-16">
 			<div>
-				<div className="z-10 mx-auto flex max-w-7xl justify-between py-1.5 pr-6 pl-8">
+				<div className="z-10 mx-auto flex max-w-7xl justify-between py-1.5 pl-8 pr-6">
 					<div className="-ml-3 flex items-center gap-3">
 						{code && (
 							<>
@@ -170,7 +170,7 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 								ref={iframeRef}
 								title={title}
 								height={iframeHeight}
-								className="@starting:opacity-0 @starting:blur-xl block h-(--iframe-height) min-h-56 w-full duration-200 will-change-auto"
+								className="@starting:opacity-0 @starting:blur-xl h-(--iframe-height) block min-h-56 w-full duration-200 will-change-auto"
 								src={preview}
 								id={`block-${title}`}
 								style={{ "--iframe-height": `100vh` } as React.CSSProperties}

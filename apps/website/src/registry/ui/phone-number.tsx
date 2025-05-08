@@ -241,8 +241,8 @@ function PhoneNumber({
 	// Filters the country codes based on allowedCountries prop
 	const FILTERED_COUNTRY_CODES = allowedCountries
 		? COUNTRY_CODES.filter(function (data) {
-			allowedCountries.includes(data.countryCode)
-		})
+				allowedCountries.includes(data.countryCode)
+			})
 		: COUNTRY_CODES
 	// State management for focus and internal country code/number
 	const [isFocused, setIsFocused] = React.useState(false)

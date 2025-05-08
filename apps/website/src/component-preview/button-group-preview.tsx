@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Ellipsis } from "lucide-react"
 import { Button, ButtonGroup } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
@@ -18,7 +19,7 @@ const ButtonGroupPreview = () => {
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type colors = "primary" | "info" | "success" | "error" | "warning"
 
-	const [variant, setVariant] = useState<variants>("strong")
+	const [variant, setVariant] = useState<variants>("neutral-outline")
 	const [size, setSize] = useState<sizes>("40")
 	const [color, setColor] = useState<colors>("primary")
 
@@ -96,10 +97,12 @@ const ButtonGroupPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
 					<ButtonGroup variant={variant} size={size} color={color}>
-						<Button>Button1</Button>
-						<Button>Button2</Button>
-						<Button>Button3</Button>
-						<Button>Button4</Button>
+						<Button>Left</Button>
+						<Button>Center</Button>
+						<Button>Right</Button>
+						<Button isIcon>
+							<Ellipsis />
+						</Button>
 					</ButtonGroup>
 				</div>
 			</TabsContent>
@@ -109,10 +112,10 @@ const ButtonGroupPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<ButtonGroup variant="${variant}" size="${size}" color="${color}">
-  <Button>Button1</Button>
-  <Button>Button2</Button>
-  <Button>Button3</Button>
-  <Button>Button4</Button>
+<Button>Left</Button>
+<Button>Center</Button>
+<Button>Right</Button>
+<Button isIcon ><Ellipsis /></Button>
 </ButtonGroup>`}
 				/>
 			</TabsContent>

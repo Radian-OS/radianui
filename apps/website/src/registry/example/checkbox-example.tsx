@@ -34,39 +34,39 @@ function CheckboxExample() {
 				</CheckboxGroup>
 			</div>
 			<div className="my-4">
-				<div className="p-4 rounded-md border shadow-sm max-w-80">
-				<CheckboxGroup defaultValue={["angus_mac_gyver","mike_torrello","angela_bower"]} label="Select Members" className="gap-3.5">
-					<Checkbox value="mike_torrello">
-						<div className="flex flex-col">
-							<span className="font-medium">Mike Torello</span>
-							<p className="font-normal text-text-tertiary">Head of Department of Physics</p>
-						</div>
-					</Checkbox>
-					<Checkbox value="angela_bower">
-						<div className="flex flex-col">
-							<span className="font-medium">Angela Bower</span>
-							<p className="font-normal text-text-tertiary">Department of Neurology</p>
-						</div>
-					</Checkbox>
-					<Checkbox value="anna_mureum">
-						<div className="flex flex-col">
-							<span className="font-medium">Anna Mureum</span>
-							<p className="font-normal text-text-tertiary">Head of Engineering</p>
-						</div>
-					</Checkbox>
-					<Checkbox value="theodore_calvin">
-						<div className="flex flex-col">
-							<span className="font-medium">Theodore T.C. Calvin</span>
-							<p className="font-normal text-text-tertiary">Department of Thermodynamics</p>
-						</div>
-					</Checkbox>
-					<Checkbox value="angus_mac_gyver" disabled>
-						<div className="flex flex-col">
-							<span className="font-medium">Angus MacGyver</span>
-							<p className="font-normal text-text-tertiary">Resigned</p>
-						</div>
-					</Checkbox>
-				</CheckboxGroup>
+				<div className="max-w-80 rounded-md border p-4 shadow-sm">
+					<CheckboxGroup defaultValue={["angus_mac_gyver", "mike_torrello", "angela_bower"]} label="Select Members" className="gap-3.5">
+						<Checkbox value="mike_torrello">
+							<div className="flex flex-col">
+								<span className="font-medium">Mike Torello</span>
+								<p className="text-text-tertiary font-normal">Head of Department of Physics</p>
+							</div>
+						</Checkbox>
+						<Checkbox value="angela_bower">
+							<div className="flex flex-col">
+								<span className="font-medium">Angela Bower</span>
+								<p className="text-text-tertiary font-normal">Department of Neurology</p>
+							</div>
+						</Checkbox>
+						<Checkbox value="anna_mureum">
+							<div className="flex flex-col">
+								<span className="font-medium">Anna Mureum</span>
+								<p className="text-text-tertiary font-normal">Head of Engineering</p>
+							</div>
+						</Checkbox>
+						<Checkbox value="theodore_calvin">
+							<div className="flex flex-col">
+								<span className="font-medium">Theodore T.C. Calvin</span>
+								<p className="text-text-tertiary font-normal">Department of Thermodynamics</p>
+							</div>
+						</Checkbox>
+						<Checkbox value="angus_mac_gyver" disabled>
+							<div className="flex flex-col">
+								<span className="font-medium">Angus MacGyver</span>
+								<p className="text-text-tertiary font-normal">Resigned</p>
+							</div>
+						</Checkbox>
+					</CheckboxGroup>
 				</div>
 			</div>
 		</div>

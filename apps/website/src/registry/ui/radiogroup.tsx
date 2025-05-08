@@ -53,9 +53,9 @@ function RadioGroupItem({ className, size: itemSize, disabled: itemDisabled, chi
 		<label
 			className={cn(
 				"flex max-w-fit cursor-pointer items-center gap-2 text-sm font-medium",
-				{ 
-					"text-text-tertiary cursor-not-allowed": disabled ,
-					"text-base":size==="lg"
+				{
+					"text-text-tertiary cursor-not-allowed": disabled,
+					"text-base": size === "lg",
 				},
 				className
 			)}>

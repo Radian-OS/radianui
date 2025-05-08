@@ -20,7 +20,7 @@ function Divider({ orientation = "horizontal", spacing = "4", className, ...prop
 			style={{
 				margin: orientation === "horizontal" ? `${spacingValue}px 0` : `0 ${spacingValue}px`,
 			}}
-			className={cn(orientation === "horizontal" ? "h-0.25 w-full" : "h-full w-0.25", "bg-border-alpha", className)}
+			className={cn(orientation === "horizontal" ? "h-0.25 w-full" : "w-0.25 h-full", "bg-border-alpha", className)}
 			{...props}
 		/>
 	)
