@@ -10,7 +10,7 @@ const VerifyEmail = () => {
 
 	return (
 		<div className="flex h-[85vh] items-center justify-center">
-			<div className="w-full max-w-88 px-4 sm:w-88">
+			<div className="max-w-88 sm:w-88 w-full px-4">
 				<div className="mx-auto flex flex-col gap-9">
 					<Link href="/" style={{ fill: "white", color: "white" }}>
 						<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
@@ -32,7 +32,7 @@ const VerifyEmail = () => {
 									Open gmail
 								</Link>
 							</Button>
-							<div className="text-[0.875rem] leading-[1.3125rem] font-normal">
+							<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
 								<p className="text-muted-foreground">
 									Didn&apos;t get the email? Check your spam folder!
 									<Link href="/">Re-enter your email and try again</Link>

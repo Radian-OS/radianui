@@ -12,7 +12,7 @@ const SignUp = () => {
 
 	return (
 		<div className="flex h-[85vh] items-center justify-center">
-			<div className="w-full max-w-88 px-4 sm:w-88">
+			<div className="max-w-88 sm:w-88 w-full px-4">
 				<div className="mx-auto flex flex-col gap-9">
 					<Link href="/" style={{ fill: "white", color: "white" }}>
 						<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
@@ -41,7 +41,7 @@ const SignUp = () => {
 							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
 								Sign Up
 							</Button>
-							<div className="text-[0.875rem] leading-[1.3125rem] font-normal">
+							<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
 								<p className="text-muted-foreground">
 									By signing up, you agree to Radian &apos;s <span className="text-foreground">Terms of Service</span> and{" "}
 									<span className="text-foreground">Privacy Policy</span>

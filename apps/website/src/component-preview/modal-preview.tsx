@@ -118,7 +118,7 @@ const PopoverPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Modal backdrop="${backdrop}" closeIcon="${closeIcon}" ${withSeparator === "true"?"withSeparator":""}>
+					code={`<Modal backdrop="${backdrop}" closeIcon="${closeIcon}" ${withSeparator === "true" ? "withSeparator" : ""}>
 	<ModalTrigger asChild>
 		<Button>Modal</Button>
 	</ModalTrigger>

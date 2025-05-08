@@ -22,9 +22,7 @@ function usePopoverContext() {
 function Popover({ align = "start", side = "bottom", sideOffset = 4, children, ...props }: PopoverProps) {
 	return (
 		<PopoverPrimitive.Root {...props}>
-			<PopoverContext.Provider value={{ align, side, sideOffset }}>
-				{children}
-			</PopoverContext.Provider>
+			<PopoverContext.Provider value={{ align, side, sideOffset }}>{children}</PopoverContext.Provider>
 		</PopoverPrimitive.Root>
 	)
 }

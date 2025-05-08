@@ -5,11 +5,11 @@ import { cva } from "class-variance-authority"
 import { Command as CommandPrimitive } from "cmdk"
 import { Check, ChevronDown, ChevronUp, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "./button"
 import { Divider } from "./divider"
 import { InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { Button } from "./button"
 
 // Type definition for the SelectItem component props
 type SelectItemProps = {
@@ -204,11 +204,14 @@ function Select({
 			}}>
 			<div className={cn("flex h-full w-full flex-col gap-1", className, classNames?.base)}>
 				{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
-				<Popover open={open} onOpenChange={(newOpen) => {
-					if (!disabled) {
-						setOpen(newOpen);
-					}
-				}} align="start">
+				<Popover
+					open={open}
+					onOpenChange={(newOpen) => {
+						if (!disabled) {
+							setOpen(newOpen)
+						}
+					}}
+					align="start">
 					<PopoverTrigger asChild>
 						{renderTrigger ? (
 							renderTrigger(values)
@@ -216,13 +219,14 @@ function Select({
 							<Button
 								variant="ghost"
 								disabled={disabled}
-								className={cn("focus-visible:border-primary  focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 border flex items-center justify-center h-full cursor-pointer",
+								className={cn(
+									"focus-visible:border-primary flex h-full cursor-pointer items-center justify-center border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
 									SelectTriggerVariations({ size, rounded }),
 									{
-										"text-text-disabled cursor-not-allowed bg-fill-level1 drop-shadow-none": disabled,
+										"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
 										"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
 										"rounded-l-none": disableOpenStyle,
-										[`border rounded-l-none border-primary`]: open && disableOpenStyle,
+										[`border-primary rounded-l-none border`]: open && disableOpenStyle,
 									},
 									"w-full truncate",
 									classNames?.trigger

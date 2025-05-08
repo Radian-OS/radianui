@@ -4,12 +4,12 @@ import { format } from "date-fns"
 import { Calendar as CalendarIcon, Check } from "lucide-react"
 import { Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
+import { TypeableDatePicker } from "../example/typeable-date-picker"
 import Calendar, { type CalendarProps, CalendarRange } from "./calendar"
 import { Input, RoundedOptions, SizeOptions, defaultInputRadius, defaultInputSize } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { SelectProps } from "./select"
 import { TimePickerProps } from "./time-picker"
-import { TypeableDatePicker } from "../example/typeable-date-picker"
 
 // Mock mouse click event
 export function mockMouseClick(): React.MouseEvent {
@@ -113,7 +113,6 @@ function DatePicker({
 		setSelectedShortcut(shortcut)
 	}
 
-
 	// Function to handle the selection of the date
 	function onSelectHandler(
 		selected: CalendarDate | CalendarDate[] | CalendarRange | undefined,
@@ -172,16 +171,14 @@ function DatePicker({
 	}
 
 	const getDisplayText = () => {
-		if (!currentSelected) return placeholder;
+		if (!currentSelected) return placeholder
 
 		if (mode === "single" && currentSelected instanceof CalendarDate) {
-			return format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy");
+			return format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")
 		}
 
 		if (mode === "multiple" && Array.isArray(currentSelected)) {
-			return currentSelected.map((date) =>
-				format(date.toDate(getLocalTimeZone()), "MMM dd")
-			).join(", ");
+			return currentSelected.map((date) => format(date.toDate(getLocalTimeZone()), "MMM dd")).join(", ")
 		}
 
 		if (mode === "range" && isCalendarRange(currentSelected)) {
@@ -189,9 +186,9 @@ function DatePicker({
 				return selectedShortcut
 					.split("_")
 					.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-					.join(" ");
+					.join(" ")
 			} else {
-				return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`;
+				return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`
 			}
 		}
 
@@ -199,13 +196,11 @@ function DatePicker({
 		// 	return `${format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")} ${time?.toString() || ""} ${timezone ? formatTZ(new Date(), "zzz", { timeZone: timezone }) : ""}`;
 		// }
 
-		return placeholder;
-	};
-	const displayText = getDisplayText();
+		return placeholder
+	}
+	const displayText = getDisplayText()
 
-	const [inputValue, setInputValue] = useState(displayText || "");
-
-
+	const [inputValue, setInputValue] = useState(displayText || "")
 
 	const sizeHeightMapping = {
 		28: "h-4 w-4",
@@ -214,123 +209,109 @@ function DatePicker({
 		40: "h-5 w-5",
 		44: "h-6 w-6",
 		48: "h-6 w-6",
-	};
+	}
 
-	const [open, setOpen] = useState<boolean>(false);
-	const [time, setTime] = useState<string>("");
-
+	const [open, setOpen] = useState<boolean>(false)
+	const [time, setTime] = useState<string>("")
 
 	useEffect(() => {
-		const todayFormatted = format(new Date(), "MMMM dd, yyyy");
-		const datePart = displayText || todayFormatted;
-		const combined = time ? `${datePart}  ${time}` : datePart;
-		setInputValue(combined);
-	}, [displayText, time]);
-
-
+		const todayFormatted = format(new Date(), "MMMM dd, yyyy")
+		const datePart = displayText || todayFormatted
+		const combined = time ? `${datePart}  ${time}` : datePart
+		setInputValue(combined)
+	}, [displayText, time])
 
 	const alignOffset = useMemo(() => {
-		if (showTime && showDateRangeShortcut && props.dualCalendar) return -581;
-		if (props.dualCalendar && showTime) return -378;
-		if (props.dualCalendar && showDateRangeShortcut) return -458;
-		if (showTime && showDateRangeShortcut) return -298;
-		if (props.dualCalendar) return -259;
-		if (showTime) return -98;
-		if (showDateRangeShortcut) return -178;
-		return 20;
-	}, [props.dualCalendar, showTime, showDateRangeShortcut]);
+		if (showTime && showDateRangeShortcut && props.dualCalendar) return -581
+		if (props.dualCalendar && showTime) return -378
+		if (props.dualCalendar && showDateRangeShortcut) return -458
+		if (showTime && showDateRangeShortcut) return -298
+		if (props.dualCalendar) return -259
+		if (showTime) return -98
+		if (showDateRangeShortcut) return -178
+		return 20
+	}, [props.dualCalendar, showTime, showDateRangeShortcut])
 
 	return (
 		<div>
-			{
-				typeable ? (<>
-					<TypeableDatePicker
+			{typeable ? (
+				<>
+					<TypeableDatePicker size={size} label={label} rounded={rounded} disables={disabled} hasError={hasError} showTime={showTime} {...props} />
+				</>
+			) : (
+				<>
+					<Input
 						size={size}
+						onClick={() => !disabled && setOpen(true)}
 						label={label}
 						rounded={rounded}
-						disables={disabled}
+						disabled={disabled}
 						hasError={hasError}
-						showTime={showTime}
-						{...props}
+						errorMsg={hasError ? "There is an error" : undefined}
+						className={cn(triggerClassName)}
+						readOnly
+						value={inputValue}
+						placeholder="Date picker"
+						trial={
+							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
+								<PopoverTrigger disabled={disabled}>
+									<CalendarIcon
+										className={cn(sizeHeightMapping[size], "stroke-text-tertiary cursor-pointer", {
+											"text-text-tertiary": !disabled,
+											"text-text-disabled cursor-not-allowed": disabled,
+										})}
+									/>
+								</PopoverTrigger>
 
-					/>
-				</>) : (
-					<>
-						<Input
-							size={size}
-							onClick={() => !disabled && setOpen(true)}
-							label={label}
-							rounded={rounded}
-							disabled={disabled}
-							hasError={hasError}
-							errorMsg={hasError ? "There is an error" : undefined}
-							className={cn(
-								triggerClassName
-							)}
-							readOnly
-							value={inputValue}
-							placeholder="Date picker"
-							trial={
-								< Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14} >
-									<PopoverTrigger disabled={disabled}>
-										<CalendarIcon className={cn(
-											sizeHeightMapping[size],
-											"cursor-pointer stroke-text-tertiary",
-											{
-												"text-text-tertiary": !disabled,
-												"text-text-disabled cursor-not-allowed": disabled,
-											}
-										)}
+								<PopoverContent
+									alignOffset={alignOffset}
+									className={cn("bg-bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+									{mode === "single" && (
+										<Calendar
+											onIndexChange={(value) => {
+												if (value !== null) {
+													setTime?.(value)
+												}
+											}}
+											mode="single"
+											selected={currentSelected as CalendarDate}
+											onSelect={onSelectHandler}
+											showTime={showTime}
+											showShortcut={showDateRangeShortcut}
+											{...props}
 										/>
-									</PopoverTrigger>
-
-									<PopoverContent alignOffset={alignOffset} className={cn(" bg-bg-base border-none drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl p-0 shadow-none")}>
-										{mode === "single" && (
-											<Calendar
-												onIndexChange={(value) => {
-													if (value !== null) {
-														setTime?.(value);
-													}
-												}}
-												mode="single"
-												selected={currentSelected as CalendarDate}
-												onSelect={onSelectHandler}
-												showTime={showTime}
-												showShortcut={showDateRangeShortcut}
-												{...props}
-											/>
-										)}
-										{mode === "multiple" && (
-											<Calendar
-												mode="multiple"
-												onIndexChange={(value) => {
-													if (value !== null) {
-														setTime?.(value);
-													}
-												}}
-												selected={currentSelected as CalendarDate[]}
-												onSelect={onSelectHandler}
-												showTime={showTime}
-												showShortcut={showDateRangeShortcut}
-												{...props}
-											/>
-										)}
-										{mode === "range" && (
-											<Calendar
-												mode="range"
-												onIndexChange={(value) => {
-													if (value !== null) {
-														setTime?.(value);
-													}
-												}}
-												selected={currentSelected as CalendarRange}
-												showTime={showTime}
-												showShortcut={showDateRangeShortcut}
-												onSelect={onSelectHandler}
-												{...props}
-											/>
-										)}
-										{/* {mode === "time" && (
+									)}
+									{mode === "multiple" && (
+										<Calendar
+											mode="multiple"
+											onIndexChange={(value) => {
+												if (value !== null) {
+													setTime?.(value)
+												}
+											}}
+											selected={currentSelected as CalendarDate[]}
+											onSelect={onSelectHandler}
+											showTime={showTime}
+											showShortcut={showDateRangeShortcut}
+											{...props}
+										/>
+									)}
+									{mode === "range" && (
+										<Calendar
+											mode="range"
+											onIndexChange={(value) => {
+												if (value !== null) {
+													setTime?.(value)
+												}
+											}}
+											selected={currentSelected as CalendarRange}
+											showTime={showTime}
+											showShortcut={showDateRangeShortcut}
+											onSelect={onSelectHandler}
+											{...props}
+										/>
+									)}
+									{/* {mode === "time" && (
 								<React.Fragment>
 									<Calendar
 										mode="single"
@@ -350,15 +331,13 @@ function DatePicker({
 									/>
 								</React.Fragment>
 							)} */}
-									</PopoverContent>
-								</Popover>
-							}
-						/>
-					</>
-				)
-			}
-
-		</div >
+								</PopoverContent>
+							</Popover>
+						}
+					/>
+				</>
+			)}
+		</div>
 	)
 }
 
@@ -371,9 +350,9 @@ type DateRangeShortcutProps = {
 // DateRangeShortcut component definition
 export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }: DateRangeShortcutProps) {
 	return (
-		<div className={`border-border w-50 flex flex-col border-r px-1.5 py-1
-		${mode === "single" || mode === "multiple" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : " text-text"}`}>
-			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT DATE</p>
+		<div
+			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
+			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					mode={mode}
@@ -387,7 +366,7 @@ export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }:
 				/>
 			))}
 		</div>
-	);
+	)
 }
 type DateRangeShortcutItemProps = {
 	selectedValue: string | null
@@ -401,10 +380,9 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill-level2 cursor-pointer"} group flex leading-5 font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5`}
+			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill-level2 cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
 			data-value={value}
-			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}
-		>
+			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}>
 			{label}
 			{selectedValue === value ? (
 				mode !== "single" && mode !== "multiple" ? (

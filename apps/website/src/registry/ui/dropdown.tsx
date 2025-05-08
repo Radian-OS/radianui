@@ -38,7 +38,8 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 			className={cn(
 				"bg-bg-level1 text-text flex w-fit text-sm",
 				"border-border items-center justify-start gap-2 rounded-lg border",
-				"drop-shadow-xs px-3 py-2.5 font-medium"
+				"drop-shadow-xs px-3 py-2.5 font-medium",
+				"focus-visible:ring-offset-bg-base focus-visible:ring-border-alpha focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
 			)}
 			{...props}>
 			<span className="flex-1">{children}</span>

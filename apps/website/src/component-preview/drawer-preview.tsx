@@ -121,20 +121,19 @@ const DrawerPreview = () => {
 						direction={position}
 						handle={handle === "true" ? true : false}
 						backdrop={backdrop}
-						trigger={<Button>Open Drawer</Button>}
-					>
+						trigger={<Button>Open Drawer</Button>}>
 						<DrawerHeader>
 							<DrawerTitle>This is a drawer header</DrawerTitle>
 							<DrawerDescription>This is a drawer description message.</DrawerDescription>
 						</DrawerHeader>
-						<DrawerBody className="flex flex-col gap-3" >
-							<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
-							<div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
-							<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+						<DrawerBody className="flex flex-col gap-3">
+							<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
+							<div className="bg-fill-level3 rounded-radius-xl h-64"></div>
+							<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
 						</DrawerBody>
 						<DrawerFooter>
 							<DrawerClose>
-								<Button variant="neutral-outline" >Close Drawer</Button>
+								<Button variant="neutral-outline">Close Drawer</Button>
 							</DrawerClose>
 							<Button>Submit Action</Button>
 						</DrawerFooter>

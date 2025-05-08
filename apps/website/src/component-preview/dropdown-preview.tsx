@@ -1,4 +1,5 @@
 import React from "react"
+import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -28,6 +29,7 @@ import {
 	DropdownSubTrigger,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
+import { Button } from "@/registry/ui/button"
 	
 export const DropdownPreview=()=>{
 
@@ -36,7 +38,11 @@ const [selected, setSelected] = React.useState<string[]>(["1"])
 
 return(
 <Dropdown>
-<DropdownTrigger>Dropdown</DropdownTrigger>
+<DropdownTrigger asChild >
+<Button variant="neutral-outline" >
+Dropdown
+</Button>
+</DropdownTrigger>
 <DropdownContent>
 <DropdownGroup title="date range">
 <DropdownItem>This week</DropdownItem>
@@ -97,7 +103,9 @@ selectedValues={selected}>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
-						<DropdownTrigger>Dropdown</DropdownTrigger>
+						<DropdownTrigger asChild>
+							<Button variant="neutral-outline">Dropdown</Button>
+						</DropdownTrigger>
 						<DropdownContent>
 							<DropdownGroup title="date range">
 								<DropdownItem>This week</DropdownItem>

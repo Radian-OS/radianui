@@ -24,7 +24,7 @@ export const cvaInputVariants = {
 		"40": "h-10 text-sm px-3 py-2.5",
 		"44": "h-11 text-base py-2.5 px-3.5",
 		"48": "h-12 text-base py-3 px-3.5",
-	}
+	},
 }
 
 export const defaultInputSize = "36"
@@ -37,7 +37,7 @@ const sizeHeightMapping = {
 	40: "h-5 w-5",
 	44: "h-6 w-6",
 	48: "h-6 w-6",
-};
+}
 
 // Creating a variant for input styles using cva
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
@@ -97,9 +97,10 @@ function Input({
 	if (id) htmlId = id
 
 	return (
-		<div className={cn("text-fg-1 flex w-full flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
+		<div
+			className={cn("text-fg-1 flex w-full flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
 			{label && (
-				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed ": disabled }, classNames?.label)}>
+				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, classNames?.label)}>
 					{label}
 				</Label>
 			)}
@@ -114,31 +115,30 @@ function Input({
 						"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": !hasError && !disabled,
 
 						// Apply disabled styles
-						"text-text-disabled cursor-not-allowed bg-fill-level1 drop-shadow-none": disabled,
+						"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
 
 						[`rounded-r-none`]: custom,
-
 					},
 					size === "28" ? "gap-1.5" : "gap-2",
 					classNames?.wrapper
 				)}>
 				{lead && (
-					<span className={cn("flex items-center justify-center rounded cursor-pointer",
-						{
-							" text-text-tertiary": !disabled,
-							" text-text-disabled": disabled,
+					<span
+						className={cn("flex cursor-pointer items-center justify-center rounded", {
+							"text-text-tertiary": !disabled,
+							"text-text-disabled": disabled,
 						})}>
 						{React.isValidElement(lead)
 							? React.cloneElement(lead as React.ReactElement<{ className?: string }>, {
-								className: cn((lead as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
-							})
+									className: cn((lead as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
+								})
 							: lead}
 					</span>
 				)}
 				<input
 					id={htmlId}
 					className={cn(
-						"text-fg-1 text-sm placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 placeholder:text-sm placeholder:font-normal focus:ring-0",
+						"text-fg-1 placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 text-sm placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
 							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
 						},
@@ -154,14 +154,15 @@ function Input({
 					{...props}
 				/>
 				{trial && (
-					<span className={cn("flex items-center justify-center rounded cursor-pointer", {
-						" text-text-tertiary": !disabled,
-						" text-text-disabled": disabled,
-					})}>
+					<span
+						className={cn("flex cursor-pointer items-center justify-center rounded", {
+							"text-text-tertiary": !disabled,
+							"text-text-disabled": disabled,
+						})}>
 						{React.isValidElement(trial)
 							? React.cloneElement(trial as React.ReactElement<{ className?: string }>, {
-								className: cn((trial as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
-							})
+									className: cn((trial as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
+								})
 							: trial}
 					</span>
 				)}

@@ -5,6 +5,11 @@ import { Eye, EyeOff } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Input, InputProps } from "./input"
 
+type TrialType = "show" | "hide" | "onFocus"
+
+interface PasswordProps extends Omit<InputProps, "leadIcon" | "trialIcon"> {
+	trial?: TrialType
+}
 /**
  * Password shows a toggle icon:
  * - When trial="visibilityIcon", the icon is always visible
@@ -12,17 +17,7 @@ import { Input, InputProps } from "./input"
  * - When trial is false, no icon is shown
  * Prevents blur when clicking the icon so toggling works.
  */
-export function Password({
-	label,
-	disabled = false,
-	errorMsg,
-	hasError = false,
-	size = "40",
-	rounded = "md",
-	id,
-	trial,
-	...props
-}: Omit<InputProps, "leadIcon" | "trialIcon">) {
+export function Password({ label, disabled = false, errorMsg, hasError = false, size = "40", rounded = "md", id, trial, ...props }: PasswordProps) {
 	const [isFocused, setIsFocused] = React.useState(false)
 	const [isPasswordVisible, setIsPasswordVisible] = React.useState(false)
 
@@ -34,11 +29,11 @@ export function Password({
 	let trialContent = null
 
 	// When trial is explicitly false, don't show any icon
-	if (trial === false) {
-		trialContent = null;
+	if (trial === "hide") {
+		trialContent = null
 	}
 	// When visibilityIcon is specified, always show the icon
-	else if (trial === "visibilityIcon") {
+	else if (trial === "show") {
 		trialContent = isPasswordVisible ? (
 			<Eye
 				size={20}
@@ -60,9 +55,10 @@ export function Password({
 		)
 	}
 	// Default behavior: show only when focused
-	else {
-		trialContent = isFocused && (
-			isPasswordVisible ? (
+	else if (trial === "onFocus") {
+		trialContent =
+			isFocused &&
+			(isPasswordVisible ? (
 				<Eye
 					size={20}
 					onMouseDown={(e) => e.preventDefault()} // prevent blur
@@ -80,8 +76,7 @@ export function Password({
 						"cursor-not-allowed": disabled,
 					})}
 				/>
-			)
-		)
+			))
 	}
 
 	return (
