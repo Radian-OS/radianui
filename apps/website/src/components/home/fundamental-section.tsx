@@ -77,7 +77,7 @@ export default function FundamentalSection() {
 					<h6 className="heading-6 text-fg0">Fundamentals</h6>
 					<p className="body-15 text-fg1 font-normal">Universal settings for building a strong foundation for a digital product</p>
 				</div>
-				<div className="bg-stroke-decorative -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
+				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>
 
 			<div className="max-w-310 mx-auto">
@@ -97,7 +97,7 @@ export default function FundamentalSection() {
 				</div>
 			</div>
 
-			<div className="bg-stroke-decorative -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
+			<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 		</React.Fragment>
 	)
 }

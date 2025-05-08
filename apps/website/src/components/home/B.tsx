@@ -9,10 +9,9 @@ import Menu from "@public/icons/menu-01.svg"
 import Search from "@public/icons/search-refraction.svg"
 import Settings from "@public/icons/settings-02.svg"
 import User from "@public/icons/user-circle.svg"
-import { AccordionContent } from "@radix-ui/react-accordion"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { Accordion, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Avatar } from "@/registry/ui/avatar"
 import { Divider } from "@/registry/ui/divider"
 
@@ -53,7 +52,7 @@ function B({ className }: { className?: string }) {
 						active={activeItem === "dashboard"}
 						onClick={() => setActiveItem("dashboard")}
 					/>
-					<Accordion collapsible defaultValue="components">
+					<Accordion collapsible defaultValue="components" className="border-none">
 						<AccordionItem value="components">
 							<AccordionTrigger className={cn("hover:bg-bg-level0 flex h-10 cursor-default gap-3 rounded-md px-2 text-sm")}>
 								<Search className="text-text-secondary" /> <span className="flex-1">Components</span>
@@ -142,8 +141,8 @@ function AccordionTextItem({ text, active, onClick }: AccordionTextItemProps) {
 		<span
 			onClick={onClick}
 			className={cn("cursor-default rounded-md py-2 pl-11 pr-2 text-sm transition-colors", {
-				"bg-bg-level1": active,
-				"hover:bg-bg-level0": !active,
+				"bg-bg-level0": active,
+				"hover:bg-bg-level1": !active,
 			})}>
 			{text}
 		</span>
