@@ -138,15 +138,17 @@ type TimeSelectorProps = {
 	selectedIndex: number | null
 	setSelectedIndex: (index: number | null) => void
 	formatTime: (time: Time) => string // Updated to accept Time
-	onTimeSelect?: (formattedTime: string) => void // 🔥 Add this
+	onTimeSelect?: (formattedTime: string) => void
+	mode?: string
 }
 export function TimeSelector(props: TimeSelectorProps) {
-	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime } = props
+	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode } = props
 
 	if (!showTime) return null
 
 	return (
-		<div className="w-30 text-text no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium">
+		<div
+			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
 			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT TIME</p>
 			{timeOptions.map((time, index) => {
 				const formatted = formatTime(time)
@@ -155,14 +157,14 @@ export function TimeSelector(props: TimeSelectorProps) {
 				return (
 					<span
 						key={index}
-						className="hover:bg-fill-level2 text-text group flex cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5"
+						className={`${mode === "type" ? "text-text-disabled cursor-not-allowed" : "text-text hover:bg-fill-level2 cursor-pointer"} text-text group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
 						data-value={time}
 						onClick={() => {
 							setSelectedIndex(index)
 							props.onTimeSelect?.(formatted)
 						}}>
 						{formatted}
-						{isSelected ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
+						{isSelected && mode !== "type" ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
 					</span>
 				)
 			})}
