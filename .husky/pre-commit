@@ -17,7 +17,7 @@ if echo "$STAGED_FILES" | grep -q "^apps/website/"; then
   pnpm --filter website run format:write || exit 1
   
   # If on main branch, generate component JSON for website
-  if [ "$CURRENT_BRANCH" = "dev" ]; then
+  if [ "$CURRENT_BRANCH" = "main" ]; then
     echo "🌿 On main branch: Generating component JSON file for website..."
     pnpm --filter website run generate-component-json || exit 1
     
