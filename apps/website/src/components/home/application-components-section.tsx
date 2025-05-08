@@ -70,7 +70,7 @@ const ApplicationComponent = () => {
 					<p className="body-15 text-text-secondary font-normal">Fundamentals & building blocks of Websites</p>
 				</div>
 
-				<div className="bg-stroke-decorative -ml-[99rem] h-[1px] w-[calc(100%+999rem)]"></div>
+				<div className="bg-border -ml-[99rem] h-[1px] w-[calc(100%+999rem)]"></div>
 			</div>
 			<div className="max-w-310 mx-auto">
 				<div

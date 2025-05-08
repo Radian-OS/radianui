@@ -110,14 +110,17 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
-					"bg-bg1 text-fg1 outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all [&[data-state=open]>svg]:rotate-180",
+					"bg-bg1 text-fg1 outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all [&[data-state=open]>.AccordionChevron]:rotate-180",
 					variant === "open" ? (size === "sm" ? "px-0 py-3" : "px-0 py-4") : size === "sm" ? "px-4 py-3" : "p-4",
 					className
 				)}
 				{...props}>
 				{children}
 				<ChevronDownIcon
-					className={classNames("text-text-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")}
+					className={classNames(
+						"AccordionChevron text-text-tertiary shrink-0 transition-transform duration-200",
+						size === "sm" ? "size-5" : "size-6"
+					)}
 					aria-hidden
 				/>
 			</AccordionPrimitive.Trigger>
