@@ -7,44 +7,37 @@ echo "🚀 Running pre-commit checks..."
 
 # Get the current branch name
 CURRENT_BRANCH=$(git branch --show-current)
-
 # Get list of staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
-
 # Check if any changes are in the website directory
 echo "$STAGED_FILES" | grep -q "^apps/website/" && {
   echo "📦 Changes detected in website directory"
   
   # Run linting checks on website files
-  echo "🔍 Running lint checks for website..."
+  echo ":mag: Running lint checks for website..."
   pnpm --filter website run lint || {
-    echo "❌ Lint checks failed. Please fix the issues before committing."
+    echo ":x: Lint checks failed. Please fix the issues before committing."
     exit 1
   }
-  
   # Run type checks for website
-  echo "🔄 Running type checks for website..."
+  echo ":arrows_counterclockwise: Running type checks for website..."
   pnpm --filter website run typecheck || {
-    echo "❌ Type checks failed. Please fix the issues before committing."
+    echo ":x: Type checks failed. Please fix the issues before committing."
     exit 1
   }
-  
   # Run build to check for build-time errors
-  echo "🏗️ Testing build for website..."
+  echo ":building_construction: Testing build for website..."
   pnpm --filter website run build --no-lint || {
-    echo "❌ Build failed. Please fix the build errors before committing."
+    echo ":x: Build failed. Please fix the build errors before committing."
     exit 1
   }
-  
   # Run Prettier only on staged website files
-  echo "🎨 Formatting code with Prettier for website..."
+  echo ":art: Formatting code with Prettier for website..."
   pnpm --filter website run format:write || exit 1
-  
   # If on main branch, generate component JSON for website
   [ "$CURRENT_BRANCH" = "main" ] && {
     echo "🌿 On main branch: Generating component JSON file for website..."
     pnpm --filter website run generate-component-json || exit 1
-    
     # Stage the generated JSON file
     [ -f "apps/website/components.json" ] && {
       echo "📦 Staging generated components.json file..."
@@ -61,7 +54,6 @@ echo "$STAGED_FILES" | grep -q "^apps/website/" && {
     esac
   done
 }
-
 # Check for changes in other apps or packages
 find apps packages -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | grep -v "^apps$" | grep -v "^packages$" | while read -r DIR; do
   APP_NAME=$(basename "$DIR")
@@ -72,7 +64,7 @@ find apps packages -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | 
     grep -q "\"lint\":" "$DIR/package.json" 2>/dev/null && {
       echo "🔍 Running lint checks for $APP_NAME..."
       pnpm --filter "$APP_NAME" run lint || {
-        echo "❌ Lint checks failed for $APP_NAME. Please fix the issues before committing."
+        echo ":x: Lint checks failed for $APP_NAME. Please fix the issues before committing."
         exit 1
       }
     }
@@ -81,7 +73,7 @@ find apps packages -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | 
     grep -q "\"typecheck\":" "$DIR/package.json" 2>/dev/null && {
       echo "🔄 Running type checks for $APP_NAME..."
       pnpm --filter "$APP_NAME" run typecheck || {
-        echo "❌ Type checks failed for $APP_NAME. Please fix the issues before committing."
+        echo ":x: Type checks failed for $APP_NAME. Please fix the issues before committing."
         exit 1
       }
     }
@@ -90,11 +82,10 @@ find apps packages -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | 
     grep -q "\"build\":" "$DIR/package.json" 2>/dev/null && {
       echo "🏗️ Testing build for $APP_NAME..."
       pnpm --filter "$APP_NAME" run build --no-lint 2>/dev/null || pnpm --filter "$APP_NAME" run build || {
-        echo "❌ Build failed for $APP_NAME. Please fix the build errors before committing."
+        echo ":x: Build failed for $APP_NAME. Please fix the build errors before committing."
         exit 1
       }
     }
   }
 done
-
-echo "✅ Pre-commit checks completed successfully!"
+echo ":white_check_mark: Pre-commit checks completed successfully!"
