@@ -25,7 +25,7 @@ export function Password({ label, disabled = false, errorMsg, hasError = false, 
 		if (!disabled) setIsPasswordVisible((v) => !v)
 	}
 
-	// Determine what to show in the trial prop
+	//Determine what to show in the trial prop
 	let trialContent = null
 
 	// When trial is explicitly false, don't show any icon

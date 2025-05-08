@@ -12,6 +12,27 @@ STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
 if echo "$STAGED_FILES" | grep -q "^apps/website/"; then
   echo "📦 Changes detected in website directory"
   
+  # Run linting checks on website files
+  echo "🔍 Running lint checks for website..."
+  pnpm --filter website run lint || {
+    echo "❌ Lint checks failed. Please fix the issues before committing."
+    exit 1
+  }
+  
+  # Run type checks for website
+  echo "🔄 Running type checks for website..."
+  pnpm --filter website run typecheck || {
+    echo "❌ Type checks failed. Please fix the issues before committing."
+    exit 1
+  }
+  
+  # Run build to check for build-time errors
+  echo "🏗️ Testing build for website..."
+  pnpm --filter website run build --no-lint || {
+    echo "❌ Build failed. Please fix the build errors before committing."
+    exit 1
+  }
+  
   # Run Prettier only on staged website files
   echo "🎨 Formatting code with Prettier for website..."
   pnpm --filter website run format:write || exit 1
@@ -35,5 +56,40 @@ if echo "$STAGED_FILES" | grep -q "^apps/website/"; then
     fi
   done
 fi
+
+# Check for changes in any other apps or packages
+for DIR in $(find apps packages -maxdepth 1 -type d | grep -v "^apps/website$" | grep -v "^apps$" | grep -v "^packages$"); do
+  APP_NAME=$(basename "$DIR")
+  if echo "$STAGED_FILES" | grep -q "^$DIR/"; then
+    echo "📦 Changes detected in $APP_NAME"
+    
+    # Check if the app has lint script in its package.json
+    if grep -q "\"lint\":" "$DIR/package.json" 2>/dev/null; then
+      echo "🔍 Running lint checks for $APP_NAME..."
+      pnpm --filter "$APP_NAME" run lint || {
+        echo "❌ Lint checks failed for $APP_NAME. Please fix the issues before committing."
+        exit 1
+      }
+    fi
+    
+    # Check if the app has typecheck script in its package.json
+    if grep -q "\"typecheck\":" "$DIR/package.json" 2>/dev/null; then
+      echo "🔄 Running type checks for $APP_NAME..."
+      pnpm --filter "$APP_NAME" run typecheck || {
+        echo "❌ Type checks failed for $APP_NAME. Please fix the issues before committing."
+        exit 1
+      }
+    fi
+    
+    # Check if the app has build script in its package.json
+    if grep -q "\"build\":" "$DIR/package.json" 2>/dev/null; then
+      echo "🏗️ Testing build for $APP_NAME..."
+      pnpm --filter "$APP_NAME" run build --no-lint 2>/dev/null || pnpm --filter "$APP_NAME" run build || {
+        echo "❌ Build failed for $APP_NAME. Please fix the build errors before committing."
+        exit 1
+      }
+    fi
+  fi
+done
 
 echo "✅ Pre-commit checks completed successfully!"
