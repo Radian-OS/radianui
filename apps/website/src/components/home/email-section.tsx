@@ -38,6 +38,7 @@ export default function EmailSection() {
 						<div className="flex w-full flex-col gap-3 sm:w-fit sm:flex-row">
 							<Input
 								className="w-full sm:w-80"
+								size="40"
 								placeholder="Enter your email"
 								lead={<Mail className="stroke-stroke" />}
 								value={email}
@@ -45,7 +46,7 @@ export default function EmailSection() {
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
-							<Button disabled={isPending} type="submit" className="w-full sm:w-fit">
+							<Button size="40" disabled={isPending} type="submit" className="w-full sm:w-fit">
 								{!isPending ? "Subscribe" : "Subscribing"}
 							</Button>
 						</div>
@@ -59,7 +60,7 @@ export default function EmailSection() {
 						</div>
 					</form>
 				</div>
-				<div className="bg-stroke-decorative -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block"></div>
+				<div className="bg-border -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block"></div>
 			</div>
 		</div>
 	)

@@ -24,7 +24,7 @@ function A({ className }: { className?: string }) {
 
 	return (
 		<div className={cn("border-border right-38 h-200 w-90 top-20 flex overflow-hidden rounded-2xl border transition-all duration-1000", className)}>
-			<div className="bg-bg-level1 flex w-fit flex-col justify-between px-2 py-3">
+			<div className="bg-bg-level0 flex w-fit flex-col justify-between px-2 py-3">
 				<div className="flex h-full flex-col items-center justify-between">
 					<div className="flex flex-col items-center gap-3">
 						<div className="p-1.5">
@@ -158,8 +158,8 @@ function Item({ id, icon, text, active, onClick }: ItemProps) {
 			id={id}
 			onClick={onClick}
 			className={cn("flex cursor-default items-center gap-3 rounded-md p-2 text-sm font-medium", {
-				"bg-bg-level1": active,
-				"hover:bg-bg-level0": !active,
+				"bg-bg-level0": active,
+				"hover:bg-bg-base": !active,
 			})}>
 			{icon} <span>{text}</span>
 		</div>
@@ -179,8 +179,8 @@ function SidebarIcon({ id, icon, active, onClick }: SidebarIconProps) {
 			id={id}
 			onClick={onClick}
 			className={cn("cursor-default rounded-md p-3", {
-				"bg-bg-base": active,
-				"hover:bg-bg-level0": !active,
+				"bg-bg-level1": active,
+				"hover:bg-bg-level1": !active,
 			})}>
 			{icon}
 		</div>

@@ -223,7 +223,7 @@ export default function UiComponentsSection() {
 					<h6 className="heading-6 text-text">UI Components</h6>
 					<p className="body-15 text-text-secondary font-normal">Building blocks of an application or website</p>
 				</div>
-				<div className="bg-stroke-decorative -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
+				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>
 			<div className="max-w-310 mx-auto">
 				<div
@@ -242,7 +242,7 @@ export default function UiComponentsSection() {
 				</div>
 			</div>
 
-			<div className="bg-stroke-decorative -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
+			<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 		</React.Fragment>
 	)
 }
