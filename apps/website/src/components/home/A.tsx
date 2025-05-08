@@ -157,9 +157,9 @@ function Item({ id, icon, text, active, onClick }: ItemProps) {
 		<div
 			id={id}
 			onClick={onClick}
-			className={cn("flex cursor-default items-center gap-3 rounded-md p-2 text-sm font-medium", {
+			className={cn("font-mediu flex cursor-default items-center gap-3 rounded-md p-2 text-sm", {
 				"bg-bg-level0": active,
-				"hover:bg-bg-base": !active,
+				"hover:bg-fill-level2": !active,
 			})}>
 			{icon} <span>{text}</span>
 		</div>
@@ -179,8 +179,8 @@ function SidebarIcon({ id, icon, active, onClick }: SidebarIconProps) {
 			id={id}
 			onClick={onClick}
 			className={cn("cursor-default rounded-md p-3", {
-				"bg-bg-level1": active,
-				"hover:bg-bg-level1": !active,
+				"bg-bg-base": active,
+				"hover:bg-fill-level1": !active,
 			})}>
 			{icon}
 		</div>
