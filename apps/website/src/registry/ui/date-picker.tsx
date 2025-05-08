@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react"
-import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
+import { CalendarDate, Time, getLocalTimeZone, now, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, Check } from "lucide-react"
 import { Modifiers } from "react-day-picker"
@@ -40,6 +40,7 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	timeZoneProps?: Partial<SelectProps> & {
 		allowedTimezones?: string[]
 	}
+	errorMsg?: string
 	time?: Time
 	onSelectTime?: (time: Time | null) => void
 	selectedTimezone?: string
@@ -217,7 +218,20 @@ function DatePicker({
 
 	const [open, setOpen] = useState<boolean>(false);
 	const [time, setTime] = useState<string>("");
+	const getCurrentTimeInAMPM = (): string => {
+		const now = new Date();
+		let hours = now.getHours();
+		const minutes = now.getMinutes();
+		const ampm = hours >= 12 ? "PM" : "AM";
 
+		hours = hours % 12 || 12; // Convert 0 to 12
+		const minutesStr = minutes < 10 ? `0${minutes}` : minutes;
+
+		return `${hours}:${minutesStr} ${ampm}`;
+	}; useEffect(() => {
+		const currentTime = getCurrentTimeInAMPM();
+		setTime(currentTime);
+	}, []);
 
 	useEffect(() => {
 		const todayFormatted = format(new Date(), "MMMM dd, yyyy");
@@ -249,7 +263,9 @@ function DatePicker({
 						rounded={rounded}
 						disables={disabled}
 						hasError={hasError}
+						errorMsg={hasError ? "There is an error" : undefined}
 						showTime={showTime}
+						showDateRangeShortcut={showDateRangeShortcut}
 						{...props}
 
 					/>
@@ -273,7 +289,7 @@ function DatePicker({
 								< Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14} >
 									<PopoverTrigger disabled={disabled}>
 										<CalendarIcon className={cn(
-											sizeHeightMapping[size],
+											sizeHeightMapping[size || 36],
 											"cursor-pointer stroke-text-tertiary",
 											{
 												"text-text-tertiary": !disabled,
@@ -363,8 +379,8 @@ function DatePicker({
 
 // Type definition for DateRangeShortcutProps props
 type DateRangeShortcutProps = {
-	handleShortcutSelect: (shortcut: DateRangeShortcutValues) => void
-	selectedValue: string | null
+	handleShortcutSelect?: (shortcut: DateRangeShortcutValues) => void
+	selectedValue?: string | null
 	mode?: string
 }
 // DateRangeShortcut component definition
@@ -380,9 +396,9 @@ export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }:
 					label={value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1)}
 					value={value}
 					onClick={function () {
-						handleShortcutSelect(value)
+						handleShortcutSelect?.(value)
 					}}
-					selectedValue={selectedValue}
+					selectedValue={selectedValue || null}
 				/>
 			))}
 		</div>
@@ -469,13 +485,14 @@ import { formatTime, timeOptions, TimeSelector } from "../ui/calendar"
 import { dateInputStyles } from "../ui/date-input"
 import { DateField, DateInput as DateInputRC, DateSegment, DateValue } from "react-aria-components"
 import { CalendarDateTime, parseZonedDateTime, ZonedDateTime } from "@internationalized/date"
+import { Label } from "./label"
 
 function TypeableDatePicker({
 	size,
-	// label,
+	label,
 	rounded,
 	disables,
-	// hasError,
+	hasError,
 	classNames,
 	components,
 	navigatorStyle = "button",
@@ -483,6 +500,8 @@ function TypeableDatePicker({
 	dualCalendar = false,
 	className,
 	footer,
+	showDateRangeShortcut,
+	errorMsg,
 	...props
 }: DatePickerProps) {
 
@@ -535,9 +554,8 @@ function TypeableDatePicker({
 
 
 	// Convert Date to DateValue for the DateField
-	const [dateTime, setDateTime] = useState<ZonedDateTime | null>(
-		parseZonedDateTime("2023-10-10T12:30[America/Los_Angeles]")
-	);
+	const [dateTime, setDateTime] = useState<ZonedDateTime | null>(now(getLocalTimeZone()));
+
 
 	const dateTimeValue = dateTime
 		? new CalendarDateTime(
@@ -564,41 +582,82 @@ function TypeableDatePicker({
 		setDateTime(newDateTime);
 	};
 
+	const sizeHeightMapping = {
+		28: "h-4 w-4",
+		32: "h-5 w-5",
+		36: "h-5 w-5",
+		40: "h-5 w-5",
+		44: "h-6 w-6",
+		48: "h-6 w-6",
+	};
+
 	return (
 		<Popover>
 			<PopoverTrigger disabled={disables}>
-				<div className={cn("w-[320px]", dateInputStyles({ size, rounded }))}>
-					<DateField
-						granularity="minute"
-						className={cn("flex flex-col gap-1 border-none")}
-						value={dateTimeValue}
-						onChange={handleDateTimeChange}
-						{...props}
-					>
-						<DateInputRC>
-							{(segment) => (
-								<DateSegment
-									className={cn(
-										"rounded-sm px-0 py-0.5 text-end text-sm tabular-nums",
-										"data-[focused]:bg-bg-level2 data-[focused]:text-white",
-										"data-placeholder:text-text-tertiary",
-										"focus:outline-hidden focus:caret-transparent",
-										"data-[type=dayPeriod]:mx-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5 data-[type=hour]:ml-0.5",
-									)}
-									segment={segment}
-								/>
-							)}
-						</DateInputRC>
-					</DateField>
-					<CalendarIcon className={cn()} />
+				<div className=" flex flex-col items-start gap-1.5">
+					{label && (
+						<Label className={cn({ "text-text-disabled cursor-not-allowed ": disables })}>
+							{label}
+						</Label>
+					)}
+					<div className={cn("w-[320px]", dateInputStyles({ size, rounded }), {
+						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
+
+						"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": !hasError && !disables,
+
+						"text-text-disables cursor-not-allowed bg-fill-level1 drop-shadow-none": disables,
+
+
+					},)}>
+						<DateField
+							granularity="minute"
+							className={cn("flex flex-col gap-1 border-none")}
+							value={dateTimeValue}
+							onChange={handleDateTimeChange}
+							isDisabled={disables}
+							{...props}
+						>
+							<DateInputRC>
+								{(segment) => (
+									<DateSegment
+										className={cn(
+											"rounded-sm px-0 py-0.5 text-end text-sm tabular-nums",
+											"data-[focused]:bg-bg-level2 data-[focused]:text-white",
+											"data-placeholder:text-text-tertiary",
+											"focus:outline-hidden focus:caret-transparent",
+											"data-[type=dayPeriod]:mx-0.5 data-[type=literal]:mx-0.5 data-[type=timeZoneName]:mx-0.5 data-[type=hour]:ml-0.5",
+											{
+												"text-text-disabled placeholder-text-disabled cursor-not-allowed": disables,
+											},)}
+										segment={segment}
+									/>
+								)}
+							</DateInputRC>
+						</DateField>
+						<CalendarIcon className={cn(
+							sizeHeightMapping[size || 36],
+							"cursor-pointer stroke-text-tertiary",
+							{
+								"text-text-tertiary": !disables,
+								"text-text-disabled cursor-not-allowed": disables,
+							}
+						)} />
+					</div>
+					{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{errorMsg}</Label>}
 				</div>
 			</PopoverTrigger>
 
 			<PopoverContent className="w-auto p-0 border-none">
 				<div className="w-fit rounded-xl bg-bg-level1 border border-border drop-shadow-xs overflow-hidden">
 					<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
+						{
+							showDateRangeShortcut && (
+								<DateRangeShortcut mode="single" />
+							)
+						}
 						<DayPicker
 							mode="single"
+							numberOfMonths={dualCalendar ? 2 : 1}
 							selected={dateTime ? new Date(dateTime.year, dateTime.month - 1, dateTime.day) : undefined}
 							month={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
 							onSelect={(selectedDate) => {
@@ -630,6 +689,7 @@ function TypeableDatePicker({
 							setSelectedIndex={setSelectedIndex}
 							formatTime={formatTime}
 							showTime={showTime}
+							mode="type"
 						/>
 					</div>
 					<div className="flex w-full justify-end">

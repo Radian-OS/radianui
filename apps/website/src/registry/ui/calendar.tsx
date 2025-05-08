@@ -143,16 +143,17 @@ type TimeSelectorProps = {
 	selectedIndex: number | null;
 	setSelectedIndex: (index: number | null) => void;
 	formatTime: (time: Time) => string; // Updated to accept Time
-	onTimeSelect?: (formattedTime: string) => void; // 🔥 Add this
+	onTimeSelect?: (formattedTime: string) => void;
+	mode?: string
 
 };
 export function TimeSelector(props: TimeSelectorProps) {
-	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime } = props;
+	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode } = props;
 
 	if (!showTime) return null;
 
 	return (
-		<div className="flex flex-col px-1.5 py-1 h-72 w-30 overflow-y-scroll text-text no-scrollbar text-sm font-medium">
+		<div className={`flex flex-col px-1.5 py-1 h-72 w-30 overflow-y-scroll no-scrollbar text-sm font-medium ${mode === "type" ? " bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
 			<p className="rounded-sm px-2 py-2.5 h-8 text-text-tertiary text-xs font-medium">SELECT TIME</p>
 			{timeOptions.map((time, index) => {
 				const formatted = formatTime(time);
@@ -161,7 +162,7 @@ export function TimeSelector(props: TimeSelectorProps) {
 				return (
 					<span
 						key={index}
-						className="hover:bg-fill-level2 group text-text flex leading-5 cursor-pointer font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5"
+						className={`${mode === "type" ? "text-text-disabled cursor-not-allowed" : "text-text hover:bg-fill-level2 cursor-pointer"}  group text-text flex leading-5  font-normal text-sm flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5`}
 						data-value={time}
 						onClick={() => {
 							setSelectedIndex(index);
@@ -169,7 +170,7 @@ export function TimeSelector(props: TimeSelectorProps) {
 						}}
 					>
 						{formatted}
-						{isSelected ? (
+						{isSelected && (mode !== "type") ? (
 							<Check className="stroke-text-secondary" size={16} />
 						) : (
 							<span className="size-4" />
@@ -333,7 +334,6 @@ function CalendarComponent({
 	}, [])
 
 
-
 	if (mode === "single") {
 		return (
 			<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
@@ -341,7 +341,6 @@ function CalendarComponent({
 					{
 						showShortcut && (
 							<DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
-
 						)
 					}
 					<DayPicker
@@ -420,13 +419,13 @@ function CalendarComponent({
 		)
 	}
 
+
 	return (
 		<div className="w-fit rounded-xl bg-bg-level1 drop-shadow-xs border border-border overflow-hidden">
 			<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 				{
 					showShortcut && (
 						<DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />
-
 					)
 				}
 				<DayPicker
