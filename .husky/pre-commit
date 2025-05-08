@@ -16,9 +16,9 @@ if echo "$STAGED_FILES" | grep -q "^apps/website/"; then
   echo "🎨 Formatting code with Prettier for website..."
   pnpm --filter website run format:write || exit 1
   
-  # If on main branch, generate component JSON for website
+  # If on dev branch, generate component JSON for website
   if [ "$CURRENT_BRANCH" = "dev" ]; then
-    echo "🌿 On main branch: Generating component JSON file for website..."
+    echo "🌿 On dev branch: Generating component JSON file for website..."
     pnpm --filter website run generate-component-json || exit 1
     
     # Stage the generated JSON file
@@ -36,4 +36,16 @@ if echo "$STAGED_FILES" | grep -q "^apps/website/"; then
   done
 fi
 
+# --- New Lint Check Section ---
+# If there are JavaScript/TypeScript changes, run lint
+if echo "$STAGED_FILES" | grep -E "\.(js|jsx|ts|tsx)$"; then
+  echo "🔍 Running ESLint on staged files..."
+  # run lint in check mode, no auto-fix
+  pnpm --filter website run lint:ci || {
+    echo "❌ Lint errors detected! Please fix them before committing."
+    exit 1
+  }
+fi
+
+# All checks passed
 echo "✅ Pre-commit checks completed successfully!"
