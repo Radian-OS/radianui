@@ -49,6 +49,7 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 	return (
 		<Input
 			ref={inputRef}
+			className="px-2.5 py-2"
 			trial={<span className="uppercase">{currency}</span>}
 			onKeyUp={handleKeyPress}
 			onBlur={handleBlur}
