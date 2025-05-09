@@ -52,9 +52,9 @@ function B({ className }: { className?: string }) {
 						active={activeItem === "dashboard"}
 						onClick={() => setActiveItem("dashboard")}
 					/>
-					<Accordion collapsible defaultValue="components" className="border-none">
+					<Accordion collapsible defaultValue="components" variant="open">
 						<AccordionItem value="components">
-							<AccordionTrigger className={cn("hover:bg-bg-level0 flex h-10 cursor-default gap-3 rounded-md px-2 text-sm")}>
+							<AccordionTrigger className={cn("hover:bg-fill-level1 flex h-10 cursor-default gap-3 rounded-md px-2 text-sm")}>
 								<Search className="text-text-secondary" /> <span className="flex-1">Components</span>
 							</AccordionTrigger>
 							<AccordionContent className="pt-0.5">
@@ -142,7 +142,7 @@ function AccordionTextItem({ text, active, onClick }: AccordionTextItemProps) {
 			onClick={onClick}
 			className={cn("cursor-default rounded-md py-2 pl-11 pr-2 text-sm transition-colors", {
 				"bg-bg-level0": active,
-				"hover:bg-bg-level1": !active,
+				"hover:bg-fill-level1": !active,
 			})}>
 			{text}
 		</span>
@@ -164,8 +164,8 @@ function Item({ id, prefix, suffix, text, active, onClick }: ItemProps) {
 			id={id}
 			onClick={onClick}
 			className={cn("flex cursor-default items-center gap-3 rounded-md p-2 text-sm transition-colors", {
-				"bg-bg-level1": active,
-				"hover:bg-bg-level0": !active,
+				"bg-bg-level0": active,
+				"hover:bg-fill-level1": !active,
 			})}>
 			{prefix}
 			<span className="flex-1">{text}</span>
