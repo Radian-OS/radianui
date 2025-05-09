@@ -404,7 +404,6 @@ function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: D
 		</span>
 	)
 }
-
 export default DatePicker
 
 function TypeableDatePicker({
