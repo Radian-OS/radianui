@@ -146,6 +146,7 @@ export function TimeSelector(props: TimeSelectorProps) {
 
 	if (!showTime) return null
 
+
 	return (
 		<div
 			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>

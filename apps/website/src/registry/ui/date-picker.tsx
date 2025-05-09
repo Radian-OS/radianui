@@ -482,6 +482,25 @@ function TypeableDatePicker({
 		48: "h-6 w-6",
 	}
 
+
+
+	useEffect(() => {
+		// If dateTime is not set, do nothing
+		if (!dateTime) return
+
+		// Find the matching index from timeOptions based on the dateTime hour and minute
+		const matchedIndex = timeOptions.findIndex(
+			(time) => time.hour === dateTime.hour && time.minute === dateTime.minute
+		)
+
+		// If a matching time is found, update the selectedIndex to sync the checkmark
+		if (matchedIndex !== -1 && matchedIndex !== selectedIndex) {
+			setSelectedIndex(matchedIndex)
+		}
+	}, [dateTime, timeOptions, selectedIndex, setSelectedIndex])
+
+
+
 	return (
 		<Popover>
 			<PopoverTrigger disabled={disables}>
@@ -570,7 +589,28 @@ function TypeableDatePicker({
 							setSelectedIndex={setSelectedIndex}
 							formatTime={formatTime}
 							showTime={showTime}
-							mode="type"
+							onTimeSelect={(formattedTime) => {
+								const [timePart, rawPeriod] = formattedTime.trim().split(" ")
+								if (!timePart || !rawPeriod) return
+
+								const period = rawPeriod.toUpperCase() === "PM" ? "PM" : "AM"
+								const [hourStr, minuteStr] = timePart.split(":")
+								let hour = parseInt(hourStr, 10)
+								const minute = parseInt(minuteStr, 10)
+
+								// Convert to 24-hour format
+								if (period === "AM" && hour === 12) hour = 0
+								if (period === "PM" && hour !== 12) hour += 12
+
+								if (dateTime) {
+									const newDateTime = parseZonedDateTime(
+										`${dateTime.year}-${String(dateTime.month).padStart(2, "0")}-${String(dateTime.day).padStart(2, "0")}` +
+										`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
+										`[America/Los_Angeles]`
+									)
+									setDateTime(newDateTime)
+								}
+							}}
 						/>
 					</div>
 					<div className="flex w-full justify-end">{footer && footer}</div>
