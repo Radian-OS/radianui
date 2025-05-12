@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { CircleUserRound } from "lucide-react"
+import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -158,7 +159,7 @@ const InputPreview = () => {
 						label={label ? "Username" : undefined}
 						placeholder="Enter your username here"
 						lead={prefixIcon ? <CircleUserRound /> : null}
-						trial={suffixIcon ? <CircleUserRound /> : null}
+						trial={suffixIcon ? <Badge>Test</Badge> : null}
 						hasError={hasError}
 						errorMsg={hasError ? "There is an error" : undefined}
 					/>
