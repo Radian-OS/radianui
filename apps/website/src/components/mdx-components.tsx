@@ -50,6 +50,7 @@ import BannerExamplePreview2 from "@/registry/example/banner/banner-example-prev
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
+import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
@@ -61,7 +62,6 @@ import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-e
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 
 type MdxProps = {
 	code: string
@@ -121,7 +121,7 @@ const components: MDXComponents = {
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
 	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
-	CurrencyExamplePreview:()=><CurrencyExamplePreview/>,
+	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

@@ -20,7 +20,7 @@ const CurrencyExamplePreview = () => {
 	const [value, setValue] = useState("100")
 	const [placeholder, setPlaceholder] = useState("Enter amount")
 	const [disabled, setDisabled] = useState("false")
-	const [key, setKey] = useState(0)
+	// const [key, setKey] = useState(0)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -36,7 +36,7 @@ const CurrencyExamplePreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setCurrency(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[currency]}>
@@ -56,7 +56,7 @@ const CurrencyExamplePreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setValue(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[value]}>
@@ -75,7 +75,7 @@ const CurrencyExamplePreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setPlaceholder(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[placeholder]}>
@@ -93,7 +93,7 @@ const CurrencyExamplePreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setDisabled(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
