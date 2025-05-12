@@ -23,7 +23,7 @@ const contents = [
 		id: 3,
 		trigger: "What application components does Radian OS provide?",
 		content:
-			"Radian OS includes application components such as User Authentication, Navigation Bars, Application Settings, Onboarding flows, Profile sections, and more, facilitating the development of comprehensive web applications.",
+			"Radian OS includes application component such as User Authentication, Navigation Bars, Application Settings, Onboarding flows, Profile sections, and more, facilitating the development of comprehensive web applications.",
 		icon: TowerControlIcon,
 	},
 	{
