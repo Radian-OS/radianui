@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { ChevronDown } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import { CurrencyInput } from "@/registry/ui/currency"
 import {
@@ -15,12 +16,14 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const CurrencyInputPreview = () => {
+// import { Button } from "@/registry/ui/button"
+
+const CurrencyExamplePreview = () => {
 	const [currency, setCurrency] = useState("usd")
 	const [value, setValue] = useState("100")
 	const [placeholder, setPlaceholder] = useState("Enter amount")
 	const [disabled, setDisabled] = useState("false")
-	const [key, setKey] = useState(0)
+	// const [key, setKey] = useState(0)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -36,7 +39,7 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setCurrency(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[currency]}>
@@ -56,7 +59,7 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setValue(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[value]}>
@@ -75,7 +78,7 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setPlaceholder(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[placeholder]}>
@@ -93,7 +96,7 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setDisabled(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
@@ -112,17 +115,25 @@ const CurrencyInputPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
-					{/* <div className="w-full max-w-sm"> */}
 					<CurrencyInput
-						key={key}
-						currency={currency}
-						value={value}
-						placeholder={placeholder}
-						disabled={disabled === "true"}
-						onChange={(e) => setValue(e.target.value)}
 						className="w-80"
+						currency="inr"
+						value="200"
+						trial={
+							<Dropdown>
+								<DropdownTrigger asChild>
+									<span className="flex h-9 items-center justify-center border border-r-0 border-t-0 px-2">
+										<ChevronDown className="" size={20} />
+									</span>
+								</DropdownTrigger>
+								<DropdownContent>
+									<DropdownItem>This week</DropdownItem>
+									<DropdownItem>This month</DropdownItem>
+									<DropdownItem>This quarter</DropdownItem>
+								</DropdownContent>
+							</Dropdown>
+						}
 					/>
-					{/* <CurrencyInput className="w-80" currency="inr" value="200" trial={<span>NRP</span>} /> */}
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -143,4 +154,4 @@ const CurrencyInputPreview = () => {
 	)
 }
 
-export default CurrencyInputPreview
+export default CurrencyExamplePreview
