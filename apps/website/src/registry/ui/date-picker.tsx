@@ -438,22 +438,66 @@ function TypeableDatePicker({
 	// Convert Date to DateValue for the DateField
 	const [dateTime, setDateTime] = useState<ZonedDateTime | null>(null)
 
-	const dateTimeValue = dateTime ? new CalendarDateTime(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute) : null
+	// Convert to DateValue for DateField
+	const dateValue = useMemo(() => {
+		if (!dateTime) return null
 
-	// Handle time change
-	const handleDateTimeChange = (value: DateValue | null) => {
+		return new CalendarDateTime(dateTime.year, dateTime.month, dateTime.day, showTime ? dateTime.hour : 0, showTime ? dateTime.minute : 0)
+	}, [dateTime, showTime])
+
+	// Handle date changes with proper validation
+	const handleDateChange = (value: DateValue | null) => {
 		if (!value) {
 			setDateTime(null)
 			return
 		}
 
-		const newDateTime = parseZonedDateTime(
-			`${value.year}-${String(value.month).padStart(2, "0")}-${String(value.day).padStart(2, "0")}` +
-				`T${String("hour" in value ? value.hour : 0).padStart(2, "0")}:${String("minute" in value ? value.minute : 0).padStart(2, "0")}` +
+		try {
+			// Ensure all date parts are properly formatted
+			const year = value.year
+			const month = "month" in value ? value.month : dateTime?.month || 1
+			const day = "day" in value ? value.day : dateTime?.day || 1
+			const hour = showTime && "hour" in value ? value.hour : dateTime?.hour || 0
+			const minute = showTime && "minute" in value ? value.minute : dateTime?.minute || 0
+
+			// Construct properly padded ISO string
+			const isoString =
+				`${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
+				`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
 				`[America/Los_Angeles]`
-		)
-		setDateTime(newDateTime)
+
+			const newDateTime = parseZonedDateTime(isoString)
+			setDateTime(newDateTime)
+		} catch (error) {
+			console.error("Invalid date input", error)
+			// Optionally maintain previous valid state
+		}
 	}
+	// Handle date changes
+	// const handleDateChange = (value: DateValue | null) => {
+	// 	if (!value) {
+	// 		setDateTime(null);
+	// 		return;
+	// 	}
+
+	// 	// For day granularity, set time to start of day (00:00)
+	// 	// For minute granularity, preserve existing time or use 00:00 if new date
+	// 	const hour = showTime
+	// 		? ("hour" in value ? value.hour : (dateTime?.hour || 0))
+	// 		: 0;
+
+	// 	const minute = showTime
+	// 		? ("minute" in value ? value.minute : (dateTime?.minute || 0))
+	// 		: 0;
+
+	// 	const newDateTime = parseZonedDateTime(
+	// 		`${value.year}-${String(value.month).padStart(2, "0")}-${String(value.day).padStart(2, "0")}` +
+	// 		`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
+	// 		`[America/Los_Angeles]`
+	// 	);
+
+	// 	setDateTime(newDateTime);
+	// };
 
 	const sizeHeightMapping = {
 		28: "h-4 w-4",
@@ -494,8 +538,8 @@ function TypeableDatePicker({
 						<DateField
 							granularity={showTime ? "minute" : "day"}
 							className={cn("flex flex-col gap-1 border-none")}
-							value={dateTimeValue}
-							onChange={handleDateTimeChange}
+							value={dateValue}
+							onChange={handleDateChange}
 							isDisabled={disables}
 							{...props}>
 							<DateInputRC>
@@ -547,11 +591,17 @@ function TypeableDatePicker({
 											}
 										: { hour: 0, minute: 0 }
 
+									const year = selectedDate.getFullYear()
+									const month = selectedDate.getMonth() + 1
+									const maxDay = new Date(year, month, 0).getDate()
+									const day = Math.min(selectedDate.getDate(), maxDay) // clamp invalid day
+
 									const newDateTime = parseZonedDateTime(
-										`${selectedDate.getFullYear()}-${String(selectedDate.getMonth() + 1).padStart(2, "0")}-${String(selectedDate.getDate()).padStart(2, "0")}` +
+										`${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
 											`T${String(currentTime.hour).padStart(2, "0")}:${String(currentTime.minute).padStart(2, "0")}` +
 											`[America/Los_Angeles]`
 									)
+
 									setDateTime(newDateTime)
 								}
 							}}
