@@ -30,6 +30,7 @@ import PaginationPreview from "@/component-preview/pagination-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
+import SearchPreview from "@/component-preview/search-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SonnerPreview from "@/component-preview/sonner-preview"
@@ -124,6 +125,7 @@ const components: MDXComponents = {
 	SwitchPreview: () => <SwitchPreview />,
 	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
 	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
+	SearchPreview: () => <SearchPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

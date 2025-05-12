@@ -68,6 +68,7 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/progress-bar", name: "Progress Bar" },
 			{ link: "/documentation/components/radio-group", name: "Radio Group" },
 			{ link: "/documentation/components/resizable", name: "Resizable" },
+			{ link: "/documentation/components/search", name: "Search" },
 			{ link: "/documentation/components/skeleton", name: "Skeleton" },
 			{ link: "/documentation/components/slider", name: "Slider" },
 			{ link: "/documentation/components/sonner", name: "Sonner" },
