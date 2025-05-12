@@ -44,6 +44,7 @@ import Manual from "@/components/manual"
 import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
+import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
@@ -68,6 +69,7 @@ type MdxProps = {
 
 const components: MDXComponents = {
 	AccordionPreview: () => <AccordionPreview />,
+	AccordionWithIconExample: () => <AccordionWithIconExample />,
 	AlertPreview: () => <AlertPreview />,
 	AvatarPreview: () => <AvatarPreview />,
 	AvatargroupPreview: () => <AvatargroupPreview />,
