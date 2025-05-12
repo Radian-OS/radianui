@@ -473,32 +473,6 @@ function TypeableDatePicker({
 			// Optionally maintain previous valid state
 		}
 	}
-	// Handle date changes
-	// const handleDateChange = (value: DateValue | null) => {
-	// 	if (!value) {
-	// 		setDateTime(null);
-	// 		return;
-	// 	}
-
-	// 	// For day granularity, set time to start of day (00:00)
-	// 	// For minute granularity, preserve existing time or use 00:00 if new date
-	// 	const hour = showTime
-	// 		? ("hour" in value ? value.hour : (dateTime?.hour || 0))
-	// 		: 0;
-
-	// 	const minute = showTime
-	// 		? ("minute" in value ? value.minute : (dateTime?.minute || 0))
-	// 		: 0;
-
-	// 	const newDateTime = parseZonedDateTime(
-	// 		`${value.year}-${String(value.month).padStart(2, "0")}-${String(value.day).padStart(2, "0")}` +
-	// 		`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
-	// 		`[America/Los_Angeles]`
-	// 	);
-
-	// 	setDateTime(newDateTime);
-	// };
-
 	const sizeHeightMapping = {
 		28: "h-4 w-4",
 		32: "h-5 w-5",
@@ -523,7 +497,7 @@ function TypeableDatePicker({
 
 	return (
 		<Popover>
-			<PopoverTrigger disabled={disables}>
+			<PopoverTrigger disabled={disables} asChild>
 				<div className="flex flex-col items-start gap-1.5">
 					{label && <Label className={cn({ "text-text-disabled cursor-not-allowed": disables })}>{label}</Label>}
 					<div
