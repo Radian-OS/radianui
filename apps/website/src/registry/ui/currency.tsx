@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { cn } from "@/lib/utils"
 import { Input, InputProps } from "./input"
 
 type CurrencyInputProps = {
@@ -46,10 +47,23 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 		}
 	}
 
+	// Style the currency display to match the exact styling and dimensions of icons
+	const currencyTrail = (
+		<div className="flex h-5 w-5 items-center justify-center">
+			<span
+				className={cn("text-text-tertiary text-sm uppercase", {
+					"cursor-not-allowed": props.disabled,
+				})}>
+				{currency}
+			</span>
+		</div>
+	)
+
 	return (
 		<Input
+			className={cn("text-text-tertiary")}
 			ref={inputRef}
-			trial={<span className="uppercase">{currency}</span>}
+			trial={currencyTrail}
 			onKeyUp={handleKeyPress}
 			onBlur={handleBlur}
 			onFocus={handleFocus}

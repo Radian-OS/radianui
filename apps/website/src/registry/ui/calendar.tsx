@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, parseDate, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
@@ -141,13 +141,27 @@ type TimeSelectorProps = {
 	onTimeSelect?: (formattedTime: string) => void
 	mode?: string
 }
-export function TimeSelector(props: TimeSelectorProps) {
-	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode } = props
+export function TimeSelector({ showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode, onTimeSelect }: TimeSelectorProps) {
+	const containerRef = useRef<HTMLDivElement>(null)
+
+	// Close the time selector if clicked outside
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+				setSelectedIndex(-1) // Deselect time if clicked outside
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside)
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside)
+		}
+	}, [setSelectedIndex])
 
 	if (!showTime) return null
 
 	return (
 		<div
+			ref={containerRef}
 			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
 			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT TIME</p>
 			{timeOptions.map((time, index) => {
@@ -161,7 +175,7 @@ export function TimeSelector(props: TimeSelectorProps) {
 						data-value={time}
 						onClick={() => {
 							setSelectedIndex(index)
-							props.onTimeSelect?.(formatted)
+							onTimeSelect?.(formatted)
 						}}>
 						{formatted}
 						{isSelected && mode !== "type" ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
@@ -173,12 +187,12 @@ export function TimeSelector(props: TimeSelectorProps) {
 }
 
 type GetMergedClassNamesParams = {
-	props: { disabled?: boolean; hideNavigation?: boolean };
-	navigatorStyle: string;
-	dualCalendar: boolean;
-	hideCaption?: boolean;
-	classNames?: Record<string, string>;
-};
+	props: { disabled?: boolean; hideNavigation?: boolean }
+	navigatorStyle: string
+	dualCalendar: boolean
+	hideCaption?: boolean
+	classNames?: Record<string, string>
+}
 
 export function getMergedClassNames({
 	props,
@@ -206,19 +220,17 @@ export function getMergedClassNames({
 		day: "size-8 p-0 shrink-0 group text-sm aria-selected:opacity-100",
 		day_button:
 			"text-center rounded-lg text-text text-sm font-medium hover:bg-bg-level1 size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-text-tertiary group-data-selected:text-white group-data-disabled:text-text-tertiary group-data-outside:text-text-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-text group-data-selected:group-data-outside:text-white",
-		button_previous: cn(
-			"border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7",
-			{ "pointer-events-none": props.disabled }
-		),
-		button_next: cn(
-			"border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7",
-			{ "pointer-events-none": props.disabled }
-		),
+		button_previous: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
+			"pointer-events-none": props.disabled,
+		}),
+		button_next: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
+			"pointer-events-none": props.disabled,
+		}),
 		range_start: "range-start",
 		range_middle: "range-middle",
 		range_end: "range-end",
 		...classNames,
-	};
+	}
 }
 
 // Calendar component definition
@@ -264,7 +276,7 @@ function CalendarComponent({
 		dualCalendar,
 		hideCaption,
 		classNames,
-	});
+	})
 
 	// Custom components for the calendar
 	const customComponents: Partial<CustomComponents> = {}

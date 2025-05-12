@@ -19,7 +19,6 @@ export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type DatePickerModes = "single" | "multiple" | "range" | "time"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
-const booleanOptions = ["true", "false"]
 
 const DatePickerPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -84,11 +83,8 @@ const DatePickerPreview = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">No</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -100,11 +96,8 @@ const DatePickerPreview = () => {
 										selectedValues={[String(disabled)]}
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">No</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -117,7 +110,7 @@ const DatePickerPreview = () => {
 										selectedValues={[String(hasError)]}
 										onSelectedChange={(values) => setHasError(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">No</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
@@ -132,8 +125,12 @@ const DatePickerPreview = () => {
 											selectedValues={[mode]}
 											onSelectedChange={(values) => setMode(values[0] as DatePickerModes)}
 											minSelectionCount={1}>
-											<DropdownItem value="single">Single</DropdownItem>
-											<DropdownItem value="multiple">Multiple</DropdownItem>
+											{!typeable && (
+												<>
+													<DropdownItem value="single">Single</DropdownItem>
+													<DropdownItem value="multiple">Multiple</DropdownItem>
+												</>
+											)}
 											<DropdownItem value="range">Range</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
@@ -146,8 +143,8 @@ const DatePickerPreview = () => {
 											selectedValues={[String(showDateRangeShortcut)]}
 											onSelectedChange={(values) => setShowDateRangeShortcut(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -159,21 +156,21 @@ const DatePickerPreview = () => {
 											selectedValues={[String(doubleCalendar)]}
 											onSelectedChange={(values) => setDoubleCalendar(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Show Time</DropdownSubTrigger>
+									<DropdownSubTrigger>Time</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
 											selectedValues={[String(showTime)]}
 											onSelectedChange={(values) => setShowTime(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -185,8 +182,8 @@ const DatePickerPreview = () => {
 											selectedValues={[String(footer)]}
 											onSelectedChange={(values) => setFooter(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -198,8 +195,8 @@ const DatePickerPreview = () => {
 											selectedValues={[String(typeable)]}
 											onSelectedChange={(values) => setTypeable(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
