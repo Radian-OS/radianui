@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { ChevronDown } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import { CurrencyInput } from "@/registry/ui/currency"
 import {
@@ -14,6 +15,8 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+
+// import { Button } from "@/registry/ui/button"
 
 const CurrencyExamplePreview = () => {
 	const [currency, setCurrency] = useState("usd")
@@ -112,17 +115,25 @@ const CurrencyExamplePreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
-					{/* <div className="w-full max-w-sm"> */}
-					{/* <CurrencyInput
-						key={key}
-						currency={currency}
-						value={value}
-						placeholder={placeholder}
-						disabled={disabled === "true"}
-						onChange={(e) => setValue(e.target.value)}
+					<CurrencyInput
 						className="w-80"
-					/> */}
-					<CurrencyInput className="w-80" currency="inr" value="200" trial={<span>NRP</span>} />
+						currency="inr"
+						value="200"
+						trial={
+							<Dropdown>
+								<DropdownTrigger asChild>
+									<span className="flex h-9 items-center justify-center border border-r-0 border-t-0 px-2">
+										<ChevronDown className="" size={20} />
+									</span>
+								</DropdownTrigger>
+								<DropdownContent>
+									<DropdownItem>This week</DropdownItem>
+									<DropdownItem>This month</DropdownItem>
+									<DropdownItem>This quarter</DropdownItem>
+								</DropdownContent>
+							</Dropdown>
+						}
+					/>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">

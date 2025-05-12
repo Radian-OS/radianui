@@ -22,6 +22,7 @@ function Dropdown({ children, ...props }: React.ComponentPropsWithoutRef<typeof 
 		</DropdownMenuPrimitive.Root>
 	)
 }
+
 Dropdown.displayName = "Dropdown"
 
 //Create a DropdownTrigger component

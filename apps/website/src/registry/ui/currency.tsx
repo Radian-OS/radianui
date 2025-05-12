@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
-import { Input, InputProps } from "./input"
+import { Input } from "./input"
+import type { InputProps } from "./input"
 
 type CurrencyInputProps = {
 	currency?: string
@@ -13,22 +14,19 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 
 	useEffect(() => {
 		setRawValue(props.value as string)
-		// Dynamically get the currency symbol
 		const formatter = new Intl.NumberFormat("en-US", {
 			style: "currency",
 			currency: currency.toUpperCase(),
 		})
-
-		const symbol = formatter.formatToParts(12345)[0].value // Get the symbol by formatting a number
-		setCurrencySymbol(symbol) // Save the symbol to state
+		const symbol = formatter.formatToParts(12345)[0].value
+		setCurrencySymbol(symbol)
 	}, [props.value, currency])
 
-	const formatCurrency = (value: number) => {
-		return new Intl.NumberFormat("en-US", {
+	const formatCurrency = (value: number) =>
+		new Intl.NumberFormat("en-US", {
 			style: "currency",
 			currency: currency.toUpperCase(),
 		}).format(value)
-	}
 
 	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter" && inputRef.current) {
@@ -37,16 +35,19 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 	}
 
 	const handleBlur = () => {
-		if (inputRef.current) {
-			if (props.value === "") {
-				setRawValue("")
-				inputRef.current.value = ""
-			} else {
-				const numValue = parseFloat(props.value as string)
-				setRawValue(props.value as string)
-				const formattedValue = formatCurrency(numValue)
-				inputRef.current.value = formattedValue
-			}
+		if (!inputRef.current) return
+
+		if (props.value === "") {
+			setRawValue("")
+			inputRef.current.value = ""
+		} else {
+			const numValue = parseFloat(props.value as string)
+			setRawValue(props.value as string)
+
+			// strip out the extra symbol
+			const formattedValue = formatCurrency(numValue).replace(currencySymbol, "").trim()
+
+			inputRef.current.value = formattedValue
 		}
 	}
 
@@ -56,9 +57,14 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 		}
 	}
 
-	// Display the dynamic currency symbol
+	// Prevent the input from focusing when the icon is clicked
+	const preventFocus = (e: React.MouseEvent) => {
+		e.preventDefault()
+		e.stopPropagation()
+	}
+
 	const currencyLead = (
-		<div className="flex h-5 w-5 items-center justify-center">
+		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex h-5 w-5 items-center justify-center">
 			<span
 				className={cn("text-text-tertiary text-sm uppercase", {
 					"cursor-not-allowed": props.disabled,
@@ -68,8 +74,13 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 		</div>
 	)
 
-	const currencyTrail = (
-		<div className="flex h-5 w-5 items-center justify-center">
+	// Wrap the trial prop in a div that prevents focus propagation
+	const wrappedTrial = props.trial ? (
+		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto">
+			{props.trial}
+		</div>
+	) : (
+		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex h-5 w-5 items-center justify-center">
 			<span
 				className={cn("text-text-tertiary text-sm uppercase", {
 					"cursor-not-allowed": props.disabled,
@@ -84,7 +95,7 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 			className={cn("text-text-tertiary")}
 			ref={inputRef}
 			lead={currencyLead}
-			trial={currencyTrail}
+			trial={wrappedTrial}
 			onKeyUp={handleKeyPress}
 			onBlur={handleBlur}
 			onFocus={handleFocus}
