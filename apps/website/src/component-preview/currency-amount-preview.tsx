@@ -121,7 +121,7 @@ const CurrencyInputPreview = () => {
 						onChange={(e) => setValue(e.target.value)}
 						className="w-80"
 					/>
-					{/* </div> */}
+					{/* <CurrencyInput className="w-80" currency="inr" value="200" trial={<span>NRP</span>} /> */}
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
