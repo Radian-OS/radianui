@@ -1,4 +1,4 @@
-import { getPackageVersion } from "@/lib/getPackageInfo"
+import { getPackageVersion } from "@/lib/get-package-info"
 import { Badge } from "@/registry/ui/badge"
 
 export default function VersionDisplay() {
