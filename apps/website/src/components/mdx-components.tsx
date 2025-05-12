@@ -61,6 +61,7 @@ import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-e
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 
 type MdxProps = {
 	code: string
@@ -120,6 +121,7 @@ const components: MDXComponents = {
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
 	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
+	CurrencyExamplePreview:()=><CurrencyExamplePreview/>,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

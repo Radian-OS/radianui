@@ -12,6 +12,7 @@ import {
 import { Check, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Divider } from "./divider"
+import { Button } from "./button"
 
 // Create a Dropdown component
 function Dropdown({ children, ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Root>) {
@@ -35,15 +36,11 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 
 	return (
 		<DropdownMenuPrimitive.Trigger
-			className={cn(
-				"bg-bg-level1 text-text flex w-fit text-sm",
-				"border-border items-center justify-start gap-2 rounded-lg border",
-				"drop-shadow-xs px-3 py-2.5 font-medium",
-				"focus-visible:ring-offset-bg-base focus-visible:ring-border-alpha focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-			)}
-			{...props}>
-			<span className="flex-1">{children}</span>
-			<ChevronDown size={20} className="text-text-tertiary" />
+			{...props} asChild >
+			<Button variant="neutral-outline" >
+				{children}
+				<ChevronDown size={20} className="text-text-tertiary" />
+			</Button>
 		</DropdownMenuPrimitive.Trigger>
 	)
 }

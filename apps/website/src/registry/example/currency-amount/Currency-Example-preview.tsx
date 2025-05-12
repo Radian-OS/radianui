@@ -15,7 +15,7 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const CurrencyInputPreview = () => {
+const CurrencyExamplePreview = () => {
 	const [currency, setCurrency] = useState("usd")
 	const [value, setValue] = useState("100")
 	const [placeholder, setPlaceholder] = useState("Enter amount")
@@ -113,7 +113,7 @@ const CurrencyInputPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
 					{/* <div className="w-full max-w-sm"> */}
-					<CurrencyInput
+					{/* <CurrencyInput
 						key={key}
 						currency={currency}
 						value={value}
@@ -121,8 +121,8 @@ const CurrencyInputPreview = () => {
 						disabled={disabled === "true"}
 						onChange={(e) => setValue(e.target.value)}
 						className="w-80"
-					/>
-					{/* <CurrencyInput className="w-80" currency="inr" value="200" trial={<span>NRP</span>} /> */}
+					/> */}
+					<CurrencyInput className="w-80" currency="inr" value="200" trial={<span>NRP</span>} />
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -143,4 +143,4 @@ const CurrencyInputPreview = () => {
 	)
 }
 
-export default CurrencyInputPreview
+export default CurrencyExamplePreview
