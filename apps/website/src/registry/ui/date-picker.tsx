@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
-import { CalendarDate, Time, getLocalTimeZone, now, today } from "@internationalized/date"
+import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { CalendarDateTime, ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, Check } from "lucide-react"
@@ -203,27 +203,14 @@ function DatePicker({
 
 	const [open, setOpen] = useState<boolean>(false)
 	const [time, setTime] = useState<string>("")
-	const getCurrentTimeInAMPM = (): string => {
-		const now = new Date()
-		let hours = now.getHours()
-		const minutes = now.getMinutes()
-		const ampm = hours >= 12 ? "PM" : "AM"
-
-		hours = hours % 12 || 12 // Convert 0 to 12
-		const minutesStr = minutes < 10 ? `0${minutes}` : minutes
-
-		return `${hours}:${minutesStr} ${ampm}`
-	}
-	useEffect(() => {
-		const currentTime = getCurrentTimeInAMPM()
-		setTime(currentTime)
-	}, [])
 
 	useEffect(() => {
-		const todayFormatted = format(new Date(), "MMMM dd, yyyy")
-		const datePart = displayText || todayFormatted
+		if (!displayText && !time) return // Skip setting input if both are empty
+
+		// const todayFormatted = format(new Date(), "MMMM dd, yyyy");
+		const datePart = displayText
 		const combined = time ? `${datePart}, ${time}` : datePart
-		setInputValue(combined)
+		setInputValue(combined || "")
 	}, [displayText, time])
 
 	const alignOffset = useMemo(() => {
@@ -266,7 +253,7 @@ function DatePicker({
 						className={cn(triggerClassName)}
 						readOnly
 						value={inputValue}
-						placeholder="Date picker"
+						placeholder="Select a date"
 						trial={
 							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
 								<PopoverTrigger disabled={disabled}>
@@ -449,7 +436,7 @@ function TypeableDatePicker({
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
 	// Convert Date to DateValue for the DateField
-	const [dateTime, setDateTime] = useState<ZonedDateTime | null>(now(getLocalTimeZone()))
+	const [dateTime, setDateTime] = useState<ZonedDateTime | null>(null)
 
 	const dateTimeValue = dateTime ? new CalendarDateTime(dateTime.year, dateTime.month, dateTime.day, dateTime.hour, dateTime.minute) : null
 
@@ -503,8 +490,9 @@ function TypeableDatePicker({
 
 							"text-text-disables bg-fill-level1 cursor-not-allowed drop-shadow-none": disables,
 						})}>
+						{/* <I18nProvider locale="en-GB"> */}
 						<DateField
-							granularity="minute"
+							granularity={showTime ? "minute" : "day"}
 							className={cn("flex flex-col gap-1 border-none")}
 							value={dateTimeValue}
 							onChange={handleDateTimeChange}
@@ -516,7 +504,7 @@ function TypeableDatePicker({
 										className={cn(
 											size,
 											"rounded-sm text-end",
-											"data-[focused]:bg-bg-level2",
+											"data-[focused]:bg-fill-level3",
 											"data-placeholder:text-text-tertiary",
 											"focus:outline-hidden focus:caret-transparent",
 											"data-[type=dayPeriod]:mr-0.5 data-[type=literal]:mr-0.5",
@@ -529,6 +517,7 @@ function TypeableDatePicker({
 								)}
 							</DateInputRC>
 						</DateField>
+						{/* </I18nProvider> */}
 						<CalendarIcon
 							className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
 								"text-text-tertiary": !disables,

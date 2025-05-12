@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, parseDate, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
@@ -141,13 +141,27 @@ type TimeSelectorProps = {
 	onTimeSelect?: (formattedTime: string) => void
 	mode?: string
 }
-export function TimeSelector(props: TimeSelectorProps) {
-	const { showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode } = props
+export function TimeSelector({ showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode, onTimeSelect }: TimeSelectorProps) {
+	const containerRef = useRef<HTMLDivElement>(null)
+
+	// Close the time selector if clicked outside
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+				setSelectedIndex(-1) // Deselect time if clicked outside
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside)
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside)
+		}
+	}, [setSelectedIndex])
 
 	if (!showTime) return null
 
 	return (
 		<div
+			ref={containerRef}
 			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
 			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT TIME</p>
 			{timeOptions.map((time, index) => {
@@ -161,7 +175,7 @@ export function TimeSelector(props: TimeSelectorProps) {
 						data-value={time}
 						onClick={() => {
 							setSelectedIndex(index)
-							props.onTimeSelect?.(formatted)
+							onTimeSelect?.(formatted)
 						}}>
 						{formatted}
 						{isSelected && mode !== "type" ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}

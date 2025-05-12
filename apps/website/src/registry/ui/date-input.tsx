@@ -6,18 +6,15 @@ import { cn } from "@/lib/utils"
 import { RoundedOptions, SizeOptions, cvaInputVariants } from "./input"
 
 // Creating a variant for date input styles using cva
-export const dateInputStyles = cva(
-	"border-gray flex items-center justify-between whitespace-nowrap rounded-lg border focus-within:outline-2 focus-within:-outline-offset-1 focus-within:outline-primary focus-within:ring-2 focus-within:ring-primary/20",
-	{
-		variants: {
-			...cvaInputVariants,
-		},
-		defaultVariants: {
-			rounded: "md",
-			size: "40",
-		},
-	}
-)
+export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
+	variants: {
+		...cvaInputVariants,
+	},
+	defaultVariants: {
+		rounded: "md",
+		size: "40",
+	},
+})
 
 // Type definition for custom class names for various parts of the date input
 export type DateInputProps = Omit<React.ComponentPropsWithoutRef<typeof DateField>, "isDisabled"> & {

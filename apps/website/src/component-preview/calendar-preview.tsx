@@ -54,21 +54,21 @@ const CalendarPreview = () => {
 										selectedValues={[String(doubleCalendar)]}
 										onSelectedChange={(values) => setDoubleCalendar(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Show Time</DropdownSubTrigger>
+								<DropdownSubTrigger>Time</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(showTime)]}
 										onSelectedChange={(values) => setShowTime(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -80,8 +80,8 @@ const CalendarPreview = () => {
 										selectedValues={[String(showShortcut)]}
 										onSelectedChange={(values) => setShowShortCut(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -93,8 +93,8 @@ const CalendarPreview = () => {
 										selectedValues={[String(footer)]}
 										onSelectedChange={(values) => setFooter(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
