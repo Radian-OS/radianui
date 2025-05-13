@@ -241,24 +241,25 @@ const DatePickerPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`  
-<DatePicker
+					code={`<DatePicker
     mode="${mode}"
     placeholder="Select Date"
-    showDateRangeShortcut=${showDateRangeShortcut}
-    disabled=${disabled}
-    dualCalendar=${doubleCalendar}
-    showTime=${showTime}
+    showDateRangeShortcut={${showDateRangeShortcut}}
+    disabled={${disabled}}
+    dualCalendar={${doubleCalendar}}
+    showTime={${showTime}}
     size="${size}"
     rounded="${rounded}"
-    typeable="${typeable}"
+    typeable={${typeable}}
     footer=${
-			footer &&
-			`
-       {<div className="p-3 flex gap-2">
-            <Button variant="neutral-outline">Cancel</Button>
-            <Button>Apply</Button>
-        </div>}`
+			footer
+				? `{
+       		<div className="p-3 flex gap-2">
+            	<Button variant="neutral-outline">Cancel</Button>
+            	<Button>Apply</Button>
+        	</div>
+		}`
+				: `{false}`
 		}
 />`}
 				/>

@@ -112,12 +112,14 @@ function Slider({
 	return (
 		<div
 			className={cn(
-				"flex flex-col gap-2",
+				"flex flex-col",
 				{
+					"gap-2": suffixIcon || prefixIcon,
 					"w-full": orientation === "horizontal",
-					"h-full w-fit items-start": orientation === "vertical",
+					"w-full items-center justify-center": orientation === "vertical",
 					"cursor-not-allowed": props.disabled,
 				},
+				suffixIcon || prefixIcon ? "gap-2" : "gap-3",
 				className,
 				classNames?.base
 			)}>
@@ -149,12 +151,12 @@ function Slider({
 				<div
 					className={cn("relative", {
 						"flex-1": orientation === "horizontal",
-						"flex h-40 flex-row": orientation === "vertical",
+						"flex h-60 items-center justify-center": orientation === "vertical",
 					})}>
 					<SliderPrimitive.Root
 						ref={ref}
 						className={cn(
-							"data-disabled:opacity-80 relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
+							"data-disabled:opacity-80 flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
 							classNames?.sliderRoot
 						)}
 						value={currentValue}
@@ -164,7 +166,7 @@ function Slider({
 						{...props}>
 						<SliderPrimitive.Track
 							className={cn(
-								"border-border bg-bg-level1 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-2",
+								"bg-fill-level3 relative h-2 grow overflow-hidden rounded-full data-[orientation=horizontal]:h-2 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-2",
 								classNames?.sliderTrack
 							)}>
 							<SliderPrimitive.Range
