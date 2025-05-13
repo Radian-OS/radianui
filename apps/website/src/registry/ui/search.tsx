@@ -13,6 +13,7 @@ type SearchProps = Omit<InputProps, "prefixIcon" | "suffixIcon"> & {
 	classNames?: InputClassNames & {
 		searchResults?: string /* The search results container */
 	}
+	suggestion?: boolean
 }
 // Defines the SearchInput functional component
 function SearchInput({
@@ -26,6 +27,7 @@ function SearchInput({
 	value,
 	showSearchResults,
 	defaultShowSearchResults = false,
+	suggestion = true,
 	...props
 }: SearchProps) {
 	const [showResultsInternal, setShowResults] = React.useState(defaultShowSearchResults)
@@ -48,7 +50,6 @@ function SearchInput({
 			<PopoverTrigger asChild>
 				<div>
 					<Input
-						placeholder="Search"
 						lead={<Search size={20} className="stroke-text-tertiary" />}
 						label={label}
 						errorMsg={errorMsg}
@@ -61,16 +62,18 @@ function SearchInput({
 					/>
 				</div>
 			</PopoverTrigger>
-			<PopoverContent
-				onOpenAutoFocus={function (e) {
-					e.preventDefault()
-				}}
-				className={cn("no-scrollbar max-h-88 bg-bg-level1 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
-				onInteractOutside={function () {
-					setShowResults(false)
-				}}>
-				{renderSearchResults && renderSearchResults()}
-			</PopoverContent>
+			{suggestion && (
+				<PopoverContent
+					onOpenAutoFocus={function (e) {
+						e.preventDefault()
+					}}
+					className={cn("no-scrollbar max-h-88 bg-bg-level1 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
+					onInteractOutside={function () {
+						setShowResults(false)
+					}}>
+					{renderSearchResults && renderSearchResults()}
+				</PopoverContent>
+			)}
 		</Popover>
 	)
 }

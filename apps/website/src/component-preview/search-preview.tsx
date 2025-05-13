@@ -24,7 +24,7 @@ const SearchPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-
+	const [suggestion, setSuggestion] = useState<boolean>(true)
 	const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([])
 	const [searchValue, setSearchValue] = useState("")
 
@@ -130,6 +130,22 @@ const SearchPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Suggestion</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(suggestion)]}
+										onSelectedChange={(values) => setSuggestion(values[0] === "true")}
+										minSelectionCount={1}>
+										{booleanOptions.map((option) => (
+											<DropdownItem key={option} value={option}>
+												{option}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -143,12 +159,14 @@ const SearchPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<SearchInput
 						label={label ? "Search" : undefined}
+						placeholder="Search"
 						size={size}
 						rounded={rounded}
 						disabled={disabled}
 						onChange={(e) => handleSearchChange(e.target.value)}
 						value={searchValue}
 						id="search-input"
+						suggestion={suggestion}
 						renderSearchResults={renderSearchResults}
 						classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
 					/>
@@ -164,7 +182,9 @@ const SearchPreview = () => {
     rounded="${rounded}"
     size="${size}"
     disabled="${disabled}"
-    label="${label ? "Username" : undefined}"
+    label="${label ? "Search" : undefined}"
+	placeholder="Search"
+	suggestion={${suggestion}}
 />`}
 				/>
 			</TabsContent>

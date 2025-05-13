@@ -169,20 +169,20 @@ const CalendarPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`  
-<Calendar
+					code={`<Calendar
     mode="${mode}"
-    dualCalendar=${doubleCalendar}
-    showTime=${showTime}
-    showShortcut=${showShortcut}
+    dualCalendar={${doubleCalendar}}
+    showTime={${showTime}}
+    showShortcut={${showShortcut}}
     footer=${
-			footer &&
-			`{
+			footer
+				? `{
             <div className="p-3 flex gap-2">
                 <Button variant="neutral-outline">Cancel</Button>
                 <Button>Apply</Button>
             </div>
             }`
+				: `{false}`
 		}
 />`}
 				/>

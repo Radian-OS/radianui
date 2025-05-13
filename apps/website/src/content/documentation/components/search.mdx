@@ -16,16 +16,14 @@ source: https://github.com/Radian-os
 
 ##### Props
 
-| Prop Name | Default Values | Values             |
-| --------- | -------------- | ------------------ |
-| rounded   | md             | xs,sm,md,lg,xl,2xl |
-| size      | 40             | 28,32,36,40,44,48  |
-| label     | false          | true/false         |
-| disabled  | false          | true/false         |
-| lead      | icon           |                    |
-| trail     | icon           |                    |
-| hasError  | false          | true/false         |
-| errorMsg  | false          |                    |
+| Prop Name   | Default Values | Values             |
+| ----------- | -------------- | ------------------ |
+| rounded     | md             | xs,sm,md,lg,xl,2xl |
+| size        | 40             | 28,32,36,40,44,48  |
+| label       |                |                    |
+| disabled    | false          | true/false         |
+| placeholder |                |                    |
+| suggestion  | true           | true/false         |
 
 ##### Usage
 
@@ -34,12 +32,9 @@ source: https://github.com/Radian-os
 	code={`<Search 
     rounded="sm"
     size="32"
-    disabled="false"
-    label="Username"
-    placeholder="Enter your username here"
-    lead="<Mail/>"
-    trail="<ArrowRight"
-    hasError="false"
-    errorMsg="There is a error"
+    label="Search"
+    disabled={false}
+    placeholder="Search"
+    suggestion={true}
 />`}
 />

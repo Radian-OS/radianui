@@ -91,7 +91,7 @@ const UrlPreview = () => {
 									onSelectedChange={(values) => setDomain(values[0] as domainOption)}
 									disableOpenStyle={true}
 									size="36"
-									className="-ms-0 w-fit">
+									className="-ms-[2px] w-fit">
 									<SelectItem value=".com">.com</SelectItem>
 									<SelectItem value=".org">.org</SelectItem>
 									<SelectItem value=".net">.net</SelectItem>
