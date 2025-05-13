@@ -48,6 +48,7 @@ function SearchInput({
 			<PopoverTrigger asChild>
 				<div>
 					<Input
+						placeholder="Search"
 						lead={<Search size={20} className="stroke-text-tertiary" />}
 						label={label}
 						errorMsg={errorMsg}
@@ -64,7 +65,7 @@ function SearchInput({
 				onOpenAutoFocus={function (e) {
 					e.preventDefault()
 				}}
-				className={cn("no-scrollbar max-h-88 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
+				className={cn("no-scrollbar max-h-88 bg-bg-level1 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
 				onInteractOutside={function () {
 					setShowResults(false)
 				}}>
