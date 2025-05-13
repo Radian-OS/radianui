@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronDown } from "lucide-react"
+// import { ChevronDown } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import { CurrencyInput } from "@/registry/ui/currency"
 import {
@@ -115,25 +115,7 @@ const CurrencyExamplePreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
-					<CurrencyInput
-						className="w-80"
-						currency="inr"
-						value="200"
-						trial={
-							<Dropdown>
-								<DropdownTrigger asChild>
-									<span className="flex h-9 items-center justify-center border border-r-0 border-t-0 px-2">
-										<ChevronDown className="" size={20} />
-									</span>
-								</DropdownTrigger>
-								<DropdownContent>
-									<DropdownItem>This week</DropdownItem>
-									<DropdownItem>This month</DropdownItem>
-									<DropdownItem>This quarter</DropdownItem>
-								</DropdownContent>
-							</Dropdown>
-						}
-					/>
+					<CurrencyInput className="w-80" currency="inr" value="200" />
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -143,7 +125,6 @@ const CurrencyExamplePreview = () => {
 					className="h-[420px]"
 					code={`<CurrencyInput
   currency="${currency}"
-  value="${value}"
   placeholder="${placeholder}"
   disabled={${disabled}}
   onChange={(e) => setValue(e.target.value)}
