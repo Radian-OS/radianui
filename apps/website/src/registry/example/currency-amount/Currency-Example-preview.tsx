@@ -1,7 +1,4 @@
-"use client"
-
 import { useState } from "react"
-// import { ChevronDown } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import { CurrencyInput } from "@/registry/ui/currency"
 import {
@@ -14,94 +11,39 @@ import {
 	DropdownSubTrigger,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
+// import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
+import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-// import { Button } from "@/registry/ui/button"
+export type CurrencyOption = "usd" | "eur" | "gbp"
 
-const CurrencyExamplePreview = () => {
-	const [currency, setCurrency] = useState("usd")
-	const [value, setValue] = useState("100")
-	const [placeholder, setPlaceholder] = useState("Enter amount")
-	const [disabled, setDisabled] = useState("false")
-	// const [key, setKey] = useState(0)
+const CurrencyPreview = () => {
+	const [currency, setCurrency] = useState<CurrencyOption>("usd")
+	const [value, setValue] = useState<string>("100")
+	const [hasError, setHasError] = useState<boolean>(false)
+
+	const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value)
+	}
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" className="mb-10 mt-2">
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
+						<DropdownContent>
 							<DropdownSub>
-								<DropdownSubTrigger>Currency</DropdownSubTrigger>
+								<DropdownSubTrigger>HasError</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setCurrency(Array.from(keys)[0])
-											// setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[currency]}>
-										<DropdownItem value="usd">USD</DropdownItem>
-										<DropdownItem value="eur">EUR</DropdownItem>
-										<DropdownItem value="gbp">GBP</DropdownItem>
-										<DropdownItem value="jpy">JPY</DropdownItem>
-										<DropdownItem value="inr">INR</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Value</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setValue(Array.from(keys)[0])
-											// setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[value]}>
-										<DropdownItem value="100">$100</DropdownItem>
-										<DropdownItem value="1000">$1,000</DropdownItem>
-										<DropdownItem value="10000">$10,000</DropdownItem>
-										<DropdownItem value="">Empty</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setPlaceholder(Array.from(keys)[0])
-											// setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[placeholder]}>
-										<DropdownItem value="Enter amount">Enter amount</DropdownItem>
-										<DropdownItem value="0.00">0.00</DropdownItem>
-										<DropdownItem value="Payment amount">Payment amount</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setDisabled(Array.from(keys)[0])
-											// setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[disabled]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
+										selectedValues={[String(hasError)]}
+										onSelectedChange={(values) => setHasError(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">true</DropdownItem>
+										<DropdownItem value="false">false</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -113,26 +55,71 @@ const CurrencyExamplePreview = () => {
 					<TabsTrigger value="code">Code</TabsTrigger>
 				</TabsList>
 			</div>
+
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
-					<CurrencyInput className="w-80" currency="inr" value="200" />
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+					<div className="*:not-first:mt-2">
+						<Label>Currency Input</Label>
+						<div className="flex rounded-md">
+							<CurrencyInput
+								className="w-80"
+								size="36"
+								placeholder="0.00"
+								custom={true}
+								trial={null}
+								value={value}
+								currency={currency}
+								onChange={handleValueChange}
+								hasError={hasError}
+								errorMsg={hasError ? "Invalid amount" : undefined}
+							/>
+							<Select
+								selectedValues={[currency]}
+								onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
+								disableOpenStyle={true}
+								size="36"
+								className="-ms-0 w-fit">
+								<SelectItem value="usd">USD</SelectItem>
+								<SelectItem value="eur">EUR</SelectItem>
+								<SelectItem value="gbp">GBP</SelectItem>
+							</Select>
+						</div>
+					</div>
 				</div>
 			</TabsContent>
+
 			<TabsContent value="code">
 				<CodeArea
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<CurrencyInput
-  currency="${currency}"
-  placeholder="${placeholder}"
-  disabled={${disabled}}
-  onChange={(e) => setValue(e.target.value)}
-/>`}
+					code={`<div className="*:not-first:mt-2">
+  <Label>Amount</Label>
+  <div className="flex rounded-md shadow-xs">
+    <CurrencyInput
+      size="36"
+      placeholder="0.00"
+      type="text"
+      value="${value}"
+      onChange={(e) => setValue(e.target.value)}
+      ${hasError ? 'hasError={true}\n      errorMsg="Invalid amount"' : ""}
+    />
+    
+    <Select
+      selectedValues={["${currency}"]}
+      onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
+      size="36"
+      className="-ms-0 w-fit">
+      <SelectItem value="usd">USD</SelectItem>
+      <SelectItem value="eur">EUR</SelectItem>
+      <SelectItem value="gbp">GBP</SelectItem>
+    </Select>
+  </div>
+</div>`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
 
-export default CurrencyExamplePreview
+export default CurrencyPreview
