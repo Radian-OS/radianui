@@ -62,6 +62,7 @@ import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
+import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 
@@ -126,6 +127,7 @@ const components: MDXComponents = {
 	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
 	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
 	SearchPreview: () => <SearchPreview />,
+	SearchInputExample: () => <SearchInputExample />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
