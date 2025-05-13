@@ -75,7 +75,7 @@ const UrlPreview = () => {
 						<Label>Url</Label>
 						<div className="flex rounded-md">
 							<Input
-								classNames={{ base: "w-[320px]" }}
+								className="w-80 border-r-0 focus-within:border-r"
 								size="36"
 								custom={types === "trail" ? true : false}
 								placeholder="radianos.com"
@@ -91,7 +91,7 @@ const UrlPreview = () => {
 									onSelectedChange={(values) => setDomain(values[0] as domainOption)}
 									disableOpenStyle={true}
 									size="36"
-									className="-ms-[2px] w-fit">
+									className="-ms-0 w-fit">
 									<SelectItem value=".com">.com</SelectItem>
 									<SelectItem value=".org">.org</SelectItem>
 									<SelectItem value=".net">.net</SelectItem>
@@ -115,6 +115,7 @@ const UrlPreview = () => {
     <Label>Url</Label>
     <div className="flex rounded-md shadow-xs">
         <Input
+			className="w-80 border-r-0 focus-within:border-r"
             size="36"
             placeholder="radianos"
             type="url"

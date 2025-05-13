@@ -62,7 +62,7 @@ const CurrencyPreview = () => {
 						<Label>Currency Input</Label>
 						<div className="flex rounded-md">
 							<CurrencyInput
-								className="w-80"
+								className="w-80 border-r-0 focus-within:border-r"
 								size="36"
 								placeholder="0.00"
 								custom={true}
@@ -97,6 +97,7 @@ const CurrencyPreview = () => {
   <Label>Amount</Label>
   <div className="flex rounded-md shadow-xs">
     <CurrencyInput
+	  className="w-80 border-r-0 focus-within:border-r"
       size="36"
       placeholder="0.00"
       type="text"

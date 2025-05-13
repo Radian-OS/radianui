@@ -97,10 +97,9 @@ function Input({
 	if (id) htmlId = id
 
 	return (
-		<div
-			className={cn("text-fg-1 flex w-full flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
+		<div className={cn("text-fg-1 flex w-full flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, classNames?.base)}>
 			{label && (
-				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, classNames?.label)}>
+				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, className)}>
 					{label}
 				</Label>
 			)}
@@ -120,7 +119,7 @@ function Input({
 						[`rounded-r-none`]: custom,
 					},
 					size === "28" ? "gap-1.5" : "gap-2",
-					classNames?.wrapper
+					className
 				)}>
 				{lead && (
 					<span

@@ -187,18 +187,20 @@ const CurrencyInputPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
 					{/* <div className="w-full max-w-sm"> */}
-					<CurrencyInput
-						rounded={rounded}
-						size={size}
-						label={label === "true" ? "Currency Input" : ""}
-						currency={currency}
-						value={value}
-						placeholder={placeholder}
-						disabled={disabled === "true"}
-						onChange={(e) => setValue(e.target.value)}
-						className="w-80"
-						hasError={hasError === "true"}
-					/>
+					<div className="flex items-center justify-center">
+						<CurrencyInput
+							rounded={rounded}
+							size={size}
+							label={label === "true" ? "Currency Input" : ""}
+							currency={currency}
+							value={value}
+							placeholder={placeholder}
+							disabled={disabled === "true"}
+							onChange={(e) => setValue(e.target.value)}
+							className="w-80"
+							hasError={hasError === "true"}
+						/>
+					</div>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
