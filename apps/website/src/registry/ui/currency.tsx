@@ -74,10 +74,10 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 		</div>
 	)
 
-	// Wrap the trial prop in a div that prevents focus propagation
-	const wrappedTrial = props.trial ? (
+	// Wrap the trail prop in a div that prevents focus propagation
+	const wrappedTrail = props.trail ? (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto">
-			{props.trial}
+			{props.trail}
 		</div>
 	) : (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
@@ -95,7 +95,7 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 			className={cn("text-text-tertiary")}
 			ref={inputRef}
 			lead={currencyLead}
-			trial={wrappedTrial}
+			trail={wrappedTrail}
 			onKeyUp={handleKeyPress}
 			onBlur={handleBlur}
 			onFocus={handleFocus}

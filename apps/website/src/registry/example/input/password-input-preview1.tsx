@@ -17,20 +17,20 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type LabelOptions = "true" | "false"
 export type DisabledOptions = "true" | "false"
 export type ErrorOptions = "true" | "false"
-export type TrialOptions = "show" | "hide" | "onFocus"
+export type trailOptions = "show" | "hide" | "onFocus"
 
 const PasswordInputPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<DisabledOptions>("false")
 	const [label, setLabel] = useState<LabelOptions>("true")
 	const [error, setError] = useState<ErrorOptions>("false")
-	const [trial, setTrial] = useState<TrialOptions>("onFocus")
+	const [trail, settrail] = useState<trailOptions>("onFocus")
 
 	const code = `<Password
     ${label === "true" ? 'label="Password"' : ""}
     ${disabled === "true" ? "disabled={true}" : ""}
     ${size !== "36" ? `size="${size}"` : ""}
-    trial = '${trial}'
+    trail = '${trail}'
     ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ""}
   />`
 
@@ -110,15 +110,15 @@ const PasswordInputPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Trial</DropdownSubTrigger>
+								<DropdownSubTrigger>trail</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setTrial(Array.from(keys)[0] as TrialOptions)
+											settrail(Array.from(keys)[0] as trailOptions)
 										}}
 										minSelectionCount={1}
-										selectedValues={[trial]}>
+										selectedValues={[trail]}>
 										<DropdownItem value="show">show</DropdownItem>
 										<DropdownItem value="hide">hide</DropdownItem>
 										<DropdownItem value="onFocus">onFocus</DropdownItem>
@@ -145,7 +145,7 @@ const PasswordInputPreview = () => {
 								hasError={error === "true"}
 								errorMsg="Error Occurred"
 								className="w-80"
-								trial={trial}
+								trail={trail}
 							/>
 						</div>
 					</div>

@@ -66,7 +66,7 @@ const CurrencyPreview = () => {
 								size="36"
 								placeholder="0.00"
 								custom={true}
-								trial={null}
+								trail={null}
 								value={value}
 								currency={currency}
 								onChange={handleValueChange}
@@ -78,6 +78,7 @@ const CurrencyPreview = () => {
 								onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
 								disableOpenStyle={true}
 								size="36"
+								minSelectionCount={1}
 								className="-ms-0 w-fit">
 								<SelectItem value="usd">USD</SelectItem>
 								<SelectItem value="eur">EUR</SelectItem>

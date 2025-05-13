@@ -19,7 +19,7 @@ export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type iconOptions = "Mail" | "Arrow" | "Default"
 
 const EmailPreview = () => {
-	const [suffixIcon, setSuffixIcon] = useState<iconOptions>("Default")
+	const [trailIcon, setTrailIcon] = useState<iconOptions>("Default")
 	const [hasError, setHasError] = useState<boolean>(false)
 
 	return (
@@ -34,8 +34,8 @@ const EmailPreview = () => {
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										selectedValues={[String(suffixIcon)]}
-										onSelectedChange={(values) => setSuffixIcon(values[0] as iconOptions)}
+										selectedValues={[String(trailIcon)]}
+										onSelectedChange={(values) => setTrailIcon(values[0] as iconOptions)}
 										minSelectionCount={1}>
 										<DropdownItem value="Default">Default</DropdownItem>
 										<DropdownItem value="Mail">Mail</DropdownItem>
@@ -72,7 +72,7 @@ const EmailPreview = () => {
 						type="email"
 						label={"Email"}
 						placeholder="designer@radianos.com"
-						trial={suffixIcon === "Mail" ? <Mail /> : suffixIcon === "Arrow" ? <ArrowRight /> : ""}
+						trail={trailIcon === "Mail" ? <Mail /> : trailIcon === "Arrow" ? <ArrowRight /> : ""}
 						hasError={hasError}
 						errorMsg={hasError ? "Invalid Email" : undefined}
 					/>
@@ -88,7 +88,7 @@ const EmailPreview = () => {
     type="email"
     label="Email"
     placeholder="Enter your email here"
-    trialIcon="${suffixIcon === "Mail" ? "<Mail />" : "<ArrowRight />"}"
+    trailIcon="${trailIcon === "Mail" ? "<Mail />" : "<ArrowRight />"}"
     hasError="${hasError}"
     errorMsg="${hasError ? "There is an error" : undefined}"
 />`}

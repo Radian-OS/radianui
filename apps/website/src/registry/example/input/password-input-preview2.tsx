@@ -18,7 +18,7 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type LabelOptions = "true" | "false"
 export type DisabledOptions = "true" | "false"
 export type ErrorOptions = "true" | "false"
-export type TrialOptions = "show" | "hide" | "onFocus"
+export type trailOptions = "show" | "hide" | "onFocus"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type ExampleOptions = "default" | "disabled"
 
@@ -27,7 +27,7 @@ const PasswordInputPreview2 = () => {
 	const [disabled, setDisabled] = useState<DisabledOptions>("false")
 	const [label, setLabel] = useState<LabelOptions>("true")
 	const [error, setError] = useState<ErrorOptions>("false")
-	const [trial, setTrial] = useState<TrialOptions>("onFocus")
+	const [trail, settrail] = useState<trailOptions>("onFocus")
 
 	const code = `<div className="relative w-full">
   <Link href="#" className="text-primary text-sm absolute right-0">Forgot Password ?</Link>
@@ -35,7 +35,7 @@ const PasswordInputPreview2 = () => {
     ${label === "true" ? 'label="Password"' : ""}
     ${disabled === "true" ? "disabled={true}" : ""}
     ${size !== "36" ? `size="${size}"` : ""}
-    trial='${trial}'
+    trail='${trail}'
     ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ""}
   />
 </div>`
@@ -116,15 +116,15 @@ const PasswordInputPreview2 = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Trial</DropdownSubTrigger>
+								<DropdownSubTrigger>trail</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setTrial(Array.from(keys)[0] as TrialOptions)
+											settrail(Array.from(keys)[0] as trailOptions)
 										}}
 										minSelectionCount={1}
-										selectedValues={[trial]}>
+										selectedValues={[trail]}>
 										<DropdownItem value="show">show</DropdownItem>
 										<DropdownItem value="hide">hide</DropdownItem>
 										<DropdownItem value="onFocus">onFocus</DropdownItem>
@@ -153,8 +153,8 @@ const PasswordInputPreview2 = () => {
 							hasError={error === "true"}
 							errorMsg={error === "true" ? "Error Occurred" : undefined}
 							className="w-80"
-							trial={trial}
-							// {...(trial === "false" ? { trial: false } : trial === "visibilityIcon" ? { trial: "visibilityIcon" } : {})}
+							trail={trail}
+							// {...(trail === "false" ? { trail: false } : trail === "visibilityIcon" ? { trail: "visibilityIcon" } : {})}
 						/>
 					</div>
 				</div>

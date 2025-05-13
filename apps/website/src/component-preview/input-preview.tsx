@@ -24,8 +24,8 @@ const InputPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
-	const [suffixIcon, setSuffixIcon] = useState<boolean>(false)
-	const [prefixIcon, setPrefixIcon] = useState<boolean>(false)
+	const [trailIcon, setTrailIcon] = useState<boolean>(false)
+	const [leadIcon, setLeadIcon] = useState<boolean>(false)
 	const [hasError, setHasError] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
 
@@ -105,8 +105,8 @@ const InputPreview = () => {
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										selectedValues={[String(suffixIcon)]}
-										onSelectedChange={(values) => setSuffixIcon(values[0] === "true")}
+										selectedValues={[String(trailIcon)]}
+										onSelectedChange={(values) => setTrailIcon(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">Yes</DropdownItem>
 										<DropdownItem value="false">No</DropdownItem>
@@ -118,8 +118,8 @@ const InputPreview = () => {
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										selectedValues={[String(prefixIcon)]}
-										onSelectedChange={(values) => setPrefixIcon(values[0] === "true")}
+										selectedValues={[String(leadIcon)]}
+										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">Yes</DropdownItem>
 										<DropdownItem value="false">No</DropdownItem>
@@ -157,8 +157,8 @@ const InputPreview = () => {
 						disabled={disabled}
 						label={label ? "Username" : undefined}
 						placeholder="Enter your username here"
-						lead={prefixIcon ? <CircleUserRound /> : null}
-						trial={suffixIcon ? <CircleUserRound /> : null}
+						lead={leadIcon ? <CircleUserRound /> : null}
+						trail={trailIcon ? <CircleUserRound /> : null}
 						hasError={hasError}
 						errorMsg={hasError ? "There is an error" : undefined}
 					/>
@@ -178,8 +178,8 @@ const InputPreview = () => {
     placeholder="Enter your username here"
     hasError="${hasError}"
     errorMsg="${hasError ? "There is an error" : undefined}"
-    ${prefixIcon ? "leadIcon={<CircleUserRound />}" : ""}
-    ${suffixIcon ? "trailIcon={<CircleUserRound />}" : ""}
+    ${leadIcon ? "leadIcon={<CircleUserRound />}" : ""}
+    ${trailIcon ? "trailIcon={<CircleUserRound />}" : ""}
 />`}
 				/>
 			</TabsContent>

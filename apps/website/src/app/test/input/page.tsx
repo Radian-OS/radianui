@@ -592,7 +592,7 @@ const InputComp = () => {
 					label={label ? "Username" : undefined}
 					placeholder="Enter your username here"
 					lead={prefixIcon ? <CircleUserRound /> : null}
-					trial={suffixIcon ? <CircleUserRound /> : null}
+					trail={suffixIcon ? <CircleUserRound /> : null}
 					hasError={hasError}
 					errorMsg={hasError ? "There is an error" : undefined}
 				/>

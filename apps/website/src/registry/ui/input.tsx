@@ -69,7 +69,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	'password' is added here because the <Password> uses <Input> component under the hood
 	*/
 	lead?: React.ReactNode
-	trial?: React.ReactNode
+	trail?: React.ReactNode
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	id?: string
@@ -85,7 +85,7 @@ function Input({
 	hasError = false,
 	type = "text",
 	lead,
-	trial,
+	trail,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
 	id,
@@ -152,17 +152,17 @@ function Input({
 					disabled={disabled}
 					{...props}
 				/>
-				{trial && (
+				{trail && (
 					<span
 						className={cn("flex cursor-pointer items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
 						})}>
-						{React.isValidElement(trial)
-							? React.cloneElement(trial as React.ReactElement<{ className?: string }>, {
-									className: cn((trial as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
+						{React.isValidElement(trail)
+							? React.cloneElement(trail as React.ReactElement<{ className?: string }>, {
+									className: cn((trail as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
 								})
-							: trial}
+							: trail}
 					</span>
 				)}
 			</label>

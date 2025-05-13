@@ -202,7 +202,7 @@ export function TypeableDatePicker({
 					errorMsg={hasError ? "There is an error" : undefined}
 					placeholder="DD/MM/YYYY"
 					className={cn("w-[320px]", date && !isEditing ? "border-primary" : "border-input")}
-					trial={<CalendarIcon className={cn(disables ? "cursor-not-allowed" : "cursor-pointer")} />}
+					trail={<CalendarIcon className={cn(disables ? "cursor-not-allowed" : "cursor-pointer")} />}
 				/>
 			</PopoverTrigger>
 

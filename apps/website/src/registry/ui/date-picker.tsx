@@ -254,7 +254,7 @@ function DatePicker({
 						readOnly
 						value={inputValue}
 						placeholder="Select a date"
-						trial={
+						trail={
 							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
 								<PopoverTrigger disabled={disabled}>
 									<CalendarIcon
