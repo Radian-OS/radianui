@@ -1,4 +1,5 @@
 import React from "react"
+import { ChevronDown } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
@@ -19,6 +20,7 @@ const DropdownPreview = () => {
 
 	const code = `"use client"	
 import React from "react"
+import { ChevronDown } from "lucide-react"
 import {
 	Dropdown,
 	DropdownContent,
@@ -40,7 +42,7 @@ return(
 <Dropdown>
 <DropdownTrigger asChild >
 <Button variant="neutral-outline" >
-Dropdown
+Dropdown <ChevronDown className="size-5" />
 </Button>
 </DropdownTrigger>
 <DropdownContent>
@@ -104,7 +106,9 @@ selectedValues={selected}>
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button variant="neutral-outline">Dropdown</Button>
+							<Button variant="neutral-outline">
+								Dropdown <ChevronDown className="size-5" />
+							</Button>
 						</DropdownTrigger>
 						<DropdownContent>
 							<DropdownGroup title="date range">
