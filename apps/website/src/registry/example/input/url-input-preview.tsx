@@ -75,7 +75,7 @@ const UrlPreview = () => {
 						<Label>Url</Label>
 						<div className="flex rounded-md">
 							<Input
-								className="w-80 border-r-0 focus-within:border-r"
+								className={`w-80 ${types === "trail" ? "border-r-0 focus-within:border-r" : ""} `}
 								size="36"
 								custom={types === "trail" ? true : false}
 								placeholder="radianos.com"
@@ -87,6 +87,7 @@ const UrlPreview = () => {
 
 							{types === "trail" ? (
 								<Select
+									minSelectionCount={1}
 									selectedValues={[domain]}
 									onSelectedChange={(values) => setDomain(values[0] as domainOption)}
 									disableOpenStyle={true}
