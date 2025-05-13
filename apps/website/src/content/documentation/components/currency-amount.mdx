@@ -5,6 +5,38 @@ description: Display currency amount
 
 <CurrencyAmountPreview />
 
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add currency`} />
+
+##### Imports
+
+<Code language="tsx" code={`import Currency from "@/components/ui/currency"`} />
+
+##### Props
+
+| Prop Name | Default Values | Values             |
+| --------- | -------------- | ------------------ |
+| rounded   | md             | xs,sm,md,lg,xl,2xl |
+| size      | 40             | 28,32,36,40,44,48  |
+| label     | false          | true/false         |
+| disabled  | false          | true/false         |
+| lead      | icon           |                    |
+| trail     | icon           |                    |
+| hasError  | false          | true/false         |
+| errorMsg  | false          |                    |
+| currency  | -              | string             |
+
+##### Usesage
+
+<Code
+	language="tsx"
+	code={`<CurrencyInput 
+    currency="usd
+    size="32"
+/>`}
+/>
+
 ##### Example
 
 <CurrencyExamplePreview />
