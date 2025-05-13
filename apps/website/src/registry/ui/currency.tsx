@@ -64,7 +64,7 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 	}
 
 	const currencyLead = (
-		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex h-5 w-5 items-center justify-center">
+		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
 			<span
 				className={cn("text-text-tertiary text-sm uppercase", {
 					"cursor-not-allowed": props.disabled,
@@ -80,7 +80,7 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 			{props.trial}
 		</div>
 	) : (
-		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex h-5 w-5 items-center justify-center">
+		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
 			<span
 				className={cn("text-text-tertiary text-sm uppercase", {
 					"cursor-not-allowed": props.disabled,

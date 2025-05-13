@@ -20,7 +20,7 @@ export const cvaInputVariants = {
 	size: {
 		"28": "h-7 text-xs p-1.5",
 		"32": "h-8 text-sm px-3 py-1.5",
-		"36": "h-9 text-sm px-3 py-2",
+		"36": "h-9 text-sm px-2.5 py-2",
 		"40": "h-10 text-sm px-3 py-2.5",
 		"44": "h-11 text-base py-2.5 px-3.5",
 		"48": "h-12 text-base py-3 px-3.5",
@@ -31,12 +31,12 @@ export const defaultInputSize = "36"
 export const defaultInputRadius = "lg"
 
 const sizeHeightMapping = {
-	28: "h-4 w-4",
-	32: "h-5 w-5",
-	36: "h-5 w-5",
-	40: "h-5 w-5",
-	44: "h-6 w-6",
-	48: "h-6 w-6",
+	28: "h-4",
+	32: "h-5",
+	36: "h-5",
+	40: "h-5",
+	44: "h-6",
+	48: "h-6",
 }
 
 // Creating a variant for input styles using cva

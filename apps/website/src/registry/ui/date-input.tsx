@@ -48,7 +48,7 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 		<div
 			className={cn("w-[320px]", dateInputStyles({ size, rounded }), { "text-text-tertiary cursor-not-allowed": disabled }, classNames?.dateInput)}>
 			<DateField
-				granularity="minute"
+				granularity="day"
 				className={cn("flex flex-col gap-1 border-none")}
 				onChange={handleChange}
 				value={currentValue}
