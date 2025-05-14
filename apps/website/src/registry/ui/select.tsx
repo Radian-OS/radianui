@@ -265,7 +265,7 @@ function SelectDivider() {
 }
 // Command component that wraps the CommandPrimitive with additional styling
 function Command({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive>) {
-	return <CommandPrimitive className={cn("bg-bg-base text-text flex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
+	return <CommandPrimitive className={cn("bg-bg-level2 text-text flex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
 }
 Command.displayName = CommandPrimitive.displayName
 // CommandInput component that renders an input field with a search icon

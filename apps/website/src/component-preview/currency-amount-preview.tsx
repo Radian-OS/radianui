@@ -22,7 +22,7 @@ const CurrencyInputPreview = () => {
 
 	const [currency, setCurrency] = useState("usd")
 	const [value, setValue] = useState("100")
-	const [placeholder, setPlaceholder] = useState("Enter amount")
+	// const [placeholder, setPlaceholder] = useState("Enter amount")
 	const [disabled, setDisabled] = useState("false")
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
@@ -124,43 +124,6 @@ const CurrencyInputPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Value</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setValue(Array.from(keys)[0])
-											// setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[value]}>
-										<DropdownItem value="100">$100</DropdownItem>
-										<DropdownItem value="1000">$1,000</DropdownItem>
-										<DropdownItem value="10000">$10,000</DropdownItem>
-										<DropdownItem value="">Empty</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setPlaceholder(Array.from(keys)[0])
-											// setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[placeholder]}>
-										<DropdownItem value="Enter amount">Enter amount</DropdownItem>
-										<DropdownItem value="0.00">0.00</DropdownItem>
-										<DropdownItem value="Payment amount">Payment amount</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
@@ -194,7 +157,7 @@ const CurrencyInputPreview = () => {
 							label={label === "true" ? "Currency Input" : ""}
 							currency={currency}
 							value={value}
-							placeholder={placeholder}
+							placeholder="Enter amount"
 							disabled={disabled === "true"}
 							onChange={(e) => setValue(e.target.value)}
 							className="w-80"
@@ -214,7 +177,7 @@ size="${size}"
 label="${label === "true" ? "Currency Input" : ""}"
 currency="${currency}"
 value="${value}"
-placeholder="${placeholder}"
+placeholder="Enter amount"
 disabled={${disabled === "true"}}
 onChange={(e) => setValue(e.target.value)}
 className="w-80"

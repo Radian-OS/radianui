@@ -142,7 +142,7 @@ export default PasswordInputPreview
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<Dropdown>
-						<DropdownTrigger>Interact</DropdownTrigger>
+						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
