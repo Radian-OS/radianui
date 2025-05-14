@@ -152,6 +152,7 @@ const InputExample = () => {
 			/>
 
 			<OTPInput size={size} rounded={rounded} placeholder="12345678" inputMode="numeric" length={6} label="Verification Code - Box Variant" />
+
 			<OTPInput
 				size={size}
 				rounded={rounded}

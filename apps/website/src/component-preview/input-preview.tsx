@@ -29,6 +29,17 @@ const InputPreview = () => {
 	const [hasError, setHasError] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
 
+	const sizeHeightMapping: Record<number, string> = {
+		28: "h-4 w-4",
+		32: "h-5 w-5",
+		36: "h-5 w-5",
+		40: "h-5 w-5",
+		44: "h-6 w-6",
+		48: "h-6 w-6",
+	}
+
+	const iconClass = sizeHeightMapping[size] ?? ""
+
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -157,8 +168,8 @@ const InputPreview = () => {
 						disabled={disabled}
 						label={label ? "Username" : undefined}
 						placeholder="Enter your username here"
-						lead={leadIcon ? <CircleUserRound /> : null}
-						trail={trailIcon ? <CircleUserRound /> : null}
+						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
+						trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						hasError={hasError}
 						errorMsg={hasError ? "There is an error" : undefined}
 					/>
@@ -178,8 +189,8 @@ const InputPreview = () => {
     placeholder="Enter your username here"
     hasError="${hasError}"
     errorMsg="${hasError ? "There is an error" : undefined}"
-    ${leadIcon ? "leadIcon={<CircleUserRound />}" : ""}
-    ${trailIcon ? "trailIcon={<CircleUserRound />}" : ""}
+  ${leadIcon ? `leadIcon={<CircleUserRound className="${iconClass}" />}` : ""}
+  ${trailIcon ? `trailIcon={<CircleUserRound className="${iconClass}" />}` : ""}
 />`}
 				/>
 			</TabsContent>
