@@ -121,7 +121,7 @@ const SliderPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>prefixIcon</DropdownSubTrigger>
+								<DropdownSubTrigger>leadIcon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -134,7 +134,7 @@ const SliderPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>suffixIcon</DropdownSubTrigger>
+								<DropdownSubTrigger>trailIcon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

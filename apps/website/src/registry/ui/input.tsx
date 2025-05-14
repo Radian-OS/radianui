@@ -97,7 +97,7 @@ function Input({
 	if (id) htmlId = id
 
 	return (
-		<div className={cn("text-fg-1 flex w-full flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, classNames?.base)}>
+		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, classNames?.base)}>
 			{label && (
 				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, className)}>
 					{label}
