@@ -28,6 +28,7 @@ import InputPreview from "@/component-preview/input-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
+import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
 import SearchPreview from "@/component-preview/search-preview"
@@ -128,6 +129,7 @@ const components: MDXComponents = {
 	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
 	SearchPreview: () => <SearchPreview />,
 	SearchInputExample: () => <SearchInputExample />,
+	ProgressBarPreview: () => <ProgressBarPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
