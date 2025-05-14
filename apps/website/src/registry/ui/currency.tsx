@@ -37,23 +37,35 @@ function CurrencyInput({ currency = "usd", ...props }: InputProps & CurrencyInpu
 	const handleBlur = () => {
 		if (!inputRef.current) return
 
-		if (props.value === "") {
+		if (!props.value || props.value === "") {
 			setRawValue("")
 			inputRef.current.value = ""
-		} else {
-			const numValue = parseFloat(props.value as string)
-			setRawValue(props.value as string)
+			return
+		}
 
+		try {
+			const numValue = parseFloat(props.value as string)
+			if (isNaN(numValue)) {
+				setRawValue("")
+				inputRef.current.value = ""
+				return
+			}
+
+			setRawValue(props.value as string)
 			// strip out the extra symbol
 			const formattedValue = formatCurrency(numValue).replace(currencySymbol, "").trim()
-
 			inputRef.current.value = formattedValue
+		} catch (e) {
+			// If parsing fails, just keep the raw value
+			setRawValue("")
+			inputRef.current.value = ""
+			console.log(e)
 		}
 	}
 
 	const handleFocus = () => {
 		if (inputRef.current) {
-			inputRef.current.value = rawValue
+			inputRef.current.value = rawValue || ""
 		}
 	}
 
