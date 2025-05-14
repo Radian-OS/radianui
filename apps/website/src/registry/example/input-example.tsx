@@ -152,6 +152,7 @@ const InputExample = () => {
 			/>
 
 			<OTPInput size={size} rounded={rounded} placeholder="12345678" inputMode="numeric" length={6} label="Verification Code - Box Variant" />
+
 			<OTPInput
 				size={size}
 				rounded={rounded}
@@ -191,7 +192,7 @@ const InputExample = () => {
 			<ProgressBar value={progress} />
 
 			<div className="my-4 flex w-full flex-col gap-4">
-				<Slider label="Test label" prefixIcon={<BellOff size={20} />} suffixIcon={<BellRing size={20} />} />
+				<Slider label="Test label" leadIcon={<BellOff size={20} />} trailIcon={<BellRing size={20} />} />
 
 				<Slider value={sliderValue} onValueChange={setSliderValue} />
 
@@ -231,7 +232,7 @@ const InputExample = () => {
 
 				<div className="flex h-64 gap-5">
 					<Slider orientation="vertical" />
-					<Slider prefixIcon={<BellOff size={20} />} suffixIcon={<BellRing size={20} />} orientation="vertical" />
+					<Slider leadIcon={<BellOff size={20} />} trailIcon={<BellRing size={20} />} orientation="vertical" />
 
 					<Slider
 						label="Vertical Label"

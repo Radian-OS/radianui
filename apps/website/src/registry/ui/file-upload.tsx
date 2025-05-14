@@ -279,7 +279,7 @@ function FilePreview({ file, onRemove, status }: { file: File; onRemove: () => v
 					</div>
 				</div>
 			</div>
-			{status && <ProgressBar value={parseInt(status.progress.toString())} rootClassName="h-1" />}
+			{status && <ProgressBar value={parseInt(status.progress.toString())} className="h-1" />}
 		</div>
 	)
 }

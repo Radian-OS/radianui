@@ -30,14 +30,14 @@ export const cvaInputVariants = {
 export const defaultInputSize = "36"
 export const defaultInputRadius = "lg"
 
-const sizeHeightMapping = {
-	28: "h-4",
-	32: "h-5",
-	36: "h-5",
-	40: "h-5",
-	44: "h-6",
-	48: "h-6",
-}
+// const sizeHeightMapping = {
+// 	28: "h-4",
+// 	32: "h-5",
+// 	36: "h-5",
+// 	40: "h-5",
+// 	44: "h-6",
+// 	48: "h-6",
+// }
 
 // Creating a variant for input styles using cva
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
@@ -123,17 +123,26 @@ function Input({
 				)}>
 				{lead && (
 					<span
+						className={cn("flex items-center justify-center rounded", {
+							"text-text-tertiary": !disabled,
+							"text-text-disabled": disabled,
+						})}>
+						{lead}
+					</span>
+				)}
+				{/* {lead && (
+					<span
 						className={cn("flex cursor-pointer items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
 						})}>
 						{React.isValidElement(lead)
 							? React.cloneElement(lead as React.ReactElement<{ className?: string }>, {
-									className: cn((lead as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
-								})
+								className: cn((lead as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
+							})
 							: lead}
 					</span>
-				)}
+				)} */}
 				<input
 					id={htmlId}
 					className={cn(
@@ -154,6 +163,15 @@ function Input({
 				/>
 				{trail && (
 					<span
+						className={cn("flex items-center justify-center rounded", {
+							"text-text-tertiary": !disabled,
+							"text-text-disabled": disabled,
+						})}>
+						{trail}
+					</span>
+				)}
+				{/* {trail && (
+					<span
 						className={cn("flex cursor-pointer items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
@@ -164,7 +182,7 @@ function Input({
 								})
 							: trail}
 					</span>
-				)}
+				)} */}
 			</label>
 			{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{errorMsg}</Label>}
 		</div>

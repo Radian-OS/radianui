@@ -4,14 +4,14 @@ import { cn } from "@/lib/utils"
 
 // Defines the props for the ProgressBar component, extending the props of ProgressPrimitive.Root
 type ProgressBarProps = React.ComponentPropsWithRef<typeof ProgressPrimitive.Root> & {
-	rootClassName?: string
+	className?: string
 	indicatorClassName?: string
 }
 // Defines the ProgressBar functional component
-function ProgressBar({ value, rootClassName, indicatorClassName, ...props }: ProgressBarProps) {
+function ProgressBar({ value, className, indicatorClassName, ...props }: ProgressBarProps) {
 	return (
 		<ProgressPrimitive.Root
-			className={cn("border-border bg-fill-level3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full border", rootClassName)}
+			className={cn("border-border bg-fill-level3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full border", className)}
 			value={value}
 			{...props}>
 			<ProgressPrimitive.Indicator

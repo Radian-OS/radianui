@@ -946,8 +946,8 @@ const SliderComp = () => {
 								]
 							: undefined
 					}
-					prefixIcon={startContent ? <VolumeX /> : undefined}
-					suffixIcon={endContent ? <Volume2 /> : undefined}
+					leadIcon={startContent ? <VolumeX /> : undefined}
+					trailIcon={endContent ? <Volume2 /> : undefined}
 					orientation={orientation}
 				/>
 			</div>

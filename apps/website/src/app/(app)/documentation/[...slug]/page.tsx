@@ -58,7 +58,7 @@ export default async function DocPage({ params }: DocPageProps) {
 						<Link href={doc.externalSiteRef} target="_blank">
 							<Badge className="flex w-fit cursor-pointer items-center gap-1">
 								{doc.customLogo ? <Image className="size-4" height={50} width={50} alt="badge-img" src={doc.customLogo} /> : <Github size={16} />}
-								External Site Refrence
+								{doc.externalSiteName}
 							</Badge>
 						</Link>
 					)}
