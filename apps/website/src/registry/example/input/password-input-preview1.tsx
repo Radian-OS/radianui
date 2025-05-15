@@ -27,11 +27,11 @@ const PasswordInputPreview = () => {
 	const [trail, settrail] = useState<trailOptions>("onFocus")
 
 	const code = `<Password
-    ${label === "true" ? 'label="Password"' : ""}
-    ${disabled === "true" ? "disabled={true}" : ""}
-    ${size !== "36" ? `size="${size}"` : ""}
-    trail = '${trail}'
-    ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ""}
+	${label === "true" ? 'label="Password"' : ""}
+	${disabled === "true" ? "disabled={true}" : ""}
+	${size !== "36" ? `size="${size}"` : ""}
+	trail='${trail}'
+	${error === "true" ? "hint='Error Occurred'" : ""}
   />`
 
 	return (
@@ -143,7 +143,8 @@ const PasswordInputPreview = () => {
 								disabled={disabled === "true"}
 								size={size}
 								hasError={error === "true"}
-								hint="Error Occurred"
+								hint={error === "true" ? "Error Occurred" : undefined}
+								placeholder="Enter Password"
 								className="w-80"
 								trail={trail}
 							/>
