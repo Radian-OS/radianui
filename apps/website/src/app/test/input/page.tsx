@@ -264,7 +264,7 @@ const PasswordComp = () => {
 					size={size}
 					rounded={rounded}
 					disabled={disabled}
-					errorMsg={"Some error occured"}
+					hint={"Some error occured"}
 					hasError={hasError}
 					classNames={{ base: "w-[320px]" }}
 					placeholder="Enter your password here"
@@ -510,7 +510,7 @@ const NumberComp = () => {
 					label={label ? "Enter how many items to order" : undefined}
 					placeholder="Type in digits"
 					hasError={hasError}
-					errorMsg={hasError ? "There is an error" : undefined}
+					hint={hasError ? "There is an error" : undefined}
 					showStepper={showStepper}
 				/>
 			</div>
@@ -594,7 +594,7 @@ const InputComp = () => {
 					lead={prefixIcon ? <CircleUserRound /> : null}
 					trail={suffixIcon ? <CircleUserRound /> : null}
 					hasError={hasError}
-					errorMsg={hasError ? "There is an error" : undefined}
+					hint={hasError ? "There is an error" : undefined}
 				/>
 			</div>
 		</div>

@@ -17,7 +17,7 @@ interface PasswordProps extends Omit<InputProps, "leadIcon" | "trailIcon"> {
  * - When trail is false, no icon is shown
  * Prevents blur when clicking the icon so toggling works.
  */
-export function Password({ label, disabled = false, errorMsg, hasError = false, size = "40", rounded = "md", id, trail, ...props }: PasswordProps) {
+export function Password({ label, disabled = false, hint, hasError = false, size = "40", rounded = "md", id, trail, ...props }: PasswordProps) {
 	const [isFocused, setIsFocused] = React.useState(false)
 	const [isPasswordVisible, setIsPasswordVisible] = React.useState(false)
 
@@ -87,7 +87,7 @@ export function Password({ label, disabled = false, errorMsg, hasError = false, 
 			rounded={rounded}
 			disabled={disabled}
 			hasError={hasError}
-			errorMsg={errorMsg}
+			hint={hint}
 			type={isPasswordVisible ? "text" : "password"}
 			onFocus={() => setIsFocused(true)}
 			onBlur={() => setIsFocused(false)}

@@ -28,6 +28,7 @@ const InputPreview = () => {
 	const [leadIcon, setLeadIcon] = useState<boolean>(false)
 	const [hasError, setHasError] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
+	const [hint, setHint] = useState<boolean>(true)
 
 	const sizeHeightMapping: Record<number, string> = {
 		28: "h-4 w-4",
@@ -138,6 +139,19 @@ const InputPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">Yes</DropdownItem>
+										<DropdownItem value="false">No</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
 								<DropdownSubTrigger>HasError</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
@@ -171,7 +185,7 @@ const InputPreview = () => {
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						hasError={hasError}
-						hint="Hint"
+						hint={hint ? "Hint" : undefined}
 					/>
 				</div>
 			</TabsContent>

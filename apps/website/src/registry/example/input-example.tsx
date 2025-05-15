@@ -99,7 +99,7 @@ const InputExample = () => {
 
 			<Input label="Username" placeholder="Controlled Input" size={size} rounded={rounded} value={input} onChange={(e) => setInput(e.target.value)} />
 			<Input placeholder="Disabled" disabled={true} size={size} rounded={rounded} />
-			<Input placeholder="With error" errorMsg="Invalid username" hasError={true} size={size} rounded={rounded} />
+			<Input placeholder="With error" hint="Invalid username" hasError={true} size={size} rounded={rounded} />
 
 			<Divider spacing="4" />
 
@@ -109,7 +109,7 @@ const InputExample = () => {
 
 			<Password label="Password" placeholder="Password here" size={size} rounded={rounded} />
 			<Password placeholder="Disabled" disabled={true} size={size} rounded={rounded} />
-			<Password errorMsg="The input field has an error" hasError={true} size={size} rounded={rounded} />
+			<Password hint="The input field has an error" hasError={true} size={size} rounded={rounded} />
 
 			<Divider spacing="4" />
 

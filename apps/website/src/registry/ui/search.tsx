@@ -18,7 +18,7 @@ type SearchProps = Omit<InputProps, "prefixIcon" | "suffixIcon"> & {
 // Defines the SearchInput functional component
 function SearchInput({
 	label,
-	errorMsg = "",
+	hint = "",
 	hasError = false,
 	size = "40",
 	rounded = "md",
@@ -52,7 +52,7 @@ function SearchInput({
 					<Input
 						lead={<Search size={20} className="stroke-text-tertiary" />}
 						label={label}
-						errorMsg={errorMsg}
+						hint={hint}
 						hasError={hasError}
 						size={size}
 						rounded={rounded}

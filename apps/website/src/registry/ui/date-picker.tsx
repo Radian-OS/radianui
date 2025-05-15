@@ -234,7 +234,7 @@ function DatePicker({
 						rounded={rounded}
 						disables={disabled}
 						hasError={hasError}
-						hint={hasError ? "There is an error" : undefined}
+						hint={hasError ? "There is an error" : "Date picker"}
 						showTime={showTime}
 						showDateRangeShortcut={showDateRangeShortcut}
 						{...props}
@@ -249,7 +249,7 @@ function DatePicker({
 						rounded={rounded}
 						disabled={disabled}
 						hasError={hasError}
-						hint={hasError ? "There is an error" : undefined}
+						hint={hasError ? "There is an error" : "Date Picker"}
 						className={cn(triggerClassName)}
 						readOnly
 						value={inputValue}

@@ -249,7 +249,7 @@ export default PasswordInputPreview
 							disabled={disabled === "true"}
 							size={size}
 							hasError={error === "true"}
-							errorMsg="Error Occurred"
+							hint="Error Occurred"
 							trail={trail}
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}

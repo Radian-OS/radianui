@@ -151,7 +151,7 @@ const PasswordInputPreview2 = () => {
 							disabled={disabled === "true"}
 							size={size}
 							hasError={error === "true"}
-							errorMsg={error === "true" ? "Error Occurred" : undefined}
+							hint={error === "true" ? "Error Occurred" : undefined}
 							className="w-80"
 							trail={trail}
 							// {...(trail === "false" ? { trail: false } : trail === "visibilityIcon" ? { trail: "visibilityIcon" } : {})}

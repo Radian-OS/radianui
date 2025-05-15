@@ -64,7 +64,7 @@ const CurrencyPreview = () => {
 								trail={null}
 								currency={currency}
 								hasError={hasError}
-								errorMsg={hasError ? "Invalid amount" : undefined}
+								hint={hasError ? "Invalid amount" : undefined}
 							/>
 							<Select
 								selectedValues={[currency]}

@@ -168,6 +168,7 @@ const SearchInputExample = () => {
 						onChange={(e) => handleSearchChange(e.target.value)}
 						value={searchValue}
 						id="search-input"
+						hint="Search Input"
 						suggestion={suggestion}
 						renderSearchResults={renderSearchResults}
 						classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
