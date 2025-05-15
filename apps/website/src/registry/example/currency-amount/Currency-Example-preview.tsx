@@ -20,12 +20,7 @@ export type CurrencyOption = "usd" | "eur" | "gbp"
 
 const CurrencyPreview = () => {
 	const [currency, setCurrency] = useState<CurrencyOption>("usd")
-	const [value, setValue] = useState<string>("100")
 	const [hasError, setHasError] = useState<boolean>(false)
-
-	const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(e.target.value)
-	}
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10 mt-2">
@@ -67,9 +62,7 @@ const CurrencyPreview = () => {
 								placeholder="0.00"
 								custom={true}
 								trail={null}
-								value={value}
 								currency={currency}
-								onChange={handleValueChange}
 								hasError={hasError}
 								errorMsg={hasError ? "Invalid amount" : undefined}
 							/>
@@ -102,8 +95,6 @@ const CurrencyPreview = () => {
       size="36"
       placeholder="0.00"
       type="text"
-      value="${value}"
-      onChange={(e) => setValue(e.target.value)}
       ${hasError ? 'hasError={true}\n      errorMsg="Invalid amount"' : ""}
     />
     

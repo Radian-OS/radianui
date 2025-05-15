@@ -21,14 +21,25 @@ const CurrencyInputPreview = () => {
 	const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 
 	const [currency, setCurrency] = useState("usd")
+	const [locale, setLocale] = useState("en-US")
 	const [value, setValue] = useState("100")
-	// const [placeholder, setPlaceholder] = useState("Enter amount")
 	const [disabled, setDisabled] = useState("false")
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [hasError, setHasError] = useState<"true" | "false">("false")
-
 	const [label, setLabel] = useState<"true" | "false">("true")
+	const [allowDecimals, setAllowDecimals] = useState<"true" | "false">("true")
+	const [decimalsLimit, setDecimalsLimit] = useState("2")
+	const [maxValue, setMaxValue] = useState("")
+
+	// Handle numeric value change
+	const handleValueChange = (numValue: number | null) => {
+		if (numValue !== null) {
+			setValue(numValue.toString())
+		} else {
+			setValue("")
+		}
+	}
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -60,7 +71,6 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setCurrency(Array.from(keys)[0])
-											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[currency]}>
@@ -73,13 +83,33 @@ const CurrencyInputPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
+								<DropdownSubTrigger>Locale</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setLocale(Array.from(keys)[0])
+										}}
+										minSelectionCount={1}
+										selectedValues={[locale]}>
+										<DropdownItem value="en-US">English (US)</DropdownItem>
+										<DropdownItem value="en-GB">English (UK)</DropdownItem>
+										<DropdownItem value="fr-FR">French</DropdownItem>
+										<DropdownItem value="de-DE">German</DropdownItem>
+										<DropdownItem value="es-ES">Spanish</DropdownItem>
+										<DropdownItem value="ja-JP">Japanese</DropdownItem>
+										<DropdownItem value="zh-CN">Chinese</DropdownItem>
+										<DropdownItem value="hi-IN">Hindi</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setSize(Array.from(keys)[0] as SizeOptions)
-											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[size]}>
@@ -99,7 +129,6 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setHasError(Array.from(keys)[0] as "true" | "false")
-											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[hasError]}>
@@ -122,7 +151,54 @@ const CurrencyInputPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
-
+							<DropdownSub>
+								<DropdownSubTrigger>Allow Decimals</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setAllowDecimals(Array.from(keys)[0] as "true" | "false")
+										}}
+										selectedValues={[allowDecimals]}>
+										<DropdownItem value="true">true</DropdownItem>
+										<DropdownItem value="false">false</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Decimals Limit</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setDecimalsLimit(Array.from(keys)[0])
+										}}
+										selectedValues={[decimalsLimit]}>
+										<DropdownItem value="0">0</DropdownItem>
+										<DropdownItem value="1">1</DropdownItem>
+										<DropdownItem value="2">2</DropdownItem>
+										<DropdownItem value="3">3</DropdownItem>
+										<DropdownItem value="4">4</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Max Value</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setMaxValue(Array.from(keys)[0])
+										}}
+										selectedValues={[maxValue]}>
+										<DropdownItem value="">None</DropdownItem>
+										<DropdownItem value="100">100</DropdownItem>
+										<DropdownItem value="1000">1,000</DropdownItem>
+										<DropdownItem value="10000">10,000</DropdownItem>
+										<DropdownItem value="100000">100,000</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -130,7 +206,6 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setDisabled(Array.from(keys)[0])
-											// setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
@@ -149,19 +224,23 @@ const CurrencyInputPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
-					{/* <div className="w-full max-w-sm"> */}
 					<div className="flex items-center justify-center">
 						<CurrencyInput
 							rounded={rounded}
 							size={size}
 							label={label === "true" ? "Currency Input" : ""}
 							currency={currency}
+							locale={locale}
 							value={value}
 							placeholder="Enter amount"
 							disabled={disabled === "true"}
 							onChange={(e) => setValue(e.target.value)}
+							onValueChange={handleValueChange}
 							className="w-80"
 							hasError={hasError === "true"}
+							allowDecimals={allowDecimals === "true"}
+							decimalsLimit={parseInt(decimalsLimit)}
+							maxValue={maxValue ? parseInt(maxValue) : undefined}
 						/>
 					</div>
 				</div>
@@ -172,16 +251,20 @@ const CurrencyInputPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<CurrencyInput
-rounded="${rounded}"
-size="${size}"
-label="${label === "true" ? "Currency Input" : ""}"
-currency="${currency}"
-value="${value}"
-placeholder="Enter amount"
-disabled={${disabled === "true"}}
-onChange={(e) => setValue(e.target.value)}
-className="w-80"
-hasError={${hasError === "true"}}
+  rounded="${rounded}"
+  size="${size}"
+  label="${label === "true" ? "Currency Input" : ""}"
+  currency="${currency}"
+  locale="${locale}"
+  value="${value}"
+  placeholder="Enter amount"
+  disabled={${disabled === "true"}}
+  onChange={(e) => setValue(e.target.value)}
+  onValueChange={(numValue) => numValue !== null ? setValue(numValue.toString()) : setValue("")}
+  className="w-80"
+  hasError={${hasError === "true"}}
+  allowDecimals={${allowDecimals === "true"}}
+  decimalsLimit={${decimalsLimit}}${maxValue ? `\n  maxValue={${maxValue}}` : ""}
 />`}
 				/>
 			</TabsContent>
