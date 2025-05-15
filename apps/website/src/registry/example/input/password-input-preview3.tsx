@@ -107,7 +107,7 @@ ${label === "true" ? 'label="Password"' : ""}
 ${disabled === "true" ? "disabled={true}" : ""}
 ${size !== "36" ? `size="${size}"` : ""}
 trail='${trail}'
-${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ""}
+${error === "true" ? 'hint="Error Occurred"' : ""}
 value={password}
 onChange={(e) => setPassword(e.target.value)}
 placeholder="Enter your password"
@@ -249,7 +249,7 @@ export default PasswordInputPreview
 							disabled={disabled === "true"}
 							size={size}
 							hasError={error === "true"}
-							hint="Error Occurred"
+							hint={error === "true" ? "Error Occurred" : undefined}
 							trail={trail}
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}
