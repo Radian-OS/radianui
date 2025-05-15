@@ -24,7 +24,7 @@ const SearchPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-	const [suggestion, setSuggestion] = useState<boolean>(true)
+	const [suggestion, setSuggestion] = useState<boolean>(false)
 	const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([])
 	const [searchValue, setSearchValue] = useState("")
 

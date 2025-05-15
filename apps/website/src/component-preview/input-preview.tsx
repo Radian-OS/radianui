@@ -171,7 +171,7 @@ const InputPreview = () => {
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						hasError={hasError}
-						errorMsg={hasError ? "There is an error" : undefined}
+						hint="Hint"
 					/>
 				</div>
 			</TabsContent>

@@ -82,7 +82,7 @@ const UrlPreview = () => {
 								type="url"
 								lead={types === "lead" ? "https://" : ""}
 								hasError={hasError}
-								errorMsg={hasError ? "There is an error" : undefined}
+								hint={hasError ? "There is an error" : undefined}
 							/>
 
 							{types === "trail" ? (

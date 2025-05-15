@@ -60,7 +60,7 @@ export type InputClassNames = {
 // Type definition for input props, extending standard input attributes
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	label?: string
-	errorMsg?: string
+	hint?: string
 	hasError?: boolean
 	custom?: boolean
 	type?: "text" | "email" | "url" | "number" | "password"
@@ -80,7 +80,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 function Input({
 	label,
 	disabled,
-	errorMsg,
+	hint,
 	custom = false,
 	hasError = false,
 	type = "text",
@@ -103,7 +103,7 @@ function Input({
 					{label}
 				</Label>
 			)}
-			<label
+			<Label
 				className={cn(
 					inputVariants({ size, rounded }),
 					{
@@ -183,8 +183,8 @@ function Input({
 							: trail}
 					</span>
 				)} */}
-			</label>
-			{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{errorMsg}</Label>}
+			</Label>
+			<Label className={`flex items-start text-sm font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
 		</div>
 	)
 }

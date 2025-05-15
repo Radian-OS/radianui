@@ -46,7 +46,7 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	timeZoneProps?: Partial<SelectProps> & {
 		allowedTimezones?: string[]
 	}
-	errorMsg?: string
+	hint?: string
 	time?: Time
 	onSelectTime?: (time: Time | null) => void
 	selectedTimezone?: string
@@ -234,7 +234,7 @@ function DatePicker({
 						rounded={rounded}
 						disables={disabled}
 						hasError={hasError}
-						errorMsg={hasError ? "There is an error" : undefined}
+						hint={hasError ? "There is an error" : undefined}
 						showTime={showTime}
 						showDateRangeShortcut={showDateRangeShortcut}
 						{...props}
@@ -249,7 +249,7 @@ function DatePicker({
 						rounded={rounded}
 						disabled={disabled}
 						hasError={hasError}
-						errorMsg={hasError ? "There is an error" : undefined}
+						hint={hasError ? "There is an error" : undefined}
 						className={cn(triggerClassName)}
 						readOnly
 						value={inputValue}
@@ -408,7 +408,7 @@ function TypeableDatePicker({
 	className,
 	footer,
 	showDateRangeShortcut,
-	errorMsg,
+	hint,
 	...props
 }: DatePickerProps) {
 	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
@@ -543,7 +543,7 @@ function TypeableDatePicker({
 							})}
 						/>
 					</div>
-					{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{errorMsg}</Label>}
+					{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{hint}</Label>}
 				</div>
 			</PopoverTrigger>
 

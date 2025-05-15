@@ -27,7 +27,7 @@ function SearchInput({
 	value,
 	showSearchResults,
 	defaultShowSearchResults = false,
-	suggestion = true,
+	suggestion = false,
 	...props
 }: SearchProps) {
 	const [showResultsInternal, setShowResults] = React.useState(defaultShowSearchResults)
