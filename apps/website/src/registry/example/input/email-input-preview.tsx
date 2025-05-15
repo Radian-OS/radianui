@@ -51,8 +51,8 @@ const EmailPreview = () => {
 										selectedValues={[String(hasError)]}
 										onSelectedChange={(values) => setHasError(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -74,7 +74,7 @@ const EmailPreview = () => {
 						placeholder="designer@radianos.com"
 						trail={trailIcon === "Mail" ? <Mail className="h-5 w-5" /> : trailIcon === "Arrow" ? <ArrowRight className="h-5 w-5" /> : ""}
 						hasError={hasError}
-						hint={hasError ? "Invalid Email" : undefined}
+						hint={hasError ? "Invalid Email" : " "}
 					/>
 				</div>
 			</TabsContent>
@@ -88,9 +88,9 @@ const EmailPreview = () => {
     type="email"
     label="Email"
     placeholder="Enter your email here"
-	trailIcon="${trailIcon === "Mail" ? "<Mail className='h-5 w-5' />" : "<ArrowRight className='h-5 w-5' />"}"
-    hasError="${hasError}"
-    errorMsg="${hasError ? "There is an error" : undefined}"
+	trailIcon=${trailIcon === "Mail" ? `{<Mail className='h-5 w-5' />"}` : `{<ArrowRight className='h-5 w-5' />}`}
+    hasError={${hasError}}
+	hint="${hasError ? "Invalid Email" : ""}"
 />`}
 				/>
 			</TabsContent>

@@ -33,6 +33,7 @@ const DatePickerPreview = () => {
 
 	const [label, setLabel] = useState<boolean>(true)
 	const [hasError, setHasError] = useState<boolean>(false)
+	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -112,6 +113,20 @@ const DatePickerPreview = () => {
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">No</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -216,6 +231,7 @@ const DatePickerPreview = () => {
 						mode={mode}
 						label={label ? "Date picker" : undefined}
 						hasError={hasError}
+						hint={hint ? "Date Picker Field" : ""}
 						disabled={disabled}
 						triggerClassName="w-[320px]"
 						showDateRangeShortcut={showDateRangeShortcut}
@@ -251,6 +267,8 @@ const DatePickerPreview = () => {
     size="${size}"
     rounded="${rounded}"
     typeable={${typeable}}
+	hasError={${hasError}}
+	${hint ? `hint="Date Picker Field"` : ""}
     footer=${
 			footer
 				? `{

@@ -23,7 +23,6 @@ export type typeOptions = "trail" | "lead" | "default"
 const UrlPreview = () => {
 	const [domain, setDomain] = useState<domainOption>(".com")
 	const [types, setType] = useState<typeOptions>("default")
-	const [hasError, setHasError] = useState<boolean>(false)
 	console.log("domain", types)
 
 	return (
@@ -44,19 +43,6 @@ const UrlPreview = () => {
 										<DropdownItem value="default">Default</DropdownItem>
 										<DropdownItem value="trail">Trail</DropdownItem>
 										<DropdownItem value="lead">Lead</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -81,8 +67,8 @@ const UrlPreview = () => {
 								placeholder="radianos.com"
 								type="url"
 								lead={types === "lead" ? "https://" : ""}
-								hasError={hasError}
-								hint={hasError ? "There is an error" : undefined}
+								// hasError={hasError}
+								// hint={hint ? "There is an error" : ""}
 							/>
 
 							{types === "trail" ? (
@@ -121,6 +107,7 @@ const UrlPreview = () => {
             placeholder="radianos"
             type="url"
             lead="https://"
+
         />
 
         <Select

@@ -15,13 +15,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type ProgressOptions = "0" | "25" | "50" | "75" | "100"
 const sizes: ProgressOptions[] = ["0", "25", "50", "75", "100"]
-const booleanOptions = ["true", "false"]
 
 const ProgressBarPreview = () => {
 	const [progress, setProgress] = useState<ProgressOptions>("50")
-	const [hasError, setHasError] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-	const [hint, setHint] = useState<boolean>(true)
+	const [hint, setHint] = useState<boolean>(false)
+	const [valueLabel, setValueLabel] = useState<boolean>(true)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -38,11 +37,21 @@ const ProgressBarPreview = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Value Label</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(valueLabel)]}
+										onSelectedChange={(values) => setValueLabel(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -70,21 +79,8 @@ const ProgressBarPreview = () => {
 										selectedValues={[String(hint)]}
 										onSelectedChange={(values) => setHint(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -100,10 +96,10 @@ const ProgressBarPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<ProgressBar
-						label={label ? "ProgressBar" : undefined}
-						hasError={hasError}
-						hint={hint ? "Hint" : undefined}
+						label={label ? "Progress Bar" : undefined}
+						hint={hint ? "Progress Bar" : undefined}
 						className="w-80"
+						valueLabel={valueLabel}
 						value={Number(progress)}
 					/>
 				</div>
@@ -117,8 +113,8 @@ const ProgressBarPreview = () => {
 					code={`<ProgressBar 
 	value={${Number(progress)}}
 	label="${label ? "ProgressBar" : undefined}"
-	hasError={${hasError}}
-	hint="Description"
+	valueLabel={${valueLabel}}
+	${hint ? `hint="Progress Bar"` : ""}
 />
 					`}
 				/>

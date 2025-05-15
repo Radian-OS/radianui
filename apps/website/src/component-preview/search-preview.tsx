@@ -27,6 +27,7 @@ const SearchPreview = () => {
 	const [suggestion, setSuggestion] = useState<boolean>(false)
 	const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([])
 	const [searchValue, setSearchValue] = useState("")
+	const [hint, setHint] = useState<boolean>(false)
 
 	useEffect(() => {
 		const fetchResults = async () => {
@@ -179,6 +180,19 @@ const renderSearchResults = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -194,6 +208,7 @@ const renderSearchResults = () => {
 						label={label ? "Search" : undefined}
 						placeholder="Search"
 						size={size}
+						hint={hint ? "Search Field" : ""}
 						rounded={rounded}
 						disabled={disabled}
 						onChange={(e) => handleSearchChange(e.target.value)}
@@ -218,6 +233,7 @@ const renderSearchResults = () => {
     label="${label ? "Search" : undefined}"
 	placeholder="Search"
 	suggestion={${suggestion}}
+	${hint ? `hint="Search Field"` : ""}
 	${suggestion ? "onChange={(e) => handleSearchChange(e.target.value)}" : ""}
 	${suggestion ? "renderSearchResults={renderSearchResults}" : ""}
 	${suggestion ? "value={searchValue}" : ""}
