@@ -766,7 +766,7 @@ const FileUploadComp = () => {
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<FileUpload
 					label={label ? "Label here" : undefined}
-					rounded={rounded}
+					rounded="lg"
 					value={file}
 					onChange={setFile}
 					dropzoneClassName="h-[12.5rem]"

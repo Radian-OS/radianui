@@ -11,15 +11,16 @@ type ProgressBarProps = React.ComponentPropsWithRef<typeof ProgressPrimitive.Roo
 	disabled?: boolean
 	hasError?: boolean
 	hint?: string
+	valueLabel?: boolean
 }
 // Defines the ProgressBar functional component
-function ProgressBar({ value, className, indicatorClassName, hint, hasError, label, disabled, ...props }: ProgressBarProps) {
+function ProgressBar({ value, valueLabel, className, indicatorClassName, hint, hasError, label, disabled, ...props }: ProgressBarProps) {
 	return (
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className)}>
-			{label && (
+			{(label || valueLabel) && (
 				<div className="flex w-full justify-between">
 					<Label className={cn({ "text-text-disabled cursor-not-allowed": disabled })}>{label}</Label>
-					{value}%
+					{valueLabel && <span>{value}%</span>}
 				</div>
 			)}
 

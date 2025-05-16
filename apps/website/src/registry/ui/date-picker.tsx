@@ -68,6 +68,7 @@ function DatePicker({
 	onSelect,
 	disabled,
 	label,
+	hint,
 	hasError = false,
 	showTime = true,
 	triggerClassName,
@@ -234,7 +235,7 @@ function DatePicker({
 						rounded={rounded}
 						disables={disabled}
 						hasError={hasError}
-						hint={hasError ? "There is an error" : "Date picker"}
+						hint={hint ? `${hint}` : ""}
 						showTime={showTime}
 						showDateRangeShortcut={showDateRangeShortcut}
 						{...props}
@@ -249,7 +250,7 @@ function DatePicker({
 						rounded={rounded}
 						disabled={disabled}
 						hasError={hasError}
-						hint={hasError ? "There is an error" : "Date Picker"}
+						hint={hint ? `${hint}` : ""}
 						className={cn(triggerClassName)}
 						readOnly
 						value={inputValue}
@@ -543,7 +544,7 @@ function TypeableDatePicker({
 							})}
 						/>
 					</div>
-					{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{hint}</Label>}
+					<Label className={`flex items-start text-sm font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
 				</div>
 			</PopoverTrigger>
 

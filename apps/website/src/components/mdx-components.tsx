@@ -22,6 +22,7 @@ import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
+import FileUploadPreview from "@/component-preview/file-upload-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -130,6 +131,7 @@ const components: MDXComponents = {
 	SearchPreview: () => <SearchPreview />,
 	SearchInputExample: () => <SearchInputExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
+	FileUploadPreview: () => <FileUploadPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

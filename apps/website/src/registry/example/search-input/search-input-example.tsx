@@ -28,6 +28,7 @@ const SearchInputExample = () => {
 	const [suggestion, setSuggestion] = useState<boolean>(true)
 	const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([])
 	const [searchValue, setSearchValue] = useState("")
+	const [hint, setHint] = useState<boolean>(false)
 
 	useEffect(() => {
 		const fetchResults = async () => {
@@ -147,6 +148,19 @@ const SearchInputExample = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -168,7 +182,7 @@ const SearchInputExample = () => {
 						onChange={(e) => handleSearchChange(e.target.value)}
 						value={searchValue}
 						id="search-input"
-						hint="Search Input"
+						hint={hint ? "Search Field" : ""}
 						suggestion={suggestion}
 						renderSearchResults={renderSearchResults}
 						classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
@@ -186,8 +200,9 @@ const SearchInputExample = () => {
 	trail={<Badge size="20">Ctrl + K</Badge>}
     size="${size}"
     disabled="${disabled}"
-    label="${label ? "Search" : undefined}"
+    label="${label ? "Search" : ""}"
     placeholder="Search"
+	${hint ? `hint="Search Field"` : ""}
     suggestion={${suggestion}}
 />`}
 				/>

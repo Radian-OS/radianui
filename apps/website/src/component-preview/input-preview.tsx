@@ -18,7 +18,6 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
-const booleanOptions = ["true", "false"]
 
 const InputPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -28,7 +27,7 @@ const InputPreview = () => {
 	const [leadIcon, setLeadIcon] = useState<boolean>(false)
 	const [hasError, setHasError] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-	const [hint, setHint] = useState<boolean>(true)
+	const [hint, setHint] = useState<boolean>(false)
 
 	const sizeHeightMapping: Record<number, string> = {
 		28: "h-4 w-4",
@@ -88,11 +87,8 @@ const InputPreview = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -104,11 +100,8 @@ const InputPreview = () => {
 										selectedValues={[String(disabled)]}
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -120,8 +113,8 @@ const InputPreview = () => {
 										selectedValues={[String(trailIcon)]}
 										onSelectedChange={(values) => setTrailIcon(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -133,8 +126,8 @@ const InputPreview = () => {
 										selectedValues={[String(leadIcon)]}
 										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -146,8 +139,8 @@ const InputPreview = () => {
 										selectedValues={[String(hint)]}
 										onSelectedChange={(values) => setHint(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -159,8 +152,8 @@ const InputPreview = () => {
 										selectedValues={[String(hasError)]}
 										onSelectedChange={(values) => setHasError(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -185,7 +178,7 @@ const InputPreview = () => {
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						hasError={hasError}
-						hint={hint ? "Hint" : undefined}
+						hint={hint ? "Input Field" : ""}
 					/>
 				</div>
 			</TabsContent>
@@ -198,13 +191,13 @@ const InputPreview = () => {
 					code={`<Input 
     rounded="${rounded}"
     size="${size}"
-    disabled="${disabled}"
+    disabled={${disabled}}
     label="${label ? "Username" : undefined}"
     placeholder="Enter your username here"
-    hasError="${hasError}"
-    errorMsg="${hasError ? "There is an error" : undefined}"
-  ${leadIcon ? `leadIcon={<CircleUserRound className="${iconClass}" />}` : ""}
-  ${trailIcon ? `trailIcon={<CircleUserRound className="${iconClass}" />}` : ""}
+    hasError={${hasError}}
+	${hint ? `hint="Input Field"` : ""}
+  	${leadIcon ? `leadIcon={<CircleUserRound className="${iconClass}" />}` : ""}
+  	${trailIcon ? `trailIcon={<CircleUserRound className="${iconClass}" />}` : ""}
 />`}
 				/>
 			</TabsContent>
