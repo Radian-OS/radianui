@@ -4,60 +4,18 @@ import { Input } from "./input"
 import type { InputProps } from "./input"
 
 type CurrencyInputProps = {
-	/**
-	 * Currency code (ISO 4217) for formatting
-	 * @default "usd"
-	 */
 	currency?: string
-
-	/**
-	 * Locale for number formatting
-	 * @default "en-US"
-	 */
 	locale?: string
-
-	/**
-	 * Allow decimal values
-	 * @default true
-	 */
 	allowDecimals?: boolean
-
-	/**
-	 * Number of decimal places
-	 * @default 2
-	 */
 	decimalsLimit?: number
-
-	/**
-	 * Decimal separator character
-	 * @default "." for en-US
-	 */
 	decimalSeparator?: string
-
-	/**
-	 * Group separator character (thousands)
-	 * @default "," for en-US
-	 */
 	groupSeparator?: string
-
-	/**
-	 * Maximum value allowed
-	 */
 	maxValue?: number
-
-	/**
-	 * Minimum value allowed
-	 */
 	minValue?: number
-
-	/**
-	 * Called when value changes with the raw numeric value
-	 */
 	onValueChange?: (value: number | null, name?: string) => void
 }
 
 function CurrencyInput({
-	// Currency related props
 	currency = "usd",
 	locale = "en-US",
 	allowDecimals = true,
@@ -67,312 +25,185 @@ function CurrencyInput({
 	maxValue,
 	minValue,
 	onValueChange,
-
-	// Input props
 	...props
 }: InputProps & CurrencyInputProps) {
-	// State variables
 	const [rawValue, setRawValue] = useState<string>((props.value as string) || "")
 	const [currencySymbol, setCurrencySymbol] = useState<string>("")
 	const inputRef = useRef<HTMLInputElement>(null)
 
-	// Detect locale settings if not explicitly provided
 	const [detectedDecimalSep, detectedGroupSep] = useDetectSeparators(locale)
-
-	// Use provided separators or detected ones
 	const effectiveDecimalSep = decimalSeparator || detectedDecimalSep
 	const effectiveGroupSep = groupSeparator || detectedGroupSep
 
-	// Initialize currency symbol
-	useEffect(() => {
-		setRawValue((props.value as string) || "")
+	// New: pure parse (no clamping)
+	const peekNumber = (value: string): number | null => {
+		if (!value || value === "-" || value === effectiveDecimalSep) return null
+		let clean = value.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
+		if (effectiveDecimalSep !== ".") clean = clean.replace(new RegExp(`\\${effectiveDecimalSep}`, "g"), ".")
+		clean = clean.replace(/[^\d.-]/g, "")
+		const parts = clean.split(".")
+		if (parts.length > 2) clean = `${parts[0]}.${parts.slice(1).join("")}`
+		const num = parseFloat(clean)
+		return isNaN(num) ? null : num
+	}
 
-		try {
-			// Get currency symbol from locale
-			const formatter = new Intl.NumberFormat(locale, {
-				style: "currency",
-				currency: currency.toUpperCase(),
-			})
-
-			// Extract symbol from formatted parts
-			const parts = formatter.formatToParts(0)
-			const symbol = parts.find((part) => part.type === "currency")?.value || ""
-			setCurrencySymbol(symbol)
-		} catch (e) {
-			console.error("Error setting up currency formatting:", e)
-			setCurrencySymbol(currency.toUpperCase())
-		}
-	}, [props.value, currency, locale])
-
-	// Format a numeric value to currency string
+	// Your existing formatter + clamping
 	const formatCurrency = (value: number): string => {
-		try {
-			if (isNaN(value)) return ""
-
-			// Apply min/max constraints
-			if (maxValue !== undefined && value > maxValue) value = maxValue
-			if (minValue !== undefined && value < minValue) value = minValue
-
-			// Format with Intl
-			const formatted = new Intl.NumberFormat(locale, {
-				style: "currency",
-				currency: currency.toUpperCase(),
-				minimumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-				maximumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-			}).format(value)
-
-			// Remove currency symbol to keep it outside the input
-			return formatted.replace(currencySymbol, "").trim()
-		} catch (e) {
-			console.error("Error formatting currency:", e)
-			return ""
-		}
+		let v = value
+		if (maxValue !== undefined && v > maxValue) v = maxValue
+		if (minValue !== undefined && v < minValue) v = minValue
+		const formatted = new Intl.NumberFormat(locale, {
+			style: "currency",
+			currency: currency.toUpperCase(),
+			minimumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
+			maximumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
+		}).format(v)
+		return formatted.replace(currencySymbol, "").trim()
 	}
 
-	// Parse a string value to number, handling separators
+	// Your existing clamping parser for onBlur/onValueChange
 	const parseValue = (value: string): number | null => {
-		if (!value) return null
-
-		try {
-			// Remove currency symbol and group separators
-			let cleanValue = value.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
-
-			// Replace decimal separator with dot for parsing
-			if (effectiveDecimalSep !== ".") {
-				cleanValue = cleanValue.replace(new RegExp(`\\${effectiveDecimalSep}`, "g"), ".")
-			}
-
-			// Remove any non-numeric chars except decimal point
-			cleanValue = cleanValue.replace(/[^\d.-]/g, "")
-
-			// Handle multiple decimal points
-			const parts = cleanValue.split(".")
-			if (parts.length > 2) {
-				cleanValue = `${parts[0]}.${parts.slice(1).join("")}`
-			}
-
-			// Parse the clean value
-			const numValue = parseFloat(cleanValue)
-
-			// Apply min/max constraints
-			if (!isNaN(numValue)) {
-				if (maxValue !== undefined && numValue > maxValue) return maxValue
-				if (minValue !== undefined && numValue < minValue) return minValue
-				return numValue
-			}
-
-			return null
-		} catch (e) {
-			console.error("Error parsing currency value:", e)
-			return null
-		}
+		const num = peekNumber(value)
+		if (num == null) return null
+		if (maxValue !== undefined && num > maxValue) return maxValue
+		if (minValue !== undefined && num < minValue) return minValue
+		return num
 	}
 
-	// Event Handlers
-	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		// Prevent non-numeric input if decimals not allowed
-		if (!allowDecimals) {
-			if (
-				!/[\d-]/.test(e.key) &&
-				e.key !== "Backspace" &&
-				e.key !== "Delete" &&
-				e.key !== "ArrowLeft" &&
-				e.key !== "ArrowRight" &&
-				e.key !== "Tab" &&
-				e.key !== "Enter"
-			) {
-				e.preventDefault()
-			}
-		} else {
-			// Allow decimal separator (but only one)
-			if (e.key === effectiveDecimalSep && inputRef.current?.value.includes(effectiveDecimalSep)) {
-				e.preventDefault()
-			}
+	// BLOCK keystrokes above maxValue
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		const allowedNav = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab", "Enter"]
+		if (allowedNav.includes(e.key)) return
 
-			// Allow only numeric input, decimal separator, and control keys
-			if (
-				!/[\d-]/.test(e.key) &&
-				e.key !== effectiveDecimalSep &&
-				e.key !== "Backspace" &&
-				e.key !== "Delete" &&
-				e.key !== "ArrowLeft" &&
-				e.key !== "ArrowRight" &&
-				e.key !== "Tab" &&
-				e.key !== "Enter"
-			) {
-				e.preventDefault()
-			}
+		const isDigit = /\d/.test(e.key)
+		const isDecimal = allowDecimals && e.key === effectiveDecimalSep
+		if (!isDigit && !isDecimal) {
+			e.preventDefault()
+			return
 		}
 
-		// Handle Enter key
-		if (e.key === "Enter" && inputRef.current) {
-			inputRef.current.blur()
-		}
-	}
+		const input = inputRef.current!
+		const { value } = input
+		const selectionStart = input.selectionStart ?? 0
+		const selectionEnd = input.selectionEnd ?? 0
 
-	const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-		if (!inputRef.current) return
+		// Build what text would become
+		const nextRaw = value.slice(0, selectionStart) + e.key + value.slice(selectionEnd)
 
-		try {
-			// If empty, handle accordingly
-			if (!rawValue || rawValue === "") {
-				setRawValue("")
-				inputRef.current.value = ""
-
-				// Notify parent of empty value
-				if (onValueChange) {
-					onValueChange(null, props.name)
-				}
-				// Call original onBlur if provided
-				if (props.onBlur) {
-					props.onBlur(e)
-				}
-				return
-			}
-
-			// Parse and validate the value
-			const numValue = parseValue(rawValue)
-			if (numValue === null || isNaN(numValue)) {
-				setRawValue("")
-				inputRef.current.value = ""
-
-				// Notify parent of invalid value
-				if (onValueChange) {
-					onValueChange(null, props.name)
-				}
-				// Call original onBlur if provided
-				if (props.onBlur) {
-					props.onBlur(e)
-				}
-				return
-			}
-
-			// Format the value for display
-			const formattedValue = formatCurrency(numValue)
-			inputRef.current.value = formattedValue
-
-			// Update raw value for future edits
-			setRawValue(numValue.toString())
-
-			// Notify parent of value change
-			if (onValueChange) {
-				onValueChange(numValue, props.name)
-			}
-
-			// Call original onBlur if provided
-			if (props.onBlur) {
-				props.onBlur(e)
-			}
-		} catch (e2) {
-			console.error("Error in handleBlur:", e2)
-			setRawValue("")
-			inputRef.current.value = ""
-
-			// Notify parent of error
-			if (onValueChange) {
-				onValueChange(null, props.name)
-			}
-			// Call original onBlur if provided
-			if (props.onBlur) {
-				props.onBlur(e)
-			}
-		}
-	}
-
-	const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-		if (inputRef.current) {
-			// Show raw value for editing
-			inputRef.current.value = rawValue || ""
-		}
-
-		// Call original onFocus if provided
-		if (props.onFocus) {
-			props.onFocus(e)
+		// If numeric peek is above max, block. Otherwise allow.
+		const peek = peekNumber(nextRaw)
+		if (peek !== null && maxValue !== undefined && peek > maxValue) {
+			e.preventDefault()
 		}
 	}
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const inputValue = e.target.value
+		let newValue = e.target.value
 
-		// Validate input during typing
-		let newValue = inputValue
-
-		// Apply validation based on settings
+		// strip illegal chars
 		if (!allowDecimals) {
-			// Only allow digits and negative sign
 			newValue = newValue.replace(/[^\d-]/g, "")
 		} else {
-			// Allow one decimal separator
 			const parts = newValue.split(effectiveDecimalSep)
 			if (parts.length > 2) {
 				newValue = `${parts[0]}${effectiveDecimalSep}${parts.slice(1).join("")}`
 			}
-
-			// Enforce decimals limit
-			if (parts.length === 2 && decimalsLimit && parts[1].length > decimalsLimit) {
-				parts[1] = parts[1].substring(0, decimalsLimit)
+			if (parts[1]?.length > decimalsLimit) {
+				parts[1] = parts[1].slice(0, decimalsLimit)
 				newValue = parts.join(effectiveDecimalSep)
 			}
 		}
 
-		// Update raw value state
-		setRawValue(newValue)
+		const isTypingFraction = allowDecimals && (newValue.endsWith(effectiveDecimalSep) || new RegExp(`\\${effectiveDecimalSep}\\d*$`).test(newValue))
 
-		// Call original onChange if provided
-		if (props.onChange) {
-			// Create a synthetic event with our validated value
-			const syntheticEvent = {
-				...e,
-				target: {
-					...e.target,
-					value: newValue,
-				},
-			}
-			props.onChange(syntheticEvent as React.ChangeEvent<HTMLInputElement>)
+		// grouping logic (unchanged)
+		let displayValue: string
+		if (isTypingFraction) {
+			displayValue = newValue
+		} else {
+			const stripped = newValue.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
+			const [intPart, fracPart] = stripped.split(effectiveDecimalSep)
+			const withGroups = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, effectiveGroupSep)
+			displayValue = fracPart != null ? `${withGroups}${effectiveDecimalSep}${fracPart}` : withGroups
 		}
+
+		setRawValue(displayValue)
+		props.onChange?.({
+			...e,
+			target: { ...e.target, value: displayValue },
+		} as React.ChangeEvent<HTMLInputElement>)
 	}
 
-	// Prevent the input from focusing when the currency elements are clicked
+	const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+		if (!inputRef.current) return
+		if (!rawValue) {
+			setRawValue("")
+			inputRef.current.value = ""
+			onValueChange?.(null, props.name)
+			props.onBlur?.(e)
+			return
+		}
+		const num = parseValue(rawValue)
+		if (num == null) {
+			setRawValue("")
+			inputRef.current.value = ""
+			onValueChange?.(null, props.name)
+		} else {
+			const out = formatCurrency(num)
+			inputRef.current.value = out
+			setRawValue(out)
+			onValueChange?.(num, props.name)
+		}
+		props.onBlur?.(e)
+	}
+
+	const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+		if (inputRef.current) inputRef.current.value = rawValue
+		props.onFocus?.(e)
+	}
+
 	const preventFocus = (e: React.MouseEvent) => {
 		e.preventDefault()
 		e.stopPropagation()
 	}
 
-	// Currency symbol at the start
 	const currencyLead = (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-			<span
-				className={cn("text-text-tertiary text-sm uppercase", {
-					"cursor-not-allowed": props.disabled,
-				})}>
-				{currencySymbol}
-			</span>
+			<span className={cn("text-text-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currencySymbol}</span>
 		</div>
 	)
-
-	// Currency code at the end
 	const wrappedTrail = props.trail ? (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto">
 			{props.trail}
 		</div>
 	) : (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-			<span
-				className={cn("text-text-tertiary text-sm uppercase", {
-					"cursor-not-allowed": props.disabled,
-				})}>
-				{currency}
-			</span>
+			<span className={cn("text-text-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currency}</span>
 		</div>
 	)
 
+	useEffect(() => {
+		setRawValue((props.value as string) || "")
+		try {
+			const formatter = new Intl.NumberFormat(locale, {
+				style: "currency",
+				currency: currency.toUpperCase(),
+			})
+			const parts = formatter.formatToParts(0)
+			const symbol = parts.find((p) => p.type === "currency")?.value || ""
+			setCurrencySymbol(symbol)
+		} catch {
+			setCurrencySymbol(currency.toUpperCase())
+		}
+	}, [props.value, currency, locale])
+
 	return (
 		<Input
-			className={cn("text-text-tertiary")}
+			value={rawValue}
 			ref={inputRef}
 			lead={currencyLead}
 			trail={wrappedTrail}
-			onKeyDown={handleKeyPress}
+			onKeyDown={handleKeyDown}
 			onChange={handleChange}
 			onBlur={handleBlur}
 			onFocus={handleFocus}
@@ -381,28 +212,14 @@ function CurrencyInput({
 	)
 }
 
-// Helper hook to detect decimal and group separators based on locale
 function useDetectSeparators(locale: string): [string, string] {
 	const [decimalSep, setDecimalSep] = useState<string>(".")
 	const [groupSep, setGroupSep] = useState<string>(",")
 
 	useEffect(() => {
-		try {
-			// Use 1234.5 to detect separators
-			const parts = new Intl.NumberFormat(locale).formatToParts(1234.5)
-
-			// Find decimal and group separators
-			const decimal = parts.find((part) => part.type === "decimal")?.value || "."
-			const group = parts.find((part) => part.type === "group")?.value || ","
-
-			setDecimalSep(decimal)
-			setGroupSep(group)
-		} catch (e) {
-			console.error("Error detecting separators:", e)
-			// Fallback to US defaults
-			setDecimalSep(".")
-			setGroupSep(",")
-		}
+		const parts = new Intl.NumberFormat(locale).formatToParts(1234.5)
+		setDecimalSep(parts.find((p) => p.type === "decimal")?.value || ".")
+		setGroupSep(parts.find((p) => p.type === "group")?.value || ",")
 	}, [locale])
 
 	return [decimalSep, groupSep]
