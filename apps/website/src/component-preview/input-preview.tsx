@@ -18,7 +18,6 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
-const booleanOptions = ["true", "false"]
 
 const InputPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -88,11 +87,8 @@ const InputPreview = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -104,11 +100,8 @@ const InputPreview = () => {
 										selectedValues={[String(disabled)]}
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -185,7 +178,7 @@ const InputPreview = () => {
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						hasError={hasError}
-						hint={hint ? "Input field" : ""}
+						hint={hint ? "Input Field" : ""}
 					/>
 				</div>
 			</TabsContent>

@@ -1,4 +1,38 @@
 ---
 title: File Upload
 description: Allow users to upload files
+source: https://github.com/Radian-os
 ---
+
+<FileUploadPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add file-upload`} />
+
+##### Imports
+
+<Code language="tsx" code={`import FileUpload from "@/components/ui/file-upload"`} />
+
+##### Props
+
+| Prop Name | Default Values | Values             |
+| --------- | -------------- | ------------------ |
+| rounded   | lg             | xs,sm,md,lg,xl,2xl |
+| label     | true           | true/false         |
+| disabled  | false          | true/false         |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={`<FileUpload
+    label="Label"
+    rounded="lg"
+    value={file}
+    onChange={setFile}
+    dropzoneClassName="h-[12.5rem]"
+    multiple
+    disabled={false}
+/`}
+/>

@@ -1,12 +1,13 @@
 "use client"
 
 import React from "react"
+import { cva } from "class-variance-authority"
 import { File, Upload, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { RoundedOptions, defaultInputRadius } from "./input"
 import ProgressBar from "./progress-bar"
 
 const DEFAULT_MAX_SIZE = 4 * 1024 * 1024 // 4 MB in bytes
+export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 
 // Function to format file size into a human-readable string
 function formatFileSize(bytes: number) {
@@ -37,7 +38,7 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	headers?: Record<string, string> // Custom headers for upload request
 	ref?: React.Ref<HTMLInputElement>
 	fieldname?: string // Fieldname for the file upload
-	rounded?: Omit<RoundedOptions, "full">
+	rounded?: RoundedOptions
 	label?: string
 }
 
@@ -53,7 +54,7 @@ function FileUpload({
 	url,
 	headers,
 	fieldname = "file",
-	rounded = defaultInputRadius,
+	rounded = "lg",
 	label,
 	ref,
 	...props
@@ -162,12 +163,37 @@ function FileUpload({
 		onChange?.(newFiles)
 	}
 
+	const cvaFileUploadVariants = {
+		rounded: {
+			xs: "rounded-xs",
+			sm: "rounded-sm",
+			md: "rounded-md",
+			lg: "rounded-lg",
+			xl: "rounded-xl",
+			"2xl": "rounded-2xl",
+		},
+	}
+
+	const defaultFileUploadRadius = "lg"
+
+	const fileUploadVariants = cva(
+		"border-border-alpha bg-bg-base max-h-50 relative flex h-full w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
+		{
+			variants: {
+				...cvaFileUploadVariants,
+			},
+			defaultVariants: {
+				rounded: defaultFileUploadRadius,
+			},
+		}
+	)
+
 	return (
-		<div className={cn("w-90 flex flex-col gap-2", containerClassName)}>
+		<div className={cn("w-90 flex flex-col gap-1.5", containerClassName)}>
 			{label && (
 				<label
 					className={cn("w-fit text-sm font-medium", {
-						"text-text-tertiary": props.disabled,
+						"text-text-disabled": props.disabled,
 					})}>
 					{label}
 				</label>
@@ -176,10 +202,8 @@ function FileUpload({
 			{((value.length == 0 && !multiple) || multiple) && (
 				<div
 					className={cn(
-						"border-border-alpha bg-bg-base max-h-50 relative flex h-full w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
+						fileUploadVariants({ rounded }),
 						{
-							"rounded-lg": rounded === "rounded",
-							"rounded-none": rounded === "square",
 							"border-primary bg-primary/5": isDragging,
 							"border-error bg-error/5": error,
 							"bg-bg-level0": props.disabled,
