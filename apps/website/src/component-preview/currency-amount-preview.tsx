@@ -20,6 +20,7 @@ const CurrencyInputPreview = () => {
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 	const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 
+	const [separator, setSeparator] = useState<string>("true")
 	const [currency, setCurrency] = useState("usd")
 	const [locale, setLocale] = useState("en-US")
 	const [disabled, setDisabled] = useState("false")
@@ -138,6 +139,21 @@ const CurrencyInputPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
+									<DropdownSubTrigger>Separator</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setSeparator(Array.from(keys)[0])
+											}}
+											minSelectionCount={1}
+											selectedValues={[separator]}>
+											<DropdownItem value="true">true</DropdownItem>
+											<DropdownItem value="false">false</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
 									<DropdownSubTrigger>Locale</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
@@ -216,6 +232,7 @@ const CurrencyInputPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
 					<div className="flex items-center justify-center">
 						<CurrencyInput
+							separator={separator === "true" ? true : false}
 							rounded={rounded}
 							size={size}
 							label={label === "true" ? "Currency Input" : ""}

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { cn } from "@/lib/utils"
 import { Input } from "./input"
 import type { InputProps } from "./input"
@@ -10,6 +10,7 @@ type CurrencyInputProps = {
 	decimalsLimit?: number
 	decimalSeparator?: string
 	groupSeparator?: string
+	separator?: boolean // new prop to toggle grouping
 	maxValue?: number
 	minValue?: number
 	onValueChange?: (value: number | null, name?: string) => void
@@ -22,6 +23,7 @@ function CurrencyInput({
 	decimalsLimit = 2,
 	decimalSeparator,
 	groupSeparator,
+	separator = true, // default true
 	maxValue,
 	minValue,
 	onValueChange,
@@ -35,33 +37,41 @@ function CurrencyInput({
 	const effectiveDecimalSep = decimalSeparator || detectedDecimalSep
 	const effectiveGroupSep = groupSeparator || detectedGroupSep
 
-	// New: pure parse (no clamping)
+	// parse without clamping
 	const peekNumber = (value: string): number | null => {
 		if (!value || value === "-" || value === effectiveDecimalSep) return null
 		let clean = value.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
-		if (effectiveDecimalSep !== ".") clean = clean.replace(new RegExp(`\\${effectiveDecimalSep}`, "g"), ".")
-		clean = clean.replace(/[^\d.-]/g, "")
+		if (effectiveDecimalSep !== ".") {
+			clean = clean.replace(new RegExp(`\\${effectiveDecimalSep}`, "g"), ".")
+		}
+		clean = clean.replace(/[^^\d.-]/g, "")
 		const parts = clean.split(".")
 		if (parts.length > 2) clean = `${parts[0]}.${parts.slice(1).join("")}`
 		const num = parseFloat(clean)
 		return isNaN(num) ? null : num
 	}
 
-	// Your existing formatter + clamping
+	// formatter (memoized, respects separator grouping)
+	const formatter = useMemo(
+		() =>
+			new Intl.NumberFormat(locale, {
+				style: "currency",
+				currency: currency.toUpperCase(),
+				minimumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
+				maximumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
+				useGrouping: separator,
+			}),
+		[locale, currency, allowDecimals, decimalsLimit, separator]
+	)
+
 	const formatCurrency = (value: number): string => {
 		let v = value
 		if (maxValue !== undefined && v > maxValue) v = maxValue
 		if (minValue !== undefined && v < minValue) v = minValue
-		const formatted = new Intl.NumberFormat(locale, {
-			style: "currency",
-			currency: currency.toUpperCase(),
-			minimumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-			maximumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-		}).format(v)
+		const formatted = formatter.format(v)
 		return formatted.replace(currencySymbol, "").trim()
 	}
 
-	// Your existing clamping parser for onBlur/onValueChange
 	const parseValue = (value: string): number | null => {
 		const num = peekNumber(value)
 		if (num == null) return null
@@ -70,27 +80,19 @@ function CurrencyInput({
 		return num
 	}
 
-	// BLOCK keystrokes above maxValue
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		const allowedNav = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab", "Enter"]
 		if (allowedNav.includes(e.key)) return
-
 		const isDigit = /\d/.test(e.key)
 		const isDecimal = allowDecimals && e.key === effectiveDecimalSep
 		if (!isDigit && !isDecimal) {
 			e.preventDefault()
 			return
 		}
-
 		const input = inputRef.current!
 		const { value } = input
-		const selectionStart = input.selectionStart ?? 0
-		const selectionEnd = input.selectionEnd ?? 0
-
-		// Build what text would become
-		const nextRaw = value.slice(0, selectionStart) + e.key + value.slice(selectionEnd)
-
-		// If numeric peek is above max, block. Otherwise allow.
+		const { selectionStart = 0, selectionEnd = 0 } = input
+		const nextRaw = value.slice(0, selectionStart!) + e.key + value.slice(selectionEnd!)
 		const peek = peekNumber(nextRaw)
 		if (peek !== null && maxValue !== undefined && peek > maxValue) {
 			e.preventDefault()
@@ -99,15 +101,11 @@ function CurrencyInput({
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		let newValue = e.target.value
-
-		// strip illegal chars
 		if (!allowDecimals) {
 			newValue = newValue.replace(/[^\d-]/g, "")
 		} else {
 			const parts = newValue.split(effectiveDecimalSep)
-			if (parts.length > 2) {
-				newValue = `${parts[0]}${effectiveDecimalSep}${parts.slice(1).join("")}`
-			}
+			if (parts.length > 2) newValue = `${parts[0]}${effectiveDecimalSep}${parts.slice(1).join("")}`
 			if (parts[1]?.length > decimalsLimit) {
 				parts[1] = parts[1].slice(0, decimalsLimit)
 				newValue = parts.join(effectiveDecimalSep)
@@ -116,9 +114,8 @@ function CurrencyInput({
 
 		const isTypingFraction = allowDecimals && (newValue.endsWith(effectiveDecimalSep) || new RegExp(`\\${effectiveDecimalSep}\\d*$`).test(newValue))
 
-		// grouping logic (unchanged)
 		let displayValue: string
-		if (isTypingFraction) {
+		if (isTypingFraction || !separator) {
 			displayValue = newValue
 		} else {
 			const stripped = newValue.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
@@ -149,7 +146,8 @@ function CurrencyInput({
 			inputRef.current.value = ""
 			onValueChange?.(null, props.name)
 		} else {
-			const out = formatCurrency(num)
+			// use formatted or raw based on separator
+			const out = separator ? formatCurrency(num) : num.toFixed(allowDecimals ? decimalsLimit : 0)
 			inputRef.current.value = out
 			setRawValue(out)
 			onValueChange?.(num, props.name)
@@ -185,17 +183,16 @@ function CurrencyInput({
 	useEffect(() => {
 		setRawValue((props.value as string) || "")
 		try {
-			const formatter = new Intl.NumberFormat(locale, {
+			const parts = new Intl.NumberFormat(locale, {
 				style: "currency",
 				currency: currency.toUpperCase(),
-			})
-			const parts = formatter.formatToParts(0)
+			}).formatToParts(0)
 			const symbol = parts.find((p) => p.type === "currency")?.value || ""
 			setCurrencySymbol(symbol)
 		} catch {
 			setCurrencySymbol(currency.toUpperCase())
 		}
-	}, [props.value, currency, locale])
+	}, [currency, locale])
 
 	return (
 		<Input
