@@ -18,7 +18,6 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
-const booleanOptions = ["true", "false"]
 
 const SearchInputExample = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -108,11 +107,8 @@ const SearchInputExample = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -124,11 +120,8 @@ const SearchInputExample = () => {
 										selectedValues={[String(disabled)]}
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -140,11 +133,8 @@ const SearchInputExample = () => {
 										selectedValues={[String(suggestion)]}
 										onSelectedChange={(values) => setSuggestion(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

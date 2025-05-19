@@ -239,7 +239,7 @@ const TablePreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Vertical Line</DropdownSubTrigger>
+									<DropdownSubTrigger>Vertical line</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -357,7 +357,7 @@ const TablePreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Table Height</DropdownSubTrigger>
+									<DropdownSubTrigger>Table height</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -374,7 +374,7 @@ const TablePreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Header Height</DropdownSubTrigger>
+									<DropdownSubTrigger>Header height</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -390,7 +390,7 @@ const TablePreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Row Height</DropdownSubTrigger>
+									<DropdownSubTrigger>Row height</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
