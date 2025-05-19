@@ -10,7 +10,7 @@ type CurrencyInputProps = {
 	decimalsLimit?: number
 	decimalSeparator?: string
 	groupSeparator?: string
-	separator?: boolean // new prop to toggle grouping
+	separator?: boolean
 	maxValue?: number
 	minValue?: number
 	onValueChange?: (value: number | null, name?: string) => void
