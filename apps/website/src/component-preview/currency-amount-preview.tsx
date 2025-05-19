@@ -31,6 +31,7 @@ const CurrencyInputPreview = () => {
 	const [allowDecimals, setAllowDecimals] = useState<"true" | "false">("true")
 	const [decimalsLimit, setDecimalsLimit] = useState("2")
 	const [maxValue, setMaxValue] = useState("")
+	const [hint, setHint] = useState<boolean>(false)
 
 	// Handle numeric value change
 	const handleValueChange = (numValue: number | null) => {
@@ -122,6 +123,21 @@ const CurrencyInputPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
 							<DropdownSub>
 								<DropdownSubTrigger>HasError</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -232,6 +248,7 @@ const CurrencyInputPreview = () => {
 							currency={currency}
 							locale={locale}
 							value={value}
+							hint={hint ? "Currency Field" : ""}
 							placeholder="Enter amount"
 							disabled={disabled === "true"}
 							onChange={(e) => setValue(e.target.value)}
@@ -255,6 +272,7 @@ const CurrencyInputPreview = () => {
   size="${size}"
   label="${label === "true" ? "Currency Input" : ""}"
   currency="${currency}"
+  ${hint === true ? `hint="Currency Field"` : ""}
   locale="${locale}"
   value="${value}"
   placeholder="Enter amount"

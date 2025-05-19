@@ -66,6 +66,7 @@ function CurrencyInput({
 	groupSeparator,
 	maxValue,
 	minValue,
+	hint = "",
 	onValueChange,
 
 	// Input props
@@ -372,6 +373,7 @@ function CurrencyInput({
 			ref={inputRef}
 			lead={currencyLead}
 			trail={wrappedTrail}
+			hint={hint}
 			onKeyDown={handleKeyPress}
 			onChange={handleChange}
 			onBlur={handleBlur}
