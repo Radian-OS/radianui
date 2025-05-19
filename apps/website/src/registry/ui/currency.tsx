@@ -23,7 +23,7 @@ function CurrencyInput({
 	decimalsLimit = 2,
 	decimalSeparator,
 	groupSeparator,
-	separator = true, // default true
+	separator = true,
 	maxValue,
 	minValue,
 	hint = "",
@@ -38,7 +38,24 @@ function CurrencyInput({
 	const effectiveDecimalSep = decimalSeparator || detectedDecimalSep
 	const effectiveGroupSep = groupSeparator || detectedGroupSep
 
-	// parse without clamping
+	const formatter = useMemo(
+		() =>
+			new Intl.NumberFormat(locale, {
+				style: "currency",
+				currency: currency.toUpperCase(),
+				minimumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
+				maximumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
+				useGrouping: separator,
+			}),
+		[locale, currency, allowDecimals, decimalsLimit, separator]
+	)
+
+	// strip symbol from formatted value
+	const formatCurrency = (value: number): string => {
+		const formatted = formatter.format(value)
+		return formatted.replace(currencySymbol, "").trim()
+	}
+
 	const peekNumber = (value: string): number | null => {
 		if (!value || value === "-" || value === effectiveDecimalSep) return null
 		let clean = value.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
@@ -52,27 +69,6 @@ function CurrencyInput({
 		return isNaN(num) ? null : num
 	}
 
-	// formatter (memoized, respects separator grouping)
-	const formatter = useMemo(
-		() =>
-			new Intl.NumberFormat(locale, {
-				style: "currency",
-				currency: currency.toUpperCase(),
-				minimumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-				maximumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-				useGrouping: separator,
-			}),
-		[locale, currency, allowDecimals, decimalsLimit, separator]
-	)
-
-	const formatCurrency = (value: number): string => {
-		let v = value
-		if (maxValue !== undefined && v > maxValue) v = maxValue
-		if (minValue !== undefined && v < minValue) v = minValue
-		const formatted = formatter.format(v)
-		return formatted.replace(currencySymbol, "").trim()
-	}
-
 	const parseValue = (value: string): number | null => {
 		const num = peekNumber(value)
 		if (num == null) return null
@@ -82,22 +78,17 @@ function CurrencyInput({
 	}
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		// allow ctrl/cmd shortcuts (like Ctrl+A, Ctrl+C, Cmd+V)
 		if (e.ctrlKey || e.metaKey) return
-
 		const allowedNav = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab", "Enter"]
 		if (allowedNav.includes(e.key)) return
-
 		const isDigit = /\d/.test(e.key)
 		const isDecimal = allowDecimals && e.key === effectiveDecimalSep
 		if (!isDigit && !isDecimal) {
 			e.preventDefault()
 			return
 		}
-
 		const input = inputRef.current!
-		const { value } = input
-		const { selectionStart = 0, selectionEnd = 0 } = input
+		const { value, selectionStart = 0, selectionEnd = 0 } = input
 		const nextRaw = value.slice(0, selectionStart!) + e.key + value.slice(selectionEnd!)
 		const peek = peekNumber(nextRaw)
 		if (peek !== null && maxValue !== undefined && peek > maxValue) {
@@ -121,13 +112,21 @@ function CurrencyInput({
 		const isTypingFraction = allowDecimals && (newValue.endsWith(effectiveDecimalSep) || new RegExp(`\\${effectiveDecimalSep}\\d*$`).test(newValue))
 
 		let displayValue: string
-		if (isTypingFraction || !separator) {
-			displayValue = newValue
+		if (!isTypingFraction && separator) {
+			const num = peekNumber(newValue)
+			if (num != null) {
+				const parts = formatter.formatToParts(num)
+				const intAndGroup = parts
+					.filter((p) => p.type === "integer" || p.type === "group")
+					.map((p) => p.value)
+					.join("")
+				const frac = newValue.includes(effectiveDecimalSep) ? effectiveDecimalSep + newValue.split(effectiveDecimalSep)[1] : ""
+				displayValue = intAndGroup + frac
+			} else {
+				displayValue = newValue
+			}
 		} else {
-			const stripped = newValue.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
-			const [intPart, fracPart] = stripped.split(effectiveDecimalSep)
-			const withGroups = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, effectiveGroupSep)
-			displayValue = fracPart != null ? `${withGroups}${effectiveDecimalSep}${fracPart}` : withGroups
+			displayValue = newValue
 		}
 
 		setRawValue(displayValue)
@@ -152,6 +151,7 @@ function CurrencyInput({
 			inputRef.current.value = ""
 			onValueChange?.(null, props.name)
 		} else {
+			// strip symbol from final value
 			const out = separator ? formatCurrency(num) : num.toFixed(allowDecimals ? decimalsLimit : 0)
 			inputRef.current.value = out
 			setRawValue(out)
@@ -175,6 +175,7 @@ function CurrencyInput({
 			<span className={cn("text-text-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currencySymbol}</span>
 		</div>
 	)
+
 	const wrappedTrail = props.trail ? (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto">
 			{props.trail}
@@ -218,13 +219,11 @@ function CurrencyInput({
 function useDetectSeparators(locale: string): [string, string] {
 	const [decimalSep, setDecimalSep] = useState<string>(".")
 	const [groupSep, setGroupSep] = useState<string>(",")
-
 	useEffect(() => {
 		const parts = new Intl.NumberFormat(locale).formatToParts(1234.5)
 		setDecimalSep(parts.find((p) => p.type === "decimal")?.value || ".")
 		setGroupSep(parts.find((p) => p.type === "group")?.value || ",")
 	}, [locale])
-
 	return [decimalSep, groupSep]
 }
 

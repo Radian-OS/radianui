@@ -253,7 +253,7 @@ const CurrencyInputPreview = () => {
 							label={label === "true" ? "Currency Input" : ""}
 							currency={currency}
 							locale={locale}
-							hint={hint ? "Currency Field" : ""}
+							hint={hint ? "Hint text to help the user with input" : ""}
 							placeholder="Enter amount"
 							disabled={disabled === "true"}
 							className="w-80"

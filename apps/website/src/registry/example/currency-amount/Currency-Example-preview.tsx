@@ -53,7 +53,7 @@ const CurrencyPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="*:not-first:mt-2">
+					<div className="*:not-first:mt-1.5">
 						<Label>Currency Input</Label>
 						<div className="flex rounded-md">
 							<CurrencyInput
@@ -64,7 +64,7 @@ const CurrencyPreview = () => {
 								trail={null}
 								currency={currency}
 								hasError={hasError}
-								hint={hasError ? "Invalid amount" : undefined}
+								hint={hasError ? "Hint text to help the user with input" : undefined}
 							/>
 							<Select
 								selectedValues={[currency]}
