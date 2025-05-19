@@ -25,13 +25,15 @@ const PasswordInputPreview = () => {
 	const [label, setLabel] = useState<LabelOptions>("true")
 	const [error, setError] = useState<ErrorOptions>("false")
 	const [trail, settrail] = useState<trailOptions>("onFocus")
+	const [hint, setHint] = useState<boolean>(false)
 
 	const code = `<Password
 	${label === "true" ? 'label="Password"' : ""}
 	${disabled === "true" ? "disabled={true}" : ""}
 	${size !== "36" ? `size="${size}"` : ""}
 	trail='${trail}'
-	${error === "true" ? "hint='Error Occurred'" : ""}
+	${hint === true ? `hint="Password Field"` : ""}
+	${error === "true" ? "hasError={true}" : ""}
   />`
 
 	return (
@@ -71,6 +73,20 @@ const PasswordInputPreview = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -143,7 +159,7 @@ const PasswordInputPreview = () => {
 								disabled={disabled === "true"}
 								size={size}
 								hasError={error === "true"}
-								hint={error === "true" ? "Error Occurred" : undefined}
+								hint={hint ? "Password Field" : ""}
 								placeholder="Enter Password"
 								className="w-80"
 								trail={trail}

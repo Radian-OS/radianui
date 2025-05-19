@@ -31,6 +31,7 @@ const CurrencyInputPreview = () => {
 	const [allowDecimals, setAllowDecimals] = useState<"true" | "false">("true")
 	const [decimalsLimit, setDecimalsLimit] = useState("2")
 	const [maxValue, setMaxValue] = useState("")
+	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -52,6 +53,78 @@ const CurrencyInputPreview = () => {
 												{roundedOption}
 											</DropdownItem>
 										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Currency</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setCurrency(Array.from(keys)[0])
+										}}
+										minSelectionCount={1}
+										selectedValues={[currency]}>
+										<DropdownItem value="usd">USD</DropdownItem>
+										<DropdownItem value="eur">EUR</DropdownItem>
+										<DropdownItem value="gbp">GBP</DropdownItem>
+										<DropdownItem value="jpy">JPY</DropdownItem>
+										<DropdownItem value="inr">INR</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Locale</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setLocale(Array.from(keys)[0])
+										}}
+										minSelectionCount={1}
+										selectedValues={[locale]}>
+										<DropdownItem value="en-US">English (US)</DropdownItem>
+										<DropdownItem value="en-GB">English (UK)</DropdownItem>
+										<DropdownItem value="fr-FR">French</DropdownItem>
+										<DropdownItem value="de-DE">German</DropdownItem>
+										<DropdownItem value="es-ES">Spanish</DropdownItem>
+										<DropdownItem value="ja-JP">Japanese</DropdownItem>
+										<DropdownItem value="zh-CN">Chinese</DropdownItem>
+										<DropdownItem value="hi-IN">Hindi</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setSize(Array.from(keys)[0] as SizeOptions)
+										}}
+										minSelectionCount={1}
+										selectedValues={[size]}>
+										<DropdownItem value="28">28</DropdownItem>
+										<DropdownItem value="32">32</DropdownItem>
+										<DropdownItem value="36">36</DropdownItem>
+										<DropdownItem value="40">40</DropdownItem>
+										<DropdownItem value="44">44</DropdownItem>
+										<DropdownItem value="48">48</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -238,6 +311,7 @@ const CurrencyInputPreview = () => {
 							label={label === "true" ? "Currency Input" : ""}
 							currency={currency}
 							locale={locale}
+							hint={hint ? "Currency Field" : ""}
 							placeholder="Enter amount"
 							disabled={disabled === "true"}
 							className="w-80"
@@ -259,11 +333,10 @@ const CurrencyInputPreview = () => {
   size="${size}"
   label="${label === "true" ? "Currency Input" : ""}"
   currency="${currency}"
+  ${hint === true ? `hint="Currency Field"` : ""}
   locale="${locale}"
   placeholder="Enter amount"
   disabled={${disabled === "true"}}
-  onChange={(e) => setValue(e.target.value)}
-  onValueChange={(numValue) => numValue !== null ? setValue(numValue.toString()) : setValue("")}
   className="w-80"
   hasError={${hasError === "true"}}
   allowDecimals={${allowDecimals === "true"}}

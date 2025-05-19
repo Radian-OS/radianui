@@ -26,6 +26,7 @@ function CurrencyInput({
 	separator = true, // default true
 	maxValue,
 	minValue,
+	hint = "",
 	onValueChange,
 	...props
 }: InputProps & CurrencyInputProps) {
@@ -200,6 +201,7 @@ function CurrencyInput({
 			ref={inputRef}
 			lead={currencyLead}
 			trail={wrappedTrail}
+			hint={hint}
 			onKeyDown={handleKeyDown}
 			onChange={handleChange}
 			onBlur={handleBlur}

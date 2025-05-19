@@ -87,7 +87,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 			rounded={rounded}
 			disabled={disabled}
 			hasError={hasError}
-			hint={hint}
+			hint={hint && hint}
 			type={isPasswordVisible ? "text" : "password"}
 			onFocus={() => setIsFocused(true)}
 			onBlur={() => setIsFocused(false)}

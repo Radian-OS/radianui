@@ -28,6 +28,7 @@ const PasswordInputPreview2 = () => {
 	const [label, setLabel] = useState<LabelOptions>("true")
 	const [error, setError] = useState<ErrorOptions>("false")
 	const [trail, settrail] = useState<trailOptions>("onFocus")
+	const [hint, setHint] = useState<boolean>(false)
 
 	const code = `<div className="relative w-full">
   <Link href="#" className="text-primary text-sm absolute right-0">Forgot Password ?</Link>
@@ -36,8 +37,8 @@ const PasswordInputPreview2 = () => {
     ${disabled === "true" ? "disabled={true}" : ""}
     ${size !== "36" ? `size="${size}"` : ""}
     trail='${trail}'
-    ${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ""}
-  />
+	${hint === true ? `hint="Password Field"` : ""}
+	${error === "true" ? "hasError={true}" : ""}  />
 </div>`
 
 	return (
@@ -77,6 +78,20 @@ const PasswordInputPreview2 = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -151,7 +166,7 @@ const PasswordInputPreview2 = () => {
 							disabled={disabled === "true"}
 							size={size}
 							hasError={error === "true"}
-							hint={error === "true" ? "Error Occurred" : undefined}
+							hint={hint ? "Password Field" : ""}
 							className="w-80"
 							trail={trail}
 							// {...(trail === "false" ? { trail: false } : trail === "visibilityIcon" ? { trail: "visibilityIcon" } : {})}
