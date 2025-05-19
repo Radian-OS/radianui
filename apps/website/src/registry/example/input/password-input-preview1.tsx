@@ -94,7 +94,7 @@ const PasswordInputPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Error</DropdownSubTrigger>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

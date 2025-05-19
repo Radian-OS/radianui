@@ -81,7 +81,7 @@ selectedValues={selected}>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
+								<DropdownSubTrigger>Selection mode</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

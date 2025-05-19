@@ -17,7 +17,6 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
-const booleanOptions = ["true", "false"]
 
 const SearchPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -140,11 +139,8 @@ const renderSearchResults = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -156,11 +152,8 @@ const renderSearchResults = () => {
 										selectedValues={[String(disabled)]}
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -172,11 +165,8 @@ const renderSearchResults = () => {
 										selectedValues={[String(suggestion)]}
 										onSelectedChange={(values) => setSuggestion(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -208,7 +198,7 @@ const renderSearchResults = () => {
 						label={label ? "Search" : undefined}
 						placeholder="Search"
 						size={size}
-						hint={hint ? "Search Field" : ""}
+						hint={hint ? "Hint text to help the user with input" : ""}
 						rounded={rounded}
 						disabled={disabled}
 						onChange={(e) => handleSearchChange(e.target.value)}
@@ -233,7 +223,7 @@ const renderSearchResults = () => {
     label="${label ? "Search" : undefined}"
 	placeholder="Search"
 	suggestion={${suggestion}}
-	${hint ? `hint="Search Field"` : ""}
+	${hint ? `hint="Hint text to help the user with input"` : ""}
 	${suggestion ? "onChange={(e) => handleSearchChange(e.target.value)}" : ""}
 	${suggestion ? "renderSearchResults={renderSearchResults}" : ""}
 	${suggestion ? "value={searchValue}" : ""}

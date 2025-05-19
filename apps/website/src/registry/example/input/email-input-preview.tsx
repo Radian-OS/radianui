@@ -74,7 +74,7 @@ const EmailPreview = () => {
 						placeholder="designer@radianos.com"
 						trail={trailIcon === "Mail" ? <Mail className="h-5 w-5" /> : trailIcon === "Arrow" ? <ArrowRight className="h-5 w-5" /> : ""}
 						hasError={hasError}
-						hint={hasError ? "Invalid Email" : " "}
+						hint={hasError ? "Hint text to help the user with input" : " "}
 					/>
 				</div>
 			</TabsContent>
@@ -90,7 +90,7 @@ const EmailPreview = () => {
     placeholder="Enter your email here"
 	trailIcon=${trailIcon === "Mail" ? `{<Mail className='h-5 w-5' />"}` : `{<ArrowRight className='h-5 w-5' />}`}
     hasError={${hasError}}
-	hint="${hasError ? "Invalid Email" : ""}"
+	hint="${hasError ? "Hint text to help the user with input" : ""}"
 />`}
 				/>
 			</TabsContent>

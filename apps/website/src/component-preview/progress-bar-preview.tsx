@@ -43,7 +43,7 @@ const ProgressBarPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Value Label</DropdownSubTrigger>
+								<DropdownSubTrigger>Value label</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

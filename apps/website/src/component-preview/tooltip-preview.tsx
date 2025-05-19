@@ -60,7 +60,7 @@ const TooltipPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>With Arrow</DropdownSubTrigger>
+									<DropdownSubTrigger>With arrow</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -70,8 +70,8 @@ const TooltipPreview = () => {
 											}}
 											minSelectionCount={1}
 											selectedValues={[withArrow]}>
-											<DropdownItem value="false">False</DropdownItem>
 											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>

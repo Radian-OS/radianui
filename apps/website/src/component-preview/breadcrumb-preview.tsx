@@ -24,7 +24,7 @@ const BreadCrumbPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>separator</DropdownSubTrigger>
+								<DropdownSubTrigger>Separator</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -38,7 +38,7 @@ const BreadCrumbPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>maxItems</DropdownSubTrigger>
+								<DropdownSubTrigger>Max items</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

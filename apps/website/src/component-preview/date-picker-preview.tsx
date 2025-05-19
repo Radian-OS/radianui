@@ -85,7 +85,7 @@ const DatePickerPreview = () => {
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -98,13 +98,13 @@ const DatePickerPreview = () => {
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -112,7 +112,7 @@ const DatePickerPreview = () => {
 										onSelectedChange={(values) => setHasError(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -133,7 +133,7 @@ const DatePickerPreview = () => {
 
 							<DropdownGroup title="date picker">
 								<DropdownSub>
-									<DropdownSubTrigger>mode</DropdownSubTrigger>
+									<DropdownSubTrigger>Mode</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -151,7 +151,7 @@ const DatePickerPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+									<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -164,7 +164,7 @@ const DatePickerPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>dualCalendar</DropdownSubTrigger>
+									<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -231,7 +231,7 @@ const DatePickerPreview = () => {
 						mode={mode}
 						label={label ? "Date picker" : undefined}
 						hasError={hasError}
-						hint={hint ? "Date Picker Field" : ""}
+						hint={hint ? "Hint text to help the user with input" : ""}
 						disabled={disabled}
 						triggerClassName="w-[320px]"
 						showDateRangeShortcut={showDateRangeShortcut}
@@ -268,7 +268,7 @@ const DatePickerPreview = () => {
     rounded="${rounded}"
     typeable={${typeable}}
 	hasError={${hasError}}
-	${hint ? `hint="Date Picker Field"` : ""}
+	${hint ? `hint="Hint text to help the user with input"` : ""}
     footer=${
 			footer
 				? `{

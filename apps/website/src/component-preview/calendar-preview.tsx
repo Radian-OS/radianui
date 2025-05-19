@@ -33,7 +33,7 @@ const CalendarPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
 							<DropdownSub>
-								<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
+								<DropdownSubTrigger>Selection mode</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -47,7 +47,7 @@ const CalendarPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Dual Calendar</DropdownSubTrigger>
+								<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -73,7 +73,7 @@ const CalendarPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+								<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

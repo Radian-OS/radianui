@@ -145,7 +145,7 @@ const InputPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -178,7 +178,7 @@ const InputPreview = () => {
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						hasError={hasError}
-						hint={hint ? "Input Field" : ""}
+						hint={hint ? "Hint text to help the user with input" : ""}
 					/>
 				</div>
 			</TabsContent>
