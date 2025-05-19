@@ -45,7 +45,7 @@ function CurrencyInput({
 		if (effectiveDecimalSep !== ".") {
 			clean = clean.replace(new RegExp(`\\${effectiveDecimalSep}`, "g"), ".")
 		}
-		clean = clean.replace(/[^^\d.-]/g, "")
+		clean = clean.replace(/[^\d.-]/g, "")
 		const parts = clean.split(".")
 		if (parts.length > 2) clean = `${parts[0]}.${parts.slice(1).join("")}`
 		const num = parseFloat(clean)
@@ -82,14 +82,19 @@ function CurrencyInput({
 	}
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		// allow ctrl/cmd shortcuts (like Ctrl+A, Ctrl+C, Cmd+V)
+		if (e.ctrlKey || e.metaKey) return
+
 		const allowedNav = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab", "Enter"]
 		if (allowedNav.includes(e.key)) return
+
 		const isDigit = /\d/.test(e.key)
 		const isDecimal = allowDecimals && e.key === effectiveDecimalSep
 		if (!isDigit && !isDecimal) {
 			e.preventDefault()
 			return
 		}
+
 		const input = inputRef.current!
 		const { value } = input
 		const { selectionStart = 0, selectionEnd = 0 } = input
@@ -147,7 +152,6 @@ function CurrencyInput({
 			inputRef.current.value = ""
 			onValueChange?.(null, props.name)
 		} else {
-			// use formatted or raw based on separator
 			const out = separator ? formatCurrency(num) : num.toFixed(allowDecimals ? decimalsLimit : 0)
 			inputRef.current.value = out
 			setRawValue(out)

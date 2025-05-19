@@ -56,64 +56,6 @@ const CurrencyInputPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Currency</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setCurrency(Array.from(keys)[0])
-										}}
-										minSelectionCount={1}
-										selectedValues={[currency]}>
-										<DropdownItem value="usd">USD</DropdownItem>
-										<DropdownItem value="eur">EUR</DropdownItem>
-										<DropdownItem value="gbp">GBP</DropdownItem>
-										<DropdownItem value="jpy">JPY</DropdownItem>
-										<DropdownItem value="inr">INR</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Locale</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setLocale(Array.from(keys)[0])
-										}}
-										minSelectionCount={1}
-										selectedValues={[locale]}>
-										<DropdownItem value="en-US">English (US)</DropdownItem>
-										<DropdownItem value="en-GB">English (UK)</DropdownItem>
-										<DropdownItem value="fr-FR">French</DropdownItem>
-										<DropdownItem value="de-DE">German</DropdownItem>
-										<DropdownItem value="es-ES">Spanish</DropdownItem>
-										<DropdownItem value="ja-JP">Japanese</DropdownItem>
-										<DropdownItem value="zh-CN">Chinese</DropdownItem>
-										<DropdownItem value="hi-IN">Hindi</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSize(Array.from(keys)[0] as SizeOptions)
-										}}
-										minSelectionCount={1}
-										selectedValues={[size]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
