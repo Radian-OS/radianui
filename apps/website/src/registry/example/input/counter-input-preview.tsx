@@ -51,7 +51,7 @@ value: string
 }
 }
     
-const page = () => {
+const CounterInput = () => {
 const [amount, setAmount] = useState('')
     
     
@@ -92,7 +92,7 @@ onClick={() => setAmount((v) => String(Number(v || '0') + 1))}
 )
 }
     
-export default page
+export default CounterInput
     `
 
 	return (
