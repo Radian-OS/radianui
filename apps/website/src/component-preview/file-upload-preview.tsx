@@ -20,9 +20,10 @@ const booleanOptions = ["true", "false"]
 
 const FileUploadPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
-	const [file, setFile] = useState<File[]>([])
+	const [variant, setVariant] = useState("default")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
+	const [format, setFormat] = useState("image")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -31,6 +32,32 @@ const FileUploadPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
+							<DropdownSub>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[variant]}
+										onSelectedChange={(values) => setVariant(values[0])}
+										minSelectionCount={1}>
+										<DropdownItem value="default">Default</DropdownItem>
+										<DropdownItem value="box">Box</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>File format</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[format]}
+										onSelectedChange={(values) => setFormat(values[0])}
+										minSelectionCount={1}>
+										<DropdownItem value="image">Image</DropdownItem>
+										<DropdownItem value="all">All</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -89,17 +116,19 @@ const FileUploadPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+				<div className={`flex h-[420px] justify-center ${variant === "default" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
 					<FileUpload
-						label={label ? "Label" : undefined}
-						rounded={rounded}
-						value={file}
-						onChange={setFile}
-						dropzoneClassName="h-[12.5rem]"
-						multiple
-						disabled={disabled}
+						variant={variant}
+						className="pb-14"
+						format={format}
+						// label={label ? "Label" : undefined}
+						// rounded={rounded}
+						// value={file}
+						// onChange={setFile}
+						// dropzoneClassName="h-[12.5rem]"
+						// multiple
+						// disabled={disabled}
 						// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
-						url="http://localhost:8000/upload"
 						// headers={{ "Content-Type": "application/json" }}
 					/>
 				</div>

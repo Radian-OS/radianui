@@ -63,7 +63,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	hint?: string
 	hasError?: boolean
 	custom?: boolean
-	type?: "text" | "email" | "url" | "number" | "password"
+	type?: "text" | "email" | "url" | "number" | "password" | "file"
 	/* 
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
