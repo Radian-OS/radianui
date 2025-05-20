@@ -16,14 +16,15 @@ import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-// const booleanOptions = ["true", "false"]
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type domainOption = ".com" | ".org" | ".net"
 export type typeOptions = "trail" | "lead" | "default"
+const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const UrlPreview = () => {
 	const [domain, setDomain] = useState<domainOption>(".com")
 	const [types, setType] = useState<typeOptions>("default")
-	console.log("domain", types)
+	const [size, setSize] = useState<SizeOptions>("36")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10 mt-2">
@@ -32,6 +33,22 @@ const UrlPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[size]}
+										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
+										minSelectionCount={1}>
+										{sizes.map((size) => (
+											<DropdownItem value={size} key={size}>
+												{size}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Examples</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -62,7 +79,7 @@ const UrlPreview = () => {
 						<div className="flex rounded-md">
 							<Input
 								className={`w-80 ${types === "trail" ? "border-r-0 focus-within:border-r" : ""} `}
-								size="36"
+								size={size}
 								custom={types === "trail" ? true : false}
 								placeholder="radianos.com"
 								type="url"
@@ -77,7 +94,7 @@ const UrlPreview = () => {
 									selectedValues={[domain]}
 									onSelectedChange={(values) => setDomain(values[0] as domainOption)}
 									disableOpenStyle={true}
-									size="36"
+									size={size}
 									className="-ms-0 w-fit">
 									<SelectItem value=".com">.com</SelectItem>
 									<SelectItem value=".org">.org</SelectItem>
@@ -103,7 +120,7 @@ const UrlPreview = () => {
     <div className="flex rounded-md shadow-xs">
         <Input
 			className="w-80 border-r-0 focus-within:border-r"
-            size="36"
+            size="${size}"
             placeholder="radianos"
             type="url"
             lead="https://"
@@ -113,7 +130,7 @@ const UrlPreview = () => {
         <Select
             selectedValues={[domain]}
             onSelectedChange={(values) => setDomain(values[0] as domainOption)}
-            size="36"
+            size="${size}"
             className="-ms-0 w-fit">
             <SelectItem value=".com">.com</SelectItem>
             <SelectItem value=".org">.org</SelectItem>

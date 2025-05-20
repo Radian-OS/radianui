@@ -184,7 +184,7 @@ function Input({
 					</span>
 				)} */}
 			</Label>
-			<Label className={`flex items-start text-sm font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
+			<Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
 		</div>
 	)
 }
