@@ -3,7 +3,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const textareaStyles = cva(
-	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-border bg-bg-base px-3 py-2.5 font-normal drop-shadow-xs hover:border-border-alpha hover:bg-bg-level0 focus:border-primary focus:outline-hidden focus:ring-2 focus:ring-primary/10",
+	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-border-alpha bg-bg-base px-3 py-2 font-normal drop-shadow-xs   focus:border-primary-stroke focus:outline-hidden focus:ring-2 focus:ring-primary-stroke/10",
 	{
 		variants: {
 			rounded: {
@@ -21,6 +21,7 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	label?: string
 	resizable?: boolean
 	rounded?: "rounded" | "square"
+	hasError?: boolean
 	classNames?: {
 		base?: string // The div that wraps the whole component
 		label?: string // The label of the input
@@ -28,13 +29,13 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	}
 }
 
-function TextArea({ label, className, classNames, rounded = "rounded", rows = 4, resizable = true, ...props }: TextAreaProps) {
+function TextArea({ label, className, classNames, hasError = false, rounded = "rounded", rows = 4, resizable = true, ...props }: TextAreaProps) {
 	let id = React.useId()
 	if (props.id) id = props.id
 	return (
 		<div className={cn("flex w-full flex-col gap-1", className, classNames?.base)}>
 			{label && (
-				<label className={cn("text-sm font-medium", { "text-text-tertiary": props.disabled }, classNames?.label)} htmlFor={id}>
+				<label className={cn("text-sm font-medium", { "text-text-disabled": props.disabled }, classNames?.label)} htmlFor={id}>
 					{label}
 				</label>
 			)}
@@ -43,8 +44,9 @@ function TextArea({ label, className, classNames, rounded = "rounded", rows = 4,
 				className={cn(
 					textareaStyles({ rounded }),
 					{
+						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !props.disabled,
 						"resize-none": resizable === false,
-						"hover:border-border hover:bg-bg-base cursor-not-allowed": props.disabled,
+						"border-border bg-bg-level0 cursor-not-allowed": props.disabled,
 					},
 					classNames?.textarea
 				)}

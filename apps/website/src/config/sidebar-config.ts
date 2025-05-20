@@ -75,6 +75,7 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/switch", name: "Switch" },
 			{ link: "/documentation/components/table", name: "Table" },
 			{ link: "/documentation/components/tabs", name: "Tabs" },
+			{ link: "/documentation/components/text-area", name: "Text Area" },
 			{ link: "/documentation/components/tooltip", name: "Tooltip" },
 		].sort((a, b) => a.name.localeCompare(b.name)),
 	},

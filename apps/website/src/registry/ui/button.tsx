@@ -22,7 +22,7 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 
 const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border transition duration-200 transform rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border transition duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none w-fit",
 	{
 		variants: {
 			variant: {
@@ -35,12 +35,12 @@ const buttonVariants = cva(
 					"bg-bg-base font-medium outline-1 outline-border-alpha drop-shadow-xs hover:bg-fill-level2 focus-visible:ring-border-alpha",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-xs [&>span]:px-1",
-				"32": "[&>svg]:size-5 text-sm [&>span]:px-1",
-				"36": "[&>svg]:size-5 text-sm [&>span]:px-1",
-				"40": "[&>svg]:size-5 text-sm [&>span]:px-1",
-				"44": "[&>svg]:size-6 text-base [&>span]:px-1",
-				"48": "[&>svg]:size-6 text-base [&>span]:px-1",
+				"28": "[&>svg]:size-4 text-xs [&>span]:px-1 rounded-md",
+				"32": "[&>svg]:size-5 text-sm [&>span]:px-1 rounded-lg",
+				"36": "[&>svg]:size-5 text-sm [&>span]:px-1 rounded-lg",
+				"40": "[&>svg]:size-5 text-sm [&>span]:px-1 rounded-lg",
+				"44": "[&>svg]:size-6 text-base [&>span]:px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-base [&>span]:px-1 rounded-lg",
 			},
 
 			isIcon: {
@@ -63,18 +63,19 @@ const buttonVariants = cva(
 		},
 		compoundVariants: [
 			// Size variants
-			{ isIcon: false, size: "28", className: "gap-1 h-7 px-2" },
-			{ isIcon: false, size: "32", className: "gap-1 h-8 px-2.5" },
-			{ isIcon: false, size: "36", className: "gap-1 h-9 px-3" },
-			{ isIcon: false, size: "40", className: "gap-1 h-10 px-3.5" },
-			{ isIcon: false, size: "44", className: "gap-1 h-11 px-4" },
-			{ isIcon: false, size: "48", className: "gap-1 h-12 px-4.5" },
-			{ isIcon: true, size: "28", className: "px-1.5 h-7 gap-1" },
-			{ isIcon: true, size: "32", className: "px-1.5 h-8 gap-1" },
-			{ isIcon: true, size: "36", className: "px-2 h-9 gap-1" },
-			{ isIcon: true, size: "40", className: "px-2.5 h-10 gap-1" },
-			{ isIcon: true, size: "44", className: "px-2.5 h-11 gap-1" },
-			{ isIcon: true, size: "48", className: "px-3 h-12 gap-1" },
+			{ isIcon: false, size: "28", className: "gap-2 h-7 px-2" },
+			{ isIcon: false, size: "32", className: "gap-2 h-8 px-2.5" },
+			{ isIcon: false, size: "36", className: "gap-2 h-9 px-3" },
+			{ isIcon: false, size: "40", className: "gap-2 h-10 px-3.5" },
+			{ isIcon: false, size: "44", className: "gap-2 h-11 px-4" },
+			{ isIcon: false, size: "48", className: "gap-2 h-12 px-4.5" },
+
+			{ isIcon: true, size: "28", className: "px-1.5 h-7 gap-2" },
+			{ isIcon: true, size: "32", className: "px-1.5 h-8 gap-2" },
+			{ isIcon: true, size: "36", className: "px-2 h-9 gap-2" },
+			{ isIcon: true, size: "40", className: "px-2.5 h-10 gap-2" },
+			{ isIcon: true, size: "44", className: "px-2.5 h-11 gap-2" },
+			{ isIcon: true, size: "48", className: "px-3 h-12 gap-2" },
 
 			// Strong variant + colors
 			{
