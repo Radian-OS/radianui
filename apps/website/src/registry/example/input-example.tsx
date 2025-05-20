@@ -29,7 +29,7 @@ const InputExample = () => {
 	const [query, setQuery] = React.useState("")
 	const [searchResults, setSearchResults] = React.useState<{ id: string; title: string }[]>([])
 	const [currency, setCurrency] = React.useState("")
-	const [file, setFile] = React.useState<File[]>([])
+	// const [file, setFile] = React.useState<File[]>([])
 	const [input, setInput] = React.useState<string>("")
 
 	const [progress, setProgress] = React.useState<number>(50)
@@ -180,13 +180,13 @@ const InputExample = () => {
 				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" dualCalendar={true} showDateRangeShortcut={true} />
 			</div>
 			<FileUpload
-				value={file}
-				onChange={setFile}
-				dropzoneClassName="h-[12.5rem]"
-				multiple
-				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
-				url="http://localhost:8000/upload"
-				// headers={{ "Content-Type": "application/json" }}
+			// value={file}
+			// onChange={setFile}
+			// dropzoneClassName="h-[12.5rem]"
+			// multiple
+			// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
+			// url="http://localhost:8000/upload"
+			// headers={{ "Content-Type": "application/json" }}
 			/>
 
 			<ProgressBar value={progress} />

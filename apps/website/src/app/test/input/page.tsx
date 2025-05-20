@@ -702,7 +702,6 @@ const DatePickerComp = () => {
 }
 
 const FileUploadComp = () => {
-	const [file, setFile] = React.useState<File[]>([])
 	const [disabled, setDisabled] = React.useState<string>("false")
 	const [rounded, setRounded] = React.useState<"rounded" | "square">("rounded")
 	const [label, setLabel] = React.useState(true)
@@ -765,16 +764,16 @@ const FileUploadComp = () => {
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<FileUpload
-					label={label ? "Label here" : undefined}
-					rounded="lg"
-					value={file}
-					onChange={setFile}
-					dropzoneClassName="h-[12.5rem]"
-					multiple
-					disabled={disabled === "true"}
-					// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
-					url="http://localhost:8000/upload"
-					// headers={{ "Content-Type": "application/json" }}
+				// label={label ? "Label here" : undefined}
+				// rounded="lg"
+				// value={file}
+				// onChange={setFile}
+				// dropzoneClassName="h-[12.5rem]"
+				// multiple
+				// disabled={disabled === "true"}
+				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
+				// url="http://localhost:8000/upload"
+				// headers={{ "Content-Type": "application/json" }}
 				/>
 			</div>
 		</div>
