@@ -14,13 +14,26 @@ import {
 import { Input } from "@/registry/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export type SizeOptions = "32" | "36" | "40" | "44" | "48" | "56"
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type iconOptions = "Mail" | "Arrow" | "Default"
+const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const EmailPreview = () => {
 	const [trailIcon, setTrailIcon] = useState<iconOptions>("Default")
 	const [hasError, setHasError] = useState<boolean>(false)
+	const [size, setSize] = useState<SizeOptions>("36")
+
+	const sizeHeightMapping: Record<number, string> = {
+		28: "h-4 w-4",
+		32: "h-5 w-5",
+		36: "h-5 w-5",
+		40: "h-5 w-5",
+		44: "h-6 w-6",
+		48: "h-6 w-6",
+	}
+
+	const iconClass = sizeHeightMapping[size] ?? ""
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10 mt-2">
@@ -29,6 +42,22 @@ const EmailPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[size]}
+										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
+										minSelectionCount={1}>
+										{sizes.map((size) => (
+											<DropdownItem value={size} key={size}>
+												{size}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Example</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -68,11 +97,12 @@ const EmailPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Input
+						size={size}
 						classNames={{ base: "w-[320px]" }}
 						type="email"
 						label={"Email"}
 						placeholder="designer@radianos.com"
-						trail={trailIcon === "Mail" ? <Mail className="h-5 w-5" /> : trailIcon === "Arrow" ? <ArrowRight className="h-5 w-5" /> : ""}
+						trail={trailIcon === "Mail" ? <Mail className={iconClass} /> : trailIcon === "Arrow" ? <ArrowRight className={iconClass} /> : ""}
 						hasError={hasError}
 						hint={hasError ? "Hint text to help the user with input" : " "}
 					/>
@@ -88,7 +118,7 @@ const EmailPreview = () => {
     type="email"
     label="Email"
     placeholder="Enter your email here"
-	trailIcon=${trailIcon === "Mail" ? `{<Mail className='h-5 w-5' />"}` : `{<ArrowRight className='h-5 w-5' />}`}
+	trailIcon=${trailIcon === "Mail" ? `{<Mail  className="${iconClass}" />"}` : `{<ArrowRight  className="${iconClass}" />}`}
     hasError={${hasError}}
 	hint="${hasError ? "Hint text to help the user with input" : ""}"
 />`}

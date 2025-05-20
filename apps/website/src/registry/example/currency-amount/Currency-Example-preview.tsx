@@ -53,7 +53,7 @@ const CurrencyPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="*:not-first:mt-1.5">
+					<div className="flex flex-col gap-1.5">
 						<Label>Currency Input</Label>
 						<div className="flex rounded-md">
 							<CurrencyInput
@@ -87,7 +87,7 @@ const CurrencyPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<div className="*:not-first:mt-2">
+					code={`<div className="flex gap-1.5 flex-col">
   <Label>Amount</Label>
   <div className="flex rounded-md shadow-xs">
     <CurrencyInput
