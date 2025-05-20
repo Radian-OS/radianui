@@ -72,7 +72,7 @@ const HovercardPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>With Arrow</DropdownSubTrigger>
+								<DropdownSubTrigger>With arrow</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

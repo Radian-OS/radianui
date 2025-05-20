@@ -76,8 +76,8 @@ const SonnerPreview = () => {
 											}}
 											minSelectionCount={1}
 											selectedValues={[stackable]}>
-											<DropdownItem value="false">False</DropdownItem>
 											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -93,14 +93,14 @@ const SonnerPreview = () => {
 											}}
 											minSelectionCount={1}
 											selectedValues={[closable]}>
-											<DropdownItem value="false">False</DropdownItem>
 											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Visible Toast</DropdownSubTrigger>
+									<DropdownSubTrigger>Visible toast</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"

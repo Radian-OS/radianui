@@ -37,7 +37,7 @@ const ButtonPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>variant</DropdownSubTrigger>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -66,7 +66,7 @@ const ButtonPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>size</DropdownSubTrigger>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -86,7 +86,7 @@ const ButtonPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>color</DropdownSubTrigger>
+								<DropdownSubTrigger>Color</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -105,7 +105,7 @@ const ButtonPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>isIcon</DropdownSubTrigger>
+								<DropdownSubTrigger>Is icon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -114,14 +114,14 @@ const ButtonPreview = () => {
 										onSelectedChange={(keys) => {
 											setIsIcon(Array.from(keys)[0] as isIconType)
 										}}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>disabled</DropdownSubTrigger>
+								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -130,8 +130,8 @@ const ButtonPreview = () => {
 										onSelectedChange={(keys) => {
 											setDisabled(Array.from(keys)[0] as disabledType)
 										}}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

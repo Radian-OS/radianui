@@ -131,7 +131,7 @@ const PasswordInputPreview2 = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>trail</DropdownSubTrigger>
+								<DropdownSubTrigger>Trail</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

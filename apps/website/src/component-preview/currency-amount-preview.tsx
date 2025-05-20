@@ -72,7 +72,7 @@ const CurrencyInputPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -81,8 +81,8 @@ const CurrencyInputPreview = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[hasError]}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -95,8 +95,8 @@ const CurrencyInputPreview = () => {
 											setLabel(Array.from(keys)[0] as "true" | "false")
 										}}
 										selectedValues={[label]}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -163,8 +163,8 @@ const CurrencyInputPreview = () => {
 											}}
 											minSelectionCount={1}
 											selectedValues={[separator]}>
-											<DropdownItem value="true">true</DropdownItem>
-											<DropdownItem value="false">false</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -187,7 +187,7 @@ const CurrencyInputPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Allow Decimals</DropdownSubTrigger>
+									<DropdownSubTrigger>Allow decimals</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -195,13 +195,13 @@ const CurrencyInputPreview = () => {
 												setAllowDecimals(Array.from(keys)[0] as "true" | "false")
 											}}
 											selectedValues={[allowDecimals]}>
-											<DropdownItem value="true">true</DropdownItem>
-											<DropdownItem value="false">false</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Decimals Limit</DropdownSubTrigger>
+									<DropdownSubTrigger>Decimals limit</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -218,7 +218,7 @@ const CurrencyInputPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Max Value</DropdownSubTrigger>
+									<DropdownSubTrigger>Max value</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"

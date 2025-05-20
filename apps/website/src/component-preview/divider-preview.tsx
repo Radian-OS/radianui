@@ -25,7 +25,7 @@ const DividerPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>orientation</DropdownSubTrigger>
+								<DropdownSubTrigger>Orientation</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -38,7 +38,7 @@ const DividerPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>spacing</DropdownSubTrigger>
+								<DropdownSubTrigger>Spacing</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
