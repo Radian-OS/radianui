@@ -108,7 +108,7 @@ ${label === "true" ? 'label="Password"' : ""}
 ${disabled === "true" ? "disabled={true}" : ""}
 ${size !== "36" ? `size="${size}"` : ""}
 trail='${trail}'
-${hint === true ? `hint="Password Field"` : ""}
+${hint === true ? `hint="Hint text to help the user with input"` : ""}
 ${error === "true" ? "hasError={true}" : ""}
 value={password}
 onChange={(e) => setPassword(e.target.value)}
@@ -265,7 +265,7 @@ export default PasswordInputPreview
 							disabled={disabled === "true"}
 							size={size}
 							hasError={error === "true"}
-							hint={hint ? "Password Field" : ""}
+							hint={hint ? "Hint text to help the user with input" : ""}
 							trail={trail}
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}

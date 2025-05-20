@@ -172,7 +172,7 @@ const SearchInputExample = () => {
 						onChange={(e) => handleSearchChange(e.target.value)}
 						value={searchValue}
 						id="search-input"
-						hint={hint ? "Search Field" : ""}
+						hint={hint ? "Hint text to help the user with input" : ""}
 						suggestion={suggestion}
 						renderSearchResults={renderSearchResults}
 						classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
@@ -192,7 +192,7 @@ const SearchInputExample = () => {
     disabled="${disabled}"
     label="${label ? "Search" : ""}"
     placeholder="Search"
-	${hint ? `hint="Search Field"` : ""}
+	${hint ? `hint="Hint text to help the user with input"` : ""}
     suggestion={${suggestion}}
 />`}
 				/>

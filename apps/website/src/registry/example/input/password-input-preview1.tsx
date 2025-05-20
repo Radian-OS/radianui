@@ -32,7 +32,7 @@ const PasswordInputPreview = () => {
 	${disabled === "true" ? "disabled={true}" : ""}
 	${size !== "36" ? `size="${size}"` : ""}
 	trail='${trail}'
-	${hint === true ? `hint="Password Field"` : ""}
+	${hint === true ? `hint="Hint text to help the user with input"` : ""}
 	${error === "true" ? "hasError={true}" : ""}
   />`
 
@@ -159,7 +159,7 @@ const PasswordInputPreview = () => {
 								disabled={disabled === "true"}
 								size={size}
 								hasError={error === "true"}
-								hint={hint ? "Password Field" : ""}
+								hint={hint ? "Hint text to help the user with input" : ""}
 								placeholder="Enter Password"
 								className="w-80"
 								trail={trail}

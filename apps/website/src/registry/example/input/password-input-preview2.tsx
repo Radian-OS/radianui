@@ -37,7 +37,7 @@ const PasswordInputPreview2 = () => {
     ${disabled === "true" ? "disabled={true}" : ""}
     ${size !== "36" ? `size="${size}"` : ""}
     trail='${trail}'
-	${hint === true ? `hint="Password Field"` : ""}
+	${hint === true ? `hint="Hint text to help the user with input"` : ""}
 	${error === "true" ? "hasError={true}" : ""}  />
 </div>`
 
@@ -166,7 +166,7 @@ const PasswordInputPreview2 = () => {
 							disabled={disabled === "true"}
 							size={size}
 							hasError={error === "true"}
-							hint={hint ? "Password Field" : ""}
+							hint={hint ? "Hint text to help the user with input" : ""}
 							className="w-80"
 							trail={trail}
 							// {...(trail === "false" ? { trail: false } : trail === "visibilityIcon" ? { trail: "visibilityIcon" } : {})}

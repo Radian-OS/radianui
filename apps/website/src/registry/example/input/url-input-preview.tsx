@@ -57,7 +57,7 @@ const UrlPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="*:not-first:mt-2">
+					<div className="flex flex-col gap-1.5">
 						<Label>Url</Label>
 						<div className="flex rounded-md">
 							<Input
@@ -98,7 +98,7 @@ const UrlPreview = () => {
 					className="h-[420px]"
 					code={
 						types === "trail"
-							? `<div className="*:not-first:mt-2">
+							? `<div className="flex gap-1.5 flex-col">
     <Label>Url</Label>
     <div className="flex rounded-md shadow-xs">
         <Input
