@@ -39,6 +39,7 @@ import SonnerPreview from "@/component-preview/sonner-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
+import TextAreaPreview from "@/component-preview/text-area-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
@@ -134,6 +135,7 @@ const components: MDXComponents = {
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	FileUploadPreview: () => <FileUploadPreview />,
 	CounterInputPreview: () => <CounterInputPreview />,
+	TextAreaPreview: () => <TextAreaPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
