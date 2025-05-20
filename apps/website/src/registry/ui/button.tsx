@@ -10,6 +10,8 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 		children: React.ReactNode
 		isIcon?: boolean
 		color?: "primary" | "info" | "success" | "error" | "warning"
+		lead?: React.ReactNode
+		trail?: React.ReactNode
 	}
 
 type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -40,6 +42,7 @@ const buttonVariants = cva(
 				"44": "[&>svg]:size-6 text-base [&>span]:px-1",
 				"48": "[&>svg]:size-6 text-base [&>span]:px-1",
 			},
+
 			isIcon: {
 				true: "",
 				false: "",
@@ -184,7 +187,18 @@ const buttonVariants = cva(
 	}
 )
 
-function Button({ variant = "strong", size = "36", isIcon = false, color = "primary", className, children, disabled, ...props }: ButtonProps) {
+function Button({
+	variant = "strong",
+	size = "36",
+	isIcon = false,
+	color = "primary",
+	className,
+	children,
+	disabled,
+	lead,
+	trail,
+	...props
+}: ButtonProps) {
 	// Create a combined class with a special treatment for disabled state
 	const combinedClass = cn(
 		buttonVariants({ variant, size, isIcon, color }),
@@ -194,7 +208,9 @@ function Button({ variant = "strong", size = "36", isIcon = false, color = "prim
 
 	return (
 		<button className={combinedClass} disabled={disabled} {...props}>
+			{lead}
 			{children}
+			{trail}
 		</button>
 	)
 }

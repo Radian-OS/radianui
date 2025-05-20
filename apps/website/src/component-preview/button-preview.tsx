@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CirclePlus } from "lucide-react"
+import { Box, CirclePlus } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import {
@@ -20,6 +20,7 @@ const ButtonPreview = () => {
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type isIconType = "true" | "false"
 	type disabledType = "true" | "false"
+	type leadTrailType = "true" | "false"
 	// Colors type; neutral is removed.
 	type colors = "primary" | "info" | "success" | "error" | "warning"
 
@@ -28,6 +29,23 @@ const ButtonPreview = () => {
 	const [isIcon, setIsIcon] = useState<isIconType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
 	const [color, setColor] = useState<colors>("primary")
+	const [lead, setLead] = useState<leadTrailType>("false")
+	const [trail, setTrail] = useState<leadTrailType>("false")
+
+	const getLeadTrialClass = () => {
+		if ((lead === "true" || trail === "true") && (size === "36" || size === "32" || size === "40")) {
+			return "size-5"
+		}
+		if ((lead === "true" || trail === "true") && size === "28") {
+			return "size-4"
+		}
+		if ((lead === "true" || trail === "true") && (size === "44" || size === "48")) {
+			return "size-6"
+		}
+		return ""
+	}
+
+	const iconClass = getLeadTrialClass()
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -121,6 +139,38 @@ const ButtonPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
+								<DropdownSubTrigger>Lead Icon</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[lead]}
+										onSelectedChange={(keys) => {
+											setLead(Array.from(keys)[0] as leadTrailType)
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Trail Icon</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[trail]}
+										onSelectedChange={(keys) => {
+											setTrail(Array.from(keys)[0] as leadTrailType)
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
@@ -145,7 +195,14 @@ const ButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
-					<Button isIcon={isIcon === "true"} variant={variant} size={size} color={color} disabled={disabled === "true"}>
+					<Button
+						lead={lead === "true" ? <Box className={iconClass} /> : undefined}
+						trail={trail === "true" ? <Box className={iconClass} /> : undefined}
+						isIcon={isIcon === "true"}
+						variant={variant}
+						size={size}
+						color={color}
+						disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
 				</div>
@@ -160,7 +217,7 @@ const ButtonPreview = () => {
   variant="${variant}" 
   color="${color}"
   isIcon={${isIcon === "true"}}
-  disabled={${disabled === "true"}}>
+  disabled={${disabled === "true"}}${lead === "true" ? `\n  lead={<Box className="${iconClass}" />}` : ""}${trail === "true" ? `\n  trail={<Box className="${iconClass}" />}` : ""}>
   ${isIcon === "true" ? `<CirclePlus />` : "Button"}
 </Button>`}
 				/>
