@@ -11,16 +11,18 @@ import {
 	DropdownSubTrigger,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
-// import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type CurrencyOption = "usd" | "eur" | "gbp"
+
+const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const CurrencyPreview = () => {
 	const [currency, setCurrency] = useState<CurrencyOption>("usd")
-	const [hasError, setHasError] = useState<boolean>(false)
+	const [size, setSize] = useState<SizeOptions>("36")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10 mt-2">
@@ -30,15 +32,18 @@ const CurrencyPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
 							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
+										selectedValues={[size]}
+										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
 										minSelectionCount={1}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										{sizes.map((size) => (
+											<DropdownItem value={size} key={size}>
+												{size}
+											</DropdownItem>
+										))}
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -58,19 +63,18 @@ const CurrencyPreview = () => {
 						<div className="flex rounded-md">
 							<CurrencyInput
 								className="w-80 border-r-0 focus-within:border-r"
-								size="36"
+								size={size}
 								placeholder="0.00"
 								custom={true}
 								trail={null}
-								currency={currency}
-								hasError={hasError}
-								hint={hasError ? "Hint text to help the user with input" : undefined}
+								// currency={currency}
+								// hint={hasError ? "Hint text to help the user with input" : undefined}
 							/>
 							<Select
 								selectedValues={[currency]}
 								onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
 								disableOpenStyle={true}
-								size="36"
+								size={size}
 								minSelectionCount={1}
 								className="-ms-0 w-fit">
 								<SelectItem value="usd">USD</SelectItem>
@@ -92,16 +96,15 @@ const CurrencyPreview = () => {
   <div className="flex rounded-md shadow-xs">
     <CurrencyInput
 	  className="w-80 border-r-0 focus-within:border-r"
-      size="36"
+      size="${size}"
       placeholder="0.00"
       type="text"
-      ${hasError ? 'hasError={true}\n      errorMsg="Invalid amount"' : ""}
     />
     
     <Select
       selectedValues={["${currency}"]}
       onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
-      size="36"
+      size="${size}"
       className="-ms-0 w-fit">
       <SelectItem value="usd">USD</SelectItem>
       <SelectItem value="eur">EUR</SelectItem>
