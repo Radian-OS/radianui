@@ -15,15 +15,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+export type MaxSizeOptions = "5" | "10" | "30" | "50" | "70" | "90"
+
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
-const booleanOptions = ["true", "false"]
+const maxSizeOptions = ["5", "10", "30", "50", "70", "90"]
 
 const FileUploadPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
+	const [maxSize, setMaxSize] = useState<MaxSizeOptions>("50")
 	const [variant, setVariant] = useState("input")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
 	const [format, setFormat] = useState("image")
+	const [file, setFile] = useState<boolean>(true)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -82,11 +86,8 @@ const FileUploadPreview = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -98,11 +99,37 @@ const FileUploadPreview = () => {
 										selectedValues={[String(disabled)]}
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Maximum file size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[maxSize]}
+										onSelectedChange={(values) => setMaxSize(values[0] as MaxSizeOptions)}
+										minSelectionCount={1}>
+										{maxSizeOptions.map((maxOption) => (
+											<DropdownItem value={maxOption} key={maxOption}>
+												{maxOption}
 											</DropdownItem>
 										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>File</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(file)]}
+										onSelectedChange={(values) => setFile(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="false">Single</DropdownItem>
+										<DropdownItem value="true">Multiple</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -116,20 +143,16 @@ const FileUploadPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] justify-center ${variant === "default" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
+				<div className={`flex h-[420px] justify-center ${variant === "input" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
 					<FileUpload
 						variant={variant}
 						className="pb-14"
 						format={format}
-						// label={label ? "Label" : undefined}
-						// rounded={rounded}
-						// value={file}
-						// onChange={setFile}
-						// dropzoneClassName="h-[12.5rem]"
-						// multiple
-						// disabled={disabled}
-						// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
-						// headers={{ "Content-Type": "application/json" }}
+						label={label ? "File" : undefined}
+						rounded={rounded}
+						maxSize={Number(maxSize)}
+						multiple={file}
+						disabled={disabled}
 					/>
 				</div>
 			</TabsContent>
@@ -139,16 +162,15 @@ const FileUploadPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={` <FileUpload
-                        label=${label ? "Label" : ""}
-                        rounded="${rounded}"
-                        value={file}
-                        onChange={setFile}
-                        dropzoneClassName="h-[12.5rem]"
-                        multiple
-                        disabled={${disabled}}
-                        url="http://localhost:8000/upload"
-                    />`}
+					code={`<FileUpload
+	variant="${variant}"
+	format="${format}"
+	label="${label ? "File" : ""}"
+	rounded="${rounded}"
+	maxSize={${maxSize}}
+	multiple={${file}}
+	disabled={${disabled}}
+/>`}
 				/>
 			</TabsContent>
 		</Tabs>
