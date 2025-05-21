@@ -71,4 +71,4 @@ function TextArea({
 }
 TextArea.displayName = "TextArea"
 
-export default TextArea
+export { TextArea }

@@ -11,7 +11,7 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import TextArea from "@/registry/ui/text-area"
+import { TextArea } from "@/registry/ui/text-area"
 
 const TextAreaPreview = () => {
 	const [label, setLabel] = useState<string>("true")
