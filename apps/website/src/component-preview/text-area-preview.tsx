@@ -141,7 +141,7 @@ const TextAreaPreview = () => {
 				<CodeArea
 					className="h-[420px]"
 					code={`<TextArea
-label={${label === "true" ? "Description" : ""}}
+label="${label === "true" ? "Description" : ""}"
 resizable={${resizable === "true"}}
 placeholder="Placeholder text..."
 hasError={${hasError === "true"}}
