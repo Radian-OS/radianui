@@ -18,6 +18,7 @@ const TextAreaPreview = () => {
 	const [resizable, setResizable] = useState<string>("false")
 	const [hasError, setHasError] = useState<string>("false")
 	const [disabled, setDisabled] = useState<string>("false")
+	const [hint, setHint] = useState<string>("false")
 	const [rows, setRows] = useState<"4" | "5" | "6" | "7" | "8">("4")
 
 	return (
@@ -87,7 +88,7 @@ const TextAreaPreview = () => {
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
-									selectedValues={[String(rows)]}
+									selectedValues={[hint]}
 									onSelectedChange={(keys) => {
 										setRows(Array.from(keys)[0] as "4" | "5" | "6" | "7" | "8")
 									}}>
@@ -96,6 +97,20 @@ const TextAreaPreview = () => {
 									<DropdownItem value="6">6</DropdownItem>
 									<DropdownItem value="7">7</DropdownItem>
 									<DropdownItem value="8">8</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Hint</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									selectedValues={[hint]}
+									onSelectedChange={(keys) => {
+										setHint(Array.from(keys)[0] as "true" | "false")
+									}}>
+									<DropdownItem value="true">true</DropdownItem>
+									<DropdownItem value="false">false</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -117,6 +132,7 @@ const TextAreaPreview = () => {
 							hasError={hasError === "true"}
 							disabled={disabled === "true"}
 							rows={rows === "4" ? 4 : rows === "5" ? 5 : rows === "6" ? 6 : rows === "7" ? 7 : 8}
+							hint={hint === "true" ? "This is a hint" : ""}
 						/>
 					</div>
 				</div>
@@ -131,6 +147,7 @@ placeholder="Placeholder text..."
 hasError={${hasError === "true"}}
 disabled={${disabled === "true"}}
 rows={${rows === "4" ? 4 : rows === "5" ? 5 : rows === "6" ? 6 : rows === "7" ? 7 : 8}}
+hint="${hint === "true" ? "This is a hint" : ""}"
  />`}
 					language="tsx"
 				/>
