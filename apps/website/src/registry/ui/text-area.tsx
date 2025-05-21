@@ -1,6 +1,7 @@
 import React from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { Label } from "./label"
 
 const textareaStyles = cva(
 	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-border-alpha bg-bg-base px-3 py-2 font-normal drop-shadow-xs   focus:border-primary-stroke focus:outline-hidden focus:ring-2 focus:ring-primary-stroke/10",
@@ -22,6 +23,7 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	resizable?: boolean
 	rounded?: "rounded" | "square"
 	hasError?: boolean
+	hint?: string
 	classNames?: {
 		base?: string // The div that wraps the whole component
 		label?: string // The label of the input
@@ -29,7 +31,17 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	}
 }
 
-function TextArea({ label, className, classNames, hasError = false, rounded = "rounded", rows = 4, resizable = true, ...props }: TextAreaProps) {
+function TextArea({
+	label,
+	className,
+	classNames,
+	hasError = false,
+	hint = "",
+	rounded = "rounded",
+	rows = 4,
+	resizable = true,
+	...props
+}: TextAreaProps) {
 	let id = React.useId()
 	if (props.id) id = props.id
 	return (
@@ -53,9 +65,10 @@ function TextArea({ label, className, classNames, hasError = false, rounded = "r
 				id={id}
 				{...props}
 			/>
+			<Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
 		</div>
 	)
 }
 TextArea.displayName = "TextArea"
 
-export default TextArea
+export { TextArea }
