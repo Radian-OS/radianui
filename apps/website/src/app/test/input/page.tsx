@@ -26,7 +26,7 @@ import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 import Slider from "@/registry/ui/slider"
 import Switch from "@/registry/ui/switch"
-import TextArea from "@/registry/ui/text-area"
+import { TextArea } from "@/registry/ui/text-area"
 import TimePicker from "@/registry/ui/time-picker"
 
 const roundedOptions = ["sm", "square", "full"]

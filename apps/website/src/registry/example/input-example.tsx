@@ -17,7 +17,7 @@ import ProgressBar from "../ui/progress-bar"
 import SearchInput from "../ui/search"
 import { Select, SelectItem } from "../ui/select"
 import Slider from "../ui/slider"
-import TextArea from "../ui/text-area"
+import { TextArea } from "../ui/text-area"
 import TimePicker from "../ui/time-picker"
 
 const sizes = ["32", "36", "40", "44", "48", "56"] as const
