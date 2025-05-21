@@ -27,12 +27,12 @@ source: https://github.com/Radian-os
 <Code
 	language="tsx"
 	code={`<FileUpload
-    label="Label"
-    rounded="lg"
-    value={file}
-    onChange={setFile}
-    dropzoneClassName="h-[12.5rem]"
-    multiple
-    disabled={false}
+	variant="input"
+	format="image"
+	label="File"
+	rounded="lg"
+	maxSize={50}
+	multiple={true}
+	disabled={false}
 />`}
 />
