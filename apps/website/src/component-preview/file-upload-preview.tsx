@@ -20,7 +20,7 @@ const booleanOptions = ["true", "false"]
 
 const FileUploadPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
-	const [variant, setVariant] = useState("default")
+	const [variant, setVariant] = useState("input")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
 	const [format, setFormat] = useState("image")
@@ -40,8 +40,8 @@ const FileUploadPreview = () => {
 										selectedValues={[variant]}
 										onSelectedChange={(values) => setVariant(values[0])}
 										minSelectionCount={1}>
-										<DropdownItem value="default">Default</DropdownItem>
-										<DropdownItem value="box">Box</DropdownItem>
+										<DropdownItem value="input">Input</DropdownItem>
+										<DropdownItem value="container">Container</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

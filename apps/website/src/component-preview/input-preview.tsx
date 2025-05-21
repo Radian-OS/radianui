@@ -195,7 +195,7 @@ const InputPreview = () => {
     label="${label ? "Username" : undefined}"
     placeholder="Enter your username here"
     hasError={${hasError}}
-	${hint ? `hint="Input Field"` : ""}
+	${hint ? `hint="Hint text to help the user with input"` : ""}
   	${leadIcon ? `leadIcon={<CircleUserRound className="${iconClass}" />}` : ""}
   	${trailIcon ? `trailIcon={<CircleUserRound className="${iconClass}" />}` : ""}
 />`}

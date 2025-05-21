@@ -275,7 +275,7 @@ const CurrencyInputPreview = () => {
   size="${size}"
   label="${label === "true" ? "Currency Input" : ""}"
   currency="${currency}"
-  ${hint === true ? `hint="Currency Field"` : ""}
+  ${hint === true ? `hint="Hint text to help the user with input"` : ""}
   locale="${locale}"
   placeholder="Enter amount"
   disabled={${disabled === "true"}}

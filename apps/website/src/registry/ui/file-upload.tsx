@@ -996,7 +996,7 @@ const DEFAULT_MAX_SIZE = 4 * 1024 * 1024 // 4 MB in bytes
 
 function FileUpload({
 	maxSize = DEFAULT_MAX_SIZE,
-	variant = "default",
+	variant = "input",
 	// fieldname = "file",
 	// rounded = "lg",
 	// label,
@@ -1018,7 +1018,7 @@ function FileUpload({
 
 	return (
 		<>
-			{variant === "default" ? (
+			{variant === "input" ? (
 				<Input id="picture" type="file" label="Picture" />
 			) : (
 				<div className={"flex flex-col gap-2"}>
