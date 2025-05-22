@@ -61,7 +61,7 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	multiple?: boolean
 	maxFile?: number
 }
-const DEFAULT_MAX_SIZE = 4 * 1024 * 1024 // 4 MB in bytes
+const DEFAULT_MAX_SIZE = 5 * 1024 * 1024 // 5 MB in bytes
 
 function FileUpload({
 	maxSize = DEFAULT_MAX_SIZE,
@@ -72,7 +72,7 @@ function FileUpload({
 	accepts = ["image"],
 	error,
 	disabled,
-	multiple,
+	multiple = true,
 	maxFile = 4,
 }: FileUploadProps) {
 	const maxSizeMB = maxSize
