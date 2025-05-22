@@ -23,6 +23,7 @@ const otpSlotVariants = cva("", {
 			flat: "",
 		},
 		size: {
+			"0": "",
 			"28": "size-7 text-xs",
 			"32": "size-8 text-sm",
 			"36": "size-9 text-sm",

@@ -194,6 +194,7 @@ function DatePicker({
 	const [inputValue, setInputValue] = useState(displayText || "")
 
 	const sizeHeightMapping = {
+		0: "",
 		28: "h-4 w-4",
 		32: "h-5 w-5",
 		36: "h-5 w-5",
@@ -259,14 +260,10 @@ function DatePicker({
 							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
 								<PopoverTrigger disabled={disabled}>
 									<CalendarIcon
-										className={cn(
-											sizeHeightMapping[typeof size === "number" && sizeHeightMapping[size] ? size : 36],
-											"stroke-text-tertiary cursor-pointer",
-											{
-												"text-text-tertiary": !disabled,
-												"text-text-disabled cursor-not-allowed": disabled,
-											}
-										)}
+										className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
+											"text-text-tertiary": !disabled,
+											"text-text-disabled cursor-not-allowed": disabled,
+										})}
 									/>
 								</PopoverTrigger>
 
@@ -479,6 +476,7 @@ function TypeableDatePicker({
 		}
 	}
 	const sizeHeightMapping = {
+		0: "",
 		28: "h-4 w-4",
 		32: "h-5 w-5",
 		36: "h-5 w-5",
@@ -542,14 +540,10 @@ function TypeableDatePicker({
 						</DateField>
 						{/* </I18nProvider> */}
 						<CalendarIcon
-							className={cn(
-								sizeHeightMapping[(typeof size === "number" && [28, 32, 36, 40, 44, 48].includes(size) ? size : 36) as 28 | 32 | 36 | 40 | 44 | 48],
-								"stroke-text-tertiary cursor-pointer",
-								{
-									"text-text-tertiary": !disables,
-									"text-text-disabled cursor-not-allowed": disables,
-								}
-							)}
+							className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
+								"text-text-tertiary": !disables,
+								"text-text-disabled cursor-not-allowed": disables,
+							})}
 						/>
 					</div>
 					<Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>

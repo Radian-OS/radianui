@@ -18,7 +18,7 @@ export const cvaInputVariants = {
 		"2xl": "rounded-2xl",
 	},
 	size: {
-		"0": " h-fit",
+		"0": "h-fit",
 		"28": "h-7 text-xs p-1.5",
 		"32": "h-8 text-sm px-3 py-1.5",
 		"36": "h-9 text-sm px-2.5 py-2",
