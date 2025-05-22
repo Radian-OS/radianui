@@ -32,20 +32,20 @@ const getFileIcon = (file: { file: File | { type: string; name: string; preview?
 		src = "preview" in file.file && file.file.preview ? file.file.preview : ""
 	}
 	if (fileType.includes("pdf") || fileName.endsWith(".pdf") || fileType.includes("word") || fileName.endsWith(".doc") || fileName.endsWith(".docx")) {
-		return <FileTextIcon className="size-4 opacity-60" />
+		return <FileTextIcon className="size-10 opacity-60" />
 	} else if (fileType.includes("zip") || fileType.includes("archive") || fileName.endsWith(".zip") || fileName.endsWith(".rar")) {
-		return <FileArchiveIcon className="size-4 opacity-60" />
+		return <FileArchiveIcon className="size-10 opacity-60" />
 	} else if (fileType.includes("excel") || fileName.endsWith(".xls") || fileName.endsWith(".xlsx")) {
-		return <FileSpreadsheetIcon className="size-4 opacity-60" />
+		return <FileSpreadsheetIcon className="size-10 opacity-60" />
 	} else if (fileType.includes("video/")) {
-		return <VideoIcon className="size-4 opacity-60" />
+		return <VideoIcon className="size-10 opacity-60" />
 	} else if (fileType.includes("audio/")) {
-		return <HeadphonesIcon className="size-4 opacity-60" />
+		return <HeadphonesIcon className="size-10 opacity-60" />
 	} else if (fileType.startsWith("image/")) {
 		// Only use preview if it exists (not a native File)
 		return <img src={src} alt={file.file.name} className="size-10 rounded-[inherit] object-cover" />
 	}
-	return <FileIcon className="size-4 opacity-60" />
+	return <FileIcon className="size-10 opacity-60" />
 }
 
 type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
@@ -55,10 +55,11 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	label?: string
 	variant?: string
 	className?: string
-	format?: string
+	accepts?: string[]
 	error?: boolean
 	disabled?: boolean
 	multiple?: boolean
+	maxFile?: number
 }
 const DEFAULT_MAX_SIZE = 4 * 1024 * 1024 // 4 MB in bytes
 
@@ -68,23 +69,38 @@ function FileUpload({
 	rounded = "lg",
 	label,
 	className,
-	format,
+	accepts = ["image"],
 	error,
 	disabled,
 	multiple,
+	maxFile = 4,
 }: FileUploadProps) {
 	const maxSizeMB = maxSize
-	const maxFiles = 6
 	const maxSizeValue = maxSize * 1024 * 1024
 
+	const getAcceptTypes = (formats: string[]) => {
+		const types: Record<string, string[]> = {
+			image: ["image/svg", "image/png", "image/jpeg", "image/jpg", "image/gif"],
+			document: ["application/pdf", "application/msword", "text/plain"],
+			audio: ["audio/mpeg", "audio/wav"],
+			video: ["video/mp4", "video/webm"],
+			all: ["*/*"], // catch-all
+		}
+
+		// If "all" is selected, accept everything
+		if (formats.includes("all")) return "*/*"
+
+		const acceptList = formats.flatMap((format) => types[format] || [])
+		return acceptList.join(",")
+	}
 	const [
 		{ files, isDragging, errors },
 		{ handleDragEnter, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps },
 	] = useFileUpload({
-		accept: format === "image" ? "image/svg+xml,image/png,image/jpeg,image/jpg,image/gif" : undefined,
+		accept: getAcceptTypes(accepts),
 		maxSize: maxSizeValue,
 		multiple: multiple,
-		maxFiles,
+		maxFiles: maxFile,
 	})
 
 	const cvaFileUploadVariants = {
@@ -114,7 +130,16 @@ function FileUpload({
 	return (
 		<>
 			{variant === "input" ? (
-				<Input id="picture" type="file" label={label ? `${label}` : ""} rounded={rounded} disabled={disabled} multiple={multiple} />
+				<Input
+					size="0"
+					className="p-0 px-2"
+					id="picture"
+					type="file"
+					label={label ? `${label}` : ""}
+					rounded={rounded}
+					disabled={disabled}
+					multiple={multiple}
+				/>
 			) : (
 				<div className={"flex w-80 flex-col gap-1.5"}>
 					{label && <Label htmlFor="picture">{label}</Label>}
@@ -133,25 +158,33 @@ function FileUpload({
 							"hover:border-primary hover:bg-primary/5": !disabled,
 						})}>
 						<input id="picture" {...getInputProps()} className="sr-only" aria-label="Upload image file" />
-						<div className="flex flex-col items-center justify-center px-4 py-3 text-center">
-							<div className="bg-background mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
+						<div className="flex flex-col items-center justify-center gap-2.5 px-4 py-3 text-center">
+							<div className="bg-background flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 								<ImageIcon className="size-4 opacity-60" />
 							</div>
-							<p className="mb-1.5 text-sm font-medium">Drop your {format === "image" ? "images" : "choice of files"} here</p>
-							<p className="text-muted-foreground text-xs">
-								{format === "image" ? "SVG, PNG, JPG or GIF" : "All format files"} (max. {maxSizeMB}MB)
-							</p>
+							<div className="flex flex-col gap-1">
+								<p className="text-sm font-medium">Drop your {accepts.join(", ")} here</p>
+								<p className="text-muted-foreground text-xs">
+									{accepts.includes("all")
+										? "All file accept"
+										: getAcceptTypes(accepts)
+												.split(",")
+												.map((type) => type.split("/").pop())
+												.join(", ")}{" "}
+									(max. {maxSizeMB}MB)
+								</p>
+							</div>
 							<Button
 								variant="neutral-outline"
 								disabled={disabled}
-								className={`mt-4 ${disabled ? "cursor-not-allowed" : ""}`}
+								className={` ${disabled ? "cursor-not-allowed" : ""}`}
 								onClick={() => {
 									if (!disabled) {
 										openFileDialog()
 									}
 								}}>
 								<UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
-								Select images
+								Select file
 							</Button>
 						</div>
 					</div>
@@ -176,14 +209,7 @@ function FileUpload({
 										</div>
 									</div>
 
-									<Button
-										size="36"
-										variant="ghost"
-										className="text-muted-foreground/80 hover:text-foreground -me-2 size-8 hover:bg-transparent"
-										onClick={() => removeFile(file.id)}
-										aria-label="Remove file">
-										<XIcon aria-hidden="true" />
-									</Button>
+									<XIcon className="text-text-tertiary size-4 shrink-0 cursor-pointer" onClick={() => removeFile(file.id)} aria-hidden="true" />
 								</div>
 							))}
 
