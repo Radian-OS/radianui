@@ -150,7 +150,7 @@ function Input({
 						"text-fg-1 placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 text-sm placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
 							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
-							"file:border-border-alpha p-0 file:me-2 file:border-0 file:border-e file:py-1.5 file:pr-2": type === "file",
+							"file:border-border-alpha p-0 file:me-2 file:border-0 file:border-e file:px-2 file:py-1.5": type === "file",
 						},
 						size && {
 							"text-xs placeholder:text-xs": size === "28",

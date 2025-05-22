@@ -28,8 +28,7 @@ const FileUploadPreview = () => {
 	const [variant, setVariant] = useState("input")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-	const [format, setFormat] = useState<string[]>(["image"])
-	const [file, setFile] = useState<boolean>(true)
+	const [format, setFormat] = useState<string>("image")
 	const [maxFile, setMaxFile] = useState<MaxFileOptions>("4")
 
 	return (
@@ -56,9 +55,9 @@ const FileUploadPreview = () => {
 								<DropdownSubTrigger>Accept</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
-										selectionMode="multiple"
-										selectedValues={format}
-										onSelectedChange={(values) => setFormat(values)}
+										selectionMode="single"
+										selectedValues={[format]}
+										onSelectedChange={(values) => setFormat(values[0])}
 										minSelectionCount={1}>
 										<DropdownItem value="image">Image</DropdownItem>
 										<DropdownItem value="document">Document</DropdownItem>
@@ -127,21 +126,7 @@ const FileUploadPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Select file</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(file)]}
-										onSelectedChange={(values) => setFile(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="false">Single</DropdownItem>
-										<DropdownItem value="true">Multiple</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Max file</DropdownSubTrigger>
+								<DropdownSubTrigger>Max files</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -174,9 +159,8 @@ const FileUploadPreview = () => {
 						label={label ? "File" : undefined}
 						rounded={rounded}
 						maxSize={Number(maxSize)}
-						multiple={file}
 						disabled={disabled}
-						maxFile={Number(maxFile)}
+						maxFiles={Number(maxFile)}
 					/>
 				</div>
 			</TabsContent>
@@ -188,13 +172,12 @@ const FileUploadPreview = () => {
 					className="h-[420px]"
 					code={`<FileUpload
 	variant="${variant}"
-	accepts={[${format.map((f) => `"${f}"`).join(", ")}]}	
+	accepts="${format}"
 	label="${label ? "File" : ""}"
 	rounded="${rounded}"
 	maxSize={${maxSize}}
-	multiple={${file}}
 	disabled={${disabled}}
-	maxFile={${maxFile}}
+	maxFiles={${maxFile}}
 />`}
 				/>
 			</TabsContent>
