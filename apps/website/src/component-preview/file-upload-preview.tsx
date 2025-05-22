@@ -16,9 +16,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type MaxSizeOptions = "5" | "10" | "30" | "50" | "70" | "90"
+export type MaxFileOptions = "1" | "2" | "3" | "4" | "5" | "6"
 
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const maxSizeOptions = ["5", "10", "30", "50", "70", "90"]
+const maxFileOptions = ["1", "2", "3", "4", "5", "6"]
 
 const FileUploadPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -26,8 +28,9 @@ const FileUploadPreview = () => {
 	const [variant, setVariant] = useState("input")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-	const [format, setFormat] = useState("image")
+	const [format, setFormat] = useState<string[]>(["image"])
 	const [file, setFile] = useState<boolean>(true)
+	const [maxFile, setMaxFile] = useState<MaxFileOptions>("4")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -50,14 +53,17 @@ const FileUploadPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>File format</DropdownSubTrigger>
+								<DropdownSubTrigger>Accept</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[format]}
-										onSelectedChange={(values) => setFormat(values[0])}
+										selectionMode="multiple"
+										selectedValues={format}
+										onSelectedChange={(values) => setFormat(values)}
 										minSelectionCount={1}>
 										<DropdownItem value="image">Image</DropdownItem>
+										<DropdownItem value="document">Document</DropdownItem>
+										<DropdownItem value="audio">Audio</DropdownItem>
+										<DropdownItem value="video">Video</DropdownItem>
 										<DropdownItem value="all">All</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
@@ -105,7 +111,7 @@ const FileUploadPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Maximum file size</DropdownSubTrigger>
+								<DropdownSubTrigger>Max size (mb)</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -121,7 +127,7 @@ const FileUploadPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>File</DropdownSubTrigger>
+								<DropdownSubTrigger>Select file</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -130,6 +136,23 @@ const FileUploadPreview = () => {
 										minSelectionCount={1}>
 										<DropdownItem value="false">Single</DropdownItem>
 										<DropdownItem value="true">Multiple</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Max file</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[maxFile]}
+										onSelectedChange={(values) => setMaxFile(values[0] as MaxFileOptions)}
+										minSelectionCount={1}>
+										{maxFileOptions.map((maxFileOption) => (
+											<DropdownItem value={maxFileOption} key={maxFileOption}>
+												{maxFileOption}
+											</DropdownItem>
+										))}
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -147,12 +170,13 @@ const FileUploadPreview = () => {
 					<FileUpload
 						variant={variant}
 						className="pb-14"
-						format={format}
+						accepts={format}
 						label={label ? "File" : undefined}
 						rounded={rounded}
 						maxSize={Number(maxSize)}
 						multiple={file}
 						disabled={disabled}
+						maxFile={Number(maxFile)}
 					/>
 				</div>
 			</TabsContent>
@@ -164,12 +188,13 @@ const FileUploadPreview = () => {
 					className="h-[420px]"
 					code={`<FileUpload
 	variant="${variant}"
-	format="${format}"
+	accepts={[${format.map((f) => `"${f}"`).join(", ")}]}	
 	label="${label ? "File" : ""}"
 	rounded="${rounded}"
 	maxSize={${maxSize}}
 	multiple={${file}}
 	disabled={${disabled}}
+	maxFile={${maxFile}}
 />`}
 				/>
 			</TabsContent>

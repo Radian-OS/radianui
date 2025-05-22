@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { Label } from "./label"
 
-export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
+export type SizeOptions = "0" | "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 
 export const cvaInputVariants = {
@@ -18,6 +18,7 @@ export const cvaInputVariants = {
 		"2xl": "rounded-2xl",
 	},
 	size: {
+		"0": " h-fit",
 		"28": "h-7 text-xs p-1.5",
 		"32": "h-8 text-sm px-3 py-1.5",
 		"36": "h-9 text-sm px-2.5 py-2",
@@ -149,6 +150,7 @@ function Input({
 						"text-fg-1 placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 text-sm placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
 							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
+							"file:border-border-alpha p-0 file:me-2 file:border-0 file:border-e file:py-1.5 file:pr-2": type === "file",
 						},
 						size && {
 							"text-xs placeholder:text-xs": size === "28",
