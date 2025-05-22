@@ -199,6 +199,7 @@ const phoneVariants = cva("", {
 	variants: {
 		...cvaInputVariants,
 		size: {
+			"0": "",
 			"28": "h-7 text-xs",
 			"32": "h-8 text-sm",
 			"36": "h-9 text-sm",

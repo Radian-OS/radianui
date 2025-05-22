@@ -194,6 +194,7 @@ function DatePicker({
 	const [inputValue, setInputValue] = useState(displayText || "")
 
 	const sizeHeightMapping = {
+		0: "",
 		28: "h-4 w-4",
 		32: "h-5 w-5",
 		36: "h-5 w-5",
@@ -475,6 +476,7 @@ function TypeableDatePicker({
 		}
 	}
 	const sizeHeightMapping = {
+		0: "",
 		28: "h-4 w-4",
 		32: "h-5 w-5",
 		36: "h-5 w-5",
