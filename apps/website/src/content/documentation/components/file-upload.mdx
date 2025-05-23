@@ -16,23 +16,27 @@ source: https://github.com/Radian-os
 
 ##### Props
 
-| Prop Name | Default Values | Values             |
-| --------- | -------------- | ------------------ |
-| rounded   | lg             | xs,sm,md,lg,xl,2xl |
-| label     | true           | true/false         |
-| disabled  | false          | true/false         |
+| Prop Name       | Default Values | Values                         |
+| --------------- | -------------- | ------------------------------ |
+| variant         | input          | input/container                |
+| accept          | image          | image,document,audio,video,all |
+| rounded         | lg             | xs,sm,md,lg,xl,2xl             |
+| maxSize (in mb) | 5              |                                |
+| label           | true           | true/false                     |
+| disabled        | false          | true/false                     |
+| maxFiles        | 4              |                                |
 
 ##### Usage
 
 <Code
 	language="tsx"
 	code={`<FileUpload
-	variant="input"
-	format="image"
-	label="File"
-	rounded="lg"
-	maxSize={50}
-	multiple={true}
-	disabled={false}
+		variant="input"
+		accept={["image","audio"]}
+		label="File"
+		rounded="lg"
+		maxSize={50}
+		disabled={false}
+		maxFiles={4}
 />`}
 />

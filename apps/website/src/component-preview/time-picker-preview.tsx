@@ -10,26 +10,24 @@ import {
 	DropdownSubTrigger,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
-import FileUpload from "@/registry/ui/file-upload"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import TimePicker from "@/registry/ui/time-picker"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-export type MaxSizeOptions = "5" | "10" | "30" | "50" | "70" | "90"
-export type MaxFileOptions = "1" | "2" | "3" | "4" | "5" | "6"
-
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
-const maxSizeOptions = ["5", "10", "30", "50", "70", "90"]
-const maxFileOptions = ["1", "2", "3", "4", "5", "6"]
+const sizes = ["28", "32", "36", "40", "44", "48"]
 
-const FileUploadPreview = () => {
+const TimePickerPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
-	const [maxSize, setMaxSize] = useState<MaxSizeOptions>("50")
-	const [variant, setVariant] = useState("input")
+	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-	const [format, setFormat] = useState<string>("image")
-	const [maxFile, setMaxFile] = useState<MaxFileOptions>("4")
+
+	const [is24Hour, setIs24Hour] = useState<boolean>(false)
+	const [interval, setInterval] = useState<number>(15)
+
+	const intervalOptions = ["15", "30", "60"]
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -38,35 +36,6 @@ const FileUploadPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
-							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[variant]}
-										onSelectedChange={(values) => setVariant(values[0])}
-										minSelectionCount={1}>
-										<DropdownItem value="input">Input</DropdownItem>
-										<DropdownItem value="container">Container</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Accept</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[format]}
-										onSelectedChange={(values) => setFormat(values[0])}
-										minSelectionCount={1}>
-										<DropdownItem value="image">Image</DropdownItem>
-										<DropdownItem value="document">Document</DropdownItem>
-										<DropdownItem value="audio">Audio</DropdownItem>
-										<DropdownItem value="video">Video</DropdownItem>
-										<DropdownItem value="all">All</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -78,6 +47,22 @@ const FileUploadPreview = () => {
 										{roundedOptions.map((roundedOption) => (
 											<DropdownItem value={roundedOption} key={roundedOption}>
 												{roundedOption}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[size]}
+										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
+										minSelectionCount={1}>
+										{sizes.map((size) => (
+											<DropdownItem value={size} key={size}>
+												{size}
 											</DropdownItem>
 										))}
 									</DropdownGroup>
@@ -109,33 +94,32 @@ const FileUploadPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
 							<DropdownSub>
-								<DropdownSubTrigger>Max size (mb)</DropdownSubTrigger>
+								<DropdownSubTrigger>24 Hour Mode</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										selectedValues={[maxSize]}
-										onSelectedChange={(values) => setMaxSize(values[0] as MaxSizeOptions)}
+										selectedValues={[String(is24Hour)]}
+										onSelectedChange={(values) => setIs24Hour(values[0] === "true")}
 										minSelectionCount={1}>
-										{maxSizeOptions.map((maxOption) => (
-											<DropdownItem value={maxOption} key={maxOption}>
-												{maxOption}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
 							<DropdownSub>
-								<DropdownSubTrigger>Max files</DropdownSubTrigger>
+								<DropdownSubTrigger>Interval</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										selectedValues={[maxFile]}
-										onSelectedChange={(values) => setMaxFile(values[0] as MaxFileOptions)}
+										selectedValues={[String(interval)]}
+										onSelectedChange={(values) => setInterval(Number(values[0]))}
 										minSelectionCount={1}>
-										{maxFileOptions.map((maxFileOption) => (
-											<DropdownItem value={maxFileOption} key={maxFileOption}>
-												{maxFileOption}
+										{intervalOptions.map((option) => (
+											<DropdownItem key={option} value={option}>
+												{`${option} min`}
 											</DropdownItem>
 										))}
 									</DropdownGroup>
@@ -151,16 +135,16 @@ const FileUploadPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] justify-center ${variant === "input" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
-					<FileUpload
-						variant={variant}
-						className="pb-14"
-						accepts={format}
-						label={label ? "File" : undefined}
-						rounded={rounded}
-						maxSize={Number(maxSize)}
+				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
+					<TimePicker
+						label={label ? "Time Picker" : undefined}
+						rounded={rounded as RoundedOptions}
+						size={size as SizeOptions}
 						disabled={disabled}
-						maxFiles={Number(maxFile)}
+						is24Hour={is24Hour}
+						interval={interval}
+						placeholder="Select time"
+						classNames={{ base: "w-[320px] flex" }}
 					/>
 				</div>
 			</TabsContent>
@@ -170,14 +154,15 @@ const FileUploadPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<FileUpload
-	variant="${variant}"
-	accepts="${format}"
-	label="${label ? "File" : ""}"
-	rounded="${rounded}"
-	maxSize={${maxSize}}
-	disabled={${disabled}}
-	maxFiles={${maxFile}}
+					code={`<TimePicker
+    label="${label}"
+    rounded="${rounded}"
+    size={${size}}
+    disabled={${disabled}}
+    is24Hour={${is24Hour}}
+    interval={${interval}}
+    placeholder="Select time"
+    classNames={{ base: "w-[320px] flex" }}
 />`}
 				/>
 			</TabsContent>
@@ -185,4 +170,4 @@ const FileUploadPreview = () => {
 	)
 }
 
-export default FileUploadPreview
+export default TimePickerPreview

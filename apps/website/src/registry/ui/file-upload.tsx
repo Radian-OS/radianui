@@ -32,20 +32,20 @@ const getFileIcon = (file: { file: File | { type: string; name: string; preview?
 		src = "preview" in file.file && file.file.preview ? file.file.preview : ""
 	}
 	if (fileType.includes("pdf") || fileName.endsWith(".pdf") || fileType.includes("word") || fileName.endsWith(".doc") || fileName.endsWith(".docx")) {
-		return <FileTextIcon className="size-10 opacity-60" />
+		return <FileTextIcon className="size-4 opacity-60" />
 	} else if (fileType.includes("zip") || fileType.includes("archive") || fileName.endsWith(".zip") || fileName.endsWith(".rar")) {
-		return <FileArchiveIcon className="size-10 opacity-60" />
+		return <FileArchiveIcon className="size-4 opacity-60" />
 	} else if (fileType.includes("excel") || fileName.endsWith(".xls") || fileName.endsWith(".xlsx")) {
-		return <FileSpreadsheetIcon className="size-10 opacity-60" />
+		return <FileSpreadsheetIcon className="size-4 opacity-60" />
 	} else if (fileType.includes("video/")) {
-		return <VideoIcon className="size-10 opacity-60" />
+		return <VideoIcon className="size-4 opacity-60" />
 	} else if (fileType.includes("audio/")) {
-		return <HeadphonesIcon className="size-10 opacity-60" />
+		return <HeadphonesIcon className="size-4 opacity-60" />
 	} else if (fileType.startsWith("image/")) {
 		// Only use preview if it exists (not a native File)
 		return <img src={src} alt={file.file.name} className="size-10 rounded-[inherit] object-cover" />
 	}
-	return <FileIcon className="size-10 opacity-60" />
+	return <FileIcon className="size-4 opacity-60" />
 }
 
 type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
@@ -55,13 +55,13 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	label?: string
 	variant?: string
 	className?: string
-	accepts?: string[]
+	accepts?: string
 	error?: boolean
 	disabled?: boolean
 	multiple?: boolean
-	maxFile?: number
+	maxFiles?: number
 }
-const DEFAULT_MAX_SIZE = 4 * 1024 * 1024 // 4 MB in bytes
+const DEFAULT_MAX_SIZE = 5 * 1024 * 1024 // 5 MB in bytes
 
 function FileUpload({
 	maxSize = DEFAULT_MAX_SIZE,
@@ -69,38 +69,47 @@ function FileUpload({
 	rounded = "lg",
 	label,
 	className,
-	accepts = ["image"],
+	accepts = "image",
 	error,
 	disabled,
-	multiple,
-	maxFile = 4,
+	multiple = true,
+	maxFiles = 4,
 }: FileUploadProps) {
 	const maxSizeMB = maxSize
 	const maxSizeValue = maxSize * 1024 * 1024
-
-	const getAcceptTypes = (formats: string[]) => {
+	const getAcceptTypes = (formats: string) => {
 		const types: Record<string, string[]> = {
 			image: ["image/svg", "image/png", "image/jpeg", "image/jpg", "image/gif"],
-			document: ["application/pdf", "application/msword", "text/plain"],
+			document: [
+				"application/pdf",
+				"application/msword",
+				"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+				"application/vnd.ms-excel",
+				"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+				"text/plain",
+				"text/csv",
+			],
 			audio: ["audio/mpeg", "audio/wav"],
 			video: ["video/mp4", "video/webm"],
-			all: ["*/*"], // catch-all
+			all: ["*"], // catch-all
 		}
 
 		// If "all" is selected, accept everything
-		if (formats.includes("all")) return "*/*"
+		if (formats.includes("all")) return "*"
 
-		const acceptList = formats.flatMap((format) => types[format] || [])
+		// Split the formats string into an array of format types
+		const formatArray = formats.split(",").map((f) => f.trim())
+		const acceptList = formatArray.flatMap((format) => types[format] || [])
 		return acceptList.join(",")
 	}
 	const [
 		{ files, isDragging, errors },
 		{ handleDragEnter, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps },
 	] = useFileUpload({
-		accept: getAcceptTypes(accepts),
+		accept: getAcceptTypes(accepts) || accepts,
 		maxSize: maxSizeValue,
-		multiple: multiple,
-		maxFiles: maxFile,
+		multiple: maxFiles > 1 ? multiple : false,
+		maxFiles,
 	})
 
 	const cvaFileUploadVariants = {
@@ -127,19 +136,26 @@ function FileUpload({
 			},
 		}
 	)
+
+	const formatExtensions: Record<string, string[]> = {
+		image: ["jpg", "jpeg", "png", "gif", "svg"],
+		document: ["pdf", "docx", "xlsx", "txt", "csv"],
+		audio: ["mp3", "wav"],
+		video: ["mp4", "webm"],
+		all: ["any file type"],
+	}
+
+	const displayExtensions = accepts.includes("all")
+		? ["Any file format"]
+		: accepts
+				.split(",")
+				.map((type) => type.trim())
+				.flatMap((type) => formatExtensions[type] || [])
+				.map((ext) => ext.toUpperCase())
 	return (
 		<>
 			{variant === "input" ? (
-				<Input
-					size="0"
-					className="p-0 px-2"
-					id="picture"
-					type="file"
-					label={label ? `${label}` : ""}
-					rounded={rounded}
-					disabled={disabled}
-					multiple={multiple}
-				/>
+				<Input size="0" id="picture" type="file" label={label ? `${label}` : ""} rounded={rounded} disabled={disabled} multiple={multiple} />
 			) : (
 				<div className={"flex w-80 flex-col gap-1.5"}>
 					{label && <Label htmlFor="picture">{label}</Label>}
@@ -163,15 +179,9 @@ function FileUpload({
 								<ImageIcon className="size-4 opacity-60" />
 							</div>
 							<div className="flex flex-col gap-1">
-								<p className="text-sm font-medium">Drop your {accepts.join(", ")} here</p>
+								<p className="text-sm font-medium">Drop your {accepts} file here</p>
 								<p className="text-muted-foreground text-xs">
-									{accepts.includes("all")
-										? "All file accept"
-										: getAcceptTypes(accepts)
-												.split(",")
-												.map((type) => type.split("/").pop())
-												.join(", ")}{" "}
-									(max. {maxSizeMB}MB)
+									{displayExtensions.join(", ")} (max. {maxSizeMB}MB)
 								</p>
 							</div>
 							<Button
@@ -202,7 +212,9 @@ function FileUpload({
 							{files.map((file) => (
 								<div key={file.id} className="bg-background flex items-center justify-between gap-2 rounded-lg border p-2 pe-3">
 									<div className="flex items-center gap-3 overflow-hidden">
-										<div className="bg-accent aspect-square shrink-0 rounded">{getFileIcon(file)}</div>
+										<div className="flex aspect-square size-10 shrink-0 items-center justify-center overflow-hidden rounded border">
+											{getFileIcon(file)}
+										</div>
 										<div className="flex min-w-0 flex-col gap-0.5">
 											<p className="truncate text-[13px] font-medium">{file.file.name}</p>
 											<p className="text-muted-foreground text-xs">{formatBytes(file.file.size)}</p>

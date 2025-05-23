@@ -117,23 +117,25 @@ function TimePicker({
 	}
 
 	return (
-		<Select
-			selectedValues={[currentValue]}
-			onSelectedChange={function (values) {
-				handleChange(values[0])
-			}}
-			classNames={{ content: cn("h-80"), ...classNames }}
-			minSelectionCount={allowEmptySelection ? 0 : 1}
-			{...props}>
-			{timeOptions.map((time, index) => {
-				const formatted = formatTime(time)
-				return (
-					<SelectItem key={index} value={serializeTime(time)}>
-						{formatted}
-					</SelectItem>
-				)
-			})}
-		</Select>
+		<div className="flex items-center justify-center">
+			<Select
+				selectedValues={[currentValue]}
+				onSelectedChange={function (values) {
+					handleChange(values[0])
+				}}
+				classNames={{ content: cn("h-80"), ...classNames }}
+				minSelectionCount={allowEmptySelection ? 0 : 1}
+				{...props}>
+				{timeOptions.map((time, index) => {
+					const formatted = formatTime(time)
+					return (
+						<SelectItem key={index} value={serializeTime(time)}>
+							{formatted}
+						</SelectItem>
+					)
+				})}
+			</Select>
+		</div>
 	)
 }
 

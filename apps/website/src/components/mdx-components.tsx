@@ -40,6 +40,7 @@ import SwitchPreview from "@/component-preview/switch-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
+import TimePickerPreview from "@/component-preview/time-picker-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
@@ -136,6 +137,7 @@ const components: MDXComponents = {
 	FileUploadPreview: () => <FileUploadPreview />,
 	NumberInputPreview: () => <NumberInputPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
+	TimePickerPreview: () => <TimePickerPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
