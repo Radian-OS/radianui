@@ -24,7 +24,7 @@ export type trailOptions = "show" | "hide" | "onFocus"
 
 const NumberInputPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
-	const [example, setExample] = useState<"custom" | "trial">("custom")
+	const [example, setExample] = useState<"custom" | "trial" | "basic">("trial")
 	const [amount, setAmount] = useState("")
 
 	// Reset amount when example changes
@@ -67,8 +67,8 @@ setAmount(onlyDigits)
 }
 return (
 ${
-	example === "custom"
-		? `<div className="flex flex-col gap-1.5">
+	example === "custom" &&
+	`<div className="flex flex-col gap-1.5">
   <Label>Amount</Label>
   <div className="flex rounded-md">
     <Button
@@ -101,38 +101,54 @@ ${
   </div>
 </div>
 `
-		: `<Input
-  value={amount}
-  onChange={handleChange}
-  lead={
-    <Plus
-      className="size-5 cursor-pointer"
-      onClick={(e) => {
-        e.stopPropagation();
-        setAmount((v) => String(Number(v || "0") + 1));
-      }}
-      onMouseDown={(e) => e.preventDefault()}
-    />
-  }
-  trail={
-    <Minus
-      onClick={(e) => {
-        e.stopPropagation();
-        setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"));
-      }}
-      className="size-5 cursor-pointer"
-      onMouseDown={(e) => e.preventDefault()}
-    />
-  }
-  className="w-80"
-  label="Amount"
+}
+${
+	example === "trial" &&
+	`<Input
+value={amount}
+onChange={handleChange}
+lead={
+<Plus
+className="size-5 cursor-pointer"
+onClick={(e) => {
+e.stopPropagation();
+setAmount((v) => String(Number(v || "0") + 1));
+}}
+onMouseDown={(e) => e.preventDefault()}
+/>
+}
+trail={
+<Minus
+onClick={(e) => {
+e.stopPropagation();
+setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"));
+}}
+className="size-5 cursor-pointer"
+onMouseDown={(e) => e.preventDefault()}
+/>
+}
+className="w-80"
+label="Amount"
 />
 `
 }
+
+${
+	example === "basic" &&
+	`<Input
+onChange={handleChange}
+className="w-80"
+size="${size}"
+value={${amount}}
+label="Amount"
+placeholder="Enter Number Here"
+inputMode="numeric"
+/>`
 }
-    
+}
+
 export default CounterInput
-    `
+	`
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10 mt-2">
@@ -172,6 +188,7 @@ export default CounterInput
 										selectedValues={[example]}>
 										<DropdownItem value="custom">Custom</DropdownItem>
 										<DropdownItem value="trial">Trial</DropdownItem>
+										<DropdownItem value="basic">Basic</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -186,7 +203,7 @@ export default CounterInput
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					{example === "custom" ? (
+					{example === "custom" && (
 						<div className="flex flex-col gap-1.5">
 							<Label>Amount</Label>
 							<div className="flex rounded-md">
@@ -217,21 +234,13 @@ export default CounterInput
 								</Button>
 							</div>
 						</div>
-					) : (
+					)}
+					{example === "trial" && (
 						<Input
 							value={amount}
 							onChange={handleChange}
+							size={size}
 							lead={
-								<Plus
-									className="size-5 cursor-pointer"
-									onClick={(e) => {
-										e.stopPropagation()
-										setAmount((v) => String(Number(v || "0") + 1))
-									}}
-									onMouseDown={(e) => e.preventDefault()}
-								/>
-							}
-							trail={
 								<Minus
 									onClick={(e) => {
 										e.stopPropagation()
@@ -241,8 +250,29 @@ export default CounterInput
 									onMouseDown={(e) => e.preventDefault()}
 								/>
 							}
+							trail={
+								<Plus
+									className="size-5 cursor-pointer"
+									onClick={(e) => {
+										e.stopPropagation()
+										setAmount((v) => String(Number(v || "0") + 1))
+									}}
+									onMouseDown={(e) => e.preventDefault()}
+								/>
+							}
 							className="w-80"
 							label="Amount"
+						/>
+					)}
+					{example === "basic" && (
+						<Input
+							onChange={handleChange}
+							className="w-80"
+							size={size}
+							value={amount}
+							label="Amount"
+							placeholder="Enter Number Here"
+							inputMode="numeric"
 						/>
 					)}
 				</div>
