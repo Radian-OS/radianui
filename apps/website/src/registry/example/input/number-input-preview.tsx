@@ -24,7 +24,7 @@ export type trailOptions = "show" | "hide" | "onFocus"
 
 const NumberInputPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
-	const [example, setExample] = useState<"custom" | "trial" | "basic">("trial")
+	const [example, setExample] = useState<"custom" | "default" | "basic">("default")
 	const [amount, setAmount] = useState("")
 
 	// Reset amount when example changes
@@ -103,7 +103,7 @@ ${
 `
 }
 ${
-	example === "trial" &&
+	example === "default" &&
 	`<Input
 value={amount}
 onChange={handleChange}
@@ -182,12 +182,12 @@ export default CounterInput
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setExample(Array.from(keys)[0] as "custom" | "trial")
+											setExample(Array.from(keys)[0] as "custom" | "default" | "basic")
 										}}
 										minSelectionCount={1}
 										selectedValues={[example]}>
 										<DropdownItem value="custom">Custom</DropdownItem>
-										<DropdownItem value="trial">Trial</DropdownItem>
+										<DropdownItem value="default">Default</DropdownItem>
 										<DropdownItem value="basic">Basic</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
@@ -235,7 +235,7 @@ export default CounterInput
 							</div>
 						</div>
 					)}
-					{example === "trial" && (
+					{example === "default" && (
 						<Input
 							value={amount}
 							onChange={handleChange}
