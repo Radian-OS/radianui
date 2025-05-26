@@ -69,6 +69,7 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/radio-group", name: "Radio Group" },
 			{ link: "/documentation/components/resizable", name: "Resizable" },
 			{ link: "/documentation/components/search", name: "Search" },
+			{ link: "/documentation/components/select", name: "Select" },
 			{ link: "/documentation/components/skeleton", name: "Skeleton" },
 			{ link: "/documentation/components/slider", name: "Slider" },
 			{ link: "/documentation/components/sonner", name: "Sonner" },
