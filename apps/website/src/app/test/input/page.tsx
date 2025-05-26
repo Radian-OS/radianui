@@ -2,7 +2,6 @@
 
 import React from "react"
 import { CircleUserRound, Volume2, VolumeX } from "lucide-react"
-import { cn } from "@/lib/utils"
 import Calendar from "@/registry/ui/calendar"
 import { CurrencyInput } from "@/registry/ui/currency"
 import DateInput from "@/registry/ui/date-input"
@@ -213,7 +212,8 @@ const SearchInputComp = () => {
 					value={searchValue}
 					id="search-input"
 					renderSearchResults={renderSearchResults}
-					classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
+					// classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
+					className="w-80"
 				/>
 			</div>
 		</div>
@@ -266,7 +266,7 @@ const PasswordComp = () => {
 					disabled={disabled}
 					hint={"Some error occured"}
 					hasError={hasError}
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					placeholder="Enter your password here"
 				/>
 			</div>
@@ -442,7 +442,7 @@ const TimeComp = () => {
 					is24Hour={is24Hour}
 					interval={interval}
 					placeholder="Select time"
-					classNames={{ base: "w-[320px]", content: cn("h-[20rem]") }}
+					className="w-80"
 				/>
 			</div>
 		</div>
@@ -503,7 +503,7 @@ const NumberComp = () => {
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<NumberInput
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					rounded={rounded}
 					size={size}
 					disabled={disabled}
@@ -585,7 +585,7 @@ const InputComp = () => {
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<Input
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					rounded={rounded}
 					size={size}
 					disabled={disabled}
@@ -929,7 +929,7 @@ const SliderComp = () => {
 				<Slider
 					label={label ? "Select volume label" : undefined}
 					disabled={disabled}
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					withInput={withInput}
 					showSteppers={showSteppers}
 					showTooltip={showTooltip}
@@ -1111,14 +1111,7 @@ const TextAreaComp = () => {
 				</DropdownContent>
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
-				<TextArea
-					label={label ? "Label here" : undefined}
-					disabled={disabled}
-					rounded={rounded}
-					resizable={resizable}
-					rows={rows}
-					classNames={{ base: "w-[320px]" }}
-				/>
+				<TextArea label={label ? "Label here" : undefined} disabled={disabled} rounded={rounded} resizable={resizable} rows={rows} className="w-80" />
 			</div>
 		</div>
 	)
@@ -1326,7 +1319,7 @@ const SelectComp = () => {
 					minSelectionCount={minSelectionCount}
 					selectedValues={selectedValues}
 					onSelectedChange={setSelectedValues}
-					classNames={{ base: "w-[320px]", content: cn("max-h-[20rem]") }}>
+					className="w-80">
 					<SelectGroup label="Backend Frameworks">
 						<SelectItem value="node-js">Node.js (Express)</SelectItem>
 						<SelectItem value="django">Django (Python)</SelectItem>

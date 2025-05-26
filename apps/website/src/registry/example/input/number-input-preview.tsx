@@ -210,7 +210,7 @@ export default CounterInput
 								<Button
 									isIcon
 									size={size}
-									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
 									variant="neutral-soft"
 									onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}>
 									<Minus className="text-text-disabled size-5" />
@@ -259,12 +259,12 @@ export default CounterInput
 									onMouseDown={(e) => e.preventDefault()}
 								/>
 							}
-							className="w-80"
+							className="w-80 text-center"
 							label="Amount"
 						/>
 					)}
 					{example === "basic" && (
-						<Input onChange={handleChange} className="w-80 bg-red-600 text-center" size={size} value={amount} label="Amount" inputMode="numeric" />
+						<Input onChange={handleChange} className="w-80 text-center" size={size} value={amount} label="Amount" inputMode="numeric" />
 					)}
 				</div>
 			</TabsContent>
