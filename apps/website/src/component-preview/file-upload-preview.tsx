@@ -21,6 +21,7 @@ export type MaxFileOptions = "1" | "2" | "3" | "4" | "5" | "6"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const maxSizeOptions = ["5", "10", "30", "50", "70", "90"]
 const maxFileOptions = ["1", "2", "3", "4", "5", "6"]
+const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const FileUploadPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -28,8 +29,10 @@ const FileUploadPreview = () => {
 	const [variant, setVariant] = useState("input")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
-	const [format, setFormat] = useState<string>("image")
+	const [format, setFormat] = useState<string>("image/*")
 	const [maxFile, setMaxFile] = useState<MaxFileOptions>("4")
+	const [size, setSize] = useState<SizeOptions>("36")
+	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -59,11 +62,11 @@ const FileUploadPreview = () => {
 										selectedValues={[format]}
 										onSelectedChange={(values) => setFormat(values[0])}
 										minSelectionCount={1}>
-										<DropdownItem value="image">Image</DropdownItem>
-										<DropdownItem value="document">Document</DropdownItem>
-										<DropdownItem value="audio">Audio</DropdownItem>
-										<DropdownItem value="video">Video</DropdownItem>
-										<DropdownItem value="all">All</DropdownItem>
+										<DropdownItem value="image/*">Image</DropdownItem>
+										<DropdownItem value="application/*,text/*">Document</DropdownItem>
+										<DropdownItem value="audio/*">Audio</DropdownItem>
+										<DropdownItem value="video/*">Video</DropdownItem>
+										<DropdownItem value="*">All</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -80,6 +83,35 @@ const FileUploadPreview = () => {
 												{roundedOption}
 											</DropdownItem>
 										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[size]}
+										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
+										minSelectionCount={1}>
+										{sizes.map((size) => (
+											<DropdownItem value={size} key={size}>
+												{size}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -153,9 +185,13 @@ const FileUploadPreview = () => {
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] justify-center ${variant === "input" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
 					<FileUpload
+						title="Drag and drop files to upload"
+						description="PDF, PNG, JPG or DOCX"
+						hint={hint ? "Hint text to help the user with input" : ""}
 						variant={variant}
+						sizes={size}
 						className="pb-14"
-						accepts={format}
+						accept={format}
 						label={label ? "File" : undefined}
 						rounded={rounded}
 						maxSize={Number(maxSize)}
@@ -171,8 +207,12 @@ const FileUploadPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<FileUpload
+	title="Drag and drop files to upload"
+	description="PDF, PNG, JPG or DOCX"
+	sizes="${size}"
+	${hint ? `hint="Hint text to help the user with input"` : ""}
 	variant="${variant}"
-	accepts="${format}"
+	accept="${format}"
 	label="${label ? "File" : ""}"
 	rounded="${rounded}"
 	maxSize={${maxSize}}
