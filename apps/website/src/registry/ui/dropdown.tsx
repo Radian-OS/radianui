@@ -232,7 +232,7 @@ function DropdownSubTrigger({
 		<DropdownMenuPrimitive.SubTrigger
 			disabled={disabled}
 			className={cn(
-				"focus:text-primary-foreground focus:bg-bg-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+				"focus:text-primary-foreground hover:bg-fill-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 				className
 			)}
 			{...props}>

@@ -216,9 +216,8 @@ export default CounterInput
 									<Minus className="text-text-disabled size-5" />
 								</Button>
 								<Input
-									className="w-80 rounded-l-none border-l-0 border-r-0 focus-within:border-l focus-within:border-r"
+									className="w-80 rounded-l-none border-l-0 border-r-0 text-center focus-within:border-l focus-within:border-r"
 									size={size}
-									placeholder="Enter Number Here"
 									inputMode="numeric"
 									custom={true}
 									onChange={handleChange}
