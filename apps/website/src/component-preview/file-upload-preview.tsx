@@ -34,6 +34,14 @@ const FileUploadPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [hint, setHint] = useState<boolean>(false)
 
+	const formatDescriptionMap: Record<string, string> = {
+		"image/*": "JPG, PNG, GIF or other image files",
+		"application/*,text/*": "PDF, DOCX, TXT or other document files",
+		"audio/*": "MP3, WAV or other audio files",
+		"video/*": "MP4, MOV or other video files",
+		"*": "Any file type",
+	}
+
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -186,7 +194,7 @@ const FileUploadPreview = () => {
 				<div className={`flex h-[420px] justify-center ${variant === "input" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
 					<FileUpload
 						title="Drag and drop files to upload"
-						description="PDF, PNG, JPG or DOCX"
+						description={formatDescriptionMap[format]}
 						hint={hint ? "Hint text to help the user with input" : ""}
 						variant={variant}
 						sizes={size}
@@ -208,9 +216,8 @@ const FileUploadPreview = () => {
 					className="h-[420px]"
 					code={`<FileUpload
 	title="Drag and drop files to upload"
-	description="PDF, PNG, JPG or DOCX"
+	description="${formatDescriptionMap[format]}"
 	sizes="${size}"
-	${hint ? `hint="Hint text to help the user with input"` : ""}
 	variant="${variant}"
 	accept="${format}"
 	label="${label ? "File" : ""}"
@@ -218,6 +225,8 @@ const FileUploadPreview = () => {
 	maxSize={${maxSize}}
 	disabled={${disabled}}
 	maxFiles={${maxFile}}
+	${hint ? `hint="Hint text to help the user with input"` : ""}
+
 />`}
 				/>
 			</TabsContent>
