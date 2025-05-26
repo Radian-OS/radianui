@@ -66,7 +66,7 @@ function TextArea({
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !props.disabled,
 						"resize-none": resizable === false,
-						"border-border bg-bg-level0 text-text-disabled cursor-not-allowed": props.disabled,
+						"border-border bg-fill-level1 text-text-disabled cursor-not-allowed": props.disabled,
 					},
 					classNames?.textarea
 				)}
