@@ -19,6 +19,7 @@ import { Button } from "./button"
 import { Input } from "./input"
 import { Label } from "./label"
 
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 
 const getFileIcon = (file: { file: File | { type: string; name: string; preview?: string } }) => {
@@ -55,11 +56,15 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	label?: string
 	variant?: string
 	className?: string
-	accepts?: string
+	accept?: string
 	error?: boolean
 	disabled?: boolean
 	multiple?: boolean
 	maxFiles?: number
+	sizes?: SizeOptions
+	title?: string
+	description?: string
+	hint?: string
 }
 const DEFAULT_MAX_SIZE = 5 * 1024 * 1024 // 5 MB in bytes
 
@@ -69,44 +74,23 @@ function FileUpload({
 	rounded = "lg",
 	label,
 	className,
-	accepts = "image",
+	accept = "svg,png,jpeg,gif",
 	error,
 	disabled,
 	multiple = true,
+	sizes = "36",
+	hint,
 	maxFiles = 4,
+	title = "Drag and drop files to upload",
+	description = "PDF, PNG, JPG or DOCX",
 }: FileUploadProps) {
-	const maxSizeMB = maxSize
 	const maxSizeValue = maxSize * 1024 * 1024
-	const getAcceptTypes = (formats: string) => {
-		const types: Record<string, string[]> = {
-			image: ["image/svg", "image/png", "image/jpeg", "image/jpg", "image/gif"],
-			document: [
-				"application/pdf",
-				"application/msword",
-				"application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-				"application/vnd.ms-excel",
-				"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-				"text/plain",
-				"text/csv",
-			],
-			audio: ["audio/mpeg", "audio/wav"],
-			video: ["video/mp4", "video/webm"],
-			all: ["*"], // catch-all
-		}
 
-		// If "all" is selected, accept everything
-		if (formats.includes("all")) return "*"
-
-		// Split the formats string into an array of format types
-		const formatArray = formats.split(",").map((f) => f.trim())
-		const acceptList = formatArray.flatMap((format) => types[format] || [])
-		return acceptList.join(",")
-	}
 	const [
 		{ files, isDragging, errors },
 		{ handleDragEnter, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps },
 	] = useFileUpload({
-		accept: getAcceptTypes(accepts) || accepts,
+		accept,
 		maxSize: maxSizeValue,
 		multiple: maxFiles > 1 ? multiple : false,
 		maxFiles,
@@ -137,25 +121,20 @@ function FileUpload({
 		}
 	)
 
-	const formatExtensions: Record<string, string[]> = {
-		image: ["jpg", "jpeg", "png", "gif", "svg"],
-		document: ["pdf", "docx", "xlsx", "txt", "csv"],
-		audio: ["mp3", "wav"],
-		video: ["mp4", "webm"],
-		all: ["any file type"],
-	}
-
-	const displayExtensions = accepts.includes("all")
-		? ["Any file format"]
-		: accepts
-				.split(",")
-				.map((type) => type.trim())
-				.flatMap((type) => formatExtensions[type] || [])
-				.map((ext) => ext.toUpperCase())
 	return (
 		<>
 			{variant === "input" ? (
-				<Input size="0" id="picture" type="file" label={label ? `${label}` : ""} rounded={rounded} disabled={disabled} multiple={multiple} />
+				<Input
+					fileUploadSize={sizes}
+					size="0"
+					hint={hint}
+					id="picture"
+					type="file"
+					label={label ? `${label}` : ""}
+					rounded={rounded}
+					disabled={disabled}
+					multiple={multiple}
+				/>
 			) : (
 				<div className={"flex w-80 flex-col gap-1.5"}>
 					{label && <Label htmlFor="picture">{label}</Label>}
@@ -179,9 +158,9 @@ function FileUpload({
 								<ImageIcon className="size-4 opacity-60" />
 							</div>
 							<div className="flex flex-col gap-1">
-								<p className="text-sm font-medium">Drop your {accepts} file here</p>
+								<p className="text-sm font-medium">{title}</p>
 								<p className="text-muted-foreground text-xs">
-									{displayExtensions.join(", ")} (max. {maxSizeMB}MB)
+									{description} (max. {maxSize} MB){" "}
 								</p>
 							</div>
 							<Button
@@ -194,7 +173,7 @@ function FileUpload({
 									}
 								}}>
 								<UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
-								Select file
+								Browse Files
 							</Button>
 						</div>
 					</div>

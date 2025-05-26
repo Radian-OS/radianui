@@ -31,15 +31,6 @@ export const cvaInputVariants = {
 export const defaultInputSize = "36"
 export const defaultInputRadius = "lg"
 
-// const sizeHeightMapping = {
-// 	28: "h-4",
-// 	32: "h-5",
-// 	36: "h-5",
-// 	40: "h-5",
-// 	44: "h-6",
-// 	48: "h-6",
-// }
-
 // Creating a variant for input styles using cva
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
 	variants: {
@@ -72,6 +63,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	lead?: React.ReactNode
 	trail?: React.ReactNode
 	size?: SizeOptions
+	fileUploadSize?: SizeOptions
 	rounded?: RoundedOptions
 	id?: string
 	classNames?: InputClassNames
@@ -89,6 +81,7 @@ function Input({
 	trail,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
+	fileUploadSize = defaultInputSize,
 	id,
 	className,
 	classNames,
@@ -96,6 +89,19 @@ function Input({
 }: InputProps) {
 	let htmlId = React.useId()
 	if (id) htmlId = id
+
+	const fileBaseClass = "file:border-border-alpha file:me-2 file:border-0 file:border-e"
+
+	const fileSizeMap = {
+		"28": "file:h-7 text-xs file:p-1.5",
+		"32": "file:h-8 text-sm file:px-3 file:py-1.5",
+		"36": "file:h-9 text-sm file:px-2.5 file:py-2",
+		"40": "file:h-10 text-sm file:px-3 file:py-2.5",
+		"44": "file:h-11 text-base file:py-2.5 file:px-3.5",
+		"48": "file:h-12 text-base file:py-3 file:px-3.5",
+	}
+
+	const fileSizeClass = type === "file" && fileUploadSize in fileSizeMap ? fileSizeMap[fileUploadSize as keyof typeof fileSizeMap] : ""
 
 	return (
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, classNames?.base)}>
@@ -148,10 +154,8 @@ function Input({
 					id={htmlId}
 					className={cn(
 						"text-fg-1 placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 text-sm placeholder:text-sm placeholder:font-normal focus:ring-0",
-						{
-							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
-							"file:border-border-alpha p-0 file:me-2 file:border-0 file:border-e file:px-2 file:py-1.5": type === "file",
-						},
+						type === "file" && fileBaseClass,
+						fileSizeClass,
 						size && {
 							"text-xs placeholder:text-xs": size === "28",
 							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
