@@ -3,16 +3,13 @@
 import React from "react"
 import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Input, InputClassNames, InputProps } from "./input"
+import { Input, InputProps } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 
 type SearchProps = Omit<InputProps, "prefixIcon" | "suffixIcon"> & {
 	renderSearchResults?: () => React.ReactNode
 	showSearchResults?: boolean /* Manually control to show the search results popover */
 	defaultShowSearchResults?: boolean
-	classNames?: InputClassNames & {
-		searchResults?: string /* The search results container */
-	}
 	suggestion?: boolean
 }
 // Defines the SearchInput functional component
@@ -67,7 +64,7 @@ function SearchInput({
 					onOpenAutoFocus={function (e) {
 						e.preventDefault()
 					}}
-					className={cn("no-scrollbar max-h-88 bg-bg-level1 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
+					className={cn("no-scrollbar max-h-88 bg-bg-level1 z-50 overflow-y-scroll p-0", props.className)}
 					onInteractOutside={function () {
 						setShowResults(false)
 					}}>

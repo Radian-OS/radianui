@@ -5,7 +5,8 @@ import * as SliderPrimitive from "@radix-ui/react-slider"
 import { Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
-import NumberInput from "./number"
+import { Input } from "./input"
+// import NumberInput from "./number"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 
 const DEFAULT_STEPPER_VALUE = 5
@@ -245,9 +246,8 @@ function Slider({
 					</Button>
 				)}
 				{withInput && isSingleThumb && (
-					<NumberInput
-						showStepper={false}
-						classNames={{ base: cn("w-20") }}
+					<Input
+						className="w-20"
 						value={input ?? ""}
 						onBlur={handleInputBlur}
 						onChange={function (e) {

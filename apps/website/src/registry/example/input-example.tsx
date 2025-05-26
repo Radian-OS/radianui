@@ -9,10 +9,10 @@ import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"
 import { Input, type RoundedOptions, type SizeOptions } from "../ui/input"
 import OTPInput from "../ui/input-otp"
-import NumberInput from "../ui/number"
+// import NumberInput from "../ui/number"
 import { InputOtp } from "../ui/otp-input"
 import { Password } from "../ui/password"
-import PhoneNumber from "../ui/phone-number"
+// import PhoneNumber from "../ui/phone-number"
 import ProgressBar from "../ui/progress-bar"
 import SearchInput from "../ui/search"
 import { Select, SelectItem } from "../ui/select"
@@ -25,7 +25,7 @@ const sizes = ["32", "36", "40", "44", "48", "56"] as const
 const InputExample = () => {
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [rounded, setRounded] = React.useState<RoundedOptions>("md")
-	const [phone, setPhone] = React.useState("")
+	// const [phone, setPhone] = React.useState("")
 	const [query, setQuery] = React.useState("")
 	const [searchResults, setSearchResults] = React.useState<{ id: string; title: string }[]>([])
 	const [currency, setCurrency] = React.useState("")
@@ -112,8 +112,8 @@ const InputExample = () => {
 			<Password hint="The input field has an error" hasError={true} size={size} rounded={rounded} />
 
 			<Divider spacing="4" />
-
-			<NumberInput label="Number" placeholder="Placeholder" showStepper={false} size={size} rounded={rounded} />
+			{/* 
+			<NumberInput label="Number" placeholder="Placeholder" showStepper={false} size={size} rounded={rounded} /> */}
 			<Input label="Enter URL" placeholder="Placeholder here" type="url" size={size} rounded={rounded} />
 
 			<Divider spacing="4" />
@@ -126,7 +126,7 @@ const InputExample = () => {
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
 				renderSearchResults={renderSearchResults}
-				classNames={{ searchResults: "w-fit max-h-[20rem]" }}
+				className="w-80"
 			/>
 
 			<Divider spacing="4" />
@@ -135,8 +135,8 @@ const InputExample = () => {
 
 			<Divider spacing="4" />
 
-			<span>{phone}</span>
-			<PhoneNumber defaultCountryCode="NP" onValueChange={setPhone} size={size} rounded={rounded} />
+			{/* <span>{phone}</span> */}
+			{/* <PhoneNumber defaultCountryCode="NP" onValueChange={setPhone} size={size} rounded={rounded} /> */}
 
 			<Divider spacing="4" />
 

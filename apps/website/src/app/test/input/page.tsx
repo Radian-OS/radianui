@@ -19,7 +19,7 @@ import {
 import FileUpload from "@/registry/ui/file-upload"
 import { Input, RoundedOptions, SizeOptions } from "@/registry/ui/input"
 import OTPInput from "@/registry/ui/input-otp"
-import NumberInput from "@/registry/ui/number"
+// import NumberInput from "@/registry/ui/number"
 import { Password } from "@/registry/ui/password"
 import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
@@ -502,7 +502,7 @@ const NumberComp = () => {
 				</DropdownContent>
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
-				<NumberInput
+				{/* <NumberInput
 					className="w-80"
 					rounded={rounded}
 					size={size}
@@ -512,7 +512,7 @@ const NumberComp = () => {
 					hasError={hasError}
 					hint={hasError ? "There is an error" : undefined}
 					showStepper={showStepper}
-				/>
+				/> */}
 			</div>
 		</div>
 	)

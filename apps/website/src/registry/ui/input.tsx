@@ -65,6 +65,7 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	hasError?: boolean
 	custom?: boolean
 	type?: "text" | "email" | "url" | "number" | "password" | "file"
+	fileUploadSize?: SizeOptions // Only used when type is 'file'
 	/* 
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
@@ -88,12 +89,23 @@ function Input({
 	trail,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
+	fileUploadSize = defaultInputSize,
 	id,
 	className,
 	...props
 }: InputProps) {
 	let htmlId = React.useId()
 	if (id) htmlId = id
+	const fileBaseClass = "file:border-border-alpha file:me-2 file:border-0 file:border-e"
+	const fileSizeMap = {
+		"28": "file:h-7 text-xs file:p-1.5",
+		"32": "file:h-8 text-sm file:px-3 file:py-1.5",
+		"36": "file:h-9 text-sm file:px-2.5 file:py-2",
+		"40": "file:h-10 text-sm file:px-3 file:py-2.5",
+		"44": "file:h-11 text-base file:py-2.5 file:px-3.5",
+		"48": "file:h-12 text-base file:py-3 file:px-3.5",
+	}
+	const fileSizeClass = type === "file" && fileUploadSize in fileSizeMap ? fileSizeMap[fileUploadSize as keyof typeof fileSizeMap] : ""
 
 	return (
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
@@ -138,6 +150,13 @@ function Input({
 							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
 							"file:border-border-alpha p-0 file:me-2 file:border-0 file:border-e file:px-2 file:py-1.5": type === "file",
 						},
+						size && {
+							"text-xs placeholder:text-xs": size === "28",
+							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
+							"text-base placeholder:text-base": ["44", "48"].includes(size),
+						},
+						type === "file" && fileBaseClass,
+						fileSizeClass,
 						size && {
 							"text-xs placeholder:text-xs": size === "28",
 							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
