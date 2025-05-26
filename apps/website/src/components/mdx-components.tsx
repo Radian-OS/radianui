@@ -33,6 +33,7 @@ import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
 import SearchPreview from "@/component-preview/search-preview"
+import SelectPreview from "@/component-preview/select-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SonnerPreview from "@/component-preview/sonner-preview"
@@ -138,6 +139,7 @@ const components: MDXComponents = {
 	NumberInputPreview: () => <NumberInputPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
+	SelectPreview: () => <SelectPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],
