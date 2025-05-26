@@ -98,8 +98,8 @@ const EmailPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Input
 						size={size}
-						classNames={{ base: "w-[320px]" }}
 						type="email"
+						className="w-80"
 						label={"Email"}
 						placeholder="designer@radianos.com"
 						trail={trailIcon === "Mail" ? <Mail className={iconClass} /> : trailIcon === "Arrow" ? <ArrowRight className={iconClass} /> : ""}

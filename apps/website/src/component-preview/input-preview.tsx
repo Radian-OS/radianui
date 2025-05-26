@@ -169,7 +169,7 @@ const InputPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Input
-						classNames={{ base: "w-[320px]" }}
+						className="w-80"
 						rounded={rounded}
 						size={size}
 						disabled={disabled}

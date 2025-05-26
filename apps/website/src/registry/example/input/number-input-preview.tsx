@@ -264,15 +264,7 @@ export default CounterInput
 						/>
 					)}
 					{example === "basic" && (
-						<Input
-							onChange={handleChange}
-							className="w-80"
-							size={size}
-							value={amount}
-							label="Amount"
-							placeholder="Enter Number Here"
-							inputMode="numeric"
-						/>
+						<Input onChange={handleChange} className="w-80 bg-red-600 text-center" size={size} value={amount} label="Amount" inputMode="numeric" />
 					)}
 				</div>
 			</TabsContent>

@@ -206,7 +206,7 @@ const renderSearchResults = () => {
 						id="search-input"
 						suggestion={suggestion}
 						renderSearchResults={renderSearchResults}
-						classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
+						className="w-80"
 					/>
 				</div>
 			</TabsContent>
