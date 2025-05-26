@@ -190,8 +190,8 @@ import {
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
-import { InputClassNames, RoundedOptions, SizeOptions, cvaInputVariants, defaultInputSize } from "./input"
-import NumberInput from "./number"
+import { Input, InputClassNames, RoundedOptions, SizeOptions, cvaInputVariants, defaultInputSize } from "./input"
+// import NumberInput from "./number"
 import { Select, SelectClassNames, SelectGroup, SelectItem } from "./select"
 
 // Defines phoneVariants using the cva (class variance authority) utility, merging with existing input variants
@@ -322,14 +322,14 @@ function PhoneNumber({
 					))}
 				</SelectGroup>
 			</Select>
-			<NumberInput
+			<Input
 				placeholder="Enter your phone number"
 				className=""
 				size={size}
 				rounded={rounded}
 				onFocus={() => setIsFocused(true)}
 				onBlur={() => setIsFocused(false)}
-				showStepper={false}
+				// showStepper={false}
 				value={internalNumber}
 				onChange={(e) => setInternalNumber(e.target.value)}
 				onWheel={(e) => e.currentTarget.blur()}
