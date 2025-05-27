@@ -3,21 +3,19 @@
 import React from "react"
 import { Search } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Input, InputClassNames, InputProps } from "./input"
+import { Input, InputProps } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 
 type SearchProps = Omit<InputProps, "prefixIcon" | "suffixIcon"> & {
 	renderSearchResults?: () => React.ReactNode
 	showSearchResults?: boolean /* Manually control to show the search results popover */
 	defaultShowSearchResults?: boolean
-	classNames?: InputClassNames & {
-		searchResults?: string /* The search results container */
-	}
+	suggestion?: boolean
 }
 // Defines the SearchInput functional component
 function SearchInput({
 	label,
-	errorMsg = "",
+	hint = "",
 	hasError = false,
 	size = "40",
 	rounded = "md",
@@ -26,6 +24,7 @@ function SearchInput({
 	value,
 	showSearchResults,
 	defaultShowSearchResults = false,
+	suggestion = false,
 	...props
 }: SearchProps) {
 	const [showResultsInternal, setShowResults] = React.useState(defaultShowSearchResults)
@@ -50,7 +49,7 @@ function SearchInput({
 					<Input
 						lead={<Search size={20} className="stroke-text-tertiary" />}
 						label={label}
-						errorMsg={errorMsg}
+						hint={hint}
 						hasError={hasError}
 						size={size}
 						rounded={rounded}
@@ -60,16 +59,18 @@ function SearchInput({
 					/>
 				</div>
 			</PopoverTrigger>
-			<PopoverContent
-				onOpenAutoFocus={function (e) {
-					e.preventDefault()
-				}}
-				className={cn("no-scrollbar max-h-88 z-50 overflow-y-scroll p-0", props.classNames?.searchResults)}
-				onInteractOutside={function () {
-					setShowResults(false)
-				}}>
-				{renderSearchResults && renderSearchResults()}
-			</PopoverContent>
+			{suggestion && (
+				<PopoverContent
+					onOpenAutoFocus={function (e) {
+						e.preventDefault()
+					}}
+					className={cn("no-scrollbar max-h-88 bg-bg-level1 z-50 overflow-y-scroll p-0", props.className)}
+					onInteractOutside={function () {
+						setShowResults(false)
+					}}>
+					{renderSearchResults && renderSearchResults()}
+				</PopoverContent>
+			)}
 		</Popover>
 	)
 }

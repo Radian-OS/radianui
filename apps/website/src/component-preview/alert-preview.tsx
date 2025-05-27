@@ -143,21 +143,21 @@ const AlertPreview = () => {
 											onSelectedChange={(keys) => setShowIcon(Array.from(keys)[0] === "show")}
 											minSelectionCount={1}
 											selectedValues={[showIcon ? "show" : "hide"]}>
-											<DropdownItem value="show">true</DropdownItem>
-											<DropdownItem value="hide">false</DropdownItem>
+											<DropdownItem value="show">True</DropdownItem>
+											<DropdownItem value="hide">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>End Content</DropdownSubTrigger>
+									<DropdownSubTrigger>End content</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
 											onSelectedChange={(keys) => setShowEndContent(Array.from(keys)[0] === "show")}
 											minSelectionCount={1}
 											selectedValues={[showEndContent ? "show" : "hide"]}>
-											<DropdownItem value="show">true</DropdownItem>
-											<DropdownItem value="hide">false</DropdownItem>
+											<DropdownItem value="show">True</DropdownItem>
+											<DropdownItem value="hide">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>

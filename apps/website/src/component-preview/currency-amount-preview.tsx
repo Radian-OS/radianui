@@ -16,11 +16,22 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CurrencyInputPreview = () => {
+	type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
+	const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
+
+	const [separator, setSeparator] = useState<string>("true")
 	const [currency, setCurrency] = useState("usd")
-	const [value, setValue] = useState("100")
-	const [placeholder, setPlaceholder] = useState("Enter amount")
+	const [locale, setLocale] = useState("en-US")
 	const [disabled, setDisabled] = useState("false")
-	const [key, setKey] = useState(0)
+	const [rounded, setRounded] = useState<RoundedOptions>("lg")
+	const [size, setSize] = useState<SizeOptions>("36")
+	const [hasError, setHasError] = useState<"true" | "false">("false")
+	const [label, setLabel] = useState<"true" | "false">("true")
+	const [allowDecimals, setAllowDecimals] = useState<"true" | "false">("true")
+	const [decimalsLimit, setDecimalsLimit] = useState("2")
+	const [maxValue, setMaxValue] = useState("")
+	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -30,61 +41,65 @@ const CurrencyInputPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>Currency</DropdownSubTrigger>
+								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setCurrency(Array.from(keys)[0])
-											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[currency]}>
-										<DropdownItem value="usd">USD</DropdownItem>
-										<DropdownItem value="eur">EUR</DropdownItem>
-										<DropdownItem value="gbp">GBP</DropdownItem>
-										<DropdownItem value="jpy">JPY</DropdownItem>
+										selectedValues={[rounded]}
+										onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
+										minSelectionCount={1}>
+										{roundedOptions.map((roundedOption) => (
+											<DropdownItem value={roundedOption} key={roundedOption}>
+												{roundedOption}
+											</DropdownItem>
+										))}
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Value</DropdownSubTrigger>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setValue(Array.from(keys)[0])
-											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[value]}>
-										<DropdownItem value="100">$100</DropdownItem>
-										<DropdownItem value="1000">$1,000</DropdownItem>
-										<DropdownItem value="10000">$10,000</DropdownItem>
-										<DropdownItem value="">Empty</DropdownItem>
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setPlaceholder(Array.from(keys)[0])
-											setKey((k) => k + 1)
+											setHasError(Array.from(keys)[0] as "true" | "false")
 										}}
 										minSelectionCount={1}
-										selectedValues={[placeholder]}>
-										<DropdownItem value="Enter amount">Enter amount</DropdownItem>
-										<DropdownItem value="0.00">0.00</DropdownItem>
-										<DropdownItem value="Payment amount">Payment amount</DropdownItem>
+										selectedValues={[hasError]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
-
+							<DropdownSub>
+								<DropdownSubTrigger>Label</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setLabel(Array.from(keys)[0] as "true" | "false")
+										}}
+										selectedValues={[label]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -92,7 +107,6 @@ const CurrencyInputPreview = () => {
 										selectionMode="single"
 										onSelectedChange={(keys) => {
 											setDisabled(Array.from(keys)[0])
-											setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
@@ -101,6 +115,126 @@ const CurrencyInputPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setSize(Array.from(keys)[0] as SizeOptions)
+										}}
+										minSelectionCount={1}
+										selectedValues={[size]}>
+										<DropdownItem value="28">28</DropdownItem>
+										<DropdownItem value="32">32</DropdownItem>
+										<DropdownItem value="36">36</DropdownItem>
+										<DropdownItem value="40">40</DropdownItem>
+										<DropdownItem value="44">44</DropdownItem>
+										<DropdownItem value="48">48</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownGroup title="Currency">
+								<DropdownSub>
+									<DropdownSubTrigger>Currency</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setCurrency(Array.from(keys)[0])
+											}}
+											minSelectionCount={1}
+											selectedValues={[currency]}>
+											<DropdownItem value="usd">USD</DropdownItem>
+											<DropdownItem value="eur">EUR</DropdownItem>
+											<DropdownItem value="gbp">GBP</DropdownItem>
+											<DropdownItem value="jpy">JPY</DropdownItem>
+											<DropdownItem value="inr">INR</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Separator</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setSeparator(Array.from(keys)[0])
+											}}
+											minSelectionCount={1}
+											selectedValues={[separator]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Locale</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setLocale(Array.from(keys)[0])
+											}}
+											minSelectionCount={1}
+											selectedValues={[locale]}>
+											<DropdownItem value="de-DE">German (DE)</DropdownItem>
+											<DropdownItem value="en-US">English (US)</DropdownItem>
+											<DropdownItem value="en-GB">English (UK)</DropdownItem>
+											<DropdownItem value="ja-JP">Japanese</DropdownItem>
+											<DropdownItem value="en-IN">English (India)</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Allow decimals</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setAllowDecimals(Array.from(keys)[0] as "true" | "false")
+											}}
+											selectedValues={[allowDecimals]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Decimals limit</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setDecimalsLimit(Array.from(keys)[0])
+											}}
+											selectedValues={[decimalsLimit]}>
+											<DropdownItem value="0">0</DropdownItem>
+											<DropdownItem value="1">1</DropdownItem>
+											<DropdownItem value="2">2</DropdownItem>
+											<DropdownItem value="3">3</DropdownItem>
+											<DropdownItem value="4">4</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Max value</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setMaxValue(Array.from(keys)[0])
+											}}
+											selectedValues={[maxValue]}>
+											<DropdownItem value="">None</DropdownItem>
+											<DropdownItem value="100">100</DropdownItem>
+											<DropdownItem value="1000">1,000</DropdownItem>
+											<DropdownItem value="10000">10,000</DropdownItem>
+											<DropdownItem value="100000">100,000</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+							</DropdownGroup>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -111,17 +245,24 @@ const CurrencyInputPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
-					{/* <div className="w-full max-w-sm"> */}
-					<CurrencyInput
-						key={key}
-						currency={currency}
-						value={value}
-						placeholder={placeholder}
-						disabled={disabled === "true"}
-						onChange={(e) => setValue(e.target.value)}
-						className="w-80"
-					/>
-					{/* <CurrencyInput className="w-80" currency="inr" value="200" trial={<span>NRP</span>} /> */}
+					<div className="flex items-center justify-center">
+						<CurrencyInput
+							separator={separator === "true" ? true : false}
+							rounded={rounded}
+							size={size}
+							label={label === "true" ? "Currency Input" : ""}
+							currency={currency}
+							locale={locale}
+							hint={hint ? "Hint text to help the user with input" : ""}
+							placeholder="Enter amount"
+							disabled={disabled === "true"}
+							className="w-80"
+							hasError={hasError === "true"}
+							allowDecimals={allowDecimals === "true"}
+							decimalsLimit={parseInt(decimalsLimit)}
+							maxValue={maxValue ? parseInt(maxValue) : undefined}
+						/>
+					</div>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -130,11 +271,18 @@ const CurrencyInputPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<CurrencyInput
+  rounded="${rounded}"
+  size="${size}"
+  label="${label === "true" ? "Currency Input" : ""}"
   currency="${currency}"
-  value="${value}"
-  placeholder="${placeholder}"
-  disabled={${disabled}}
-  onChange={(e) => setValue(e.target.value)}
+  ${hint === true ? `hint="Hint text to help the user with input"` : ""}
+  locale="${locale}"
+  placeholder="Enter amount"
+  disabled={${disabled === "true"}}
+  className="w-80"
+  hasError={${hasError === "true"}}
+  allowDecimals={${allowDecimals === "true"}}
+  decimalsLimit={${decimalsLimit}}${maxValue ? `\n  maxValue={${maxValue}}` : ""}
 />`}
 				/>
 			</TabsContent>

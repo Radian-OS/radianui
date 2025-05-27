@@ -52,7 +52,7 @@ const DrawerPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>variant</DropdownSubTrigger>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -66,7 +66,7 @@ const DrawerPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>position</DropdownSubTrigger>
+								<DropdownSubTrigger>Position</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -81,20 +81,20 @@ const DrawerPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>handle</DropdownSubTrigger>
+								<DropdownSubTrigger>Handle</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => setHandle(Array.from(keys)[0] as "true" | "false")}
 										selectedValues={handle ? [handle] : []}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>backdrop</DropdownSubTrigger>
+								<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

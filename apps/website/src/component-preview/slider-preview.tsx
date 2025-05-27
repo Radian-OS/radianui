@@ -14,11 +14,6 @@ import {
 import Slider from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-export type DatePickerModes = "single" | "multiple" | "range" | "time"
-const booleanOptions = ["true", "false"]
-
 const SliderPreview = () => {
 	const [withInput, setWithInput] = useState<boolean>(false)
 	const [showSteppers, setShowSteppers] = useState<boolean>(false)
@@ -29,6 +24,21 @@ const SliderPreview = () => {
 	const [label, setLabel] = useState(true)
 	const [disabled, setDisabled] = useState(false)
 	const [orientation, setOrientation] = useState<"horizontal" | "vertical">("horizontal")
+
+	const marks = [
+		{ value: 0, label: "0%" },
+		{ value: 20, label: "20%" },
+		{ value: 40, label: "40%" },
+		{ value: 60, label: "60%" },
+		{ value: 80, label: "80%" },
+		{ value: 100, label: "100%" },
+	]
+	const formattedMarks = marks
+		.map((m, i) => {
+			const line = `\t\t\t\t{ value: ${m.value}, label: "${m.label}" }`
+			return i < marks.length - 1 ? line + "," : line // no comma on last
+		})
+		.join("\n")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -45,11 +55,8 @@ const SliderPreview = () => {
 										selectedValues={[String(label)]}
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -61,76 +68,73 @@ const SliderPreview = () => {
 										selectedValues={[String(disabled)]}
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>withInput</DropdownSubTrigger>
+								<DropdownSubTrigger>With input</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(withInput)]}
 										onSelectedChange={(values) => setWithInput(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>showSteppers</DropdownSubTrigger>
+								<DropdownSubTrigger>Show steppers</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(showSteppers)]}
 										onSelectedChange={(values) => setShowSteppers(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Show Marks</DropdownSubTrigger>
+								<DropdownSubTrigger>Show marks</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(showMarks)]}
 										onSelectedChange={(values) => setShowMarks(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>prefixIcon</DropdownSubTrigger>
+								<DropdownSubTrigger>Lead icon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(startContent)]}
 										onSelectedChange={(values) => setStartContent(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>suffixIcon</DropdownSubTrigger>
+								<DropdownSubTrigger>Trail icon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(endContent)]}
 										onSelectedChange={(values) => setEndContent(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -148,18 +152,15 @@ const SliderPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>showTooltip</DropdownSubTrigger>
+								<DropdownSubTrigger>Show tooltip</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(showTooltip)]}
 										onSelectedChange={(values) => setShowTooltip(values[0] === "true")}
 										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -193,8 +194,8 @@ const SliderPreview = () => {
 									]
 								: undefined
 						}
-						prefixIcon={startContent ? <VolumeX /> : undefined}
-						suffixIcon={endContent ? <Volume2 /> : undefined}
+						leadIcon={startContent ? <VolumeX className="text-text-tertiary" /> : undefined}
+						trailIcon={endContent ? <Volume2 className="text-text-tertiary" /> : undefined}
 						orientation={orientation}
 					/>
 				</div>
@@ -206,28 +207,23 @@ const SliderPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`  <Slider
-                        label=${label ? "Select volume label" : undefined}
-                        disabled=${disabled}
-                        classNames={{ base: "w-[320px]" }}
-                        withInput=${withInput}
-                        showSteppers=${showSteppers}
-                        showTooltip=${showTooltip}
-                        marks={
-                            showMarks
-                                ? [
-                                    { value: 0, label: "0%" },
-                                    { value: 20, label: "20%" },
-                                    { value: 40, label: "40%" },
-                                    { value: 60, label: "60%" },
-                                    { value: 80, label: "80%" },
-                                    { value: 100, label: "100%" },
-                                ]
-                                : undefined
-                        }
-                        lead=${startContent ? "<VolumeX />" : ""}
-                        trail=${endContent ? "<Volume2 />" : ""}
-                        orientation=${orientation}
-                    /> `}
+		label=${label ? `"Select volume label"` : "undefined"}
+		disabled={${disabled}}
+		classNames={{ base: "w-[320px]" }}
+		withInput={${withInput}}
+		showSteppers={${showSteppers}}
+		showTooltip={${showTooltip}}
+		orientation="${orientation}"
+		${startContent ? 'leadIcon={<VolumeX className="text-text-tertiary" />}' : ""}
+		${endContent ? 'trailIcon={<VolumeX className="text-text-tertiary" />}' : ""}
+		${
+			showMarks
+				? `marks={[
+${formattedMarks}
+				]}`
+				: ""
+		}
+    /> `}
 				/>
 			</TabsContent>
 		</Tabs>

@@ -97,7 +97,7 @@ export default function InputOtpPreview() {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Has Error</DropdownSubTrigger>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

@@ -32,7 +32,7 @@ const PopoverPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>CloseIcon</DropdownSubTrigger>
+								<DropdownSubTrigger>Close icon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -60,7 +60,7 @@ const PopoverPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>WithSeparator</DropdownSubTrigger>
+								<DropdownSubTrigger>With separator</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

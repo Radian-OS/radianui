@@ -1,4 +1,35 @@
 ---
 title: Progress Bar
 description: Show progress inidicator for tasks visually
+source: https://github.com/Radian-os
 ---
+
+<ProgressBarPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add progress-bar`} />
+
+##### Imports
+
+<Code language="tsx" code={`import Slider from "@/components/ui/progress-bar"`} />
+
+##### Props
+
+| Prop Name  | Default Values | Values     |
+| ---------- | -------------- | ---------- |
+| value      |                |            |
+| label      |                |            |
+| valueLabel | true           | true/false |
+| hint       |                |            |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={`<ProgressBar value={50}
+	label="ProgressBar"
+	valueLabel={true}
+	hint="Progress Bar"
+/>`}
+/>

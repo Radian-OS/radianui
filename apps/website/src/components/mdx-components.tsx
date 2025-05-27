@@ -22,20 +22,26 @@ import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
+import FileUploadPreview from "@/component-preview/file-upload-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
+import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
+import SearchPreview from "@/component-preview/search-preview"
+import SelectPreview from "@/component-preview/select-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SonnerPreview from "@/component-preview/sonner-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
+import TextAreaPreview from "@/component-preview/text-area-preview"
+import TimePickerPreview from "@/component-preview/time-picker-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
@@ -51,7 +57,9 @@ import BannerExamplePreview2 from "@/registry/example/banner/banner-example-prev
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
+import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
+import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
@@ -60,6 +68,7 @@ import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
+import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 
@@ -122,6 +131,15 @@ const components: MDXComponents = {
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
 	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
+	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
+	SearchPreview: () => <SearchPreview />,
+	SearchInputExample: () => <SearchInputExample />,
+	ProgressBarPreview: () => <ProgressBarPreview />,
+	FileUploadPreview: () => <FileUploadPreview />,
+	NumberInputPreview: () => <NumberInputPreview />,
+	TextAreaPreview: () => <TextAreaPreview />,
+	TimePickerPreview: () => <TimePickerPreview />,
+	SelectPreview: () => <SelectPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

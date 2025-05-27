@@ -192,70 +192,72 @@ function Select({
 	const selectedLabels = values.length > 0 ? childrenArr.filter((data) => values.includes(data.value)).map((data) => data.label) : []
 
 	return (
-		<SelectContext.Provider
-			value={{
-				values: values,
-				setValues: handleSelectionChange,
-				selectionMode,
-				setOpen,
-				open,
-				minSelectionCount,
-				showSelectedCheck,
-			}}>
-			<div className={cn("flex h-full w-full flex-col gap-1", className, classNames?.base)}>
-				{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
-				<Popover
-					open={open}
-					onOpenChange={(newOpen) => {
-						if (!disabled) {
-							setOpen(newOpen)
-						}
-					}}
-					align="start">
-					<PopoverTrigger asChild>
-						{renderTrigger ? (
-							renderTrigger(values)
-						) : (
-							<Button
-								variant="ghost"
-								disabled={disabled}
-								className={cn(
-									"focus-visible:border-primary flex h-full cursor-pointer items-center justify-center border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
-									SelectTriggerVariations({ size, rounded }),
-									{
-										"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
-										"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
-										"rounded-l-none": disableOpenStyle,
-										[`border-primary rounded-l-none border`]: open && disableOpenStyle,
-									},
-									"w-full truncate",
-									classNames?.trigger
-								)}>
-								<span
-									className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
-										"text-base": size === "44" || size === "48",
-									})}>
-									{selectedLabels.length == 0 && placeholder}
-									{selectionMode === "single" && selectedLabels.length == 1 && selectedLabels[0]}
-									{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
-								</span>
-								{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
-							</Button>
-						)}
-					</PopoverTrigger>
-					<PopoverContent className="w-fit p-0">
-						<Command className={cn("max-h-96 min-w-[var(--radix-popover-trigger-width)]", classNames?.content)}>
-							{isSearchable && <CommandInput className={classNames?.input} placeholder={searchPlaceholder} />}
-							<CommandList>
-								<CommandEmpty>No items found</CommandEmpty>
-								<CommandItem value="-" className="hidden" />
-								{children}
-							</CommandList>
-						</Command>
-					</PopoverContent>
-				</Popover>
-			</div>
-		</SelectContext.Provider>
+		<div className="flex items-center justify-center">
+			<SelectContext.Provider
+				value={{
+					values: values,
+					setValues: handleSelectionChange,
+					selectionMode,
+					setOpen,
+					open,
+					minSelectionCount,
+					showSelectedCheck,
+				}}>
+				<div className={cn("flex h-full w-full flex-col gap-1", className, classNames?.base)}>
+					{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
+					<Popover
+						open={open}
+						onOpenChange={(newOpen) => {
+							if (!disabled) {
+								setOpen(newOpen)
+							}
+						}}
+						align="start">
+						<PopoverTrigger asChild>
+							{renderTrigger ? (
+								renderTrigger(values)
+							) : (
+								<Button
+									variant="ghost"
+									disabled={disabled}
+									className={cn(
+										"focus-visible:border-primary flex h-full cursor-pointer items-center justify-center border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+										SelectTriggerVariations({ size, rounded }),
+										{
+											"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
+											"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
+											"rounded-l-none": disableOpenStyle,
+											[`border-primary rounded-l-none border`]: open && disableOpenStyle,
+										},
+										"w-full truncate",
+										classNames?.trigger
+									)}>
+									<span
+										className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
+											"text-base": size === "44" || size === "48",
+										})}>
+										{selectedLabels.length == 0 && placeholder}
+										{selectionMode === "single" && selectedLabels.length == 1 && selectedLabels[0]}
+										{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
+									</span>
+									{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
+								</Button>
+							)}
+						</PopoverTrigger>
+						<PopoverContent className="w-fit p-0">
+							<Command className={cn("max-h-96 min-w-[var(--radix-popover-trigger-width)]", classNames?.content)}>
+								{isSearchable && <CommandInput className={classNames?.input} placeholder={searchPlaceholder} />}
+								<CommandList>
+									<CommandEmpty>No items found</CommandEmpty>
+									<CommandItem value="-" className="hidden" />
+									{children}
+								</CommandList>
+							</Command>
+						</PopoverContent>
+					</Popover>
+				</div>
+			</SelectContext.Provider>
+		</div>
 	)
 }
 
@@ -265,7 +267,7 @@ function SelectDivider() {
 }
 // Command component that wraps the CommandPrimitive with additional styling
 function Command({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive>) {
-	return <CommandPrimitive className={cn("bg-bg-base text-text flex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
+	return <CommandPrimitive className={cn("bg-bg-level2 text-text flex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
 }
 Command.displayName = CommandPrimitive.displayName
 // CommandInput component that renders an input field with a search icon

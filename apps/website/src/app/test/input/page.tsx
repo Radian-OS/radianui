@@ -2,7 +2,6 @@
 
 import React from "react"
 import { CircleUserRound, Volume2, VolumeX } from "lucide-react"
-import { cn } from "@/lib/utils"
 import Calendar from "@/registry/ui/calendar"
 import { CurrencyInput } from "@/registry/ui/currency"
 import DateInput from "@/registry/ui/date-input"
@@ -20,13 +19,13 @@ import {
 import FileUpload from "@/registry/ui/file-upload"
 import { Input, RoundedOptions, SizeOptions } from "@/registry/ui/input"
 import OTPInput from "@/registry/ui/input-otp"
-import NumberInput from "@/registry/ui/number"
+// import NumberInput from "@/registry/ui/number"
 import { Password } from "@/registry/ui/password"
 import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 import Slider from "@/registry/ui/slider"
 import Switch from "@/registry/ui/switch"
-import TextArea from "@/registry/ui/text-area"
+import { TextArea } from "@/registry/ui/text-area"
 import TimePicker from "@/registry/ui/time-picker"
 
 const roundedOptions = ["sm", "square", "full"]
@@ -213,7 +212,8 @@ const SearchInputComp = () => {
 					value={searchValue}
 					id="search-input"
 					renderSearchResults={renderSearchResults}
-					classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
+					// classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
+					className="w-80"
 				/>
 			</div>
 		</div>
@@ -264,9 +264,9 @@ const PasswordComp = () => {
 					size={size}
 					rounded={rounded}
 					disabled={disabled}
-					errorMsg={"Some error occured"}
+					hint={"Some error occured"}
 					hasError={hasError}
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					placeholder="Enter your password here"
 				/>
 			</div>
@@ -442,7 +442,7 @@ const TimeComp = () => {
 					is24Hour={is24Hour}
 					interval={interval}
 					placeholder="Select time"
-					classNames={{ base: "w-[320px]", content: cn("h-[20rem]") }}
+					className="w-80"
 				/>
 			</div>
 		</div>
@@ -502,17 +502,17 @@ const NumberComp = () => {
 				</DropdownContent>
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
-				<NumberInput
-					classNames={{ base: "w-[320px]" }}
+				{/* <NumberInput
+					className="w-80"
 					rounded={rounded}
 					size={size}
 					disabled={disabled}
 					label={label ? "Enter how many items to order" : undefined}
 					placeholder="Type in digits"
 					hasError={hasError}
-					errorMsg={hasError ? "There is an error" : undefined}
+					hint={hasError ? "There is an error" : undefined}
 					showStepper={showStepper}
-				/>
+				/> */}
 			</div>
 		</div>
 	)
@@ -585,16 +585,16 @@ const InputComp = () => {
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<Input
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					rounded={rounded}
 					size={size}
 					disabled={disabled}
 					label={label ? "Username" : undefined}
 					placeholder="Enter your username here"
 					lead={prefixIcon ? <CircleUserRound /> : null}
-					trial={suffixIcon ? <CircleUserRound /> : null}
+					trail={suffixIcon ? <CircleUserRound /> : null}
 					hasError={hasError}
-					errorMsg={hasError ? "There is an error" : undefined}
+					hint={hasError ? "There is an error" : undefined}
 				/>
 			</div>
 		</div>
@@ -702,7 +702,6 @@ const DatePickerComp = () => {
 }
 
 const FileUploadComp = () => {
-	const [file, setFile] = React.useState<File[]>([])
 	const [disabled, setDisabled] = React.useState<string>("false")
 	const [rounded, setRounded] = React.useState<"rounded" | "square">("rounded")
 	const [label, setLabel] = React.useState(true)
@@ -765,16 +764,16 @@ const FileUploadComp = () => {
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<FileUpload
-					label={label ? "Label here" : undefined}
-					rounded={rounded}
-					value={file}
-					onChange={setFile}
-					dropzoneClassName="h-[12.5rem]"
-					multiple
-					disabled={disabled === "true"}
-					// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
-					url="http://localhost:8000/upload"
-					// headers={{ "Content-Type": "application/json" }}
+				// label={label ? "Label here" : undefined}
+				// rounded="lg"
+				// value={file}
+				// onChange={setFile}
+				// dropzoneClassName="h-[12.5rem]"
+				// multiple
+				// disabled={disabled === "true"}
+				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
+				// url="http://localhost:8000/upload"
+				// headers={{ "Content-Type": "application/json" }}
 				/>
 			</div>
 		</div>
@@ -930,7 +929,7 @@ const SliderComp = () => {
 				<Slider
 					label={label ? "Select volume label" : undefined}
 					disabled={disabled}
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					withInput={withInput}
 					showSteppers={showSteppers}
 					showTooltip={showTooltip}
@@ -946,8 +945,8 @@ const SliderComp = () => {
 								]
 							: undefined
 					}
-					prefixIcon={startContent ? <VolumeX /> : undefined}
-					suffixIcon={endContent ? <Volume2 /> : undefined}
+					leadIcon={startContent ? <VolumeX /> : undefined}
+					trailIcon={endContent ? <Volume2 /> : undefined}
 					orientation={orientation}
 				/>
 			</div>
@@ -1112,14 +1111,7 @@ const TextAreaComp = () => {
 				</DropdownContent>
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
-				<TextArea
-					label={label ? "Label here" : undefined}
-					disabled={disabled}
-					rounded={rounded}
-					resizable={resizable}
-					rows={rows}
-					classNames={{ base: "w-[320px]" }}
-				/>
+				<TextArea label={label ? "Label here" : undefined} disabled={disabled} rounded={rounded} resizable={resizable} rows={rows} className="w-80" />
 			</div>
 		</div>
 	)
@@ -1327,7 +1319,7 @@ const SelectComp = () => {
 					minSelectionCount={minSelectionCount}
 					selectedValues={selectedValues}
 					onSelectedChange={setSelectedValues}
-					classNames={{ base: "w-[320px]", content: cn("max-h-[20rem]") }}>
+					className="w-80">
 					<SelectGroup label="Backend Frameworks">
 						<SelectItem value="node-js">Node.js (Express)</SelectItem>
 						<SelectItem value="django">Django (Python)</SelectItem>

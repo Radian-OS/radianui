@@ -33,7 +33,7 @@ const CalendarPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
 							<DropdownSub>
-								<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
+								<DropdownSubTrigger>Selection mode</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -47,7 +47,7 @@ const CalendarPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Dual Calendar</DropdownSubTrigger>
+								<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -73,7 +73,7 @@ const CalendarPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+								<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -169,20 +169,20 @@ const CalendarPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`  
-<Calendar
+					code={`<Calendar
     mode="${mode}"
-    dualCalendar=${doubleCalendar}
-    showTime=${showTime}
-    showShortcut=${showShortcut}
+    dualCalendar={${doubleCalendar}}
+    showTime={${showTime}}
+    showShortcut={${showShortcut}}
     footer=${
-			footer &&
-			`{
+			footer
+				? `{
             <div className="p-3 flex gap-2">
                 <Button variant="neutral-outline">Cancel</Button>
                 <Button>Apply</Button>
             </div>
             }`
+				: `{false}`
 		}
 />`}
 				/>

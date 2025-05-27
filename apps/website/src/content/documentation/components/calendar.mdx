@@ -1,6 +1,10 @@
 ---
 title: Calendar
 description: Display and select dates with interactive calendar + Select dates from a calendar
+source: https://github.com/Radian-os
+externalSiteRef: https://daypicker.dev/
+customLogo: /react-day-picker.png
+externalSiteName: React DayPicker
 ---
 
 <CalendarPreview />
@@ -15,20 +19,28 @@ description: Display and select dates with interactive calendar + Select dates f
 
 ##### Props
 
-| Prop Name      | Default Values | Values                |
-| -------------- | -------------- | --------------------- |
-| mode           | single         | single,multiple,range |
-| dualCalendar   | false          | true/false            |
-| navigatorStyle | false          | true/false            |
+| Prop Name    | Default Values | Values                |
+| ------------ | -------------- | --------------------- |
+| mode         | single         | single,multiple,range |
+| dualCalendar | false          | true/false            |
+| showTime     | false          | true/false            |
+| showShortcut | false          | true/false            |
+| footer       |                |                       |
 
 ##### Usage
 
 <Code
 	language="tsx"
-	code={` 
-<Calendar
+	code={`<Calendar
     mode="single"
-    dualCalendar=false
-    navigatorStyle=false
+    dualCalendar={false}
+    showTime={false}
+    showShortcut={false}
+    footer={
+            <div className="p-3 flex gap-2">
+                    <Button variant="neutral-outline">Cancel</Button>
+                    <Button>Apply</Button>
+            </div>
+        }
 />`}
 />

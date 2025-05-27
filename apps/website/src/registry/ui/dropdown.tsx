@@ -11,6 +11,7 @@ import {
 } from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "./button"
 import { Divider } from "./divider"
 
 // Create a Dropdown component
@@ -21,9 +22,10 @@ function Dropdown({ children, ...props }: React.ComponentPropsWithoutRef<typeof 
 		</DropdownMenuPrimitive.Root>
 	)
 }
+
 Dropdown.displayName = "Dropdown"
 
-// Create a DropdownTrigger component
+//Create a DropdownTrigger component
 function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerProps & React.RefAttributes<HTMLButtonElement>) {
 	if (asChild) {
 		return (
@@ -34,16 +36,11 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 	}
 
 	return (
-		<DropdownMenuPrimitive.Trigger
-			className={cn(
-				"bg-bg-level1 text-text flex w-fit text-sm",
-				"border-border items-center justify-start gap-2 rounded-lg border",
-				"drop-shadow-xs px-3 py-2.5 font-medium",
-				"focus-visible:ring-offset-bg-base focus-visible:ring-border-alpha focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-			)}
-			{...props}>
-			<span className="flex-1">{children}</span>
-			<ChevronDown size={20} className="text-text-tertiary" />
+		<DropdownMenuPrimitive.Trigger {...props} asChild>
+			<Button variant="neutral-outline">
+				{children}
+				<ChevronDown size={20} className="text-text-tertiary" />
+			</Button>
 		</DropdownMenuPrimitive.Trigger>
 	)
 }
@@ -55,7 +52,7 @@ function DropdownContent({ className, children, ...props }: DropdownMenuContentP
 			<DropdownMenuPrimitive.Content
 				align="start"
 				className={cn(
-					"no-scrollbar border-border bg-bg-level1 drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5",
+					"no-scrollbar border-border bg-bg-level2 drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5",
 					className
 				)}
 				sideOffset={4}
@@ -121,7 +118,7 @@ function DropdownItem({
 	return (
 		<DropdownMenuPrimitive.Item
 			className={cn(
-				"focus:text-primary-foreground hover:bg-bg-level1 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
+				"focus:text-primary-foreground hover:bg-fill-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
 			)}
@@ -193,14 +190,14 @@ function DropdownGroup({
 		[selectionMode, selectedValues, onSelectedChange, minSelectionCount]
 	)
 	return (
-		<>
+		<div className="bg-bg-level2">
 			<DropdownCtx.Provider value={contextValue}>
-				<DropdownMenuPrimitive.Group className={cn(className, "bg-bg-level1 z-50 flex flex-col items-stretch justify-start px-0 py-0")} {...props}>
+				<DropdownMenuPrimitive.Group className={cn(className, "z-50 flex flex-col items-stretch justify-start px-0 py-0")} {...props}>
 					{title && <label className="text-text-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
 					{children}
 				</DropdownMenuPrimitive.Group>
 			</DropdownCtx.Provider>
-		</>
+		</div>
 	)
 }
 
@@ -235,7 +232,7 @@ function DropdownSubTrigger({
 		<DropdownMenuPrimitive.SubTrigger
 			disabled={disabled}
 			className={cn(
-				"focus:text-primary-foreground focus:bg-bg-level1 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+				"focus:text-primary-foreground hover:bg-fill-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 				className
 			)}
 			{...props}>
@@ -253,7 +250,7 @@ function DropdownSubContent({ children, className, ...props }: DropdownMenuSubCo
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.SubContent
 				className={cn(
-					"border-border bg-bg-level1 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
+					"border-border bg-bg-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
 					className
 				)}
 				sideOffset={10}

@@ -27,6 +27,10 @@ export const Doc = defineDocumentType(() => ({
 			type: "string",
 			required: false,
 		},
+		externalSiteName: {
+			type: "string",
+			required: false,
+		},
 		customLogo: {
 			type: "string",
 			required: false,

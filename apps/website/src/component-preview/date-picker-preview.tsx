@@ -33,6 +33,7 @@ const DatePickerPreview = () => {
 
 	const [label, setLabel] = useState<boolean>(true)
 	const [hasError, setHasError] = useState<boolean>(false)
+	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -84,7 +85,7 @@ const DatePickerPreview = () => {
 										onSelectedChange={(values) => setLabel(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -97,13 +98,13 @@ const DatePickerPreview = () => {
 										onSelectedChange={(values) => setDisabled(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -111,14 +112,28 @@ const DatePickerPreview = () => {
 										onSelectedChange={(values) => setHasError(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownGroup title="date picker">
 								<DropdownSub>
-									<DropdownSubTrigger>mode</DropdownSubTrigger>
+									<DropdownSubTrigger>Mode</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -136,7 +151,7 @@ const DatePickerPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+									<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -149,7 +164,7 @@ const DatePickerPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>dualCalendar</DropdownSubTrigger>
+									<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -216,6 +231,7 @@ const DatePickerPreview = () => {
 						mode={mode}
 						label={label ? "Date picker" : undefined}
 						hasError={hasError}
+						hint={hint ? "Hint text to help the user with input" : ""}
 						disabled={disabled}
 						triggerClassName="w-[320px]"
 						showDateRangeShortcut={showDateRangeShortcut}
@@ -241,24 +257,27 @@ const DatePickerPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`  
-<DatePicker
+					code={`<DatePicker
     mode="${mode}"
     placeholder="Select Date"
-    showDateRangeShortcut=${showDateRangeShortcut}
-    disabled=${disabled}
-    dualCalendar=${doubleCalendar}
-    showTime=${showTime}
+    showDateRangeShortcut={${showDateRangeShortcut}}
+    disabled={${disabled}}
+    dualCalendar={${doubleCalendar}}
+    showTime={${showTime}}
     size="${size}"
     rounded="${rounded}"
-    typeable="${typeable}"
+    typeable={${typeable}}
+	hasError={${hasError}}
+	${hint ? `hint="Hint text to help the user with input"` : ""}
     footer=${
-			footer &&
-			`
-       {<div className="p-3 flex gap-2">
-            <Button variant="neutral-outline">Cancel</Button>
-            <Button>Apply</Button>
-        </div>}`
+			footer
+				? `{
+       		<div className="p-3 flex gap-2">
+            	<Button variant="neutral-outline">Cancel</Button>
+            	<Button>Apply</Button>
+        	</div>
+		}`
+				: `{false}`
 		}
 />`}
 				/>

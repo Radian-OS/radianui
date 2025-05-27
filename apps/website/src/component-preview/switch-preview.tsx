@@ -53,8 +53,8 @@ const SwitchPreview = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

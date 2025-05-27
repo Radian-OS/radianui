@@ -31,14 +31,15 @@ const PasswordInputPreview = () => {
 	type LabelOptions = "true" | "false"
 	type DisabledOptions = "true" | "false"
 	type ErrorOptions = "true" | "false"
-	type TrialOptions = "show" | "hide" | "onFocus"
+	type trailOptions = "show" | "hide" | "onFocus"
 
 	const [password, setPassword] = useState("")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<DisabledOptions>("false")
 	const [label, setLabel] = useState<LabelOptions>("true")
 	const [error, setError] = useState<ErrorOptions>("false")
-	const [trial, setTrial] = useState<TrialOptions>("onFocus")
+	const [trail, settrail] = useState<trailOptions>("onFocus")
+	const [hint, setHint] = useState<boolean>(false)
 
 	// Validate the password using Zod
 	const validation = useMemo(() => passwordSchema.safeParse(password), [password])
@@ -106,8 +107,9 @@ return (
 ${label === "true" ? 'label="Password"' : ""}
 ${disabled === "true" ? "disabled={true}" : ""}
 ${size !== "36" ? `size="${size}"` : ""}
-trial='${trial}'
-${error === "true" ? 'hasError={true}\n  errorMsg="Error Occurred"' : ""}
+trail='${trail}'
+${hint === true ? `hint="Hint text to help the user with input"` : ""}
+${error === "true" ? "hasError={true}" : ""}
 value={password}
 onChange={(e) => setPassword(e.target.value)}
 placeholder="Enter your password"
@@ -142,7 +144,7 @@ export default PasswordInputPreview
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<Dropdown>
-						<DropdownTrigger>Interact</DropdownTrigger>
+						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
@@ -174,6 +176,20 @@ export default PasswordInputPreview
 										}}
 										minSelectionCount={1}
 										selectedValues={[disabled]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hint)]}
+										onSelectedChange={(values) => setHint(values[0] === "true")}
+										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -213,15 +229,15 @@ export default PasswordInputPreview
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Trial</DropdownSubTrigger>
+								<DropdownSubTrigger>Trail</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setTrial(Array.from(keys)[0] as TrialOptions)
+											settrail(Array.from(keys)[0] as trailOptions)
 										}}
 										minSelectionCount={1}
-										selectedValues={[trial]}>
+										selectedValues={[trail]}>
 										<DropdownItem value="show">show</DropdownItem>
 										<DropdownItem value="hide">hide</DropdownItem>
 										<DropdownItem value="onFocus">onFocus</DropdownItem>
@@ -249,8 +265,8 @@ export default PasswordInputPreview
 							disabled={disabled === "true"}
 							size={size}
 							hasError={error === "true"}
-							errorMsg="Error Occurred"
-							trial={trial}
+							hint={hint ? "Hint text to help the user with input" : ""}
+							trail={trail}
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}
 						<ProgressBar value={progress} />

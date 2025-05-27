@@ -5,7 +5,8 @@ import * as SliderPrimitive from "@radix-ui/react-slider"
 import { Minus, Plus } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
-import NumberInput from "./number"
+import { Input } from "./input"
+// import NumberInput from "./number"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 
 const DEFAULT_STEPPER_VALUE = 5
@@ -20,8 +21,8 @@ type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
 	withInput?: boolean
 	showSteppers?: boolean
 	marks?: Mark[]
-	prefixIcon?: React.ReactNode
-	suffixIcon?: React.ReactNode
+	leadIcon?: React.ReactNode
+	trailIcon?: React.ReactNode
 	showTooltip?: boolean
 	classNames?: {
 		base?: string /* The div that wraps the component */
@@ -44,8 +45,8 @@ function Slider({
 	marks,
 	min = 0,
 	max = 100,
-	prefixIcon,
-	suffixIcon,
+	leadIcon,
+	trailIcon,
 	showTooltip = true,
 	classNames,
 	ref,
@@ -112,12 +113,14 @@ function Slider({
 	return (
 		<div
 			className={cn(
-				"flex flex-col gap-2",
+				"flex flex-col",
 				{
+					"gap-2": trailIcon || leadIcon,
 					"w-full": orientation === "horizontal",
-					"h-full w-fit items-start": orientation === "vertical",
+					"w-full items-center justify-center": orientation === "vertical",
 					"cursor-not-allowed": props.disabled,
 				},
+				trailIcon || leadIcon ? "gap-2" : "gap-3",
 				className,
 				classNames?.base
 			)}>
@@ -145,16 +148,16 @@ function Slider({
 						<Minus size={16} />
 					</Button>
 				)}
-				{prefixIcon}
+				{leadIcon}
 				<div
 					className={cn("relative", {
 						"flex-1": orientation === "horizontal",
-						"flex h-40 flex-row": orientation === "vertical",
+						"flex h-60 items-center justify-center": orientation === "vertical",
 					})}>
 					<SliderPrimitive.Root
 						ref={ref}
 						className={cn(
-							"data-disabled:opacity-80 relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
+							"data-disabled:opacity-80 flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
 							classNames?.sliderRoot
 						)}
 						value={currentValue}
@@ -164,7 +167,7 @@ function Slider({
 						{...props}>
 						<SliderPrimitive.Track
 							className={cn(
-								"border-border bg-bg-level1 relative h-2 grow overflow-hidden rounded-full border data-[orientation=horizontal]:h-2 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-2",
+								"bg-fill-level3 relative h-2 grow overflow-hidden rounded-full data-[orientation=horizontal]:h-2 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-2",
 								classNames?.sliderTrack
 							)}>
 							<SliderPrimitive.Range
@@ -228,7 +231,7 @@ function Slider({
 						</div>
 					)}
 				</div>
-				{suffixIcon}
+				{trailIcon}
 				{showSteppers && isSingleThumb && (
 					<Button
 						isIcon
@@ -243,9 +246,8 @@ function Slider({
 					</Button>
 				)}
 				{withInput && isSingleThumb && (
-					<NumberInput
-						showStepper={false}
-						classNames={{ base: cn("w-20") }}
+					<Input
+						className="w-20"
 						value={input ?? ""}
 						onBlur={handleInputBlur}
 						onChange={function (e) {

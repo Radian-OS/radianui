@@ -1,0 +1,59 @@
+---
+title: Select
+description: A select displays a collapsible list of options and allows a user to select one or more of them
+source: https://github.com/Radian-os
+---
+
+<SelectPreview />
+
+##### Installation
+
+<Code language="bash" tabs={true} code={`radianos add select`} />
+
+##### Imports
+
+<Code language="tsx" code={`import { Select, SelectGroup, SelectItem } from "@/components/ui/select"`} />
+
+##### Props
+
+| Prop Name   | Default Values | Values             |
+| ----------- | -------------- | ------------------ |
+| rounded     | lg             | xs,sm,md,lg,xl,2xl |
+| size        | 36             | 28,32,36,40,44,48  |
+| label       |                |                    |
+| disabled    | false          | true/false         |
+| placeholder |                |                    |
+| suggestion  | true           | true/false         |
+
+##### Usage
+
+<Code
+	language="tsx"
+	code={` <Select
+                        label={label ? "Choose your favourite framework" : undefined}
+                        placeholder="Pick an option"
+                        rounded={rounded as RoundedOptions}
+                        size={size as SizeOptions}
+                        disabled={disabled}
+                        isSearchable={searchable === "true"}
+                        selectionMode={selectionMode as "single" | "multiple"}
+                        minSelectionCount={minSelectionCount}
+                        selectedValues={selectedValues}
+                        onSelectedChange={setSelectedValues}
+                        className="w-80">
+                        <SelectGroup label="Backend Frameworks">
+                            <SelectItem value="node-js">Node.js (Express)</SelectItem>
+                            <SelectItem value="django">Django (Python)</SelectItem>
+                            <SelectItem value="rails">Rails (Ruby)</SelectItem>
+                            <SelectItem value="laravel">Laravel (PHP)</SelectItem>
+                            <SelectItem value="spring">Spring Boot (Java)</SelectItem>
+                        </SelectGroup>
+                        <SelectGroup label="Mobile Frameworks">
+                            <SelectItem value="react-native">React Native</SelectItem>
+                            <SelectItem value="flutter">Flutter</SelectItem>
+                            <SelectItem value="swiftui">SwiftUI</SelectItem>
+                            <SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
+                            <SelectItem value="xamarin">Xamarin</SelectItem>
+                        </SelectGroup>
+                    </Select>`}
+/>
