@@ -5,11 +5,12 @@ import { cva } from "class-variance-authority"
 import { Command as CommandPrimitive } from "cmdk"
 import { Check, ChevronDown, ChevronUp, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Badge } from "./badge"
 import { Button } from "./button"
 import { Divider } from "./divider"
-import { InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
+import { Dropdown, DropdownContent, DropdownTrigger } from "./dropdown"
+import { Input, InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
-import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 
 // Type definition for the SelectItem component props
 type SelectItemProps = {
@@ -75,20 +76,28 @@ function useSelectContext() {
 type SelectGroupProps = {
 	children?: React.ReactNode
 	label?: string
+	isLast?: boolean
 }
 // SelectGroup component for grouping related select items
-function SelectGroup({ label, children }: SelectGroupProps) {
-	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
+function SelectGroup({ label, children, isLast }: SelectGroupProps) {
+	return (
+		<CommandGroup isLast={isLast} heading={label ? label : undefined}>
+			{children}
+		</CommandGroup>
+	)
 }
 // Variants for the Select trigger styling using class variance authority
-const SelectTriggerVariations = cva("active:bg-background justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-bg-base", {
-	variants: {
-		...cvaInputVariants,
-	},
-	defaultVariants: {
-		size: defaultInputSize,
-	},
-})
+const SelectTriggerVariations = cva(
+	"active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2",
+	{
+		variants: {
+			...cvaInputVariants,
+		},
+		defaultVariants: {
+			size: defaultInputSize,
+		},
+	}
+)
 // Type definition for the Select context
 type SelectContextType = {
 	values: string[]
@@ -124,6 +133,7 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 	minSelectionCount?: number
 	showSelectedCheck?: boolean
 	classNames?: SelectClassNames
+	variants?: "input" | "button" | "tags"
 }
 
 // Select component for rendering a dropdown with selection options
@@ -146,6 +156,7 @@ function Select({
 	disabled = false,
 	className,
 	classNames,
+	variants = "input",
 }: SelectProps) {
 	const [open, setOpen] = React.useState(false)
 	const [internalSelectedValues, setInternalSelectedValues] = React.useState<string[]>(defaultSelected)
@@ -205,46 +216,67 @@ function Select({
 				}}>
 				<div className={cn("flex h-full w-full flex-col gap-1", className, classNames?.base)}>
 					{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
-					<Popover
+					<Dropdown
 						open={open}
 						onOpenChange={(newOpen) => {
 							if (!disabled) {
 								setOpen(newOpen)
 							}
-						}}
-						align="start">
-						<PopoverTrigger asChild>
+						}}>
+						<DropdownTrigger asChild>
 							{renderTrigger ? (
 								renderTrigger(values)
 							) : (
-								<Button
-									variant="ghost"
-									disabled={disabled}
-									className={cn(
-										"focus-visible:border-primary flex h-full cursor-pointer items-center justify-center border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
-										SelectTriggerVariations({ size, rounded }),
-										{
-											"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
-											"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
-											"rounded-l-none": disableOpenStyle,
-											[`border-primary rounded-l-none border`]: open && disableOpenStyle,
-										},
-										"w-full truncate",
-										classNames?.trigger
-									)}>
-									<span
-										className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
-											"text-base": size === "44" || size === "48",
-										})}>
-										{selectedLabels.length == 0 && placeholder}
-										{selectionMode === "single" && selectedLabels.length == 1 && selectedLabels[0]}
-										{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
-									</span>
-									{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
-								</Button>
+								<div>
+									{variants === "input" ? (
+										<Input placeholder={placeholder} size={size} rounded={rounded} value={selectedLabels} />
+									) : variants === "button" ? (
+										<Button
+											variant="ghost"
+											disabled={disabled}
+											className={cn(
+												"focus-visible:border-primary flex h-full cursor-pointer items-center justify-center border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+												SelectTriggerVariations({ size, rounded }),
+												{
+													"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
+													"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2":
+														open && !disableOpenStyle,
+													"rounded-l-none": disableOpenStyle,
+													[`border-primary rounded-l-none border`]: open && disableOpenStyle,
+												},
+												"w-full truncate",
+												classNames?.trigger
+											)}>
+											<span
+												className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
+													"text-base": size === "44" || size === "48",
+												})}>
+												{selectedLabels.length == 0 && placeholder}
+
+												{selectionMode === "single" && selectedLabels.length == 1 && selectedLabels[0]}
+
+												{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
+											</span>
+											{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
+										</Button>
+									) : (
+										<div className="border-border bg-background focus-within:ring-ring flex min-h-[40px] w-full flex-wrap items-center gap-1 rounded-md border px-3 py-1 text-sm shadow-sm focus-within:ring-2">
+											{selectedLabels.length === 0 ? (
+												<span className="text-muted-foreground">{placeholder}</span>
+											) : (
+												selectedLabels.map((label, index) => (
+													<span key={label} className="flex items-center">
+														<Badge>{label}</Badge>
+														{index < selectedLabels.length - 1 && <span className="ml-1">,</span>}
+													</span>
+												))
+											)}
+										</div>
+									)}
+								</div>
 							)}
-						</PopoverTrigger>
-						<PopoverContent className="w-fit p-0">
+						</DropdownTrigger>
+						<DropdownContent className="w-fit p-0">
 							<Command className={cn("max-h-96 min-w-[var(--radix-popover-trigger-width)]", classNames?.content)}>
 								{isSearchable && <CommandInput className={classNames?.input} placeholder={searchPlaceholder} />}
 								<CommandList>
@@ -253,8 +285,8 @@ function Select({
 									{children}
 								</CommandList>
 							</Command>
-						</PopoverContent>
-					</Popover>
+						</DropdownContent>
+					</Dropdown>
 				</div>
 			</SelectContext.Provider>
 		</div>
@@ -288,7 +320,9 @@ function CommandInput({ className, ...props }: React.ComponentPropsWithRef<typeo
 CommandInput.displayName = CommandPrimitive.Input.displayName
 // CommandList component that renders a list of command items
 function CommandList({ className, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.List>) {
-	return <CommandPrimitive.List className={cn("no-scrollbar max-h-100 h-fit w-full overflow-y-auto overflow-x-hidden p-1.5", className)} {...props} />
+	return (
+		<CommandPrimitive.List className={cn("no-scrollbar max-h-100 h-fit w-full overflow-y-auto overflow-x-hidden py-1.5", className)} {...props} />
+	)
 }
 CommandList.displayName = CommandPrimitive.List.displayName
 // CommandEmpty component that displays a message when the command list is empty
@@ -297,15 +331,18 @@ function CommandEmpty(props: React.ComponentPropsWithRef<typeof CommandPrimitive
 }
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName
 // CommandGroup component that groups related command items together
-function CommandGroup({ className, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.Group>) {
+function CommandGroup({ className, isLast = false, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.Group> & { isLast?: boolean }) {
 	return (
-		<CommandPrimitive.Group
-			className={cn(
-				"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
-				className
-			)}
-			{...props}
-		/>
+		<>
+			<CommandPrimitive.Group
+				className={cn(
+					"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 px-1.5 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
+					className
+				)}
+				{...props}
+			/>
+			{!isLast && <Divider className="bg-border-alpha" />}
+		</>
 	)
 }
 CommandGroup.displayName = CommandPrimitive.Group.displayName
@@ -314,7 +351,7 @@ function CommandItem({ className, ...props }: React.ComponentPropsWithRef<typeof
 	return (
 		<CommandPrimitive.Item
 			className={cn(
-				"hover:bg-bg-level1 outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm font-normal data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"hover:bg-fill-level2 outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm font-normal data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}
