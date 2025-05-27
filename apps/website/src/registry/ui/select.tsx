@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { cva } from "class-variance-authority"
 import { Command as CommandPrimitive } from "cmdk"
 import { Check, ChevronDown, ChevronUp, Search } from "lucide-react"
@@ -76,15 +76,10 @@ function useSelectContext() {
 type SelectGroupProps = {
 	children?: React.ReactNode
 	label?: string
-	isLast?: boolean
 }
 // SelectGroup component for grouping related select items
-function SelectGroup({ label, children, isLast }: SelectGroupProps) {
-	return (
-		<CommandGroup isLast={isLast} heading={label ? label : undefined}>
-			{children}
-		</CommandGroup>
-	)
+function SelectGroup({ label, children }: SelectGroupProps) {
+	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
 }
 // Variants for the Select trigger styling using class variance authority
 const SelectTriggerVariations = cva(
@@ -156,7 +151,7 @@ function Select({
 	disabled = false,
 	className,
 	classNames,
-	variants = "input",
+	variants = "button",
 }: SelectProps) {
 	const [open, setOpen] = React.useState(false)
 	const [internalSelectedValues, setInternalSelectedValues] = React.useState<string[]>(defaultSelected)
@@ -331,17 +326,33 @@ function CommandEmpty(props: React.ComponentPropsWithRef<typeof CommandPrimitive
 }
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName
 // CommandGroup component that groups related command items together
-function CommandGroup({ className, isLast = false, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.Group> & { isLast?: boolean }) {
+function CommandGroup({ className, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.Group>) {
+	const groupRef = useRef<HTMLDivElement | null>(null)
+	const [isLast, setIsLast] = useState(false)
+
+	useEffect(() => {
+		if (!groupRef.current) return
+		const parent = groupRef.current.parentElement
+		if (!parent) return
+
+		const groupElements = Array.from(parent.querySelectorAll("[cmdk-group]")) as HTMLElement[]
+
+		const lastGroup = groupElements[groupElements.length - 1]
+		setIsLast(groupRef.current === lastGroup)
+	}, [])
+
 	return (
 		<>
 			<CommandPrimitive.Group
+				ref={groupRef}
+				cmdk-group=""
 				className={cn(
 					"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 px-1.5 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
 					className
 				)}
 				{...props}
 			/>
-			{!isLast && <Divider className="bg-border-alpha" />}
+			{!isLast && <Divider className="bg-border mx-2 my-1 h-px" />}
 		</>
 	)
 }

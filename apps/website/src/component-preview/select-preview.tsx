@@ -185,7 +185,7 @@ const SelectPreview = () => {
 							</SelectItem>
 							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
 						</SelectGroup>
-						<SelectGroup label="Mobile Frameworks" isLast>
+						<SelectGroup label="Mobile Frameworks">
 							<SelectItem value="react-native">React Native</SelectItem>
 							<SelectItem value="flutter">Flutter</SelectItem>
 							<SelectItem value="swiftui">SwiftUI</SelectItem>
@@ -220,7 +220,7 @@ const SelectPreview = () => {
 							<SelectItem disabled value="laravel">Laravel (PHP)</SelectItem>
 							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
 						</SelectGroup>
-						<SelectGroup label="Mobile Frameworks" isLast>
+						<SelectGroup label="Mobile Frameworks">
 							<SelectItem value="react-native">React Native</SelectItem>
 							<SelectItem value="flutter">Flutter</SelectItem>
 							<SelectItem value="swiftui">SwiftUI</SelectItem>
