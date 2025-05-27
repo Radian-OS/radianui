@@ -1,18 +1,7 @@
 "use client"
 
 import { cva } from "class-variance-authority"
-import {
-	AlertCircleIcon,
-	FileArchiveIcon,
-	FileIcon,
-	FileSpreadsheetIcon,
-	FileTextIcon,
-	HeadphonesIcon,
-	ImageIcon,
-	UploadIcon,
-	VideoIcon,
-	XIcon,
-} from "lucide-react"
+import { AlertCircleIcon, FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTextIcon, HeadphonesIcon, Upload, VideoIcon, XIcon } from "lucide-react"
 import { formatBytes, useFileUpload } from "@/hooks/use-file-upload"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
@@ -74,7 +63,7 @@ function FileUpload({
 	rounded = "lg",
 	label,
 	className,
-	accept = "svg,png,jpeg,gif",
+	accept = "image/*",
 	error,
 	disabled,
 	multiple = true,
@@ -82,7 +71,7 @@ function FileUpload({
 	hint,
 	maxFiles = 4,
 	title = "Drag and drop files to upload",
-	description = "PDF, PNG, JPG or DOCX",
+	description = "JPG, PNG, GIF or other image files",
 }: FileUploadProps) {
 	const maxSizeValue = maxSize * 1024 * 1024
 
@@ -110,7 +99,7 @@ function FileUpload({
 	const defaultFileUploadRadius = "lg"
 
 	const fileUploadVariants = cva(
-		"border-border-alpha bg-bg-base max-h-50 relative flex h-full w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
+		"border-border-alpha bg-fill-level1 max-h-50 relative flex h-55 w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
 		{
 			variants: {
 				...cvaFileUploadVariants,
@@ -153,26 +142,26 @@ function FileUpload({
 							"hover:border-primary hover:bg-primary/5": !disabled,
 						})}>
 						<input id="picture" {...getInputProps()} className="sr-only" aria-label="Upload image file" />
-						<div className="flex flex-col items-center justify-center gap-2.5 px-4 py-3 text-center">
-							<div className="bg-background flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
-								<ImageIcon className="size-4 opacity-60" />
-							</div>
-							<div className="flex flex-col gap-1">
-								<p className="text-sm font-medium">{title}</p>
-								<p className="text-muted-foreground text-xs">
+						<div className="flex flex-col items-center justify-center gap-4 px-4 py-3 text-center">
+							<Button disabled={disabled} variant="neutral-outline" size="36" isIcon>
+								<Upload className="text-text-secondary size-6" />
+							</Button>
+							<div className="flex flex-col gap-2">
+								<p className="text-text text-sm font-semibold leading-5">{title}</p>
+								<p className="text-text-tertiary text-xs font-normal leading-4">
 									{description} (max. {maxSize} MB){" "}
 								</p>
 							</div>
 							<Button
 								variant="neutral-outline"
 								disabled={disabled}
-								className={` ${disabled ? "cursor-not-allowed" : ""}`}
+								size="32"
+								className={`text-text-secondary text-sm font-medium ${disabled ? "cursor-not-allowed" : ""}`}
 								onClick={() => {
 									if (!disabled) {
 										openFileDialog()
 									}
 								}}>
-								<UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
 								Browse Files
 							</Button>
 						</div>

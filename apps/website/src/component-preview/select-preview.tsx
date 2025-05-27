@@ -15,17 +15,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+export type VariantOptions = "input" | "button" | "tags"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const SelectPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
-	const [searchable, setSearchable] = useState<string>("false")
+	const [searchable, setSearchable] = useState<boolean>(false)
 	const [selectionMode, setSelectionMode] = useState<string>("single")
-	const [minSelectionCount, setMinSelectionCount] = useState<number>(0)
+	// const [minSelectionCount, setMinSelectionCount] = useState<number>(0)
 	const [label, setLabel] = useState(true)
 	const [disabled, setDisabled] = useState(false)
+	const [variant, setVariant] = useState<VariantOptions>("button")
 
 	const [selectedValues, setSelectedValues] = useState<string[]>([])
 
@@ -36,6 +38,20 @@ const SelectPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
+							<DropdownSub>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(variant)]}
+										onSelectedChange={(values) => setVariant(values[0] as VariantOptions)}
+										minSelectionCount={1}>
+										<DropdownItem value="input">Input</DropdownItem>
+										<DropdownItem value="button">Button</DropdownItem>
+										<DropdownItem value="tags">Tags</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -99,8 +115,8 @@ const SelectPreview = () => {
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										selectedValues={[searchable]}
-										onSelectedChange={(values) => setSearchable(values[0])}
+										selectedValues={[String(searchable)]}
+										onSelectedChange={(values) => setSearchable(values[0] === "true")}
 										minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
@@ -122,7 +138,7 @@ const SelectPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 
-							<DropdownSub>
+							{/* <DropdownSub>
 								<DropdownSubTrigger>Min Selection Count</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
@@ -135,7 +151,7 @@ const SelectPreview = () => {
 										<DropdownItem value="2">2</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
-							</DropdownSub>
+							</DropdownSub> */}
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -150,12 +166,13 @@ const SelectPreview = () => {
 					<Select
 						label={label ? "Choose your favourite framework" : undefined}
 						placeholder="Pick an option"
+						variants={variant}
 						rounded={rounded}
 						size={size}
 						disabled={disabled}
-						isSearchable={searchable === "true"}
+						isSearchable={searchable}
 						selectionMode={selectionMode as "single" | "multiple"}
-						minSelectionCount={minSelectionCount}
+						// minSelectionCount={minSelectionCount}
 						selectedValues={selectedValues}
 						onSelectedChange={setSelectedValues}
 						className="w-80">
@@ -163,10 +180,12 @@ const SelectPreview = () => {
 							<SelectItem value="node-js">Node.js (Express)</SelectItem>
 							<SelectItem value="django">Django (Python)</SelectItem>
 							<SelectItem value="rails">Rails (Ruby)</SelectItem>
-							<SelectItem value="laravel">Laravel (PHP)</SelectItem>
+							<SelectItem disabled value="laravel">
+								Laravel (PHP)
+							</SelectItem>
 							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
 						</SelectGroup>
-						<SelectGroup label="Mobile Frameworks">
+						<SelectGroup label="Mobile Frameworks" isLast>
 							<SelectItem value="react-native">React Native</SelectItem>
 							<SelectItem value="flutter">Flutter</SelectItem>
 							<SelectItem value="swiftui">SwiftUI</SelectItem>
@@ -182,33 +201,33 @@ const SelectPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={` <Select
-                        label={label ? "Choose your favourite framework" : undefined}
-                        placeholder="Pick an option"
-                        rounded={rounded as RoundedOptions}
-                        size={size as SizeOptions}
-                        disabled={disabled}
-                        isSearchable={searchable === "true"}
-                        selectionMode={selectionMode as "single" | "multiple"}
-                        minSelectionCount={minSelectionCount}
-                        selectedValues={selectedValues}
-                        onSelectedChange={setSelectedValues}
-                        className="w-80">
-                        <SelectGroup label="Backend Frameworks">
-                            <SelectItem value="node-js">Node.js (Express)</SelectItem>
-                            <SelectItem value="django">Django (Python)</SelectItem>
-                            <SelectItem value="rails">Rails (Ruby)</SelectItem>
-                            <SelectItem value="laravel">Laravel (PHP)</SelectItem>
-                            <SelectItem value="spring">Spring Boot (Java)</SelectItem>
-                        </SelectGroup>
-                        <SelectGroup label="Mobile Frameworks">
-                            <SelectItem value="react-native">React Native</SelectItem>
-                            <SelectItem value="flutter">Flutter</SelectItem>
-                            <SelectItem value="swiftui">SwiftUI</SelectItem>
-                            <SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
-                            <SelectItem value="xamarin">Xamarin</SelectItem>
-                        </SelectGroup>
-                    </Select> `}
+					code={`<Select
+						label=${label ? "Choose your favourite framework" : undefined}
+						placeholder="Pick an option"
+						variants="${variant}"
+						rounded="${rounded}"
+						size="${size}"
+						disabled={${disabled}}
+						isSearchable={${searchable}}
+						selectionMode={${selectionMode as "single" | "multiple"}}
+						selectedValues={selectedValues}
+						onSelectedChange={setSelectedValues}
+						className="w-80">
+						<SelectGroup label="Backend Frameworks">
+							<SelectItem value="node-js">Node.js (Express)</SelectItem>
+							<SelectItem value="django">Django (Python)</SelectItem>
+							<SelectItem value="rails">Rails (Ruby)</SelectItem>
+							<SelectItem disabled value="laravel">Laravel (PHP)</SelectItem>
+							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
+						</SelectGroup>
+						<SelectGroup label="Mobile Frameworks" isLast>
+							<SelectItem value="react-native">React Native</SelectItem>
+							<SelectItem value="flutter">Flutter</SelectItem>
+							<SelectItem value="swiftui">SwiftUI</SelectItem>
+							<SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
+							<SelectItem value="xamarin">Xamarin</SelectItem>
+						</SelectGroup>
+					</Select>`}
 				/>
 			</TabsContent>
 		</Tabs>
