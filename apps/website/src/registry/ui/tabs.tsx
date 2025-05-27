@@ -3,88 +3,181 @@
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import { TabsListProps } from "@radix-ui/react-tabs"
-import { cva } from "class-variance-authority"
+import { VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-// Define styles for the TabsList component
-const tabsListStyles = cva("inline-flex h-10 items-center justify-start max-w-full overflow-x-scroll no-scrollbar", {
+export type TabsVariant = VariantProps<typeof tabsListStyles>["variant"]
+export type TabsSize = VariantProps<typeof tabsListStyles>["size"]
+export type TabsListWidth = "fit" | "full"
+export type TabsContextType = {
+	variant?: TabsVariant
+	size?: TabsSize
+}
+
+const tabsListStyles = cva("inline-flex w-fit items-center justify-start max-w-full overflow-x-scroll no-scrollbar", {
 	variants: {
 		size: {
-			small: "",
-			base: "",
+			sm: "",
+			md: "",
+			lg: "",
 		},
 		variant: {
-			default: "rounded-lg bg-bg-level0 w-fit p-1",
+			default: "bg-bg-level2",
 			open: "border-b border-border",
-			outline: "w-fit",
-			ghost: "w-fit",
+			outline: "border border-border",
+			ghost: "",
 		},
 	},
 	defaultVariants: {
-		size: "base",
+		size: "md",
+		variant: "default",
 	},
 	compoundVariants: [
 		{
-			size: "small",
+			size: ["sm", "md"],
 			variant: "default",
-			className: "h-10",
+			className: "p-0.5",
 		},
 		{
-			size: "small",
-			variant: ["ghost", "open", "outline"],
-			className: "h-9",
-		},
-		{
-			size: "base",
+			size: "lg",
 			variant: "default",
-			className: "h-11",
+			className: "p-1",
+		},
+
+		{
+			size: "sm",
+			variant: ["default", "outline", "ghost"],
+			className: "rounded-lg",
 		},
 		{
-			size: "base",
-			variant: ["ghost", "open", "outline"],
-			className: "h-10",
+			size: "md",
+			variant: ["default", "outline", "ghost"],
+			className: "rounded-[10px]",
+		},
+		{
+			size: "lg",
+			variant: ["default", "outline", "ghost"],
+			className: "rounded-xl",
+		},
+		{
+			size: ["sm", "md"],
+			variant: "open",
+			className: "gap-3",
+		},
+		{
+			size: "lg",
+			variant: "open",
+			className: "gap-4",
 		},
 	],
 })
-// Define styles for the TabsTrigger component
+
 const tabsTriggerStyles = cva(
-	"focus-visible:ring-ring inline-flex items-center justify-center gap-1.5 whitespace-nowrap \
-				px-3 py-1.5 text-sm font-medium ring-offset-background \
-				text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none \
-				disabled:opacity-50 data-[state=active]:text-text w-fit",
+	"focus-visible:ring-ring inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium ring-offset-background text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 data-[state=active]:text-text w-fit disabled:text-text-disabled disabled:cursor-not-allowed",
 	{
 		variants: {
+			size: {
+				sm: "text-xs",
+				md: "text-sm",
+				lg: "text-sm",
+			},
 			variant: {
 				default:
-					"data-[state=active]:bg-bg-base rounded-sm border border-transparent data-[state=active]:rounded-md data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
-				outline:
-					"border-b border-t first:rounded-l-lg last:rounded-r-lg last:border-l last:border-r last:border-border data-[state=active]:bg-bg-level0 not-last:border-l not-last:border-border",
+					"data-[state=active]:bg-bg-base border border-transparent  data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
+				outline: "data-[state=active]:bg-bg-level2 not-last:border-r not-last:border-border",
 				open: "h-full border-b-0 data-[state=active]:border-b-2 data-[state=active]:border-primary",
-				ghost: "data-[state=active]:rounded-md data-[state=active]:bg-bg-level1",
+				ghost: "data-[state=active]:bg-bg-level2",
 			},
 		},
+		compoundVariants: [
+			{
+				size: "sm",
+				variant: "default",
+				className: "rounded-md px-1.5 py-1",
+			},
+			{
+				size: "md",
+				variant: "default",
+				className: "rounded-lg px-2.5 py-1.5",
+			},
+			{
+				size: "lg",
+				variant: "default",
+				className: "rounded-[0.625rem] px-3 py-2",
+			},
+			{
+				size: "sm",
+				variant: ["outline", "ghost"],
+				className: "p-1.5",
+			},
+			{
+				size: "md",
+				variant: ["outline", "ghost"],
+				className: " px-2.5 py-2",
+			},
+			{
+				size: "lg",
+				variant: ["outline", "ghost"],
+				className: " p-3",
+			},
+			{
+				size: "sm",
+				variant: "open",
+				className: "py-1.5",
+			},
+			{
+				size: "md",
+				variant: "open",
+				className: "py-2",
+			},
+			{
+				size: "lg",
+				variant: "open",
+				className: "py-3",
+			},
+			{
+				size: "sm",
+				variant: "outline",
+				className: "first:rounded-l-lg last:rounded-r-lg",
+			},
+			{
+				size: "md",
+				variant: "outline",
+				className: "first:rounded-l-[0.625rem] last:rounded-r-[0.625rem]",
+			},
+			{
+				size: "lg",
+				variant: "outline",
+				className: "first:rounded-l-xl last:rounded-r-xl",
+			},
+			{
+				size: "sm",
+				variant: "ghost",
+				className: "data-[state=active]:rounded-md",
+			},
+			{
+				size: "md",
+				variant: "ghost",
+				className: "data-[state=active]:rounded-lg",
+			},
+			{
+				size: "lg",
+				variant: "ghost",
+				className: "data-[state=active]:rounded-[0.625rem]",
+			},
+		],
 		defaultVariants: {
 			variant: "default",
+			size: "md",
 		},
 	}
 )
 
-export type TabsVariant = "default" | "open" | "outline" | "ghost"
-export type TabsSize = "small" | "base"
-// Define context for managing tab variants and size
-type TabsContext = {
-	variant: TabsVariant
-	size: TabsSize
-}
-// Custom hook for accessing the Tabs context
-const TabsVariantContext = React.createContext<TabsContext>({
-	variant: "default",
-	size: "base",
-})
-// Tabs component that provides context for its children
-function useTabsContext() {
-	const context = React.use(TabsVariantContext)
-	if (context === undefined) {
+const TabsContext = React.createContext<TabsContextType | null>(null)
+
+function useTabs() {
+	const context = React.use(TabsContext)
+	if (!context) {
 		throw new Error("useTabsContext must be used within a Context Provider")
 	}
 	return context
@@ -92,26 +185,21 @@ function useTabsContext() {
 
 function Tabs({
 	variant = "default",
-	size = "base",
+	size = "md",
 	className,
 	defaultValue,
 	children,
 	...props
-}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
-	variant?: "default" | "open" | "outline" | "ghost"
-	size?: "small" | "base"
-}) {
+}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & TabsContextType) {
 	return (
-		<TabsVariantContext.Provider value={{ variant: variant, size: size }}>
+		<TabsContext.Provider value={{ variant: variant, size: size }}>
 			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3", className)} defaultValue={defaultValue} {...props}>
 				{children}
 			</TabsPrimitive.Root>
-		</TabsVariantContext.Provider>
+		</TabsContext.Provider>
 	)
 }
 
-export type TabsListWidth = "fit" | "full"
-// TabsList component that applies styles based on the provided width and context
 function TabsList({
 	className,
 	width = "fit",
@@ -121,18 +209,11 @@ function TabsList({
 	React.RefAttributes<HTMLDivElement> & {
 		width?: TabsListWidth
 	}) {
-	const tabsCtx = useTabsContext()
+	const { size, variant } = useTabs()
 
 	return (
 		<TabsPrimitive.List
-			className={cn(
-				tabsListStyles({ size: tabsCtx.size, variant: tabsCtx.variant }),
-				"items-stretch",
-				{
-					"w-full *:flex-1": width == "full",
-				},
-				className
-			)}
+			className={cn(tabsListStyles({ size, variant }), "items-stretch", { "w-full *:flex-1": width == "full" }, className)}
 			{...props}>
 			{children}
 		</TabsPrimitive.List>
@@ -144,32 +225,20 @@ type PrimitiveTriggerExtended = React.ComponentPropsWithRef<typeof TabsPrimitive
 	counter?: number
 	icon?: React.ReactNode
 }
-// TabsTrigger component that renders a tab button with optional icon and counter
-function TabsTrigger({ className, icon, counter, disabled = false, children, ...props }: PrimitiveTriggerExtended) {
-	const tabsCtx = useTabsContext()
+function TabsTrigger({ className, icon, counter, children, ...props }: PrimitiveTriggerExtended) {
+	const { size, variant } = useTabs()
 
 	return (
-		<TabsPrimitive.Trigger
-			className={cn(
-				tabsTriggerStyles({ variant: tabsCtx.variant }),
-				{
-					"text-border-secondary text-text-tertiary pointer-events-none cursor-not-allowed": disabled,
-				},
-				className
-			)}
-			{...props}>
-			{icon != undefined && <span className={cn("text-text-secondary [&>svg]:size-5", { "text-text-tertiary": disabled })}>{icon}</span>}
+		<TabsPrimitive.Trigger className={cn(tabsTriggerStyles({ variant, size }), className)} {...props}>
+			{icon && <span className={cn("[&>svg]:size-5")}>{icon}</span>}
 			{children}
-			{counter != undefined && (
-				<span className="border-border bg-bg-base text-text-secondary flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0 text-xs">
-					{counter}
-				</span>
+			{counter !== undefined && (
+				<span className="border-border bg-bg-base flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0 text-xs">{counter}</span>
 			)}
 		</TabsPrimitive.Trigger>
 	)
 }
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
-// TabsContent component that renders the content for the active tab
 function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
 	return (
 		<TabsPrimitive.Content

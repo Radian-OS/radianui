@@ -47,7 +47,7 @@ function AccordionWithIconExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<Accordion variant="open">
+					<Accordion variant="open" defaultValue={"2"}>
 						{contents.map((item) => (
 							<AccordionItem value={item.id.toString()} key={item.id}>
 								<AccordionTrigger>
