@@ -17,6 +17,7 @@ type PhoneNumberProps = {
 
 const PhoneNumber = ({ size, showTrigger = true }: PhoneNumberProps) => {
 	const id = useId()
+	// Removed unused value state
 	const [value, setValue] = useState("")
 	const [country, setCountry] = useState<RPNInput.Country>("US")
 
@@ -30,8 +31,8 @@ const PhoneNumber = ({ size, showTrigger = true }: PhoneNumberProps) => {
 				countrySelectComponent={() => null}
 				inputComponent={PhoneInput}
 				id={id}
-				placeholder="Enter phone number"
 				value={value}
+				placeholder="Enter phone number"
 				// 1. Sync country when user types "+{digits}", via the built-in onCountryChange
 				onCountryChange={(newCountry) => {
 					if (newCountry) {
@@ -40,11 +41,7 @@ const PhoneNumber = ({ size, showTrigger = true }: PhoneNumberProps) => {
 				}}
 				// 2. Only update the input value if it starts with "+" (or is empty)
 				onChange={(newValue) => {
-					const val = newValue ?? ""
-					if (val === "" || /^\+\d*$/.test(val)) {
-						setValue(val)
-					}
-					// else: ignore any typing that doesn't start with "+"
+					setValue(newValue!)
 				}}
 				size={size}
 			/>
