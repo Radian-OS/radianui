@@ -12,12 +12,12 @@ import {
 import { Tabs, TabsContent, TabsList, type TabsListWidth, type TabsSize, TabsTrigger, type TabsVariant } from "@/registry/ui/tabs"
 
 const variants = ["default", "open", "outline", "ghost"]
-const sizes = ["small", "base"]
+const sizes = ["sm", "md", "lg"]
 const widths = ["fit", "full"]
 
 const TablePreview = () => {
 	const [variant, setVariant] = React.useState<TabsVariant>("default")
-	const [size, setSize] = React.useState<TabsSize>("base")
+	const [size, setSize] = React.useState<TabsSize>("md")
 	const [width, setWidth] = React.useState<TabsListWidth>("fit")
 
 	return (
@@ -34,7 +34,7 @@ const TablePreview = () => {
 										selectionMode="single"
 										onSelectedChange={(values) => setVariant(values[0] as TabsVariant)}
 										minSelectionCount={1}
-										selectedValues={[variant]}>
+										selectedValues={[variant!]}>
 										{variants.map((v) => (
 											<DropdownItem key={v} value={v}>
 												{v}
@@ -50,7 +50,7 @@ const TablePreview = () => {
 										selectionMode="single"
 										onSelectedChange={(values) => setSize(values[0] as TabsSize)}
 										minSelectionCount={1}
-										selectedValues={[size]}>
+										selectedValues={[size!]}>
 										{sizes.map((v) => (
 											<DropdownItem key={v} value={v}>
 												{v}

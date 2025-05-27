@@ -5,11 +5,11 @@ import { Bolt, ClipboardSignature } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Variants = "default" | "open" | "outline" | "ghost"
-type Sizes = "small" | "base"
+type Sizes = "sm" | "md" | "lg"
 
 const TabsExample = () => {
 	const [variant, setVariant] = useState<Variants>("default")
-	const [size, setSize] = useState<Sizes>("base")
+	const [size, setSize] = useState<Sizes>("md")
 	const [width, setWidth] = useState<"fit" | "full">("fit")
 	return (
 		<div className="my-4 flex flex-col gap-4">
@@ -26,8 +26,9 @@ const TabsExample = () => {
 				<div className="flex gap-2">
 					<label>Size</label>
 					<select onChange={(e) => setSize(e.target.value as Sizes)} defaultValue={"base"}>
-						<option value="small">Small</option>
-						<option value="base">Base</option>
+						<option value="sm">sm</option>
+						<option value="md">md</option>
+						<option value="lg">lg</option>
 					</select>
 				</div>
 				<div className="flex gap-2">
