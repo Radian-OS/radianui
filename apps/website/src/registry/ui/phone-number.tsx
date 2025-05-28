@@ -5,8 +5,8 @@ import { getCountries, getCountryCallingCode } from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input, InputProps } from "@/registry/ui/input"
+import { Select, SelectItem } from "@/registry/ui/select"
 
 type PhoneNumberPrimitiveProps = {
 	value: string
@@ -100,31 +100,32 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 		return Comp
 	}, [className, size, showTrigger])
 
-	const trigger = showTrigger && (
-		<Button
-			variant="neutral-soft"
-			size={size === "0" ? undefined : size}
-			className="border-border-alpha flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0">
-			<Flag country={country} />
-			<span>{country ? `+${getCountryCallingCode(country)}` : ""}</span>
-			{showTrigger && <ChevronDown className="text-text-disabled size-4" />}
-		</Button>
-	)
-
 	return (
 		<div className="flex gap-0">
-			<Dropdown>
-				<DropdownTrigger asChild>{trigger}</DropdownTrigger>
-				<DropdownContent className="max-h-60 w-80 overflow-auto">
-					<DropdownGroup selectionMode="single" selectedValues={[country]} onSelectedChange={(vals) => onCountryChange(vals[0] as RPNInput.Country)}>
-						{countries.map((c) => (
-							<DropdownItem key={c} value={c} icon={<Flag country={c} />} shortcut={`+${getCountryCallingCode(c)}`}>
-								{new Intl.DisplayNames(["en"], { type: "region" }).of(c)}
-							</DropdownItem>
-						))}
-					</DropdownGroup>
-				</DropdownContent>
-			</Dropdown>
+			<Select
+				selectedValues={country ? [country] : []}
+				onSelectedChange={(vals) => onCountryChange(vals[0] as RPNInput.Country)}
+				selectionMode="single"
+				isSearchable={true}
+				searchPlaceholder="Search countries..."
+				renderTrigger={(selectedValues) => (
+					<Button
+						variant="neutral-soft"
+						size={size === "0" ? undefined : size}
+						className="border-border-alpha flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0">
+						<Flag country={selectedValues[0] as RPNInput.Country} />
+						<span>{selectedValues[0] ? `+${getCountryCallingCode(selectedValues[0] as RPNInput.Country)}` : ""}</span>
+						{showTrigger && <ChevronDown className="text-text-disabled size-4" />}
+					</Button>
+				)}>
+				{countries.map((c) => (
+					<SelectItem key={c} value={c}>
+						<Flag country={c} />
+						<span>{new Intl.DisplayNames(["en"], { type: "region" }).of(c)}</span>
+						<span className="text-text-tertiary ml-auto text-xs">+{getCountryCallingCode(c)}</span>
+					</SelectItem>
+				))}
+			</Select>
 			<RPNInput.default
 				id={id}
 				className="flex-1"
@@ -143,11 +144,11 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 }
 
 const Flag = ({ country }: { country?: RPNInput.Country }) => {
-	if (!country) return <PhoneIcon className="text-text-disabled" style={{ width: "20px", height: "20px" }} />
+	if (!country) return <PhoneIcon className="text-text-disabled h-5 w-5" />
 	const CountryFlag = flags[country]
 	return (
-		<span className="flex items-center justify-center overflow-hidden rounded-sm [&>svg]:size-5">
-			{CountryFlag ? <CountryFlag title={country} /> : <ChevronDown className="size-5" />}
+		<span className="flex h-5 w-10 items-center justify-center overflow-hidden rounded-sm [&>svg]:h-5 [&>svg]:w-5">
+			{CountryFlag ? <CountryFlag title={country} /> : <ChevronDown className="h-5 w-5" />}
 		</span>
 	)
 }
