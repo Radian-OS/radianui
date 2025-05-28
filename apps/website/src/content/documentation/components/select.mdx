@@ -30,17 +30,15 @@ source: https://github.com/Radian-os
 <Code
 	language="tsx"
 	code={` <Select
-                        label={label ? "Choose your favourite framework" : undefined}
+                        label="Choose your favourite framework"
                         placeholder="Pick an option"
-                        rounded={rounded as RoundedOptions}
-                        variants="${variant}"
-                        size={size as SizeOptions}
-                        disabled={disabled}
-                        isSearchable={searchable === "true"}
-                        selectionMode={selectionMode as "single" | "multiple"}
+                        rounded="lg"
+                        variants="button"
+                        size="36"
+                        disabled={false}
+                        isSearchable={true}
+                        selectionMode="single"
                         lead={<CircleUserRound/>}
-                        selectedValues={selectedValues}
-                        onSelectedChange={setSelectedValues}
                         className="w-80">
                         <SelectGroup label="Backend Frameworks">
                             <SelectItem value="node-js">Node.js (Express)</SelectItem>
