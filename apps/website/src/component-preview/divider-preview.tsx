@@ -15,7 +15,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DividerPreview = () => {
 	const [orientation, setOrientation] = useState<"vertical" | "horizontal">("vertical")
-	const [spacing, setSpacing] = useState<"2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40">("4")
+	const [spacing, setSpacing] = useState<"0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40">("4")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -42,9 +42,10 @@ const DividerPreview = () => {
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setSpacing(Array.from(keys)[0] as "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}
+										onSelectedChange={(keys) => setSpacing(Array.from(keys)[0] as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}
 										minSelectionCount={1}
 										selectedValues={[spacing]}>
+										<DropdownItem value="0">0</DropdownItem>
 										<DropdownItem value="2">2</DropdownItem>
 										<DropdownItem value="4">4</DropdownItem>
 										<DropdownItem value="6">6</DropdownItem>

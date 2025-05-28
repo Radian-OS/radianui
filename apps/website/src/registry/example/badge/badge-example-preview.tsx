@@ -24,7 +24,7 @@ Destructive
 			component: (
 				<Badge size="24" closable={true}>
 					<div className="bg-success h-1.5 w-1.5 rounded-full"></div>
-					Label
+					<span>Label</span>
 				</Badge>
 			),
 			code: `<Badge size="24" closable={true}>
