@@ -81,27 +81,27 @@ const buttonVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "bg-primary font-semibold text-static-white hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
+				className: "bg-primary font-medium text-static-white hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "info",
-				className: "bg-info font-semibold text-static-white hover:bg-info-hover focus-visible:ring-info focus-visible:outline-none",
+				className: "bg-info font-medium text-static-white hover:bg-info-hover focus-visible:ring-info focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "bg-success font-semibold text-static-white hover:bg-success-hover focus-visible:ring-success focus-visible:outline-none",
+				className: "bg-success font-medium text-static-white hover:bg-success-hover focus-visible:ring-success focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "bg-error font-semibold text-static-white hover:bg-error-hover focus-visible:ring-error focus-visible:outline-none",
+				className: "bg-error font-medium text-static-white hover:bg-error-hover focus-visible:ring-error focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning font-semibold text-static-white hover:bg-warning-hover focus-visible:ring-warning focus-visible:outline-none",
+				className: "bg-warning font-medium text-static-white hover:bg-warning-hover focus-visible:ring-warning focus-visible:outline-none",
 			},
 
 			// Soft variant + colors

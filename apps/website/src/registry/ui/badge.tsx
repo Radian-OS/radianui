@@ -14,19 +14,19 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 
 type BadgeSize = "20" | "24" | "28" | "32"
 
-const badgeVariants = cva("inline-flex items-center font-medium box-border rounded-md w-fit whitespace-nowrap", {
+const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit whitespace-nowrap", {
 	variants: {
 		variant: {
-			"neutral-outline": "outline outline-border-alpha",
+			"neutral-outline": "outline outline-border-alpha text-text-tertiary",
 			strong: "bg-primary text-static-white font-semibold",
 			outline: "text-primary-text outline outline-primary",
 			pastel: "bg-primary-focus text-primary-text",
 		},
 		size: {
-			"20": "h-5 px-1.5 text-xs",
-			"24": "h-6 px-2 text-xs",
-			"28": "h-7 px-2 text-sm",
-			"32": "h-8 px-3 text-sm",
+			"20": "h-5 px-1.5 text-xs rounded-radius-sm",
+			"24": "h-6 px-2 text-xs rounded-radius-sm",
+			"28": "h-7 px-2 text-sm rounded-radius-md",
+			"32": "h-8 px-3 text-sm rounded-radius-md",
 		},
 	},
 	defaultVariants: {
@@ -53,7 +53,11 @@ function Badge({ variant = "neutral-outline", size = "24", closable = false, cla
 				{closable && (
 					<X
 						onClick={() => setShowBadge(false)}
-						className={cn("h-4 w-4", "cursor-pointer font-extrabold", variant === "neutral-outline" && "text-text-disabled")}
+						className={cn(
+							size === "20" || size === "24" ? "size-3" : "size-4",
+							"cursor-pointer font-extrabold",
+							variant === "neutral-outline" && "text-text-disabled"
+						)}
 					/>
 				)}
 			</div>

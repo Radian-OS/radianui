@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { CircleUserRound } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -30,6 +31,20 @@ const SelectPreview = () => {
 	const [variant, setVariant] = useState<VariantOptions>("button")
 
 	const [selectedValues, setSelectedValues] = useState<string[]>([])
+
+	// const [trailIcon, setTrailIcon] = useState<boolean>(false)
+	const [leadIcon, setLeadIcon] = useState<boolean>(false)
+
+	const sizeHeightMapping: Record<number, string> = {
+		28: "h-4 w-4",
+		32: "h-5 w-5",
+		36: "h-5 w-5",
+		40: "h-5 w-5",
+		44: "h-6 w-6",
+		48: "h-6 w-6",
+	}
+
+	const iconClass = sizeHeightMapping[size] ?? ""
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -137,6 +152,33 @@ const SelectPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							{/* 
+							<DropdownSub>
+								<DropdownSubTrigger>Trail</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(trailIcon)]}
+										onSelectedChange={(values) => setTrailIcon(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub> */}
+							<DropdownSub>
+								<DropdownSubTrigger>Lead</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(leadIcon)]}
+										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 
 							{/* <DropdownSub>
 								<DropdownSubTrigger>Min Selection Count</DropdownSubTrigger>
@@ -168,6 +210,8 @@ const SelectPreview = () => {
 						placeholder="Pick an option"
 						variants={variant}
 						rounded={rounded}
+						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
+						// trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						size={size}
 						disabled={disabled}
 						isSearchable={searchable}
@@ -185,7 +229,7 @@ const SelectPreview = () => {
 							</SelectItem>
 							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
 						</SelectGroup>
-						<SelectGroup label="Mobile Frameworks" isLast>
+						<SelectGroup label="Mobile Frameworks">
 							<SelectItem value="react-native">React Native</SelectItem>
 							<SelectItem value="flutter">Flutter</SelectItem>
 							<SelectItem value="swiftui">SwiftUI</SelectItem>
@@ -220,7 +264,7 @@ const SelectPreview = () => {
 							<SelectItem disabled value="laravel">Laravel (PHP)</SelectItem>
 							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
 						</SelectGroup>
-						<SelectGroup label="Mobile Frameworks" isLast>
+						<SelectGroup label="Mobile Frameworks">
 							<SelectItem value="react-native">React Native</SelectItem>
 							<SelectItem value="flutter">Flutter</SelectItem>
 							<SelectItem value="swiftui">SwiftUI</SelectItem>
