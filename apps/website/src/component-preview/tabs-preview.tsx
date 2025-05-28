@@ -14,11 +14,15 @@ import { Tabs, TabsContent, TabsList, type TabsListWidth, type TabsSize, TabsTri
 const variants = ["default", "open", "outline", "ghost"]
 const sizes = ["sm", "md", "lg"]
 const widths = ["fit", "full"]
+const orientations = ["horizontal", "vertical"]
+const activationModes = ["manual", "automatic"]
 
 const TablePreview = () => {
 	const [variant, setVariant] = React.useState<TabsVariant>("default")
 	const [size, setSize] = React.useState<TabsSize>("md")
 	const [width, setWidth] = React.useState<TabsListWidth>("fit")
+	const [orientation, setOrientation] = React.useState<"horizontal" | "vertical">("horizontal")
+	const [activationMode, setActivationMode] = React.useState<"manual" | "automatic">("automatic")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -28,7 +32,7 @@ const TablePreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubTrigger>variant</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -44,7 +48,7 @@ const TablePreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubTrigger>size</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -60,7 +64,7 @@ const TablePreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Width</DropdownSubTrigger>
+								<DropdownSubTrigger>width</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -68,6 +72,38 @@ const TablePreview = () => {
 										minSelectionCount={1}
 										selectedValues={[width]}>
 										{widths.map((v) => (
+											<DropdownItem key={v} value={v}>
+												{v}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>orientation</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(values) => setOrientation(values[0] as "horizontal" | "vertical")}
+										minSelectionCount={1}
+										selectedValues={[orientation]}>
+										{orientations.map((v) => (
+											<DropdownItem key={v} value={v}>
+												{v}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>activationMode</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(values) => setActivationMode(values[0] as "manual" | "automatic")}
+										minSelectionCount={1}
+										selectedValues={[activationMode]}>
+										{activationModes.map((v) => (
 											<DropdownItem key={v} value={v}>
 												{v}
 											</DropdownItem>
@@ -86,7 +122,7 @@ const TablePreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Tabs size={size} variant={variant} defaultValue="products">
+					<Tabs size={size} variant={variant} defaultValue="products" orientation={orientation} activationMode={activationMode}>
 						<TabsList width={width}>
 							<TabsTrigger value="products">Products</TabsTrigger>
 							<TabsTrigger value="orders">Orders</TabsTrigger>
@@ -94,10 +130,21 @@ const TablePreview = () => {
 							<TabsTrigger value="reports">Reports</TabsTrigger>
 						</TabsList>
 						<div className="px-2">
-							<TabsContent value="products">Content of tab one</TabsContent>
-							<TabsContent value="orders">Content of tab two</TabsContent>
-							<TabsContent value="customers">Content of tab three</TabsContent>
-							<TabsContent value="reports">Content of tab four</TabsContent>
+							<TabsContent value="products">
+								Manage your product listings, inventory levels, and pricing. Easily add new items or update existing ones.
+							</TabsContent>
+
+							<TabsContent value="orders">
+								View and track recent orders, check fulfillment status, and manage shipping or cancellations of the orders.
+							</TabsContent>
+
+							<TabsContent value="customers">
+								Access your customer database, see order history, and manage your customer support interactions.
+							</TabsContent>
+
+							<TabsContent value="reports">
+								Analyze sales trends, customer behavior, and overall business performance with real-time reports.
+							</TabsContent>
 						</div>
 					</Tabs>
 				</div>

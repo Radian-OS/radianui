@@ -5,6 +5,7 @@ import * as TabsPrimitive from "@radix-ui/react-tabs"
 import { TabsListProps } from "@radix-ui/react-tabs"
 import { VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { Badge } from "./badge"
 
 export type TabsVariant = VariantProps<typeof tabsListStyles>["variant"]
 export type TabsSize = VariantProps<typeof tabsListStyles>["size"]
@@ -14,7 +15,7 @@ export type TabsContextType = {
 	size?: TabsSize
 }
 
-const tabsListStyles = cva("inline-flex w-fit items-center justify-start max-w-full overflow-x-scroll no-scrollbar", {
+const tabsListStyles = cva("flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center min-w-max max-w-full overflow-x-scroll no-scrollbar", {
 	variants: {
 		size: {
 			sm: "",
@@ -22,8 +23,8 @@ const tabsListStyles = cva("inline-flex w-fit items-center justify-start max-w-f
 			lg: "",
 		},
 		variant: {
-			default: "bg-bg-level2",
-			open: "border-b border-border",
+			default: "bg-fill-level3",
+			open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
 			outline: "border border-border",
 			ghost: "",
 		},
@@ -73,7 +74,7 @@ const tabsListStyles = cva("inline-flex w-fit items-center justify-start max-w-f
 })
 
 const tabsTriggerStyles = cva(
-	"focus-visible:ring-ring inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium ring-offset-background text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 data-[state=active]:text-text w-fit disabled:text-text-disabled disabled:cursor-not-allowed",
+	"inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium ring-offset-background text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 data-[state=active]:text-text w-fit data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
 	{
 		variants: {
 			size: {
@@ -83,10 +84,10 @@ const tabsTriggerStyles = cva(
 			},
 			variant: {
 				default:
-					"data-[state=active]:bg-bg-base border border-transparent  data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
-				outline: "data-[state=active]:bg-bg-level2 not-last:border-r not-last:border-border",
-				open: "h-full border-b-0 data-[state=active]:border-b-2 data-[state=active]:border-primary",
-				ghost: "data-[state=active]:bg-bg-level2",
+					"data-[state=active]:bg-bg-base  border border-transparent  data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
+				outline: "data-[state=active]:bg-fill-level2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
+				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-bg-base data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
+				ghost: "data-[state=active]:bg-fill-level2",
 			},
 		},
 		compoundVariants: [
@@ -123,32 +124,32 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: "open",
-				className: "py-1.5",
+				className: "data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5",
 			},
 			{
 				size: "md",
 				variant: "open",
-				className: "py-2",
+				className: "data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "py-3",
+				className: "data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3",
 			},
 			{
 				size: "sm",
 				variant: "outline",
-				className: "first:rounded-l-lg last:rounded-r-lg",
+				className: "data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=vertical]:last:rounded-b-lg",
 			},
 			{
 				size: "md",
 				variant: "outline",
-				className: "first:rounded-l-[0.625rem] last:rounded-r-[0.625rem]",
+				className: "data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
 			},
 			{
 				size: "lg",
 				variant: "outline",
-				className: "first:rounded-l-xl last:rounded-r-xl",
+				className: "data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=vertical]:last:roonded-b-xl",
 			},
 			{
 				size: "sm",
@@ -193,7 +194,7 @@ function Tabs({
 }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & TabsContextType) {
 	return (
 		<TabsContext.Provider value={{ variant: variant, size: size }}>
-			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3", className)} defaultValue={defaultValue} {...props}>
+			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col data-[orientation=vertical]:flex-row gap-3", className)} defaultValue={defaultValue} {...props}>
 				{children}
 			</TabsPrimitive.Root>
 		</TabsContext.Provider>
@@ -213,7 +214,7 @@ function TabsList({
 
 	return (
 		<TabsPrimitive.List
-			className={cn(tabsListStyles({ size, variant }), "items-stretch", { "w-full *:flex-1": width == "full" }, className)}
+			className={cn(tabsListStyles({ size, variant }), "data-[orientation=vertical]:flex-col w-max", { "data-[orientatio=horizontal]:items-stretch data-[orientatio=horizontal]:w-full data-[orientatio=horizontal]:*:flex-1": width == "full" }, className)}
 			{...props}>
 			{children}
 		</TabsPrimitive.List>
@@ -233,7 +234,7 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 			{icon && <span className={cn("[&>svg]:size-5")}>{icon}</span>}
 			{children}
 			{counter !== undefined && (
-				<span className="border-border bg-bg-base flex h-5 items-center justify-center gap-4 rounded-full border px-1.5 py-0 text-xs">{counter}</span>
+				<Badge>{counter}</Badge>
 			)}
 		</TabsPrimitive.Trigger>
 	)
