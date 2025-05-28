@@ -28,6 +28,7 @@ import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
+import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
 import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
@@ -140,6 +141,7 @@ const components: MDXComponents = {
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
 	SelectPreview: () => <SelectPreview />,
+	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	Code: ({
 		language,
 		pkg = ["pnpm", "yarn", "npm", "bun"],

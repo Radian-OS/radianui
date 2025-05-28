@@ -24,16 +24,12 @@ import SwitchExample from "@/registry/example/switch-example"
 import TableExample from "@/registry/example/table-example"
 import TabsExample from "@/registry/example/tabs-example"
 import TooltipExample from "@/registry/example/tooltip-example"
-import { PhoneNumber } from "@/registry/ui/phone-number"
 
 const page = () => {
 	return (
 		<div className="mx-auto max-w-[80rem]">
 			<div className="px-4 md:px-5 lg:px-6">
-				{/* <BadgeExample /> */}
-				{/* <FontTogglerExample /> */}
 				<BannerExample />
-				<PhoneNumber size="32" />
 				<BreadcrumbExample />
 				<ButtonExample />
 				<CodeAreaExample />
