@@ -56,9 +56,9 @@ function SelectItem({ value, children, ref, ...props }: SelectItemProps & React.
 					setValues(isSelected ? values.filter((v) => v !== currentValue) : [...values, currentValue])
 				}
 			}}
-			className="text-text flex cursor-pointer gap-2"
+			className={`text-text flex cursor-pointer gap-2 ${isSelected ? "bg-fill-level3" : ""}`}
 			{...props}>
-			<span className="flex flex-1 items-center gap-2 truncate [&_svg]:size-5">{children}</span>
+			<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
 			{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : <span className="size-5" />)}
 		</CommandItem>
 	)
@@ -129,6 +129,9 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 	showSelectedCheck?: boolean
 	classNames?: SelectClassNames
 	variants?: "input" | "button" | "tags"
+	lead?: React.ReactNode
+	trail?: React.ReactNode
+	endIcon?: boolean
 }
 
 // Select component for rendering a dropdown with selection options
@@ -141,6 +144,8 @@ function Select({
 	onSelectedChange,
 	isSearchable = false,
 	selectionMode = "single",
+	lead,
+	// trail,
 	searchPlaceholder = "Search",
 	renderTrigger,
 	size = defaultInputSize,
@@ -152,6 +157,7 @@ function Select({
 	className,
 	classNames,
 	variants = "button",
+	endIcon = true,
 }: SelectProps) {
 	const [open, setOpen] = React.useState(false)
 	const [internalSelectedValues, setInternalSelectedValues] = React.useState<string[]>(defaultSelected)
@@ -197,6 +203,11 @@ function Select({
 	/* Retrieve the labels of the selected items to display in the trigger */
 	const selectedLabels = values.length > 0 ? childrenArr.filter((data) => values.includes(data.value)).map((data) => data.label) : []
 
+	const removeValue = (labelToRemove: string) => {
+		const updated = internalSelectedValues.filter((val) => val !== labelToRemove)
+		handleSelectionChange(updated)
+	}
+
 	return (
 		<div className="flex items-center justify-center">
 			<SelectContext.Provider
@@ -224,9 +235,19 @@ function Select({
 							) : (
 								<div>
 									{variants === "input" ? (
-										<Input placeholder={placeholder} size={size} rounded={rounded} value={selectedLabels} />
+										<Input
+											placeholder={placeholder}
+											lead={lead}
+											trail={
+												!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />
+											}
+											size={size}
+											rounded={rounded}
+											value={selectedLabels}
+										/>
 									) : variants === "button" ? (
 										<Button
+											lead={lead}
 											variant="ghost"
 											disabled={disabled}
 											className={cn(
@@ -252,17 +273,27 @@ function Select({
 
 												{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
 											</span>
-											{!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />}
+											{endIcon &&
+												(!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />)}
 										</Button>
 									) : (
-										<div className="border-border bg-background focus-within:ring-ring flex min-h-[40px] w-full flex-wrap items-center gap-1 rounded-md border px-3 py-1 text-sm shadow-sm focus-within:ring-2">
-											{selectedLabels.length === 0 ? (
-												<span className="text-muted-foreground">{placeholder}</span>
+										<div
+											tabIndex={0}
+											className={`focus-within:border-primary focus-within:ring-primary/10 border-border-alpha flex cursor-pointer border focus-within:ring-2 ${
+												disabled ? "text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none" : ""
+											} flex min-h-[35px] w-full flex-wrap items-center gap-2 rounded-md p-2 text-sm`}>
+											{internalSelectedValues.length === 0 ? (
+												<span className="text-text-tertiary">{placeholder}</span>
 											) : (
-												selectedLabels.map((label, index) => (
-													<span key={label} className="flex items-center">
-														<Badge>{label}</Badge>
-														{index < selectedLabels.length - 1 && <span className="ml-1">,</span>}
+												internalSelectedValues.map((value) => (
+													<span key={value} className="flex items-center">
+														{disabled ? (
+															<Badge>{value}</Badge>
+														) : (
+															<Badge closable onClick={() => removeValue(value)}>
+																{value}
+															</Badge>
+														)}
 													</span>
 												))
 											)}
@@ -327,32 +358,72 @@ function CommandEmpty(props: React.ComponentPropsWithRef<typeof CommandPrimitive
 CommandEmpty.displayName = CommandPrimitive.Empty.displayName
 // CommandGroup component that groups related command items together
 function CommandGroup({ className, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.Group>) {
-	const groupRef = useRef<HTMLDivElement | null>(null)
-	const [isLast, setIsLast] = useState(false)
+	const [shouldShowDivider, setShouldShowDivider] = useState(false)
+	const groupRef = useRef<HTMLDivElement>(null)
 
 	useEffect(() => {
-		if (!groupRef.current) return
-		const parent = groupRef.current.parentElement
-		if (!parent) return
+		const checkDividerVisibility = () => {
+			if (!groupRef.current) return
 
-		const groupElements = Array.from(parent.querySelectorAll("[cmdk-group]")) as HTMLElement[]
+			const commandList = groupRef.current.closest("[cmdk-list]")
+			if (!commandList) return
 
-		const lastGroup = groupElements[groupElements.length - 1]
-		setIsLast(groupRef.current === lastGroup)
+			// Get all groups in the command list
+			const allGroups = Array.from(commandList.querySelectorAll("[cmdk-group]"))
+
+			// Find groups that have visible items
+			const visibleGroups = allGroups.filter((group) => {
+				const visibleItems = group.querySelectorAll("[cmdk-item]:not([hidden])")
+				return visibleItems.length > 0
+			})
+
+			// Check if current group has visible items
+			const currentGroupHasVisibleItems = groupRef.current.querySelectorAll("[cmdk-item]:not([hidden])").length > 0
+
+			// Check if this is the last visible group
+			const isLastVisibleGroup = visibleGroups[visibleGroups.length - 1] === groupRef.current
+
+			// Only show divider if:
+			// 1. Current group has visible items
+			// 2. There are multiple visible groups
+			// 3. This is NOT the last visible group
+			const shouldShow = currentGroupHasVisibleItems && visibleGroups.length > 1 && !isLastVisibleGroup
+
+			setShouldShowDivider(shouldShow)
+		}
+
+		const observer = new MutationObserver(checkDividerVisibility)
+
+		if (groupRef.current) {
+			// Watch the entire command list for changes
+			const commandList = groupRef.current.closest("[cmdk-list]")
+			if (commandList) {
+				observer.observe(commandList, {
+					childList: true,
+					subtree: true,
+					attributes: true,
+					attributeFilter: ["hidden"],
+				})
+			}
+
+			// Initial check
+			checkDividerVisibility()
+		}
+
+		return () => observer.disconnect()
 	}, [])
 
 	return (
 		<>
 			<CommandPrimitive.Group
 				ref={groupRef}
-				cmdk-group=""
 				className={cn(
 					"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 px-1.5 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
 					className
 				)}
 				{...props}
 			/>
-			{!isLast && <Divider className="bg-border mx-2 my-1 h-px" />}
+			{shouldShowDivider && <Divider className="bg-border mx-2 my-1 h-px" />}
 		</>
 	)
 }
