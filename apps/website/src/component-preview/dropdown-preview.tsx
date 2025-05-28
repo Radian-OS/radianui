@@ -5,6 +5,7 @@ import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
 	DropdownContent,
+	DropdownDivider,
 	DropdownGroup,
 	DropdownItem,
 	DropdownSub,
@@ -123,6 +124,7 @@ selectedValues={selected}>
 									</DropdownSubContent>
 								</DropdownSub>
 							</DropdownGroup>
+							<DropdownDivider />
 							<DropdownGroup
 								title="status"
 								selectionMode={mode}

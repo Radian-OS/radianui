@@ -5,6 +5,7 @@ import DatePicker from "@/registry/ui/date-picker"
 import {
 	Dropdown,
 	DropdownContent,
+	DropdownDivider,
 	DropdownGroup,
 	DropdownItem,
 	DropdownSub,
@@ -130,6 +131,7 @@ const DatePickerPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownDivider />
 
 							<DropdownGroup title="date picker">
 								<DropdownSub>
