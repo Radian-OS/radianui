@@ -120,6 +120,7 @@
 
 @theme static {
 	/* Border radius variables */
+	--radius-radius-none: 0px;
 	--radius-radius-xs: 2px;
 	--radius-radius-sm: 4px;
 	--radius-radius-md: 6px;
