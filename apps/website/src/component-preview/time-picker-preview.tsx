@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Clock } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -28,6 +29,19 @@ const TimePickerPreview = () => {
 	const [interval, setInterval] = useState<number>(15)
 
 	const intervalOptions = ["15", "30", "60"]
+
+	const [leadIcon, setLeadIcon] = useState<boolean>(false)
+
+	const sizeHeightMapping: Record<number, string> = {
+		28: "h-4 w-4",
+		32: "h-5 w-5",
+		36: "h-5 w-5",
+		40: "h-5 w-5",
+		44: "h-6 w-6",
+		48: "h-6 w-6",
+	}
+
+	const iconClass = sizeHeightMapping[size] ?? ""
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -125,6 +139,20 @@ const TimePickerPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Lead</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(leadIcon)]}
+										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -140,6 +168,7 @@ const TimePickerPreview = () => {
 						label={label ? "Time Picker" : undefined}
 						rounded={rounded as RoundedOptions}
 						size={size as SizeOptions}
+						lead={leadIcon ? <Clock className={iconClass} /> : null}
 						disabled={disabled}
 						is24Hour={is24Hour}
 						interval={interval}

@@ -15,6 +15,7 @@ export type TimePickerProps = Pick<
 	maxTime?: string
 	defaultValue?: Time
 	allowEmptySelection?: boolean
+	lead?: React.ReactNode
 }
 
 /**
@@ -48,6 +49,7 @@ function TimePicker({
 	value = null,
 	allowEmptySelection = true,
 	classNames,
+	lead,
 	...props
 }: TimePickerProps) {
 	const isControlled = value !== null
@@ -123,6 +125,7 @@ function TimePicker({
 				onSelectedChange={function (values) {
 					handleChange(values[0])
 				}}
+				lead={lead}
 				classNames={{ content: cn("h-80"), ...classNames }}
 				minSelectionCount={allowEmptySelection ? 0 : 1}
 				{...props}>
