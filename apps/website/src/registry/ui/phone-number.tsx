@@ -22,6 +22,30 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 	const id = useId()
 	const countries = useMemo(() => getCountries(), [])
 
+	const handlePhoneChange = (val: string | undefined) => {
+		if (typeof val === "string") {
+			onChange(val)
+
+			// Extract country from the phone number by matching calling codes
+			if (val.startsWith("+")) {
+				const numberWithoutPlus = val.slice(1)
+
+				// Sort countries by calling code length (longest first) to handle overlapping codes
+				const sortedCountries = [...countries].sort((a, b) => getCountryCallingCode(b).length - getCountryCallingCode(a).length)
+
+				// Find matching country by calling code
+				const matchingCountry = sortedCountries.find((countryCode) => {
+					const callingCode = getCountryCallingCode(countryCode)
+					return numberWithoutPlus.startsWith(callingCode)
+				})
+
+				if (matchingCountry && matchingCountry !== country) {
+					onCountryChange(matchingCountry)
+				}
+			}
+		}
+	}
+
 	// 👇 Stable component that captures `className` via closure
 	const InputWithClass = useMemo(() => {
 		const Comp = React.forwardRef<HTMLInputElement, InputProps>(({ className: innerClassName, ...props }, ref) => (
@@ -66,13 +90,12 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 					</DropdownGroup>
 				</DropdownContent>
 			</Dropdown>
-
 			<RPNInput.default
 				id={id}
 				className="flex-1"
 				country={country}
 				value={value}
-				onChange={(val) => typeof val === "string" && onChange(val)}
+				onChange={handlePhoneChange}
 				onCountryChange={onCountryChange}
 				flagComponent={() => null}
 				countrySelectComponent={() => null}
