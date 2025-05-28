@@ -33,11 +33,12 @@ source: https://github.com/Radian-os
                         label={label ? "Choose your favourite framework" : undefined}
                         placeholder="Pick an option"
                         rounded={rounded as RoundedOptions}
+                        variants="${variant}"
                         size={size as SizeOptions}
                         disabled={disabled}
                         isSearchable={searchable === "true"}
                         selectionMode={selectionMode as "single" | "multiple"}
-                        minSelectionCount={minSelectionCount}
+                        lead={<CircleUserRound/>}
                         selectedValues={selectedValues}
                         onSelectedChange={setSelectedValues}
                         className="w-80">
