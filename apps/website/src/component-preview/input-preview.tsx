@@ -196,8 +196,8 @@ const InputPreview = () => {
     placeholder="Enter your username here"
     hasError={${hasError}}
 	${hint ? `hint="Hint text to help the user with input"` : ""}
-  	${leadIcon ? `leadIcon={<CircleUserRound className="${iconClass}" />}` : ""}
-  	${trailIcon ? `trailIcon={<CircleUserRound className="${iconClass}" />}` : ""}
+  	${leadIcon ? `lead={<CircleUserRound className="${iconClass}" />}` : ""}
+  	${trailIcon ? `trail={<CircleUserRound className="${iconClass}" />}` : ""}
 />`}
 				/>
 			</TabsContent>

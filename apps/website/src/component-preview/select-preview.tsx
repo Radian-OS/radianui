@@ -254,6 +254,7 @@ const SelectPreview = () => {
 						disabled={${disabled}}
 						isSearchable={${searchable}}
 						selectionMode={${selectionMode as "single" | "multiple"}}
+						${leadIcon ? `lead={<CircleUserRound className="${iconClass}" />}` : ""}
 						selectedValues={selectedValues}
 						onSelectedChange={setSelectedValues}
 						className="w-80">
