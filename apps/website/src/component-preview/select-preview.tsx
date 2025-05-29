@@ -28,7 +28,7 @@ const SelectPreview = () => {
 	// const [minSelectionCount, setMinSelectionCount] = useState<number>(0)
 	const [label, setLabel] = useState(true)
 	const [disabled, setDisabled] = useState(false)
-	const [variant, setVariant] = useState<VariantOptions>("button")
+	const [variant, setVariant] = useState<VariantOptions>("input")
 
 	const [selectedValues, setSelectedValues] = useState<string[]>([])
 
@@ -245,34 +245,36 @@ const SelectPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Select
-						label=${label ? "Choose your favourite framework" : undefined}
-						placeholder="Pick an option"
-						variants="${variant}"
-						rounded="${rounded}"
-						size="${size}"
-						disabled={${disabled}}
-						isSearchable={${searchable}}
-						selectionMode={${selectionMode as "single" | "multiple"}}
-						${leadIcon ? `lead={<CircleUserRound className="${iconClass}" />}` : ""}
-						selectedValues={selectedValues}
-						onSelectedChange={setSelectedValues}
-						className="w-80">
-						<SelectGroup label="Backend Frameworks">
-							<SelectItem value="node-js">Node.js (Express)</SelectItem>
-							<SelectItem value="django">Django (Python)</SelectItem>
-							<SelectItem value="rails">Rails (Ruby)</SelectItem>
-							<SelectItem disabled value="laravel">Laravel (PHP)</SelectItem>
-							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
-						</SelectGroup>
-						<SelectGroup label="Mobile Frameworks">
-							<SelectItem value="react-native">React Native</SelectItem>
-							<SelectItem value="flutter">Flutter</SelectItem>
-							<SelectItem value="swiftui">SwiftUI</SelectItem>
-							<SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
-							<SelectItem value="xamarin">Xamarin</SelectItem>
-						</SelectGroup>
-					</Select>`}
+					code={`const [selectedValues, setSelectedValues] = useState<string[]>([])
+						
+<Select
+	label="${label ? "Choose your favourite framework" : undefined}"
+	placeholder="Pick an option"
+	variants="${variant}"
+	rounded="${rounded}"
+	size="${size}"
+	disabled={${disabled}}
+	isSearchable={${searchable}}
+	selectionMode="${selectionMode}"
+	${leadIcon ? `lead={<CircleUserRound className="${iconClass}" />}` : ""}
+	selectedValues={selectedValues}
+	onSelectedChange={setSelectedValues}
+	className="w-80">
+	<SelectGroup label="Backend Frameworks">
+		<SelectItem value="node-js">Node.js (Express)</SelectItem>
+		<SelectItem value="django">Django (Python)</SelectItem>
+		<SelectItem value="rails">Rails (Ruby)</SelectItem>
+		<SelectItem disabled value="laravel">Laravel (PHP)</SelectItem>
+		<SelectItem value="spring">Spring Boot (Java)</SelectItem>
+	</SelectGroup>
+	<SelectGroup label="Mobile Frameworks">
+		<SelectItem value="react-native">React Native</SelectItem>
+		<SelectItem value="flutter">Flutter</SelectItem>
+		<SelectItem value="swiftui">SwiftUI</SelectItem>
+		<SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
+		<SelectItem value="xamarin">Xamarin</SelectItem>
+	</SelectGroup>
+</Select>`}
 				/>
 			</TabsContent>
 		</Tabs>

@@ -132,6 +132,8 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 	lead?: React.ReactNode
 	trail?: React.ReactNode
 	endIcon?: boolean
+	hint?: string
+	hasError?: boolean
 }
 
 // Select component for rendering a dropdown with selection options
@@ -239,7 +241,7 @@ function Select({
 											placeholder={placeholder}
 											lead={lead}
 											trail={
-												!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />
+												!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />
 											}
 											size={size}
 											rounded={rounded}
@@ -281,7 +283,7 @@ function Select({
 											tabIndex={0}
 											className={`focus-within:border-primary focus-within:ring-primary/10 border-border-alpha flex cursor-pointer border focus-within:ring-2 ${
 												disabled ? "text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none" : ""
-											} flex min-h-[35px] w-full flex-wrap items-center gap-2 rounded-md p-2 text-sm`}>
+											} flex min-h-[35px] w-full flex-wrap items-center gap-2 rounded-${rounded} p-2 text-sm`}>
 											{internalSelectedValues.length === 0 ? (
 												<span className="text-text-tertiary">{placeholder}</span>
 											) : (
@@ -418,7 +420,7 @@ function CommandGroup({ className, ...props }: React.ComponentPropsWithRef<typeo
 			<CommandPrimitive.Group
 				ref={groupRef}
 				className={cn(
-					"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 px-1.5 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase",
+					"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 px-1.5 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-0.5",
 					className
 				)}
 				{...props}
@@ -433,7 +435,7 @@ function CommandItem({ className, ...props }: React.ComponentPropsWithRef<typeof
 	return (
 		<CommandPrimitive.Item
 			className={cn(
-				"hover:bg-fill-level2 outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm font-normal data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"hover:bg-fill-level2 outline-hidden relative flex cursor-default select-none items-center rounded-sm px-2.5 py-1.5 text-sm font-normal data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}
