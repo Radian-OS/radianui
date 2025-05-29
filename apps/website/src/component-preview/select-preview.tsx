@@ -4,6 +4,7 @@ import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
 	DropdownContent,
+	DropdownDivider,
 	DropdownGroup,
 	DropdownItem,
 	DropdownSub,
@@ -84,6 +85,9 @@ const SelectPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 							</DropdownGroup>
+
+							<DropdownDivider />
+
 							<DropdownGroup title="Select Properties">
 								<DropdownSub>
 									<DropdownSubTrigger>Variant</DropdownSubTrigger>
@@ -288,6 +292,8 @@ const SelectPreview = () => {
 	variants="${variant}"
 	rounded="${rounded}"
 	size="${size}"
+	${hint ? `hint="Hint text to help the user with input"` : ""}
+	hasError={${hasError}}
 	disabled={${disabled}}
 	isSearchable={${searchable}}
 	selectionMode="${selectionMode}"

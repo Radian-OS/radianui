@@ -27,6 +27,8 @@ source: https://github.com/Radian-os
 | searchable    | false          | true/false         |
 | selectionMode | single         | single/multiple    |
 | lead          |                |                    |
+| hint          |                |                    |
+| hasError      | false          | true/false         |
 
 ##### Usage
 
@@ -41,6 +43,8 @@ source: https://github.com/Radian-os
     disabled={false}
     isSearchable={true}
     selectionMode="single"
+    hasError="false"
+    hint="Hint text to help the user with input"
     lead={<CircleUserRound/>}
     className="w-80">
     <SelectGroup label="Backend Frameworks">
