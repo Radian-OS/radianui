@@ -160,6 +160,8 @@ function Select({
 	classNames,
 	variants = "button",
 	endIcon = true,
+	hint,
+	hasError = false,
 }: SelectProps) {
 	const [open, setOpen] = React.useState(false)
 	const [internalSelectedValues, setInternalSelectedValues] = React.useState<string[]>(defaultSelected)
@@ -246,6 +248,9 @@ function Select({
 											size={size}
 											rounded={rounded}
 											value={selectedLabels}
+											hint={hint}
+											hasError={hasError}
+											disabled={disabled}
 										/>
 									) : variants === "button" ? (
 										<Button

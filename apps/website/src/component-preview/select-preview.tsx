@@ -35,6 +35,9 @@ const SelectPreview = () => {
 	// const [trailIcon, setTrailIcon] = useState<boolean>(false)
 	const [leadIcon, setLeadIcon] = useState<boolean>(false)
 
+	const [hasError, setHasError] = useState<boolean>(false)
+	const [hint, setHint] = useState<boolean>(false)
+
 	const sizeHeightMapping: Record<number, string> = {
 		28: "h-4 w-4",
 		32: "h-5 w-5",
@@ -53,106 +56,135 @@ const SelectPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
-							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(variant)]}
-										onSelectedChange={(values) => setVariant(values[0] as VariantOptions)}
-										minSelectionCount={1}>
-										<DropdownItem value="input">Input</DropdownItem>
-										<DropdownItem value="button">Button</DropdownItem>
-										<DropdownItem value="tags">Tags</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[rounded]}
-										onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-										minSelectionCount={1}>
-										{roundedOptions.map((roundedOption) => (
-											<DropdownItem value={roundedOption} key={roundedOption}>
-												{roundedOption}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
-										{sizes.map((size) => (
-											<DropdownItem value={size} key={size}>
-												{size}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Label</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(label)]}
-										onSelectedChange={(values) => setLabel(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Searchable</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(searchable)]}
-										onSelectedChange={(values) => setSearchable(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+							<DropdownGroup title="Input Variants">
+								<DropdownSub>
+									<DropdownSubTrigger>Hint</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(hint)]}
+											onSelectedChange={(values) => setHint(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Has error</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(hasError)]}
+											onSelectedChange={(values) => setHasError(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+							</DropdownGroup>
+							<DropdownGroup title="Select Properties">
+								<DropdownSub>
+									<DropdownSubTrigger>Variant</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(variant)]}
+											onSelectedChange={(values) => setVariant(values[0] as VariantOptions)}
+											minSelectionCount={1}>
+											<DropdownItem value="input">Input</DropdownItem>
+											<DropdownItem value="button">Button</DropdownItem>
+											<DropdownItem value="tags">Tags</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Rounded</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[rounded]}
+											onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
+											minSelectionCount={1}>
+											{roundedOptions.map((roundedOption) => (
+												<DropdownItem value={roundedOption} key={roundedOption}>
+													{roundedOption}
+												</DropdownItem>
+											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Size</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[size]}
+											onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
+											minSelectionCount={1}>
+											{sizes.map((size) => (
+												<DropdownItem value={size} key={size}>
+													{size}
+												</DropdownItem>
+											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Label</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(label)]}
+											onSelectedChange={(values) => setLabel(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(disabled)]}
+											onSelectedChange={(values) => setDisabled(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Searchable</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(searchable)]}
+											onSelectedChange={(values) => setSearchable(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[selectionMode]}
-										onSelectedChange={(values) => setSelectionMode(values[0])}
-										minSelectionCount={1}>
-										<DropdownItem value="single">Single</DropdownItem>
-										<DropdownItem value="multiple">Multiple</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							{/* 
+								<DropdownSub>
+									<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[selectionMode]}
+											onSelectedChange={(values) => setSelectionMode(values[0])}
+											minSelectionCount={1}>
+											<DropdownItem value="single">Single</DropdownItem>
+											<DropdownItem value="multiple">Multiple</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								{/* 
 							<DropdownSub>
 								<DropdownSubTrigger>Trail</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -166,21 +198,21 @@ const SelectPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub> */}
-							<DropdownSub>
-								<DropdownSubTrigger>Lead</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(leadIcon)]}
-										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Lead</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(leadIcon)]}
+											onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							{/* <DropdownSub>
+								{/* <DropdownSub>
 								<DropdownSubTrigger>Min Selection Count</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
@@ -194,6 +226,7 @@ const SelectPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub> */}
+							</DropdownGroup>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -219,6 +252,8 @@ const SelectPreview = () => {
 						// minSelectionCount={minSelectionCount}
 						selectedValues={selectedValues}
 						onSelectedChange={setSelectedValues}
+						hasError={hasError}
+						hint={hint ? "Hint text to help the user with input" : ""}
 						className="w-80">
 						<SelectGroup label="Backend Frameworks">
 							<SelectItem value="node-js">Node.js (Express)</SelectItem>
