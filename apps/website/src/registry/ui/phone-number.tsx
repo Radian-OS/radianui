@@ -15,10 +15,22 @@ type PhoneNumberPrimitiveProps = {
 	onCountryChange: (country: RPNInput.Country) => void
 	size?: InputProps["size"]
 	showTrigger?: boolean
+	disabled?: boolean
+	flagsOnly?: boolean
 	className?: string
 }
 
-const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, country, onCountryChange, size, showTrigger = true, className }) => {
+const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
+	value,
+	onChange,
+	country,
+	onCountryChange,
+	size,
+	showTrigger = true,
+	disabled = false,
+	flagsOnly = false,
+	className,
+}) => {
 	const id = useId()
 	const countries = useMemo(() => getCountries(), [])
 
@@ -50,6 +62,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 	)
 
 	const handlePhoneChange = (val: string | undefined) => {
+		if (disabled) return
+
 		if (typeof val === "string") {
 			onChange(val)
 
@@ -85,6 +99,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 
 	// Handle country selection - convert from country name back to country code
 	const handleCountrySelection = (selectedValues: string[]) => {
+		if (disabled) return
+
 		const selectedValue = selectedValues[0]
 
 		// First check if it's already a country code
@@ -101,11 +117,18 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 
 	const InputWithClass = useMemo(() => {
 		const Comp = React.forwardRef<HTMLInputElement, InputProps>(({ className: innerClassName, ...props }, ref) => (
-			<Input ref={ref} data-slot="phone-input" size={size} className={cn(showTrigger && "rounded-l-none", className, innerClassName)} {...props} />
+			<Input
+				ref={ref}
+				data-slot="phone-input"
+				size={size}
+				disabled={disabled}
+				className={cn(showTrigger && "rounded-l-none", className, innerClassName)}
+				{...props}
+			/>
 		))
 		Comp.displayName = "InputWithClass"
 		return Comp
-	}, [className, size, showTrigger])
+	}, [className, size, showTrigger, disabled])
 
 	// Get the display name for the selected country
 	const selectedCountryName = country ? new Intl.DisplayNames(["en"], { type: "region" }).of(country) || country : ""
@@ -119,13 +142,15 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 					selectionMode="single"
 					isSearchable={true}
 					searchPlaceholder="Search countries..."
+					disabled={disabled}
 					renderTrigger={() => (
 						<Button
 							variant="neutral-soft"
 							size={size === "0" ? undefined : size}
+							disabled={disabled}
 							className="border-border-alpha flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0">
 							<Flag country={country} />
-							<span>{country ? `+${getCountryCallingCode(country)}` : ""}</span>
+							{!flagsOnly && <span>{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
 							<ChevronDown className="text-text-disabled size-4" />
 						</Button>
 					)}>
@@ -152,6 +177,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 				countrySelectComponent={() => null}
 				inputComponent={InputWithClass}
 				placeholder="Enter phone number"
+				disabled={disabled}
 				size={size}
 			/>
 		</div>
