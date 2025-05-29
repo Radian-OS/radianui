@@ -150,7 +150,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 							disabled={disabled}
 							className="border-border-alpha flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0">
 							<Flag country={country} />
-							{!flagsOnly && <span>{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
+							{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
 							<ChevronDown className="text-text-disabled size-4" />
 						</Button>
 					)}>
