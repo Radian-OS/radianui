@@ -16,10 +16,27 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const PhoneNumberPreview = () => {
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
+	type CountryOptions = "US" | "GB" | "IN" | "CA" | "AU" | "DE" | "FR" | "JP" | "BR"
+
 	const [size, setSize] = useState<SizeOptions>("36")
+	const [disabled, setDisabled] = useState<"true" | "false">("false")
 	const [phone, setPhone] = useState<string>("")
 	const [country, setCountry] = useState<import("react-phone-number-input").Country>("US")
 	const [showTrigger, setShowTrigger] = useState<"true" | "false">("true")
+	const [flagsOnly, setFlagsOnly] = useState<"true" | "false">("false")
+	const [defaultCountry, setDefaultCountry] = useState<CountryOptions>("US")
+	const countryOptions = [
+		{ value: "US", label: "United States" },
+		{ value: "GB", label: "United Kingdom" },
+		{ value: "IN", label: "India" },
+		{ value: "CA", label: "Canada" },
+		{ value: "AU", label: "Australia" },
+		{ value: "DE", label: "Germany" },
+		{ value: "FR", label: "France" },
+		{ value: "JP", label: "Japan" },
+		{ value: "BR", label: "Brazil" },
+	]
+
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -46,8 +63,9 @@ const PhoneNumberPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
 							<DropdownSub>
-								<DropdownSubTrigger>Trigger</DropdownSubTrigger>
+								<DropdownSubTrigger>Show Trigger</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -56,8 +74,60 @@ const PhoneNumberPreview = () => {
 										onSelectedChange={(keys) => {
 											setShowTrigger(Array.from(keys)[0] as "true" | "false")
 										}}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">Show</DropdownItem>
+										<DropdownItem value="false">Hide</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Flags Only</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[flagsOnly]}
+										onSelectedChange={(keys) => {
+											setFlagsOnly(Array.from(keys)[0] as "true" | "false")
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Country</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[defaultCountry]}
+										onSelectedChange={(keys) => {
+											const newCountry = Array.from(keys)[0] as CountryOptions
+											setDefaultCountry(newCountry)
+											setCountry(newCountry as import("react-phone-number-input").Country)
+										}}>
+										{countryOptions.map((option) => (
+											<DropdownItem key={option.value} value={option.value}>
+												{option.label}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[disabled]}
+										onSelectedChange={(keys) => {
+											setDisabled(Array.from(keys)[0] as "true" | "false")
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -69,36 +139,70 @@ const PhoneNumberPreview = () => {
 					<TabsTrigger value="code">Code</TabsTrigger>
 				</TabsList>
 			</div>
+
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
 					<div className="flex flex-col gap-1.5">
 						<Label>Phone Number</Label>
 						<PhoneNumber
+							flagsOnly={flagsOnly === "true"}
 							showTrigger={showTrigger === "true"}
 							value={phone}
+							disabled={disabled === "true"}
 							size={size}
 							onChange={setPhone}
 							country={country}
 							onCountryChange={setCountry}
-							className="w-80"
+							className={showTrigger === "false" ? "w-80" : ""}
 						/>
 					</div>
 				</div>
 			</TabsContent>
+
 			<TabsContent value="code">
 				<CodeArea
 					className="h-[420px]"
 					language="tsx"
-					code={` <div className="flex gap-1.5 flex-col">
- <PhoneNumber
- value="${phone}"
- showTrigger={${showTrigger === "true"}}
- size="${size}"
- onChange={setPhone}
- country="${country}"
- onCountryChange={setCountry}
- className='w-80'
- />`}
+					code={`import React, { useState } from "react"
+import { Label } from "@/registry/ui/label"
+import { PhoneNumber } from "@/registry/ui/phone-number"
+import type { Country } from "react-phone-number-input"
+
+const PhoneNumberExample = () => {
+  const [phone, setPhone] = useState<string>("${phone}")
+  const [country, setCountry] = useState<Country>("${country}")
+
+  return (
+    <div className="flex gap-1.5 flex-col">
+      <Label>Phone Number</Label>
+      <PhoneNumber
+        value={phone}
+        onChange={setPhone}
+        country={country}
+        onCountryChange={setCountry}
+        size="${size}"
+        showTrigger={${showTrigger === "true"}}${
+					disabled === "true"
+						? `
+        disabled={true}`
+						: ""
+				}${
+					flagsOnly === "true"
+						? `
+        flagsOnly={true}`
+						: ""
+				}${
+					showTrigger === "false"
+						? `
+        className="w-80"`
+						: ""
+				}
+      />
+    </div>
+  )
+}
+
+export default PhoneNumberExample`}
 				/>
 			</TabsContent>
 		</Tabs>

@@ -15,58 +15,74 @@ type PhoneNumberPrimitiveProps = {
 	onCountryChange: (country: RPNInput.Country) => void
 	size?: InputProps["size"]
 	showTrigger?: boolean
-	className?: string // 👈 applies ONLY to the Input
+	disabled?: boolean
+	flagsOnly?: boolean
+	className?: string
 }
 
-const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, country, onCountryChange, size, showTrigger = true, className }) => {
+const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
+	value,
+	onChange,
+	country,
+	onCountryChange,
+	size,
+	showTrigger = true,
+	disabled = false,
+	flagsOnly = false,
+	className,
+}) => {
 	const id = useId()
 	const countries = useMemo(() => getCountries(), [])
+
+	// Create a map of country names to country codes for reverse lookup
+	const countryNameToCode = useMemo(() => {
+		const map = new Map<string, RPNInput.Country>()
+		countries.forEach((c) => {
+			const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+			map.set(regionName.toLowerCase(), c)
+		})
+		return map
+	}, [countries])
 
 	// Country priority mapping for shared calling codes
 	const countryPriority = useMemo(
 		() =>
 			({
-				"1": ["US", "CA"], // +1: Prioritize US first, then Canada
-				"7": ["RU", "KZ"], // +7: Prioritize Russia first, then Kazakhstan
-				"47": ["NO", "SJ"], // +47: Prioritize Norway first
-				"590": ["GP", "BL", "MF"], // +590: Prioritize Guadeloupe first
-				"599": ["CW", "BQ"], // +599: Prioritize Curaçao first
-				"1242": ["BS"], // +1242: Bahamas
-				"1246": ["BB"], // +1246: Barbados
-				"1264": ["AI"], // +1264: Anguilla
-				"1268": ["AG"], // +1268: Antigua and Barbuda
-				// Add more as needed
+				"1": ["US", "CA"],
+				"7": ["RU", "KZ"],
+				"47": ["NO", "SJ"],
+				"590": ["GP", "BL", "MF"],
+				"599": ["CW", "BQ"],
+				"1242": ["BS"],
+				"1246": ["BB"],
+				"1264": ["AI"],
+				"1268": ["AG"],
 			}) as Record<string, string[]>,
 		[]
 	)
 
 	const handlePhoneChange = (val: string | undefined) => {
+		if (disabled) return
+
 		if (typeof val === "string") {
 			onChange(val)
 
-			// Extract country from the phone number by matching calling codes
 			if (val.startsWith("+")) {
 				const numberWithoutPlus = val.slice(1)
-
-				// Sort countries by calling code length (longest first) to handle overlapping codes
 				const sortedCountries = [...countries].sort((a, b) => getCountryCallingCode(b).length - getCountryCallingCode(a).length)
 
-				// Find all matching countries by calling code
 				const matchingCountries = sortedCountries.filter((countryCode) => {
 					const callingCode = getCountryCallingCode(countryCode)
 					return numberWithoutPlus.startsWith(callingCode)
 				})
 
 				if (matchingCountries.length > 0) {
-					// If multiple countries match, use priority mapping
 					let selectedCountry = matchingCountries[0]
 
-					// Check if we have a priority list for this calling code
 					const firstMatchCallingCode = getCountryCallingCode(matchingCountries[0])
 					const priorityList = countryPriority[firstMatchCallingCode as string]
 
 					if (priorityList) {
-						// Find the highest priority country that matches
 						const priorityCountry = priorityList.find((code) => matchingCountries.includes(code as RPNInput.Country))
 						if (priorityCountry) {
 							selectedCountry = priorityCountry as RPNInput.Country
@@ -81,51 +97,75 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 		}
 	}
 
-	// 👇 Stable component that captures `className` via closure
+	// Handle country selection - convert from country name back to country code
+	const handleCountrySelection = (selectedValues: string[]) => {
+		if (disabled) return
+
+		const selectedValue = selectedValues[0]
+
+		// First check if it's already a country code
+		if (countries.includes(selectedValue as RPNInput.Country)) {
+			onCountryChange(selectedValue as RPNInput.Country)
+		} else {
+			// If not, look up the country code from the name
+			const countryCode = countryNameToCode.get(selectedValue.toLowerCase())
+			if (countryCode) {
+				onCountryChange(countryCode)
+			}
+		}
+	}
+
 	const InputWithClass = useMemo(() => {
 		const Comp = React.forwardRef<HTMLInputElement, InputProps>(({ className: innerClassName, ...props }, ref) => (
 			<Input
 				ref={ref}
 				data-slot="phone-input"
 				size={size}
-				className={cn(
-					showTrigger && "rounded-l-none",
-					className, // outer className from PhoneNumber props
-					innerClassName // className passed from react-phone-number-input internally
-				)}
+				disabled={disabled}
+				className={cn(showTrigger && "rounded-l-none", className, innerClassName)}
 				{...props}
 			/>
 		))
 		Comp.displayName = "InputWithClass"
 		return Comp
-	}, [className, size, showTrigger])
+	}, [className, size, showTrigger, disabled])
+
+	// Get the display name for the selected country
+	const selectedCountryName = country ? new Intl.DisplayNames(["en"], { type: "region" }).of(country) || country : ""
 
 	return (
 		<div className="flex gap-0">
-			<Select
-				selectedValues={country ? [country] : []}
-				onSelectedChange={(vals) => onCountryChange(vals[0] as RPNInput.Country)}
-				selectionMode="single"
-				isSearchable={true}
-				searchPlaceholder="Search countries..."
-				renderTrigger={(selectedValues) => (
-					<Button
-						variant="neutral-soft"
-						size={size === "0" ? undefined : size}
-						className="border-border-alpha flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0">
-						<Flag country={selectedValues[0] as RPNInput.Country} />
-						<span>{selectedValues[0] ? `+${getCountryCallingCode(selectedValues[0] as RPNInput.Country)}` : ""}</span>
-						{showTrigger && <ChevronDown className="text-text-disabled size-4" />}
-					</Button>
-				)}>
-				{countries.map((c) => (
-					<SelectItem key={c} value={c}>
-						<Flag country={c} />
-						<span>{new Intl.DisplayNames(["en"], { type: "region" }).of(c)}</span>
-						<span className="text-text-tertiary ml-auto text-xs">+{getCountryCallingCode(c)}</span>
-					</SelectItem>
-				))}
-			</Select>
+			{showTrigger && (
+				<Select
+					selectedValues={selectedCountryName ? [selectedCountryName] : []}
+					onSelectedChange={handleCountrySelection}
+					selectionMode="single"
+					isSearchable={true}
+					searchPlaceholder="Search countries..."
+					disabled={disabled}
+					renderTrigger={() => (
+						<Button
+							variant="neutral-soft"
+							size={size === "0" ? undefined : size}
+							disabled={disabled}
+							className="border-border-alpha flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0">
+							<Flag country={country} />
+							{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
+							<ChevronDown className="text-text-disabled size-4" />
+						</Button>
+					)}>
+					{countries.map((c) => {
+						const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+						return (
+							<SelectItem key={c} value={regionName}>
+								<Flag country={c} />
+								<span>{regionName}</span>
+								<span className="text-text-tertiary ml-auto text-xs">+{getCountryCallingCode(c)}</span>
+							</SelectItem>
+						)
+					})}
+				</Select>
+			)}
 			<RPNInput.default
 				id={id}
 				className="flex-1"
@@ -137,6 +177,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({ value, onChange, cou
 				countrySelectComponent={() => null}
 				inputComponent={InputWithClass}
 				placeholder="Enter phone number"
+				disabled={disabled}
 				size={size}
 			/>
 		</div>
