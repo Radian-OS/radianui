@@ -188,7 +188,7 @@ const Flag = ({ country }: { country?: RPNInput.Country }) => {
 	if (!country) return <PhoneIcon className="text-text-disabled h-5 w-5" />
 	const CountryFlag = flags[country]
 	return (
-		<span className="flex h-5 w-10 items-center justify-center overflow-hidden rounded-sm [&>svg]:h-5 [&>svg]:w-5">
+		<span className="flex items-center justify-center overflow-hidden rounded-sm [&>svg]:h-5 [&>svg]:w-5">
 			{CountryFlag ? <CountryFlag title={country} /> : <ChevronDown className="h-5 w-5" />}
 		</span>
 	)
