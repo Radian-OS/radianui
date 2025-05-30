@@ -90,17 +90,14 @@ function SelectGroup({ label, children }: SelectGroupProps) {
 	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
 }
 // Variants for the Select trigger styling using class variance authority
-const SelectTriggerVariations = cva(
-	"active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2",
-	{
-		variants: {
-			...cvaInputVariants,
-		},
-		defaultVariants: {
-			size: defaultInputSize,
-		},
-	}
-)
+const SelectTriggerVariations = cva("active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2", {
+	variants: {
+		...cvaInputVariants,
+	},
+	defaultVariants: {
+		size: defaultInputSize,
+	},
+})
 // Type definition for the Select context
 type SelectContextType = {
 	values: string[]
@@ -270,8 +267,7 @@ function Select({
 												SelectTriggerVariations({ size, rounded }),
 												{
 													"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
-													"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2":
-														open && !disableOpenStyle,
+													"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
 													"rounded-l-none": disableOpenStyle,
 													[`border-primary rounded-l-none border`]: open && disableOpenStyle,
 												},
@@ -288,8 +284,7 @@ function Select({
 
 												{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
 											</span>
-											{endIcon &&
-												(!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />)}
+											{endIcon && (!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />)}
 										</Button>
 									) : (
 										<div
@@ -361,9 +356,7 @@ function CommandInput({ className, ...props }: React.ComponentPropsWithRef<typeo
 CommandInput.displayName = CommandPrimitive.Input.displayName
 // CommandList component that renders a list of command items
 function CommandList({ className, ...props }: React.ComponentPropsWithRef<typeof CommandPrimitive.List>) {
-	return (
-		<CommandPrimitive.List className={cn("no-scrollbar max-h-100 h-fit w-full overflow-y-auto overflow-x-hidden py-1.5", className)} {...props} />
-	)
+	return <CommandPrimitive.List className={cn("no-scrollbar max-h-100 h-fit w-full overflow-y-auto overflow-x-hidden py-1.5", className)} {...props} />
 }
 CommandList.displayName = CommandPrimitive.List.displayName
 // CommandEmpty component that displays a message when the command list is empty

@@ -9,9 +9,8 @@ const AccordionExample = () => {
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum
-						magni illum consequatur quae doloribus.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam
+						numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.
 					</AccordionContent>
 				</AccordionItem>
 
@@ -30,9 +29,8 @@ const AccordionExample = () => {
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum
-						magni illum consequatur quae doloribus.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam
+						numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.
 					</AccordionContent>
 				</AccordionItem>
 
@@ -51,9 +49,8 @@ const AccordionExample = () => {
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-						Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum
-						magni illum consequatur quae doloribus.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam
+						numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.
 					</AccordionContent>
 				</AccordionItem>
 
@@ -72,9 +69,8 @@ const AccordionExample = () => {
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dlor sit amet consectetur adipisicing elit. Laboriosam
-						fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum
-						consequatur quae doloribus.
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dlor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam
+						numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.
 					</AccordionContent>
 				</AccordionItem>
 

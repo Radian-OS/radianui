@@ -2,16 +2,7 @@ import React, { useState } from "react"
 import { Avatar } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -42,11 +33,7 @@ const HovercardPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Side</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setSide(Array.from(keys)[0] as Side)}
-										minSelectionCount={1}
-										selectedValues={[side]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSide(Array.from(keys)[0] as Side)} minSelectionCount={1} selectedValues={[side]}>
 										<DropdownItem value="top">Top</DropdownItem>
 										<DropdownItem value="right">Right</DropdownItem>
 										<DropdownItem value="bottom">Bottom</DropdownItem>
@@ -59,11 +46,7 @@ const HovercardPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Align</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setAlign(Array.from(keys)[0] as Align)}
-										minSelectionCount={1}
-										selectedValues={[align]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setAlign(Array.from(keys)[0] as Align)} minSelectionCount={1} selectedValues={[align]}>
 										<DropdownItem value="start">Start</DropdownItem>
 										<DropdownItem value="center">Center</DropdownItem>
 										<DropdownItem value="end">End</DropdownItem>
@@ -74,11 +57,7 @@ const HovercardPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>With arrow</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setArrow(Array.from(keys)[0] as Arrow)}
-										minSelectionCount={1}
-										selectedValues={[arrow]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setArrow(Array.from(keys)[0] as Arrow)} minSelectionCount={1} selectedValues={[arrow]}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

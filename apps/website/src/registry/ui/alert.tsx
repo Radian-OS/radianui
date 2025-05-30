@@ -88,21 +88,8 @@ function Alert({ color = "neutral", variant = "default", title, message, icon, e
 			) : (
 				// Original title/message structure
 				<div className="flex flex-grow flex-col">
-					{title && (
-						<h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-text", isNeutralOutline && hasCustomTextColor && "!text-current")}>
-							{title}
-						</h5>
-					)}
-					{message && (
-						<p
-							className={cn(
-								"text-sm",
-								isNeutralOutline && "text-text-secondary",
-								isNeutralOutline && hasCustomTextColor && "!text-current opacity-80"
-							)}>
-							{message}
-						</p>
-					)}
+					{title && <h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-text", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
+					{message && <p className={cn("text-sm", isNeutralOutline && "text-text-secondary", isNeutralOutline && hasCustomTextColor && "!text-current opacity-80")}>{message}</p>}
 					{children}
 				</div>
 			)}

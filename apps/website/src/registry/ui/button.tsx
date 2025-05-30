@@ -31,8 +31,7 @@ const buttonVariants = cva(
 				outline: "",
 				ghost: "",
 				"neutral-soft": "bg-bg-base font-medium hover:bg-fill-level1 focus-visible:outline-none focus-visible:ring-border-alpha",
-				"neutral-outline":
-					"bg-bg-base font-medium outline-1 outline-border-alpha drop-shadow-xs hover:bg-fill-level2 focus-visible:ring-border-alpha",
+				"neutral-outline": "bg-bg-base font-medium outline-1 outline-border-alpha drop-shadow-xs hover:bg-fill-level2 focus-visible:ring-border-alpha",
 			},
 			size: {
 				"28": "[&>svg]:size-4 text-xs [&>span]:px-1 rounded-md",
@@ -188,18 +187,7 @@ const buttonVariants = cva(
 	}
 )
 
-function Button({
-	variant = "strong",
-	size = "36",
-	isIcon = false,
-	color = "primary",
-	className,
-	children,
-	disabled,
-	lead,
-	trail,
-	...props
-}: ButtonProps) {
+function Button({ variant = "strong", size = "36", isIcon = false, color = "primary", className, children, disabled, lead, trail, ...props }: ButtonProps) {
 	// Create a combined class with a special treatment for disabled state
 	const combinedClass = cn(
 		buttonVariants({ variant, size, isIcon, color }),

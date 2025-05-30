@@ -107,11 +107,7 @@ async function writeComponentJSON() {
 		const name = component.replace(/\.(tsx?|js)$/, "")
 
 		// Extract dependencies and content asynchronously
-		const [dependencyArray, registryDependencyArray, content] = await Promise.all([
-			getDependencyArray(filePath),
-			getRegistryDependencyArray(filePath),
-			getContent(filePath),
-		])
+		const [dependencyArray, registryDependencyArray, content] = await Promise.all([getDependencyArray(filePath), getRegistryDependencyArray(filePath), getContent(filePath)])
 
 		// Create the registry file object
 		const registryFile: RegistryFile = {

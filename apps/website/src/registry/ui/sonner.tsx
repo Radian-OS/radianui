@@ -46,16 +46,7 @@ type ToastProps = {
 	visibleToasts?: number
 }
 
-const Sonners: React.FC<ToastProps> = function ({
-	title,
-	content,
-	description,
-	buttons,
-	icon,
-	closable = true,
-	variant = "default",
-	duration = 50000,
-}) {
+const Sonners: React.FC<ToastProps> = function ({ title, content, description, buttons, icon, closable = true, variant = "default", duration = 50000 }) {
 	// Create a toast with the provided content
 	const toastId = toast(
 		<div className="min-[375px]:w-88 w-full">
@@ -111,10 +102,7 @@ const Sonners: React.FC<ToastProps> = function ({
 					<div className="flex items-center justify-center gap-2 text-sm/5">
 						{/* Render icon if provided */}
 						{icon && (
-							<div
-								className={`${React.isValidElement(icon) && (icon.props as { className?: string })?.className ? "" : "h-5 w-5"} flex items-center justify-center`}>
-								{icon}
-							</div>
+							<div className={`${React.isValidElement(icon) && (icon.props as { className?: string })?.className ? "" : "h-5 w-5"} flex items-center justify-center`}>{icon}</div>
 						)}
 						{/* Render title and description */}
 						{title && description && (

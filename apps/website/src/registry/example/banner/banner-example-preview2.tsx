@@ -16,10 +16,7 @@ const BannerExamplePreview2 = () => {
 					<Banner className="flex flex-col items-center justify-center gap-3 sm:flex-row" variant="primary">
 						<Moon />
 						Radian is now available at 20% for all users in Nepal. Claim your subscription now
-						<Button
-							size="32"
-							variant="outline"
-							className="text-static-white outline-static-white hover:text-static-white hover:bg-primary-hover outline">
+						<Button size="32" variant="outline" className="text-static-white outline-static-white hover:text-static-white hover:bg-primary-hover outline">
 							Learn More
 						</Button>
 						<Button size="32" className="text-primary hover:bg-static-white bg-white">

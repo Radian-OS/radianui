@@ -20,9 +20,7 @@ export async function fetchAllCategories(): Promise<string[]> {
 		const data = (await response.json()) as GoogleFontResponse
 
 		// Explicitly type the map function and ensure type safety
-		const categories = Array.from(
-			new Set(data.items.map((font: GoogleFont) => font.category).filter((category): category is string => typeof category === "string"))
-		)
+		const categories = Array.from(new Set(data.items.map((font: GoogleFont) => font.category).filter((category): category is string => typeof category === "string")))
 
 		return categories
 	} catch (error) {

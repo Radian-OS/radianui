@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { Avatar } from "@/registry/ui/avatar"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "16" | "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80"
@@ -80,11 +71,7 @@ const AvatarPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)}
-										minSelectionCount={1}
-										selectedValues={[size]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
 										<DropdownItem value="16">16</DropdownItem>
 										<DropdownItem value="20">20</DropdownItem>
 										<DropdownItem value="24">24</DropdownItem>
@@ -102,11 +89,7 @@ const AvatarPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)}
-										minSelectionCount={1}
-										selectedValues={[variant]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
 										<DropdownItem value="circle">Circle</DropdownItem>
 										<DropdownItem value="square">Square</DropdownItem>
 									</DropdownGroup>
@@ -117,11 +100,7 @@ const AvatarPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Status</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setStatus(Array.from(keys)[0] as Status)}
-										minSelectionCount={1}
-										selectedValues={[status]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStatus(Array.from(keys)[0] as Status)} minSelectionCount={1} selectedValues={[status]}>
 										<DropdownItem value="online">Online</DropdownItem>
 										<DropdownItem value="offline">Offline</DropdownItem>
 										<DropdownItem value="verified">Verified</DropdownItem>

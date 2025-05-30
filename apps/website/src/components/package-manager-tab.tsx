@@ -35,14 +35,7 @@ export default function PackageManagerTabs({
 				}
 				return (
 					<TabsContent key={manager} value={manager}>
-						<CodeArea
-							language={language}
-							code={`${prefix} ${code}`}
-							showLineNumbers={showLineNumbers}
-							copiable={copiable}
-							className={cn("px-3 py-4", className)}
-							{...props}
-						/>
+						<CodeArea language={language} code={`${prefix} ${code}`} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("px-3 py-4", className)} {...props} />
 					</TabsContent>
 				)
 			})}

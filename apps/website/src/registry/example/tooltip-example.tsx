@@ -20,10 +20,7 @@ const TooltipExample = () => {
 			<div className="flex gap-5">
 				<label className="flex flex-col gap-2">
 					<span>Select Tooltip Position:</span>
-					<select
-						value={selectedVariant}
-						onChange={(e) => setSelectedVariant(e.target.value as TooltipPosition)}
-						className="w-max rounded border p-2">
+					<select value={selectedVariant} onChange={(e) => setSelectedVariant(e.target.value as TooltipPosition)} className="w-max rounded border p-2">
 						{tooltipPositions.map((position) => (
 							<option key={position} value={position}>
 								{position.charAt(0).toUpperCase() + position.slice(1)}

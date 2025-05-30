@@ -66,12 +66,7 @@ function Accordion({ size = "sm", variant = "box", interaction = "single", class
 		<AccordionContext.Provider value={{ size, variant }}>
 			<AccordionPrimitive.Root
 				data-slot="accordion"
-				className={classNames(
-					"w-full",
-					size === "sm" ? "text-sm/6" : "text-base/7",
-					variant === "table" && "border-stroke rounded-xl border",
-					className
-				)}
+				className={classNames("w-full", size === "sm" ? "text-sm/6" : "text-base/7", variant === "table" && "border-stroke rounded-xl border", className)}
 				{...rootProps}>
 				{children}
 			</AccordionPrimitive.Root>
@@ -117,10 +112,7 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 				{...props}>
 				{children}
 				<ChevronDownIcon
-					className={classNames(
-						"AccordionChevron text-text-tertiary shrink-0 transition-transform duration-200",
-						size === "sm" ? "size-5" : "size-6"
-					)}
+					className={classNames("AccordionChevron text-text-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")}
 					aria-hidden
 				/>
 			</AccordionPrimitive.Trigger>
@@ -140,9 +132,7 @@ function AccordionContent({ children, className, ...props }: AccordionContentPro
 				className
 			)}
 			{...props}>
-			<div className={classNames(variant === "open" ? (size === "sm" ? "px-0 pb-3" : "px-0 pb-4") : size === "sm" ? "px-4 pb-3" : "p-4", "pt-0")}>
-				{children}
-			</div>
+			<div className={classNames(variant === "open" ? (size === "sm" ? "px-0 pb-3" : "px-0 pb-4") : size === "sm" ? "px-4 pb-3" : "p-4", "pt-0")}>{children}</div>
 		</AccordionPrimitive.Content>
 	)
 }

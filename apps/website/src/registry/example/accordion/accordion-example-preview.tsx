@@ -29,8 +29,7 @@ const contents = [
 	{
 		id: 4,
 		trigger: "How can I stay updated with Radian OS developments?",
-		content:
-			"You can subscribe to Radian OS updates to receive the latest information, tips, and exclusive offers directly from the development team.",
+		content: "You can subscribe to Radian OS updates to receive the latest information, tips, and exclusive offers directly from the development team.",
 		icon: ComponentIcon,
 	},
 ]

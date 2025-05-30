@@ -121,11 +121,7 @@ value="2">Inactive</DropdownItem>
 							<DropdownSub>
 								<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setMode(keys[0] as "single" | "multiple")}
-										minSelectionCount={1}
-										selectedValues={[mode]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setMode(keys[0] as "single" | "multiple")} minSelectionCount={1} selectedValues={[mode]}>
 										<DropdownItem value="single">Single</DropdownItem>
 										<DropdownItem value="multiple">Multiple</DropdownItem>
 									</DropdownGroup>
