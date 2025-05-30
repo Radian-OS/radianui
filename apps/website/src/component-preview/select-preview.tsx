@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CircleUserRound, Clock } from "lucide-react"
+import { Box, CircleUserRound } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -38,6 +38,9 @@ const SelectPreview = () => {
 
 	const [hasError, setHasError] = useState<boolean>(false)
 	const [hint, setHint] = useState<boolean>(false)
+
+	const [startContent, setStartContent] = useState<boolean>(false)
+	const [endContent, setEndContent] = useState<boolean>(false)
 
 	const sizeHeightMapping: Record<number, string> = {
 		28: "h-4 w-4",
@@ -216,6 +219,34 @@ const SelectPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 
+								<DropdownSub>
+									<DropdownSubTrigger>Start Content</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(startContent)]}
+											onSelectedChange={(values) => setStartContent(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>End Content</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(endContent)]}
+											onSelectedChange={(values) => setEndContent(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
 								{/* <DropdownSub>
 								<DropdownSubTrigger>Min Selection Count</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -260,10 +291,18 @@ const SelectPreview = () => {
 						hint={hint ? "Hint text to help the user with input" : ""}
 						className="w-80">
 						<SelectGroup label="Backend Frameworks">
-							<SelectItem startContent={<Clock size={20} />} endContent={<Clock size={20} />} value="node-js">
+							<SelectItem
+								startContent={startContent ? <Box className={iconClass} /> : null}
+								endContent={endContent ? <Box className={iconClass} /> : null}
+								value="node-js">
 								Node.js (Express)
 							</SelectItem>
-							<SelectItem value="django">Django (Python)</SelectItem>
+							<SelectItem
+								startContent={startContent ? <Box className={iconClass} /> : null}
+								endContent={endContent ? <Box className={iconClass} /> : null}
+								value="django">
+								Django (Python)
+							</SelectItem>
 							<SelectItem value="rails">Rails (Ruby)</SelectItem>
 							<SelectItem disabled value="laravel">
 								Laravel (PHP)
