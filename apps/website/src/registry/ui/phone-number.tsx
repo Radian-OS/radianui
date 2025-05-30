@@ -6,7 +6,7 @@ import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Input, InputProps } from "@/registry/ui/input"
-import { Select, SelectItem } from "@/registry/ui/select"
+import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 
 type PhoneNumberPrimitiveProps = {
 	value: string
@@ -145,25 +145,30 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					disabled={disabled}
 					renderTrigger={() => (
 						<Button
+							trail={flagsOnly ? undefined : <ChevronDown className="text-text-disabled size-4" />}
 							variant="neutral-soft"
 							size={size === "0" ? undefined : size}
 							disabled={disabled}
+							lead={<Flag country={country} />}
 							className="focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
-							<Flag country={country} />
+							{/* <Flag country={country} /> */}
+
 							{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
-							<ChevronDown className="text-text-disabled size-4" />
+							{/* <ChevronDown className="text-text-disabled size-4" /> */}
 						</Button>
 					)}>
-					{countries.map((c) => {
-						const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
-						return (
-							<SelectItem key={c} value={regionName}>
-								<Flag country={c} />
-								<span>{regionName}</span>
-								<span className="text-text-tertiary ml-auto text-xs">+{getCountryCallingCode(c)}</span>
-							</SelectItem>
-						)
-					})}
+					<SelectGroup>
+						{countries.map((c) => {
+							const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+							return (
+								<SelectItem key={c} value={regionName}>
+									<Flag country={c} />
+									<span>{regionName}</span>
+									<span className="text-text-tertiary text-xs">+{getCountryCallingCode(c)}</span>
+								</SelectItem>
+							)
+						})}
+					</SelectGroup>
 				</Select>
 			)}
 			<RPNInput.default
@@ -188,8 +193,8 @@ const Flag = ({ country }: { country?: RPNInput.Country }) => {
 	if (!country) return <PhoneIcon className="text-text-disabled h-5 w-5" />
 	const CountryFlag = flags[country]
 	return (
-		<span className="flex items-center justify-center overflow-hidden rounded-sm [&>svg]:h-5 [&>svg]:w-5">
-			{CountryFlag ? <CountryFlag title={country} /> : <ChevronDown className="h-5 w-5" />}
+		<span className="flex items-center justify-center overflow-hidden rounded-sm [&>svg]:size-5">
+			{CountryFlag ? <CountryFlag title={country} /> : <ChevronDown className="size-5" />}
 		</span>
 	)
 }
