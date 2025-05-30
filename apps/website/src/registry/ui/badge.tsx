@@ -24,10 +24,10 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			pastel: "",
 		},
 		size: {
-			"20": "h-5 px-1.5 text-xs rounded-radius-sm",
-			"24": "h-6 px-2 text-xs rounded-radius-sm",
-			"28": "h-7 px-2 text-sm rounded-radius-md",
-			"32": "h-8 px-3 text-sm rounded-radius-md",
+			"20": "h-5 px-1.5 text-xs rounded-sm",
+			"24": "h-6 px-2 text-xs rounded-sm",
+			"28": "h-7 px-2 text-sm rounded-md",
+			"32": "h-8 px-3 text-sm rounded-md",
 		},
 		color: {
 			primary: "",

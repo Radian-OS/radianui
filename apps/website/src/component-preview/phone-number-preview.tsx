@@ -74,8 +74,8 @@ const PhoneNumberPreview = () => {
 										onSelectedChange={(keys) => {
 											setShowTrigger(Array.from(keys)[0] as "true" | "false")
 										}}>
-										<DropdownItem value="true">Show</DropdownItem>
-										<DropdownItem value="false">Hide</DropdownItem>
+										<DropdownItem value="true">true</DropdownItem>
+										<DropdownItem value="false">false</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
