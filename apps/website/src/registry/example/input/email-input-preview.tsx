@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { ArrowRight, Mail } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -45,11 +36,7 @@ const EmailPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 										{sizes.map((size) => (
 											<DropdownItem value={size} key={size}>
 												{size}
@@ -75,11 +62,7 @@ const EmailPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>HasError</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

@@ -176,20 +176,8 @@ const Modal7 = () => (
 		</ModalTrigger>
 		<ModalContent>
 			<div className="flex items-center justify-center gap-2 pt-6">
-				<Image
-					className="rounded-2xl"
-					src={"https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"}
-					alt="radian"
-					height={60}
-					width={60}
-				/>
-				<Image
-					className="rounded-2xl"
-					src={"https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"}
-					alt="radian"
-					height={60}
-					width={60}
-				/>
+				<Image className="rounded-2xl" src={"https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"} alt="radian" height={60} width={60} />
+				<Image className="rounded-2xl" src={"https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png"} alt="radian" height={60} width={60} />
 			</div>
 			<ModalHeader className="text-center">
 				<ModalTitle>Connect account to Github</ModalTitle>

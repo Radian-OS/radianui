@@ -15,63 +15,66 @@ export type TabsContextType = {
 	size?: TabsSize
 }
 
-const tabsListStyles = cva("flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center min-w-max max-w-full overflow-x-scroll no-scrollbar", {
-	variants: {
-		size: {
-			sm: "",
-			md: "",
-			lg: "",
+const tabsListStyles = cva(
+	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center h-fit w-max data-[orientation=vertical]:flex-col min-w-max max-w-full overflow-x-scroll no-scrollbar",
+	{
+		variants: {
+			size: {
+				sm: "",
+				md: "",
+				lg: "",
+			},
+			variant: {
+				default: "bg-fill-level3",
+				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
+				outline: "border border-border",
+				ghost: "",
+			},
 		},
-		variant: {
-			default: "bg-fill-level3",
-			open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
-			outline: "border border-border",
-			ghost: "",
-		},
-	},
-	defaultVariants: {
-		size: "md",
-		variant: "default",
-	},
-	compoundVariants: [
-		{
-			size: ["sm", "md"],
-			variant: "default",
-			className: "p-0.5",
-		},
-		{
-			size: "lg",
-			variant: "default",
-			className: "p-1",
-		},
-
-		{
-			size: "sm",
-			variant: ["default", "outline", "ghost"],
-			className: "rounded-lg",
-		},
-		{
+		defaultVariants: {
 			size: "md",
-			variant: ["default", "outline", "ghost"],
-			className: "rounded-[10px]",
+			variant: "default",
 		},
-		{
-			size: "lg",
-			variant: ["default", "outline", "ghost"],
-			className: "rounded-xl",
-		},
-		{
-			size: ["sm", "md"],
-			variant: "open",
-			className: "gap-3",
-		},
-		{
-			size: "lg",
-			variant: "open",
-			className: "gap-4",
-		},
-	],
-})
+		compoundVariants: [
+			{
+				size: ["sm", "md"],
+				variant: "default",
+				className: "p-0.5",
+			},
+			{
+				size: "lg",
+				variant: "default",
+				className: "p-1",
+			},
+
+			{
+				size: "sm",
+				variant: ["default", "outline", "ghost"],
+				className: "rounded-lg",
+			},
+			{
+				size: "md",
+				variant: ["default", "outline", "ghost"],
+				className: "rounded-[10px]",
+			},
+			{
+				size: "lg",
+				variant: ["default", "outline", "ghost"],
+				className: "rounded-xl",
+			},
+			{
+				size: ["sm", "md"],
+				variant: "open",
+				className: "gap-3",
+			},
+			{
+				size: "lg",
+				variant: "open",
+				className: "gap-4",
+			},
+		],
+	}
+)
 
 const tabsTriggerStyles = cva(
 	"inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium ring-offset-background text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 data-[state=active]:text-text w-fit data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
@@ -83,10 +86,9 @@ const tabsTriggerStyles = cva(
 				lg: "text-sm",
 			},
 			variant: {
-				default:
-					"data-[state=active]:bg-bg-base  border border-transparent  data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
+				default: "data-[state=active]:bg-bg-base  border border-transparent  data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
 				outline: "data-[state=active]:bg-fill-level2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
-				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-bg-base data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
+				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill-level2",
 			},
 		},
@@ -139,17 +141,20 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: "outline",
-				className: "data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=vertical]:last:rounded-b-lg",
+				className:
+					"data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=vertical]:last:rounded-b-lg",
 			},
 			{
 				size: "md",
 				variant: "outline",
-				className: "data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
+				className:
+					"data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
 			},
 			{
 				size: "lg",
 				variant: "outline",
-				className: "data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=vertical]:last:roonded-b-xl",
+				className:
+					"data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=vertical]:last:roonded-b-xl",
 			},
 			{
 				size: "sm",
@@ -174,6 +179,16 @@ const tabsTriggerStyles = cva(
 	}
 )
 
+const tabTriggerIconStyles = cva("[&>svg]:text-text-tertiary", {
+	variants: {
+		size: {
+			sm: "[&>svg]:size-4",
+			md: "[&>svg]:size-5",
+			lg: "[&>svg]:size-5",
+		},
+	},
+})
+
 const TabsContext = React.createContext<TabsContextType | null>(null)
 
 function useTabs() {
@@ -184,37 +199,25 @@ function useTabs() {
 	return context
 }
 
-function Tabs({
-	variant = "default",
-	size = "md",
-	className,
-	defaultValue,
-	children,
-	...props
-}: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & TabsContextType) {
+function Tabs({ variant = "default", size = "md", className, defaultValue, children, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & TabsContextType) {
 	return (
 		<TabsContext.Provider value={{ variant: variant, size: size }}>
-			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col data-[orientation=vertical]:flex-row gap-3", className)} defaultValue={defaultValue} {...props}>
+			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3 data-[orientation=vertical]:flex-row", className)} defaultValue={defaultValue} {...props}>
 				{children}
 			</TabsPrimitive.Root>
 		</TabsContext.Provider>
 	)
 }
 
-function TabsList({
-	className,
-	width = "fit",
-	children,
-	...props
-}: TabsListProps &
-	React.RefAttributes<HTMLDivElement> & {
-		width?: TabsListWidth
-	}) {
+function TabsList({ className, width = "fit", children, ...props }: TabsListProps & React.RefAttributes<HTMLDivElement> & { width?: TabsListWidth }) {
 	const { size, variant } = useTabs()
-
 	return (
 		<TabsPrimitive.List
-			className={cn(tabsListStyles({ size, variant }), "data-[orientation=vertical]:flex-col w-max", { "data-[orientatio=horizontal]:items-stretch data-[orientatio=horizontal]:w-full data-[orientatio=horizontal]:*:flex-1": width == "full" }, className)}
+			className={cn(
+				tabsListStyles({ size, variant }),
+				{ "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1": width == "full" },
+				className
+			)}
 			{...props}>
 			{children}
 		</TabsPrimitive.List>
@@ -231,11 +234,9 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 
 	return (
 		<TabsPrimitive.Trigger className={cn(tabsTriggerStyles({ variant, size }), className)} {...props}>
-			{icon && <span className={cn("[&>svg]:size-5")}>{icon}</span>}
+			{icon && <span className={cn(tabTriggerIconStyles({ size }))}>{icon}</span>}
 			{children}
-			{counter !== undefined && (
-				<Badge>{counter}</Badge>
-			)}
+			{counter !== undefined && <Badge className={cn("h-5 rounded-full", { "h-4": size === "sm" })}>{counter}</Badge>}
 		</TabsPrimitive.Trigger>
 	)
 }
@@ -243,10 +244,7 @@ TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
 	return (
 		<TabsPrimitive.Content
-			className={cn(
-				"focus-visible:ring-ring ring-offset-background focus-visible:outline-hidden m-0 max-w-full p-0 focus-visible:ring-2 focus-visible:ring-offset-2",
-				className
-			)}
+			className={cn("focus-visible:ring-ring ring-offset-background focus-visible:outline-hidden m-0 max-w-full p-0 focus-visible:ring-2 focus-visible:ring-offset-2", className)}
 			{...props}
 		/>
 	)

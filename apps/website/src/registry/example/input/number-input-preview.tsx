@@ -2,16 +2,7 @@ import { useEffect, useState } from "react"
 import { Minus, Plus } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -263,9 +254,7 @@ export default CounterInput
 							label="Amount"
 						/>
 					)}
-					{example === "basic" && (
-						<Input onChange={handleChange} className="w-80 text-center" size={size} value={amount} label="Amount" inputMode="numeric" />
-					)}
+					{example === "basic" && <Input onChange={handleChange} className="w-80 text-center" size={size} value={amount} label="Amount" inputMode="numeric" />}
 				</div>
 			</TabsContent>
 

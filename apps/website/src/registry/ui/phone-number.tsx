@@ -60,10 +60,7 @@ const CountrySelect = ({ value, onChange, size, showTrigger }: CountrySelectProp
 	const countries = getCountries()
 
 	const triggerContent = (
-		<Button
-			variant="neutral-soft"
-			size={size === "0" ? null : size}
-			className="border-border-alpha flex items-center gap-1 rounded-r-none border border-r-0">
+		<Button variant="neutral-soft" size={size === "0" ? null : size} className="border-border-alpha flex items-center gap-1 rounded-r-none border border-r-0">
 			<FlagComponent country={value} countryName={value} />
 			<span>+{getCountryCallingCode(value)}</span>
 			{showTrigger && <ChevronDown className="text-text-disabled size-5" />}
@@ -103,11 +100,7 @@ PhoneInput.displayName = "PhoneInput"
 
 const FlagComponent = ({ country, countryName }: RPNInput.FlagProps) => {
 	const Flag = flags[country]
-	return (
-		<span className="w-8 overflow-hidden rounded-sm">
-			{Flag ? <Flag title={countryName} /> : <PhoneIcon className="size-5" aria-hidden="true" />}
-		</span>
-	)
+	return <span className="w-8 overflow-hidden rounded-sm">{Flag ? <Flag title={countryName} /> : <PhoneIcon className="size-5" aria-hidden="true" />}</span>
 }
 
 export { PhoneNumber }

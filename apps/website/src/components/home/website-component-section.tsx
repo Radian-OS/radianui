@@ -75,18 +75,9 @@ export default function WebsiteComponent() {
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>
 			<div className="max-w-310 mx-auto">
-				<div
-					id="body"
-					className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
+				<div id="body" className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
 					{componentsList.map((item, idx) => (
-						<ComponentCard
-							key={item.title + idx}
-							href={item.href}
-							title={item.title}
-							description={item.description}
-							svgUrl={item.svgUrl}
-							darkModeSvgUrl={item.darkModeSvgUrl}
-						/>
+						<ComponentCard key={item.title + idx} href={item.href} title={item.title} description={item.description} svgUrl={item.svgUrl} darkModeSvgUrl={item.darkModeSvgUrl} />
 					))}
 				</div>
 			</div>

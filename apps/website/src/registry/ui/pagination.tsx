@@ -282,10 +282,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 					<div className="flex items-center justify-center gap-6">
 						<span className="text-sm">Go to</span>
 						<div>
-							<Select
-								selectedValues={[currentPage.toString()]}
-								onSelectedChange={(values) => handlePageChange(parseInt(values[0], 10))}
-								className="h-8 w-max">
+							<Select selectedValues={[currentPage.toString()]} onSelectedChange={(values) => handlePageChange(parseInt(values[0], 10))} className="h-8 w-max">
 								{[...Array(totalPages)].map((_, index) => {
 									const value = index + 1 // Calculate the value dynamically
 

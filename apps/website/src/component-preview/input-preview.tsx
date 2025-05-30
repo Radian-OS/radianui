@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { CircleUserRound } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -50,11 +41,7 @@ const InputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[rounded]}
-										onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 										{roundedOptions.map((roundedOption) => (
 											<DropdownItem value={roundedOption} key={roundedOption}>
 												{roundedOption}
@@ -66,11 +53,7 @@ const InputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 										{sizes.map((size) => (
 											<DropdownItem value={size} key={size}>
 												{size}
@@ -82,11 +65,7 @@ const InputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(label)]}
-										onSelectedChange={(values) => setLabel(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -95,11 +74,7 @@ const InputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -121,11 +96,7 @@ const InputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Lead</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(leadIcon)]}
-										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(leadIcon)]} onSelectedChange={(values) => setLeadIcon(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -134,11 +105,7 @@ const InputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hint)]}
-										onSelectedChange={(values) => setHint(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -147,11 +114,7 @@ const InputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

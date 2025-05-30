@@ -152,9 +152,7 @@ export default function Navbar() {
 																	ref={(el) => {
 																		itemRefs.current[globalIndex] = el
 																	}}
-																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${
-																		selectedIndex === globalIndex ? "bg-border" : ""
-																	}`}>
+																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${selectedIndex === globalIndex ? "bg-border" : ""}`}>
 																	{item.name}
 																</li>
 															</Link>

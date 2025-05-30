@@ -1,16 +1,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Password } from "@/registry/ui/password"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -87,11 +78,7 @@ const PasswordInputPreview2 = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hint)]}
-										onSelectedChange={(values) => setHint(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

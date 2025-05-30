@@ -177,9 +177,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
 
 				// Check file size
 				if (file.size > maxSize) {
-					errors.push(
-						multiple ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.` : `File exceeds the maximum size of ${formatBytes(maxSize)}.`
-					)
+					errors.push(multiple ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.` : `File exceeds the maximum size of ${formatBytes(maxSize)}.`)
 					return
 				}
 

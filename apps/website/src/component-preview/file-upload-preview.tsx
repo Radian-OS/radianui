@@ -1,15 +1,6 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import FileUpload from "@/registry/ui/file-upload"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -52,11 +43,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[variant]}
-										onSelectedChange={(values) => setVariant(values[0])}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[variant]} onSelectedChange={(values) => setVariant(values[0])} minSelectionCount={1}>
 										<DropdownItem value="input">Input</DropdownItem>
 										<DropdownItem value="container">Container</DropdownItem>
 									</DropdownGroup>
@@ -65,11 +52,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Accept</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[format]}
-										onSelectedChange={(values) => setFormat(values[0])}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[format]} onSelectedChange={(values) => setFormat(values[0])} minSelectionCount={1}>
 										<DropdownItem value="image/*">Image</DropdownItem>
 										<DropdownItem value="application/*,text/*">Document</DropdownItem>
 										<DropdownItem value="audio/*">Audio</DropdownItem>
@@ -81,11 +64,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[rounded]}
-										onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 										{roundedOptions.map((roundedOption) => (
 											<DropdownItem value={roundedOption} key={roundedOption}>
 												{roundedOption}
@@ -97,11 +76,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 										{sizes.map((size) => (
 											<DropdownItem value={size} key={size}>
 												{size}
@@ -113,11 +88,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hint)]}
-										onSelectedChange={(values) => setHint(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -126,11 +97,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(label)]}
-										onSelectedChange={(values) => setLabel(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -139,11 +106,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -152,11 +115,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Max size (mb)</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[maxSize]}
-										onSelectedChange={(values) => setMaxSize(values[0] as MaxSizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[maxSize]} onSelectedChange={(values) => setMaxSize(values[0] as MaxSizeOptions)} minSelectionCount={1}>
 										{maxSizeOptions.map((maxOption) => (
 											<DropdownItem value={maxOption} key={maxOption}>
 												{maxOption}
@@ -168,11 +127,7 @@ const FileUploadPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Max files</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[maxFile]}
-										onSelectedChange={(values) => setMaxFile(values[0] as MaxFileOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[maxFile]} onSelectedChange={(values) => setMaxFile(values[0] as MaxFileOptions)} minSelectionCount={1}>
 										{maxFileOptions.map((maxFileOption) => (
 											<DropdownItem value={maxFileOption} key={maxFileOption}>
 												{maxFileOption}

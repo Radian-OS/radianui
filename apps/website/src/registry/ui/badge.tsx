@@ -43,21 +43,13 @@ function Badge({ variant = "neutral-outline", size = "24", closable = false, cla
 			<div className={cn(badgeVariants({ variant, size }), "flex items-center gap-1", className)} {...props}>
 				{Array.isArray(children)
 					? children.map((child, index) =>
-							typeof child === "object" && "type" in child && (child.type === "svg" || typeof child.type === "function") ? (
-								<span key={index}>{child}</span>
-							) : (
-								child
-							)
+							typeof child === "object" && "type" in child && (child.type === "svg" || typeof child.type === "function") ? <span key={index}>{child}</span> : child
 						)
 					: children}
 				{closable && (
 					<X
 						onClick={() => setShowBadge(false)}
-						className={cn(
-							size === "20" || size === "24" ? "size-3" : "size-4",
-							"cursor-pointer font-extrabold",
-							variant === "neutral-outline" && "text-text-disabled"
-						)}
+						className={cn(size === "20" || size === "24" ? "size-3" : "size-4", "cursor-pointer font-extrabold", variant === "neutral-outline" && "text-text-disabled")}
 					/>
 				)}
 			</div>

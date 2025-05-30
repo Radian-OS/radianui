@@ -3,16 +3,7 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
 import { CurrencyInput } from "@/registry/ui/currency"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CurrencyInputPreview = () => {
@@ -43,11 +34,7 @@ const CurrencyInputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[rounded]}
-										onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 										{roundedOptions.map((roundedOption) => (
 											<DropdownItem value={roundedOption} key={roundedOption}>
 												{roundedOption}
@@ -60,11 +47,7 @@ const CurrencyInputPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hint)]}
-										onSelectedChange={(values) => setHint(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

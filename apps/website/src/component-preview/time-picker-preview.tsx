@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { Clock } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import TimePicker from "@/registry/ui/time-picker"
 
@@ -53,11 +44,7 @@ const TimePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[rounded]}
-										onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 										{roundedOptions.map((roundedOption) => (
 											<DropdownItem value={roundedOption} key={roundedOption}>
 												{roundedOption}
@@ -69,11 +56,7 @@ const TimePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 										{sizes.map((size) => (
 											<DropdownItem value={size} key={size}>
 												{size}
@@ -85,11 +68,7 @@ const TimePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(label)]}
-										onSelectedChange={(values) => setLabel(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -98,11 +77,7 @@ const TimePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -112,11 +87,7 @@ const TimePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>24 Hour Mode</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(is24Hour)]}
-										onSelectedChange={(values) => setIs24Hour(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(is24Hour)]} onSelectedChange={(values) => setIs24Hour(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -126,11 +97,7 @@ const TimePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Interval</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(interval)]}
-										onSelectedChange={(values) => setInterval(Number(values[0]))}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(interval)]} onSelectedChange={(values) => setInterval(Number(values[0]))} minSelectionCount={1}>
 										{intervalOptions.map((option) => (
 											<DropdownItem key={option} value={option}>
 												{`${option} min`}
@@ -143,11 +110,7 @@ const TimePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Lead</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(leadIcon)]}
-										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(leadIcon)]} onSelectedChange={(values) => setLeadIcon(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

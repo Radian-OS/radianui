@@ -1,16 +1,7 @@
 import React, { useState } from "react"
 import { Checkbox, CheckboxGroup } from "@/registry/ui/checkbox"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "sm" | "md" | "lg"
@@ -30,11 +21,7 @@ const CheckboxPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)}
-										minSelectionCount={1}
-										selectedValues={[size]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
 										<DropdownItem value="sm">sm</DropdownItem>
 										<DropdownItem value="md">md</DropdownItem>
 										<DropdownItem value="lg">lg</DropdownItem>

@@ -2,16 +2,7 @@ import React from "react"
 import { ChevronDown } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DropdownPreview = () => {
@@ -83,11 +74,7 @@ selectedValues={selected}>
 							<DropdownSub>
 								<DropdownSubTrigger>Selection mode</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setMode(keys[0] as "single" | "multiple")}
-										minSelectionCount={1}
-										selectedValues={[mode]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setMode(keys[0] as "single" | "multiple")} minSelectionCount={1} selectedValues={[mode]}>
 										<DropdownItem value="single">Single</DropdownItem>
 										<DropdownItem value="multiple">Multiple</DropdownItem>
 									</DropdownGroup>

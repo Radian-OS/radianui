@@ -81,11 +81,7 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 											</DropdownContent>
 										</Dropdown>
 									</BreadcrumbItem>
-									{separator === "slash" ? (
-										<Slash size={14} className="stroke-text-tertiary" />
-									) : (
-										<ChevronRight size={14} className="stroke-text-tertiary" />
-									)}
+									{separator === "slash" ? <Slash size={14} className="stroke-text-tertiary" /> : <ChevronRight size={14} className="stroke-text-tertiary" />}
 								</>
 							)}
 						</React.Fragment>
@@ -97,15 +93,7 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 }
 Breadcrumb.displayName = "Breadcrumb"
 
-function BreadcrumbItem({
-	children,
-	href,
-	isCurrent = false,
-	className = "",
-	showSeparator = false,
-	separator = "default",
-	...props
-}: BreadcrumbItemProps) {
+function BreadcrumbItem({ children, href, isCurrent = false, className = "", showSeparator = false, separator = "default", ...props }: BreadcrumbItemProps) {
 	const Comp = href ? "a" : "span"
 	const SeparatorIcon = separator === "slash" ? Slash : ChevronRight
 

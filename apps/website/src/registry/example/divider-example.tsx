@@ -7,14 +7,14 @@ const DividerExample = () => {
 			<div className="mb-10">
 				<h2 className="mb-4 text-lg font-semibold">Horizontal</h2>
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat tempore quasi accusantium aspernatur, fugit nam quia culpa quisquam
-					reiciendis quaerat animi iste quae. Reprehenderit impedit totam rem repellat suscipit atque.
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat tempore quasi accusantium aspernatur, fugit nam quia culpa quisquam reiciendis quaerat animi iste quae.
+					Reprehenderit impedit totam rem repellat suscipit atque.
 				</p>
 				<Divider orientation="vertical" />
 				<h2 className="mb-4 text-lg font-semibold">Horizontal</h2>
 				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat tempore quasi accusantium aspernatur, fugit nam quia culpa quisquam
-					reiciendis quaerat animi iste quae. Reprehenderit impedit totam rem repellat suscipit atque.
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat tempore quasi accusantium aspernatur, fugit nam quia culpa quisquam reiciendis quaerat animi iste quae.
+					Reprehenderit impedit totam rem repellat suscipit atque.
 				</p>
 				<Divider orientation="horizontal" />
 			</div>

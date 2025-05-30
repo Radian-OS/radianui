@@ -2,16 +2,7 @@ import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import DatePicker from "@/registry/ui/date-picker"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -46,11 +37,7 @@ const DatePickerPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[rounded]}
-											onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 											{roundedOptions.map((roundedOption) => (
 												<DropdownItem value={roundedOption} key={roundedOption}>
 													{roundedOption}
@@ -62,11 +49,7 @@ const DatePickerPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Size</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[size]}
-											onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 											{sizes.map((size) => (
 												<DropdownItem value={size} key={size}>
 													{size}
@@ -79,11 +62,7 @@ const DatePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(label)]}
-										onSelectedChange={(values) => setLabel(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -92,11 +71,7 @@ const DatePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -106,11 +81,7 @@ const DatePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -120,11 +91,7 @@ const DatePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hint)]}
-										onSelectedChange={(values) => setHint(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -135,11 +102,7 @@ const DatePickerPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Mode</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[mode]}
-											onSelectedChange={(values) => setMode(values[0] as DatePickerModes)}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[mode]} onSelectedChange={(values) => setMode(values[0] as DatePickerModes)} minSelectionCount={1}>
 											{!typeable && (
 												<>
 													<DropdownItem value="single">Single</DropdownItem>
@@ -192,11 +155,7 @@ const DatePickerPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Footer</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[String(footer)]}
-											onSelectedChange={(values) => setFooter(values[0] === "true")}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[String(footer)]} onSelectedChange={(values) => setFooter(values[0] === "true")} minSelectionCount={1}>
 											<DropdownItem value="true">True</DropdownItem>
 											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>

@@ -3,10 +3,7 @@ import { Time } from "@internationalized/date"
 import { cn } from "@/lib/utils"
 import { Select, SelectItem, SelectProps } from "./select"
 
-export type TimePickerProps = Pick<
-	SelectProps,
-	"className" | "classNames" | "defaultSelected" | "label" | "placeholder" | "rounded" | "size" | "renderTrigger" | "disabled"
-> & {
+export type TimePickerProps = Pick<SelectProps, "className" | "classNames" | "defaultSelected" | "label" | "placeholder" | "rounded" | "size" | "renderTrigger" | "disabled"> & {
 	interval?: number
 	value?: Time | null
 	onValueChange?: (time: Time | null) => void

@@ -69,8 +69,10 @@ import GithubIntegrationModalExample from "@/registry/example/modal/github-integ
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
+import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
+import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 
 type MdxProps = {
 	code: string
@@ -109,6 +111,8 @@ const components: MDXComponents = {
 	HovercardPreview: () => <HovercardPreview />,
 	InputOtpPreview: () => <InputOtpPreview />,
 	TabsPreview: () => <TabsPreview />,
+	IconCounterTabsExample: () => <IconCounterTabsExample />,
+	VerticalTabsWithIconExample:()=><VerticaTabsWithIconExample/>,
 	DropdownPreview: () => <DropdownPreview />,
 	ResizablePreview: () => <ResizablePreview />,
 	Nextjs: () => <Nextjs />,
@@ -140,16 +144,7 @@ const components: MDXComponents = {
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
 	SelectPreview: () => <SelectPreview />,
-	Code: ({
-		language,
-		pkg = ["pnpm", "yarn", "npm", "bun"],
-		tabs = false,
-		code,
-		showLineNumbers,
-		copiable = true,
-		className,
-		...props
-	}: CodeAreaProps) =>
+	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />
 		) : (
@@ -235,15 +230,10 @@ const components: MDXComponents = {
 	),
 	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
-	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-		<Link className={cn("font-medium underline underline-offset-4", className)} {...props} />
-	),
+	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium underline underline-offset-4", className)} {...props} />,
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
-			className={cn(
-				"bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10",
-				className
-			)}
+			className={cn("bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10", className)}
 			{...props}
 		/>
 	),

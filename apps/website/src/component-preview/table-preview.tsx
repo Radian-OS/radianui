@@ -2,16 +2,7 @@ import { useState } from "react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import MainTable from "@/registry/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -186,12 +177,7 @@ const TablePreview = () => {
 			header: "Status",
 			cell: ({ row }: { row: { original: PersonData } }) => (
 				<>
-					<Badge
-						size="20"
-						className={cn(
-							row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary",
-							row.original.status === "Active" && "bg-white text-black"
-						)}>
+					<Badge size="20" className={cn(row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary", row.original.status === "Active" && "bg-white text-black")}>
 						{row.original.status}
 					</Badge>
 				</>
@@ -392,11 +378,7 @@ const TablePreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Row height</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setRow(Array.from(keys)[0] as typeof row)}
-											minSelectionCount={1}
-											selectedValues={[row]}>
+										<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setRow(Array.from(keys)[0] as typeof row)} minSelectionCount={1} selectedValues={[row]}>
 											<DropdownItem value="40px">40px</DropdownItem>
 											<DropdownItem value="60px">60px</DropdownItem>
 											<DropdownItem value="90px">90px</DropdownItem>

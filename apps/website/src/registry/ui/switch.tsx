@@ -4,20 +4,17 @@ import React, { useEffect, useId, useRef, useState } from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-const switchStyles = cva(
-	"relative flex cursor-pointer items-center gap-2.5 rounded-full bg-border p-0.75 transition-all duration-[400ms] ease-in-out",
-	{
-		variants: {
-			size: {
-				"20": "w-9 h-5",
-				"24": "w-10.5 h-6",
-			},
+const switchStyles = cva("relative flex cursor-pointer items-center gap-2.5 rounded-full bg-border p-0.75 transition-all duration-[400ms] ease-in-out", {
+	variants: {
+		size: {
+			"20": "w-9 h-5",
+			"24": "w-10.5 h-6",
 		},
-		defaultVariants: {
-			size: "24",
-		},
-	}
-)
+	},
+	defaultVariants: {
+		size: "24",
+	},
+})
 
 const sliderStyles = cva("absolute select-none rounded-full bg-static-white transition-all duration-[400ms] ease-in-out", {
 	variants: {
@@ -78,8 +75,7 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 							"bg-primary": selected,
 							"cursor-not-allowed": disabled,
 							"opacity-50": disabled && selected,
-							"peer-focus-visible:ring-border peer-focus-visible:ring-offset-bg-base peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2":
-								!selected,
+							"peer-focus-visible:ring-border peer-focus-visible:ring-offset-bg-base peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2": !selected,
 						}
 					)}>
 					<span

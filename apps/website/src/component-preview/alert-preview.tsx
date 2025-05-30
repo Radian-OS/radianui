@@ -3,16 +3,7 @@ import { Bookmark, CircleCheck, Info, Star, Trash2, TriangleAlert } from "lucide
 import { Alert } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertPreview = () => {
@@ -106,11 +97,7 @@ const AlertPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Color</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setColor(Array.from(keys)[0] as typeof color)}
-											minSelectionCount={1}
-											selectedValues={[color]}>
+										<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setColor(Array.from(keys)[0] as typeof color)} minSelectionCount={1} selectedValues={[color]}>
 											<DropdownItem value="neutral">Neutral</DropdownItem>
 											<DropdownItem value="primary">Primary</DropdownItem>
 											<DropdownItem value="info">Information</DropdownItem>
