@@ -8,15 +8,15 @@ const BadgeExamplePreview = () => {
 		{
 			name: "Destructive",
 			component: (
-				<Badge variant="pastel" className="bg-error-focus text-error-text" size="24">
+				<Badge variant="pastel" color="error" size="24">
 					Destructive
 				</Badge>
 			),
 			code: `<Badge
-variant="pastel"
-className="bg-error-focus text-error-text"
+variant="pastel" 
+color="error" 
 size="24">
-Destructive
+ Destructive
 </Badge>`,
 		},
 		{
@@ -35,14 +35,14 @@ Label
 		{
 			name: "Avatar",
 			component: (
-				<Badge variant="strong" className="bg-info" size="24">
+				<Badge variant="strong" color="info" size="24">
 					<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
 					Roman Shrestha
 				</Badge>
 			),
 			code: `<Badge
 variant="strong"
-className="bg-info" size="24">
+color="info" size="24">
 <Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
 Roman Shrestha
 </Badge>`,
@@ -50,15 +50,16 @@ Roman Shrestha
 		{
 			name: "Close Icon",
 			component: (
-				<Badge variant="pastel" className="outline-warning text-warning-text bg-warning-focus outline" closable size="24">
+				<Badge variant="pastel" color="warning" className="outline-warning outline" closable size="24">
 					<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
 					My Custom Badge
 				</Badge>
 			),
 			code: `<Badge
-variant="pastel"
-className="outline outline-warning text-warning-text bg-warning-focus"
-closable
+variant="pastel" 
+color="warning"
+className="outline-warning outline" 
+closable 
 size="24">
 <Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
 My Custom Badge

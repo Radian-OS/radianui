@@ -64,6 +64,7 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/modal", name: "Modal" },
 			{ link: "/documentation/components/pagination", name: "Pagination" },
 			{ link: "/documentation/components/password", name: "Password" },
+			{ link: "/documentation/components/phone-number", name: "Phone Number" },
 			{ link: "/documentation/components/popover", name: "Popover" },
 			{ link: "/documentation/components/progress-bar", name: "Progress Bar" },
 			{ link: "/documentation/components/radio-group", name: "Radio Group" },

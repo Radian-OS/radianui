@@ -187,6 +187,7 @@ const ButtonPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
 					<Button
+						className="rounded-full"
 						lead={lead === "true" ? <Box className={iconClass} /> : undefined}
 						trail={trail === "true" ? <Box className={iconClass} /> : undefined}
 						isIcon={isIcon === "true"}

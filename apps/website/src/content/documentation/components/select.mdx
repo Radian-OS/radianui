@@ -16,44 +16,50 @@ source: https://github.com/Radian-os
 
 ##### Props
 
-| Prop Name   | Default Values | Values             |
-| ----------- | -------------- | ------------------ |
-| rounded     | lg             | xs,sm,md,lg,xl,2xl |
-| size        | 36             | 28,32,36,40,44,48  |
-| label       |                |                    |
-| disabled    | false          | true/false         |
-| placeholder |                |                    |
-| suggestion  | true           | true/false         |
+| Prop Name     | Default Values | Values             |
+| ------------- | -------------- | ------------------ |
+| rounded       | lg             | xs,sm,md,lg,xl,2xl |
+| size          | 36             | 28,32,36,40,44,48  |
+| label         |                |                    |
+| disabled      | false          | true/false         |
+| placeholder   |                |                    |
+| variants      | button         | input,button,tags  |
+| searchable    | false          | true/false         |
+| selectionMode | single         | single/multiple    |
+| lead          |                |                    |
+| hint          |                |                    |
+| hasError      | false          | true/false         |
 
 ##### Usage
 
 <Code
 	language="tsx"
-	code={` <Select
-                        label={label ? "Choose your favourite framework" : undefined}
-                        placeholder="Pick an option"
-                        rounded={rounded as RoundedOptions}
-                        size={size as SizeOptions}
-                        disabled={disabled}
-                        isSearchable={searchable === "true"}
-                        selectionMode={selectionMode as "single" | "multiple"}
-                        minSelectionCount={minSelectionCount}
-                        selectedValues={selectedValues}
-                        onSelectedChange={setSelectedValues}
-                        className="w-80">
-                        <SelectGroup label="Backend Frameworks">
-                            <SelectItem value="node-js">Node.js (Express)</SelectItem>
-                            <SelectItem value="django">Django (Python)</SelectItem>
-                            <SelectItem value="rails">Rails (Ruby)</SelectItem>
-                            <SelectItem value="laravel">Laravel (PHP)</SelectItem>
-                            <SelectItem value="spring">Spring Boot (Java)</SelectItem>
-                        </SelectGroup>
-                        <SelectGroup label="Mobile Frameworks">
-                            <SelectItem value="react-native">React Native</SelectItem>
-                            <SelectItem value="flutter">Flutter</SelectItem>
-                            <SelectItem value="swiftui">SwiftUI</SelectItem>
-                            <SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
-                            <SelectItem value="xamarin">Xamarin</SelectItem>
-                        </SelectGroup>
-                    </Select>`}
+	code={`<Select
+    label="Choose your favourite framework"
+    placeholder="Pick an option"
+    rounded="lg"
+    variants="button"
+    size="36"
+    disabled={false}
+    isSearchable={true}
+    selectionMode="single"
+    hasError="false"
+    hint="Hint text to help the user with input"
+    lead={<CircleUserRound/>}
+    className="w-80">
+    <SelectGroup label="Backend Frameworks">
+        <SelectItem value="node-js">Node.js (Express)</SelectItem>
+        <SelectItem value="django">Django (Python)</SelectItem>
+        <SelectItem value="rails">Rails (Ruby)</SelectItem>
+        <SelectItem value="laravel">Laravel (PHP)</SelectItem>
+        <SelectItem value="spring">Spring Boot (Java)</SelectItem>
+    </SelectGroup>
+    <SelectGroup label="Mobile Frameworks">
+        <SelectItem value="react-native">React Native</SelectItem>
+        <SelectItem value="flutter">Flutter</SelectItem>
+        <SelectItem value="swiftui">SwiftUI</SelectItem>
+        <SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
+        <SelectItem value="xamarin">Xamarin</SelectItem>
+    </SelectGroup>
+</Select>`}
 />
