@@ -161,7 +161,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 							size={size === "0" ? undefined : size}
 							disabled={disabled}
 							lead={<Flag country={country} />}
-							className="focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+							className="focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 							{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
 						</Button>
 					)}>
