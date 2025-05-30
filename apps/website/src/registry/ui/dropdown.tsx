@@ -101,10 +101,12 @@ function DropdownItem({
 	className,
 	inset,
 	value,
-	shortcut,
+	// shortcut,
 	children,
-	icon,
+	// icon,
 	asChild = false,
+	startContent,
+	endContent,
 	...props
 }: DropdownMenuItemProps &
 	React.RefAttributes<HTMLDivElement> & {
@@ -112,14 +114,17 @@ function DropdownItem({
 		shortcut?: string
 		icon?: React.ReactNode
 		value?: string
+		startContent?: React.ReactNode
+		endContent?: React.ReactNode
 	}) {
 	const { isSelectable, isSelected, handleSelect } = useDropdownSelection(value)
 
 	return (
 		<DropdownMenuPrimitive.Item
 			className={cn(
-				"focus:text-primary-foreground hover:bg-fill-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
+				"focus:text-primary-foreground hover:bg-fill-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer items-center justify-between gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
 				inset && "pl-9",
+				isSelected && "bg-fill-level3",
 				className
 			)}
 			asChild={asChild}
@@ -129,17 +134,14 @@ function DropdownItem({
 				children
 			) : (
 				<>
-					{icon && <span>{icon}</span>}
-					<span className="flex w-full gap-2 truncate font-normal">{children}</span>
-					{shortcut && (
-						<label
-							className={cn(
-								"border-border text-text-secondary text-xs/4.5 drop-shadow-xs ml-auto flex h-5 items-center justify-center rounded-sm border px-1.5 py-0"
-							)}>
-							{shortcut}
-						</label>
-					)}
-					{isSelectable && <span className="flex h-2.5 w-3.5 items-center">{isSelected && <Check className="text-text" size={20} />}</span>}
+					<div className="flex gap-2">
+						{startContent && <span>{startContent}</span>}
+						<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
+					</div>
+					<div className="flex items-center gap-2">
+						{endContent && <span>{endContent}</span>}
+						{isSelectable && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
+					</div>
 				</>
 			)}
 		</DropdownMenuPrimitive.Item>
@@ -192,7 +194,7 @@ function DropdownGroup({
 	return (
 		<div className="bg-bg-level2">
 			<DropdownCtx.Provider value={contextValue}>
-				<DropdownMenuPrimitive.Group className={cn(className, "z-50 flex flex-col items-stretch justify-start px-0 py-0")} {...props}>
+				<DropdownMenuPrimitive.Group className={cn(className, "z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0")} {...props}>
 					{title && <label className="text-text-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
 					{children}
 				</DropdownMenuPrimitive.Group>
