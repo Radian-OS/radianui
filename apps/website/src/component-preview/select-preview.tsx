@@ -343,8 +343,14 @@ const SelectPreview = () => {
 	onSelectedChange={setSelectedValues}
 	className="w-80">
 	<SelectGroup label="Backend Frameworks">
-		<SelectItem value="node-js">Node.js (Express)</SelectItem>
-		<SelectItem value="django">Django (Python)</SelectItem>
+		<SelectItem 
+		${startContent ? `startContent={<Box className="${iconClass}" />}` : ""}
+		${endContent ? `endContent={<Box className="${iconClass}" />}` : ""}
+		value="node-js">Node.js (Express)</SelectItem>
+		<SelectItem 
+		${startContent ? `startContent={<Box className="${iconClass}" />}` : ""}
+		${endContent ? `endContent={<Box className="${iconClass}" />}` : ""}
+		value="django">Django (Python)</SelectItem>
 		<SelectItem value="rails">Rails (Ruby)</SelectItem>
 		<SelectItem disabled value="laravel">Laravel (PHP)</SelectItem>
 		<SelectItem value="spring">Spring Boot (Java)</SelectItem>

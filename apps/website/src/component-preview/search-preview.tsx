@@ -219,7 +219,7 @@ const renderSearchResults = () => {
 					code={`${suggestion ? codeString : ""}<SearchInput 
     rounded="${rounded}"
     size="${size}"
-    disabled="${disabled}"
+    disabled={${disabled}}
     label="${label ? "Search" : undefined}"
 	placeholder="Search"
 	suggestion={${suggestion}}
