@@ -1,5 +1,5 @@
 import React, { useId, useMemo } from "react"
-import { ChevronDown, PhoneIcon } from "lucide-react"
+import { ChevronDown, ChevronUp, PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
 import { getCountries, getCountryCallingCode } from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
@@ -33,6 +33,10 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 }) => {
 	const id = useId()
 	const countries = useMemo(() => getCountries(), [])
+	const [open, setOpen] = React.useState(false)
+	const handleFlipChevron = () => {
+		setOpen(!open)
+	}
 
 	// Create a map of country names to country codes for reverse lookup
 	const countryNameToCode = useMemo(() => {
@@ -145,26 +149,28 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					disabled={disabled}
 					renderTrigger={() => (
 						<Button
-							trail={flagsOnly ? undefined : <ChevronDown className="text-text-disabled size-4" />}
+							onClick={handleFlipChevron}
+							trail={
+								flagsOnly ? undefined : open ? (
+									<ChevronUp className="text-text-disabled size-4" />
+								) : (
+									<ChevronDown className="text-text-disabled size-4" />
+								)
+							}
 							variant="neutral-soft"
 							size={size === "0" ? undefined : size}
 							disabled={disabled}
 							lead={<Flag country={country} />}
 							className="focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
-							{/* <Flag country={country} /> */}
-
 							{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
-							{/* <ChevronDown className="text-text-disabled size-4" /> */}
 						</Button>
 					)}>
 					<SelectGroup>
 						{countries.map((c) => {
 							const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
 							return (
-								<SelectItem key={c} value={regionName}>
-									<Flag country={c} />
+								<SelectItem endContent={`+${getCountryCallingCode(c)}`} startContent={<Flag country={c} />} key={c} value={regionName}>
 									<span>{regionName}</span>
-									<span className="text-text-tertiary text-xs">+{getCountryCallingCode(c)}</span>
 								</SelectItem>
 							)
 						})}
