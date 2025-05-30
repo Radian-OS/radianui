@@ -148,7 +148,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 							variant="neutral-soft"
 							size={size === "0" ? undefined : size}
 							disabled={disabled}
-							className="border-border-alpha flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0">
+							className="focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 							<Flag country={country} />
 							{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
 							<ChevronDown className="text-text-disabled size-4" />
