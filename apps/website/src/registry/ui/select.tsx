@@ -16,9 +16,11 @@ import { Label } from "./label"
 type SelectItemProps = {
 	value: string
 	children: React.ReactNode
+	startContent?: React.ReactNode
+	endContent?: React.ReactNode
 }
 // SelectItem component representing an individual item in the select dropdown
-function SelectItem({ value, children, ref, ...props }: SelectItemProps & React.ComponentPropsWithRef<typeof CommandItem>) {
+function SelectItem({ value, children, startContent, endContent, ref, ...props }: SelectItemProps & React.ComponentPropsWithRef<typeof CommandItem>) {
 	const commandRef = React.useRef<React.ElementRef<typeof CommandItem>>(null)
 	React.useImperativeHandle(ref, () => commandRef.current!, [])
 
@@ -56,10 +58,17 @@ function SelectItem({ value, children, ref, ...props }: SelectItemProps & React.
 					setValues(isSelected ? values.filter((v) => v !== currentValue) : [...values, currentValue])
 				}
 			}}
-			className={`text-text flex cursor-pointer gap-2 ${isSelected ? "bg-fill-level3" : ""}`}
+			className={`text-text flex cursor-pointer justify-between gap-2 ${isSelected ? "bg-fill-level3" : ""}`}
 			{...props}>
-			<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
-			{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : <span className="size-5" />)}
+			<div className="flex gap-1">
+				{startContent && <span className="flex shrink-0 items-center">{startContent}</span>}
+				<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
+			</div>
+			<div className="flex gap-1">
+				{endContent && <span className="flex shrink-0 items-center">{endContent}</span>}
+
+				{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : <span className="size-5" />)}
+			</div>
 		</CommandItem>
 	)
 }

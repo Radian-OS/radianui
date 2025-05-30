@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CircleUserRound } from "lucide-react"
+import { CircleUserRound, Clock } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
 import {
 	Dropdown,
@@ -260,7 +260,9 @@ const SelectPreview = () => {
 						hint={hint ? "Hint text to help the user with input" : ""}
 						className="w-80">
 						<SelectGroup label="Backend Frameworks">
-							<SelectItem value="node-js">Node.js (Express)</SelectItem>
+							<SelectItem startContent={<Clock size={20} />} endContent={<Clock size={20} />} value="node-js">
+								Node.js (Express)
+							</SelectItem>
 							<SelectItem value="django">Django (Python)</SelectItem>
 							<SelectItem value="rails">Rails (Ruby)</SelectItem>
 							<SelectItem disabled value="laravel">
