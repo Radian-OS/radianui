@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 const PhoneNumberPreview = () => {
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 	type CountryOptions = "US" | "GB" | "IN" | "CA" | "AU" | "DE" | "FR" | "JP" | "BR"
+	type OnlyCountriesOptions = "all" | "north-america" | "europe" | "asia" | "custom"
 
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
@@ -17,6 +18,7 @@ const PhoneNumberPreview = () => {
 	const [showTrigger, setShowTrigger] = useState<"true" | "false">("true")
 	const [flagsOnly, setFlagsOnly] = useState<"true" | "false">("false")
 	const [defaultCountry, setDefaultCountry] = useState<CountryOptions>("US")
+	const [onlyCountriesOption, setOnlyCountriesOption] = useState<OnlyCountriesOptions>("all")
 
 	const countryOptions = [
 		{ value: "US", label: "United States" },
@@ -30,12 +32,32 @@ const PhoneNumberPreview = () => {
 		{ value: "BR", label: "Brazil" },
 	]
 
+	const onlyCountriesOptions = [
+		{ value: "all", label: "All Countries", countries: undefined },
+		{ value: "north-america", label: "North America", countries: ["United States", "Canada", "Mexico"] },
+		{ value: "europe", label: "Europe", countries: ["United Kingdom", "Germany", "France", "Italy", "Spain"] },
+		{ value: "asia", label: "Asia", countries: ["India", "China", "Japan", "South Korea", "Singapore"] },
+		{ value: "custom", label: "Custom (US, CA, GB)", countries: ["US", "CA", "GB"] },
+	]
+
+	const getOnlyCountries = () => {
+		const option = onlyCountriesOptions.find((opt) => opt.value === onlyCountriesOption)
+		return option?.countries
+	}
+
 	const handlePhoneChange = (value: Value | undefined) => {
 		setPhone(value)
 	}
 
 	const handleCountryChange = (country: Country) => {
 		setCountry(country)
+	}
+
+	const getOnlyCountriesCode = () => {
+		const countries = getOnlyCountries()
+		if (!countries) return ""
+		return `
+        onlyCountries={${JSON.stringify(countries)}}`
 	}
 
 	return (
@@ -117,6 +139,26 @@ const PhoneNumberPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Only Countries</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[onlyCountriesOption]}
+										onSelectedChange={(keys) => {
+											setOnlyCountriesOption(Array.from(keys)[0] as OnlyCountriesOptions)
+										}}>
+										{onlyCountriesOptions.map((option) => (
+											<DropdownItem key={option.value} value={option.value}>
+												{option.label}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -154,6 +196,7 @@ const PhoneNumberPreview = () => {
 							onChange={handlePhoneChange}
 							country={country}
 							onCountryChange={handleCountryChange}
+							onlyCountries={getOnlyCountries()}
 							className={showTrigger === "false" ? "w-80" : ""}
 						/>
 					</div>
@@ -200,7 +243,7 @@ const PhoneNumberExample = () => {
 						? `
         flagsOnly={true}`
 						: ""
-				}${
+				}${getOnlyCountriesCode()}${
 					showTrigger === "false"
 						? `
         className="w-80"`

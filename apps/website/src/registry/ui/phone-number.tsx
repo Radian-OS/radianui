@@ -14,6 +14,7 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	flagsOnly?: boolean
 	className?: string
 	country?: RPNInput.Country
+	onlyCountries?: string[]
 }
 
 const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
@@ -26,10 +27,27 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	disabled = false,
 	flagsOnly = false,
 	className,
+	onlyCountries,
 	...rpnInputProps
 }) => {
 	const id = useId()
-	const countries = useMemo(() => getCountries(), [])
+	const allCountries = useMemo(() => getCountries(), [])
+
+	// Filter countries based on onlyCountries prop
+	const countries = useMemo(() => {
+		if (!onlyCountries || onlyCountries.length === 0) {
+			return allCountries
+		}
+
+		// Convert country names to country codes and filter
+		const filteredCountries = allCountries.filter((countryCode) => {
+			const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(countryCode)
+			return onlyCountries.includes(regionName || "") || onlyCountries.includes(countryCode)
+		})
+
+		return filteredCountries
+	}, [allCountries, onlyCountries])
+
 	const [open, setOpen] = React.useState(false)
 	const handleFlipChevron = () => {
 		setOpen(!open)
@@ -174,6 +192,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				inputComponent={InputWithClass}
 				placeholder="Enter phone number"
 				disabled={disabled}
+				countries={countries}
 			/>
 		</div>
 	)
