@@ -1,23 +1,19 @@
 import React, { useId, useMemo } from "react"
 import { ChevronDown, ChevronUp, PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
-import { getCountries, getCountryCallingCode } from "react-phone-number-input"
+import { Value, getCountries, getCountryCallingCode } from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Input, InputProps } from "@/registry/ui/input"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 
-type PhoneNumberPrimitiveProps = {
-	value: string
-	onChange: (value: string) => void
-	country: RPNInput.Country
-	onCountryChange: (country: RPNInput.Country) => void
+type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
 	size?: InputProps["size"]
 	showTrigger?: boolean
-	disabled?: boolean
 	flagsOnly?: boolean
 	className?: string
+	country?: RPNInput.Country
 }
 
 const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
@@ -30,6 +26,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	disabled = false,
 	flagsOnly = false,
 	className,
+	...rpnInputProps
 }) => {
 	const id = useId()
 	const countries = useMemo(() => getCountries(), [])
@@ -65,11 +62,11 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		[]
 	)
 
-	const handlePhoneChange = (val: string | undefined) => {
+	const handlePhoneChange = (val: Value | undefined) => {
 		if (disabled) return
 
-		if (typeof val === "string") {
-			onChange(val)
+		if (val) {
+			onChange?.(val)
 
 			if (val.startsWith("+")) {
 				const numberWithoutPlus = val.slice(1)
@@ -94,7 +91,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					}
 
 					if (selectedCountry && selectedCountry !== country) {
-						onCountryChange(selectedCountry)
+						onCountryChange?.(selectedCountry)
 					}
 				}
 			}
@@ -109,21 +106,21 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 
 		// First check if it's already a country code
 		if (countries.includes(selectedValue as RPNInput.Country)) {
-			onCountryChange(selectedValue as RPNInput.Country)
+			onCountryChange?.(selectedValue as RPNInput.Country)
 		} else {
 			// If not, look up the country code from the name
 			const countryCode = countryNameToCode.get(selectedValue.toLowerCase())
 			if (countryCode) {
-				onCountryChange(countryCode)
+				onCountryChange?.(countryCode)
 			}
 		}
 	}
 
 	const InputWithClass = useMemo(() => {
-		const Comp = React.forwardRef<HTMLInputElement, InputProps>(({ className: innerClassName, ...props }, ref) => (
-			<Input ref={ref} data-slot="phone-input" size={size} disabled={disabled} className={cn(showTrigger && "rounded-l-none", className, innerClassName)} {...props} />
-		))
-		Comp.displayName = "InputWithClass"
+		const Comp = (props: InputProps) => (
+			<Input {...props} data-slot="phone-input" size={size} disabled={disabled} className={cn(showTrigger && "rounded-l-none", className, props.className)} />
+		)
+		Comp.displayName = "PhoneNumber.InputWithClass"
 		return Comp
 	}, [className, size, showTrigger, disabled])
 
@@ -165,6 +162,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				</Select>
 			)}
 			<RPNInput.default
+				{...rpnInputProps}
 				id={id}
 				className="flex-1"
 				country={country}
@@ -176,7 +174,6 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				inputComponent={InputWithClass}
 				placeholder="Enter phone number"
 				disabled={disabled}
-				size={size}
 			/>
 		</div>
 	)
@@ -191,5 +188,7 @@ const Flag = ({ country }: { country?: RPNInput.Country }) => {
 		</span>
 	)
 }
+
+PhoneNumber.displayName = "PhoneNumber"
 
 export { PhoneNumber }

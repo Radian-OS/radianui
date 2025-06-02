@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import type { Country, Value } from "react-phone-number-input"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
@@ -11,11 +12,12 @@ const PhoneNumberPreview = () => {
 
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
-	const [phone, setPhone] = useState<string>("")
-	const [country, setCountry] = useState<import("react-phone-number-input").Country>("US")
+	const [phone, setPhone] = useState<Value | undefined>()
+	const [country, setCountry] = useState<Country>("US")
 	const [showTrigger, setShowTrigger] = useState<"true" | "false">("true")
 	const [flagsOnly, setFlagsOnly] = useState<"true" | "false">("false")
 	const [defaultCountry, setDefaultCountry] = useState<CountryOptions>("US")
+
 	const countryOptions = [
 		{ value: "US", label: "United States" },
 		{ value: "GB", label: "United Kingdom" },
@@ -27,6 +29,14 @@ const PhoneNumberPreview = () => {
 		{ value: "JP", label: "Japan" },
 		{ value: "BR", label: "Brazil" },
 	]
+
+	const handlePhoneChange = (value: Value | undefined) => {
+		setPhone(value)
+	}
+
+	const handleCountryChange = (country: Country) => {
+		setCountry(country)
+	}
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -97,7 +107,7 @@ const PhoneNumberPreview = () => {
 										onSelectedChange={(keys) => {
 											const newCountry = Array.from(keys)[0] as CountryOptions
 											setDefaultCountry(newCountry)
-											setCountry(newCountry as import("react-phone-number-input").Country)
+											setCountry(newCountry as Country)
 										}}>
 										{countryOptions.map((option) => (
 											<DropdownItem key={option.value} value={option.value}>
@@ -141,9 +151,9 @@ const PhoneNumberPreview = () => {
 							value={phone}
 							disabled={disabled === "true"}
 							size={size}
-							onChange={setPhone}
+							onChange={handlePhoneChange}
 							country={country}
-							onCountryChange={setCountry}
+							onCountryChange={handleCountryChange}
 							className={showTrigger === "false" ? "w-80" : ""}
 						/>
 					</div>
@@ -157,20 +167,28 @@ const PhoneNumberPreview = () => {
 					code={`import React, { useState } from "react"
 import { Label } from "@/registry/ui/label"
 import { PhoneNumber } from "@/registry/ui/phone-number"
-import type { Country } from "react-phone-number-input"
+import type { Country, Value } from "react-phone-number-input"
 
 const PhoneNumberExample = () => {
-  const [phone, setPhone] = useState<string>("${phone}")
+  const [phone, setPhone] = useState<Value | undefined>()
   const [country, setCountry] = useState<Country>("${country}")
+
+  const handlePhoneChange = (value: Value | undefined) => {
+    setPhone(value)
+  }
+
+  const handleCountryChange = (country: Country) => {
+    setCountry(country)
+  }
 
   return (
     <div className="flex gap-1.5 flex-col">
       <Label>Phone Number</Label>
       <PhoneNumber
         value={phone}
-        onChange={setPhone}
+        onChange={handlePhoneChange}
         country={country}
-        onCountryChange={setCountry}
+        onCountryChange={handleCountryChange}
         size="${size}"
         showTrigger={${showTrigger === "true"}}${
 					disabled === "true"

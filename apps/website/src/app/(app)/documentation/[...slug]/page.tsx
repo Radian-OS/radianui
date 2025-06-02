@@ -1,5 +1,5 @@
 import { allDocs } from "contentlayer/generated"
-import { Github, SquareArrowOutUpRight } from "lucide-react"
+import { ExternalLink, Github, SquareArrowOutUpRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -57,8 +57,8 @@ export default async function DocPage({ params }: DocPageProps) {
 					{doc.externalSiteRef && (
 						<Link href={doc.externalSiteRef} target="_blank">
 							<Badge className="flex w-fit cursor-pointer items-center gap-1">
-								{doc.customLogo ? <Image className="size-4" height={50} width={50} alt="badge-img" src={doc.customLogo} /> : <Github size={16} />}
-								{doc.externalSiteName}
+								{doc.customLogo ? <Image className="size-4" height={50} width={50} alt="badge-img" src={doc.customLogo} /> : <ExternalLink className="size-4" />}
+								{doc.externalSiteName ?? "API Refrence"}
 							</Badge>
 						</Link>
 					)}
