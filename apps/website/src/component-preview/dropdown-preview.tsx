@@ -23,6 +23,26 @@ const sizes = ["28", "32", "36", "40", "44", "48"]
 const DropdownPreview = () => {
 	const [mode, setMode] = useState<"single" | "multiple">("single")
 	const [selected, setSelected] = useState<string[]>(["1"])
+	const [startContent, setStartContent] = useState<boolean>(false)
+	const [endContent, setEndContent] = useState<boolean>(false)
+
+	const [size, setSize] = useState<SizeOptions>("36")
+	const [disabled, setDisabled] = useState(false)
+	const [leadIcon, setLeadIcon] = useState<boolean>(false)
+	const getLeadTrialClass = () => {
+		if (leadIcon && (size === "36" || size === "32" || size === "40")) {
+			return "size-5"
+		}
+		if (leadIcon && size === "28") {
+			return "size-4"
+		}
+		if (leadIcon && (size === "44" || size === "48")) {
+			return "size-6"
+		}
+		return ""
+	}
+
+	const iconClass = getLeadTrialClass()
 
 	const code = `"use client"	
 import React from "react"
@@ -41,14 +61,20 @@ import { Button } from "@/registry/ui/button"
 	
 export const DropdownPreview=()=>{
 
-const [mode, setMode] = React.useState<"single" | "multiple">("single")
-const [selected, setSelected] = React.useState<string[]>(["1"])
+const [mode, setMode] = useState<"single" | "multiple">("single")
+const [selected, setSelected] = useState<string[]>(["1"])
 
 return(
 <Dropdown>
 <DropdownTrigger asChild >
 <Button variant="neutral-outline" >
 Dropdown <ChevronDown className="size-5" />
+<Button
+	size="${size}"
+	${leadIcon ? `lead={<Box className="${iconClass}" />}` : ""}
+	disabled={${disabled}}
+	variant="neutral-outline">
+	Dropdown <ChevronDown className="size-5" />
 </Button>
 </DropdownTrigger>
 <DropdownContent>
@@ -69,8 +95,14 @@ title="status"
 selectionMode={mode}
 onSelectedChange={(keys) => (mode === "single" ? setSelected([keys[0]]) : setSelected(keys))}
 selectedValues={selected}>
-<DropdownItem value="1">Active</DropdownItem>
-<DropdownItem value="2">Inactive</DropdownItem>
+<DropdownItem 
+${startContent ? `startContent={<Box className="${iconClass}" />}` : ""}
+${endContent ? `endContent={<Box className="${iconClass}" />}` : ""}
+value="1">Active</DropdownItem>
+<DropdownItem
+${startContent ? `startContent={<Box className="${iconClass}" />}` : ""}
+${endContent ? `endContent={<Box className="${iconClass}" />}` : ""}
+value="2">Inactive</DropdownItem>
 <DropdownItem value="3">Lunch</DropdownItem>
 <DropdownItem value="4">Commuting</DropdownItem>
 </DropdownGroup>
@@ -78,27 +110,6 @@ selectedValues={selected}>
 </Dropdown>
 )
 }`
-
-	const [size, setSize] = useState<SizeOptions>("36")
-	const [disabled, setDisabled] = useState(false)
-	const [leadIcon, setLeadIcon] = useState<boolean>(false)
-	const [startContent, setStartContent] = useState<boolean>(false)
-	const [endContent, setEndContent] = useState<boolean>(false)
-
-	const getLeadTrialClass = () => {
-		if (leadIcon && (size === "36" || size === "32" || size === "40")) {
-			return "size-5"
-		}
-		if (leadIcon && size === "28") {
-			return "size-4"
-		}
-		if (leadIcon && (size === "44" || size === "48")) {
-			return "size-6"
-		}
-		return ""
-	}
-
-	const iconClass = getLeadTrialClass()
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">

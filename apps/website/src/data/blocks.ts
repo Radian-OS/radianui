@@ -16,6 +16,13 @@ function loadCode(filePath: string): string {
 
 export const blocks: Block[] = [
 	{
+		slug: "hero",
+		title: "hero",
+		category: "hero",
+		preview: "/test/blocks/hero",
+		code: loadCode("src/app/test/blocks/hero/page.tsx"),
+	},
+	{
 		slug: "auth",
 		title: "signin",
 		category: "auth",
