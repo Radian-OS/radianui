@@ -119,11 +119,7 @@ selectedValues={selected}>
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 										{sizes.map((size) => (
 											<DropdownItem value={size} key={size}>
 												{size}
@@ -135,11 +131,7 @@ selectedValues={selected}>
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -148,11 +140,7 @@ selectedValues={selected}>
 							<DropdownSub>
 								<DropdownSubTrigger>Lead</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(leadIcon)]}
-										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(leadIcon)]} onSelectedChange={(values) => setLeadIcon(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -221,16 +209,10 @@ selectedValues={selected}>
 								selectionMode={mode}
 								onSelectedChange={(keys) => (mode === "single" ? setSelected([keys[0]]) : setSelected(keys))}
 								selectedValues={selected}>
-								<DropdownItem
-									startContent={startContent ? <Box className={iconClass} /> : null}
-									endContent={endContent ? <Box className={iconClass} /> : null}
-									value="1">
+								<DropdownItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="1">
 									Active
 								</DropdownItem>
-								<DropdownItem
-									startContent={startContent ? <Box className={iconClass} /> : null}
-									endContent={endContent ? <Box className={iconClass} /> : null}
-									value="2">
+								<DropdownItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="2">
 									Inactive
 								</DropdownItem>
 								<DropdownItem value="3">Lunch</DropdownItem>

@@ -71,9 +71,9 @@ import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-e
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
+import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
-import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 
 type MdxProps = {
 	code: string
@@ -113,7 +113,7 @@ const components: MDXComponents = {
 	InputOtpPreview: () => <InputOtpPreview />,
 	TabsPreview: () => <TabsPreview />,
 	IconCounterTabsExample: () => <IconCounterTabsExample />,
-	VerticalTabsWithIconExample:()=><VerticaTabsWithIconExample/>,
+	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
 	DropdownPreview: () => <DropdownPreview />,
 	ResizablePreview: () => <ResizablePreview />,
 	Nextjs: () => <Nextjs />,
@@ -146,16 +146,7 @@ const components: MDXComponents = {
 	TimePickerPreview: () => <TimePickerPreview />,
 	SelectPreview: () => <SelectPreview />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
-	Code: ({
-		language,
-		pkg = ["pnpm", "yarn", "npm", "bun"],
-		tabs = false,
-		code,
-		showLineNumbers,
-		copiable = true,
-		className,
-		...props
-	}: CodeAreaProps) =>
+	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />
 		) : (
