@@ -21,7 +21,7 @@ export interface BlockPreviewProps {
 
 const DEFAULTSIZE = 100
 const SMSIZE = 25
-const MDSIZE = 60
+const MDSIZE = 58
 const LGSIZE = 80
 
 export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title, category, previewOnly }) => {
@@ -93,10 +93,10 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 											<Monitor className="h-3.5 w-3.5" />
 										</TabsTrigger>
 										<TabsTrigger
-											value="60"
+											value="58"
 											onClick={() => {
 												if (ref?.current) {
-													ref.current.resize(parseInt("60"))
+													ref.current.resize(parseInt("58"))
 												}
 											}}>
 											<Tablet className="h-3.5 w-3.5" />
