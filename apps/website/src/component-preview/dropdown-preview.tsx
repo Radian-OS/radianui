@@ -2,17 +2,7 @@ import React, { useState } from "react"
 import { Box, ChevronDown } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -77,7 +67,7 @@ Dropdown <ChevronDown className="size-5" />
 	Dropdown <ChevronDown className="size-5" />
 </Button>
 </DropdownTrigger>
-<DropdownContent>
+<DropdownContent className="w-48">
 <DropdownGroup title="date range">
 <DropdownItem>This week</DropdownItem>
 <DropdownItem>This month</DropdownItem>
@@ -130,11 +120,7 @@ value="2">Inactive</DropdownItem>
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 										{sizes.map((size) => (
 											<DropdownItem value={size} key={size}>
 												{size}
@@ -146,11 +132,7 @@ value="2">Inactive</DropdownItem>
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -159,11 +141,7 @@ value="2">Inactive</DropdownItem>
 							<DropdownSub>
 								<DropdownSubTrigger>Lead</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(leadIcon)]}
-										onSelectedChange={(values) => setLeadIcon(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(leadIcon)]} onSelectedChange={(values) => setLeadIcon(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -226,22 +204,15 @@ value="2">Inactive</DropdownItem>
 									</DropdownSubContent>
 								</DropdownSub>
 							</DropdownGroup>
-							<DropdownDivider />
 							<DropdownGroup
 								title="status"
 								selectionMode={mode}
 								onSelectedChange={(keys) => (mode === "single" ? setSelected([keys[0]]) : setSelected(keys))}
 								selectedValues={selected}>
-								<DropdownItem
-									startContent={startContent ? <Box className={iconClass} /> : null}
-									endContent={endContent ? <Box className={iconClass} /> : null}
-									value="1">
+								<DropdownItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="1">
 									Active
 								</DropdownItem>
-								<DropdownItem
-									startContent={startContent ? <Box className={iconClass} /> : null}
-									endContent={endContent ? <Box className={iconClass} /> : null}
-									value="2">
+								<DropdownItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="2">
 									Inactive
 								</DropdownItem>
 								<DropdownItem value="3">Lunch</DropdownItem>

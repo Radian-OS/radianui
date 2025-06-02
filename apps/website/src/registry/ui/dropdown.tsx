@@ -185,14 +185,32 @@ function DropdownGroup({
 		},
 		[selectionMode, selectedValues, onSelectedChange, minSelectionCount]
 	)
+
+	// Check if this group should have a divider after it
+	const groupRef = React.useRef<HTMLDivElement>(null)
+	const [shouldAddDivider, setShouldAddDivider] = React.useState(false)
+
+	React.useEffect(() => {
+		if (groupRef.current) {
+			const parentElement = groupRef.current.parentElement
+			if (parentElement) {
+				const allGroups = Array.from(parentElement.children).filter((child) => child.querySelector("[data-radix-dropdown-menu-group]") !== null)
+				const currentIndex = allGroups.indexOf(groupRef.current)
+				const isLastGroup = currentIndex === allGroups.length - 1
+				setShouldAddDivider(!isLastGroup)
+			}
+		}
+	}, [children])
+
 	return (
-		<div className="bg-bg-level2">
+		<div className="bg-bg-level2" ref={groupRef}>
 			<DropdownCtx.Provider value={contextValue}>
-				<DropdownMenuPrimitive.Group className={cn(className, "z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0")} {...props}>
+				<DropdownMenuPrimitive.Group className={cn(className, "z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0")} data-radix-dropdown-menu-group {...props}>
 					{title && <label className="text-text-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
 					{children}
 				</DropdownMenuPrimitive.Group>
 			</DropdownCtx.Provider>
+			{shouldAddDivider && <DropdownDivider />}
 		</div>
 	)
 }
