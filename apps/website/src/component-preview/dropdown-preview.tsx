@@ -2,17 +2,7 @@ import React, { useState } from "react"
 import { Box, ChevronDown } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -77,7 +67,7 @@ Dropdown <ChevronDown className="size-5" />
 	Dropdown <ChevronDown className="size-5" />
 </Button>
 </DropdownTrigger>
-<DropdownContent>
+<DropdownContent className="w-48">
 <DropdownGroup title="date range">
 <DropdownItem>This week</DropdownItem>
 <DropdownItem>This month</DropdownItem>
@@ -214,7 +204,6 @@ value="2">Inactive</DropdownItem>
 									</DropdownSubContent>
 								</DropdownSub>
 							</DropdownGroup>
-							<DropdownDivider />
 							<DropdownGroup
 								title="status"
 								selectionMode={mode}

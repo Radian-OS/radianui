@@ -1,17 +1,7 @@
 import { useState } from "react"
 import { Box, CircleUserRound } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -84,8 +74,6 @@ const SelectPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 							</DropdownGroup>
-
-							<DropdownDivider />
 
 							<DropdownGroup title="Select Properties">
 								<DropdownSub>
