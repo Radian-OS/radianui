@@ -247,9 +247,7 @@ function Select({
 										<Input
 											placeholder={placeholder}
 											lead={lead}
-											trail={
-												!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />
-											}
+											trail={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
 											size={size}
 											rounded={rounded}
 											value={selectedLabels}

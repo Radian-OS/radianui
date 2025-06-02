@@ -12,6 +12,10 @@ import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"
 
 // app/page.tsx
 
+// app/page.tsx
+
+// app/page.tsx
+
 export default function Home() {
 	const companies = [
 		{ svgUrl: "/hero-svg/zenith.svg" },
@@ -27,7 +31,7 @@ export default function Home() {
 	]
 
 	return (
-		<div className="min-h-screen text-white">
+		<div className="min-h-screen">
 			{/* Header */}
 			<header className="border-b-border-alpha bg-bg-level1 border-b">
 				<div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
