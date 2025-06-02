@@ -1,4 +1,4 @@
-import React, { useId, useMemo } from "react"
+import React, { useId, useMemo, useState } from "react"
 import { ChevronDown, ChevronUp, PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
 import { Value, getCountries, getCountryCallingCode } from "react-phone-number-input"
@@ -30,10 +30,6 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 }) => {
 	const id = useId()
 	const countries = useMemo(() => getCountries(), [])
-	const [open, setOpen] = React.useState(false)
-	const handleFlipChevron = () => {
-		setOpen(!open)
-	}
 
 	// Create a map of country names to country codes for reverse lookup
 	const countryNameToCode = useMemo(() => {
@@ -126,11 +122,14 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 
 	// Get the display name for the selected country
 	const selectedCountryName = country ? new Intl.DisplayNames(["en"], { type: "region" }).of(country) || country : ""
+	const [selectOpen, setSelectOpen] = useState(false)
 
 	return (
 		<div className="flex gap-0">
 			{showTrigger && (
 				<Select
+					open={selectOpen}
+					onOpenChange={setSelectOpen}
 					selectedValues={selectedCountryName ? [selectedCountryName] : []}
 					onSelectedChange={handleCountrySelection}
 					selectionMode="single"
@@ -139,8 +138,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					disabled={disabled}
 					renderTrigger={() => (
 						<Button
-							onClick={handleFlipChevron}
-							trail={flagsOnly ? undefined : open ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
+							trail={flagsOnly ? undefined : selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
 							variant="neutral-soft"
 							size={size === "0" ? undefined : size}
 							disabled={disabled}

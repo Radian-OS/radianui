@@ -139,6 +139,9 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 	endIcon?: boolean
 	hint?: string
 	hasError?: boolean
+	// New props for external open state control
+	open?: boolean
+	onOpenChange?: (open: boolean) => void
 }
 
 // Select component for rendering a dropdown with selection options
@@ -167,10 +170,31 @@ function Select({
 	endIcon = true,
 	hint,
 	hasError = false,
+	// New props for external open state control
+	open: externalOpen,
+	onOpenChange,
 }: SelectProps) {
-	const [open, setOpen] = React.useState(false)
+	const [internalOpen, setInternalOpen] = React.useState(false)
 	const [internalSelectedValues, setInternalSelectedValues] = React.useState<string[]>(defaultSelected)
+
 	const isControlled = selectedValues !== undefined
+	const isOpenControlled = externalOpen !== undefined
+
+	// Use external open state if provided, otherwise use internal state
+	const open = isOpenControlled ? externalOpen : internalOpen
+
+	// Handle open state changes
+	const handleOpenChange = React.useCallback(
+		(newOpen: boolean) => {
+			if (onOpenChange) {
+				onOpenChange(newOpen)
+			}
+			if (!isOpenControlled) {
+				setInternalOpen(newOpen)
+			}
+		},
+		[onOpenChange, isOpenControlled]
+	)
 
 	if (minSelectionCount < 0) throw new Error("minSelectionCount cannot be negative")
 
@@ -224,7 +248,7 @@ function Select({
 					values: values,
 					setValues: handleSelectionChange,
 					selectionMode,
-					setOpen,
+					setOpen: handleOpenChange,
 					open,
 					minSelectionCount,
 					showSelectedCheck,
@@ -235,7 +259,7 @@ function Select({
 						open={open}
 						onOpenChange={(newOpen) => {
 							if (!disabled) {
-								setOpen(newOpen)
+								handleOpenChange(newOpen)
 							}
 						}}>
 						<DropdownTrigger asChild>
