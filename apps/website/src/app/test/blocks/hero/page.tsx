@@ -1,20 +1,29 @@
-// app/page.tsx
 "use client"
 
 import { CirclePlay, Menu, X, Zap } from "lucide-react"
-import { motion } from "motion/react"
+import { Variants, motion } from "motion/react"
 import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"
 
-// app/page.tsx
+const fadeDownHero: Variants = {
+	hidden: { opacity: 0, y: -10 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.6, ease: "easeInOut" },
+	},
+}
 
-// app/page.tsx
-
-// app/page.tsx
-
-// app/page.tsx
+const fadeDownNav: Variants = {
+	hidden: { opacity: 0, y: -10 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { duration: 0.6, ease: "easeInOut", delay: 0.2 },
+	},
+}
 
 // app/page.tsx
 
@@ -35,7 +44,7 @@ export default function Home() {
 	return (
 		<div className="min-h-screen">
 			{/* Header */}
-			<header className="border-b-border-alpha bg-bg-level1 border-b">
+			<motion.header initial="hidden" animate="visible" variants={fadeDownNav} className="border-b-border-alpha bg-bg-level1 border-b">
 				<div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 					<div className="flex h-16 items-center justify-between">
 						{/* Logo */}
@@ -88,11 +97,11 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-			</header>
+			</motion.header>
 
 			<main className="bg-bg-base">
 				{/* Hero Section */}
-				<section className="pt-25 relative px-5 sm:px-6 lg:px-8">
+				<motion.section initial="hidden" animate="visible" variants={fadeDownHero} className="pt-25 relative px-5 sm:px-6 lg:px-8">
 					<div className="relative mx-auto flex max-w-5xl flex-col gap-6 text-center">
 						<Badge className="mb-8 sm:mx-auto" size="28" closable>
 							<img src="/hero-svg/y-combinator.svg" />
@@ -125,7 +134,7 @@ export default function Home() {
 							</Button>
 						</div>
 					</div>
-				</section>
+				</motion.section>
 
 				{/* Company Logos */}
 				<section className="px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
