@@ -86,7 +86,7 @@ const tabsTriggerStyles = cva(
 				lg: "text-sm",
 			},
 			variant: {
-				default: "data-[state=active]:bg-bg-base  border border-transparent  data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
+				default: "data-[state=active]:bg-bg-base border border-transparent data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
 				outline: "data-[state=active]:bg-fill-level2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill-level2",
@@ -208,6 +208,7 @@ function Tabs({ variant = "default", size = "md", className, defaultValue, child
 		</TabsContext.Provider>
 	)
 }
+Tabs.displayName = TabsPrimitive.Root.displayName
 
 function TabsList({ className, width = "fit", children, ...props }: TabsListProps & React.RefAttributes<HTMLDivElement> & { width?: TabsListWidth }) {
 	const { size, variant } = useTabs()
@@ -241,6 +242,7 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 	)
 }
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
+
 function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
 	return (
 		<TabsPrimitive.Content

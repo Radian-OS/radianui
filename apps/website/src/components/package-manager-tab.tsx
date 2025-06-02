@@ -14,7 +14,7 @@ export default function PackageManagerTabs({
 }: CodeAreaProps & { isNpx?: boolean }) {
 	return (
 		<Tabs defaultValue={pkg[0]} variant="open" size="md" className="overflow-hidden rounded-xl bg-[#0a0c10]">
-			<TabsList className="border-b-0">
+			<TabsList>
 				{pkg.map((manager) => (
 					<TabsTrigger key={manager} value={manager} className="!text-white">
 						{manager}
