@@ -31,92 +31,95 @@ const CurrencyInputPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
-										{roundedOptions.map((roundedOption) => (
-											<DropdownItem value={roundedOption} key={roundedOption}>
-												{roundedOption}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+							<DropdownGroup title="Input">
+								<DropdownSub>
+									<DropdownSubTrigger>Rounded</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
+											{roundedOptions.map((roundedOption) => (
+												<DropdownItem value={roundedOption} key={roundedOption}>
+													{roundedOption}
+												</DropdownItem>
+											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Hint</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Hint</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Has error</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setHasError(Array.from(keys)[0] as "true" | "false")
-										}}
-										minSelectionCount={1}
-										selectedValues={[hasError]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Label</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setLabel(Array.from(keys)[0] as "true" | "false")
-										}}
-										selectedValues={[label]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setDisabled(Array.from(keys)[0])
-										}}
-										minSelectionCount={1}
-										selectedValues={[disabled]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSize(Array.from(keys)[0] as SizeOptions)
-										}}
-										minSelectionCount={1}
-										selectedValues={[size]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Has error</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setHasError(Array.from(keys)[0] as "true" | "false")
+											}}
+											minSelectionCount={1}
+											selectedValues={[hasError]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Label</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setLabel(Array.from(keys)[0] as "true" | "false")
+											}}
+											selectedValues={[label]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setDisabled(Array.from(keys)[0])
+											}}
+											minSelectionCount={1}
+											selectedValues={[disabled]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Size</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setSize(Array.from(keys)[0] as SizeOptions)
+											}}
+											minSelectionCount={1}
+											selectedValues={[size]}>
+											<DropdownItem value="28">28</DropdownItem>
+											<DropdownItem value="32">32</DropdownItem>
+											<DropdownItem value="36">36</DropdownItem>
+											<DropdownItem value="40">40</DropdownItem>
+											<DropdownItem value="44">44</DropdownItem>
+											<DropdownItem value="48">48</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+							</DropdownGroup>
+
 							<DropdownGroup title="Currency">
 								<DropdownSub>
 									<DropdownSubTrigger>Currency</DropdownSubTrigger>
