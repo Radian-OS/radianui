@@ -121,14 +121,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 
 	const InputWithClass = useMemo(() => {
 		const Comp = React.forwardRef<HTMLInputElement, InputProps>(({ className: innerClassName, ...props }, ref) => (
-			<Input
-				ref={ref}
-				data-slot="phone-input"
-				size={size}
-				disabled={disabled}
-				className={cn(showTrigger && "rounded-l-none", className, innerClassName)}
-				{...props}
-			/>
+			<Input ref={ref} data-slot="phone-input" size={size} disabled={disabled} className={cn(showTrigger && "rounded-l-none", className, innerClassName)} {...props} />
 		))
 		Comp.displayName = "InputWithClass"
 		return Comp
@@ -150,13 +143,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					renderTrigger={() => (
 						<Button
 							onClick={handleFlipChevron}
-							trail={
-								flagsOnly ? undefined : open ? (
-									<ChevronUp className="text-text-disabled size-4" />
-								) : (
-									<ChevronDown className="text-text-disabled size-4" />
-								)
-							}
+							trail={flagsOnly ? undefined : open ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
 							variant="neutral-soft"
 							size={size === "0" ? undefined : size}
 							disabled={disabled}
