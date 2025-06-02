@@ -146,7 +146,6 @@ const PhoneNumberPreview = () => {
 					<div className="flex flex-col gap-1.5">
 						<Label>Phone Number</Label>
 						<PhoneNumber
-							defaultCountry="US"
 							flagsOnly={flagsOnly === "true"}
 							showTrigger={showTrigger === "true"}
 							value={phone}

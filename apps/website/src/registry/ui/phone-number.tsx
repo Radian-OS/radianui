@@ -117,9 +117,9 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	}
 
 	const InputWithClass = useMemo(() => {
-		const Comp = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => (
-			<Input {...props} ref={ref} data-slot="phone-input" size={size} disabled={disabled} className={cn(showTrigger && "rounded-l-none", className, props.className)} />
-		))
+		const Comp = (props: InputProps) => (
+			<Input {...props} data-slot="phone-input" size={size} disabled={disabled} className={cn(showTrigger && "rounded-l-none", className, props.className)} />
+		)
 		Comp.displayName = "PhoneNumber.InputWithClass"
 		return Comp
 	}, [className, size, showTrigger, disabled])

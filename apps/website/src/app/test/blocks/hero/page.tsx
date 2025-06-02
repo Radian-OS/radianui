@@ -27,6 +27,8 @@ const fadeDownNav: Variants = {
 
 // app/page.tsx
 
+// app/page.tsx
+
 export default function Home() {
 	const companies = [
 		{ svgUrl: "/hero-svg/zenith.svg" },
