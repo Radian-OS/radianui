@@ -33,12 +33,7 @@ const PaginationExample = () => {
 					<SelectItem value="false">False</SelectItem>
 				</Select>
 
-				<Select
-					label="Button Variant"
-					placeholder="Button Variant"
-					selectedValues={buttonVariant}
-					onSelectedChange={setButtonVariant}
-					className="w-max">
+				<Select label="Button Variant" placeholder="Button Variant" selectedValues={buttonVariant} onSelectedChange={setButtonVariant} className="w-max">
 					<SelectItem value="strong">strong</SelectItem>
 					<SelectItem value="outline">outline</SelectItem>
 				</Select>
@@ -48,12 +43,7 @@ const PaginationExample = () => {
 					<SelectItem value="false">False</SelectItem>
 				</Select>
 
-				<Select
-					label="Enable Row per page"
-					placeholder="Enable Row per page"
-					selectedValues={rowPerPage}
-					onSelectedChange={setRowsPerPage}
-					className="w-max">
+				<Select label="Enable Row per page" placeholder="Enable Row per page" selectedValues={rowPerPage} onSelectedChange={setRowsPerPage} className="w-max">
 					<SelectItem value="true">True</SelectItem>
 					<SelectItem value="false">False</SelectItem>
 				</Select>

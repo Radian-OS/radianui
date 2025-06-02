@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { Volume2, VolumeX } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import Slider from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -50,11 +41,7 @@ const SliderPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(label)]}
-										onSelectedChange={(values) => setLabel(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -63,11 +50,7 @@ const SliderPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

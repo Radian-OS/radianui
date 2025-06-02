@@ -81,11 +81,7 @@ const InputExample = () => {
 				</div>
 
 				<div>
-					<Select
-						label="Roundness"
-						placeholder="Select Radius"
-						selectedValues={[rounded]}
-						onSelectedChange={([value]) => setRounded(value as RoundedOptions)}>
+					<Select label="Roundness" placeholder="Select Radius" selectedValues={[rounded]} onSelectedChange={([value]) => setRounded(value as RoundedOptions)}>
 						<SelectItem value="square">Square</SelectItem>
 						<SelectItem value="rounded">Rounded</SelectItem>
 						<SelectItem value="full">Full</SelectItem>
@@ -153,14 +149,7 @@ const InputExample = () => {
 
 			<OTPInput size={size} rounded={rounded} placeholder="12345678" inputMode="numeric" length={6} label="Verification Code - Box Variant" />
 
-			<OTPInput
-				size={size}
-				rounded={rounded}
-				variant="flat"
-				inputMode="numeric"
-				placeholder="Enter 6-digit code here"
-				label="Verification Code - Flat Variant"
-			/>
+			<OTPInput size={size} rounded={rounded} variant="flat" inputMode="numeric" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
 
 			<InputOtp size={"56"} label="Enter 6 digit number" length={8} placeholder="467856" />
 

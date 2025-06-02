@@ -1,15 +1,6 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import Pagination from "@/registry/ui/pagination"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 

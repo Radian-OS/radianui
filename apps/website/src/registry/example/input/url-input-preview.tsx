@@ -1,15 +1,6 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
@@ -36,11 +27,7 @@ const UrlPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[size]}
-										onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 										{sizes.map((size) => (
 											<DropdownItem value={size} key={size}>
 												{size}
@@ -52,11 +39,7 @@ const UrlPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Examples</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(types)]}
-										onSelectedChange={(values) => setType(values[0] as typeOptions)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[String(types)]} onSelectedChange={(values) => setType(values[0] as typeOptions)} minSelectionCount={1}>
 										<DropdownItem value="default">Default</DropdownItem>
 										<DropdownItem value="trail">Trail</DropdownItem>
 										<DropdownItem value="lead">Lead</DropdownItem>

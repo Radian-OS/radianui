@@ -131,16 +131,7 @@ const wrapperVariants = cva("", {
 	},
 })
 
-function Drawer({
-	direction = "right",
-	type = "default",
-	children,
-	backdrop = "overlay",
-	trigger,
-	className,
-	handle = false,
-	...props
-}: DrawerWrapperProps) {
+function Drawer({ direction = "right", type = "default", children, backdrop = "overlay", trigger, className, handle = false, ...props }: DrawerWrapperProps) {
 	function getContentClass() {
 		const baseClasses = "bg-bg-base flex flex-col gap-5 overflow-hidden"
 

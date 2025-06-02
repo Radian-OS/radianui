@@ -21,15 +21,7 @@ export default function Home() {
 	return (
 		<div className={styles.page}>
 			<main className={styles.main}>
-				<ThemeImage
-					className={styles.logo}
-					srcLight="turborepo-dark.svg"
-					srcDark="turborepo-light.svg"
-					alt="Turborepo logo"
-					width={180}
-					height={38}
-					priority
-				/>
+				<ThemeImage className={styles.logo} srcLight="turborepo-dark.svg" srcDark="turborepo-light.svg" alt="Turborepo logo" width={180} height={38} priority />
 				<ol>
 					<li className="text-blue-800">
 						Get started by editing <code>apps/docs/app/page.tsx</code>

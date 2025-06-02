@@ -62,10 +62,7 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 									<AccordionContent
 										key={item.link}
 										className={` ${pathname === item.link ? "bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
-										<Link
-											className={`${pathname === item.link ? "text-text" : ""} text-text-secondary`}
-											href={item.link}
-											onClick={() => setIsMobileNavVisible(false)}>
+										<Link className={`${pathname === item.link ? "text-text" : ""} text-text-secondary`} href={item.link} onClick={() => setIsMobileNavVisible(false)}>
 											{item.name}
 										</Link>
 									</AccordionContent>

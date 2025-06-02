@@ -1,15 +1,6 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { InputOtp } from "@/registry/ui/otp-input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -39,11 +30,7 @@ export default function InputOtpPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)}
-										minSelectionCount={1}
-										selectedValues={[String(size)]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[String(size)]}>
 										<DropdownItem value="28">28</DropdownItem>
 										<DropdownItem value="32">32</DropdownItem>
 										<DropdownItem value="36">36</DropdownItem>
@@ -56,11 +43,7 @@ export default function InputOtpPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Length</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setLength(Number(keys[0]))}
-										minSelectionCount={1}
-										selectedValues={[String(length)]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setLength(Number(keys[0]))} minSelectionCount={1} selectedValues={[String(length)]}>
 										<DropdownItem value="5">5</DropdownItem>
 										<DropdownItem value="6">6</DropdownItem>
 										<DropdownItem value="7">7</DropdownItem>
@@ -73,11 +56,7 @@ export default function InputOtpPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setLabel(keys[0] === "true")}
-										minSelectionCount={1}
-										selectedValues={[String(label)]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setLabel(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(label)]}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -86,11 +65,7 @@ export default function InputOtpPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setDisabled(keys[0] === "true")}
-										minSelectionCount={1}
-										selectedValues={[String(disabled)]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setDisabled(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(disabled)]}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -99,11 +74,7 @@ export default function InputOtpPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setHasError(keys[0] === "true")}
-										minSelectionCount={1}
-										selectedValues={[String(hasError)]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setHasError(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(hasError)]}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>

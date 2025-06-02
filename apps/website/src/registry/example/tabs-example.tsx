@@ -55,12 +55,9 @@ const TabsExample = () => {
 							Selection
 						</TabsTrigger>
 					</TabsList>
-					<TabsContent value="account">
-						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel odit debitis esse iure mollitia a non .
-					</TabsContent>
+					<TabsContent value="account">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel odit debitis esse iure mollitia a non .</TabsContent>
 					<TabsContent value="password">
-						d suscipit explicabo. Culpa commodi velit quam nam aliquid labore sit, earum nulla similique deleniti adipisci explicabo assumenda magni
-						molestiae! Dolorum!
+						d suscipit explicabo. Culpa commodi velit quam nam aliquid labore sit, earum nulla similique deleniti adipisci explicabo assumenda magni molestiae! Dolorum!
 					</TabsContent>
 				</Tabs>
 				<Tabs defaultValue="account" variant={variant} size={size}>

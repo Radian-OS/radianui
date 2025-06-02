@@ -31,19 +31,7 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	}
 }
 
-function TextArea({
-	label,
-	className,
-	classNames,
-	hasError = false,
-	hint = "",
-	rounded = "rounded",
-	rows = 4,
-	resizable = true,
-	value,
-	defaultValue,
-	...props
-}: TextAreaProps) {
+function TextArea({ label, className, classNames, hasError = false, hint = "", rounded = "rounded", rows = 4, resizable = true, value, defaultValue, ...props }: TextAreaProps) {
 	let id = React.useId()
 	if (props.id) id = props.id
 

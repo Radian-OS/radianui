@@ -156,13 +156,7 @@ function DatePicker({
 
 	// Type guard for CalendarRange
 	function isCalendarRange(value: CalendarDate | CalendarDate[] | CalendarRange): value is CalendarRange {
-		return (
-			typeof value === "object" &&
-			value !== null &&
-			"from" in value &&
-			value.from instanceof CalendarDate &&
-			("to" in value ? value.to instanceof CalendarDate : true)
-		)
+		return typeof value === "object" && value !== null && "from" in value && value.from instanceof CalendarDate && ("to" in value ? value.to instanceof CalendarDate : true)
 	}
 
 	const getDisplayText = () => {
@@ -267,9 +261,7 @@ function DatePicker({
 									/>
 								</PopoverTrigger>
 
-								<PopoverContent
-									alignOffset={alignOffset}
-									className={cn("bg-bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+								<PopoverContent alignOffset={alignOffset} className={cn("bg-bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
 									{mode === "single" && (
 										<Calendar
 											onIndexChange={(value) => {

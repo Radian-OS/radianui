@@ -40,15 +40,7 @@ export default function HeroSection() {
 				</p>
 				<div className="z-30 flex flex-col gap-3">
 					<form className="flex flex-col gap-3 sm:flex-row" onSubmit={handleSubscribe}>
-						<Input
-							size="40"
-							className="sm:w-80"
-							type="email"
-							required
-							placeholder="Email Address"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-						/>
+						<Input size="40" className="sm:w-80" type="email" required placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
 						<Button size="40" disabled={isPending} type="submit">
 							{isPending ? "Subscribing" : "Subscribe"}
 						</Button>

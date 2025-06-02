@@ -128,9 +128,7 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 							</Link>
 						</Button>
 						<Divider orientation="vertical" className="hidden !h-4 lg:block" />
-						<span className="text-muted-foreground hidden text-sm lg:block">
-							{width < MDSIZE ? "Mobile" : width < LGSIZE ? "Tablet" : "Desktop"}
-						</span>{" "}
+						<span className="text-muted-foreground hidden text-sm lg:block">{width < MDSIZE ? "Mobile" : width < LGSIZE ? "Tablet" : "Desktop"}</span>{" "}
 					</div>
 
 					<div className="flex items-center gap-2">

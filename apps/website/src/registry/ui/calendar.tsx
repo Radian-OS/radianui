@@ -15,9 +15,7 @@ import { Select, SelectItem } from "./select"
  */
 
 // Function to convert CalendarDate to native Date object
-export function convertToNativeDate(
-	selected: CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate }
-): Date | Date[] | undefined | DateRange {
+export function convertToNativeDate(selected: CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate }): Date | Date[] | undefined | DateRange {
 	const timeZone = getLocalTimeZone() // Get the local time zone
 
 	if (selected instanceof Array) {
@@ -36,9 +34,7 @@ export function convertToNativeDate(
 }
 
 // Define the calendar component
-function convertToInternationalizedDate(
-	selected: Date | Date[] | undefined | DateRange
-): CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate } {
+function convertToInternationalizedDate(selected: Date | Date[] | undefined | DateRange): CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate } {
 	if (!selected) return undefined
 
 	if (selected instanceof Array) {
@@ -194,13 +190,7 @@ type GetMergedClassNamesParams = {
 	classNames?: Record<string, string>
 }
 
-export function getMergedClassNames({
-	props,
-	navigatorStyle,
-	dualCalendar,
-	hideCaption,
-	classNames = {},
-}: GetMergedClassNamesParams): Record<string, string> {
+export function getMergedClassNames({ props, navigatorStyle, dualCalendar, hideCaption, classNames = {} }: GetMergedClassNamesParams): Record<string, string> {
 	return {
 		root: cn({ "cursor-not-allowed": props.disabled }),
 		months: cn("relative flex flex-col bg-bg-level1 w-full gap-5 p-0", {
@@ -296,12 +286,7 @@ function CalendarComponent({
 	}
 
 	// Handle selection of dates
-	function handleOnSelect(
-		selected: Date | Date[] | undefined | DateRange,
-		triggerDate: Date,
-		modifiers: Modifiers,
-		e: React.MouseEvent | React.KeyboardEvent
-	) {
+	function handleOnSelect(selected: Date | Date[] | undefined | DateRange, triggerDate: Date, modifiers: Modifiers, e: React.MouseEvent | React.KeyboardEvent) {
 		setInternalSelected(selected)
 
 		const convertedSelected = convertToInternationalizedDate(selected)

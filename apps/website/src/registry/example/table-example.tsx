@@ -265,12 +265,7 @@ const columnsData = [
 		size: 200,
 		cell: ({ row }: { row: { original: PersonData } }) => (
 			<>
-				<Badge
-					size="20"
-					className={cn(
-						row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary",
-						row.original.status === "Active" && "bg-white text-black"
-					)}>
+				<Badge size="20" className={cn(row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary", row.original.status === "Active" && "bg-white text-black")}>
 					{row.original.status}
 				</Badge>
 			</>
@@ -540,12 +535,7 @@ const TableExample = () => {
 					<SelectItem value="false">False</SelectItem>
 				</Select>
 
-				<Select
-					label="Button Variant"
-					placeholder="Button Variant"
-					selectedValues={buttonVariant}
-					onSelectedChange={setButtonVariant}
-					className="w-max">
+				<Select label="Button Variant" placeholder="Button Variant" selectedValues={buttonVariant} onSelectedChange={setButtonVariant} className="w-max">
 					<SelectItem value="strong">strong</SelectItem>
 					<SelectItem value="outline">outline</SelectItem>
 				</Select>

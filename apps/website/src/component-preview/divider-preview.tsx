@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
 import { Divider } from "@/registry/ui/divider"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DividerPreview = () => {
@@ -67,8 +58,7 @@ const DividerPreview = () => {
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
-				<div
-					className={`flex ${orientation === "horizontal" ? "flex-col" : ""} h-[420px] items-center justify-center overflow-auto rounded-xl border px-10`}>
+				<div className={`flex ${orientation === "horizontal" ? "flex-col" : ""} h-[420px] items-center justify-center overflow-auto rounded-xl border px-10`}>
 					<h1 className="heading-4">Heading1</h1>
 					<Divider spacing={spacing} orientation={orientation} />
 					<h1 className="heading-4">Heading2</h1>

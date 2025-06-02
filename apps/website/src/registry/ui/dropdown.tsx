@@ -2,13 +2,7 @@
 
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import {
-	DropdownMenuContentProps,
-	DropdownMenuGroupProps,
-	DropdownMenuItemProps,
-	DropdownMenuSubContentProps,
-	DropdownMenuTriggerProps,
-} from "@radix-ui/react-dropdown-menu"
+import { DropdownMenuContentProps, DropdownMenuGroupProps, DropdownMenuItemProps, DropdownMenuSubContentProps, DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
@@ -251,10 +245,7 @@ function DropdownSubContent({ children, className, ...props }: DropdownMenuSubCo
 	return (
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.SubContent
-				className={cn(
-					"border-border bg-bg-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
-					className
-				)}
+				className={cn("border-border bg-bg-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5", className)}
 				sideOffset={10}
 				alignOffset={-7}
 				{...props}>
@@ -269,14 +260,4 @@ function DropdownDivider() {
 	return <Divider spacing="6" className="-mx-1.5! w-[calc(100%+0.75rem)]" />
 }
 
-export {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-}
+export { Dropdown, DropdownContent, DropdownDivider, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger }
