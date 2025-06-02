@@ -64,11 +64,7 @@ const SelectPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Hint</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[String(hint)]}
-											onSelectedChange={(values) => setHint(values[0] === "true")}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
 											<DropdownItem value="true">True</DropdownItem>
 											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
@@ -109,11 +105,7 @@ const SelectPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[rounded]}
-											onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 											{roundedOptions.map((roundedOption) => (
 												<DropdownItem value={roundedOption} key={roundedOption}>
 													{roundedOption}
@@ -125,11 +117,7 @@ const SelectPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Size</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[size]}
-											onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 											{sizes.map((size) => (
 												<DropdownItem value={size} key={size}>
 													{size}
@@ -141,11 +129,7 @@ const SelectPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Label</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[String(label)]}
-											onSelectedChange={(values) => setLabel(values[0] === "true")}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 											<DropdownItem value="true">True</DropdownItem>
 											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
@@ -181,11 +165,7 @@ const SelectPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[selectionMode]}
-											onSelectedChange={(values) => setSelectionMode(values[0])}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[selectionMode]} onSelectedChange={(values) => setSelectionMode(values[0])} minSelectionCount={1}>
 											<DropdownItem value="single">Single</DropdownItem>
 											<DropdownItem value="multiple">Multiple</DropdownItem>
 										</DropdownGroup>
@@ -291,16 +271,10 @@ const SelectPreview = () => {
 						hint={hint ? "Hint text to help the user with input" : ""}
 						className="w-80">
 						<SelectGroup label="Backend Frameworks">
-							<SelectItem
-								startContent={startContent ? <Box className={iconClass} /> : null}
-								endContent={endContent ? <Box className={iconClass} /> : null}
-								value="node-js">
+							<SelectItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="node-js">
 								Node.js (Express)
 							</SelectItem>
-							<SelectItem
-								startContent={startContent ? <Box className={iconClass} /> : null}
-								endContent={endContent ? <Box className={iconClass} /> : null}
-								value="django">
+							<SelectItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="django">
 								Django (Python)
 							</SelectItem>
 							<SelectItem value="rails">Rails (Ruby)</SelectItem>
