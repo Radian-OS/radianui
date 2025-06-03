@@ -2,8 +2,10 @@
 
 import { CirclePlay, Menu, X, Zap } from "lucide-react"
 import Link from "next/link"
+import { Draggable } from "@/registry/animated/Draggable"
 import { FadeDown } from "@/registry/animated/FadeDown"
 import { InfiniteScroll } from "@/registry/animated/InfiniteScroll"
+import { PressAnimate } from "@/registry/animated/PressAnimate"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"
@@ -51,9 +53,16 @@ export default function Home() {
 								<a href="#" className="text-text">
 									Blog
 								</a>
-								<a href="#" className="text-text">
-									Resources
-								</a>
+								<Draggable>
+									<a href="#" className="text-text">
+										Resources
+									</a>
+								</Draggable>
+								<PressAnimate>
+									<a href="#" className="text-text">
+										Resources
+									</a>
+								</PressAnimate>
 							</nav>
 
 							{/* Auth buttons */}
@@ -87,32 +96,29 @@ export default function Home() {
 				<FadeDown>
 					<div className="pt-25 relative px-5 sm:px-6 lg:px-8">
 						<div className="relative mx-auto flex max-w-5xl flex-col gap-6 text-center">
-							<Badge className="mb-8 sm:mx-auto" size="28" closable>
+							<Badge className="mb-8 sm:mx-auto" size="28">
 								<img src="/hero-svg/y-combinator.svg" />
 								Backed by Y Combinator
+								<X size={16} />
 							</Badge>
 
 							{/* Main heading */}
 							<div>
-								<h1 className="text-text heading-1 mb-6 text-left font-bold sm:text-center">
-									Ship next generation of world
-									<br />
-									class products & solutions
-								</h1>
+								<h1 className="text-text heading-1 mb-6 text-left font-bold sm:text-center">Ship next generation of world class products & solutions</h1>
 
 								{/* Description */}
-								<p className="text-text-secondary mb-8 text-left text-lg font-normal sm:text-center">
-									Radian is a high-quality design and development library that empowers
-									<br />
-									you to build systems capable of scaling efficiently.
+								<p className="max-w-175 text-text-secondary mx-auto mb-8 text-left text-lg font-normal sm:text-center">
+									Radian is a high-quality design and development library that empowers you to build systems capable of scaling efficiently.
 								</p>
 							</div>
 
 							{/* CTA buttons */}
 							<div className="flex flex-col items-center justify-center gap-2 sm:flex-row">
-								<Button lead={<Zap size={24} />} size="44" className="w-full sm:w-fit">
-									Try for free
-								</Button>
+								<PressAnimate>
+									<Button lead={<Zap size={24} />} size="44" className="w-full sm:w-fit">
+										Try for free
+									</Button>
+								</PressAnimate>
 								<Button lead={<CirclePlay size={24} />} className="text-text-secondary w-full sm:w-fit" variant="neutral-outline" size="44">
 									Watch Demo
 								</Button>
