@@ -128,6 +128,29 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	const handlePhoneChange = (val: Value | undefined) => {
 		if (disabled) return
 
+		if (international && val && val.startsWith("+")) {
+			const numberWithoutPlus = val.slice(1)
+			const sortedCountries = [...countries].sort((a, b) => getCountryCallingCode(b).length - getCountryCallingCode(a).length)
+
+			const matchingCountries = sortedCountries.filter((c) => {
+				const code = getCountryCallingCode(c)
+				return numberWithoutPlus.startsWith(code)
+			})
+
+			if (matchingCountries.length > 0) {
+				let selected = matchingCountries[0]
+				const firstMatchCode = getCountryCallingCode(matchingCountries[0])
+				const prio = countryPriority[firstMatchCode]
+				if (prio) {
+					const p = prio.find((x) => matchingCountries.includes(x as RPNInput.Country))
+					if (p) selected = p as RPNInput.Country
+				}
+				if (selected && selected !== country) {
+					onCountryChange?.(selected)
+				}
+			}
+		}
+
 		// If we're in international mode but prefix must remain locked:
 		if (international && countryCallingCodeEditable === false) {
 			// Compute the “locked” prefix for the current country (e.g. "+1" if country="US")

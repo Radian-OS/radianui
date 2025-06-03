@@ -119,237 +119,241 @@ const PhoneNumberPreview = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSize(Array.from(keys)[0] as SizeOptions)
-										}}
-										minSelectionCount={1}
-										selectedValues={[size]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+							<DropdownGroup title="Input">
+								<DropdownSub>
+									<DropdownSubTrigger>Size</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setSize(Array.from(keys)[0] as SizeOptions)
+											}}
+											minSelectionCount={1}
+											selectedValues={[size]}>
+											<DropdownItem value="28">28</DropdownItem>
+											<DropdownItem value="32">32</DropdownItem>
+											<DropdownItem value="36">36</DropdownItem>
+											<DropdownItem value="40">40</DropdownItem>
+											<DropdownItem value="44">44</DropdownItem>
+											<DropdownItem value="48">48</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Show Trigger</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[showTrigger]}
-										onSelectedChange={(keys) => {
-											setShowTrigger(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[disabled]}
+											onSelectedChange={(keys) => {
+												setDisabled(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							{/* Country dropdown (controlled value) */}
-							<DropdownSub>
-								<DropdownSubTrigger>Country</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[country]}
-										onSelectedChange={(keys) => {
-											setCountry(Array.from(keys)[0] as Country)
-										}}>
-										{countryOptions.map((option) => (
-											<DropdownItem key={option.value} value={option.value}>
-												{option.label}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Hint</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[hint]}
+											onSelectedChange={(keys) => {
+												setHint(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							{/* Default Country dropdown */}
-							<DropdownSub>
-								<DropdownSubTrigger>Default Country</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[defaultCountry]}
-										onSelectedChange={(keys) => {
-											setDefaultCountry(Array.from(keys)[0] as CountryOptions | "none")
-										}}>
-										<DropdownItem value="none">None</DropdownItem>
-										<DropdownItem value="US">United States</DropdownItem>
-										<DropdownItem value="CA">Canada</DropdownItem>
-										<DropdownItem value="CN">China</DropdownItem>
-										<DropdownItem value="IN">India</DropdownItem>
-										<DropdownItem value="DE">Germany</DropdownItem>
-										<DropdownItem value="GB">United Kingdom</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>hasError</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[hasError]}
+											onSelectedChange={(keys) => {
+												setHasError(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Only Countries</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[onlyCountriesOption]}
-										onSelectedChange={(keys) => {
-											setOnlyCountriesOption(Array.from(keys)[0] as OnlyCountriesOptions)
-										}}>
-										{onlyCountriesOptions.map((option) => (
-											<DropdownItem key={option.value} value={option.value}>
-												{option.label}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Label</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[label]}
+											onSelectedChange={(keys) => {
+												setLabel(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+							</DropdownGroup>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Preferred Countries</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[preferredCountriesOption]}
-										onSelectedChange={(keys) => {
-											setPreferredCountriesOption(Array.from(keys)[0] as PreferredCountriesOptions)
-										}}>
-										{preferredCountriesOptions.map((option) => (
-											<DropdownItem key={option.value} value={option.value}>
-												{option.label}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+							<DropdownGroup title="Phone Number">
+								<DropdownSub>
+									<DropdownSubTrigger>Show Trigger</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[showTrigger]}
+											onSelectedChange={(keys) => {
+												setShowTrigger(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">true</DropdownItem>
+											<DropdownItem value="false">false</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Exclude Countries</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[excludeCountriesOption]}
-										onSelectedChange={(keys) => {
-											setExcludeCountriesOption(Array.from(keys)[0] as ExcludeCountriesOptions)
-										}}>
-										{excludeCountriesOptions.map((option) => (
-											<DropdownItem key={option.value} value={option.value}>
-												{option.label}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								{/* Country dropdown (controlled value) */}
+								<DropdownSub>
+									<DropdownSubTrigger>Country</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[country]}
+											onSelectedChange={(keys) => {
+												setCountry(Array.from(keys)[0] as Country)
+											}}>
+											{countryOptions.map((option) => (
+												<DropdownItem key={option.value} value={option.value}>
+													{option.label}
+												</DropdownItem>
+											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[disabled]}
-										onSelectedChange={(keys) => {
-											setDisabled(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								{/* Default Country dropdown */}
+								<DropdownSub>
+									<DropdownSubTrigger>Default Country</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[defaultCountry]}
+											onSelectedChange={(keys) => {
+												setDefaultCountry(Array.from(keys)[0] as CountryOptions | "none")
+											}}>
+											<DropdownItem value="none">None</DropdownItem>
+											<DropdownItem value="US">United States</DropdownItem>
+											<DropdownItem value="CA">Canada</DropdownItem>
+											<DropdownItem value="CN">China</DropdownItem>
+											<DropdownItem value="IN">India</DropdownItem>
+											<DropdownItem value="DE">Germany</DropdownItem>
+											<DropdownItem value="GB">United Kingdom</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>International</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[international]}
-										onSelectedChange={(keys) => {
-											setInternational(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Only Countries</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[onlyCountriesOption]}
+											onSelectedChange={(keys) => {
+												setOnlyCountriesOption(Array.from(keys)[0] as OnlyCountriesOptions)
+											}}>
+											{onlyCountriesOptions.map((option) => (
+												<DropdownItem key={option.value} value={option.value}>
+													{option.label}
+												</DropdownItem>
+											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							{/* — Added countryCallingCodeEditable dropdown */}
-							<DropdownSub>
-								<DropdownSubTrigger>Country Calling Code Editable</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[countryCallingCodeEditable]}
-										onSelectedChange={(keys) => {
-											setCountryCallingCodeEditable(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Preferred Countries</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[preferredCountriesOption]}
+											onSelectedChange={(keys) => {
+												setPreferredCountriesOption(Array.from(keys)[0] as PreferredCountriesOptions)
+											}}>
+											{preferredCountriesOptions.map((option) => (
+												<DropdownItem key={option.value} value={option.value}>
+													{option.label}
+												</DropdownItem>
+											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Hint</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[hint]}
-										onSelectedChange={(keys) => {
-											setHint(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Exclude Countries</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[excludeCountriesOption]}
+											onSelectedChange={(keys) => {
+												setExcludeCountriesOption(Array.from(keys)[0] as ExcludeCountriesOptions)
+											}}>
+											{excludeCountriesOptions.map((option) => (
+												<DropdownItem key={option.value} value={option.value}>
+													{option.label}
+												</DropdownItem>
+											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>hasError</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[hasError]}
-										onSelectedChange={(keys) => {
-											setHasError(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>International</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[international]}
+											onSelectedChange={(keys) => {
+												setInternational(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 
-							<DropdownSub>
-								<DropdownSubTrigger>Label</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[label]}
-										onSelectedChange={(keys) => {
-											setLabel(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
+								{/* — Added countryCallingCodeEditable dropdown */}
+								<DropdownSub>
+									<DropdownSubTrigger>Country Calling Code Editable</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[countryCallingCodeEditable]}
+											onSelectedChange={(keys) => {
+												setCountryCallingCodeEditable(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+							</DropdownGroup>
 						</DropdownContent>
 					</Dropdown>
 				</div>
