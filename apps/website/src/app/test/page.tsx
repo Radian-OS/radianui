@@ -24,6 +24,7 @@ import SwitchExample from "@/registry/example/switch-example"
 import TableExample from "@/registry/example/table-example"
 import TabsExample from "@/registry/example/tabs-example"
 import TooltipExample from "@/registry/example/tooltip-example"
+import ColorPicker from "@/registry/ui/color-picker"
 
 const page = () => {
 	return (
@@ -53,6 +54,8 @@ const page = () => {
 				<TableExample />
 				<PaginationExample />
 				<ResizeableExample />
+				<ColorPicker />
+				<input type="color" />
 			</div>
 		</div>
 	)
