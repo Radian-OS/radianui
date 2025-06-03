@@ -130,13 +130,11 @@ export default function Home() {
 				{/* Company Logos */}
 				<section className="px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
 					<div className="mx-auto max-w-7xl">
-						<div className="overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-							<InfiniteScroll>
-								{companies.map((company, index) => (
-									<img key={index} src={company.svgUrl} alt="" className="h-10 w-auto shrink-0 object-contain" />
-								))}
-							</InfiniteScroll>
-						</div>
+						<InfiniteScroll>
+							{companies.map((company, index) => (
+								<img key={index} src={company.svgUrl} alt="" className="h-10 w-auto shrink-0 object-contain" />
+							))}
+						</InfiniteScroll>
 					</div>
 				</section>
 
