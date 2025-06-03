@@ -258,16 +258,16 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 						disabled={disabled}
 						renderTrigger={() => (
 							<Button
-								trail={selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
 								variant="neutral-soft"
 								size={size === "0" ? undefined : size}
 								disabled={disabled}
-								lead={<Flag country={country} />}
 								className={cn(
 									"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
 									{ "border-error": hasError && !disabled }
 								)}>
-								<span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>
+								<Flag country={country} />
+								<span className="text-text-tertiary">{country ? countryCallingCodeEditable && `+${getCountryCallingCode(country)}` : null}</span>
+								{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
 							</Button>
 						)}>
 						{preferredCountriesList.length > 0 && <SelectGroup>{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
