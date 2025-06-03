@@ -50,6 +50,7 @@ export const sideBarItems: SideBarSection[] = [
 			// { link: "/documentation/components/button-group", name: "Buttongroup" },
 			{ link: "/documentation/components/calendar", name: "Calendar" },
 			{ link: "/documentation/components/code-area", name: "Code Area" },
+			{ link: "/documentation/components/color-picker", name: "Color Picker" },
 			{ link: "/documentation/components/currency-amount", name: "Currency Amount" },
 			{ link: "/documentation/components/checkbox", name: "Check Box" },
 			{ link: "/documentation/components/date-picker", name: "Date Picker" },
