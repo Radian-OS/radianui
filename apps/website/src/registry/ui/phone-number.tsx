@@ -16,6 +16,8 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	className?: string
 	country?: RPNInput.Country
 	onlyCountries?: string[]
+	preferredCountries?: string[]
+	excludeCountries?: string[]
 	label?: string
 	hint?: string
 	hasError?: boolean
@@ -34,6 +36,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	flagsOnly = false,
 	className,
 	onlyCountries,
+	preferredCountries,
+	excludeCountries,
 	// New props
 	label,
 	hint,
@@ -45,20 +49,63 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	const id = useId()
 	const allCountries = useMemo(() => getCountries(), [])
 
-	// Filter countries based on onlyCountries prop
-	const countries = useMemo(() => {
-		if (!onlyCountries || onlyCountries.length === 0) {
-			return allCountries
+	// Helper function to convert country names/codes to country codes
+	const normalizeCountryIdentifier = (identifier: string): RPNInput.Country | null => {
+		// Check if it's already a valid country code
+		if (allCountries.includes(identifier as RPNInput.Country)) {
+			return identifier as RPNInput.Country
 		}
 
-		// Convert country names to country codes and filter
-		const filteredCountries = allCountries.filter((countryCode) => {
+		// Try to find by country name
+		const foundCountry = allCountries.find((countryCode) => {
 			const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(countryCode)
-			return onlyCountries.includes(regionName || "") || onlyCountries.includes(countryCode)
+			return regionName?.toLowerCase() === identifier.toLowerCase()
 		})
 
+		return foundCountry || null
+	}
+
+	// Filter countries based on all filtering props
+	const countries = useMemo(() => {
+		let filteredCountries = [...allCountries]
+
+		// Apply excludeCountries filter first
+		if (excludeCountries && excludeCountries.length > 0) {
+			const excludeCodes = excludeCountries.map(normalizeCountryIdentifier).filter(Boolean) as RPNInput.Country[]
+
+			filteredCountries = filteredCountries.filter((countryCode) => !excludeCodes.includes(countryCode))
+		}
+
+		// Then apply onlyCountries filter if specified
+		if (onlyCountries && onlyCountries.length > 0) {
+			const onlyCodes = onlyCountries.map(normalizeCountryIdentifier).filter(Boolean) as RPNInput.Country[]
+
+			filteredCountries = filteredCountries.filter((countryCode) => onlyCodes.includes(countryCode))
+		}
+
 		return filteredCountries
-	}, [allCountries, onlyCountries])
+	}, [allCountries, onlyCountries, excludeCountries])
+
+	// Separate preferred countries from regular countries
+	const { preferredCountriesList, regularCountriesList } = useMemo(() => {
+		if (!preferredCountries || preferredCountries.length === 0) {
+			return {
+				preferredCountriesList: [],
+				regularCountriesList: countries,
+			}
+		}
+
+		const preferredCodes = preferredCountries.map(normalizeCountryIdentifier).filter(Boolean) as RPNInput.Country[]
+
+		const preferred = countries.filter((countryCode) => preferredCodes.includes(countryCode))
+
+		const regular = countries.filter((countryCode) => !preferredCodes.includes(countryCode))
+
+		return {
+			preferredCountriesList: preferred,
+			regularCountriesList: regular,
+		}
+	}, [countries, preferredCountries])
 
 	// Create a map of country names to country codes for reverse lookup
 	const countryNameToCode = useMemo(() => {
@@ -162,6 +209,16 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	const selectedCountryName = country ? new Intl.DisplayNames(["en"], { type: "region" }).of(country) || country : ""
 	const [selectOpen, setSelectOpen] = useState(false)
 
+	// Helper function to render country items
+	const renderCountryItem = (c: RPNInput.Country) => {
+		const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+		return (
+			<SelectItem endContent={`+${getCountryCallingCode(c)}`} startContent={<Flag country={c} />} key={c} value={regionName}>
+				<span>{regionName}</span>
+			</SelectItem>
+		)
+	}
+
 	return (
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
 			{label && (
@@ -190,23 +247,16 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 								className={cn(
 									"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
 									{
-										// Apply error border to country selector when hasError is true
 										"border-error": hasError && !disabled,
 									}
 								)}>
 								{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
 							</Button>
 						)}>
-						<SelectGroup>
-							{countries.map((c) => {
-								const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
-								return (
-									<SelectItem endContent={`+${getCountryCallingCode(c)}`} startContent={<Flag country={c} />} key={c} value={regionName}>
-										<span>{regionName}</span>
-									</SelectItem>
-								)
-							})}
-						</SelectGroup>
+						{/* Render preferred countries first if they exist */}
+						{preferredCountriesList.length > 0 && <SelectGroup>{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
+						{/* Render regular countries */}
+						{regularCountriesList.length > 0 && <SelectGroup>{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
 					</Select>
 				)}
 				<RPNInput.default
