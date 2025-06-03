@@ -36,6 +36,7 @@ import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SelectPreview from "@/component-preview/select-preview"
+import SkeletonPreview from "@/component-preview/skeleton-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SonnerPreview from "@/component-preview/sonner-preview"
@@ -141,6 +142,7 @@ const components: MDXComponents = {
 	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
 	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
 	SearchPreview: () => <SearchPreview />,
+	SkeletonPreview: () => <SkeletonPreview />,
 	SearchInputExample: () => <SearchInputExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	FileUploadPreview: () => <FileUploadPreview />,

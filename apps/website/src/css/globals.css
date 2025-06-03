@@ -240,6 +240,12 @@
 			height: 0;
 		}
 	}
+
+	@keyframes shimmer {
+		"100%": {
+			transform: "translateX(100%)";
+		}
+	}
 }
 
 .dark {
@@ -337,6 +343,19 @@
 	--color-text-disabled: var(--color-black-2);
 	--color-text-4: var(--color-black-5) /* static */ --color-static-white: var(--color-white-1);
 	--color-static-black: var(--color-black-9);
+}
+
+@theme inline {
+	--animate-infinite-scroll: infinite-scroll var(--duration) infinite linear;
+
+	@keyframes infinite-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-100% - var(--gap)));
+		}
+	}
 }
 
 /*
