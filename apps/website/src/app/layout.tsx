@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import Navbar from "@/components/navbar"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 // import Banner from "@/components/under-development-banner"
@@ -21,10 +20,6 @@ export default async function RootLayout({
 			<body className={cn("relative min-h-svh", "antialiased")}>
 				<PostHogProvider>
 					<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-						<header className="sticky top-0 z-50 w-full">
-							{/* <Banner /> */}
-							<Navbar />
-						</header>
 						{children}
 					</ThemeProvider>
 				</PostHogProvider>
