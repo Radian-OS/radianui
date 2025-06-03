@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import type { Country, Value } from "react-phone-number-input"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Label } from "@/registry/ui/label"
 import { PhoneNumber } from "@/registry/ui/phone-number"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -186,9 +185,10 @@ const PhoneNumberPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
 					<div className="flex flex-col gap-1.5">
-						<Label>Phone Number</Label>
+						{/* <Label>Phone Number</Label> */}
 						<PhoneNumber
 							flagsOnly={flagsOnly === "true"}
+							label="Phone Number"
 							showTrigger={showTrigger === "true"}
 							value={phone}
 							disabled={disabled === "true"}

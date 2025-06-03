@@ -6,6 +6,7 @@ import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Input, InputProps } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 
 type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
@@ -15,6 +16,11 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	className?: string
 	country?: RPNInput.Country
 	onlyCountries?: string[]
+	label?: string
+	hint?: string
+	hasError?: boolean
+	lead?: React.ReactNode
+	trail?: React.ReactNode
 }
 
 const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
@@ -28,6 +34,12 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	flagsOnly = false,
 	className,
 	onlyCountries,
+	// New props
+	label,
+	hint,
+	hasError = false,
+	lead,
+	trail,
 	...rpnInputProps
 }) => {
 	const id = useId()
@@ -131,66 +143,89 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 
 	const InputWithClass = useMemo(() => {
 		const Comp = (props: InputProps) => (
-			<Input {...props} data-slot="phone-input" size={size} disabled={disabled} className={cn(showTrigger && "rounded-l-none", className, props.className)} />
+			<Input
+				{...props}
+				data-slot="phone-input"
+				size={size}
+				disabled={disabled}
+				hasError={hasError}
+				lead={lead}
+				trail={trail}
+				className={cn(showTrigger && "rounded-l-none", className, props.className)}
+			/>
 		)
 		Comp.displayName = "PhoneNumber.InputWithClass"
 		return Comp
-	}, [className, size, showTrigger, disabled])
+	}, [className, size, showTrigger, disabled, hasError, lead, trail])
 
 	// Get the display name for the selected country
 	const selectedCountryName = country ? new Intl.DisplayNames(["en"], { type: "region" }).of(country) || country : ""
 	const [selectOpen, setSelectOpen] = useState(false)
 
 	return (
-		<div className="flex gap-0">
-			{showTrigger && (
-				<Select
-					open={selectOpen}
-					onOpenChange={setSelectOpen}
-					selectedValues={selectedCountryName ? [selectedCountryName] : []}
-					onSelectedChange={handleCountrySelection}
-					selectionMode="single"
-					isSearchable={true}
-					searchPlaceholder="Search countries..."
-					disabled={disabled}
-					renderTrigger={() => (
-						<Button
-							trail={flagsOnly ? undefined : selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
-							variant="neutral-soft"
-							size={size === "0" ? undefined : size}
-							disabled={disabled}
-							lead={<Flag country={country} />}
-							className="focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
-							{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
-						</Button>
-					)}>
-					<SelectGroup>
-						{countries.map((c) => {
-							const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
-							return (
-								<SelectItem endContent={`+${getCountryCallingCode(c)}`} startContent={<Flag country={c} />} key={c} value={regionName}>
-									<span>{regionName}</span>
-								</SelectItem>
-							)
-						})}
-					</SelectGroup>
-				</Select>
+		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
+			{label && (
+				<Label htmlFor={id} className={cn({ "text-text-disabled cursor-not-allowed": disabled })}>
+					{label}
+				</Label>
 			)}
-			<RPNInput.default
-				{...rpnInputProps}
-				id={id}
-				className="flex-1"
-				country={country}
-				value={value}
-				onChange={handlePhoneChange}
-				onCountryChange={onCountryChange}
-				flagComponent={() => null}
-				countrySelectComponent={() => null}
-				inputComponent={InputWithClass}
-				placeholder="Enter phone number"
-				disabled={disabled}
-				countries={countries}
-			/>
+			<div className="flex w-full gap-0">
+				{showTrigger && (
+					<Select
+						open={selectOpen}
+						onOpenChange={setSelectOpen}
+						selectedValues={selectedCountryName ? [selectedCountryName] : []}
+						onSelectedChange={handleCountrySelection}
+						selectionMode="single"
+						isSearchable={true}
+						searchPlaceholder="Search countries..."
+						disabled={disabled}
+						renderTrigger={() => (
+							<Button
+								trail={flagsOnly ? undefined : selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
+								variant="neutral-soft"
+								size={size === "0" ? undefined : size}
+								disabled={disabled}
+								lead={<Flag country={country} />}
+								className={cn(
+									"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+									{
+										// Apply error border to country selector when hasError is true
+										"border-error": hasError && !disabled,
+									}
+								)}>
+								{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
+							</Button>
+						)}>
+						<SelectGroup>
+							{countries.map((c) => {
+								const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+								return (
+									<SelectItem endContent={`+${getCountryCallingCode(c)}`} startContent={<Flag country={c} />} key={c} value={regionName}>
+										<span>{regionName}</span>
+									</SelectItem>
+								)
+							})}
+						</SelectGroup>
+					</Select>
+				)}
+				<RPNInput.default
+					{...rpnInputProps}
+					id={id}
+					className="flex-1"
+					country={country}
+					value={value}
+					onChange={handlePhoneChange}
+					onCountryChange={onCountryChange}
+					flagComponent={() => null}
+					countrySelectComponent={() => null}
+					inputComponent={InputWithClass}
+					placeholder="Enter phone number"
+					disabled={disabled}
+					countries={countries}
+				/>
+			</div>
+			{(hasError || hint) && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
 		</div>
 	)
 }
