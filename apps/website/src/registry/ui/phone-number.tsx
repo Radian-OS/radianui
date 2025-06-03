@@ -12,7 +12,6 @@ import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
 	size?: InputProps["size"]
 	showTrigger?: boolean
-	flagsOnly?: boolean
 	className?: string
 	country?: RPNInput.Country
 	onlyCountries?: string[]
@@ -33,7 +32,6 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	size,
 	showTrigger = true,
 	disabled = false,
-	flagsOnly = false,
 	className,
 	onlyCountries,
 	preferredCountries,
@@ -239,7 +237,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 						disabled={disabled}
 						renderTrigger={() => (
 							<Button
-								trail={flagsOnly ? undefined : selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
+								trail={selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
 								variant="neutral-soft"
 								size={size === "0" ? undefined : size}
 								disabled={disabled}
@@ -250,7 +248,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 										"border-error": hasError && !disabled,
 									}
 								)}>
-								{!flagsOnly && <span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
+								{<span className="text-text-tertiary">{country ? `+${getCountryCallingCode(country)}` : ""}</span>}
 							</Button>
 						)}>
 						{/* Render preferred countries first if they exist */}

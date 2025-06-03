@@ -17,13 +17,13 @@ const PhoneNumberPreview = () => {
 	const [phone, setPhone] = useState<Value | undefined>()
 	const [country, setCountry] = useState<Country>("US")
 	const [showTrigger, setShowTrigger] = useState<"true" | "false">("true")
-	const [flagsOnly, setFlagsOnly] = useState<"true" | "false">("false")
 	const [defaultCountry, setDefaultCountry] = useState<CountryOptions>("US")
 	const [onlyCountriesOption, setOnlyCountriesOption] = useState<OnlyCountriesOptions>("all")
 	const [preferredCountriesOption, setPreferredCountriesOption] = useState<PreferredCountriesOptions>("none")
 	const [excludeCountriesOption, setExcludeCountriesOption] = useState<ExcludeCountriesOptions>("none")
 	const [hint, setHint] = useState<"true" | "false">("false")
 	const [hasError, setHasError] = useState<"true" | "false">("false")
+	const [label, setLabel] = useState<"true" | "false">("true")
 
 	const countryOptions = [
 		{ value: "US", label: "United States" },
@@ -143,22 +143,6 @@ const PhoneNumberPreview = () => {
 										}}>
 										<DropdownItem value="true">true</DropdownItem>
 										<DropdownItem value="false">false</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Flags Only</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[flagsOnly]}
-										onSelectedChange={(keys) => {
-											setFlagsOnly(Array.from(keys)[0] as "true" | "false")
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -287,6 +271,21 @@ const PhoneNumberPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Label</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[label]}
+										onSelectedChange={(keys) => {
+											setLabel(Array.from(keys)[0] as "true" | "false")
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -303,8 +302,7 @@ const PhoneNumberPreview = () => {
 						<PhoneNumber
 							hasError={hasError === "true"}
 							hint={hint === "true" ? "Hint text to help the user with input" : ""}
-							flagsOnly={flagsOnly === "true"}
-							label="Phone Number"
+							label={label === "true" ? "Phone Number" : ""}
 							showTrigger={showTrigger === "true"}
 							value={phone}
 							disabled={disabled === "true"}
@@ -358,17 +356,14 @@ const PhoneNumberExample = () => {
 						? `
         disabled={true}`
 						: ""
-				}${
-					flagsOnly === "true"
-						? `
-        flagsOnly={true}`
-						: ""
 				}${getOnlyCountriesCode()}${getPreferredCountriesCode()}${getExcludeCountriesCode()}${
 					showTrigger === "false"
 						? `
         className="w-80"`
 						: ""
 				}
+				label="${label === "true" ? "Phone Number" : ""}"
+
       />
     </div>
   )
