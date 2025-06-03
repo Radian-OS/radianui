@@ -339,6 +339,19 @@
 	--color-static-black: var(--color-black-9);
 }
 
+@theme inline {
+	--animate-infinite-scroll: infinite-scroll var(--duration) infinite linear;
+
+	@keyframes infinite-scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(calc(-100% - var(--gap)));
+		}
+	}
+}
+
 /*
 Variable used in website only
 */
