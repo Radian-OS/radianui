@@ -61,9 +61,8 @@ const UrlPreview = () => {
 						<Label>Url</Label>
 						<div className="flex rounded-md">
 							<Input
-								className={`w-80 ${types === "trail" ? "border-r-0 focus-within:border-r" : ""} `}
+								className={` ${types === "trail" ? "w-58 rounded-r-none border-r-0 focus-within:border-r" : "w-80"} `}
 								size={size}
-								custom={types === "trail" ? true : false}
 								placeholder="radianos.com"
 								type="url"
 								lead={types === "lead" ? "https://" : ""}

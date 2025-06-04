@@ -5,12 +5,11 @@ import Link from "next/link"
 import { Draggable } from "@/registry/animated/Draggable"
 import { FadeDown } from "@/registry/animated/FadeDown"
 import { InfiniteScroll } from "@/registry/animated/InfiniteScroll"
-import { PressAnimate } from "@/registry/animated/PressAnimate"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"
 
-export default function Home() {
+export default function Hero01() {
 	const companies = [
 		{ svgUrl: "/hero-svg/zenith.svg" },
 		{ svgUrl: "/hero-svg/stellar.svg" },
@@ -53,16 +52,9 @@ export default function Home() {
 								<a href="#" className="text-text">
 									Blog
 								</a>
-								<Draggable>
-									<a href="#" className="text-text">
-										Resources
-									</a>
-								</Draggable>
-								<PressAnimate>
-									<a href="#" className="text-text">
-										Resources
-									</a>
-								</PressAnimate>
+								<a href="#" className="text-text">
+									Resources
+								</a>
 							</nav>
 
 							{/* Auth buttons */}
@@ -96,11 +88,13 @@ export default function Home() {
 				<FadeDown>
 					<div className="pt-25 relative px-5 sm:px-6 lg:px-8">
 						<div className="relative mx-auto flex max-w-5xl flex-col gap-6 text-center">
-							<Badge className="mb-8 sm:mx-auto" size="28">
-								<img src="/hero-svg/y-combinator.svg" />
-								Backed by Y Combinator
-								<X size={16} />
-							</Badge>
+							<Draggable>
+								<Badge className="mb-8 sm:mx-auto" size="28">
+									<img src="/hero-svg/y-combinator.svg" />
+									Backed by Y Combinator
+									<X size={16} />
+								</Badge>
+							</Draggable>
 
 							{/* Main heading */}
 							<div>
@@ -114,11 +108,9 @@ export default function Home() {
 
 							{/* CTA buttons */}
 							<div className="flex flex-col items-center justify-center gap-2 sm:flex-row">
-								<PressAnimate>
-									<Button lead={<Zap size={24} />} size="44" className="w-full sm:w-fit">
-										Try for free
-									</Button>
-								</PressAnimate>
+								<Button lead={<Zap size={24} />} size="44" className="w-full sm:w-fit">
+									Try for free
+								</Button>
 								<Button lead={<CirclePlay size={24} />} className="text-text-secondary w-full sm:w-fit" variant="neutral-outline" size="44">
 									Watch Demo
 								</Button>
@@ -130,19 +122,19 @@ export default function Home() {
 				{/* Company Logos */}
 				<section className="px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
 					<div className="mx-auto max-w-7xl">
-						<div className="overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-							<InfiniteScroll>
-								{companies.map((company, index) => (
-									<img key={index} src={company.svgUrl} alt="" className="h-10 w-auto shrink-0 object-contain" />
-								))}
-							</InfiniteScroll>
-						</div>
+						<InfiniteScroll>
+							{companies.map((company, index) => (
+								<img alt="Company svg" key={index} src={company.svgUrl} className="h-10 w-auto shrink-0 object-contain" />
+							))}
+						</InfiniteScroll>
 					</div>
 				</section>
 
 				{/* Home page content */}
 				<section className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-					<div className="bg-fill-level3 outline-border-alpha/20 h-40 w-full rounded-xl outline-8 drop-shadow"></div>
+					<div className="aspect-[16/9] w-full">
+						<div className="bg-fill-level3 outline-border-alpha/20 h-full w-full rounded-xl outline-8 drop-shadow"></div>
+					</div>
 				</section>
 			</main>
 		</div>

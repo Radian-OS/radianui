@@ -55,7 +55,6 @@ const page = () => {
 				<PaginationExample />
 				<ResizeableExample />
 				<ColorPicker />
-				<input type="color" />
 			</div>
 		</div>
 	)

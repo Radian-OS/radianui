@@ -23,11 +23,12 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	lead?: React.ReactNode
 	trail?: React.ReactNode
 
-	/** NEW: show input in international mode (“+<code>”) */
+	/** NEW: show input in international mode ("+<code>") */
 	international?: boolean
 	/**
 	 * NEW: when `international={true}`, if `countryCallingCodeEditable={false}`
-	 * then the “+<code>” is read-only (user cannot delete those digits).
+	 * then the "+<code>" is read‐only (user cannot delete those digits)
+	 * AND the chevron/dropdown is hidden.
 	 */
 	countryCallingCodeEditable?: boolean
 }
@@ -44,7 +45,6 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	onlyCountries,
 	preferredCountries,
 	excludeCountries,
-	// New props
 	label,
 	hint,
 	hasError = false,
@@ -59,21 +59,19 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	const id = useId()
 	const allCountries = useMemo(() => getCountries(), [])
 
-	// Helper: convert “US” or “United States” → country code “US”
+	// Normalize "US" or "United States" → "US"
 	const normalizeCountryIdentifier = (identifier: string): RPNInput.Country | null => {
 		if (allCountries.includes(identifier as RPNInput.Country)) {
 			return identifier as RPNInput.Country
 		}
 		const found = allCountries.find((c) => {
-			const regionName = new Intl.DisplayNames(["en"], {
-				type: "region",
-			}).of(c)
+			const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c)
 			return regionName?.toLowerCase() === identifier.toLowerCase()
 		})
 		return found || null
 	}
 
-	// Filter based on only/exclude lists:
+	// Filter out based on only/exclude lists
 	const countries = useMemo(() => {
 		let filtered = [...allCountries]
 		if (excludeCountries && excludeCountries.length > 0) {
@@ -87,7 +85,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		return filtered
 	}, [allCountries, onlyCountries, excludeCountries])
 
-	// Split out preferred vs. regular:
+	// Separate preferred vs. regular
 	const { preferredCountriesList, regularCountriesList } = useMemo(() => {
 		if (!preferredCountries || preferredCountries.length === 0) {
 			return { preferredCountriesList: [], regularCountriesList: countries }
@@ -98,17 +96,16 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		return { preferredCountriesList: preferred, regularCountriesList: regular }
 	}, [countries, preferredCountries])
 
-	// Map from regionName → country code:
-	const countryNameToCode = useMemo(() => {
-		const map = new Map<string, RPNInput.Country>()
+	// Precompute calling codes for performance
+	const countryCodeMap = useMemo(() => {
+		const m = new Map<RPNInput.Country, string>()
 		countries.forEach((c) => {
-			const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
-			map.set(regionName.toLowerCase(), c)
+			m.set(c, getCountryCallingCode(c))
 		})
-		return map
+		return m
 	}, [countries])
 
-	// Priority for shared calling codes:
+	// Priority for shared calling codes
 	const countryPriority = useMemo(
 		() =>
 			({
@@ -125,118 +122,124 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		[]
 	)
 
+	// Helper: detect country from raw "digits" (without "+")
+	const detectCountryFromNumber = (numberWithoutPlus: string): RPNInput.Country | null => {
+		const sorted = [...countries].sort((a, b) => {
+			return countryCodeMap.get(b)!.length - countryCodeMap.get(a)!.length
+		})
+		const matches = sorted.filter((c) => numberWithoutPlus.startsWith(countryCodeMap.get(c)!))
+		if (matches.length === 0) return null
+
+		let selected = matches[0]
+		const firstMatchCode = countryCodeMap.get(matches[0])!
+		const prioList = countryPriority[firstMatchCode]
+		if (prioList) {
+			const prioCountry = prioList.find((p) => matches.includes(p as RPNInput.Country))
+			if (prioCountry) {
+				selected = prioCountry as RPNInput.Country
+			}
+		}
+		return selected
+	}
+
 	const handlePhoneChange = (val: Value | undefined) => {
 		if (disabled) return
 
-		// If we're in international mode but prefix must remain locked:
-		if (international && countryCallingCodeEditable === false) {
-			// Compute the “locked” prefix for the current country (e.g. "+1" if country="US")
-			const lockedPrefix = country ? `+${getCountryCallingCode(country)}` : "+"
+		// 🔒 If country calling code is not editable, completely prevent country changes
+		if (countryCallingCodeEditable === false) {
+			// Handle locked mode input restrictions (both international and non-international)
+			if (international) {
+				const lockedPrefix = country ? `+${countryCodeMap.get(country)}` : "+"
 
-			// 1) If the user completely cleared → allow undefined
-			if (val === undefined) {
-				onChange?.(undefined)
-				return
-			}
+				if (val === undefined) {
+					onChange?.(undefined)
+					return
+				}
 
-			// 2) If they backspaced such that the new val no longer starts with lockedPrefix:
-			if (!val.startsWith(lockedPrefix)) {
-				// Force it back to exactly the full prefix
-				onChange?.(lockedPrefix as Value)
-				return
-			}
-		}
+				if (val === "+") {
+					onChange?.("+" as Value)
+					return
+				}
 
-		// From here on, either:
-		// • international===false, or
-		// • countryCallingCodeEditable===true, or
-		// • prefix has remained intact
-		if (val) {
-			onChange?.(val)
-
-			// If they typed "+" + digits, auto‐detect which country code fits:
-			if (val.startsWith("+")) {
-				const numberWithoutPlus = val.slice(1)
-				// Sort by longest calling‐code first so we match e.g. "977" before "9"
-				const sortedCountries = [...countries].sort((a, b) => getCountryCallingCode(b).length - getCountryCallingCode(a).length)
-
-				const matchingCountries = sortedCountries.filter((c) => {
-					const code = getCountryCallingCode(c)
-					return numberWithoutPlus.startsWith(code)
-				})
-
-				if (matchingCountries.length > 0) {
-					let selected = matchingCountries[0]
-					const firstMatchCode = getCountryCallingCode(matchingCountries[0])
-					const prio = countryPriority[firstMatchCode]
-					if (prio) {
-						const p = prio.find((x) => matchingCountries.includes(x as RPNInput.Country))
-						if (p) selected = p as RPNInput.Country
-					}
-					if (selected && selected !== country) {
-						onCountryChange?.(selected)
-					}
+				if (!val.startsWith(lockedPrefix)) {
+					onChange?.(lockedPrefix as Value)
+					return
 				}
 			}
+			// For non-international locked mode, just pass through the value without country detection
+			onChange?.(val)
 			return
 		}
 
-		// If val === "+": treat it as “prefix only” → snap back to full lockedPrefix
-		if (val === "+") {
-			if (international && countryCallingCodeEditable === false) {
-				const lockedPrefix = country ? `+${getCountryCallingCode(country)}` : "+"
-				onChange?.(lockedPrefix as Value)
-				return
+		// Only run country detection logic if country calling code is editable
+		if (international && val && val.startsWith("+")) {
+			const numberWithoutPlus = val.slice(1)
+			const detected = detectCountryFromNumber(numberWithoutPlus)
+
+			if (detected && detected !== country) {
+				onCountryChange?.(detected)
 			}
-			// otherwise (editable prefix case), allow the lone "+" and do nothing
-			onChange?.("+" as Value)
+		}
+
+		onChange?.(val)
+	}
+
+	// When user selects country from dropdown
+	const handleCountrySelection = (selectedValues: string[]) => {
+		if (disabled || countryCallingCodeEditable === false) return
+		const selectedCode = selectedValues[0] as RPNInput.Country
+		if (countries.includes(selectedCode)) {
+			onCountryChange?.(selectedCode)
+		}
+	}
+
+	// Wrapper for onCountryChange that respects the locked state
+	const handleCountryChangeWrapper = (newCountry: RPNInput.Country | undefined) => {
+		if (countryCallingCodeEditable === false) {
+			// Completely ignore country changes when locked
 			return
 		}
-
-		// Finally: val is undefined → clear everything
-		onChange?.(undefined)
+		onCountryChange?.(newCountry)
 	}
 
-	// User selects from dropdown (by name or code string):
-	const handleCountrySelection = (selectedValues: string[]) => {
-		if (disabled) return
-		const v = selectedValues[0]
-		if (countries.includes(v as RPNInput.Country)) {
-			onCountryChange?.(v as RPNInput.Country)
-		} else {
-			const code = countryNameToCode.get(v.toLowerCase())
-			if (code) onCountryChange?.(code)
-		}
-	}
-
+	// Custom input component that applies className only to the actual Input
 	const InputWithClass = useMemo(() => {
 		const Comp = (props: InputProps) => (
 			<Input
 				{...props}
 				data-slot="phone-input"
+				aria-label={label || "Phone number"}
+				aria-invalid={hasError}
 				size={size}
 				disabled={disabled}
-				hasError={hasError}
 				lead={lead}
 				trail={trail}
+				hasError={hasError}
 				className={cn(showTrigger && "rounded-l-none", className, props.className)}
 			/>
 		)
 		Comp.displayName = "PhoneNumber.InputWithClass"
 		return Comp
-	}, [className, size, showTrigger, disabled, hasError, lead, trail])
+	}, [className, size, showTrigger, disabled, hasError, lead, trail, label])
 
-	const selectedCountryName = country ? new Intl.DisplayNames(["en"], { type: "region" }).of(country) || country : ""
 	const [selectOpen, setSelectOpen] = useState(false)
 
+	// Render each item in the dropdown list
 	const renderCountryItem = (c: RPNInput.Country) => {
 		const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
 		return (
-			<SelectItem endContent={`+${getCountryCallingCode(c)}`} startContent={<Flag country={c} />} key={c} value={regionName}>
+			<SelectItem
+				key={c}
+				value={c} // ISO code as value
+				endContent={`+${countryCodeMap.get(c)}`}
+				startContent={<Flag country={c} />}>
 				<span>{regionName}</span>
 			</SelectItem>
 		)
 	}
+
+	// Determine if the country selector should be shown and editable
+	const shouldShowCountrySelector = showTrigger && countryCallingCodeEditable !== false
 
 	return (
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
@@ -247,16 +250,37 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 			)}
 			<div className="flex w-full gap-0">
 				{showTrigger && (
-					<Select
-						open={selectOpen}
-						onOpenChange={setSelectOpen}
-						selectedValues={selectedCountryName ? [selectedCountryName] : []}
-						onSelectedChange={handleCountrySelection}
-						selectionMode="single"
-						isSearchable={true}
-						searchPlaceholder="Search countries..."
-						disabled={disabled}
-						renderTrigger={() => (
+					<>
+						{shouldShowCountrySelector ? (
+							// Show full Select with chevron (editable mode)
+							<Select
+								open={selectOpen}
+								onOpenChange={setSelectOpen}
+								selectedValues={country ? [country] : []} // ISO code in array
+								onSelectedChange={handleCountrySelection}
+								selectionMode="single"
+								isSearchable={true}
+								searchPlaceholder="Search countries..."
+								disabled={disabled}
+								renderTrigger={() => (
+									<Button
+										variant="neutral-soft"
+										size={size === "0" ? undefined : size}
+										disabled={disabled}
+										className={cn(
+											"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+											{ "border-error": hasError && !disabled }
+										)}>
+										<Flag country={country} />
+										<span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>
+										{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
+									</Button>
+								)}>
+								{preferredCountriesList.length > 0 && <SelectGroup>{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
+								{regularCountriesList.length > 0 && <SelectGroup>{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
+							</Select>
+						) : (
+							// Show locked flag + code, no chevron, no dropdown
 							<Button
 								variant="neutral-soft"
 								size={size === "0" ? undefined : size}
@@ -266,13 +290,10 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 									{ "border-error": hasError && !disabled }
 								)}>
 								<Flag country={country} />
-								<span className="text-text-tertiary">{country ? countryCallingCodeEditable && `+${getCountryCallingCode(country)}` : null}</span>
-								{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
+								<span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>
 							</Button>
-						)}>
-						{preferredCountriesList.length > 0 && <SelectGroup>{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
-						{regularCountriesList.length > 0 && <SelectGroup>{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
-					</Select>
+						)}
+					</>
 				)}
 
 				<RPNInput.default
@@ -282,17 +303,15 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					country={country}
 					value={value}
 					onChange={handlePhoneChange}
-					onCountryChange={onCountryChange}
+					onCountryChange={handleCountryChangeWrapper}
 					flagComponent={() => null}
 					countrySelectComponent={() => null}
 					inputComponent={InputWithClass}
 					placeholder="Enter phone number"
 					disabled={disabled}
 					countries={countries}
-					/** NEW: pass down international/withCountryCallingCode so “+<code>” shows */
 					international={international}
 					withCountryCallingCode={international}
-					/** NEW: lock prefix if false */
 					countryCallingCodeEditable={countryCallingCodeEditable}
 				/>
 			</div>
@@ -306,7 +325,7 @@ const Flag = ({ country }: { country?: RPNInput.Country }) => {
 	const CountryFlag = flags[country]
 	return (
 		<span className="flex items-center justify-center overflow-hidden rounded-sm [&>svg]:size-5">
-			{CountryFlag ? <CountryFlag title={country} /> : <ChevronDown className="size-5" />}
+			{CountryFlag ? <CountryFlag title={country} /> : <PhoneIcon className="size-5" />}
 		</span>
 	)
 }

@@ -191,7 +191,7 @@ function Input({
 					</span>
 				)} */}
 			</Label>
-			{(hasError || hint) && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
+			{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
 		</div>
 	)
 }
