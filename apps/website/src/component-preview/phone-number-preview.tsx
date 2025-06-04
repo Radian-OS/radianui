@@ -80,8 +80,10 @@ const PhoneNumberPreview = () => {
 		setPhone(value)
 	}
 
-	const handleCountryChange = (country: Country) => {
-		setCountry(country)
+	const handleCountryChange = (country: Country | undefined) => {
+		if (country) {
+			setCountry(country)
+		}
 	}
 
 	const getOnlyCountriesCode = () => {
