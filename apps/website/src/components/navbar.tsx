@@ -72,7 +72,7 @@ export default function Navbar() {
 		{ name: "Components", link: "/documentation/components" },
 		{ name: "Documentation", link: "/documentation" },
 		{ name: "Blog", link: "/blog" },
-		{ name: "Blocks", link: "/test/blocks" },
+		{ name: "Blocks", link: "/blocks" },
 		{ name: "Figma", link: "/documentation/figma" },
 	]
 
