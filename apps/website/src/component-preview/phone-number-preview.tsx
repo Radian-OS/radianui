@@ -8,23 +8,22 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 const PhoneNumberPreview = () => {
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 	type CountryOptions = "none" | "US" | "CA" | "CN" | "IN" | "DE" | "GB"
-	type OnlyCountriesOptions = "all" | "north-america" | "europe" | "asia" | "custom"
-	type PreferredCountriesOptions = "none" | "us-ca" | "major-english" | "eu-major" | "custom"
-	type ExcludeCountriesOptions = "none" | "sanctioned" | "small-islands" | "custom"
 
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
 	const [phone, setPhone] = useState<Value | undefined>()
 	const [country, setCountry] = useState<CountryOptions>("none")
 	const [showTrigger, setShowTrigger] = useState<"true" | "false">("true")
-	const [onlyCountriesOption, setOnlyCountriesOption] = useState<OnlyCountriesOptions>("all")
-	const [preferredCountriesOption, setPreferredCountriesOption] = useState<PreferredCountriesOptions>("none")
-	const [excludeCountriesOption, setExcludeCountriesOption] = useState<ExcludeCountriesOptions>("none")
 	const [hint, setHint] = useState<"true" | "false">("false")
 	const [hasError, setHasError] = useState<"true" | "false">("false")
 	const [label, setLabel] = useState<"true" | "false">("true")
 	const [international, setInternational] = useState<"true" | "false">("true")
 	const [countryCallingCodeEditable, setCountryCallingCodeEditable] = useState<"true" | "false">("true")
+
+	// Multiselect states for countries
+	const [selectedOnlyCountries, setSelectedOnlyCountries] = useState<string[]>([])
+	const [selectedPreferredCountries, setSelectedPreferredCountries] = useState<string[]>([])
+	const [selectedExcludeCountries, setSelectedExcludeCountries] = useState<string[]>([])
 
 	const countryOptions = [
 		{ value: "none", label: "None (No Default)" },
@@ -36,42 +35,42 @@ const PhoneNumberPreview = () => {
 		{ value: "GB", label: "United Kingdom" },
 	]
 
-	const onlyCountriesOptions = [
-		{ value: "all", label: "All Countries", countries: undefined },
-		{ value: "north-america", label: "North America", countries: ["United States", "Canada", "Mexico"] },
-		{ value: "europe", label: "Europe", countries: ["United Kingdom", "Germany", "France", "Italy", "Spain"] },
-		{ value: "asia", label: "Asia", countries: ["India", "China", "Japan", "South Korea", "Singapore"] },
-		{ value: "custom", label: "Custom (US, CA, GB)", countries: ["US", "CA", "GB"] },
-	]
-
-	const preferredCountriesOptions = [
-		{ value: "none", label: "None", countries: undefined },
-		{ value: "us-ca", label: "US & Canada", countries: ["United States", "Canada"] },
-		{ value: "major-english", label: "Major English Speaking", countries: ["United States", "United Kingdom", "Canada", "Australia"] },
-		{ value: "eu-major", label: "Major EU Countries", countries: ["Germany", "France", "Italy", "Spain"] },
-		{ value: "custom", label: "Custom (US, GB)", countries: ["US", "GB"] },
-	]
-
-	const excludeCountriesOptions = [
-		{ value: "none", label: "None", countries: undefined },
-		{ value: "sanctioned", label: "Sanctioned Countries", countries: ["North Korea", "Iran", "Syria"] },
-		{ value: "small-islands", label: "Small Island Nations", countries: ["Nauru", "Tuvalu", "San Marino"] },
-		{ value: "custom", label: "Custom (exclude CN, RU)", countries: ["China", "Russia"] },
+	// Available countries for multiselect
+	const availableCountries = [
+		{ code: "US", name: "United States" },
+		{ code: "CA", name: "Canada" },
+		{ code: "MX", name: "Mexico" },
+		{ code: "GB", name: "United Kingdom" },
+		{ code: "DE", name: "Germany" },
+		{ code: "FR", name: "France" },
+		{ code: "IT", name: "Italy" },
+		{ code: "ES", name: "Spain" },
+		{ code: "IN", name: "India" },
+		{ code: "CN", name: "China" },
+		{ code: "JP", name: "Japan" },
+		{ code: "KR", name: "South Korea" },
+		{ code: "SG", name: "Singapore" },
+		{ code: "AU", name: "Australia" },
+		{ code: "BR", name: "Brazil" },
+		{ code: "RU", name: "Russia" },
+		{ code: "KP", name: "North Korea" },
+		{ code: "IR", name: "Iran" },
+		{ code: "SY", name: "Syria" },
+		{ code: "NR", name: "Nauru" },
+		{ code: "TV", name: "Tuvalu" },
+		{ code: "SM", name: "San Marino" },
 	]
 
 	const getOnlyCountries = () => {
-		const option = onlyCountriesOptions.find((opt) => opt.value === onlyCountriesOption)
-		return option?.countries
+		return selectedOnlyCountries.length > 0 ? selectedOnlyCountries : undefined
 	}
 
 	const getPreferredCountries = () => {
-		const option = preferredCountriesOptions.find((opt) => opt.value === preferredCountriesOption)
-		return option?.countries
+		return selectedPreferredCountries.length > 0 ? selectedPreferredCountries : undefined
 	}
 
 	const getExcludeCountries = () => {
-		const option = excludeCountriesOptions.find((opt) => opt.value === excludeCountriesOption)
-		return option?.countries
+		return selectedExcludeCountries.length > 0 ? selectedExcludeCountries : undefined
 	}
 
 	const handlePhoneChange = (value: Value | undefined) => {
@@ -246,18 +245,17 @@ const PhoneNumberPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Only Countries</DropdownSubTrigger>
+									<DropdownSubTrigger>Only Countries {selectedOnlyCountries.length > 0 && `(${selectedOnlyCountries.length})`}</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
-											selectionMode="single"
-											minSelectionCount={1}
-											selectedValues={[onlyCountriesOption]}
+											selectionMode="multiple"
+											selectedValues={selectedOnlyCountries}
 											onSelectedChange={(keys) => {
-												setOnlyCountriesOption(Array.from(keys)[0] as OnlyCountriesOptions)
+												setSelectedOnlyCountries(Array.from(keys))
 											}}>
-											{onlyCountriesOptions.map((option) => (
-												<DropdownItem key={option.value} value={option.value}>
-													{option.label}
+											{availableCountries.map((country) => (
+												<DropdownItem key={country.code} value={country.code}>
+													{country.name}
 												</DropdownItem>
 											))}
 										</DropdownGroup>
@@ -265,18 +263,17 @@ const PhoneNumberPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Preferred Countries</DropdownSubTrigger>
+									<DropdownSubTrigger>Preferred Countries {selectedPreferredCountries.length > 0 && `(${selectedPreferredCountries.length})`}</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
-											selectionMode="single"
-											minSelectionCount={1}
-											selectedValues={[preferredCountriesOption]}
+											selectionMode="multiple"
+											selectedValues={selectedPreferredCountries}
 											onSelectedChange={(keys) => {
-												setPreferredCountriesOption(Array.from(keys)[0] as PreferredCountriesOptions)
+												setSelectedPreferredCountries(Array.from(keys))
 											}}>
-											{preferredCountriesOptions.map((option) => (
-												<DropdownItem key={option.value} value={option.value}>
-													{option.label}
+											{availableCountries.map((country) => (
+												<DropdownItem key={country.code} value={country.code}>
+													{country.name}
 												</DropdownItem>
 											))}
 										</DropdownGroup>
@@ -284,18 +281,17 @@ const PhoneNumberPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Exclude Countries</DropdownSubTrigger>
+									<DropdownSubTrigger>Exclude Countries {selectedExcludeCountries.length > 0 && `(${selectedExcludeCountries.length})`}</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
-											selectionMode="single"
-											minSelectionCount={1}
-											selectedValues={[excludeCountriesOption]}
+											selectionMode="multiple"
+											selectedValues={selectedExcludeCountries}
 											onSelectedChange={(keys) => {
-												setExcludeCountriesOption(Array.from(keys)[0] as ExcludeCountriesOptions)
+												setSelectedExcludeCountries(Array.from(keys))
 											}}>
-											{excludeCountriesOptions.map((option) => (
-												<DropdownItem key={option.value} value={option.value}>
-													{option.label}
+											{availableCountries.map((country) => (
+												<DropdownItem key={country.code} value={country.code}>
+													{country.name}
 												</DropdownItem>
 											))}
 										</DropdownGroup>
