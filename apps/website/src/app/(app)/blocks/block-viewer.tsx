@@ -10,6 +10,24 @@ import { CodeArea } from "@/registry/ui/code"
 import { ImperativePanelHandle, ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/registry/ui/resizable"
 import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+type DeviceTypes = "desktop" | "tablet" | "mobile"
+const useGetDeviceType = (): DeviceTypes => {
+	const [deviceType, setDeviceType] = useState<DeviceTypes | null>(null)
+
+	useEffect(() => {
+		const width = window.innerWidth
+		if (width < 768) {
+			setDeviceType("mobile")
+		} else if (width >= 768 && width < 1024) {
+			setDeviceType("tablet")
+		} else {
+			setDeviceType("desktop")
+		}
+	}, [])
+
+	return deviceType!
+}
+
 export interface BlockPreviewProps {
 	code?: string
 	preview: string
@@ -27,8 +45,9 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 	// const [_, setWidth] = useState(DEFAULTSIZE)
 	const [mode, setMode] = useState<"preview" | "code">("preview")
 	const [iframeHeight, setIframeHeight] = useState(0)
+	const deviceType = useGetDeviceType()
 
-	const terminalCode = `pnpm dlx radionos add `
+	const terminalCode = `pnpm dlx radionos add ${title}`
 
 	const { copied, copy } = useCopyPaste({
 		code: code as string,
@@ -80,39 +99,41 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 				<div className="flex items-center gap-2">
 					<Button onClick={cliCopy} size="32" className="size-8 shadow-none md:w-fit" variant="neutral-outline" aria-label="copy code">
 						{cliCopied ? <Check size={20} className="text-text-tertiary" /> : <Terminal size={20} className="text-text-tertiary" />}
-						<span className="text-text-secondary hidden text-sm md:block">pnpm dlx radianos add</span>
+						<span className="text-text-secondary hidden text-sm md:block">{terminalCode}</span>
 					</Button>
-					<Tabs defaultValue="100" variant="default" className="block lg:block" size="md">
-						<TabsList>
-							<TabsTrigger
-								value="100"
-								onClick={() => {
-									if (ref?.current) {
-										ref.current.resize(parseInt("100"))
-									}
-								}}>
-								Desktop
-							</TabsTrigger>
-							<TabsTrigger
-								value="58"
-								onClick={() => {
-									if (ref?.current) {
-										ref.current.resize(parseInt("58"))
-									}
-								}}>
-								Tablet
-							</TabsTrigger>
-							<TabsTrigger
-								value="30"
-								onClick={() => {
-									if (ref?.current) {
-										ref.current.resize(parseInt("30"))
-									}
-								}}>
-								Mobile
-							</TabsTrigger>
-						</TabsList>
-					</Tabs>
+					{deviceType && (
+						<Tabs defaultValue={deviceType === "desktop" ? "100" : deviceType === "tablet" ? "58" : "30"} variant="default" className="block lg:block" size="md">
+							<TabsList>
+								<TabsTrigger
+									value="100"
+									onClick={() => {
+										if (ref?.current) {
+											ref.current.resize(parseInt("100"))
+										}
+									}}>
+									Desktop
+								</TabsTrigger>
+								<TabsTrigger
+									value="58"
+									onClick={() => {
+										if (ref?.current) {
+											ref.current.resize(parseInt("58"))
+										}
+									}}>
+									Tablet
+								</TabsTrigger>
+								<TabsTrigger
+									value="30"
+									onClick={() => {
+										if (ref?.current) {
+											ref.current.resize(parseInt("30"))
+										}
+									}}>
+									Mobile
+								</TabsTrigger>
+							</TabsList>
+						</Tabs>
+					)}
 					<Button variant="neutral-outline" size="36" isIcon className="text-text-secondary">
 						<Link href={preview} passHref target="_blank">
 							<Maximize className="size-4" />
@@ -139,7 +160,7 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 							className="h-full rounded-xl border">
 							<iframe
 								key={`${category}-${title}-iframe`}
-								loading="lazy"
+								loading="eager"
 								allowFullScreen
 								ref={iframeRef}
 								title={title}
@@ -148,7 +169,8 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 								src={preview}
 								id={`block-${title}`}
 								style={{ "--iframe-height": `100vh` } as React.CSSProperties}
-								{...{ fetchPriority: "low" }}
+								sandbox="allow-scripts allow-same-origin"
+								{...{ fetchPriority: "high" }}
 							/>
 						</ResizablePanel>
 

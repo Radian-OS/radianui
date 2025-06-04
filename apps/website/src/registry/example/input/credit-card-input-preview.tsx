@@ -11,11 +11,17 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type domainOption = ".com" | ".org" | ".net"
 export type typeOptions = "trail" | "lead" | "default"
 const sizes = ["28", "32", "36", "40", "44", "48"]
+const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 
 const CreditCardPreview = () => {
+	const [rounded, setRounded] = useState<RoundedOptions>("lg")
+
 	const [size, setSize] = useState<SizeOptions>("36")
+	const [disabled, setDisabled] = useState<boolean>(false)
+
 	const [label, setLabel] = useState<boolean>(true)
 	const [hint, setHint] = useState<boolean>(false)
+	const [hasError, setHasError] = useState<boolean>(false)
 
 	const sizeHeightMapping: Record<number, string> = {
 		28: "h-4 w-4",
@@ -48,6 +54,31 @@ const CreditCardPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
+								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
+										{roundedOptions.map((roundedOption) => (
+											<DropdownItem value={roundedOption} key={roundedOption}>
+												{roundedOption}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(disabled)]}
+											onSelectedChange={(values) => setDisabled(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
@@ -60,6 +91,15 @@ const CreditCardPreview = () => {
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
@@ -80,17 +120,29 @@ const CreditCardPreview = () => {
 						{label && <Label>Credit Card</Label>}
 						<div className="w-80">
 							<Input
+								rounded={rounded}
+								disabled={disabled}
 								size={size}
 								placeholder="Card Number"
 								trail={<CreditCard className={iconClass} />}
-								className="-ms rounded-b-none border-b-0 focus-within:z-30 focus-within:border-b"
+								hasError={hasError}
+								className={`-ms rounded-b-none border-b-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-b"}`}
 							/>
 							<div className="flex">
-								<Input size={size} placeholder="MM / YY" className="rounded-r-none rounded-t-none border-r-0 focus-within:z-30 focus-within:border-r" />
-								<Input size={size} placeholder="CVC" className="rounded-l-none rounded-t-none" />
+								<Input
+									rounded={rounded}
+									disabled={disabled}
+									size={size}
+									hasError={hasError}
+									placeholder="MM / YY"
+									className={`rounded-r-none rounded-t-none border-r-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-r"}`}
+								/>
+								<Input rounded={rounded} disabled={disabled} size={size} hasError={hasError} placeholder="CVC" className="rounded-l-none rounded-t-none" />
 							</div>
 						</div>
-						{hint && <Label className={`text-text-tertiary flex items-start text-xs font-normal`}>Hint text to help the user with input</Label>}
+						{(hint || hasError) && (
+							<Label className={`${hasError ? "text-error" : "text-text-tertiary"} flex items-start text-xs font-normal`}>Hint text to help the user with input</Label>
+						)}
 					</div>
 				</div>
 			</TabsContent>
