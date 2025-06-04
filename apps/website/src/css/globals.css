@@ -240,12 +240,6 @@
 			height: 0;
 		}
 	}
-
-	@keyframes shimmer {
-		"100%": {
-			transform: "translateX(100%)";
-		}
-	}
 }
 
 .dark {
@@ -358,9 +352,20 @@
 	}
 }
 
-/*
-Variable used in website only
-*/
+/* Animation for shimmer effect in skeleton */
+@theme inline {
+	--animate-shimmer: shimmer 2s ease-out infinite;
+	@keyframes shimmer {
+		0% {
+			background-position: 100% 50%;
+		}
+		to {
+			background-position: 0 50%;
+		}
+	}
+}
+
+/* Variable used in website only */
 @theme {
 	--color-hero-fade-gradient-from: hsla(0, 0%, 98%, 0);
 	--color-hero-fade-gradient-to: hsla(0, 0%, 98%, 1);

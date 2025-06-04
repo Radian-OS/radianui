@@ -47,7 +47,6 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/banner", name: "Banner" },
 			{ link: "/documentation/components/breadcrumb", name: "Breadcrumb" },
 			{ link: "/documentation/components/buttons", name: "Button" },
-			// { link: "/documentation/components/button-group", name: "Buttongroup" },
 			{ link: "/documentation/components/calendar", name: "Calendar" },
 			{ link: "/documentation/components/code-area", name: "Code Area" },
 			{ link: "/documentation/components/currency-amount", name: "Currency Amount" },
@@ -82,39 +81,4 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/tooltip", name: "Tooltip" },
 		].sort((a, b) => a.name.localeCompare(b.name)),
 	},
-	// {
-	// 	title: "Website Components",
-	// 	items: [
-	// 		{ link: "/documentation/navigation-bar", name: "Navigation Bar" },
-	// 		{ link: "/documentation/hero-section", name: "Hero Section" },
-	// 		{ link: "/documentation/trusted-companies", name: "Trusted Companies" },
-	// 		{ link: "/documentation/product-features", name: "Product Features" },
-	// 		{ link: "/documentation/user-testimonials", name: "User Testimonials" },
-	// 		{
-	// 			link: "/documentation/frequently-asked-questions",
-	// 			name: "Frequently Asked Questions",
-	// 		},
-	// 		{ link: "/documentation/pricing-section", name: "Pricing Section" },
-	// 		{ link: "/documentation/call-to-action", name: "Call to Action" },
-	// 		{ link: "/documentation/footer", name: "Footer" },
-	// 	],
-	// },
-	// {
-	// 	title: "Application Components",
-	// 	items: [
-	// 		{
-	// 			link: "/documentation/user-authentication",
-	// 			name: "User Authentication",
-	// 		},
-	// 		{
-	// 			link: "/documentation/left-navigation-bar",
-	// 			name: "Left Navigation Bar",
-	// 		},
-	// 		{ link: "/documentation/top-navigation-bar", name: "Top Navigation Bar" },
-	// 		{
-	// 			link: "/documentation/application-settings",
-	// 			name: "Application Settings",
-	// 		},
-	// 	],
-	// },
 ]
