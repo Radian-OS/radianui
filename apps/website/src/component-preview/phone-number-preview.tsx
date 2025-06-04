@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const PhoneNumberPreview = () => {
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-	type CountryOptions = "US" | "CA" | "CN" | "IN" | "DE" | "GB"
+	type CountryOptions = "none" | "US" | "CA" | "CN" | "IN" | "DE" | "GB"
 	type OnlyCountriesOptions = "all" | "north-america" | "europe" | "asia" | "custom"
 	type PreferredCountriesOptions = "none" | "us-ca" | "major-english" | "eu-major" | "custom"
 	type ExcludeCountriesOptions = "none" | "sanctioned" | "small-islands" | "custom"
@@ -15,10 +15,8 @@ const PhoneNumberPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
 	const [phone, setPhone] = useState<Value | undefined>()
-	const [country, setCountry] = useState<Country>("US")
+	const [country, setCountry] = useState<CountryOptions>("none")
 	const [showTrigger, setShowTrigger] = useState<"true" | "false">("true")
-	// — Added defaultCountry state (with "none" option)
-	const [defaultCountry, setDefaultCountry] = useState<CountryOptions | "none">("none")
 	const [onlyCountriesOption, setOnlyCountriesOption] = useState<OnlyCountriesOptions>("all")
 	const [preferredCountriesOption, setPreferredCountriesOption] = useState<PreferredCountriesOptions>("none")
 	const [excludeCountriesOption, setExcludeCountriesOption] = useState<ExcludeCountriesOptions>("none")
@@ -26,10 +24,10 @@ const PhoneNumberPreview = () => {
 	const [hasError, setHasError] = useState<"true" | "false">("false")
 	const [label, setLabel] = useState<"true" | "false">("true")
 	const [international, setInternational] = useState<"true" | "false">("true")
-	// — Added for `countryCallingCodeEditable`
 	const [countryCallingCodeEditable, setCountryCallingCodeEditable] = useState<"true" | "false">("true")
 
 	const countryOptions = [
+		{ value: "none", label: "None (No Default)" },
 		{ value: "US", label: "United States" },
 		{ value: "CA", label: "Canada" },
 		{ value: "CN", label: "China" },
@@ -80,10 +78,8 @@ const PhoneNumberPreview = () => {
 		setPhone(value)
 	}
 
-	const handleCountryChange = (country: Country | undefined) => {
-		if (country) {
-			setCountry(country)
-		}
+	const handleCountryChange = (country: Country) => {
+		setCountry(country as CountryOptions)
 	}
 
 	const getOnlyCountriesCode = () => {
@@ -107,11 +103,16 @@ const PhoneNumberPreview = () => {
         excludeCountries={${JSON.stringify(countries)}}`
 	}
 
-	// — Helper for code snippet: include defaultCountry only if not "none"
-	const getDefaultCountryCode = () => {
-		if (defaultCountry === "none") return ""
+	// Helper for code snippet: include country only if not "none"
+	const getCountryCode = () => {
+		if (country === "none") return ""
 		return `
-        defaultCountry="${defaultCountry}"`
+        country="${country}"`
+	}
+
+	// Get the actual country value to pass to PhoneNumber component
+	const getCountryValue = (): Country | undefined => {
+		return country === "none" ? undefined : (country as Country)
 	}
 
 	return (
@@ -233,35 +234,13 @@ const PhoneNumberPreview = () => {
 											minSelectionCount={1}
 											selectedValues={[country]}
 											onSelectedChange={(keys) => {
-												setCountry(Array.from(keys)[0] as Country)
+												setCountry(Array.from(keys)[0] as CountryOptions)
 											}}>
 											{countryOptions.map((option) => (
 												<DropdownItem key={option.value} value={option.value}>
 													{option.label}
 												</DropdownItem>
 											))}
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								{/* Default Country dropdown */}
-								<DropdownSub>
-									<DropdownSubTrigger>Default Country</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											minSelectionCount={1}
-											selectedValues={[defaultCountry]}
-											onSelectedChange={(keys) => {
-												setDefaultCountry(Array.from(keys)[0] as CountryOptions | "none")
-											}}>
-											<DropdownItem value="none">None</DropdownItem>
-											<DropdownItem value="US">United States</DropdownItem>
-											<DropdownItem value="CA">Canada</DropdownItem>
-											<DropdownItem value="CN">China</DropdownItem>
-											<DropdownItem value="IN">India</DropdownItem>
-											<DropdownItem value="DE">Germany</DropdownItem>
-											<DropdownItem value="GB">United Kingdom</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -339,7 +318,6 @@ const PhoneNumberPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 
-								{/* — Added countryCallingCodeEditable dropdown */}
 								<DropdownSub>
 									<DropdownSubTrigger>Country Calling Code Editable</DropdownSubTrigger>
 									<DropdownSubContent>
@@ -377,10 +355,9 @@ const PhoneNumberPreview = () => {
 							disabled={disabled === "true"}
 							international={international === "true"}
 							countryCallingCodeEditable={countryCallingCodeEditable === "true"}
-							defaultCountry={defaultCountry === "none" ? undefined : defaultCountry}
 							size={size}
 							onChange={handlePhoneChange}
-							country={country}
+							country={getCountryValue()}
 							onCountryChange={handleCountryChange}
 							onlyCountries={getOnlyCountries()}
 							preferredCountries={getPreferredCountries()}
@@ -401,10 +378,7 @@ import type { Country, Value } from "react-phone-number-input"
 
 const PhoneNumberExample = () => {
   const [phone, setPhone] = useState<Value | undefined>()
-  const [country, setCountry] = useState<Country>("${country}")
-  const [defaultCountry, setDefaultCountry] = useState<Country | undefined>(${defaultCountry === "none" ? "undefined" : `"${defaultCountry}"`})
-  const [international, setInternational] = useState<"true" | "false">("${international}")
-  const [countryCallingCodeEditable, setCountryCallingCodeEditable] = useState<"true" | "false">("${countryCallingCodeEditable}")
+  const [country, setCountry] = useState<Country | undefined>(${country === "none" ? "undefined" : `"${country}"`})
 
   const handlePhoneChange = (value: Value | undefined) => {
     setPhone(value)
@@ -421,18 +395,13 @@ const PhoneNumberExample = () => {
         hint="${hint === "true" ? "Hint text to help the user with input" : ""}"
         value={phone}
         label="${label === "true" ? "Phone Number" : ""}"
-        onChange={handlePhoneChange}
-        country={country}
+        onChange={handlePhoneChange}${getCountryCode()}
         onCountryChange={handleCountryChange}
         size="${size}"
         showTrigger={${showTrigger === "true"}}
         ${disabled === "true" ? `disabled={true}` : ""}
         international={${international === "true"}}
-        countryCallingCodeEditable={${countryCallingCodeEditable === "true"}}
-        ${getDefaultCountryCode()}
-        ${getOnlyCountriesCode()}
-        ${getPreferredCountriesCode()}
-        ${getExcludeCountriesCode()}
+        countryCallingCodeEditable={${countryCallingCodeEditable === "true"}}${getOnlyCountriesCode()}${getPreferredCountriesCode()}${getExcludeCountriesCode()}
         ${showTrigger === "false" ? `className="w-80"` : ""}
       />
     </div>
