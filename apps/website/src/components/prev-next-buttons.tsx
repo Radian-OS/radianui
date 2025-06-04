@@ -1,0 +1,28 @@
+import React from "react"
+import { ArrowLeft, ArrowRight } from "lucide-react"
+import Link from "next/link"
+import { getPrevNext } from "@/lib/get-prev-next"
+import { cn } from "@/lib/utils"
+import { Button } from "@/registry/ui/button"
+
+function PreviousNextButtons({ currentPath, className }: { currentPath: string; className?: string }) {
+	const { prev, next } = getPrevNext(currentPath)
+
+	return (
+		<div className={cn("flex items-center justify-between", className)}>
+			<Link href={prev?.link ?? "#"} className={cn(!prev && "invisible")} aria-hidden={!prev}>
+				<Button variant="neutral-soft" lead={<ArrowLeft />}>
+					{prev?.name}
+				</Button>
+			</Link>
+
+			<Link href={next?.link ?? "#"} className={cn(!next && "invisible")} aria-hidden={!next}>
+				<Button variant="neutral-soft" trail={<ArrowRight />}>
+					{next?.name}
+				</Button>
+			</Link>
+		</div>
+	)
+}
+
+export { PreviousNextButtons }

@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/components/mdx-components"
+import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { Badge } from "@/registry/ui/badge"
 
 interface DocPageProps {
@@ -29,6 +30,7 @@ export async function generateStaticParams() {
 
 export default async function DocPage({ params }: DocPageProps) {
 	const doc = await getDocFromParams({ params })
+	const currentPath = `/documentation/${(await params).slug.join("/")}` || ""
 
 	if (!doc) return notFound()
 
@@ -65,6 +67,7 @@ export default async function DocPage({ params }: DocPageProps) {
 				</section>
 			</div>
 			<Mdx code={doc.body.code} />
+			<PreviousNextButtons currentPath={currentPath} className="mt-6" />
 		</div>
 	)
 }
