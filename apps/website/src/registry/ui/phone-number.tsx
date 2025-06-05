@@ -12,6 +12,7 @@ import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
 	size?: InputProps["size"]
 	showTrigger?: boolean
+	countryDropdown?: boolean
 	className?: string
 	country?: RPNInput.Country
 	onlyCountries?: string[]
@@ -22,8 +23,6 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	hasError?: boolean
 	lead?: React.ReactNode
 	trail?: React.ReactNode
-	international?: boolean
-	countryCallingCodeEditable?: boolean
 }
 
 const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
@@ -33,6 +32,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	onCountryChange,
 	size,
 	showTrigger = true,
+	countryDropdown = true,
 	disabled = false,
 	className,
 	onlyCountries,
@@ -44,11 +44,14 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	lead,
 	trail,
 	international = false,
-	countryCallingCodeEditable = false,
+	countryCallingCodeEditable = international,
 	...rpnInputProps
 }) => {
 	const id = useId()
 	const allCountries = useMemo(() => getCountries(), [])
+
+	// When international is false, force countryCallingCodeEditable to be false
+	const effectiveCountryCallingCodeEditable = international ? countryCallingCodeEditable : false
 
 	// Normalize "US" or "United States" → "US"
 	const normalizeCountryIdentifier = (identifier: string): RPNInput.Country | null => {
@@ -185,7 +188,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		if (disabled) return
 
 		// 🔒 If country calling code is not editable, completely prevent country changes
-		if (countryCallingCodeEditable === false) {
+		if (!effectiveCountryCallingCodeEditable) {
 			// Handle locked mode input restrictions (both international and non-international)
 			if (international) {
 				const lockedPrefix = country ? `+${countryCodeMap.get(country)}` : "+"
@@ -211,7 +214,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		}
 
 		// Only run country detection logic if country calling code is editable
-		if (international && val && val.startsWith("+")) {
+		if (effectiveCountryCallingCodeEditable && international && val && val.startsWith("+")) {
 			const numberWithoutPlus = val.slice(1)
 			const detected = detectCountryFromNumber(numberWithoutPlus)
 
@@ -223,19 +226,20 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		onChange?.(val)
 	}
 
-	// When user selects country from dropdown
+	// When user selects country from dropdown - allow manual selection even when countryCallingCodeEditable is false
 	const handleCountrySelection = (selectedValues: string[]) => {
-		if (disabled || countryCallingCodeEditable === false) return
+		if (disabled) return
 		const selectedCode = selectedValues[0] as RPNInput.Country
 		if (countries.includes(selectedCode)) {
 			onCountryChange?.(selectedCode)
 		}
 	}
 
-	// Wrapper for onCountryChange that respects the locked state
+	// Wrapper for onCountryChange - only block automatic detection, allow manual changes
 	const handleCountryChangeWrapper = (newCountry: RPNInput.Country | undefined) => {
-		if (countryCallingCodeEditable === false) {
-			// Completely ignore country changes when locked
+		// Allow manual country changes via dropdown, but block automatic detection when effectiveCountryCallingCodeEditable is false
+		// This gets called by the RPNInput component for automatic detection, so we block it when locked
+		if (!effectiveCountryCallingCodeEditable) {
 			return
 		}
 		onCountryChange?.(newCountry)
@@ -259,7 +263,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		)
 		Comp.displayName = "PhoneNumber.InputWithClass"
 		return Comp
-	}, [className, size, showTrigger, disabled, hasError, lead, trail, label])
+	}, [className, size, showTrigger, countryDropdown, disabled, hasError, lead, trail, label])
 
 	const [selectOpen, setSelectOpen] = useState(false)
 
@@ -285,8 +289,10 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		return "Search by country, code, or +1, +44..."
 	}
 
-	// Determine if the country selector should be shown and editable
-	const shouldShowCountrySelector = showTrigger && countryCallingCodeEditable !== false
+	// Custom handler for open/close - allow dropdown to open regardless of countryCallingCodeEditable
+	const handleSelectOpenChange = (open: boolean) => {
+		setSelectOpen(open)
+	}
 
 	return (
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
@@ -296,38 +302,17 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				</Label>
 			)}
 			<div className="flex w-full gap-0">
-				{showTrigger && (
-					<>
-						{shouldShowCountrySelector ? (
-							// Show full Select with enhanced search capabilities
-							<Select
-								open={selectOpen}
-								onOpenChange={setSelectOpen}
-								selectedValues={country ? [country] : []} // ISO code in array
-								onSelectedChange={handleCountrySelection}
-								selectionMode="single"
-								isSearchable={true}
-								searchPlaceholder={getSearchPlaceholder()}
-								disabled={disabled}
-								renderTrigger={() => (
-									<Button
-										variant="neutral-soft"
-										size={size === "0" ? undefined : size}
-										disabled={disabled}
-										className={cn(
-											"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
-											{ "border-error": hasError && !disabled }
-										)}>
-										<Flag country={country} />
-										<span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>
-										{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
-									</Button>
-								)}>
-								{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
-								{regularCountriesList.length > 0 && <SelectGroup label="All Countries">{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
-							</Select>
-						) : (
-							// Show locked flag + code, no chevron, no dropdown
+				{showTrigger && countryDropdown && (
+					<Select
+						open={selectOpen}
+						onOpenChange={handleSelectOpenChange}
+						selectedValues={country ? [country] : []} // ISO code in array
+						onSelectedChange={handleCountrySelection}
+						selectionMode="single"
+						isSearchable={true} // Always allow search
+						searchPlaceholder={getSearchPlaceholder()}
+						disabled={disabled}
+						renderTrigger={() => (
 							<Button
 								variant="neutral-soft"
 								size={size === "0" ? undefined : size}
@@ -337,10 +322,27 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 									{ "border-error": hasError && !disabled }
 								)}>
 								<Flag country={country} />
-								<span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>
+								{international && <span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+								{/* Always show chevron since dropdown is always functional */}
+								{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
 							</Button>
-						)}
-					</>
+						)}>
+						{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
+						{regularCountriesList.length > 0 && <SelectGroup label="All Countries">{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
+					</Select>
+				)}
+				{showTrigger && !countryDropdown && (
+					<Button
+						variant="neutral-soft"
+						size={size === "0" ? undefined : size}
+						disabled={disabled}
+						className={cn("disabled:bg-fill-level2 border-border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
+							"border-error": hasError && !disabled,
+						})}>
+						<Flag country={country} />
+						{international && <span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+						{/* No chevron icon when dropdown is disabled */}
+					</Button>
 				)}
 
 				<RPNInput.default
@@ -359,7 +361,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					countries={countries}
 					international={international}
 					withCountryCallingCode={international}
-					countryCallingCodeEditable={countryCallingCodeEditable}
+					countryCallingCodeEditable={effectiveCountryCallingCodeEditable}
 				/>
 			</div>
 			{(hasError || hint) && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}

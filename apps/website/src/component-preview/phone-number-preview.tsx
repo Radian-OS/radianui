@@ -18,7 +18,7 @@ const PhoneNumberPreview = () => {
 	const [hasError, setHasError] = useState<"true" | "false">("false")
 	const [label, setLabel] = useState<"true" | "false">("true")
 	const [international, setInternational] = useState<"true" | "false">("true")
-	const [countryCallingCodeEditable, setCountryCallingCodeEditable] = useState<"true" | "false">("true")
+	const [countryDropdown, setCountryDropdown] = useState<"true" | "false">("true")
 
 	// Multiselect states for countries
 	const [selectedOnlyCountries, setSelectedOnlyCountries] = useState<string[]>([])
@@ -79,27 +79,6 @@ const PhoneNumberPreview = () => {
 
 	const handleCountryChange = (country: Country) => {
 		setCountry(country as CountryOptions)
-	}
-
-	const getOnlyCountriesCode = () => {
-		const countries = getOnlyCountries()
-		if (!countries) return ""
-		return `
-        onlyCountries={${JSON.stringify(countries)}}`
-	}
-
-	const getPreferredCountriesCode = () => {
-		const countries = getPreferredCountries()
-		if (!countries) return ""
-		return `
-        preferredCountries={${JSON.stringify(countries)}}`
-	}
-
-	const getExcludeCountriesCode = () => {
-		const countries = getExcludeCountries()
-		if (!countries) return ""
-		return `
-        excludeCountries={${JSON.stringify(countries)}}`
 	}
 
 	// Helper for code snippet: include country only if not "none"
@@ -245,6 +224,22 @@ const PhoneNumberPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
+									<DropdownSubTrigger>Country Dropdown</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[countryDropdown]}
+											onSelectedChange={(keys) => {
+												setCountryDropdown(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
 									<DropdownSubTrigger>Only Countries {selectedOnlyCountries.length > 0 && `(${selectedOnlyCountries.length})`}</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
@@ -313,22 +308,6 @@ const PhoneNumberPreview = () => {
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Country Calling Code Editable</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											minSelectionCount={1}
-											selectedValues={[countryCallingCodeEditable]}
-											onSelectedChange={(keys) => {
-												setCountryCallingCodeEditable(Array.from(keys)[0] as "true" | "false")
-											}}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
 							</DropdownGroup>
 						</DropdownContent>
 					</Dropdown>
@@ -343,6 +322,7 @@ const PhoneNumberPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
 					<div className="flex flex-col gap-1.5">
 						<PhoneNumber
+							countryDropdown={countryDropdown === "true"}
 							hasError={hasError === "true"}
 							hint={hint === "true" ? "Hint text to help the user with input" : ""}
 							label={label === "true" ? "Phone Number" : ""}
@@ -350,7 +330,6 @@ const PhoneNumberPreview = () => {
 							value={phone}
 							disabled={disabled === "true"}
 							international={international === "true"}
-							countryCallingCodeEditable={countryCallingCodeEditable === "true"}
 							size={size}
 							onChange={handlePhoneChange}
 							country={getCountryValue()}
@@ -358,7 +337,7 @@ const PhoneNumberPreview = () => {
 							onlyCountries={getOnlyCountries()}
 							preferredCountries={getPreferredCountries()}
 							excludeCountries={getExcludeCountries()}
-							className={showTrigger === "false" ? "w-80" : ""}
+							className={showTrigger === "false" ? "w-80" : "w-62"}
 						/>
 					</div>
 				</div>
@@ -387,6 +366,7 @@ const PhoneNumberExample = () => {
   return (
     <div className="flex gap-1.5 flex-col">
       <PhoneNumber
+	    countryDropdown={${countryDropdown === "true"}}
         hasError={${hasError === "true"}}
         hint="${hint === "true" ? "Hint text to help the user with input" : ""}"
         value={phone}
@@ -397,8 +377,7 @@ const PhoneNumberExample = () => {
         showTrigger={${showTrigger === "true"}}
         ${disabled === "true" ? `disabled={true}` : ""}
         international={${international === "true"}}
-        countryCallingCodeEditable={${countryCallingCodeEditable === "true"}}${getOnlyCountriesCode()}${getPreferredCountriesCode()}${getExcludeCountriesCode()}
-        ${showTrigger === "false" ? `className="w-80"` : ""}
+        ${showTrigger === "false" ? `className="w-80"` : `className="w-62"`}
       />
     </div>
   )
