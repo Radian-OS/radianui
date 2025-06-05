@@ -4,16 +4,18 @@ import ColorPicker from "@/registry/ui/color-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-// type Size = "sm" | "lg"
-type Variant = "open" | "box" | "table"
-// type Interaction = "single" | "multiple"
-
-// const DEFAULT_SIZE: Size = "sm"
-const DEFAULT_VARIANT: Variant = "box"
-// const DEFAULT_INTERACTION: Interaction = "single"
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
+export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
+const sizes = ["28", "32", "36", "40", "44", "48"]
 
 export default function ColorPickerPreview() {
-	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
+	const [rounded, setRounded] = useState<RoundedOptions>("lg")
+	const [size, setSize] = useState<SizeOptions>("36")
+	const [disabled, setDisabled] = useState<boolean>(false)
+	const [hasError, setHasError] = useState<boolean>(false)
+	const [label, setLabel] = useState<boolean>(true)
+	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -23,12 +25,62 @@ export default function ColorPickerPreview() {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
-										<DropdownItem value="open">Open</DropdownItem>
-										<DropdownItem value="box">Box</DropdownItem>
-										<DropdownItem value="table">Table</DropdownItem>
+									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
+										{roundedOptions.map((roundedOption) => (
+											<DropdownItem value={roundedOption} key={roundedOption}>
+												{roundedOption}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+										{sizes.map((size) => (
+											<DropdownItem value={size} key={size}>
+												{size}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Label</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Hint</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -43,7 +95,14 @@ export default function ColorPickerPreview() {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<ColorPicker />
+					<ColorPicker
+						rounded={rounded}
+						hasError={hasError}
+						hint={hint ? "Hint text to help the user with input" : ""}
+						size={size}
+						disabled={disabled}
+						label={label ? "Select Color" : undefined}
+					/>
 				</div>
 			</TabsContent>
 
