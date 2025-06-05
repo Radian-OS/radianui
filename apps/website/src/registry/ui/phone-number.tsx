@@ -22,14 +22,7 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	hasError?: boolean
 	lead?: React.ReactNode
 	trail?: React.ReactNode
-
-	/** NEW: show input in international mode ("+<code>") */
 	international?: boolean
-	/**
-	 * NEW: when `international={true}`, if `countryCallingCodeEditable={false}`
-	 * then the "+<code>" is read‐only (user cannot delete those digits)
-	 * AND the chevron/dropdown is hidden.
-	 */
 	countryCallingCodeEditable?: boolean
 }
 
@@ -50,9 +43,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	hasError = false,
 	lead,
 	trail,
-	/** NEW (default false) */
 	international = false,
-	/** NEW (default false) */
 	countryCallingCodeEditable = false,
 	...rpnInputProps
 }) => {
@@ -71,6 +62,29 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		return found || null
 	}
 
+	// Function to get alternative/common names for countries
+	const getAlternativeCountryNames = (countryCode: string): string[] => {
+		const alternatives: Record<string, string[]> = {
+			US: ["USA", "United States", "America"],
+			GB: ["UK", "United Kingdom", "Britain", "England"],
+			DE: ["Germany", "Deutschland"],
+			FR: ["France"],
+			IT: ["Italy"],
+			ES: ["Spain", "España"],
+			CN: ["China", "People's Republic of China"],
+			JP: ["Japan"],
+			KR: ["Korea", "South Korea"],
+			RU: ["Russia", "Russian Federation"],
+			IN: ["India"],
+			BR: ["Brazil"],
+			CA: ["Canada"],
+			AU: ["Australia"],
+			MX: ["Mexico"],
+			// Add more as needed
+		}
+		return alternatives[countryCode] || []
+	}
+
 	// Filter out based on only/exclude lists
 	const countries = useMemo(() => {
 		let filtered = [...allCountries]
@@ -85,16 +99,41 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		return filtered
 	}, [allCountries, onlyCountries, excludeCountries])
 
-	// Separate preferred vs. regular
+	// Enhanced country data with search metadata
+	const countriesWithSearchData = useMemo(() => {
+		return countries.map((c) => {
+			const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+			const callingCode = getCountryCallingCode(c)
+
+			// Create search keywords for each country
+			const searchKeywords = [
+				regionName.toLowerCase(),
+				c.toLowerCase(),
+				callingCode,
+				`+${callingCode}`,
+				// Add common alternative names
+				...(getAlternativeCountryNames(c) || []).map((name) => name.toLowerCase()),
+			]
+
+			return {
+				code: c,
+				name: regionName,
+				callingCode,
+				searchKeywords,
+			}
+		})
+	}, [countries])
+
+	// Separate preferred vs. regular with search data
 	const { preferredCountriesList, regularCountriesList } = useMemo(() => {
 		if (!preferredCountries || preferredCountries.length === 0) {
-			return { preferredCountriesList: [], regularCountriesList: countries }
+			return { preferredCountriesList: [], regularCountriesList: countriesWithSearchData }
 		}
 		const preferredCodes = preferredCountries.map(normalizeCountryIdentifier).filter(Boolean) as RPNInput.Country[]
-		const preferred = countries.filter((c) => preferredCodes.includes(c))
-		const regular = countries.filter((c) => !preferredCodes.includes(c))
+		const preferred = countriesWithSearchData.filter((c) => preferredCodes.includes(c.code))
+		const regular = countriesWithSearchData.filter((c) => !preferredCodes.includes(c.code))
 		return { preferredCountriesList: preferred, regularCountriesList: regular }
-	}, [countries, preferredCountries])
+	}, [countriesWithSearchData, preferredCountries])
 
 	// Precompute calling codes for performance
 	const countryCodeMap = useMemo(() => {
@@ -224,18 +263,26 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 
 	const [selectOpen, setSelectOpen] = useState(false)
 
-	// Render each item in the dropdown list
-	const renderCountryItem = (c: RPNInput.Country) => {
-		const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+	// Enhanced country item renderer with better search support
+	const renderCountryItem = (countryData: { code: RPNInput.Country; name: string; callingCode: string; searchKeywords: string[] }) => {
+		const { code, name, callingCode } = countryData
+
 		return (
 			<SelectItem
-				key={c}
-				value={c} // ISO code as value
-				endContent={`+${countryCodeMap.get(c)}`}
-				startContent={<Flag country={c} />}>
-				<span>{regionName}</span>
+				key={code}
+				value={code} // ISO code as value
+				// Pass search keywords to the SelectItem for enhanced search
+				keywords={countryData.searchKeywords}
+				endContent={`+${callingCode}`}
+				startContent={<Flag country={code} />}>
+				<span>{name}</span>
 			</SelectItem>
 		)
+	}
+
+	// Generate dynamic search placeholder based on search capabilities
+	const getSearchPlaceholder = () => {
+		return "Search by country, code, or +1, +44..."
 	}
 
 	// Determine if the country selector should be shown and editable
@@ -252,7 +299,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				{showTrigger && (
 					<>
 						{shouldShowCountrySelector ? (
-							// Show full Select with chevron (editable mode)
+							// Show full Select with enhanced search capabilities
 							<Select
 								open={selectOpen}
 								onOpenChange={setSelectOpen}
@@ -260,7 +307,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 								onSelectedChange={handleCountrySelection}
 								selectionMode="single"
 								isSearchable={true}
-								searchPlaceholder="Search countries..."
+								searchPlaceholder={getSearchPlaceholder()}
 								disabled={disabled}
 								renderTrigger={() => (
 									<Button
@@ -276,8 +323,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 										{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
 									</Button>
 								)}>
-								{preferredCountriesList.length > 0 && <SelectGroup>{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
-								{regularCountriesList.length > 0 && <SelectGroup>{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
+								{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
+								{regularCountriesList.length > 0 && <SelectGroup label="All Countries">{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
 							</Select>
 						) : (
 							// Show locked flag + code, no chevron, no dropdown
