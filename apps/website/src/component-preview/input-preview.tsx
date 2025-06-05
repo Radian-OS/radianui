@@ -155,7 +155,7 @@ const InputPreview = () => {
     rounded="${rounded}"
     size="${size}"
     disabled={${disabled}}
-    label="${label ? "Username" : undefined}"
+    label="${label ? "Username" : ""}"
     placeholder="Enter your username here"
     hasError={${hasError}}
 	${hint ? `hint="Hint text to help the user with input"` : ""}

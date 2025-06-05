@@ -111,8 +111,14 @@ export default function ColorPickerPreview() {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`
-
+					code={`<ColorPicker
+	rounded={${rounded}}
+	hasError={${hasError}}
+	size={${size}}
+	disabled={${disabled}}
+    label="${label ? "Select Color" : ""}"
+	${hint ? `hint="Hint text to help the user with input"` : ""}
+/>
 `}
 				/>
 			</TabsContent>
