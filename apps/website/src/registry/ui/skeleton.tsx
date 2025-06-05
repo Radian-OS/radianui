@@ -5,7 +5,7 @@ type SkeletonProps = React.ComponentProps<"div"> & {
 	animation?: "shimmer" | "pulse"
 }
 
-const DEFAULT_ANIMATION = "shimmer"
+const DEFAULT_ANIMATION = "pulse"
 
 const skeletonVariants = cva("rounded-md", {
 	variants: {

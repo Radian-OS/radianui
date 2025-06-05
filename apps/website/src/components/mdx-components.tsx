@@ -73,6 +73,7 @@ import GithubIntegrationModalExample from "@/registry/example/modal/github-integ
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
+import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
@@ -143,6 +144,7 @@ const components: MDXComponents = {
 	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
 	SearchPreview: () => <SearchPreview />,
 	SkeletonPreview: () => <SkeletonPreview />,
+	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
 	SearchInputExample: () => <SearchInputExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	FileUploadPreview: () => <FileUploadPreview />,
