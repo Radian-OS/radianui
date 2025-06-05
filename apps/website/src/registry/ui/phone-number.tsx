@@ -12,6 +12,7 @@ import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
 	size?: InputProps["size"]
 	showTrigger?: boolean
+	countryDropdown?: boolean
 	className?: string
 	country?: RPNInput.Country
 	onlyCountries?: string[]
@@ -22,8 +23,6 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	hasError?: boolean
 	lead?: React.ReactNode
 	trail?: React.ReactNode
-	international?: boolean
-	countryCallingCodeEditable?: boolean
 }
 
 const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
@@ -33,6 +32,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	onCountryChange,
 	size,
 	showTrigger = true,
+	countryDropdown = true,
 	disabled = false,
 	className,
 	onlyCountries,
@@ -44,7 +44,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	lead,
 	trail,
 	international = false,
-	countryCallingCodeEditable = true,
+	countryCallingCodeEditable = international,
 	...rpnInputProps
 }) => {
 	const id = useId()
@@ -263,7 +263,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		)
 		Comp.displayName = "PhoneNumber.InputWithClass"
 		return Comp
-	}, [className, size, showTrigger, disabled, hasError, lead, trail, label])
+	}, [className, size, showTrigger, countryDropdown, disabled, hasError, lead, trail, label])
 
 	const [selectOpen, setSelectOpen] = useState(false)
 
@@ -302,7 +302,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				</Label>
 			)}
 			<div className="flex w-full gap-0">
-				{showTrigger && (
+				{showTrigger && countryDropdown && (
 					<Select
 						open={selectOpen}
 						onOpenChange={handleSelectOpenChange}
@@ -330,6 +330,19 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 						{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
 						{regularCountriesList.length > 0 && <SelectGroup label="All Countries">{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
 					</Select>
+				)}
+				{showTrigger && !countryDropdown && (
+					<Button
+						variant="neutral-soft"
+						size={size === "0" ? undefined : size}
+						disabled={disabled}
+						className={cn("disabled:bg-fill-level2 border-border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
+							"border-error": hasError && !disabled,
+						})}>
+						<Flag country={country} />
+						{international && <span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+						{/* No chevron icon when dropdown is disabled */}
+					</Button>
 				)}
 
 				<RPNInput.default
