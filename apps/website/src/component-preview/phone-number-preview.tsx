@@ -152,21 +152,6 @@ const PhoneNumberPreview = () => {
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
-								<DropdownSub>
-									<DropdownSubTrigger>Country Dropdown</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											minSelectionCount={1}
-											selectedValues={[countryDropdown]}
-											onSelectedChange={(keys) => {
-												setCountryDropdown(Array.from(keys)[0] as "true" | "false")
-											}}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
 
 								<DropdownSub>
 									<DropdownSubTrigger>hasError</DropdownSubTrigger>
@@ -234,6 +219,22 @@ const PhoneNumberPreview = () => {
 													{option.label}
 												</DropdownItem>
 											))}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Country Dropdown</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											minSelectionCount={1}
+											selectedValues={[countryDropdown]}
+											onSelectedChange={(keys) => {
+												setCountryDropdown(Array.from(keys)[0] as "true" | "false")
+											}}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
