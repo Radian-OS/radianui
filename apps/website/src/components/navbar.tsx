@@ -34,7 +34,7 @@ export default function Navbar() {
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.ctrlKey && event.key === "k") {
+			if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
 				event.preventDefault()
 				setIsOpen(true)
 			}

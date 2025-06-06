@@ -191,7 +191,7 @@ const renderSearchResults = () => {
     rounded="${rounded}"
     size="${size}"
     disabled={${disabled}}
-    label="${label ? "Search" : undefined}"
+    label="${label ? "Search" : ""}"
 	placeholder="Search"
 	suggestion={${suggestion}}
 	${hint ? `hint="Hint text to help the user with input"` : ""}
