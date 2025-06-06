@@ -25,12 +25,14 @@ import TableExample from "@/registry/example/table-example"
 import TabsExample from "@/registry/example/tabs-example"
 import TooltipExample from "@/registry/example/tooltip-example"
 import ColorPicker from "@/registry/ui/color-picker"
+import { Spinner } from "@/registry/ui/spinner"
 
 const page = () => {
 	return (
 		<div className="mx-auto max-w-[80rem]">
 			<div className="px-4 md:px-5 lg:px-6">
 				<BannerExample />
+				<Spinner />
 				<BreadcrumbExample />
 				<ButtonExample />
 				<CodeAreaExample />
