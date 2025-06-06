@@ -38,7 +38,7 @@ export const sideBarItems: SideBarSection[] = [
 		],
 	},
 	{
-		title: "Primitives",
+		title: "Components",
 		items: [
 			{ link: "/documentation/components/alert", name: "Alert" },
 			{ link: "/documentation/components/accordion", name: "Accordion" },
