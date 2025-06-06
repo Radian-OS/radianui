@@ -2,8 +2,8 @@ import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
 import ColorPicker from "@/registry/ui/color-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Label } from "@/registry/ui/label"
-import { Select, SelectItem } from "@/registry/ui/select"
+// import { Label } from "@/registry/ui/label"
+// import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -20,10 +20,10 @@ export default function ColorPickerPreview() {
 	const [label, setLabel] = useState<boolean>(true)
 	const [hint, setHint] = useState<boolean>(false)
 
-	const [inputFormat, setInputFormat] = useState<ColorFormatOptions>("HEX")
-	const handleFormatChange = (newFormat: ColorFormatOptions) => {
-		setInputFormat(newFormat)
-	}
+	// const [inputFormat, setInputFormat] = useState<ColorFormatOptions>("HEX")
+	// const handleFormatChange = (newFormat: ColorFormatOptions) => {
+	// 	setInputFormat(newFormat)
+	// }
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -112,7 +112,7 @@ export default function ColorPickerPreview() {
 						label={label ? "Select Color" : undefined}
 					/>
 
-					<div className="flex flex-col gap-1.5">
+					{/* <div className="flex flex-col gap-1.5">
 						<Label>Select Color</Label>
 						<div className="flex rounded-md">
 							<ColorPicker inputFormat={inputFormat} onInputFormatChange={handleFormatChange} className="w-74 rounded-r-none border-r-0 focus-within:border-r" size={size} />
@@ -129,7 +129,7 @@ export default function ColorPickerPreview() {
 								<SelectItem value="RGBA">RGBA</SelectItem>
 							</Select>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</TabsContent>
 

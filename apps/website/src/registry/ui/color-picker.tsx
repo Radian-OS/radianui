@@ -651,9 +651,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 							<div
 								onClick={handleEyedropper}
 								className={`flex h-9 w-9 items-center justify-center rounded p-2 transition-colors ${
-									isEyedropperSupported ? "bg-border-alpha text-text-secondary cursor-pointer" : "cursor-not-allowed bg-gray-800 text-gray-600"
+									isEyedropperSupported ? "bg-border-alpha text-text-secondary cursor-pointer" : "bg-text-disabled text-text-disabled cursor-not-allowed"
 								}`}
-								title={isEyedropperSupported ? "Pick color from screen" : "EyeDropper not supported in this browser"}>
+								// title={isEyedropperSupported ? "Pick color from screen" : "EyeDropper not supported in this browser"}
+							>
 								<Pipette className="h-5 w-5" />
 							</div>
 							<div className="flex w-full flex-col gap-2">
@@ -712,48 +713,54 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						</div>
 					</div>
 
-					{/* Format Selectors */}
-					<div className="flex items-center gap-4 p-2 pl-0">
-						<Select size="32" selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
-							<SelectItem value="HSV">HSV</SelectItem>
-							<SelectItem value="HSL">HSL</SelectItem>
-							<SelectItem value="RGB">RGB</SelectItem>
-						</Select>
-						<Select size="32" selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
-							<SelectItem value="HEX">HEX</SelectItem>
-							<SelectItem value="HSL">HSL</SelectItem>
-							<SelectItem value="OKLCH">OKLCH</SelectItem>
-							<SelectItem value="HSB">HSB</SelectItem>
-							<SelectItem value="RGBA">RGBA</SelectItem>
-						</Select>
-					</div>
+					<div className="flex w-full items-center gap-3">
+						{/* Format Selectors */}
+						<div className="flex items-center gap-4 p-2 pl-0">
+							<Select size="32" selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
+								<SelectItem value="HSV">HSV</SelectItem>
+								<SelectItem value="HSL">HSL</SelectItem>
+								<SelectItem value="RGB">RGB</SelectItem>
+							</Select>
+						</div>
 
-					{/* Color Values Display */}
-					<div className="text-text-secondary font-mono text-sm">
-						{displayFormat === "HSV" && (
-							<ButtonGroup variant="neutral-outline" size="32" color="primary">
-								<Button className="w-10">{Math.round(hue)}</Button>
-								<Button className="w-10">{Math.round(saturation)}</Button>
-								<Button className="w-10">{Math.round(value)}</Button>
-								<Button className="w-10">{Math.round(alpha)}%</Button>
-							</ButtonGroup>
-						)}
-						{displayFormat === "RGB" && (
-							<ButtonGroup variant="neutral-outline" size="32" color="primary">
-								<Button className="w-10">{selectedColor.r}</Button>
-								<Button className="w-10">{selectedColor.g}</Button>
-								<Button className="w-10">{selectedColor.b}</Button>
-								<Button className="w-10">{Math.round(alpha)}%</Button>
-							</ButtonGroup>
-						)}
-						{displayFormat === "HSL" && (
-							<ButtonGroup variant="neutral-outline" size="32" color="primary">
-								<Button className="w-10">{getHSLArray()[0]}</Button>
-								<Button className="w-10">{getHSLArray()[1]}</Button>
-								<Button className="w-10">{getHSLArray()[2]}</Button>
-								<Button className="w-10">{Math.round(alpha)}%</Button>
-							</ButtonGroup>
-						)}
+						<div className="hidden">
+							<Select size="32" selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
+								Add commentMore actions
+								<SelectItem value="HEX">HEX</SelectItem>
+								<SelectItem value="HSL">HSL</SelectItem>
+								<SelectItem value="OKLCH">OKLCH</SelectItem>
+								<SelectItem value="HSB">HSB</SelectItem>
+								<SelectItem value="RGBA">RGBA</SelectItem>
+							</Select>
+						</div>
+
+						{/* Color Values Display */}
+						<div className="text-text-secondary font-mono text-sm">
+							{displayFormat === "HSV" && (
+								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+									<Button className="w-10">{Math.round(hue)}</Button>
+									<Button className="w-10">{Math.round(saturation)}</Button>
+									<Button className="w-10">{Math.round(value)}</Button>
+									<Button className="w-10">{Math.round(alpha)}%</Button>
+								</ButtonGroup>
+							)}
+							{displayFormat === "RGB" && (
+								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+									<Button className="w-10">{selectedColor.r}</Button>
+									<Button className="w-10">{selectedColor.g}</Button>
+									<Button className="w-10">{selectedColor.b}</Button>
+									<Button className="w-10">{Math.round(alpha)}%</Button>
+								</ButtonGroup>
+							)}
+							{displayFormat === "HSL" && (
+								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+									<Button className="w-10">{getHSLArray()[0]}</Button>
+									<Button className="w-10">{getHSLArray()[1]}</Button>
+									<Button className="w-10">{getHSLArray()[2]}</Button>
+									<Button className="w-10">{Math.round(alpha)}%</Button>
+								</ButtonGroup>
+							)}
+						</div>
 					</div>
 				</div>
 			</PopoverContent>
