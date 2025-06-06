@@ -60,6 +60,7 @@ import BannerExamplePreview2 from "@/registry/example/banner/banner-example-prev
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
+import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
@@ -154,6 +155,7 @@ const components: MDXComponents = {
 	SelectPreview: () => <SelectPreview />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
+	ColorPickerExample: () => <ColorPickerExample />,
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />

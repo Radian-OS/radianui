@@ -717,7 +717,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						{/* Format Selectors */}
 						<div className="flex items-center gap-4 p-2 pl-0">
 							<Select size="32" selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
-								<SelectItem value="HSV">HSV</SelectItem>
+								<SelectItem value="HSV">HSB</SelectItem>
 								<SelectItem value="HSL">HSL</SelectItem>
 								<SelectItem value="RGB">RGB</SelectItem>
 							</Select>
@@ -725,7 +725,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 						<div className="hidden">
 							<Select size="32" selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
-								Add commentMore actions
 								<SelectItem value="HEX">HEX</SelectItem>
 								<SelectItem value="HSL">HSL</SelectItem>
 								<SelectItem value="OKLCH">OKLCH</SelectItem>
