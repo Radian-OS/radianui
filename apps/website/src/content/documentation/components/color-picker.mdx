@@ -16,10 +16,25 @@ source: https://github.com/Radian-os
 
 ##### Props
 
-| Prop Name | Default Values | Values                                  |
-| --------- | -------------- | --------------------------------------- |
-| type      | default        | default, info, success, danger, warning |
+| Prop Name | Default Values | Values             |
+| --------- | -------------- | ------------------ |
+| rounded   | lg             | xs,sm,md,lg,xl,2xl |
+| size      | 36             | 28,32,36,40,44,48  |
+| label     | true           | true/false         |
+| disabled  | false          | true/false         |
+| hasError  | false          | true/false         |
+| hint      |                |                    |
 
 ##### Usage
 
-<Code language="tsx" code={`<ColorPicker/>`} />
+<Code
+	language="tsx"
+	code={`<ColorPicker
+    rounded="sm"
+    size="32"
+    disabled={false}
+    label="Select Color"
+    hasError={false}
+    hint="Hint text to help the user with input"
+/>`}
+/>

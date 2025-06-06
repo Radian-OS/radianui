@@ -40,21 +40,21 @@ export default function Hero01() {
 
 							{/* Navigation */}
 							<nav className="text-sm-p hidden items-center gap-10 font-medium md:flex">
-								<a href="#" className="text-text">
+								<Link href="#" className="text-text">
 									Features
-								</a>
-								<a href="#" className="text-text">
+								</Link>
+								<Link href="#" className="text-text">
 									Pricing
-								</a>
-								<a href="#" className="text-text">
+								</Link>
+								<Link href="#" className="text-text">
 									About
-								</a>
-								<a href="#" className="text-text">
+								</Link>
+								<Link href="#" className="text-text">
 									Blog
-								</a>
-								<a href="#" className="text-text">
+								</Link>
+								<Link href="#" className="text-text">
 									Resources
-								</a>
+								</Link>
 							</nav>
 
 							{/* Auth buttons */}

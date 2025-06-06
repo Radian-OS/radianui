@@ -337,7 +337,7 @@ const PhoneNumberPreview = () => {
 							onlyCountries={getOnlyCountries()}
 							preferredCountries={getPreferredCountries()}
 							excludeCountries={getExcludeCountries()}
-							className={showTrigger === "false" ? "w-80" : ""}
+							className={showTrigger === "false" ? "w-80" : "w-62"}
 						/>
 					</div>
 				</div>
@@ -377,7 +377,7 @@ const PhoneNumberExample = () => {
         showTrigger={${showTrigger === "true"}}
         ${disabled === "true" ? `disabled={true}` : ""}
         international={${international === "true"}}
-        ${showTrigger === "false" ? `className="w-80"` : ""}
+        ${showTrigger === "false" ? `className="w-80"` : `className="w-62"`}
       />
     </div>
   )
