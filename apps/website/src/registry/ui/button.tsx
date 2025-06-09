@@ -22,7 +22,7 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 
 const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border transition duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 trasnform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none w-fit",
 	{
 		variants: {
 			variant: {

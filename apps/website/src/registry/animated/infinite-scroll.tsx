@@ -7,7 +7,7 @@ export function InfiniteScroll({ direction = "left", className, children }: { di
 			<motion.div
 				animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
 				transition={{
-					duration: 15,
+					duration: 20,
 					repeat: Infinity,
 					ease: "linear",
 					repeatType: "loop",

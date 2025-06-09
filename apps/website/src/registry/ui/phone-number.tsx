@@ -57,6 +57,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	const allCountries = useMemo(() => getCountries(), [])
 	const [isValid, setIsValid] = useState<boolean | null>(null)
 	const [selectOpen, setSelectOpen] = useState(false)
+	const [lastManuallySelectedCountry, setLastManuallySelectedCountry] = useState<RPNInput.Country | null>(null)
 	const validationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
 	// When international is false, force countryCallingCodeEditable to be false
@@ -208,6 +209,17 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 
 			let selected = matches[0]
 			const firstMatchCode = countryCodeMap.get(matches[0])!
+
+			// Check if we have a manually selected country that shares the same calling code
+			if (lastManuallySelectedCountry) {
+				const manuallySelectedCode = countryCodeMap.get(lastManuallySelectedCountry)
+				if (manuallySelectedCode === firstMatchCode && matches.includes(lastManuallySelectedCountry)) {
+					// Keep the manually selected country if it has the same calling code
+					return lastManuallySelectedCountry
+				}
+			}
+
+			// If no manual selection or different calling code, use priority
 			const prioList = countryPriority[firstMatchCode]
 			if (prioList) {
 				const prioCountry = prioList.find((p) => matches.includes(p as RPNInput.Country))
@@ -217,7 +229,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 			}
 			return selected
 		},
-		[countries, countryCodeMap, countryPriority]
+		[countries, countryCodeMap, countryPriority, lastManuallySelectedCountry]
 	)
 
 	// Validation logic with debouncing
@@ -325,11 +337,20 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 			if (disabled) return
 			const selectedCode = selectedValues[0] as RPNInput.Country
 			if (countries.includes(selectedCode)) {
+				// Track the manually selected country
+				setLastManuallySelectedCountry(selectedCode)
 				onCountryChange?.(selectedCode)
 			}
 		},
 		[disabled, countries, onCountryChange]
 	)
+
+	// Update the lastManuallySelectedCountry when country prop changes from outside
+	useEffect(() => {
+		if (country) {
+			setLastManuallySelectedCountry(country)
+		}
+	}, [country])
 
 	// Wrapper for onCountryChange - only block automatic detection, allow manual changes
 	const handleCountryChangeWrapper = useCallback(
