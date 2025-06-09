@@ -2,9 +2,9 @@
 
 import { CirclePlay, Menu, X, Zap } from "lucide-react"
 import Link from "next/link"
-import { Draggable } from "@/registry/animated/Draggable"
-import { FadeDown } from "@/registry/animated/FadeDown"
 import { InfiniteScroll } from "@/registry/animated/InfiniteScroll"
+import { FadeDown } from "@/registry/animated/fade-down"
+import { Draggable } from "@/registry/animated/graggable"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"

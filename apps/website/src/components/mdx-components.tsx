@@ -6,6 +6,10 @@ import { MDXComponents } from "mdx/types"
 import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
+import DraggablePreview from "@/component-preview/animations/draggable-preview"
+import FadeDownPreview from "@/component-preview/animations/fade-down-preview"
+import GradientTextPreview from "@/component-preview/animations/gradient-text-preview"
+import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
 import BadgePreview from "@/component-preview/badge-preview"
@@ -156,6 +160,11 @@ const components: MDXComponents = {
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
 	ColorPickerExample: () => <ColorPickerExample />,
+	// Animation components
+	TypingTextPreview: () => <TypingTextPreview />,
+	GradientTextPreview: () => <GradientTextPreview />,
+	DraggablePreview: () => <DraggablePreview />,
+	FadeDownPreview: () => <FadeDownPreview />,
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />

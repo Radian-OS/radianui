@@ -82,4 +82,22 @@ export const sideBarItems: SideBarSection[] = [
 			{ link: "/documentation/components/tooltip", name: "Tooltip" },
 		].sort((a, b) => a.name.localeCompare(b.name)),
 	},
+	{
+		title: "Animations",
+		items: [
+			{ link: "/documentation/animations/typing-text", name: "Typing Text" },
+			{
+				link: "/documentation/animations/gradient-text",
+				name: "Gradient Text",
+			},
+			{
+				link: "/documentation/animations/draggable",
+				name: "Draggable",
+			},
+			{
+				link: "/documentation/animations/fade-down",
+				name: "Fade Down",
+			},
+		].sort((a, b) => a.name.localeCompare(b.name)),
+	},
 ]
