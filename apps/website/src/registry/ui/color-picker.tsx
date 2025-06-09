@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import { Pipette } from "lucide-react"
-import { Button, ButtonGroup } from "./button"
+import { ButtonGroup } from "./button"
 import { Input } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { Select, SelectItem } from "./select"
@@ -82,10 +82,169 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	const [inputValue, setInputValue] = useState<string>("")
 	const [lastValidColor, setLastValidColor] = useState<string>("")
 	const [isUserTyping, setIsUserTyping] = useState<boolean>(false)
+	const [colorChangeSource, setColorChangeSource] = useState<"picker" | "input" | "initial">("initial")
+	const [userHexInput, setUserHexInput] = useState<string>("")
 
 	const saturationRef = useRef<HTMLDivElement>(null)
 	const hueRef = useRef<HTMLDivElement>(null)
 	const alphaRef = useRef<HTMLDivElement>(null)
+
+	const [displayValues, setDisplayValues] = useState({
+		hsv: { h: "", s: "", v: "", a: "" },
+		rgb: { r: "", g: "", b: "", a: "" },
+		hsl: { h: "", s: "", l: "", a: "" },
+		hex: { raw: "", formatted: "" },
+	})
+
+	// Add these new handler functions:
+	const updateDisplayValues = () => {
+		const rgb = hsvToRgb(hue, saturation, value)
+		const hsl = hsvToHsl(hue, saturation, value)
+
+		setDisplayValues((prev) => ({
+			...prev,
+			hsv: {
+				h: Math.round(hue).toString(),
+				s: Math.round(saturation).toString(),
+				v: Math.round(value).toString(),
+				a: Math.round(alpha).toString(),
+			},
+			rgb: {
+				r: rgb.r.toString(),
+				g: rgb.g.toString(),
+				b: rgb.b.toString(),
+				a: Math.round(alpha).toString(),
+			},
+			hsl: {
+				h: Math.round(hsl.h).toString(),
+				s: Math.round(hsl.s).toString(),
+				l: Math.round(hsl.l).toString(),
+				a: Math.round(alpha).toString(),
+			},
+			// Only update formatted hex, keep raw value if user is typing
+			hex: {
+				...prev.hex,
+				formatted: rgbToHex(rgb.r, rgb.g, rgb.b),
+			},
+		}))
+	}
+
+	const handleDisplayValueChange = (format: "hsv" | "rgb" | "hsl", component: string, value: string) => {
+		// Set colorChangeSource to "input" when user starts typing
+		setColorChangeSource("input")
+
+		// Update the display values state
+		setDisplayValues((prev) => ({
+			...prev,
+			[format]: {
+				...prev[format],
+				[component]: value,
+			},
+		}))
+	}
+
+	const handleDisplayValueBlur = (format: "hsv" | "rgb" | "hsl", component: string) => {
+		const currentValue = displayValues[format][component as keyof (typeof displayValues)[typeof format]]
+		const numValue = parseInt(currentValue) || 0
+
+		setColorChangeSource("input")
+
+		if (format === "hsv") {
+			switch (component) {
+				case "h":
+					setHue(Math.max(0, Math.min(360, numValue)))
+					break
+				case "s":
+					setSaturation(Math.max(0, Math.min(100, numValue)))
+					break
+				case "v":
+					setValue(Math.max(0, Math.min(100, numValue)))
+					break
+				case "a":
+					setAlpha(Math.max(0, Math.min(100, numValue)))
+					break
+			}
+		} else if (format === "rgb") {
+			let newR = selectedColor.r
+			let newG = selectedColor.g
+			let newB = selectedColor.b
+
+			switch (component) {
+				case "r":
+					newR = Math.max(0, Math.min(255, numValue))
+					break
+				case "g":
+					newG = Math.max(0, Math.min(255, numValue))
+					break
+				case "b":
+					newB = Math.max(0, Math.min(255, numValue))
+					break
+				case "a":
+					setAlpha(Math.max(0, Math.min(100, numValue)))
+					return
+			}
+
+			const hsv = rgbToHsv(newR, newG, newB)
+			setHue(hsv.h)
+			setSaturation(hsv.s)
+			setValue(hsv.v)
+		} else if (format === "hsl") {
+			const currentHsl = hsvToHsl(hue, saturation, value)
+			let newH = currentHsl.h
+			let newS = currentHsl.s
+			let newL = currentHsl.l
+
+			switch (component) {
+				case "h":
+					newH = Math.max(0, Math.min(360, numValue))
+					break
+				case "s":
+					newS = Math.max(0, Math.min(100, numValue))
+					break
+				case "l":
+					newL = Math.max(0, Math.min(100, numValue))
+					break
+				case "a":
+					setAlpha(Math.max(0, Math.min(100, numValue)))
+					return
+			}
+
+			const rgb = hslToRgb(newH, newS, newL)
+			const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
+			setHue(hsv.h)
+			setSaturation(hsv.s)
+			setValue(hsv.v)
+		}
+
+		// Reset colorChangeSource after a brief delay to allow picker updates again
+		setTimeout(() => {
+			setColorChangeSource("initial")
+		}, 100)
+	}
+
+	// Add this useEffect to update display values when color changes
+	useEffect(() => {
+		// Always update display values unless the change came from typing in display inputs
+		if (colorChangeSource !== "input") {
+			updateDisplayValues()
+		}
+	}, [hue, saturation, value, alpha])
+
+	// Separate useEffect to reset colorChangeSource
+	useEffect(() => {
+		if (colorChangeSource === "picker") {
+			// Reset after a brief delay to ensure display values are updated
+			const timer = setTimeout(() => {
+				setColorChangeSource("initial")
+			}, 0)
+			return () => clearTimeout(timer)
+		}
+	}, [colorChangeSource])
+
+	// Initialize display values on mount
+	useEffect(() => {
+		updateDisplayValues()
+	}, [])
 
 	// Handler for Display Format Select component
 	function setDisplayFormatValues(values: string[]): void {
@@ -187,26 +346,33 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		return { h, s, v }
 	}
 
-	// Convert hex to RGB
 	const hexToRgb = (hex: string): RGBColor | null => {
 		const cleanHex = hex.replace("#", "").toUpperCase()
-		const fullHex =
-			cleanHex.length === 3
-				? cleanHex
-						.split("")
-						.map((char) => char + char)
-						.join("")
-				: cleanHex
 
-		if (!/^[0-9A-F]{6}$/.test(fullHex)) {
-			return null
+		// Allow partial 3-digit hex
+		if (cleanHex.length === 3) {
+			const expanded = cleanHex
+				.split("")
+				.map((c) => c + c)
+				.join("")
+			return {
+				r: parseInt(expanded.substring(0, 2), 16),
+				g: parseInt(expanded.substring(2, 4), 16),
+				b: parseInt(expanded.substring(4, 6), 16),
+			}
 		}
 
-		const r = parseInt(fullHex.substr(0, 2), 16)
-		const g = parseInt(fullHex.substr(2, 2), 16)
-		const b = parseInt(fullHex.substr(4, 2), 16)
+		// Allow partial 6-digit hex (pads with 0)
+		if (cleanHex.length > 0 && cleanHex.length <= 6) {
+			const padded = cleanHex.padEnd(6, "0")
+			return {
+				r: parseInt(padded.substring(0, 2), 16),
+				g: parseInt(padded.substring(2, 4), 16),
+				b: parseInt(padded.substring(4, 6), 16),
+			}
+		}
 
-		return { r, g, b }
+		return null
 	}
 
 	// Convert RGB to hex
@@ -278,6 +444,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						setHue(hsv.h)
 						setSaturation(hsv.s)
 						setValue(hsv.v)
+						// Preserve the user's exact hex input
+						const normalizedHex = value.startsWith("#") ? value.toUpperCase() : "#" + value.toUpperCase()
+						setUserHexInput(normalizedHex)
 						return true
 					}
 					break
@@ -358,6 +527,11 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	// Update input value based on current color and format
 	const updateInputValue = (format: "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA") => {
+		if (format === "HEX" && userHexInput && validateInput(userHexInput)) {
+			setInputValue(userHexInput)
+			setLastValidColor(userHexInput)
+			return
+		}
 		const rgb = hsvToRgb(hue, saturation, value)
 		let newValue = ""
 
@@ -500,6 +674,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	}, [isDragging])
 
 	const handleSaturationMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+		setUserHexInput("")
+
 		if (!saturationRef.current) return
 		const rect = saturationRef.current.getBoundingClientRect()
 		const x = e.clientX - rect.left
@@ -513,6 +689,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	}
 
 	const handleHueMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+		setUserHexInput("")
+
 		if (!hueRef.current) return
 		const rect = hueRef.current.getBoundingClientRect()
 		const x = e.clientX - rect.left
@@ -522,6 +700,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	}
 
 	const handleAlphaMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+		setUserHexInput("")
+
 		if (!alphaRef.current) return
 		const rect = alphaRef.current.getBoundingClientRect()
 		const x = e.clientX - rect.left
@@ -549,6 +729,16 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					setSaturation(hsv.s)
 					setValue(hsv.v)
 					setSelectedColor(rgb)
+
+					// Update the input value and last valid color
+					const hexValue = rgbToHex(rgb.r, rgb.g, rgb.b)
+					setInputValue(hexValue)
+					setLastValidColor(hexValue)
+					setUserHexInput(hexValue)
+
+					// Force update display values
+					updateDisplayValues()
+					setColorChangeSource("picker")
 				}
 			}
 		} catch (error) {
@@ -573,10 +763,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	}
 
 	// Get HSL array
-	const getHSLArray = (): number[] => {
-		const hsl = hsvToHsl(hue, saturation, value)
-		return [hsl.h, hsl.s, hsl.l, Math.round(alpha)]
-	}
+	// const getHSLArray = (): number[] => {
+	// 	const hsl = hsvToHsl(hue, saturation, value)
+	// 	return [hsl.h, hsl.s, hsl.l, Math.round(alpha)]
+	// }
 
 	useEffect(() => {
 		const rgb = hsvToRgb(hue, saturation, value)
@@ -720,6 +910,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 								<SelectItem value="HSV">HSB</SelectItem>
 								<SelectItem value="HSL">HSL</SelectItem>
 								<SelectItem value="RGB">RGB</SelectItem>
+								<SelectItem value="HEX">HEX</SelectItem>
 							</Select>
 						</div>
 
@@ -735,28 +926,168 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 						{/* Color Values Display */}
 						<div className="text-text-secondary font-mono text-sm">
+							{displayFormat === "HEX" && (
+								<Input
+									value={isUserTyping ? displayValues.hex.raw : displayValues.hex.formatted}
+									onChange={(e) => {
+										const value = e.target.value.replace("#", "")
+										setIsUserTyping(true)
+										setDisplayValues((prev) => ({
+											...prev,
+											hex: {
+												...prev.hex,
+												raw: value,
+											},
+										}))
+									}}
+									onBlur={() => {
+										setIsUserTyping(false)
+										// Validate the HEX value
+										const rgb = hexToRgb(displayValues.hex.raw)
+										if (rgb) {
+											const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
+											setHue(hsv.h)
+											setSaturation(hsv.s)
+											setValue(hsv.v)
+											// FIXED: Keep user's exact input - don't convert back to RGB->HEX
+											const userHex = displayValues.hex.raw.startsWith("#") ? displayValues.hex.raw.toUpperCase() : "#" + displayValues.hex.raw.toUpperCase()
+											setUserHexInput(userHex)
+											setColorChangeSource("input")
+											// Keep the exact user input instead of converting
+											setDisplayValues((prev) => ({
+												...prev,
+												hex: {
+													raw: displayValues.hex.raw,
+													formatted: userHex,
+												},
+											}))
+										} else {
+											// Revert to last valid if invalid
+											setDisplayValues((prev) => ({
+												...prev,
+												hex: {
+													raw: prev.hex.formatted.replace("#", ""),
+													formatted: prev.hex.formatted,
+												},
+											}))
+										}
+									}}
+									onKeyPress={(e) => {
+										if (e.key === "Enter") {
+											setIsUserTyping(false)
+											const rgb = hexToRgb(displayValues.hex.raw)
+											if (rgb) {
+												const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
+												setHue(hsv.h)
+												setSaturation(hsv.s)
+												setValue(hsv.v)
+												// FIXED: Keep user's exact input
+												const userHex = displayValues.hex.raw.startsWith("#") ? displayValues.hex.raw.toUpperCase() : "#" + displayValues.hex.raw.toUpperCase()
+												setUserHexInput(userHex)
+												setColorChangeSource("input")
+												setDisplayValues((prev) => ({
+													...prev,
+													hex: {
+														raw: displayValues.hex.raw,
+														formatted: userHex,
+													},
+												}))
+											} else {
+												setDisplayValues((prev) => ({
+													...prev,
+													hex: {
+														raw: prev.hex.formatted.replace("#", ""),
+														formatted: prev.hex.formatted,
+													},
+												}))
+											}
+											;(e.target as HTMLInputElement).blur()
+										}
+									}}
+								/>
+							)}
 							{displayFormat === "HSV" && (
 								<ButtonGroup variant="neutral-outline" size="32" color="primary">
-									<Button className="w-10">{Math.round(hue)}</Button>
-									<Button className="w-10">{Math.round(saturation)}</Button>
-									<Button className="w-10">{Math.round(value)}</Button>
-									<Button className="w-10">{Math.round(alpha)}%</Button>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.h}
+										onChange={(e) => handleDisplayValueChange("hsv", "h", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "h")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.s}
+										onChange={(e) => handleDisplayValueChange("hsv", "s", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "s")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.v}
+										onChange={(e) => handleDisplayValueChange("hsv", "v", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "v")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.a}
+										onChange={(e) => handleDisplayValueChange("hsv", "a", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "a")}
+									/>
 								</ButtonGroup>
 							)}
 							{displayFormat === "RGB" && (
 								<ButtonGroup variant="neutral-outline" size="32" color="primary">
-									<Button className="w-10">{selectedColor.r}</Button>
-									<Button className="w-10">{selectedColor.g}</Button>
-									<Button className="w-10">{selectedColor.b}</Button>
-									<Button className="w-10">{Math.round(alpha)}%</Button>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.r}
+										onChange={(e) => handleDisplayValueChange("rgb", "r", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "r")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.g}
+										onChange={(e) => handleDisplayValueChange("rgb", "g", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "g")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.b}
+										onChange={(e) => handleDisplayValueChange("rgb", "b", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "b")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.a}
+										onChange={(e) => handleDisplayValueChange("rgb", "a", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "a")}
+									/>
 								</ButtonGroup>
 							)}
 							{displayFormat === "HSL" && (
 								<ButtonGroup variant="neutral-outline" size="32" color="primary">
-									<Button className="w-10">{getHSLArray()[0]}</Button>
-									<Button className="w-10">{getHSLArray()[1]}</Button>
-									<Button className="w-10">{getHSLArray()[2]}</Button>
-									<Button className="w-10">{Math.round(alpha)}%</Button>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.h}
+										onChange={(e) => handleDisplayValueChange("hsl", "h", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "h")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.s}
+										onChange={(e) => handleDisplayValueChange("hsl", "s", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "s")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.l}
+										onChange={(e) => handleDisplayValueChange("hsl", "l", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "l")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.a}
+										onChange={(e) => handleDisplayValueChange("hsl", "a", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "a")}
+									/>
 								</ButtonGroup>
 							)}
 						</div>
