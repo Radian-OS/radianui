@@ -682,13 +682,17 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	// Handle mouse events for dragging
 	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent): void => {
+		const handleMove = (e: MouseEvent | TouchEvent): void => {
 			if (!isDragging) return
+
+			// Get coordinates from either mouse or touch event
+			const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+			const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
 
 			if (isDragging === "saturation" && saturationRef.current) {
 				const rect = saturationRef.current.getBoundingClientRect()
-				const x = e.clientX - rect.left
-				const y = e.clientY - rect.top
+				const x = clientX - rect.left
+				const y = clientY - rect.top
 
 				const { saturation: newSaturation, value: newValue } = calculateSaturationAndValue(x, y, rect)
 
@@ -696,39 +700,50 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				setValue(newValue)
 			} else if (isDragging === "hue" && hueRef.current) {
 				const rect = hueRef.current.getBoundingClientRect()
-				const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left))
+				const x = Math.max(0, Math.min(rect.width, clientX - rect.left))
 				const newHue = (x / rect.width) * 360
 				setHue(newHue)
 			} else if (isDragging === "alpha" && alphaRef.current) {
 				const rect = alphaRef.current.getBoundingClientRect()
-				const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left))
+				const x = Math.max(0, Math.min(rect.width, clientX - rect.left))
 				const newAlpha = (x / rect.width) * 100
 				setAlpha(newAlpha)
 			}
 		}
 
-		const handleMouseUp = (): void => {
+		const handleEnd = (): void => {
 			setIsDragging(null)
 		}
 
 		if (isDragging) {
-			document.addEventListener("mousemove", handleMouseMove)
-			document.addEventListener("mouseup", handleMouseUp)
+			// Add both mouse and touch event listeners
+			document.addEventListener("mousemove", handleMove)
+			document.addEventListener("mouseup", handleEnd)
+			document.addEventListener("touchmove", handleMove, { passive: false })
+			document.addEventListener("touchend", handleEnd)
 		}
 
 		return () => {
-			document.removeEventListener("mousemove", handleMouseMove)
-			document.removeEventListener("mouseup", handleMouseUp)
+			document.removeEventListener("mousemove", handleMove)
+			document.removeEventListener("mouseup", handleEnd)
+			document.removeEventListener("touchmove", handleMove)
+			document.removeEventListener("touchend", handleEnd)
 		}
 	}, [isDragging])
 
-	const handleSaturationMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleSaturationInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
 		setUserHexInput("")
 
 		if (!saturationRef.current) return
 		const rect = saturationRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
-		const y = e.clientY - rect.top
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+		const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
+
+		const x = clientX - rect.left
+		const y = clientY - rect.top
 
 		const { saturation: newSaturation, value: newValue } = calculateSaturationAndValue(x, y, rect)
 
@@ -737,23 +752,33 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		setIsDragging("saturation")
 	}
 
-	const handleHueMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleHueInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
 		setUserHexInput("")
 
 		if (!hueRef.current) return
 		const rect = hueRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+
+		const x = clientX - rect.left
 		const newHue = Math.max(0, Math.min(360, (x / rect.width) * 360))
 		setHue(newHue)
 		setIsDragging("hue")
 	}
 
-	const handleAlphaMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleAlphaInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
 		setUserHexInput("")
 
 		if (!alphaRef.current) return
 		const rect = alphaRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+
+		const x = clientX - rect.left
 		const newAlpha = Math.max(0, Math.min(100, (x / rect.width) * 100))
 		setAlpha(newAlpha)
 		setIsDragging("alpha")
@@ -863,7 +888,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					<div className="flex flex-col gap-3">
 						<div
 							ref={saturationRef}
-							onMouseDown={handleSaturationMouseDown}
+							onMouseDown={handleSaturationInteraction}
+							onTouchStart={handleSaturationInteraction}
 							className="h-66 relative cursor-pointer select-none rounded-sm"
 							style={{
 								background: `
@@ -901,7 +927,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 									{/* Hue Slider */}
 									<div
 										ref={hueRef}
-										onMouseDown={handleHueMouseDown}
+										onMouseDown={handleHueInteraction}
+										onTouchStart={handleHueInteraction}
 										className="relative h-4 flex-1 cursor-pointer select-none rounded-full shadow-lg"
 										style={{
 											background: "linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)",
@@ -931,7 +958,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 									/>
 									<div
 										ref={alphaRef}
-										onMouseDown={handleAlphaMouseDown}
+										onTouchStart={handleAlphaInteraction}
+										onMouseDown={handleAlphaInteraction}
 										className="relative h-4 w-full cursor-pointer select-none overflow-hidden rounded-full shadow-lg"
 										style={{
 											background: `linear-gradient(to right, transparent, hsl(${hue}, ${saturation}%, ${value / 2}%))`,
