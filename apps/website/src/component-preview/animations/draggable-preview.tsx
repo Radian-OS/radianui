@@ -1,4 +1,4 @@
-import { Draggable } from "@/registry/animated/draggable"
+import { Draggable } from "@/registry/animated/make-draggable"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
