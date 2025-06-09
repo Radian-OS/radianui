@@ -124,7 +124,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 			// Only update formatted hex, keep raw value if user is typing
 			hex: {
 				...prev.hex,
-				formatted: rgbToHex(rgb.r, rgb.g, rgb.b),
+				formatted: userHexInput && validateInput(userHexInput) ? userHexInput : rgbToHex(rgb.r, rgb.g, rgb.b),
 			},
 		}))
 	}
@@ -379,14 +379,43 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	const rgbToHex = (r: number, g: number, b: number): string => {
 		return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toUpperCase()
 	}
-
-	// Convert to OKLCH format (simplified approximation)
 	const rgbToOklch = (r: number, g: number, b: number): string => {
-		// This is a simplified approximation - a real implementation would need proper color space conversion
-		const l = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
-		const c = Math.sqrt(Math.pow(r - g, 2) + Math.pow(g - b, 2) + Math.pow(b - r, 2)) / 441.6729559300637 // Max chroma
-		const h = Math.atan2(g - b, r - g) * (180 / Math.PI)
-		return `oklch(${(l * 100).toFixed(1)}% ${(c * 100).toFixed(1)}% ${(h < 0 ? h + 360 : h).toFixed(1)})`
+		// First convert sRGB to linear RGB
+		const linearR = r / 255 <= 0.04045 ? r / 255 / 12.92 : Math.pow((r / 255 + 0.055) / 1.055, 2.4)
+		const linearG = g / 255 <= 0.04045 ? g / 255 / 12.92 : Math.pow((g / 255 + 0.055) / 1.055, 2.4)
+		const linearB = b / 255 <= 0.04045 ? b / 255 / 12.92 : Math.pow((b / 255 + 0.055) / 1.055, 2.4)
+
+		// Convert linear RGB to XYZ
+		const x = linearR * 0.4124 + linearG * 0.3576 + linearB * 0.1805
+		const y = linearR * 0.2126 + linearG * 0.7152 + linearB * 0.0722
+		const z = linearR * 0.0193 + linearG * 0.1192 + linearB * 0.9505
+
+		// Convert XYZ to OKLab
+		const l = Math.cbrt(0.8189330101 * x + 0.3618667424 * y - 0.1288597137 * z)
+		const m = Math.cbrt(-0.0321965436 * x + 0.9295748617 * y + 0.0362416389 * z)
+		const s = Math.cbrt(0.0481426039 * x + 0.2643662691 * y + 0.633851707 * z)
+
+		const l_ = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s
+		const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s
+		const b_ = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
+
+		// Convert OKLab to OKLCH
+		const lightness = l_ * 100
+		const chroma = Math.sqrt(a * a + b_ * b_)
+		let hue = Math.atan2(b_, a) * (180 / Math.PI)
+		if (hue < 0) hue += 360
+
+		// Rounding to match oklch.com's precision
+		const roundedLightness = Math.round(lightness * 10000) / 10000
+		const roundedChroma = Math.round(chroma * 10000) / 10000
+		const roundedHue = Math.round(hue * 100) / 100
+
+		// Special case for very low chroma (near grayscale)
+		if (chroma < 0.0001) {
+			return `oklch(${(roundedLightness / 100).toFixed(4)} 0 0)`
+		}
+
+		return `oklch(${(roundedLightness / 100).toFixed(4)} ${roundedChroma.toFixed(4)} ${roundedHue.toFixed(2)})`
 	}
 
 	// Convert HSL to RGB
@@ -495,21 +524,39 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					}
 					break
 				}
+				// Convert OKLCH to RGB (accurate implementation)
 				case "OKLCH": {
-					// For OKLCH, we'll implement a basic approximation
-					const match = value.match(/oklch\(\s*(\d+(?:\.\d+)?)%?\s*,?\s*(\d+(?:\.\d+)?)%?\s*,?\s*(\d+(?:\.\d+)?)%?\s*\)/i)
+					const match = value.match(/oklch\(\s*(\d+(?:\.\d+)?)%?\s*(\d+(?:\.\d+)?)?\s*(\d+(?:\.\d+)?)?\s*\)/i)
 					if (match) {
-						// This is a simplified conversion - real OKLCH would need proper color space math
-						const l = parseFloat(match[1]) / 100
-						const c = parseFloat(match[2]) / 100
-						const h = parseFloat(match[3])
+						const lightness = parseFloat(match[1]) / 100
+						const chroma = parseFloat(match[2]) || 0
+						const hue = parseFloat(match[3]) || 0
 
-						// Convert to approximate RGB (this is not accurate OKLCH conversion)
-						const r = Math.round(l * 255 + c * Math.cos((h * Math.PI) / 180) * 127)
-						const g = Math.round(l * 255 + c * Math.sin((h * Math.PI) / 180) * 127)
-						const b = Math.round(l * 255)
+						// Convert OKLCH to OKLab
+						const a = chroma * Math.cos((hue * Math.PI) / 180)
+						const bo = chroma * Math.sin((hue * Math.PI) / 180)
 
-						const rgb = { r: Math.max(0, Math.min(255, r)), g: Math.max(0, Math.min(255, g)), b: Math.max(0, Math.min(255, b)) }
+						// Convert OKLabo to XYZ
+						const l = lightness + 0.3963377774 * a + 0.2158037573 * bo
+						const m = lightness - 0.1055613458 * a - 0.0638541728 * bo
+						const s = lightness - 0.0894841775 * a - 1.291485548 * bo
+
+						// Convert XYZ to linear RGB
+						const rLinear = l * 4.0767416615 + m * -3.3077115913 + s * 0.2309699292
+						const gLinear = l * -1.2684380046 + m * 2.6097574011 + s * -0.3413193965
+						const bLinear = l * -0.0041960863 + m * -0.7034186147 + s * 1.707614701
+
+						// Convert linear RGB to sRGB
+						const r = rLinear <= 0.0031308 ? 12.92 * rLinear : 1.055 * Math.pow(rLinear, 1 / 2.4) - 0.055
+						const g = gLinear <= 0.0031308 ? 12.92 * gLinear : 1.055 * Math.pow(gLinear, 1 / 2.4) - 0.055
+						const b = bLinear <= 0.0031308 ? 12.92 * bLinear : 1.055 * Math.pow(bLinear, 1 / 2.4) - 0.055
+
+						const rgb = {
+							r: Math.max(0, Math.min(255, Math.round(r * 255))),
+							g: Math.max(0, Math.min(255, Math.round(g * 255))),
+							b: Math.max(0, Math.min(255, Math.round(b * 255))),
+						}
+
 						const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
 						setHue(hsv.h)
 						setSaturation(hsv.s)
@@ -527,11 +574,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	// Update input value based on current color and format
 	const updateInputValue = (format: "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA") => {
+		// For HEX format, preserve user's exact input if it's valid
 		if (format === "HEX" && userHexInput && validateInput(userHexInput)) {
 			setInputValue(userHexInput)
 			setLastValidColor(userHexInput)
 			return
 		}
+
 		const rgb = hsvToRgb(hue, saturation, value)
 		let newValue = ""
 
