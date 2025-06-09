@@ -26,6 +26,9 @@
     ".contentlayer/generated"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".contentlayer",
+    ".next",
+    ".turbo"
   ]
 }
