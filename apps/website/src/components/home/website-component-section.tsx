@@ -9,6 +9,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "Navigation Bar",
 	},
 	{
 		title: "Hero Section",
@@ -16,6 +17,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "Hero Section",
 	},
 	{
 		title: "Trusted Companies",
@@ -23,6 +25,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "Trusted Companies",
 	},
 	{
 		title: "Product Features",
@@ -30,6 +33,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "Product Features",
 	},
 	{
 		title: "User Testimonials",
@@ -37,6 +41,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "User Testimonials",
 	},
 	{
 		title: "Frequently Asked Questions",
@@ -44,6 +49,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "Frequently Asked Questions",
 	},
 	{
 		title: "Pricing Section",
@@ -51,6 +57,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "Pricing Section",
 	},
 	{
 		title: "More under development",
@@ -58,6 +65,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
+		alt: "More under development",
 	},
 ]
 
@@ -77,7 +85,15 @@ export default function WebsiteComponent() {
 			<div className="max-w-310 mx-auto">
 				<div id="body" className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
 					{componentsList.map((item, idx) => (
-						<ComponentCard key={item.title + idx} href={item.href} title={item.title} description={item.description} svgUrl={item.svgUrl} darkModeSvgUrl={item.darkModeSvgUrl} />
+						<ComponentCard
+							alt={item.alt}
+							key={item.title + idx}
+							href={item.href}
+							title={item.title}
+							description={item.description}
+							svgUrl={item.svgUrl}
+							darkModeSvgUrl={item.darkModeSvgUrl}
+						/>
 					))}
 				</div>
 			</div>
