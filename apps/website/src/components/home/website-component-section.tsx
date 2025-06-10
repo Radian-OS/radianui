@@ -9,7 +9,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "Navigation Bar",
+		alt: "Illustration of a website navigation bar component",
 	},
 	{
 		title: "Hero Section",
@@ -17,7 +17,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "Hero Section",
+		alt: "Graphic representing a website hero section",
 	},
 	{
 		title: "Trusted Companies",
@@ -25,7 +25,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "Trusted Companies",
+		alt: "Logos of trusted companies for website section",
 	},
 	{
 		title: "Product Features",
@@ -33,7 +33,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "Product Features",
+		alt: "Icons and text describing product features",
 	},
 	{
 		title: "User Testimonials",
@@ -41,7 +41,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "User Testimonials",
+		alt: "Speech bubbles representing user testimonials",
 	},
 	{
 		title: "Frequently Asked Questions",
@@ -49,7 +49,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "Frequently Asked Questions",
+		alt: "Question mark icon for FAQ section",
 	},
 	{
 		title: "Pricing Section",
@@ -57,7 +57,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "Pricing Section",
+		alt: "Pricing table illustration for website",
 	},
 	{
 		title: "More under development",
@@ -65,7 +65,7 @@ const componentsList: ComponentListItem[] = [
 		href: "#",
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		alt: "More under development",
+		alt: "Placeholder graphic for upcoming website components",
 	},
 ]
 
@@ -76,7 +76,7 @@ export default function WebsiteComponent() {
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 
 				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
-					<h6 className="heading-6 text-text">Website Components</h6>
+					<h1 className="heading-6 text-text">Website Components</h1>
 					<p className="body-15 text-text-secondary font-normal">Fundamentals & building blocks of Websites</p>
 				</div>
 
