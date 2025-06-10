@@ -380,15 +380,17 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toUpperCase()
 	}
 	const rgbToOklch = (r: number, g: number, b: number): string => {
-		// First convert sRGB to linear RGB
-		const linearR = r / 255 <= 0.04045 ? r / 255 / 12.92 : Math.pow((r / 255 + 0.055) / 1.055, 2.4)
-		const linearG = g / 255 <= 0.04045 ? g / 255 / 12.92 : Math.pow((g / 255 + 0.055) / 1.055, 2.4)
-		const linearB = b / 255 <= 0.04045 ? b / 255 / 12.92 : Math.pow((b / 255 + 0.055) / 1.055, 2.4)
+		// Convert sRGB to linear RGB
+		const gamma_inv = (c: number) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
+
+		const linearR = gamma_inv(r / 255)
+		const linearG = gamma_inv(g / 255)
+		const linearB = gamma_inv(b / 255)
 
 		// Convert linear RGB to XYZ
-		const x = linearR * 0.4124 + linearG * 0.3576 + linearB * 0.1805
-		const y = linearR * 0.2126 + linearG * 0.7152 + linearB * 0.0722
-		const z = linearR * 0.0193 + linearG * 0.1192 + linearB * 0.9505
+		const x = linearR * 0.4124564 + linearG * 0.3575761 + linearB * 0.1804375
+		const y = linearR * 0.2126729 + linearG * 0.7151522 + linearB * 0.072175
+		const z = linearR * 0.0193339 + linearG * 0.119192 + linearB * 0.9503041
 
 		// Convert XYZ to OKLab
 		const l = Math.cbrt(0.8189330101 * x + 0.3618667424 * y - 0.1288597137 * z)
@@ -400,22 +402,17 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		const b_ = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
 
 		// Convert OKLab to OKLCH
-		const lightness = l_ * 100
+		const lightness = l_
 		const chroma = Math.sqrt(a * a + b_ * b_)
 		let hue = Math.atan2(b_, a) * (180 / Math.PI)
 		if (hue < 0) hue += 360
 
-		// Rounding to match oklch.com's precision
-		const roundedLightness = Math.round(lightness * 10000) / 10000
-		const roundedChroma = Math.round(chroma * 10000) / 10000
-		const roundedHue = Math.round(hue * 100) / 100
-
-		// Special case for very low chroma (near grayscale)
+		// Format output - use space-separated format for better readability
 		if (chroma < 0.0001) {
-			return `oklch(${(roundedLightness / 100).toFixed(4)} 0 0)`
+			return `oklch(${lightness.toFixed(4)} 0 0)`
 		}
 
-		return `oklch(${(roundedLightness / 100).toFixed(4)} ${roundedChroma.toFixed(4)} ${roundedHue.toFixed(2)})`
+		return `oklch(${lightness.toFixed(4)} ${chroma.toFixed(4)} ${hue.toFixed(2)})`
 	}
 
 	// Convert HSL to RGB
@@ -526,30 +523,44 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				}
 				// Convert OKLCH to RGB (accurate implementation)
 				case "OKLCH": {
-					const match = value.match(/oklch\(\s*(\d+(?:\.\d+)?)%?\s*(\d+(?:\.\d+)?)?\s*(\d+(?:\.\d+)?)?\s*\)/i)
+					// More flexible OKLCH parsing - handles both comma-separated and space-separated formats
+					const match =
+						value.match(/oklch\(\s*(\d*\.?\d*)%?\s*[,\s]\s*(\d*\.?\d*)%?\s*[,\s]\s*(\d*\.?\d*)%?\s*\)/i) ||
+						value.match(/oklch\(\s*(\d*\.?\d*)%?\s*(\d*\.?\d*)%?\s*(\d*\.?\d*)%?\s*\)/i)
+
 					if (match) {
-						const lightness = parseFloat(match[1]) / 100
+						// Handle partial inputs by providing defaults
+						const lightness = parseFloat(match[1]) || 0
 						const chroma = parseFloat(match[2]) || 0
 						const hue = parseFloat(match[3]) || 0
 
+						// Normalize lightness if it's given as percentage > 1
+						const normalizedLightness = lightness > 1 ? lightness / 100 : lightness
+
 						// Convert OKLCH to OKLab
-						const a = chroma * Math.cos((hue * Math.PI) / 180)
-						const bo = chroma * Math.sin((hue * Math.PI) / 180)
+						const hueRad = (hue * Math.PI) / 180
+						const a = chroma * Math.cos(hueRad)
+						const bo = chroma * Math.sin(hueRad)
 
-						// Convert OKLabo to XYZ
-						const l = lightness + 0.3963377774 * a + 0.2158037573 * bo
-						const m = lightness - 0.1055613458 * a - 0.0638541728 * bo
-						const s = lightness - 0.0894841775 * a - 1.291485548 * bo
+						// Convert OKLab to linear RGB
+						const l = normalizedLightness + 0.3963377774 * a + 0.2158037573 * bo
+						const m = normalizedLightness - 0.1055613458 * a - 0.0638541728 * bo
+						const s = normalizedLightness - 0.0894841775 * a - 1.291485548 * bo
 
-						// Convert XYZ to linear RGB
-						const rLinear = l * 4.0767416615 + m * -3.3077115913 + s * 0.2309699292
-						const gLinear = l * -1.2684380046 + m * 2.6097574011 + s * -0.3413193965
-						const bLinear = l * -0.0041960863 + m * -0.7034186147 + s * 1.707614701
+						const l3 = l * l * l
+						const m3 = m * m * m
+						const s3 = s * s * s
+
+						const rLinear = l3 * 4.0767416615 + m3 * -3.3077115913 + s3 * 0.2309699292
+						const gLinear = l3 * -1.2684380046 + m3 * 2.6097574011 + s3 * -0.3413193965
+						const bLinear = l3 * -0.0041960863 + m3 * -0.7034186147 + s3 * 1.707614701
 
 						// Convert linear RGB to sRGB
-						const r = rLinear <= 0.0031308 ? 12.92 * rLinear : 1.055 * Math.pow(rLinear, 1 / 2.4) - 0.055
-						const g = gLinear <= 0.0031308 ? 12.92 * gLinear : 1.055 * Math.pow(gLinear, 1 / 2.4) - 0.055
-						const b = bLinear <= 0.0031308 ? 12.92 * bLinear : 1.055 * Math.pow(bLinear, 1 / 2.4) - 0.055
+						const gamma = (c: number) => (c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055)
+
+						const r = gamma(rLinear)
+						const g = gamma(gLinear)
+						const b = gamma(bLinear)
 
 						const rgb = {
 							r: Math.max(0, Math.min(255, Math.round(r * 255))),
@@ -614,7 +625,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 			case "HSL":
 				return /^hsl\(\s*\d+\s*,\s*\d+%?\s*,\s*\d+%?\s*\)$/i.test(value)
 			case "OKLCH":
-				return /^oklch\(\s*\d+(?:\.\d+)?%?\s*,?\s*\d+(?:\.\d+)?%?\s*,?\s*\d+(?:\.\d+)?%?\s*\)$/i.test(value)
+				return /^oklch\(\s*\d*\.?\d*%?\s*,?\s*\d*\.?\d*%?\s*,?\s*\d*\.?\d*%?\s*\)$/i.test(value) || /^oklch\(\s*\d*\.?\d*\s+\d*\.?\d*\s+\d*\.?\d*\s*\)$/i.test(value)
 			case "HSB":
 				return /^hsb\(\s*\d+\s*,\s*\d+%?\s*,\s*\d+%?\s*\)$/i.test(value)
 			case "RGBA":
@@ -682,13 +693,21 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	// Handle mouse events for dragging
 	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent): void => {
+		const handleMove = (e: MouseEvent | TouchEvent): void => {
 			if (!isDragging) return
+
+			if ("touches" in e) {
+				e.preventDefault()
+			}
+
+			// Get coordinates from either mouse or touch event
+			const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+			const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
 
 			if (isDragging === "saturation" && saturationRef.current) {
 				const rect = saturationRef.current.getBoundingClientRect()
-				const x = e.clientX - rect.left
-				const y = e.clientY - rect.top
+				const x = clientX - rect.left
+				const y = clientY - rect.top
 
 				const { saturation: newSaturation, value: newValue } = calculateSaturationAndValue(x, y, rect)
 
@@ -696,39 +715,50 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				setValue(newValue)
 			} else if (isDragging === "hue" && hueRef.current) {
 				const rect = hueRef.current.getBoundingClientRect()
-				const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left))
+				const x = Math.max(0, Math.min(rect.width, clientX - rect.left))
 				const newHue = (x / rect.width) * 360
 				setHue(newHue)
 			} else if (isDragging === "alpha" && alphaRef.current) {
 				const rect = alphaRef.current.getBoundingClientRect()
-				const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left))
+				const x = Math.max(0, Math.min(rect.width, clientX - rect.left))
 				const newAlpha = (x / rect.width) * 100
 				setAlpha(newAlpha)
 			}
 		}
 
-		const handleMouseUp = (): void => {
+		const handleEnd = (): void => {
 			setIsDragging(null)
 		}
 
 		if (isDragging) {
-			document.addEventListener("mousemove", handleMouseMove)
-			document.addEventListener("mouseup", handleMouseUp)
+			// Add both mouse and touch event listeners
+			document.addEventListener("mousemove", handleMove)
+			document.addEventListener("mouseup", handleEnd)
+			document.addEventListener("touchmove", handleMove, { passive: false })
+			document.addEventListener("touchend", handleEnd)
 		}
 
 		return () => {
-			document.removeEventListener("mousemove", handleMouseMove)
-			document.removeEventListener("mouseup", handleMouseUp)
+			document.removeEventListener("mousemove", handleMove)
+			document.removeEventListener("mouseup", handleEnd)
+			document.removeEventListener("touchmove", handleMove)
+			document.removeEventListener("touchend", handleEnd)
 		}
 	}, [isDragging])
 
-	const handleSaturationMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleSaturationInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
 		setUserHexInput("")
 
 		if (!saturationRef.current) return
 		const rect = saturationRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
-		const y = e.clientY - rect.top
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+		const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
+
+		const x = clientX - rect.left
+		const y = clientY - rect.top
 
 		const { saturation: newSaturation, value: newValue } = calculateSaturationAndValue(x, y, rect)
 
@@ -737,23 +767,33 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		setIsDragging("saturation")
 	}
 
-	const handleHueMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleHueInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
 		setUserHexInput("")
 
 		if (!hueRef.current) return
 		const rect = hueRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+
+		const x = clientX - rect.left
 		const newHue = Math.max(0, Math.min(360, (x / rect.width) * 360))
 		setHue(newHue)
 		setIsDragging("hue")
 	}
 
-	const handleAlphaMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleAlphaInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
 		setUserHexInput("")
 
 		if (!alphaRef.current) return
 		const rect = alphaRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+
+		const x = clientX - rect.left
 		const newAlpha = Math.max(0, Math.min(100, (x / rect.width) * 100))
 		setAlpha(newAlpha)
 		setIsDragging("alpha")
@@ -845,11 +885,19 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				lead={
 					<PopoverTrigger disabled={disabled}>
 						<div
-							className="h-5 w-5 cursor-pointer rounded"
+							className="relative h-5 w-5 cursor-pointer overflow-hidden rounded"
 							style={{
-								backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
-							}}
-						/>
+								backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='checkerboard' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3e%3crect fill='%23cccccc' x='0' width='10' height='10' y='0'/%3e%3crect fill='%23cccccc' x='10' width='10' height='10' y='10'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23checkerboard)' /%3e%3c/svg%3e")`,
+								backgroundSize: "20px 20px", // Smaller pattern for better visibility at 20px size
+							}}>
+							{/* Color overlay that respects alpha */}
+							<div
+								className="absolute inset-0 h-full w-full"
+								style={{
+									backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
+								}}
+							/>
+						</div>
 					</PopoverTrigger>
 				}
 				value={inputValue}
@@ -863,7 +911,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					<div className="flex flex-col gap-3">
 						<div
 							ref={saturationRef}
-							onMouseDown={handleSaturationMouseDown}
+							onMouseDown={handleSaturationInteraction}
+							onTouchStart={handleSaturationInteraction}
 							className="h-66 relative cursor-pointer select-none rounded-sm"
 							style={{
 								background: `
@@ -901,7 +950,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 									{/* Hue Slider */}
 									<div
 										ref={hueRef}
-										onMouseDown={handleHueMouseDown}
+										onMouseDown={handleHueInteraction}
+										onTouchStart={handleHueInteraction}
 										className="relative h-4 flex-1 cursor-pointer select-none rounded-full shadow-lg"
 										style={{
 											background: "linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)",
@@ -931,7 +981,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 									/>
 									<div
 										ref={alphaRef}
-										onMouseDown={handleAlphaMouseDown}
+										onTouchStart={handleAlphaInteraction}
+										onMouseDown={handleAlphaInteraction}
 										className="relative h-4 w-full cursor-pointer select-none overflow-hidden rounded-full shadow-lg"
 										style={{
 											background: `linear-gradient(to right, transparent, hsl(${hue}, ${saturation}%, ${value / 2}%))`,
