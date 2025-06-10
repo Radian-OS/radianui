@@ -85,6 +85,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	const [colorChangeSource, setColorChangeSource] = useState<"picker" | "input" | "initial">("initial")
 	const [userHexInput, setUserHexInput] = useState<string>("")
 
+	// Add these new state variables after your existing useState declarations:
+	const [userOklchInput, setUserOklchInput] = useState<string>("")
+	const [, setOklchValues] = useState({ l: 0, c: 0, h: 0 })
+
 	const saturationRef = useRef<HTMLDivElement>(null)
 	const hueRef = useRef<HTMLDivElement>(null)
 	const alphaRef = useRef<HTMLDivElement>(null)
@@ -534,6 +538,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						const chroma = parseFloat(match[2]) || 0
 						const hue = parseFloat(match[3]) || 0
 
+						// Store original OKLCH values
+						setOklchValues({ l: lightness, c: chroma, h: hue })
+						setUserOklchInput(value)
+
 						// Normalize lightness if it's given as percentage > 1
 						const normalizedLightness = lightness > 1 ? lightness / 100 : lightness
 
@@ -604,7 +612,11 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				newValue = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`
 				break
 			case "OKLCH":
-				newValue = rgbToOklch(rgb.r, rgb.g, rgb.b)
+				if (userOklchInput && validateInput(userOklchInput) && inputFormat === "OKLCH") {
+					newValue = userOklchInput
+				} else {
+					newValue = rgbToOklch(rgb.r, rgb.g, rgb.b)
+				}
 				break
 			case "HSB": // Same as HSV
 				newValue = `hsb(${Math.round(hue)}, ${Math.round(saturation)}%, ${Math.round(value)}%)`
@@ -616,6 +628,11 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 		setInputValue(newValue)
 		setLastValidColor(newValue)
+	}
+
+	const clearUserInputs = () => {
+		setUserHexInput("")
+		setUserOklchInput("")
 	}
 
 	const validateInput = (value: string): boolean => {
@@ -748,7 +765,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	const handleSaturationInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
 		e.preventDefault() // Prevent scrolling on mobile
-		setUserHexInput("")
+		clearUserInputs()
 
 		if (!saturationRef.current) return
 		const rect = saturationRef.current.getBoundingClientRect()
@@ -769,8 +786,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	const handleHueInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
 		e.preventDefault() // Prevent scrolling on mobile
-		setUserHexInput("")
-
+		clearUserInputs()
 		if (!hueRef.current) return
 		const rect = hueRef.current.getBoundingClientRect()
 
@@ -785,8 +801,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	const handleAlphaInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
 		e.preventDefault() // Prevent scrolling on mobile
-		setUserHexInput("")
-
+		clearUserInputs()
 		if (!alphaRef.current) return
 		const rect = alphaRef.current.getBoundingClientRect()
 
