@@ -1,5 +1,6 @@
 import { allDocs } from "contentlayer/generated"
 import { ExternalLink, Github, SquareArrowOutUpRight } from "lucide-react"
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
@@ -28,6 +29,37 @@ export async function generateStaticParams() {
 	}))
 }
 
+export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata> {
+	const slug = params.slug.join("/")
+	const doc = allDocs.find((d) => d.slugAsParams === slug)
+
+	if (!doc) {
+		return {
+			title: "Documentation Not Found",
+			description: "The requested documentation page could not be found.",
+		}
+	}
+
+	const url = `https://radianos.com/documentation/${slug}`
+
+	return {
+		title: `${doc.title} | Radian`,
+		description: doc.description,
+		openGraph: {
+			title: doc.title,
+			description: doc.description,
+			url,
+			// images: doc.image ? [{ url: doc.image, alt: doc.title }] : [],
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: doc.title,
+			description: doc.description,
+			// images: doc.image ? [doc.image] : [],
+		},
+	}
+}
+
 export default async function DocPage({ params }: DocPageProps) {
 	const doc = await getDocFromParams({ params })
 	const currentPath = `/documentation/${(await params).slug.join("/")}` || ""
@@ -43,7 +75,7 @@ export default async function DocPage({ params }: DocPageProps) {
 					{doc.apiref && (
 						<Badge className="flex w-fit cursor-pointer items-center gap-1">
 							<Link href={doc.apiref} target="_blank">
-								API Refrence
+								API Reference
 							</Link>
 							<SquareArrowOutUpRight size={16} />
 						</Badge>
@@ -60,7 +92,7 @@ export default async function DocPage({ params }: DocPageProps) {
 						<Link href={doc.externalSiteRef} target="_blank">
 							<Badge className="flex w-fit cursor-pointer items-center gap-1">
 								{doc.customLogo ? <Image className="size-4" height={50} width={50} alt="badge-img" src={doc.customLogo} /> : <ExternalLink className="size-4" />}
-								{doc.externalSiteName ?? "API Refrence"}
+								{doc.externalSiteName ?? "External Reference"}
 							</Badge>
 						</Link>
 					)}
