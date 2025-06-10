@@ -27,14 +27,14 @@ const componentsList: ComponentListItem[] = [
 		darkModeSvgUrl: "/landing-svg/avatar-dark.svg",
 		alt: "Avatar UI component illustration",
 	},
-	// {
-	// 	title: "Avatar Group",
-	// 	description: "28 Components",
-	// 	href: "/documentation/components/avatars",
-	// 	svgUrl: "/landing-svg/avatar-group.svg",
-	// 	darkModeSvgUrl: "/landing-svg/avatar-group-dark.svg",
-	// 	alt: "Avatar group UI component illustration",
-	// },
+	{
+		title: "Avatar Group",
+		description: "28 Components",
+		href: "/documentation/components/avatars",
+		svgUrl: "/landing-svg/avatar-group.svg",
+		darkModeSvgUrl: "/landing-svg/avatar-group-dark.svg",
+		alt: "Avatar group UI component illustration",
+	},
 	{
 		title: "Badge",
 		description: "7 Components",
