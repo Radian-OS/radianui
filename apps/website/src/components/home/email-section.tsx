@@ -31,7 +31,7 @@ export default function EmailSection() {
 				<div className="bg-stroke-decorative -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block" />
 				<div className="md:py-15 border-border flex w-full flex-col items-center justify-center gap-8 rounded-xl border px-6 py-6 text-center md:px-10 lg:flex-row lg:justify-between">
 					<div className="flex flex-col gap-2 sm:gap-3">
-						<h4 className="heading-4">Get notified when new stuff drops.</h4>
+						<h2 className="heading-4">Get notified when new stuff drops.</h2>
 						<p className="text-text-secondary text-base">Subscribe to get latest updates, tips, & exclusive offers from Radian.</p>
 					</div>
 					<form className="flex flex-col gap-2 text-start" onSubmit={handleSubscribe}>

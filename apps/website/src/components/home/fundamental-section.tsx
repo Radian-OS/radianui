@@ -10,7 +10,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/color-styles.svg",
 		darkModeSvgUrl: "/landing-svg/color-styles-dark.svg",
 		href: "documentation/colors",
-		alt: "Color styles",
+		alt: "Palette of color styles illustration",
 	},
 	{
 		title: "Typography",
@@ -18,7 +18,7 @@ const componentsList: ComponentListItem[] = [
 		href: "documentation/typography",
 		svgUrl: "/landing-svg/typography.svg",
 		darkModeSvgUrl: "/landing-svg/typography-dark.svg",
-		alt: "Typography",
+		alt: "Typography text styles illustration",
 	},
 	{
 		title: "Icons",
@@ -26,7 +26,7 @@ const componentsList: ComponentListItem[] = [
 		href: "documentation/iconography",
 		svgUrl: "/landing-svg/icons.svg",
 		darkModeSvgUrl: "/landing-svg/icons-dark.svg",
-		alt: "Icons",
+		alt: "Collection of icons illustration",
 	},
 	{
 		title: "Corner Radius",
@@ -34,7 +34,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/corner-radius.svg",
 		darkModeSvgUrl: "/landing-svg/corner-radius-dark.svg",
 		href: "#",
-		alt: "Corner Radius",
+		alt: "Corner radius shapes illustration",
 	},
 	{
 		title: "Grids",
@@ -42,7 +42,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/grids.svg",
 		darkModeSvgUrl: "/landing-svg/grids-dark.svg",
 		href: "#",
-		alt: "Grids",
+		alt: "Grid layout illustration",
 	},
 	{
 		title: "Elevation Levels",
@@ -50,7 +50,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/elevation-levels.svg",
 		darkModeSvgUrl: "/landing-svg/elevation-levels-dark.svg",
 		href: "#",
-		alt: "Elevation Levels",
+		alt: "Elevation levels shadow illustration",
 	},
 	{
 		title: "Spacing",
@@ -58,7 +58,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/spacing.svg",
 		darkModeSvgUrl: "/landing-svg/spacing-dark.svg",
 		href: "#",
-		alt: "Spacing",
+		alt: "Spacing and margin illustration",
 	},
 	{
 		title: "Color / Theme",
@@ -66,7 +66,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/color-theme.svg",
 		darkModeSvgUrl: "/landing-svg/color-theme-dark.svg",
 		href: "#",
-		alt: "Color / Theme",
+		alt: "Color theme swatches illustration",
 	},
 	{
 		title: "Logo",
@@ -74,7 +74,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
 		href: "#",
-		alt: "Logo",
+		alt: "Coming soon placeholder illustration",
 	},
 ]
 
@@ -83,7 +83,7 @@ export default function FundamentalSection() {
 		<React.Fragment>
 			<div className="max-w-310 mx-auto">
 				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
-					<h6 className="heading-6 text-fg0">Fundamentals</h6>
+					<h1 className="heading-6 text-fg0">Fundamentals</h1>
 					<p className="body-15 text-fg1 font-normal">Universal settings for building a strong foundation for a digital product</p>
 				</div>
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
