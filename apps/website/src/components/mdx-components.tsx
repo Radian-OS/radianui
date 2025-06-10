@@ -6,6 +6,10 @@ import { MDXComponents } from "mdx/types"
 import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
+import DraggablePreview from "@/component-preview/animations/draggable-preview"
+import FadeDownPreview from "@/component-preview/animations/fade-down-preview"
+import GradientTextPreview from "@/component-preview/animations/gradient-text-preview"
+import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
 import BadgePreview from "@/component-preview/badge-preview"
@@ -60,6 +64,7 @@ import BannerExamplePreview2 from "@/registry/example/banner/banner-example-prev
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
+import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
@@ -154,6 +159,12 @@ const components: MDXComponents = {
 	SelectPreview: () => <SelectPreview />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
+	ColorPickerExample: () => <ColorPickerExample />,
+	// Animation components
+	TypingTextPreview: () => <TypingTextPreview />,
+	GradientTextPreview: () => <GradientTextPreview />,
+	DraggablePreview: () => <DraggablePreview />,
+	FadeDownPreview: () => <FadeDownPreview />,
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />

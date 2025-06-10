@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import { Pipette } from "lucide-react"
-import { Button, ButtonGroup } from "./button"
+import { ButtonGroup } from "./button"
 import { Input } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { Select, SelectItem } from "./select"
@@ -82,10 +82,169 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	const [inputValue, setInputValue] = useState<string>("")
 	const [lastValidColor, setLastValidColor] = useState<string>("")
 	const [isUserTyping, setIsUserTyping] = useState<boolean>(false)
+	const [colorChangeSource, setColorChangeSource] = useState<"picker" | "input" | "initial">("initial")
+	const [userHexInput, setUserHexInput] = useState<string>("")
 
 	const saturationRef = useRef<HTMLDivElement>(null)
 	const hueRef = useRef<HTMLDivElement>(null)
 	const alphaRef = useRef<HTMLDivElement>(null)
+
+	const [displayValues, setDisplayValues] = useState({
+		hsv: { h: "", s: "", v: "", a: "" },
+		rgb: { r: "", g: "", b: "", a: "" },
+		hsl: { h: "", s: "", l: "", a: "" },
+		hex: { raw: "", formatted: "" },
+	})
+
+	// Add these new handler functions:
+	const updateDisplayValues = () => {
+		const rgb = hsvToRgb(hue, saturation, value)
+		const hsl = hsvToHsl(hue, saturation, value)
+
+		setDisplayValues((prev) => ({
+			...prev,
+			hsv: {
+				h: Math.round(hue).toString(),
+				s: Math.round(saturation).toString(),
+				v: Math.round(value).toString(),
+				a: Math.round(alpha).toString(),
+			},
+			rgb: {
+				r: rgb.r.toString(),
+				g: rgb.g.toString(),
+				b: rgb.b.toString(),
+				a: Math.round(alpha).toString(),
+			},
+			hsl: {
+				h: Math.round(hsl.h).toString(),
+				s: Math.round(hsl.s).toString(),
+				l: Math.round(hsl.l).toString(),
+				a: Math.round(alpha).toString(),
+			},
+			// Only update formatted hex, keep raw value if user is typing
+			hex: {
+				...prev.hex,
+				formatted: userHexInput && validateInput(userHexInput) ? userHexInput : rgbToHex(rgb.r, rgb.g, rgb.b),
+			},
+		}))
+	}
+
+	const handleDisplayValueChange = (format: "hsv" | "rgb" | "hsl", component: string, value: string) => {
+		// Set colorChangeSource to "input" when user starts typing
+		setColorChangeSource("input")
+
+		// Update the display values state
+		setDisplayValues((prev) => ({
+			...prev,
+			[format]: {
+				...prev[format],
+				[component]: value,
+			},
+		}))
+	}
+
+	const handleDisplayValueBlur = (format: "hsv" | "rgb" | "hsl", component: string) => {
+		const currentValue = displayValues[format][component as keyof (typeof displayValues)[typeof format]]
+		const numValue = parseInt(currentValue) || 0
+
+		setColorChangeSource("input")
+
+		if (format === "hsv") {
+			switch (component) {
+				case "h":
+					setHue(Math.max(0, Math.min(360, numValue)))
+					break
+				case "s":
+					setSaturation(Math.max(0, Math.min(100, numValue)))
+					break
+				case "v":
+					setValue(Math.max(0, Math.min(100, numValue)))
+					break
+				case "a":
+					setAlpha(Math.max(0, Math.min(100, numValue)))
+					break
+			}
+		} else if (format === "rgb") {
+			let newR = selectedColor.r
+			let newG = selectedColor.g
+			let newB = selectedColor.b
+
+			switch (component) {
+				case "r":
+					newR = Math.max(0, Math.min(255, numValue))
+					break
+				case "g":
+					newG = Math.max(0, Math.min(255, numValue))
+					break
+				case "b":
+					newB = Math.max(0, Math.min(255, numValue))
+					break
+				case "a":
+					setAlpha(Math.max(0, Math.min(100, numValue)))
+					return
+			}
+
+			const hsv = rgbToHsv(newR, newG, newB)
+			setHue(hsv.h)
+			setSaturation(hsv.s)
+			setValue(hsv.v)
+		} else if (format === "hsl") {
+			const currentHsl = hsvToHsl(hue, saturation, value)
+			let newH = currentHsl.h
+			let newS = currentHsl.s
+			let newL = currentHsl.l
+
+			switch (component) {
+				case "h":
+					newH = Math.max(0, Math.min(360, numValue))
+					break
+				case "s":
+					newS = Math.max(0, Math.min(100, numValue))
+					break
+				case "l":
+					newL = Math.max(0, Math.min(100, numValue))
+					break
+				case "a":
+					setAlpha(Math.max(0, Math.min(100, numValue)))
+					return
+			}
+
+			const rgb = hslToRgb(newH, newS, newL)
+			const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
+			setHue(hsv.h)
+			setSaturation(hsv.s)
+			setValue(hsv.v)
+		}
+
+		// Reset colorChangeSource after a brief delay to allow picker updates again
+		setTimeout(() => {
+			setColorChangeSource("initial")
+		}, 100)
+	}
+
+	// Add this useEffect to update display values when color changes
+	useEffect(() => {
+		// Always update display values unless the change came from typing in display inputs
+		if (colorChangeSource !== "input") {
+			updateDisplayValues()
+		}
+	}, [hue, saturation, value, alpha])
+
+	// Separate useEffect to reset colorChangeSource
+	useEffect(() => {
+		if (colorChangeSource === "picker") {
+			// Reset after a brief delay to ensure display values are updated
+			const timer = setTimeout(() => {
+				setColorChangeSource("initial")
+			}, 0)
+			return () => clearTimeout(timer)
+		}
+	}, [colorChangeSource])
+
+	// Initialize display values on mount
+	useEffect(() => {
+		updateDisplayValues()
+	}, [])
 
 	// Handler for Display Format Select component
 	function setDisplayFormatValues(values: string[]): void {
@@ -187,40 +346,73 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		return { h, s, v }
 	}
 
-	// Convert hex to RGB
 	const hexToRgb = (hex: string): RGBColor | null => {
 		const cleanHex = hex.replace("#", "").toUpperCase()
-		const fullHex =
-			cleanHex.length === 3
-				? cleanHex
-						.split("")
-						.map((char) => char + char)
-						.join("")
-				: cleanHex
 
-		if (!/^[0-9A-F]{6}$/.test(fullHex)) {
-			return null
+		// Allow partial 3-digit hex
+		if (cleanHex.length === 3) {
+			const expanded = cleanHex
+				.split("")
+				.map((c) => c + c)
+				.join("")
+			return {
+				r: parseInt(expanded.substring(0, 2), 16),
+				g: parseInt(expanded.substring(2, 4), 16),
+				b: parseInt(expanded.substring(4, 6), 16),
+			}
 		}
 
-		const r = parseInt(fullHex.substr(0, 2), 16)
-		const g = parseInt(fullHex.substr(2, 2), 16)
-		const b = parseInt(fullHex.substr(4, 2), 16)
+		// Allow partial 6-digit hex (pads with 0)
+		if (cleanHex.length > 0 && cleanHex.length <= 6) {
+			const padded = cleanHex.padEnd(6, "0")
+			return {
+				r: parseInt(padded.substring(0, 2), 16),
+				g: parseInt(padded.substring(2, 4), 16),
+				b: parseInt(padded.substring(4, 6), 16),
+			}
+		}
 
-		return { r, g, b }
+		return null
 	}
 
 	// Convert RGB to hex
 	const rgbToHex = (r: number, g: number, b: number): string => {
 		return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toUpperCase()
 	}
-
-	// Convert to OKLCH format (simplified approximation)
 	const rgbToOklch = (r: number, g: number, b: number): string => {
-		// This is a simplified approximation - a real implementation would need proper color space conversion
-		const l = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255
-		const c = Math.sqrt(Math.pow(r - g, 2) + Math.pow(g - b, 2) + Math.pow(b - r, 2)) / 441.6729559300637 // Max chroma
-		const h = Math.atan2(g - b, r - g) * (180 / Math.PI)
-		return `oklch(${(l * 100).toFixed(1)}% ${(c * 100).toFixed(1)}% ${(h < 0 ? h + 360 : h).toFixed(1)})`
+		// Convert sRGB to linear RGB
+		const gamma_inv = (c: number) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
+
+		const linearR = gamma_inv(r / 255)
+		const linearG = gamma_inv(g / 255)
+		const linearB = gamma_inv(b / 255)
+
+		// Convert linear RGB to XYZ
+		const x = linearR * 0.4124564 + linearG * 0.3575761 + linearB * 0.1804375
+		const y = linearR * 0.2126729 + linearG * 0.7151522 + linearB * 0.072175
+		const z = linearR * 0.0193339 + linearG * 0.119192 + linearB * 0.9503041
+
+		// Convert XYZ to OKLab
+		const l = Math.cbrt(0.8189330101 * x + 0.3618667424 * y - 0.1288597137 * z)
+		const m = Math.cbrt(-0.0321965436 * x + 0.9295748617 * y + 0.0362416389 * z)
+		const s = Math.cbrt(0.0481426039 * x + 0.2643662691 * y + 0.633851707 * z)
+
+		const l_ = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s
+		const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s
+		const b_ = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
+
+		// Convert OKLab to OKLCH
+		const lightness = l_
+		const chroma = Math.sqrt(a * a + b_ * b_)
+		let hue = Math.atan2(b_, a) * (180 / Math.PI)
+		if (hue < 0) hue += 360
+
+		// Format output - use space-separated format for better readability
+		if (chroma < 0.0001) {
+			return `oklch(${lightness.toFixed(4)} 0 0)`
+		}
+
+		return `oklch(${lightness.toFixed(4)} ${chroma.toFixed(4)} ${hue.toFixed(2)})`
 	}
 
 	// Convert HSL to RGB
@@ -278,6 +470,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						setHue(hsv.h)
 						setSaturation(hsv.s)
 						setValue(hsv.v)
+						// Preserve the user's exact hex input
+						const normalizedHex = value.startsWith("#") ? value.toUpperCase() : "#" + value.toUpperCase()
+						setUserHexInput(normalizedHex)
 						return true
 					}
 					break
@@ -326,21 +521,53 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					}
 					break
 				}
+				// Convert OKLCH to RGB (accurate implementation)
 				case "OKLCH": {
-					// For OKLCH, we'll implement a basic approximation
-					const match = value.match(/oklch\(\s*(\d+(?:\.\d+)?)%?\s*,?\s*(\d+(?:\.\d+)?)%?\s*,?\s*(\d+(?:\.\d+)?)%?\s*\)/i)
+					// More flexible OKLCH parsing - handles both comma-separated and space-separated formats
+					const match =
+						value.match(/oklch\(\s*(\d*\.?\d*)%?\s*[,\s]\s*(\d*\.?\d*)%?\s*[,\s]\s*(\d*\.?\d*)%?\s*\)/i) ||
+						value.match(/oklch\(\s*(\d*\.?\d*)%?\s*(\d*\.?\d*)%?\s*(\d*\.?\d*)%?\s*\)/i)
+
 					if (match) {
-						// This is a simplified conversion - real OKLCH would need proper color space math
-						const l = parseFloat(match[1]) / 100
-						const c = parseFloat(match[2]) / 100
-						const h = parseFloat(match[3])
+						// Handle partial inputs by providing defaults
+						const lightness = parseFloat(match[1]) || 0
+						const chroma = parseFloat(match[2]) || 0
+						const hue = parseFloat(match[3]) || 0
 
-						// Convert to approximate RGB (this is not accurate OKLCH conversion)
-						const r = Math.round(l * 255 + c * Math.cos((h * Math.PI) / 180) * 127)
-						const g = Math.round(l * 255 + c * Math.sin((h * Math.PI) / 180) * 127)
-						const b = Math.round(l * 255)
+						// Normalize lightness if it's given as percentage > 1
+						const normalizedLightness = lightness > 1 ? lightness / 100 : lightness
 
-						const rgb = { r: Math.max(0, Math.min(255, r)), g: Math.max(0, Math.min(255, g)), b: Math.max(0, Math.min(255, b)) }
+						// Convert OKLCH to OKLab
+						const hueRad = (hue * Math.PI) / 180
+						const a = chroma * Math.cos(hueRad)
+						const bo = chroma * Math.sin(hueRad)
+
+						// Convert OKLab to linear RGB
+						const l = normalizedLightness + 0.3963377774 * a + 0.2158037573 * bo
+						const m = normalizedLightness - 0.1055613458 * a - 0.0638541728 * bo
+						const s = normalizedLightness - 0.0894841775 * a - 1.291485548 * bo
+
+						const l3 = l * l * l
+						const m3 = m * m * m
+						const s3 = s * s * s
+
+						const rLinear = l3 * 4.0767416615 + m3 * -3.3077115913 + s3 * 0.2309699292
+						const gLinear = l3 * -1.2684380046 + m3 * 2.6097574011 + s3 * -0.3413193965
+						const bLinear = l3 * -0.0041960863 + m3 * -0.7034186147 + s3 * 1.707614701
+
+						// Convert linear RGB to sRGB
+						const gamma = (c: number) => (c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055)
+
+						const r = gamma(rLinear)
+						const g = gamma(gLinear)
+						const b = gamma(bLinear)
+
+						const rgb = {
+							r: Math.max(0, Math.min(255, Math.round(r * 255))),
+							g: Math.max(0, Math.min(255, Math.round(g * 255))),
+							b: Math.max(0, Math.min(255, Math.round(b * 255))),
+						}
+
 						const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
 						setHue(hsv.h)
 						setSaturation(hsv.s)
@@ -358,6 +585,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	// Update input value based on current color and format
 	const updateInputValue = (format: "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA") => {
+		// For HEX format, preserve user's exact input if it's valid
+		if (format === "HEX" && userHexInput && validateInput(userHexInput)) {
+			setInputValue(userHexInput)
+			setLastValidColor(userHexInput)
+			return
+		}
+
 		const rgb = hsvToRgb(hue, saturation, value)
 		let newValue = ""
 
@@ -391,7 +625,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 			case "HSL":
 				return /^hsl\(\s*\d+\s*,\s*\d+%?\s*,\s*\d+%?\s*\)$/i.test(value)
 			case "OKLCH":
-				return /^oklch\(\s*\d+(?:\.\d+)?%?\s*,?\s*\d+(?:\.\d+)?%?\s*,?\s*\d+(?:\.\d+)?%?\s*\)$/i.test(value)
+				return /^oklch\(\s*\d*\.?\d*%?\s*,?\s*\d*\.?\d*%?\s*,?\s*\d*\.?\d*%?\s*\)$/i.test(value) || /^oklch\(\s*\d*\.?\d*\s+\d*\.?\d*\s+\d*\.?\d*\s*\)$/i.test(value)
 			case "HSB":
 				return /^hsb\(\s*\d+\s*,\s*\d+%?\s*,\s*\d+%?\s*\)$/i.test(value)
 			case "RGBA":
@@ -459,13 +693,21 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 
 	// Handle mouse events for dragging
 	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent): void => {
+		const handleMove = (e: MouseEvent | TouchEvent): void => {
 			if (!isDragging) return
+
+			if ("touches" in e) {
+				e.preventDefault()
+			}
+
+			// Get coordinates from either mouse or touch event
+			const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+			const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
 
 			if (isDragging === "saturation" && saturationRef.current) {
 				const rect = saturationRef.current.getBoundingClientRect()
-				const x = e.clientX - rect.left
-				const y = e.clientY - rect.top
+				const x = clientX - rect.left
+				const y = clientY - rect.top
 
 				const { saturation: newSaturation, value: newValue } = calculateSaturationAndValue(x, y, rect)
 
@@ -473,37 +715,50 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				setValue(newValue)
 			} else if (isDragging === "hue" && hueRef.current) {
 				const rect = hueRef.current.getBoundingClientRect()
-				const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left))
+				const x = Math.max(0, Math.min(rect.width, clientX - rect.left))
 				const newHue = (x / rect.width) * 360
 				setHue(newHue)
 			} else if (isDragging === "alpha" && alphaRef.current) {
 				const rect = alphaRef.current.getBoundingClientRect()
-				const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left))
+				const x = Math.max(0, Math.min(rect.width, clientX - rect.left))
 				const newAlpha = (x / rect.width) * 100
 				setAlpha(newAlpha)
 			}
 		}
 
-		const handleMouseUp = (): void => {
+		const handleEnd = (): void => {
 			setIsDragging(null)
 		}
 
 		if (isDragging) {
-			document.addEventListener("mousemove", handleMouseMove)
-			document.addEventListener("mouseup", handleMouseUp)
+			// Add both mouse and touch event listeners
+			document.addEventListener("mousemove", handleMove)
+			document.addEventListener("mouseup", handleEnd)
+			document.addEventListener("touchmove", handleMove, { passive: false })
+			document.addEventListener("touchend", handleEnd)
 		}
 
 		return () => {
-			document.removeEventListener("mousemove", handleMouseMove)
-			document.removeEventListener("mouseup", handleMouseUp)
+			document.removeEventListener("mousemove", handleMove)
+			document.removeEventListener("mouseup", handleEnd)
+			document.removeEventListener("touchmove", handleMove)
+			document.removeEventListener("touchend", handleEnd)
 		}
 	}, [isDragging])
 
-	const handleSaturationMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleSaturationInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
+		setUserHexInput("")
+
 		if (!saturationRef.current) return
 		const rect = saturationRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
-		const y = e.clientY - rect.top
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+		const clientY = "touches" in e ? e.touches[0].clientY : e.clientY
+
+		const x = clientX - rect.left
+		const y = clientY - rect.top
 
 		const { saturation: newSaturation, value: newValue } = calculateSaturationAndValue(x, y, rect)
 
@@ -512,19 +767,33 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		setIsDragging("saturation")
 	}
 
-	const handleHueMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleHueInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
+		setUserHexInput("")
+
 		if (!hueRef.current) return
 		const rect = hueRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+
+		const x = clientX - rect.left
 		const newHue = Math.max(0, Math.min(360, (x / rect.width) * 360))
 		setHue(newHue)
 		setIsDragging("hue")
 	}
 
-	const handleAlphaMouseDown = (e: React.MouseEvent<HTMLDivElement>): void => {
+	const handleAlphaInteraction = (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>): void => {
+		e.preventDefault() // Prevent scrolling on mobile
+		setUserHexInput("")
+
 		if (!alphaRef.current) return
 		const rect = alphaRef.current.getBoundingClientRect()
-		const x = e.clientX - rect.left
+
+		// Get coordinates from either mouse or touch event
+		const clientX = "touches" in e ? e.touches[0].clientX : e.clientX
+
+		const x = clientX - rect.left
 		const newAlpha = Math.max(0, Math.min(100, (x / rect.width) * 100))
 		setAlpha(newAlpha)
 		setIsDragging("alpha")
@@ -549,6 +818,16 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					setSaturation(hsv.s)
 					setValue(hsv.v)
 					setSelectedColor(rgb)
+
+					// Update the input value and last valid color
+					const hexValue = rgbToHex(rgb.r, rgb.g, rgb.b)
+					setInputValue(hexValue)
+					setLastValidColor(hexValue)
+					setUserHexInput(hexValue)
+
+					// Force update display values
+					updateDisplayValues()
+					setColorChangeSource("picker")
 				}
 			}
 		} catch (error) {
@@ -573,10 +852,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	}
 
 	// Get HSL array
-	const getHSLArray = (): number[] => {
-		const hsl = hsvToHsl(hue, saturation, value)
-		return [hsl.h, hsl.s, hsl.l, Math.round(alpha)]
-	}
+	// const getHSLArray = (): number[] => {
+	// 	const hsl = hsvToHsl(hue, saturation, value)
+	// 	return [hsl.h, hsl.s, hsl.l, Math.round(alpha)]
+	// }
 
 	useEffect(() => {
 		const rgb = hsvToRgb(hue, saturation, value)
@@ -606,11 +885,19 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				lead={
 					<PopoverTrigger disabled={disabled}>
 						<div
-							className="h-5 w-5 cursor-pointer rounded"
+							className="relative h-5 w-5 cursor-pointer overflow-hidden rounded"
 							style={{
-								backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
-							}}
-						/>
+								backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='checkerboard' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3e%3crect fill='%23cccccc' x='0' width='10' height='10' y='0'/%3e%3crect fill='%23cccccc' x='10' width='10' height='10' y='10'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23checkerboard)' /%3e%3c/svg%3e")`,
+								backgroundSize: "20px 20px", // Smaller pattern for better visibility at 20px size
+							}}>
+							{/* Color overlay that respects alpha */}
+							<div
+								className="absolute inset-0 h-full w-full"
+								style={{
+									backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
+								}}
+							/>
+						</div>
 					</PopoverTrigger>
 				}
 				value={inputValue}
@@ -624,7 +911,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					<div className="flex flex-col gap-3">
 						<div
 							ref={saturationRef}
-							onMouseDown={handleSaturationMouseDown}
+							onMouseDown={handleSaturationInteraction}
+							onTouchStart={handleSaturationInteraction}
 							className="h-66 relative cursor-pointer select-none rounded-sm"
 							style={{
 								background: `
@@ -651,9 +939,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 							<div
 								onClick={handleEyedropper}
 								className={`flex h-9 w-9 items-center justify-center rounded p-2 transition-colors ${
-									isEyedropperSupported ? "bg-border-alpha text-text-secondary cursor-pointer" : "cursor-not-allowed bg-gray-800 text-gray-600"
+									isEyedropperSupported ? "bg-border-alpha text-text-secondary cursor-pointer" : "bg-text-disabled text-text-disabled cursor-not-allowed"
 								}`}
-								title={isEyedropperSupported ? "Pick color from screen" : "EyeDropper not supported in this browser"}>
+								// title={isEyedropperSupported ? "Pick color from screen" : "EyeDropper not supported in this browser"}
+							>
 								<Pipette className="h-5 w-5" />
 							</div>
 							<div className="flex w-full flex-col gap-2">
@@ -661,7 +950,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 									{/* Hue Slider */}
 									<div
 										ref={hueRef}
-										onMouseDown={handleHueMouseDown}
+										onMouseDown={handleHueInteraction}
+										onTouchStart={handleHueInteraction}
 										className="relative h-4 flex-1 cursor-pointer select-none rounded-full shadow-lg"
 										style={{
 											background: "linear-gradient(to right, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)",
@@ -691,7 +981,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 									/>
 									<div
 										ref={alphaRef}
-										onMouseDown={handleAlphaMouseDown}
+										onTouchStart={handleAlphaInteraction}
+										onMouseDown={handleAlphaInteraction}
 										className="relative h-4 w-full cursor-pointer select-none overflow-hidden rounded-full shadow-lg"
 										style={{
 											background: `linear-gradient(to right, transparent, hsl(${hue}, ${saturation}%, ${value / 2}%))`,
@@ -712,48 +1003,194 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						</div>
 					</div>
 
-					{/* Format Selectors */}
-					<div className="flex items-center gap-4 p-2 pl-0">
-						<Select size="32" selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
-							<SelectItem value="HSV">HSV</SelectItem>
-							<SelectItem value="HSL">HSL</SelectItem>
-							<SelectItem value="RGB">RGB</SelectItem>
-						</Select>
-						<Select size="32" selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
-							<SelectItem value="HEX">HEX</SelectItem>
-							<SelectItem value="HSL">HSL</SelectItem>
-							<SelectItem value="OKLCH">OKLCH</SelectItem>
-							<SelectItem value="HSB">HSB</SelectItem>
-							<SelectItem value="RGBA">RGBA</SelectItem>
-						</Select>
-					</div>
+					<div className="flex w-full items-center gap-3">
+						{/* Format Selectors */}
+						<div className="flex items-center gap-4 p-2 pl-0">
+							<Select size="32" selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
+								<SelectItem value="HSV">HSB</SelectItem>
+								<SelectItem value="HSL">HSL</SelectItem>
+								<SelectItem value="RGB">RGB</SelectItem>
+								<SelectItem value="HEX">HEX</SelectItem>
+							</Select>
+						</div>
 
-					{/* Color Values Display */}
-					<div className="text-text-secondary font-mono text-sm">
-						{displayFormat === "HSV" && (
-							<ButtonGroup variant="neutral-outline" size="32" color="primary">
-								<Button className="w-10">{Math.round(hue)}</Button>
-								<Button className="w-10">{Math.round(saturation)}</Button>
-								<Button className="w-10">{Math.round(value)}</Button>
-								<Button className="w-10">{Math.round(alpha)}%</Button>
-							</ButtonGroup>
-						)}
-						{displayFormat === "RGB" && (
-							<ButtonGroup variant="neutral-outline" size="32" color="primary">
-								<Button className="w-10">{selectedColor.r}</Button>
-								<Button className="w-10">{selectedColor.g}</Button>
-								<Button className="w-10">{selectedColor.b}</Button>
-								<Button className="w-10">{Math.round(alpha)}%</Button>
-							</ButtonGroup>
-						)}
-						{displayFormat === "HSL" && (
-							<ButtonGroup variant="neutral-outline" size="32" color="primary">
-								<Button className="w-10">{getHSLArray()[0]}</Button>
-								<Button className="w-10">{getHSLArray()[1]}</Button>
-								<Button className="w-10">{getHSLArray()[2]}</Button>
-								<Button className="w-10">{Math.round(alpha)}%</Button>
-							</ButtonGroup>
-						)}
+						<div className="hidden">
+							<Select size="32" selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
+								<SelectItem value="HEX">HEX</SelectItem>
+								<SelectItem value="HSL">HSL</SelectItem>
+								<SelectItem value="OKLCH">OKLCH</SelectItem>
+								<SelectItem value="HSB">HSB</SelectItem>
+								<SelectItem value="RGBA">RGBA</SelectItem>
+							</Select>
+						</div>
+
+						{/* Color Values Display */}
+						<div className="text-text-secondary font-mono text-sm">
+							{displayFormat === "HEX" && (
+								<Input
+									value={isUserTyping ? displayValues.hex.raw : displayValues.hex.formatted}
+									onChange={(e) => {
+										const value = e.target.value.replace("#", "")
+										setIsUserTyping(true)
+										setDisplayValues((prev) => ({
+											...prev,
+											hex: {
+												...prev.hex,
+												raw: value,
+											},
+										}))
+									}}
+									onBlur={() => {
+										setIsUserTyping(false)
+										// Validate the HEX value
+										const rgb = hexToRgb(displayValues.hex.raw)
+										if (rgb) {
+											const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
+											setHue(hsv.h)
+											setSaturation(hsv.s)
+											setValue(hsv.v)
+											// FIXED: Keep user's exact input - don't convert back to RGB->HEX
+											const userHex = displayValues.hex.raw.startsWith("#") ? displayValues.hex.raw.toUpperCase() : "#" + displayValues.hex.raw.toUpperCase()
+											setUserHexInput(userHex)
+											setColorChangeSource("input")
+											// Keep the exact user input instead of converting
+											setDisplayValues((prev) => ({
+												...prev,
+												hex: {
+													raw: displayValues.hex.raw,
+													formatted: userHex,
+												},
+											}))
+										} else {
+											// Revert to last valid if invalid
+											setDisplayValues((prev) => ({
+												...prev,
+												hex: {
+													raw: prev.hex.formatted.replace("#", ""),
+													formatted: prev.hex.formatted,
+												},
+											}))
+										}
+									}}
+									onKeyPress={(e) => {
+										if (e.key === "Enter") {
+											setIsUserTyping(false)
+											const rgb = hexToRgb(displayValues.hex.raw)
+											if (rgb) {
+												const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
+												setHue(hsv.h)
+												setSaturation(hsv.s)
+												setValue(hsv.v)
+												// FIXED: Keep user's exact input
+												const userHex = displayValues.hex.raw.startsWith("#") ? displayValues.hex.raw.toUpperCase() : "#" + displayValues.hex.raw.toUpperCase()
+												setUserHexInput(userHex)
+												setColorChangeSource("input")
+												setDisplayValues((prev) => ({
+													...prev,
+													hex: {
+														raw: displayValues.hex.raw,
+														formatted: userHex,
+													},
+												}))
+											} else {
+												setDisplayValues((prev) => ({
+													...prev,
+													hex: {
+														raw: prev.hex.formatted.replace("#", ""),
+														formatted: prev.hex.formatted,
+													},
+												}))
+											}
+											;(e.target as HTMLInputElement).blur()
+										}
+									}}
+								/>
+							)}
+							{displayFormat === "HSV" && (
+								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.h}
+										onChange={(e) => handleDisplayValueChange("hsv", "h", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "h")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.s}
+										onChange={(e) => handleDisplayValueChange("hsv", "s", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "s")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.v}
+										onChange={(e) => handleDisplayValueChange("hsv", "v", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "v")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsv.a}
+										onChange={(e) => handleDisplayValueChange("hsv", "a", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsv", "a")}
+									/>
+								</ButtonGroup>
+							)}
+							{displayFormat === "RGB" && (
+								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.r}
+										onChange={(e) => handleDisplayValueChange("rgb", "r", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "r")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.g}
+										onChange={(e) => handleDisplayValueChange("rgb", "g", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "g")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.b}
+										onChange={(e) => handleDisplayValueChange("rgb", "b", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "b")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.rgb.a}
+										onChange={(e) => handleDisplayValueChange("rgb", "a", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("rgb", "a")}
+									/>
+								</ButtonGroup>
+							)}
+							{displayFormat === "HSL" && (
+								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.h}
+										onChange={(e) => handleDisplayValueChange("hsl", "h", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "h")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.s}
+										onChange={(e) => handleDisplayValueChange("hsl", "s", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "s")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.l}
+										onChange={(e) => handleDisplayValueChange("hsl", "l", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "l")}
+									/>
+									<Input
+										className="w-10 text-center"
+										value={displayValues.hsl.a}
+										onChange={(e) => handleDisplayValueChange("hsl", "a", e.target.value)}
+										onBlur={() => handleDisplayValueBlur("hsl", "a")}
+									/>
+								</ButtonGroup>
+							)}
+						</div>
 					</div>
 				</div>
 			</PopoverContent>
