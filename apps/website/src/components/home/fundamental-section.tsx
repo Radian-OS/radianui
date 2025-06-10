@@ -10,6 +10,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/color-styles.svg",
 		darkModeSvgUrl: "/landing-svg/color-styles-dark.svg",
 		href: "documentation/colors",
+		alt: "Color styles",
 	},
 	{
 		title: "Typography",
@@ -17,6 +18,7 @@ const componentsList: ComponentListItem[] = [
 		href: "documentation/typography",
 		svgUrl: "/landing-svg/typography.svg",
 		darkModeSvgUrl: "/landing-svg/typography-dark.svg",
+		alt: "Typography",
 	},
 	{
 		title: "Icons",
@@ -24,6 +26,7 @@ const componentsList: ComponentListItem[] = [
 		href: "documentation/iconography",
 		svgUrl: "/landing-svg/icons.svg",
 		darkModeSvgUrl: "/landing-svg/icons-dark.svg",
+		alt: "Icons",
 	},
 	{
 		title: "Corner Radius",
@@ -31,6 +34,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/corner-radius.svg",
 		darkModeSvgUrl: "/landing-svg/corner-radius-dark.svg",
 		href: "#",
+		alt: "Corner Radius",
 	},
 	{
 		title: "Grids",
@@ -38,6 +42,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/grids.svg",
 		darkModeSvgUrl: "/landing-svg/grids-dark.svg",
 		href: "#",
+		alt: "Grids",
 	},
 	{
 		title: "Elevation Levels",
@@ -45,6 +50,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/elevation-levels.svg",
 		darkModeSvgUrl: "/landing-svg/elevation-levels-dark.svg",
 		href: "#",
+		alt: "Elevation Levels",
 	},
 	{
 		title: "Spacing",
@@ -52,6 +58,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/spacing.svg",
 		darkModeSvgUrl: "/landing-svg/spacing-dark.svg",
 		href: "#",
+		alt: "Spacing",
 	},
 	{
 		title: "Color / Theme",
@@ -59,6 +66,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/color-theme.svg",
 		darkModeSvgUrl: "/landing-svg/color-theme-dark.svg",
 		href: "#",
+		alt: "Color / Theme",
 	},
 	{
 		title: "Logo",
@@ -66,6 +74,7 @@ const componentsList: ComponentListItem[] = [
 		svgUrl: "/landing-svg/coming-soon.svg",
 		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
 		href: "#",
+		alt: "Logo",
 	},
 ]
 
@@ -83,7 +92,15 @@ export default function FundamentalSection() {
 			<div className="max-w-310 mx-auto">
 				<div id="body" className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
 					{componentsList.map((item, idx) => (
-						<ComponentCard key={item.title + idx} href={item.href} title={item.title} description={item.description} svgUrl={item.svgUrl} darkModeSvgUrl={item.darkModeSvgUrl} />
+						<ComponentCard
+							alt={item.alt}
+							key={item.title + idx}
+							href={item.href}
+							title={item.title}
+							description={item.description}
+							svgUrl={item.svgUrl}
+							darkModeSvgUrl={item.darkModeSvgUrl}
+						/>
 					))}
 				</div>
 			</div>
