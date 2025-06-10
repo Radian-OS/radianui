@@ -1,91 +1,55 @@
-# Turborepo starter
+# 🌠 RadianOS
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern, accessible, and customizable UI component library built with **Radix UI**, **Tailwind CSS**, and **React**.  
+Built for developers who want full control, great defaults, and scalability — without reinventing the wheel.
 
-## Using this example
+**Use RadianOs to power your design system.**
 
-Run the following command:
+_Free. Open Source. Developer-first._
 
-```sh
-npx create-turbo@latest
-```
+## ![hero](https://prnt.sc/Ds2APhKLHS3H)
 
-## What's inside?
+## 📚 Documentation
 
-This Turborepo includes the following packages/apps:
+Explore the full documentation, including installation, components, variants, theming, and best practices:
 
-### Apps and Packages
+🔗 [https://radianos.com/documentation](https://radianos.com/documentation)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+---
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## 🚀 Features
 
-### Utilities
+- ✨ **Drop-in components** — Copy, customize, or install with our CLI
+- 🎨 **Built on Tailwind CSS** — Utility-first and themable by design
+- 🧩 **Variants via CVA** — Powerful, scalable component styling
+- ♿ **Accessibility-first** — Powered by [Radix UI Primitives](https://www.radix-ui.com/)
+- 🛠️ **Framework-friendly** — Designed for React + Next.js (App Router support)
+- 🧱 **Build your own UI system** — Like ShadCN, but with even more control
 
-This Turborepo has some additional tools already setup for you:
+---
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+## 🤝 Contributing
 
-### Build
+We welcome contributions to RadianOs — whether it’s improving components, fixing bugs, or suggesting new ideas.  
+Please read our [Contributing Guide](/CONTRIBUTING.md) to get started.
 
-To build all apps and packages, run the following command:
+---
 
-```
-cd my-turborepo
-pnpm build
-```
+## ⚖️ License
 
-### Develop
+RadianOs is licensed under the [MIT License](https://github.com/Radian-os/radianos/blob/main/LICENSE.md).  
+Feel free to use, modify, and distribute — with attribution.
 
-To develop all apps and packages, run the following command:
+---
 
-```
-cd my-turborepo
-pnpm dev
-```
+## 💬 Community
 
-### Remote Caching
+Join the discussion, get help, or share your creations:
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+- 💬 [Discussions](https://github.com/your-org/radianos/discussions)
+- 🐛 [Report bugs](https://github.com/your-org/radianos/issues)
+- 🧪 [Request features](https://github.com/your-org/radianos/issues/new?template=feature_request.yml)
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+---
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
-
-
-# For website (build)
-pnpm turbo build --filter=radian-web
-
-# For webapp (build)
-pnpm turbo build --filter=radian-app
+Made with ❤️ by the RadianOS team
