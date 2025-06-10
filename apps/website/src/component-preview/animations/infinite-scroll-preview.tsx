@@ -1,13 +1,28 @@
-import { useState } from "react"
-import { FadeDown } from "@/registry/animated/fade-down"
-import { Button } from "@/registry/ui/button"
+import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const FadeDownPreview = () => {
-	// State used to re-render the component
-	const [, setCounter] = useState(0)
+const data = [
+	{
+		name: "Jack",
+		body: "I don't know what to say. I'm speechless. This is amazing.",
+	},
+	{
+		name: "John",
+		body: "I'm at a loss for words. This is amazing. I love it.",
+	},
+	{
+		name: "James",
+		body: "I'm at a loss for words. This is amazing. I love it.",
+	},
+	{
+		name: "Joe",
+		body: "I don't know what to say. I'm speechless. This is amazing.",
+	},
+]
+
+const InfiniteScrollPreview = () => {
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -21,7 +36,6 @@ const FadeDownPreview = () => {
 						</DropdownContent>
 					</Dropdown>
 				</div>
-				<Button onClick={() => setCounter((prev) => prev + 1)}>Re-render</Button>
 				<TabsList>
 					<TabsTrigger value="preview">Preview</TabsTrigger>
 					<TabsTrigger value="code">Code</TabsTrigger>
@@ -29,9 +43,14 @@ const FadeDownPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<FadeDown>
-						<h1 className="text-2xl font-medium">Animated Component</h1>
-					</FadeDown>
+					<InfiniteScroll>
+						{data.map((d) => (
+							<div key={d.name} className="w-70 rounded-lg border p-4">
+								<p className="font-medium">{d.name}</p>
+								<p>{d.body}</p>
+							</div>
+						))}
+					</InfiniteScroll>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -39,13 +58,13 @@ const FadeDownPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<FadeDown>
-    <h1 className="text-2xl font-medium">Animated Component</h1>
-</FadeDown>`}
+					code={`<Draggable>
+	<Badge size="32">Person</Badge>
+</Draggable>`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
 
-export default FadeDownPreview
+export default InfiniteScrollPreview

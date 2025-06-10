@@ -72,7 +72,7 @@ const TypingText = ({
 					animate={isTypingComplete ? "hidden" : "visible"}
 					transition={{
 						duration: cursorDuration,
-						repeat: isTypingComplete ? 0 : Infinity,
+						repeat: Infinity,
 						repeatType: "reverse",
 						ease,
 					}}>

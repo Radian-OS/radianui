@@ -96,8 +96,16 @@ export const sideBarItems: SideBarSection[] = [
 				name: "Draggable",
 			},
 			{
-				link: "/documentation/animations/fade-down",
-				name: "Fade Down",
+				link: "/documentation/animations/fade-in",
+				name: "Fade In",
+			},
+			{
+				link: "/documentation/animations/infinite-scroll",
+				name: "Infinite Scroll",
+			},
+			{
+				link: "/documentation/animations/pointer",
+				name: "Pointer",
 			},
 		].sort((a, b) => a.name.localeCompare(b.name)),
 	},
