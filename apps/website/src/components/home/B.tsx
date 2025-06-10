@@ -26,8 +26,8 @@ function B({ className }: { className?: string }) {
 					<div className="p-2">
 						<Menu className="text-text" />
 					</div>
-					<Image className="dark:hidden" src={"/radian.svg"} width={90} height={24} alt="Radian Logo" />
-					<Image className="hidden dark:block" src={"/radian-dark.svg"} width={90} height={24} alt="Radian Logo" />
+					<Image className="dark:hidden" src={"/radian.svg"} width={90} height={24} alt="logo-radian" />
+					<Image className="hidden dark:block" src={"/radian-dark.svg"} width={90} height={24} alt="logo-radian" />
 				</div>
 				<div className="flex items-center justify-center px-3 py-1">
 					<div className="border-border text-text flex w-full items-center justify-center gap-3 rounded-lg border px-3 py-2.5">
