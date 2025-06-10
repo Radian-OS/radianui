@@ -9,6 +9,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/accordion",
 		svgUrl: "/landing-svg/accordion.svg",
 		darkModeSvgUrl: "landing-svg/accordion-dark.svg",
+		alt: "Accordion",
 	},
 	{
 		title: "Alert",
@@ -16,6 +17,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/alert",
 		svgUrl: "/landing-svg/alert.svg",
 		darkModeSvgUrl: "/landing-svg/alert-dark.svg",
+		alt: "Alert",
 	},
 	{
 		title: "Avatar",
@@ -23,6 +25,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/avatars",
 		svgUrl: "/landing-svg/avatar.svg",
 		darkModeSvgUrl: "/landing-svg/avatar-dark.svg",
+		alt: "Avatar",
 	},
 	{
 		title: "Avatar Group",
@@ -30,6 +33,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/avatars",
 		svgUrl: "/landing-svg/avatar-group.svg",
 		darkModeSvgUrl: "/landing-svg/avatar-group-dark.svg",
+		alt: "Avatar Group",
 	},
 	{
 		title: "Badge",
@@ -37,6 +41,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/badge",
 		svgUrl: "/landing-svg/badge.svg",
 		darkModeSvgUrl: "/landing-svg/badge-dark.svg",
+		alt: "Badge",
 	},
 	{
 		title: "Banner",
@@ -44,6 +49,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/banner",
 		svgUrl: "/landing-svg/banner.svg",
 		darkModeSvgUrl: "/landing-svg/banner-dark.svg",
+		alt: "Banner",
 	},
 	{
 		title: "Breadcrumb",
@@ -51,6 +57,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/breadcrumb",
 		svgUrl: "/landing-svg/breadcrumb.svg",
 		darkModeSvgUrl: "/landing-svg/breadcrumb-dark.svg",
+		alt: "Breadcrumb",
 	},
 	{
 		title: "Button",
@@ -58,6 +65,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/buttons",
 		svgUrl: "/landing-svg/button.svg",
 		darkModeSvgUrl: "/landing-svg/button-dark.svg",
+		alt: "Button",
 	},
 	{
 		title: "Button Groups",
@@ -65,6 +73,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/button-group",
 		svgUrl: "/landing-svg/button-group.svg",
 		darkModeSvgUrl: "/landing-svg/button-group-dark.svg",
+		alt: "Button Groups",
 	},
 	{
 		title: "Calendar",
@@ -72,6 +81,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/calendar",
 		svgUrl: "/landing-svg/calendar.svg",
 		darkModeSvgUrl: "/landing-svg/calendar-dark.svg",
+		alt: "Calendar",
 	},
 	{
 		title: "Checkbox",
@@ -79,6 +89,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/checkbox",
 		svgUrl: "/landing-svg/checkbox.svg",
 		darkModeSvgUrl: "/landing-svg/checkbox-dark.svg",
+		alt: "Checkbox",
 	},
 	{
 		title: "Code Area",
@@ -86,6 +97,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/code-area",
 		svgUrl: "/landing-svg/code-area.svg",
 		darkModeSvgUrl: "/landing-svg/code-area-dark.svg",
+		alt: "Code Area",
 	},
 	{
 		title: "Command / Global Search",
@@ -93,6 +105,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/command",
 		svgUrl: "/landing-svg/command.svg",
 		darkModeSvgUrl: "/landing-svg/command-dark.svg",
+		alt: "Command / Global Search",
 	},
 	{
 		title: "Divider",
@@ -100,6 +113,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/divider",
 		svgUrl: "/landing-svg/divider.svg",
 		darkModeSvgUrl: "/landing-svg/divider-dark.svg",
+		alt: "Divider",
 	},
 	{
 		title: "Dropdown",
@@ -107,6 +121,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/dropdown",
 		svgUrl: "/landing-svg/dropdown.svg",
 		darkModeSvgUrl: "/landing-svg/dropdown-dark.svg",
+		alt: "Dropdown",
 	},
 	{
 		title: "File Upload",
@@ -114,6 +129,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/file-upload",
 		svgUrl: "/landing-svg/file-upload.svg",
 		darkModeSvgUrl: "/landing-svg/file-upload-dark.svg",
+		alt: "File Upload",
 	},
 	{
 		title: "Hover Cards",
@@ -121,6 +137,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/hover-cards",
 		svgUrl: "/landing-svg/hover-cards.svg",
 		darkModeSvgUrl: "/landing-svg/hover-cards-dark.svg",
+		alt: "Hover Cards",
 	},
 	{
 		title: "Inputs",
@@ -128,6 +145,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/inputs",
 		svgUrl: "/landing-svg/inputs.svg",
 		darkModeSvgUrl: "/landing-svg/inputs-dark.svg",
+		alt: "Inputs",
 	},
 	{
 		title: "Modal",
@@ -135,6 +153,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/modals",
 		svgUrl: "/landing-svg/modal.svg",
 		darkModeSvgUrl: "/landing-svg/modal-dark.svg",
+		alt: "Modal",
 	},
 	{
 		title: "Pagination",
@@ -142,6 +161,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/pagination",
 		svgUrl: "/landing-svg/pagination.svg",
 		darkModeSvgUrl: "/landing-svg/pagination-dark.svg",
+		alt: "Pagination",
 	},
 	{
 		title: "Popover",
@@ -149,6 +169,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/popover",
 		svgUrl: "/landing-svg/popover.svg",
 		darkModeSvgUrl: "/landing-svg/popover-dark.svg",
+		alt: "Popover",
 	},
 	{
 		title: "Progress Bar",
@@ -156,6 +177,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/progress-bar",
 		svgUrl: "/landing-svg/progress-bar.svg",
 		darkModeSvgUrl: "/landing-svg/progress-bar-dark.svg",
+		alt: "Progress Bar",
 	},
 	{
 		title: "Radio Buttons",
@@ -163,6 +185,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/radio-buttons",
 		svgUrl: "/landing-svg/radio-buttons.svg",
 		darkModeSvgUrl: "/landing-svg/radio-buttons-dark.svg",
+		alt: "Radio Buttons",
 	},
 	{
 		title: "Skeleton",
@@ -170,6 +193,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/skeleton",
 		svgUrl: "/landing-svg/skeleton.svg",
 		darkModeSvgUrl: "/landing-svg/skeleton-dark.svg",
+		alt: "Skeleton",
 	},
 	{
 		title: "Slider",
@@ -177,6 +201,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/slider",
 		svgUrl: "/landing-svg/slider.svg",
 		darkModeSvgUrl: "/landing-svg/slider-dark.svg",
+		alt: "Slider",
 	},
 	{
 		title: "Sooner / Toast",
@@ -184,6 +209,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/sonner",
 		svgUrl: "/landing-svg/sonner.svg",
 		darkModeSvgUrl: "/landing-svg/sonner-dark.svg",
+		alt: "Sooner / Toast",
 	},
 	{
 		title: "Switch",
@@ -191,6 +217,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/switch",
 		svgUrl: "/landing-svg/switch.svg",
 		darkModeSvgUrl: "/landing-svg/switch-dark.svg",
+		alt: "Switch",
 	},
 	{
 		title: "Table",
@@ -198,6 +225,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/table",
 		svgUrl: "/landing-svg/table.svg",
 		darkModeSvgUrl: "/landing-svg/table-dark.svg",
+		alt: "Table",
 	},
 	{
 		title: "Tabs",
@@ -205,6 +233,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/tabs",
 		svgUrl: "/landing-svg/tabs.svg",
 		darkModeSvgUrl: "/landing-svg/tabs-dark.svg",
+		alt: "Tabs",
 	},
 	{
 		title: "Tooltip",
@@ -212,6 +241,7 @@ const componentsList: ComponentListItem[] = [
 		href: "/documentation/components/tooltip",
 		svgUrl: "/landing-svg/tooltip.svg",
 		darkModeSvgUrl: "/landing-svg/tooltip-dark.svg",
+		alt: "Tooltip",
 	},
 ]
 
@@ -228,7 +258,15 @@ export default function UiComponentsSection() {
 			<div className="max-w-310 mx-auto">
 				<div id="body" className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
 					{componentsList.map((item, idx) => (
-						<ComponentCard key={item.title + idx} href={item.href} title={item.title} description={item.description} svgUrl={item.svgUrl} darkModeSvgUrl={item.darkModeSvgUrl} />
+						<ComponentCard
+							alt={item.alt}
+							key={item.title + idx}
+							href={item.href}
+							title={item.title}
+							description={item.description}
+							svgUrl={item.svgUrl}
+							darkModeSvgUrl={item.darkModeSvgUrl}
+						/>
 					))}
 				</div>
 			</div>

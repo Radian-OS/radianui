@@ -1,6 +1,7 @@
 "use client"
 
 import { CirclePlay, Menu, X, Zap } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { FadeDown } from "@/registry/animated/fade-down"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
@@ -33,8 +34,8 @@ export default function Hero01() {
 							{/* Logo */}
 							<div className="flex h-9 flex-shrink-0 items-center gap-2">
 								<Link href="/" style={{ fill: "white", color: "white" }}>
-									<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
-									<img src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
+									<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
+									<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
 								</Link>
 							</div>
 
@@ -90,7 +91,7 @@ export default function Hero01() {
 						<div className="relative mx-auto flex max-w-5xl flex-col gap-6 text-center">
 							<Draggable>
 								<Badge className="mb-8 sm:mx-auto" size="28">
-									<img src="/hero-svg/y-combinator.svg" />
+									<Image alt="Y Combinator" className="size-5" src="/hero-svg/y-combinator.svg" width={50} height={50} />
 									Backed by Y Combinator
 									<X size={16} />
 								</Badge>
