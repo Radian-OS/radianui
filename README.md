@@ -5,6 +5,12 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/Radian-os/radianos/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  </a>
+</p>
+
 A modern, accessible, and customizable UI component library built with **Radix UI**, **Tailwind CSS**, and **React**.  
 Built for developers who want full control, great defaults, and scalability — without reinventing the wheel.
 
