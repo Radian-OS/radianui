@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import Sonner, { Toaster } from "@/registry/ui/sonner"
+import { Toaster, showToast } from "@/registry/ui/sonner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SonnerPreview = () => {
@@ -121,15 +121,20 @@ const SonnerPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="mx-auto max-h-[200px] max-w-3xl">
-						<Toaster position={`${position}`} bgColor={`${variant}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
+						<Toaster position={`${position}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
 						<Button
 							key={key}
 							variant="neutral-outline"
 							onClick={() =>
-								Sonner({
+								showToast({
 									variant,
+									title: "Toast Title",
 									closable: closable === "true",
-									description: "New card added",
+									description: "Toast description message",
+									buttons: [
+										{ label: "Upgrade", onClick: () => console.log("Retrying...") },
+										{ label: "Learn More", onClick: () => console.log("Cancelled") },
+									],
 								})
 							}>
 							Sonner
