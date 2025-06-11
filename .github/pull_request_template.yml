@@ -1,0 +1,67 @@
+name: "Pull Request Template for RadianOs"
+
+about: >
+  Thank you for contributing to RadianOs!  
+  Please fill out this template to help us review your changes efficiently.
+
+title: "[Component/Feature/Fix]: Brief Description"
+
+labels: 
+  - "needs review"
+  - "type: enhancement"
+  - "type: bug"
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Description
+        <!--
+        Provide a clear and concise description of what this PR does.
+        Link related issues or discussions if applicable.
+        -->
+
+  - type: input
+    id: issue_number
+    attributes:
+      label: Related Issue Number (if any)
+      placeholder: "#123"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: type_of_change
+    attributes:
+      label: Type of Change
+      description: Select the category that best fits your change.
+      options:
+        - Bug fix (non-breaking change which fixes an issue)
+        - New feature (non-breaking change which adds functionality)
+        - Breaking change (fix or feature that would cause existing functionality to change)
+        - Documentation update
+        - Other
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please ensure your pull request meets these requirements:
+      options:
+        - label: Code follows the RadianOs coding conventions and style guidelines.
+          required: true
+        - label: Tests have been added or updated to cover my changes.
+          required: true
+        - label: Documentation has been updated where necessary.
+          required: false
+        - label: All new and existing tests pass.
+          required: true
+        - label: I have run the linting and formatting scripts.
+          required: true
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: Anything else the maintainers should know? (e.g. screenshots, performance impacts, breaking changes)
+      placeholder: ""
+
