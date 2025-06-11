@@ -132,7 +132,7 @@ const SonnerPreview = () => {
 									closable: closable === "true",
 									description: "Toast description message",
 									buttons: [
-										{ label: "Upgrade", onClick: () => console.log("Retrying...") },
+										{ label: "Upgrade", onClick: () => console.log("Retrying..."), dismiss: false },
 										{ label: "Learn More", onClick: () => console.log("Cancelled") },
 									],
 								})

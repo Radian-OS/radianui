@@ -163,13 +163,11 @@ const TablePreview = () => {
 			id: "name",
 			accessorKey: "name",
 			header: "Name",
-			size: 150,
 		},
 		{
 			id: "email",
 			accessorKey: "email",
 			header: "Email",
-			size: 200,
 		},
 		{
 			id: "status",
@@ -398,7 +396,7 @@ const TablePreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border px-10 py-10">
-					<div className="mx-auto mb-10 max-h-[200px] max-w-3xl">
+					<div className={`mx-auto mb-10 max-h-[200px] ${resize === "true" ? "" : "w-full"}`}>
 						<MainTable
 							key={key}
 							data={datas}
