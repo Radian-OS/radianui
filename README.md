@@ -1,7 +1,7 @@
 
 <p align="center">
   <a href="https://heroui.com">
-      <img width="30%" src="https://raw.githubusercontent.com/Radian-os/radianos/refs/heads/dev/apps/website/public/radian.svg?token=GHSAT0AAAAAADFJCBGPHCJKAVEAYMU3N5JI2CJGFQA" alt="radian" />
+      <img width="30%" src="https://github.com/Radian-os/radianos/blob/main/apps/website/public/radian.svg" alt="radian" />
   </a>
 </p>
 
