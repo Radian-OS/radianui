@@ -30,7 +30,15 @@ const GradientTextPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={`<GradientText className="text-6xl font-semibold">RadianOS</GradientText>`} />
+				<CodeArea
+					language="tsx"
+					showLineNumbers
+					className="h-[420px]"
+					code={`<h1 className="text-6xl font-semibold">
+	Turn bold ideas into beautiful, responsive, and dynamic <GradientText>user interfaces</GradientText>
+</h1>
+					`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)
