@@ -76,7 +76,10 @@ export function showToast({ title, description, variant = "default", duration = 
 								variant="ghost"
 								className={`p-0 text-xs text-white`}
 								onClick={() => {
-									toast.dismiss(t)
+									button.onClick(t)
+									if (button.dismiss !== false) {
+										toast.dismiss(t)
+									}
 								}}>
 								{button.label}
 							</Button>
