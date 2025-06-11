@@ -1,21 +1,24 @@
-import { motion } from "motion/react"
+import React from "react"
 import { cn } from "@/lib/utils"
 
-export function InfiniteScroll({ direction = "left", className, children }: { direction?: "left" | "right"; className?: string; children?: React.ReactNode }) {
+export function InfiniteScroll({ reverse = false, className, children }: { reverse?: boolean; className?: string; children?: React.ReactNode }) {
 	return (
-		<div className={cn("group flex overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]", className)}>
-			<motion.div
-				animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
-				transition={{
-					duration: 20,
-					repeat: Infinity,
-					ease: "linear",
-					repeatType: "loop",
-				}}
-				className="flex shrink-0">
-				<div className="flex shrink-0 justify-around">{children}</div>
-				<div className="flex shrink-0 justify-around">{children}</div>
-			</motion.div>
+		<div
+			className={cn(
+				"group flex w-full overflow-hidden p-2 [--duration:20s] [--gap:1rem] [gap:var(--gap)] [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]",
+				className
+			)}>
+			{Array(2)
+				.fill(0)
+				.map((_, i) => (
+					<div
+						key={i}
+						className={cn("animate-infinite-scroll flex shrink-0 justify-around [gap:var(--gap)] group-hover:[animation-play-state:paused]", {
+							"[animation-direction:reverse]": reverse,
+						})}>
+						{children}
+					</div>
+				))}
 		</div>
 	)
 }
