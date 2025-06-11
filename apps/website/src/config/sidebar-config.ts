@@ -107,6 +107,14 @@ export const sideBarItems: SideBarSection[] = [
 				link: "/documentation/animations/pointer",
 				name: "Pointer",
 			},
+			{
+				link: "/documentation/animations/border-beam",
+				name: "Border Beam",
+			},
+			{
+				link: "/documentation/animations/changing-text",
+				name: "Changing Text",
+			},
 		].sort((a, b) => a.name.localeCompare(b.name)),
 	},
 ]
