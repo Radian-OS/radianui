@@ -35,7 +35,7 @@ const TypingTextPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col justify-center overflow-auto rounded-xl border px-10 text-left">
 					<p className="text-left text-4xl font-medium">Transform ideas into</p>
-					<TypingText className="text-left text-4xl font-medium" key={counter} text="interactive and beautiful digital products" />
+					<TypingText key={counter} className="text-left text-4xl font-medium" texts={["interactive and", "beautiful digital products"]} />
 				</div>
 			</TabsContent>
 			<TabsContent value="code">

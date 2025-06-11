@@ -1,15 +1,16 @@
-import { GradientText } from "@/registry/animated/gradient-text"
+import { ChangingText } from "@/registry/animated/changing-text"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const GradientTextPreview = () => {
+const ChangingTextPreview = () => {
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
+
 						<DropdownContent className="min-w-20">
 							<DropdownGroup>
 								<DropdownSub></DropdownSub>
@@ -17,23 +18,25 @@ const GradientTextPreview = () => {
 						</DropdownContent>
 					</Dropdown>
 				</div>
+
 				<TabsList>
 					<TabsTrigger value="preview">Preview</TabsTrigger>
+
 					<TabsTrigger value="code">Code</TabsTrigger>
 				</TabsList>
 			</div>
+
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<h1 className="text-6xl font-semibold">
-						Turn bold ideas into beautiful, responsive, and dynamic <GradientText>user interfaces</GradientText>
-					</h1>
+					<ChangingText className="text-3xl font-medium" texts={["Radian", "Best UI Library"]} />
 				</div>
 			</TabsContent>
+
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={`<GradientText className="text-6xl font-semibold">RadianOS</GradientText>`} />
+				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={`<ChangingText className="text-3xl font-medium" texts={["Radian", "Best UI Library"]} />`} />
 			</TabsContent>
 		</Tabs>
 	)
 }
 
-export default GradientTextPreview
+export default ChangingTextPreview

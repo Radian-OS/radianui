@@ -1,20 +1,34 @@
 import React from "react"
 import { cn } from "@/lib/utils"
 
-export function InfiniteScroll({ reverse = false, className, children }: { reverse?: boolean; className?: string; children?: React.ReactNode }) {
+type InfiniteScrollProps = { duration?: number; pauseOnHover?: boolean; reverse?: boolean; vertical?: boolean; className?: string; children?: React.ReactNode }
+
+const InfiniteScroll = ({ duration = 20, reverse = false, vertical = false, pauseOnHover = true, className, children }: InfiniteScrollProps) => {
 	return (
 		<div
 			className={cn(
-				"group flex w-full overflow-hidden p-2 [--duration:20s] [--gap:1rem] [gap:var(--gap)] [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]",
+				"group flex overflow-hidden p-2 [--duration:20s] [--gap:1rem] [gap:var(--gap)]",
+				{
+					"flex-row": !vertical,
+					"flex-col": vertical,
+				},
 				className
-			)}>
-			{Array(2)
+			)}
+			style={
+				{
+					"--duration": `${duration}s`,
+				} as React.CSSProperties
+			}>
+			{Array(4)
 				.fill(0)
 				.map((_, i) => (
 					<div
 						key={i}
-						className={cn("animate-infinite-scroll flex shrink-0 justify-around [gap:var(--gap)] group-hover:[animation-play-state:paused]", {
+						className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
 							"[animation-direction:reverse]": reverse,
+							"animate-infinite-scroll flex-row": !vertical,
+							"animate-infinite-scroll-vertical flex-col": vertical,
+							"group-hover:[animation-play-state:paused]": pauseOnHover,
 						})}>
 						{children}
 					</div>
@@ -22,3 +36,5 @@ export function InfiniteScroll({ reverse = false, className, children }: { rever
 		</div>
 	)
 }
+
+export { InfiniteScroll }

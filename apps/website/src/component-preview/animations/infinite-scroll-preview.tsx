@@ -3,7 +3,7 @@ import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const data = [
+export const infiniteScrollData = [
 	{
 		name: "Jack",
 		body: "I don't know what to say. I'm speechless. This is amazing.",
@@ -42,15 +42,17 @@ const InfiniteScrollPreview = () => {
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+				<div className="relative flex h-[420px] items-center justify-center overflow-hidden rounded-xl border px-10">
 					<InfiniteScroll>
-						{data.map((d) => (
+						{infiniteScrollData.map((d) => (
 							<div key={d.name} className="w-70 rounded-lg border p-4">
 								<p className="font-medium">{d.name}</p>
 								<p>{d.body}</p>
 							</div>
 						))}
 					</InfiniteScroll>
+					<div className="from-bg-base pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
+					<div className="from-bg-base pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -58,9 +60,38 @@ const InfiniteScrollPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<Draggable>
-	<Badge size="32">Person</Badge>
-</Draggable>`}
+					code={`const infiniteScrollData = [
+	{
+		name: "Jack",
+		body: "I don't know what to say. I'm speechless. This is amazing.",
+	},
+	{
+		name: "John",
+		body: "I'm at a loss for words. This is amazing. I love it.",
+	},
+	{
+		name: "James",
+		body: "I'm at a loss for words. This is amazing. I love it.",
+	},
+	{
+		name: "Joe",
+		body: "I don't know what to say. I'm speechless. This is amazing.",
+	},
+]
+
+<div className="relative flex h-[420px] items-center justify-center overflow-hidden rounded-xl border px-10">
+	<InfiniteScroll>
+		{infiniteScrollData.map((d) => (
+			<div key={d.name} className="w-70 rounded-lg border p-4">
+				<p className="font-medium">{d.name}</p>
+				<p>{d.body}</p>
+			</div>
+		))}
+	</InfiniteScroll>
+	{/* Left and right mask overlay */}
+	<div className="from-bg-base pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
+	<div className="from-bg-base pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+</div>`}
 				/>
 			</TabsContent>
 		</Tabs>
