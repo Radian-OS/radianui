@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Box } from "lucide-react"
 import { Button } from "@/registry/ui/button"
-import { Toaster, showToast } from "@/registry/ui/sonner"
+import { Toaster, showToast } from "@/registry/ui/toast"
 
 const positions = ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"]
 

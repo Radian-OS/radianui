@@ -2,8 +2,8 @@ import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Toaster, showToast } from "@/registry/ui/sonner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Toaster, showToast } from "@/registry/ui/toast"
 
 const SonnerPreview = () => {
 	const [position, setPosition] = useState<"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right">("bottom-right")
@@ -139,6 +139,50 @@ const SonnerPreview = () => {
 							}>
 							Sonner
 						</Button>
+						{/* 
+						<Button
+							key={key}
+							variant="neutral-outline"
+							onClick={() =>
+								showToast({
+									customContent: (
+										<div className="rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 p-4 text-white">
+											<div className="flex items-center space-x-3">
+												<div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
+													<span className="text-2xl">🎉</span>
+												</div>
+												<div>
+													<h3 className="text-lg font-bold">Congratulations!</h3>
+													<p className="text-sm opacity-90">You've unlocked a new achievement</p>
+													<p className="mt-1 text-xs opacity-75">Click anywhere to dismiss</p>
+													<div className="mt-2 flex space-x-2">
+														<button
+															className="rounded bg-white px-3 py-1 text-xs font-medium text-purple-500"
+															onClick={(e) => {
+																e.stopPropagation() // Prevent toast from closing
+																console.log("View Details clicked")
+															}}>
+															View Details
+														</button>
+														<button
+															className="rounded bg-purple-600 px-3 py-1 text-xs text-white"
+															onClick={(e) => {
+																e.stopPropagation() // Prevent toast from closing
+																console.log("Share clicked")
+															}}>
+															Share
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									),
+									isCustom: true,
+									closeOnClick: false,
+								})
+							}>
+							Sonner
+						</Button> */}
 					</div>
 				</div>
 			</TabsContent>

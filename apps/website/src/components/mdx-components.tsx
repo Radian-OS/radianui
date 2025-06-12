@@ -47,12 +47,12 @@ import SelectPreview from "@/component-preview/select-preview"
 import SkeletonPreview from "@/component-preview/skeleton-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
-import SonnerPreview from "@/component-preview/sonner-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
+import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
@@ -114,7 +114,7 @@ const components: MDXComponents = {
 	GithubIntegrationModalExample: () => <GithubIntegrationModalExample />,
 	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
-	SonnerPreview: () => <SonnerPreview />,
+	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
 	PopoverPreview: () => <PopoverPreview />,
 	TablePreview: () => <TablePreview />,
