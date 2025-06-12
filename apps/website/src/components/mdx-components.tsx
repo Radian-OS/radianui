@@ -6,13 +6,15 @@ import { MDXComponents } from "mdx/types"
 import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
+import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
 import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
 import ChangingTextPreview from "@/component-preview/animations/changing-text-preview"
 import DraggablePreview from "@/component-preview/animations/draggable-preview"
-import FadeInPreview from "@/component-preview/animations/fade-in-preview"
+import FadePreview from "@/component-preview/animations/fade-preview"
 import GradientTextPreview from "@/component-preview/animations/gradient-text-preview"
 import InfiniteScrollPreview from "@/component-preview/animations/infinite-scroll-preview"
 import PointerPreview from "@/component-preview/animations/pointer-preview"
+import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
@@ -62,6 +64,10 @@ import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
+import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
+import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
+import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
+import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
@@ -169,12 +175,18 @@ const components: MDXComponents = {
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
 	DraggablePreview: () => <DraggablePreview />,
-	FadeInPreview: () => <FadeInPreview />,
+	FadePreview: () => <FadePreview />,
 	InfiniteScrollPreview: () => <InfiniteScrollPreview />,
 	PointerPreview: () => <PointerPreview />,
 	BorderBeamPreview: () => <BorderBeamPreview />,
 	ChangingTextPreview: () => <ChangingTextPreview />,
 	InfiniteScrollVerticalExample: () => <InfiniteScrollVerticalExample />,
+	CollaborationPointerExample: () => <CollaborationPointerExample />,
+	DragConstraintsExample: () => <DragConstraintsExample />,
+	AnimatedListPreview: () => <AnimatedListPreview />,
+	TextRevealPreview: () => <TextRevealPreview />,
+	BlurFadeExample: () => <BlurFadeExample />,
+	FadeOutExample: () => <FadeOutExample />,
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />

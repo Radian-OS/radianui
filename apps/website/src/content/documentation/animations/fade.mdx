@@ -1,19 +1,29 @@
 ---
-title: Fade In
-description: Add fade in animation to any component or text
+title: Fade
+description: Add fade in/out animation to any component or text. Supports blur too.
 apiref: https://github.com/Radian-os/
 source: https://github.com/Radian-os
 ---
 
-<FadeInPreview />
+<FadePreview />
 
 ##### Installation
 
-<Code language="bash" code={`npx radianos add fade-in`} />
+<Code language="bash" code={`npx radianos add fade`} />
 
 ##### Imports
 
-<Code language="tsx" code={`import { FadeIn } from "@/components/animated/fade-in"`} showLineNumbers />
+<Code language="tsx" code={`import { Fade } from "@/components/animated/fade"`} showLineNumbers />
+
+##### Examples
+
+###### Blur Fade Example
+
+<BlurFadeExample />
+
+###### Fade Out Example
+
+<FadeOutExample />
 
 ##### Props
 
@@ -21,9 +31,12 @@ source: https://github.com/Radian-os
 | ------------ | ------------- | --------------- |
 | duration     | 0.6 (seconds) |                 |
 | inView       |               |                 |
+| blur         |               |                 |
+| variants     |               |                 |
 | inViewMargin |               |                 |
 | direction    | up            |                 |
 | delay        |               |                 |
 | as           |               |                 |
-| ease         | easeInOut     |                 |
+| ease         | easeOut       |                 |
 | offset       | 10            |                 |
+| isVisible    |               |                 |
