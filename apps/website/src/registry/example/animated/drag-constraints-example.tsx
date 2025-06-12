@@ -5,6 +5,8 @@ import { CodeArea } from "@/registry/ui/code"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function CollaborationPointerExample() {
+	const containerRef = React.useRef(null)
+
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-end">
@@ -15,8 +17,8 @@ export default function CollaborationPointerExample() {
 			</div>
 			{/* Preview Tab */}
 			<TabsContent value="preview">
-				<div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
-					<Draggable dragConstraints={{ top: -160, left: -200, right: 200, bottom: 160 }}>
+				<div ref={containerRef} className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
+					<Draggable dragConstraints={containerRef}>
 						<Badge size="32" variant="pastel">
 							John Doe
 						</Badge>
@@ -29,11 +31,15 @@ export default function CollaborationPointerExample() {
 					language="tsx"
 					showLineNumbers
 					className="h-105"
-					code={`<Draggable dragConstraints={{ top: 0, left: 0, right: 300, bottom: 300 }}>
-        <Badge size="32" variant="pastel">
-            John Doe
-        </Badge>
-    </Draggable>`}
+					code={`const containerRef = React.useRef(null)
+
+<div ref={containerRef} className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
+	<Draggable dragConstraints={containerRef}>
+		<Badge size="32" variant="pastel">
+			John Doe
+		</Badge>
+	</Draggable>
+</div>`}
 				/>
 			</TabsContent>
 		</Tabs>
