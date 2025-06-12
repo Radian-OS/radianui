@@ -1,0 +1,100 @@
+name: '🐞 Bug Report'
+title: '[BUG] - Briefly describe the issue'
+description: Report a reproducible bug in the RadianOs UI component system.
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug in **RadianOs**.  
+        Please make sure the issue hasn’t already been reported by checking existing [open](https://github.com/radian-os/radianos/issues) or [closed](https://github.com/radian-os/radianos/issues?q=is%3Aissue+is%3Aclosed) issues.
+
+        > 💡 If you're unsure if it's a bug, please [start a discussion](https://github.com/radian-os/radianos/discussions) instead.
+
+        A clear and detailed report with reproduction steps helps us resolve issues faster 🙏
+  - type: input
+    id: bug-title
+    attributes:
+      label: Title
+      description: A brief summary of the issue (will auto-fill the GitHub issue title).
+      placeholder: e.g. OTPInput breaks on paste event
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is and how it impacts usage. Mention if you intend to submit a PR for this.
+      placeholder: Describe the behavior you're seeing vs. what you expected.
+    validations:
+      required: true
+
+  - type: input
+    id: affected-components
+    attributes:
+      label: Affected RadianOs Components
+      description: Which RadianOs components are affected?
+      placeholder: e.g. Button, Accordion, OTPInput
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Describe step-by-step how to reproduce the issue.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Observe the error
+    validations:
+      required: true
+
+  - type: input
+    id: reproduction-link
+    attributes:
+      label: Minimal Reproduction (CodeSandbox / StackBlitz / GitHub)
+      description: |
+        Please provide a link to a live reproduction. Issues without a reproduction may be closed.
+        You can use platforms like [StackBlitz](https://stackblitz.com/) or [GitHub](https://github.com).
+      placeholder: e.g. https://stackblitz.com/edit/your-repo
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs (optional)
+      description: |
+        Include any browser console, terminal, or server logs if applicable. 
+        Prefer pasting raw text instead of screenshots.
+      placeholder: Paste logs here
+    validations:
+      required: false
+
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System Info
+      description: Provide your system details like OS, browser version, Node version, package manager, etc.
+      placeholder: |
+        - OS: macOS Ventura 14.1
+        - Browser: Chrome 125
+        - Node: 20.3.0
+        - Package Manager: pnpm 8.6.5
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: prior-research
+    attributes:
+      label: Before Submitting
+      description: Please confirm the following:
+      options:
+        - label: I have searched existing issues for related bugs.
+          required: true
+        - label: I have checked the [RadianOs documentation](https://radian-os.dev) for potential solutions.
+          required: true
+        - label: I agree to follow the [contributing guidelines](https://github.com/radian-os/radianos/blob/main/CONTRIBUTING.md).
+          required: true
