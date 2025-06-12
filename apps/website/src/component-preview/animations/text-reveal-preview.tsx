@@ -1,16 +1,15 @@
-import { ChangingText } from "@/registry/animated/changing-text"
+import { TextReveal } from "@/registry/animated/text-reveal"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const ChangingTextPreview = () => {
+const AnimatedListPreview = () => {
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
-
 						<DropdownContent className="min-w-20">
 							<DropdownGroup>
 								<DropdownSub></DropdownSub>
@@ -18,36 +17,30 @@ const ChangingTextPreview = () => {
 						</DropdownContent>
 					</Dropdown>
 				</div>
-
 				<TabsList>
 					<TabsTrigger value="preview">Preview</TabsTrigger>
-
 					<TabsTrigger value="code">Code</TabsTrigger>
 				</TabsList>
 			</div>
-
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<h1 className="w-100 flex items-center gap-1.5 text-3xl font-medium">
-						UI library for
-						<ChangingText texts={["Developers", "Designers"]} />
-					</h1>
+				<div className="rounded-xl border">
+					<TextReveal>Components that adapt to your workflow</TextReveal>
 				</div>
 			</TabsContent>
-
 			<TabsContent value="code">
 				<CodeArea
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<h1 className="w-100 flex items-center gap-1.5 text-3xl font-medium">
-    UI library for
-    <ChangingText texts={["Developers", "Designers"]} />
-</h1>`}
+					code={`<div className="relative size-60 rounded-lg border">
+	<h1>Content here</h1>
+	
+	<BorderBeam size={150} />
+</div>`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
 
-export default ChangingTextPreview
+export default AnimatedListPreview

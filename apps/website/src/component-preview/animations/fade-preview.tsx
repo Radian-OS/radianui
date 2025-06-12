@@ -1,16 +1,16 @@
 import { useState } from "react"
 import { RotateCw } from "lucide-react"
-import { FadeIn, FadeInDirection } from "@/registry/animated/fade-in"
+import { Fade, FadeDirection } from "@/registry/animated/fade"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const FadeInPreview = () => {
+const FadePreview = () => {
 	// State used to re-render the component
 	const [counter, setCounter] = useState(0)
 
-	const [direction, setDirection] = useState<FadeInDirection>("up")
+	const [direction, setDirection] = useState<FadeDirection>("up")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -27,7 +27,7 @@ const FadeInPreview = () => {
 											selectionMode="single"
 											minSelectionCount={1}
 											selectedValues={[direction]}
-											onSelectedChange={(values) => setDirection(values[0] as FadeInDirection)}>
+											onSelectedChange={(values) => setDirection(values[0] as FadeDirection)}>
 											<DropdownItem value="up">Up</DropdownItem>
 											<DropdownItem value="left">Left</DropdownItem>
 											<DropdownItem value="right">Right</DropdownItem>
@@ -51,9 +51,9 @@ const FadeInPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<FadeIn key={counter} direction={direction}>
+					<Fade key={counter} direction={direction}>
 						<h1 className="text-2xl font-medium">Animated Component</h1>
-					</FadeIn>
+					</Fade>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -70,4 +70,4 @@ const FadeInPreview = () => {
 	)
 }
 
-export default FadeInPreview
+export default FadePreview
