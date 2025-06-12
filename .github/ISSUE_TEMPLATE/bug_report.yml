@@ -5,23 +5,19 @@ labels: ["bug"]
 body:
   - type: markdown
     attributes:
-      value: >
-        Thanks for taking the time to report a bug in **RadianOs**.
-
-        Please ensure the issue hasn’t already been reported or addressed in discussions.
-
-        If you're unsure whether it's a bug, please start a discussion instead.
-
-        A clear and detailed report with reproduction steps helps us resolve issues faster 🙏
-
-  - type: input
-    id: bug-title
+      value: |
+        ### Thanks for taking the time to report a bug in Radian. Please search open/closed issues before submitting, as the issue may have already been reported/addressed.
+ 
+  - type: markdown
     attributes:
-      label: Title
-      description: "A brief summary of the issue."
-      placeholder: "e.g. OTPInput crashes on paste"
-    validations:
-      required: true
+    value: |
+      ### Not sure if it’s a bug?
+      
+      If you're unsure whether this is actually a bug, feel free to start a discussion instead:
+      
+      👉 [Open a general discussion](https://github.com/Radian-os/radianos/discussions/new?category=general)
+
+
 
   - type: textarea
     id: description
