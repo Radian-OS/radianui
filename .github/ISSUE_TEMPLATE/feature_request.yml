@@ -13,14 +13,6 @@ body:
         Not sure if it's a bug or feature?  
         👉 [Start a discussion instead](https://github.com/Radian-os/radianos/discussions/new?category=general)
 
-  - type: input
-    id: title
-    attributes:
-      label: Feature title
-      placeholder: "Add support for full-width Button variant"
-    validations:
-      required: true
-
   - type: textarea
     id: description
     attributes:
