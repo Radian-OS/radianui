@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
 	const url = `https://radianos.com/documentation/${slug}`
 
 	return {
-		title: `${doc.title} | Radian`,
+		title: `${doc.title} - Radian`,
 		description: doc.description,
 		openGraph: {
 			title: doc.title,
