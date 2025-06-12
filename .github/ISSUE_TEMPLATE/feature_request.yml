@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### 🙏 Thanks for your interest in improving RadianOs!
+        ### 🙏 Thanks for your interest in improving Radian!
 
         Before submitting, please search [existing issues](https://github.com/Radian-os/radianos/issues) to avoid duplicates.
 
