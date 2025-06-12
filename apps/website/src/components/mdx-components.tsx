@@ -6,9 +6,13 @@ import { MDXComponents } from "mdx/types"
 import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
+import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
+import ChangingTextPreview from "@/component-preview/animations/changing-text-preview"
 import DraggablePreview from "@/component-preview/animations/draggable-preview"
-import FadeDownPreview from "@/component-preview/animations/fade-down-preview"
+import FadeInPreview from "@/component-preview/animations/fade-in-preview"
 import GradientTextPreview from "@/component-preview/animations/gradient-text-preview"
+import InfiniteScrollPreview from "@/component-preview/animations/infinite-scroll-preview"
+import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
@@ -58,6 +62,7 @@ import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
+import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
@@ -164,7 +169,12 @@ const components: MDXComponents = {
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
 	DraggablePreview: () => <DraggablePreview />,
-	FadeDownPreview: () => <FadeDownPreview />,
+	FadeInPreview: () => <FadeInPreview />,
+	InfiniteScrollPreview: () => <InfiniteScrollPreview />,
+	PointerPreview: () => <PointerPreview />,
+	BorderBeamPreview: () => <BorderBeamPreview />,
+	ChangingTextPreview: () => <ChangingTextPreview />,
+	InfiniteScrollVerticalExample: () => <InfiniteScrollVerticalExample />,
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />

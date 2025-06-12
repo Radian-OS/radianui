@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Box } from "lucide-react"
 import { Button } from "@/registry/ui/button"
-import Toast, { Toaster } from "@/registry/ui/sonner"
+import { Toaster, showToast } from "@/registry/ui/sonner"
 
 const positions = ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"]
 
@@ -73,7 +73,7 @@ const SonnerExample = () => {
 			<Button
 				variant="outline"
 				onClick={() =>
-					Toast({
+					showToast({
 						variant,
 						closable,
 						description: "New card added",
@@ -85,7 +85,7 @@ const SonnerExample = () => {
 			<Button
 				variant="outline"
 				onClick={() =>
-					Toast({
+					showToast({
 						variant,
 						closable,
 						title: "New card added",
@@ -98,7 +98,7 @@ const SonnerExample = () => {
 			<Button
 				variant="outline"
 				onClick={() =>
-					Toast({
+					showToast({
 						variant,
 						icon: <Box />,
 						closable,
@@ -119,7 +119,7 @@ const SonnerExample = () => {
 			<Button
 				variant="outline"
 				onClick={() =>
-					Toast({
+					showToast({
 						variant,
 						closable,
 						content: <h1 className="!p-[12px]">New Toast</h1>,

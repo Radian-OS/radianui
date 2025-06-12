@@ -197,7 +197,8 @@ const MainTable = function <TData>({
 				<div className={cn(`overflow-hidden ${dense && `rounded-md border`}`, tableHeight)}>
 					<DragTable
 						style={{
-							width: table.getCenterTotalSize(),
+							width: resizable ? table.getCenterTotalSize() : "100%",
+							minWidth: dragAndDrop ? table.getCenterTotalSize() : "auto",
 						}}>
 						<TableHeader className={`${sticky ? "bg-bg-base sticky top-0 z-10" : ""}`}>
 							{table.getHeaderGroups().map((headerGroup) => (
