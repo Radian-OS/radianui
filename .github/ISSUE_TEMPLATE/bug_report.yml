@@ -5,7 +5,7 @@ labels: ["bug"]
 body:
   - type: markdown
     attributes:
-      value: |
+    value: |
         ### Thanks for taking the time to report a bug in Radian. Please search open/closed issues before submitting, as the issue may have already been reported/addressed.
  
   - type: markdown
@@ -16,8 +16,6 @@ body:
       If you're unsure whether this is actually a bug, feel free to start a discussion instead:
       
       👉 [Open a general discussion](https://github.com/Radian-os/radianos/discussions/new?category=general)
-
-
 
   - type: textarea
     id: description
