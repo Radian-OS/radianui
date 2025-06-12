@@ -1,72 +1,73 @@
-name: '🐞 Bug Report'
-title: '[BUG] - Briefly describe the issue'
-description: Report a reproducible bug in the RadianOs UI component system.
-labels: ['bug']
+name: "🐞 Bug Report"
+title: "[BUG] - Briefly describe the issue"
+description: "Report a reproducible bug in the RadianOs UI component system."
+labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: >
-        Thanks for taking the time to report a bug in **RadianOs**.  
-        Please make sure the issue hasn’t already been reported by checking existing issues.
+        Thanks for taking the time to report a bug in **RadianOs**.
 
-        💡 If you're unsure if it's a bug, please start a discussion instead.
+        Please ensure the issue hasn’t already been reported or addressed in discussions.
+
+        If you're unsure whether it's a bug, please start a discussion instead.
 
         A clear and detailed report with reproduction steps helps us resolve issues faster 🙏
-        
+
   - type: input
     id: bug-title
     attributes:
       label: Title
-      description: A brief summary of the issue.
-      placeholder: e.g. OTPInput breaks on paste event
+      description: "A brief summary of the issue."
+      placeholder: "e.g. OTPInput crashes on paste"
     validations:
       required: true
 
   - type: textarea
     id: description
     attributes:
-      label: Bug Description
-      description: A clear and concise description of what the bug is and how it impacts usage. Mention if you intend to submit a PR for this.
-      placeholder: Describe the behavior you're seeing vs. what you expected.
+      label: Describe the bug
+      description: "A clear and concise description of what the bug is and how it affects functionality. Mention if you intend to submit a PR for this."
+      placeholder: "Describe the unexpected behavior and what you expected instead."
     validations:
       required: true
 
   - type: input
     id: affected-components
     attributes:
-      label: Affected RadianOs Components
-      description: Which RadianOs components are affected?
-      placeholder: e.g. Button, Accordion, OTPInput
+      label: Affected RadianOs components
+      description: "List the components affected by this bug (e.g., Button, Input, OTPInput)"
+      placeholder: "e.g. Button, Accordion, OTPInput"
     validations:
       required: true
 
   - type: textarea
     id: reproduction-steps
     attributes:
-      label: Steps to Reproduce
-      description: Describe step-by-step how to reproduce the issue.
+      label: Steps to reproduce
+      description: "How can we reproduce the bug? Provide a step-by-step guide."
       placeholder: |
         1. Go to '...'
         2. Click on '...'
-        3. Observe the error
+        3. Observe the issue
     validations:
       required: true
 
   - type: input
     id: reproduction-link
     attributes:
-      label: Minimal Reproduction Link
-      description: Please provide a link to a live reproduction using StackBlitz, CodeSandbox, or GitHub. Issues without a reproduction may be closed.
-      placeholder: https://stackblitz.com/edit/your-repo
+      label: Minimal reproduction
+      description: "Link to a live example using StackBlitz, CodeSandbox, or GitHub. Required for most bug reports."
+      placeholder: "https://stackblitz.com/edit/your-repo"
     validations:
       required: false
 
   - type: textarea
     id: logs
     attributes:
-      label: Relevant Logs (optional)
-      description: Include any browser console or server logs if applicable. Prefer pasting raw text instead of screenshots.
-      placeholder: Paste logs here
+      label: Logs (optional)
+      description: "Paste any browser or server logs that may help identify the issue."
+      placeholder: "Paste logs here instead of uploading screenshots."
     validations:
       required: false
 
@@ -74,9 +75,9 @@ body:
     id: system-info
     attributes:
       label: System Info
-      description: Provide your system details like OS, browser version, Node version, package manager, etc.
+      description: "Provide OS, browser, Node.js version, and package manager details."
       placeholder: |
-        - OS: macOS Ventura 14.1
+        - OS: macOS Sonoma 14.5
         - Browser: Chrome 125
         - Node: 20.3.0
         - Package Manager: pnpm 8.6.5
@@ -84,15 +85,14 @@ body:
       required: true
 
   - type: checkboxes
-    id: prior-research
+    id: research-checklist
     attributes:
-      label: Before Submitting
-      description: Please confirm the following:
+      label: Confirmation
+      description: "Please confirm you've done the following before submitting:"
       options:
-        - label: I have searched existing issues for related bugs.
+        - label: "I have searched existing issues and discussions."
           required: true
-        - label: I have checked the RadianOs documentation for potential solutions.
+        - label: "I have reviewed the documentation."
           required: true
-        - label: I agree to follow the contributing guidelines.
+        - label: "I agree to follow the contributing guidelines."
           required: true
-
