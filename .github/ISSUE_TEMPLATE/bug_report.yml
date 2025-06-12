@@ -5,18 +5,19 @@ labels: ['bug']
 body:
   - type: markdown
     attributes:
-      value: |
+      value: >
         Thanks for taking the time to report a bug in **RadianOs**.  
-        Please make sure the issue hasn’t already been reported by checking existing [open](https://github.com/radian-os/radianos/issues) or [closed](https://github.com/radian-os/radianos/issues?q=is%3Aissue+is%3Aclosed) issues.
+        Please make sure the issue hasn’t already been reported by checking existing issues.
 
-        > 💡 If you're unsure if it's a bug, please [start a discussion](https://github.com/radian-os/radianos/discussions) instead.
+        💡 If you're unsure if it's a bug, please start a discussion instead.
 
         A clear and detailed report with reproduction steps helps us resolve issues faster 🙏
+        
   - type: input
     id: bug-title
     attributes:
       label: Title
-      description: A brief summary of the issue (will auto-fill the GitHub issue title).
+      description: A brief summary of the issue.
       placeholder: e.g. OTPInput breaks on paste event
     validations:
       required: true
@@ -54,11 +55,9 @@ body:
   - type: input
     id: reproduction-link
     attributes:
-      label: Minimal Reproduction (CodeSandbox / StackBlitz / GitHub)
-      description: |
-        Please provide a link to a live reproduction. Issues without a reproduction may be closed.
-        You can use platforms like [StackBlitz](https://stackblitz.com/) or [GitHub](https://github.com).
-      placeholder: e.g. https://stackblitz.com/edit/your-repo
+      label: Minimal Reproduction Link
+      description: Please provide a link to a live reproduction using StackBlitz, CodeSandbox, or GitHub. Issues without a reproduction may be closed.
+      placeholder: https://stackblitz.com/edit/your-repo
     validations:
       required: false
 
@@ -66,9 +65,7 @@ body:
     id: logs
     attributes:
       label: Relevant Logs (optional)
-      description: |
-        Include any browser console, terminal, or server logs if applicable. 
-        Prefer pasting raw text instead of screenshots.
+      description: Include any browser console or server logs if applicable. Prefer pasting raw text instead of screenshots.
       placeholder: Paste logs here
     validations:
       required: false
@@ -94,7 +91,8 @@ body:
       options:
         - label: I have searched existing issues for related bugs.
           required: true
-        - label: I have checked the [RadianOs documentation](https://radian-os.dev) for potential solutions.
+        - label: I have checked the RadianOs documentation for potential solutions.
           required: true
-        - label: I agree to follow the [contributing guidelines](https://github.com/radian-os/radianos/blob/main/CONTRIBUTING.md).
+        - label: I agree to follow the contributing guidelines.
           required: true
+
