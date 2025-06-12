@@ -55,8 +55,8 @@ Feel free to use, modify, and distribute — with attribution.
 Join the discussion, get help, or share your creations:
 
 - 💬 [Discussions](https://github.com/Radian-os/radianos/discussions)
-- 🐛 [Report bugs](https://github.com/Radian-os/radianos/issues)
-- 🧪 [Request features](https://github.com/Radian-os/radianos/issues)
+- 🐛 [Report bugs](https://github.com/Radian-os/radianos/issues/new?template=bug_report.yml)
+- 🧪 [Request features](https://github.com/Radian-os/radianos/issues/new?template=feature_request.yml)
 
 ---
 
