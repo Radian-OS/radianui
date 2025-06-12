@@ -3,7 +3,7 @@ import { Metadata } from "next"
 import Navbar from "@/components/navbar"
 
 export const metadata: Metadata = {
-	title: "Ship next generation of world class products and solutions",
+	title: `${"Radian"} - Ship next generation of world class products and solutions`,
 	description: "Welcome to Radian—your go-to React & Tailwind CSS lib.",
 	openGraph: {
 		title: "Radian Landing Page",
