@@ -8,7 +8,7 @@
 
 :root {
 	/* primary */
-	--color-primary-50: hsl(230, 100%, 96%);
+	/* --color-primary-50: hsl(230, 100%, 96%);
 	--color-primary-100: hsl(234, 100%, 94%);
 	--color-primary-200: hsl(235, 100%, 90%);
 	--color-primary-300: hsl(237, 100%, 82%);
@@ -18,10 +18,10 @@
 	--color-primary-700: hsl(252, 62%, 51%);
 	--color-primary-800: hsl(251, 58%, 41%);
 	--color-primary-900: hsl(249, 51%, 30%);
-	--color-primary-950: hsl(252, 51%, 20%);
+	--color-primary-950: hsl(252, 51%, 20%); */
 
 	/* information */
-	--color-info-50: hsl(197, 100%, 96%);
+	/* --color-info-50: hsl(197, 100%, 96%);
 	--color-info-100: hsl(189, 100%, 92%);
 	--color-info-200: hsl(196, 100%, 85%);
 	--color-info-300: hsl(195, 100%, 76%);
@@ -31,10 +31,10 @@
 	--color-info-700: hsl(210, 100%, 50%);
 	--color-info-800: hsl(212, 92%, 40%);
 	--color-info-900: hsl(210, 85%, 30%);
-	--color-info-950: hsl(212, 74%, 21%);
+	--color-info-950: hsl(212, 74%, 21%); */
 
 	/* success */
-	--color-success-50: hsl(136, 65%, 96%);
+	/* --color-success-50: hsl(136, 65%, 96%);
 	--color-success-100: hsl(134, 68%, 93%);
 	--color-success-200: hsl(134, 63%, 85%);
 	--color-success-300: hsl(134, 61%, 73%);
@@ -44,10 +44,10 @@
 	--color-success-700: hsl(135, 56%, 29%);
 	--color-success-800: hsl(136, 50%, 24%);
 	--color-success-900: hsl(136, 48%, 20%);
-	--color-success-950: hsl(138, 65%, 10%);
+	--color-success-950: hsl(138, 65%, 10%); */
 
 	/* error */
-	--color-error-50: hsl(0, 100%, 96%);
+	/* --color-error-50: hsl(0, 100%, 96%);
 	--color-error-100: hsl(0, 100%, 94%);
 	--color-error-200: hsl(0, 100%, 89%);
 	--color-error-300: hsl(0, 100%, 81%);
@@ -57,10 +57,10 @@
 	--color-error-700: hsl(0, 81%, 42%);
 	--color-error-800: hsl(0, 78%, 35%);
 	--color-error-900: hsl(0, 69%, 30%);
-	--color-error-950: hsl(0, 82%, 15%);
+	--color-error-950: hsl(0, 82%, 15%); */
 
 	/* warning */
-	--color-warning-50: hsl(51, 100%, 94%);
+	/* --color-warning-50: hsl(51, 100%, 94%);
 	--color-warning-100: hsl(52, 100%, 88%);
 	--color-warning-200: hsl(52, 100%, 76%);
 	--color-warning-300: hsl(50, 100%, 64%);
@@ -70,7 +70,7 @@
 	--color-warning-700: hsl(29, 96%, 37%);
 	--color-warning-800: hsl(26, 88%, 31%);
 	--color-warning-900: hsl(25, 82%, 26%);
-	--color-warning-950: hsl(23, 97%, 14%);
+	--color-warning-950: hsl(23, 97%, 14%); */
 
 	/* neutral */
 	--color-neutral-50: #f7f7f7;
@@ -158,86 +158,86 @@
 	--radius-radius-2xl: 16px;
 
 	/* primary */
-	--color-primary: var(--color-primary-600);
-	--color-primary-accent: var(--color-primary-50);
-	--color-primary-focus: var(--color-primary-100);
-	--color-primary-stroke: var(--color-primary-500);
-	--color-primary-hover: var(--color-primary-500);
-	--color-primary-text: var(--color-primary-700);
+	--color-primary: hsl(250, 80%, 60%);
+	--color-primary-accent: hsl(230, 100%, 96%);
+	--color-primary-focus: hsl(234, 100%, 94%);
+	--color-primary-stroke: hsl(246, 89%, 67%);
+	--color-primary-hover: hsl(246, 89%, 67%);
+	--color-primary-text: hsl(252, 62%, 51%);
 
 	/* information */
-	--color-info: var(--color-info-700);
-	--color-info-accent: var(--color-info-50);
-	--color-info-focus: var(--color-info-200);
-	--color-info-stroke: var(--color-info-400);
-	--color-info-hover: var(--color-info-600);
-	--color-info-text: var(--color-info-700);
+	--color-info: hsl(210, 100%, 50%);
+	--color-info-accent: hsl(197, 100%, 96%);
+	--color-info-focus: hsl(196, 100%, 85%);
+	--color-info-stroke: hsl(196, 100%, 64%);
+	--color-info-hover: hsl(206, 100%, 51%);
+	--color-info-text: hsl(210, 100%, 50%);
 
 	/* success */
-	--color-success: var(--color-success-700);
-	--color-success-accent: var(--color-success-50);
-	--color-success-focus: var(--color-success-100);
-	--color-success-stroke: var(--color-success-600);
-	--color-success-hover: var(--color-success-600);
-	--color-success-text: var(--color-success-900);
+	--color-success: hsl(135, 56%, 29%);
+	--color-success-accent: hsl(136, 65%, 96%);
+	--color-success-focus: hsl(134, 68%, 93%);
+	--color-success-stroke: hsl(135, 60%, 40%);
+	--color-success-hover: hsl(135, 60%, 40%);
+	--color-success-text: hsl(136, 48%, 20%);
 
 	/* error */
-	--color-error: var(--color-error-600);
-	--color-error-accent: var(--color-error-50);
-	--color-error-focus: var(--color-error-100);
-	--color-error-stroke: var(--color-error-500);
-	--color-error-hover: var(--color-error-500);
-	--color-error-text: var(--color-error-700);
+	--color-error: hsl(0, 80%, 55%);
+	--color-error-accent: hsl(0, 100%, 96%);
+	--color-error-focus: hsl(0, 100%, 94%);
+	--color-error-stroke: hsl(0, 93%, 60%);
+	--color-error-hover: hsl(0, 93%, 60%);
+	--color-error-text: hsl(0, 81%, 42%);
 
 	/* warning */
-	--color-warning: var(--color-warning-700);
-	--color-warning-accent: var(--color-warning-50);
-	--color-warning-focus: var(--color-warning-100);
-	--color-warning-stroke: var(--color-warning-600);
-	--color-warning-hover: var(--color-warning-600);
-	--color-warning-text: var(--color-warning-800);
+	--color-warning: hsl(29, 96%, 37%);
+	--color-warning-accent: hsl(51, 100%, 94%);
+	--color-warning-focus: hsl(52, 100%, 88%);
+	--color-warning-stroke: hsl(35, 100%, 45%);
+	--color-warning-hover: hsl(35, 100%, 45%);
+	--color-warning-text: hsl(26, 88%, 31%);
 
 	/* background */
-	--color-bg-level0: var(--color-gray-96);
-	--color-bg-base: var(--color-gray-100);
-	--color-bg-level1: var(--color-gray-100);
-	--color-bg-level2: var(--color-gray-100);
+	--color-bg-level0: hsl(230, 6%, 96%);
+	--color-bg-base: hsl(0, 0%, 100%);
+	--color-bg-level1: hsl(0, 0%, 100%);
+	--color-bg-level2: hsl(0, 0%, 100%);
 
-	--color-text: var(--color-gray-4);
-	--color-text-secondary: var(--color-gray-36);
-	--color-text-tertiary: var(--color-gray-60);
-	--color-text-disabled: var(--color-gray-80);
-	--color-text-inverse: var(--color-gray-100);
+	--color-text: hsl(230, 6%, 4%);
+	--color-text-secondary: hsl(230, 6%, 36%);
+	--color-text-tertiary: hsl(230, 6%, 60%);
+	--color-text-disabled: hsl(230, 6%, 80%);
+	--color-text-inverse: hsl(0, 0%, 100%);
 
 	/* stroke */
-	--color-border: var(--color-gray-88);
-	--color-soft: var(--color-gray-92);
-	--color-soft-alpha: color-mix(in srgb, var(--color-black-9), transparent 92%);
-	--color-border-alpha: color-mix(in srgb, var(--color-black-9), transparent 88%);
+	--color-border: hsl(230, 6%, 88%);
+	--color-soft: hsl(230, 6%, 92%);
+	--color-soft-alpha: color-mix(in srgb, hsl(240, 5%, 4%), transparent 92%);
+	--color-border-alpha: color-mix(in srgb, hsl(240, 5%, 4%), transparent 88%);
 	/* 2% opacity */
 	/* fill */
-	--color-fill-level1: var(--color-gray-98);
-	--color-fill-level2: var(--color-gray-96);
-	--color-fill-level3: var(--color-gray-88);
-	--color-fill-level4: var(--color-gray-84);
+	--color-fill-level1: hsl(230, 6%, 98%);
+	--color-fill-level2: hsl(230, 6%, 96%);
+	--color-fill-level3: hsl(230, 6%, 88%);
+	--color-fill-level4: hsl(230, 6%, 84%);
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, var(--color-white-1), transparent 98%);
+	--color-inverse-fill-level1: color-mix(in srgb, hsl(0, 0%, 100%), transparent 98%);
 	/* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, var(--color-white-1), transparent 96%);
+	--color-inverse-fill-level2: color-mix(in srgb, hsl(0, 0%, 100%), transparent 96%);
 	/* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, var(--color-white-1), transparent 92%);
+	--color-inverse-fill-level3: color-mix(in srgb, hsl(0, 0%, 100%), transparent 92%);
 	/* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, var(--color-white-1), transparent 84%);
+	--color-inverse-fill-level4: color-mix(in srgb, hsl(0, 0%, 100%), transparent 84%);
 	/* 16% opacity */
 
 	/* static */
-	--color-static-white: var(--color-gray-100);
-	--color-static-black: var(--color-gray-4);
+	--color-static-white: hsl(0, 0%, 100%);
+	--color-static-black: hsl(230, 6%, 4%);
 
 	/* inverse */
-	--color-inverse-black: var(--color-gray-4);
-	--color-inverse-white: var(--color-gray-100);
+	--color-inverse-black: hsl(230, 6%, 4%);
+	--color-inverse-white: hsl(0, 0%, 100%);
 
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
@@ -275,101 +275,104 @@
 
 .dark {
 	/* primary */
-	--color-primary: var(--color-primary-500);
-	--color-primary-accent: var(--color-primary-950);
-	--color-primary-accent-secondary: var(--color-primary-900);
-	--color-primary-focus: var(--color-primary-900);
-	--color-primary-stroke: var(--color-primary-800);
-	--color-primary-hover: var(--color-primary-400);
-	--color-primary-text: var(--color-primary-400);
+	--color-primary: hsl(246, 89%, 67%);
+	--color-primary-accent: hsl(252, 51%, 20%);
+	--color-primary-accent-secondary: hsl(249, 51%, 30%);
+	--color-primary-focus: hsl(249, 51%, 30%);
+	--color-primary-stroke: hsl(251, 58%, 41%);
+	--color-primary-hover: hsl(241, 95%, 74%);
+	--color-primary-text: hsl(241, 95%, 74%);
 
 	/* information */
-	--color-info: var(--color-info-600);
-	--color-info-accent: var(--color-info-950);
-	--color-info-accent-secondary: var(--color-info-900);
-	--color-info-focus: var(--color-info-900);
-	--color-info-stroke: var(--color-info-800);
-	--color-info-hover: var(--color-info-500);
-	--color-info-text: var(--color-info-400);
+	--color-info: hsl(206, 100%, 51%);
+	--color-info-accent: hsl(212, 74%, 21%);
+	--color-info-accent-secondary: hsl(210, 85%, 30%);
+	--color-info-focus: hsl(210, 85%, 30%);
+	--color-info-stroke: hsl(212, 92%, 40%);
+	--color-info-hover: hsl(201, 100%, 56%);
+	--color-info-text: hsl(196, 100%, 64%);
 
 	/* success */
-	--color-success: var(--color-success-700);
-	--color-success-accent: var(--color-success-950);
-	--color-success-accent-secondary: var(--color-success-900);
-	--color-success-focus: var(--color-success-900);
-	--color-success-stroke: var(--color-success-800);
-	--color-success-hover: var(--color-success-500);
-	--color-success-text: var(--color-success-400);
+	--color-success: hsl(135, 56%, 29%);
+	--color-success-accent: hsl(138, 65%, 10%);
+	--color-success-accent-secondary: hsl(136, 48%, 20%);
+	--color-success-focus: hsl(136, 48%, 20%);
+	--color-success-stroke: hsl(136, 50%, 24%);
+	--color-success-hover: hsl(135, 55%, 45%);
+	--color-success-text: hsl(134, 54%, 58%);
 
 	/* error */
-	--color-error: var(--color-error-600);
-	--color-error-accent: var(--color-error-950);
-	--color-error-accent-secondary: var(--color-error-900);
-	--color-error-focus: var(--color-error-900);
-	--color-error-stroke: var(--color-error-800);
-	--color-error-hover: var(--color-error-400);
-	--color-error-text: var(--color-error-400);
+	--color-error: hsl(0, 80%, 55%);
+	--color-error-accent: hsl(0, 82%, 15%);
+	--color-error-accent-secondary: hsl(0, 69%, 30%);
+	--color-error-focus: hsl(0, 69%, 30%);
+	--color-error-stroke: hsl(0, 78%, 35%);
+	--color-error-hover: hsl(0, 100%, 71%);
+	--color-error-text: hsl(0, 100%, 71%);
 
 	/* warning */
-	--color-warning: var(--color-warning-700);
-	--color-warning-accent: var(--color-warning-950);
-	--color-warning-accent-secondary: var(--color-warning-900);
-	--color-warning-focus: var(--color-warning-900);
-	--color-warning-stroke: var(--color-warning-800);
-	--color-warning-hover: var(--color-warning-500);
-	--color-warning-text: var(--color-warning-400);
+	--color-warning: hsl(29, 96%, 37%);
+	--color-warning-accent: hsl(23, 97%, 14%);
+	--color-warning-accent-secondary: hsl(25, 82%, 26%);
+	--color-warning-focus: hsl(25, 82%, 26%);
+	--color-warning-stroke: hsl(26, 88%, 31%);
+	--color-warning-hover: hsl(41, 98%, 50%);
+	--color-warning-text: hsl(47, 100%, 56%);
 
 	/* Background */
-	--color-bg-level0: var(--color-gray-0);
-	--color-bg-base: var(--color-gray-4);
-	--color-bg-level1: var(--color-gray-8);
-	--color-bg-level2: var(--color-gray-12);
+	--color-bg-level0: hsl(230, 6%, 0%);
+	--color-bg-base: hsl(230, 6%, 4%);
+	--color-bg-level1: hsl(230, 6%, 8%);
+	--color-bg-level2: hsl(230, 6%, 12%);
 
 	/* foreground */
-	--color-text: var(--color-gray-100);
-	--color-text-secondary: var(--color-gray-60);
-	--color-text-tertiary: var(--color-gray-48);
-	--color-text-disabled: var(--color-gray-36);
-	--color-text-inverse: var(--color-gray-4);
+	--color-text: hsl(0, 0%, 100%);
+	--color-text-secondary: hsl(230, 6%, 60%);
+	--color-text-tertiary: hsl(230, 6%, 48%);
+	--color-text-disabled: hsl(230, 6%, 36%);
+	--color-text-inverse: hsl(230, 6%, 4%);
 
 	/* stroke */
-	--color-border: var(--color-gray-16);
-	--color-border-alpha: color-mix(in srgb, var(--color-white-1), transparent 88%);
-	--color-soft: var(--color-gray-12);
-	--color-soft-alpha: color-mix(in srgb, var(--color-white-9), transparent 92%);
+	--color-border: hsl(230, 6%, 16%);
+	--color-border-alpha: color-mix(in srgb, hsl(0, 0%, 100%), transparent 88%);
+	--color-soft: hsl(230, 6%, 12%);
+	--color-soft-alpha: color-mix(in srgb, hsl(0, 0%, 100%), transparent 92%);
 	/* fill */
-	--color-fill-level1: var(--color-gray-6);
+	--color-fill-level1: hsl(230, 6%, 6%);
 	/* 2% opacity */
-	--color-fill-level2: var(--color-gray-8);
+	--color-fill-level2: hsl(230, 6%, 8%);
 	/* 4% opacity */
-	--color-fill-level3: var(--color-gray-12);
+	--color-fill-level3: hsl(230, 6%, 12%);
 	/* 8% opacity */
-	--color-fill-level4: var(--color-gray-16);
+	--color-fill-level4: hsl(230, 6%, 16%);
 	/* 16% opacity */
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, var(--color-black-9), transparent 98%);
+	--color-inverse-fill-level1: color-mix(in srgb, hsl(240, 5%, 4%), transparent 98%);
 	/* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, var(--color-black-9), transparent 96%);
+	--color-inverse-fill-level2: color-mix(in srgb, hsl(240, 5%, 4%), transparent 96%);
 	/* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, var(--color-black-9), transparent 92%);
+	--color-inverse-fill-level3: color-mix(in srgb, hsl(240, 5%, 4%), transparent 92%);
 	/* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, var(--color-black-9), transparent 84%);
+	--color-inverse-fill-level4: color-mix(in srgb, hsl(240, 5%, 4%), transparent 84%);
 	/* 16% opacity */
 
 	/* static */
-	--color-static-white: var(--color-gray-100);
-	--color-static-black: var(--color-gray-4);
+	--color-static-white: hsl(0, 0%, 100%);
+	--color-static-black: hsl(230, 6%, 4%);
 
 	/* inverse */
-	--color-inverse-black: var(--color-gray-100);
-	--color-inverse-white: var(--color-gray-4);
+	--color-inverse-black: hsl(0, 0%, 100%);
+	--color-inverse-white: hsl(230, 6%, 4%);
 
-	--color-text-primary: var(--color-white-1);
-	--color-text-paragraph: var(--color-white-10);
-	--color-text-disabled: var(--color-black-2);
-	--color-text-4: var(--color-black-5) /* static */ --color-static-white: var(--color-white-1);
-	--color-static-black: var(--color-black-9);
+	--color-text-primary: hsl(0, 0%, 100%);
+	/* --color-text-paragraph: var(--color-white-10); */
+	--color-text-disabled: hsl(230, 6%, 36%);
+	/* --color-text-4: var(--color-black-5); */
+
+	/* static */
+	--color-static-white: hsl(0, 0%, 100%);
+	--color-static-black: hsl(240, 5%, 4%);
 }
 
 @theme inline {
