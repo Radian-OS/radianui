@@ -37,7 +37,7 @@ Please read our [Contributing Guide](/CONTRIBUTING.md) to get started.
 
 ## ⚖️ License
 
-RadianOs is licensed under the [MIT License](https://github.com/Radian-os/radianos/blob/main/LICENSE.md).  
+RadianOs is licensed under the [MIT License](/LICENSE.md).  
 Feel free to use, modify, and distribute — with attribution.
 
 ---

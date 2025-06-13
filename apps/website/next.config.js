@@ -2,7 +2,7 @@ import { withContentlayer } from "next-contentlayer2"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	redirects() {
+	async redirects() {
 		return [
 			{
 				source: "/documentation",
@@ -21,7 +21,7 @@ const nextConfig = {
 			},
 		]
 	},
-	rewrites() {
+	async rewrites() {
 		return [
 			{
 				source: "/ingest/static/:path*",
@@ -35,8 +35,17 @@ const nextConfig = {
 				source: "/ingest/decide",
 				destination: "https://us.i.posthog.com/decide",
 			},
+			{
+				source: "/app",
+				destination: `${process.env.NEXT_PUBLIC_WEBAPP_URL}`,
+			},
+			{
+				source: "/app/:path*",
+				destination: `${process.env.NEXT_PUBLIC_WEBAPP_URL}/:path*`,
+			},
 		]
 	},
+	assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
 	// Add transpilePackages to handle proper transpilation in monorepo
 	// transpilePackages: ['contentlayer2', 'next-contentlayer2', 'mdx-bundler'],
 
@@ -81,6 +90,7 @@ const nextConfig = {
 	env: {
 		NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
 		NEXT_PUBLIC_WEBAPP_URL: process.env.NEXT_PUBLIC_WEBAPP_URL,
+		NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
 	},
 }
 export default withContentlayer(nextConfig)

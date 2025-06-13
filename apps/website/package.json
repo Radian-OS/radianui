@@ -4,7 +4,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "dotenv -e ../../.env -- next dev --port 3000",
+		"dev": "dotenv -e ../../.env -- next dev --port 3001",
 		"build": "dotenv -e ../../.env -- contentlayer2 build && next build",
 		"start": "dotenv -e ../../.env -- next start",
 		"db:generate": "dotenv -e ../../.env -- drizzle-kit generate",
