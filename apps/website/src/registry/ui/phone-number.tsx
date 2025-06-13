@@ -1,1453 +1,561 @@
-"use client"
-
-import React from "react"
-import { cva } from "class-variance-authority"
-import {
-	AD,
-	AE,
-	AF,
-	AL,
-	AM,
-	AO,
-	AR,
-	AS,
-	AT,
-	AU,
-	AZ,
-	BA,
-	BB,
-	BD,
-	BE,
-	BF,
-	BG,
-	BH,
-	BI,
-	BJ,
-	BO,
-	BR,
-	BS,
-	BT,
-	BW,
-	BY,
-	BZ,
-	CA,
-	CD,
-	CG,
-	CH,
-	CI,
-	CL,
-	CM,
-	CN,
-	CO,
-	CR,
-	CU,
-	CY,
-	CZ,
-	DE,
-	DJ,
-	DK,
-	DO,
-	DZ,
-	EC,
-	EE,
-	EG,
-	ER,
-	ES,
-	ET,
-	FI,
-	FR,
-	GA,
-	GB,
-	GE,
-	GH,
-	GL,
-	GM,
-	GN,
-	GQ,
-	GR,
-	GT,
-	GW,
-	GY,
-	HK,
-	HN,
-	HR,
-	HT,
-	HU,
-	ID,
-	IE,
-	IL,
-	IN,
-	IQ,
-	IR,
-	IS,
-	IT,
-	JM,
-	JO,
-	JP,
-	KE,
-	KG,
-	KH,
-	KN,
-	KR,
-	KW,
-	KZ,
-	LA,
-	LB,
-	LC,
-	LK,
-	LR,
-	LT,
-	LU,
-	LV,
-	LY,
-	MA,
-	MC,
-	MD,
-	ME,
-	MF,
-	MG,
-	MK,
-	ML,
-	MM,
-	MN,
-	MO,
-	MR,
-	MT,
-	MU,
-	MV,
-	MW,
-	MX,
-	MY,
-	MZ,
-	NA,
-	NE,
-	NG,
-	NI,
-	NL,
-	NO,
-	NP,
-	NZ,
-	OM,
-	PA,
-	PE,
-	PG,
-	PH,
-	PK,
-	PL,
-	PM,
-	PR,
-	PT,
-	PY,
-	QA,
-	RO,
-	RS,
-	RU,
-	RW,
-	SA,
-	SB,
-	SC,
-	SD,
-	SE,
-	SG,
-	SH,
-	SI,
-	SK,
-	SL,
-	SM,
-	SN,
-	SO,
-	SR,
-	ST,
-	SV,
-	SY,
-	SZ,
-	TG,
-	TH,
-	TJ,
-	TL,
-	TM,
-	TN,
-	TO,
-	TR,
-	TT,
-	TW,
-	TZ,
-	UA,
-	UG,
-	US,
-	UY,
-	UZ,
-	VC,
-	VE,
-	VN,
-	VU,
-	WS,
-	YE,
-	ZA,
-	ZM,
-	ZW,
-} from "country-flag-icons/react/3x2"
-import { Check } from "lucide-react"
+import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
+import { ChevronDown, ChevronUp, PhoneIcon } from "lucide-react"
+import * as RPNInput from "react-phone-number-input"
+import { Value, getCountries, getCountryCallingCode, isValidPhoneNumber } from "react-phone-number-input"
+import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
-import { InputClassNames, RoundedOptions, SizeOptions, cvaInputVariants, defaultInputSize } from "./input"
-import NumberInput from "./number"
-import { Select, SelectClassNames, SelectGroup, SelectItem } from "./select"
+import { Button } from "@/registry/ui/button"
+import { Input, InputProps } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
+import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 
-// Defines phoneVariants using the cva (class variance authority) utility, merging with existing input variants
-const phoneVariants = cva("", {
-	variants: {
-		...cvaInputVariants,
-		size: {
-			"28": "h-7 text-xs",
-			"32": "h-8 text-sm",
-			"36": "h-9 text-sm",
-			"40": "h-10 text-sm",
-			"44": "h-11 text-base",
-			"48": "h-12 text-base",
-		},
-	},
-	defaultVariants: {
-		size: defaultInputSize,
-	},
-})
-// Defines the props for the PhoneNumber component, including various configuration options
-type PhoneNumberProps = {
+type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
+	size?: InputProps["size"]
+	showTrigger?: boolean
+	countryDropdown?: boolean
 	className?: string
-	defaultCountryCode?: string
-	onValueChange?: (value: string) => void
-	size?: SizeOptions
-	rounded?: RoundedOptions
-	allowedCountries?: string[]
-	disabled?: boolean
-	classNames?: {
-		base?: string
-		select?: SelectClassNames
-		numberInput?: InputClassNames
-	}
+	country?: RPNInput.Country
+	onlyCountries?: string[]
+	preferredCountries?: string[]
+	excludeCountries?: string[]
+	label?: string
+	hint?: string
+	hasError?: boolean
+	lead?: React.ReactNode
+	trail?: React.ReactNode
+	validateOnChange?: boolean
+	showValidationIcon?: boolean
+	onValidationChange?: (isValid: boolean) => void
 }
 
-// PhoneNumber functional component definition
-function PhoneNumber({
-	className,
-	defaultCountryCode = "US",
-	onValueChange,
+const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
+	value,
+	onChange,
+	country,
+	onCountryChange,
 	size,
-	rounded,
-	allowedCountries,
-	disabled,
-	classNames,
-}: PhoneNumberProps) {
-	// Filters the country codes based on allowedCountries prop
-	const FILTERED_COUNTRY_CODES = allowedCountries
-		? COUNTRY_CODES.filter(function (data) {
-				allowedCountries.includes(data.countryCode)
+	showTrigger = true,
+	countryDropdown = true,
+	disabled = false,
+	className,
+	onlyCountries,
+	preferredCountries,
+	excludeCountries,
+	label,
+	hint,
+	hasError = false,
+	lead,
+	trail,
+	international = false,
+	countryCallingCodeEditable = international,
+	validateOnChange = false,
+	showValidationIcon = false,
+	onValidationChange,
+	...rpnInputProps
+}) => {
+	const id = useId()
+	const allCountries = useMemo(() => getCountries(), [])
+	const [isValid, setIsValid] = useState<boolean | null>(null)
+	const [selectOpen, setSelectOpen] = useState(false)
+	const [lastManuallySelectedCountry, setLastManuallySelectedCountry] = useState<RPNInput.Country | null>(null)
+	const validationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+	// When international is false, force countryCallingCodeEditable to be false
+	const effectiveCountryCallingCodeEditable = international ? countryCallingCodeEditable : false
+
+	// Normalize "US" or "United States" → "US"
+	const normalizeCountryIdentifier = useCallback(
+		(identifier: string): RPNInput.Country | null => {
+			if (allCountries.includes(identifier as RPNInput.Country)) {
+				return identifier as RPNInput.Country
+			}
+			const found = allCountries.find((c) => {
+				const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c)
+				return regionName?.toLowerCase() === identifier.toLowerCase()
 			})
-		: COUNTRY_CODES
-	// State management for focus and internal country code/number
-	const [isFocused, setIsFocused] = React.useState(false)
-	const defaultSelected = FILTERED_COUNTRY_CODES.find((data) => data.countryCode === defaultCountryCode)
-	const [internalCode, setInternalCode] = React.useState(defaultSelected?.code || "") /* Country Code */
-	const [internalNumber, setInternalNumber] = React.useState("") /* The number portion */
-	// Effect to update value when country code or number changes
-	React.useEffect(
-		function () {
-			const newVal = internalCode + internalNumber
-			onValueChange?.(newVal)
+			return found || null
 		},
-		[internalCode, internalNumber, onValueChange]
+		[allCountries]
 	)
-	// Custom trigger function for the select component, rendering the selected country and code
-	function customTrigger(selectedValues: string[]) {
-		const selectedCountry = FILTERED_COUNTRY_CODES.find((data) => data.country == selectedValues[0])
-		return (
-			<Button
-				variant="neutral-soft"
-				className={cn(
-					"border-border text-text flex h-full w-full shrink-0 items-center justify-start gap-2 whitespace-nowrap rounded-r-none border-r px-3 py-2.5 text-sm font-normal",
-					{
-						"border-r-primary border-r": isFocused,
-						"pointer-events-none": disabled,
+
+	// Function to get alternative/common names for countries
+	const getAlternativeCountryNames = useCallback((countryCode: string): string[] => {
+		const alternatives: Record<string, string[]> = {
+			US: ["USA", "United States", "America"],
+			GB: ["UK", "United Kingdom", "Britain", "England"],
+			DE: ["Germany", "Deutschland"],
+			FR: ["France"],
+			IT: ["Italy"],
+			ES: ["Spain", "España"],
+			CN: ["China", "People's Republic of China"],
+			JP: ["Japan"],
+			KR: ["Korea", "South Korea"],
+			RU: ["Russia", "Russian Federation"],
+			IN: ["India"],
+			BR: ["Brazil"],
+			CA: ["Canada"],
+			AU: ["Australia"],
+			MX: ["Mexico"],
+			NL: ["Netherlands", "Holland"],
+			BE: ["Belgium"],
+			CH: ["Switzerland"],
+			AT: ["Austria"],
+			SE: ["Sweden"],
+			NO: ["Norway"],
+			DK: ["Denmark"],
+			FI: ["Finland"],
+			PT: ["Portugal"],
+			GR: ["Greece"],
+			TR: ["Turkey"],
+			PL: ["Poland"],
+			CZ: ["Czech Republic", "Czechia"],
+			HU: ["Hungary"],
+			RO: ["Romania"],
+			BG: ["Bulgaria"],
+			HR: ["Croatia"],
+			SI: ["Slovenia"],
+			SK: ["Slovakia"],
+			LT: ["Lithuania"],
+			LV: ["Latvia"],
+			EE: ["Estonia"],
+		}
+		return alternatives[countryCode] || []
+	}, [])
+
+	// Filter out based on only/exclude lists
+	const countries = useMemo(() => {
+		let filtered = [...allCountries]
+		if (excludeCountries && excludeCountries.length > 0) {
+			const excludeCodes = excludeCountries.map(normalizeCountryIdentifier).filter(Boolean) as RPNInput.Country[]
+			filtered = filtered.filter((c) => !excludeCodes.includes(c))
+		}
+		if (onlyCountries && onlyCountries.length > 0) {
+			const onlyCodes = onlyCountries.map(normalizeCountryIdentifier).filter(Boolean) as RPNInput.Country[]
+			filtered = filtered.filter((c) => onlyCodes.includes(c))
+		}
+		return filtered
+	}, [allCountries, onlyCountries, excludeCountries, normalizeCountryIdentifier])
+
+	// Enhanced country data with search metadata
+	const countriesWithSearchData = useMemo(() => {
+		return countries.map((c) => {
+			const regionName = new Intl.DisplayNames(["en"], { type: "region" }).of(c) || c
+			const callingCode = getCountryCallingCode(c)
+
+			// Create search keywords for each country
+			const searchKeywords = [
+				regionName.toLowerCase(),
+				c.toLowerCase(),
+				callingCode,
+				`+${callingCode}`,
+				// Add common alternative names
+				...(getAlternativeCountryNames(c) || []).map((name) => name.toLowerCase()),
+			]
+
+			return {
+				code: c,
+				name: regionName,
+				callingCode,
+				searchKeywords,
+			}
+		})
+	}, [countries, getAlternativeCountryNames])
+
+	// Separate preferred vs. regular with search data
+	const { preferredCountriesList, regularCountriesList } = useMemo(() => {
+		if (!preferredCountries || preferredCountries.length === 0) {
+			return { preferredCountriesList: [], regularCountriesList: countriesWithSearchData }
+		}
+		const preferredCodes = preferredCountries.map(normalizeCountryIdentifier).filter(Boolean) as RPNInput.Country[]
+		const preferred = countriesWithSearchData.filter((c) => preferredCodes.includes(c.code))
+		const regular = countriesWithSearchData.filter((c) => !preferredCodes.includes(c.code))
+		return { preferredCountriesList: preferred, regularCountriesList: regular }
+	}, [countriesWithSearchData, preferredCountries, normalizeCountryIdentifier])
+
+	// Precompute calling codes for performance
+	const countryCodeMap = useMemo(() => {
+		const m = new Map<RPNInput.Country, string>()
+		countries.forEach((c) => {
+			m.set(c, getCountryCallingCode(c))
+		})
+		return m
+	}, [countries])
+
+	// Priority for shared calling codes
+	const countryPriority = useMemo(
+		() =>
+			({
+				"1": ["US", "CA"],
+				"7": ["RU", "KZ"],
+				"47": ["NO", "SJ"],
+				"590": ["GP", "BL", "MF"],
+				"599": ["CW", "BQ"],
+				"1242": ["BS"],
+				"1246": ["BB"],
+				"1264": ["AI"],
+				"1268": ["AG"],
+			}) as Record<string, string[]>,
+		[]
+	)
+
+	// Helper: detect country from raw "digits" (without "+")
+	const detectCountryFromNumber = useCallback(
+		(numberWithoutPlus: string): RPNInput.Country | null => {
+			const sorted = [...countries].sort((a, b) => {
+				return countryCodeMap.get(b)!.length - countryCodeMap.get(a)!.length
+			})
+			const matches = sorted.filter((c) => numberWithoutPlus.startsWith(countryCodeMap.get(c)!))
+			if (matches.length === 0) return null
+
+			let selected = matches[0]
+			const firstMatchCode = countryCodeMap.get(matches[0])!
+
+			// Check if we have a manually selected country that shares the same calling code
+			if (lastManuallySelectedCountry) {
+				const manuallySelectedCode = countryCodeMap.get(lastManuallySelectedCountry)
+				if (manuallySelectedCode === firstMatchCode && matches.includes(lastManuallySelectedCountry)) {
+					// Keep the manually selected country if it has the same calling code
+					return lastManuallySelectedCountry
+				}
+			}
+
+			// If no manual selection or different calling code, use priority
+			const prioList = countryPriority[firstMatchCode]
+			if (prioList) {
+				const prioCountry = prioList.find((p) => matches.includes(p as RPNInput.Country))
+				if (prioCountry) {
+					selected = prioCountry as RPNInput.Country
+				}
+			}
+			return selected
+		},
+		[countries, countryCodeMap, countryPriority, lastManuallySelectedCountry]
+	)
+
+	// Validation logic with debouncing
+	const validatePhoneNumber = useCallback(
+		(phoneValue: Value | undefined) => {
+			if (!validateOnChange || !phoneValue) {
+				setIsValid(null)
+				onValidationChange?.(false)
+				return
+			}
+
+			// Clear existing timeout
+			if (validationTimeoutRef.current) {
+				clearTimeout(validationTimeoutRef.current)
+			}
+
+			// Debounce validation by 300ms
+			validationTimeoutRef.current = setTimeout(() => {
+				try {
+					const valid = isValidPhoneNumber(phoneValue)
+					setIsValid(valid)
+					onValidationChange?.(valid)
+				} catch {
+					setIsValid(false)
+					onValidationChange?.(false)
+				}
+			}, 300)
+		},
+		[validateOnChange, onValidationChange]
+	)
+
+	// Cleanup timeout on unmount
+	useEffect(() => {
+		return () => {
+			if (validationTimeoutRef.current) {
+				clearTimeout(validationTimeoutRef.current)
+			}
+		}
+	}, [])
+
+	const handlePhoneChange = useCallback(
+		(val: Value | undefined) => {
+			if (disabled) return
+
+			// 🔒 When international is false, completely block "+" and country changes
+			if (!international) {
+				// Block any input that contains "+"
+				if (val && val.includes("+")) {
+					// Don't update if trying to add "+"
+					return
+				}
+				// Pass through non-international input
+				onChange?.(val)
+				validatePhoneNumber(val)
+				return
+			}
+
+			// 🔒 If country calling code is not editable (but international is true), prevent country changes
+			if (!effectiveCountryCallingCodeEditable) {
+				// Handle locked mode input restrictions for international mode
+				const lockedPrefix = country ? `+${countryCodeMap.get(country)}` : "+"
+
+				if (val === undefined) {
+					onChange?.(undefined)
+					validatePhoneNumber(undefined)
+					return
+				}
+
+				if (val === "+") {
+					onChange?.("+" as Value)
+					validatePhoneNumber("+" as Value)
+					return
+				}
+
+				if (!val.startsWith(lockedPrefix)) {
+					onChange?.(lockedPrefix as Value)
+					validatePhoneNumber(lockedPrefix as Value)
+					return
+				}
+
+				onChange?.(val)
+				validatePhoneNumber(val)
+				return
+			}
+
+			// Only run country detection logic if country calling code is editable AND international
+			if (effectiveCountryCallingCodeEditable && international && val && val.startsWith("+")) {
+				const numberWithoutPlus = val.slice(1)
+				const detected = detectCountryFromNumber(numberWithoutPlus)
+
+				if (detected && detected !== country) {
+					onCountryChange?.(detected)
+				}
+			}
+
+			onChange?.(val)
+			validatePhoneNumber(val)
+		},
+		[disabled, international, effectiveCountryCallingCodeEditable, country, countryCodeMap, onChange, validatePhoneNumber, detectCountryFromNumber, onCountryChange]
+	)
+
+	// When user selects country from dropdown - allow manual selection even when countryCallingCodeEditable is false
+	const handleCountrySelection = useCallback(
+		(selectedValues: string[]) => {
+			if (disabled) return
+			const selectedCode = selectedValues[0] as RPNInput.Country
+			if (countries.includes(selectedCode)) {
+				// Track the manually selected country
+				setLastManuallySelectedCountry(selectedCode)
+				onCountryChange?.(selectedCode)
+			}
+		},
+		[disabled, countries, onCountryChange]
+	)
+
+	// Update the lastManuallySelectedCountry when country prop changes from outside
+	useEffect(() => {
+		if (country) {
+			setLastManuallySelectedCountry(country)
+		}
+	}, [country])
+
+	// Wrapper for onCountryChange - only block automatic detection, allow manual changes
+	const handleCountryChangeWrapper = useCallback(
+		(newCountry: RPNInput.Country | undefined) => {
+			// Allow manual country changes via dropdown, but block automatic detection when effectiveCountryCallingCodeEditable is false
+			// This gets called by the RPNInput component for automatic detection, so we block it when locked
+			if (!effectiveCountryCallingCodeEditable) {
+				return
+			}
+			onCountryChange?.(newCountry)
+		},
+		[effectiveCountryCallingCodeEditable, onCountryChange]
+	)
+
+	// Custom input component that applies className only to the actual Input
+	const InputWithClass = useMemo(() => {
+		const Comp = (props: InputProps) => {
+			// Determine validation trail icon
+			let validationTrail = trail
+			if (showValidationIcon && isValid !== null) {
+				validationTrail = (
+					<div className="flex items-center gap-1">
+						{isValid ? <span className="text-success text-sm">✓</span> : <span className="text-error text-sm">✗</span>}
+						{trail}
+					</div>
+				)
+			}
+
+			// Add onKeyDown handler to prevent "+" when international is false
+			const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+				if (!international && (e.key === "+" || e.key === "Plus")) {
+					e.preventDefault()
+				}
+				props.onKeyDown?.(e)
+			}
+
+			// Add onPaste handler to filter out "+" when international is false
+			const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+				if (!international) {
+					const pasteData = e.clipboardData.getData("text")
+					if (pasteData.includes("+")) {
+						e.preventDefault()
+						// Filter out + from pasted content
+						const filteredData = pasteData.replace(/\+/g, "")
+						if (filteredData) {
+							const target = e.target as HTMLInputElement
+							const start = target.selectionStart || 0
+							const end = target.selectionEnd || 0
+							const currentValue = target.value
+							const newValue = currentValue.slice(0, start) + filteredData + currentValue.slice(end)
+
+							// Trigger the change event with filtered data
+							const syntheticEvent = {
+								target: { ...target, value: newValue },
+							} as React.ChangeEvent<HTMLInputElement>
+							props.onChange?.(syntheticEvent)
+						}
 					}
-				)}>
-				{selectedCountry ? (
-					<>
-						{selectedCountry.icon}
-						<span>{selectedCountry.code}</span>
-					</>
-				) : (
-					<span>Unpicked</span>
-				)}
-			</Button>
+				}
+				if (!e.defaultPrevented) {
+					props.onPaste?.(e)
+				}
+			}
+
+			return (
+				<Input
+					{...props}
+					data-slot="phone-input"
+					aria-label={label || "Phone number"}
+					aria-invalid={hasError || (validateOnChange && isValid === false)}
+					size={size}
+					disabled={disabled}
+					lead={lead}
+					trail={validationTrail}
+					hasError={hasError || (validateOnChange && isValid === false)}
+					className={cn(showTrigger && "rounded-l-none", className, props.className)}
+					onKeyDown={handleKeyDown}
+					onPaste={handlePaste}
+				/>
+			)
+		}
+		Comp.displayName = "PhoneNumber.InputWithClass"
+		return Comp
+	}, [className, size, showTrigger, disabled, hasError, lead, trail, label, showValidationIcon, isValid, validateOnChange, international])
+
+	// Enhanced country item renderer with better search support
+	const renderCountryItem = useCallback((countryData: { code: RPNInput.Country; name: string; callingCode: string; searchKeywords: string[] }) => {
+		const { code, name, callingCode } = countryData
+
+		return (
+			<SelectItem
+				key={code}
+				value={code} // ISO code as value
+				// Pass search keywords to the SelectItem for enhanced search
+				keywords={countryData.searchKeywords}
+				endContent={`+${callingCode}`}
+				startContent={<Flag country={code} />}>
+				<span>{name}</span>
+			</SelectItem>
 		)
-	}
+	}, [])
+
+	// Generate dynamic search placeholder based on search capabilities
+	const getSearchPlaceholder = useCallback(() => {
+		return "Search by Country or Code"
+	}, [])
+
+	// Custom handler for open/close - allow dropdown to open regardless of countryCallingCodeEditable
+	const handleSelectOpenChange = useCallback((open: boolean) => {
+		setSelectOpen(open)
+	}, [])
+
+	// Determine effective error state
+	const effectiveHasError = hasError || (validateOnChange && isValid === false)
+	const effectiveHint = validateOnChange && isValid === false && !hint ? "Please enter a valid phone number" : hint
 
 	return (
-		<div
-			className={cn(
-				"border-border focus-within:border-primary! focus-within:ring-primary/10 hover:border-border-alpha border focus-within:ring-2",
-				phoneVariants({ size, rounded }),
-				"inline-flex overflow-hidden p-0",
-				{ "hover:border-border cursor-not-allowed": disabled },
-				className,
-				classNames?.base
-			)}>
-			<Select
-				placeholder="Phone"
-				isSearchable={true}
-				searchPlaceholder="Search country or code"
-				selectedValues={[FILTERED_COUNTRY_CODES.find((data) => data.code === internalCode)?.country || ""]}
-				onSelectedChange={(values: string[]) => {
-					setInternalCode(FILTERED_COUNTRY_CODES.find((data) => data.country === values[0])?.code || "")
-				}}
-				showSelectedCheck={false}
-				minSelectionCount={1}
-				renderTrigger={customTrigger}
-				classNames={{
-					base: cn("w-22"),
-					...classNames?.select,
-				}}
-				disabled={disabled}>
-				<SelectGroup label="select country">
-					{FILTERED_COUNTRY_CODES.map((data, index) => (
-						<SelectItem value={data.country} key={`${data.code}_${index}`}>
-							<span className="flex flex-1 items-center gap-2">
-								{data.icon}
-								<span>{data.country}</span>
-							</span>
-							{internalCode === data.code && <Check size={20} className="stroke-text" />}
-							<span className="text-text-secondary">{data.code}</span>
-						</SelectItem>
-					))}
-				</SelectGroup>
-			</Select>
-			<NumberInput
-				placeholder="Enter your phone number"
-				className=""
-				size={size}
-				rounded={rounded}
-				onFocus={() => setIsFocused(true)}
-				onBlur={() => setIsFocused(false)}
-				showStepper={false}
-				value={internalNumber}
-				onChange={(e) => setInternalNumber(e.target.value)}
-				onWheel={(e) => e.currentTarget.blur()}
-				classNames={{
-					wrapper: "border-none hover:none focus-within:ring-0 rounded-none",
-					...classNames?.numberInput,
-				}}
-				disabled={disabled}
-			/>
+		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
+			{label && (
+				<Label htmlFor={id} className={cn({ "text-text-disabled cursor-not-allowed": disabled })}>
+					{label}
+				</Label>
+			)}
+			<div className="flex w-full gap-0">
+				{showTrigger && countryDropdown && (
+					<Select
+						open={selectOpen}
+						onOpenChange={handleSelectOpenChange}
+						selectedValues={country ? [country] : []} // ISO code in array
+						onSelectedChange={handleCountrySelection}
+						selectionMode="single"
+						isSearchable={true} // Always allow search
+						searchPlaceholder={getSearchPlaceholder()}
+						disabled={disabled}
+						renderTrigger={() => (
+							<Button
+								variant="neutral-soft"
+								size={size === "0" ? undefined : size}
+								disabled={disabled}
+								className={cn(
+									"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+									{ "border-error": effectiveHasError && !disabled }
+								)}>
+								<Flag country={country} />
+								{international && <span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+								{/* Always show chevron since dropdown is always functional */}
+								{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
+							</Button>
+						)}>
+						{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
+						{regularCountriesList.length > 0 && <SelectGroup label="All Countries">{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
+					</Select>
+				)}
+				{showTrigger && !countryDropdown && (
+					<Button
+						variant="neutral-soft"
+						size={size === "0" ? undefined : size}
+						disabled={disabled}
+						className={cn("disabled:bg-fill-level2 border-border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
+							"border-error": effectiveHasError && !disabled,
+						})}>
+						<Flag country={country} />
+						{international && <span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+						{/* No chevron icon when dropdown is disabled */}
+					</Button>
+				)}
+
+				<RPNInput.default
+					{...rpnInputProps}
+					id={id}
+					className="flex-1"
+					country={country}
+					value={value}
+					onChange={handlePhoneChange}
+					onCountryChange={handleCountryChangeWrapper}
+					flagComponent={() => null}
+					countrySelectComponent={() => null}
+					inputComponent={InputWithClass}
+					placeholder="Enter phone number"
+					disabled={disabled}
+					countries={countries}
+					international={international}
+					withCountryCallingCode={international}
+					countryCallingCodeEditable={effectiveCountryCallingCodeEditable}
+					// Force domestic format when international is false
+					defaultCountry={international ? undefined : country}
+				/>
+			</div>
+			{(effectiveHasError || effectiveHint) && (
+				<Label className={`flex items-start text-xs font-normal ${effectiveHasError ? "text-error" : "text-text-tertiary"}`}>{effectiveHint}</Label>
+			)}
 		</div>
 	)
 }
 
-export default PhoneNumber
-// Defines the structure of a country code object
-export interface CountryCode {
-	country: string
-	icon: React.ReactNode
-	code: string
-	countryCode: string
+const Flag = ({ country }: { country?: RPNInput.Country }) => {
+	if (!country) return <PhoneIcon className="text-text-disabled h-5 w-5" />
+	const CountryFlag = flags[country]
+	return (
+		<span className="flex items-center justify-center overflow-hidden rounded-sm [&>svg]:size-5">
+			{CountryFlag ? <CountryFlag title={country} /> : <PhoneIcon className="size-5" />}
+		</span>
+	)
 }
-// Array of country codes with associated data
-export const COUNTRY_CODES: CountryCode[] = [
-	{
-		country: "Afghanistan",
-		icon: <AF />,
-		code: "+93",
-		countryCode: "AF",
-	},
-	{
-		country: "Albania",
-		icon: <AL />,
-		code: "+355",
-		countryCode: "AL",
-	},
-	{
-		country: "Algeria",
-		icon: <DZ />,
-		code: "+213",
-		countryCode: "DZ",
-	},
-	{
-		country: "American Samoa",
-		icon: <AS />,
-		code: "+1-684",
-		countryCode: "AS",
-	},
-	{
-		country: "Andorra",
-		icon: <AD />,
-		code: "+376",
-		countryCode: "AD",
-	},
-	{
-		country: "Angola",
-		icon: <AO />,
-		code: "+244",
-		countryCode: "AO",
-	},
-	{
-		country: "Argentina",
-		icon: <AR />,
-		code: "+54",
-		countryCode: "AR",
-	},
-	{
-		country: "Armenia",
-		icon: <AM />,
-		code: "+374",
-		countryCode: "AM",
-	},
-	{
-		country: "Australia",
-		icon: <AU />,
-		code: "+61",
-		countryCode: "AU",
-	},
-	{
-		country: "Austria",
-		icon: <AT />,
-		code: "+43",
-		countryCode: "AT",
-	},
-	{
-		country: "Azerbaijan",
-		icon: <AZ />,
-		code: "+994",
-		countryCode: "AZ",
-	},
-	{
-		country: "Bahamas",
-		icon: <BS />,
-		code: "+1-242",
-		countryCode: "BS",
-	},
-	{
-		country: "Bahrain",
-		icon: <BH />,
-		code: "+973",
-		countryCode: "BH",
-	},
-	{
-		country: "Bangladesh",
-		icon: <BD />,
-		code: "+880",
-		countryCode: "BD",
-	},
-	{
-		country: "Barbados",
-		icon: <BB />,
-		code: "+1-246",
-		countryCode: "BB",
-	},
-	{
-		country: "Belarus",
-		icon: <BY />,
-		code: "+375",
-		countryCode: "BY",
-	},
-	{
-		country: "Belgium",
-		icon: <BE />,
-		code: "+32",
-		countryCode: "BE",
-	},
-	{
-		country: "Belize",
-		icon: <BZ />,
-		code: "+501",
-		countryCode: "BZ",
-	},
-	{
-		country: "Benin",
-		icon: <BJ />,
-		code: "+229",
-		countryCode: "BJ",
-	},
-	{
-		country: "Bhutan",
-		icon: <BT />,
-		code: "+975",
-		countryCode: "BT",
-	},
-	{
-		country: "Bolivia",
-		icon: <BO />,
-		code: "+591",
-		countryCode: "BO",
-	},
-	{
-		country: "Bosnia and Herzegovina",
-		icon: <BA />,
-		code: "+387",
-		countryCode: "BA",
-	},
-	{
-		country: "Botswana",
-		icon: <BW />,
-		code: "+267",
-		countryCode: "BW",
-	},
-	{
-		country: "Brazil",
-		icon: <BR />,
-		code: "+55",
-		countryCode: "BR",
-	},
-	{
-		country: "Bulgaria",
-		icon: <BG />,
-		code: "+359",
-		countryCode: "BG",
-	},
-	{
-		country: "Burkina Faso",
-		icon: <BF />,
-		code: "+226",
-		countryCode: "BF",
-	},
-	{
-		country: "Burundi",
-		icon: <BI />,
-		code: "+257",
-		countryCode: "BI",
-	},
-	{
-		country: "Cambodia",
-		icon: <KH />,
-		code: "+855",
-		countryCode: "KH",
-	},
-	{
-		country: "Cameroon",
-		icon: <CM />,
-		code: "+237",
-		countryCode: "CM",
-	},
-	{
-		country: "Canada",
-		icon: <CA />,
-		code: "+1",
-		countryCode: "CA",
-	},
-	{
-		country: "Chile",
-		icon: <CL />,
-		code: "+56",
-		countryCode: "CL",
-	},
-	{
-		country: "China",
-		icon: <CN />,
-		code: "+86",
-		countryCode: "CN",
-	},
-	{
-		country: "Colombia",
-		icon: <CO />,
-		code: "+57",
-		countryCode: "CO",
-	},
-	{
-		country: "Congo",
-		icon: <CG />,
-		code: "+242",
-		countryCode: "CG",
-	},
-	{
-		country: "Congo",
-		icon: <CD />,
-		code: "+243",
-		countryCode: "CD",
-	},
-	{
-		country: "Costa Rica",
-		icon: <CR />,
-		code: "+506",
-		countryCode: "CR",
-	},
-	{
-		country: "Côte d'Ivoire",
-		icon: <CI />,
-		code: "+225",
-		countryCode: "CI",
-	},
-	{
-		country: "Croatia",
-		icon: <HR />,
-		code: "+385",
-		countryCode: "HR",
-	},
-	{
-		country: "Cuba",
-		icon: <CU />,
-		code: "+53",
-		countryCode: "CU",
-	},
-	{
-		country: "Cyprus",
-		icon: <CY />,
-		code: "+357",
-		countryCode: "CY",
-	},
-	{
-		country: "Czech Republic",
-		icon: <CZ />,
-		code: "+420",
-		countryCode: "CZ",
-	},
-	{
-		country: "Denmark",
-		icon: <DK />,
-		code: "+45",
-		countryCode: "DK",
-	},
-	{
-		country: "Djibouti",
-		icon: <DJ />,
-		code: "+253",
-		countryCode: "DJ",
-	},
-	{
-		country: "Dominican Republic",
-		icon: <DO />,
-		code: "+1-809",
-		countryCode: "DO",
-	},
-	{
-		country: "Ecuador",
-		icon: <EC />,
-		code: "+593",
-		countryCode: "EC",
-	},
-	{
-		country: "Egypt",
-		icon: <EG />,
-		code: "+20",
-		countryCode: "EG",
-	},
-	{
-		country: "El Salvador",
-		icon: <SV />,
-		code: "+503",
-		countryCode: "SV",
-	},
-	{
-		country: "Equatorial Guinea",
-		icon: <GQ />,
-		code: "+240",
-		countryCode: "GQ",
-	},
-	{
-		country: "Eritrea",
-		icon: <ER />,
-		code: "+291",
-		countryCode: "ER",
-	},
-	{
-		country: "Estonia",
-		icon: <EE />,
-		code: "+372",
-		countryCode: "EE",
-	},
-	{
-		country: "Ethiopia",
-		icon: <ET />,
-		code: "+251",
-		countryCode: "ET",
-	},
-	{
-		country: "Finland",
-		icon: <FI />,
-		code: "+358",
-		countryCode: "FI",
-	},
-	{
-		country: "France",
-		icon: <FR />,
-		code: "+33",
-		countryCode: "FR",
-	},
-	{
-		country: "Gabon",
-		icon: <GA />,
-		code: "+241",
-		countryCode: "GA",
-	},
-	{
-		country: "Gambia",
-		icon: <GM />,
-		code: "+220",
-		countryCode: "GM",
-	},
-	{
-		country: "Georgia",
-		icon: <GE />,
-		code: "+995",
-		countryCode: "GE",
-	},
-	{
-		country: "Germany",
-		icon: <DE />,
-		code: "+49",
-		countryCode: "DE",
-	},
-	{
-		country: "Ghana",
-		icon: <GH />,
-		code: "+233",
-		countryCode: "GH",
-	},
-	{
-		country: "Greece",
-		icon: <GR />,
-		code: "+30",
-		countryCode: "GR",
-	},
-	{
-		country: "Greenland",
-		icon: <GL />,
-		code: "+299",
-		countryCode: "GL",
-	},
-	{
-		country: "Guatemala",
-		icon: <GT />,
-		code: "+502",
-		countryCode: "GT",
-	},
-	{
-		country: "Guinea",
-		icon: <GN />,
-		code: "+224",
-		countryCode: "GN",
-	},
-	{
-		country: "Guinea-Bissau",
-		icon: <GW />,
-		code: "+245",
-		countryCode: "GW",
-	},
-	{
-		country: "Guyana",
-		icon: <GY />,
-		code: "+592",
-		countryCode: "GY",
-	},
-	{
-		country: "Haiti",
-		icon: <HT />,
-		code: "+509",
-		countryCode: "HT",
-	},
-	{
-		country: "Honduras",
-		icon: <HN />,
-		code: "+504",
-		countryCode: "HN",
-	},
-	{
-		country: "Hong Kong",
-		icon: <HK />,
-		code: "+852",
-		countryCode: "HK",
-	},
-	{
-		country: "Hungary",
-		icon: <HU />,
-		code: "+36",
-		countryCode: "HU",
-	},
-	{
-		country: "Iceland",
-		icon: <IS />,
-		code: "+354",
-		countryCode: "IS",
-	},
-	{
-		country: "India",
-		icon: <IN />,
-		code: "+91",
-		countryCode: "IN",
-	},
-	{
-		country: "Indonesia",
-		icon: <ID />,
-		code: "+62",
-		countryCode: "ID",
-	},
-	{
-		country: "Iran",
-		icon: <IR />,
-		code: "+98",
-		countryCode: "IR",
-	},
-	{
-		country: "Iraq",
-		icon: <IQ />,
-		code: "+964",
-		countryCode: "IQ",
-	},
-	{
-		country: "Ireland",
-		icon: <IE />,
-		code: "+353",
-		countryCode: "IE",
-	},
-	{
-		country: "Israel",
-		icon: <IL />,
-		code: "+972",
-		countryCode: "IL",
-	},
-	{
-		country: "Italy",
-		icon: <IT />,
-		code: "+39",
-		countryCode: "IT",
-	},
-	{
-		country: "Jamaica",
-		icon: <JM />,
-		code: "+1-876",
-		countryCode: "JM",
-	},
-	{
-		country: "Japan",
-		icon: <JP />,
-		code: "+81",
-		countryCode: "JP",
-	},
-	{
-		country: "Jordan",
-		icon: <JO />,
-		code: "+962",
-		countryCode: "JO",
-	},
-	{
-		country: "Kazakhstan",
-		icon: <KZ />,
-		code: "+997",
-		countryCode: "KZ",
-	},
-	{
-		country: "Kenya",
-		icon: <KE />,
-		code: "+254",
-		countryCode: "KE",
-	},
-	{
-		country: "South Korea",
-		icon: <KR />,
-		code: "+82",
-		countryCode: "KR",
-	},
-	{
-		country: "Kuwait",
-		icon: <KW />,
-		code: "+965",
-		countryCode: "KW",
-	},
-	{
-		country: "Kyrgyzstan",
-		icon: <KG />,
-		code: "+996",
-		countryCode: "KG",
-	},
-	{
-		country: "Lao",
-		icon: <LA />,
-		code: "+856",
-		countryCode: "LA",
-	},
-	{
-		country: "Latvia",
-		icon: <LV />,
-		code: "+371",
-		countryCode: "LV",
-	},
-	{
-		country: "Lebanon",
-		icon: <LB />,
-		code: "+961",
-		countryCode: "LB",
-	},
-	{
-		country: "Liberia",
-		icon: <LR />,
-		code: "+231",
-		countryCode: "LR",
-	},
-	{
-		country: "Libya",
-		icon: <LY />,
-		code: "+218",
-		countryCode: "LY",
-	},
-	{
-		country: "Lithuania",
-		icon: <LT />,
-		code: "+370",
-		countryCode: "LT",
-	},
-	{
-		country: "Luxembourg",
-		icon: <LU />,
-		code: "+352",
-		countryCode: "LU",
-	},
-	{
-		country: "Macao",
-		icon: <MO />,
-		code: "+853",
-		countryCode: "MO",
-	},
-	{
-		country: "Macedonia",
-		icon: <MK />,
-		code: "+389",
-		countryCode: "MK",
-	},
-	{
-		country: "Madagascar",
-		icon: <MG />,
-		code: "+261",
-		countryCode: "MG",
-	},
-	{
-		country: "Malawi",
-		icon: <MW />,
-		code: "+265",
-		countryCode: "MW",
-	},
-	{
-		country: "Malaysia",
-		icon: <MY />,
-		code: "+60",
-		countryCode: "MY",
-	},
-	{
-		country: "Maldives",
-		icon: <MV />,
-		code: "+960",
-		countryCode: "MV",
-	},
-	{
-		country: "Mali",
-		icon: <ML />,
-		code: "+223",
-		countryCode: "ML",
-	},
-	{
-		country: "Malta",
-		icon: <MT />,
-		code: "+356",
-		countryCode: "MT",
-	},
-	{
-		country: "Mauritania",
-		icon: <MR />,
-		code: "+222",
-		countryCode: "MR",
-	},
-	{
-		country: "Mauritius",
-		icon: <MU />,
-		code: "+230",
-		countryCode: "MU",
-	},
-	{
-		country: "Mexico",
-		icon: <MX />,
-		code: "+52",
-		countryCode: "MX",
-	},
-	{
-		country: "Moldova",
-		icon: <MD />,
-		code: "+373",
-		countryCode: "MD",
-	},
-	{
-		country: "Monaco",
-		icon: <MC />,
-		code: "+377",
-		countryCode: "MC",
-	},
-	{
-		country: "Mongolia",
-		icon: <MN />,
-		code: "+976",
-		countryCode: "MN",
-	},
-	{
-		country: "Montenegro",
-		icon: <ME />,
-		code: "+382",
-		countryCode: "ME",
-	},
-	{
-		country: "Morocco",
-		icon: <MA />,
-		code: "+212",
-		countryCode: "MA",
-	},
-	{
-		country: "Mozambique",
-		icon: <MZ />,
-		code: "+258",
-		countryCode: "MZ",
-	},
-	{
-		country: "Myanmar",
-		icon: <MM />,
-		code: "+95",
-		countryCode: "MM",
-	},
-	{
-		country: "Namibia",
-		icon: <NA />,
-		code: "+264",
-		countryCode: "NA",
-	},
-	{
-		country: "Nepal",
-		icon: <NP />,
-		code: "+977",
-		countryCode: "NP",
-	},
-	{
-		country: "Netherlands",
-		icon: <NL />,
-		code: "+31",
-		countryCode: "NL",
-	},
-	{
-		country: "New Zealand",
-		icon: <NZ />,
-		code: "+64",
-		countryCode: "NZ",
-	},
-	{
-		country: "Nicaragua",
-		icon: <NI />,
-		code: "+505",
-		countryCode: "NI",
-	},
-	{
-		country: "Niger",
-		icon: <NE />,
-		code: "+227",
-		countryCode: "NE",
-	},
-	{
-		country: "Nigeria",
-		icon: <NG />,
-		code: "+234",
-		countryCode: "NG",
-	},
-	{
-		country: "Norway",
-		icon: <NO />,
-		code: "+47",
-		countryCode: "NO",
-	},
-	{
-		country: "Oman",
-		icon: <OM />,
-		code: "+968",
-		countryCode: "OM",
-	},
-	{
-		country: "Pakistan",
-		icon: <PK />,
-		code: "+92",
-		countryCode: "PK",
-	},
-	{
-		country: "Panama",
-		icon: <PA />,
-		code: "+507",
-		countryCode: "PA",
-	},
-	{
-		country: "Papua New Guinea",
-		icon: <PG />,
-		code: "+675",
-		countryCode: "PG",
-	},
-	{
-		country: "Paraguay",
-		icon: <PY />,
-		code: "+595",
-		countryCode: "PY",
-	},
-	{
-		country: "Peru",
-		icon: <PE />,
-		code: "+51",
-		countryCode: "PE",
-	},
-	{
-		country: "Philippines",
-		icon: <PH />,
-		code: "+63",
-		countryCode: "PH",
-	},
-	{
-		country: "Poland",
-		icon: <PL />,
-		code: "+48",
-		countryCode: "PL",
-	},
-	{
-		country: "Portugal",
-		icon: <PT />,
-		code: "+351",
-		countryCode: "PT",
-	},
-	{
-		country: "Puerto Rico",
-		icon: <PR />,
-		code: "+1-787",
-		countryCode: "PR",
-	},
-	{
-		country: "Qatar",
-		icon: <QA />,
-		code: "+974",
-		countryCode: "QA",
-	},
-	{
-		country: "Romania",
-		icon: <RO />,
-		code: "+40",
-		countryCode: "RO",
-	},
-	{
-		country: "Russian Federation",
-		icon: <RU />,
-		code: "+7",
-		countryCode: "RU",
-	},
-	{
-		country: "Rwanda",
-		icon: <RW />,
-		code: "+250",
-		countryCode: "RW",
-	},
-	{
-		country: "Saint Helena, Ascension and Tristan da Cunha",
-		icon: <SH />,
-		code: "+290",
-		countryCode: "SH",
-	},
-	{
-		country: "Saint Kitts and Nevis",
-		icon: <KN />,
-		code: "+1-869",
-		countryCode: "KN",
-	},
-	{
-		country: "Saint Lucia",
-		icon: <LC />,
-		code: "+1-758",
-		countryCode: "LC",
-	},
-	{
-		country: "Saint Martin (French part)",
-		icon: <MF />,
-		code: "+590",
-		countryCode: "MF",
-	},
-	{
-		country: "Saint Pierre and Miquelon",
-		icon: <PM />,
-		code: "+508",
-		countryCode: "PM",
-	},
-	{
-		country: "Saint Vincent and the Grenadines",
-		icon: <VC />,
-		code: "+1-784",
-		countryCode: "VC",
-	},
-	{
-		country: "Samoa",
-		icon: <WS />,
-		code: "+685",
-		countryCode: "WS",
-	},
-	{
-		country: "San Marino",
-		icon: <SM />,
-		code: "+378",
-		countryCode: "SM",
-	},
-	{
-		country: "Sao Tome and Principe",
-		icon: <ST />,
-		code: "+239",
-		countryCode: "ST",
-	},
-	{
-		country: "Saudi Arabia",
-		icon: <SA />,
-		code: "+966",
-		countryCode: "SA",
-	},
-	{
-		country: "Senegal",
-		icon: <SN />,
-		code: "+221",
-		countryCode: "SN",
-	},
-	{
-		country: "Serbia",
-		icon: <RS />,
-		code: "+381",
-		countryCode: "RS",
-	},
-	{
-		country: "Seychelles",
-		icon: <SC />,
-		code: "+248",
-		countryCode: "SC",
-	},
-	{
-		country: "Sierra Leone",
-		icon: <SL />,
-		code: "+232",
-		countryCode: "SL",
-	},
-	{
-		country: "Singapore",
-		icon: <SG />,
-		code: "+65",
-		countryCode: "SG",
-	},
-	{
-		country: "Slovakia",
-		icon: <SK />,
-		code: "+421",
-		countryCode: "SK",
-	},
-	{
-		country: "Slovenia",
-		icon: <SI />,
-		code: "+386",
-		countryCode: "SI",
-	},
-	{
-		country: "Solomon Islands",
-		icon: <SB />,
-		code: "+677",
-		countryCode: "SB",
-	},
-	{
-		country: "Somalia",
-		icon: <SO />,
-		code: "+252",
-		countryCode: "SO",
-	},
-	{
-		country: "South Africa",
-		icon: <ZA />,
-		code: "+27",
-		countryCode: "ZA",
-	},
-	{
-		country: "Spain",
-		icon: <ES />,
-		code: "+34",
-		countryCode: "ES",
-	},
-	{
-		country: "Sri Lanka",
-		icon: <LK />,
-		code: "+94",
-		countryCode: "LK",
-	},
-	{
-		country: "Sudan",
-		icon: <SD />,
-		code: "+249",
-		countryCode: "SD",
-	},
-	{
-		country: "Suriname",
-		icon: <SR />,
-		code: "+597",
-		countryCode: "SR",
-	},
-	{
-		country: "Swaziland",
-		icon: <SZ />,
-		code: "+268",
-		countryCode: "SZ",
-	},
-	{
-		country: "Sweden",
-		icon: <SE />,
-		code: "+46",
-		countryCode: "SE",
-	},
-	{
-		country: "Switzerland",
-		icon: <CH />,
-		code: "+41",
-		countryCode: "CH",
-	},
-	{
-		country: "Syrian Arab Republic",
-		icon: <SY />,
-		code: "+963",
-		countryCode: "SY",
-	},
-	{
-		country: "Taiwan",
-		icon: <TW />,
-		code: "+886",
-		countryCode: "TW",
-	},
-	{
-		country: "Tajikistan",
-		icon: <TJ />,
-		code: "+992",
-		countryCode: "TJ",
-	},
-	{
-		country: "Tanzania",
-		icon: <TZ />,
-		code: "+255",
-		countryCode: "TZ",
-	},
-	{
-		country: "Thailand",
-		icon: <TH />,
-		code: "+66",
-		countryCode: "TH",
-	},
-	{
-		country: "Timor-Leste",
-		icon: <TL />,
-		code: "+670",
-		countryCode: "TL",
-	},
-	{
-		country: "Togo",
-		icon: <TG />,
-		code: "+228",
-		countryCode: "TG",
-	},
-	{
-		country: "Tonga",
-		icon: <TO />,
-		code: "+676",
-		countryCode: "TO",
-	},
-	{
-		country: "Trinidad and Tobago",
-		icon: <TT />,
-		code: "+1-868",
-		countryCode: "TT",
-	},
-	{
-		country: "Tunisia",
-		icon: <TN />,
-		code: "+216",
-		countryCode: "TN",
-	},
-	{
-		country: "Turkey",
-		icon: <TR />,
-		code: "+90",
-		countryCode: "TR",
-	},
-	{
-		country: "Turkmenistan",
-		icon: <TM />,
-		code: "+993",
-		countryCode: "TM",
-	},
-	{
-		country: "Uganda",
-		icon: <UG />,
-		code: "+256",
-		countryCode: "UG",
-	},
-	{
-		country: "Ukraine",
-		icon: <UA />,
-		code: "+380",
-		countryCode: "UA",
-	},
-	{
-		country: "United Arab Emirates",
-		icon: <AE />,
-		code: "+971",
-		countryCode: "AE",
-	},
-	{
-		country: "United Kingdom",
-		icon: <GB />,
-		code: "+44",
-		countryCode: "GB",
-	},
-	{
-		country: "United States",
-		icon: <US />,
-		code: "+1",
-		countryCode: "US",
-	},
-	{
-		country: "Uruguay",
-		icon: <UY />,
-		code: "+598",
-		countryCode: "UY",
-	},
-	{
-		country: "Uzbekistan",
-		icon: <UZ />,
-		code: "+998",
-		countryCode: "UZ",
-	},
-	{
-		country: "Vanuatu",
-		icon: <VU />,
-		code: "+678",
-		countryCode: "VU",
-	},
-	{
-		country: "Venezuela",
-		icon: <VE />,
-		code: "+58",
-		countryCode: "VE",
-	},
-	{
-		country: "Viet Nam",
-		icon: <VN />,
-		code: "+84",
-		countryCode: "VN",
-	},
-	{
-		country: "Yemen",
-		icon: <YE />,
-		code: "+967",
-		countryCode: "YE",
-	},
-	{
-		country: "Zambia",
-		icon: <ZM />,
-		code: "+260",
-		countryCode: "ZM",
-	},
-	{
-		country: "Zimbabwe",
-		icon: <ZW />,
-		code: "+263",
-		countryCode: "ZW",
-	},
-]
+
+PhoneNumber.displayName = "PhoneNumber"
+
+export { PhoneNumber }

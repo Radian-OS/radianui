@@ -40,9 +40,7 @@ const Demo = () => {
 			id: "image",
 			accessorKey: "image",
 			header: "Image",
-			cell: ({ row }: { row: { original: Product } }) => (
-				<img src={row.original.image} alt={row.original.title} className="h-20 w-20 rounded-xl object-cover" />
-			),
+			cell: ({ row }: { row: { original: Product } }) => <img src={row.original.image} alt={row.original.title} className="h-20 w-20 rounded-xl object-cover" />,
 			size: 10,
 		},
 		{
@@ -85,12 +83,7 @@ const Demo = () => {
 			<MainTable data={clothData} columns={clothColumn} verticalLine={true} />
 
 			<div className="my-10">
-				<Pagination
-					totalPage={cloth.length}
-					currentPage={currentPage}
-					onPageChange={(page) => setCurrentPage(page)}
-					onRowsPerPageChange={(rows) => setRowsPerPage(rows)}
-				/>
+				<Pagination totalPage={cloth.length} currentPage={currentPage} onPageChange={(page) => setCurrentPage(page)} onRowsPerPageChange={(rows) => setRowsPerPage(rows)} />
 			</div>
 		</div>
 	)

@@ -28,5 +28,11 @@
   "tailwindCSS.experimental.configFile": {
     "apps/website/src/css/globals.css": "apps/website/**",
     "apps/webapp/app/globals.css": "apps/webapp/**",
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

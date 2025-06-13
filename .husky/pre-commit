@@ -1,39 +1,69 @@
-#!/bin/bash
-
+#!/bin/sh
+# Standalone pre-commit script that works without husky.sh
+# This will work on both Windows and Linux environments
 echo "🚀 Running pre-commit checks..."
-
 # Get the current branch name
 CURRENT_BRANCH=$(git branch --show-current)
-
 # Get list of staged files
 STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
-
 # Check if any changes are in the website directory
-if echo "$STAGED_FILES" | grep -q "^apps/website/"; then
-  echo "📦 Changes detected in website directory"
-  
-  # Run Prettier only on staged website files
-  echo "🎨 Formatting code with Prettier for website..."
-  pnpm --filter website run format:write || exit 1
-  
-  # If on main branch, generate component JSON for website
-  if [ "$CURRENT_BRANCH" = "main" ]; then
-    echo "🌿 On main branch: Generating component JSON file for website..."
-    pnpm --filter website run generate-component-json || exit 1
-    
-    # Stage the generated JSON file
-    if [ -f "apps/website/components.json" ]; then
-      echo "📦 Staging generated components.json file..."
-      git add apps/website/components.json || exit 1
-    fi
-  fi
-  
-  # Re-stage only the website files that were modified by Prettier
-  for FILE in $STAGED_FILES; do
-    if [[ $FILE == apps/website/* ]]; then
-      git add "$FILE" || exit 1
-    fi
-  done
-fi
-
-echo "✅ Pre-commit checks completed successfully!"
+echo "$STAGED_FILES" | grep -q "^apps/website/" && {
+echo "📦 Changes detected in website directory"
+# Run linting checks on website files
+echo ":mag: Running lint checks for website..."
+pnpm --filter website run lint || {
+echo ":x: Lint checks failed. Please fix the issues before committing."
+exit 1
+}
+# Run type checks for website
+echo ":arrows_counterclockwise: Running type checks for website..."
+pnpm --filter website run typecheck || {
+echo ":x: Type checks failed. Please fix the issues before committing."
+exit 1
+}
+# Run Prettier only on staged website files
+echo ":art: Formatting code with Prettier for website..."
+pnpm --filter website run format:write || exit 1
+# If on main branch, generate component JSON for website
+[ "$CURRENT_BRANCH" = "main" ] && {
+echo "🌿 On main branch: Generating component JSON file for website..."
+pnpm --filter website run generate-component-json || exit 1
+# Stage the generated JSON file
+[ -f "apps/website/components.json" ] && {
+echo "📦 Staging generated components.json file..."
+git add apps/website/components.json || exit 1
+}
+}
+# Re-stage website files that were modified by Prettier
+for FILE in $STAGED_FILES; do
+case "$FILE" in
+apps/website/*)
+git add "$FILE" || exit 1
+;;
+esac
+done
+}
+# Check for changes in other apps or packages
+find apps packages -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | grep -v "^apps$" | grep -v "^packages$" | while read -r DIR; do
+APP_NAME=$(basename "$DIR")
+echo "$STAGED_FILES" | grep -q "^$DIR/" && {
+echo "📦 Changes detected in $APP_NAME"
+# Check if the app has lint script in its package.json
+grep -q "\"lint\":" "$DIR/package.json" 2>/dev/null && {
+echo "🔍 Running lint checks for $APP_NAME..."
+pnpm --filter "$APP_NAME" run lint || {
+echo ":x: Lint checks failed for $APP_NAME. Please fix the issues before committing."
+exit 1
+}
+}
+# Check if the app has typecheck script in its package.json
+grep -q "\"typecheck\":" "$DIR/package.json" 2>/dev/null && {
+echo "🔄 Running type checks for $APP_NAME..."
+pnpm --filter "$APP_NAME" run typecheck || {
+echo ":x: Type checks failed for $APP_NAME. Please fix the issues before committing."
+exit 1
+}
+}
+}
+done
+echo ":white_check_mark: Pre-commit checks completed successfully!"

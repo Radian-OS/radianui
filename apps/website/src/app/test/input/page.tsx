@@ -2,31 +2,21 @@
 
 import React from "react"
 import { CircleUserRound, Volume2, VolumeX } from "lucide-react"
-import { cn } from "@/lib/utils"
 import Calendar from "@/registry/ui/calendar"
 import { CurrencyInput } from "@/registry/ui/currency"
 import DateInput from "@/registry/ui/date-input"
 import DatePicker, { DatePickerModes } from "@/registry/ui/date-picker"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import FileUpload from "@/registry/ui/file-upload"
 import { Input, RoundedOptions, SizeOptions } from "@/registry/ui/input"
 import OTPInput from "@/registry/ui/input-otp"
-import NumberInput from "@/registry/ui/number"
+// import NumberInput from "@/registry/ui/number"
 import { Password } from "@/registry/ui/password"
 import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 import Slider from "@/registry/ui/slider"
 import Switch from "@/registry/ui/switch"
-import TextArea from "@/registry/ui/text-area"
+import { TextArea } from "@/registry/ui/text-area"
 import TimePicker from "@/registry/ui/time-picker"
 
 const roundedOptions = ["sm", "square", "full"]
@@ -79,11 +69,7 @@ const CommonProperty = ({ rounded, setRounded, size, setSize, disabled, setDisab
 			<DropdownSub>
 				<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 				<DropdownSubContent>
-					<DropdownGroup
-						selectionMode="single"
-						selectedValues={[rounded]}
-						onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-						minSelectionCount={1}>
+					<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 						{roundedOptions.map((roundedOption) => (
 							<DropdownItem value={roundedOption} key={roundedOption}>
 								{roundedOption}
@@ -95,11 +81,7 @@ const CommonProperty = ({ rounded, setRounded, size, setSize, disabled, setDisab
 			<DropdownSub>
 				<DropdownSubTrigger>Size</DropdownSubTrigger>
 				<DropdownSubContent>
-					<DropdownGroup
-						selectionMode="single"
-						selectedValues={[size]}
-						onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-						minSelectionCount={1}>
+					<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 						{sizes.map((size) => (
 							<DropdownItem value={size} key={size}>
 								{size}
@@ -111,11 +93,7 @@ const CommonProperty = ({ rounded, setRounded, size, setSize, disabled, setDisab
 			<DropdownSub>
 				<DropdownSubTrigger>Label</DropdownSubTrigger>
 				<DropdownSubContent>
-					<DropdownGroup
-						selectionMode="single"
-						selectedValues={[String(label)]}
-						onSelectedChange={(values) => setLabel(values[0] === "true")}
-						minSelectionCount={1}>
+					<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 						{booleanOptions.map((val) => (
 							<DropdownItem value={val} key={val}>
 								{val}
@@ -127,11 +105,7 @@ const CommonProperty = ({ rounded, setRounded, size, setSize, disabled, setDisab
 			<DropdownSub>
 				<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 				<DropdownSubContent>
-					<DropdownGroup
-						selectionMode="single"
-						selectedValues={[String(disabled)]}
-						onSelectedChange={(values) => setDisabled(values[0] === "true")}
-						minSelectionCount={1}>
+					<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 						{booleanOptions.map((option) => (
 							<DropdownItem key={option} value={option}>
 								{option}
@@ -190,16 +164,7 @@ const SearchInputComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 				</DropdownContent>
 			</Dropdown>
 
@@ -213,7 +178,8 @@ const SearchInputComp = () => {
 					value={searchValue}
 					id="search-input"
 					renderSearchResults={renderSearchResults}
-					classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
+					// classNames={{ base: "w-[320px]", searchResults: "w-[320px]" }}
+					className="w-80"
 				/>
 			</div>
 		</div>
@@ -233,24 +199,11 @@ const PasswordComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 					<DropdownSub>
 						<DropdownSubTrigger>HasError</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(hasError)]}
-								onSelectedChange={(values) => setHasError(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -264,9 +217,9 @@ const PasswordComp = () => {
 					size={size}
 					rounded={rounded}
 					disabled={disabled}
-					errorMsg={"Some error occured"}
+					hint={"Some error occured"}
 					hasError={hasError}
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					placeholder="Enter your password here"
 				/>
 			</div>
@@ -357,16 +310,7 @@ const DateInputComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 				</DropdownContent>
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
@@ -390,24 +334,11 @@ const TimeComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 					<DropdownSub>
 						<DropdownSubTrigger>24 Hour Mode</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(is24Hour)]}
-								onSelectedChange={(values) => setIs24Hour(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(is24Hour)]} onSelectedChange={(values) => setIs24Hour(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -417,11 +348,7 @@ const TimeComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Interval</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(interval)]}
-								onSelectedChange={(values) => setInterval(Number(values[0]))}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(interval)]} onSelectedChange={(values) => setInterval(Number(values[0]))} minSelectionCount={1}>
 								{intervalOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{`${option} min`}
@@ -442,7 +369,7 @@ const TimeComp = () => {
 					is24Hour={is24Hour}
 					interval={interval}
 					placeholder="Select time"
-					classNames={{ base: "w-[320px]", content: cn("h-[20rem]") }}
+					className="w-80"
 				/>
 			</div>
 		</div>
@@ -463,24 +390,11 @@ const NumberComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 					<DropdownSub>
 						<DropdownSubTrigger>HasError</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(hasError)]}
-								onSelectedChange={(values) => setHasError(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -502,17 +416,17 @@ const NumberComp = () => {
 				</DropdownContent>
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
-				<NumberInput
-					classNames={{ base: "w-[320px]" }}
+				{/* <NumberInput
+					className="w-80"
 					rounded={rounded}
 					size={size}
 					disabled={disabled}
 					label={label ? "Enter how many items to order" : undefined}
 					placeholder="Type in digits"
 					hasError={hasError}
-					errorMsg={hasError ? "There is an error" : undefined}
+					hint={hasError ? "There is an error" : undefined}
 					showStepper={showStepper}
-				/>
+				/> */}
 			</div>
 		</div>
 	)
@@ -532,24 +446,11 @@ const InputComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 					<DropdownSub>
 						<DropdownSubTrigger>SuffixIcon</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(suffixIcon)]}
-								onSelectedChange={(values) => setSuffixIcon(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(suffixIcon)]} onSelectedChange={(values) => setSuffixIcon(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -558,11 +459,7 @@ const InputComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>PrefixIcon</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(prefixIcon)]}
-								onSelectedChange={(values) => setPrefixIcon(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(prefixIcon)]} onSelectedChange={(values) => setPrefixIcon(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -571,11 +468,7 @@ const InputComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>HasError</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(hasError)]}
-								onSelectedChange={(values) => setHasError(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -585,16 +478,16 @@ const InputComp = () => {
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<Input
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					rounded={rounded}
 					size={size}
 					disabled={disabled}
 					label={label ? "Username" : undefined}
 					placeholder="Enter your username here"
 					lead={prefixIcon ? <CircleUserRound /> : null}
-					trial={suffixIcon ? <CircleUserRound /> : null}
+					trail={suffixIcon ? <CircleUserRound /> : null}
 					hasError={hasError}
-					errorMsg={hasError ? "There is an error" : undefined}
+					hint={hasError ? "There is an error" : undefined}
 				/>
 			</div>
 		</div>
@@ -617,24 +510,11 @@ const DatePickerComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 					<DropdownSub>
 						<DropdownSubTrigger>mode</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[mode]}
-								onSelectedChange={(values) => setMode(values[0] as DatePickerModes)}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[mode]} onSelectedChange={(values) => setMode(values[0] as DatePickerModes)} minSelectionCount={1}>
 								<DropdownItem value="single">Single</DropdownItem>
 								<DropdownItem value="multiple">Multiple</DropdownItem>
 								<DropdownItem value="range">Range</DropdownItem>
@@ -702,7 +582,6 @@ const DatePickerComp = () => {
 }
 
 const FileUploadComp = () => {
-	const [file, setFile] = React.useState<File[]>([])
 	const [disabled, setDisabled] = React.useState<string>("false")
 	const [rounded, setRounded] = React.useState<"rounded" | "square">("rounded")
 	const [label, setLabel] = React.useState(true)
@@ -716,11 +595,7 @@ const FileUploadComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[rounded]}
-								onSelectedChange={(values) => setRounded(values[0] as "rounded" | "square")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as "rounded" | "square")} minSelectionCount={1}>
 								{["rounded", "square"].map((roundedOption) => (
 									<DropdownItem value={roundedOption} key={roundedOption}>
 										{roundedOption}
@@ -732,11 +607,7 @@ const FileUploadComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Label</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(label)]}
-								onSelectedChange={(values) => setLabel(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 								{booleanOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -748,11 +619,7 @@ const FileUploadComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[disabled]}
-								onSelectedChange={(values) => setDisabled(values[0])}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[disabled]} onSelectedChange={(values) => setDisabled(values[0])} minSelectionCount={1}>
 								{booleanOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -765,16 +632,16 @@ const FileUploadComp = () => {
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
 				<FileUpload
-					label={label ? "Label here" : undefined}
-					rounded={rounded}
-					value={file}
-					onChange={setFile}
-					dropzoneClassName="h-[12.5rem]"
-					multiple
-					disabled={disabled === "true"}
-					// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
-					url="http://localhost:8000/upload"
-					// headers={{ "Content-Type": "application/json" }}
+				// label={label ? "Label here" : undefined}
+				// rounded="lg"
+				// value={file}
+				// onChange={setFile}
+				// dropzoneClassName="h-[12.5rem]"
+				// multiple
+				// disabled={disabled === "true"}
+				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
+				// url="http://localhost:8000/upload"
+				// headers={{ "Content-Type": "application/json" }}
 				/>
 			</div>
 		</div>
@@ -801,11 +668,7 @@ const SliderComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Label</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(label)]}
-								onSelectedChange={(values) => setLabel(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 								{booleanOptions.map((val) => (
 									<DropdownItem value={val} key={val}>
 										{val}
@@ -817,11 +680,7 @@ const SliderComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(disabled)]}
-								onSelectedChange={(values) => setDisabled(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 								{booleanOptions.map((val) => (
 									<DropdownItem value={val} key={val}>
 										{val}
@@ -833,11 +692,7 @@ const SliderComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>withInput</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(withInput)]}
-								onSelectedChange={(values) => setWithInput(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(withInput)]} onSelectedChange={(values) => setWithInput(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -859,11 +714,7 @@ const SliderComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Show Marks</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(showMarks)]}
-								onSelectedChange={(values) => setShowMarks(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(showMarks)]} onSelectedChange={(values) => setShowMarks(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -885,11 +736,7 @@ const SliderComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>suffixIcon</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(endContent)]}
-								onSelectedChange={(values) => setEndContent(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(endContent)]} onSelectedChange={(values) => setEndContent(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -930,7 +777,7 @@ const SliderComp = () => {
 				<Slider
 					label={label ? "Select volume label" : undefined}
 					disabled={disabled}
-					classNames={{ base: "w-[320px]" }}
+					className="w-80"
 					withInput={withInput}
 					showSteppers={showSteppers}
 					showTooltip={showTooltip}
@@ -946,8 +793,8 @@ const SliderComp = () => {
 								]
 							: undefined
 					}
-					prefixIcon={startContent ? <VolumeX /> : undefined}
-					suffixIcon={endContent ? <Volume2 /> : undefined}
+					leadIcon={startContent ? <VolumeX /> : undefined}
+					trailIcon={endContent ? <Volume2 /> : undefined}
 					orientation={orientation}
 				/>
 			</div>
@@ -981,11 +828,7 @@ const SwitchComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(disabled)]}
-								onSelectedChange={(values) => setDisabled(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 								{booleanOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -997,11 +840,7 @@ const SwitchComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Label</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(label)]}
-								onSelectedChange={(values) => setLabel(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 								{booleanOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -1036,11 +875,7 @@ const TextAreaComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[rounded]}
-								onSelectedChange={(values) => setRounded(values[0] as "rounded" | "square")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as "rounded" | "square")} minSelectionCount={1}>
 								{["rounded", "square"].map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -1052,11 +887,7 @@ const TextAreaComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Label</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(label)]}
-								onSelectedChange={(values) => setLabel(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
 								{booleanOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -1068,11 +899,7 @@ const TextAreaComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(disabled)]}
-								onSelectedChange={(values) => setDisabled(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
 								{booleanOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -1084,11 +911,7 @@ const TextAreaComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Rows</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(rows)]}
-								onSelectedChange={(values) => setRows(parseInt(values[0]))}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(rows)]} onSelectedChange={(values) => setRows(parseInt(values[0]))} minSelectionCount={1}>
 								<DropdownItem value="4">4</DropdownItem>
 								<DropdownItem value="5">5</DropdownItem>
 								<DropdownItem value="6">6</DropdownItem>
@@ -1099,11 +922,7 @@ const TextAreaComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Resizable</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(resizable)]}
-								onSelectedChange={(values) => setResizable(values[0] === "true")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(resizable)]} onSelectedChange={(values) => setResizable(values[0] === "true")} minSelectionCount={1}>
 								<DropdownItem value="true">Yes</DropdownItem>
 								<DropdownItem value="false">No</DropdownItem>
 							</DropdownGroup>
@@ -1112,14 +931,7 @@ const TextAreaComp = () => {
 				</DropdownContent>
 			</Dropdown>
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[2rem]">
-				<TextArea
-					label={label ? "Label here" : undefined}
-					disabled={disabled}
-					rounded={rounded}
-					resizable={resizable}
-					rows={rows}
-					classNames={{ base: "w-[320px]" }}
-				/>
+				<TextArea label={label ? "Label here" : undefined} disabled={disabled} rounded={rounded} resizable={resizable} rows={rows} className="w-80" />
 			</div>
 		</div>
 	)
@@ -1137,28 +949,12 @@ const CurrencyComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 				</DropdownContent>
 			</Dropdown>
 
 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
-				<CurrencyInput
-					disabled={disabled}
-					size={size}
-					placeholder="Enter price here"
-					className="w-[320px]"
-					label={label ? "Price" : undefined}
-					rounded={rounded}
-				/>
+				<CurrencyInput disabled={disabled} size={size} placeholder="Enter price here" className="w-[320px]" label={label ? "Price" : undefined} rounded={rounded} />
 			</div>
 		</div>
 	)
@@ -1178,24 +974,11 @@ const OTPComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-						label={label}
-						setLabel={setLabel}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
 					<DropdownSub>
 						<DropdownSubTrigger>Variant</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[variant]}
-								onSelectedChange={(values) => setVariant(values[0] as "box" | "flat")}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[variant]} onSelectedChange={(values) => setVariant(values[0] as "box" | "flat")} minSelectionCount={1}>
 								<DropdownItem value="box">Box</DropdownItem>
 								<DropdownItem value="flat">Flat</DropdownItem>
 							</DropdownGroup>
@@ -1205,11 +988,7 @@ const OTPComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Length</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[String(length)]}
-								onSelectedChange={(values) => setLength(Number(values[0]))}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[String(length)]} onSelectedChange={(values) => setLength(Number(values[0]))} minSelectionCount={1}>
 								{[4, 5, 6, 8, 10].map((len) => (
 									<DropdownItem key={len} value={String(len)}>
 										{len}
@@ -1254,24 +1033,11 @@ const SelectComp = () => {
 			<Dropdown>
 				<DropdownTrigger>Properties</DropdownTrigger>
 				<DropdownContent>
-					<CommonProperty
-						rounded={rounded}
-						setRounded={setRounded}
-						label={label}
-						setLabel={setLabel}
-						size={size}
-						setSize={setSize}
-						disabled={disabled}
-						setDisabled={setDisabled}
-					/>
+					<CommonProperty rounded={rounded} setRounded={setRounded} label={label} setLabel={setLabel} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} />
 					<DropdownSub>
 						<DropdownSubTrigger>Searchable</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[searchable]}
-								onSelectedChange={(values) => setSearchable(values[0])}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[searchable]} onSelectedChange={(values) => setSearchable(values[0])} minSelectionCount={1}>
 								{booleanOptions.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -1284,11 +1050,7 @@ const SelectComp = () => {
 					<DropdownSub>
 						<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
 						<DropdownSubContent>
-							<DropdownGroup
-								selectionMode="single"
-								selectedValues={[selectionMode]}
-								onSelectedChange={(values) => setSelectionMode(values[0])}
-								minSelectionCount={1}>
+							<DropdownGroup selectionMode="single" selectedValues={[selectionMode]} onSelectedChange={(values) => setSelectionMode(values[0])} minSelectionCount={1}>
 								{selectionModes.map((option) => (
 									<DropdownItem key={option} value={option}>
 										{option}
@@ -1327,7 +1089,7 @@ const SelectComp = () => {
 					minSelectionCount={minSelectionCount}
 					selectedValues={selectedValues}
 					onSelectedChange={setSelectedValues}
-					classNames={{ base: "w-[320px]", content: cn("max-h-[20rem]") }}>
+					className="w-80">
 					<SelectGroup label="Backend Frameworks">
 						<SelectItem value="node-js">Node.js (Express)</SelectItem>
 						<SelectItem value="django">Django (Python)</SelectItem>

@@ -3,16 +3,7 @@ import { Avatar } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Divider } from "@/registry/ui/divider"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -39,11 +30,7 @@ const PopoverPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Side</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setSide(Array.from(keys)[0] as Side)}
-										minSelectionCount={1}
-										selectedValues={[side]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSide(Array.from(keys)[0] as Side)} minSelectionCount={1} selectedValues={[side]}>
 										<DropdownItem value="top">Top</DropdownItem>
 										<DropdownItem value="right">Right</DropdownItem>
 										<DropdownItem value="bottom">Bottom</DropdownItem>
@@ -56,11 +43,7 @@ const PopoverPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Align</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setAlign(Array.from(keys)[0] as Align)}
-										minSelectionCount={1}
-										selectedValues={[align]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setAlign(Array.from(keys)[0] as Align)} minSelectionCount={1} selectedValues={[align]}>
 										<DropdownItem value="start">Start</DropdownItem>
 										<DropdownItem value="center">Center</DropdownItem>
 										<DropdownItem value="end">End</DropdownItem>

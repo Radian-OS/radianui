@@ -34,7 +34,7 @@ export default function Navbar() {
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (event.ctrlKey && event.key === "k") {
+			if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
 				event.preventDefault()
 				setIsOpen(true)
 			}
@@ -72,7 +72,7 @@ export default function Navbar() {
 		{ name: "Components", link: "/documentation/components" },
 		{ name: "Documentation", link: "/documentation" },
 		{ name: "Blog", link: "/blog" },
-		{ name: "Roadmap", link: "/roadmap" },
+		{ name: "Blocks", link: "/blocks" },
 		{ name: "Figma", link: "/documentation/figma" },
 	]
 
@@ -152,9 +152,7 @@ export default function Navbar() {
 																	ref={(el) => {
 																		itemRefs.current[globalIndex] = el
 																	}}
-																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${
-																		selectedIndex === globalIndex ? "bg-border" : ""
-																	}`}>
+																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${selectedIndex === globalIndex ? "bg-border" : ""}`}>
 																	{item.name}
 																</li>
 															</Link>

@@ -49,13 +49,7 @@ const TooltipContent = ({ className, sideOffset = 6, children, ...props }: Toolt
 				// Base animations
 				"animate-in fade-in-20 zoom-in-95",
 				// Side-specific slide animations
-				side === "top"
-					? "slide-in-from-bottom-2"
-					: side === "bottom"
-						? "slide-in-from-top-2"
-						: side === "left"
-							? "slide-in-from-right-2"
-							: "slide-in-from-left-2", // right side
+				side === "top" ? "slide-in-from-bottom-2" : side === "bottom" ? "slide-in-from-top-2" : side === "left" ? "slide-in-from-right-2" : "slide-in-from-left-2", // right side
 
 				// Open state animations
 				"data-[state=open]:animate-in data-[state=open]:fade-in-20 data-[state=open]:zoom-in-95",

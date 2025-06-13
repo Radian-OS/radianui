@@ -62,40 +62,31 @@ function Accordion({ size = "sm", variant = "box", interaction = "single", class
 					type: "multiple" as const,
 				}
 
+	const contextValue = React.useMemo(() => ({ size, variant }), [size, variant])
+
 	return (
-		<AccordionContext.Provider value={{ size, variant }}>
+		<AccordionContext.Provider value={contextValue}>
 			<AccordionPrimitive.Root
 				data-slot="accordion"
-				className={classNames(
-					"w-full",
-					size === "sm" ? "text-sm/6" : "text-base/7",
-					variant === "table" && "border-stroke rounded-xl border",
-					className
-				)}
+				className={classNames("w-full", size === "sm" ? "text-sm/6" : "text-base/7", variant === "table" && "border-stroke rounded-xl border", className)}
 				{...rootProps}>
 				{children}
 			</AccordionPrimitive.Root>
 		</AccordionContext.Provider>
 	)
 }
-
 Accordion.displayName = "Accordion"
 
 function AccordionItem({ children, className, ...props }: AccordionItemProps) {
 	const { variant, size } = useAccordion()
+	let variantClass = ""
+	if (variant === "box") {
+		variantClass = size === "sm" ? "border-stroke shadow-2xs mb-1.5 rounded-md border last:mb-0" : "border-stroke shadow-2xs mb-2 rounded-md border last:mb-0"
+	} else {
+		variantClass = "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0"
+	}
 	return (
-		<AccordionPrimitive.Item
-			data-slot="accordion-item"
-			className={classNames(
-				"overflow-hidden",
-				variant === "box"
-					? size === "sm"
-						? "border-stroke shadow-2xs mb-1.5 rounded-md border last:mb-0"
-						: "border-stroke shadow-2xs mb-2 rounded-md border last:mb-0"
-					: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
-				className
-			)}
-			{...props}>
+		<AccordionPrimitive.Item data-slot="accordion-item" className={classNames("overflow-hidden", variantClass, className)} {...props}>
 			{children}
 		</AccordionPrimitive.Item>
 	)
@@ -105,19 +96,25 @@ AccordionItem.displayName = "AccordionItem"
 
 function AccordionTrigger({ children, className, ...props }: AccordionTriggerProps) {
 	const { size, variant } = useAccordion()
+	let paddingClass = ""
+	if (variant === "open") {
+		paddingClass = size === "sm" ? "px-0 py-3" : "px-0 py-4"
+	} else {
+		paddingClass = size === "sm" ? "px-4 py-3" : "p-4"
+	}
 	return (
 		<AccordionPrimitive.Header className="flex">
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
-					"bg-bg1 text-fg1 outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all [&[data-state=open]>svg]:rotate-180",
-					variant === "open" ? (size === "sm" ? "px-0 py-3" : "px-0 py-4") : size === "sm" ? "px-4 py-3" : "p-4",
+					"bg-bg1 text-fg1 outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all [&[data-state=open]>.AccordionChevron]:rotate-180",
+					paddingClass,
 					className
 				)}
 				{...props}>
 				{children}
 				<ChevronDownIcon
-					className={classNames("text-text-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")}
+					className={classNames("AccordionChevron text-text-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")}
 					aria-hidden
 				/>
 			</AccordionPrimitive.Trigger>
@@ -129,17 +126,18 @@ AccordionTrigger.displayName = "AccordionTrigger"
 
 function AccordionContent({ children, className, ...props }: AccordionContentProps) {
 	const { size, variant } = useAccordion()
+	let paddingClass = ""
+	if (variant === "open") {
+		paddingClass = size === "sm" ? "px-0 pb-3" : "px-0 pb-4"
+	} else {
+		paddingClass = size === "sm" ? "px-4 pb-3" : "p-4"
+	}
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames(
-				"text-text-secondary overflow-hidden transition-all data-[state=closed]:animate-[accordion-close_0.2s_ease-out] data-[state=open]:animate-[accordion-open_0.2s_ease-out]",
-				className
-			)}
+			className={classNames("text-text-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all", className)}
 			{...props}>
-			<div className={classNames(variant === "open" ? (size === "sm" ? "px-0 pb-3" : "px-0 pb-4") : size === "sm" ? "px-4 pb-3" : "p-4", "pt-0")}>
-				{children}
-			</div>
+			<div className={classNames(paddingClass, "pt-0")}>{children}</div>
 		</AccordionPrimitive.Content>
 	)
 }

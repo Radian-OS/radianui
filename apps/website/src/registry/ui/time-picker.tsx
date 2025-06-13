@@ -3,10 +3,7 @@ import { Time } from "@internationalized/date"
 import { cn } from "@/lib/utils"
 import { Select, SelectItem, SelectProps } from "./select"
 
-export type TimePickerProps = Pick<
-	SelectProps,
-	"className" | "classNames" | "defaultSelected" | "label" | "placeholder" | "rounded" | "size" | "renderTrigger" | "disabled"
-> & {
+export type TimePickerProps = Pick<SelectProps, "className" | "classNames" | "defaultSelected" | "label" | "placeholder" | "rounded" | "size" | "renderTrigger" | "disabled"> & {
 	interval?: number
 	value?: Time | null
 	onValueChange?: (time: Time | null) => void
@@ -15,6 +12,7 @@ export type TimePickerProps = Pick<
 	maxTime?: string
 	defaultValue?: Time
 	allowEmptySelection?: boolean
+	lead?: React.ReactNode
 }
 
 /**
@@ -48,6 +46,7 @@ function TimePicker({
 	value = null,
 	allowEmptySelection = true,
 	classNames,
+	lead,
 	...props
 }: TimePickerProps) {
 	const isControlled = value !== null
@@ -117,23 +116,26 @@ function TimePicker({
 	}
 
 	return (
-		<Select
-			selectedValues={[currentValue]}
-			onSelectedChange={function (values) {
-				handleChange(values[0])
-			}}
-			classNames={{ content: cn("h-80"), ...classNames }}
-			minSelectionCount={allowEmptySelection ? 0 : 1}
-			{...props}>
-			{timeOptions.map((time, index) => {
-				const formatted = formatTime(time)
-				return (
-					<SelectItem key={index} value={serializeTime(time)}>
-						{formatted}
-					</SelectItem>
-				)
-			})}
-		</Select>
+		<div className="flex items-center justify-center">
+			<Select
+				selectedValues={[currentValue]}
+				onSelectedChange={function (values) {
+					handleChange(values[0])
+				}}
+				lead={lead}
+				classNames={{ content: cn("h-80"), ...classNames }}
+				minSelectionCount={allowEmptySelection ? 0 : 1}
+				{...props}>
+				{timeOptions.map((time, index) => {
+					const formatted = formatTime(time)
+					return (
+						<SelectItem key={index} value={serializeTime(time)}>
+							{formatted}
+						</SelectItem>
+					)
+				})}
+			</Select>
+		</div>
 	)
 }
 

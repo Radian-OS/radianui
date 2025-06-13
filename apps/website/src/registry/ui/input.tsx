@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { Label } from "./label"
 
-export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
+export type SizeOptions = "0" | "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 
 export const cvaInputVariants = {
@@ -18,9 +18,10 @@ export const cvaInputVariants = {
 		"2xl": "rounded-2xl",
 	},
 	size: {
+		"0": "h-fit",
 		"28": "h-7 text-xs p-1.5",
 		"32": "h-8 text-sm px-3 py-1.5",
-		"36": "h-9 text-sm px-3 py-2",
+		"36": "h-9 text-sm px-2.5 py-2",
 		"40": "h-10 text-sm px-3 py-2.5",
 		"44": "h-11 text-base py-2.5 px-3.5",
 		"48": "h-12 text-base py-3 px-3.5",
@@ -30,14 +31,14 @@ export const cvaInputVariants = {
 export const defaultInputSize = "36"
 export const defaultInputRadius = "lg"
 
-const sizeHeightMapping = {
-	28: "h-4 w-4",
-	32: "h-5 w-5",
-	36: "h-5 w-5",
-	40: "h-5 w-5",
-	44: "h-6 w-6",
-	48: "h-6 w-6",
-}
+// const sizeHeightMapping = {
+// 	28: "h-4",
+// 	32: "h-5",
+// 	36: "h-5",
+// 	40: "h-5",
+// 	44: "h-6",
+// 	48: "h-6",
+// }
 
 // Creating a variant for input styles using cva
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
@@ -50,61 +51,70 @@ const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 bo
 	},
 })
 // Type definition for custom class names for various parts of the input
-export type InputClassNames = {
-	base?: string /* The div that wraps the component */
-	label?: string /* The label of the input */
-	wrapper?: string /* The wrapper div for the input and icons (used for showing borders) */
-	input?: string /* The actual input element used inside */
-	error?: string /* The error message */
-}
+// export type InputClassNames = {
+// 	base?: string /* The div that wraps the component */
+// 	label?: string /* The label of the input */
+// 	wrapper?: string /* The wrapper div for the input and icons (used for showing borders) */
+// 	input?: string /* The actual input element used inside */
+// 	error?: string /* The error message */
+// }
 // Type definition for input props, extending standard input attributes
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	label?: string
-	errorMsg?: string
+	hint?: string
 	hasError?: boolean
 	custom?: boolean
-	type?: "text" | "email" | "url" | "number" | "password"
+	type?: "text" | "email" | "url" | "number" | "password" | "file"
+	fileUploadSize?: SizeOptions // Only used when type is 'file'
 	/* 
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
 	*/
 	lead?: React.ReactNode
-	trial?: React.ReactNode
+	trail?: React.ReactNode
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	id?: string
-	classNames?: InputClassNames
 	ref?: React.Ref<HTMLInputElement>
 }
 // Input component definition
 function Input({
 	label,
 	disabled,
-	errorMsg,
+	hint,
 	custom = false,
 	hasError = false,
 	type = "text",
 	lead,
-	trial,
+	trail,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
+	fileUploadSize = defaultInputSize,
 	id,
 	className,
-	classNames,
 	...props
 }: InputProps) {
 	let htmlId = React.useId()
 	if (id) htmlId = id
+	const fileBaseClass = "file:border-border-alpha file:me-2 file:border-0 file:border-e"
+	const fileSizeMap = {
+		"28": "file:h-7 text-xs file:p-1.5",
+		"32": "file:h-8 text-sm file:px-3 file:py-1.5",
+		"36": "file:h-9 text-sm file:px-2.5 file:py-2",
+		"40": "file:h-10 text-sm file:px-3 file:py-2.5",
+		"44": "file:h-11 text-base file:py-2.5 file:px-3.5",
+		"48": "file:h-12 text-base file:py-3 file:px-3.5",
+	}
+	const fileSizeClass = type === "file" && fileUploadSize in fileSizeMap ? fileSizeMap[fileUploadSize as keyof typeof fileSizeMap] : ""
 
 	return (
-		<div
-			className={cn("text-fg-1 flex w-full flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className, classNames?.base)}>
+		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
 			{label && (
-				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled }, classNames?.label)}>
+				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled })}>
 					{label}
 				</Label>
 			)}
-			<label
+			<Label
 				className={cn(
 					inputVariants({ size, rounded }),
 					{
@@ -120,54 +130,68 @@ function Input({
 						[`rounded-r-none`]: custom,
 					},
 					size === "28" ? "gap-1.5" : "gap-2",
-					classNames?.wrapper
+					className
 				)}>
 				{lead && (
 					<span
-						className={cn("flex cursor-pointer items-center justify-center rounded", {
+						className={cn("flex items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
 						})}>
-						{React.isValidElement(lead)
-							? React.cloneElement(lead as React.ReactElement<{ className?: string }>, {
-									className: cn((lead as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
-								})
-							: lead}
+						{lead}
 					</span>
 				)}
+
 				<input
 					id={htmlId}
 					className={cn(
 						"text-fg-1 placeholder-text-tertiary outline-hidden h-fit w-full select-none border border-none bg-transparent p-0 text-sm placeholder:text-sm placeholder:font-normal focus:ring-0",
 						{
 							"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
+							"file:border-border-alpha p-0 file:me-2 file:border-0 file:border-e file:px-2 file:py-1.5": type === "file",
 						},
 						size && {
 							"text-xs placeholder:text-xs": size === "28",
 							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
 							"text-base placeholder:text-base": ["44", "48"].includes(size),
 						},
-						classNames?.input
+						type === "file" && fileBaseClass,
+						fileSizeClass,
+						size && {
+							"text-xs placeholder:text-xs": size === "28",
+							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
+							"text-base placeholder:text-base": ["44", "48"].includes(size),
+						},
+						className
 					)}
 					type={type}
 					disabled={disabled}
 					{...props}
 				/>
-				{trial && (
+				{trail && (
+					<span
+						className={cn("flex items-center justify-center rounded", {
+							"text-text-tertiary": !disabled,
+							"text-text-disabled": disabled,
+						})}>
+						{trail}
+					</span>
+				)}
+				{/* {trail && (
 					<span
 						className={cn("flex cursor-pointer items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
 						})}>
-						{React.isValidElement(trial)
-							? React.cloneElement(trial as React.ReactElement<{ className?: string }>, {
-									className: cn((trial as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
+						{React.isValidElement(trail)
+							? React.cloneElement(trail as React.ReactElement<{ className?: string }>, {
+									className: cn((trail as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
 								})
-							: trial}
+							: trail}
 					</span>
-				)}
-			</label>
-			{hasError && <Label className={cn("text-error flex items-start text-xs font-medium", className)}>{errorMsg}</Label>}
+				)} */}
+			</Label>
+			{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
 		</div>
 	)
 }

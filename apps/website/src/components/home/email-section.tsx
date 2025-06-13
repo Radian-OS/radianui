@@ -31,13 +31,14 @@ export default function EmailSection() {
 				<div className="bg-stroke-decorative -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block" />
 				<div className="md:py-15 border-border flex w-full flex-col items-center justify-center gap-8 rounded-xl border px-6 py-6 text-center md:px-10 lg:flex-row lg:justify-between">
 					<div className="flex flex-col gap-2 sm:gap-3">
-						<h4 className="heading-4">Get notified when new stuff drops.</h4>
+						<h2 className="heading-4">Get notified when new stuff drops.</h2>
 						<p className="text-text-secondary text-base">Subscribe to get latest updates, tips, & exclusive offers from Radian.</p>
 					</div>
 					<form className="flex flex-col gap-2 text-start" onSubmit={handleSubscribe}>
 						<div className="flex w-full flex-col gap-3 sm:w-fit sm:flex-row">
 							<Input
 								className="w-full sm:w-80"
+								size="40"
 								placeholder="Enter your email"
 								lead={<Mail className="stroke-stroke" />}
 								value={email}
@@ -45,7 +46,7 @@ export default function EmailSection() {
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
-							<Button disabled={isPending} type="submit" className="w-full sm:w-fit">
+							<Button size="40" disabled={isPending} type="submit" className="w-full sm:w-fit">
 								{!isPending ? "Subscribe" : "Subscribing"}
 							</Button>
 						</div>
@@ -59,7 +60,7 @@ export default function EmailSection() {
 						</div>
 					</form>
 				</div>
-				<div className="bg-stroke-decorative -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block"></div>
+				<div className="bg-border -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block"></div>
 			</div>
 		</div>
 	)

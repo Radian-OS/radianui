@@ -2,16 +2,7 @@ import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import DatePicker from "@/registry/ui/date-picker"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -19,7 +10,6 @@ export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type DatePickerModes = "single" | "multiple" | "range" | "time"
 const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
-const booleanOptions = ["true", "false"]
 
 const DatePickerPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
@@ -34,6 +24,7 @@ const DatePickerPreview = () => {
 
 	const [label, setLabel] = useState<boolean>(true)
 	const [hasError, setHasError] = useState<boolean>(false)
+	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -46,11 +37,7 @@ const DatePickerPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[rounded]}
-											onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
 											{roundedOptions.map((roundedOption) => (
 												<DropdownItem value={roundedOption} key={roundedOption}>
 													{roundedOption}
@@ -62,11 +49,7 @@ const DatePickerPreview = () => {
 								<DropdownSub>
 									<DropdownSubTrigger>Size</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[size]}
-											onSelectedChange={(values) => setSize(values[0] as SizeOptions)}
-											minSelectionCount={1}>
+										<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
 											{sizes.map((size) => (
 												<DropdownItem value={size} key={size}>
 													{size}
@@ -75,118 +58,114 @@ const DatePickerPreview = () => {
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
-							</DropdownGroup>
-							<DropdownSub>
-								<DropdownSubTrigger>Label</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(label)]}
-										onSelectedChange={(values) => setLabel(values[0] === "true")}
-										minSelectionCount={1}>
-										{booleanOptions.map((val) => (
-											<DropdownItem value={val} key={val}>
-												{val}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(disabled)]}
-										onSelectedChange={(values) => setDisabled(values[0] === "true")}
-										minSelectionCount={1}>
-										{booleanOptions.map((option) => (
-											<DropdownItem key={option} value={option}>
-												{option}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownGroup title="date picker">
 								<DropdownSub>
-									<DropdownSubTrigger>mode</DropdownSubTrigger>
+									<DropdownSubTrigger>Label</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+								<DropdownSub>
+									<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
-											selectedValues={[mode]}
-											onSelectedChange={(values) => setMode(values[0] as DatePickerModes)}
+											selectedValues={[String(disabled)]}
+											onSelectedChange={(values) => setDisabled(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="single">Single</DropdownItem>
-											<DropdownItem value="multiple">Multiple</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Has error</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											selectedValues={[String(hasError)]}
+											onSelectedChange={(values) => setHasError(values[0] === "true")}
+											minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Hint</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+							</DropdownGroup>
+
+							<DropdownGroup title="date picker">
+								<DropdownSub>
+									<DropdownSubTrigger>Mode</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup selectionMode="single" selectedValues={[mode]} onSelectedChange={(values) => setMode(values[0] as DatePickerModes)} minSelectionCount={1}>
+											{!typeable && (
+												<>
+													<DropdownItem value="single">Single</DropdownItem>
+													<DropdownItem value="multiple">Multiple</DropdownItem>
+												</>
+											)}
 											<DropdownItem value="range">Range</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+									<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
 											selectedValues={[String(showDateRangeShortcut)]}
 											onSelectedChange={(values) => setShowDateRangeShortcut(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>dualCalendar</DropdownSubTrigger>
+									<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
 											selectedValues={[String(doubleCalendar)]}
 											onSelectedChange={(values) => setDoubleCalendar(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Show Time</DropdownSubTrigger>
+									<DropdownSubTrigger>Time</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
 											selectedValues={[String(showTime)]}
 											onSelectedChange={(values) => setShowTime(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
 									<DropdownSubTrigger>Footer</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											selectedValues={[String(footer)]}
-											onSelectedChange={(values) => setFooter(values[0] === "true")}
-											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+										<DropdownGroup selectionMode="single" selectedValues={[String(footer)]} onSelectedChange={(values) => setFooter(values[0] === "true")} minSelectionCount={1}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -198,8 +177,8 @@ const DatePickerPreview = () => {
 											selectedValues={[String(typeable)]}
 											onSelectedChange={(values) => setTypeable(values[0] === "true")}
 											minSelectionCount={1}>
-											<DropdownItem value="true">Yes</DropdownItem>
-											<DropdownItem value="false">No</DropdownItem>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -219,6 +198,7 @@ const DatePickerPreview = () => {
 						mode={mode}
 						label={label ? "Date picker" : undefined}
 						hasError={hasError}
+						hint={hint ? "Hint text to help the user with input" : ""}
 						disabled={disabled}
 						triggerClassName="w-[320px]"
 						showDateRangeShortcut={showDateRangeShortcut}
@@ -244,24 +224,27 @@ const DatePickerPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`  
-<DatePicker
+					code={`<DatePicker
     mode="${mode}"
     placeholder="Select Date"
-    showDateRangeShortcut=${showDateRangeShortcut}
-    disabled=${disabled}
-    dualCalendar=${doubleCalendar}
-    showTime=${showTime}
+    showDateRangeShortcut={${showDateRangeShortcut}}
+    disabled={${disabled}}
+    dualCalendar={${doubleCalendar}}
+    showTime={${showTime}}
     size="${size}"
     rounded="${rounded}"
-    typeable="${typeable}"
+    typeable={${typeable}}
+	hasError={${hasError}}
+	${hint ? `hint="Hint text to help the user with input"` : ""}
     footer=${
-			footer &&
-			`
-       {<div className="p-3 flex gap-2">
-            <Button variant="neutral-outline">Cancel</Button>
-            <Button>Apply</Button>
-        </div>}`
+			footer
+				? `{
+       		<div className="p-3 flex gap-2">
+            	<Button variant="neutral-outline">Cancel</Button>
+            	<Button>Apply</Button>
+        	</div>
+		}`
+				: `{false}`
 		}
 />`}
 				/>

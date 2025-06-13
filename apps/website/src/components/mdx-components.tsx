@@ -6,6 +6,16 @@ import { MDXComponents } from "mdx/types"
 import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
+import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
+import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
+import ChangingTextPreview from "@/component-preview/animations/changing-text-preview"
+import DraggablePreview from "@/component-preview/animations/draggable-preview"
+import FadePreview from "@/component-preview/animations/fade-preview"
+import GradientTextPreview from "@/component-preview/animations/gradient-text-preview"
+import InfiniteScrollPreview from "@/component-preview/animations/infinite-scroll-preview"
+import PointerPreview from "@/component-preview/animations/pointer-preview"
+import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
+import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
 import BadgePreview from "@/component-preview/badge-preview"
@@ -17,25 +27,34 @@ import CalendarPreview from "@/component-preview/calendar-preview"
 import CheckboxgroupPreview from "@/component-preview/checkbox-group-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
+import ColorPickerPreview from "@/component-preview/color-picker-preview"
 import CurrencyAmountPreview from "@/component-preview/currency-amount-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
+import FileUploadPreview from "@/component-preview/file-upload-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
+import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
+import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
+import SearchPreview from "@/component-preview/search-preview"
+import SelectPreview from "@/component-preview/select-preview"
+import SkeletonPreview from "@/component-preview/skeleton-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
-import SonnerPreview from "@/component-preview/sonner-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
+import TextAreaPreview from "@/component-preview/text-area-preview"
+import TimePickerPreview from "@/component-preview/time-picker-preview"
+import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
@@ -44,13 +63,23 @@ import Manual from "@/components/manual"
 import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
+import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
+import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
+import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
+import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
+import FadeOutExample from "@/registry/example/animated/fade-out-example"
+import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
+import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
+import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
+import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
@@ -59,6 +88,10 @@ import DeleteModalExample from "@/registry/example/modal/delete-modal"
 import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
+import SearchInputExample from "@/registry/example/search-input/search-input-example"
+import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
+import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
+import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 
@@ -68,6 +101,7 @@ type MdxProps = {
 
 const components: MDXComponents = {
 	AccordionPreview: () => <AccordionPreview />,
+	AccordionWithIconExample: () => <AccordionWithIconExample />,
 	AlertPreview: () => <AlertPreview />,
 	AvatarPreview: () => <AvatarPreview />,
 	AvatargroupPreview: () => <AvatargroupPreview />,
@@ -86,7 +120,7 @@ const components: MDXComponents = {
 	GithubIntegrationModalExample: () => <GithubIntegrationModalExample />,
 	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
-	SonnerPreview: () => <SonnerPreview />,
+	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
 	PopoverPreview: () => <PopoverPreview />,
 	TablePreview: () => <TablePreview />,
@@ -98,6 +132,8 @@ const components: MDXComponents = {
 	HovercardPreview: () => <HovercardPreview />,
 	InputOtpPreview: () => <InputOtpPreview />,
 	TabsPreview: () => <TabsPreview />,
+	IconCounterTabsExample: () => <IconCounterTabsExample />,
+	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
 	DropdownPreview: () => <DropdownPreview />,
 	ResizablePreview: () => <ResizablePreview />,
 	Nextjs: () => <Nextjs />,
@@ -109,6 +145,7 @@ const components: MDXComponents = {
 	InputPreview: () => <InputPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
+	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
@@ -120,16 +157,37 @@ const components: MDXComponents = {
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
 	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
-	Code: ({
-		language,
-		pkg = ["pnpm", "yarn", "npm", "bun"],
-		tabs = false,
-		code,
-		showLineNumbers,
-		copiable = true,
-		className,
-		...props
-	}: CodeAreaProps) =>
+	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
+	SearchPreview: () => <SearchPreview />,
+	SkeletonPreview: () => <SkeletonPreview />,
+	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
+	SearchInputExample: () => <SearchInputExample />,
+	ProgressBarPreview: () => <ProgressBarPreview />,
+	FileUploadPreview: () => <FileUploadPreview />,
+	NumberInputPreview: () => <NumberInputPreview />,
+	TextAreaPreview: () => <TextAreaPreview />,
+	TimePickerPreview: () => <TimePickerPreview />,
+	SelectPreview: () => <SelectPreview />,
+	PhoneNumberPreview: () => <PhoneNumberPreview />,
+	ColorPickerPreview: () => <ColorPickerPreview />,
+	ColorPickerExample: () => <ColorPickerExample />,
+	// Animation components
+	TypingTextPreview: () => <TypingTextPreview />,
+	GradientTextPreview: () => <GradientTextPreview />,
+	DraggablePreview: () => <DraggablePreview />,
+	FadePreview: () => <FadePreview />,
+	InfiniteScrollPreview: () => <InfiniteScrollPreview />,
+	PointerPreview: () => <PointerPreview />,
+	BorderBeamPreview: () => <BorderBeamPreview />,
+	ChangingTextPreview: () => <ChangingTextPreview />,
+	InfiniteScrollVerticalExample: () => <InfiniteScrollVerticalExample />,
+	CollaborationPointerExample: () => <CollaborationPointerExample />,
+	DragConstraintsExample: () => <DragConstraintsExample />,
+	AnimatedListPreview: () => <AnimatedListPreview />,
+	TextRevealPreview: () => <TextRevealPreview />,
+	BlurFadeExample: () => <BlurFadeExample />,
+	FadeOutExample: () => <FadeOutExample />,
+	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />
 		) : (
@@ -215,15 +273,10 @@ const components: MDXComponents = {
 	),
 	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
-	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-		<Link className={cn("font-medium underline underline-offset-4", className)} {...props} />
-	),
+	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium underline underline-offset-4", className)} {...props} />,
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
-			className={cn(
-				"bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10",
-				className
-			)}
+			className={cn("bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10", className)}
 			{...props}
 		/>
 	),

@@ -2,16 +2,7 @@ import { useState } from "react"
 import { CircleAlert } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Modal, ModalBody, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -32,7 +23,7 @@ const PopoverPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>CloseIcon</DropdownSubTrigger>
+								<DropdownSubTrigger>Close icon</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -48,11 +39,7 @@ const PopoverPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setBackdrop(Array.from(keys)[0] as Backdrop)}
-										minSelectionCount={1}
-										selectedValues={[backdrop]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setBackdrop(Array.from(keys)[0] as Backdrop)} minSelectionCount={1} selectedValues={[backdrop]}>
 										<DropdownItem value="overlay">Overlay</DropdownItem>
 										<DropdownItem value="blur">Blur</DropdownItem>
 										<DropdownItem value="transparent">Transparent</DropdownItem>
@@ -60,7 +47,7 @@ const PopoverPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>WithSeparator</DropdownSubTrigger>
+								<DropdownSubTrigger>With separator</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"

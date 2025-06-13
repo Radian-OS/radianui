@@ -19,19 +19,20 @@ import PopoverExample from "@/registry/example/popover-example"
 import RadioGroupExample from "@/registry/example/radiogroup-example"
 import ResizeableExample from "@/registry/example/resizable-example"
 import SelectExample from "@/registry/example/select-example"
-import SonnerExample from "@/registry/example/sonner-example"
 import SwitchExample from "@/registry/example/switch-example"
 import TableExample from "@/registry/example/table-example"
 import TabsExample from "@/registry/example/tabs-example"
+import SonnerExample from "@/registry/example/toast-example"
 import TooltipExample from "@/registry/example/tooltip-example"
+import ColorPicker from "@/registry/ui/color-picker"
+import { Spinner } from "@/registry/ui/spinner"
 
 const page = () => {
 	return (
 		<div className="mx-auto max-w-[80rem]">
 			<div className="px-4 md:px-5 lg:px-6">
-				{/* <BadgeExample /> */}
-				{/* <FontTogglerExample /> */}
 				<BannerExample />
+				<Spinner />
 				<BreadcrumbExample />
 				<ButtonExample />
 				<CodeAreaExample />
@@ -55,6 +56,7 @@ const page = () => {
 				<TableExample />
 				<PaginationExample />
 				<ResizeableExample />
+				<ColorPicker />
 			</div>
 		</div>
 	)

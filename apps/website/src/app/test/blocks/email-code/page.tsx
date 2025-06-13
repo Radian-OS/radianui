@@ -25,15 +25,7 @@ const EmailCode = () => {
 							</div>
 						</div>
 						<div className="space-y-5">
-							<OTPInput
-								label="Confirmation Code"
-								length={6}
-								variant="box"
-								rounded="sm"
-								size="44"
-								className="w-[320px]"
-								placeholder="Confirmation Code"
-							/>
+							<OTPInput label="Confirmation Code" length={6} variant="box" rounded="sm" size="44" className="w-[320px]" placeholder="Confirmation Code" />
 							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
 								Verify
 							</Button>

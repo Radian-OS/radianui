@@ -1,15 +1,6 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CodeAreaPreview = () => {
@@ -66,7 +57,7 @@ free -h`,
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>theme</DropdownSubTrigger>
+								<DropdownSubTrigger>Theme</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -86,7 +77,7 @@ free -h`,
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>language</DropdownSubTrigger>
+								<DropdownSubTrigger>Language</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -106,7 +97,7 @@ free -h`,
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>copiable</DropdownSubTrigger>
+								<DropdownSubTrigger>Copiable</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -115,14 +106,14 @@ free -h`,
 										onSelectedChange={(keys) => {
 											setCopieable(Array.from(keys)[0] as copyType)
 										}}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>showLineNumbers</DropdownSubTrigger>
+								<DropdownSubTrigger>Show line numbers</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -131,8 +122,8 @@ free -h`,
 										onSelectedChange={(keys) => {
 											setShowLineNumbers(Array.from(keys)[0] as showLineNumbersType)
 										}}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -157,14 +148,7 @@ free -h`,
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					code={getImplementationCode()}
-					className="h-[420px]"
-					theme="github-dark-default"
-					showLineNumbers={false}
-					copiable={true}
-				/>
+				<CodeArea language="tsx" code={getImplementationCode()} className="h-[420px]" theme="github-dark-default" showLineNumbers={false} copiable={true} />
 			</TabsContent>
 		</Tabs>
 	)

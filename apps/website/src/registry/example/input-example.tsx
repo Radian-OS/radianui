@@ -9,15 +9,15 @@ import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"
 import { Input, type RoundedOptions, type SizeOptions } from "../ui/input"
 import OTPInput from "../ui/input-otp"
-import NumberInput from "../ui/number"
+// import NumberInput from "../ui/number"
 import { InputOtp } from "../ui/otp-input"
 import { Password } from "../ui/password"
-import PhoneNumber from "../ui/phone-number"
+// import PhoneNumber from "../ui/phone-number"
 import ProgressBar from "../ui/progress-bar"
 import SearchInput from "../ui/search"
 import { Select, SelectItem } from "../ui/select"
 import Slider from "../ui/slider"
-import TextArea from "../ui/text-area"
+import { TextArea } from "../ui/text-area"
 import TimePicker from "../ui/time-picker"
 
 const sizes = ["32", "36", "40", "44", "48", "56"] as const
@@ -25,11 +25,11 @@ const sizes = ["32", "36", "40", "44", "48", "56"] as const
 const InputExample = () => {
 	const [size, setSize] = React.useState<SizeOptions>("40")
 	const [rounded, setRounded] = React.useState<RoundedOptions>("md")
-	const [phone, setPhone] = React.useState("")
+	// const [phone, setPhone] = React.useState("")
 	const [query, setQuery] = React.useState("")
 	const [searchResults, setSearchResults] = React.useState<{ id: string; title: string }[]>([])
 	const [currency, setCurrency] = React.useState("")
-	const [file, setFile] = React.useState<File[]>([])
+	// const [file, setFile] = React.useState<File[]>([])
 	const [input, setInput] = React.useState<string>("")
 
 	const [progress, setProgress] = React.useState<number>(50)
@@ -81,11 +81,7 @@ const InputExample = () => {
 				</div>
 
 				<div>
-					<Select
-						label="Roundness"
-						placeholder="Select Radius"
-						selectedValues={[rounded]}
-						onSelectedChange={([value]) => setRounded(value as RoundedOptions)}>
+					<Select label="Roundness" placeholder="Select Radius" selectedValues={[rounded]} onSelectedChange={([value]) => setRounded(value as RoundedOptions)}>
 						<SelectItem value="square">Square</SelectItem>
 						<SelectItem value="rounded">Rounded</SelectItem>
 						<SelectItem value="full">Full</SelectItem>
@@ -99,7 +95,7 @@ const InputExample = () => {
 
 			<Input label="Username" placeholder="Controlled Input" size={size} rounded={rounded} value={input} onChange={(e) => setInput(e.target.value)} />
 			<Input placeholder="Disabled" disabled={true} size={size} rounded={rounded} />
-			<Input placeholder="With error" errorMsg="Invalid username" hasError={true} size={size} rounded={rounded} />
+			<Input placeholder="With error" hint="Invalid username" hasError={true} size={size} rounded={rounded} />
 
 			<Divider spacing="4" />
 
@@ -109,11 +105,11 @@ const InputExample = () => {
 
 			<Password label="Password" placeholder="Password here" size={size} rounded={rounded} />
 			<Password placeholder="Disabled" disabled={true} size={size} rounded={rounded} />
-			<Password errorMsg="The input field has an error" hasError={true} size={size} rounded={rounded} />
+			<Password hint="The input field has an error" hasError={true} size={size} rounded={rounded} />
 
 			<Divider spacing="4" />
-
-			<NumberInput label="Number" placeholder="Placeholder" showStepper={false} size={size} rounded={rounded} />
+			{/* 
+			<NumberInput label="Number" placeholder="Placeholder" showStepper={false} size={size} rounded={rounded} /> */}
 			<Input label="Enter URL" placeholder="Placeholder here" type="url" size={size} rounded={rounded} />
 
 			<Divider spacing="4" />
@@ -126,7 +122,7 @@ const InputExample = () => {
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
 				renderSearchResults={renderSearchResults}
-				classNames={{ searchResults: "w-fit max-h-[20rem]" }}
+				className="w-80"
 			/>
 
 			<Divider spacing="4" />
@@ -135,8 +131,8 @@ const InputExample = () => {
 
 			<Divider spacing="4" />
 
-			<span>{phone}</span>
-			<PhoneNumber defaultCountryCode="NP" onValueChange={setPhone} size={size} rounded={rounded} />
+			{/* <span>{phone}</span> */}
+			{/* <PhoneNumber defaultCountryCode="NP" onValueChange={setPhone} size={size} rounded={rounded} /> */}
 
 			<Divider spacing="4" />
 
@@ -152,14 +148,8 @@ const InputExample = () => {
 			/>
 
 			<OTPInput size={size} rounded={rounded} placeholder="12345678" inputMode="numeric" length={6} label="Verification Code - Box Variant" />
-			<OTPInput
-				size={size}
-				rounded={rounded}
-				variant="flat"
-				inputMode="numeric"
-				placeholder="Enter 6-digit code here"
-				label="Verification Code - Flat Variant"
-			/>
+
+			<OTPInput size={size} rounded={rounded} variant="flat" inputMode="numeric" placeholder="Enter 6-digit code here" label="Verification Code - Flat Variant" />
 
 			<InputOtp size={"56"} label="Enter 6 digit number" length={8} placeholder="467856" />
 
@@ -179,19 +169,19 @@ const InputExample = () => {
 				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" dualCalendar={true} showDateRangeShortcut={true} />
 			</div>
 			<FileUpload
-				value={file}
-				onChange={setFile}
-				dropzoneClassName="h-[12.5rem]"
-				multiple
-				// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
-				url="http://localhost:8000/upload"
-				// headers={{ "Content-Type": "application/json" }}
+			// value={file}
+			// onChange={setFile}
+			// dropzoneClassName="h-[12.5rem]"
+			// multiple
+			// url="https://679b5e2633d3168463239af9.mockapi.io/photo"
+			// url="http://localhost:8000/upload"
+			// headers={{ "Content-Type": "application/json" }}
 			/>
 
 			<ProgressBar value={progress} />
 
 			<div className="my-4 flex w-full flex-col gap-4">
-				<Slider label="Test label" prefixIcon={<BellOff size={20} />} suffixIcon={<BellRing size={20} />} />
+				<Slider label="Test label" leadIcon={<BellOff size={20} />} trailIcon={<BellRing size={20} />} />
 
 				<Slider value={sliderValue} onValueChange={setSliderValue} />
 
@@ -231,7 +221,7 @@ const InputExample = () => {
 
 				<div className="flex h-64 gap-5">
 					<Slider orientation="vertical" />
-					<Slider prefixIcon={<BellOff size={20} />} suffixIcon={<BellRing size={20} />} orientation="vertical" />
+					<Slider leadIcon={<BellOff size={20} />} trailIcon={<BellRing size={20} />} orientation="vertical" />
 
 					<Slider
 						label="Vertical Label"

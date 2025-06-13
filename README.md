@@ -1,6 +1,6 @@
 
 <p align="center">
-  <a href="https://heroui.com">
+  <a href="https://radianos.com">
       <img width="20%" src="https://github.com/Radian-os/radianos/blob/main/apps/website/public/radian-mb.svg" alt="radian" />
   </a>
 </p>

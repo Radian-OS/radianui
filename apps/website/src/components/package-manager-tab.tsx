@@ -13,8 +13,8 @@ export default function PackageManagerTabs({
 	...props
 }: CodeAreaProps & { isNpx?: boolean }) {
 	return (
-		<Tabs defaultValue={pkg[0]} variant="open" size="base" className="overflow-hidden rounded-xl bg-[#0a0c10]">
-			<TabsList className="border-b-0">
+		<Tabs defaultValue={pkg[0]} variant="open" size="md" className="overflow-hidden rounded-xl bg-[#0a0c10]">
+			<TabsList>
 				{pkg.map((manager) => (
 					<TabsTrigger key={manager} value={manager} className="!text-white">
 						{manager}
@@ -35,14 +35,7 @@ export default function PackageManagerTabs({
 				}
 				return (
 					<TabsContent key={manager} value={manager}>
-						<CodeArea
-							language={language}
-							code={`${prefix} ${code}`}
-							showLineNumbers={showLineNumbers}
-							copiable={copiable}
-							className={cn("px-3 py-4", className)}
-							{...props}
-						/>
+						<CodeArea language={language} code={`${prefix} ${code}`} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("px-3 py-4", className)} {...props} />
 					</TabsContent>
 				)
 			})}

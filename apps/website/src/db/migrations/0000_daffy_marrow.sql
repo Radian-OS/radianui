@@ -6,4 +6,4 @@ CREATE TABLE "email_subscribers" (
 	"unsubscribe_token" varchar NOT NULL,
 	CONSTRAINT "email_subscribers_email_unique" UNIQUE("email"),
 	CONSTRAINT "email_subscribers_unsubscribe_token_unique" UNIQUE("unsubscribe_token")
-);
+)

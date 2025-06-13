@@ -105,9 +105,11 @@ const Pagination: React.FC<PaginationProps> = function ({
 						}}>
 						<Select
 							placeholder="..."
+							endIcon={false}
 							selectedValues={[]}
+							size="32"
 							onSelectedChange={handleSelectChange}
-							className="text-text flex h-8 w-8 items-center justify-center bg-transparent">
+							className="text-text flex items-center justify-center bg-transparent">
 							{hiddenPages.map((page) => (
 								<SelectItem key={page} value={page.toString()}>
 									{page}
@@ -147,8 +149,9 @@ const Pagination: React.FC<PaginationProps> = function ({
 							placeholder="..."
 							selectedValues={[]}
 							size="32"
+							endIcon={false}
 							onSelectedChange={handleSelectChange}
-							className="text-text flex h-8 w-8 items-center justify-center bg-transparent">
+							className="text-text flex items-center justify-center bg-transparent">
 							{hiddenPages.map((page) => (
 								<SelectItem key={page} value={page.toString()}>
 									{page}
@@ -162,6 +165,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 				<Button
 					variant="neutral-outline"
 					key={totalPages}
+					size="32"
 					onClick={function () {
 						handlePageChange(totalPages)
 					}}
@@ -278,10 +282,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 					<div className="flex items-center justify-center gap-6">
 						<span className="text-sm">Go to</span>
 						<div>
-							<Select
-								selectedValues={[currentPage.toString()]}
-								onSelectedChange={(values) => handlePageChange(parseInt(values[0], 10))}
-								className="h-8 w-max">
+							<Select selectedValues={[currentPage.toString()]} onSelectedChange={(values) => handlePageChange(parseInt(values[0], 10))} className="h-8 w-max">
 								{[...Array(totalPages)].map((_, index) => {
 									const value = index + 1 // Calculate the value dynamically
 

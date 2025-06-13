@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export const people = [
@@ -73,11 +64,7 @@ const AvatargroupPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)}
-										minSelectionCount={1}
-										selectedValues={[size]}>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
 										<DropdownItem value="16">16</DropdownItem>
 										<DropdownItem value="20">20</DropdownItem>
 										<DropdownItem value="24">24</DropdownItem>

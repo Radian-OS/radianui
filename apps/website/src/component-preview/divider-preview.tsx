@@ -1,21 +1,12 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
 import { Divider } from "@/registry/ui/divider"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DividerPreview = () => {
 	const [orientation, setOrientation] = useState<"vertical" | "horizontal">("vertical")
-	const [spacing, setSpacing] = useState<"2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40">("4")
+	const [spacing, setSpacing] = useState<"0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40">("4")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -25,7 +16,7 @@ const DividerPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>orientation</DropdownSubTrigger>
+								<DropdownSubTrigger>Orientation</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -38,13 +29,14 @@ const DividerPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>spacing</DropdownSubTrigger>
+								<DropdownSubTrigger>Spacing</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setSpacing(Array.from(keys)[0] as "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}
+										onSelectedChange={(keys) => setSpacing(Array.from(keys)[0] as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}
 										minSelectionCount={1}
 										selectedValues={[spacing]}>
+										<DropdownItem value="0">0</DropdownItem>
 										<DropdownItem value="2">2</DropdownItem>
 										<DropdownItem value="4">4</DropdownItem>
 										<DropdownItem value="6">6</DropdownItem>
@@ -66,8 +58,7 @@ const DividerPreview = () => {
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
-				<div
-					className={`flex ${orientation === "horizontal" ? "flex-col" : ""} h-[420px] items-center justify-center overflow-auto rounded-xl border px-10`}>
+				<div className={`flex ${orientation === "horizontal" ? "flex-col" : ""} h-[420px] items-center justify-center overflow-auto rounded-xl border px-10`}>
 					<h1 className="heading-4">Heading1</h1>
 					<Divider spacing={spacing} orientation={orientation} />
 					<h1 className="heading-4">Heading2</h1>

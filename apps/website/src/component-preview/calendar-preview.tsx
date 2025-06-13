@@ -2,16 +2,7 @@ import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import Calendar from "@/registry/ui/calendar"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -33,13 +24,9 @@ const CalendarPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
 							<DropdownSub>
-								<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
+								<DropdownSubTrigger>Selection mode</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[mode]}
-										onSelectedChange={(values) => setMode(values[0] as DatePickerModes)}
-										minSelectionCount={1}>
+									<DropdownGroup selectionMode="single" selectedValues={[mode]} onSelectedChange={(values) => setMode(values[0] as DatePickerModes)} minSelectionCount={1}>
 										<DropdownItem value="single">Single</DropdownItem>
 										<DropdownItem value="multiple">Multiple</DropdownItem>
 										<DropdownItem value="range">Range</DropdownItem>
@@ -47,54 +34,46 @@ const CalendarPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Dual Calendar</DropdownSubTrigger>
+								<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(doubleCalendar)]}
 										onSelectedChange={(values) => setDoubleCalendar(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Show Time</DropdownSubTrigger>
+								<DropdownSubTrigger>Time</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(showTime)]}
-										onSelectedChange={(values) => setShowTime(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+									<DropdownGroup selectionMode="single" selectedValues={[String(showTime)]} onSelectedChange={(values) => setShowTime(values[0] === "true")} minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Show Shortcut</DropdownSubTrigger>
+								<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
 										selectedValues={[String(showShortcut)]}
 										onSelectedChange={(values) => setShowShortCut(values[0] === "true")}
 										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Footer</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(footer)]}
-										onSelectedChange={(values) => setFooter(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+									<DropdownGroup selectionMode="single" selectedValues={[String(footer)]} onSelectedChange={(values) => setFooter(values[0] === "true")} minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -108,8 +87,7 @@ const CalendarPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div
-					className={`flex h-[420px] flex-col ${doubleCalendar && showShortcut ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
+				<div className={`flex h-[420px] flex-col ${doubleCalendar && showShortcut ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
 					{mode === "single" && (
 						<Calendar
 							showShortcut={showShortcut}
@@ -169,20 +147,20 @@ const CalendarPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`  
-<Calendar
+					code={`<Calendar
     mode="${mode}"
-    dualCalendar=${doubleCalendar}
-    showTime=${showTime}
-    showShortcut=${showShortcut}
+    dualCalendar={${doubleCalendar}}
+    showTime={${showTime}}
+    showShortcut={${showShortcut}}
     footer=${
-			footer &&
-			`{
+			footer
+				? `{
             <div className="p-3 flex gap-2">
                 <Button variant="neutral-outline">Cancel</Button>
                 <Button>Apply</Button>
             </div>
             }`
+				: `{false}`
 		}
 />`}
 				/>

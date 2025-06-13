@@ -1,7 +1,10 @@
 ---
 title: Date Picker
 description: UI for selecting a date
-source: https://github.com/Radian-os/Radianos
+source: https://github.com/Radian-os
+externalSiteRef: https://daypicker.dev/
+customLogo: /react-day-picker.png
+externalSiteName: React DayPicker
 ---
 
 <DatePickerPreview />
@@ -26,21 +29,24 @@ source: https://github.com/Radian-os/Radianos
 | dualCalendar          | false          |            |
 | footer                |                |            |
 | typeable              | false          | true/false |
+| hasError              | false          | true/false |
+| hint                  |                |            |
 
 ##### Usage
 
 <Code
 	language="tsx"
-	code={` 
-<DatePicker
+	code={`<DatePicker
     mode="single"
     placeholder="Select Date"
-    showDateRangeShortcut=false
-    disabled=false
-    dualCalendar=false
+    showDateRangeShortcut={false}
+    disabled={false}
+    dualCalendar={false}
     navigatorStyle="button"
     size="40"
     rounded="sm"
-    typeable=false
+    typeable={false}
+    hasError="false"
+    hint="Hint text to help the user with input"
 />`}
 />

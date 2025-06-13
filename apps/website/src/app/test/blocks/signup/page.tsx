@@ -43,8 +43,7 @@ const SignUp = () => {
 							</Button>
 							<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
 								<p className="text-muted-foreground">
-									By signing up, you agree to Radian &apos;s <span className="text-foreground">Terms of Service</span> and{" "}
-									<span className="text-foreground">Privacy Policy</span>
+									By signing up, you agree to Radian &apos;s <span className="text-foreground">Terms of Service</span> and <span className="text-foreground">Privacy Policy</span>
 								</p>
 							</div>
 						</div>

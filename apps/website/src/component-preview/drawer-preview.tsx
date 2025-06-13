@@ -2,16 +2,7 @@ import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DrawerPreview = () => {
@@ -52,7 +43,7 @@ const DrawerPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownSub>
-								<DropdownSubTrigger>variant</DropdownSubTrigger>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -66,7 +57,7 @@ const DrawerPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>position</DropdownSubTrigger>
+								<DropdownSubTrigger>Position</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -81,20 +72,17 @@ const DrawerPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>handle</DropdownSubTrigger>
+								<DropdownSubTrigger>Handle</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setHandle(Array.from(keys)[0] as "true" | "false")}
-										selectedValues={handle ? [handle] : []}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setHandle(Array.from(keys)[0] as "true" | "false")} selectedValues={handle ? [handle] : []}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>backdrop</DropdownSubTrigger>
+								<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -116,12 +104,7 @@ const DrawerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center rounded-xl border px-10">
-					<Drawer
-						type={variant}
-						direction={position}
-						handle={handle === "true" ? true : false}
-						backdrop={backdrop}
-						trigger={<Button>Open Drawer</Button>}>
+					<Drawer type={variant} direction={position} handle={handle === "true" ? true : false} backdrop={backdrop} trigger={<Button>Open Drawer</Button>}>
 						<DrawerHeader>
 							<DrawerTitle>This is a drawer header</DrawerTitle>
 							<DrawerDescription>This is a drawer description message.</DrawerDescription>

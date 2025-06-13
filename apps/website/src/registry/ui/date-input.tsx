@@ -6,18 +6,15 @@ import { cn } from "@/lib/utils"
 import { RoundedOptions, SizeOptions, cvaInputVariants } from "./input"
 
 // Creating a variant for date input styles using cva
-export const dateInputStyles = cva(
-	"border-gray flex items-center justify-between whitespace-nowrap rounded-lg border focus-within:outline-2 focus-within:-outline-offset-1 focus-within:outline-primary focus-within:ring-2 focus-within:ring-primary/20",
-	{
-		variants: {
-			...cvaInputVariants,
-		},
-		defaultVariants: {
-			rounded: "md",
-			size: "40",
-		},
-	}
-)
+export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
+	variants: {
+		...cvaInputVariants,
+	},
+	defaultVariants: {
+		rounded: "md",
+		size: "40",
+	},
+})
 
 // Type definition for custom class names for various parts of the date input
 export type DateInputProps = Omit<React.ComponentPropsWithoutRef<typeof DateField>, "isDisabled"> & {
@@ -48,16 +45,8 @@ const DateInput = ({ size, rounded, label, disabled, onChange, value, classNames
 	const currentValue = isControlled ? value : internalDate
 
 	return (
-		<div
-			className={cn("w-[320px]", dateInputStyles({ size, rounded }), { "text-text-tertiary cursor-not-allowed": disabled }, classNames?.dateInput)}>
-			<DateField
-				granularity="minute"
-				className={cn("flex flex-col gap-1 border-none")}
-				onChange={handleChange}
-				value={currentValue}
-				isDisabled={disabled}
-				ref={ref}
-				{...props}>
+		<div className={cn("w-[320px]", dateInputStyles({ size, rounded }), { "text-text-tertiary cursor-not-allowed": disabled }, classNames?.dateInput)}>
+			<DateField granularity="day" className={cn("flex flex-col gap-1 border-none")} onChange={handleChange} value={currentValue} isDisabled={disabled} ref={ref} {...props}>
 				{label && <Label className={cn("text-text text-sm font-medium", { "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
 				<DateInputRC>
 					{(segment) => (

@@ -7,7 +7,3 @@ Build next generation of world class products and solutions. **Use this to make 
 ## Documentation
 
 Visit http://radianos.com/documentation to view the documentation.
-
-## License
-
-The product is still not licensed.

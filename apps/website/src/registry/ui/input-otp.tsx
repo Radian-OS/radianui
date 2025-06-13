@@ -23,6 +23,7 @@ const otpSlotVariants = cva("", {
 			flat: "",
 		},
 		size: {
+			"0": "",
 			"28": "size-7 text-xs",
 			"32": "size-8 text-sm",
 			"36": "size-9 text-sm",
@@ -60,18 +61,7 @@ type OTPInputProps = Pick<
 	rounded?: RoundedOptions
 }
 // OTPInput component definition
-function OTPInput({
-	length = 6,
-	variant = "box",
-	label,
-	placeholder,
-	id,
-	onChange,
-	size = defaultInputSize,
-	rounded = defaultInputRadius,
-	className,
-	...props
-}: OTPInputProps) {
+function OTPInput({ length = 6, variant = "box", label, placeholder, id, onChange, size = defaultInputSize, rounded = defaultInputRadius, className, ...props }: OTPInputProps) {
 	// Value for the flat variant
 	const [value, setValue] = React.useState<string>("")
 	const inputRef = React.useRef<HTMLInputElement>(null)
@@ -175,11 +165,7 @@ function Slot(
 				}
 			)}
 			ref={slotRef}>
-			{props.char !== null ? (
-				<div>{props.char}</div>
-			) : (
-				props.isActive && <div className="animate-caret-blink inline-block h-[1.2rem] w-[0.063rem] bg-current" />
-			)}
+			{props.char !== null ? <div>{props.char}</div> : props.isActive && <div className="animate-caret-blink inline-block h-[1.2rem] w-[0.063rem] bg-current" />}
 		</div>
 	)
 }

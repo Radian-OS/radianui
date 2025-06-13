@@ -1,16 +1,7 @@
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
@@ -60,7 +51,7 @@ const TooltipPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>With Arrow</DropdownSubTrigger>
+									<DropdownSubTrigger>With arrow</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -70,8 +61,8 @@ const TooltipPreview = () => {
 											}}
 											minSelectionCount={1}
 											selectedValues={[withArrow]}>
-											<DropdownItem value="false">False</DropdownItem>
 											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>

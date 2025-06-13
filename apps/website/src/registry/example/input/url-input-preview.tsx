@@ -1,30 +1,21 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-// const booleanOptions = ["true", "false"]
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 export type domainOption = ".com" | ".org" | ".net"
 export type typeOptions = "trail" | "lead" | "default"
+const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const UrlPreview = () => {
 	const [domain, setDomain] = useState<domainOption>(".com")
 	const [types, setType] = useState<typeOptions>("default")
-	const [hasError, setHasError] = useState<boolean>(false)
-	console.log("domain", types)
+	const [size, setSize] = useState<SizeOptions>("36")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10 mt-2">
@@ -34,29 +25,24 @@ const UrlPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent>
 							<DropdownSub>
-								<DropdownSubTrigger>Examples</DropdownSubTrigger>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(types)]}
-										onSelectedChange={(values) => setType(values[0] as typeOptions)}
-										minSelectionCount={1}>
-										<DropdownItem value="default">Default</DropdownItem>
-										<DropdownItem value="trail">Trail</DropdownItem>
-										<DropdownItem value="lead">Lead</DropdownItem>
+									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+										{sizes.map((size) => (
+											<DropdownItem value={size} key={size}>
+												{size}
+											</DropdownItem>
+										))}
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
+								<DropdownSubTrigger>Examples</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(hasError)]}
-										onSelectedChange={(values) => setHasError(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">Yes</DropdownItem>
-										<DropdownItem value="false">No</DropdownItem>
+									<DropdownGroup selectionMode="single" selectedValues={[String(types)]} onSelectedChange={(values) => setType(values[0] as typeOptions)} minSelectionCount={1}>
+										<DropdownItem value="default">Default</DropdownItem>
+										<DropdownItem value="trail">Trail</DropdownItem>
+										<DropdownItem value="lead">Lead</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -71,26 +57,26 @@ const UrlPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="*:not-first:mt-2">
+					<div className="flex flex-col gap-1.5">
 						<Label>Url</Label>
 						<div className="flex rounded-md">
 							<Input
-								classNames={{ base: "w-[320px]" }}
-								size="36"
-								custom={types === "trail" ? true : false}
+								className={` ${types === "trail" ? "w-58 rounded-r-none border-r-0 focus-within:border-r" : "w-80"} `}
+								size={size}
 								placeholder="radianos.com"
 								type="url"
 								lead={types === "lead" ? "https://" : ""}
-								hasError={hasError}
-								errorMsg={hasError ? "There is an error" : undefined}
+								// hasError={hasError}
+								// hint={hint ? "There is an error" : ""}
 							/>
 
 							{types === "trail" ? (
 								<Select
+									minSelectionCount={1}
 									selectedValues={[domain]}
 									onSelectedChange={(values) => setDomain(values[0] as domainOption)}
 									disableOpenStyle={true}
-									size="36"
+									size={size}
 									className="-ms-0 w-fit">
 									<SelectItem value=".com">.com</SelectItem>
 									<SelectItem value=".org">.org</SelectItem>
@@ -111,20 +97,22 @@ const UrlPreview = () => {
 					className="h-[420px]"
 					code={
 						types === "trail"
-							? `<div className="*:not-first:mt-2">
+							? `<div className="flex gap-1.5 flex-col">
     <Label>Url</Label>
     <div className="flex rounded-md shadow-xs">
         <Input
-            size="36"
+			className="w-80 border-r-0 focus-within:border-r"
+            size="${size}"
             placeholder="radianos"
             type="url"
             lead="https://"
+
         />
 
         <Select
             selectedValues={[domain]}
             onSelectedChange={(values) => setDomain(values[0] as domainOption)}
-            size="36"
+            size="${size}"
             className="-ms-0 w-fit">
             <SelectItem value=".com">.com</SelectItem>
             <SelectItem value=".org">.org</SelectItem>

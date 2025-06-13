@@ -3,16 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SocialButtonPreview = () => {
@@ -312,7 +303,7 @@ Continue with Facebook
 			<div className="flex items-center justify-between">
 				<div className="flex items-center gap-3">
 					<Dropdown>
-						<DropdownTrigger>Interact</DropdownTrigger>
+						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							{/* Size Selector */}
 							<DropdownSub>
