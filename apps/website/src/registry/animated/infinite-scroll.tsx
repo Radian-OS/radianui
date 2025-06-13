@@ -1,21 +1,40 @@
-import { motion } from "motion/react"
+import React from "react"
 import { cn } from "@/lib/utils"
 
-export function InfiniteScroll({ direction = "left", className, children }: { direction?: "left" | "right"; className?: string; children?: React.ReactNode }) {
+type InfiniteScrollProps = { duration?: number; pauseOnHover?: boolean; reverse?: boolean; vertical?: boolean; className?: string; children?: React.ReactNode }
+
+const InfiniteScroll = ({ duration = 20, reverse = false, vertical = false, pauseOnHover = true, className, children }: InfiniteScrollProps) => {
 	return (
-		<div className={cn("group flex overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]", className)}>
-			<motion.div
-				animate={{ x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"] }}
-				transition={{
-					duration: 20,
-					repeat: Infinity,
-					ease: "linear",
-					repeatType: "loop",
-				}}
-				className="flex shrink-0">
-				<div className="flex shrink-0 justify-around">{children}</div>
-				<div className="flex shrink-0 justify-around">{children}</div>
-			</motion.div>
+		<div
+			className={cn(
+				"group flex overflow-hidden p-2 [--duration:20s] [--gap:1rem] [gap:var(--gap)]",
+				{
+					"flex-row": !vertical,
+					"flex-col": vertical,
+				},
+				className
+			)}
+			style={
+				{
+					"--duration": `${duration}s`,
+				} as React.CSSProperties
+			}>
+			{Array(4)
+				.fill(0)
+				.map((_, i) => (
+					<div
+						key={i}
+						className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
+							"[animation-direction:reverse]": reverse,
+							"animate-infinite-scroll flex-row": !vertical,
+							"animate-infinite-scroll-vertical flex-col": vertical,
+							"group-hover:[animation-play-state:paused]": pauseOnHover,
+						})}>
+						{children}
+					</div>
+				))}
 		</div>
 	)
 }
+
+export { InfiniteScroll }

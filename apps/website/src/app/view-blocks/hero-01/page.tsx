@@ -3,9 +3,10 @@
 import { CirclePlay, Menu, X, Zap } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { FadeDown } from "@/registry/animated/fade-down"
+import { Fade } from "@/registry/animated/fade"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Draggable } from "@/registry/animated/make-draggable"
+import { TextReveal } from "@/registry/animated/text-reveal"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"
@@ -27,7 +28,7 @@ export default function Hero01() {
 	return (
 		<div className="min-h-screen">
 			{/* Header */}
-			<FadeDown delay={0.2}>
+			<Fade delay={0.2}>
 				<div className="border-b-border-alpha bg-bg-level1 border-b">
 					<div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 						<div className="flex h-16 items-center justify-between">
@@ -82,11 +83,11 @@ export default function Hero01() {
 						</div>
 					</div>
 				</div>
-			</FadeDown>
+			</Fade>
 
 			<main className="bg-bg-base">
 				{/* Hero Section */}
-				<FadeDown>
+				<Fade>
 					<div className="pt-25 relative px-5 sm:px-6 lg:px-8">
 						<div className="relative mx-auto flex max-w-5xl flex-col gap-6 text-center">
 							<Draggable>
@@ -118,7 +119,7 @@ export default function Hero01() {
 							</div>
 						</div>
 					</div>
-				</FadeDown>
+				</Fade>
 
 				{/* Company Logos */}
 				<section className="px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
@@ -137,6 +138,14 @@ export default function Hero01() {
 						<div className="bg-fill-level3 outline-border-alpha/20 h-full w-full rounded-xl outline-8 drop-shadow"></div>
 					</div>
 				</section>
+
+				<Fade inView>
+					<h1 className="p-5 text-center text-3xl">Hello page from Radian</h1>
+				</Fade>
+
+				<div className="h-40"></div>
+
+				<TextReveal>Pre-built, customizable UI components</TextReveal>
 			</main>
 		</div>
 	)

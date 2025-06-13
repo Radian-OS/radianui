@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
+import { oklch, rgb } from "culori"
 import { Pipette } from "lucide-react"
 import { ButtonGroup } from "./button"
 import { Input } from "./input"
@@ -384,39 +385,19 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		return `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`.toUpperCase()
 	}
 	const rgbToOklch = (r: number, g: number, b: number): string => {
-		// Convert sRGB to linear RGB
-		const gamma_inv = (c: number) => (c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4))
+		// Convert RGB to OKLCH using Culori
+		const oklchColor = oklch({ mode: "rgb", r: r / 255, g: g / 255, b: b / 255 })
 
-		const linearR = gamma_inv(r / 255)
-		const linearG = gamma_inv(g / 255)
-		const linearB = gamma_inv(b / 255)
-
-		// Convert linear RGB to XYZ
-		const x = linearR * 0.4124564 + linearG * 0.3575761 + linearB * 0.1804375
-		const y = linearR * 0.2126729 + linearG * 0.7151522 + linearB * 0.072175
-		const z = linearR * 0.0193339 + linearG * 0.119192 + linearB * 0.9503041
-
-		// Convert XYZ to OKLab
-		const l = Math.cbrt(0.8189330101 * x + 0.3618667424 * y - 0.1288597137 * z)
-		const m = Math.cbrt(-0.0321965436 * x + 0.9295748617 * y + 0.0362416389 * z)
-		const s = Math.cbrt(0.0481426039 * x + 0.2643662691 * y + 0.633851707 * z)
-
-		const l_ = 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s
-		const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s
-		const b_ = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s
-
-		// Convert OKLab to OKLCH
-		const lightness = l_
-		const chroma = Math.sqrt(a * a + b_ * b_)
-		let hue = Math.atan2(b_, a) * (180 / Math.PI)
-		if (hue < 0) hue += 360
-
-		// Format output - use space-separated format for better readability
-		if (chroma < 0.0001) {
-			return `oklch(${lightness.toFixed(4)} 0 0)`
+		if (!oklchColor || oklchColor.l === undefined) {
+			return "oklch(0 0 0)"
 		}
 
-		return `oklch(${lightness.toFixed(4)} ${chroma.toFixed(4)} ${hue.toFixed(2)})`
+		// Format with proper precision
+		const l = oklchColor.l.toFixed(4)
+		const c = (oklchColor.c || 0).toFixed(4)
+		const h = oklchColor.h ? oklchColor.h.toFixed(2) : "0"
+
+		return `oklch(${l} ${c} ${h})`
 	}
 
 	// Convert HSL to RGB
@@ -545,42 +526,27 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						// Normalize lightness if it's given as percentage > 1
 						const normalizedLightness = lightness > 1 ? lightness / 100 : lightness
 
-						// Convert OKLCH to OKLab
-						const hueRad = (hue * Math.PI) / 180
-						const a = chroma * Math.cos(hueRad)
-						const bo = chroma * Math.sin(hueRad)
+						// Convert OKLCH to RGB using Culori
+						const rgbColor = rgb({
+							mode: "oklch",
+							l: normalizedLightness,
+							c: chroma,
+							h: hue,
+						})
 
-						// Convert OKLab to linear RGB
-						const l = normalizedLightness + 0.3963377774 * a + 0.2158037573 * bo
-						const m = normalizedLightness - 0.1055613458 * a - 0.0638541728 * bo
-						const s = normalizedLightness - 0.0894841775 * a - 1.291485548 * bo
+						if (rgbColor && rgbColor.r !== undefined && rgbColor.g !== undefined && rgbColor.b !== undefined) {
+							const rgbValues = {
+								r: Math.max(0, Math.min(255, Math.round(rgbColor.r * 255))),
+								g: Math.max(0, Math.min(255, Math.round(rgbColor.g * 255))),
+								b: Math.max(0, Math.min(255, Math.round(rgbColor.b * 255))),
+							}
 
-						const l3 = l * l * l
-						const m3 = m * m * m
-						const s3 = s * s * s
-
-						const rLinear = l3 * 4.0767416615 + m3 * -3.3077115913 + s3 * 0.2309699292
-						const gLinear = l3 * -1.2684380046 + m3 * 2.6097574011 + s3 * -0.3413193965
-						const bLinear = l3 * -0.0041960863 + m3 * -0.7034186147 + s3 * 1.707614701
-
-						// Convert linear RGB to sRGB
-						const gamma = (c: number) => (c <= 0.0031308 ? 12.92 * c : 1.055 * Math.pow(c, 1 / 2.4) - 0.055)
-
-						const r = gamma(rLinear)
-						const g = gamma(gLinear)
-						const b = gamma(bLinear)
-
-						const rgb = {
-							r: Math.max(0, Math.min(255, Math.round(r * 255))),
-							g: Math.max(0, Math.min(255, Math.round(g * 255))),
-							b: Math.max(0, Math.min(255, Math.round(b * 255))),
+							const hsv = rgbToHsv(rgbValues.r, rgbValues.g, rgbValues.b)
+							setHue(hsv.h)
+							setSaturation(hsv.s)
+							setValue(hsv.v)
+							return true
 						}
-
-						const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
-						setHue(hsv.h)
-						setSaturation(hsv.s)
-						setValue(hsv.v)
-						return true
 					}
 					break
 				}

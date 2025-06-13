@@ -112,7 +112,7 @@ function Slot({ isActive, hasFakeCaret, char }: SlotProps) {
 
 function FakeCaret() {
 	return (
-		<div className="pointer-events-none absolute inset-0 flex animate-[caret-blink_1.2s_steps(1)_infinite] items-center justify-center">
+		<div className="animate-caret-blink pointer-events-none absolute inset-0 flex items-center justify-center">
 			<div className="bg-text h-6 w-px" />
 		</div>
 	)

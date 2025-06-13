@@ -6,9 +6,15 @@ import { MDXComponents } from "mdx/types"
 import Link from "next/link"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
+import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
+import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
+import ChangingTextPreview from "@/component-preview/animations/changing-text-preview"
 import DraggablePreview from "@/component-preview/animations/draggable-preview"
-import FadeDownPreview from "@/component-preview/animations/fade-down-preview"
+import FadePreview from "@/component-preview/animations/fade-preview"
 import GradientTextPreview from "@/component-preview/animations/gradient-text-preview"
+import InfiniteScrollPreview from "@/component-preview/animations/infinite-scroll-preview"
+import PointerPreview from "@/component-preview/animations/pointer-preview"
+import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import AvatarPreview from "@/component-preview/avatar-preview"
 import AvatargroupPreview from "@/component-preview/avatargroup-preview"
@@ -43,12 +49,12 @@ import SelectPreview from "@/component-preview/select-preview"
 import SkeletonPreview from "@/component-preview/skeleton-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
-import SonnerPreview from "@/component-preview/sonner-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
+import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
@@ -58,6 +64,11 @@ import Nextjs from "@/components/nextjs"
 import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
+import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
+import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
+import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
+import FadeOutExample from "@/registry/example/animated/fade-out-example"
+import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
@@ -109,7 +120,7 @@ const components: MDXComponents = {
 	GithubIntegrationModalExample: () => <GithubIntegrationModalExample />,
 	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
-	SonnerPreview: () => <SonnerPreview />,
+	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
 	PopoverPreview: () => <PopoverPreview />,
 	TablePreview: () => <TablePreview />,
@@ -164,7 +175,18 @@ const components: MDXComponents = {
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
 	DraggablePreview: () => <DraggablePreview />,
-	FadeDownPreview: () => <FadeDownPreview />,
+	FadePreview: () => <FadePreview />,
+	InfiniteScrollPreview: () => <InfiniteScrollPreview />,
+	PointerPreview: () => <PointerPreview />,
+	BorderBeamPreview: () => <BorderBeamPreview />,
+	ChangingTextPreview: () => <ChangingTextPreview />,
+	InfiniteScrollVerticalExample: () => <InfiniteScrollVerticalExample />,
+	CollaborationPointerExample: () => <CollaborationPointerExample />,
+	DragConstraintsExample: () => <DragConstraintsExample />,
+	AnimatedListPreview: () => <AnimatedListPreview />,
+	TextRevealPreview: () => <TextRevealPreview />,
+	BlurFadeExample: () => <BlurFadeExample />,
+	FadeOutExample: () => <FadeOutExample />,
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />

@@ -1,9 +1,9 @@
-import { GradientText } from "@/registry/animated/gradient-text"
+import { Pointer } from "@/registry/animated/pointer"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const GradientTextPreview = () => {
+const InfiniteScrollPreview = () => {
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
@@ -24,9 +24,10 @@ const GradientTextPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<h1 className="text-5xl font-semibold">
-						Turn bold ideas into beautiful and dynamic <GradientText>user interfaces</GradientText>
-					</h1>
+					<div className="w-100 bg-fill-level2 mx-auto flex h-80 items-center justify-center rounded-lg p-2">
+						<h1>Hover over here</h1>
+						<Pointer />
+					</div>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -34,14 +35,14 @@ const GradientTextPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<h1 className="text-6xl font-semibold">
-	Turn bold ideas into beautiful, responsive, and dynamic <GradientText>user interfaces</GradientText>
-</h1>
-					`}
+					code={`<div className="mx-auto size-60 rounded-md bg-pink-400 p-2">
+	<h1>Hover over here</h1>
+	<Pointer />
+</div>`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
 
-export default GradientTextPreview
+export default InfiniteScrollPreview
