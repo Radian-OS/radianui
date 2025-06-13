@@ -9,20 +9,28 @@ interface ChangingTextProps {
 	duration?: number
 	motionProps?: MotionProps
 	className?: string
+	direction?: "up" | "down" | "left" | "right"
 }
 
-const ChangingText = ({
-	texts,
-	duration = 2500,
-	motionProps = {
-		initial: { opacity: 0, y: -50 },
-		animate: { opacity: 1, y: 0 },
-		exit: { opacity: 0, y: 50 },
-		transition: { duration: 0.25, ease: "easeOut" },
-	},
-	className,
-}: ChangingTextProps) => {
+const ChangingText = ({ texts, duration = 2500, motionProps, direction = "down", className }: ChangingTextProps) => {
 	const [index, setIndex] = useState(0)
+
+	let axis: "x" | "y"
+
+	if (direction === "up" || direction === "down") {
+		axis = "y"
+	} else {
+		axis = "x"
+	}
+
+	const offset = direction === "down" || direction === "right" ? -50 : 50
+
+	const defaultMotionProps = {
+		initial: { opacity: 0, [axis]: offset },
+		animate: { opacity: 1, [axis]: 0 },
+		exit: { opacity: 0, [axis]: -offset },
+		transition: { duration: 0.25, ease: "easeOut" },
+	}
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -33,10 +41,12 @@ const ChangingText = ({
 		return () => clearInterval(interval)
 	}, [texts, duration])
 
+	const combinedMotionProps = motionProps || defaultMotionProps
+
 	return (
 		<div className="overflow-hidden py-2">
 			<AnimatePresence mode="wait">
-				<motion.h1 key={texts[index]} className={cn(className)} {...motionProps}>
+				<motion.h1 key={texts[index]} className={cn(className)} {...combinedMotionProps}>
 					{texts[index]}
 				</motion.h1>
 			</AnimatePresence>
