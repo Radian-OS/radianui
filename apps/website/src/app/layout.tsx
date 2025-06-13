@@ -5,10 +5,6 @@ import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
-	title: {
-		default: "Radian",
-		template: "%s | Radian",
-	},
 	description: "Radian: A cutting-edge component library for modern web apps built with React and Tailwind CSS.",
 	keywords: ["Radian", "React components", "Tailwind CSS", "UI library", "design system", "developer tools"],
 	viewport: "width=device-width, initial-scale=1",
