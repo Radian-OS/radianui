@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { CalendarDateTime, ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
+import { cva } from "class-variance-authority"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, Check } from "lucide-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
@@ -8,13 +9,22 @@ import { DateField, DateInput as DateInputRC, DateSegment, DateValue } from "rea
 import { ChevronProps, DayPicker, Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
 import { TimeSelector, formatTime, timeOptions } from "../ui/calendar"
-import { dateInputStyles } from "../ui/date-input"
 import Calendar, { type CalendarProps, CalendarRange, getMergedClassNames } from "./calendar"
-import { Input, RoundedOptions, SizeOptions, defaultInputRadius, defaultInputSize } from "./input"
+import { Input, RoundedOptions, SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { SelectProps } from "./select"
 import { TimePickerProps } from "./time-picker"
+
+export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
+	variants: {
+		...cvaInputVariants,
+	},
+	defaultVariants: {
+		rounded: "md",
+		size: "40",
+	},
+})
 
 // Mock mouse click event
 export function mockMouseClick(): React.MouseEvent {

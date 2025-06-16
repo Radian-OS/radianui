@@ -83,8 +83,8 @@
 	/* fill */
 	--color-fill-level1: oklch(98.4% 0.001 277.3);
 	--color-fill-level2: oklch(96.8% 0.001 277.2);
-	--color-fill-level3: oklch(90.5% 0.004 277.2);
-	--color-fill-level4: oklch(87.2% 0.006 277.2);
+	--color-fill-level3: oklch(93.7% 0.0028 277.22);
+	--color-fill-level4: oklch(90.5% 0.004 277.2);
 
 	/* fill-inverse */
 	--color-inverse-fill-level1: color-mix(in srgb, oklch(100% 0 0), transparent 98%);
@@ -141,7 +141,7 @@
 .dark {
 	/* primary */
 	--color-primary: oklch(58.7% 0.215 282);
-	--color-primary-accent: oklch(26% 0.092 287.5);
+	--color-primary-accent: oklch(21.1% 0.053 289.4);
 	--color-primary-accent-secondary: oklch(33.2% 0.128 283.8);
 	--color-primary-focus: oklch(33.2% 0.128 283.8);
 	--color-primary-stroke: oklch(40.3% 0.183 282.9);
@@ -150,7 +150,7 @@
 
 	/* information */
 	--color-info: oklch(65.6% 0.19 251.1);
-	--color-info-accent: oklch(32% 0.086 254.4);
+	--color-info-accent: oklch(22% 0.048 252.1);
 	--color-info-accent-secondary: oklch(41.9% 0.124 253.7);
 	--color-info-focus: oklch(41.9% 0.124 253.7);
 	--color-info-stroke: oklch(50.3% 0.173 256.9);
@@ -159,7 +159,7 @@
 
 	/* success */
 	--color-success: oklch(49.2% 0.124 148);
-	--color-success-accent: oklch(25.4% 0.058 150.1);
+	--color-success-accent: oklch(22.5% 0.037 152.2);
 	--color-success-accent-secondary: oklch(37.1% 0.081 149.6);
 	--color-success-focus: oklch(37.1% 0.081 149.6);
 	--color-success-stroke: oklch(42.2% 0.096 149.2);
@@ -168,7 +168,7 @@
 
 	/* error */
 	--color-error: oklch(60.7% 0.218 26.7);
-	--color-error-accent: oklch(25.5% 0.093 26.9);
+	--color-error-accent: oklch(21.9% 0.048 19.9);
 	--color-error-accent-secondary: oklch(39.5% 0.141 26.6);
 	--color-error-focus: oklch(39.5% 0.141 26.6);
 	--color-error-stroke: oklch(45% 0.172 27.8);
@@ -177,7 +177,7 @@
 
 	/* warning */
 	--color-warning: oklch(57.6% 0.145 52.8);
-	--color-warning-accent: oklch(28.4% 0.075 48.4);
+	--color-warning-accent: oklch(25.1% 0.042 69.2);
 	--color-warning-accent-secondary: oklch(42.2% 0.104 50.1);
 	--color-warning-focus: oklch(42.2% 0.104 50.1);
 	--color-warning-stroke: oklch(48.6% 0.124 50.1);

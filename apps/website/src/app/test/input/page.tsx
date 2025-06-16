@@ -4,7 +4,7 @@ import React from "react"
 import { CircleUserRound, Volume2, VolumeX } from "lucide-react"
 import Calendar from "@/registry/ui/calendar"
 import { CurrencyInput } from "@/registry/ui/currency"
-import DateInput from "@/registry/ui/date-input"
+// import DateInput from "@/registry/ui/date-input"
 import DatePicker, { DatePickerModes } from "@/registry/ui/date-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import FileUpload from "@/registry/ui/file-upload"
@@ -40,7 +40,7 @@ const page = () => {
 				<CurrencyComp />
 				<OTPComp />
 				<TimeComp />
-				<DateInputComp />
+				{/* <DateInputComp /> */}
 				<DatePickerComp />
 				<FileUploadComp />
 				<SliderComp />
@@ -298,27 +298,27 @@ const CalendarComp = () => {
 	)
 }
 
-const DateInputComp = () => {
-	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
-	const [size, setSize] = React.useState<SizeOptions>("40")
-	const [disabled, setDisabled] = React.useState<boolean>(false)
-	const [label, setLabel] = React.useState<boolean>(true)
+// const DateInputComp = () => {
+// 	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
+// 	const [size, setSize] = React.useState<SizeOptions>("40")
+// 	const [disabled, setDisabled] = React.useState<boolean>(false)
+// 	const [label, setLabel] = React.useState<boolean>(true)
 
-	return (
-		<div className="flex flex-col gap-2">
-			<h6 className="font-heading text-[20px] font-bold">Date Input</h6>
-			<Dropdown>
-				<DropdownTrigger>Properties</DropdownTrigger>
-				<DropdownContent>
-					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
-				</DropdownContent>
-			</Dropdown>
-			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
-				<DateInput rounded={rounded} size={size} disabled={disabled} label={label ? "Enter date below" : undefined} />
-			</div>
-		</div>
-	)
-}
+// 	return (
+// 		<div className="flex flex-col gap-2">
+// 			<h6 className="font-heading text-[20px] font-bold">Date Input</h6>
+// 			<Dropdown>
+// 				<DropdownTrigger>Properties</DropdownTrigger>
+// 				<DropdownContent>
+// 					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
+// 				</DropdownContent>
+// 			</Dropdown>
+// 			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
+// 				<DateInput rounded={rounded} size={size} disabled={disabled} label={label ? "Enter date below" : undefined} />
+// 			</div>
+// 		</div>
+// 	)
+// }
 
 const TimeComp = () => {
 	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
