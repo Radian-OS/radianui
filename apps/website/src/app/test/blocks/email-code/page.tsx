@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
-import OTPInput from "@/registry/ui/input-otp"
+import { InputOtp } from "@/registry/ui/input-otp"
 
 const EmailCode = () => {
 	const handleSubmitClick = () => {
@@ -25,7 +25,7 @@ const EmailCode = () => {
 							</div>
 						</div>
 						<div className="space-y-5">
-							<OTPInput label="Confirmation Code" length={6} variant="box" rounded="sm" size="44" className="w-[320px]" placeholder="Confirmation Code" />
+							<InputOtp label="Confirmation Code" length={6} size="44" className="w-[320px]" placeholder="Confirmation Code" />
 							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
 								Verify
 							</Button>

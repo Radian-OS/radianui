@@ -53,7 +53,8 @@ async function getDependencyArray(filePath: string): Promise<string[]> {
 		const moduleName = importDeclaration.getModuleSpecifierValue()
 
 		if (!IGNORED_DEPENDENCIES.includes(moduleName) && !moduleName.startsWith("@/") && !moduleName.startsWith("./")) {
-			dependencies.add(moduleName)
+			const baseModule = !moduleName.startsWith("@") && moduleName.includes("/") ? moduleName.split("/")[0] : moduleName
+			dependencies.add(baseModule)
 		}
 	})
 
