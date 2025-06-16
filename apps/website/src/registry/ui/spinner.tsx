@@ -27,6 +27,18 @@ function DefaultSpinner(props: React.SVGProps<SVGSVGElement>) {
 }
 
 function Spinner() {
+	// return (
+	// 	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-spin">
+	// 		<circle opacity="0.16" cx="12" cy="12" r="9.5" stroke="#0A0A0B" strokeWidth="3" />
+	// 		<path
+	// 			d="M16.75 20.2272C18.4874 19.2241 19.8627 17.6968 20.6787 15.864C21.4947 14.0312 21.7095 11.9872 21.2924 10.0248C20.8753 8.06248 19.8476 6.28254 18.3567 4.94012C16.8658 3.59771 14.9882 2.76175 12.993 2.55204"
+	// 			stroke="#0A0A0B"
+	// 			strokeWidth="3"
+	// 			strokeLinecap="round"
+	// 			strokeLinejoin="round"
+	// 		/>
+	// 	</svg>
+	// )
 	return <DefaultSpinner />
 }
 
