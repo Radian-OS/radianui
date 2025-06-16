@@ -34,15 +34,7 @@ const nextConfig = {
 			{
 				source: "/ingest/decide",
 				destination: "https://us.i.posthog.com/decide",
-			},
-			{
-				source: "/app",
-				destination: `${process.env.NEXT_PUBLIC_WEBAPP_URL}`,
-			},
-			{
-				source: "/app/:path*",
-				destination: `${process.env.NEXT_PUBLIC_WEBAPP_URL}/:path*`,
-			},
+			}
 		]
 	},
 	assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
