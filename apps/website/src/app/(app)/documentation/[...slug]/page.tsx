@@ -47,6 +47,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 	return {
 		title: cleanTitle,
 		description: fullDesc,
+		keywords: doc.keywords ?? ["Radian", "React components", "Tailwind CSS", "UI library", "design system", "developer tools"],
 		openGraph: {
 			title: cleanTitle,
 			description: fullDesc,
