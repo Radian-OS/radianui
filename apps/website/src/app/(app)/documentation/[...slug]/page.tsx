@@ -9,60 +9,62 @@ import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { Badge } from "@/registry/ui/badge"
 
 interface DocPageProps {
-	params: Promise<{ slug: string[] }>
+	params: Promise<{ slug: string[] }> // 👈 Promise-based!
 }
 
+// ✅ Await `params` inside the function
 async function getDocFromParams({ params }: DocPageProps) {
-	const slug = (await params)?.slug?.join("/") || ""
-
+	const resolvedParams = await params
+	const slug = resolvedParams.slug.join("/") || ""
 	const doc = allDocs.find((doc) => doc.slugAsParams === slug)
-
-	if (!doc) {
-		return null
-	}
-	return doc
+	return doc ?? null
 }
 
+// ✅ Static path generation
 export async function generateStaticParams() {
 	return allDocs.map((doc) => ({
 		slug: doc.slugAsParams.split("/"),
 	}))
 }
 
-export async function generateMetadata({ params }: { params: { slug: string[] } }): Promise<Metadata> {
-	const slug = params.slug.join("/")
+// ✅ Await `params` inside generateMetadata
+export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
+	const resolvedParams = await params
+	const slug = resolvedParams.slug.join("/")
 	const doc = allDocs.find((d) => d.slugAsParams === slug)
 
 	if (!doc) {
 		return {
-			title: "Documentation Not Found",
-			description: "The requested documentation page could not be found.",
+			title: "Documentation Not Found | Radian",
+			description: "The page you're looking for doesn't exist. Browse our docs to learn more about Radian UI components.",
 		}
 	}
 
 	const url = `https://radianos.com/documentation/${slug}`
+	const cleanTitle = `${doc.title} | Radian`
+	const fullDesc = `${doc.description} Learn how to use the ${doc.title} component with examples, props, and customization options.`
 
 	return {
-		title: `${doc.title} - Radian`,
-		description: doc.description,
+		title: cleanTitle,
+		description: fullDesc,
 		openGraph: {
-			title: doc.title,
-			description: doc.description,
+			title: cleanTitle,
+			description: fullDesc,
 			url,
-			// images: doc.image ? [{ url: doc.image, alt: doc.title }] : [],
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: doc.title,
-			description: doc.description,
-			// images: doc.image ? [doc.image] : [],
+			title: cleanTitle,
+			description: fullDesc,
 		},
 	}
 }
 
+// ✅ Await `params` in the page itself
 export default async function DocPage({ params }: DocPageProps) {
+	const resolvedParams = await params
 	const doc = await getDocFromParams({ params })
-	const currentPath = `/documentation/${(await params).slug.join("/")}` || ""
+	const currentPath = `/documentation/${resolvedParams.slug.join("/")}`
 
 	if (!doc) return notFound()
 
@@ -71,17 +73,18 @@ export default async function DocPage({ params }: DocPageProps) {
 			<div className="flex flex-col">
 				<h4 className="heading-4 mb-1">{doc.title}</h4>
 				<p className="text-text-secondary mb-5 text-base">{doc.description}</p>
+
 				<section className="mb-10 flex items-center gap-2">
-					{doc.apiref && (
+					{doc.apiRef && (
 						<Badge className="flex w-fit cursor-pointer items-center gap-1">
-							<Link href={doc.apiref} target="_blank">
+							<Link href={doc.apiRef} target="_blank" rel="noopener noreferrer">
 								API Reference
 							</Link>
 							<SquareArrowOutUpRight size={16} />
 						</Badge>
 					)}
 					{doc.source && (
-						<Link href={doc.source} target="_blank">
+						<Link href={doc.source} target="_blank" rel="noopener noreferrer">
 							<Badge className="flex w-fit cursor-pointer items-center gap-1">
 								<Github size={16} />
 								Source
@@ -89,7 +92,7 @@ export default async function DocPage({ params }: DocPageProps) {
 						</Link>
 					)}
 					{doc.externalSiteRef && (
-						<Link href={doc.externalSiteRef} target="_blank">
+						<Link href={doc.externalSiteRef} target="_blank" rel="noopener noreferrer">
 							<Badge className="flex w-fit cursor-pointer items-center gap-1">
 								{doc.customLogo ? <Image className="size-4" height={50} width={50} alt="badge-img" src={doc.customLogo} /> : <ExternalLink className="size-4" />}
 								{doc.externalSiteName ?? "External Reference"}
@@ -98,6 +101,7 @@ export default async function DocPage({ params }: DocPageProps) {
 					)}
 				</section>
 			</div>
+
 			<Mdx code={doc.body.code} />
 			<PreviousNextButtons currentPath={currentPath} className="mt-6" />
 		</div>
