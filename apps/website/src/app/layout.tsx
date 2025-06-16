@@ -8,10 +8,6 @@ export const metadata: Metadata = {
 	description: "Radian: A cutting-edge component library for modern web apps built with React and Tailwind CSS.",
 	keywords: ["Radian", "React components", "Tailwind CSS", "UI library", "design system", "developer tools"],
 	authors: [{ name: "Radian Team", url: "https://radianos.com" }],
-	themeColor: [
-		{ media: "(prefers-color-scheme: light)", color: "white" },
-		{ media: "(prefers-color-scheme: dark)", color: "black" },
-	],
 	openGraph: {
 		title: "Radian: Component Library",
 		description: "A modern, customizable component library built with React and Tailwind CSS.",

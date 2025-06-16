@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 	const url = `https://radianos.com/documentation/${slug}`
 	const cleanTitle = `${doc.title} | Radian`
-	const fullDesc = `${doc.description} Learn how to use the ${doc.title} component with examples, props, and customization options.`
+	const fullDesc = `${doc.description}`
 
 	return {
 		title: cleanTitle,
@@ -72,7 +72,7 @@ export default async function DocPage({ params }: DocPageProps) {
 	return (
 		<div className="mx-auto">
 			<div className="flex flex-col">
-				<h4 className="heading-4 mb-1">{doc.title}</h4>
+				<h1 className="heading-4 mb-1">{doc.title}</h1>
 				<p className="text-text-secondary mb-5 text-base">{doc.description}</p>
 
 				<section className="mb-10 flex items-center gap-2">
