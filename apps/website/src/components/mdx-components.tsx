@@ -194,34 +194,19 @@ const components: MDXComponents = {
 			<CodeArea language={language} code={code} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("", className)} {...props} />
 		),
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h1 className={cn("heading-1", className)} {...props}>
+		<h1 className={cn("heading-4", className)} {...props}>
 			{children}
 		</h1>
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-2", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! mb-4 mt-9", className)} {...props}>
 			{children}
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-3", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! mb-4", className)} {...props}>
 			{children}
 		</h3>
-	),
-	h4: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h4 className={cn("heading-4", className)} {...props}>
-			{children}
-		</h4>
-	),
-	h5: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h5 className={cn("heading-5 font-semibold! mb-4 mt-9", className)} {...props}>
-			{children}
-		</h5>
-	),
-	h6: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h6 className={cn("heading-6 font-semibold! mb-4", className)} {...props}>
-			{children}
-		</h6>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={cn("text-primary-foreground text-base", className)} {...props}>

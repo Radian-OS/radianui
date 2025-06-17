@@ -4,10 +4,10 @@ import * as RPNInput from "react-phone-number-input"
 import { Value, getCountries, getCountryCallingCode, isValidPhoneNumber } from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { Input, InputProps } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
+import { Button } from "./button"
+import { Input, InputProps } from "./input"
+import { Label } from "./label"
+import { Select, SelectGroup, SelectItem } from "./select"
 
 type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
 	size?: InputProps["size"]
