@@ -55,7 +55,7 @@
 	--color-error-text: oklch(51.8% 0.203 28.2);
 
 	/* warning */
-	--color-warning: oklch(57.6% 0.145 52.8);
+	--color-warning: oklch(70.1% 0.161 62.8);
 	--color-warning-accent: oklch(98.3% 0.034 98.8);
 	--color-warning-focus: oklch(96.9% 0.068 100.3);
 	--color-warning-stroke: oklch(70.7% 0.162 62.8);
@@ -176,7 +176,7 @@
 	--color-error-text: oklch(71.2% 0.181 22.8);
 
 	/* warning */
-	--color-warning: oklch(57.6% 0.145 52.8);
+	--color-warning: oklch(70.1% 0.161 62.8);
 	--color-warning-accent: oklch(25.1% 0.042 69.2);
 	--color-warning-accent-secondary: oklch(42.2% 0.104 50.1);
 	--color-warning-focus: oklch(42.2% 0.104 50.1);
