@@ -145,7 +145,7 @@ export default function Hero01() {
 
 				<div className="h-40"></div>
 
-				<TextReveal>Pre-built, customizable UI components</TextReveal>
+				<TextReveal>Ready to use pre-built, customizable UI components</TextReveal>
 			</main>
 		</div>
 	)

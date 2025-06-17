@@ -92,6 +92,7 @@ import SearchInputExample from "@/registry/example/search-input/search-input-exa
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
+import ToastExample from "@/registry/example/toast/toast-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
 
@@ -171,6 +172,7 @@ const components: MDXComponents = {
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
 	ColorPickerExample: () => <ColorPickerExample />,
+	ToastExample: () => <ToastExample />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -187,6 +189,7 @@ const components: MDXComponents = {
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
+
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<PackageManagerTabs language={language} pkg={pkg} code={code} />

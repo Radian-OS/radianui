@@ -27,7 +27,7 @@ const BorderBeamPreview = () => {
 					<div className="relative size-60 rounded-lg border p-5">
 						<h1>Content here</h1>
 
-						<BorderBeam size={150} />
+						<BorderBeam size={100} />
 					</div>
 				</div>
 			</TabsContent>
@@ -39,7 +39,7 @@ const BorderBeamPreview = () => {
 					code={`<div className="relative size-60 rounded-lg border">
 	<h1>Content here</h1>
 	
-	<BorderBeam size={150} />
+	<BorderBeam size={100} />
 </div>`}
 				/>
 			</TabsContent>

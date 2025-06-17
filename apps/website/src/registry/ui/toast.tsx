@@ -93,12 +93,14 @@ export function showToast({
 						{customContent}
 						{/* Optional close button for custom content */}
 						{shouldShowCloseButton && (
-							<button
+							<Button
+								isIcon
+								variant="ghost"
 								onClick={(e) => {
 									e.stopPropagation() // Prevent triggering closeOnClick
 									toast.dismiss(toastId)
 								}}
-								className="absolute right-2 top-2 z-10 cursor-pointer rounded-full bg-white/20 p-1 text-gray-500 transition-colors hover:bg-white/30 hover:text-gray-700"
+								className="absolute right-2 top-2 z-10 cursor-pointer rounded-full"
 								aria-label="Close toast">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +115,7 @@ export function showToast({
 									<path d="M18 6 6 18" />
 									<path d="m6 6 12 12" />
 								</svg>
-							</button>
+							</Button>
 						)}
 					</div>
 				)
