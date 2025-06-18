@@ -4,6 +4,8 @@ import React, { ComponentPropsWithoutRef, useEffect, useMemo, useState } from "r
 import { AnimatePresence, motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
+/* Based on AnimatedList component from MagicUI - MIT License */
+
 export function AnimatedListItem({ children }: { children: React.ReactNode }) {
 	const animations = {
 		initial: { scale: 0, opacity: 0 },

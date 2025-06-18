@@ -1,98 +1,92 @@
-name: 'Bug report'
-title: "[BUG] - YOUR_ISSUE_TITLE_HERE_REPLACE_ME"
-description: Create a report to help us improve RadianOs
-labels: [bug]
+name: "🐞 Bug Report"
+title: "[BUG] - Briefly describe the issue"
+description: "Report a reproducible bug in the RadianOs UI component system."
+labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for reporting an issue 🙏
+        ### Thanks for taking the time to report a bug in Radian. Please search open/closed issues before submitting, as the issue may have already been reported/addressed.
 
-        This issue tracker is for **reporting bugs in the [RadianOs GitHub repository](https://github.com/radian-os/radianos)**.
-
-        If you're unsure whether it's a bug or need implementation help, consider posting your question here instead:
-          - RadianOs [Discussions](https://github.com/radian-os/radianos/discussions)
-          - Join our [Discord community](https://discord.gg/radianos)
-
-        Before opening a new issue, please check:
-         - [Open issues](https://github.com/radian-os/radianos/issues?q=is%3Aopen)
-         - [Closed issues](https://github.com/radian-os/radianos/issues?q=is%3Aissue+is%3Aclosed)
-         - [Discussions tab](https://github.com/radian-os/radianos/discussions)
-
-        The more details you provide, the faster we can help!
-  - type: input
-    id: version
+  - type: markdown
     attributes:
-      label: RadianOs Version
-      description: |
-        Please provide the version of RadianOs you're using.
-        You can find it in your `package.json` or by running `pnpm list radianos`.
-      placeholder: ex. 1.2.3 or @radianos/button@1.0.0
-    validations:
-      required: true
+      value: |
+        ### Not sure if it’s a bug?
+        
+        If you're unsure whether this is actually a bug, feel free to start a discussion instead:
+        
+        👉 [Open a general discussion](https://github.com/Radian-os/radianos/discussions/new?category=general)
+
   - type: textarea
     id: description
     attributes:
       label: Describe the bug
-      description: Provide a clear and concise description of the issue.
+      description: "A clear and concise description of what the bug is and how it affects functionality. Mention if you intend to submit a PR for this."
+      placeholder: "Describe the unexpected behavior and what you expected instead."
     validations:
       required: true
+
   - type: input
-    id: link
+    id: affected-components
     attributes:
-      label: Reproduction URL or GitHub Repo
-      description: |
-        Provide a public link to your minimal reproducible example.
-        You can use StackBlitz, CodeSandbox, or a public GitHub repo.
-        Please avoid localhost URLs.
-      placeholder: e.g. https://stackblitz.com/edit/... or https://github.com/your-user/example-repo
+      label: Affected RadianOs components
+      description: "List the components affected by this bug (e.g., Button, Input, OTPInput)"
+      placeholder: "e.g. Button, Accordion, OTPInput"
     validations:
-      required: false
+      required: true
+
   - type: textarea
-    id: steps
+    id: reproduction-steps
     attributes:
-      label: Steps to Reproduce
-      description: Describe the steps to reproduce the issue.
+      label: Steps to reproduce
+      description: "How can we reproduce the bug? Provide a step-by-step guide."
       placeholder: |
         1. Go to '...'
         2. Click on '...'
-        3. Scroll to '...'
-        4. See error
+        3. Observe the issue
     validations:
       required: true
-  - type: textarea
-    id: expected
-    attributes:
-      label: Expected behavior
-      description: Describe what you expected to happen.
-      placeholder: As a user, I expected ___ behavior but saw ___ instead.
-    validations:
-      required: true
-  - type: textarea
-    id: screenshots_or_videos
-    attributes:
-      label: Screenshots or Videos
-      description: If available, add screenshots or videos to help explain the issue.
-      placeholder: You can drag your media files into this editor.
+
   - type: input
-    id: os
+    id: reproduction-link
     attributes:
-      label: Operating System
-      description: What OS are you using?
-      placeholder: e.g. macOS 14, Windows 11, Ubuntu 22.04
+      label: Minimal reproduction
+      description: "Link to a live example using StackBlitz, CodeSandbox, or GitHub. Required for most bug reports."
+      placeholder: "https://stackblitz.com/edit/your-repo"
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (optional)
+      description: "Paste any browser or server logs that may help identify the issue."
+      placeholder: "Paste logs here instead of uploading screenshots."
+    validations:
+      required: false
+
+  - type: textarea
+    id: system-info
+    attributes:
+      label: System Info
+      description: "Provide OS, browser, Node.js version, and package manager details."
+      placeholder: |
+        - OS: macOS Sonoma 14.5
+        - Browser: Chrome 125
+        - Node: 20.3.0
+        - Package Manager: pnpm 8.6.5
     validations:
       required: true
-  - type: dropdown
-    id: browser_type
+
+  - type: checkboxes
+    id: research-checklist
     attributes:
-      label: Browser
-      description: Which browsers are affected?
+      label: Confirmation
+      description: "Please confirm you've done the following before submitting:"
       options:
-        - "Chrome"
-        - "Firefox"
-        - "Safari"
-        - "Edge"
-        - "Opera"
-        - "Other (add details in the description)"
-    validations:
-      required: true
+        - label: "I have searched existing issues and discussions."
+          required: true
+        - label: "I have reviewed the documentation."
+          required: true
+        - label: "I agree to follow the contributing guidelines."
+          required: true

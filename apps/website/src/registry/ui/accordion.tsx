@@ -135,10 +135,7 @@ function AccordionContent({ children, className, ...props }: AccordionContentPro
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames(
-				"text-text-secondary overflow-hidden transition-all data-[state=closed]:animate-[accordion-close_0.2s_ease-out] data-[state=open]:animate-[accordion-open_0.2s_ease-out]",
-				className
-			)}
+			className={classNames("text-text-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all", className)}
 			{...props}>
 			<div className={classNames(paddingClass, "pt-0")}>{children}</div>
 		</AccordionPrimitive.Content>

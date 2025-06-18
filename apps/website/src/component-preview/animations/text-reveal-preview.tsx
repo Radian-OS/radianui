@@ -23,7 +23,7 @@ const AnimatedListPreview = () => {
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
-				<div className="rounded-xl border">
+				<div className="flex min-h-[200vh] w-full p-10">
 					<TextReveal>Components that adapt to your workflow</TextReveal>
 				</div>
 			</TabsContent>

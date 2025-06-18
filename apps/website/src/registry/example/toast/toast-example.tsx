@@ -1,15 +1,16 @@
 import { useState } from "react"
+import { Box } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Toaster, showToast } from "@/registry/ui/toast"
 
-const ToastPreview = () => {
+const ToastExample = () => {
 	const [position, setPosition] = useState<"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right">("bottom-right")
-	const [variant, setVariant] = useState<"default" | "information" | "success" | "error" | "warning">("default")
+	// const [variant, setVariant] = useState<"default" | "information" | "success" | "error" | "warning">("default")
 	const [stackable, setStackable] = useState<"true" | "false">("false")
-	const [closable, setClosable] = useState<"true" | "false">("false")
+	// const [closable, setClosable] = useState<"true" | "false">("false")
 	const [visibleToasts, setVisibleToasts] = useState<"3" | "4" | "5" | "6">("3")
 	const [key, setKey] = useState(0)
 
@@ -40,23 +41,6 @@ const ToastPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Variant</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
-											minSelectionCount={1}
-											selectedValues={[variant]}>
-											<DropdownItem value="default">Default</DropdownItem>
-											<DropdownItem value="information">Information</DropdownItem>
-											<DropdownItem value="success">Success</DropdownItem>
-											<DropdownItem value="warning">Warning</DropdownItem>
-											<DropdownItem value="error">Error</DropdownItem>{" "}
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
 									<DropdownSubTrigger>Stackable</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
@@ -67,23 +51,6 @@ const ToastPreview = () => {
 											}}
 											minSelectionCount={1}
 											selectedValues={[stackable]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Closeable</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setClosable(Array.from(keys)[0] as typeof closable)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[closable]}>
 											<DropdownItem value="true">True</DropdownItem>
 											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
@@ -127,14 +94,30 @@ const ToastPreview = () => {
 							variant="neutral-outline"
 							onClick={() =>
 								showToast({
-									variant,
-									title: "Toast Title",
-									closable: closable === "true",
-									description: "Toast description message",
-									buttons: [
-										{ label: "Upgrade", onClick: () => console.log("Retrying..."), dismiss: false },
-										{ label: "Learn More", onClick: () => console.log("Cancelled") },
-									],
+									customContent: (
+										<div className="bg-bg-level2 gap-2 rounded-lg p-3 text-white">
+											<div className="flex items-center space-x-3">
+												<Box />
+												<div>
+													{/* Content */}
+													<div className="flex-1">
+														<div className="mb-1 text-sm font-semibold">Toast title</div>
+														<div className="text-sm opacity-90">Toast description message</div>
+													</div>
+													<div className="mt-2 flex space-x-2">
+														<Button variant="ghost" className={`p-0 text-xs text-white`}>
+															Upgrade
+														</Button>
+														<Button variant="ghost" className={`p-0 text-xs text-white`}>
+															Learn More
+														</Button>
+													</div>
+												</div>
+											</div>
+										</div>
+									),
+									isCustom: true,
+									closeOnClick: false,
 								})
 							}>
 							Toast
@@ -149,26 +132,42 @@ const ToastPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={` <Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
-<Button
-	variant="neutral-outline"
-	onClick={() =>
-		showToast({
-			variant,
-			title: "Toast Title",
-			closable: closable === "true",
-			description: "Toast description message",
-			buttons: [
-				{ label: "Upgrade", onClick: () => console.log("Retrying..."), dismiss: false },
-				{ label: "Learn More", onClick: () => console.log("Cancelled") },
-			],
-		})
-	}>
-	Toast
-</Button>`}
+	<Button
+		variant="neutral-outline"
+		onClick={() =>
+			showToast({
+				customContent: (
+					<div className="bg-bg-level2 gap-2 rounded-lg p-3 text-white">
+						<div className="flex items-center space-x-3">
+							<Box />
+							<div>
+								{/* Content */}
+								<div className="flex-1">
+									<div className="mb-1 text-sm font-semibold">Toast title</div>
+									<div className="text-sm opacity-90">Toast description message</div>
+								</div>
+								<div className="mt-2 flex space-x-2">
+									<Button variant="ghost" className="p-0 text-xs text-white">
+										Upgrade
+									</Button>
+									<Button variant="ghost" className="p-0 text-xs text-white">
+										Learn More
+									</Button>
+								</div>
+							</div>
+						</div>
+					</div>
+				),
+				isCustom: true,
+				closeOnClick: false,
+			})
+			}>
+			Toast
+		</Button>`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
 
-export default ToastPreview
+export default ToastExample

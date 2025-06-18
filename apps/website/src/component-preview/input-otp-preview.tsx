@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { InputOtp } from "@/registry/ui/otp-input"
+import { InputOtp } from "@/registry/ui/input-otp"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "28" | "32" | "36" | "40" | "44" | "56"
