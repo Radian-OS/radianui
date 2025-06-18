@@ -28,14 +28,6 @@
 		scrollbar-color: hsl(var(--border)) transparent;
 		scroll-behavior: smooth;
 	}
-
-	html {
-		font-family: "Inter", system-ui, sans-serif;
-	}
-
-	body {
-		@apply bg-bg-base text-text;
-	}
 }
 
 @layer utilities {
@@ -68,7 +60,7 @@
 		fill: var(--color-text);
 	}
 
-    .steps {
+	.steps {
 		counter-reset: step;
 	}
 
