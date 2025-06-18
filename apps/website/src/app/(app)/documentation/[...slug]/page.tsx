@@ -72,12 +72,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 		}
 	}
 
-	const url = `https://radianos.com/documentation/${slug}`
+	const url = `https://dev.radianos.com/documentation/${slug}`
 	const cleanTitle = `${doc.title} - Radian`
 	const fullDesc = `${doc.description}`
 
 	// Generate OG image URL with dynamic parameters
-	const ogImageUrl = `https://radianos.com/api/og?title=${encodeURIComponent(doc.title)}`
+	const ogImageUrl = `https://dev.radianos.com/api/og?title=${encodeURIComponent(doc.title)}`
 
 	return {
 		title: cleanTitle,
