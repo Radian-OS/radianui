@@ -61,11 +61,11 @@ function SelectItem({ value, children, startContent, endContent, ref, ...props }
 			className={`text-text flex cursor-pointer justify-between gap-2 ${isSelected ? "bg-fill-level3" : ""}`}
 			{...props}>
 			<div className="flex gap-2">
-				{startContent && <span>{startContent}</span>}
+				{startContent && <span className="flex items-center justify-center">{startContent}</span>}
 				<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
 			</div>
 			<div className="flex gap-2">
-				{endContent && <span>{endContent}</span>}
+				{endContent && <span className="flex items-center justify-center">{endContent}</span>}
 				{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
 			</div>
 		</CommandItem>
@@ -136,6 +136,7 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 	variants?: "input" | "button" | "tags"
 	lead?: React.ReactNode
 	trail?: React.ReactNode
+	customValue?: React.ReactNode
 	endIcon?: boolean
 	hint?: string
 	hasError?: boolean
@@ -166,6 +167,7 @@ function Select({
 	disabled = false,
 	className,
 	classNames,
+	customValue,
 	variants = "button",
 	endIcon = true,
 	hint,
@@ -301,10 +303,9 @@ function Select({
 													"text-base": size === "44" || size === "48",
 												})}>
 												{selectedLabels.length == 0 && placeholder}
-
-												{selectionMode === "single" && selectedLabels.length == 1 && selectedLabels[0]}
-
-												{selectionMode === "multiple" && selectedLabels.length > 0 && selectedLabels.join(", ")}
+												{customValue && `${customValue}`}
+												{selectionMode === "single" && selectedLabels.length === 1 && " " + selectedLabels[0]}
+												{selectionMode === "multiple" && selectedLabels.length > 0 && " " + selectedLabels.join(", ")}
 											</span>
 											{endIcon && (!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />)}
 										</Button>
