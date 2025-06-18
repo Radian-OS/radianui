@@ -7,15 +7,15 @@ import { cn } from "@/lib/utils"
 export const metadata: Metadata = {
 	description: "Radian: A cutting-edge component library for modern web apps built with React and Tailwind CSS.",
 	keywords: ["Radian", "React components", "Tailwind CSS", "UI library", "design system", "developer tools"],
-	authors: [{ name: "Radian Team", url: "https://dev.radianos.com" }],
+	authors: [{ name: "Radian Team", url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}` }],
 	openGraph: {
 		title: "Radian: Component Library",
 		description: "A modern, customizable component library built with React and Tailwind CSS.",
-		url: "https://dev.radianos.com",
+		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}`,
 		siteName: "Radian",
 		images: [
 			{
-				url: "https://dev.radianos.com/radian.svg",
+				url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`,
 				width: 1200,
 				height: 630,
 				alt: "Radian component library preview",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 		creator: "@radiandev",
 		title: "Radian: Component Library",
 		description: "Elevate your web apps with Radian, a React & Tailwind CSS component library.",
-		images: ["https://dev.radianos.com/radian.svg"],
+		images: [`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`],
 	},
 	robots: {
 		index: true,
