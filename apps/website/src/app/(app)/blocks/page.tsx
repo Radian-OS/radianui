@@ -4,8 +4,8 @@ import BlockPreview from "./block-viewer"
 
 export const metadata: Metadata = {
 	title: {
-		default: "Blocks | Radian",
-		template: "%s | Radian",
+		default: "Blocks - Radian",
+		template: "%s - Radian",
 	},
 	description: "Browse all Radian components by category to find the perfect UI block for your project.",
 	openGraph: {

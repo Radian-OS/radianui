@@ -9,8 +9,6 @@ import DatePicker, { DatePickerModes } from "@/registry/ui/date-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import FileUpload from "@/registry/ui/file-upload"
 import { Input, RoundedOptions, SizeOptions } from "@/registry/ui/input"
-import OTPInput from "@/registry/ui/input-otp"
-// import NumberInput from "@/registry/ui/number"
 import { Password } from "@/registry/ui/password"
 import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
@@ -38,7 +36,6 @@ const page = () => {
 				<SearchInputComp />
 				<NumberComp />
 				<CurrencyComp />
-				<OTPComp />
 				<TimeComp />
 				{/* <DateInputComp /> */}
 				<DatePickerComp />
@@ -959,63 +956,6 @@ const CurrencyComp = () => {
 		</div>
 	)
 }
-
-const OTPComp = () => {
-	const [size, setSize] = React.useState<SizeOptions>("40")
-	const [disabled, setDisabled] = React.useState<boolean>(false)
-	const [label, setLabel] = React.useState<boolean>(true)
-	const [length, setLength] = React.useState<number>(6)
-	const [variant, setVariant] = React.useState<"box" | "flat">("box")
-	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
-
-	return (
-		<div className="flex flex-col gap-2">
-			<h6 className="font-heading text-[20px] font-bold">OTP Input</h6>
-			<Dropdown>
-				<DropdownTrigger>Properties</DropdownTrigger>
-				<DropdownContent>
-					<CommonProperty rounded={rounded} setRounded={setRounded} size={size} setSize={setSize} disabled={disabled} setDisabled={setDisabled} label={label} setLabel={setLabel} />
-					<DropdownSub>
-						<DropdownSubTrigger>Variant</DropdownSubTrigger>
-						<DropdownSubContent>
-							<DropdownGroup selectionMode="single" selectedValues={[variant]} onSelectedChange={(values) => setVariant(values[0] as "box" | "flat")} minSelectionCount={1}>
-								<DropdownItem value="box">Box</DropdownItem>
-								<DropdownItem value="flat">Flat</DropdownItem>
-							</DropdownGroup>
-						</DropdownSubContent>
-					</DropdownSub>
-
-					<DropdownSub>
-						<DropdownSubTrigger>Length</DropdownSubTrigger>
-						<DropdownSubContent>
-							<DropdownGroup selectionMode="single" selectedValues={[String(length)]} onSelectedChange={(values) => setLength(Number(values[0]))} minSelectionCount={1}>
-								{[4, 5, 6, 8, 10].map((len) => (
-									<DropdownItem key={len} value={String(len)}>
-										{len}
-									</DropdownItem>
-								))}
-							</DropdownGroup>
-						</DropdownSubContent>
-					</DropdownSub>
-				</DropdownContent>
-			</Dropdown>
-
-			<div className="border-border bg-bg-base flex h-fit w-full items-center justify-center rounded-[0.5rem] border px-[2rem] py-[3rem]">
-				<OTPInput
-					label={label ? "Label here" : undefined}
-					disabled={disabled}
-					length={length}
-					variant={variant}
-					rounded={rounded}
-					size={size}
-					className="w-[320px]"
-					placeholder="Enter OTP"
-				/>
-			</div>
-		</div>
-	)
-}
-
 const SelectComp = () => {
 	const [rounded, setRounded] = React.useState<RoundedOptions>("sm")
 	const [size, setSize] = React.useState<SizeOptions>("40")

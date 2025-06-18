@@ -1,13 +1,21 @@
-# 🌠 RadianOS
+
+<p align="center">
+  <a href="https://radianos.com">
+      <img width="20%" src="https://github.com/Radian-os/radianos/blob/main/apps/website/public/radian-mb.svg" alt="radian" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/Radian-os/radianos/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
+  </a>
+</p>
 
 A modern, accessible, and customizable UI component library built with **Radix UI**, **Tailwind CSS**, and **React**.  
 Built for developers who want full control, great defaults, and scalability — without reinventing the wheel.
 
-**Use RadianOs to power your design system.**
-
 _Free. Open Source. Developer-first._
 
-## ![hero](https://prnt.sc/Ds2APhKLHS3H)
 
 ## 📚 Documentation
 
@@ -15,7 +23,7 @@ Explore the full documentation, including installation, components, variants, th
 
 🔗 [https://radianos.com/documentation](https://radianos.com/documentation)
 
----
+<br/>
 
 ## 🚀 Features
 
@@ -46,9 +54,9 @@ Feel free to use, modify, and distribute — with attribution.
 
 Join the discussion, get help, or share your creations:
 
-- 💬 [Discussions](https://github.com/your-org/radianos/discussions)
-- 🐛 [Report bugs](https://github.com/your-org/radianos/issues)
-- 🧪 [Request features](https://github.com/your-org/radianos/issues/new?template=feature_request.yml)
+- 💬 [Discussions](https://github.com/Radian-os/radianos/discussions)
+- 🐛 [Report bugs](https://github.com/Radian-os/radianos/issues/new?template=bug_report.yml)
+- 🧪 [Request features](https://github.com/Radian-os/radianos/issues/new?template=feature_request.yml)
 
 ---
 

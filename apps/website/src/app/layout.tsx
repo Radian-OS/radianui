@@ -7,16 +7,11 @@ import { cn } from "@/lib/utils"
 export const metadata: Metadata = {
 	description: "Radian: A cutting-edge component library for modern web apps built with React and Tailwind CSS.",
 	keywords: ["Radian", "React components", "Tailwind CSS", "UI library", "design system", "developer tools"],
-	viewport: "width=device-width, initial-scale=1",
-	authors: [{ name: "Radian Team", url: "https://radianos.com" }],
-	themeColor: [
-		{ media: "(prefers-color-scheme: light)", color: "white" },
-		{ media: "(prefers-color-scheme: dark)", color: "black" },
-	],
+	authors: [{ name: "Radian Team", url: "https://dev.radianos.com" }],
 	openGraph: {
 		title: "Radian: Component Library",
 		description: "A modern, customizable component library built with React and Tailwind CSS.",
-		url: "https://radianos.com",
+		url: "https://dev.radianos.com",
 		siteName: "Radian",
 		images: [
 			{

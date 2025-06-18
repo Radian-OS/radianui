@@ -1,0 +1,52 @@
+name: "✨ Feature Request"
+title: "[FEAT] - Briefly describe your feature"
+description: "Suggest a new feature or improvement for the Radian."
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🙏 Thanks for your interest in improving Radian!
+
+        Before submitting, please search [existing issues](https://github.com/Radian-os/radianos/issues) to avoid duplicates.
+
+        Not sure if it's a bug or feature?  
+        👉 [Start a discussion instead](https://github.com/Radian-os/radianos/discussions/new?category=general)
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature description
+      description: "Clearly explain what the feature does and why it would be helpful."
+      placeholder: "Describe the feature you'd like to see in RadianOs..."
+    validations:
+      required: true
+
+  - type: input
+    id: affected-components
+    attributes:
+      label: Related components (if any)
+      description: "Mention any existing components this feature would affect."
+      placeholder: "e.g. Button, Tooltip, Tabs"
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Extra context (optional)
+      description: "Add any other helpful details, links, or examples."
+      placeholder: "Anything else we should know?"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Before submitting
+      description: "Please confirm the following:"
+      options:
+        - label: "I have searched for existing issues and PRs."
+          required: true
+        - label: "I have reviewed the documentation."
+          required: true

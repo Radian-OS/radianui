@@ -23,6 +23,6 @@ function Skeleton({ className, animation = DEFAULT_ANIMATION, ...props }: Skelet
 		</>
 	)
 }
-Skeleton.dislayName = "Skeleton"
+Skeleton.displayName = "Skeleton"
 
 export { Skeleton }

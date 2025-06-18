@@ -15,7 +15,7 @@ export const Doc = defineDocumentType(() => ({
 			type: "string",
 			required: true,
 		},
-		apiref: {
+		apiRef: {
 			type: "string",
 			required: false,
 		},
@@ -33,6 +33,11 @@ export const Doc = defineDocumentType(() => ({
 		},
 		customLogo: {
 			type: "string",
+			required: false,
+		},
+		keywords: {
+			type: "list",
+			of: { type: "string" },
 			required: false,
 		},
 	},

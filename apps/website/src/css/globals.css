@@ -1,15 +1,146 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
 
-@plugin "tailwindcss-animate";
-/* @plugin "@tailwindcss/forms"; */
+@import "./website.css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-	/* font */
-	--heading-font: "Inter Display", system-ui, sans-serif;
-	--body-font: "Inter", system-ui, sans-serif;
+	/* primary */
+	/* --color-primary-50: hsl(230, 100%, 96%);
+	--color-primary-100: hsl(234, 100%, 94%);
+	--color-primary-200: hsl(235, 100%, 90%);
+	--color-primary-300: hsl(237, 100%, 82%);
+	--color-primary-400: hsl(241, 95%, 74%);
+	--color-primary-500: hsl(246, 89%, 67%);
+	--color-primary-600: hsl(250, 80%, 60%);
+	--color-primary-700: hsl(252, 62%, 51%);
+	--color-primary-800: hsl(251, 58%, 41%);
+	--color-primary-900: hsl(249, 51%, 30%);
+	--color-primary-950: hsl(252, 51%, 20%); */
+
+	/* information */
+	/* --color-info-50: hsl(197, 100%, 96%);
+	--color-info-100: hsl(189, 100%, 92%);
+	--color-info-200: hsl(196, 100%, 85%);
+	--color-info-300: hsl(195, 100%, 76%);
+	--color-info-400: hsl(196, 100%, 64%);
+	--color-info-500: hsl(201, 100%, 56%);
+	--color-info-600: hsl(206, 100%, 51%);
+	--color-info-700: hsl(210, 100%, 50%);
+	--color-info-800: hsl(212, 92%, 40%);
+	--color-info-900: hsl(210, 85%, 30%);
+	--color-info-950: hsl(212, 74%, 21%); */
+
+	/* success */
+	/* --color-success-50: hsl(136, 65%, 96%);
+	--color-success-100: hsl(134, 68%, 93%);
+	--color-success-200: hsl(134, 63%, 85%);
+	--color-success-300: hsl(134, 61%, 73%);
+	--color-success-400: hsl(134, 54%, 58%);
+	--color-success-500: hsl(135, 55%, 45%);
+	--color-success-600: hsl(135, 60%, 40%);
+	--color-success-700: hsl(135, 56%, 29%);
+	--color-success-800: hsl(136, 50%, 24%);
+	--color-success-900: hsl(136, 48%, 20%);
+	--color-success-950: hsl(138, 65%, 10%); */
+
+	/* error */
+	/* --color-error-50: hsl(0, 100%, 96%);
+	--color-error-100: hsl(0, 100%, 94%);
+	--color-error-200: hsl(0, 100%, 89%);
+	--color-error-300: hsl(0, 100%, 81%);
+	--color-error-400: hsl(0, 100%, 71%);
+	--color-error-500: hsl(0, 93%, 60%);
+	--color-error-600: hsl(0, 80%, 55%);
+	--color-error-700: hsl(0, 81%, 42%);
+	--color-error-800: hsl(0, 78%, 35%);
+	--color-error-900: hsl(0, 69%, 30%);
+	--color-error-950: hsl(0, 82%, 15%); */
+
+	/* warning */
+	/* --color-warning-50: hsl(51, 100%, 94%);
+	--color-warning-100: hsl(52, 100%, 88%);
+	--color-warning-200: hsl(52, 100%, 76%);
+	--color-warning-300: hsl(50, 100%, 64%);
+	--color-warning-400: hsl(47, 100%, 56%);
+	--color-warning-500: hsl(41, 98%, 50%);
+	--color-warning-600: hsl(35, 100%, 45%);
+	--color-warning-700: hsl(29, 96%, 37%);
+	--color-warning-800: hsl(26, 88%, 31%);
+	--color-warning-900: hsl(25, 82%, 26%);
+	--color-warning-950: hsl(23, 97%, 14%); */
+
+	/* neutral */
+	/* --color-neutral-50: #f7f7f7;
+	--color-neutral-100: #f2f2f3;
+	--color-neutral-200: #e5e4e7;
+	--color-neutral-300: #dadadd;
+	--color-neutral-400: #aba9b1;
+	--color-neutral-500: #716f7b;
+	--color-neutral-600: #54525b;
+	--color-neutral-700: #3b3a40;
+	--color-neutral-800: #28272b;
+	--color-neutral-900: #1d1d20;
+	--color-neutral-950: #141415; */
+
+	/* extended white */
+	/* --color-white-1: #ffffff;
+	--color-white-2: #f7f7f8;
+	--color-white-3: #f2f1f3;
+	--color-white-4: #eaeaec;
+	--color-white-5: #d7d7db;
+	--color-white-6: #cac9cf;
+	--color-white-7: #bdbcc2;
+	--color-white-8: #b0afb6;
+	--color-white-9: #a3a1aa;
+	--color-white-10: #96949e;
+	--color-white-11: #888792;
+	--color-white-12: #7b7986; */
+
+	/* extended */
+	/* --color-black-1: #7a7887;
+	--color-black-2: #6e6c7a;
+	--color-black-3: #62606c;
+	--color-black-4: #56545f;
+	--color-black-5: #494851;
+	--color-black-6: #3d3c44;
+	--color-black-7: #313036;
+	--color-black-8: #252428;
+	--color-black-9: #19181b;
+	--color-black-10: #141415;
+	--color-black-11: #0a0a0b;
+	--color-black-12: #000000; */
+
+	/* gray */
+	/* --color-gray-100: hsl(0, 0%, 100%);
+	--color-gray-98: hsl(230, 6%, 98%);
+	--color-gray-96: hsl(230, 6%, 96%);
+	--color-gray-92: hsl(230, 6%, 92%);
+	--color-gray-88: hsl(230, 6%, 88%);
+	--color-gray-84: hsl(230, 6%, 84%);
+	--color-gray-80: hsl(230, 6%, 80%);
+	--color-gray-76: hsl(230, 6%, 76%);
+	--color-gray-72: hsl(230, 6%, 72%);
+	--color-gray-68: hsl(230, 6%, 68%);
+	--color-gray-64: hsl(230, 6%, 64%);
+	--color-gray-60: hsl(230, 6%, 60%);
+	--color-gray-56: hsl(230, 6%, 56%);
+	--color-gray-52: hsl(230, 6%, 52%);
+	--color-gray-48: hsl(230, 6%, 48%);
+	--color-gray-44: hsl(230, 6%, 44%);
+	--color-gray-40: hsl(230, 6%, 40%);
+	--color-gray-36: hsl(230, 6%, 36%);
+	--color-gray-32: hsl(230, 6%, 32%);
+	--color-gray-28: hsl(230, 6%, 28%);
+	--color-gray-24: hsl(230, 6%, 24%);
+	--color-gray-20: hsl(230, 6%, 20%);
+	--color-gray-16: hsl(230, 6%, 16%);
+	--color-gray-12: hsl(230, 6%, 12%);
+	--color-gray-8: hsl(230, 6%, 8%);
+	--color-gray-4: hsl(230, 6%, 4%);
+	--color-gray-0: hsl(230, 6%, 0%); */
 }
 
 @theme static {
@@ -107,35 +238,9 @@
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
 
-	@keyframes caret-blink {
-		0%,
-		70%,
-		100% {
-			opacity: 0;
-		}
-		20%,
-		50% {
-			opacity: 1;
-		}
-	}
-
-	@keyframes accordion-open {
-		from {
-			height: 0;
-		}
-		to {
-			height: var(--radix-accordion-content-height);
-		}
-	}
-
-	@keyframes accordion-close {
-		from {
-			height: var(--radix-accordion-content-height);
-		}
-		to {
-			height: 0;
-		}
-	}
+	/* Font families */
+	--heading-font: "Inter Display", system-ui, sans-serif;
+	--body-font: "Inter", system-ui, sans-serif;
 }
 
 .dark {
@@ -267,7 +372,7 @@
 @theme inline {
 	--animate-shimmer: shimmer 2s ease-out infinite;
 	@keyframes shimmer {
-		0% {
+		from {
 			background-position: 100% 50%;
 		}
 		to {
@@ -276,32 +381,17 @@
 	}
 }
 
-/* Variable used in website only */
-@theme {
-	--color-hero-fade-gradient-from: hsla(0, 0%, 98%, 0);
-	--color-hero-fade-gradient-to: hsla(0, 0%, 98%, 1);
-
-	--animate-float: float 2s ease-in-out infinite;
-
-	@keyframes float {
-		0%,
-		100% {
-			translate: 0 0;
-		}
-
-		50% {
-			translate: 0 -12px;
-		}
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply font-body bg-bg-base text-text;
 	}
 }
 
 @utility animation-pause {
 	animation-play-state: paused;
-}
-
-.dark {
-	--color-hero-fade-gradient-from: hsla(260, 6%, 10%, 0);
-	--color-hero-fade-gradient-to: hsla(260, 6%, 10%, 1);
 }
 
 /*
@@ -312,16 +402,6 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
-@layer base {
-	*,
-	::after,
-	::before,
-	::backdrop,
-	::file-selector-button {
-		border-color: var(--color-gray-200, currentColor);
-	}
-}
-
 @utility font-heading {
 	/* Base typography classes for headings and body */
 	font-family: var(--heading-font);
@@ -416,15 +496,6 @@
 	}
 }
 
-/* @utility text-lg { */
-/* Body text styles */
-/* @apply font-body text-[1.125rem] leading-[1.75rem]; */
-/* } */
-
-/* @utility text-base {
-	@apply font-body text-[1rem] leading-[1.5rem];
-} */
-
 @utility body-15 {
 	@apply font-body text-[0.9375rem] leading-[1.375];
 }
@@ -436,10 +507,6 @@
 @utility body-13 {
 	@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
-
-/* @utility text-xs {
-	@apply font-body text-[0.75rem] leading-[1rem];
-} */
 
 @utility no-scrollbar {
 	-ms-overflow-style: none;
@@ -453,98 +520,7 @@
 	}
 }
 
-@utility hide-stepper {
-	/* Hide the number stepper for input[type="number"] */
-	&input[type="number"]::-webkit-outer-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-		-moz-appearance: textfield !important;
-	}
-
-	& input[type="number"]::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin: 0;
-		-moz-appearance: textfield !important;
-	}
-
-	& input[type="number"] {
-		-webkit-appearance: none;
-		margin: 0;
-		-moz-appearance: textfield !important;
-	}
-}
-
-@layer base {
-	button:not(:disabled),
-	[role="button"]:not(:disabled) {
-		cursor: pointer;
-	}
-}
-
-@layer base {
-	* {
-		@apply border-border;
-		scrollbar-width: thin;
-		scrollbar-color: hsl(var(--border)) transparent;
-		scroll-behavior: smooth;
-	}
-
-	html {
-		font-family: "Inter", system-ui, sans-serif;
-	}
-
-	body {
-		@apply bg-bg-base text-text;
-	}
-
-	code[data-line-numbers] {
-		counter-reset: line;
-	}
-
-	code[data-line-numbers] > [data-line]::before {
-		counter-increment: line;
-		content: counter(line);
-
-		/* Other styling */
-		display: inline-block;
-		width: 0.75rem;
-		margin-right: 2rem;
-		text-align: right;
-		color: gray;
-	}
-
-	code[data-line-numbers-max-digits="2"] > [data-line]::before {
-		width: 1.25rem;
-	}
-
-	code[data-line-numbers-max-digits="3"] > [data-line]::before {
-		width: 1.75rem;
-	}
-
-	code[data-line-numbers-max-digits="4"] > [data-line]::before {
-		width: 2.25rem;
-	}
-}
-
 @layer utilities {
-	/* Custom scrollbar styling. */
-	::-webkit-scrollbar {
-		width: 6px;
-	}
-
-	::-webkit-scrollbar-track {
-		background: transparent;
-	}
-
-	::-webkit-scrollbar-thumb {
-		background: hsl(var(--border));
-		border-radius: 5px;
-	}
-
-	::-webkit-scrollbar-thumb:hover {
-		background: hsl(var(--border-secondary));
-	}
-
 	/* Chrome & other browser puts a background color on autofill inputs,
 	 this removes it */
 	input:-webkit-autofill,
@@ -555,26 +531,5 @@
 		-webkit-text-fill-color: inherit;
 		transition: background-color 5000s ease-in-out 0s;
 		box-shadow: inset 0 0 20px 20px transparent;
-	}
-
-	.dark img {
-		filter: none !important;
-	}
-
-	.dark .invert-in-dark {
-		filter: invert(1) !important;
-	}
-
-	.svg-color {
-		fill: var(--color-text);
-	}
-
-	.steps {
-		counter-reset: step;
-	}
-
-	.step::before {
-		counter-increment: step;
-		content: counter(step);
 	}
 }
