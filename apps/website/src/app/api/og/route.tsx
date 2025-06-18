@@ -1,12 +1,15 @@
 import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
+import { loadFonts } from "./fonts"
 
 export const runtime = "edge"
+
+const fonts = await loadFonts()
 
 export async function GET(request: NextRequest) {
 	const { searchParams } = new URL(request.url)
 	const title = searchParams.get("title") || "Documentation"
-	const formattedTitle = title[0].toUpperCase() + title.slice(1)
+
 	return new ImageResponse(
 		(
 			<>
@@ -29,7 +32,7 @@ export async function GET(request: NextRequest) {
 						style={{
 							display: "flex",
 							flexDirection: "column",
-							width: "50%",
+							width: "60%",
 							height: "100%",
 							padding: "100px",
 							justifyContent: "center",
@@ -50,14 +53,14 @@ export async function GET(request: NextRequest) {
 								fontSize: "64px",
 								fontWeight: 600,
 								lineHeight: "72px",
-								fontFamily: "system-ui",
+								fontFamily: "Inter",
 								background: "linear-gradient(95.81deg, #737682, #ffffff 47.6%, #737682)",
 								backgroundClip: "text",
 								WebkitBackgroundClip: "text",
 								color: "transparent",
 								WebkitTextFillColor: "transparent",
 							}}>
-							{formattedTitle}
+							{title}
 						</h1>
 					</div>
 				</div>
@@ -80,6 +83,7 @@ export async function GET(request: NextRequest) {
 		{
 			width: 1200,
 			height: 630,
+			fonts: [fonts["inter-semibold"]],
 		}
 	)
 }
