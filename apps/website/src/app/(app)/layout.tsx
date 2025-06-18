@@ -2,6 +2,8 @@ import React, { ReactNode } from "react"
 import { Metadata } from "next"
 import Navbar from "@/components/navbar"
 
+// import SvgIcon from "../SvgIcon"
+
 export const metadata: Metadata = {
 	title: `${"Radian"} - Ship next generation of world class products and solutions`,
 	description: "Welcome to Radian—your go-to React & Tailwind CSS lib.",
@@ -34,6 +36,7 @@ export default function LandingLayout({ children }: Props) {
 		<div>
 			<header className="sticky top-0 z-50 w-full">
 				<Navbar />
+				{/* <SvgIcon/> */}
 			</header>
 			{children}
 		</div>
