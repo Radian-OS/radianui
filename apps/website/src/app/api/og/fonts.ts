@@ -1,3 +1,5 @@
+import interSemibold from "./fonts/inter-semibold.json"
+
 export type FontMap = Record<
 	string,
 	{
@@ -13,7 +15,7 @@ const loadFontsRaw = async (): Promise<FontMap> => {
 	return {
 		"inter-semibold": {
 			name: "Inter",
-			data: await fetch(new URL("fonts/Inter-SemiBold.ttf", process.env.NEXT_PUBLIC_WEBSITE_URL)).then((res) => res.arrayBuffer()),
+			data: Buffer.from(interSemibold.base64, "base64"),
 			weight: 600,
 			style: "normal",
 		},
