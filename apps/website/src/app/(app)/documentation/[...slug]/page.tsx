@@ -35,13 +35,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 	if (!doc) {
 		return {
-			title: "Documentation Not Found | Radian",
+			title: "Documentation Not Found - Radian",
 			description: "The page you're looking for doesn't exist. Browse our docs to learn more about Radian UI components.",
 		}
 	}
 
 	const url = `https://radianos.com/documentation/${slug}`
-	const cleanTitle = `${doc.title} | Radian`
+	const cleanTitle = `${doc.title} - Radian`
 	const fullDesc = `${doc.description}`
 
 	return {
