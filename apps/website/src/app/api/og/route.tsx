@@ -4,9 +4,8 @@ import { loadFonts } from "./fonts"
 
 export const runtime = "edge"
 
-const fonts = await loadFonts()
-
 export async function GET(request: NextRequest) {
+	const fonts = await loadFonts()
 	const { searchParams } = new URL(request.url)
 	const title = searchParams.get("title") || "Documentation"
 
