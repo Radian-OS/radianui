@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}`,
 		images: [
 			{
-				url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}static-og.png`,
+				url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`,
 				width: 1200,
 				height: 630,
 			},
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "Radian Landing Page",
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
-		images: [`${process.env.NEXT_PUBLIC_WEBSITE_URL}static-og.png`],
+		images: [`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`],
 	},
 }
 

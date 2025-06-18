@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 		siteName: "Radian",
 		images: [
 			{
-				url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}static-og.png`,
+				url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`,
 				width: 1200,
 				height: 630,
 				alt: "Radian component library preview",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 		creator: "@radiandev",
 		title: "Radian: Component Library",
 		description: "Elevate your web apps with Radian, a React & Tailwind CSS component library.",
-		images: [`${process.env.NEXT_PUBLIC_WEBSITE_URL}static-og.png`],
+		images: [`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`],
 	},
 	robots: {
 		index: true,
