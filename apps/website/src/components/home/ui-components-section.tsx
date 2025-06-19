@@ -250,7 +250,7 @@ export default function UiComponentsSection() {
 		<React.Fragment>
 			<div className="max-w-310 mx-auto">
 				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
-					<h1 className="heading-6 text-text">UI Components</h1>
+					<h2 className="heading-6 text-text">UI Components</h2>
 					<p className="body-15 text-text-secondary font-normal">Building blocks of an application or website</p>
 				</div>
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />

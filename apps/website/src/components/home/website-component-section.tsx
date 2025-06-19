@@ -76,7 +76,7 @@ export default function WebsiteComponent() {
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 
 				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
-					<h1 className="heading-6 text-text">Website Components</h1>
+					<h2 className="heading-6 text-text">Website Components</h2>
 					<p className="body-15 text-text-secondary font-normal">Fundamentals & building blocks of Websites</p>
 				</div>
 

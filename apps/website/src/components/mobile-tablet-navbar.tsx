@@ -52,10 +52,10 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 					<AccordionItem value={section.title} key={section.title}>
 						<section>
 							<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-								<h1 className="flex items-center gap-1.5 px-1.5 text-sm font-medium">
+								<h3 className="flex items-center gap-1.5 px-1.5 text-sm font-medium">
 									<ChevronRight className="duration-300 ease-in-out" size={12} />
 									{section.title}
-								</h1>
+								</h3>
 							</AccordionTrigger>
 							<div className="flex flex-col justify-center">
 								{section.items.map((item) => (

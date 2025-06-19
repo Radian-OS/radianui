@@ -11,7 +11,7 @@ type Props = {
 
 export default function ComponentCard({ svgUrl, darkModeSvgUrl, title, description, href, alt }: Props) {
 	return (
-		<Link href={href}>
+		<Link href={href} aria-label={title}>
 			<div className="flex flex-col gap-3">
 				<img alt={alt} src={svgUrl} className="rounded-md dark:hidden" loading="eager" />
 				<img alt={alt} src={darkModeSvgUrl} className="hidden rounded-md dark:block" loading="eager" />
