@@ -2,4 +2,12 @@
 module.exports = {
 	siteUrl: "https://dev.radianos.com",
 	generateRobotsTxt: true,
+	robotsTxtOptions: {
+		policies: [
+			{
+				userAgent: "*",
+				disallow: "/",
+			},
+		],
+	},
 }

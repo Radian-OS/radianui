@@ -1,9 +1,9 @@
 # *
 User-agent: *
-Allow: /
+Disallow: /
 
 # Host
-Host: https://radianos.com
+Host: https://dev.radianos.com
 
 # Sitemaps
-Sitemap: https://radianos.com/sitemap.xml
+Sitemap: https://dev.radianos.com/sitemap.xml
