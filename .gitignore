@@ -4,7 +4,7 @@ node_modules
 .pnp.js
 
 # env files
-.env*
+.env
 
 # Testing
 coverage
