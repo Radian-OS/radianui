@@ -1,13 +1,15 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-	siteUrl: "https://dev.radianos.com",
+	siteUrl: process.env.NEXT_PUBLIC_WEBSITE_URL,
 	generateRobotsTxt: true,
-	robotsTxtOptions: {
-		policies: [
-			{
-				userAgent: "*",
-				disallow: "/",
-			},
-		],
-	},
+	...(process.env.NEXT_PUBLIC_NODE_ENV === "DEV" && {
+		robotsTxtOptions: {
+			policies: [
+				{
+					userAgent: "*",
+					disallow: "/",
+				},
+			],
+		},
+	}),
 }

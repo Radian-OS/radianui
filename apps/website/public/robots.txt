@@ -3,7 +3,7 @@ User-agent: *
 Disallow: /
 
 # Host
-Host: https://dev.radianos.com
+Host: http://localhost:3001
 
 # Sitemaps
-Sitemap: https://dev.radianos.com/sitemap.xml
+Sitemap: http://localhost:3001/sitemap.xml

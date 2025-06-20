@@ -1,19 +1,20 @@
 import type { Metadata } from "next"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
+import { websiteMetadata } from "@/config/website-metadata-config"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
-	title: `${"Radian"} - Ship next generation of world class products and solutions`,
+	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 	description: "Welcome to Radian—your go-to React & Tailwind CSS lib.",
 	openGraph: {
-		title: "Radian Landing Page",
+		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
 		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}`,
 		images: [
 			{
-				url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`,
+				url: `${websiteMetadata.ogImage}`,
 				width: 1200,
 				height: 630,
 			},
@@ -21,9 +22,9 @@ export const metadata: Metadata = {
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Radian Landing Page",
+		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
-		images: [`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`],
+		images: [`${websiteMetadata.ogImage}`],
 	},
 }
 

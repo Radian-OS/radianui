@@ -34,7 +34,7 @@ const nextConfig = {
 			{
 				source: "/ingest/decide",
 				destination: "https://us.i.posthog.com/decide",
-			}
+			},
 		]
 	},
 	assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
@@ -83,6 +83,7 @@ const nextConfig = {
 		NEXT_PUBLIC_POSTHOG_KEY: process.env.NEXT_PUBLIC_POSTHOG_KEY,
 		NEXT_PUBLIC_WEBAPP_URL: process.env.NEXT_PUBLIC_WEBAPP_URL,
 		NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
+		NEXT_PUBLIC_NODE_ENV: process.env.NEXT_PUBLIC_NODE_ENV,
 	},
 }
 export default withContentlayer(nextConfig)

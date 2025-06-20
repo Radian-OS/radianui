@@ -13,7 +13,7 @@
 		"format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
 		"lint": "next lint",
 		"prepare": "husky",
-		"postbuild": "next-sitemap --config next-sitemap.config.cjs",
+		"postbuild": "dotenv -e ../../.env -- next-sitemap --config next-sitemap.config.cjs",
 		"generate-component-json": "tsx src/scripts/generate-component-json.ts"
 	},
 	"dependencies": {
