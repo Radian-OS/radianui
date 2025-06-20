@@ -7,7 +7,7 @@ export const runtime = "edge"
 export async function GET(request: NextRequest) {
 	const fonts = await loadFonts()
 	const { searchParams } = new URL(request.url)
-	const title = searchParams.get("title") || "Documentation"
+	const title = searchParams.get("title") ?? "Documentation"
 
 	return new ImageResponse(
 		(
@@ -44,7 +44,7 @@ export async function GET(request: NextRequest) {
 								alignItems: "center",
 								marginBottom: "41px",
 							}}>
-							<img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-logo.png`} alt="radian-logo" width="133" height="32" />
+							<img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-logo.png`} alt="radian-logo" width="150" height="36" />
 						</div>
 						{/* Dynamic Title */}
 						<h1
@@ -66,9 +66,7 @@ export async function GET(request: NextRequest) {
 				{/* Right side with image */}
 				<img
 					src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-image.png`}
-					alt="Logo"
-					width="133"
-					height="32"
+					alt="og-image"
 					style={{
 						height: "561px",
 						width: "956px",

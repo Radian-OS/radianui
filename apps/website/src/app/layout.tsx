@@ -5,40 +5,25 @@ import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
-	description: "Radian: A cutting-edge component library for modern web apps built with React and Tailwind CSS.",
-	keywords: ["Radian", "React components", "Tailwind CSS", "UI library", "design system", "developer tools"],
-	authors: [{ name: "Radian Team", url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}` }],
+	title: `${"Radian"} - Ship next generation of world class products and solutions`,
+	description: "Welcome to Radian—your go-to React & Tailwind CSS lib.",
 	openGraph: {
-		title: "Radian: Component Library",
-		description: "A modern, customizable component library built with React and Tailwind CSS.",
+		title: "Radian Landing Page",
+		description: "Discover Radian, the ultimate React & Tailwind component lib.",
 		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}`,
-		siteName: "Radian",
 		images: [
 			{
 				url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`,
 				width: 1200,
 				height: 630,
-				alt: "Radian component library preview",
 			},
 		],
-		locale: "en_US",
-		type: "website",
 	},
 	twitter: {
 		card: "summary_large_image",
-		site: "@radiandev",
-		creator: "@radiandev",
-		title: "Radian: Component Library",
-		description: "Elevate your web apps with Radian, a React & Tailwind CSS component library.",
+		title: "Radian Landing Page",
+		description: "Discover Radian, the ultimate React & Tailwind component lib.",
 		images: [`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`],
-	},
-	robots: {
-		index: true,
-		follow: true,
-		googleBot: {
-			index: true,
-			follow: true,
-		},
 	},
 }
 
