@@ -8,6 +8,11 @@ import { cn } from "@/lib/utils"
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 	description: "Welcome to Radian—your go-to React & Tailwind CSS lib.",
+	icons: {
+		icon: "/favicon.ico",
+		shortcut: "/favicon-32x32.png",
+		apple: "/apple-touch-icon.png",
+	},
 	openGraph: {
 		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
