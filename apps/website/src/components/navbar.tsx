@@ -140,7 +140,7 @@ export default function Navbar() {
 								filteredItems.map((section, sectionIndex) => (
 									<main key={section.title} className="text-sm font-normal">
 										<div className="px-2.5">
-											<h1 className="text-fg2 px-1.75 flex items-center gap-1.5 py-1.5">{section.title}</h1>
+											<h3 className="text-fg2 px-1.75 flex items-center gap-1.5 py-1.5">{section.title}</h3>
 											<ul className="gap-1.25 flex flex-col">
 												{section.items.map((item, itemIndex) => {
 													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex

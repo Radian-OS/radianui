@@ -45,7 +45,7 @@ const AnimatedListPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="relative flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="size-80 overflow-hidden">
+					<div className="relative size-80 overflow-hidden">
 						<AnimatedList key={counter}>
 							{animatedListData.map((d, i) => (
 								<div className="w-80 rounded-lg border p-2" key={i}>
@@ -54,6 +54,7 @@ const AnimatedListPreview = () => {
 								</div>
 							))}
 						</AnimatedList>
+						<div className="from-bg-base pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t" />
 					</div>
 				</div>
 			</TabsContent>
@@ -62,10 +63,16 @@ const AnimatedListPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<div className="relative size-60 rounded-lg border">
-	<h1>Content here</h1>
-	
-	<BorderBeam size={150} />
+					code={`<div className="relative size-80 overflow-hidden">
+	<AnimatedList key={counter}>
+		{animatedListData.map((d, i) => (
+			<div className="w-80 rounded-lg border p-2" key={i}>
+				<p>{d.text}</p>
+				<p className="text-text-tertiary text-sm">{d.time}</p>
+			</div>
+		))}
+	</AnimatedList>
+	<div className="from-bg-base pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t" />
 </div>`}
 				/>
 			</TabsContent>

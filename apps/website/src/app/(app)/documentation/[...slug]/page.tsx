@@ -6,6 +6,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/components/mdx-components"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
+import { websiteMetadata } from "@/config/website-metadata-config"
 import { Badge } from "@/registry/ui/badge"
 
 interface DocPageProps {
@@ -27,36 +28,36 @@ export async function generateStaticParams() {
 	}))
 }
 
-// ✅ Await `params` inside generateMetadata
-export async function generateMetadata({ params }: { params: Promise<{ slug: string[] }> }): Promise<Metadata> {
-	const resolvedParams = await params
-	const slug = resolvedParams.slug.join("/")
-	const doc = allDocs.find((d) => d.slugAsParams === slug)
+export async function generateMetadata({ params }: DocPageProps): Promise<Metadata> {
+	const doc = await getDocFromParams({ params })
 
-	if (!doc) {
-		return {
-			title: "Documentation Not Found | Radian",
-			description: "The page you're looking for doesn't exist. Browse our docs to learn more about Radian UI components.",
-		}
-	}
-
-	const url = `https://radianos.com/documentation/${slug}`
-	const cleanTitle = `${doc.title} | Radian`
-	const fullDesc = `${doc.description}`
+	const url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/documentation/${doc!.slugAsParams}`
+	const title = `${doc!.title} - ${websiteMetadata.name}`
+	const description = `${doc!.description}`
+	const ogImageUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/og?title=${encodeURIComponent(doc!.title)}`
 
 	return {
-		title: cleanTitle,
-		description: fullDesc,
-		keywords: doc.keywords ?? ["Radian", "React components", "Tailwind CSS", "UI library", "design system", "developer tools"],
+		title: title,
+		description: description,
+		keywords: doc!.keywords ?? websiteMetadata.keywords,
 		openGraph: {
-			title: cleanTitle,
-			description: fullDesc,
+			title: title,
+			description: description,
 			url,
+			images: [
+				{
+					url: ogImageUrl,
+					width: 1200,
+					height: 630,
+					alt: title,
+				},
+			],
 		},
 		twitter: {
 			card: "summary_large_image",
-			title: cleanTitle,
-			description: fullDesc,
+			title: title,
+			description: description,
+			images: [ogImageUrl],
 		},
 	}
 }

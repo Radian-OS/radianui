@@ -24,10 +24,10 @@ export default function Sidebar() {
 						<AccordionItem className="mb-0 border-none" value={section.title} key={section.title}>
 							<main className="">
 								<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-									<h1 className="flex items-center gap-1.5 px-1.5 text-sm font-medium">
+									<h3 className="flex items-center gap-1.5 px-1.5 text-sm font-medium">
 										<ChevronRight className="duration-300 ease-in-out" size={12} />
 										{section.title}
-									</h1>
+									</h3>
 								</AccordionTrigger>
 								<ul className="flex flex-col">
 									{section.items.map((item) => (

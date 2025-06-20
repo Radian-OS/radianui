@@ -129,11 +129,11 @@ function DropdownItem({
 			) : (
 				<>
 					<div className="flex gap-2">
-						{startContent && <span>{startContent}</span>}
+						{startContent && <span className="flex items-center justify-center">{startContent}</span>}
 						<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
 					</div>
 					<div className="flex items-center gap-2">
-						{endContent && <span>{endContent}</span>}
+						{endContent && <span className="flex items-center justify-center">{endContent}</span>}
 						{isSelectable && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
 					</div>
 				</>
