@@ -20,7 +20,7 @@ const Manual = () => {
 			<div className="flex flex-col gap-[30px] border-l pl-[2rem]">
 				<div className="relative flex flex-col gap-6">
 					<span className="heading-6 absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">1</span>
-					<h1 className="heading-6">Add Tailwind CSS</h1>
+					<h6 className="heading-6">Add Tailwind CSS</h6>
 					<p>Components are styled using Tailwind CSS. You need to install Tailwind CSS in your project.</p>
 					<Link href="https://tailwindcss.com/docs/installation" className="underline underline-offset-4" target="_blank" rel="noopener noreferrer">
 						Follow the Tailwind CSS installation instructions to get started.
@@ -30,7 +30,7 @@ const Manual = () => {
 					<div className="relative">
 						<span className="heading-6 bg-border absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">2</span>
 						<div className="flex flex-col gap-6">
-							<h1 className="heading-6">Add dependencies</h1>
+							<h6 className="heading-6">Add dependencies</h6>
 							<p>Add the following dependencies to your project:</p>
 						</div>
 					</div>
@@ -40,7 +40,7 @@ const Manual = () => {
 				<div className="flex flex-col gap-6">
 					<div className="relative">
 						<span className="heading-6 bg-border absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">3</span>
-						<h1 className="heading-6">Configure path aliases</h1>
+						<h6 className="heading-6">Configure path aliases</h6>
 					</div>
 					<p>Configure the path aliases in your tsconfig.json file.</p>
 					<CodeArea
@@ -60,7 +60,7 @@ const Manual = () => {
 				<div className="flex flex-col gap-[10px]">
 					<div className="relative">
 						<span className="heading-6 bg-border absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">4</span>
-						<h1 className="heading-6">Configure styles</h1>
+						<h6 className="heading-6">Configure styles</h6>
 					</div>
 					<p>Add the following to your styles/globals.css file.</p>
 					<CodeArea language="json" className="h-[30rem]" code={globalCSS} />

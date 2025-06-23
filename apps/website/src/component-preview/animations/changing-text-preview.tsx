@@ -28,10 +28,10 @@ const ChangingTextPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<h1 className="w-100 flex items-center gap-1.5 text-3xl font-medium">
+					<span className="w-100 flex items-center gap-1.5 text-3xl font-medium">
 						UI library for
 						<ChangingText texts={["Developers", "Designers"]} />
-					</h1>
+					</span>
 				</div>
 			</TabsContent>
 
@@ -40,10 +40,10 @@ const ChangingTextPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<h1 className="w-100 flex items-center gap-1.5 text-3xl font-medium">
+					code={`<span className="w-100 flex items-center gap-1.5 text-3xl font-medium">
     UI library for
     <ChangingText texts={["Developers", "Designers"]} />
-</h1>`}
+</span>`}
 				/>
 			</TabsContent>
 		</Tabs>

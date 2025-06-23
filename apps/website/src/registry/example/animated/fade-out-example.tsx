@@ -24,7 +24,7 @@ export default function FadeOutExample() {
 						</Button>
 
 						<Fade isVisible={show} blur="6px">
-							<h1 className="text-5xl font-semibold">Hello World</h1>
+							<span className="text-5xl font-semibold">Hello World</span>
 						</Fade>
 					</div>
 				</div>
@@ -43,7 +43,7 @@ export default function FadeOutExample() {
     </Button>
 
     <Fade isVisible={show} blur="6px">
-        <h1 className="text-5xl font-semibold">Hello World</h1>
+        <span className="text-5xl font-semibold">Hello World</span>
     </Fade>
 </div>`}
 				/>

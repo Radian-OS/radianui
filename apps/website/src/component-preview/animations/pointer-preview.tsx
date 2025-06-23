@@ -25,7 +25,7 @@ const InfiniteScrollPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="w-100 bg-fill-level2 mx-auto flex h-80 items-center justify-center rounded-lg p-2">
-						<h1>Hover over here</h1>
+						<span>Hover over here</span>
 						<Pointer />
 					</div>
 				</div>
@@ -36,7 +36,7 @@ const InfiniteScrollPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<div className="mx-auto size-60 rounded-md bg-pink-400 p-2">
-	<h1>Hover over here</h1>
+	<span>Hover over here</span>
 	<Pointer />
 </div>`}
 				/>

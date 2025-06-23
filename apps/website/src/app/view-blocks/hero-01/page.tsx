@@ -140,7 +140,7 @@ export default function Hero01() {
 				</section>
 
 				<Fade inView>
-					<h1 className="p-5 text-center text-3xl">Hello page from Radian</h1>
+					<span className="block p-5 text-center text-3xl">Hello page from Radian</span>
 				</Fade>
 
 				<div className="h-40"></div>

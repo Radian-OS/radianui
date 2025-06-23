@@ -17,7 +17,7 @@ export default function CollaborationPointerExample() {
 			<TabsContent value="preview">
 				<div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
 					<div className="w-100 bg-fill-level2 flex h-80 items-center justify-center rounded-lg border">
-						<h1>Collaboration Pointer Example</h1>
+						<span>Collaboration Pointer Example</span>
 						<Pointer>
 							<div className="w-18 relative h-12">
 								<MousePointer2 size={25} className="absolute left-0 top-0 translate-x-0.5 fill-green-500 stroke-green-500" />
@@ -34,7 +34,7 @@ export default function CollaborationPointerExample() {
 					showLineNumbers
 					className="h-105"
 					code={`<div className="w-100 bg-fill-level2 flex h-80 items-center justify-center rounded-lg border">
-    <h1>Collaboration Pointer Example</h1>
+    <span>Collaboration Pointer Example</span>
     <Pointer>
         <div className="w-18 relative h-12">
             <MousePointer2 size={25} className="absolute left-0 top-0 fill-green-600 stroke-green-600" />

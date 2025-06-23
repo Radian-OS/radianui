@@ -10,7 +10,7 @@ const Cli = () => {
 	return (
 		<div className="flex flex-col gap-8">
 			<div>
-				<h1 className="heading-5">init</h1>
+				<h5 className="heading-5">init</h5>
 				<Divider spacing="6" />
 			</div>
 			<div className="flex flex-col gap-8">
@@ -31,7 +31,7 @@ const Cli = () => {
 
 Success! Project initialization completed. You may now add components.`}
 				/>
-				<h1 className="heading-5">Options</h1>
+				<h5 className="heading-5">Options</h5>
 				<CodeArea
 					language="tsx"
 					code={`Usage: radianos init [options] [components...]
@@ -47,7 +47,7 @@ Options:
 				/>
 			</div>
 			<div>
-				<h1 className="heading-5">add</h1>
+				<h5 className="heading-5">add</h5>
 				<Divider spacing="6" />
 			</div>
 			<div className="flex flex-col gap-8">
