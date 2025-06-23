@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { websiteMetadata } from "@/config/website-metadata-config"
@@ -40,6 +41,9 @@ export default async function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<head>
+				<AhrefsAnalytics />
+			</head>
 			<body className={cn("relative min-h-svh", "antialiased")}>
 				<PostHogProvider>
 					<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
