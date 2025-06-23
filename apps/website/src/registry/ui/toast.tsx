@@ -1,6 +1,7 @@
 import React from "react"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+import Link from "next/link"
 import { Toaster as Sonner, toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
@@ -48,7 +49,7 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 		variant: {
 			neutral: "bg-bg-level1 group-[.toaster]:text-text-secondary",
 			strong: "",
-			inverse: "",
+			inverse: " bg-inverse-black group-[.toaster]:text-text-inverse",
 		},
 		placement: {
 			horizontal: "items-center",
@@ -60,7 +61,7 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 		{
 			variant: "strong",
 			state: "default",
-			class: "bg-bg-level1 text-static-black dark:text-static-white",
+			class: "bg-bg-level1 ",
 		},
 		{
 			variant: "strong",
@@ -93,6 +94,29 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 // Define the type for the toast variant
 type VariantType = VariantProps<typeof SonnerVariant>["state"]
 
+// Helper function to get icon color class based on variant and state
+const getIconColorClass = (variant?: string, state?: string): string => {
+	if (variant === "strong") {
+		// For strong variant, icons are always white
+		if (state === "default") {
+			return "text-static-black dark:text-static-white"
+		}
+		return "text-static-white"
+	} else if (variant === "neutral") {
+		// For neutral and inverse variants, use state color
+		return state ? `text-${state}` : ""
+	} else if (variant === "inverse") {
+		const stateHoverColors = {
+			error: "text-error-hover",
+			success: "text-success-hover",
+			warning: "text-warning-hover",
+			info: "text-info-hover",
+		}
+		return (state && stateHoverColors[state as keyof typeof stateHoverColors]) || ""
+	}
+	return "text-static-black dark:text-static-white"
+}
+
 // Minimal container for custom content
 const CustomContentContainer = cva("group toast rounded-lg w-full h-auto", {
 	variants: {
@@ -117,7 +141,7 @@ export function showToast({
 	closeOnClick = false,
 	showCloseButton,
 	icon,
-	duration = 5000,
+	duration = 30000,
 	placement = "horizontal",
 	buttons = [],
 	closable = true,
@@ -151,10 +175,19 @@ export function showToast({
 				)
 			}
 
+			// Apply color class to icon if it exists
+			const coloredIcon =
+				icon && React.isValidElement(icon)
+					? React.cloneElement(icon as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
+							...(icon.props || {}),
+							className: cn((icon.props && (icon.props as React.HTMLAttributes<HTMLElement>).className) || "", getIconColorClass(variant, state ?? undefined)),
+						})
+					: icon
+
 			// Default structured toast
 			return (
 				<div className={SonnerVariant({ state, variant, placement })}>
-					{icon}
+					{coloredIcon}
 					<div
 						className={cn("flex gap-2", {
 							"flex-col items-start": placement === "vertical",
@@ -170,17 +203,19 @@ export function showToast({
 						{buttons.length > 0 && (
 							<div className="flex gap-2">
 								{buttons.map((button, index) => (
-									<Button
+									<Link
+										href=""
 										key={index}
-										size="28"
 										onClick={() => {
 											button.onClick(t)
 											if (button.dismiss !== false) {
 												toast.dismiss(t)
 											}
 										}}>
-										{button.label}
-									</Button>
+										<span className="font-inter whitespace-nowrap text-sm font-medium leading-5 tracking-tight text-white underline decoration-solid decoration-auto underline-offset-auto">
+											{button.label}
+										</span>
+									</Link>
 								))}
 							</div>
 						)}

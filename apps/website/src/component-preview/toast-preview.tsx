@@ -212,7 +212,7 @@ const ToastPreview = () => {
 							variant="neutral-outline"
 							onClick={() =>
 								showToast({
-									icon: icon === "true" ? <Box className={variant === "neutral" ? `text-${state}` : "text-static-black dark:text-static-white"} /> : undefined,
+									icon: icon === "true" ? <Box /> : undefined,
 									variant,
 									state,
 									placement,
