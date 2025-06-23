@@ -49,6 +49,7 @@ import SelectPreview from "@/component-preview/select-preview"
 import SkeletonPreview from "@/component-preview/skeleton-preview"
 import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
+import SpinnerPreview from "@/component-preview/spinner-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
@@ -171,6 +172,7 @@ const components: MDXComponents = {
 	SelectPreview: () => <SelectPreview />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
+	SpinnerPreview: () => <SpinnerPreview />,
 	ColorPickerExample: () => <ColorPickerExample />,
 	ToastExample: () => <ToastExample />,
 	// Animation components
