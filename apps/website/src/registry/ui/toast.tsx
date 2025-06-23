@@ -1,6 +1,6 @@
 import React from "react"
 import { VariantProps, cva } from "class-variance-authority"
-import { Box } from "lucide-react"
+import { X } from "lucide-react"
 import { Toaster as Sonner, toast } from "sonner"
 import { Button } from "./button"
 
@@ -10,18 +10,17 @@ type ButtonType = {
 	className?: string
 	dismiss?: boolean
 }
-type Position = "top-left" | "top-right" | "bottom-left" | "bottom-right" | "top-center" | "bottom-center"
 
 type ToastProps = {
 	title?: string
 	icon?: React.ReactNode
+	state?: VariantType
 	description?: string
 	buttons?: ButtonType[]
 	duration?: number
-	variant?: VariantType
+	variant?: "neutral" | "strong" | "inverse"
 	content?: React.ReactNode
 	closable?: boolean
-	position?: Position
 	stack?: boolean
 	visibleToasts?: number
 	customContent?: React.ReactNode
@@ -35,23 +34,57 @@ type ToastProps = {
 }
 
 // Variant styles
-const SonnerVariant = cva(" group toast rounded-lg flex items-center justify-center gap-2 p-3 w-full h-auto text-xl group-[.toaster]:text-text-secondary", {
+const SonnerVariant = cva("group toast rounded-lg flex items-center border border-border justify-center gap-2 p-3 w-full h-auto text-xl", {
 	variants: {
+		state: {
+			default: "",
+			success: "",
+			error: "",
+			warning: "",
+			info: "",
+		},
 		variant: {
-			default: " bg-bg-level2 text-white",
-			success: "bg-success text-white!",
-			error: "bg-error text-white!",
-			warning: "bg-warning text-white!",
-			information: "bg-info text-white!",
+			neutral: "bg-bg-level1 group-[.toaster]:text-text-secondary",
+			strong: "",
+			inverse: "",
 		},
 	},
+	compoundVariants: [
+		// Apply state colors only when variant is "strong"
+		{
+			variant: "strong",
+			state: "default",
+			class: "bg-bg-level1 text-static-black dark:text-static-white",
+		},
+		{
+			variant: "strong",
+			state: "success",
+			class: "bg-success text-static-white",
+		},
+		{
+			variant: "strong",
+			state: "error",
+			class: "bg-error text-static-white",
+		},
+		{
+			variant: "strong",
+			state: "warning",
+			class: "bg-warning text-static-white",
+		},
+		{
+			variant: "strong",
+			state: "info",
+			class: "bg-info text-static-white",
+		},
+	],
 	defaultVariants: {
-		variant: "default",
+		state: "default",
+		variant: "neutral",
 	},
 })
 
 // Define the type for the toast variant
-type VariantType = VariantProps<typeof SonnerVariant>["variant"]
+type VariantType = VariantProps<typeof SonnerVariant>["state"]
 
 // Minimal container for custom content
 const CustomContentContainer = cva("group toast rounded-lg w-full h-auto", {
@@ -71,11 +104,13 @@ export function showToast({
 	title,
 	customContent,
 	description,
-	variant = "default",
+	variant,
+	state = "default",
 	applyDefaultStyling = false,
 	closeOnClick = false,
 	showCloseButton,
-	duration = 20000,
+	icon,
+	duration = 5000,
 	buttons = [],
 	closable = true,
 	isCustom = false, // New parameter with default false
@@ -95,26 +130,13 @@ export function showToast({
 						{shouldShowCloseButton && (
 							<Button
 								isIcon
-								variant="ghost"
 								onClick={(e) => {
 									e.stopPropagation() // Prevent triggering closeOnClick
 									toast.dismiss(toastId)
 								}}
 								className="absolute right-2 top-2 z-10 cursor-pointer rounded-full"
 								aria-label="Close toast">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="14"
-									height="14"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round">
-									<path d="M18 6 6 18" />
-									<path d="m6 6 12 12" />
-								</svg>
+								<X />
 							</Button>
 						)}
 					</div>
@@ -123,34 +145,34 @@ export function showToast({
 
 			// Default structured toast
 			return (
-				<div className={SonnerVariant({ variant })}>
-					<Box />
-					{/* Content */}
-					<div className="flex-1">
-						{title && <div className="mb-1 text-sm font-semibold">{title}</div>}
-						{description && <div className="text-sm opacity-90">{description}</div>}
-					</div>
-
-					{/* Buttons */}
-					{buttons.length > 0 && (
-						<div className="flex gap-2">
-							{buttons.map((button, index) => (
-								<Button
-									key={index}
-									size="36"
-									variant="ghost"
-									className={`p-0 text-xs text-white`}
-									onClick={() => {
-										button.onClick(t)
-										if (button.dismiss !== false) {
-											toast.dismiss(t)
-										}
-									}}>
-									{button.label}
-								</Button>
-							))}
+				<div className={SonnerVariant({ state, variant })}>
+					{icon}
+					<div className="flex w-full items-center justify-between">
+						{/* Content */}
+						<div className="flex-1">
+							{title && <div className="mb-1 text-sm font-semibold">{title}</div>}
+							{description && <div className="text-sm opacity-90">{description}</div>}
 						</div>
-					)}
+
+						{/* Buttons */}
+						{buttons.length > 0 && (
+							<div className="flex gap-2">
+								{buttons.map((button, index) => (
+									<Button
+										key={index}
+										size="28"
+										onClick={() => {
+											button.onClick(t)
+											if (button.dismiss !== false) {
+												toast.dismiss(t)
+											}
+										}}>
+										{button.label}
+									</Button>
+								))}
+							</div>
+						)}
+					</div>
 
 					{/* Close button */}
 					{closable && (
@@ -159,19 +181,7 @@ export function showToast({
 								toast.dismiss(toastId)
 							}}
 							className={`cursor-pointer`}>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="14"
-								height="14"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-								strokeLinecap="round"
-								strokeLinejoin="round">
-								<path d="M18 6 6 18" />
-								<path d="m6 6 12 12" />
-							</svg>
+							<X />
 						</div>
 					)}
 				</div>
@@ -215,8 +225,8 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 const toastClass = cva("group !p-0 w-106 rounded-lg toast group-[.toaster]:text-text-secondary", {
 	variants: {
 		position: {
-			bottom: "group-[.toaster]:!shadow-[0_-10px_10px_-5px_rgba(0,0,0,0.1),0_-10px_10px_-5px_rgba(0,0,0,0.04)]",
-			top: "group-[.toaster]:!shadow-[0_10px_10px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)]",
+			bottom: "group-[.toaster]:!shadow-[0px_4px_8px_0px_rgba(25,24,27,0.08)]",
+			top: "group-[.toaster]:!shadow-[0px_-4px_8px_0px_rgba(25,24,27,0.08)]",
 		},
 	},
 	defaultVariants: {

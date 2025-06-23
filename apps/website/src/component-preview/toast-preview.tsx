@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Box } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -7,7 +8,8 @@ import { Toaster, showToast } from "@/registry/ui/toast"
 
 const ToastPreview = () => {
 	const [position, setPosition] = useState<"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right">("bottom-right")
-	const [variant, setVariant] = useState<"default" | "information" | "success" | "error" | "warning">("default")
+	const [variant, setVariant] = useState<"neutral" | "strong" | "inverse">("neutral")
+	const [state, setState] = useState<"default" | "info" | "success" | "error" | "warning">("default")
 	const [stackable, setStackable] = useState<"true" | "false">("false")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [visibleToasts, setVisibleToasts] = useState<"3" | "4" | "5" | "6">("3")
@@ -47,8 +49,19 @@ const ToastPreview = () => {
 											onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
 											minSelectionCount={1}
 											selectedValues={[variant]}>
+											<DropdownItem value="neutral">Neutral</DropdownItem>
+											<DropdownItem value="strong">Strong</DropdownItem>
+											<DropdownItem value="inverse">Inverse</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>State</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setState(Array.from(keys)[0] as typeof state)} minSelectionCount={1} selectedValues={[state]}>
 											<DropdownItem value="default">Default</DropdownItem>
-											<DropdownItem value="information">Information</DropdownItem>
+											<DropdownItem value="info">Information</DropdownItem>
 											<DropdownItem value="success">Success</DropdownItem>
 											<DropdownItem value="warning">Warning</DropdownItem>
 											<DropdownItem value="error">Error</DropdownItem>{" "}
@@ -127,7 +140,9 @@ const ToastPreview = () => {
 							variant="neutral-outline"
 							onClick={() =>
 								showToast({
+									icon: <Box className={variant === "neutral" ? `text-${state}` : "text-static-black dark:text-static-white"} />,
 									variant,
+									state,
 									title: "Toast Title",
 									closable: closable === "true",
 									description: "Toast description message",
