@@ -212,7 +212,7 @@ export function showToast({
 												toast.dismiss(t)
 											}
 										}}>
-										<span className="font-inter whitespace-nowrap text-sm font-medium leading-5 tracking-tight text-white underline decoration-solid decoration-auto underline-offset-auto">
+										<span className="font-inter whitespace-nowrap text-sm font-medium leading-5 tracking-tight underline decoration-solid decoration-auto [text-underline-offset:2px]">
 											{button.label}
 										</span>
 									</Link>
