@@ -16,9 +16,9 @@ export default function Sidebar() {
 	}, [pathName, activeSection])
 
 	return (
-		<aside>
-			<div className="w-70 hidden lg:block" />
-			<div className="no-scrollbar fixed z-30 hidden h-[calc(100vh-4.5rem)] w-64 justify-start overflow-y-scroll border-e px-2.5 pt-2.5 text-sm lg:flex lg:flex-col">
+		<>
+			<aside className="w-70 hidden lg:block" />
+			<aside className="no-scrollbar fixed z-30 hidden h-[calc(100vh-4.5rem)] w-64 justify-start overflow-y-scroll border-e px-2.5 pt-2.5 text-sm lg:flex lg:flex-col">
 				<Accordion type="single" collapsible value={accordionValue} onValueChange={(value) => setAccordionValue(value)}>
 					{sideBarItems.map((section) => (
 						<AccordionItem className="mb-0 border-none" value={section.title} key={section.title}>
@@ -45,7 +45,7 @@ export default function Sidebar() {
 						</AccordionItem>
 					))}
 				</Accordion>
-			</div>
-		</aside>
+			</aside>
+		</>
 	)
 }
