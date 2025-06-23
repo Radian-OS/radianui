@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SpinnerPreview = () => {
 	const [variant, setVariant] = useState<SpinnerVariants>("default")
+	const [size, setSize] = useState<number>(36)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -27,6 +28,18 @@ const SpinnerPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" onSelectedChange={(values) => setSize(parseInt(values[0]))} minSelectionCount={1} selectedValues={[size.toString()]}>
+										<DropdownItem value="24">24</DropdownItem>
+										<DropdownItem value="32">32</DropdownItem>
+										<DropdownItem value="36">36</DropdownItem>
+										<DropdownItem value="40">40</DropdownItem>
+										<DropdownItem value="48">48</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -37,11 +50,11 @@ const SpinnerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Spinner variant={variant} size={36} />
+					<Spinner variant={variant} size={size} />
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={`<Spinner variant='${variant}' />`} />
+				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={`<Spinner variant='${variant}' size={${size}} />`} />
 			</TabsContent>
 		</Tabs>
 	)
