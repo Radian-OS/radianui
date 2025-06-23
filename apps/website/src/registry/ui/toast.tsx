@@ -2,6 +2,7 @@ import React from "react"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { Toaster as Sonner, toast } from "sonner"
+import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
 type ButtonType = {
@@ -23,6 +24,7 @@ type ToastProps = {
 	closable?: boolean
 	stack?: boolean
 	visibleToasts?: number
+	placement?: "horizontal" | "vertical"
 	customContent?: React.ReactNode
 	applyDefaultStyling?: boolean
 	// New boolean flag to determine if it's a custom toast
@@ -34,7 +36,7 @@ type ToastProps = {
 }
 
 // Variant styles
-const SonnerVariant = cva("group toast rounded-lg flex items-center border border-border justify-center gap-2 p-3 w-full h-auto text-xl", {
+const SonnerVariant = cva("group toast rounded-lg flex items-center border border-border justify-center gap-2 p-3 w-full h-auto text-xl ", {
 	variants: {
 		state: {
 			default: "",
@@ -47,6 +49,10 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 			neutral: "bg-bg-level1 group-[.toaster]:text-text-secondary",
 			strong: "",
 			inverse: "",
+		},
+		placement: {
+			horizontal: "items-center",
+			vertical: "items-start",
 		},
 	},
 	compoundVariants: [
@@ -80,6 +86,7 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 	defaultVariants: {
 		state: "default",
 		variant: "neutral",
+		placement: "vertical",
 	},
 })
 
@@ -111,6 +118,7 @@ export function showToast({
 	showCloseButton,
 	icon,
 	duration = 5000,
+	placement = "horizontal",
 	buttons = [],
 	closable = true,
 	isCustom = false, // New parameter with default false
@@ -136,7 +144,7 @@ export function showToast({
 								}}
 								className="absolute right-2 top-2 z-10 cursor-pointer rounded-full"
 								aria-label="Close toast">
-								<X />
+								<X className="size-4" />
 							</Button>
 						)}
 					</div>
@@ -145,13 +153,17 @@ export function showToast({
 
 			// Default structured toast
 			return (
-				<div className={SonnerVariant({ state, variant })}>
+				<div className={SonnerVariant({ state, variant, placement })}>
 					{icon}
-					<div className="flex w-full items-center justify-between">
+					<div
+						className={cn("flex gap-2", {
+							"flex-col items-start": placement === "vertical",
+							"flex-row items-center": placement === "horizontal",
+						})}>
 						{/* Content */}
 						<div className="flex-1">
 							{title && <div className="mb-1 text-sm font-semibold">{title}</div>}
-							{description && <div className="text-sm opacity-90">{description}</div>}
+							{description && <div className="w-[179px] text-sm opacity-90">{description}</div>}
 						</div>
 
 						{/* Buttons */}
@@ -181,7 +193,7 @@ export function showToast({
 								toast.dismiss(toastId)
 							}}
 							className={`cursor-pointer`}>
-							<X />
+							<X className="size-4" />
 						</div>
 					)}
 				</div>
@@ -222,7 +234,7 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 }
 
 // Define the styles for the toaster using `class-variance-authority`
-const toastClass = cva("group !p-0 w-106 rounded-lg toast group-[.toaster]:text-text-secondary", {
+const toastClass = cva("group !p-0 rounded-lg toast group-[.toaster]:text-text-secondary", {
 	variants: {
 		position: {
 			bottom: "group-[.toaster]:!shadow-[0px_4px_8px_0px_rgba(25,24,27,0.08)]",

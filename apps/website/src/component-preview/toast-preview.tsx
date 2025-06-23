@@ -11,8 +11,12 @@ const ToastPreview = () => {
 	const [variant, setVariant] = useState<"neutral" | "strong" | "inverse">("neutral")
 	const [state, setState] = useState<"default" | "info" | "success" | "error" | "warning">("default")
 	const [stackable, setStackable] = useState<"true" | "false">("false")
-	const [closable, setClosable] = useState<"true" | "false">("false")
+	const [closable, setClosable] = useState<"true" | "false">("true")
 	const [visibleToasts, setVisibleToasts] = useState<"3" | "4" | "5" | "6">("3")
+	const [placement, setPlacement] = useState<"horizontal" | "vertical">("horizontal")
+	const [icon, setIcon] = useState<"true" | "false">("true")
+	const [title, setTitle] = useState<"true" | "false">("true")
+	const [desc, setDesc] = useState<"true" | "false">("true")
 	const [key, setKey] = useState(0)
 
 	return (
@@ -65,6 +69,74 @@ const ToastPreview = () => {
 											<DropdownItem value="success">Success</DropdownItem>
 											<DropdownItem value="warning">Warning</DropdownItem>
 											<DropdownItem value="error">Error</DropdownItem>{" "}
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Button Placement</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setPlacement(Array.from(keys)[0] as typeof placement)
+												setKey((k) => k + 1)
+											}}
+											minSelectionCount={1}
+											selectedValues={[placement]}>
+											<DropdownItem value="horizontal">Horizontal</DropdownItem>
+											<DropdownItem value="vertical">Vertical</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Icon</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setIcon(Array.from(keys)[0] as typeof icon)
+												setKey((k) => k + 1)
+											}}
+											minSelectionCount={1}
+											selectedValues={[icon]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Title</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setTitle(Array.from(keys)[0] as typeof title)
+												setKey((k) => k + 1)
+											}}
+											minSelectionCount={1}
+											selectedValues={[title]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Description</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setDesc(Array.from(keys)[0] as typeof desc)
+												setKey((k) => k + 1)
+											}}
+											minSelectionCount={1}
+											selectedValues={[desc]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -140,12 +212,13 @@ const ToastPreview = () => {
 							variant="neutral-outline"
 							onClick={() =>
 								showToast({
-									icon: <Box className={variant === "neutral" ? `text-${state}` : "text-static-black dark:text-static-white"} />,
+									icon: icon === "true" ? <Box className={variant === "neutral" ? `text-${state}` : "text-static-black dark:text-static-white"} /> : undefined,
 									variant,
 									state,
-									title: "Toast Title",
+									placement,
+									title: title === "true" ? "Toast Title" : "",
 									closable: closable === "true",
-									description: "Toast description message",
+									description: desc === "true" ? "Toast description message" : "",
 									buttons: [
 										{ label: "Upgrade", onClick: () => console.log("Retrying..."), dismiss: false },
 										{ label: "Learn More", onClick: () => console.log("Cancelled") },
