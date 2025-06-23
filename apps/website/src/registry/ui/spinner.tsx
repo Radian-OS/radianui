@@ -39,22 +39,22 @@ function SpinnerSpinner({ size, color, ...props }: SpinnerProps) {
 		<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
 			<style>
 				{`
-					.spinner-line {
-						animation: spinner-fade 1.2s linear infinite;
-					}
-					.spinner-line:nth-child(2) { animation-delay: 0s; }
-					.spinner-line:nth-child(3) { animation-delay: -1.05s; }
-					.spinner-line:nth-child(4) { animation-delay: -0.9s; }
-					.spinner-line:nth-child(5) { animation-delay: -0.75s; }
-					.spinner-line:nth-child(6) { animation-delay: -0.6s; }
-					.spinner-line:nth-child(7) { animation-delay: -0.45s; }
-					.spinner-line:nth-child(8) { animation-delay: -0.3s; }
-					.spinner-line:nth-child(9) { animation-delay: -0.15s; }
-					
-					@keyframes spinner-fade {
-						0%, 12.5% { opacity: 0.9; }
-						100% { opacity: 0.125; }
-					}
+				.spinner-line {
+					animation: spinner-fade 1.2s linear infinite;
+				}
+				.spinner-line:nth-child(2) { animation-delay: 0s; }
+				.spinner-line:nth-child(3) { animation-delay: -1.05s; }
+				.spinner-line:nth-child(4) { animation-delay: -0.9s; }
+				.spinner-line:nth-child(5) { animation-delay: -0.75s; }
+				.spinner-line:nth-child(6) { animation-delay: -0.6s; }
+				.spinner-line:nth-child(7) { animation-delay: -0.45s; }
+				.spinner-line:nth-child(8) { animation-delay: -0.3s; }
+				.spinner-line:nth-child(9) { animation-delay: -0.15s; }
+				
+				@keyframes spinner-fade {
+					0%, 12.5% { opacity: 0.9; }
+					100% { opacity: 0.125; }
+				}
 				`}
 			</style>
 			{/* Top */}
@@ -77,10 +77,69 @@ function SpinnerSpinner({ size, color, ...props }: SpinnerProps) {
 	)
 }
 
+function WaveSpinner({ size, color, ...props }: SpinnerProps) {
+	return (
+		<svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+			<style>
+				{`
+				@keyframes wave1 {
+					0%, 100% { transform: translateY(0); }
+					20% { transform: translateY(-3px); }
+					40% { transform: translateY(3px); }
+					60%, 80% { transform: translateY(0); }
+				}
+				
+				@keyframes wave2 {
+					0%, 20%, 100% { transform: translateY(0); }
+					40% { transform: translateY(-3px); }
+					60% { transform: translateY(3px); }
+					80% { transform: translateY(0); }
+				}
+				
+				@keyframes wave3 {
+					0%, 40%, 100% { transform: translateY(0); }
+					60% { transform: translateY(-3px); }
+					80% { transform: translateY(3px); }
+				}
+
+				.wave-dot1 { animation: wave1 1s linear infinite; }
+				.wave-dot2 { animation: wave2 1s linear infinite; }
+				.wave-dot3 { animation: wave3 1s linear infinite; }
+				`}
+			</style>
+			<path
+				d="M19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11C18.4477 11 18 11.4477 18 12C18 12.5523 18.4477 13 19 13Z"
+				className="wave-dot3"
+				stroke={color || "var(--color-text)"}
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+			<path
+				d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z"
+				className="wave-dot2"
+				stroke={color || "var(--color-text)"}
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+			<path
+				d="M5 13C5.55228 13 6 12.5523 6 12C6 11.4477 5.55228 11 5 11C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13Z"
+				className="wave-dot1"
+				stroke={color || "var(--color-text)"}
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
+		</svg>
+	)
+}
+
 function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps) {
 	if (variant === "default") return <DefaultSpinner size={size} color={color} {...props} />
 	else if (variant === "simple") return <SimpleSpinner size={size} color={color} {...props} />
 	else if (variant === "spinner") return <SpinnerSpinner size={size} color={color} {...props} />
+	else if (variant === "wave") return <WaveSpinner size={size} color={color} {...props} />
 }
 
 export { Spinner }
