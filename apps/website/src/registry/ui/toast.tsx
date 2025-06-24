@@ -37,7 +37,7 @@ type ToastProps = {
 }
 
 // Variant styles
-const SonnerVariant = cva("group toast rounded-lg flex items-center border border-border justify-center gap-2 p-3 w-full h-auto text-xl ", {
+const SonnerVariant = cva("group toast rounded-lg flex items-center border border-border text-sm gap-1 p-2.5 ", {
 	variants: {
 		state: {
 			default: "",
@@ -52,8 +52,8 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 			inverse: " bg-inverse-black group-[.toaster]:text-text-inverse",
 		},
 		placement: {
-			horizontal: "items-center",
-			vertical: "items-start",
+			horizontal: "items-center h-15.5 w-104",
+			vertical: "items-start h-23 w-64",
 		},
 	},
 	compoundVariants: [
@@ -189,22 +189,23 @@ export function showToast({
 				<div className={SonnerVariant({ state, variant, placement })}>
 					{coloredIcon}
 					<div
-						className={cn("flex gap-2", {
-							"flex-col items-start": placement === "vertical",
-							"flex-row items-center": placement === "horizontal",
+						className={cn("flex", {
+							"flex-col items-start gap-1.5": placement === "vertical",
+							"w-87 flex-row items-center gap-2": placement === "horizontal",
 						})}>
 						{/* Content */}
-						<div className="flex-1">
-							{title && <div className="mb-1 text-sm font-semibold">{title}</div>}
-							{description && <div className="w-[179px] text-sm opacity-90">{description}</div>}
+						<div className="w-47 gap-0.5 px-1">
+							{title && <div className="font-medium">{title}</div>}
+							{description && <div>{description}</div>}
 						</div>
 
 						{/* Buttons */}
 						{buttons.length > 0 && (
-							<div className="flex gap-2">
+							<div className="flex gap-3 px-1">
 								{buttons.map((button, index) => (
 									<Link
 										href=""
+										className="inline-flex h-5 items-center" // Set specific height
 										key={index}
 										onClick={() => {
 											button.onClick(t)
@@ -212,9 +213,7 @@ export function showToast({
 												toast.dismiss(t)
 											}
 										}}>
-										<span className="font-inter whitespace-nowrap text-sm font-medium leading-5 tracking-tight underline decoration-solid decoration-auto [text-underline-offset:2px]">
-											{button.label}
-										</span>
+										<span className="font-inter whitespace-nowrap font-medium tracking-tight underline">{button.label}</span>
 									</Link>
 								))}
 							</div>
@@ -227,7 +226,7 @@ export function showToast({
 							onClick={function () {
 								toast.dismiss(toastId)
 							}}
-							className={`cursor-pointer`}>
+							className={`flex cursor-pointer items-center justify-center p-0.5`}>
 							<X className="size-4" />
 						</div>
 					)}
