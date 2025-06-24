@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { TabletMobileThemeToggler } from "@/components/theme-toggler"
-import { sideBarItems } from "@/config/sidebar-config"
+import { sideBarItems } from "@/config/navigation-config"
 import { Button } from "@/registry/ui/button"
 
 export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMobileNavVisible: React.Dispatch<React.SetStateAction<boolean>> }) {

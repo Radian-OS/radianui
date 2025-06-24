@@ -1,105 +1,31 @@
 import React from "react"
 import ComponentCard from "@/components/home/component-card"
+import { navigationItems } from "@/config/navigation-config"
 
-type ComponentListItem = React.ComponentPropsWithoutRef<typeof ComponentCard>
-
-const componentsList: ComponentListItem[] = [
-	{
-		title: "Color styles",
-		description: "156 colors, 70 color tokens",
-		svgUrl: "/landing-svg/color-styles.svg",
-		darkModeSvgUrl: "/landing-svg/color-styles-dark.svg",
-		href: "documentation/colors",
-		alt: "Palette of color styles illustration",
-	},
-	{
-		title: "Typography",
-		description: "17 Styles",
-		href: "documentation/typography",
-		svgUrl: "/landing-svg/typography.svg",
-		darkModeSvgUrl: "/landing-svg/typography-dark.svg",
-		alt: "Typography text styles illustration",
-	},
-	{
-		title: "Icons",
-		description: "1,200 Components",
-		href: "documentation/iconography",
-		svgUrl: "/landing-svg/icons.svg",
-		darkModeSvgUrl: "/landing-svg/icons-dark.svg",
-		alt: "Collection of icons illustration",
-	},
-	{
-		title: "Corner Radius",
-		description: "7 styles",
-		svgUrl: "/landing-svg/corner-radius.svg",
-		darkModeSvgUrl: "/landing-svg/corner-radius-dark.svg",
-		href: "#",
-		alt: "Corner radius shapes illustration",
-	},
-	{
-		title: "Grids",
-		description: "8 Types",
-		svgUrl: "/landing-svg/grids.svg",
-		darkModeSvgUrl: "/landing-svg/grids-dark.svg",
-		href: "#",
-		alt: "Grid layout illustration",
-	},
-	{
-		title: "Elevation Levels",
-		description: "16 styles",
-		svgUrl: "/landing-svg/elevation-levels.svg",
-		darkModeSvgUrl: "/landing-svg/elevation-levels-dark.svg",
-		href: "#",
-		alt: "Elevation levels shadow illustration",
-	},
-	{
-		title: "Spacing",
-		description: "62 Values",
-		svgUrl: "/landing-svg/spacing.svg",
-		darkModeSvgUrl: "/landing-svg/spacing-dark.svg",
-		href: "#",
-		alt: "Spacing and margin illustration",
-	},
-	{
-		title: "Color / Theme",
-		description: "8 Types",
-		svgUrl: "/landing-svg/color-theme.svg",
-		darkModeSvgUrl: "/landing-svg/color-theme-dark.svg",
-		href: "#",
-		alt: "Color theme swatches illustration",
-	},
-	{
-		title: "Logo",
-		description: "--",
-		svgUrl: "/landing-svg/coming-soon.svg",
-		darkModeSvgUrl: "/landing-svg/coming-soon-dark.svg",
-		href: "#",
-		alt: "Coming soon placeholder illustration",
-	},
-]
+const fundamentals = navigationItems.find((section) => section.title === "Fundamentals")!
 
 export default function FundamentalSection() {
 	return (
 		<React.Fragment>
 			<div className="max-w-310 mx-auto">
 				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
-					<h2 className="heading-6 text-fg0">Fundamentals</h2>
-					<p className="body-15 text-fg1 font-normal">Universal settings for building a strong foundation for a digital product</p>
+					<h2 className="heading-6 text-fg0">{fundamentals.title}</h2>
+					<p className="body-15 text-fg1 font-normal">{fundamentals.description}</p>
 				</div>
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>
 
 			<div className="max-w-310 mx-auto">
 				<div id="body" className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
-					{componentsList.map((item, idx) => (
+					{fundamentals.items.map((item, idx) => (
 						<ComponentCard
-							alt={item.alt}
+							alt={item.alt!}
 							key={item.title + idx}
-							href={item.href}
+							url={item.url!}
 							title={item.title}
-							description={item.description}
-							svgUrl={item.svgUrl}
-							darkModeSvgUrl={item.darkModeSvgUrl}
+							description={item.description!}
+							thumbnail={item.thumbnail!}
+							thumbnailDark={item.thumbnailDark!}
 						/>
 					))}
 				</div>
