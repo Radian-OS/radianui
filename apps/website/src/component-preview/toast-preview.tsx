@@ -212,13 +212,13 @@ const ToastPreview = () => {
 							variant="neutral-outline"
 							onClick={() =>
 								showToast({
-									icon: icon === "true" ? <Box /> : undefined,
+									icon: icon === "true" ? <Box className="size-5" /> : undefined,
 									variant,
 									state,
 									placement,
 									title: title === "true" ? "Toast Title" : "",
 									closable: closable === "true",
-									description: desc === "true" ? "Toast description message" : "",
+									description: desc === "true" ? "Toast description message." : "",
 									buttons: [
 										{ label: "Upgrade", onClick: () => console.log("Retrying..."), dismiss: false },
 										{ label: "Learn More", onClick: () => console.log("Cancelled") },
