@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { TabletMobileThemeToggler } from "@/components/theme-toggler"
-import { sideBarItems } from "@/config/sidebar-config"
+import { navigationItems } from "@/config/navigation-config"
 import { Button } from "@/registry/ui/button"
 
 export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMobileNavVisible: React.Dispatch<React.SetStateAction<boolean>> }) {
@@ -48,7 +48,7 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 			</ul>
 
 			<Accordion type="single" collapsible>
-				{sideBarItems.map((section) => (
+				{navigationItems.map((section) => (
 					<AccordionItem value={section.title} key={section.title}>
 						<section>
 							<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
@@ -60,10 +60,10 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 							<div className="flex flex-col justify-center">
 								{section.items.map((item) => (
 									<AccordionContent
-										key={item.link}
-										className={` ${pathname === item.link ? "bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
-										<Link className={`${pathname === item.link ? "text-text" : ""} text-text-secondary`} href={item.link} onClick={() => setIsMobileNavVisible(false)}>
-											{item.name}
+										key={item.url}
+										className={` ${pathname === item.url ? "bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+										<Link className={`${pathname === item.url ? "text-text" : ""} text-text-secondary`} href={item.url} onClick={() => setIsMobileNavVisible(false)}>
+											{item.title}
 										</Link>
 									</AccordionContent>
 								))}

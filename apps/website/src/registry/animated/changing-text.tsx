@@ -46,9 +46,9 @@ const ChangingText = ({ texts, duration = 2500, motionProps, direction = "down",
 	return (
 		<div className="overflow-hidden py-2">
 			<AnimatePresence mode="wait">
-				<motion.h1 key={texts[index]} className={cn(className)} {...combinedMotionProps}>
+				<motion.p key={texts[index]} className={cn(className)} {...combinedMotionProps}>
 					{texts[index]}
-				</motion.h1>
+				</motion.p>
 			</AnimatePresence>
 		</div>
 	)

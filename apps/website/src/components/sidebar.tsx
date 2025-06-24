@@ -5,25 +5,25 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@r
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { sideBarItems } from "@/config/sidebar-config"
+import { navigationItems } from "@/config/navigation-config"
 
 export default function Sidebar() {
 	const [accordionValue, setAccordionValue] = React.useState("")
 	const pathName = usePathname()
-	const activeSection = sideBarItems.find((section) => section.items.some((item) => item.link === pathName))
+	const activeSection = navigationItems.find((section) => section.items.some((item) => item.url === pathName))
 	React.useEffect(() => {
-		setAccordionValue(activeSection ? activeSection.title : sideBarItems[0].title)
+		setAccordionValue(activeSection ? activeSection.title : navigationItems[0].title)
 	}, [pathName, activeSection])
 
 	return (
 		<>
-			<div className="w-70 hidden lg:block" />
-			<div className="no-scrollbar fixed z-30 hidden h-[calc(100vh-4.5rem)] w-64 justify-start overflow-y-scroll border-e px-2.5 pt-2.5 text-sm lg:flex lg:flex-col">
+			<aside className="w-70 hidden lg:block" />
+			<aside className="no-scrollbar fixed z-30 hidden h-[calc(100vh-4.5rem)] w-64 justify-start overflow-y-scroll border-e px-2.5 pt-2.5 text-sm lg:flex lg:flex-col">
 				<Accordion type="single" collapsible value={accordionValue} onValueChange={(value) => setAccordionValue(value)}>
-					{sideBarItems.map((section) => (
+					{navigationItems.map((section) => (
 						<AccordionItem className="mb-0 border-none" value={section.title} key={section.title}>
 							<main className="">
-								<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
+								<AccordionTrigger className="py-2 [&[data-state=closed]>h3>svg]:rotate-0 [&[data-state=open]>h3>svg]:rotate-90">
 									<h3 className="flex items-center gap-1.5 px-1.5 text-sm font-medium">
 										<ChevronRight className="duration-300 ease-in-out" size={12} />
 										{section.title}
@@ -31,11 +31,11 @@ export default function Sidebar() {
 								</AccordionTrigger>
 								<ul className="flex flex-col">
 									{section.items.map((item) => (
-										<Link className={`${pathName === item.link ? "bg-fill-level3" : ""} rounded-md`} href={item.link} key={item.link}>
+										<Link className={`${pathName === item.url ? "bg-fill-level3" : ""} rounded-md`} href={item.url} key={item.title}>
 											<li className="text-text-secondary text-sm">
 												<AccordionContent
-													className={` ${pathName === item.link ? "text-text" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
-													{item.name}
+													className={` ${pathName === item.url ? "text-text" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-in data-[state=open]:ease-out`}>
+													{item.title}
 												</AccordionContent>
 											</li>
 										</Link>
@@ -45,7 +45,7 @@ export default function Sidebar() {
 						</AccordionItem>
 					))}
 				</Accordion>
-			</div>
+			</aside>
 		</>
 	)
 }

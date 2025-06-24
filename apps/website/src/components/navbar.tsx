@@ -8,7 +8,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { DesktopThemeToggler, TabletMobileThemeToggler } from "@/components/theme-toggler"
 import VersionDisplay from "@/components/version-display"
-import { sideBarItems } from "@/config/sidebar-config"
+import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -24,10 +24,10 @@ export default function Navbar() {
 	const itemRefs = useRef<(HTMLLIElement | null)[]>([]) //
 
 	// Filter sidebar items based on the search term
-	const filteredItems = sideBarItems
+	const filteredItems = navigationItems
 		.map((section) => ({
 			...section,
-			items: section.items.filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase())),
+			items: section.items.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase())),
 		}))
 		.filter((section) => section.items.length > 0)
 	const getTotalItems = React.useCallback(() => filteredItems.reduce((acc, section) => acc + section.items.length, 0), [filteredItems])
@@ -124,7 +124,7 @@ export default function Navbar() {
 											const newFilteredItems = filteredItems
 												.map((section) => ({
 													...section,
-													items: section.items.filter((item) => item.name.toLowerCase().includes(e.target.value.toLowerCase())),
+													items: section.items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())),
 												}))
 												.filter((section) => section.items.length > 0) // Remove empty sections
 
@@ -146,14 +146,14 @@ export default function Navbar() {
 													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
 
 													return (
-														<ModalClose asChild key={item.link}>
-															<Link href={item.link}>
+														<ModalClose asChild key={item.url}>
+															<Link href={item.url}>
 																<li
 																	ref={(el) => {
 																		itemRefs.current[globalIndex] = el
 																	}}
 																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${selectedIndex === globalIndex ? "bg-border" : ""}`}>
-																	{item.name}
+																	{item.title}
 																</li>
 															</Link>
 														</ModalClose>
@@ -207,7 +207,7 @@ export default function Navbar() {
 
 						<ul className="text-fg1 flex flex-col items-start gap-2 px-3 text-sm font-medium">
 							{navLinks.map((item) => (
-								<li key={item.link}>
+								<li key={item.name}>
 									<DrawerClose>
 										<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
 											{item.name}
@@ -218,7 +218,7 @@ export default function Navbar() {
 						</ul>
 
 						<Accordion collapsible>
-							{sideBarItems.map((section) => (
+							{navigationItems.map((section) => (
 								<AccordionItem value={section.title} key={section.title}>
 									<section>
 										<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
@@ -230,11 +230,11 @@ export default function Navbar() {
 										<div className="flex flex-col justify-center">
 											{section.items.map((item) => (
 												<AccordionContent
-													key={item.link}
-													className={` ${pathname === item.link ? "bg-bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+													key={item.url}
+													className={` ${pathname === item.url ? "bg-bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
 													<DrawerClose>
-														<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
-															{item.name}
+														<Link className={`${pathname === item.url ? "text-fg0" : ""} text-fg1`} href={item.url}>
+															{item.title}
 														</Link>
 													</DrawerClose>
 												</AccordionContent>

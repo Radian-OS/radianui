@@ -71,7 +71,7 @@ My Custom Badge
 		<div className="mb-10 mt-2 space-y-8">
 			{badgeExamples.map((example, index) => (
 				<div key={index} className="overflow-hidden rounded-lg">
-					<h1 className="heading-6 mb-4 font-semibold">{example.name}</h1>
+					<h6 className="heading-6 mb-4 font-semibold">{example.name}</h6>
 					<Tabs defaultValue="preview">
 						<TabsList>
 							<TabsTrigger value="preview">Preview</TabsTrigger>

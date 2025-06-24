@@ -4,12 +4,10 @@ import React from "react"
 import Footer from "@/components/footer"
 import A from "@/components/home/A"
 import B from "@/components/home/B"
-import ApplicationComponent from "@/components/home/application-components-section"
 import EmailSection from "@/components/home/email-section"
 import FundamentalSection from "@/components/home/fundamental-section"
 import HeroSection from "@/components/home/hero-section"
 import UiComponentsSection from "@/components/home/ui-components-section"
-import WebsiteComponent from "@/components/home/website-component-section"
 import { cn } from "@/lib/utils"
 
 export default function Home() {
@@ -44,8 +42,6 @@ export default function Home() {
 				</div>
 				<FundamentalSection />
 				<UiComponentsSection />
-				<ApplicationComponent />
-				<WebsiteComponent />
 				<EmailSection />
 			</div>
 			<Footer />

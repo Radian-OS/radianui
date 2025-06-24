@@ -12,7 +12,7 @@ const Nextjs = () => {
 				<div className="flex flex-col gap-[10px]">
 					<div className="relative">
 						<span className="heading-6 bg-border absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">1</span>
-						<h1 className="heading-6"> Create Project</h1>
+						<h6 className="heading-6"> Create Project</h6>
 					</div>
 					<p>
 						Run the <code>init</code> command to create a new Next.js project or to setup an existing one:
@@ -22,7 +22,7 @@ const Nextjs = () => {
 				<div className="flex flex-col gap-[10px]">
 					<div className="relative">
 						<span className="heading-6 bg-border absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">2</span>
-						<h1 className="heading-6">Configure components.json</h1>
+						<h6 className="heading-6">Configure components.json</h6>
 					</div>
 					<p>
 						You will be asked a few questions to configure <code>components.json</code>:
@@ -44,7 +44,7 @@ Success! Project initialization completed. You may now add components.`}
 				<div className="flex flex-col gap-[10px]">
 					<div className="relative">
 						<span className="heading-6 bg-border absolute left-[-3rem] flex h-8 w-8 items-center justify-center rounded-full">3</span>
-						<h1 className="heading-6">Add Component</h1>
+						<h6 className="heading-6">Add Component</h6>
 					</div>
 					<p>You can now start adding components to your project.</p>
 					<PackageManagerTabs isNpx={true} language={language} pkg={pkg} code={"radianos add button"} />
