@@ -124,7 +124,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Accordion",
-				description: "Collapsible content sections",
+				description: "3 Components",
 				url: "/documentation/components/accordion",
 				thumbnail: "/landing-svg/accordion.svg",
 				thumbnailDark: `/landing-svg/accordion-dark.svg`,
@@ -132,7 +132,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Avatar",
-				description: "User profile pictures and icons",
+				description: "4 Components",
 				url: "/documentation/components/avatar",
 				thumbnail: "/landing-svg/avatar.svg",
 				thumbnailDark: `/landing-svg/avatar-dark.svg`,
@@ -140,7 +140,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Badge",
-				description: "Status indicators and labels",
+				description: "2 Components",
 				url: "/documentation/components/badge",
 				thumbnail: "/landing-svg/badge.svg",
 				thumbnailDark: `/landing-svg/badge-dark.svg`,
@@ -148,7 +148,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Banner",
-				description: "Prominent notification displays",
+				description: "11 Components",
 				url: "/documentation/components/banner",
 				thumbnail: "/landing-svg/banner.svg",
 				thumbnailDark: `/landing-svg/banner-dark.svg`,
@@ -156,7 +156,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Breadcrumb",
-				description: "Navigation path indicators",
+				description: "5 Components",
 				url: "/documentation/components/breadcrumb",
 				thumbnail: "/landing-svg/breadcrumb.svg",
 				thumbnailDark: `/landing-svg/breadcrumb-dark.svg`,
@@ -164,7 +164,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Button",
-				description: "Interactive action triggers",
+				description: "12 Components",
 				url: "/documentation/components/buttons",
 				thumbnail: "/landing-svg/button.svg",
 				thumbnailDark: `/landing-svg/button-dark.svg`,
@@ -172,7 +172,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Calendar",
-				description: "Date selection interface",
+				description: "4 Components",
 				url: "/documentation/components/calendar",
 				thumbnail: "/landing-svg/calendar.svg",
 				thumbnailDark: `/landing-svg/calendar-dark.svg`,
@@ -180,7 +180,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Code Area",
-				description: "Syntax highlighted code display",
+				description: "1 Component",
 				url: "/documentation/components/code-area",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -188,7 +188,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Color Picker",
-				description: "Interactive color selection",
+				description: "3 Components",
 				url: "/documentation/components/color-picker",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -196,7 +196,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Currency Amount",
-				description: "Formatted currency display",
+				description: "3 Components",
 				url: "/documentation/components/currency-amount",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -204,7 +204,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Check Box",
-				description: "Multiple selection inputs",
+				description: "2 Components",
 				url: "/documentation/components/checkbox",
 				thumbnail: "/landing-svg/checkbox.svg",
 				thumbnailDark: `/landing-svg/checkbox-dark.svg`,
@@ -212,7 +212,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Date Picker",
-				description: "Date selection controls",
+				description: "1 Component",
 				url: "/documentation/components/date-picker",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -220,7 +220,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Divider",
-				description: "Content separation lines",
+				description: "3 Components",
 				url: "/documentation/components/divider",
 				thumbnail: "/landing-svg/divider.svg",
 				thumbnailDark: `/landing-svg/divider-dark.svg`,
@@ -228,7 +228,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Dropdown",
-				description: "Collapsible option menus",
+				description: "7 Components",
 				url: "/documentation/components/dropdown",
 				thumbnail: "/landing-svg/dropdown.svg",
 				thumbnailDark: `/landing-svg/dropdown-dark.svg`,
@@ -236,7 +236,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Drawer",
-				description: "Sliding panel interface",
+				description: "2 Components",
 				url: "/documentation/components/drawer",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -244,7 +244,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Input",
-				description: "Text input fields",
+				description: "15 Components",
 				url: "/documentation/components/inputs",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -252,7 +252,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Input OTP",
-				description: "One-time password entry",
+				description: "2 Components",
 				url: "/documentation/components/input-otp",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -260,7 +260,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "File Upload",
-				description: "File selection and upload",
+				description: "4 Components",
 				url: "/documentation/components/file-upload",
 				thumbnail: "/landing-svg/file-upload.svg",
 				thumbnailDark: `/landing-svg/file-upload-dark.svg`,
@@ -268,7 +268,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Form",
-				description: "Data collection interfaces",
+				description: "12 Components",
 				url: "/documentation/components/forms",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -276,7 +276,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Hover Card",
-				description: "Context-sensitive popups",
+				description: "4 Components",
 				url: "/documentation/components/hover-card",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -284,7 +284,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Modal",
-				description: "Overlay dialog windows",
+				description: "2 Components",
 				url: "/documentation/components/modal",
 				thumbnail: "/landing-svg/modal.svg",
 				thumbnailDark: `/landing-svg/modal-dark.svg`,
@@ -292,7 +292,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Pagination",
-				description: "Content navigation controls",
+				description: "3 Components",
 				url: "/documentation/components/pagination",
 				thumbnail: "/landing-svg/pagination.svg",
 				thumbnailDark: `/landing-svg/pagination-dark.svg`,
@@ -300,7 +300,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Password",
-				description: "Secure password input fields",
+				description: "2 Components",
 				url: "/documentation/components/password",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -308,7 +308,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Phone Number",
-				description: "International phone input",
+				description: "2 Components",
 				url: "/documentation/components/phone-number",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -316,7 +316,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Popover",
-				description: "Floating content containers",
+				description: "3 Components",
 				url: "/documentation/components/popover",
 				thumbnail: "/landing-svg/popover.svg",
 				thumbnailDark: `/landing-svg/popover-dark.svg`,
@@ -324,7 +324,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Progress Bar",
-				description: "Task completion indicators",
+				description: "1 Component",
 				url: "/documentation/components/progress-bar",
 				thumbnail: "/landing-svg/progress-bar.svg",
 				thumbnailDark: `/landing-svg/progress-bar-dark.svg`,
@@ -332,7 +332,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Radio Group",
-				description: "Single selection options",
+				description: "4 Components",
 				url: "/documentation/components/radio-group",
 				thumbnail: "/landing-svg/radio-buttons.svg",
 				thumbnailDark: `/landing-svg/radio-buttons-dark.svg`,
@@ -340,7 +340,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Resizable",
-				description: "Adjustable container panels",
+				description: "2 Components",
 				url: "/documentation/components/resizable",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -348,7 +348,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Search",
-				description: "Content search interfaces",
+				description: "1 Component",
 				url: "/documentation/components/search",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -356,7 +356,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Select",
-				description: "Dropdown selection menus",
+				description: "6 Components",
 				url: "/documentation/components/select",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -364,7 +364,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Skeleton",
-				description: "Loading state placeholders",
+				description: "2 Components",
 				url: "/documentation/components/skeleton",
 				thumbnail: "/landing-svg/skeleton.svg",
 				thumbnailDark: `/landing-svg/skeleton-dark.svg`,
@@ -372,7 +372,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Slider",
-				description: "Range value selection",
+				description: "3 Components",
 				url: "/documentation/components/slider",
 				thumbnail: "/landing-svg/slider.svg",
 				thumbnailDark: `/landing-svg/slider-dark.svg`,
@@ -380,7 +380,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Spinner",
-				description: "Loading indicators",
+				description: "5 Components",
 				url: "/documentation/components/spinner",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -388,7 +388,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Switch",
-				description: "Toggle control inputs",
+				description: "4 Components",
 				url: "/documentation/components/switch",
 				thumbnail: "/landing-svg/switch.svg",
 				thumbnailDark: `/landing-svg/switch-dark.svg`,
@@ -396,7 +396,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Table",
-				description: "Structured data displays",
+				description: "2 Components",
 				url: "/documentation/components/table",
 				thumbnail: "/landing-svg/table.svg",
 				thumbnailDark: `/landing-svg/table-dark.svg`,
@@ -404,7 +404,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Tabs",
-				description: "Content organization panels",
+				description: "3 Components",
 				url: "/documentation/components/tabs",
 				thumbnail: "/landing-svg/tabs.svg",
 				thumbnailDark: `/landing-svg/tabs-dark.svg`,
@@ -412,7 +412,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Text Area",
-				description: "Multi-line text inputs",
+				description: "1 Component",
 				url: "/documentation/components/text-area",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -420,7 +420,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Time Picker",
-				description: "Time selection controls",
+				description: "2 Components",
 				url: "/documentation/components/time-picker",
 				thumbnail: "/landing-svg/coming-soon.svg",
 				thumbnailDark: `/landing-svg/coming-soon-dark.svg`,
@@ -428,7 +428,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Toast",
-				description: "Temporary notification messages",
+				description: "8 Components",
 				url: "/documentation/components/toast",
 				thumbnail: "/landing-svg/sonner.svg",
 				thumbnailDark: `/landing-svg/sonner-dark.svg`,
@@ -436,7 +436,7 @@ export const navigationItems: NavigationSection[] = [
 			},
 			{
 				title: "Tooltip",
-				description: "Contextual help overlays",
+				description: "3 Components",
 				url: "/documentation/components/tooltip",
 				thumbnail: "/landing-svg/tooltip.svg",
 				thumbnailDark: `/landing-svg/tooltip-dark.svg`,

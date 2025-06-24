@@ -23,7 +23,7 @@ export default function Sidebar() {
 					{navigationItems.map((section) => (
 						<AccordionItem className="mb-0 border-none" value={section.title} key={section.title}>
 							<main className="">
-								<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
+								<AccordionTrigger className="py-2 [&[data-state=closed]>h3>svg]:rotate-0 [&[data-state=open]>h3>svg]:rotate-90">
 									<h3 className="flex items-center gap-1.5 px-1.5 text-sm font-medium">
 										<ChevronRight className="duration-300 ease-in-out" size={12} />
 										{section.title}
@@ -34,7 +34,7 @@ export default function Sidebar() {
 										<Link className={`${pathName === item.url ? "bg-fill-level3" : ""} rounded-md`} href={item.url} key={item.title}>
 											<li className="text-text-secondary text-sm">
 												<AccordionContent
-													className={` ${pathName === item.url ? "text-text" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+													className={` ${pathName === item.url ? "text-text" : ""} w-full py-2 pl-6 text-start transition-all data-[state=closed]:ease-in data-[state=open]:ease-out`}>
 													{item.title}
 												</AccordionContent>
 											</li>
