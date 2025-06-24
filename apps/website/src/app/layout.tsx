@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils"
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 	description: "Welcome to Radian—your go-to React & Tailwind CSS lib.",
+	metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
 	icons: {
 		icon: "/favicon.ico",
 		shortcut: "/favicon-32x32.png",
