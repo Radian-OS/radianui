@@ -74,7 +74,6 @@ const SonnerExample = () => {
 				variant="outline"
 				onClick={() =>
 					showToast({
-						variant,
 						closable,
 						description: "New card added",
 					})
@@ -86,7 +85,6 @@ const SonnerExample = () => {
 				variant="outline"
 				onClick={() =>
 					showToast({
-						variant,
 						closable,
 						title: "New card added",
 						description: "New card added",
@@ -99,7 +97,6 @@ const SonnerExample = () => {
 				variant="outline"
 				onClick={() =>
 					showToast({
-						variant,
 						icon: <Box />,
 						closable,
 						title: "New card added",
@@ -120,7 +117,6 @@ const SonnerExample = () => {
 				variant="outline"
 				onClick={() =>
 					showToast({
-						variant,
 						closable,
 						content: <h1 className="!p-[12px]">New Toast</h1>,
 					})
