@@ -90,7 +90,7 @@ export default function Navbar() {
 				<section className="hidden items-center px-10 lg:flex">
 					<ul className="text-fg1 flex items-center gap-9 text-sm font-medium">
 						{navLinks.map((item) => (
-							<li key={item.link}>
+							<li key={item.name}>
 								<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
 									{item.name}
 								</Link>
@@ -172,6 +172,7 @@ export default function Navbar() {
 				</Modal>
 
 				<Link href={`${process.env.NEXT_PUBLIC_WEBAPP_URL!}`}>
+					<span className="sr-only">Get Started</span>
 					<Button size={"40"}>Get Started</Button>
 				</Link>
 

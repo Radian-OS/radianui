@@ -36,14 +36,14 @@ Label
 			name: "Avatar",
 			component: (
 				<Badge variant="strong" color="info" size="24">
-					<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 					Roman Shrestha
 				</Badge>
 			),
 			code: `<Badge
 variant="strong"
 color="info" size="24">
-<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 Roman Shrestha
 </Badge>`,
 		},
@@ -51,7 +51,7 @@ Roman Shrestha
 			name: "Close Icon",
 			component: (
 				<Badge variant="pastel" color="warning" className="outline-warning outline" closable size="24">
-					<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 					My Custom Badge
 				</Badge>
 			),
@@ -61,7 +61,7 @@ color="warning"
 className="outline-warning outline" 
 closable 
 size="24">
-<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 My Custom Badge
 </Badge>`,
 		},
