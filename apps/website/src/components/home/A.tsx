@@ -69,7 +69,7 @@ function A({ className }: { className?: string }) {
 								onClick={() => setActiveSidebarIcon("settings-left")}
 							/>
 						</div>
-						<Avatar src="/icons/Avatar-2.png" size="40" name="JM" />
+						<Avatar src="/icons/Avatar-2.webp" size="40" name="JM" />
 					</div>
 				</div>
 			</div>
