@@ -26,8 +26,8 @@ export default function GithubIntegrationModalExample() {
 						</ModalTrigger>
 						<ModalContent>
 							<div className="flex items-center justify-center gap-2 pt-6">
-								<Image className="border-3 rounded-2xl p-0.5" src={"/radian.png"} alt="radian" height={60} width={60} />
-								<Image className="border-3 rounded-2xl p-0.5" src={"/github.png"} alt="github" height={60} width={60} />
+								<Image className="border-3 rounded-2xl p-0.5" src={"/radian.webp"} alt="radian" height={60} width={60} />
+								<Image className="border-3 rounded-2xl p-0.5" src={"/github.webp"} alt="github" height={60} width={60} />
 							</div>
 							<ModalHeader className="text-center">
 								<ModalTitle>Connect RadianOS to Github</ModalTitle>
@@ -75,14 +75,14 @@ export default function GithubIntegrationModalExample() {
         <div className="flex items-center justify-center gap-2 pt-6">
             <Image
                 className="rounded-2xl border-3 p-0.5"
-                src={"/radian.png"}
+                src={"/radian.webp"}
                 alt="radian"
                 height={60}
                 width={60}
             />
             <Image
                 className="rounded-2xl border-3 p-0.5"
-                src={"/github.png"}
+                src={"/github.webp"}
                 alt="github"
                 height={60}
                 width={60}
