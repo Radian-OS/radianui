@@ -74,6 +74,8 @@ export async function GET(request: NextRequest) {
 						right: "-431px",
 						top: "120px",
 					}}
+					width={956}
+					height={561}
 				/>
 			</>
 		),

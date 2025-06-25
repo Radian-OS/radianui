@@ -36,7 +36,11 @@ export const metadata: Metadata = {
 
 const BlocksPage = () => {
 	return (
-		<div>
+		<div className="mx-auto max-w-7xl">
+			<div id="header" className="lg:py-7.5 flex flex-col gap-1">
+				<h1 className="heading-4 text-text">Blocks</h1>
+				<p className="body-15 text-text-secondary font-normal">Get all the ready-made ui blocks.</p>
+			</div>
 			{blocks.map((block, index) => (
 				<BlockPreview preview={block.preview} code={block.code} title={block.title} category={block.category} key={index} />
 			))}
