@@ -8,18 +8,24 @@ source: https://github.com/Radian-os
 
 ## Installation
 
-<Code language="bash" code={`npx radianos add sonner`} />
+<Code language="bash" code={`npx radianos add toast`} />
 
 ## Imports
 
-<Code language="tsx" code={`import Sonner from "@/components/ui/sonner"`} />
+<Code language="tsx" code={`import {Toaster,showToast} from "@/components/ui/toast"`} />
 
 ## Props
 
 | Prop Name     | Default Values | Values                                                                    |
 | ------------- | -------------- | ------------------------------------------------------------------------- |
 | position      | bottom-left    | top-left, top-center, top-right, bottom-left, bottom-center, bottom-right |
-| variant       | default        | bg1, information, success, error, warning                                 |
+| state         | default        | default, information, success, error, warning                             |
+| variant       | neutral        | neutral, strong, inverse                                                  |
+| icon          |                |                                                                           |
+| title         |                |                                                                           |
+| description   |                |                                                                           |
+| buttons       |                |                                                                           |
+| placement     | horizontal     | horizontal,vertical                                                       |
 | stackable     | boolean        | true/false                                                                |
 | closable      | boolean        | true/false                                                                |
 | visibleToasts | number         | 3, 4, 5                                                                   |
@@ -32,12 +38,19 @@ source: https://github.com/Radian-os
 <Button
 variant="neutral-outline"
 onClick={() =>
-Sonner({
-variant:"success",
-closable:"true",
-description: "New card added",
-})}
->
-Sonner
+showToast({
+icon: <Box className="size-5" />,
+variant:"strong",
+state:"success",
+closable:false,
+title:"Toast Title",
+description: "Toast description message.",
+buttons:[
+		{ label: "Upgrade", onClick: () => console.log("Retrying..."),href: "/documentation/components/toast", dismiss: false },
+		{ label: "Learn More", onClick: () => console.log("Cancelled") }
+	],
+})
+}>
+Toast
 </Button>`}
 />
