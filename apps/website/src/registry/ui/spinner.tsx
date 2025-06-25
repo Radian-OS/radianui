@@ -1,3 +1,5 @@
+import { JSX } from "react"
+
 export type SpinnerVariants = "default" | "simple" | "activity" | "wave" | "snake"
 
 type SpinnerProps = React.SVGProps<SVGSVGElement> & {
@@ -179,7 +181,7 @@ const SnakeSpinner = ({ size, color, className, "aria-label": ariaLabel }: Spinn
 	const spinnerStyle = {
 		width: `${size}px`,
 		height: `${size}px`,
-		border: `${Math.round(size! * 0.16)}px solid ${color || "var(--color-text"}`,
+		border: `${Math.round(size! * 0.13)}px solid ${color || "var(--color-text"}`,
 		animation: "spinner-bulqg1 0.8s infinite linear alternate, spinner-oaa3wk 1.6s infinite linear",
 	}
 
@@ -231,12 +233,24 @@ const SnakeSpinner = ({ size, color, className, "aria-label": ariaLabel }: Spinn
 	)
 }
 
-function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps) {
-	if (variant === "default") return <DefaultSpinner size={size} color={color} {...props} />
-	else if (variant === "simple") return <SimpleSpinner size={size} color={color} {...props} />
-	else if (variant === "activity") return <ActivitySpinner size={size} color={color} {...props} />
-	else if (variant === "wave") return <WaveSpinner size={size} color={color} {...props} />
-	else if (variant === "snake") return <SnakeSpinner size={size} color={color} {...props} />
+function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps): JSX.Element {
+	const commonProps = {
+		size,
+		color,
+	}
+
+	switch (variant) {
+		case "simple":
+			return <SimpleSpinner {...commonProps} {...props} />
+		case "activity":
+			return <ActivitySpinner {...commonProps} {...props} />
+		case "wave":
+			return <WaveSpinner {...commonProps} {...props} />
+		case "snake":
+			return <SnakeSpinner {...commonProps} {...props} />
+		default:
+			return <DefaultSpinner {...commonProps} {...props} />
+	}
 }
 
 export { Spinner }
