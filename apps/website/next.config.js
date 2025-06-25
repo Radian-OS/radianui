@@ -1,6 +1,11 @@
 import { withContentlayer } from "next-contentlayer2"
+import bundleAnalyzer from "@next/bundle-analyzer"
 
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = bundleAnalyzer({
+	enabled: process.env.ANALYZE === "true",
+})
+
 const nextConfig = {
 	async redirects() {
 		return [
@@ -87,4 +92,4 @@ const nextConfig = {
 		NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY
 	},
 }
-export default withContentlayer(nextConfig)
+export default withBundleAnalyzer(withContentlayer(nextConfig))
