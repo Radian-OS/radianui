@@ -10,13 +10,14 @@ const ToastPreview = () => {
 	const [position, setPosition] = useState<"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right">("bottom-right")
 	const [variant, setVariant] = useState<"neutral" | "strong" | "inverse">("neutral")
 	const [state, setState] = useState<"default" | "info" | "success" | "error" | "warning">("default")
-	const [stackable, setStackable] = useState<"true" | "false">("false")
+	const [stackable, setStackable] = useState<"true" | "false">("true")
 	const [closable, setClosable] = useState<"true" | "false">("true")
 	const [visibleToasts, setVisibleToasts] = useState<"3" | "4" | "5" | "6">("3")
 	const [placement, setPlacement] = useState<"horizontal" | "vertical">("horizontal")
 	const [icon, setIcon] = useState<"true" | "false">("true")
 	const [title, setTitle] = useState<"true" | "false">("true")
 	const [desc, setDesc] = useState<"true" | "false">("true")
+	const [actionButton, setActionButton] = useState<"true" | "false">("true")
 	const [key, setKey] = useState(0)
 
 	return (
@@ -86,6 +87,23 @@ const ToastPreview = () => {
 											selectedValues={[placement]}>
 											<DropdownItem value="horizontal">Horizontal</DropdownItem>
 											<DropdownItem value="vertical">Vertical</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Action Button</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setActionButton(Array.from(keys)[0] as typeof actionButton)
+												setKey((k) => k + 1)
+											}}
+											minSelectionCount={1}
+											selectedValues={[actionButton]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -219,10 +237,13 @@ const ToastPreview = () => {
 									title: title === "true" ? "Toast Title" : "",
 									closable: closable === "true",
 									description: desc === "true" ? "Toast description message." : "",
-									buttons: [
-										{ label: "Upgrade", onClick: () => console.log("Retrying..."), dismiss: false },
-										{ label: "Learn More", onClick: () => console.log("Cancelled") },
-									],
+									buttons:
+										actionButton === "true"
+											? [
+													{ label: "Upgrade", onClick: () => console.log("Retrying..."), href: "/documentation/components/toast", dismiss: false },
+													{ label: "Learn More", onClick: () => console.log("Cancelled") },
+												]
+											: [],
 								})
 							}>
 							Toast
@@ -236,19 +257,25 @@ const ToastPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={` <Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
+					code={`<Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
 <Button
 	variant="neutral-outline"
 	onClick={() =>
 		showToast({
-			variant,
-			title: "Toast Title",
-			closable: closable === "true",
-			description: "Toast description message",
-			buttons: [
-				{ label: "Upgrade", onClick: () => console.log("Retrying..."), dismiss: false },
-				{ label: "Learn More", onClick: () => console.log("Cancelled") },
-			],
+			${icon === "true" ? "icon:<Box className='size-5'/>," : ""}
+			variant:'${variant}',
+			state:'${state}',
+			${title === "true" ? "title:'Toast Title'," : ""}
+			${closable === "true" ? "closable," : "closable:false"}
+			${desc === "true" ? "description:'Toast description message.'," : ""}
+			${
+				actionButton === "true"
+					? `buttons:[
+					{ label: "Upgrade", onClick: () => console.log("Retrying..."),href: "/documentation/components/toast", dismiss: false },
+					{ label: "Learn More", onClick: () => console.log("Cancelled") }
+				] ,`
+					: ""
+			} 
 		})
 	}>
 	Toast
