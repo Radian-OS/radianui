@@ -11,6 +11,7 @@ type ButtonType = {
 	onClick: (id: string | number) => void
 	className?: string
 	dismiss?: boolean
+	href?: string // Add href property for links
 }
 
 type ToastProps = {
@@ -52,8 +53,8 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center text-sm gap-
 			inverse: " bg-inverse-black group-[.toaster]:text-text-inverse",
 		},
 		placement: {
-			horizontal: "items-center h-15.5 w-104",
-			vertical: "items-start h-23 w-64",
+			horizontal: "items-center",
+			vertical: "items-start",
 		},
 	},
 	compoundVariants: [
@@ -121,7 +122,7 @@ const getIconColorClass = (variant?: string, state?: string): string => {
 const CustomContentContainer = cva("group toast rounded-lg w-full h-auto", {
 	variants: {
 		styled: {
-			true: "p-3 bg-[#565861] text-white",
+			true: "p-3 bg-gray-500 text-white",
 			false: "p-0 bg-transparent",
 		},
 	},
@@ -191,7 +192,7 @@ export function showToast({
 					<div
 						className={cn("flex", {
 							"flex-col items-start gap-1.5": placement === "vertical",
-							"w-87 flex-row items-center gap-2": placement === "horizontal",
+							"flex-row items-center gap-2": placement === "horizontal",
 						})}>
 						{/* Content */}
 						<div className="w-47 gap-0.5 px-1">
@@ -204,7 +205,7 @@ export function showToast({
 							<div className="flex gap-3 px-1">
 								{buttons.map((button, index) => (
 									<Link
-										href=""
+										href={button.href || ""} // Use the href from button or fallback to empty string
 										className="inline-flex h-5 items-center" // Set specific height
 										key={index}
 										onClick={() => {
