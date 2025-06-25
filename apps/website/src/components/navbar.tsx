@@ -146,7 +146,7 @@ export default function Navbar() {
 													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
 
 													return (
-														<ModalClose asChild key={item.url}>
+														<ModalClose asChild key={item.url + itemIndex}>
 															<Link href={item.url}>
 																<li
 																	ref={(el) => {

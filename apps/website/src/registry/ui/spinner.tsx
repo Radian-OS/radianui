@@ -145,7 +145,7 @@ const SnakeSpinner = ({ size, color, className }: SpinnerProps) => {
 
 	return (
 		<>
-			<style jsx>{`
+			<style>{`
 				@keyframes spinner-bulqg1 {
 					0% {
 						clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
