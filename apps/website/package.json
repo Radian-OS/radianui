@@ -96,6 +96,7 @@
 		"vaul": "^1.1.2"
 	},
 	"devDependencies": {
+		"@next/bundle-analyzer": "^15.3.4",
 		"@radianos/typescript-config": "workspace:*",
 		"@svgr/webpack": "^8.1.0",
 		"@tailwindcss/postcss": "^4.1.0",
