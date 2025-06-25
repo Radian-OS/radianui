@@ -37,7 +37,7 @@ type ToastProps = {
 }
 
 // Variant styles
-const SonnerVariant = cva("group toast rounded-lg flex items-center border border-border text-sm gap-1 p-2.5 ", {
+const SonnerVariant = cva("group toast rounded-lg flex items-center text-sm gap-1 p-2.5 ", {
 	variants: {
 		state: {
 			default: "",
@@ -47,7 +47,7 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 			info: "",
 		},
 		variant: {
-			neutral: "bg-bg-level1 group-[.toaster]:text-text-secondary",
+			neutral: "bg-bg-level1 border border-border group-[.toaster]:text-text-secondary",
 			strong: "",
 			inverse: " bg-inverse-black group-[.toaster]:text-text-inverse",
 		},
@@ -61,7 +61,7 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center border borde
 		{
 			variant: "strong",
 			state: "default",
-			class: "bg-bg-level1 ",
+			class: "bg-bg-level1 border border-border",
 		},
 		{
 			variant: "strong",
@@ -237,7 +237,6 @@ export function showToast({
 			duration,
 		}
 	)
-
 	return toastId
 }
 
@@ -285,6 +284,8 @@ export const Toaster = function ({ ...props }: ToasterProps) {
 	return (
 		<Sonner
 			className="toaster group"
+			gap={10}
+			offset={10}
 			toastOptions={{
 				classNames: {
 					toast: toastClass({
