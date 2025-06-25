@@ -170,7 +170,7 @@
 	--color-info-text: oklch(61.4% 0.211 256.2);
 
 	/* success */
-	--color-success: oklch(49.2% 0.124 148);
+	--color-success: oklch(63% 0.168 147.3);
 	--color-success-accent: oklch(97.7% 0.019 154.2);
 	--color-success-focus: oklch(96% 0.035 152.6);
 	--color-success-stroke: oklch(63% 0.168 147.4);
@@ -263,7 +263,7 @@
 	--color-info-text: oklch(79.9% 0.133 226.7);
 
 	/* success */
-	--color-success: oklch(49.2% 0.124 148);
+	--color-success: oklch(63% 0.168 147.3);
 	--color-success-accent: oklch(22.5% 0.037 152.2);
 	--color-success-accent-secondary: oklch(37.1% 0.081 149.6);
 	--color-success-focus: oklch(37.1% 0.081 149.6);

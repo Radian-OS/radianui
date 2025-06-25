@@ -265,6 +265,7 @@ const ToastPreview = () => {
 			${icon === "true" ? "icon:<Box className='size-5'/>," : ""}
 			variant:'${variant}',
 			state:'${state}',
+			placement:'${placement}',
 			${title === "true" ? "title:'Toast Title'," : ""}
 			${closable === "true" ? "closable," : "closable:false"}
 			${desc === "true" ? "description:'Toast description message.'," : ""}
@@ -273,7 +274,7 @@ const ToastPreview = () => {
 					? `buttons:[
 					{ label: "Upgrade", onClick: () => console.log("Retrying..."),href: "/documentation/components/toast", dismiss: false },
 					{ label: "Learn More", onClick: () => console.log("Cancelled") }
-				] ,`
+				],`
 					: ""
 			} 
 		})
