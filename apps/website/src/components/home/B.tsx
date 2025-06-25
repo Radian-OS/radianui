@@ -31,7 +31,7 @@ function B({ className }: { className?: string }) {
 				</div>
 				<div className="flex items-center justify-center px-3 py-1">
 					<div className="border-border text-text flex w-full items-center justify-center gap-3 rounded-lg border px-3 py-2.5">
-						<Image src="/hero-section-avatar.png" width={32} height={32} alt="Avatar" />
+						<Image src="/hero-section-avatar.webp" width={32} height={32} alt="Avatar" />
 						<div className="flex flex-1 flex-col">
 							<span className="text-sm font-medium">Radian OS</span>
 							<span className="text-text-disabled text-xs">Team - 44 members</span>
