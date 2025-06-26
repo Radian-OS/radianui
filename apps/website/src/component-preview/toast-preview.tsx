@@ -8,8 +8,8 @@ import { Toaster, showToast } from "@/registry/ui/toast"
 
 const ToastPreview = () => {
 	const [position, setPosition] = useState<"top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right">("bottom-right")
-	const [variant, setVariant] = useState<"neutral" | "strong" | "inverse">("neutral")
-	const [state, setState] = useState<"default" | "info" | "success" | "error" | "warning">("default")
+	const [variant, setVariant] = useState<"outline" | "strong" | "inverse">("outline")
+	const [state, setState] = useState<"neutral" | "primary" | "info" | "success" | "error" | "warning">("neutral")
 	const [stackable, setStackable] = useState<"true" | "false">("true")
 	const [closable, setClosable] = useState<"true" | "false">("true")
 	const [visibleToasts, setVisibleToasts] = useState<"3" | "4" | "5" | "6">("3")
@@ -54,7 +54,7 @@ const ToastPreview = () => {
 											onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
 											minSelectionCount={1}
 											selectedValues={[variant]}>
-											<DropdownItem value="neutral">Neutral</DropdownItem>
+											<DropdownItem value="outline">Outline</DropdownItem>
 											<DropdownItem value="strong">Strong</DropdownItem>
 											<DropdownItem value="inverse">Inverse</DropdownItem>
 										</DropdownGroup>
@@ -65,7 +65,8 @@ const ToastPreview = () => {
 									<DropdownSubTrigger>State</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setState(Array.from(keys)[0] as typeof state)} minSelectionCount={1} selectedValues={[state]}>
-											<DropdownItem value="default">Default</DropdownItem>
+											<DropdownItem value="neutral">Neutral</DropdownItem>
+											<DropdownItem value="primary">Primary</DropdownItem>
 											<DropdownItem value="info">Information</DropdownItem>
 											<DropdownItem value="success">Success</DropdownItem>
 											<DropdownItem value="warning">Warning</DropdownItem>
@@ -92,7 +93,7 @@ const ToastPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Action Button</DropdownSubTrigger>
+									<DropdownSubTrigger>End Content</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"

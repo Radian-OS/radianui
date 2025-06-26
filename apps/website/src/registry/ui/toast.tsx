@@ -21,7 +21,7 @@ type ToastProps = {
 	description?: string
 	buttons?: ButtonType[]
 	duration?: number
-	variant?: "neutral" | "strong" | "inverse"
+	variant?: "outline" | "strong" | "inverse"
 	content?: React.ReactNode
 	closable?: boolean
 	stack?: boolean
@@ -41,14 +41,15 @@ type ToastProps = {
 const SonnerVariant = cva("group toast rounded-lg flex items-center text-sm gap-1 p-2.5 ", {
 	variants: {
 		state: {
-			default: "",
+			neutral: "",
+			primary: "",
 			success: "",
 			error: "",
 			warning: "",
 			info: "",
 		},
 		variant: {
-			neutral: "bg-bg-level1 border border-border group-[.toaster]:text-text-secondary",
+			outline: "bg-bg-level1 border border-border group-[.toaster]:text-text-secondary",
 			strong: "",
 			inverse: " bg-inverse-black group-[.toaster]:text-text-inverse",
 		},
@@ -61,7 +62,12 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center text-sm gap-
 		// Apply state colors only when variant is "strong"
 		{
 			variant: "strong",
-			state: "default",
+			state: "primary",
+			class: "bg-primary text-static-white",
+		},
+		{
+			variant: "strong",
+			state: "neutral",
 			class: "bg-bg-level1 border border-border",
 		},
 		{
@@ -86,8 +92,8 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center text-sm gap-
 		},
 	],
 	defaultVariants: {
-		state: "default",
-		variant: "neutral",
+		state: "neutral",
+		variant: "outline",
 		placement: "vertical",
 	},
 })
@@ -99,15 +105,16 @@ type VariantType = VariantProps<typeof SonnerVariant>["state"]
 const getIconColorClass = (variant?: string, state?: string): string => {
 	if (variant === "strong") {
 		// For strong variant, icons are always white
-		if (state === "default") {
+		if (state === "neutral") {
 			return "text-static-black dark:text-static-white"
 		}
 		return "text-static-white"
-	} else if (variant === "neutral") {
+	} else if (variant === "outline") {
 		// For neutral and inverse variants, use state color
 		return state ? `text-${state}` : ""
 	} else if (variant === "inverse") {
 		const stateHoverColors = {
+			primary: "text-primary-hover",
 			error: "text-error-hover",
 			success: "text-success-hover",
 			warning: "text-warning-hover",
@@ -137,7 +144,7 @@ export function showToast({
 	customContent,
 	description,
 	variant,
-	state = "default",
+	state = "neutral",
 	applyDefaultStyling = false,
 	closeOnClick = false,
 	showCloseButton,
@@ -195,9 +202,25 @@ export function showToast({
 							"flex-row items-center gap-2": placement === "horizontal",
 						})}>
 						{/* Content */}
-						<div className="w-47 gap-0.5 px-1">
-							{title && <div className="font-medium">{title}</div>}
-							{description && <div>{description}</div>}
+						<div className="gap-0.5 px-1">
+							{title && (
+								<div
+									className={cn("font-medium", {
+										"text-text": variant === "outline",
+										"text-text-inverse": variant === "inverse",
+										"text-static-black dark:text-static-white": variant === "strong" && state === "neutral",
+									})}>
+									{title}
+								</div>
+							)}
+							{description && (
+								<div
+									className={cn("w-47", {
+										"text-static-black dark:text-static-white": variant === "strong" && state === "neutral",
+									})}>
+									{description}
+								</div>
+							)}
 						</div>
 
 						{/* Buttons */}
@@ -214,7 +237,14 @@ export function showToast({
 												toast.dismiss(t)
 											}
 										}}>
-										<span className="font-inter whitespace-nowrap font-medium tracking-tight underline">{button.label}</span>
+										<span
+											className={cn("font-inter whitespace-nowrap font-medium tracking-tight underline", {
+												"text-text": variant === "outline",
+												"text-text-inverse": variant === "inverse",
+												"text-static-black dark:text-static-white": variant === "strong" && state === "neutral",
+											})}>
+											{button.label}
+										</span>
 									</Link>
 								))}
 							</div>
@@ -286,7 +316,7 @@ export const Toaster = function ({ ...props }: ToasterProps) {
 		<Sonner
 			className="toaster group"
 			gap={10}
-			offset={10}
+			offset={16}
 			toastOptions={{
 				classNames: {
 					toast: toastClass({
