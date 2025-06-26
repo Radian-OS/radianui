@@ -226,7 +226,7 @@ function Button({ loading = false, variant = "strong", size = "36", isIcon = fal
 	return (
 		<button className={combinedClass} disabled={disabled} {...props}>
 			{lead}
-			{loading ? <Spinner size={size ? Number(size) : undefined} /> : null}
+			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
 			{children}
 			{trail}
 		</button>
