@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, CirclePlus, Settings } from "lucide-react"
 import { Button, ButtonGroup } from "@/registry/ui/button"
 
 // Types for variant, size, and color options
-type VariantOptions = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
+type VariantOptions = "strong" | "soft" | "outline" | "ghost"
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 // Kept RoundedOptions for ButtonGroup only
 // type RoundedOptions = "square" | "rounded" | "full"
