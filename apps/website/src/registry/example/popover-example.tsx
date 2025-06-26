@@ -8,7 +8,9 @@ const PopoverExample = () => {
 		<div className="my-10">
 			<Popover side="bottom" align="start">
 				<PopoverTrigger asChild>
-					<Button variant={"neutral-outline"}>Aurthur Dominic</Button>
+					<Button color="neutral" variant={"outline"}>
+						Aurthur Dominic
+					</Button>
 				</PopoverTrigger>
 				<PopoverContent className="flex w-fit flex-col gap-3">
 					<div className="flex flex-col gap-2">
