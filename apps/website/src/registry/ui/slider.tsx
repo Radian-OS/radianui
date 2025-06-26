@@ -140,7 +140,7 @@ function Slider({
 						className={cn("size-8", {
 							"pointer-events-none cursor-not-allowed opacity-80": props.disabled,
 						})}
-						variant="neutral-outline"
+						variant="outline"
 						onClick={function () {
 							setInternalValue([Math.max(min, internalValue[0] - (props.step || DEFAULT_STEPPER_VALUE))])
 						}}
@@ -236,7 +236,7 @@ function Slider({
 						className={cn("size-8", {
 							"pointer-events-none cursor-not-allowed opacity-80": props.disabled,
 						})}
-						variant="neutral-outline"
+						variant="outline"
 						onClick={function () {
 							setInternalValue([Math.min(max || 100, internalValue[0] + (props.step || DEFAULT_STEPPER_VALUE))])
 						}}>

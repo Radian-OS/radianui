@@ -6,11 +6,11 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ButtonGroupPreview = () => {
-	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
+	type variants = "strong" | "soft" | "outline" | "ghost"
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type colors = "primary" | "info" | "success" | "error" | "warning"
 
-	const [variant, setVariant] = useState<variants>("neutral-outline")
+	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("40")
 	const [color, setColor] = useState<colors>("primary")
 

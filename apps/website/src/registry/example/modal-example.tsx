@@ -45,7 +45,7 @@ const Modal1 = () => (
 			</ModalBody>
 			<ModalFooter>
 				<ModalClose asChild>
-					<Button variant="neutral-outline">Cancel</Button>
+					<Button variant="outline">Cancel</Button>
 				</ModalClose>
 				<Button variant={"strong"}>Submit Action</Button>
 			</ModalFooter>
@@ -68,7 +68,7 @@ const Modal2 = () => (
 			<Divider className="w-100 -mx-5 my-0" />
 			<ModalFooter>
 				<ModalClose asChild>
-					<Button variant="neutral-outline">Cancel</Button>
+					<Button variant="outline">Cancel</Button>
 				</ModalClose>
 				<Button variant={"strong"}>Submit Action</Button>
 			</ModalFooter>
@@ -99,7 +99,7 @@ const Modal3 = () => (
 			</Tabs>
 			<ModalFooter>
 				<ModalClose asChild>
-					<Button variant="neutral-outline">Cancel</Button>
+					<Button variant="outline">Cancel</Button>
 				</ModalClose>
 				<Button variant={"strong"}>Submit Action</Button>
 			</ModalFooter>
@@ -124,7 +124,7 @@ const Modal4 = () => (
 			</div>
 			<ModalFooter>
 				<ModalClose asChild>
-					<Button variant="neutral-outline">Cancel</Button>
+					<Button variant="outline">Cancel</Button>
 				</ModalClose>
 				<Button variant={"strong"}>Submit Action</Button>
 			</ModalFooter>
@@ -161,7 +161,7 @@ const Modal6 = () => (
 			</div>
 			<ModalFooter>
 				<ModalClose asChild>
-					<Button variant="neutral-outline">Cancel</Button>
+					<Button variant="outline">Cancel</Button>
 				</ModalClose>
 				<Button variant={"strong"}>Share Project</Button>
 			</ModalFooter>
@@ -199,7 +199,7 @@ const Modal7 = () => (
 			</div>
 			<ModalFooter className="justify-start">
 				<ModalClose asChild>
-					<Button variant="neutral-outline" className="w-1/2">
+					<Button variant="outline" color="neutral" className="w-1/2">
 						Close Modal
 					</Button>
 				</ModalClose>
@@ -227,7 +227,7 @@ const Modal8 = () => (
 					Submit Action
 				</Button>
 				<ModalClose asChild>
-					<Button variant="neutral-outline" className="w-full">
+					<Button variant="outline" color="neutral" className="w-full">
 						Close Modal
 					</Button>
 				</ModalClose>
@@ -252,7 +252,7 @@ const Modal9 = () => (
 					Submit Action
 				</Button>
 				<ModalClose asChild>
-					<Button variant="neutral-outline" className="w-full">
+					<Button variant="outline" color="neutral" className="w-full">
 						Close Modal
 					</Button>
 				</ModalClose>
@@ -273,7 +273,7 @@ const Modal10 = () => (
 			</ModalHeader>
 			<ModalFooter className="justify-between">
 				<ModalClose asChild>
-					<Button variant="neutral-outline">Skip</Button>
+					<Button variant="outline">Skip</Button>
 				</ModalClose>
 				<Button variant={"strong"}>Continue</Button>
 			</ModalFooter>
@@ -293,7 +293,7 @@ const DeleteModal = () => (
 			</ModalHeader>
 			<ModalFooter>
 				<ModalClose asChild>
-					<Button variant="neutral-outline">Cancel</Button>
+					<Button variant="outline">Cancel</Button>
 				</ModalClose>
 				<Button variant={"strong"}>Delete</Button>
 			</ModalFooter>

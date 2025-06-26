@@ -228,7 +228,7 @@ const ToastPreview = () => {
 						<Toaster position={`${position}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
 						<Button
 							key={key}
-							variant="neutral-outline"
+							variant="outline"
 							onClick={() =>
 								showToast({
 									icon: icon === "true" ? <Box className="size-5" /> : undefined,
@@ -260,7 +260,7 @@ const ToastPreview = () => {
 					className="h-[420px]"
 					code={`<Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
 <Button
-	variant="neutral-outline"
+	variant="outline"
 	onClick={() =>
 		showToast({
 			${icon === "true" ? "icon:<Box className='size-5'/>," : ""}

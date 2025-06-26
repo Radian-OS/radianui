@@ -29,7 +29,7 @@ const DrawerPreview = () => {
 </DrawerBody>
 <DrawerFooter>
  <DrawerClose>
-  <Button variant="neutral-outline" >Close Drawer</Button>
+  <Button variant="outline" color="neutral" >Close Drawer</Button>
  </DrawerClose>
   <Button>Submit Action</Button>
 </DrawerFooter>
@@ -116,7 +116,7 @@ const DrawerPreview = () => {
 						</DrawerBody>
 						<DrawerFooter>
 							<DrawerClose>
-								<Button variant="neutral-outline">Close Drawer</Button>
+								<Button variant="outline">Close Drawer</Button>
 							</DrawerClose>
 							<Button>Submit Action</Button>
 						</DrawerFooter>

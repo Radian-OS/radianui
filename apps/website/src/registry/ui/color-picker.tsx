@@ -1088,7 +1088,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 								/>
 							)}
 							{displayFormat === "HSV" && (
-								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+								<ButtonGroup variant="outline" color="neutral" size="32">
 									<Input
 										className="w-10 text-center"
 										value={displayValues.hsv.h}
@@ -1116,7 +1116,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 								</ButtonGroup>
 							)}
 							{displayFormat === "RGB" && (
-								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+								<ButtonGroup variant="outline" color="neutral" size="32">
 									<Input
 										className="w-10 text-center"
 										value={displayValues.rgb.r}
@@ -1144,7 +1144,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 								</ButtonGroup>
 							)}
 							{displayFormat === "HSL" && (
-								<ButtonGroup variant="neutral-outline" size="32" color="primary">
+								<ButtonGroup variant="outline" color="neutral" size="32">
 									<Input
 										className="w-10 text-center"
 										value={displayValues.hsl.h}

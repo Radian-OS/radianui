@@ -91,7 +91,7 @@ const ToastExample = () => {
 						<Toaster position={`${position}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
 						<Button
 							key={key}
-							variant="neutral-outline"
+							variant="outline"
 							onClick={() =>
 								showToast({
 									customContent: (
@@ -133,7 +133,7 @@ const ToastExample = () => {
 					className="h-[420px]"
 					code={` <Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
 	<Button
-		variant="neutral-outline"
+		variant="outline"
 		onClick={() =>
 			showToast({
 				customContent: (
