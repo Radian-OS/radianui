@@ -7,30 +7,12 @@ const withBundleAnalyzer = bundleAnalyzer({
 })
 
 const nextConfig = {
-	async redirects() {
-		return [
-			{
-				source: "/documentation",
-				destination: "/documentation/introduction",
-				permanent: true,
-			},
-			{
-				source: "/documentation/components",
-				destination: "/documentation/components/accordion",
-				permanent: true,
-			},
-			{
-				source: "/components",
-				destination: "/documentation/components/accordion",
-				permanent: true,
-			},
-		]
-	},
 	async rewrites() {
 		return [
 			{
 				source: "/ingest/static/:path*",
 				destination: "https://us-assets.i.posthog.com/static/:path*",
+				
 			},
 			{
 				source: "/ingest/:path*",
@@ -39,6 +21,18 @@ const nextConfig = {
 			{
 				source: "/ingest/decide",
 				destination: "https://us.i.posthog.com/decide",
+			},
+			{
+				source: "/documentation",
+				destination: "/documentation/introduction",
+			},
+			{
+				source: "/documentation/components",
+				destination: "/documentation/components/accordion",
+			},
+			{
+				source: "/components",
+				destination: "/documentation/components/accordion",
 			},
 		]
 	},

@@ -82,7 +82,7 @@ function B({ className }: { className?: string }) {
 				</div>
 			</div>
 			<div className="flex gap-3 px-3 py-2">
-				<Avatar src="/icons/Avatar-2.png" size="32" name="JM" />
+				<Avatar src="/icons/Avatar-2.webp" size="32" name="JM" />
 				<div className="flex flex-col">
 					<p className="text-text text-sm font-medium">James Mitchell</p>
 					<p className="text-text-secondary text-xs">james@radianos.com</p>

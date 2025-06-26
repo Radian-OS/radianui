@@ -1,14 +1,28 @@
-export type SpinnerVariants = "default" | "simple" | "spinner" | "wave"
+import { JSX } from "react"
+
+export type SpinnerVariants = "default" | "simple" | "activity" | "wave" | "snake"
 
 type SpinnerProps = React.SVGProps<SVGSVGElement> & {
 	size?: number
 	color?: string
 	variant?: SpinnerVariants
+	"aria-label"?: string
+	role?: string
 }
 
-function DefaultSpinner({ size, color, ...props }: SpinnerProps) {
+function DefaultSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
 	return (
-		<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" {...props} className="animate-spin">
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width={size}
+			height={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			role="status"
+			aria-label={ariaLabel || "Loading"}
+			aria-live="polite"
+			{...props}
+			className="animate-spin">
 			<path
 				d="M11.75 21.5C13.7562 21.5 15.7109 20.8649 17.334 19.6857C18.957 18.5064 20.1651 16.8437 20.785 14.9357C21.405 13.0276 21.405 10.9724 20.785 9.06434C20.1651 7.15633 18.957 5.49355 17.334 4.31434"
 				stroke={color || "var(--color-text)"}
@@ -19,9 +33,19 @@ function DefaultSpinner({ size, color, ...props }: SpinnerProps) {
 	)
 }
 
-function SimpleSpinner({ size, color, ...props }: SpinnerProps) {
+function SimpleSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
 	return (
-		<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" className="animate-spin" {...props}>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width={size}
+			height={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			className="animate-spin"
+			role="status"
+			aria-label={ariaLabel || "Loading"}
+			aria-live="polite"
+			{...props}>
 			<circle opacity={0.16} cx={12} cy={12} r={9.5} stroke="var(--color-text-secondary)" strokeWidth={3} />
 			<path
 				d="M3.52276 16.75C4.52586 18.4874 6.05324 19.8627 7.886 20.6787C9.71876 21.4947 11.7628 21.7095 13.7252 21.2924C15.6875 20.8753 17.4675 19.8476 18.8099 18.3567C20.1523 16.8658 20.9883 14.9882 21.198 12.993"
@@ -34,9 +58,18 @@ function SimpleSpinner({ size, color, ...props }: SpinnerProps) {
 	)
 }
 
-function SpinnerSpinner({ size, color, ...props }: SpinnerProps) {
+function ActivitySpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
 	return (
-		<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width={size}
+			height={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			role="status"
+			aria-label={ariaLabel || "Loading"}
+			aria-live="polite"
+			{...props}>
 			<style>
 				{`
 				.spinner-line {
@@ -77,9 +110,18 @@ function SpinnerSpinner({ size, color, ...props }: SpinnerProps) {
 	)
 }
 
-function WaveSpinner({ size, color, ...props }: SpinnerProps) {
+function WaveSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
 	return (
-		<svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+		<svg
+			width={size}
+			height={size}
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			role="status"
+			aria-label={ariaLabel || "Loading"}
+			aria-live="polite"
+			{...props}>
 			<style>
 				{`
 				@keyframes wave1 {
@@ -135,11 +177,80 @@ function WaveSpinner({ size, color, ...props }: SpinnerProps) {
 	)
 }
 
-function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps) {
-	if (variant === "default") return <DefaultSpinner size={size} color={color} {...props} />
-	else if (variant === "simple") return <SimpleSpinner size={size} color={color} {...props} />
-	else if (variant === "spinner") return <SpinnerSpinner size={size} color={color} {...props} />
-	else if (variant === "wave") return <WaveSpinner size={size} color={color} {...props} />
+const SnakeSpinner = ({ size, color, className, "aria-label": ariaLabel }: SpinnerProps) => {
+	const spinnerStyle = {
+		width: `${size}px`,
+		height: `${size}px`,
+		border: `${Math.round(size! * 0.13)}px solid ${color || "var(--color-text"}`,
+		animation: "spinner-bulqg1 0.8s infinite linear alternate, spinner-oaa3wk 1.6s infinite linear",
+	}
+
+	return (
+		<>
+			<style>{`
+				@keyframes spinner-bulqg1 {
+					0% {
+						clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+					}
+					12.5% {
+						clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%);
+					}
+					25% {
+						clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%);
+					}
+					50% {
+						clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+					}
+					62.5% {
+						clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%);
+					}
+					75% {
+						clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%);
+					}
+					100% {
+						clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%);
+					}
+				}
+
+				@keyframes spinner-oaa3wk {
+					0% {
+						transform: scaleY(1) rotate(0deg);
+					}
+					49.99% {
+						transform: scaleY(1) rotate(135deg);
+					}
+					50% {
+						transform: scaleY(-1) rotate(0deg);
+					}
+					100% {
+						transform: scaleY(-1) rotate(-135deg);
+					}
+				}
+			`}</style>
+
+			<div className={`rounded-full ${className}`} style={spinnerStyle} role="status" aria-label={ariaLabel || "Loading"} aria-live="polite" />
+		</>
+	)
+}
+
+function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps): JSX.Element {
+	const commonProps = {
+		size,
+		color,
+	}
+
+	switch (variant) {
+		case "simple":
+			return <SimpleSpinner {...commonProps} {...props} />
+		case "activity":
+			return <ActivitySpinner {...commonProps} {...props} />
+		case "wave":
+			return <WaveSpinner {...commonProps} {...props} />
+		case "snake":
+			return <SnakeSpinner {...commonProps} {...props} />
+		default:
+			return <DefaultSpinner {...commonProps} {...props} />
+	}
 }
 
 export { Spinner }

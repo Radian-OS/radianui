@@ -23,8 +23,9 @@ const SpinnerPreview = () => {
 									<DropdownGroup selectionMode="single" onSelectedChange={(values) => setVariant(values[0] as SpinnerVariants)} minSelectionCount={1} selectedValues={[variant]}>
 										<DropdownItem value="default">default</DropdownItem>
 										<DropdownItem value="simple">simple</DropdownItem>
-										<DropdownItem value="spinner">spinner</DropdownItem>
+										<DropdownItem value="activity">activity</DropdownItem>
 										<DropdownItem value="wave">wave</DropdownItem>
+										<DropdownItem value="snake">snake</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

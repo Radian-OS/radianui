@@ -77,6 +77,7 @@ import BannerExamplePreview3 from "@/registry/example/banner/banner-example-prev
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
+import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
@@ -175,6 +176,7 @@ const components: MDXComponents = {
 	SpinnerPreview: () => <SpinnerPreview />,
 	ColorPickerExample: () => <ColorPickerExample />,
 	ToastExample: () => <ToastExample />,
+	ColorSpinnerExample: () => <ColorSpinnerExample />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
