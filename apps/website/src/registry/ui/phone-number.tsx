@@ -487,7 +487,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 						disabled={disabled}
 						renderTrigger={() => (
 							<Button
-								variant="neutral-soft"
+								variant="soft"
+								color="neutral"
 								size={size === "0" ? undefined : size}
 								disabled={disabled}
 								className={cn(
@@ -506,7 +507,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				)}
 				{showTrigger && !countryDropdown && (
 					<Button
-						variant="neutral-soft"
+						variant="soft"
+						color="neutral"
 						size={size === "0" ? undefined : size}
 						disabled={disabled}
 						className={cn("disabled:bg-fill-level2 border-border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
