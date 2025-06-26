@@ -55,11 +55,11 @@ const BreadCrumbPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Breadcrumb separator={separator} maxItems={parseInt(maxItems)}>
-						<BreadcrumbItem href="#">Home</BreadcrumbItem>
-						<BreadcrumbItem href="#">About</BreadcrumbItem>
-						<BreadcrumbItem href="#">Contact</BreadcrumbItem>
-						<BreadcrumbItem href="#">Docs</BreadcrumbItem>
-						<BreadcrumbItem href="#">Info</BreadcrumbItem>
+						<BreadcrumbItem href="/">Home</BreadcrumbItem>
+						<BreadcrumbItem href="/documentation/installation">Installation</BreadcrumbItem>
+						<BreadcrumbItem href="/documentation/components">Components</BreadcrumbItem>
+						<BreadcrumbItem href="/documentation/animations/animated-list">Animations</BreadcrumbItem>
+						<BreadcrumbItem href="/documentation/cli">CLI</BreadcrumbItem>
 					</Breadcrumb>
 				</div>
 			</TabsContent>
@@ -69,11 +69,11 @@ const BreadCrumbPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<Breadcrumb separator="${separator}" maxItems={${maxItems}} >
-<BreadcrumbItem href="#" >Home</BreadcrumbItem>
-<BreadcrumbItem href="#" >About</BreadcrumbItem>
-<BreadcrumbItem href="#" >Contact</BreadcrumbItem>
-<BreadcrumbItem href="#" >Docs</BreadcrumbItem>
-<BreadcrumbItem href="#" >Info</BreadcrumbItem>
+<BreadcrumbItem href="/">Home</BreadcrumbItem>
+<BreadcrumbItem href="/documentation/installation">Installation</BreadcrumbItem>
+<BreadcrumbItem href="/documentation/components">Components</BreadcrumbItem>
+<BreadcrumbItem href="/documentation/animations/animated-list">Animations</BreadcrumbItem>
+<BreadcrumbItem href="/documentation/cli">CLI</BreadcrumbItem>
 </Breadcrumb>`}
 				/>
 			</TabsContent>
