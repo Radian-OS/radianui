@@ -56,7 +56,7 @@ const BreadCrumbPreview = () => {
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Breadcrumb separator={separator} maxItems={parseInt(maxItems)}>
 						<BreadcrumbItem href="/">Home</BreadcrumbItem>
-						<BreadcrumbItem href="/docs/getting-started/installation">Installation</BreadcrumbItem>
+						<BreadcrumbItem href="/docs/installation/next">Installation</BreadcrumbItem>
 						<BreadcrumbItem href="/docs/components">Components</BreadcrumbItem>
 						<BreadcrumbItem href="/docs/animations/animated-list">Animations</BreadcrumbItem>
 						<BreadcrumbItem href="/docs/getting-started/cli">CLI</BreadcrumbItem>
