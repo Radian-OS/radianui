@@ -24,15 +24,15 @@ const nextConfig = {
 			},
 			{
 				source: "/documentation",
-				destination: "/documentation/introduction",
+				destination: "/docs/getting-started/introduction",
 			},
 			{
-				source: "/documentation/components",
-				destination: "/documentation/components/accordion",
+				source: "/docs/components",
+				destination: "/docs/components/accordion",
 			},
 			{
 				source: "/components",
-				destination: "/documentation/components/accordion",
+				destination: "/docs/components/accordion",
 			},
 		]
 	},

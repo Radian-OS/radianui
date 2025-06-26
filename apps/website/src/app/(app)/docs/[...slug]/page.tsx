@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: DocPageProps): Promise<Metadata> {
 	const doc = await getDocFromParams({ params })
 
-	const url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/documentation/${doc!.slugAsParams}`
+	const url = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/docs/${doc!.slugAsParams}`
 	const title = `${doc!.title} - ${websiteMetadata.name}`
 	const description = `${doc!.description}`
 	const ogImageUrl = `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/og?title=${encodeURIComponent(doc!.title)}`
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
 export default async function DocPage({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const doc = await getDocFromParams({ params })
-	const currentPath = `/documentation/${resolvedParams.slug.join("/")}`
+	const currentPath = `/docs/${resolvedParams.slug.join("/")}`
 
 	if (!doc) return notFound()
 

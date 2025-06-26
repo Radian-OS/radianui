@@ -31,19 +31,19 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 
 			<ul className="text-text-secondary flex flex-col items-start gap-2 px-3 text-sm font-medium">
 				<li>
-					<Link href="/documentation/components">Components</Link>
+					<Link href="/docs/components/accordion">Components</Link>
 				</li>
 				<li>
-					<Link href="/documentation">Documentation</Link>
+					<Link href="/docs/getting-started/introduction">Documentation</Link>
 				</li>
 				<li>
 					<Link href="/blog">Blog</Link>
 				</li>
 				<li>
-					<Link href="/roadmap">Roadmap</Link>
+					<Link href="/block">Blocks</Link>
 				</li>
 				<li>
-					<Link href="/documentation/figma">Figma</Link>
+					<Link href="/docs/getting-started/figma">Figma</Link>
 				</li>
 			</ul>
 
