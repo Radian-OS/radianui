@@ -240,7 +240,7 @@ const ToastPreview = () => {
 									buttons:
 										actionButton === "true"
 											? [
-													{ label: "Upgrade", onClick: () => console.log("Retrying..."), href: "/documentation/components/toast", dismiss: false },
+													{ label: "Upgrade", onClick: () => console.log("Retrying..."), href: "/docs/components/toast", dismiss: false },
 													{ label: "Learn More", onClick: () => console.log("Cancelled") },
 												]
 											: [],
@@ -272,7 +272,7 @@ const ToastPreview = () => {
 			${
 				actionButton === "true"
 					? `buttons:[
-					{ label: "Upgrade", onClick: () => console.log("Retrying..."),href: "/documentation/components/toast", dismiss: false },
+					{ label: "Upgrade", onClick: () => console.log("Retrying..."),href: "/docs/components/toast", dismiss: false },
 					{ label: "Learn More", onClick: () => console.log("Cancelled") }
 				],`
 					: ""

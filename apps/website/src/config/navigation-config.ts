@@ -17,20 +17,20 @@ export const navigationItems: NavigationSection[] = [
 	{
 		title: "Getting Started",
 		items: [
-			{ url: "/documentation/introduction", title: "Introduction" },
-			{ url: "/documentation/installation", title: "Installation" },
-			{ url: "/documentation/cli", title: "CLI" },
-			{ url: "/documentation/figma", title: "Figma" },
-			{ url: "/documentation/changelog", title: "Changelog" },
+			{ url: "/docs/getting-started/introduction", title: "Introduction" },
+			{ url: "/docs/getting-started/installation", title: "Installation" },
+			{ url: "/docs/getting-started/cli", title: "CLI" },
+			{ url: "/docs/getting-started/figma", title: "Figma" },
+			{ url: "/docs/getting-started/changelog", title: "Changelog" },
 		],
 	},
 	{
 		title: "Installation",
 		items: [
-			{ url: "/documentation/installation/next", title: "Nextjs" },
-			{ url: "/documentation/installation/vite", title: "Vite" },
-			{ url: "/documentation/installation/laravel", title: "Laravel" },
-			{ url: "/documentation/installation/manual", title: "Manual" },
+			{ url: "/docs/installation/next", title: "Nextjs" },
+			{ url: "/docs/installation/vite", title: "Vite" },
+			{ url: "/docs/installation/laravel", title: "Laravel" },
+			{ url: "/docs/installation/manual", title: "Manual" },
 		],
 	},
 	{
@@ -42,13 +42,13 @@ export const navigationItems: NavigationSection[] = [
 				description: "156 colors, 70 color tokens",
 				thumbnail: "/thumbnails/color-styles.webp",
 				thumbnailDark: "/thumbnails/color-styles-dark.webp",
-				url: "/documentation/colors",
+				url: "/docs/fundamentals/colors",
 				alt: "Palette of color styles illustration",
 			},
 			{
 				title: "Typography",
 				description: "17 Styles",
-				url: "/documentation/typography",
+				url: "/docs/fundamentals/typography",
 				thumbnail: "/thumbnails/typography.webp",
 				thumbnailDark: "/thumbnails/typography-dark.webp",
 				alt: "Typography text styles illustration",
@@ -56,7 +56,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Icons",
 				description: "1,200 Components",
-				url: "/documentation/iconography",
+				url: "/docs/fundamentals/iconography",
 				thumbnail: "/thumbnails/icons.webp",
 				thumbnailDark: "/thumbnails/icons-dark.webp",
 				alt: "Collection of icons illustration",
@@ -98,7 +98,7 @@ export const navigationItems: NavigationSection[] = [
 				description: "8 Types",
 				thumbnail: "/thumbnails/color-theme.webp",
 				thumbnailDark: "/thumbnails/color-theme-dark.webp",
-				url: "/documentation/default-theme",
+				url: "/docs/fundamentals/default-theme",
 				alt: "Color theme swatches illustration",
 			},
 			{
@@ -117,7 +117,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Alert",
 				description: "12 Components",
-				url: "/documentation/components/alert",
+				url: "/docs/components/alert",
 				thumbnail: "/thumbnails/alert.webp",
 				thumbnailDark: `/thumbnails/alert-dark.webp`,
 				alt: "Alert UI component illustration",
@@ -125,7 +125,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Accordion",
 				description: "3 Components",
-				url: "/documentation/components/accordion",
+				url: "/docs/components/accordion",
 				thumbnail: "/thumbnails/accordion.webp",
 				thumbnailDark: `/thumbnails/accordion-dark.webp`,
 				alt: "Accordion UI component illustration",
@@ -133,7 +133,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Avatar",
 				description: "4 Components",
-				url: "/documentation/components/avatar",
+				url: "/docs/components/avatar",
 				thumbnail: "/thumbnails/avatar.webp",
 				thumbnailDark: `/thumbnails/avatar-dark.webp`,
 				alt: "Avatar UI component illustration",
@@ -141,7 +141,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Badge",
 				description: "2 Components",
-				url: "/documentation/components/badge",
+				url: "/docs/components/badge",
 				thumbnail: "/thumbnails/badge.webp",
 				thumbnailDark: `/thumbnails/badge-dark.webp`,
 				alt: "Badge UI component illustration",
@@ -149,7 +149,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Banner",
 				description: "11 Components",
-				url: "/documentation/components/banner",
+				url: "/docs/components/banner",
 				thumbnail: "/thumbnails/banner.webp",
 				thumbnailDark: `/thumbnails/banner-dark.webp`,
 				alt: "Banner UI component illustration",
@@ -157,7 +157,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Breadcrumb",
 				description: "5 Components",
-				url: "/documentation/components/breadcrumb",
+				url: "/docs/components/breadcrumb",
 				thumbnail: "/thumbnails/breadcrumb.webp",
 				thumbnailDark: `/thumbnails/breadcrumb-dark.webp`,
 				alt: "Breadcrumb UI component illustration",
@@ -165,7 +165,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Button",
 				description: "12 Components",
-				url: "/documentation/components/buttons",
+				url: "/docs/components/buttons",
 				thumbnail: "/thumbnails/button.webp",
 				thumbnailDark: `/thumbnails/button-dark.webp`,
 				alt: "Button UI component illustration",
@@ -173,7 +173,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Calendar",
 				description: "4 Components",
-				url: "/documentation/components/calendar",
+				url: "/docs/components/calendar",
 				thumbnail: "/thumbnails/calendar.webp",
 				thumbnailDark: `/thumbnails/calendar-dark.webp`,
 				alt: "Calendar UI component illustration",
@@ -181,7 +181,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Code Area",
 				description: "1 Component",
-				url: "/documentation/components/code-area",
+				url: "/docs/components/code-area",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Code Area UI component illustration",
@@ -189,7 +189,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Color Picker",
 				description: "3 Components",
-				url: "/documentation/components/color-picker",
+				url: "/docs/components/color-picker",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Color Picker UI component illustration",
@@ -197,7 +197,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Currency Amount",
 				description: "3 Components",
-				url: "/documentation/components/currency-amount",
+				url: "/docs/components/currency-amount",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Currency Amount UI component illustration",
@@ -205,7 +205,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Check Box",
 				description: "2 Components",
-				url: "/documentation/components/checkbox",
+				url: "/docs/components/checkbox",
 				thumbnail: "/thumbnails/checkbox.webp",
 				thumbnailDark: `/thumbnails/checkbox-dark.webp`,
 				alt: "Check Box UI component illustration",
@@ -213,7 +213,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Date Picker",
 				description: "1 Component",
-				url: "/documentation/components/date-picker",
+				url: "/docs/components/date-picker",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Date Picker UI component illustration",
@@ -221,7 +221,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Divider",
 				description: "3 Components",
-				url: "/documentation/components/divider",
+				url: "/docs/components/divider",
 				thumbnail: "/thumbnails/divider.webp",
 				thumbnailDark: `/thumbnails/divider-dark.webp`,
 				alt: "Divider UI component illustration",
@@ -229,7 +229,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Dropdown",
 				description: "7 Components",
-				url: "/documentation/components/dropdown",
+				url: "/docs/components/dropdown",
 				thumbnail: "/thumbnails/dropdown.webp",
 				thumbnailDark: `/thumbnails/dropdown-dark.webp`,
 				alt: "Dropdown UI component illustration",
@@ -237,7 +237,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Drawer",
 				description: "2 Components",
-				url: "/documentation/components/drawer",
+				url: "/docs/components/drawer",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Drawer UI component illustration",
@@ -245,7 +245,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Input",
 				description: "15 Components",
-				url: "/documentation/components/inputs",
+				url: "/docs/components/inputs",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Input UI component illustration",
@@ -253,7 +253,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Input OTP",
 				description: "2 Components",
-				url: "/documentation/components/input-otp",
+				url: "/docs/components/input-otp",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Input OTP UI component illustration",
@@ -261,7 +261,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "File Upload",
 				description: "4 Components",
-				url: "/documentation/components/file-upload",
+				url: "/docs/components/file-upload",
 				thumbnail: "/thumbnails/file-upload.webp",
 				thumbnailDark: `/thumbnails/file-upload-dark.webp`,
 				alt: "File Upload UI component illustration",
@@ -269,7 +269,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Form",
 				description: "12 Components",
-				url: "/documentation/components/forms",
+				url: "/docs/components/forms",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Form UI component illustration",
@@ -277,7 +277,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Hover Card",
 				description: "4 Components",
-				url: "/documentation/components/hover-card",
+				url: "/docs/components/hover-card",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Hover Card UI component illustration",
@@ -285,7 +285,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Modal",
 				description: "2 Components",
-				url: "/documentation/components/modal",
+				url: "/docs/components/modal",
 				thumbnail: "/thumbnails/modal.webp",
 				thumbnailDark: `/thumbnails/modal-dark.webp`,
 				alt: "Modal UI component illustration",
@@ -293,7 +293,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Pagination",
 				description: "3 Components",
-				url: "/documentation/components/pagination",
+				url: "/docs/components/pagination",
 				thumbnail: "/thumbnails/pagination.webp",
 				thumbnailDark: `/thumbnails/pagination-dark.webp`,
 				alt: "Pagination UI component illustration",
@@ -301,7 +301,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Password",
 				description: "2 Components",
-				url: "/documentation/components/password",
+				url: "/docs/components/password",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Password UI component illustration",
@@ -309,7 +309,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Phone Number",
 				description: "2 Components",
-				url: "/documentation/components/phone-number",
+				url: "/docs/components/phone-number",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Phone Number UI component illustration",
@@ -317,7 +317,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Popover",
 				description: "3 Components",
-				url: "/documentation/components/popover",
+				url: "/docs/components/popover",
 				thumbnail: "/thumbnails/popover.webp",
 				thumbnailDark: `/thumbnails/popover-dark.webp`,
 				alt: "Popover UI component illustration",
@@ -325,7 +325,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Progress Bar",
 				description: "1 Component",
-				url: "/documentation/components/progress-bar",
+				url: "/docs/components/progress-bar",
 				thumbnail: "/thumbnails/progress-bar.webp",
 				thumbnailDark: `/thumbnails/progress-bar-dark.webp`,
 				alt: "Progress Bar UI component illustration",
@@ -333,7 +333,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Radio Group",
 				description: "4 Components",
-				url: "/documentation/components/radio-group",
+				url: "/docs/components/radio-group",
 				thumbnail: "/thumbnails/radio-buttons.webp",
 				thumbnailDark: `/thumbnails/radio-buttons-dark.webp`,
 				alt: "Radio Group UI component illustration",
@@ -341,7 +341,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Resizable",
 				description: "2 Components",
-				url: "/documentation/components/resizable",
+				url: "/docs/components/resizable",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Resizable UI component illustration",
@@ -349,7 +349,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Search",
 				description: "1 Component",
-				url: "/documentation/components/search",
+				url: "/docs/components/search",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Search UI component illustration",
@@ -357,7 +357,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Select",
 				description: "6 Components",
-				url: "/documentation/components/select",
+				url: "/docs/components/select",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Select UI component illustration",
@@ -365,7 +365,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Skeleton",
 				description: "2 Components",
-				url: "/documentation/components/skeleton",
+				url: "/docs/components/skeleton",
 				thumbnail: "/thumbnails/skeleton.webp",
 				thumbnailDark: `/thumbnails/skeleton-dark.webp`,
 				alt: "Skeleton UI component illustration",
@@ -373,7 +373,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Slider",
 				description: "3 Components",
-				url: "/documentation/components/slider",
+				url: "/docs/components/slider",
 				thumbnail: "/thumbnails/slider.webp",
 				thumbnailDark: `/thumbnails/slider-dark.webp`,
 				alt: "Slider UI component illustration",
@@ -381,7 +381,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Spinner",
 				description: "5 Components",
-				url: "/documentation/components/spinner",
+				url: "/docs/components/spinner",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Spinner UI component illustration",
@@ -389,7 +389,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Switch",
 				description: "4 Components",
-				url: "/documentation/components/switch",
+				url: "/docs/components/switch",
 				thumbnail: "/thumbnails/switch.webp",
 				thumbnailDark: `/thumbnails/switch-dark.webp`,
 				alt: "Switch UI component illustration",
@@ -397,7 +397,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Table",
 				description: "2 Components",
-				url: "/documentation/components/table",
+				url: "/docs/components/table",
 				thumbnail: "/thumbnails/table.webp",
 				thumbnailDark: `/thumbnails/table-dark.webp`,
 				alt: "Table UI component illustration",
@@ -405,7 +405,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Tabs",
 				description: "3 Components",
-				url: "/documentation/components/tabs",
+				url: "/docs/components/tabs",
 				thumbnail: "/thumbnails/tabs.webp",
 				thumbnailDark: `/thumbnails/tabs-dark.webp`,
 				alt: "Tabs UI component illustration",
@@ -413,7 +413,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Text Area",
 				description: "1 Component",
-				url: "/documentation/components/text-area",
+				url: "/docs/components/text-area",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Text Area UI component illustration",
@@ -421,7 +421,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Time Picker",
 				description: "2 Components",
-				url: "/documentation/components/time-picker",
+				url: "/docs/components/time-picker",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Time Picker UI component illustration",
@@ -429,7 +429,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Toast",
 				description: "8 Components",
-				url: "/documentation/components/toast",
+				url: "/docs/components/toast",
 				thumbnail: "/thumbnails/sonner.webp",
 				thumbnailDark: `/thumbnails/sonner-dark.webp`,
 				alt: "Toast UI component illustration",
@@ -437,7 +437,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Tooltip",
 				description: "3 Components",
-				url: "/documentation/components/tooltip",
+				url: "/docs/components/tooltip",
 				thumbnail: "/thumbnails/tooltip.webp",
 				thumbnailDark: `/thumbnails/tooltip-dark.webp`,
 				alt: "Tooltip UI component illustration",
@@ -447,41 +447,41 @@ export const navigationItems: NavigationSection[] = [
 	{
 		title: "Animations",
 		items: [
-			{ url: "/documentation/animations/typing-text", title: "Typing Text" },
+			{ url: "/docs/animations/typing-text", title: "Typing Text" },
 			{
-				url: "/documentation/animations/gradient-text",
+				url: "/docs/animations/gradient-text",
 				title: "Gradient Text",
 			},
 			{
-				url: "/documentation/animations/draggable",
+				url: "/docs/animations/draggable",
 				title: "Draggable",
 			},
 			{
-				url: "/documentation/animations/fade",
+				url: "/docs/animations/fade",
 				title: "Fade",
 			},
 			{
-				url: "/documentation/animations/infinite-scroll",
+				url: "/docs/animations/infinite-scroll",
 				title: "Infinite Scroll",
 			},
 			{
-				url: "/documentation/animations/pointer",
+				url: "/docs/animations/pointer",
 				title: "Pointer",
 			},
 			{
-				url: "/documentation/animations/border-beam",
+				url: "/docs/animations/border-beam",
 				title: "Border Beam",
 			},
 			{
-				url: "/documentation/animations/changing-text",
+				url: "/docs/animations/changing-text",
 				title: "Changing Text",
 			},
 			{
-				url: "/documentation/animations/animated-list",
+				url: "/docs/animations/animated-list",
 				title: "Animated List",
 			},
 			{
-				url: "/documentation/animations/text-reveal",
+				url: "/docs/animations/text-reveal",
 				title: "Text Reveal",
 			},
 		].sort((a, b) => a.title.localeCompare(b.title)),

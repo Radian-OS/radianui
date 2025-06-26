@@ -69,11 +69,11 @@ export default function Navbar() {
 	const pathname = usePathname()
 
 	const navLinks = [
-		{ name: "Components", link: "/documentation/components" },
-		{ name: "Documentation", link: "/documentation" },
+		{ name: "Components", link: "/docs/components/accordion" },
+		{ name: "Documentation", link: "/docs/getting-started/introduction" },
 		{ name: "Blog", link: "/blog" },
 		{ name: "Blocks", link: "/blocks" },
-		{ name: "Figma", link: "/documentation/figma" },
+		{ name: "Figma", link: "/docs/getting-started/figma" },
 	]
 
 	return (
@@ -146,7 +146,7 @@ export default function Navbar() {
 													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
 
 													return (
-														<ModalClose asChild key={item.url}>
+														<ModalClose asChild key={item.title}>
 															<Link href={item.url}>
 																<li
 																	ref={(el) => {
@@ -231,7 +231,7 @@ export default function Navbar() {
 										<div className="flex flex-col justify-center">
 											{section.items.map((item) => (
 												<AccordionContent
-													key={item.url}
+													key={item.title}
 													className={` ${pathname === item.url ? "bg-bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
 													<DrawerClose>
 														<Link className={`${pathname === item.url ? "text-fg0" : ""} text-fg1`} href={item.url}>

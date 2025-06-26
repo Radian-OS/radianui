@@ -4,7 +4,7 @@ import remarkGfm from "remark-gfm"
 
 export const Doc = defineDocumentType(() => ({
 	name: "Doc",
-	filePathPattern: `documentation/**/*.mdx`,
+	filePathPattern: `docs/**/*.mdx`,
 	contentType: "mdx",
 	fields: {
 		title: {
