@@ -154,7 +154,7 @@
 	--radius-radius-2xl: 16px;
 
 	/* primary */
-	--color-primary: oklch(53.2% 0.232 282.8);
+	--color-primary: oklch(53.2% 0.215 282);
 	--color-primary-accent: oklch(95.2% 0.023 276.9);
 	--color-primary-focus: oklch(92.3% 0.037 280.6);
 	--color-primary-stroke: oklch(58.7% 0.215 282);
@@ -245,7 +245,7 @@
 
 .dark {
 	/* primary */
-	--color-primary: oklch(58.7% 0.215 282);
+	--color-primary: oklch(53.2% 0.215 282);
 	--color-primary-accent: oklch(21.1% 0.053 289.4);
 	--color-primary-accent-secondary: oklch(33.2% 0.128 283.8);
 	--color-primary-focus: oklch(33.2% 0.128 283.8);
