@@ -73,7 +73,7 @@ export default function Hero01() {
 									}>
 									<DrawerTitle>
 										<DrawerClose>
-											<Button isIcon variant="neutral-soft">
+											<Button isIcon color="neutral" variant="soft">
 												<X className="size-5" />
 											</Button>
 										</DrawerClose>

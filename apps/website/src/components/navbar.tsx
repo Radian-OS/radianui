@@ -184,7 +184,7 @@ export default function Navbar() {
 					handle
 					backdrop="overlay"
 					trigger={
-						<Button isIcon variant="neutral-soft" className="lg:hidden">
+						<Button isIcon color="neutral" variant="soft" className="lg:hidden">
 							<HamburgerMenuIcon className="size-6" />
 						</Button>
 					}>
@@ -195,7 +195,7 @@ export default function Navbar() {
 								<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
 							</Link>
 							<DrawerClose>
-								<Button isIcon variant="neutral-soft">
+								<Button isIcon color="neutral" variant="soft">
 									<X className="size-5" />
 								</Button>
 							</DrawerClose>
