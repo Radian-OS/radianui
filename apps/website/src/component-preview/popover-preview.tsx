@@ -63,7 +63,9 @@ const PopoverPreview = () => {
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Popover side={side} align={align}>
 						<PopoverTrigger asChild>
-							<Button variant={"neutral-outline"}>{profile.name}</Button>
+							<Button color="neutral" variant={"outline"}>
+								{profile.name}
+							</Button>
 						</PopoverTrigger>
 						<PopoverContent className="flex w-fit flex-col gap-3">
 							<div className="flex flex-col gap-2">
