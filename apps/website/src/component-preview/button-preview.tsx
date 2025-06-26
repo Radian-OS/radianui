@@ -196,6 +196,7 @@ const ButtonPreview = () => {
 						disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
+					{/* <Button>Something</Button> */}
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
