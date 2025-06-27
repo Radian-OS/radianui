@@ -16,7 +16,7 @@ import { Drawer, DrawerClose } from "@/registry/ui/drawer"
 import { Modal, ModalClose, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 
 export default function Navbar() {
-	const [isOpen, setIsOpen] = useState(true)
+	const [isOpen, setIsOpen] = useState(false)
 	const [searchTerm, setSearchTerm] = useState<string>("")
 	const [selectedIndex, setSelectedIndex] = useState(-1) // Track selected item
 
