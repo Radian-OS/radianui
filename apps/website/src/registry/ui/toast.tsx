@@ -1,5 +1,4 @@
 import React from "react"
-import { HeightIcon } from "@radix-ui/react-icons"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import Link from "next/link"
