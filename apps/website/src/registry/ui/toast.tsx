@@ -38,7 +38,7 @@ type ToastProps = {
 }
 
 // Variant styles
-const SonnerVariant = cva("group toast rounded-lg flex items-center text-sm gap-1 p-2.5 ", {
+const SonnerVariant = cva("group toast rounded-lg flex justify-between text-sm gap-1 p-2.5 ", {
 	variants: {
 		state: {
 			neutral: "",
@@ -68,7 +68,7 @@ const SonnerVariant = cva("group toast rounded-lg flex items-center text-sm gap-
 		{
 			variant: "strong",
 			state: "neutral",
-			class: "bg-bg-level1 border border-border",
+			class: "bg-black !text-white",
 		},
 		{
 			variant: "strong",
@@ -106,7 +106,7 @@ const getIconColorClass = (variant?: string, state?: string): string => {
 	if (variant === "strong") {
 		// For strong variant, icons are always white
 		if (state === "neutral") {
-			return "text-static-black dark:text-static-white"
+			return "text-statiC-white"
 		}
 		return "text-static-white"
 	} else if (variant === "outline") {
@@ -149,7 +149,7 @@ export function showToast({
 	closeOnClick = false,
 	showCloseButton,
 	icon,
-	duration = 30000,
+	duration,
 	placement = "horizontal",
 	buttons = [],
 	closable = true,
@@ -208,19 +208,11 @@ export function showToast({
 									className={cn("font-medium", {
 										"text-text": variant === "outline",
 										"text-text-inverse": variant === "inverse",
-										"text-static-black dark:text-static-white": variant === "strong" && state === "neutral",
 									})}>
 									{title}
 								</div>
 							)}
-							{description && (
-								<div
-									className={cn("w-47", {
-										"text-static-black dark:text-static-white": variant === "strong" && state === "neutral",
-									})}>
-									{description}
-								</div>
-							)}
+							{description && <div className={cn("w-47", {})}>{description}</div>}
 						</div>
 
 						{/* Buttons */}
@@ -241,7 +233,6 @@ export function showToast({
 											className={cn("font-inter whitespace-nowrap font-medium tracking-tight underline", {
 												"text-text": variant === "outline",
 												"text-text-inverse": variant === "inverse",
-												"text-static-black dark:text-static-white": variant === "strong" && state === "neutral",
 											})}>
 											{button.label}
 										</span>
@@ -314,7 +305,7 @@ const toastClass = cva("group !p-0 rounded-lg toast group-[.toaster]:text-text-s
 export const Toaster = function ({ ...props }: ToasterProps) {
 	return (
 		<Sonner
-			className="toaster group"
+			className={`toaster group`}
 			gap={10}
 			offset={16}
 			toastOptions={{

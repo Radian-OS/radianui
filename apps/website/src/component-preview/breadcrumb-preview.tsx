@@ -70,10 +70,10 @@ const BreadCrumbPreview = () => {
 					className="h-[420px]"
 					code={`<Breadcrumb separator="${separator}" maxItems={${maxItems}} >
 <BreadcrumbItem href="/">Home</BreadcrumbItem>
-<BreadcrumbItem href="/documentation/installation">Installation</BreadcrumbItem>
-<BreadcrumbItem href="/documentation/components">Components</BreadcrumbItem>
-<BreadcrumbItem href="/documentation/animations/animated-list">Animations</BreadcrumbItem>
-<BreadcrumbItem href="/documentation/cli">CLI</BreadcrumbItem>
+<BreadcrumbItem href="/docs/getting-started/installation">Installation</BreadcrumbItem>
+<BreadcrumbItem href="/docs/components">Components</BreadcrumbItem>
+<BreadcrumbItem href="/docs/animations/animated-list">Animations</BreadcrumbItem>
+<BreadcrumbItem href="/docs/getting-started/cli">CLI</BreadcrumbItem>
 </Breadcrumb>`}
 				/>
 			</TabsContent>
