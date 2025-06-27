@@ -110,7 +110,7 @@ export default function Navbar() {
 					</ModalTrigger>
 					<ModalContent className="h-150 w-125 bg-fill-level3 border-border-alpha gap-0 rounded-2xl border p-1">
 						<ModalTitle className="hidden">Command Search</ModalTitle>
-						<div className="rounded-b-none rounded-t-2xl bg-white p-1.5">
+						<div className="bg-fill-level1 rounded-b-none rounded-t-2xl p-1.5">
 							<div className="flex items-center gap-2 px-2 py-3">
 								<Search size={20} className="text-text-tertiary" />
 								<input
@@ -137,7 +137,7 @@ export default function Navbar() {
 							</div>
 						</div>
 						<div className="h-0.25 border-border-alpha w-full" />
-						<div className="no-scrollbar h-full flex-1 overflow-y-auto rounded-b-2xl bg-white">
+						<div className="no-scrollbar bg-fill-level1 h-full flex-1 overflow-y-auto rounded-b-2xl">
 							{filteredItems.length > 0 ? (
 								filteredItems.map((section, sectionIndex) => (
 									<main key={section.title} className="text-sm font-normal">
