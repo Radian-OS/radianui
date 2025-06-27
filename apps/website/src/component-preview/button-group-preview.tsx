@@ -6,11 +6,11 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ButtonGroupPreview = () => {
-	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
+	type variants = "strong" | "soft" | "outline" | "ghost"
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
-	type colors = "primary" | "info" | "success" | "error" | "warning"
+	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
 
-	const [variant, setVariant] = useState<variants>("neutral-outline")
+	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("40")
 	const [color, setColor] = useState<colors>("primary")
 
@@ -35,8 +35,6 @@ const ButtonGroupPreview = () => {
 										<DropdownItem value="soft">soft</DropdownItem>
 										<DropdownItem value="outline">outline</DropdownItem>
 										<DropdownItem value="ghost">ghost</DropdownItem>
-										<DropdownItem value="neutral-soft">neutral-soft</DropdownItem>
-										<DropdownItem value="neutral-outline">neutral-outline</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -74,6 +72,7 @@ const ButtonGroupPreview = () => {
 										<DropdownItem value="success">success</DropdownItem>
 										<DropdownItem value="error">error</DropdownItem>
 										<DropdownItem value="warning">warning</DropdownItem>
+										<DropdownItem value="neutral">neutral</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

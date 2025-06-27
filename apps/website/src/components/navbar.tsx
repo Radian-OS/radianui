@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import { ChevronRight, Search, X } from "lucide-react"
+import { ArrowDown, ArrowUp, ChevronRight, Search, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -12,7 +12,6 @@ import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
 import { Drawer, DrawerClose } from "@/registry/ui/drawer"
 import { Modal, ModalClose, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 
@@ -101,7 +100,7 @@ export default function Navbar() {
 
 				<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
 					<ModalTrigger asChild>
-						<Button isIcon variant="neutral-outline" className="gap-2">
+						<Button isIcon variant="outline" color="neutral" className="gap-2">
 							<Search />
 							<span className="text-fg1 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
 							<Badge className="bg-bg-level3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
@@ -109,38 +108,41 @@ export default function Navbar() {
 							</Badge>
 						</Button>
 					</ModalTrigger>
-					<ModalContent className="px-0 py-2">
-						<ModalTitle className="hidden">Plain</ModalTitle>
-						<div className="h-100 flex flex-col overflow-y-scroll rounded-lg">
-							<div className="bg-bg-base sticky top-0 flex flex-col">
-								<div className="flex items-center gap-2 px-3.5 py-1.5">
-									<Search className="size-5 shrink-0 opacity-50" />
-									<input
-										type="text"
-										placeholder="Search the docs"
-										value={searchTerm}
-										onChange={(e) => {
-											setSearchTerm(e.target.value)
-											const newFilteredItems = filteredItems
-												.map((section) => ({
-													...section,
-													items: section.items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())),
-												}))
-												.filter((section) => section.items.length > 0) // Remove empty sections
+					<ModalContent className="h-150 w-125 bg-fill-level3 border-border-alpha gap-0 rounded-2xl border p-1">
+						<ModalTitle className="hidden">Command Search</ModalTitle>
+						<div className="bg-fill-level1 rounded-b-none rounded-t-2xl p-1.5">
+							<div className="flex items-center gap-2 px-2 py-3">
+								<Search size={20} className="text-text-tertiary" />
+								<input
+									type="text"
+									placeholder="Search Documentation"
+									value={searchTerm}
+									onChange={(e) => {
+										setSearchTerm(e.target.value)
+										const newFilteredItems = filteredItems
+											.map((section) => ({
+												...section,
+												items: section.items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())),
+											}))
+											.filter((section) => section.items.length > 0) // Remove empty sections
 
-											// If there are results, move hover (selectedIndex) to the first item
-											setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
-										}}
-										className="placeholder:text-fg2 outline-hidden flex w-full rounded-md bg-transparent py-1 text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50"
-									/>
-								</div>
-								<Divider />
+										// If there are results, move hover (selectedIndex) to the first item
+										setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
+									}}
+									className="outline-hidden placeholder:text-text-tertiary flex-1 text-sm font-normal focus:outline-0"
+								/>
+								{/* <Button isIcon size="28" variant="ghost"> */}
+								<X size={20} className="text-text-tertiary cursor-pointer" onClick={() => setSearchTerm("")} />
+								{/* </Button> */}
 							</div>
+						</div>
+						<div className="h-0.25 border-border-alpha w-full" />
+						<div className="no-scrollbar bg-fill-level1 h-full flex-1 overflow-y-auto rounded-b-2xl">
 							{filteredItems.length > 0 ? (
 								filteredItems.map((section, sectionIndex) => (
 									<main key={section.title} className="text-sm font-normal">
-										<div className="px-2.5">
-											<h3 className="text-fg2 px-1.75 flex items-center gap-1.5 py-1.5">{section.title}</h3>
+										<div className="px-1.5 py-1">
+											<h3 className="text-text-tertiary p-2 text-xs font-medium uppercase">{section.title}</h3>
 											<ul className="gap-1.25 flex flex-col">
 												{section.items.map((item, itemIndex) => {
 													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
@@ -152,7 +154,8 @@ export default function Navbar() {
 																	ref={(el) => {
 																		itemRefs.current[globalIndex] = el
 																	}}
-																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${selectedIndex === globalIndex ? "bg-border" : ""}`}>
+																	className={`hover:bg-fill-level2 flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium ${selectedIndex === globalIndex ? "bg-fill-level2" : ""}`}>
+																	<img src={section.searchIcon} alt="Search icon" />
 																	{item.title}
 																</li>
 															</Link>
@@ -161,12 +164,37 @@ export default function Navbar() {
 												})}
 											</ul>
 										</div>
-										{sectionIndex !== filteredItems.length - 1 && <Divider />}
+										{sectionIndex !== filteredItems.length - 1 && <div className="h-0.25 bg-border-alpha w-full" />}
 									</main>
 								))
 							) : (
 								<div className="text-fg1 flex h-full items-center justify-center">No items found</div>
 							)}
+						</div>
+						<div className="text-text-tertiary hidden items-center gap-4 p-4 text-sm md:flex">
+							<div className="flex items-center gap-2">
+								<Badge size="20" className="text-text-secondary uppercase">
+									<ArrowUp size={16} />
+								</Badge>
+								<Badge size="20" className="text-text-secondary uppercase">
+									<ArrowDown size={16} />
+								</Badge>
+								<span>Navigate</span>
+							</div>
+							<div className="flex w-full justify-between">
+								<div className="flex items-center gap-2">
+									<Badge size="20" className="text-text-secondary uppercase">
+										Enter
+									</Badge>
+									<span>Select</span>
+								</div>
+								<div className="flex items-center gap-2">
+									<span>Close</span>
+									<Badge size="20" className="text-text-secondary uppercase">
+										ESC
+									</Badge>
+								</div>
+							</div>
 						</div>
 					</ModalContent>
 				</Modal>
@@ -184,7 +212,7 @@ export default function Navbar() {
 					handle
 					backdrop="overlay"
 					trigger={
-						<Button isIcon variant="neutral-soft" className="lg:hidden">
+						<Button isIcon color="neutral" variant="soft" className="lg:hidden">
 							<HamburgerMenuIcon className="size-6" />
 						</Button>
 					}>
@@ -195,7 +223,7 @@ export default function Navbar() {
 								<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
 							</Link>
 							<DrawerClose>
-								<Button isIcon variant="neutral-soft">
+								<Button isIcon color="neutral" variant="soft">
 									<X className="size-5" />
 								</Button>
 							</DrawerClose>

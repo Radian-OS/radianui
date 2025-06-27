@@ -78,7 +78,8 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 						className="text-white! absolute right-3 top-3 rounded-md bg-transparent p-1.5 hover:bg-[#ffffff1a]"
 						aria-label="copy button"
 						size="32"
-						variant="neutral-soft">
+						color="neutral"
+						variant="soft">
 						{copied ? <Check className="size-4!" /> : <Clipboard className="size-4!" />}
 					</Button>
 				)}

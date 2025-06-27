@@ -97,7 +97,7 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 					</Tabs>
 				</div>
 				<div className="flex items-center gap-2">
-					<Button onClick={cliCopy} size="32" className="size-8 shadow-none md:w-fit" variant="neutral-outline" aria-label="copy code">
+					<Button onClick={cliCopy} size="32" className="size-8 shadow-none md:w-fit" variant="outline" color="neutral" aria-label="copy code">
 						{cliCopied ? <Check size={20} className="text-text-tertiary" /> : <Terminal size={20} className="text-text-tertiary" />}
 						<span className="text-text-secondary hidden text-sm md:block">{terminalCode}</span>
 					</Button>
@@ -134,12 +134,12 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 							</TabsList>
 						</Tabs>
 					)}
-					<Button variant="neutral-outline" size="36" isIcon className="text-text-secondary">
+					<Button variant="outline" color="neutral" size="36" isIcon className="text-text-secondary">
 						<Link href={preview} passHref target="_blank">
 							<Maximize className="size-4" />
 						</Link>
 					</Button>
-					<Button variant="neutral-outline" size="36" lead={<Copy />} className="text-text-secondary" onClick={copy}>
+					<Button variant="outline" color="neutral" size="36" lead={<Copy />} className="text-text-secondary" onClick={copy}>
 						{copied ? "Copied" : "Copy Code"}
 					</Button>
 				</div>

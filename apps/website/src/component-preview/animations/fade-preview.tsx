@@ -40,7 +40,7 @@ const FadePreview = () => {
 					</Dropdown>
 				</div>
 				<div className="flex gap-1">
-					<Button variant="neutral-outline" isIcon onClick={() => setCounter((prev) => prev + 1)}>
+					<Button variant="outline" color="neutral" isIcon onClick={() => setCounter((prev) => prev + 1)}>
 						<RotateCw />
 					</Button>
 					<TabsList>

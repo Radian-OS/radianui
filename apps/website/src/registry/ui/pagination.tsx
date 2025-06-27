@@ -86,8 +86,9 @@ const Pagination: React.FC<PaginationProps> = function ({
 		if (startPage > 1) {
 			pages.push(
 				<Button
+					color="neutral"
 					key={1}
-					variant="neutral-outline"
+					variant="outline"
 					onClick={function () {
 						handlePageChange(1)
 					}}
@@ -124,7 +125,8 @@ const Pagination: React.FC<PaginationProps> = function ({
 		for (let i = startPage; i <= endPage; i++) {
 			pages.push(
 				<Button
-					variant={currentPage === i ? (buttonVariant as "strong" | "outline") : "neutral-outline"}
+					variant={currentPage === i ? (buttonVariant as "strong") : "outline"}
+					color={currentPage === i ? "primary" : "neutral"}
 					key={i}
 					onClick={function () {
 						handlePageChange(i)
@@ -163,7 +165,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 			}
 			pages.push(
 				<Button
-					variant="neutral-outline"
+					variant="outline"
 					key={totalPages}
 					size="32"
 					onClick={function () {
@@ -197,7 +199,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 							<React.Fragment key={type}>
 								{(control === "icon" || control === "both") && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
 										onClick={() => (type === "first" ? handlePageChange(1) : handlePageChange(currentPage - 1))}
 										disabled={currentPage === 1}
 										isIcon={control === "icon"}
@@ -209,7 +211,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 								)}
 								{control === "text" && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
 										onClick={() => (type === "first" ? handlePageChange(1) : handlePageChange(currentPage - 1))}
 										disabled={currentPage === 1}
 										size="32"
@@ -229,7 +231,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 							<React.Fragment key={type}>
 								{(control === "icon" || control === "both") && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
 										onClick={() => (type === "last" ? handlePageChange(totalPages) : handlePageChange(currentPage + 1))}
 										disabled={currentPage === totalPages} // Adjust logic for last page
 										isIcon={control === "icon"}
@@ -241,7 +243,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 								)}
 								{control === "text" && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
 										onClick={() => (type === "last" ? handlePageChange(totalPages) : handlePageChange(currentPage + 1))}
 										disabled={currentPage === totalPages} // Adjust logic for last page
 										size="32"

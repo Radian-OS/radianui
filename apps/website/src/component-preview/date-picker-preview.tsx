@@ -210,7 +210,7 @@ const DatePickerPreview = () => {
 						footer={
 							footer && (
 								<div className="flex gap-2 p-3">
-									<Button variant="neutral-outline">Cancel</Button>
+									<Button variant="outline">Cancel</Button>
 									<Button>Apply</Button>
 								</div>
 							)
@@ -240,7 +240,7 @@ const DatePickerPreview = () => {
 			footer
 				? `{
        		<div className="p-3 flex gap-2">
-            	<Button variant="neutral-outline">Cancel</Button>
+            	<Button variant="outline">Cancel</Button>
             	<Button>Apply</Button>
         	</div>
 		}`

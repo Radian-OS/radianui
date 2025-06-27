@@ -60,7 +60,7 @@ const BannerExample = () => {
 				</div>
 				<div className="flex gap-2">
 					<Button size="32">Download</Button>
-					<Button size="32" variant="neutral-soft">
+					<Button size="32" color="neutral" variant="soft">
 						Learn More
 					</Button>
 				</div>

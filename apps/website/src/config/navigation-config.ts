@@ -11,11 +11,13 @@ export type NavigationSection = {
 	title: string
 	description?: string
 	items: NavigationItem[]
+	searchIcon?: string
 }
 
 export const navigationItems: NavigationSection[] = [
 	{
 		title: "Getting Started",
+		searchIcon: "/search-icons/search-installation.svg",
 		items: [
 			{ url: "/docs/getting-started/introduction", title: "Introduction" },
 			{ url: "/docs/getting-started/installation", title: "Installation" },
@@ -26,6 +28,7 @@ export const navigationItems: NavigationSection[] = [
 	},
 	{
 		title: "Installation",
+		searchIcon: "/search-icons/search-installation.svg",
 		items: [
 			{ url: "/docs/installation/next", title: "Nextjs" },
 			{ url: "/docs/installation/vite", title: "Vite" },
@@ -35,6 +38,7 @@ export const navigationItems: NavigationSection[] = [
 	},
 	{
 		title: "Fundamentals",
+		searchIcon: "/search-icons/search-fundamentals.svg",
 		description: "Universal settings for building a strong foundation for a digital product",
 		items: [
 			{
@@ -113,6 +117,7 @@ export const navigationItems: NavigationSection[] = [
 	},
 	{
 		title: "Components",
+		searchIcon: "/search-icons/search-components.svg",
 		items: [
 			{
 				title: "Alert",
@@ -446,6 +451,7 @@ export const navigationItems: NavigationSection[] = [
 	},
 	{
 		title: "Animations",
+		searchIcon: "/search-icons/search-components.svg",
 		items: [
 			{ url: "/docs/animations/typing-text", title: "Typing Text" },
 			{

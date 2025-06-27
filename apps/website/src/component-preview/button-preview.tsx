@@ -6,18 +6,20 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ButtonPreview = () => {
-	type variants = "strong" | "soft" | "outline" | "ghost" | "neutral-soft" | "neutral-outline"
+	type variants = "strong" | "soft" | "outline" | "ghost"
 	// Updated sizes type to include "28"
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type isIconType = "true" | "false"
+	type isloadingType = "true" | "false"
 	type disabledType = "true" | "false"
 	type leadTrailType = "true" | "false"
 	// Colors type; neutral is removed.
-	type colors = "primary" | "info" | "success" | "error" | "warning"
+	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
 
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("36")
 	const [isIcon, setIsIcon] = useState<isIconType>("false")
+	const [loading, setLoading] = useState<isloadingType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
 	const [color, setColor] = useState<colors>("primary")
 	const [lead, setLead] = useState<leadTrailType>("false")
@@ -60,17 +62,6 @@ const ButtonPreview = () => {
 										<DropdownItem value="outline">outline</DropdownItem>
 										<DropdownItem value="ghost">ghost</DropdownItem>
 									</DropdownGroup>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as variants)
-										}}
-										minSelectionCount={1}
-										selectedValues={[variant]}
-										title="neutral">
-										<DropdownItem value="neutral-soft">neutral-soft</DropdownItem>
-										<DropdownItem value="neutral-outline">neutral-outline</DropdownItem>
-									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
@@ -109,6 +100,7 @@ const ButtonPreview = () => {
 										<DropdownItem value="success">success</DropdownItem>
 										<DropdownItem value="error">error</DropdownItem>
 										<DropdownItem value="warning">warning</DropdownItem>
+										<DropdownItem value="neutral">neutral</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -138,6 +130,22 @@ const ButtonPreview = () => {
 										selectedValues={[lead]}
 										onSelectedChange={(keys) => {
 											setLead(Array.from(keys)[0] as leadTrailType)
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Loading</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[loading]}
+										onSelectedChange={(keys) => {
+											setLoading(Array.from(keys)[0] as isloadingType)
 										}}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
@@ -192,11 +200,14 @@ const ButtonPreview = () => {
 						isIcon={isIcon === "true"}
 						variant={variant}
 						size={size}
+						loading={loading === "true"}
 						color={color}
 						disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
-					<Button>Something</Button>
+					<Button size="48" className="ring-primary outline-primary-stroke outline ring-2 drop-shadow focus-within:ring-offset-2">
+						Something
+					</Button>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -206,6 +217,7 @@ const ButtonPreview = () => {
 					className="h-[420px]"
 					code={`<Button 
   size="${size}" 
+  loading={${loading === "true"}}
   variant="${variant}" 
   color="${color}"
   isIcon={${isIcon === "true"}}
