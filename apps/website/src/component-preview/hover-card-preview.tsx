@@ -87,7 +87,7 @@ const HovercardPreview = () => {
 								</div>
 							</div>
 							<div className="flex gap-3">
-								<Button variant="neutral-outline">Send Message</Button>
+								<Button variant="outline">Send Message</Button>
 								<Button>Contact</Button>
 							</div>
 						</HoverCardContent>

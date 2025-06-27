@@ -57,13 +57,13 @@ const [selected, setSelected] = useState<string[]>(["1"])
 return(
 <Dropdown>
 <DropdownTrigger asChild >
-<Button variant="neutral-outline" >
+<Button variant="outline" color="neutral" >
 Dropdown <ChevronDown className="size-5" />
 <Button
 	size="${size}"
 	${leadIcon ? `lead={<Box className="${iconClass}" />}` : ""}
 	disabled={${disabled}}
-	variant="neutral-outline">
+	variant="outline">
 	Dropdown <ChevronDown className="size-5" />
 </Button>
 </DropdownTrigger>
@@ -187,7 +187,7 @@ value="2">Inactive</DropdownItem>
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button size={size} lead={leadIcon ? <Box className={iconClass} /> : null} disabled={disabled} variant="neutral-outline">
+							<Button size={size} lead={leadIcon ? <Box className={iconClass} /> : null} disabled={disabled} variant="outline">
 								Dropdown <ChevronDown className="size-5" />
 							</Button>
 						</DropdownTrigger>

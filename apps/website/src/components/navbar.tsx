@@ -101,7 +101,7 @@ export default function Navbar() {
 
 				<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
 					<ModalTrigger asChild>
-						<Button isIcon variant="neutral-outline" className="gap-2">
+						<Button isIcon variant="outline" color="neutral" className="gap-2">
 							<Search />
 							<span className="text-fg1 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
 							<Badge className="bg-bg-level3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
@@ -184,7 +184,7 @@ export default function Navbar() {
 					handle
 					backdrop="overlay"
 					trigger={
-						<Button isIcon variant="neutral-soft" className="lg:hidden">
+						<Button isIcon color="neutral" variant="soft" className="lg:hidden">
 							<HamburgerMenuIcon className="size-6" />
 						</Button>
 					}>
@@ -195,7 +195,7 @@ export default function Navbar() {
 								<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
 							</Link>
 							<DrawerClose>
-								<Button isIcon variant="neutral-soft">
+								<Button isIcon color="neutral" variant="soft">
 									<X className="size-5" />
 								</Button>
 							</DrawerClose>

@@ -61,7 +61,7 @@ export default function Hero01() {
 
 							{/* Auth buttons */}
 							<div className="flex items-center gap-2">
-								<Button variant="neutral-outline" size="36" className="hidden sm:inline">
+								<Button variant="outline" color="neutral" size="36" className="hidden sm:inline">
 									Sign in
 								</Button>
 								<Button size="36">Get Started</Button>
@@ -73,7 +73,7 @@ export default function Hero01() {
 									}>
 									<DrawerTitle>
 										<DrawerClose>
-											<Button isIcon variant="neutral-soft">
+											<Button isIcon color="neutral" variant="soft">
 												<X className="size-5" />
 											</Button>
 										</DrawerClose>
@@ -113,7 +113,7 @@ export default function Hero01() {
 								<Button lead={<Zap size={24} />} size="44" className="w-full sm:w-fit">
 									Try for free
 								</Button>
-								<Button lead={<CirclePlay size={24} />} className="text-text-secondary w-full sm:w-fit" variant="neutral-outline" size="44">
+								<Button lead={<CirclePlay size={24} />} className="text-text-secondary w-full sm:w-fit" variant="outline" color="neutral" size="44">
 									Watch Demo
 								</Button>
 							</div>

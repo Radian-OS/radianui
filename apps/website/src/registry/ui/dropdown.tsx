@@ -31,7 +31,7 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 
 	return (
 		<DropdownMenuPrimitive.Trigger {...props} asChild>
-			<Button variant="neutral-outline">
+			<Button color="neutral" variant="outline">
 				{children}
 				<ChevronDown size={20} className="text-text-tertiary" />
 			</Button>

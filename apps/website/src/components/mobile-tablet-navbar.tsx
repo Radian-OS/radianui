@@ -19,7 +19,7 @@ export default function MobileTabletNavbar({ setIsMobileNavVisible }: { setIsMob
 					<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
 					<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
 				</Link>
-				<Button isIcon variant="neutral-soft" onClick={() => setIsMobileNavVisible(false)}>
+				<Button isIcon color="neutral" variant="soft" onClick={() => setIsMobileNavVisible(false)}>
 					<X className="size-5" />
 				</Button>
 			</div>

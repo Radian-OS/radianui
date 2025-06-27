@@ -49,7 +49,7 @@ export default function GithubIntegrationModalExample() {
 							</div>
 							<ModalFooter className="justify-start">
 								<ModalClose asChild>
-									<Button variant="neutral-outline" className="w-1/2">
+									<Button variant="outline" color="neutral" className="w-1/2">
 										Cancel
 									</Button>
 								</ModalClose>
@@ -108,7 +108,7 @@ export default function GithubIntegrationModalExample() {
         </div>
         <ModalFooter className="justify-start">
             <ModalClose asChild>
-                <Button variant="neutral-outline" className="w-1/2">
+                <Button variant="outline" color="neutral" className="w-1/2">
                     Cancel
                 </Button>
             </ModalClose>

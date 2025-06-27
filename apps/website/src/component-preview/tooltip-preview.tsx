@@ -81,7 +81,7 @@ const TooltipPreview = () => {
 					<div className="mx-auto max-h-[200px] max-w-3xl">
 						<Tooltip side={`${position}`} withArrow={withArrow === "true"} align={`${variant}`}>
 							<TooltipTrigger asChild>
-								<Button key={key} variant="neutral-outline">
+								<Button key={key} variant="outline">
 									Hover me
 								</Button>
 							</TooltipTrigger>
@@ -98,7 +98,7 @@ const TooltipPreview = () => {
 					className="h-[420px]"
 					code={`<Tooltip side="${position}" withArrow={${withArrow}} align="${variant}">
 	<TooltipTrigger asChild>
-		<Button key={key} variant="neutral-outline">Hover me</Button>
+		<Button key={key} variant="outline">Hover me</Button>
 	</TooltipTrigger>
 	<TooltipContent>
 		I am a tooltip

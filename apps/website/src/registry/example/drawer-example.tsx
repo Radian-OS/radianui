@@ -53,7 +53,7 @@ const DrawerExample = () => {
 					</DrawerBody>
 					<DrawerFooter>
 						<DrawerClose>
-							<Button variant="neutral-outline">Close Drawer</Button>
+							<Button variant="outline">Close Drawer</Button>
 						</DrawerClose>
 						<Button>Submit Action</Button>
 					</DrawerFooter>
