@@ -114,6 +114,7 @@
 		"eslint-config-next": "15.2.4",
 		"husky": "^9.1.7",
 		"next-sitemap": "^4.2.3",
+		"rehype-slug": "^6.0.0",
 		"tailwindcss": "^4.1.0",
 		"tsx": "^4.19.3",
 		"tw-animate-css": "^1.3.4",

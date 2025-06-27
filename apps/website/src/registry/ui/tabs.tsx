@@ -77,7 +77,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium ring-offset-background text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 data-[state=active]:text-text w-fit data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
+	"inline-flex items-center justify-center gap-1.5 focus-within:ring focus-within:ring-offset-1 whitespace-nowrap font-medium outline-none text-text-secondary data-[state=active]:text-text w-fit data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
 	{
 		variants: {
 			size: {
@@ -244,12 +244,7 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
-	return (
-		<TabsPrimitive.Content
-			className={cn("focus-visible:ring-ring ring-offset-background focus-visible:outline-hidden m-0 max-w-full p-0 focus-visible:ring-2 focus-visible:ring-offset-2", className)}
-			{...props}
-		/>
-	)
+	return <TabsPrimitive.Content className={cn("flex-1 outline-none", className)} {...props} />
 }
 
 TabsContent.displayName = TabsPrimitive.Content.displayName
