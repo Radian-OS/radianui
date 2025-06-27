@@ -251,7 +251,7 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 			let borderFixClass = ""
 			if (variant === "outline") {
 				// For outline variants, we need to completely eliminate double borders
-				borderFixClass = !isFirst ? "border-l-0 -ml-[1px]" : ""
+				borderFixClass = !isFirst ? "ml-[1px]" : ""
 			} else if (variant === "strong") {
 				// For solid variants
 				borderFixClass = !isFirst ? "-ml-[1px]" : ""
@@ -268,8 +268,7 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 						borderRadiusClass,
 						positionClass,
 						borderFixClass,
-						variant === "outline" && "outline-0 border border-current",
-						"hover:z-20 focus:z-30",
+						// "hover:z-20 focus:z-30",
 						child.props.className
 					),
 				})
