@@ -109,6 +109,8 @@ export default function Navbar() {
 						</Button>
 					}
 					handle={true}
+					modal={true}
+					preventScrollRestoration={true}
 					className="bg-fill-level3 max-h-[90%] p-3">
 					<DrawerHeader>
 						<DrawerTitle className="sr-only">Search command</DrawerTitle>
