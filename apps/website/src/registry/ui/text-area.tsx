@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { Label } from "./label"
 
 const textareaStyles = cva(
-	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-border-alpha bg-bg-base px-3 py-2 font-normal drop-shadow-xs focus:border-primary-stroke focus:outline-hidden focus:ring-2 focus:ring-primary-stroke/10",
+	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full outline outline-border-alpha bg-bg-base px-3 py-2 font-normal drop-shadow-xs focus:border-primary-stroke focus:outline-hidden focus:ring-2 focus:ring-primary-stroke/10",
 	{
 		variants: {
 			rounded: {
@@ -38,7 +38,7 @@ function TextArea({ label, className, classNames, hasError = false, hint = "", r
 	// Using React's key property to force a remount when rows change
 	// This is a nuclear option but will ensure the textarea always respects the rows prop
 	return (
-		<div className={cn("flex w-full flex-col gap-1", className, classNames?.base)}>
+		<div className={cn("flex w-full flex-1 flex-col gap-1", className, classNames?.base)}>
 			{label && (
 				<label className={cn("text-sm font-medium", { "text-text-disabled": props.disabled }, classNames?.label)} htmlFor={id}>
 					{label}
@@ -54,7 +54,7 @@ function TextArea({ label, className, classNames, hasError = false, hint = "", r
 					{
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !props.disabled,
 						"resize-none": resizable === false,
-						"border-border bg-fill-level1 text-text-disabled cursor-not-allowed": props.disabled,
+						"outline-border bg-fill-level1 text-text-disabled cursor-not-allowed": props.disabled,
 					},
 					classNames?.textarea
 				)}

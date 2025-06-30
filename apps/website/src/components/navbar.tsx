@@ -109,11 +109,13 @@ export default function Navbar() {
 						</Button>
 					}
 					handle={true}
-					className="p-4">
+					className="max-h-[90%] p-4"
+					// snapPoints={[0.9, 1]}
+				>
 					<DrawerHeader>
 						<DrawerTitle className="sr-only">Search command</DrawerTitle>
 					</DrawerHeader>
-					<DrawerBody className="">
+					<DrawerBody>
 						<SearchCommand
 							filteredItems={filteredItems}
 							itemRefs={itemRefs}
