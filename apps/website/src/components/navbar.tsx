@@ -108,11 +108,14 @@ export default function Navbar() {
 							<Search />
 						</Button>
 					}
-					handle={true}>
+					handle={true}
+					modal={true}
+					preventScrollRestoration={true}
+					className="bg-fill-level3 max-h-[90%] p-3">
 					<DrawerHeader>
 						<DrawerTitle className="sr-only">Search command</DrawerTitle>
 					</DrawerHeader>
-					<DrawerBody className="bg-red-500 p-0">
+					<DrawerBody>
 						<SearchCommand
 							filteredItems={filteredItems}
 							itemRefs={itemRefs}
