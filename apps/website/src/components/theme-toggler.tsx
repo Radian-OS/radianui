@@ -56,7 +56,7 @@ export function TabletMobileThemeToggler() {
 	}
 
 	return (
-		<Button variant="outline" color="neutral" onClick={toggleTheme}>
+		<Button variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
 			{resolvedTheme === "light" ? (
 				<>
 					<MoonIcon className="size-5" />
