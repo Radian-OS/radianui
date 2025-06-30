@@ -205,6 +205,9 @@ const ButtonPreview = () => {
 						disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
 					</Button>
+					<Button size="48" className="ring-primary outline-primary-stroke outline ring-2 drop-shadow focus-within:ring-offset-2">
+						Something
+					</Button>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">

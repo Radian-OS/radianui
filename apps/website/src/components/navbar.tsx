@@ -12,9 +12,9 @@ import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { Drawer, DrawerClose } from "@/registry/ui/drawer"
-import { Modal, ModalClose, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import { Drawer, DrawerBody, DrawerClose, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
+import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import SearchCommand from "./search-command"
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false)
@@ -99,9 +99,32 @@ export default function Navbar() {
 					</ul>
 				</section>
 
+				<Drawer
+					direction="bottom"
+					type="rounded"
+					trigger={
+						<Button isIcon variant="outline" color="neutral" className="md:hidden">
+							<Search />
+						</Button>
+					}
+					handle={true}>
+					<DrawerHeader>
+						<DrawerTitle className="sr-only">Search command</DrawerTitle>
+					</DrawerHeader>
+					<DrawerBody className="bg-red-500 p-0">
+						<SearchCommand
+							filteredItems={filteredItems}
+							itemRefs={itemRefs}
+							searchTerm={searchTerm}
+							selectedIndex={selectedIndex}
+							setSearchTerm={setSearchTerm}
+							setSelectedIndex={setSelectedIndex}
+						/>
+					</DrawerBody>
+				</Drawer>
 				<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
 					<ModalTrigger asChild>
-						<Button isIcon variant="outline" color="neutral" className="gap-2">
+						<Button isIcon variant="outline" color="neutral" className="hidden gap-2 md:flex">
 							<Search />
 							<span className="text-fg1 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
 							<Badge className="bg-bg-level3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
@@ -109,65 +132,16 @@ export default function Navbar() {
 							</Badge>
 						</Button>
 					</ModalTrigger>
-					<ModalContent className="px-0 py-2">
-						<ModalTitle className="hidden">Plain</ModalTitle>
-						<div className="h-100 flex flex-col overflow-y-scroll rounded-lg">
-							<div className="bg-bg-base sticky top-0 flex flex-col">
-								<div className="flex items-center gap-2 px-3.5 py-1.5">
-									<Search className="size-5 shrink-0 opacity-50" />
-									<input
-										type="text"
-										placeholder="Search the docs"
-										value={searchTerm}
-										onChange={(e) => {
-											setSearchTerm(e.target.value)
-											const newFilteredItems = filteredItems
-												.map((section) => ({
-													...section,
-													items: section.items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())),
-												}))
-												.filter((section) => section.items.length > 0) // Remove empty sections
-
-											// If there are results, move hover (selectedIndex) to the first item
-											setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
-										}}
-										className="placeholder:text-fg2 outline-hidden flex w-full rounded-md bg-transparent py-1 text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50"
-									/>
-								</div>
-								<Divider />
-							</div>
-							{filteredItems.length > 0 ? (
-								filteredItems.map((section, sectionIndex) => (
-									<main key={section.title} className="text-sm font-normal">
-										<div className="px-2.5">
-											<h3 className="text-fg2 px-1.75 flex items-center gap-1.5 py-1.5">{section.title}</h3>
-											<ul className="gap-1.25 flex flex-col">
-												{section.items.map((item, itemIndex) => {
-													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
-
-													return (
-														<ModalClose asChild key={item.title}>
-															<Link href={item.url}>
-																<li
-																	ref={(el) => {
-																		itemRefs.current[globalIndex] = el
-																	}}
-																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${selectedIndex === globalIndex ? "bg-border" : ""}`}>
-																	{item.title}
-																</li>
-															</Link>
-														</ModalClose>
-													)
-												})}
-											</ul>
-										</div>
-										{sectionIndex !== filteredItems.length - 1 && <Divider />}
-									</main>
-								))
-							) : (
-								<div className="text-fg1 flex h-full items-center justify-center">No items found</div>
-							)}
-						</div>
+					<ModalContent className="h-150 w-125 bg-fill-level3 border-border-alpha gap-0 rounded-2xl border p-1">
+						<ModalTitle className="hidden">Command Search</ModalTitle>
+						<SearchCommand
+							filteredItems={filteredItems}
+							itemRefs={itemRefs}
+							searchTerm={searchTerm}
+							selectedIndex={selectedIndex}
+							setSearchTerm={setSearchTerm}
+							setSelectedIndex={setSelectedIndex}
+						/>
 					</ModalContent>
 				</Modal>
 
