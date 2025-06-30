@@ -46,10 +46,10 @@ const drawerVariants = cva("fixed bg-transparent z-[51] bg-base", {
 			rounded: "rounded-xl", // No outline for rounded type to avoid the border issue
 		},
 		direction: {
-			top: "top-0 w-full h-fit left-0", // 100 = 400px
-			bottom: "bottom-0 left-0 w-full h-fit",
-			right: "top-0 right-0 h-full w-fit", // 112.5 = 450px
-			left: "top-0 left-0 h-full w-fit",
+			top: "top-0 w-full h-fit left-0 max-h-full",
+			bottom: "bottom-0 left-0 w-full h-fit max-h-full",
+			right: "top-0 right-0 h-full w-fit max-w-full",
+			left: "top-0 left-0 h-full w-fit max-w-full",
 		},
 	},
 	defaultVariants: {

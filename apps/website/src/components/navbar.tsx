@@ -108,11 +108,12 @@ export default function Navbar() {
 							<Search />
 						</Button>
 					}
-					handle={true}>
+					handle={true}
+					className="p-4">
 					<DrawerHeader>
 						<DrawerTitle className="sr-only">Search command</DrawerTitle>
 					</DrawerHeader>
-					<DrawerBody className="bg-red-500 p-0">
+					<DrawerBody className="">
 						<SearchCommand
 							filteredItems={filteredItems}
 							itemRefs={itemRefs}
