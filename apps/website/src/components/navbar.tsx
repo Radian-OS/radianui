@@ -109,9 +109,7 @@ export default function Navbar() {
 						</Button>
 					}
 					handle={true}
-					className="max-h-[90%] p-4"
-					// snapPoints={[0.9, 1]}
-				>
+					className="bg-fill-level3 max-h-[90%] p-3">
 					<DrawerHeader>
 						<DrawerTitle className="sr-only">Search command</DrawerTitle>
 					</DrawerHeader>
