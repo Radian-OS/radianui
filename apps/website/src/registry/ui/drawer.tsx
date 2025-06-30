@@ -5,16 +5,14 @@ import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
-type DrawerWrapperProps = VariantProps<typeof drawerVariants> & {
-	direction?: "top" | "bottom" | "left" | "right"
-	children?: React.ReactNode
-	trigger?: React.ReactNode
-	backdrop?: "overlay" | "blur" | null
-	closable?: boolean
-	type?: "float" | "default" | "rounded"
-	handle?: boolean
-	className?: string
-}
+type DrawerWrapperProps = VariantProps<typeof drawerVariants> &
+	React.ComponentProps<typeof DrawerPrimitives.Root> & {
+		trigger?: React.ReactNode
+		backdrop?: "overlay" | "blur" | null
+		type?: "float" | "default" | "rounded"
+		handle?: boolean
+		className?: string
+	}
 
 type DrawerHeaderProps = {
 	children: React.ReactNode
@@ -40,7 +38,7 @@ type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed bg-transparent z-[51]", {
+const drawerVariants = cva("fixed bg-transparent z-[51] bg-base", {
 	variants: {
 		type: {
 			float: "",
@@ -48,19 +46,20 @@ const drawerVariants = cva("fixed bg-transparent z-[51]", {
 			rounded: "rounded-xl", // No outline for rounded type to avoid the border issue
 		},
 		direction: {
-			top: "top-0 w-full max-h-100 h-full left-0", // 100 = 400px
-			bottom: "bottom-0 left-0 w-full max-h-100 h-full",
-			right: "top-0 right-0 h-full max-w-112.5 w-full", // 112.5 = 450px
-			left: "top-0 left-0 h-full max-w-112.5 w-full",
+			top: "top-0 w-full h-fit left-0", // 100 = 400px
+			bottom: "bottom-0 left-0 w-full h-fit",
+			right: "top-0 right-0 h-full w-fit", // 112.5 = 450px
+			left: "top-0 left-0 h-full w-fit",
 		},
 	},
 	defaultVariants: {
 		direction: "right",
 		type: "default",
 	},
+
 	compoundVariants: [
 		{
-			type: "float",
+			type: "float", // to show gap on all sides
 			direction: "top",
 			className: "top-2 left-2 w-[calc(100%-1rem)]",
 		},
@@ -79,14 +78,6 @@ const drawerVariants = cva("fixed bg-transparent z-[51]", {
 			direction: "right",
 			className: "top-2 right-2 h-[calc(100%-1rem)]",
 		},
-		{ type: "default", direction: "top", className: "bg-bg-base" },
-		{ type: "default", direction: "bottom", className: "bg-bg-base" },
-		{ type: "default", direction: "left", className: "bg-bg-base" },
-		{ type: "default", direction: "right", className: "bg-bg-base" },
-		{ type: "rounded", direction: "top", className: "bg-bg-base" }, // Rounded is now handled within content
-		{ type: "rounded", direction: "bottom", className: "bg-bg-base" },
-		{ type: "rounded", direction: "left", className: "bg-bg-base" },
-		{ type: "rounded", direction: "right", className: "bg-bg-base" },
 	],
 })
 
@@ -109,21 +100,6 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! roun
 			right: "left-3! top-1/2! -translate-y-1/2! h-full! w-1.5!",
 			top: "bottom-3! left-1/2! -translate-x-1/2! h-1.5! w-full! max-w-20!",
 			bottom: "top-3! left-1/2! -translate-x-1/2! h-1.5! w-full! max-w-20!",
-		},
-	},
-	defaultVariants: {
-		direction: "right",
-	},
-})
-
-// New wrapper variant to ensure proper sizing
-const wrapperVariants = cva("", {
-	variants: {
-		direction: {
-			top: "w-full h-full",
-			bottom: "w-full h-full",
-			left: "w-full h-full",
-			right: "w-full h-full",
 		},
 	},
 	defaultVariants: {
@@ -181,11 +157,9 @@ function Drawer({ direction = "right", type = "default", children, backdrop = "o
 			<DrawerPrimitives.Trigger asChild>{trigger || <Button>Open Drawer</Button>}</DrawerPrimitives.Trigger>
 			<DrawerPrimitives.Portal>
 				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
-				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }))}>
+				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }), getPaddingClass(), getContentClass(), className)}>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
-					<div className={cn(wrapperVariants({ direction }), "h-full w-full")}>
-						<div className={cn(getContentClass(), getPaddingClass(), "h-full w-full", className)}>{children}</div>
-					</div>
+					{children}
 				</DrawerPrimitives.Content>
 			</DrawerPrimitives.Portal>
 		</DrawerPrimitives.Root>
