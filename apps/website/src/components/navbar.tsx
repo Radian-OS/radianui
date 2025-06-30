@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import { ChevronRight, Search, X } from "lucide-react"
+import { Search, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -12,14 +12,15 @@ import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { Drawer, DrawerClose } from "@/registry/ui/drawer"
-import { Modal, ModalClose, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import { Drawer, DrawerBody, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
+import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import SearchCommand from "./search-command"
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [searchTerm, setSearchTerm] = useState<string>("")
 	const [selectedIndex, setSelectedIndex] = useState(-1) // Track selected item
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 	const itemRefs = useRef<(HTMLLIElement | null)[]>([]) //
 
@@ -99,9 +100,32 @@ export default function Navbar() {
 					</ul>
 				</section>
 
+				<Drawer
+					direction="bottom"
+					type="rounded"
+					trigger={
+						<Button isIcon variant="outline" color="neutral" className="md:hidden">
+							<Search />
+						</Button>
+					}
+					handle={true}>
+					<DrawerHeader>
+						<DrawerTitle className="sr-only">Search command</DrawerTitle>
+					</DrawerHeader>
+					<DrawerBody className="bg-red-500 p-0">
+						<SearchCommand
+							filteredItems={filteredItems}
+							itemRefs={itemRefs}
+							searchTerm={searchTerm}
+							selectedIndex={selectedIndex}
+							setSearchTerm={setSearchTerm}
+							setSelectedIndex={setSelectedIndex}
+						/>
+					</DrawerBody>
+				</Drawer>
 				<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
 					<ModalTrigger asChild>
-						<Button isIcon variant="outline" color="neutral" className="gap-2">
+						<Button isIcon variant="outline" color="neutral" className="hidden gap-2 md:flex">
 							<Search />
 							<span className="text-fg1 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
 							<Badge className="bg-bg-level3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
@@ -109,65 +133,16 @@ export default function Navbar() {
 							</Badge>
 						</Button>
 					</ModalTrigger>
-					<ModalContent className="px-0 py-2">
-						<ModalTitle className="hidden">Plain</ModalTitle>
-						<div className="h-100 flex flex-col overflow-y-scroll rounded-lg">
-							<div className="bg-bg-base sticky top-0 flex flex-col">
-								<div className="flex items-center gap-2 px-3.5 py-1.5">
-									<Search className="size-5 shrink-0 opacity-50" />
-									<input
-										type="text"
-										placeholder="Search the docs"
-										value={searchTerm}
-										onChange={(e) => {
-											setSearchTerm(e.target.value)
-											const newFilteredItems = filteredItems
-												.map((section) => ({
-													...section,
-													items: section.items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())),
-												}))
-												.filter((section) => section.items.length > 0) // Remove empty sections
-
-											// If there are results, move hover (selectedIndex) to the first item
-											setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
-										}}
-										className="placeholder:text-fg2 outline-hidden flex w-full rounded-md bg-transparent py-1 text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50"
-									/>
-								</div>
-								<Divider />
-							</div>
-							{filteredItems.length > 0 ? (
-								filteredItems.map((section, sectionIndex) => (
-									<main key={section.title} className="text-sm font-normal">
-										<div className="px-2.5">
-											<h3 className="text-fg2 px-1.75 flex items-center gap-1.5 py-1.5">{section.title}</h3>
-											<ul className="gap-1.25 flex flex-col">
-												{section.items.map((item, itemIndex) => {
-													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
-
-													return (
-														<ModalClose asChild key={item.title}>
-															<Link href={item.url}>
-																<li
-																	ref={(el) => {
-																		itemRefs.current[globalIndex] = el
-																	}}
-																	className={`text-fg0 hover:bg-border flex h-10 items-center rounded-md px-2 text-sm ${selectedIndex === globalIndex ? "bg-border" : ""}`}>
-																	{item.title}
-																</li>
-															</Link>
-														</ModalClose>
-													)
-												})}
-											</ul>
-										</div>
-										{sectionIndex !== filteredItems.length - 1 && <Divider />}
-									</main>
-								))
-							) : (
-								<div className="text-fg1 flex h-full items-center justify-center">No items found</div>
-							)}
-						</div>
+					<ModalContent className="h-150 w-125 bg-fill-level3 border-border-alpha gap-0 rounded-2xl border p-1">
+						<ModalTitle className="hidden">Command Search</ModalTitle>
+						<SearchCommand
+							filteredItems={filteredItems}
+							itemRefs={itemRefs}
+							searchTerm={searchTerm}
+							selectedIndex={selectedIndex}
+							setSearchTerm={setSearchTerm}
+							setSelectedIndex={setSelectedIndex}
+						/>
 					</ModalContent>
 				</Modal>
 
@@ -178,75 +153,65 @@ export default function Navbar() {
 
 				<DesktopThemeToggler />
 
-				<Drawer
-					type="default"
-					direction="right"
-					handle
-					backdrop="overlay"
-					trigger={
-						<Button isIcon color="neutral" variant="soft" className="lg:hidden">
-							<HamburgerMenuIcon className="size-6" />
-						</Button>
-					}>
-					<nav className="bg-bg-base fixed left-0 top-0 z-0 flex h-screen w-full flex-col gap-3 overflow-y-scroll px-4 md:px-5">
-						<div className="flex min-h-[5rem] items-center justify-between">
-							<Link href="/" style={{ fill: "white", color: "white" }}>
-								<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
-								<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
-							</Link>
-							<DrawerClose>
-								<Button isIcon color="neutral" variant="soft">
-									<X className="size-5" />
-								</Button>
-							</DrawerClose>
+				<Button isIcon color="neutral" variant="soft" className="lg:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+					<HamburgerMenuIcon className="size-6" />
+				</Button>
+				<nav className={`bg-bg-base fixed left-0 top-0 z-50 flex h-screen w-full flex-col overflow-y-scroll ${isMobileMenuOpen ? "block" : "hidden"}`}>
+					<div className="border-border-alpha flex min-h-16 items-center justify-between border-b px-5">
+						<Link href="/" style={{ fill: "white", color: "white" }}>
+							<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
+							<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
+						</Link>
+
+						<div className="flex items-center justify-center gap-2">
+							<div className="hidden items-center justify-center gap-2 sm:flex">
+								<DesktopThemeToggler />
+								<Button>Get Started</Button>
+							</div>
+							<Button isIcon color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
+								<X className="size-5" />
+							</Button>
 						</div>
+					</div>
 
-						<div className="flex flex-col gap-3">
-							<Button>Sign up for early access</Button>
-							<TabletMobileThemeToggler />
-						</div>
+					<div className="flex flex-col items-center justify-center gap-2 px-5 pb-4 pt-6 sm:hidden">
+						<Button className="w-full">Get Started</Button>
+						<TabletMobileThemeToggler />
+					</div>
 
-						<ul className="text-fg1 flex flex-col items-start gap-2 px-3 text-sm font-medium">
-							{navLinks.map((item) => (
-								<li key={item.name}>
-									<DrawerClose>
-										<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
-											{item.name}
-										</Link>
-									</DrawerClose>
-								</li>
-							))}
-						</ul>
+					<ul className="text-fg1 flex flex-col items-start text-sm font-medium">
+						{navLinks.map((item) => (
+							<li key={item.name} className="flex h-14 w-full items-center px-5 py-4">
+								<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
+									{item.name}
+								</Link>
+							</li>
+						))}
+					</ul>
 
-						<Accordion collapsible>
-							{navigationItems.map((section) => (
-								<AccordionItem value={section.title} key={section.title}>
-									<section>
-										<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-											<h1 className="flex items-center gap-[0.375rem] px-[6px] text-sm font-medium">
-												<ChevronRight className="duration-300 ease-in-out" size={12} />
-												{section.title}
-											</h1>
-										</AccordionTrigger>
-										<div className="flex flex-col justify-center">
-											{section.items.map((item) => (
-												<AccordionContent
-													key={item.title}
-													className={` ${pathname === item.url ? "bg-bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
-													<DrawerClose>
-														<Link className={`${pathname === item.url ? "text-fg0" : ""} text-fg1`} href={item.url}>
-															{item.title}
-														</Link>
-													</DrawerClose>
-												</AccordionContent>
-											))}
-										</div>
-									</section>
-								</AccordionItem>
-							))}
-						</Accordion>
-					</nav>
-				</Drawer>
+					<Accordion variant="open" collapsible>
+						{navigationItems.map((section) => (
+							<AccordionItem className="border-b-0 p-0" value={section.title} key={section.title}>
+								<section>
+									<AccordionTrigger className="w-full px-5 py-4 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
+										<h1 className="flex items-center text-sm font-medium">{section.title}</h1>
+									</AccordionTrigger>
+									<div className="flex flex-col items-center justify-center">
+										{section.items.map((item) => (
+											<AccordionContent
+												key={item.title}
+												className={` ${pathname === item.url ? "bg-bg-bg-level0 rounded-[0.375rem]" : ""} text-text flex h-14 w-full items-center px-5 py-4 text-sm font-normal transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
+												<Link className={`${pathname === item.url ? "text-fg0" : ""} text-fg1`} href={item.url}>
+													{item.title}
+												</Link>
+											</AccordionContent>
+										))}
+									</div>
+								</section>
+							</AccordionItem>
+						))}
+					</Accordion>
+				</nav>
 			</div>
 		</nav>
 	)

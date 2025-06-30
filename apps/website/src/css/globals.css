@@ -198,6 +198,10 @@
 	--color-bg-base: oklch(100% 0 0);
 	--color-bg-level1: oklch(100% 0 0);
 	--color-bg-level2: oklch(100% 0 0);
+	--color-bg-alpha-2: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 98%);
+	--color-bg-alpha-8: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 92%);
+	--color-bg-alpha-12: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 88%);
+	--color-bg-alpha-16: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 84%);
 
 	--color-text: oklch(14.4% 0.002 276.9);
 	--color-text-secondary: oklch(46.2% 0.015 276.8);
@@ -294,6 +298,11 @@
 	--color-bg-base: oklch(14.4% 0.002 276.9);
 	--color-bg-level1: oklch(19% 0.004 276.9);
 	--color-bg-level2: oklch(23.3% 0.006 276.9);
+	--color-bg-alpha-2: color-mix(in srgb, oklch(100% 0 0), transparent 98%);
+	--color-bg-alpha-4: color-mix(in srgb, oklch(100% 0 0), transparent 96%);
+	--color-bg-alpha-8: color-mix(in srgb, oklch(100% 0 0), transparent 92%);
+	--color-bg-alpha-12: color-mix(in srgb, oklch(100% 0 0), transparent 88%);
+	--color-bg-alpha-16: color-mix(in srgb, oklch(100% 0 0), transparent 84%);
 
 	/* foreground */
 	--color-text: oklch(100% 0 0);

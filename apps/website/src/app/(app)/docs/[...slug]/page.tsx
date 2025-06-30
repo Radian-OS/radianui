@@ -60,6 +60,9 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
 			description: description,
 			images: [ogImageUrl],
 		},
+		alternates: {
+			canonical: url,
+		},
 	}
 }
 
