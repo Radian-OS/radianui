@@ -22,14 +22,14 @@ export function DesktopThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<Button className="hidden lg:block" variant="outline" color="neutral" isIcon>
+			<Button variant="outline" color="neutral" isIcon>
 				<Loader2 className="size-5 animate-spin" />
 			</Button>
 		)
 	}
 
 	return (
-		<Button className="hidden lg:block" isIcon variant="outline" color="neutral" onClick={toggleTheme}>
+		<Button isIcon variant="outline" color="neutral" onClick={toggleTheme}>
 			{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
 		</Button>
 	)
@@ -49,7 +49,7 @@ export function TabletMobileThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<Button className="hidden lg:block" variant="outline" color="neutral" isIcon disabled>
+			<Button variant="outline" color="neutral" isIcon disabled>
 				<Loader2 className="size-5 animate-spin" />
 			</Button>
 		)
