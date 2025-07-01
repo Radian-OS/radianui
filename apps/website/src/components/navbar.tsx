@@ -77,6 +77,39 @@ export default function Navbar() {
 		{ name: "Figma", link: "/docs/getting-started/figma" },
 	]
 
+	useEffect(() => {
+		if (isMobileMenuOpen) {
+			document.body.style.overflow = "hidden"
+		} else {
+			document.body.style.overflow = "unset"
+		}
+
+		// Cleanup function to reset overflow when component unmounts
+		return () => {
+			document.body.style.overflow = "unset"
+		}
+	}, [isMobileMenuOpen])
+
+	useEffect(() => {
+		const handleResize = () => {
+			// Hide mobile menu when screen becomes lg (1024px) or larger
+			if (window.innerWidth >= 1024) {
+				setIsMobileMenuOpen(false)
+			}
+		}
+
+		// Add event listener
+		window.addEventListener("resize", handleResize)
+
+		// Call once on mount to handle initial state
+		handleResize()
+
+		// Cleanup
+		return () => {
+			window.removeEventListener("resize", handleResize)
+		}
+	}, [])
+
 	return (
 		<nav className="bg-bg-base border-stroke-decorative lg:h-15.5 flex items-center justify-between border-b px-4 py-3">
 			<div className="flex h-9 flex-shrink-0 items-center gap-2">
@@ -159,7 +192,8 @@ export default function Navbar() {
 				<Button isIcon color="neutral" variant="soft" className="lg:hidden" onClick={() => setIsMobileMenuOpen(true)}>
 					<HamburgerMenuIcon className="size-6" />
 				</Button>
-				<nav className={`bg-bg-base fixed left-0 top-0 z-50 flex h-screen w-full flex-col overflow-y-scroll ${isMobileMenuOpen ? "block" : "hidden"}`}>
+				<nav
+					className={`bg-bg-base fixed right-0 top-0 flex h-screen w-full transform flex-col gap-3 overflow-y-scroll transition-transform duration-300 ease-in-out md:px-5 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
 					<div className="border-border-alpha flex min-h-16 items-center justify-between border-b px-5">
 						<Link href="/" style={{ fill: "white", color: "white" }}>
 							<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
