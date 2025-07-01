@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { websiteMetadata } from "@/config/website-metadata-config"
 import { blocks } from "@/data/blocks"
 import BlockPreview from "./block-viewer"
 
@@ -11,11 +12,10 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: "Radian Blocks Gallery",
 		description: "A comprehensive list of UI blocks built with React and Tailwind CSS.",
-		url: "https://dev.radianos/blocks",
-		siteName: "Radian",
+		url: new URL(`${websiteMetadata.url}/blocks`),
 		images: [
 			{
-				url: "https://dev.radianos.com/radian.svg",
+				url: websiteMetadata.ogImage,
 				width: 1200,
 				height: 630,
 				alt: "Radian blocks gallery preview",
@@ -30,11 +30,14 @@ export const metadata: Metadata = {
 		creator: "@radiandev",
 		title: "Radian Blocks Gallery",
 		description: "Explore Radian\u2019s React & Tailwind CSS blocks library.",
-		images: ["https://dev.radianos.com/radian.svg"],
+		images: websiteMetadata.ogImage,
+	},
+	alternates: {
+		canonical: new URL(`${websiteMetadata.url}/blocks`),
 	},
 }
 
-const BlocksPage = () => {
+export default function BlockPage() {
 	return (
 		<div className="mx-auto max-w-7xl">
 			<div id="header" className="lg:py-7.5 flex flex-col gap-1">
@@ -47,5 +50,3 @@ const BlocksPage = () => {
 		</div>
 	)
 }
-
-export default BlocksPage

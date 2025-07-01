@@ -1,3 +1,11 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+	alternates: {
+		canonical: new URL(`${process.env.NEXT_PUBLIC_WEBSITE_URL!}/blog`),
+	},
+}
+
 export default function Blog() {
 	return (
 		<div className="max-w-310 border-x-1 mx-auto h-svh">

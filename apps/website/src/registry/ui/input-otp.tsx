@@ -62,8 +62,9 @@ function useOTPInputContext() {
 }
 
 function InputOtp({ size = "40", length = 6, label, disabled, hasError, errorMsg, ...props }: OTPInput) {
+	const ctxValues = React.useMemo(() => ({ size, disabled, hasError, errorMsg }), [size, disabled, hasError, errorMsg])
 	return (
-		<OTPInputContext.Provider value={{ size: size, disabled: disabled, hasError: hasError }}>
+		<OTPInputContext.Provider value={ctxValues}>
 			<div className="flex w-fit flex-col gap-1.5">
 				{label && (
 					<Label
@@ -78,13 +79,11 @@ function InputOtp({ size = "40", length = 6, label, disabled, hasError, errorMsg
 					className="disabled:cursor-not-allowed"
 					containerClassName="group flex items-center w-fit"
 					render={({ slots }) => (
-						<>
-							<div className="flex gap-1.5">
-								{slots.map((slot, idx) => (
-									<Slot key={idx} {...slot} />
-								))}
-							</div>
-						</>
+						<div className="flex gap-1.5">
+							{slots.map((slot, idx) => (
+								<Slot key={idx} {...slot} />
+							))}
+						</div>
 					)}
 					disabled={disabled}
 					{...props}

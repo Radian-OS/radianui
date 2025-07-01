@@ -6,7 +6,7 @@ const fundamentals = navigationItems.find((section) => section.title === "Fundam
 
 export default function FundamentalSection() {
 	return (
-		<React.Fragment>
+		<>
 			<div className="max-w-310 mx-auto">
 				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
 					<h2 className="heading-6 text-text">{fundamentals.title}</h2>
@@ -14,7 +14,6 @@ export default function FundamentalSection() {
 				</div>
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>
-
 			<div className="max-w-310 mx-auto">
 				<div id="body" className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
 					{fundamentals.items.map((item, idx) => (
@@ -32,6 +31,6 @@ export default function FundamentalSection() {
 			</div>
 
 			<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
-		</React.Fragment>
+		</>
 	)
 }

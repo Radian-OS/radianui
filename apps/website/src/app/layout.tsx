@@ -35,6 +35,9 @@ export const metadata: Metadata = {
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
 		images: [`${websiteMetadata.ogImage}`],
 	},
+	alternates: {
+		canonical: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
+	},
 }
 
 export default async function RootLayout({

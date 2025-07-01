@@ -5,19 +5,21 @@ import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 import { cn } from "@/lib/utils"
 
 type HoverCardContext = Pick<React.ComponentPropsWithoutRef<typeof HoverCardPrimitive.Content>, "align" | "side"> & { withArrow?: boolean }
+type HoverCardProps = React.ComponentProps<typeof HoverCardPrimitive.Root> & HoverCardContext
+type HoverCardContentProps = React.ComponentProps<typeof HoverCardPrimitive.Content>
 
 const HoverCardContext = React.createContext<HoverCardContext | null>(null)
 
-const useHoverCardContext = () => {
+function useHoverCardContext() {
 	const context = React.use(HoverCardContext)
 	if (!context) throw new Error("useHoverCardContext must be used within <HoverCard/>")
 	return context
 }
 
-type HoverCardProps = React.ComponentProps<typeof HoverCardPrimitive.Root> & HoverCardContext
-const HoverCard = ({ align = "center", side = "bottom", withArrow = false, children, ...props }: HoverCardProps) => {
+function HoverCard({ align = "center", side = "bottom", withArrow = false, children, ...props }: HoverCardProps) {
+	const ctxValues = React.useMemo(() => ({ align, side, withArrow }), [align, side, withArrow])
 	return (
-		<HoverCardContext.Provider value={{ align, side, withArrow }}>
+		<HoverCardContext.Provider value={ctxValues}>
 			<HoverCardPrimitive.Root openDelay={400} data-slot="hover-card" {...props}>
 				{children}
 			</HoverCardPrimitive.Root>
@@ -29,8 +31,7 @@ HoverCard.displayName = HoverCardPrimitive.Root.displayName
 const HoverCardTrigger = HoverCardPrimitive.Trigger
 HoverCardTrigger.displayName = HoverCardPrimitive.Trigger.displayName
 
-type HoverCardContentProps = React.ComponentProps<typeof HoverCardPrimitive.Content>
-const HoverCardContent = ({ className, sideOffset = 6, children, ...props }: HoverCardContentProps) => {
+function HoverCardContent({ className, sideOffset = 6, children, ...props }: HoverCardContentProps) {
 	const { align, side, withArrow } = useHoverCardContext()
 
 	return (
