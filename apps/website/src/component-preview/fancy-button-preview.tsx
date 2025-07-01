@@ -8,6 +8,34 @@ const FancyButtonPreview = () => {
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	const [size, setSize] = useState<sizes>("40")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
+	const [variant, setVariant] = useState<"variant1" | "variant2">("variant1")
+
+	const code =
+		variant === "variant1"
+			? `<Button
+	size={${size}}
+	disabled={${disabled === "true"}}
+	className="
+		border border-white/45
+		bg-gradient-to-b from-[#5133CF] to-[#6347EB]
+		shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#6347EB]
+		hover:from-[#5B3FE0] hover:to-[#6A52F2]
+	"
+>
+	Fancy Button
+</Button>`
+			: `<Button
+    size={${size}}
+	disabled={${disabled === "true"}}
+	className="
+		border border-white/45
+		bg-gradient-to-b from-[#6347EB] to-[#5133CF]
+		shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0]
+		hover:from-[#6A52F2] hover:to-[#5B3FE0]
+	"
+>
+	Fancy Button 2
+</Button>`
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -51,6 +79,21 @@ const FancyButtonPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setVariant(Array.from(keys)[0] as "variant1" | "variant2")
+										}}
+										minSelectionCount={1}
+										selectedValues={[variant]}>
+										<DropdownItem value="variant1">Variant 1</DropdownItem>
+										<DropdownItem value="variant2">Variant 2</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -61,27 +104,27 @@ const FancyButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Button
-						disabled={disabled === "true"}
-						size={size}
-						className="focus-visible:border-primary-stroke border-primary-stroke ring-primary border bg-gradient-to-b from-[#5133CF] to-[#6347EB] ring drop-shadow hover:bg-[#6347eb] focus-visible:border focus-visible:ring-2">
-						Fancy Button
-					</Button>
+					{variant === "variant1" && (
+						<Button
+							size={size}
+							disabled={disabled === "true"}
+							className="border border-white/45 bg-gradient-to-b from-[#5133CF] to-[#6347EB] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#6347EB] hover:from-[#5B3FE0] hover:to-[#6A52F2]">
+							Fancy Button
+						</Button>
+					)}
+
+					{variant === "variant2" && (
+						<Button
+							size={size}
+							disabled={disabled === "true"}
+							className="border border-white/45 bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+							Fancy Button 2
+						</Button>
+					)}
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-[420px]"
-					code={`<Button 
-className= "focus-visible:ring-2 focus-visible:border focus-visible:border-primary-stroke hover:bg-[#6347eb] border border-primary-stroke ring ring-primary  drop-shadow bg-gradient-to-b from-[#5133CF] to-[#6347EB]"
-size="${size}"
-disabled={${disabled === "true"}}
->
- Fancy Button
-</Button>`}
-				/>
+				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={code} />
 			</TabsContent>
 		</Tabs>
 	)
