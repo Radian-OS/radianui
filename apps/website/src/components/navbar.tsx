@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import { ArrowDown, ArrowUp, ChevronRight, Search, X } from "lucide-react"
+import { Search, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -12,13 +12,15 @@ import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerClose } from "@/registry/ui/drawer"
-import { Modal, ModalClose, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import { Drawer, DrawerBody, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
+import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import SearchCommand from "./search-command"
 
 export default function Navbar() {
 	const [isOpen, setIsOpen] = useState(false)
 	const [searchTerm, setSearchTerm] = useState<string>("")
 	const [selectedIndex, setSelectedIndex] = useState(-1) // Track selected item
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 	const itemRefs = useRef<(HTMLLIElement | null)[]>([]) //
 
@@ -65,6 +67,29 @@ export default function Navbar() {
 			})
 		}
 	}, [selectedIndex])
+
+	const drawerRef = useRef<HTMLDivElement | null>(null)
+
+	// To prevent the drawer being pushed up when keyboard is open on mobile
+	useEffect(() => {
+		const handleResize = () => {
+			if (drawerRef.current) {
+				drawerRef.current.style.setProperty("bottom", `env(safe-area-inset-bottom)`)
+			}
+		}
+
+		if (window.visualViewport) {
+			window.visualViewport.addEventListener("resize", handleResize)
+			handleResize() // Initial call in case the keyboard is already open
+		}
+
+		return () => {
+			if (window.visualViewport) {
+				window.visualViewport.removeEventListener("resize", handleResize)
+			}
+		}
+	}, [])
+
 	const pathname = usePathname()
 
 	const navLinks = [
@@ -74,6 +99,39 @@ export default function Navbar() {
 		{ name: "Blocks", link: "/blocks" },
 		{ name: "Figma", link: "/docs/getting-started/figma" },
 	]
+
+	useEffect(() => {
+		if (isMobileMenuOpen) {
+			document.body.style.overflow = "hidden"
+		} else {
+			document.body.style.overflow = "unset"
+		}
+
+		// Cleanup function to reset overflow when component unmounts
+		return () => {
+			document.body.style.overflow = "unset"
+		}
+	}, [isMobileMenuOpen])
+
+	useEffect(() => {
+		const handleResize = () => {
+			// Hide mobile menu when screen becomes lg (1024px) or larger
+			if (window.innerWidth >= 1024) {
+				setIsMobileMenuOpen(false)
+			}
+		}
+
+		// Add event listener
+		window.addEventListener("resize", handleResize)
+
+		// Call once on mount to handle initial state
+		handleResize()
+
+		// Cleanup
+		return () => {
+			window.removeEventListener("resize", handleResize)
+		}
+	}, [])
 
 	return (
 		<nav className="bg-bg-base border-stroke-decorative lg:h-15.5 flex items-center justify-between border-b px-4 py-3">
@@ -98,9 +156,39 @@ export default function Navbar() {
 					</ul>
 				</section>
 
+				{/* For mobile screen */}
+				<Drawer
+					direction="bottom"
+					type="rounded"
+					trigger={
+						<Button isIcon variant="outline" color="neutral" className="md:hidden">
+							<Search />
+						</Button>
+					}
+					handle={true}
+					modal={true}
+					preventScrollRestoration={true}
+					ref={drawerRef}
+					className="bg-fill-level3 h-[90%] p-3">
+					<DrawerHeader>
+						<DrawerTitle className="sr-only">Search command</DrawerTitle>
+					</DrawerHeader>
+					<DrawerBody>
+						<SearchCommand
+							filteredItems={filteredItems}
+							itemRefs={itemRefs}
+							searchTerm={searchTerm}
+							selectedIndex={selectedIndex}
+							setSearchTerm={setSearchTerm}
+							setSelectedIndex={setSelectedIndex}
+						/>
+					</DrawerBody>
+				</Drawer>
+
+				{/* For desktop screen */}
 				<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
 					<ModalTrigger asChild>
-						<Button isIcon variant="outline" color="neutral" className="gap-2">
+						<Button isIcon variant="outline" color="neutral" className="hidden gap-2 md:flex">
 							<Search />
 							<span className="text-fg1 hidden grow text-start text-sm font-normal xl:inline xl:w-28">Search</span>
 							<Badge className="bg-bg-level3 text-fg1 hidden items-center justify-center border-none lg:flex" size="20">
@@ -110,92 +198,14 @@ export default function Navbar() {
 					</ModalTrigger>
 					<ModalContent className="h-150 w-125 bg-fill-level3 border-border-alpha gap-0 rounded-2xl border p-1">
 						<ModalTitle className="hidden">Command Search</ModalTitle>
-						<div className="bg-fill-level1 rounded-b-none rounded-t-2xl p-1.5">
-							<div className="flex items-center gap-2 px-2 py-3">
-								<Search size={20} className="text-text-tertiary" />
-								<input
-									type="text"
-									placeholder="Search Documentation"
-									value={searchTerm}
-									onChange={(e) => {
-										setSearchTerm(e.target.value)
-										const newFilteredItems = filteredItems
-											.map((section) => ({
-												...section,
-												items: section.items.filter((item) => item.title.toLowerCase().includes(e.target.value.toLowerCase())),
-											}))
-											.filter((section) => section.items.length > 0) // Remove empty sections
-
-										// If there are results, move hover (selectedIndex) to the first item
-										setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
-									}}
-									className="outline-hidden placeholder:text-text-tertiary flex-1 text-sm font-normal focus:outline-0"
-								/>
-								{/* <Button isIcon size="28" variant="ghost"> */}
-								<X size={20} className="text-text-tertiary cursor-pointer" onClick={() => setSearchTerm("")} />
-								{/* </Button> */}
-							</div>
-						</div>
-						<div className="h-0.25 border-border-alpha w-full" />
-						<div className="no-scrollbar bg-fill-level1 h-full flex-1 overflow-y-auto rounded-b-2xl">
-							{filteredItems.length > 0 ? (
-								filteredItems.map((section, sectionIndex) => (
-									<main key={section.title} className="text-sm font-normal">
-										<div className="px-1.5 py-1">
-											<h3 className="text-text-tertiary p-2 text-xs font-medium uppercase">{section.title}</h3>
-											<ul className="gap-1.25 flex flex-col">
-												{section.items.map((item, itemIndex) => {
-													const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
-
-													return (
-														<ModalClose asChild key={item.title}>
-															<Link href={item.url}>
-																<li
-																	ref={(el) => {
-																		itemRefs.current[globalIndex] = el
-																	}}
-																	className={`hover:bg-fill-level2 flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium ${selectedIndex === globalIndex ? "bg-fill-level2" : ""}`}>
-																	<img src={section.searchIcon} alt="Search icon" />
-																	{item.title}
-																</li>
-															</Link>
-														</ModalClose>
-													)
-												})}
-											</ul>
-										</div>
-										{sectionIndex !== filteredItems.length - 1 && <div className="h-0.25 bg-border-alpha w-full" />}
-									</main>
-								))
-							) : (
-								<div className="text-fg1 flex h-full items-center justify-center">No items found</div>
-							)}
-						</div>
-						<div className="text-text-tertiary hidden items-center gap-4 p-4 text-sm md:flex">
-							<div className="flex items-center gap-2">
-								<Badge size="20" className="text-text-secondary uppercase">
-									<ArrowUp size={16} />
-								</Badge>
-								<Badge size="20" className="text-text-secondary uppercase">
-									<ArrowDown size={16} />
-								</Badge>
-								<span>Navigate</span>
-							</div>
-							<div className="flex w-full justify-between">
-								<div className="flex items-center gap-2">
-									<Badge size="20" className="text-text-secondary uppercase">
-										Enter
-									</Badge>
-									<span>Select</span>
-								</div>
-								<div className="flex items-center gap-2">
-									<span>Close</span>
-									<Badge size="20" className="text-text-secondary uppercase">
-										ESC
-									</Badge>
-								</div>
-							</div>
-						</div>
+						<SearchCommand
+							filteredItems={filteredItems}
+							itemRefs={itemRefs}
+							searchTerm={searchTerm}
+							selectedIndex={selectedIndex}
+							setSearchTerm={setSearchTerm}
+							setSelectedIndex={setSelectedIndex}
+						/>
 					</ModalContent>
 				</Modal>
 
@@ -206,75 +216,62 @@ export default function Navbar() {
 
 				<DesktopThemeToggler />
 
-				<Drawer
-					type="default"
-					direction="right"
-					handle
-					backdrop="overlay"
-					trigger={
-						<Button isIcon color="neutral" variant="soft" className="lg:hidden">
-							<HamburgerMenuIcon className="size-6" />
-						</Button>
-					}>
-					<nav className="bg-bg-base fixed left-0 top-0 z-0 flex h-screen w-full flex-col gap-3 overflow-y-scroll px-4 md:px-5">
-						<div className="flex min-h-[5rem] items-center justify-between">
-							<Link href="/" style={{ fill: "white", color: "white" }}>
-								<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
-								<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
-							</Link>
-							<DrawerClose>
-								<Button isIcon color="neutral" variant="soft">
-									<X className="size-5" />
-								</Button>
-							</DrawerClose>
+				<Button isIcon color="neutral" variant="soft" className="lg:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+					<HamburgerMenuIcon className="size-6" />
+				</Button>
+				<nav
+					className={`bg-bg-base fixed right-0 top-0 flex h-screen w-full transform flex-col gap-3 overflow-y-scroll transition-transform duration-300 ease-in-out md:px-5 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+					<div className="border-border-alpha flex min-h-16 items-center justify-between border-b px-5">
+						<Link href="/" style={{ fill: "white", color: "white" }}>
+							<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
+							<Image src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
+						</Link>
+
+						<div className="flex items-center justify-center gap-2">
+							<div className="hidden items-center justify-center gap-2 sm:flex">
+								<DesktopThemeToggler />
+								<Button>Get Started</Button>
+							</div>
+							<Button isIcon color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
+								<X className="size-5" />
+							</Button>
 						</div>
+					</div>
 
-						<div className="flex flex-col gap-3">
-							<Button>Sign up for early access</Button>
-							<TabletMobileThemeToggler />
-						</div>
+					<div className="flex flex-col items-center justify-center gap-2 px-5 pb-4 pt-6 sm:hidden">
+						<Button className="w-full">Get Started</Button>
+						<TabletMobileThemeToggler />
+					</div>
 
-						<ul className="text-fg1 flex flex-col items-start gap-2 px-3 text-sm font-medium">
-							{navLinks.map((item) => (
-								<li key={item.name}>
-									<DrawerClose>
-										<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
-											{item.name}
-										</Link>
-									</DrawerClose>
-								</li>
-							))}
-						</ul>
+					<ul className="text-fg1 flex flex-col items-start text-sm font-medium">
+						{navLinks.map((item) => (
+							<li key={item.name} className="flex h-14 w-full items-center px-5 py-4">
+								<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
+									{item.name}
+								</Link>
+							</li>
+						))}
+					</ul>
 
-						<Accordion collapsible>
-							{navigationItems.map((section) => (
-								<AccordionItem value={section.title} key={section.title}>
-									<section>
-										<AccordionTrigger className="py-2 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-											<h1 className="flex items-center gap-[0.375rem] px-[6px] text-sm font-medium">
-												<ChevronRight className="duration-300 ease-in-out" size={12} />
-												{section.title}
-											</h1>
-										</AccordionTrigger>
-										<div className="flex flex-col justify-center">
+					<Accordion size="sm" variant="open" collapsible className="px-5">
+						{navigationItems.map((section) => (
+							<AccordionItem className="border-none" value={section.title} key={section.title}>
+								<section>
+									<AccordionTrigger>{section.title}</AccordionTrigger>
+									<AccordionContent>
+										<div className="flex flex-col items-start">
 											{section.items.map((item) => (
-												<AccordionContent
-													key={item.title}
-													className={` ${pathname === item.url ? "bg-bg-bg-level0 rounded-[0.375rem] font-medium" : ""} w-full py-2 pl-6 text-start text-sm transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
-													<DrawerClose>
-														<Link className={`${pathname === item.url ? "text-fg0" : ""} text-fg1`} href={item.url}>
-															{item.title}
-														</Link>
-													</DrawerClose>
-												</AccordionContent>
+												<Link key={item.url} className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`} href={item.url}>
+													{item.title}
+												</Link>
 											))}
 										</div>
-									</section>
-								</AccordionItem>
-							))}
-						</Accordion>
-					</nav>
-				</Drawer>
+									</AccordionContent>
+								</section>
+							</AccordionItem>
+						))}
+					</Accordion>
+				</nav>
 			</div>
 		</nav>
 	)

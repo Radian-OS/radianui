@@ -24,6 +24,7 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	rounded?: "rounded" | "square"
 	hasError?: boolean
 	hint?: string
+	fieldSizing?: boolean
 	classNames?: {
 		base?: string // The div that wraps the whole component
 		label?: string // The label of the input
@@ -31,14 +32,27 @@ type TextAreaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement> & {
 	}
 }
 
-function TextArea({ label, className, classNames, hasError = false, hint = "", rounded = "rounded", rows = 4, resizable = true, value, defaultValue, ...props }: TextAreaProps) {
+function TextArea({
+	label,
+	className,
+	classNames,
+	fieldSizing = false,
+	hasError = false,
+	hint = "",
+	rounded = "rounded",
+	rows = 4,
+	resizable = true,
+	value,
+	defaultValue,
+	...props
+}: TextAreaProps) {
 	let id = React.useId()
 	if (props.id) id = props.id
 
 	// Using React's key property to force a remount when rows change
 	// This is a nuclear option but will ensure the textarea always respects the rows prop
 	return (
-		<div className={cn("flex w-full flex-col gap-1", className, classNames?.base)}>
+		<div className={cn("flex w-full flex-1 flex-col gap-1", className, classNames?.base)}>
 			{label && (
 				<label className={cn("text-sm font-medium", { "text-text-disabled": props.disabled }, classNames?.label)} htmlFor={id}>
 					{label}
@@ -55,6 +69,7 @@ function TextArea({ label, className, classNames, hasError = false, hint = "", r
 						"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !props.disabled,
 						"resize-none": resizable === false,
 						"border-border bg-fill-level1 text-text-disabled cursor-not-allowed": props.disabled,
+						"field-sizing-content w-full": fieldSizing,
 					},
 					classNames?.textarea
 				)}

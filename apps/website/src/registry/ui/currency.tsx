@@ -6,8 +6,7 @@ import type { InputProps } from "./input"
 type CurrencyInputProps = {
 	currency?: string
 	locale?: string
-	allowDecimals?: boolean
-	decimalsLimit?: number
+	decimals?: number
 	decimalSeparator?: string
 	groupSeparator?: string
 	separator?: boolean
@@ -19,8 +18,7 @@ type CurrencyInputProps = {
 function CurrencyInput({
 	currency = "usd",
 	locale = "en-US",
-	allowDecimals = true,
-	decimalsLimit = 2,
+	decimals = 2,
 	decimalSeparator,
 	groupSeparator,
 	separator = true,
@@ -33,6 +31,9 @@ function CurrencyInput({
 	const [rawValue, setRawValue] = useState<string>((props.value as string) || "")
 	const [currencySymbol, setCurrencySymbol] = useState<string>("")
 	const inputRef = useRef<HTMLInputElement>(null)
+
+	const allowDecimals = decimals > 0
+	const decimalsLimit = Math.max(0, decimals)
 
 	const [detectedDecimalSep, detectedGroupSep] = useDetectSeparators(locale)
 	const effectiveDecimalSep = decimalSeparator || detectedDecimalSep

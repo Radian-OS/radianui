@@ -224,32 +224,30 @@ const ToastPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="mx-auto max-h-[200px] max-w-3xl">
-						<Toaster position={`${position}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
-						<Button
-							key={key}
-							variant="outline"
-							onClick={() =>
-								showToast({
-									icon: icon === "true" ? <Box className="size-5" /> : undefined,
-									variant,
-									state,
-									placement,
-									title: title === "true" ? "Toast Title" : "",
-									closable: closable === "true",
-									description: desc === "true" ? "Toast description message." : "",
-									buttons:
-										actionButton === "true"
-											? [
-													{ label: "Upgrade", onClick: () => console.log("Retrying..."), href: "/docs/components/toast", dismiss: false },
-													{ label: "Learn More", onClick: () => console.log("Cancelled") },
-												]
-											: [],
-								})
-							}>
-							Toast
-						</Button>
-					</div>
+					<Toaster position={`${position}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
+					<Button
+						key={key}
+						variant="outline"
+						onClick={() =>
+							showToast({
+								icon: icon === "true" ? <Box className="size-5" /> : undefined,
+								variant,
+								state,
+								placement,
+								title: title === "true" ? "Toast Title" : "",
+								closable: closable === "true",
+								description: desc === "true" ? "Toast description message." : "",
+								buttons:
+									actionButton === "true"
+										? [
+												{ label: "Upgrade", onClick: () => console.log("Retrying..."), href: "/docs/components/toast", dismiss: false },
+												{ label: "Learn More", onClick: () => console.log("Cancelled") },
+											]
+										: [],
+							})
+						}>
+						Toast
+					</Button>
 				</div>
 			</TabsContent>
 

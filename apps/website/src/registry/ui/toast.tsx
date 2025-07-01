@@ -68,7 +68,7 @@ const SonnerVariant = cva("group toast rounded-lg flex justify-between text-sm g
 		{
 			variant: "strong",
 			state: "neutral",
-			class: "bg-black !text-white",
+			class: "bg-static-black !text-white relative before:absolute before:inset-0 before:!bg-bg-alpha-4 overflow-hidden before:pointer-events-none",
 		},
 		{
 			variant: "strong",
@@ -292,12 +292,19 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 const toastClass = cva("group !p-0 rounded-lg toast group-[.toaster]:text-text-secondary", {
 	variants: {
 		position: {
-			bottom: "group-[.toaster]:!shadow-[0px_4px_8px_0px_rgba(25,24,27,0.08)]",
-			top: "group-[.toaster]:!shadow-[0px_-4px_8px_0px_rgba(25,24,27,0.08)]",
+			// Center positions get the negative margin
+			"top-center": "md:ml-[-1.5rem] group-[.toaster]:!shadow-[0px_-4px_8px_0px_rgba(25,24,27,0.08)]",
+			"bottom-center": "md:ml-[-1.5rem] group-[.toaster]:!shadow-[0px_4px_8px_0px_rgba(25,24,27,0.08)]",
+
+			// Other positions without negative margin
+			"top-left": "group-[.toaster]:!shadow-[0px_-4px_8px_0px_rgba(25,24,27,0.08)]",
+			"top-right": "group-[.toaster]:!shadow-[0px_-4px_8px_0px_rgba(25,24,27,0.08)]",
+			"bottom-left": "group-[.toaster]:!shadow-[0px_4px_8px_0px_rgba(25,24,27,0.08)]",
+			"bottom-right": "group-[.toaster]:!shadow-[0px_4px_8px_0px_rgba(25,24,27,0.08)]",
 		},
 	},
 	defaultVariants: {
-		position: "bottom",
+		position: "bottom-right", // Set your preferred default
 	},
 })
 
@@ -311,7 +318,7 @@ export const Toaster = function ({ ...props }: ToasterProps) {
 			toastOptions={{
 				classNames: {
 					toast: toastClass({
-						position: props.position?.charAt(0) === "b" ? "bottom" : "top",
+						position: props.position,
 					}),
 				},
 			}}

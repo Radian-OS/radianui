@@ -28,11 +28,13 @@ import CheckboxgroupPreview from "@/component-preview/checkbox-group-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
+import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import CurrencyAmountPreview from "@/component-preview/currency-amount-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
+import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
@@ -177,6 +179,8 @@ const components: MDXComponents = {
 	ColorPickerExample: () => <ColorPickerExample />,
 	ToastExample: () => <ToastExample />,
 	ColorSpinnerExample: () => <ColorSpinnerExample />,
+	FancyButtonPreview: () => <FancyButtonPreview />,
+	CompactButtonPreview: () => <CompactButtonPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

@@ -22,7 +22,7 @@ const DrawerPreview = () => {
  <DrawerTitle>This is a drawer header</DrawerTitle>
  <DrawerDescription>This is a drawer description message.</DrawerDescription>
 </DrawerHeader>
-<DrawerBody className="flex flex-col gap-3" >
+<DrawerBody className="h-100 ${position === "left" || position === "right" ? "w-112.5 flex flex-col gap-3" : "flex gap-3"}">
  <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
  <div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
  <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
@@ -109,10 +109,10 @@ const DrawerPreview = () => {
 							<DrawerTitle>This is a drawer header</DrawerTitle>
 							<DrawerDescription>This is a drawer description message.</DrawerDescription>
 						</DrawerHeader>
-						<DrawerBody className="flex flex-col gap-3">
-							<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
-							<div className="bg-fill-level3 rounded-radius-xl h-64"></div>
-							<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
+						<DrawerBody className={`h-100 ${position === "left" || position === "right" ? "w-112.5 flex flex-col gap-3" : "flex gap-3"}`}>
+							<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
+							<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
+							<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
 						</DrawerBody>
 						<DrawerFooter>
 							<DrawerClose>
