@@ -25,6 +25,8 @@ const FancyButtonPreview = () => {
 	Fancy Button
 </Button>`
 			: `<Button
+    size={${size}}
+	disabled={${disabled === "true"}}
 	className="
 		border border-white/45
 		bg-gradient-to-b from-[#6347EB] to-[#5133CF]
@@ -112,7 +114,10 @@ const FancyButtonPreview = () => {
 					)}
 
 					{variant === "variant2" && (
-						<Button className="border border-white/45 bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+						<Button
+							size={size}
+							disabled={disabled === "true"}
+							className="border border-white/45 bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
 							Fancy Button 2
 						</Button>
 					)}
