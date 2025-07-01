@@ -200,7 +200,7 @@ export default function Navbar() {
 									<AccordionContent>
 										<div className="flex flex-col items-start">
 											{section.items.map((item) => (
-												<Link className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`} href={item.url}>
+												<Link key={item.url} className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`} href={item.url}>
 													{item.title}
 												</Link>
 											))}
