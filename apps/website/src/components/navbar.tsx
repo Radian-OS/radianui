@@ -192,24 +192,20 @@ export default function Navbar() {
 						))}
 					</ul>
 
-					<Accordion variant="open" collapsible>
+					<Accordion size="sm" variant="open" collapsible className="px-5">
 						{navigationItems.map((section) => (
-							<AccordionItem className="border-b-0 p-0" value={section.title} key={section.title}>
+							<AccordionItem className="border-none" value={section.title} key={section.title}>
 								<section>
-									<AccordionTrigger className="w-full px-5 py-4 [&[data-state=closed]>h1>svg]:rotate-0 [&[data-state=open]>h1>svg]:rotate-90">
-										<h1 className="flex items-center text-sm font-medium">{section.title}</h1>
-									</AccordionTrigger>
-									<div className="flex flex-col items-center justify-center">
-										{section.items.map((item) => (
-											<AccordionContent
-												key={item.title}
-												className={` ${pathname === item.url ? "bg-bg-bg-level0 rounded-[0.375rem]" : ""} text-text flex h-14 w-full items-center px-5 py-4 text-sm font-normal transition-all data-[state=closed]:ease-out data-[state=open]:ease-in`}>
-												<Link className={`${pathname === item.url ? "text-fg0" : ""} text-fg1`} href={item.url}>
+									<AccordionTrigger>{section.title}</AccordionTrigger>
+									<AccordionContent>
+										<div className="flex flex-col items-start">
+											{section.items.map((item) => (
+												<Link key={item.url} className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`} href={item.url}>
 													{item.title}
 												</Link>
-											</AccordionContent>
-										))}
-									</div>
+											))}
+										</div>
+									</AccordionContent>
 								</section>
 							</AccordionItem>
 						))}
