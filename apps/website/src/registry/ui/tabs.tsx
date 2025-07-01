@@ -77,7 +77,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 focus-within:ring focus-within:ring-offset-1 whitespace-nowrap font-medium outline-none text-text-secondary data-[state=active]:text-text w-fit data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
+	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-text-secondary data-[state=active]:text-text w-fit data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
 	{
 		variants: {
 			size: {
@@ -200,8 +200,9 @@ function useTabs() {
 }
 
 function Tabs({ variant = "default", size = "md", className, defaultValue, children, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & TabsContextType) {
+	const ctxValues = React.useMemo(() => ({ variant, size }), [variant, size])
 	return (
-		<TabsContext.Provider value={{ variant: variant, size: size }}>
+		<TabsContext.Provider value={ctxValues}>
 			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3 data-[orientation=vertical]:flex-row", className)} defaultValue={defaultValue} {...props}>
 				{children}
 			</TabsPrimitive.Root>

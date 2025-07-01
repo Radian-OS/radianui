@@ -57,9 +57,10 @@ function useModalContext() {
 }
 
 function Modal({ closeIcon = "hidden", backdrop = "overlay", withSeparator = false, children, ...props }: ModalProps) {
+	const ctxValues = React.useMemo(() => ({ closeIcon, backdrop, withSeparator }), [closeIcon, backdrop, withSeparator])
 	return (
 		<DialogPrimitive.Root {...props}>
-			<ModalContext.Provider value={{ closeIcon: closeIcon, backdrop: backdrop, withSeparator: withSeparator }}>{children}</ModalContext.Provider>
+			<ModalContext.Provider value={ctxValues}>{children}</ModalContext.Provider>
 		</DialogPrimitive.Root>
 	)
 }

@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-// Ensure React is imported for JSX to work
 import { Box } from "lucide-react"
 import { subscribe } from "@/app/api/email/actions"
 import { cn } from "@/lib/utils"

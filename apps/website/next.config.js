@@ -1,5 +1,5 @@
-import { withContentlayer } from "next-contentlayer2"
 import bundleAnalyzer from "@next/bundle-analyzer"
+import { withContentlayer } from "next-contentlayer2"
 
 /** @type {import('next').NextConfig} */
 const withBundleAnalyzer = bundleAnalyzer({
@@ -12,7 +12,6 @@ const nextConfig = {
 			{
 				source: "/ingest/static/:path*",
 				destination: "https://us-assets.i.posthog.com/static/:path*",
-				
 			},
 			{
 				source: "/ingest/:path*",
@@ -36,7 +35,7 @@ const nextConfig = {
 			},
 		]
 	},
-	assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
+	// assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
 	// Add transpilePackages to handle proper transpilation in monorepo
 	// transpilePackages: ['contentlayer2', 'next-contentlayer2', 'mdx-bundler'],
 
@@ -83,7 +82,7 @@ const nextConfig = {
 		NEXT_PUBLIC_WEBAPP_URL: process.env.NEXT_PUBLIC_WEBAPP_URL,
 		NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
 		NEXT_PUBLIC_DEPLOYMENT_ENV: process.env.NEXT_PUBLIC_DEPLOYMENT_ENV,
-		NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY
+		NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY,
 	},
 }
 export default withBundleAnalyzer(withContentlayer(nextConfig))
