@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Box, CirclePlus, X } from "lucide-react"
+import { Box, CirclePlus } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -204,10 +204,6 @@ const ButtonPreview = () => {
 						color={color}
 						disabled={disabled === "true"}>
 						{isIcon === "true" ? <CirclePlus /> : "Button"}
-					</Button>
-
-					<Button className="focus-within: outline-soft bg-fill-level1 hover:bg-soft-alpha outline drop-shadow" isIcon variant="outline" color="neutral">
-						<X />
 					</Button>
 				</div>
 			</TabsContent>
