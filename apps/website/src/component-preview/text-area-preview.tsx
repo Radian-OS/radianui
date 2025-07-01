@@ -124,6 +124,7 @@ const TextAreaPreview = () => {
 							disabled={disabled === "true"}
 							rows={rows === "4" ? 4 : rows === "5" ? 5 : rows === "6" ? 6 : rows === "7" ? 7 : 8}
 							hint={hint === "true" ? "This is a hint" : ""}
+							fieldSizing
 						/>
 					</div>
 				</div>
