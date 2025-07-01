@@ -28,6 +28,7 @@ import CheckboxgroupPreview from "@/component-preview/checkbox-group-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
+import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import CurrencyAmountPreview from "@/component-preview/currency-amount-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
@@ -178,6 +179,8 @@ const components: MDXComponents = {
 	ColorPickerExample: () => <ColorPickerExample />,
 	ToastExample: () => <ToastExample />,
 	ColorSpinnerExample: () => <ColorSpinnerExample />,
+	FancyButtonPreview: () => <FancyButtonPreview />,
+	CompactButtonPreview: () => <CompactButtonPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -194,7 +197,6 @@ const components: MDXComponents = {
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
-	FancyButtonPreview: () => <FancyButtonPreview />,
 
 	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
