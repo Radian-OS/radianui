@@ -31,7 +31,7 @@ const CustomSelect = ({ label, value, onChange, options }: CustomSelectProps) =>
 
 const BadgeDemo = () => {
 	const [variant, setVariant] = useState<"outline" | "strong">("outline")
-	const [size, setSize] = useState<"20" | "24" | "28" | "32">("24")
+	const [size, setSize] = useState<"20" | "24" | "28">("24")
 	const [rounded, setRounded] = useState(false)
 	const [closable, setClosable] = useState(false)
 	const [icon, setIcon] = useState("none")
@@ -54,7 +54,7 @@ const BadgeDemo = () => {
 	}
 
 	const handleSizeChange = (value: string) => {
-		setSize(value as "20" | "24" | "28" | "32")
+		setSize(value as "20" | "24" | "28")
 	}
 
 	return (
