@@ -13,12 +13,12 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 		color?: "primary" | "info" | "success" | "error" | "warning"
 	}
 
-type BadgeSize = "20" | "24" | "28" | "32"
+type BadgeSize = "20" | "24" | "28"
 
 const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
-			"neutral-outline": "outline outline-border-alpha text-text-tertiary",
+			neutral: "outline outline-border-alpha text-text-secondary",
 			strong: "",
 			outline: "",
 			pastel: "",
@@ -27,7 +27,6 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			"20": "h-5 px-1.5 text-xs rounded-sm",
 			"24": "h-6 px-2 text-xs rounded-sm",
 			"28": "h-7 px-2 text-sm rounded-md",
-			"32": "h-8 px-3 text-sm rounded-md",
 		},
 		color: {
 			primary: "",
@@ -38,7 +37,7 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 		},
 	},
 	defaultVariants: {
-		variant: "neutral-outline",
+		variant: "neutral",
 		size: "24",
 		color: "primary",
 	},
@@ -126,7 +125,7 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 	],
 })
 
-function Badge({ variant = "neutral-outline", size = "24", color = "primary", closable = false, className, children, ...props }: BadgeProps) {
+function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
 
 	if (!showBadge) return null
@@ -141,7 +140,7 @@ function Badge({ variant = "neutral-outline", size = "24", color = "primary", cl
 			{closable && (
 				<X
 					onClick={() => setShowBadge(false)}
-					className={cn(size === "20" || size === "24" ? "size-3" : "size-4", "cursor-pointer font-extrabold", variant === "neutral-outline" && "text-text-disabled")}
+					className={cn(size === "20" || size === "24" ? "size-3" : "size-4", "cursor-pointer font-extrabold", variant === "neutral" && "text-text-disabled")}
 				/>
 			)}
 		</div>
