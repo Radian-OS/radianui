@@ -190,7 +190,8 @@ function CurrencyInput({
 	useEffect(() => {
 		setRawValue((props.value as string) || "")
 		try {
-			const parts = new Intl.NumberFormat(locale, {
+			// Always use en-US for symbol detection to get standard symbols
+			const parts = new Intl.NumberFormat("en-US", {
 				style: "currency",
 				currency: currency.toUpperCase(),
 			}).formatToParts(0)
