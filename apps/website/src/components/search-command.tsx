@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react"
 import { ArrowDown, ArrowUp, Search, X } from "lucide-react"
 import Link from "next/link"
 import { NavigationItem } from "@/config/navigation-config"
@@ -19,10 +20,16 @@ type Props = {
 }
 
 export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems, selectedIndex, setSelectedIndex, itemRefs }: Props) {
+	const inputRef = useRef<HTMLInputElement>(null)
+
+	useEffect(() => {
+		inputRef.current?.focus()
+	}, [])
+
 	return (
 		<>
 			<div className="bg-fill-level1 rounded-b-none rounded-t-xl p-1.5">
-				<div className="flex items-center gap-2 px-2 py-3">
+				<div className="flex h-11 items-center gap-2 px-2 py-3">
 					<Search size={20} className="text-text-tertiary" />
 					<input
 						type="text"
@@ -40,6 +47,7 @@ export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems
 							// If there are results, move hover (selectedIndex) to the first item
 							setSelectedIndex(newFilteredItems.length > 0 ? 0 : -1)
 						}}
+						ref={inputRef}
 						className="outline-hidden placeholder:text-text-tertiary flex-1 text-sm font-normal focus:outline-0"
 					/>
 					<X size={20} className="text-text-tertiary cursor-pointer" onClick={() => setSearchTerm("")} />

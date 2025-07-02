@@ -96,6 +96,7 @@ import SearchInputExample from "@/registry/example/search-input/search-input-exa
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
+import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import ToastExample from "@/registry/example/toast/toast-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import { FrameworkDocs } from "./framework-docs"
@@ -181,6 +182,7 @@ const components: MDXComponents = {
 	ColorSpinnerExample: () => <ColorSpinnerExample />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
 	CompactButtonPreview: () => <CompactButtonPreview />,
+	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
