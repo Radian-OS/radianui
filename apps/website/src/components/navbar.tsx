@@ -67,6 +67,29 @@ export default function Navbar() {
 			})
 		}
 	}, [selectedIndex])
+
+	const drawerRef = useRef<HTMLDivElement | null>(null)
+
+	// To prevent the drawer being pushed up when keyboard is open on mobile
+	useEffect(() => {
+		const handleResize = () => {
+			if (drawerRef.current) {
+				drawerRef.current.style.setProperty("bottom", `env(safe-area-inset-bottom)`)
+			}
+		}
+
+		if (window.visualViewport) {
+			window.visualViewport.addEventListener("resize", handleResize)
+			handleResize() // Initial call in case the keyboard is already open
+		}
+
+		return () => {
+			if (window.visualViewport) {
+				window.visualViewport.removeEventListener("resize", handleResize)
+			}
+		}
+	}, [])
+
 	const pathname = usePathname()
 
 	const navLinks = [
@@ -133,6 +156,7 @@ export default function Navbar() {
 					</ul>
 				</section>
 
+				{/* For mobile screen */}
 				<Drawer
 					direction="bottom"
 					type="rounded"
@@ -144,7 +168,8 @@ export default function Navbar() {
 					handle={true}
 					modal={true}
 					preventScrollRestoration={true}
-					className="bg-fill-level3 max-h-[90%] p-3">
+					ref={drawerRef}
+					className="bg-fill-level3 h-[90%] p-3">
 					<DrawerHeader>
 						<DrawerTitle className="sr-only">Search command</DrawerTitle>
 					</DrawerHeader>
@@ -159,6 +184,8 @@ export default function Navbar() {
 						/>
 					</DrawerBody>
 				</Drawer>
+
+				{/* For desktop screen */}
 				<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
 					<ModalTrigger asChild>
 						<Button isIcon variant="outline" color="neutral" className="hidden gap-2 md:flex">

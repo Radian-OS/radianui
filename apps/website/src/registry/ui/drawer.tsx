@@ -12,6 +12,7 @@ type DrawerWrapperProps = VariantProps<typeof drawerVariants> &
 		type?: "float" | "default" | "rounded"
 		handle?: boolean
 		className?: string
+		ref?: React.Ref<HTMLDivElement>
 	}
 
 type DrawerHeaderProps = {
@@ -107,7 +108,7 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! roun
 	},
 })
 
-function Drawer({ direction = "right", type = "default", children, backdrop = "overlay", trigger, className, handle = false, ...props }: DrawerWrapperProps) {
+function Drawer({ direction = "right", type = "default", ref, children, backdrop = "overlay", trigger, className, handle = false, ...props }: DrawerWrapperProps) {
 	function getContentClass() {
 		const baseClasses = "bg-bg-base flex flex-col gap-5 overflow-hidden"
 
@@ -157,7 +158,7 @@ function Drawer({ direction = "right", type = "default", children, backdrop = "o
 			<DrawerPrimitives.Trigger asChild>{trigger || <Button>Open Drawer</Button>}</DrawerPrimitives.Trigger>
 			<DrawerPrimitives.Portal>
 				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
-				<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }), getPaddingClass(), getContentClass(), className)}>
+				<DrawerPrimitives.Content ref={ref} className={cn(drawerVariants({ direction, type }), getPaddingClass(), getContentClass(), className)}>
 					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 					{children}
 				</DrawerPrimitives.Content>

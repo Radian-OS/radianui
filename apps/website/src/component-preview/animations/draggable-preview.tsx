@@ -26,7 +26,7 @@ const DraggablePreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Draggable>
-						<Badge size="32">Person</Badge>
+						<Badge size="28">Person</Badge>
 					</Draggable>
 				</div>
 			</TabsContent>
@@ -36,7 +36,7 @@ const DraggablePreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<Draggable>
-	<Badge size="32">Person</Badge>
+	<Badge size="">Person</Badge>
 </Draggable>`}
 				/>
 			</TabsContent>

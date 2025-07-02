@@ -20,9 +20,10 @@ function usePopoverContext() {
 }
 
 function Popover({ align = "start", side = "bottom", sideOffset = 4, children, ...props }: PopoverProps) {
+	const ctxValues = React.useMemo(() => ({ align, side, sideOffset }), [align, side, sideOffset])
 	return (
 		<PopoverPrimitive.Root {...props}>
-			<PopoverContext.Provider value={{ align, side, sideOffset }}>{children}</PopoverContext.Provider>
+			<PopoverContext.Provider value={ctxValues}>{children}</PopoverContext.Provider>
 		</PopoverPrimitive.Root>
 	)
 }

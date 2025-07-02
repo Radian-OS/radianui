@@ -30,10 +30,11 @@ function useRadioGroup() {
 }
 
 function RadioGroup({ className, label, size = "md", disabled, children, ...props }: RadioGroupProps) {
+	const ctxValues = React.useMemo(() => ({ size, disabled }), [size, disabled])
 	return (
 		<div className="flex flex-col gap-3">
 			{label && <span className="text-sm font-medium">{label}</span>}
-			<RadioGroupContext.Provider value={{ size, disabled }}>
+			<RadioGroupContext.Provider value={ctxValues}>
 				<RadioGroupPrimitive.Root disabled={disabled} className={cn("flex flex-col gap-3", className)} data-slot="radio-group" {...props}>
 					{children}
 				</RadioGroupPrimitive.Root>
