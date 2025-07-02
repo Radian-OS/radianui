@@ -220,7 +220,7 @@ export default function Navbar() {
 					<HamburgerMenuIcon className="size-6" />
 				</Button>
 				<nav
-					className={`bg-bg-base fixed right-0 top-0 flex h-screen w-full transform flex-col gap-3 overflow-y-scroll transition-transform duration-300 ease-in-out md:px-5 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+					className={`bg-bg-base fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-scroll transition-transform duration-300 ease-in-out md:px-5 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
 					<div className="border-border-alpha flex min-h-16 items-center justify-between border-b px-5">
 						<Link href="/" style={{ fill: "white", color: "white" }}>
 							<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
@@ -247,7 +247,7 @@ export default function Navbar() {
 						<ul className="text-fg1 flex flex-col items-start text-base font-medium">
 							{navLinks.map((item) => (
 								<li key={item.name} onClick={() => setIsMobileMenuOpen(false)} className="flex w-full items-center">
-									<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full py-4 leading-6`} href={item.link}>
+									<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full py-3 leading-6`} href={item.link}>
 										{item.name}
 									</Link>
 								</li>
@@ -258,14 +258,14 @@ export default function Navbar() {
 							{navigationItems.map((section) => (
 								<AccordionItem className="border-none" value={section.title} key={section.title}>
 									<section>
-										<AccordionTrigger className="py-4 text-base">{section.title}</AccordionTrigger>
+										<AccordionTrigger className="py-3 text-base">{section.title}</AccordionTrigger>
 										<AccordionContent>
 											<div className="flex flex-col items-start">
 												{section.items.map((item) => (
 													<Link
 														onClick={() => setIsMobileMenuOpen(false)}
 														key={item.url}
-														className={`${pathname === item.url ? "text-fg0" : ""} text-text flex w-full items-center py-4 text-base font-normal`}
+														className={`${pathname === item.url ? "text-fg0" : ""} text-text flex w-full items-center py-3 text-base font-normal`}
 														href={item.url}>
 														{item.title}
 													</Link>
