@@ -8,19 +8,12 @@ description: Displays a form textarea or a component that looks like a textarea
 ## Installation
 
 <Code language="bash" code={`pnpm radianos add textarea`} />
+
 ## Imports
+
 <Code language="tsx" code={`import { TextArea } from "@/registry/ui/text-area"`} />
 
-## Props
-
-| Prop Name | Default Values | Values  |
-| --------- | -------------- | ------- |
-| resizable | false          | boolean |
-| hasError  | false          | boolean |
-| rows      | 4              | integer |
-| hint      | -              | string  |
-
-## Usesage
+## Usage
 
 <Code
 	language="tsx"
@@ -33,3 +26,18 @@ disabled={false}
 rows={4}
  />`}
 />
+
+## Examples
+
+### Content size based text area
+
+<ContentBasedTextAreaExample />
+
+## Props
+
+| Prop Name | Default Values | Values  |
+| --------- | -------------- | ------- |
+| resizable | false          | boolean |
+| hasError  | false          | boolean |
+| rows      | 4              | integer |
+| hint      | -              | string  |
