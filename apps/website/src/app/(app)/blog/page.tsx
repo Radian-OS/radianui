@@ -8,13 +8,13 @@ export const metadata: Metadata = {
 
 export default function Blog() {
 	return (
-		<div className="max-w-310 border-x-1 mx-auto h-svh">
+		<div className="mx-auto max-w-7xl">
 			<div className="w-full">
-				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:px-6 lg:px-10">
-					<h1 className="heading-4 text-text">Blogs</h1>
-					<p className="body-15 text-text-secondary font-normal">Get all the latest blogs about RadianOS</p>
+				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 sm:px-6 md:px-8 lg:px-10">
+					<h1 className="text-text text-2xl font-bold sm:text-3xl lg:text-4xl">Blogs</h1>
+					<p className="text-text-secondary text-sm font-normal sm:text-base lg:text-lg">Get all the latest blogs about RadianOS</p>
 				</div>
-				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
+				<div className="bg-border h-px w-full" />
 			</div>
 		</div>
 	)

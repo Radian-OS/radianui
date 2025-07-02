@@ -243,34 +243,40 @@ export default function Navbar() {
 						<TabletMobileThemeToggler />
 					</div>
 
-					<ul className="text-fg1 flex flex-col items-start text-sm font-medium">
-						{navLinks.map((item) => (
-							<li key={item.name} className="flex h-14 w-full items-center px-5 py-4">
-								<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
-									{item.name}
-								</Link>
-							</li>
-						))}
-					</ul>
+					<div>
+						<ul className="text-fg1 flex flex-col items-start text-sm font-medium">
+							{navLinks.map((item) => (
+								<li key={item.name} onClick={() => setIsMobileMenuOpen(false)} className="flex w-full items-center">
+									<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full px-5 py-4`} href={item.link}>
+										{item.name}
+									</Link>
+								</li>
+							))}
+						</ul>
 
-					<Accordion size="sm" variant="open" collapsible className="px-5">
-						{navigationItems.map((section) => (
-							<AccordionItem className="border-none" value={section.title} key={section.title}>
-								<section>
-									<AccordionTrigger>{section.title}</AccordionTrigger>
-									<AccordionContent>
-										<div className="flex flex-col items-start">
-											{section.items.map((item) => (
-												<Link key={item.url} className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`} href={item.url}>
-													{item.title}
-												</Link>
-											))}
-										</div>
-									</AccordionContent>
-								</section>
-							</AccordionItem>
-						))}
-					</Accordion>
+						<Accordion size="sm" variant="open" collapsible className="px-5">
+							{navigationItems.map((section) => (
+								<AccordionItem className="border-none" value={section.title} key={section.title}>
+									<section>
+										<AccordionTrigger>{section.title}</AccordionTrigger>
+										<AccordionContent>
+											<div className="flex flex-col items-start">
+												{section.items.map((item) => (
+													<Link
+														onClick={() => setIsMobileMenuOpen(false)}
+														key={item.url}
+														className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`}
+														href={item.url}>
+														{item.title}
+													</Link>
+												))}
+											</div>
+										</AccordionContent>
+									</section>
+								</AccordionItem>
+							))}
+						</Accordion>
+					</div>
 				</nav>
 			</div>
 		</nav>

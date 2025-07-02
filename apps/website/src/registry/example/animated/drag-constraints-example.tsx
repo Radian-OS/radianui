@@ -35,7 +35,7 @@ export default function CollaborationPointerExample() {
 
 <div ref={containerRef} className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
 	<Draggable dragConstraints={containerRef}>
-		<Badge size="32" variant="pastel">
+		<Badge size="" variant="pastel">
 			John Doe
 		</Badge>
 	</Draggable>

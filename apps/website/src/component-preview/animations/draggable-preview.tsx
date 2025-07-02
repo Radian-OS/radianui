@@ -36,7 +36,7 @@ const DraggablePreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<Draggable>
-	<Badge size="32">Person</Badge>
+	<Badge size="">Person</Badge>
 </Draggable>`}
 				/>
 			</TabsContent>
