@@ -5,7 +5,7 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgePreview = () => {
-	const [variant, setVariant] = useState<"strong" | "neutral" | "outline" | "pastel">("strong")
+	const [variant, setVariant] = useState<"strong" | "neutral" | "outline" | "soft">("strong")
 	const [color, setColor] = useState<"primary" | "info" | "success" | "error" | "warning">("primary")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [size, setSize] = useState<"24" | "20" | "28">("24")
@@ -31,7 +31,7 @@ const BadgePreview = () => {
 										<DropdownItem value="neutral">Neutral</DropdownItem>
 										<DropdownItem value="strong">Strong</DropdownItem>
 										<DropdownItem value="outline">Outline</DropdownItem>
-										<DropdownItem value="pastel">Pastel</DropdownItem>
+										<DropdownItem value="soft">Soft</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

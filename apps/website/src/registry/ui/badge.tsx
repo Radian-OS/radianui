@@ -21,7 +21,7 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			neutral: "outline outline-border-alpha text-text-secondary",
 			strong: "",
 			outline: "",
-			pastel: "",
+			soft: "",
 		},
 		size: {
 			"20": "h-5 px-1.5 text-xs rounded-sm",
@@ -96,29 +96,29 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			className: "text-warning-text outline outline-warning bg-transparent",
 		},
 
-		// Pastel variant + colors
+		// soft variant + colors
 		{
-			variant: "pastel",
+			variant: "soft",
 			color: "primary",
 			className: "bg-primary-accent text-primary-text",
 		},
 		{
-			variant: "pastel",
+			variant: "soft",
 			color: "info",
 			className: "bg-info-accent text-info-text",
 		},
 		{
-			variant: "pastel",
+			variant: "soft",
 			color: "success",
 			className: "bg-success-accent text-success-text",
 		},
 		{
-			variant: "pastel",
+			variant: "soft",
 			color: "error",
 			className: "bg-error-accent text-error-text",
 		},
 		{
-			variant: "pastel",
+			variant: "soft",
 			color: "warning",
 			className: "bg-warning-accent text-warning-text",
 		},
