@@ -124,7 +124,6 @@ export default function ColorPickerPreview() {
     label="${label ? "Select Color" : ""}"
 	${hint ? `hint="Hint text to help the user with input"` : ""}
 	defaultColor={{ h: 210, s: 100, v: 100, a: 100 }}
-
 />
 `}
 				/>

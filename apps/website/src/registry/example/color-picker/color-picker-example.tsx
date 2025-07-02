@@ -133,6 +133,7 @@ const handleFormatChange = (newFormat: ColorFormatOptions) => {
 			onInputFormatChange={handleFormatChange}
 			className="w-62 rounded-r-none border-r-0 focus-within:border-r"
 			${hint ? `hint="Hint text to help the user with input"` : ""}
+			defaultColor={{ h: 210, s: 100, v: 100, a: 100 }}
 		/>
 		<Select
 			selectedValues={[inputFormat]}
