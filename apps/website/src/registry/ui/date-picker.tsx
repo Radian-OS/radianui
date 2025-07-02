@@ -548,7 +548,7 @@ function TypeableDatePicker({
 							})}
 						/>
 					</div>
-					<Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
+					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}{" "}
 				</div>
 			</PopoverTrigger>
 
