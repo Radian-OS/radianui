@@ -23,6 +23,10 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	color?: ButtonProps["color"]
 }
 
+type CompactButtonProps = Omit<ButtonProps, "isIcon" | "lead" | "trail" | "size"> & {
+	size?: "20" | "24"
+}
+
 const buttonVariants = cva(
 	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
@@ -286,4 +290,41 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 }
 ButtonGroup.displayName = "ButtonGroup"
 
-export { Button, ButtonGroup }
+function CompactButton({ loading = false, variant = "strong", size = "24", color = "primary", className, children, disabled, ...props }: CompactButtonProps) {
+	// Get size-specific styles - SVG always 16px, size controls height and width
+	const sizeStyles =
+		size === "20"
+			? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" // Force 16px SVGs, 20px height and width
+			: "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md" // Force 16px SVGs, 24px height and width
+
+	// Force compact styling with 4px border radius and size-based dimensions - icon-only design
+	const combinedClass = cn(
+		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
+		sizeStyles, // Size-specific height/width and SVG sizing
+		// Apply variant and color styles
+		buttonVariants({ variant, size: "36", isIcon: true, color })
+			.split(" ")
+			.filter(
+				(cls) =>
+					!cls.includes("rounded") &&
+					!cls.includes("h-") &&
+					!cls.includes("w-") &&
+					!cls.includes("px-") &&
+					!cls.includes("gap-") &&
+					!cls.includes("[&>svg]") &&
+					!cls.includes("text-")
+			)
+			.join(" "),
+		disabled && "opacity-50",
+		className
+	)
+
+	return (
+		<button className={combinedClass} disabled={disabled} {...props}>
+			{loading ? <Spinner size={16} /> : children}
+		</button>
+	)
+}
+CompactButton.displayName = "CompactButton"
+
+export { Button, ButtonGroup, CompactButton }

@@ -1,33 +1,49 @@
 import { useState } from "react"
 import { X } from "lucide-react"
-import { Button } from "@/registry/ui/button"
+import { CompactButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CompactButtonPreview = () => {
-	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
-	const [size, setSize] = useState<sizes>("40")
+	type sizes = "20" | "24"
+	const [size, setSize] = useState<sizes>("20")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
 	const [variant, setVariant] = useState<"outline" | "ghost" | "static-white">("outline")
 
 	const code = (() => {
 		if (variant === "outline") {
-			return `<Button disabled={${disabled === "true"}} size="${size}" isIcon className="focus-visible:ring-offset-4 disabled:text-text-secondary mt-2 outline outline-soft shadow-[0px_1px_1px_0px_rgba(25,24,27,0.04)] text-text-secondary hover:bg-bg-alpha-2" color="neutral" variant="outline">
-  <X />
-</Button>`
+			return `<CompactButton
+size="${size}"
+disabled={${disabled === "true"}}
+color="neutral"
+variant="outline"
+className="focus-visible:ring-offset-4 focus-visible:ring-2"
+>
+ <X />
+</CompactButton>`
 		}
 
 		if (variant === "ghost") {
-			return `<Button size="${size}" disabled={${disabled === "true"}} isIcon variant="ghost" color="neutral">
-  <X />
-</Button>`
+			return `<CompactButton
+size="${size}"
+disabled={${disabled === "true"}}
+variant="ghost"
+color="neutral"
+>
+ <X />
+</CompactButton>`
 		}
 
 		if (variant === "static-white") {
-			return `<Button size="${size}" disabled={${disabled === "true"}} isIcon variant="ghost" color="neutral">
-  <X className="stroke-static-white" />
-</Button>`
+			return `<CompactButton
+size="${size}"
+disabled={${disabled === "true"}}
+variant="ghost"
+color="neutral"
+>
+ <X className="stroke-static-white" />
+</CompactButton>`
 		}
 
 		return "" // fallback
@@ -83,12 +99,8 @@ const CompactButtonPreview = () => {
 										}}
 										minSelectionCount={1}
 										selectedValues={[size]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
+										<DropdownItem value="20">20</DropdownItem>
+										<DropdownItem value="24">24</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -102,28 +114,20 @@ const CompactButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-2 overflow-auto rounded-xl border">
-					{variant === "outline" && (
-						<Button
-							disabled={disabled === "true"}
-							size={size}
-							isIcon
-							className="disabled:text-text-secondary outline-soft text-text-secondary hover:bg-bg-alpha-2 mt-2 shadow-[0px_1px_1px_0px_rgba(25,24,27,0.04)] outline focus-visible:ring-offset-4"
-							color="neutral"
-							variant="outline">
-							<X />
-							<span className="sr-only">Outline</span>
-						</Button>
+					{variant === "static-white" && (
+						<CompactButton size={size} disabled={disabled === "true"} variant="ghost" color="neutral">
+							<X className="stroke-static-white" />
+						</CompactButton>
 					)}
 					{variant === "ghost" && (
-						<Button size={size} disabled={disabled === "true"} isIcon variant="ghost" color="neutral">
+						<CompactButton size={size} disabled={disabled === "true"} variant="ghost" color="neutral">
 							<X />
-							<span className="sr-only">Ghost</span>
-						</Button>
+						</CompactButton>
 					)}
-					{variant === "static-white" && (
-						<Button size={size} disabled={disabled === "true"} isIcon variant="ghost" color="neutral">
-							<X className="stroke-static-white" />
-						</Button>
+					{variant === "outline" && (
+						<CompactButton size={size} disabled={disabled === "true"} color="neutral" variant="outline" className="focus-visible:ring-2 focus-visible:ring-offset-4">
+							<X />
+						</CompactButton>
 					)}
 				</div>
 			</TabsContent>
