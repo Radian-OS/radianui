@@ -9,7 +9,7 @@ import { Draggable } from "@/registry/animated/make-draggable"
 import { TextReveal } from "@/registry/animated/text-reveal"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"
+import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 
 export default function Hero01() {
 	const companies = [
@@ -65,19 +65,21 @@ export default function Hero01() {
 									Sign in
 								</Button>
 								<Button size="36">Get Started</Button>
-								<Drawer
-									trigger={
+								<Drawer>
+									<DrawerTrigger asChild>
 										<Button isIcon className="text-text-tertiary md:hidden" variant="ghost" size="36">
 											<Menu size={20} />
 										</Button>
-									}>
-									<DrawerTitle>
-										<DrawerClose>
-											<Button isIcon color="neutral" variant="soft">
-												<X className="size-5" />
-											</Button>
-										</DrawerClose>
-									</DrawerTitle>
+									</DrawerTrigger>
+									<DrawerContent>
+										<DrawerTitle>
+											<DrawerClose>
+												<Button isIcon color="neutral" variant="soft">
+													<X className="size-5" />
+												</Button>
+											</DrawerClose>
+										</DrawerTitle>
+									</DrawerContent>
 								</Drawer>
 							</div>
 						</div>

@@ -12,7 +12,7 @@ import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerBody, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import SearchCommand from "./search-command"
 
@@ -157,32 +157,28 @@ export default function Navbar() {
 				</section>
 
 				{/* For mobile screen */}
-				<Drawer
-					direction="bottom"
-					type="rounded"
-					trigger={
+				<Drawer direction="bottom" type="rounded" handle={true} modal={true} preventScrollRestoration={true}>
+					<DrawerTrigger asChild>
 						<Button isIcon variant="outline" color="neutral" className="md:hidden">
 							<Search />
 						</Button>
-					}
-					handle={true}
-					modal={true}
-					preventScrollRestoration={true}
-					ref={drawerRef}
-					className="bg-fill-level3 h-[90%] p-3">
-					<DrawerHeader>
-						<DrawerTitle className="sr-only">Search command</DrawerTitle>
-					</DrawerHeader>
-					<DrawerBody>
-						<SearchCommand
-							filteredItems={filteredItems}
-							itemRefs={itemRefs}
-							searchTerm={searchTerm}
-							selectedIndex={selectedIndex}
-							setSearchTerm={setSearchTerm}
-							setSelectedIndex={setSelectedIndex}
-						/>
-					</DrawerBody>
+					</DrawerTrigger>
+
+					<DrawerContent ref={drawerRef} className="bg-fill-level3 h-[90dvh] p-3">
+						<DrawerHeader>
+							<DrawerTitle className="sr-only">Search command</DrawerTitle>
+						</DrawerHeader>
+						<div className="h-full">
+							<SearchCommand
+								filteredItems={filteredItems}
+								itemRefs={itemRefs}
+								searchTerm={searchTerm}
+								selectedIndex={selectedIndex}
+								setSearchTerm={setSearchTerm}
+								setSelectedIndex={setSelectedIndex}
+							/>
+						</div>
+					</DrawerContent>
 				</Drawer>
 
 				{/* For desktop screen */}
