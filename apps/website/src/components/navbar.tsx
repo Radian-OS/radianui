@@ -243,29 +243,29 @@ export default function Navbar() {
 						<TabletMobileThemeToggler />
 					</div>
 
-					<div>
-						<ul className="text-fg1 flex flex-col items-start text-sm font-medium">
+					<div className="text-text px-5">
+						<ul className="text-fg1 flex flex-col items-start text-base font-medium">
 							{navLinks.map((item) => (
 								<li key={item.name} onClick={() => setIsMobileMenuOpen(false)} className="flex w-full items-center">
-									<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full px-5 py-4`} href={item.link}>
+									<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full py-4 leading-6`} href={item.link}>
 										{item.name}
 									</Link>
 								</li>
 							))}
 						</ul>
 
-						<Accordion size="sm" variant="open" collapsible className="px-5">
+						<Accordion size="sm" variant="open" collapsible>
 							{navigationItems.map((section) => (
 								<AccordionItem className="border-none" value={section.title} key={section.title}>
 									<section>
-										<AccordionTrigger>{section.title}</AccordionTrigger>
+										<AccordionTrigger className="py-4 text-base">{section.title}</AccordionTrigger>
 										<AccordionContent>
 											<div className="flex flex-col items-start">
 												{section.items.map((item) => (
 													<Link
 														onClick={() => setIsMobileMenuOpen(false)}
 														key={item.url}
-														className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`}
+														className={`${pathname === item.url ? "text-fg0" : ""} text-text flex w-full items-center py-4 text-base font-normal`}
 														href={item.url}>
 														{item.title}
 													</Link>
