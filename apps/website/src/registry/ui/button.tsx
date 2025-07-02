@@ -175,7 +175,8 @@ const buttonVariants = cva(
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "bg-bg-level1 font-medium outline outline-border  hover:bg-bg-alpha-2 focus-visible:ring-border",
+				className:
+					"bg-bg-level1 font-medium outline outline-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
 			},
 
 			// Ghost variant + colors
