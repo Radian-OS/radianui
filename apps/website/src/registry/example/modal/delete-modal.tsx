@@ -30,7 +30,9 @@ export default function DeleteModalExample() {
 							</ModalHeader>
 							<ModalFooter>
 								<ModalClose asChild>
-									<Button variant="outline">Cancel</Button>
+									<Button color="neutral" variant="outline">
+										Cancel
+									</Button>
 								</ModalClose>
 								<Button variant={"strong"} color={"error"}>
 									Delete

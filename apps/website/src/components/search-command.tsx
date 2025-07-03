@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useRef } from "react"
 import { ArrowDown, ArrowUp, Search, X } from "lucide-react"
 import Link from "next/link"
 import { NavigationItem } from "@/config/navigation-config"
@@ -22,9 +22,9 @@ type Props = {
 export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems, selectedIndex, setSelectedIndex, itemRefs }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null)
 
-	useEffect(() => {
-		inputRef.current?.focus()
-	}, [])
+	// useEffect(() => {
+	// 	inputRef.current?.focus()
+	// }, [])
 
 	return (
 		<>

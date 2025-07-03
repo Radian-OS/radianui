@@ -9,13 +9,13 @@ interface Props {
 
 const layout = ({ children }: Props) => {
 	return (
-		<main className="gap-30 flex">
+		<div className="flex w-full max-w-full flex-1">
+			{/* Left Sidebar */}
 			<Sidebar />
 
-			<section className="relative flex w-full justify-center gap-8 overflow-auto px-4 py-12 md:px-5 lg:px-6">
-				<div className="max-w-200 w-full">{children}</div>
-			</section>
-		</main>
+			{/* Main Content Area (children will handle their own layout) */}
+			<div className="min-w-0 flex-1">{children}</div>
+		</div>
 	)
 }
 

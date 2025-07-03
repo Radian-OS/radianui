@@ -11,13 +11,13 @@ function PreviousNextButtons({ currentPath, className }: { currentPath: string; 
 	return (
 		<div className={cn("flex items-center justify-between", className)}>
 			<Link href={prev?.url ?? "#"} className={cn(!prev && "invisible")} aria-hidden={!prev}>
-				<Button color="neutral" variant="soft" lead={<ArrowLeft />}>
+				<Button color="neutral" size={"32"} variant="soft" lead={<ArrowLeft className="size-4" />}>
 					{prev?.title}
 				</Button>
 			</Link>
 
 			<Link href={next?.url ?? "#"} className={cn(!next && "invisible")} aria-hidden={!next}>
-				<Button color="neutral" variant="soft" trail={<ArrowRight />}>
+				<Button color="neutral" size={"32"} variant="soft" trail={<ArrowRight className="size-4" />}>
 					{next?.title}
 				</Button>
 			</Link>

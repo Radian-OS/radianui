@@ -43,6 +43,10 @@ export const Doc = defineDocumentType(() => ({
 		},
 	},
 	computedFields: {
+		rawMdx: {
+			type: "string",
+			resolve: (doc: any) => doc.body.raw,
+		},
 		slug: {
 			type: "string",
 			resolve: (doc: any) => `/${doc._raw.flattenedPath}`,

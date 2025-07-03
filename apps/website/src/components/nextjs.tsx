@@ -1,7 +1,7 @@
 "use client"
 
 import { CodeArea } from "@/registry/ui/code"
-import PackageManagerTabs from "./package-manager-tab"
+import PackageManagerTabs from "./cli-tabs"
 
 const Nextjs = () => {
 	const language = "bash"

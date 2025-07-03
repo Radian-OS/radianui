@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import PackageManagerTabs from "@/components/package-manager-tab"
+import PackageManagerTabs from "@/components/cli-tabs"
 import { CodeArea } from "@/registry/ui/code"
 
 const Manual = () => {

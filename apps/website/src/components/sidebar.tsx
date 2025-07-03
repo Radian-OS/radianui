@@ -17,8 +17,8 @@ export default function Sidebar() {
 
 	return (
 		<>
-			<aside className="w-70 hidden lg:block" />
-			<aside className="no-scrollbar fixed z-30 hidden h-[calc(100vh-4.5rem)] w-64 justify-start overflow-y-scroll border-e px-2.5 pt-2.5 text-sm lg:flex lg:flex-col">
+			{/* <aside className="w-65 hidden lg:block" /> */}
+			<aside className="no-scrollbar top-15.5 w-65 sticky z-30 hidden h-[calc(100vh-3.875rem)] justify-start overflow-y-auto border-e px-2.5 pt-2.5 text-sm lg:flex lg:flex-col">
 				<Accordion type="single" collapsible value={accordionValue} onValueChange={(value) => setAccordionValue(value)}>
 					{navigationItems.map((section) => (
 						<AccordionItem className="mb-0 border-none" value={section.title} key={section.title}>
