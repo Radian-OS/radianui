@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import FileUpload from "@/registry/ui/file-upload"
+import FileUpload, { FileWithPreview } from "@/registry/ui/file-upload"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -33,6 +33,9 @@ const FileUploadPreview = () => {
 		"video/*": "MP4, MOV or other video files",
 		"*": "Any file type",
 	}
+
+	const [files, setFiles] = useState<FileWithPreview[]>([])
+	// console.log("Files:", files)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -163,6 +166,8 @@ const FileUploadPreview = () => {
 				<div className={`flex h-[420px] justify-center ${variant === "input" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
 					<FileUpload
 						title="Drag and drop files to upload"
+						value={files}
+						onChange={setFiles}
 						description={formatDescriptionMap[format]}
 						hint={hint ? "Hint text to help the user with input" : ""}
 						variant={variant}

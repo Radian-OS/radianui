@@ -40,7 +40,8 @@ const getFileIcon = (file: { file: File | { type: string; name: string; preview?
 }
 
 type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
-	maxSize?: number // Maximum file size allowed in bytes
+	maxSize?: number
+	containerClassName?: string
 	rounded?: RoundedOptions
 	label?: string
 	variant?: string
@@ -55,6 +56,8 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	description?: string
 	hint?: string
 	hasError?: boolean
+	value?: FileWithPreview[] // External file list
+	onChange?: (files: FileWithPreview[]) => void // Callback when files change
 }
 const DEFAULT_MAX_SIZE = 5 * 1024 * 1024 // 5 MB in bytes
 
@@ -74,7 +77,26 @@ function FileUpload({
 	hasError = false,
 	title = "Drag and drop files to upload",
 	description = "JPG, PNG, GIF or other image files",
+	value,
+	onChange,
 }: FileUploadProps) {
+	// Convert external value to initialFiles format
+	const initialFiles = value
+		? value.map((fileWithPreview) => {
+				if (fileWithPreview.file instanceof File) {
+					return {
+						id: fileWithPreview.id,
+						name: fileWithPreview.file.name,
+						size: fileWithPreview.file.size,
+						type: fileWithPreview.file.type,
+						url: fileWithPreview.preview || URL.createObjectURL(fileWithPreview.file),
+					}
+				} else {
+					return fileWithPreview.file as FileMetadata
+				}
+			})
+		: []
+
 	const maxSizeValue = maxSize * 1024 * 1024
 
 	const [{ files, isDragging, errors }, { handleDragEnter, handleFileChange, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps }] =
@@ -83,6 +105,8 @@ function FileUpload({
 			maxSize: maxSizeValue,
 			multiple: maxFiles > 1 ? multiple : false,
 			maxFiles,
+			initialFiles,
+			onFilesChange: onChange,
 		})
 
 	const cvaFileUploadVariants = {
