@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { EyeIcon, SquareTerminal } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -36,8 +37,16 @@ export default function AccordionPreview() {
 	const [interaction, setInteraction] = useState<Interaction>(DEFAULT_INTERACTION)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"} className="mb-10">
 			<div className="flex items-center justify-between">
+				<TabsList>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
+				</TabsList>
 				<div className="flex items-center gap-3">
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
@@ -82,10 +91,6 @@ export default function AccordionPreview() {
 						</DropdownContent>
 					</Dropdown>
 				</div>
-				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
-				</TabsList>
 			</div>
 
 			<TabsContent value="preview">
