@@ -1,18 +1,27 @@
 "use client"
 
+import React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
+
+type BackdropType = "overlay" | "blur" | null
+type DrawerType = "float" | "default" | "rounded"
+type DirectionType = "top" | "bottom" | "right" | "left"
+
+export type DrawerContextType = {
+	backdrop: BackdropType
+	type: DrawerType
+	handle: boolean
+	direction: DirectionType
+}
 
 type DrawerWrapperProps = VariantProps<typeof drawerVariants> &
 	React.ComponentProps<typeof DrawerPrimitives.Root> & {
-		trigger?: React.ReactNode
-		backdrop?: "overlay" | "blur" | null
-		type?: "float" | "default" | "rounded"
+		backdrop?: BackdropType
+		type?: DrawerType
 		handle?: boolean
 		className?: string
-		ref?: React.Ref<HTMLDivElement>
 	}
 
 type DrawerHeaderProps = {
@@ -108,62 +117,91 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! roun
 	},
 })
 
-function Drawer({ direction = "right", type = "default", ref, children, backdrop = "overlay", trigger, className, handle = false, ...props }: DrawerWrapperProps) {
-	function getContentClass() {
-		const baseClasses = "bg-bg-base flex flex-col gap-5 overflow-hidden"
+function getContentClass(type: DrawerType, direction: DirectionType) {
+	const baseClasses = "bg-bg-base flex flex-col gap-5 overflow-hidden"
 
-		// Handle float type
-		if (type === "float") {
-			return cn(baseClasses, "rounded-xl shadow-lg outline outline-border")
-		}
-
-		// Handle rounded type
-		if (type === "rounded") {
-			switch (direction) {
-				case "top":
-					return cn(baseClasses, "outline outline-border rounded-b-xl")
-				case "bottom":
-					return cn(baseClasses, "outline outline-border rounded-t-xl")
-				case "left":
-					return cn(baseClasses, "outline outline-border rounded-r-xl")
-				case "right":
-					return cn(baseClasses, "outline outline-border rounded-l-xl")
-				default:
-					return baseClasses
-			}
-		}
-
-		// Default type
-		return baseClasses
+	// Handle float type
+	if (type === "float") {
+		return cn(baseClasses, "rounded-xl shadow-lg outline outline-border")
 	}
 
-	function getPaddingClass() {
-		if (handle) {
-			switch (direction) {
-				case "top":
-					return "pb-7.5 pt-5 pl-5 pr-5"
-				case "bottom":
-					return "pt-7.5 pb-5 pl-5 pr-5"
-				case "left":
-					return "pr-7.5 pt-5 pl-5 pb-5"
-				case "right":
-					return "pl-7.5 pt-5 pb-5 pr-5"
-			}
+	// Handle rounded type
+	if (type === "rounded") {
+		switch (direction) {
+			case "top":
+				return cn(baseClasses, "outline outline-border rounded-b-xl")
+			case "bottom":
+				return cn(baseClasses, "outline outline-border rounded-t-xl")
+			case "left":
+				return cn(baseClasses, "outline outline-border rounded-r-xl")
+			case "right":
+				return cn(baseClasses, "outline outline-border rounded-l-xl")
+			default:
+				return baseClasses
 		}
-		return "p-5"
 	}
+
+	// Default type
+	return baseClasses
+}
+
+function getPaddingClass(handle: boolean, direction: DirectionType) {
+	if (handle) {
+		switch (direction) {
+			case "top":
+				return "pb-7.5 pt-5 pl-5 pr-5"
+			case "bottom":
+				return "pt-7.5 pb-5 pl-5 pr-5"
+			case "left":
+				return "pr-7.5 pt-5 pl-5 pb-5"
+			case "right":
+				return "pl-7.5 pt-5 pb-5 pr-5"
+		}
+	}
+	return "p-5"
+}
+
+const DrawerContext = React.createContext<DrawerContextType | null>(null)
+
+function useDrawer() {
+	const context = React.use(DrawerContext)
+	if (!context) {
+		throw new Error("useDrawer must be used within DrawerContext")
+	}
+	return context
+}
+
+function Drawer({ direction = "right", type = "default", children, backdrop = "overlay", handle = false, ...props }: DrawerWrapperProps) {
+	const ctxValues = React.useMemo(() => ({ direction, type, backdrop, handle }), [direction, type, backdrop, handle])
 
 	return (
-		<DrawerPrimitives.Root direction={direction} {...props}>
-			<DrawerPrimitives.Trigger asChild>{trigger || <Button>Open Drawer</Button>}</DrawerPrimitives.Trigger>
-			<DrawerPrimitives.Portal>
-				<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
-				<DrawerPrimitives.Content ref={ref} className={cn(drawerVariants({ direction, type }), getPaddingClass(), getContentClass(), className)}>
-					{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
-					{children}
-				</DrawerPrimitives.Content>
-			</DrawerPrimitives.Portal>
-		</DrawerPrimitives.Root>
+		<DrawerContext value={ctxValues}>
+			<DrawerPrimitives.Root direction={direction} {...props}>
+				{children}
+			</DrawerPrimitives.Root>
+		</DrawerContext>
+	)
+}
+
+function DrawerTrigger({ asChild, children, ...props }: React.ComponentPropsWithRef<typeof DrawerPrimitives.Trigger>) {
+	return (
+		<DrawerPrimitives.Trigger asChild {...props}>
+			{asChild ? children : <span>{children}</span>}
+		</DrawerPrimitives.Trigger>
+	)
+}
+
+function DrawerContent({ children, className, ...props }: React.ComponentPropsWithRef<typeof DrawerPrimitives.Content>) {
+	const { backdrop, direction, handle, type } = useDrawer()
+
+	return (
+		<DrawerPrimitives.Portal>
+			<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
+			<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }), getPaddingClass(handle, direction), getContentClass(type, direction), className)} {...props}>
+				{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
+				{children}
+			</DrawerPrimitives.Content>
+		</DrawerPrimitives.Portal>
 	)
 }
 
@@ -191,4 +229,4 @@ function DrawerClose({ children }: DrawerCloseProps) {
 	return <DrawerPrimitives.Close asChild>{children}</DrawerPrimitives.Close>
 }
 
-export { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle }
+export { Drawer, DrawerTrigger, DrawerContent, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle }

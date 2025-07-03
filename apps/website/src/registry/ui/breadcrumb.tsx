@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { ChevronRight, Ellipsis, Slash } from "lucide-react"
+import { ChevronRight, Ellipsis } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
@@ -82,7 +82,7 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 											</DropdownContent>
 										</Dropdown>
 									</BreadcrumbItem>
-									{separator === "slash" ? <Slash size={14} className="stroke-text-tertiary" /> : <ChevronRight size={14} className="stroke-text-tertiary" />}
+									{separator === "slash" ? <span className="text-text-tertiary text-sm">/</span> : <ChevronRight size={14} className="stroke-text-tertiary" />}
 								</>
 							)}
 						</React.Fragment>
@@ -95,8 +95,6 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 Breadcrumb.displayName = "Breadcrumb"
 
 function BreadcrumbItem({ children, href, isCurrent = false, className = "", showSeparator = false, separator = "default", ...props }: BreadcrumbItemProps) {
-	const SeparatorIcon = separator === "slash" ? Slash : ChevronRight
-
 	return (
 		<>
 			<li className="flex items-center justify-center" {...props}>
@@ -124,7 +122,7 @@ function BreadcrumbItem({ children, href, isCurrent = false, className = "", sho
 					</span>
 				)}
 			</li>
-			{showSeparator && <SeparatorIcon size={14} className="stroke-text-tertiary" />}
+			{showSeparator && (separator === "slash" ? <span className="text-text-tertiary text-sm">/</span> : <ChevronRight size={14} className="stroke-text-tertiary" />)}
 		</>
 	)
 }

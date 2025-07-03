@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import FileUpload from "@/registry/ui/file-upload"
+import FileUpload, { FileWithPreview } from "@/registry/ui/file-upload"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -24,6 +24,7 @@ const FileUploadPreview = () => {
 	const [maxFile, setMaxFile] = useState<MaxFileOptions>("4")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [hint, setHint] = useState<boolean>(false)
+	const [hasError, setHasError] = useState<boolean>(false)
 
 	const formatDescriptionMap: Record<string, string> = {
 		"image/*": "JPG, PNG, GIF or other image files",
@@ -32,6 +33,9 @@ const FileUploadPreview = () => {
 		"video/*": "MP4, MOV or other video files",
 		"*": "Any file type",
 	}
+
+	const [files, setFiles] = useState<FileWithPreview[]>([])
+	// console.log("Files:", files)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -95,6 +99,19 @@ const FileUploadPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
+								<DropdownSubTrigger>Has error</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										selectedValues={[String(hasError)]}
+										onSelectedChange={(hasError) => setHasError(hasError[0] === "true")}
+										minSelectionCount={1}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
@@ -149,15 +166,18 @@ const FileUploadPreview = () => {
 				<div className={`flex h-[420px] justify-center ${variant === "input" ? "items-center" : "pt-24"} overflow-auto rounded-xl border`}>
 					<FileUpload
 						title="Drag and drop files to upload"
+						value={files}
+						onChange={setFiles}
 						description={formatDescriptionMap[format]}
 						hint={hint ? "Hint text to help the user with input" : ""}
 						variant={variant}
 						sizes={size}
-						className="pb-14"
+						className="w-80 pb-14"
 						accept={format}
 						label={label ? "File" : undefined}
 						rounded={rounded}
 						maxSize={Number(maxSize)}
+						hasError={hasError}
 						disabled={disabled}
 						maxFiles={Number(maxFile)}
 					/>
@@ -173,6 +193,7 @@ const FileUploadPreview = () => {
 	title="Drag and drop files to upload"
 	description="${formatDescriptionMap[format]}"
 	sizes="${size}"
+	className="w-80"
 	variant="${variant}"
 	accept="${format}"
 	label="${label ? "File" : ""}"
@@ -181,7 +202,7 @@ const FileUploadPreview = () => {
 	disabled={${disabled}}
 	maxFiles={${maxFile}}
 	${hint ? `hint="Hint text to help the user with input"` : ""}
-
+	hasError={${hasError}}
 />`}
 				/>
 			</TabsContent>

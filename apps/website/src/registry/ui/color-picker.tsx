@@ -26,12 +26,14 @@ export type SizeOptions = "0" | "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 type ColorPickerProps = {
 	onColorChange?: (hsv: number[], rgb: number[]) => void
-	defaultColor?: {
-		h?: number
-		s?: number
-		v?: number
-		a?: number
-	}
+	defaultColor?:
+		| string
+		| {
+				h?: number
+				s?: number
+				v?: number
+				a?: number
+		  }
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	label?: string
@@ -64,19 +66,40 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
 	onColorChange,
-	defaultColor = { h: 210, s: 100, v: 100, a: 100 },
+	defaultColor = "#007BFF",
 	inputFormat: externalInputFormat = "HEX",
 	onInputFormatChange,
 	className,
 }) => {
+	// Initialize color values from defaultColor
+	useEffect(() => {
+		if (typeof defaultColor === "string") {
+			// Handle hex string
+			const rgb = hexToRgb(defaultColor)
+			if (rgb) {
+				const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b)
+				setHue(hsv.h)
+				setSaturation(hsv.s)
+				setValue(hsv.v)
+				setAlpha(100) // Default alpha to 100%
+			}
+		} else {
+			// Handle HSV object (existing behavior)
+			setHue(defaultColor.h || 210)
+			setSaturation(defaultColor.s || 100)
+			setValue(defaultColor.v || 100)
+			setAlpha(defaultColor.a || 100)
+		}
+	}, [])
+
 	const [internalInputFormat, setInternalInputFormat] = useState<"HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA">(externalInputFormat)
 	const inputFormat = onInputFormatChange ? externalInputFormat : internalInputFormat
 	const setInputFormat = onInputFormatChange ? onInputFormatChange : setInternalInputFormat
 	const [selectedColor, setSelectedColor] = useState<RGBColor>({ r: 0, g: 123, b: 255 })
-	const [hue, setHue] = useState<number>(defaultColor.h || 210)
-	const [saturation, setSaturation] = useState<number>(defaultColor.s || 100)
-	const [value, setValue] = useState<number>(defaultColor.v || 100)
-	const [alpha, setAlpha] = useState<number>(defaultColor.a || 100)
+	const [hue, setHue] = useState<number>(0)
+	const [saturation, setSaturation] = useState<number>(0)
+	const [value, setValue] = useState<number>(0)
+	const [alpha, setAlpha] = useState<number>(0)
 	const [isDragging, setIsDragging] = useState<DragType>(null)
 	const [isEyedropperSupported, setIsEyedropperSupported] = useState<boolean>(false)
 	const [displayFormat, setDisplayFormat] = useState<"HSL" | "RGB" | "HSV" | "HEX">("HSL")

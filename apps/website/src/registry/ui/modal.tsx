@@ -5,6 +5,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { CompactButton } from "./button"
 import { Divider } from "./divider"
 
 type closeIcon = "visible" | "hidden" | "hover"
@@ -105,9 +106,12 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 				{...props}>
 				{children}
 				{closeIcon !== "hidden" && (
-					<DialogPrimitive.Close className={closeButtonClass}>
-						<X className="text-text-disabled h-4 w-4" />
-						<span className="sr-only">Close</span>
+					<DialogPrimitive.Close asChild className={closeButtonClass}>
+						{/* <X className="text-text-disabled h-4 w-4" /> */}
+						<CompactButton color="neutral" variant="ghost">
+							<X />
+						</CompactButton>
+						{/* <span className="sr-only">Close</span> */}
 					</DialogPrimitive.Close>
 				)}
 			</DialogPrimitive.Content>

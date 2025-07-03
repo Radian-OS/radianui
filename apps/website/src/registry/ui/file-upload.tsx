@@ -40,7 +40,7 @@ const getFileIcon = (file: { file: File | { type: string; name: string; preview?
 }
 
 type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
-	maxSize?: number // Maximum file size allowed in bytes
+	maxSize?: number
 	containerClassName?: string
 	rounded?: RoundedOptions
 	label?: string
@@ -55,6 +55,9 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	title?: string
 	description?: string
 	hint?: string
+	hasError?: boolean
+	value?: FileWithPreview[] // External file list
+	onChange?: (files: FileWithPreview[]) => void // Callback when files change
 }
 const DEFAULT_MAX_SIZE = 5 * 1024 * 1024 // 5 MB in bytes
 
@@ -71,17 +74,40 @@ function FileUpload({
 	sizes = "36",
 	hint,
 	maxFiles = 4,
+	hasError = false,
 	title = "Drag and drop files to upload",
 	description = "JPG, PNG, GIF or other image files",
+	value,
+	onChange,
 }: FileUploadProps) {
+	// Convert external value to initialFiles format
+	const initialFiles = value
+		? value.map((fileWithPreview) => {
+				if (fileWithPreview.file instanceof File) {
+					return {
+						id: fileWithPreview.id,
+						name: fileWithPreview.file.name,
+						size: fileWithPreview.file.size,
+						type: fileWithPreview.file.type,
+						url: fileWithPreview.preview || URL.createObjectURL(fileWithPreview.file),
+					}
+				} else {
+					return fileWithPreview.file as FileMetadata
+				}
+			})
+		: []
+
 	const maxSizeValue = maxSize * 1024 * 1024
 
-	const [{ files, isDragging, errors }, { handleDragEnter, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps }] = useFileUpload({
-		accept,
-		maxSize: maxSizeValue,
-		multiple: maxFiles > 1 ? multiple : false,
-		maxFiles,
-	})
+	const [{ files, isDragging, errors }, { handleDragEnter, handleFileChange, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps }] =
+		useFileUpload({
+			accept,
+			maxSize: maxSizeValue,
+			multiple: maxFiles > 1 ? multiple : false,
+			maxFiles,
+			initialFiles,
+			onFilesChange: onChange,
+		})
 
 	const cvaFileUploadVariants = {
 		rounded: {
@@ -111,9 +137,21 @@ function FileUpload({
 	return (
 		<>
 			{variant === "input" ? (
-				<Input fileUploadSize={sizes} size="0" hint={hint} id="picture" type="file" label={label ? `${label}` : ""} rounded={rounded} disabled={disabled} multiple={multiple} />
+				<Input
+					fileUploadSize={sizes}
+					size="0"
+					onChange={handleFileChange}
+					id="picture"
+					type="file"
+					label={label ? `${label}` : ""}
+					rounded={rounded}
+					disabled={disabled}
+					multiple={multiple}
+					hint={errors.length > 0 ? errors[0] : hint}
+					hasError={errors.length > 0 || hasError}
+				/>
 			) : (
-				<div className={"flex w-80 flex-col gap-1.5"}>
+				<div className={cn("flex w-80 flex-col gap-1.5", className)}>
 					{label && <Label htmlFor="picture">{label}</Label>}
 					{/* Drop area */}
 					<div
@@ -154,6 +192,8 @@ function FileUpload({
 							</Button>
 						</div>
 					</div>
+
+					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
 
 					{errors.length > 0 && (
 						<div className="text-error flex items-center gap-1 text-xs" role="alert">

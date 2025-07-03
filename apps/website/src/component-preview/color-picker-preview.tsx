@@ -106,7 +106,7 @@ export default function ColorPickerPreview() {
 						className="w-74"
 						disabled={disabled}
 						label={label ? "Select Color" : undefined}
-						defaultColor={{ h: 210, s: 100, v: 100, a: 100 }}
+						defaultColor="#461EFA"
 					/>
 				</div>
 			</TabsContent>
@@ -123,8 +123,7 @@ export default function ColorPickerPreview() {
 	disabled={${disabled}}
     label="${label ? "Select Color" : ""}"
 	${hint ? `hint="Hint text to help the user with input"` : ""}
-	defaultColor={{ h: 210, s: 100, v: 100, a: 100 }}
-
+	defaultColor="#461EFA"
 />
 `}
 				/>

@@ -91,6 +91,7 @@ export default function ColorPickerExample() {
 								size={size}
 								inputFormat={inputFormat}
 								onInputFormatChange={handleFormatChange}
+								defaultColor="#461EFA"
 								className="w-62 rounded-r-none border-r-0 focus-within:border-r"
 							/>
 							<Select
@@ -133,6 +134,7 @@ const handleFormatChange = (newFormat: ColorFormatOptions) => {
 			onInputFormatChange={handleFormatChange}
 			className="w-62 rounded-r-none border-r-0 focus-within:border-r"
 			${hint ? `hint="Hint text to help the user with input"` : ""}
+			defaultColor="#461EFA"
 		/>
 		<Select
 			selectedValues={[inputFormat]}

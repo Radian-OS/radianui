@@ -12,7 +12,7 @@ import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerBody, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import SearchCommand from "./search-command"
 
@@ -157,32 +157,28 @@ export default function Navbar() {
 				</section>
 
 				{/* For mobile screen */}
-				<Drawer
-					direction="bottom"
-					type="rounded"
-					trigger={
+				<Drawer direction="bottom" type="rounded" handle={true} modal={true} preventScrollRestoration={true}>
+					<DrawerTrigger asChild>
 						<Button isIcon variant="outline" color="neutral" className="md:hidden">
 							<Search />
 						</Button>
-					}
-					handle={true}
-					modal={true}
-					preventScrollRestoration={true}
-					ref={drawerRef}
-					className="bg-fill-level3 h-[90%] p-3">
-					<DrawerHeader>
-						<DrawerTitle className="sr-only">Search command</DrawerTitle>
-					</DrawerHeader>
-					<DrawerBody>
-						<SearchCommand
-							filteredItems={filteredItems}
-							itemRefs={itemRefs}
-							searchTerm={searchTerm}
-							selectedIndex={selectedIndex}
-							setSearchTerm={setSearchTerm}
-							setSelectedIndex={setSelectedIndex}
-						/>
-					</DrawerBody>
+					</DrawerTrigger>
+
+					<DrawerContent ref={drawerRef} className="bg-fill-level3 h-[90dvh] p-3">
+						<DrawerHeader>
+							<DrawerTitle className="sr-only">Search command</DrawerTitle>
+						</DrawerHeader>
+						<div className="h-full">
+							<SearchCommand
+								filteredItems={filteredItems}
+								itemRefs={itemRefs}
+								searchTerm={searchTerm}
+								selectedIndex={selectedIndex}
+								setSearchTerm={setSearchTerm}
+								setSelectedIndex={setSelectedIndex}
+							/>
+						</div>
+					</DrawerContent>
 				</Drawer>
 
 				{/* For desktop screen */}
@@ -220,7 +216,7 @@ export default function Navbar() {
 					<HamburgerMenuIcon className="size-6" />
 				</Button>
 				<nav
-					className={`bg-bg-base fixed right-0 top-0 flex h-screen w-full transform flex-col gap-3 overflow-y-scroll transition-transform duration-300 ease-in-out md:px-5 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
+					className={`bg-bg-base fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-scroll transition-transform duration-300 ease-in-out md:px-5 ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}>
 					<div className="border-border-alpha flex min-h-16 items-center justify-between border-b px-5">
 						<Link href="/" style={{ fill: "white", color: "white" }}>
 							<Image src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
@@ -243,34 +239,40 @@ export default function Navbar() {
 						<TabletMobileThemeToggler />
 					</div>
 
-					<ul className="text-fg1 flex flex-col items-start text-sm font-medium">
-						{navLinks.map((item) => (
-							<li key={item.name} className="flex h-14 w-full items-center px-5 py-4">
-								<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1`} href={item.link}>
-									{item.name}
-								</Link>
-							</li>
-						))}
-					</ul>
+					<div className="text-text px-5">
+						<ul className="text-fg1 flex flex-col items-start text-base font-medium">
+							{navLinks.map((item) => (
+								<li key={item.name} onClick={() => setIsMobileMenuOpen(false)} className="flex w-full items-center">
+									<Link className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full py-3 leading-6`} href={item.link}>
+										{item.name}
+									</Link>
+								</li>
+							))}
+						</ul>
 
-					<Accordion size="sm" variant="open" collapsible className="px-5">
-						{navigationItems.map((section) => (
-							<AccordionItem className="border-none" value={section.title} key={section.title}>
-								<section>
-									<AccordionTrigger>{section.title}</AccordionTrigger>
-									<AccordionContent>
-										<div className="flex flex-col items-start">
-											{section.items.map((item) => (
-												<Link key={item.url} className={`${pathname === item.url ? "text-fg0" : ""} flex h-14 w-full items-center`} href={item.url}>
-													{item.title}
-												</Link>
-											))}
-										</div>
-									</AccordionContent>
-								</section>
-							</AccordionItem>
-						))}
-					</Accordion>
+						<Accordion size="sm" variant="open" collapsible>
+							{navigationItems.map((section) => (
+								<AccordionItem className="border-none" value={section.title} key={section.title}>
+									<section>
+										<AccordionTrigger className="py-3 text-base">{section.title}</AccordionTrigger>
+										<AccordionContent>
+											<div className="flex flex-col items-start">
+												{section.items.map((item) => (
+													<Link
+														onClick={() => setIsMobileMenuOpen(false)}
+														key={item.url}
+														className={`${pathname === item.url ? "text-fg0" : ""} text-text flex w-full items-center py-3 text-base font-normal`}
+														href={item.url}>
+														{item.title}
+													</Link>
+												))}
+											</div>
+										</AccordionContent>
+									</section>
+								</AccordionItem>
+							))}
+						</Accordion>
+					</div>
 				</nav>
 			</div>
 		</nav>

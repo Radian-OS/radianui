@@ -8,12 +8,12 @@ const BadgeExamplePreview = () => {
 		{
 			name: "Destructive",
 			component: (
-				<Badge variant="pastel" color="error" size="24">
+				<Badge variant="soft" color="error" size="24">
 					Destructive
 				</Badge>
 			),
 			code: `<Badge
-variant="pastel" 
+variant="soft" 
 color="error" 
 size="24">
  Destructive
@@ -50,13 +50,13 @@ Roman Shrestha
 		{
 			name: "Close Icon",
 			component: (
-				<Badge variant="pastel" color="warning" className="outline-warning outline" closable size="24">
+				<Badge variant="soft" color="warning" className="outline-warning outline" closable size="24">
 					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 					My Custom Badge
 				</Badge>
 			),
 			code: `<Badge
-variant="pastel" 
+variant="soft" 
 color="warning"
 className="outline-warning outline" 
 closable 

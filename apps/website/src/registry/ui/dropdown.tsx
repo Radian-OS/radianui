@@ -3,9 +3,8 @@
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { DropdownMenuContentProps, DropdownMenuGroupProps, DropdownMenuItemProps, DropdownMenuSubContentProps, DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu"
-import { Check, ChevronDown, ChevronRight } from "lucide-react"
+import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 import { Divider } from "./divider"
 
 // Create a Dropdown component
@@ -29,24 +28,28 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 		)
 	}
 
-	return (
-		<DropdownMenuPrimitive.Trigger {...props} asChild>
-			<Button color="neutral" variant="outline">
-				{children}
-				<ChevronDown size={20} className="text-text-tertiary" />
-			</Button>
-		</DropdownMenuPrimitive.Trigger>
-	)
+	return <DropdownMenuPrimitive.Trigger {...props}>{children}</DropdownMenuPrimitive.Trigger>
 }
 DropdownTrigger.displayName = "DropdownTrigger"
 // Create a DropdownContent component
-function DropdownContent({ className, children, ...props }: DropdownMenuContentProps & React.RefAttributes<HTMLDivElement>) {
+function DropdownContent({
+	className,
+	children,
+	placement,
+	...props
+}: Omit<DropdownMenuContentProps, "side"> &
+	React.RefAttributes<HTMLDivElement> & {
+		placement?: DropdownMenuContentProps["side"]
+	}) {
 	return (
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.Content
 				align="start"
+				side={placement}
 				className={cn(
 					"no-scrollbar border-border bg-bg-level2 drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+
 					className
 				)}
 				sideOffset={4}
@@ -263,7 +266,11 @@ function DropdownSubContent({ children, className, ...props }: DropdownMenuSubCo
 	return (
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.SubContent
-				className={cn("border-border bg-bg-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5", className)}
+				className={cn(
+					"border-border bg-bg-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+					className
+				)}
 				sideOffset={10}
 				alignOffset={-7}
 				{...props}>
