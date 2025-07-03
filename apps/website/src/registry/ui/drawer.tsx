@@ -4,7 +4,6 @@ import React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 
 type BackdropType = "overlay" | "blur" | null
 type DrawerType = "float" | "default" | "rounded"
@@ -187,7 +186,7 @@ function Drawer({ direction = "right", type = "default", children, backdrop = "o
 function DrawerTrigger({ asChild, children, ...props }: React.ComponentPropsWithRef<typeof DrawerPrimitives.Trigger>) {
 	return (
 		<DrawerPrimitives.Trigger asChild {...props}>
-			{asChild ? children : <Button>{children}</Button>}
+			{asChild ? children : <span>{children}</span>}
 		</DrawerPrimitives.Trigger>
 	)
 }
