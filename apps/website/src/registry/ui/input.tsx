@@ -31,15 +31,6 @@ export const cvaInputVariants = {
 export const defaultInputSize = "36"
 export const defaultInputRadius = "lg"
 
-// const sizeHeightMapping = {
-// 	28: "h-4",
-// 	32: "h-5",
-// 	36: "h-5",
-// 	40: "h-5",
-// 	44: "h-6",
-// 	48: "h-6",
-// }
-
 // Creating a variant for input styles using cva
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
 	variants: {
@@ -50,15 +41,6 @@ const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 bo
 		rounded: defaultInputRadius,
 	},
 })
-// Type definition for custom class names for various parts of the input
-// export type InputClassNames = {
-// 	base?: string /* The div that wraps the component */
-// 	label?: string /* The label of the input */
-// 	wrapper?: string /* The wrapper div for the input and icons (used for showing borders) */
-// 	input?: string /* The actual input element used inside */
-// 	error?: string /* The error message */
-// }
-// Type definition for input props, extending standard input attributes
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	label?: string
 	hint?: string
@@ -70,8 +52,8 @@ export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size
 	It is not recommended to use type=password, instead use the <Password> component,
 	'password' is added here because the <Password> uses <Input> component under the hood
 	*/
-	lead?: React.ReactNode
-	trail?: React.ReactNode
+	start?: React.ReactNode
+	end?: React.ReactNode
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	id?: string
@@ -85,8 +67,8 @@ function Input({
 	custom = false,
 	hasError = false,
 	type = "text",
-	lead,
-	trail,
+	start,
+	end,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
 	fileUploadSize = defaultInputSize,
@@ -132,13 +114,13 @@ function Input({
 					size === "28" ? "gap-1.5" : "gap-2",
 					className
 				)}>
-				{lead && (
+				{start && (
 					<span
 						className={cn("flex items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
 						})}>
-						{lead}
+						{start}
 					</span>
 				)}
 
@@ -168,26 +150,26 @@ function Input({
 					disabled={disabled}
 					{...props}
 				/>
-				{trail && (
+				{end && (
 					<span
 						className={cn("flex items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
 						})}>
-						{trail}
+						{end}
 					</span>
 				)}
-				{/* {trail && (
+				{/* {end && (
 					<span
 						className={cn("flex cursor-pointer items-center justify-center rounded", {
 							"text-text-tertiary": !disabled,
 							"text-text-disabled": disabled,
 						})}>
-						{React.isValidElement(trail)
-							? React.cloneElement(trail as React.ReactElement<{ className?: string }>, {
-									className: cn((trail as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
+						{React.isValidElement(end)
+							? React.cloneElement(end as React.ReactElement<{ className?: string }>, {
+									className: cn((end as React.ReactElement<{ className?: string }>)?.props?.className || "", sizeHeightMapping[size]),
 								})
-							: trail}
+							: end}
 					</span>
 				)} */}
 			</Label>

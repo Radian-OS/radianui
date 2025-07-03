@@ -272,8 +272,8 @@ function Select({
 									{variants === "input" ? (
 										<Input
 											placeholder={placeholder}
-											lead={lead}
-											trail={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
+											start={lead}
+											end={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
 											size={size}
 											rounded={rounded}
 											value={selectedLabels}

@@ -886,7 +886,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				size={size}
 				rounded={rounded}
 				className={className}
-				lead={
+				start={
 					<PopoverTrigger disabled={disabled}>
 						<div
 							className="relative h-5 w-5 cursor-pointer overflow-hidden rounded"
