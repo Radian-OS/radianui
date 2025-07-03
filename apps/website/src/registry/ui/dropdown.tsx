@@ -3,9 +3,8 @@
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { DropdownMenuContentProps, DropdownMenuGroupProps, DropdownMenuItemProps, DropdownMenuSubContentProps, DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu"
-import { Check, ChevronDown, ChevronRight } from "lucide-react"
+import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 import { Divider } from "./divider"
 
 // Create a Dropdown component
@@ -29,14 +28,7 @@ function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerPro
 		)
 	}
 
-	return (
-		<DropdownMenuPrimitive.Trigger {...props} asChild>
-			<Button color="neutral" variant="outline">
-				{children}
-				<ChevronDown size={20} className="text-text-tertiary" />
-			</Button>
-		</DropdownMenuPrimitive.Trigger>
-	)
+	return <DropdownMenuPrimitive.Trigger {...props}>{children}</DropdownMenuPrimitive.Trigger>
 }
 DropdownTrigger.displayName = "DropdownTrigger"
 // Create a DropdownContent component

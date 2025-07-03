@@ -33,6 +33,14 @@ const nextConfig = {
 				source: "/components",
 				destination: "/docs/components/accordion",
 			},
+			// {
+			// 	source: "/paid",
+			// 	destination: "http://localhost:3000/",
+			// },
+			// {
+			// 	source: "/test",
+			// 	destination: "/docs/components/accordion",
+			// },
 		]
 	},
 	// assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
