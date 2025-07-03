@@ -1,9 +1,9 @@
 # *
 User-agent: *
-Disallow: /
+Allow: /
 
 # Host
-Host: http://localhost:3001/
+Host: http://localhost:3001
 
 # Sitemaps
 Sitemap: http://localhost:3001/sitemap.xml
