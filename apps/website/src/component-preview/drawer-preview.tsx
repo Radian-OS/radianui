@@ -12,7 +12,7 @@ const DrawerPreview = () => {
 	const [backdrop, setBackdrop] = useState<"blur" | "overlay" | null | undefined>("overlay")
 
 	const code = `<Drawer type='${variant}' direction='${position}' handle={${handle}} backdrop='${backdrop}'>
-	<DrawerTrigger>Open Trigger</DrawerTrigger>
+	<DrawerTrigger><Button>Open Trigger</Button></DrawerTrigger>
 	<DrawerContent>
 		<DrawerHeader>
 			<DrawerTitle>This is a drawer header</DrawerTitle>
@@ -102,7 +102,9 @@ const DrawerPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center rounded-xl border px-10">
 					<Drawer type={variant} direction={position} handle={handle === "true" ? true : false} backdrop={backdrop}>
-						<DrawerTrigger>Open Trigger</DrawerTrigger>
+						<DrawerTrigger>
+							<Button>Open Trigger</Button>
+						</DrawerTrigger>
 						<DrawerContent>
 							<DrawerHeader>
 								<DrawerTitle>This is a drawer header</DrawerTitle>
