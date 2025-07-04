@@ -70,8 +70,13 @@ export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm",
 
 	return (
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		<Tabs value={activeTab} onValueChange={setActiveTab as any} variant="outline-ghost" size="md" className={cn("bg-fill-level2 overflow-hidden rounded-xl p-1.5", className)}>
-			<div className="flex justify-between">
+		<Tabs
+			value={activeTab}
+			onValueChange={setActiveTab as any}
+			variant="outline-ghost"
+			size="md"
+			className={cn("bg-fill-level2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+			<div className="flex justify-between pr-1">
 				<TabsList className="bg-transparent">
 					{pkg.map((manager) => (
 						<TabsTrigger key={manager} value={manager}>

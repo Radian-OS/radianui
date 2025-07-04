@@ -126,7 +126,7 @@ const DotPattern = (props: SVGProps<SVGSVGElement>) => (
 				height="10.75268817204301%"
 				x={128.5}
 				patternContentUnits="objectBoundingBox">
-				<rect x={17418} y={-43} width={2} height={2} rx={1} fill="#e9e9ec" className="fill-fill-level4" />
+				<rect x={17418} y={-43} width={2} height={2} rx={1} fill="#dfdfe2" className="fill-fill-level4" />
 			</pattern>
 		</defs>
 	</svg>
@@ -134,7 +134,7 @@ const DotPattern = (props: SVGProps<SVGSVGElement>) => (
 
 export default function CommunityCard() {
 	return (
-		<div className="relative w-fit overflow-hidden rounded-xl border p-4">
+		<div className="relative overflow-hidden rounded-xl border p-4">
 			{/* Dotted SVG background, full width */}
 			<div className="z-1 absolute left-0 top-0 h-24 w-full">
 				<DotPattern />

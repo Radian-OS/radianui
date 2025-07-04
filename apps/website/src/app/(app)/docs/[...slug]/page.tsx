@@ -83,7 +83,7 @@ export default async function DocPage({ params }: DocPageProps) {
 	return (
 		<div className="flex w-full max-w-full">
 			{/* Main Content */}
-			<div className="py-7.5 mx-auto w-full min-w-0 max-w-4xl flex-1 overflow-y-auto px-4">
+			<div className="py-7.5 lg:px-25 mx-auto w-full min-w-0 flex-1 overflow-y-auto">
 				<span className="text-primary text-sm font-medium capitalize">{category}</span>
 				<div className="flex flex-col">
 					<h1 className="heading-4 mb-1">{doc.title}</h1>
@@ -133,7 +133,7 @@ export default async function DocPage({ params }: DocPageProps) {
 			</div>
 
 			{/* Right Sidebar (TOC) */}
-			<aside className="bg-bg-base top-15.5 no-scrollbar sticky z-30 hidden h-[calc(100vh-3.875rem)] w-64 overflow-y-auto border-s py-10 ps-4 lg:block">
+			<aside className="bg-bg-base top-15.5 sticky z-30 hidden h-[calc(100vh-3.875rem)] w-64 py-10 ps-4 lg:block">
 				<TableOfContent headings={headings} />
 				<CommunityCard />
 			</aside>
