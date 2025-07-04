@@ -14,7 +14,6 @@ import { Input } from "@/registry/ui/input"
 // 		canonical: new URL(`${process.env.NEXT_PUBLIC_WEBSITE_URL!}/blog`),
 // 	},
 // }
-
 export default function Blog() {
 	const [toggle, setToggle] = useState(false)
 
