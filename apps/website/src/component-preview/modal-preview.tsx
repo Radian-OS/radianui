@@ -91,7 +91,9 @@ const PopoverPreview = () => {
 							</ModalBody>
 							<ModalFooter>
 								<ModalClose asChild>
-									<Button variant="outline">Cancel</Button>
+									<Button color="neutral" variant="outline">
+										Cancel
+									</Button>
 								</ModalClose>
 								<Button variant={"strong"}>Continue</Button>
 							</ModalFooter>
@@ -126,7 +128,7 @@ const PopoverPreview = () => {
 		</ModalBody>
 		<ModalFooter>
 			<ModalClose asChild>
-				<Button variant="outline">Cancel</Button>
+				<Button color="neutral" variant="outline">Cancel</Button>
 			</ModalClose>
 			<Button variant={"strong"}>Continue</Button>
 		</ModalFooter>
