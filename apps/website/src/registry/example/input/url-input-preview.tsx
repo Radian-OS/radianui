@@ -65,7 +65,7 @@ const UrlPreview = () => {
 								size={size}
 								placeholder="radianos.com"
 								type="url"
-								lead={types === "lead" ? "https://" : ""}
+								start={types === "lead" ? "https://" : ""}
 								// hasError={hasError}
 								// hint={hint ? "There is an error" : ""}
 							/>
@@ -105,7 +105,7 @@ const UrlPreview = () => {
             size="${size}"
             placeholder="radianos"
             type="url"
-            lead="https://"
+            start="https://"
 
         />
 
@@ -126,7 +126,7 @@ const UrlPreview = () => {
     size="36"
     placeholder="radianos.com"
     type="url"
-    lead="https://"
+    start="https://"
 />`
 								: `<Input
     size="36"

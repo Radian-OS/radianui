@@ -135,7 +135,7 @@ const SearchInputExample = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<SearchInput
 						label={label ? "Search" : undefined}
-						trail={<Badge size="20">Ctrl + K</Badge>}
+						end={<Badge size="20">Ctrl + K</Badge>}
 						placeholder="Search"
 						size={size}
 						rounded={rounded}

@@ -272,8 +272,8 @@ function Select({
 									{variants === "input" ? (
 										<Input
 											placeholder={placeholder}
-											lead={lead}
-											trail={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
+											start={lead}
+											end={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
 											size={size}
 											rounded={rounded}
 											value={selectedLabels}
@@ -282,22 +282,7 @@ function Select({
 											disabled={disabled}
 										/>
 									) : variants === "button" ? (
-										<Button
-											lead={lead}
-											variant="ghost"
-											disabled={disabled}
-											className={cn(
-												"focus-visible:border-primary flex h-full cursor-pointer items-center justify-center border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
-												SelectTriggerVariations({ size, rounded }),
-												{
-													"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
-													"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
-													"rounded-l-none": disableOpenStyle,
-													[`border-primary rounded-l-none border`]: open && disableOpenStyle,
-												},
-												"w-full truncate",
-												classNames?.trigger
-											)}>
+										<Button lead={lead} variant="outline" color="neutral" size="32" disabled={disabled} className={className}>
 											<span
 												className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
 													"text-base": size === "44" || size === "48",

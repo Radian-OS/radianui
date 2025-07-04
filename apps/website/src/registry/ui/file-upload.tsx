@@ -193,13 +193,11 @@ function FileUpload({
 						</div>
 					</div>
 
-					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
-
-					{errors.length > 0 && (
-						<div className="text-error flex items-center gap-1 text-xs" role="alert">
-							<AlertCircleIcon className="size-3 shrink-0" />
-							<span>{errors[0]}</span>
-						</div>
+					{/* Show hint only if there are no errors, or show error in hint style */}
+					{(hint || errors.length > 0) && (
+						<Label className={`flex items-start text-xs font-normal ${errors.length > 0 || hasError ? "text-error" : "text-text-tertiary"}`}>
+							{errors.length > 0 ? errors[0] : hint}
+						</Label>
 					)}
 
 					{/* File list */}

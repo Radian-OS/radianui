@@ -1,6 +1,6 @@
 "use client"
 
-import { HTMLAttributes, useMemo } from "react"
+import React, { HTMLAttributes, useMemo } from "react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Link from "next/link"
@@ -61,11 +61,11 @@ import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
+import CommandLineTabs, { type InstallMode } from "@/components/cli-tabs"
 import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
 import Manual from "@/components/manual"
 import Nextjs from "@/components/nextjs"
-import PackageManagerTabs from "@/components/package-manager-tab"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
@@ -202,9 +202,12 @@ const components: MDXComponents = {
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
 
-	Code: ({ language, pkg = ["pnpm", "yarn", "npm", "bun"], tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
+	CLI: ({ code, mode = "execute" }: { code: string; mode: InstallMode }) => {
+		return <CommandLineTabs mode={mode} code={code} />
+	},
+	Code: ({ language, tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
-			<PackageManagerTabs language={language} pkg={pkg} code={code} />
+			<CommandLineTabs mode="execute" code={code} />
 		) : (
 			<CodeArea language={language} code={code} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("", className)} {...props} />
 		),

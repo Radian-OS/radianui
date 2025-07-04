@@ -47,7 +47,7 @@ function SearchInput({
 			<PopoverTrigger asChild>
 				<div>
 					<Input
-						lead={<Search size={20} className="stroke-text-tertiary" />}
+						start={<Search size={20} className="stroke-text-tertiary" />}
 						label={label}
 						hint={hint}
 						hasError={hasError}

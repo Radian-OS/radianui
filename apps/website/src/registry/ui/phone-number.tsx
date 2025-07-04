@@ -423,8 +423,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					aria-invalid={hasError || (validateOnChange && isValid === false)}
 					size={size}
 					disabled={disabled}
-					lead={lead}
-					trail={validationTrail}
+					start={lead}
+					end={validationTrail}
 					hasError={hasError || (validateOnChange && isValid === false)}
 					className={cn(showTrigger && "rounded-l-none", className, props.className)}
 					onKeyDown={handleKeyDown}
