@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
 		type: "article",
-		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL}`,
+		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL!}`,
 		images: [
 			{
 				url: `${websiteMetadata.ogImage}`,

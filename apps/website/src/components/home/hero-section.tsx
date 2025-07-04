@@ -4,6 +4,7 @@ import React from "react"
 import { Box } from "lucide-react"
 import { subscribe } from "@/app/api/email/actions"
 import { cn } from "@/lib/utils"
+import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
@@ -29,9 +30,10 @@ export default function HeroSection() {
 	return (
 		<div className="relative box-border flex flex-col gap-1 px-4 pb-4 pt-6 md:px-6 lg:px-10 lg:py-16">
 			<section className="max-w-187 flex flex-col justify-between gap-6">
-				<Badge size="28" className="bg-primary-focus text-primary-text w-fit text-sm font-medium">
+				<Badge size="28" className="bg-primary-focus text-primary-text relative w-fit text-sm font-medium">
 					<Box size={20} />
 					<span>Under Development</span>
+					<BorderBeam />
 				</Badge>
 				<h1 className="heading-1">Ship next generation of world class products and solutions</h1>
 				<p className="text-text-secondary text-lg font-normal">
