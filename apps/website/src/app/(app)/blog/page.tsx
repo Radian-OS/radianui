@@ -1,190 +1,194 @@
-"use client"
-
-import { useState } from "react"
-import Image from "next/image"
-import Link from "next/link"
-import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { Input } from "@/registry/ui/input"
-
-// export const metadata: Metadata = {
-// 	alternates: {
-// 		canonical: new URL(`${process.env.NEXT_PUBLIC_WEBSITE_URL!}/blog`),
-// 	},
+// "use client"
+// import { useState } from "react"
+// import Image from "next/image"
+// import Link from "next/link"
+// import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
+// import { Badge } from "@/registry/ui/badge"
+// import { Button } from "@/registry/ui/button"
+// import { Divider } from "@/registry/ui/divider"
+// import { Input } from "@/registry/ui/input"
+// // export const metadata: Metadata = {
+// // 	alternates: {
+// // 		canonical: new URL(`${process.env.NEXT_PUBLIC_WEBSITE_URL!}/blog`),
+// // 	},
+// // }
+// export default function Blog() {
+// 	const [toggle, setToggle] = useState(false)
+// 	return (
+// 		<div className="max-w-200 mx-auto mt-10 w-full px-5 lg:px-0">
+// 			<div className="flex flex-col pb-20 pt-10">
+// 				<div className="flex justify-between">
+// 					<section className="flex flex-col gap-6">
+// 						<div className="flex flex-col gap-4">
+// 							<Badge>Blogs and Updates</Badge>
+// 							<h1 className="heading-3">Latest Updates and Insights from the Radian Team</h1>
+// 						</div>
+// 						<p className="text-text-secondary text-base">Learn more about Radian OS, updates, and reads from our team and industry leading experts</p>
+// 						<form className="flex flex-col gap-3 sm:flex-row">
+// 							<Input size="40" className="sm:w-80" type="email" required placeholder="Email Address" />
+// 							<Button onClick={() => setToggle(!toggle)} size="40" type="submit">
+// 								Subscribe
+// 							</Button>
+// 						</form>
+// 					</section>
+// 					<div className="hidden items-center justify-center md:flex">
+// 						<svg className="fill-fill-level4" width="200" height="200" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+// 							<path
+// 								d="M199.096 56.6004C196.203 50.6097 187.384 48.5601 186.753 48.4207L115.655 28.9906C112.509 28.1351 109.161 28.4277 106.211 29.816L10.1738 75.1617C10.1066 75.1933 10.0441 75.2336 9.98749 75.2812C3.62187 80.6578 0.270696 86.4359 0.0265558 92.455C-0.657038 109.403 12.0969 121.187 15.8012 124.241C14.7613 126.678 13.866 129.176 13.1195 131.719C10.1426 141.869 9.50038 152.526 11.5219 158.236C12.8656 162.032 15.0351 162.364 16.2082 162.224C19.5844 161.821 23.6168 159.41 28.2094 155.055C31.7969 164.107 36.2031 169.161 40.493 169.161C40.7547 169.162 41.0156 169.143 41.2746 169.106C45.5559 168.486 48.4832 162.802 49.1047 153.903C49.3508 150.431 49.8027 146.977 50.4582 143.558L93.2234 167.065C99.4961 170.383 104.996 171.49 109.545 171.49C112.443 171.5 115.323 171.029 118.067 170.096C123.633 168.185 126.732 165.002 127.049 164.664L191.631 103.829C191.709 103.756 191.773 103.669 191.818 103.573C194.505 97.8683 195.075 93.0218 193.511 89.1691C192.033 85.5238 188.991 83.5437 186.486 82.491L187.127 75.9527L187.172 75.4972L198.331 66.4004C198.426 66.323 198.504 66.2258 198.558 66.1156C200.279 62.6238 200.46 59.4222 199.096 56.6004ZM49.0312 141.963C49.0074 142.032 48.9922 142.104 48.9863 142.177C48.2055 146.007 47.6754 149.884 47.3992 153.783C46.8437 161.701 44.4047 166.925 41.0285 167.415C38.1004 167.838 33.491 164.341 29.3434 153.245C27.7203 148.777 26.4207 144.199 25.4547 139.545C25.3617 139.082 24.9109 138.782 24.448 138.875C23.9851 138.968 23.6855 139.419 23.7789 139.882C23.7805 139.889 23.782 139.897 23.7836 139.905C24.7332 144.455 25.9918 148.936 27.5508 153.316C23.0719 157.666 19.0855 160.161 16.0051 160.529C14.532 160.707 13.6289 159.07 13.1324 157.666C10.2086 149.406 13.2828 125.689 25.2012 112.061C25.2129 112.048 25.2266 112.039 25.2375 112.026C25.243 112.018 25.2484 112.011 25.2531 112.002C27.1281 109.839 29.2879 107.941 31.6734 106.359L57.3875 118.249C55.8691 121.103 54.5332 124.051 53.3879 127.074C53.3758 127.093 53.3617 127.11 53.3512 127.13C53.3121 127.209 53.2852 127.293 53.2719 127.38C52.4668 129.495 51.6398 131.907 50.8633 134.572C50.8137 134.669 50.7832 134.775 50.7734 134.883C50.1418 137.08 49.548 139.448 49.0312 141.963ZM23.3758 111.571C22.3758 112.77 21.4418 114.022 20.5769 115.321C14.9789 110.407 11.5406 105.616 10.368 101.067C9.1789 96.4601 9.44921 93.1664 11.1707 91.2777C12.6336 89.6738 14.8797 89.4363 16.175 89.4492C12.9344 100.096 18.9402 107.668 23.3758 111.571ZM59.4008 117.611C59.3293 117.379 59.1629 117.188 58.9422 117.087L31.9652 104.612C31.7023 104.49 31.3957 104.51 31.1508 104.664C28.693 106.233 26.4566 108.125 24.5012 110.288C19.6609 106.046 14.9422 99.23 17.8301 89.873L91.5746 126.148C98.3445 129.958 104.309 131.198 109.204 131.198C111.998 131.205 114.778 130.786 117.445 129.953C123.272 128.12 126.614 124.926 127.018 124.526L185.308 77.0187L184.723 82.9617V82.9886L184.085 89.4843L118.239 147.153C118.205 147.183 118.174 147.215 118.146 147.249C118.07 147.339 110.485 156.189 99.0715 149.85L55.1992 127.125C56.3547 124.087 57.7309 121.137 59.3176 118.301C59.4418 118.093 59.4719 117.843 59.4008 117.611ZM191.926 89.8121C193.29 93.173 192.755 97.5086 190.339 102.699L125.857 163.439C125.843 163.452 125.828 163.467 125.814 163.482C123.433 165.767 120.567 167.485 117.429 168.508C110.225 170.95 102.35 169.958 94.0351 165.559L50.8113 141.799C51.2254 139.837 51.6851 137.968 52.1734 136.207L98.3051 160.01C98.6543 160.214 101.906 162.028 107.099 162.214C107.367 162.224 107.642 162.229 107.926 162.229C112.857 162.229 120.169 160.671 128.346 153.768C128.357 153.758 128.368 153.748 128.379 153.737L186.686 99.0285C187.036 98.7121 187.063 98.1715 186.746 97.8215C186.43 97.4715 185.889 97.4441 185.539 97.7605C185.532 97.7675 185.524 97.7746 185.516 97.782L127.227 152.475C111.596 165.656 99.6574 158.823 99.1582 158.526C99.1426 158.517 99.1265 158.508 99.1101 158.5L52.6535 134.534C53.2812 132.422 53.9383 130.482 54.5863 128.733L98.2629 151.355C101.551 153.182 104.559 153.858 107.212 153.858C114.323 153.858 118.878 148.997 119.406 148.403L185.461 90.5472C185.625 90.4043 185.728 90.2043 185.749 89.9879L186.309 84.2824C188.395 85.2472 190.757 86.9277 191.926 89.8105V89.8121ZM197.105 65.1968L185.816 74.3984L125.902 123.23C125.877 123.251 125.853 123.273 125.83 123.295C125.702 123.426 112.865 136.184 92.3918 124.649C92.3781 124.641 92.3637 124.634 92.3492 124.627L17.7773 87.9406C17.7617 87.9308 17.7426 87.9242 17.7262 87.9152L17.7082 87.9066H17.7062C17.6777 87.8906 17.648 87.8765 17.618 87.864C17.5488 87.8406 17.4769 87.8265 17.4043 87.8215C16.8059 87.7359 12.5543 87.2367 9.91757 90.1168C7.77382 92.4578 7.36874 96.2859 8.71327 101.495C9.98593 106.435 13.668 111.573 19.6457 116.778C18.4902 118.66 17.4484 120.61 16.5262 122.616C12.5746 119.273 1.10585 108.179 1.74023 92.5254C1.96327 87.0308 5.08281 81.6937 11.0137 76.6601L106.948 31.3617C109.529 30.1461 112.46 29.8902 115.213 30.6398L186.322 50.0758L186.365 50.0867C186.45 50.105 194.975 52.0047 197.554 57.3437C198.659 59.6246 198.507 62.2652 197.105 65.1941L197.105 65.1968Z"
+// 								fill="#DFDFE2"
+// 							/>
+// 							<path
+// 								d="M178.373 67.9677L125.905 110.731C125.881 110.751 125.857 110.772 125.835 110.795C123.255 113.129 120.185 114.857 116.85 115.851C109.201 118.229 100.972 116.983 92.3918 112.149C92.3747 112.139 92.3571 112.13 92.3391 112.121L25.9399 80.5528C25.5137 80.3501 25.0036 80.5318 24.8008 80.9579C24.5981 81.3841 24.7797 81.8943 25.2059 82.097L91.5797 113.653C98.3473 117.461 104.311 118.7 109.206 118.7C112 118.708 114.78 118.288 117.447 117.456C123.274 115.623 126.617 112.429 127.02 112.029L179.455 69.2919C179.826 68.9997 179.889 68.4622 179.597 68.0915C179.305 67.7208 178.768 67.6571 178.397 67.9493C178.39 67.9552 178.382 67.961 178.375 67.9669L178.373 67.9677Z"
+// 								fill="#DFDFE2"
+// 							/>
+// 						</svg>
+// 					</div>
+// 				</div>
+// 			</div>
+// 			{toggle && (
+// 				<>
+// 					<Divider spacing="40" />
+// 					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
+// 						<div className="w-70 h-45">
+// 							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
+// 						</div>
+// 						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
+// 							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
+// 								<p className="text-text-tertiary text-sm">Announcements</p>
+// 								<span className="heading-6">Radian OS Alpha Release</span>
+// 							</div>
+// 							<div className="flex gap-2 pb-5 pt-3">
+// 								<AvatarGroup>
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 								</AvatarGroup>
+// 								<span className="text-text-secondary">June 24, 2025</span>
+// 							</div>
+// 							<p className="text-text-secondary max-w-121 text-center lg:text-start">
+// 								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
+// 								possibilities to ...{" "}
+// 							</p>
+// 						</Link>
+// 					</section>
+// 					<Divider spacing="40" />
+// 					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
+// 						<div className="w-70 h-45">
+// 							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
+// 						</div>
+// 						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
+// 							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
+// 								<p className="text-text-tertiary text-sm">Announcements</p>
+// 								<span className="heading-6">Radian OS Alpha Release</span>
+// 							</div>
+// 							<div className="flex gap-2 pb-5 pt-3">
+// 								<AvatarGroup>
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 								</AvatarGroup>
+// 								<span className="text-text-secondary">June 24, 2025</span>
+// 							</div>
+// 							<p className="text-text-secondary max-w-121 text-center lg:text-start">
+// 								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
+// 								possibilities to ...{" "}
+// 							</p>
+// 						</Link>
+// 					</section>
+// 					<Divider spacing="40" />
+// 					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
+// 						<div className="w-70 h-45">
+// 							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
+// 						</div>
+// 						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
+// 							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
+// 								<p className="text-text-tertiary text-sm">Announcements</p>
+// 								<span className="heading-6">Radian OS Alpha Release</span>
+// 							</div>
+// 							<div className="flex gap-2 pb-5 pt-3">
+// 								<AvatarGroup>
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 								</AvatarGroup>
+// 								<span className="text-text-secondary">June 24, 2025</span>
+// 							</div>
+// 							<p className="text-text-secondary max-w-121 text-center lg:text-start">
+// 								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
+// 								possibilities to ...{" "}
+// 							</p>
+// 						</Link>
+// 					</section>
+// 					<Divider spacing="40" />
+// 					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
+// 						<div className="w-70 h-45">
+// 							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
+// 						</div>
+// 						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
+// 							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
+// 								<p className="text-text-tertiary text-sm">Announcements</p>
+// 								<span className="heading-6">Radian OS Alpha Release</span>
+// 							</div>
+// 							<div className="flex gap-2 pb-5 pt-3">
+// 								<AvatarGroup>
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 								</AvatarGroup>
+// 								<span className="text-text-secondary">June 24, 2025</span>
+// 							</div>
+// 							<p className="text-text-secondary max-w-121 text-center lg:text-start">
+// 								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
+// 								possibilities to ...{" "}
+// 							</p>
+// 						</Link>
+// 					</section>
+// 					<Divider spacing="40" />
+// 					<section className="pb-43 flex flex-col items-center justify-between lg:flex-row lg:items-start">
+// 						<div className="w-70 h-45">
+// 							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
+// 						</div>
+// 						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
+// 							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
+// 								<p className="text-text-tertiary text-sm">Announcements</p>
+// 								<span className="heading-6">Radian OS Alpha Release</span>
+// 							</div>
+// 							<div className="flex gap-2 pb-5 pt-3">
+// 								<AvatarGroup>
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
+// 								</AvatarGroup>
+// 								<span className="text-text-secondary">June 24, 2025</span>
+// 							</div>
+// 							<p className="text-text-secondary max-w-121 text-center lg:text-start">
+// 								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
+// 								possibilities to ...{" "}
+// 							</p>
+// 						</Link>
+// 					</section>
+// 				</>
+// 			)}
+// 			{!toggle && (
+// 				<section className="py-15 flex flex-col items-center justify-center gap-6 rounded-sm border border-dashed">
+// 					<div>
+// 						<svg className="fill-fill-level4" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+// 							<path
+// 								d="M87.7473 8.84494H72.0102V4.93362C72.0102 2.21526 69.7959 0.00354004 67.0744 0.00354004C64.3559 0.00354004 62.1443 2.21526 62.1443 4.93362V8.84514H37.8559V4.93362C37.8559 2.21526 35.6416 0.00354004 32.9201 0.00354004C30.2016 0.00354004 27.99 2.21526 27.99 4.93362V8.84514H12.2525C7.86426 8.84514 4.29414 12.4153 4.29414 16.8037V92.0381C4.29414 96.4264 7.86426 99.9967 12.2525 99.9967H55.5896H55.5908H55.5932H87.7473C92.1357 99.9967 95.7059 96.4266 95.7059 92.0381V16.8037C95.7059 12.4153 92.1355 8.84494 87.7473 8.84494ZM64.8734 4.93362C64.8734 3.72014 65.8607 2.73284 67.0742 2.73284C68.2908 2.73284 69.2807 3.72014 69.2807 4.93362V15.486C69.2807 16.6994 68.291 17.6867 67.0742 17.6867C65.8607 17.6867 64.8734 16.6994 64.8734 15.486V4.93362ZM30.7193 4.93362C30.7193 3.72014 31.7066 2.73284 32.9201 2.73284C34.1367 2.73284 35.1266 3.72014 35.1266 4.93362V15.486C35.1266 16.6994 34.1369 17.6867 32.9201 17.6867C31.7066 17.6867 30.7193 16.6994 30.7193 15.486V4.93362ZM12.2525 11.5744H27.9898V15.486C27.9898 18.2045 30.2014 20.4162 32.9199 20.4162C35.6416 20.4162 37.8557 18.2045 37.8557 15.486V11.5744H62.1438V15.486C62.1438 18.2045 64.3553 20.4162 67.0738 20.4162C69.7955 20.4162 72.0096 18.2045 72.0096 15.486V11.5744H87.7467C90.6301 11.5744 92.9758 13.9203 92.9758 16.8035V29.7338H7.02363V16.8035C7.02363 13.9203 9.36934 11.5744 12.2525 11.5744ZM7.02363 92.0381V32.4633H92.9764V74.1897C91.6092 74.8547 90.1053 75.2045 88.5832 75.2045C86.2482 75.2045 84.0408 74.4174 82.1998 72.9281C81.8709 72.6625 81.4379 72.5639 81.0273 72.6611C80.6164 72.7584 80.2734 73.0405 80.0988 73.4252C75.2523 84.1014 66.4551 92.5582 55.3109 97.2672H12.2525C9.36934 97.2672 7.02363 94.9213 7.02363 92.0381ZM90.8979 77.7215C84.3789 86.6317 74.7951 93.0301 63.9076 95.8453C66.7541 94.0426 69.4113 91.9637 71.8561 89.6238C76.0123 85.6457 79.3785 81.0822 81.8787 76.0395C83.899 77.2836 86.1869 77.934 88.583 77.934C89.3617 77.934 90.1367 77.8623 90.8979 77.7215ZM87.7473 97.2672H68.6307C78.3807 93.8908 86.9117 87.7162 92.9766 79.502V92.0381C92.9764 94.9213 90.6305 97.2672 87.7473 97.2672ZM25.2854 38.8635H16.2059C14.6687 38.8635 13.4184 40.1115 13.4184 41.6455V50.7252C13.4184 52.2623 14.6687 53.5127 16.2059 53.5127H25.2854C26.8193 53.5127 28.0674 52.2623 28.0674 50.7252V41.6455C28.0674 40.1115 26.8193 38.8635 25.2854 38.8635ZM25.3379 50.7252C25.3379 50.7561 25.3086 50.7834 25.2852 50.7834H16.2059C16.1787 50.7834 16.1477 50.7524 16.1477 50.7252V41.6455C16.1477 41.6223 16.1752 41.593 16.2059 41.593H25.2854C25.3125 41.593 25.3381 41.6186 25.3381 41.6455V50.7252H25.3379ZM44.7848 38.8635H35.7051C34.1711 38.8635 32.923 40.1115 32.923 41.6455V50.7252C32.923 52.2623 34.1711 53.5127 35.7051 53.5127H44.7848C46.3217 53.5127 47.5721 52.2623 47.5721 50.7252V41.6455C47.5721 40.1115 46.3217 38.8635 44.7848 38.8635ZM44.8428 50.7252C44.8428 50.7524 44.8119 50.7834 44.7848 50.7834H35.7051C35.6818 50.7834 35.6523 50.7561 35.6523 50.7252V41.6455C35.6523 41.6186 35.6779 41.593 35.7051 41.593H44.7848C44.8154 41.593 44.8428 41.6223 44.8428 41.6455V50.7252ZM55.2098 53.5129H64.2895C65.8234 53.5129 67.0715 52.2625 67.0715 50.7254V41.6457C67.0715 40.1117 65.8234 38.8637 64.2895 38.8637H55.2098C53.6758 38.8637 52.4277 40.1117 52.4277 41.6457V50.7254C52.4277 52.2623 53.6756 53.5129 55.2098 53.5129ZM55.157 41.6455C55.157 41.6186 55.1826 41.593 55.2098 41.593H64.2895C64.3166 41.593 64.3422 41.6186 64.3422 41.6455V50.7252C64.3422 50.7561 64.3129 50.7834 64.2895 50.7834H55.2098C55.1865 50.7834 55.157 50.7561 55.157 50.7252V41.6455ZM74.7145 53.5129H83.7941C85.3281 53.5129 86.5762 52.2625 86.5762 50.7254V41.6457C86.5762 40.1117 85.3281 38.8637 83.7941 38.8637H74.7145C73.1773 38.8637 71.927 40.1117 71.927 41.6457V50.7254C71.927 52.2623 73.1773 53.5129 74.7145 53.5129ZM74.6562 41.6455C74.6562 41.6223 74.6838 41.593 74.7145 41.593H83.7941C83.8213 41.593 83.8469 41.6186 83.8469 41.6455V50.7252C83.8469 50.7561 83.8176 50.7834 83.7941 50.7834H74.7145C74.6877 50.7834 74.6562 50.7518 74.6562 50.7252V41.6455ZM25.2854 58.3682H16.2059C14.6687 58.3682 13.4184 59.6162 13.4184 61.1502V70.2299C13.4184 71.7639 14.6687 73.0119 16.2059 73.0119H25.2854C26.8193 73.0119 28.0674 71.7639 28.0674 70.2299V61.1504C28.0674 59.6162 26.8193 58.3682 25.2854 58.3682ZM25.3379 70.2301C25.3379 70.257 25.3123 70.2826 25.2852 70.2826H16.2059C16.1752 70.2826 16.1477 70.2533 16.1477 70.2301V61.1504C16.1477 61.1272 16.1752 61.0977 16.2059 61.0977H25.2854C25.3125 61.0977 25.3381 61.1233 25.3381 61.1504V70.2301H25.3379ZM44.7848 58.3682H35.7051C34.1711 58.3682 32.923 59.6162 32.923 61.1502V70.2299C32.923 71.7639 34.1711 73.0119 35.7051 73.0119H44.7848C46.3217 73.0119 47.5721 71.7639 47.5721 70.2299V61.1504C47.5721 59.6162 46.3217 58.3682 44.7848 58.3682ZM44.8428 70.2301C44.8428 70.2533 44.8154 70.2826 44.7848 70.2826H35.7051C35.6779 70.2826 35.6523 70.257 35.6523 70.2301V61.1504C35.6523 61.1233 35.6779 61.0977 35.7051 61.0977H44.7848C44.8154 61.0977 44.8428 61.1272 44.8428 61.1504V70.2301ZM64.2895 73.0121C65.8234 73.0121 67.0715 71.7641 67.0715 70.2301V61.1504C67.0715 59.6164 65.8234 58.3684 64.2895 58.3684H55.2098C53.6758 58.3684 52.4277 59.6164 52.4277 61.1504V70.2301C52.4277 71.7641 53.6758 73.0121 55.2098 73.0121H64.2895ZM55.157 70.2301V61.1504C55.157 61.1233 55.1826 61.0977 55.2098 61.0977H64.2895C64.3166 61.0977 64.3422 61.1233 64.3422 61.1504V70.2301C64.3422 70.257 64.3166 70.2826 64.2895 70.2826H55.2098C55.1826 70.2826 55.157 70.257 55.157 70.2301ZM25.2854 77.8676H16.2059C14.6687 77.8676 13.4184 79.118 13.4184 80.6551V89.7348C13.4184 91.2688 14.6687 92.5168 16.2059 92.5168H25.2854C26.8193 92.5168 28.0674 91.2688 28.0674 89.7348V80.6551C28.0674 79.118 26.8193 77.8676 25.2854 77.8676ZM25.3379 89.7348C25.3379 89.7619 25.3123 89.7875 25.2852 89.7875H16.2059C16.1752 89.7875 16.1477 89.758 16.1477 89.7348V80.6551C16.1477 80.628 16.1787 80.5969 16.2059 80.5969H25.2854C25.3086 80.5969 25.3381 80.6242 25.3381 80.6551V89.7348H25.3379ZM44.7848 77.8676H35.7051C34.1711 77.8676 32.923 79.118 32.923 80.6551V89.7348C32.923 91.2688 34.1711 92.5168 35.7051 92.5168H44.7848C46.3217 92.5168 47.5721 91.2688 47.5721 89.7348V80.6551C47.5721 79.118 46.3217 77.8676 44.7848 77.8676ZM44.8428 89.7348C44.8428 89.758 44.8154 89.7875 44.7848 89.7875H35.7051C35.6779 89.7875 35.6523 89.7619 35.6523 89.7348V80.6551C35.6523 80.6242 35.6816 80.5969 35.7051 80.5969H44.7848C44.8119 80.5969 44.8428 80.628 44.8428 80.6551V89.7348Z"
+// 								fill="#E9EAEC"
+// 							/>
+// 						</svg>
+// 					</div>
+// 					<div className="flex flex-col items-center gap-3">
+// 						<span className="heading-6">No updates for the team yet!</span>
+// 						<p className="text-text-secondary max-w-105 text-center text-base">
+// 							Looks like you’re a bit early here. No worries, our team are working hard to bring you the first update
+// 						</p>
+// 					</div>
+// 				</section>
+// 			)}
+// 		</div>
+// 	)
 // }
-export default function Blog() {
-	const [toggle, setToggle] = useState(false)
+import React from "react"
 
-	return (
-		<div className="max-w-200 mx-auto mt-10 w-full px-5 lg:px-0">
-			<div className="flex flex-col pb-20 pt-10">
-				<div className="flex justify-between">
-					<section className="flex flex-col gap-6">
-						<div className="flex flex-col gap-4">
-							<Badge>Blogs and Updates</Badge>
-							<h1 className="heading-3">Latest Updates and Insights from the Radian Team</h1>
-						</div>
-						<p className="text-text-secondary text-base">Learn more about Radian OS, updates, and reads from our team and industry leading experts</p>
-						<form className="flex flex-col gap-3 sm:flex-row">
-							<Input size="40" className="sm:w-80" type="email" required placeholder="Email Address" />
-							<Button onClick={() => setToggle(!toggle)} size="40" type="submit">
-								Subscribe
-							</Button>
-						</form>
-					</section>
-					<div className="hidden items-center justify-center md:flex">
-						<svg className="fill-fill-level4" width="200" height="200" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M199.096 56.6004C196.203 50.6097 187.384 48.5601 186.753 48.4207L115.655 28.9906C112.509 28.1351 109.161 28.4277 106.211 29.816L10.1738 75.1617C10.1066 75.1933 10.0441 75.2336 9.98749 75.2812C3.62187 80.6578 0.270696 86.4359 0.0265558 92.455C-0.657038 109.403 12.0969 121.187 15.8012 124.241C14.7613 126.678 13.866 129.176 13.1195 131.719C10.1426 141.869 9.50038 152.526 11.5219 158.236C12.8656 162.032 15.0351 162.364 16.2082 162.224C19.5844 161.821 23.6168 159.41 28.2094 155.055C31.7969 164.107 36.2031 169.161 40.493 169.161C40.7547 169.162 41.0156 169.143 41.2746 169.106C45.5559 168.486 48.4832 162.802 49.1047 153.903C49.3508 150.431 49.8027 146.977 50.4582 143.558L93.2234 167.065C99.4961 170.383 104.996 171.49 109.545 171.49C112.443 171.5 115.323 171.029 118.067 170.096C123.633 168.185 126.732 165.002 127.049 164.664L191.631 103.829C191.709 103.756 191.773 103.669 191.818 103.573C194.505 97.8683 195.075 93.0218 193.511 89.1691C192.033 85.5238 188.991 83.5437 186.486 82.491L187.127 75.9527L187.172 75.4972L198.331 66.4004C198.426 66.323 198.504 66.2258 198.558 66.1156C200.279 62.6238 200.46 59.4222 199.096 56.6004ZM49.0312 141.963C49.0074 142.032 48.9922 142.104 48.9863 142.177C48.2055 146.007 47.6754 149.884 47.3992 153.783C46.8437 161.701 44.4047 166.925 41.0285 167.415C38.1004 167.838 33.491 164.341 29.3434 153.245C27.7203 148.777 26.4207 144.199 25.4547 139.545C25.3617 139.082 24.9109 138.782 24.448 138.875C23.9851 138.968 23.6855 139.419 23.7789 139.882C23.7805 139.889 23.782 139.897 23.7836 139.905C24.7332 144.455 25.9918 148.936 27.5508 153.316C23.0719 157.666 19.0855 160.161 16.0051 160.529C14.532 160.707 13.6289 159.07 13.1324 157.666C10.2086 149.406 13.2828 125.689 25.2012 112.061C25.2129 112.048 25.2266 112.039 25.2375 112.026C25.243 112.018 25.2484 112.011 25.2531 112.002C27.1281 109.839 29.2879 107.941 31.6734 106.359L57.3875 118.249C55.8691 121.103 54.5332 124.051 53.3879 127.074C53.3758 127.093 53.3617 127.11 53.3512 127.13C53.3121 127.209 53.2852 127.293 53.2719 127.38C52.4668 129.495 51.6398 131.907 50.8633 134.572C50.8137 134.669 50.7832 134.775 50.7734 134.883C50.1418 137.08 49.548 139.448 49.0312 141.963ZM23.3758 111.571C22.3758 112.77 21.4418 114.022 20.5769 115.321C14.9789 110.407 11.5406 105.616 10.368 101.067C9.1789 96.4601 9.44921 93.1664 11.1707 91.2777C12.6336 89.6738 14.8797 89.4363 16.175 89.4492C12.9344 100.096 18.9402 107.668 23.3758 111.571ZM59.4008 117.611C59.3293 117.379 59.1629 117.188 58.9422 117.087L31.9652 104.612C31.7023 104.49 31.3957 104.51 31.1508 104.664C28.693 106.233 26.4566 108.125 24.5012 110.288C19.6609 106.046 14.9422 99.23 17.8301 89.873L91.5746 126.148C98.3445 129.958 104.309 131.198 109.204 131.198C111.998 131.205 114.778 130.786 117.445 129.953C123.272 128.12 126.614 124.926 127.018 124.526L185.308 77.0187L184.723 82.9617V82.9886L184.085 89.4843L118.239 147.153C118.205 147.183 118.174 147.215 118.146 147.249C118.07 147.339 110.485 156.189 99.0715 149.85L55.1992 127.125C56.3547 124.087 57.7309 121.137 59.3176 118.301C59.4418 118.093 59.4719 117.843 59.4008 117.611ZM191.926 89.8121C193.29 93.173 192.755 97.5086 190.339 102.699L125.857 163.439C125.843 163.452 125.828 163.467 125.814 163.482C123.433 165.767 120.567 167.485 117.429 168.508C110.225 170.95 102.35 169.958 94.0351 165.559L50.8113 141.799C51.2254 139.837 51.6851 137.968 52.1734 136.207L98.3051 160.01C98.6543 160.214 101.906 162.028 107.099 162.214C107.367 162.224 107.642 162.229 107.926 162.229C112.857 162.229 120.169 160.671 128.346 153.768C128.357 153.758 128.368 153.748 128.379 153.737L186.686 99.0285C187.036 98.7121 187.063 98.1715 186.746 97.8215C186.43 97.4715 185.889 97.4441 185.539 97.7605C185.532 97.7675 185.524 97.7746 185.516 97.782L127.227 152.475C111.596 165.656 99.6574 158.823 99.1582 158.526C99.1426 158.517 99.1265 158.508 99.1101 158.5L52.6535 134.534C53.2812 132.422 53.9383 130.482 54.5863 128.733L98.2629 151.355C101.551 153.182 104.559 153.858 107.212 153.858C114.323 153.858 118.878 148.997 119.406 148.403L185.461 90.5472C185.625 90.4043 185.728 90.2043 185.749 89.9879L186.309 84.2824C188.395 85.2472 190.757 86.9277 191.926 89.8105V89.8121ZM197.105 65.1968L185.816 74.3984L125.902 123.23C125.877 123.251 125.853 123.273 125.83 123.295C125.702 123.426 112.865 136.184 92.3918 124.649C92.3781 124.641 92.3637 124.634 92.3492 124.627L17.7773 87.9406C17.7617 87.9308 17.7426 87.9242 17.7262 87.9152L17.7082 87.9066H17.7062C17.6777 87.8906 17.648 87.8765 17.618 87.864C17.5488 87.8406 17.4769 87.8265 17.4043 87.8215C16.8059 87.7359 12.5543 87.2367 9.91757 90.1168C7.77382 92.4578 7.36874 96.2859 8.71327 101.495C9.98593 106.435 13.668 111.573 19.6457 116.778C18.4902 118.66 17.4484 120.61 16.5262 122.616C12.5746 119.273 1.10585 108.179 1.74023 92.5254C1.96327 87.0308 5.08281 81.6937 11.0137 76.6601L106.948 31.3617C109.529 30.1461 112.46 29.8902 115.213 30.6398L186.322 50.0758L186.365 50.0867C186.45 50.105 194.975 52.0047 197.554 57.3437C198.659 59.6246 198.507 62.2652 197.105 65.1941L197.105 65.1968Z"
-								fill="#DFDFE2"
-							/>
-							<path
-								d="M178.373 67.9677L125.905 110.731C125.881 110.751 125.857 110.772 125.835 110.795C123.255 113.129 120.185 114.857 116.85 115.851C109.201 118.229 100.972 116.983 92.3918 112.149C92.3747 112.139 92.3571 112.13 92.3391 112.121L25.9399 80.5528C25.5137 80.3501 25.0036 80.5318 24.8008 80.9579C24.5981 81.3841 24.7797 81.8943 25.2059 82.097L91.5797 113.653C98.3473 117.461 104.311 118.7 109.206 118.7C112 118.708 114.78 118.288 117.447 117.456C123.274 115.623 126.617 112.429 127.02 112.029L179.455 69.2919C179.826 68.9997 179.889 68.4622 179.597 68.0915C179.305 67.7208 178.768 67.6571 178.397 67.9493C178.39 67.9552 178.382 67.961 178.375 67.9669L178.373 67.9677Z"
-								fill="#DFDFE2"
-							/>
-						</svg>
-					</div>
-				</div>
-			</div>
-			{toggle && (
-				<>
-					<Divider spacing="40" />
-					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
-						<div className="w-70 h-45">
-							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
-						</div>
-						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
-							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
-								<p className="text-text-tertiary text-sm">Announcements</p>
-								<span className="heading-6">Radian OS Alpha Release</span>
-							</div>
-							<div className="flex gap-2 pb-5 pt-3">
-								<AvatarGroup>
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-								</AvatarGroup>
-								<span className="text-text-secondary">June 24, 2025</span>
-							</div>
-							<p className="text-text-secondary max-w-121 text-center lg:text-start">
-								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
-								possibilities to ...{" "}
-							</p>
-						</Link>
-					</section>
-					<Divider spacing="40" />
-					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
-						<div className="w-70 h-45">
-							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
-						</div>
-						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
-							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
-								<p className="text-text-tertiary text-sm">Announcements</p>
-								<span className="heading-6">Radian OS Alpha Release</span>
-							</div>
-							<div className="flex gap-2 pb-5 pt-3">
-								<AvatarGroup>
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-								</AvatarGroup>
-								<span className="text-text-secondary">June 24, 2025</span>
-							</div>
-							<p className="text-text-secondary max-w-121 text-center lg:text-start">
-								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
-								possibilities to ...{" "}
-							</p>
-						</Link>
-					</section>
-					<Divider spacing="40" />
-					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
-						<div className="w-70 h-45">
-							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
-						</div>
-						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
-							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
-								<p className="text-text-tertiary text-sm">Announcements</p>
-								<span className="heading-6">Radian OS Alpha Release</span>
-							</div>
-							<div className="flex gap-2 pb-5 pt-3">
-								<AvatarGroup>
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-								</AvatarGroup>
-								<span className="text-text-secondary">June 24, 2025</span>
-							</div>
-							<p className="text-text-secondary max-w-121 text-center lg:text-start">
-								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
-								possibilities to ...{" "}
-							</p>
-						</Link>
-					</section>
-					<Divider spacing="40" />
-					<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
-						<div className="w-70 h-45">
-							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
-						</div>
-						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
-							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
-								<p className="text-text-tertiary text-sm">Announcements</p>
-								<span className="heading-6">Radian OS Alpha Release</span>
-							</div>
-							<div className="flex gap-2 pb-5 pt-3">
-								<AvatarGroup>
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-								</AvatarGroup>
-								<span className="text-text-secondary">June 24, 2025</span>
-							</div>
-							<p className="text-text-secondary max-w-121 text-center lg:text-start">
-								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
-								possibilities to ...{" "}
-							</p>
-						</Link>
-					</section>
-					<Divider spacing="40" />
-					<section className="pb-43 flex flex-col items-center justify-between lg:flex-row lg:items-start">
-						<div className="w-70 h-45">
-							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src="/og/static-og.png" />
-						</div>
-						<Link href="/blog/slug" className="flex flex-col items-center lg:items-start">
-							<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
-								<p className="text-text-tertiary text-sm">Announcements</p>
-								<span className="heading-6">Radian OS Alpha Release</span>
-							</div>
-							<div className="flex gap-2 pb-5 pt-3">
-								<AvatarGroup>
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-									<Avatar name="John Doe" src="https://randomuser.me/api/portraits/men/1.jpg" />
-								</AvatarGroup>
-								<span className="text-text-secondary">June 24, 2025</span>
-							</div>
-							<p className="text-text-secondary max-w-121 text-center lg:text-start">
-								Radian alpha debuts: empowering designers and developers with a cutting-edge library, packed with innovative tools, streamlined workflows, and endless creative
-								possibilities to ...{" "}
-							</p>
-						</Link>
-					</section>
-				</>
-			)}
-			{!toggle && (
-				<section className="py-15 flex flex-col items-center justify-center gap-6 rounded-sm border border-dashed">
-					<div>
-						<svg className="fill-fill-level4" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-							<path
-								d="M87.7473 8.84494H72.0102V4.93362C72.0102 2.21526 69.7959 0.00354004 67.0744 0.00354004C64.3559 0.00354004 62.1443 2.21526 62.1443 4.93362V8.84514H37.8559V4.93362C37.8559 2.21526 35.6416 0.00354004 32.9201 0.00354004C30.2016 0.00354004 27.99 2.21526 27.99 4.93362V8.84514H12.2525C7.86426 8.84514 4.29414 12.4153 4.29414 16.8037V92.0381C4.29414 96.4264 7.86426 99.9967 12.2525 99.9967H55.5896H55.5908H55.5932H87.7473C92.1357 99.9967 95.7059 96.4266 95.7059 92.0381V16.8037C95.7059 12.4153 92.1355 8.84494 87.7473 8.84494ZM64.8734 4.93362C64.8734 3.72014 65.8607 2.73284 67.0742 2.73284C68.2908 2.73284 69.2807 3.72014 69.2807 4.93362V15.486C69.2807 16.6994 68.291 17.6867 67.0742 17.6867C65.8607 17.6867 64.8734 16.6994 64.8734 15.486V4.93362ZM30.7193 4.93362C30.7193 3.72014 31.7066 2.73284 32.9201 2.73284C34.1367 2.73284 35.1266 3.72014 35.1266 4.93362V15.486C35.1266 16.6994 34.1369 17.6867 32.9201 17.6867C31.7066 17.6867 30.7193 16.6994 30.7193 15.486V4.93362ZM12.2525 11.5744H27.9898V15.486C27.9898 18.2045 30.2014 20.4162 32.9199 20.4162C35.6416 20.4162 37.8557 18.2045 37.8557 15.486V11.5744H62.1438V15.486C62.1438 18.2045 64.3553 20.4162 67.0738 20.4162C69.7955 20.4162 72.0096 18.2045 72.0096 15.486V11.5744H87.7467C90.6301 11.5744 92.9758 13.9203 92.9758 16.8035V29.7338H7.02363V16.8035C7.02363 13.9203 9.36934 11.5744 12.2525 11.5744ZM7.02363 92.0381V32.4633H92.9764V74.1897C91.6092 74.8547 90.1053 75.2045 88.5832 75.2045C86.2482 75.2045 84.0408 74.4174 82.1998 72.9281C81.8709 72.6625 81.4379 72.5639 81.0273 72.6611C80.6164 72.7584 80.2734 73.0405 80.0988 73.4252C75.2523 84.1014 66.4551 92.5582 55.3109 97.2672H12.2525C9.36934 97.2672 7.02363 94.9213 7.02363 92.0381ZM90.8979 77.7215C84.3789 86.6317 74.7951 93.0301 63.9076 95.8453C66.7541 94.0426 69.4113 91.9637 71.8561 89.6238C76.0123 85.6457 79.3785 81.0822 81.8787 76.0395C83.899 77.2836 86.1869 77.934 88.583 77.934C89.3617 77.934 90.1367 77.8623 90.8979 77.7215ZM87.7473 97.2672H68.6307C78.3807 93.8908 86.9117 87.7162 92.9766 79.502V92.0381C92.9764 94.9213 90.6305 97.2672 87.7473 97.2672ZM25.2854 38.8635H16.2059C14.6687 38.8635 13.4184 40.1115 13.4184 41.6455V50.7252C13.4184 52.2623 14.6687 53.5127 16.2059 53.5127H25.2854C26.8193 53.5127 28.0674 52.2623 28.0674 50.7252V41.6455C28.0674 40.1115 26.8193 38.8635 25.2854 38.8635ZM25.3379 50.7252C25.3379 50.7561 25.3086 50.7834 25.2852 50.7834H16.2059C16.1787 50.7834 16.1477 50.7524 16.1477 50.7252V41.6455C16.1477 41.6223 16.1752 41.593 16.2059 41.593H25.2854C25.3125 41.593 25.3381 41.6186 25.3381 41.6455V50.7252H25.3379ZM44.7848 38.8635H35.7051C34.1711 38.8635 32.923 40.1115 32.923 41.6455V50.7252C32.923 52.2623 34.1711 53.5127 35.7051 53.5127H44.7848C46.3217 53.5127 47.5721 52.2623 47.5721 50.7252V41.6455C47.5721 40.1115 46.3217 38.8635 44.7848 38.8635ZM44.8428 50.7252C44.8428 50.7524 44.8119 50.7834 44.7848 50.7834H35.7051C35.6818 50.7834 35.6523 50.7561 35.6523 50.7252V41.6455C35.6523 41.6186 35.6779 41.593 35.7051 41.593H44.7848C44.8154 41.593 44.8428 41.6223 44.8428 41.6455V50.7252ZM55.2098 53.5129H64.2895C65.8234 53.5129 67.0715 52.2625 67.0715 50.7254V41.6457C67.0715 40.1117 65.8234 38.8637 64.2895 38.8637H55.2098C53.6758 38.8637 52.4277 40.1117 52.4277 41.6457V50.7254C52.4277 52.2623 53.6756 53.5129 55.2098 53.5129ZM55.157 41.6455C55.157 41.6186 55.1826 41.593 55.2098 41.593H64.2895C64.3166 41.593 64.3422 41.6186 64.3422 41.6455V50.7252C64.3422 50.7561 64.3129 50.7834 64.2895 50.7834H55.2098C55.1865 50.7834 55.157 50.7561 55.157 50.7252V41.6455ZM74.7145 53.5129H83.7941C85.3281 53.5129 86.5762 52.2625 86.5762 50.7254V41.6457C86.5762 40.1117 85.3281 38.8637 83.7941 38.8637H74.7145C73.1773 38.8637 71.927 40.1117 71.927 41.6457V50.7254C71.927 52.2623 73.1773 53.5129 74.7145 53.5129ZM74.6562 41.6455C74.6562 41.6223 74.6838 41.593 74.7145 41.593H83.7941C83.8213 41.593 83.8469 41.6186 83.8469 41.6455V50.7252C83.8469 50.7561 83.8176 50.7834 83.7941 50.7834H74.7145C74.6877 50.7834 74.6562 50.7518 74.6562 50.7252V41.6455ZM25.2854 58.3682H16.2059C14.6687 58.3682 13.4184 59.6162 13.4184 61.1502V70.2299C13.4184 71.7639 14.6687 73.0119 16.2059 73.0119H25.2854C26.8193 73.0119 28.0674 71.7639 28.0674 70.2299V61.1504C28.0674 59.6162 26.8193 58.3682 25.2854 58.3682ZM25.3379 70.2301C25.3379 70.257 25.3123 70.2826 25.2852 70.2826H16.2059C16.1752 70.2826 16.1477 70.2533 16.1477 70.2301V61.1504C16.1477 61.1272 16.1752 61.0977 16.2059 61.0977H25.2854C25.3125 61.0977 25.3381 61.1233 25.3381 61.1504V70.2301H25.3379ZM44.7848 58.3682H35.7051C34.1711 58.3682 32.923 59.6162 32.923 61.1502V70.2299C32.923 71.7639 34.1711 73.0119 35.7051 73.0119H44.7848C46.3217 73.0119 47.5721 71.7639 47.5721 70.2299V61.1504C47.5721 59.6162 46.3217 58.3682 44.7848 58.3682ZM44.8428 70.2301C44.8428 70.2533 44.8154 70.2826 44.7848 70.2826H35.7051C35.6779 70.2826 35.6523 70.257 35.6523 70.2301V61.1504C35.6523 61.1233 35.6779 61.0977 35.7051 61.0977H44.7848C44.8154 61.0977 44.8428 61.1272 44.8428 61.1504V70.2301ZM64.2895 73.0121C65.8234 73.0121 67.0715 71.7641 67.0715 70.2301V61.1504C67.0715 59.6164 65.8234 58.3684 64.2895 58.3684H55.2098C53.6758 58.3684 52.4277 59.6164 52.4277 61.1504V70.2301C52.4277 71.7641 53.6758 73.0121 55.2098 73.0121H64.2895ZM55.157 70.2301V61.1504C55.157 61.1233 55.1826 61.0977 55.2098 61.0977H64.2895C64.3166 61.0977 64.3422 61.1233 64.3422 61.1504V70.2301C64.3422 70.257 64.3166 70.2826 64.2895 70.2826H55.2098C55.1826 70.2826 55.157 70.257 55.157 70.2301ZM25.2854 77.8676H16.2059C14.6687 77.8676 13.4184 79.118 13.4184 80.6551V89.7348C13.4184 91.2688 14.6687 92.5168 16.2059 92.5168H25.2854C26.8193 92.5168 28.0674 91.2688 28.0674 89.7348V80.6551C28.0674 79.118 26.8193 77.8676 25.2854 77.8676ZM25.3379 89.7348C25.3379 89.7619 25.3123 89.7875 25.2852 89.7875H16.2059C16.1752 89.7875 16.1477 89.758 16.1477 89.7348V80.6551C16.1477 80.628 16.1787 80.5969 16.2059 80.5969H25.2854C25.3086 80.5969 25.3381 80.6242 25.3381 80.6551V89.7348H25.3379ZM44.7848 77.8676H35.7051C34.1711 77.8676 32.923 79.118 32.923 80.6551V89.7348C32.923 91.2688 34.1711 92.5168 35.7051 92.5168H44.7848C46.3217 92.5168 47.5721 91.2688 47.5721 89.7348V80.6551C47.5721 79.118 46.3217 77.8676 44.7848 77.8676ZM44.8428 89.7348C44.8428 89.758 44.8154 89.7875 44.7848 89.7875H35.7051C35.6779 89.7875 35.6523 89.7619 35.6523 89.7348V80.6551C35.6523 80.6242 35.6816 80.5969 35.7051 80.5969H44.7848C44.8119 80.5969 44.8428 80.628 44.8428 80.6551V89.7348Z"
-								fill="#E9EAEC"
-							/>
-						</svg>
-					</div>
-					<div className="flex flex-col items-center gap-3">
-						<span className="heading-6">No updates for the team yet!</span>
-						<p className="text-text-secondary max-w-105 text-center text-base">
-							Looks like you’re a bit early here. No worries, our team are working hard to bring you the first update
-						</p>
-					</div>
-				</section>
-			)}
-		</div>
-	)
+const page = () => {
+	return <div>Blog</div>
 }
+
+export default page
