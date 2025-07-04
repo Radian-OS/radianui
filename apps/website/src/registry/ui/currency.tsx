@@ -177,9 +177,9 @@ function CurrencyInput({
 		</div>
 	)
 
-	const wrappedTrail = props.trail ? (
+	const wrappedTrail = props.end ? (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto">
-			{props.trail}
+			{props.end}
 		</div>
 	) : (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
@@ -206,8 +206,8 @@ function CurrencyInput({
 		<Input
 			value={rawValue}
 			ref={inputRef}
-			lead={currencyLead}
-			trail={wrappedTrail}
+			start={currencyLead}
+			end={wrappedTrail}
 			hint={hint}
 			onKeyDown={handleKeyDown}
 			onChange={handleChange}

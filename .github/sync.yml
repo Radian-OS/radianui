@@ -1,0 +1,7 @@
+user/repository:
+  - source: apps/website/src/registry/ui/
+    dest: src/registry/ui/
+  - source: apps/website/src/css/
+    dest: src/css/
+  - source: apps/website/src/registry/animated/
+    dest: src/registry/animated/

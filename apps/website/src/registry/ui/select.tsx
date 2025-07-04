@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import { cva } from "class-variance-authority"
+// import { cva } from "class-variance-authority"
 import { Command as CommandPrimitive } from "cmdk"
 import { Check, ChevronDown, ChevronUp, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -9,7 +9,13 @@ import { Badge } from "./badge"
 import { Button } from "./button"
 import { Divider } from "./divider"
 import { Dropdown, DropdownContent, DropdownTrigger } from "./dropdown"
-import { Input, InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
+import {
+	Input,
+	InputProps,
+	//cvaInputVariants,
+	defaultInputRadius,
+	defaultInputSize,
+} from "./input"
 import { Label } from "./label"
 
 // Type definition for the SelectItem component props
@@ -90,14 +96,14 @@ function SelectGroup({ label, children }: SelectGroupProps) {
 	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
 }
 // Variants for the Select trigger styling using class variance authority
-const SelectTriggerVariations = cva("active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2", {
-	variants: {
-		...cvaInputVariants,
-	},
-	defaultVariants: {
-		size: defaultInputSize,
-	},
-})
+// const SelectTriggerVariations = cva("active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2", {
+// 	variants: {
+// 		...cvaInputVariants,
+// 	},
+// 	defaultVariants: {
+// 		size: defaultInputSize,
+// 	},
+// })
 // Type definition for the Select context
 type SelectContextType = {
 	values: string[]
@@ -149,7 +155,7 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 function Select({
 	children,
 	label,
-	disableOpenStyle = false,
+	// disableOpenStyle = false,
 	placeholder,
 	selectedValues,
 	onSelectedChange,
@@ -272,8 +278,8 @@ function Select({
 									{variants === "input" ? (
 										<Input
 											placeholder={placeholder}
-											lead={lead}
-											trail={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
+											start={lead}
+											end={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
 											size={size}
 											rounded={rounded}
 											value={selectedLabels}
@@ -282,22 +288,7 @@ function Select({
 											disabled={disabled}
 										/>
 									) : variants === "button" ? (
-										<Button
-											lead={lead}
-											variant="ghost"
-											disabled={disabled}
-											className={cn(
-												"focus-visible:border-primary flex h-full cursor-pointer items-center justify-center border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
-												SelectTriggerVariations({ size, rounded }),
-												{
-													"text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none": disabled,
-													"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": open && !disableOpenStyle,
-													"rounded-l-none": disableOpenStyle,
-													[`border-primary rounded-l-none border`]: open && disableOpenStyle,
-												},
-												"w-full truncate",
-												classNames?.trigger
-											)}>
+										<Button lead={lead} variant="outline" color="neutral" size="32" disabled={disabled} className={className}>
 											<span
 												className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
 													"text-base": size === "44" || size === "48",

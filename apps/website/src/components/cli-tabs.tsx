@@ -72,6 +72,7 @@ export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm",
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		<Tabs
 			value={activeTab}
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			onValueChange={setActiveTab as any}
 			variant="outline-ghost"
 			size="md"

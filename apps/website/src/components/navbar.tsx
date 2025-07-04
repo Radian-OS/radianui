@@ -96,7 +96,7 @@ export default function Navbar() {
 		{ name: "Components", link: "/docs/components/accordion" },
 		{ name: "Documentation", link: "/docs/getting-started/introduction" },
 		{ name: "Blog", link: "/blog" },
-		{ name: "Blocks", link: "/blocks" },
+		{ name: "Blocks", link: process.env.NEXT_PUBLIC_BLOCKS_URL! },
 		{ name: "Figma", link: "/docs/getting-started/figma" },
 	]
 

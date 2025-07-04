@@ -40,7 +40,7 @@ export default function EmailSection() {
 								className="w-full sm:w-80"
 								size="40"
 								placeholder="Enter your email"
-								lead={<Mail className="stroke-stroke" />}
+								start={<Mail className="stroke-stroke" />}
 								value={email}
 								type="email"
 								onChange={(e) => setEmail(e.target.value)}

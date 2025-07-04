@@ -53,7 +53,7 @@ const CurrencyPreview = () => {
 								size={size}
 								placeholder="0.00"
 								custom={true}
-								trail={null}
+								end={null}
 								// currency={currency}
 								// hint={hasError ? "Hint text to help the user with input" : undefined}
 							/>

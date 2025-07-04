@@ -232,7 +232,7 @@ export default CounterInput
 							value={amount}
 							onChange={handleChange}
 							size={size}
-							lead={
+							start={
 								<Minus
 									onClick={(e) => {
 										e.stopPropagation()
@@ -242,7 +242,7 @@ export default CounterInput
 									onMouseDown={(e) => e.preventDefault()}
 								/>
 							}
-							trail={
+							end={
 								<Plus
 									className="size-5 cursor-pointer"
 									onClick={(e) => {
