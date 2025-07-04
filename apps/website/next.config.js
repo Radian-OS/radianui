@@ -37,10 +37,10 @@ const nextConfig = {
 			// 	source: "/paid",
 			// 	destination: "http://localhost:3000/",
 			// },
-			// {
-			// 	source: "/test",
-			// 	destination: "/docs/components/accordion",
-			// },
+			{
+				source: "/test123",
+				destination: "http://localhost:3000/",
+			},
 		]
 	},
 	// assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
