@@ -101,7 +101,6 @@ const PopoverPreview = () => {
 					</Modal>
 				</div>
 			</TabsContent>
-
 			<TabsContent value="code">
 				<CodeArea
 					language="tsx"
