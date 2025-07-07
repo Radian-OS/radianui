@@ -234,7 +234,7 @@ const components: MDXComponents = {
 		</h3>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-primary-foreground text-base", className)} {...props}>
+		<p className={cn("text-text-secondary text-base", className)} {...props}>
 			{children}
 		</p>
 	),
