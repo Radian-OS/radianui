@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
@@ -14,6 +15,7 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 		lead?: React.ReactNode
 		trail?: React.ReactNode
 		loading?: boolean
+		asChild?: boolean
 	}
 
 type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -25,6 +27,7 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 
 type CompactButtonProps = Omit<ButtonProps, "isIcon" | "lead" | "trail" | "size"> & {
 	size?: "20" | "24"
+	asChild?: boolean
 }
 
 const buttonVariants = cva(
@@ -220,21 +223,47 @@ const buttonVariants = cva(
 	}
 )
 
-function Button({ loading = false, variant = "strong", size = "36", isIcon = false, color = "primary", className, children, disabled, lead, trail, ...props }: ButtonProps) {
-	// Create a combined class with a special treatment for disabled state
-	const combinedClass = cn(
-		buttonVariants({ variant, size, isIcon, color }),
-		disabled && "opacity-50", // Apply opacity only in disabled state
-		className
-	)
+function Button({
+	loading = false,
+	variant = "strong",
+	size = "36",
+	isIcon = false,
+	color = "primary",
+	className,
+	children,
+	disabled,
+	lead,
+	trail,
+	asChild = false,
+	...props
+}: ButtonProps) {
+	const combinedClass = cn(buttonVariants({ variant, size, isIcon, color }), disabled && "opacity-50", className)
 
+	const Comp = asChild ? Slot : "button"
+
+	// When using asChild, we need to pass the styling to the child element
+	// and cannot modify the children structure
+	if (asChild) {
+		// Don't allow lead/trail/loading when using asChild as it would break the single child requirement
+		if (lead || trail || loading) {
+			console.warn("Button: lead, trail, and loading props are not supported when using asChild")
+		}
+
+		return (
+			<Comp className={combinedClass} disabled={disabled} {...props}>
+				{children}
+			</Comp>
+		)
+	}
+
+	// Normal button behavior
 	return (
-		<button className={combinedClass} disabled={disabled} {...props}>
+		<Comp className={combinedClass} disabled={disabled} {...props}>
 			{lead}
 			{loading ? <Spinner size={size ? Number(size) : undefined} /> : null}
 			{children}
 			{trail}
-		</button>
+		</Comp>
 	)
 }
 Button.displayName = "Button"
@@ -290,18 +319,12 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 }
 ButtonGroup.displayName = "ButtonGroup"
 
-function CompactButton({ loading = false, variant = "strong", size = "24", color = "primary", className, children, disabled, ...props }: CompactButtonProps) {
-	// Get size-specific styles - SVG always 16px, size controls height and width
-	const sizeStyles =
-		size === "20"
-			? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" // Force 16px SVGs, 20px height and width
-			: "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md" // Force 16px SVGs, 24px height and width
+function CompactButton({ loading = false, variant = "strong", size = "24", color = "primary", className, children, disabled, asChild = false, ...props }: CompactButtonProps) {
+	const sizeStyles = size === "20" ? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" : "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md"
 
-	// Force compact styling with 4px border radius and size-based dimensions - icon-only design
 	const combinedClass = cn(
 		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
-		sizeStyles, // Size-specific height/width and SVG sizing
-		// Apply variant and color styles
+		sizeStyles,
 		buttonVariants({ variant, size: "36", isIcon: true, color })
 			.split(" ")
 			.filter(
@@ -319,10 +342,25 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 		className
 	)
 
+	const Comp = asChild ? Slot : "button"
+
+	// When using asChild, we need to pass the styling to the child element
+	if (asChild) {
+		if (loading) {
+			console.warn("CompactButton: loading prop is not supported when using asChild")
+		}
+
+		return (
+			<Comp className={combinedClass} disabled={disabled} {...props}>
+				{children}
+			</Comp>
+		)
+	}
+
 	return (
-		<button className={combinedClass} disabled={disabled} {...props}>
+		<Comp className={combinedClass} disabled={disabled} {...props}>
 			{loading ? <Spinner size={16} /> : children}
-		</button>
+		</Comp>
 	)
 }
 CompactButton.displayName = "CompactButton"
