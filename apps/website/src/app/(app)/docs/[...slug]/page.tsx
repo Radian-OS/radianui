@@ -70,11 +70,11 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
 }
 
 // ✅ Await `params` in the page itself
-export default async function DocPage({ params }: DocPageProps) {
+export default async function Page({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const doc = await getDocFromParams({ params })
 	const currentPath = `/docs/${resolvedParams.slug.join("/")}`
-	const category = doc?.slugAsParams.split("/")[0]
+	const category = doc?.slugAsParams.split("/")[0].replace("-", " ")
 
 	if (!doc) return notFound()
 
