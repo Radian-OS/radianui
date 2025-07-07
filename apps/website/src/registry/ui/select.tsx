@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-import { cva } from "class-variance-authority"
+// import { cva } from "class-variance-authority"
 import { Command as CommandPrimitive } from "cmdk"
 import { Check, ChevronDown, ChevronUp, Search } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -9,7 +9,7 @@ import { Badge } from "./badge"
 import { Button } from "./button"
 import { Divider } from "./divider"
 import { Dropdown, DropdownContent, DropdownTrigger } from "./dropdown"
-import { Input, InputProps, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
+import { Input, InputProps, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
 
 // Type definition for the SelectItem component props
@@ -60,12 +60,11 @@ function SelectItem({ value, children, startContent, endContent, ref, ...props }
 			}}
 			className={`text-text flex cursor-pointer justify-between gap-2 ${isSelected ? "bg-fill-level3" : ""}`}
 			{...props}>
-			<div className="flex gap-2">
+			<div className="flex flex-1 gap-2">
 				{startContent && <span className="flex items-center justify-center">{startContent}</span>}
 				<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
-			</div>
-			<div className="flex gap-2">
-				{endContent && <span className="flex items-center justify-center">{endContent}</span>}
+
+				{endContent && <span>{endContent}</span>}
 				{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
 			</div>
 		</CommandItem>
@@ -90,14 +89,14 @@ function SelectGroup({ label, children }: SelectGroupProps) {
 	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
 }
 // Variants for the Select trigger styling using class variance authority
-const SelectTriggerVariations = cva("active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2", {
-	variants: {
-		...cvaInputVariants,
-	},
-	defaultVariants: {
-		size: defaultInputSize,
-	},
-})
+// const SelectTriggerVariations = cva("active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2", {
+// 	variants: {
+// 		...cvaInputVariants,
+// 	},
+// 	defaultVariants: {
+// 		size: defaultInputSize,
+// 	},
+// })
 // Type definition for the Select context
 type SelectContextType = {
 	values: string[]
@@ -149,7 +148,6 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 function Select({
 	children,
 	label,
-	disableOpenStyle = false,
 	placeholder,
 	selectedValues,
 	onSelectedChange,

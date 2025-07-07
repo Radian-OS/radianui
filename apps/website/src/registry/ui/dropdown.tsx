@@ -119,9 +119,12 @@ function DropdownItem({
 	return (
 		<DropdownMenuPrimitive.Item
 			className={cn(
-				"focus:text-primary-foreground hover:bg-fill-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer items-center justify-between gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
+				"focus:text-primary-foreground outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer items-center justify-between gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
 				inset && "pl-9",
-				isSelected && "bg-fill-level3",
+				{
+					"bg-fill-level2": isSelected,
+					"hover:bg-fill-level2": !isSelected,
+				},
 				className
 			)}
 			asChild={asChild}
@@ -136,7 +139,7 @@ function DropdownItem({
 						<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
 					</div>
 					<div className="flex items-center gap-2">
-						{endContent && <span className="flex items-center justify-center">{endContent}</span>}
+						{endContent && <span>{endContent}</span>}
 						{isSelectable && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
 					</div>
 				</>
