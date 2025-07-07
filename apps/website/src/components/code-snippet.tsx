@@ -1,5 +1,5 @@
 import React from "react"
-import { Check, CopyIcon } from "lucide-react"
+import { Check, CopyIcon, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
@@ -23,9 +23,12 @@ export default function CodeSnippet({ code, title, showLineNumber = false, class
 	})
 
 	return (
-		<div className={cn("bg-fill-level2 mb-4 overflow-hidden rounded-xl", className)}>
-			<div className="flex items-center justify-between px-4 pb-2 pt-3">
-				<span className="text-text-secondary font-mono text-xs">{title}</span>
+		<div className={cn("bg-fill-level2 mb-4 flex flex-col gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+			<div className="inline-flex items-center gap-3 px-1 py-0.5">
+				<span className="bg-bg-base text-text-tertiary rounded-md p-1">
+					<Terminal className="size-4" />
+				</span>
+				<span className="text-text-secondary flex-1 text-sm">{title}</span>
 				<Button variant="ghost" color="neutral" size={"28"} isIcon aria-label="Copy command" onClick={copy}>
 					{copied ? <Check /> : <CopyIcon />}
 				</Button>

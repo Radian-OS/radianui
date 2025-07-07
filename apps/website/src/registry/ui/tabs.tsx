@@ -118,7 +118,7 @@ const tabsTriggerStyles = cva(
 			{
 				size: "md",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: " px-2.5 py-2",
+				className: " p-2",
 			},
 			{
 				size: "lg",

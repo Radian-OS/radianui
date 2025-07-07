@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import PackageManagerTabs from "@/components/cli-tabs"
+import CommandLineTabs from "@/components/cli-tabs"
 import { CodeArea } from "@/registry/ui/code"
 
 const Manual = () => {
-	const language = "bash"
-	const pkg = ["pnpm", "yarn", "npm", "bun"]
 	const [globalCSS, setGlobalCSS] = useState("")
 
 	useEffect(() => {
@@ -34,7 +32,7 @@ const Manual = () => {
 							<p>Add the following dependencies to your project:</p>
 						</div>
 					</div>
-					<PackageManagerTabs language={language} pkg={pkg} code={"add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react"} />
+					<CommandLineTabs mode="execute" code={"add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react"} />
 				</div>
 
 				<div className="flex flex-col gap-6">

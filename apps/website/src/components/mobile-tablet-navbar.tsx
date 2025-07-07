@@ -1,5 +1,3 @@
-"use client"
-
 import React from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@radix-ui/react-accordion"
 import { ChevronRight, X } from "lucide-react"

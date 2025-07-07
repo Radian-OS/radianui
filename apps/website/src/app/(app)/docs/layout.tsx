@@ -9,7 +9,7 @@ interface Props {
 
 const layout = ({ children }: Props) => {
 	return (
-		<div className="flex w-full max-w-full flex-1">
+		<div className="flex w-full max-w-full px-4">
 			{/* Left Sidebar */}
 			<Sidebar />
 

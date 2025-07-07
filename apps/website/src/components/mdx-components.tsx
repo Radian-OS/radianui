@@ -100,6 +100,7 @@ import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-wi
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import ToastExample from "@/registry/example/toast/toast-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
+import CodeSnippet from "./code-snippet"
 import { FrameworkDocs } from "./framework-docs"
 
 type MdxProps = {
@@ -205,6 +206,9 @@ const components: MDXComponents = {
 	CLI: ({ code, mode = "execute" }: { code: string; mode: InstallMode }) => {
 		return <CommandLineTabs mode={mode} code={code} />
 	},
+	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
+		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
+	),
 	Code: ({ language, tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
 			<CommandLineTabs mode="execute" code={code} />

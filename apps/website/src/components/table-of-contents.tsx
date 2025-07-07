@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { MdxHeading } from "@/lib/get-mdx-headings"
+import { cn } from "@/lib/utils"
 
 interface TableOfContentsProps {
 	headings: MdxHeading[]
@@ -41,7 +42,16 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 
 	useEffect(() => {
 		if (activeRef.current) {
-			activeRef.current.scrollIntoView({ block: "nearest", behavior: "smooth" })
+			// Find the scrollable container (the ul element)
+			const scrollContainer = activeRef.current.closest("ul")
+			if (scrollContainer) {
+				// Simply scroll the active item into view
+				activeRef.current.scrollIntoView({
+					block: "nearest",
+					behavior: "smooth",
+					inline: "nearest",
+				})
+			}
 		}
 	}, [activeHeadingId])
 
@@ -70,25 +80,21 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 	if (!headings.length) return null
 
 	return (
-		<div className="mb-10 flex flex-col gap-1 text-sm font-medium">
+		<nav className="mb-10 flex flex-col gap-1 text-sm font-medium">
 			<span className="block py-2">On This Page</span>
-			<nav className="relative">
-				<ul className="text-text-secondary flex flex-col gap-2 border-l">
-					{headings.map((heading) => (
-						<li key={heading.id}>
-							<Link
-								ref={activeHeadingId === heading.id ? activeRef : undefined}
-								className={`block px-3 py-1 transition-colors duration-200 ${
-									activeHeadingId === heading.id ? "text-primary border-primary -ml-0.5 border-l-2" : "text-text-secondary"
-								}`}
-								href={`#${heading.id}`}
-								onClick={(e) => handleHeadingClick(e, heading.id)}>
-								{heading.text}
-							</Link>
-						</li>
-					))}
-				</ul>
-			</nav>
-		</div>
+			<ul className="border-soft h-35 no-scrollbar flex flex-col gap-2 overflow-auto border-l">
+				{headings.map((heading) => (
+					<Link
+						key={heading.id}
+						ref={activeHeadingId === heading.id ? activeRef : null}
+						className={cn("border-s-2 border-transparent px-2.5 py-1", { "border-primary": activeHeadingId === heading.id })}
+						href={`#${heading.id}`}
+						onClick={(e) => handleHeadingClick(e, heading.id)}>
+						<span className="sr-only">{heading.text}</span>
+						<li className="text-text-secondary">{heading.text}</li>
+					</Link>
+				))}
+			</ul>
+		</nav>
 	)
 }

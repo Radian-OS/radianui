@@ -1,5 +1,3 @@
-"use client"
-
 import { CodeArea } from "@/registry/ui/code"
 import { Divider } from "@/registry/ui/divider"
 import CommandLineTabs from "./cli-tabs"

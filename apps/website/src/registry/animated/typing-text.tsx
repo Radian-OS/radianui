@@ -1,7 +1,7 @@
 import React from "react"
-import { Variants, motion } from "motion/react"
+import { Easing, Variants, motion } from "motion/react"
 
-type EaseOption = "anticipate" | "linear" | "easeIn" | "easeOut" | "easeInOut" | "circIn" | "circOut" | "circInOut" | "backIn" | "backOut" | "backInOut" | number[]
+type EaseOption = Easing | [number, number, number, number] // Cubic bezier array must have exactly 4 numbers
 
 type TypingTextProps = {
 	texts: string[]

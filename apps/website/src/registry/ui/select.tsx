@@ -9,7 +9,13 @@ import { Badge } from "./badge"
 import { Button } from "./button"
 import { Divider } from "./divider"
 import { Dropdown, DropdownContent, DropdownTrigger } from "./dropdown"
-import { Input, InputProps, defaultInputRadius, defaultInputSize } from "./input"
+import {
+	Input,
+	InputProps,
+	//cvaInputVariants,
+	defaultInputRadius,
+	defaultInputSize,
+} from "./input"
 import { Label } from "./label"
 
 // Type definition for the SelectItem component props
@@ -148,6 +154,7 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 function Select({
 	children,
 	label,
+	// disableOpenStyle = false,
 	placeholder,
 	selectedValues,
 	onSelectedChange,

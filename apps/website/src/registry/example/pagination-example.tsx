@@ -56,8 +56,6 @@ const PaginationExample = () => {
 				enableCustomRows={customRow[0] === "true"}
 				goToPage={goTo[0] === "true"}
 				customRows={15}
-				buttonVariant={`${buttonVariant}`}
-				control={`${control}`}
 			/>
 		</div>
 	)

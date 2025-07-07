@@ -2,7 +2,7 @@ import React from "react"
 import { cn } from "@/lib/utils"
 
 type Orientation = "horizontal" | "vertical"
-type Spacing = "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40" | "80" | "120"
+type Spacing = "0" | "2" | "4" | "6" | "8" | "12" | "16" | "20" | "24" | "32" | "40" | "80" | "120"
 
 type DividerProps = React.HTMLAttributes<HTMLDivElement> & {
 	orientation?: Orientation
