@@ -66,12 +66,11 @@ function SelectItem({ value, children, startContent, endContent, ref, ...props }
 			}}
 			className={`text-text flex cursor-pointer justify-between gap-2 ${isSelected ? "bg-fill-level3" : ""}`}
 			{...props}>
-			<div className="flex gap-2">
+			<div className="flex flex-1 gap-2">
 				{startContent && <span className="flex items-center justify-center">{startContent}</span>}
 				<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
-			</div>
-			<div className="flex gap-2">
-				{endContent && <span className="flex items-center justify-center">{endContent}</span>}
+
+				{endContent && <span>{endContent}</span>}
 				{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
 			</div>
 		</CommandItem>
