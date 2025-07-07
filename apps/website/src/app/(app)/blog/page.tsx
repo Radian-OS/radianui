@@ -58,7 +58,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 								</div>
 								<div className="flex gap-2 pb-5 pt-3">
 									<AvatarGroup>{blog.author ? blog.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup>
-									<span className="text-text-secondary">{blog.date.toString()}</span>
+									<span className="text-text-secondary">{blog.formattedDate}</span>
 								</div>
 								<p className="text-text-secondary max-w-121 text-center lg:text-start">{blog.description}</p>
 							</Link>
