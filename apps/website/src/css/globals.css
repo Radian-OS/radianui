@@ -393,7 +393,7 @@
 
 @layer base {
 	* {
-		@apply border-border;
+		border-color: var(--color-border);
 	}
 	body {
 		@apply font-body bg-bg-base text-text;
@@ -402,6 +402,14 @@
 
 @utility animation-pause {
 	animation-play-state: paused;
+}
+
+@utility border-border {
+	border-color: var(--color-border);
+}
+
+@utility border-border-alpha {
+	border-color: var(--color-border-alpha);
 }
 
 /*

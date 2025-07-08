@@ -23,7 +23,7 @@
 
 @layer base {
 	* {
-		@apply border-border;
+		border-color: var(--color-border);
 		scrollbar-width: thin;
 		scrollbar-color: hsl(var(--border)) transparent;
 		scroll-behavior: smooth;

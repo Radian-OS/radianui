@@ -34,13 +34,13 @@ export const TableBody = ({ children, className, ...props }: HTMLAttributes<HTML
 )
 
 export const TableHead = ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-	<th className={cn("border-soft border-b px-2 py-3 text-start text-[13px] text-sm font-medium first:rounded-tl-xl last:rounded-tr-xl", className)} {...props}>
+	<th className={cn("border-soft border-b px-2 py-3 text-start text-sm font-medium first:rounded-tl-xl last:rounded-tr-xl", className)} {...props}>
 		{children}
 	</th>
 )
 
 export const TableRow = ({ children, className, ...props }: HTMLAttributes<HTMLTableRowElement>) => (
-	<tr className={cn("even:bg-fill-level1", className)} {...props}>
+	<tr className={cn("", className)} {...props}>
 		{children}
 	</tr>
 )
@@ -66,14 +66,14 @@ export const PropsTable = ({ title, data, externalUrl }: { title?: string; data:
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex items-center gap-2 p-2">
-				<span className="text-text-tertiary p-1">
+				<span className="text-text-tertiary bg-bg-base rounded-md p-1">
 					<Box size={16} />
 				</span>
 				<span className="text-text-secondary text-sm font-medium">{`<${title}>`}</span>
 			</div>
 			<Table>
 				<TableHeader>
-					<TableRow>
+					<TableRow className="bg-bg-base">
 						{["Name", "Default", "Values"].map((item) => (
 							<TableHead key={item}>{item}</TableHead>
 						))}
@@ -81,7 +81,7 @@ export const PropsTable = ({ title, data, externalUrl }: { title?: string; data:
 				</TableHeader>
 				<TableBody>
 					{data.map((prop) => (
-						<TableRow key={prop.name}>
+						<TableRow key={prop.name} className="odd:bg-fill-level1 bg-bg-base">
 							<TableCell>
 								<span className="flex items-center gap-2">
 									<DescriptionTooltip description={prop.description} />

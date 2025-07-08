@@ -42,28 +42,28 @@ externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
 			defaultValue: "sm",
 			values: ["sm", "lg"],
 			required: false,
-			description: "The size of the accordion",
+			description: "Controls the overall size of the accordion",
 		},
 		{
 			name: "variant",
 			defaultValue: "box",
 			values: ["box", "table", "open"],
 			required: false,
-			description: "The variant of the accordion",
+			description: "Defines the visual style of the accordion",
 		},
 		{
 			name: "interaction",
 			defaultValue: "single",
 			values: ["single", "multiple"],
 			required: false,
-			description: "The interaction of the accordion",
+			description: 'Determines whether one or multiple accordion items can be open at the same time',
 		},
 		{
 			name: "disabled",
 			defaultValue: "false",
 			values: ["boolean"],
 			required: false,
-			description: "Whether the accordion is disabled",
+			description: "Disables interaction with the accordion when set to true",
 		},
 	]}
 />
@@ -74,14 +74,14 @@ externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
 		{
 			name: "value",
 			values: ["string"],
-			description: "The value of the accordion item",
+			description: "The unique value that identifies the accordion item",
 		},
 		{
 			name: "disabled",
 			defaultValue: "false",
 			values: ["boolean"],
 			required: false,
-			description: "Whether the accordion item is disabled",
+			description: "Prevents the user from interacting with the accordion item when set to true",
 		},
 	]}
 />
@@ -93,7 +93,7 @@ externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
 			name: "asChild",
 			defaultValue: "false",
 			values: ["boolean"],
-			description: "Whether the accordion trigger is a child",
+			description: "Changes the default rendered element to the one passed as a child, merging their props and behavior",
 		},
 	]}
 />
@@ -105,7 +105,7 @@ externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
 			name: "asChild",
 			defaultValue: "false",
 			values: ["boolean"],
-			description: "Whether the accordion content is a child",
+			description: "Changes the default rendered element to the one passed as a child, merging their props and behavior",
 		},
 	]}
 />

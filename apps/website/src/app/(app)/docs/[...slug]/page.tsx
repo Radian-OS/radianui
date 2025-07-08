@@ -133,7 +133,7 @@ export default async function Page({ params }: DocPageProps) {
 			</div>
 
 			{/* Right Sidebar (TOC) */}
-			<aside className="bg-bg-base top-15.5 sticky z-30 hidden h-[calc(100vh-3.875rem)] w-64 py-10 ps-4 lg:block">
+			<aside className="bg-bg-base top-17 sticky z-30 hidden h-[calc(100vh-4.25rem)] w-64 py-10 ps-4 lg:block">
 				<TableOfContent headings={headings} />
 				<CommunityCard />
 			</aside>

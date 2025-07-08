@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 export default function Sidebar() {
 	const pathName = usePathname()
 	return (
-		<aside className="no-scrollbar top-15.5 w-65 sticky z-30 hidden h-[calc(100vh-3.875rem)] flex-col justify-start gap-3 overflow-y-auto py-10 text-sm lg:flex">
+		<aside className="no-scrollbar top-17 w-65 sticky z-30 hidden h-[calc(100vh-4.25rem)] flex-col justify-start gap-3 overflow-y-auto py-10 text-sm lg:flex">
 			{navigationItems.map((section) => (
 				<div className="flex flex-col gap-2 text-sm font-medium" key={section.title}>
 					<span className="py-1.5">{section.title}</span>
