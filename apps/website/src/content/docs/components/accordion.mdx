@@ -33,30 +33,80 @@ externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
 
 ## Props
 
-### Accordion
+<PropsTableWrapper>
+<PropsTable
+	title="Accordion"
+	data={[
+		{
+			name: "size",
+			defaultValue: "sm",
+			values: ["sm", "lg"],
+			required: false,
+			description: "The size of the accordion",
+		},
+		{
+			name: "variant",
+			defaultValue: "box",
+			values: ["box", "table", "open"],
+			required: false,
+			description: "The variant of the accordion",
+		},
+		{
+			name: "interaction",
+			defaultValue: "single",
+			values: ["single", "multiple"],
+			required: false,
+			description: "The interaction of the accordion",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Whether the accordion is disabled",
+		},
+	]}
+/>
 
-| Prop Name   | Default Value | Possible Values        |
-| ----------- | ------------- | ---------------------- |
-| size        | `"sm"`        | `"sm", "lg"`           |
-| variant     | "box"         | "box", "table", "open" |
-| interaction | "single"      | "single", "multiple"   |
-| disabled    | false         | boolean                |
+<PropsTable
+	title="AccordionItem"
+	data={[
+		{
+			name: "value",
+			values: ["string"],
+			description: "The value of the accordion item",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Whether the accordion item is disabled",
+		},
+	]}
+/>
 
-### AccordionItem
+<PropsTable
+	title="AccordionTrigger"
+	data={[
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "Whether the accordion trigger is a child",
+		},
+	]}
+/>
 
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| value     | -             | string          |
-| disabled  | false         | boolean         |
-
-### AccordionTrigger
-
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| asChild   | false         | boolean         |
-
-### AccordionContent
-
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| asChild   | false         | boolean         |
+<PropsTable
+	title="AccordionContent"
+	data={[
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "Whether the accordion content is a child",
+		},
+	]}
+/>
+</PropsTableWrapper>
