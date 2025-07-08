@@ -34,7 +34,7 @@ export const TableBody = ({ children, className, ...props }: HTMLAttributes<HTML
 )
 
 export const TableHead = ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-	<th className={cn("border-soft border-b px-2 py-3 text-start text-sm font-medium first:rounded-tl-xl last:rounded-tr-xl", className)} {...props}>
+	<th className={cn("border-soft border-b px-2 py-3 text-start text-sm font-medium", className)} {...props}>
 		{children}
 	</th>
 )
