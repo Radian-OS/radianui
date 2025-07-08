@@ -134,7 +134,7 @@ export const BlockPreview: React.FC<BlockPreviewProps> = ({ code, preview, title
 							</TabsList>
 						</Tabs>
 					)}
-					<Button variant="outline" color="neutral" size="36" isIcon className="text-text-secondary">
+					<Button variant="outline" color="neutral" size="36" isIcon className="text-text-secondary" asChild>
 						<Link href={preview} passHref target="_blank">
 							<Maximize className="size-4" />
 						</Link>
