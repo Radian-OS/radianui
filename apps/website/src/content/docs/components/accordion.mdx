@@ -33,30 +33,80 @@ externalSiteRef: https://www.radix-ui.com/primitives/docs/components/accordion
 
 ## Props
 
-### Accordion
+<PropsTableWrapper>
+<PropsTable
+	title="Accordion"
+	data={[
+		{
+			name: "size",
+			defaultValue: "sm",
+			values: ["sm", "lg"],
+			required: false,
+			description: "Controls the overall size of the accordion",
+		},
+		{
+			name: "variant",
+			defaultValue: "box",
+			values: ["box", "table", "open"],
+			required: false,
+			description: "Defines the visual style of the accordion",
+		},
+		{
+			name: "interaction",
+			defaultValue: "single",
+			values: ["single", "multiple"],
+			required: false,
+			description: 'Determines whether one or multiple accordion items can be open at the same time',
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables interaction with the accordion when set to true",
+		},
+	]}
+/>
 
-| Prop Name   | Default Value | Possible Values        |
-| ----------- | ------------- | ---------------------- |
-| size        | `"sm"`        | `"sm", "lg"`           |
-| variant     | "box"         | "box", "table", "open" |
-| interaction | "single"      | "single", "multiple"   |
-| disabled    | false         | boolean                |
+<PropsTable
+	title="AccordionItem"
+	data={[
+		{
+			name: "value",
+			values: ["string"],
+			description: "The unique value that identifies the accordion item",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Prevents the user from interacting with the accordion item when set to true",
+		},
+	]}
+/>
 
-### AccordionItem
+<PropsTable
+	title="AccordionTrigger"
+	data={[
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "Changes the default rendered element to the one passed as a child, merging their props and behavior",
+		},
+	]}
+/>
 
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| value     | -             | string          |
-| disabled  | false         | boolean         |
-
-### AccordionTrigger
-
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| asChild   | false         | boolean         |
-
-### AccordionContent
-
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| asChild   | false         | boolean         |
+<PropsTable
+	title="AccordionContent"
+	data={[
+		{
+			name: "asChild",
+			defaultValue: "false",
+			values: ["boolean"],
+			description: "Changes the default rendered element to the one passed as a child, merging their props and behavior",
+		},
+	]}
+/>
+</PropsTableWrapper>

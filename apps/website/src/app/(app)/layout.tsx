@@ -8,7 +8,7 @@ interface Props {
 export default function LandingLayout({ children }: Props) {
 	return (
 		<div>
-			<header className="sticky top-0 z-50 w-full">
+			<header className="border-soft bg-bg-base sticky top-0 z-50 box-content w-full border-b">
 				<Navbar />
 			</header>
 			{children}

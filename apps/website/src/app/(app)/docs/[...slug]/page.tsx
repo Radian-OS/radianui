@@ -70,11 +70,11 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
 }
 
 // ✅ Await `params` in the page itself
-export default async function DocPage({ params }: DocPageProps) {
+export default async function Page({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const doc = await getDocFromParams({ params })
 	const currentPath = `/docs/${resolvedParams.slug.join("/")}`
-	const category = doc?.slugAsParams.split("/")[0]
+	const category = doc?.slugAsParams.split("/")[0].replace("-", " ")
 
 	if (!doc) return notFound()
 
@@ -133,7 +133,7 @@ export default async function DocPage({ params }: DocPageProps) {
 			</div>
 
 			{/* Right Sidebar (TOC) */}
-			<aside className="bg-bg-base top-15.5 sticky z-30 hidden h-[calc(100vh-3.875rem)] w-64 py-10 ps-4 lg:block">
+			<aside className="bg-bg-base top-17 sticky z-30 hidden h-[calc(100vh-4.25rem)] w-64 py-10 ps-4 lg:block">
 				<TableOfContent headings={headings} />
 				<CommunityCard />
 			</aside>

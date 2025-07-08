@@ -21,11 +21,6 @@ type Props = {
 
 export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems, selectedIndex, setSelectedIndex, itemRefs }: Props) {
 	const inputRef = useRef<HTMLInputElement>(null)
-
-	// useEffect(() => {
-	// 	inputRef.current?.focus()
-	// }, [])
-
 	return (
 		<>
 			<div className="bg-fill-level1 rounded-b-none rounded-t-xl p-1.5">

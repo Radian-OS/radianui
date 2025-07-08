@@ -102,12 +102,15 @@ import ToastExample from "@/registry/example/toast/toast-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
 import CodeSnippet from "./code-snippet"
 import { FrameworkDocs } from "./framework-docs"
+import { PropsData, PropsTable } from "./props-table"
 
 type MdxProps = {
 	code: string
 }
 
 const components: MDXComponents = {
+	PropsTable: ({ title, data, externalUrl }: { title?: string; data: PropsData[]; externalUrl?: string }) => <PropsTable title={title} data={data} externalUrl={externalUrl} />,
+	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => <div className="bg-bg-level0 mt-6 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>,
 	AccordionPreview: () => <AccordionPreview />,
 	AccordionWithIconExample: () => <AccordionWithIconExample />,
 	AlertPreview: () => <AlertPreview />,
@@ -231,32 +234,11 @@ const components: MDXComponents = {
 		</h3>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-primary-foreground text-base", className)} {...props}>
+		<p className={cn("text-text-secondary text-base", className)} {...props}>
 			{children}
 		</p>
 	),
-	table: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-		<div className="no-scrollbar mb-9 overflow-x-scroll">
-			<table className={cn("border-border w-full table-auto border", className)} {...props}>
-				{children}
-			</table>
-		</div>
-	),
-	th: ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-		<th className={cn("border-border border px-3 py-2.5 text-left text-sm font-semibold", className)} {...props}>
-			{children}
-		</th>
-	),
-	tr: ({ children, className, ...props }: HTMLAttributes<HTMLTableRowElement>) => (
-		<tr className={cn("border-border border", className)} {...props}>
-			{children}
-		</tr>
-	),
-	td: ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-		<td className={cn("border-border border px-3 py-2.5 text-sm", className)} {...props}>
-			{children}
-		</td>
-	),
+
 	ul: ({ children }: { children?: React.ReactNode }) => (
 		<ul className="[&>li>strong]:text-text-secondary ml-4 mt-2 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
 	),
@@ -265,6 +247,7 @@ const components: MDXComponents = {
 			<div className="w-full">{children}</div>
 		</div>
 	),
+	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
 	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
 		<h3
 			className={cn(
@@ -278,7 +261,6 @@ const components: MDXComponents = {
 			{...props}
 		/>
 	),
-	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium underline underline-offset-4", className)} {...props} />,
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
