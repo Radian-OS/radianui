@@ -47,11 +47,11 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				{filteredBlogs.map((blog, index) => (
 					<span key={index}>
 						<Divider spacing="40" />
-						<section className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
+						<Link href={blog.slug} className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
 							<div className="w-70 h-45">
 								<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
 							</div>
-							<Link href={blog.slug} className="flex flex-col items-center lg:items-start">
+							<section className="flex flex-col items-center lg:items-start">
 								<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
 									<p className="text-text-tertiary text-sm">{blog.card}</p>
 									<span className="heading-6">{blog.title}</span>
@@ -61,8 +61,8 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 									<span className="text-text-secondary">{blog.formattedDate}</span>
 								</div>
 								<p className="text-text-secondary max-w-121 text-center lg:text-start">{blog.description}</p>
-							</Link>
-						</section>
+							</section>
+						</Link>
 					</span>
 				))}
 				{filteredBlogs.length === 0 && (

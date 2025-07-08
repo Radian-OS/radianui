@@ -33,7 +33,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			<div className="max-w-200 flex w-full flex-col px-5 md:px-0">
 				{/* Blog Title and Meta */}
 				<div className="flex flex-col gap-4">
-					<Badge variant="soft">{blog.card}</Badge>
+					<Badge size="28" variant="soft">
+						{blog.card}
+					</Badge>
 					<h1 className="heading-3 font-semibold">{blog.title}</h1>
 					<p className="text-text-secondary text-sm">{blog.formattedDate}</p>
 				</div>
@@ -48,9 +50,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					<span className="text-text-secondary text-sm">Author</span>
 					{blog.author?.map((author, index) =>
 						author.username && author.avatar ? (
-							<span
-								key={author._id} // ✅ FIXED: key directly on outermost element
-								className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
+							<span key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
 								<Avatar size="24" name={author.name} src={author.avatar} />
 								<span className="flex flex-col">
 									<span className="text-sm font-medium">{author.name}</span>
@@ -64,7 +64,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
 				<Divider spacing="20" />
 
 				{/* Blog Body */}
-				<Mdx code={blog.body.code} />
+				<div className="py-5">
+					<Mdx code={blog.body.code} />
+				</div>
 			</div>
 		</div>
 	)
