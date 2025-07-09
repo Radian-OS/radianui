@@ -118,7 +118,7 @@ const CodeAreaPreview = () => {
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
-			<div className="flex items-center justify-end">
+			<div className="flex items-center">
 				<TabsList>
 					<TabsTrigger value="preview">Preview</TabsTrigger>
 					<TabsTrigger value="code">Code</TabsTrigger>
