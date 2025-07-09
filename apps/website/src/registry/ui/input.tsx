@@ -90,7 +90,7 @@ function Input({
 	const fileSizeClass = type === "file" && fileUploadSize in fileSizeMap ? fileSizeMap[fileUploadSize as keyof typeof fileSizeMap] : ""
 
 	return (
-		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
+		<div className={cn("text-fg-1 flex w-full flex-col gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
 			{label && (
 				<Label htmlFor={htmlId} className={cn({ "text-text-disabled cursor-not-allowed": disabled })}>
 					{label}
