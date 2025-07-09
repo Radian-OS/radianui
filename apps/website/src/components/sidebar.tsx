@@ -7,22 +7,26 @@ import { cn } from "@/lib/utils"
 export default function Sidebar() {
 	const pathName = usePathname()
 	return (
-		<aside className="no-scrollbar top-17 w-65 sticky z-30 hidden h-[calc(100vh-4.25rem)] flex-col justify-start gap-3 overflow-y-auto py-10 text-sm lg:flex">
+		<aside className="no-scrollbar w-65 sticky top-[4.3rem] z-30 hidden h-[calc(100vh-4.3rem)] flex-col justify-start gap-3 overflow-y-auto py-10 text-sm lg:flex">
 			{navigationItems.map((section) => (
 				<div className="flex flex-col gap-2 text-sm font-medium" key={section.title}>
 					<span className="py-1.5">{section.title}</span>
-					<ul className="border-soft flex flex-col gap-0.5 border-s">
+					<ul className="relative flex flex-col gap-1">
+						{/* Vertical line */}
+						<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
 						{section.items.map((item) => (
-							<Link
-								className={cn(
-									"text-text-secondary border-s-2 border-transparent px-2.5 py-1.5",
-									pathName === item.url ? "border-primary text-text" : "hover:text-text hover:border-border-alpha"
-								)}
-								href={item.url}
-								key={item.title}>
-								<span className="sr-only">{item.title}</span>
-								<li>{item.title}</li>
-							</Link>
+							<li key={item.title} className="relative">
+								<Link
+									className={cn("text-text-secondary hover:text-text group relative block py-1.5 pl-3 text-sm", pathName === item.url ? "text-text font-medium" : "")}
+									href={item.url}>
+									{/* Active indicator */}
+									{pathName === item.url && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
+
+									{/* Hover indicator */}
+									{pathName !== item.url && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+									{item.title}
+								</Link>
+							</li>
 						))}
 					</ul>
 				</div>

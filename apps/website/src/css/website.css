@@ -1,4 +1,6 @@
 @theme {
+	--breakpoint-custom: 85rem;
+
 	--color-hero-fade-gradient-from: hsla(0, 0%, 98%, 0);
 	--color-hero-fade-gradient-to: hsla(0, 0%, 98%, 1);
 
