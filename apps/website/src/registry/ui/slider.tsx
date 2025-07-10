@@ -21,8 +21,8 @@ type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
 	withInput?: boolean
 	showSteppers?: boolean
 	marks?: Mark[]
-	leadIcon?: React.ReactNode
-	trailIcon?: React.ReactNode
+	start?: React.ReactNode
+	end?: React.ReactNode
 	showTooltip?: boolean
 	classNames?: {
 		base?: string /* The div that wraps the component */
@@ -37,21 +37,7 @@ type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
 	}
 }
 
-function Slider({
-	className,
-	label,
-	withInput = false,
-	showSteppers = false,
-	marks,
-	min = 0,
-	max = 100,
-	leadIcon,
-	trailIcon,
-	showTooltip = true,
-	classNames,
-	ref,
-	...props
-}: SliderProps) {
+function Slider({ className, label, withInput = false, showSteppers = false, marks, min = 0, max = 100, start, end, showTooltip = true, classNames, ref, ...props }: SliderProps) {
 	const [internalValue, setInternalValue] = React.useState<number[]>(props.value ?? props.defaultValue ?? [0])
 	const [input, setInput] = React.useState<number | null>(null)
 	const currentValue = props.value || internalValue
@@ -115,12 +101,12 @@ function Slider({
 			className={cn(
 				"flex flex-col",
 				{
-					"gap-2": trailIcon || leadIcon,
+					"gap-2": end || start,
 					"w-full": orientation === "horizontal",
 					"w-full items-center justify-center": orientation === "vertical",
 					"cursor-not-allowed": props.disabled,
 				},
-				trailIcon || leadIcon ? "gap-2" : "gap-3",
+				end || start ? "gap-2" : "gap-3",
 				className,
 				classNames?.base
 			)}>
@@ -148,7 +134,7 @@ function Slider({
 						<Minus size={16} />
 					</Button>
 				)}
-				{leadIcon}
+				{start}
 				<div
 					className={cn("relative", {
 						"flex-1": orientation === "horizontal",
@@ -229,7 +215,7 @@ function Slider({
 						</div>
 					)}
 				</div>
-				{trailIcon}
+				{end}
 				{showSteppers && isSingleThumb && (
 					<Button
 						isIcon
