@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import CommunityCard from "@/components/community-card"
-import { Mdx } from "@/components/mdx-components"
+import { Mdx } from "@/components/mdx-components-docs"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import TableOfContent from "@/components/table-of-contents"
 import { websiteMetadata } from "@/config/website-metadata-config"
@@ -83,13 +83,13 @@ export default async function Page({ params }: DocPageProps) {
 	return (
 		<div className="flex w-full max-w-full">
 			{/* Main Content */}
-			<div className="py-7.5 mx-auto w-full min-w-0 flex-1 overflow-y-auto lg:max-w-[720px]">
+			<div className="mx-auto w-full flex-1 overflow-y-auto py-10 lg:max-w-[720px]">
 				<span className="text-primary text-sm font-medium capitalize">{category}</span>
 				<div className="flex flex-col">
 					<h1 className="heading-4 mb-1">{doc.title}</h1>
 					<p className="text-text-secondary mb-5 text-base">{doc.description}</p>
 
-					<section className="mb-10 flex items-center gap-2">
+					<section className="mb-10 flex flex-wrap items-center gap-2">
 						{doc.source && (
 							<Link href={doc.source} target="_blank" rel="noopener noreferrer">
 								<Badge size="28" variant={"neutral"} color="primary" className="shadow-2xs">
@@ -133,7 +133,7 @@ export default async function Page({ params }: DocPageProps) {
 			</div>
 
 			{/* Right Sidebar (TOC) */}
-			<aside className="bg-bg-base custom:block sticky top-[4.3rem] z-30 hidden h-[calc(100vh-4.3rem)] w-64 py-10 ps-4">
+			<aside className="bg-bg-base custom:flex custom:flex-col w-65 sticky top-[4.3rem] z-30 hidden h-[calc(100vh-4.3rem)] gap-10 py-10">
 				<TableOfContent headings={headings} />
 				<CommunityCard />
 			</aside>
