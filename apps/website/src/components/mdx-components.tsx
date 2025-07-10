@@ -226,12 +226,12 @@ const components: MDXComponents = {
 		</h1>
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! mb-4 mt-9", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! mt-10", className)} {...props}>
 			{children}
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! mb-4", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! mb-3 mt-6", className)} {...props}>
 			{children}
 		</h3>
 	),
@@ -240,6 +240,8 @@ const components: MDXComponents = {
 			{children}
 		</p>
 	),
+
+	Divider: () => <hr className="border-border mt-10" />,
 
 	ul: ({ children }: { children?: React.ReactNode }) => (
 		<ul className="[&>li>strong]:text-text-secondary ml-4 mt-2 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>

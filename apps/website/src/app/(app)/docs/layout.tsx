@@ -9,12 +9,12 @@ interface Props {
 
 const layout = ({ children }: Props) => {
 	return (
-		<div className="max-w-368 mx-auto flex w-full px-5">
+		<div className="max-w-368 mx-auto flex w-full px-4 md:px-5">
 			{/* Left Sidebar */}
 			<Sidebar />
 
 			{/* Main Content Area (children will handle their own layout) */}
-			<div className="min-w-0 flex-1">{children}</div>
+			<div className="flex-1">{children}</div>
 		</div>
 	)
 }
