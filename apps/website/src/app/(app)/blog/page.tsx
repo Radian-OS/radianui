@@ -16,7 +16,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 	const filteredBlogs = allBlogs.filter((blog) => blog.slugAsParams.startsWith(slugPath))
 
 	return (
-		<div className="max-w-200 mx-auto mt-10 w-full px-5 lg:px-0">
+		<div className="mb-43 max-w-200 mx-auto mt-10 px-5">
 			<div className="flex flex-col pb-20 pt-10">
 				<div className="flex justify-between">
 					<section className="flex flex-col gap-6">
@@ -25,8 +25,8 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 							<h1 className="heading-3">Latest Updates and Insights from the Radian Team</h1>
 						</div>
 						<p className="text-text-secondary text-base">Learn more about Radian OS, updates, and reads from our team and industry leading experts</p>
-						<form className="flex flex-col gap-3 sm:flex-row">
-							<Input size="40" className="sm:w-80" type="email" required placeholder="Email Address" />
+						<form className="flex gap-3">
+							<Input size="40" className="sm:min-w-70.25" type="email" required placeholder="Email Address" />
 							<Button>Subscribe</Button>
 						</form>
 					</section>
@@ -47,12 +47,10 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				{filteredBlogs.map((blog, index) => (
 					<span key={index}>
 						<Divider spacing="40" />
-						<Link href={blog.slug} className="flex flex-col items-center justify-between lg:flex-row lg:items-start">
-							<div className="w-70 h-45">
-								<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
-							</div>
-							<section className="flex flex-col items-center lg:items-start">
-								<div className="flex flex-col items-center gap-1 pt-2 lg:items-start lg:pt-0">
+						<Link href={blog.slug} className="flex flex-col items-start gap-9 sm:flex-row">
+							<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
+							<section className="flex flex-col lg:items-start">
+								<div className="flex flex-col gap-1 pt-2 lg:items-start lg:pt-0">
 									<p className="text-text-tertiary text-sm">{blog.card}</p>
 									<span className="heading-6">{blog.title}</span>
 								</div>
@@ -60,7 +58,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 									<AvatarGroup>{blog.author ? blog.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup>
 									<span className="text-text-secondary">{blog.formattedDate}</span>
 								</div>
-								<p className="text-text-secondary max-w-121 text-center lg:text-start">{blog.description}</p>
+								<p className="text-text-secondary max-w-121 lg:text-start">{blog.description}</p>
 							</section>
 						</Link>
 					</span>

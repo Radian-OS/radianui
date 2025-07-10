@@ -177,8 +177,8 @@ const SliderPreview = () => {
 									]
 								: undefined
 						}
-						leadIcon={startContent ? <VolumeX className="text-text-tertiary" /> : undefined}
-						trailIcon={endContent ? <Volume2 className="text-text-tertiary" /> : undefined}
+						start={startContent ? <VolumeX className="text-text-tertiary" /> : undefined}
+						end={endContent ? <Volume2 className="text-text-tertiary" /> : undefined}
 						orientation={orientation}
 					/>
 				</div>
@@ -197,8 +197,8 @@ const SliderPreview = () => {
 		showSteppers={${showSteppers}}
 		showTooltip={${showTooltip}}
 		orientation="${orientation}"
-		${startContent ? 'leadIcon={<VolumeX className="text-text-tertiary" />}' : ""}
-		${endContent ? 'trailIcon={<VolumeX className="text-text-tertiary" />}' : ""}
+		${startContent ? 'start={<VolumeX className="text-text-tertiary" />}' : ""}
+		${endContent ? 'end={<VolumeX className="text-text-tertiary" />}' : ""}
 		${
 			showMarks
 				? `marks={[
