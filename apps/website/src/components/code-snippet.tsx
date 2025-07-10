@@ -39,7 +39,7 @@ export default function CodeSnippet({ code, title, showLineNumber = false, class
 				code={code}
 				copiable={false}
 				showLineNumbers={showLineNumber}
-				className={cn("border-soft rounded-[10px] border px-4 py-3", className)}
+				className={cn("border-soft flex-1 rounded-[10px] border px-4 py-3", className)}
 			/>
 		</div>
 	)
