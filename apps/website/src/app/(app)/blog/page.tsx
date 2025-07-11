@@ -39,8 +39,8 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				</div>
 			</div>
 
-			{filteredBlogs.map((blog, index) => (
-				<span key={index}>
+			{filteredBlogs.map((blog) => (
+				<span key={blog._id}>
 					<Divider spacing="40" />
 					<Link href={blog.slug} className="flex flex-col items-start gap-9 md:flex-row">
 						<Image className="md:w-70 md:h-45 h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
@@ -59,7 +59,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				</span>
 			))}
 			{filteredBlogs.length === 0 && (
-				<section className="py-15 mt-20 flex flex-col items-center justify-center gap-6 rounded-sm border border-dashed">
+				<section className="py-15 mt-10 flex flex-col items-center justify-center gap-6 rounded-sm border border-dashed">
 					<div>
 						<svg className="text-border" width="100" height="100" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 							<path
@@ -77,6 +77,5 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				</section>
 			)}
 		</div>
-		// </div>
 	)
 }
