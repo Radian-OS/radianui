@@ -15,7 +15,6 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 	const filteredBlogs = allBlogs.filter((blog) => blog.slugAsParams.startsWith(slugPath))
 
 	return (
-		// <div className="mb-43 max-w-200 mx-auto mt-10 px-5">
 		<div className="flex flex-col pb-20 pt-10">
 			<div className="flex gap-20">
 				<section className="flex flex-col gap-6">
@@ -44,7 +43,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 				<span key={index}>
 					<Divider spacing="40" />
 					<Link href={blog.slug} className="flex flex-col items-start gap-9 md:flex-row">
-						<Image className="h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
+						<Image className="md:w-70 md:h-45 h-full w-full rounded-lg" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
 						<section className="flex flex-col lg:items-start">
 							<div className="flex flex-col gap-1 pt-2 lg:items-start lg:pt-0">
 								<p className="text-text-tertiary text-sm">{blog.card}</p>
