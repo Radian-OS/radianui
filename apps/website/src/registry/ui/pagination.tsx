@@ -102,7 +102,13 @@ const Pagination: React.FC<PaginationProps> = function ({
 						onClick={function () {
 							setHiddenPages(hiddenPagesBefore)
 						}}>
-						<Select placeholder="..." endIcon={false} selectedValues={[]} onSelectedChange={handleSelectChange} className="text-text flex items-center justify-center">
+						<Select
+							placeholder="..."
+							size="32"
+							endIcon={false}
+							selectedValues={[]}
+							onSelectedChange={handleSelectChange}
+							className="border-border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 							{hiddenPages.map((page) => (
 								<SelectItem className="w-20" key={page} value={page.toString()}>
 									{page}
@@ -139,7 +145,13 @@ const Pagination: React.FC<PaginationProps> = function ({
 						onClick={function () {
 							setHiddenPages(hiddenPagesAfter)
 						}}>
-						<Select placeholder="..." selectedValues={[]} size="32" endIcon={false} onSelectedChange={handleSelectChange} className="text-text flex items-center justify-center">
+						<Select
+							placeholder="..."
+							selectedValues={[]}
+							size="32"
+							endIcon={false}
+							onSelectedChange={handleSelectChange}
+							className="border-border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 							{hiddenPages.map((page) => (
 								<SelectItem className="w-20" key={page} value={page.toString()}>
 									{page}
