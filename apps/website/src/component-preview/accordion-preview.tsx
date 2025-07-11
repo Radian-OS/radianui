@@ -37,7 +37,7 @@ export default function AccordionPreview() {
 	const [interaction, setInteraction] = useState<Interaction>(DEFAULT_INTERACTION)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"} className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"} className="mb-6">
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>
@@ -112,7 +112,6 @@ export default function AccordionPreview() {
 			<TabsContent value="code">
 				<CodeArea
 					language="tsx"
-					showLineNumbers
 					className="h-[420px]"
 					code={`const items = [
   {

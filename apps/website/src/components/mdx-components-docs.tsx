@@ -79,6 +79,7 @@ import BannerExamplePreview2 from "@/registry/example/banner/banner-example-prev
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
+import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
@@ -100,6 +101,7 @@ import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-wi
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import ToastExample from "@/registry/example/toast/toast-example"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
+import { Divider } from "@/registry/ui/divider"
 import CodeSnippet from "./code-snippet"
 import { FrameworkDocs } from "./framework-docs"
 import { PropsData, PropsTable } from "./props-table"
@@ -111,9 +113,21 @@ type MdxProps = {
 const components: MDXComponents = {
 	PropsTable: ({ title, data, externalUrl }: { title?: string; data: PropsData[]; externalUrl?: string }) => <PropsTable title={title} data={data} externalUrl={externalUrl} />,
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => <div className="bg-bg-level0 mt-6 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>,
-	AccordionPreview: () => <AccordionPreview />,
-	AccordionWithIconExample: () => <AccordionWithIconExample />,
-	AlertPreview: () => <AlertPreview />,
+	AccordionPreview: () => (
+		<div className="mb-6">
+			<AccordionPreview />
+		</div>
+	),
+	AccordionWithIconExample: () => (
+		<div className="mb-6">
+			<AccordionWithIconExample />
+		</div>
+	),
+	AlertPreview: () => (
+		<div className="mb-6">
+			<AlertPreview />
+		</div>
+	),
 	AvatarPreview: () => <AvatarPreview />,
 	AvatargroupPreview: () => <AvatargroupPreview />,
 	BadgePreview: () => <BadgePreview />,
@@ -189,6 +203,7 @@ const components: MDXComponents = {
 	CompactButtonPreview: () => <CompactButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
+	CodeWitTabsPreview: () => <CodeWithTabs />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -207,16 +222,26 @@ const components: MDXComponents = {
 	FadeOutExample: () => <FadeOutExample />,
 
 	CLI: ({ code, mode = "execute" }: { code: string; mode: InstallMode }) => {
-		return <CommandLineTabs mode={mode} code={code} />
+		return (
+			<div className="mb-6">
+				<CommandLineTabs mode={mode} code={code} />
+			</div>
+		)
 	},
 	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
-		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
+		<div className="mb-6">
+			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
+		</div>
 	),
 	Code: ({ language, tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
-			<CommandLineTabs mode="execute" code={code} />
+			<div className="mb-6">
+				<CommandLineTabs mode="execute" code={code} />
+			</div>
 		) : (
-			<CodeArea language={language} code={code} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("", className)} {...props} />
+			<div className="mb-6">
+				<CodeArea language={language} code={code} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("", className)} {...props} />
+			</div>
 		),
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
@@ -224,12 +249,12 @@ const components: MDXComponents = {
 		</h1>
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! mb-4 mt-9", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! mb-4 mt-6", className)} {...props}>
 			{children}
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! mb-4", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! mb-3", className)} {...props}>
 			{children}
 		</h3>
 	),
@@ -238,6 +263,8 @@ const components: MDXComponents = {
 			{children}
 		</p>
 	),
+
+	Divider: () => <Divider orientation={"horizontal"} spacing={"16"} />,
 
 	ul: ({ children }: { children?: React.ReactNode }) => (
 		<ul className="[&>li>strong]:text-text-secondary ml-4 mt-2 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>

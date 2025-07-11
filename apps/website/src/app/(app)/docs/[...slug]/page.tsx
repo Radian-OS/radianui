@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import CommunityCard from "@/components/community-card"
-import { Mdx } from "@/components/mdx-components"
+import { Mdx } from "@/components/mdx-components-docs"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import TableOfContent from "@/components/table-of-contents"
 import { websiteMetadata } from "@/config/website-metadata-config"
@@ -83,13 +83,12 @@ export default async function Page({ params }: DocPageProps) {
 	return (
 		<div className="flex w-full max-w-full">
 			{/* Main Content */}
-			<div className="py-7.5 lg:px-25 mx-auto w-full min-w-0 flex-1 overflow-y-auto">
+			<div className="mx-auto w-full flex-1 overflow-y-auto py-10 lg:max-w-[720px]">
 				<span className="text-primary text-sm font-medium capitalize">{category}</span>
 				<div className="flex flex-col">
-					<h1 className="heading-4 mb-1">{doc.title}</h1>
-					<p className="text-text-secondary mb-5 text-base">{doc.description}</p>
-
-					<section className="mb-10 flex items-center gap-2">
+					<h1 className="heading-4 my-2">{doc.title}</h1>
+					<p className="text-text-secondary mb-4 text-base">{doc.description}</p>
+					<section className="mb-10 flex flex-wrap items-center gap-2">
 						{doc.source && (
 							<Link href={doc.source} target="_blank" rel="noopener noreferrer">
 								<Badge size="28" variant={"neutral"} color="primary" className="shadow-2xs">
@@ -133,9 +132,18 @@ export default async function Page({ params }: DocPageProps) {
 			</div>
 
 			{/* Right Sidebar (TOC) */}
-			<aside className="bg-bg-base top-17 sticky z-30 hidden h-[calc(100vh-4.25rem)] w-64 py-10 ps-4 lg:block">
-				<TableOfContent headings={headings} />
-				<CommunityCard />
+			<aside className="bg-bg-base w-65 not-custom:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] py-10">
+				<div className="flex h-full flex-col gap-10">
+					{/* TOC takes remaining space and allows internal scrolling */}
+					<div className="min-h-0 overflow-hidden">
+						<TableOfContent headings={headings} />
+					</div>
+
+					{/* Community card with fixed size */}
+					<div className="flex-shrink-0">
+						<CommunityCard />
+					</div>
+				</div>
 			</aside>
 		</div>
 	)

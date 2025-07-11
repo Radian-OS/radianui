@@ -5,7 +5,7 @@ import Link from "next/link"
 import { MdxHeading } from "@/lib/get-mdx-headings"
 import { cn } from "@/lib/utils"
 
-interface TableOfContentsProps {
+type TableOfContentsProps = {
 	headings: MdxHeading[]
 }
 
@@ -62,12 +62,12 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 		const element = document.getElementById(headingId)
 		if (element) {
 			// Get navbar height and add offset
-			const navbar = document.querySelector("header, nav, [data-navbar]") as HTMLElement
-			const navbarHeight = navbar ? navbar.offsetHeight : 80
+			const navbar = document.querySelector("header, nav") as HTMLElement
+			const navbarHeight = navbar ? navbar.offsetHeight : 69
 
 			// Calculate position with navbar offset
 			const elementTop = element.offsetTop
-			const scrollPosition = elementTop - navbarHeight - 15 // 20px extra spacing
+			const scrollPosition = elementTop - navbarHeight - 15
 
 			window.scrollTo({
 				top: scrollPosition,
@@ -80,21 +80,32 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 	if (!headings.length) return null
 
 	return (
-		<nav className="mb-10 flex flex-col gap-1 text-sm font-medium">
-			<span className="block py-2">On This Page</span>
-			<ul className="border-soft h-35 no-scrollbar flex flex-col gap-2 overflow-auto border-l">
-				{headings.map((heading) => (
-					<Link
-						key={heading.id}
-						ref={activeHeadingId === heading.id ? activeRef : null}
-						className={cn("border-s-2 border-transparent px-2.5 py-1", { "border-primary": activeHeadingId === heading.id })}
-						href={`#${heading.id}`}
-						onClick={(e) => handleHeadingClick(e, heading.id)}>
-						<span className="sr-only">{heading.text}</span>
-						<li className="text-text-secondary">{heading.text}</li>
-					</Link>
-				))}
-			</ul>
+		<nav className="flex max-h-full flex-col text-sm font-medium">
+			{/* Fixed title */}
+			<span className="mb-1 block py-2">On This Page</span>
+
+			{/* Scrollable content container */}
+			<div className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
+				<ul className="relative flex h-full flex-col gap-1">
+					<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
+					{headings.map((heading) => (
+						<li key={heading.id} className="relative">
+							<Link
+								ref={activeHeadingId === heading.id ? activeRef : null}
+								className={cn("text-text-secondary group relative block py-1 pl-4 text-sm")}
+								href={`#${heading.id}`}
+								onClick={(e) => handleHeadingClick(e, heading.id)}>
+								{/* Active indicator */}
+								{activeHeadingId === heading.id && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
+
+								{/* Hover indicator */}
+								{activeHeadingId !== heading.id && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+								{heading.text}
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
 		</nav>
 	)
 }
