@@ -2,12 +2,12 @@
 
 import React, { useState } from "react"
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-import Link from "next/link"
 import { MobileNavigation } from "@/components/navbar/mobile-tablet-navigation"
 import { SearchDocs } from "@/components/navbar/search"
 import { DesktopThemeToggler } from "@/components/theme-toggler"
 import { Button } from "@/registry/ui/button"
 import { DesktopNavigation } from "./desktop-navigation"
+import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { VersionDisplayBadge } from "./version-badge"
 import { WebsiteLogo } from "./website-logo"
@@ -34,18 +34,12 @@ export function NavigationBar() {
 
 						<FigmaPreviewButton className="not-xl:hidden" />
 
-						{/* Early Access Button */}
-						<Link href={`#`} tabIndex={-1} className="not-md:hidden">
-							<span className="sr-only">Early Access</span>
-							<Button className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
-								Early Access
-							</Button>
-						</Link>
+						<EarlyAccessButton className="not-xl:hidden" />
 
 						<DesktopThemeToggler />
 
 						{/* Mobile Navigation */}
-						<Button isIcon color="neutral" variant="soft" className="lg:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+						<Button isIcon color="neutral" variant="soft" className="xl:hidden" onClick={() => setIsMobileMenuOpen(true)}>
 							<HamburgerMenuIcon className="size-6" />
 						</Button>
 					</div>
