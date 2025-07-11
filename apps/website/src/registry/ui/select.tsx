@@ -26,7 +26,7 @@ type SelectItemProps = {
 	endContent?: React.ReactNode
 }
 // SelectItem component representing an individual item in the select dropdown
-function SelectItem({ value, children, startContent, endContent, ref, ...props }: SelectItemProps & React.ComponentPropsWithRef<typeof CommandItem>) {
+function SelectItem({ value, children, startContent, endContent, ref, className, ...props }: SelectItemProps & React.ComponentPropsWithRef<typeof CommandItem>) {
 	const commandRef = React.useRef<React.ElementRef<typeof CommandItem>>(null)
 	React.useImperativeHandle(ref, () => commandRef.current!, [])
 
@@ -64,7 +64,14 @@ function SelectItem({ value, children, startContent, endContent, ref, ...props }
 					setValues(isSelected ? values.filter((v) => v !== currentValue) : [...values, currentValue])
 				}
 			}}
-			className={`text-text flex cursor-pointer justify-between gap-2 ${isSelected ? "bg-fill-level3" : ""}`}
+			className={cn(
+				"text-text flex cursor-pointer justify-between",
+				{
+					"bg-fill-level2": isSelected,
+					"hover:bg-fill-level2": !isSelected,
+				},
+				className
+			)}
 			{...props}>
 			<div className="flex flex-1 gap-2">
 				{startContent && <span className="flex items-center justify-center">{startContent}</span>}
@@ -260,7 +267,7 @@ function Select({
 					minSelectionCount,
 					showSelectedCheck,
 				}}>
-				<div className={cn("flex h-full w-full flex-col gap-1", className, classNames?.base)}>
+				<div className={cn("flex h-full w-full flex-col gap-1", classNames?.base)}>
 					{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
 					<Dropdown
 						open={open}
@@ -287,7 +294,13 @@ function Select({
 											disabled={disabled}
 										/>
 									) : variants === "button" ? (
-										<Button lead={lead} variant="outline" color="neutral" size="32" disabled={disabled} className={className}>
+										<Button
+											lead={lead}
+											variant="soft"
+											color="neutral"
+											size={["28", "32", "36", "40", "44", "48"].includes(String(size)) ? (size as "28" | "32" | "36" | "40" | "44" | "48") : "40"}
+											disabled={disabled}
+											className={className}>
 											<span
 												className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
 													"text-base": size === "44" || size === "48",
