@@ -1,8 +1,9 @@
 "use client"
 
-import { useMemo } from "react"
+import { HTMLAttributes, useMemo } from "react"
 import { getMDXComponent } from "mdx-bundler/dist/client"
 import { MDXComponents } from "mdx/types"
+import { cn } from "@/lib/utils"
 import CodeSnippet from "./code-snippet"
 
 type MdxBlogProps = {
@@ -11,7 +12,17 @@ type MdxBlogProps = {
 
 const BlogComponents: MDXComponents = {
 	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
-		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
+		<CodeSnippet className="mb-5" code={code} title={title} showLineNumber={showLineNumbers} />
+	),
+	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
+		<h2 className={cn("heading-5 font-semibold! mb-4", className)} {...props}>
+			{children}
+		</h2>
+	),
+	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
+		<p className={cn("text-text-secondary mb-5 text-base", className)} {...props}>
+			{children}
+		</p>
 	),
 }
 

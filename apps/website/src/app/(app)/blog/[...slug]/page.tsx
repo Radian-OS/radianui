@@ -3,7 +3,7 @@ import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { Mdx } from "@/components/mdx-components-docs"
+import { MdxBlog } from "@/components/mdx-components-blogs"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
@@ -65,7 +65,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 			<Divider spacing="20" />
 			{/* Blog Body */}
 			<div className="py-5">
-				<Mdx code={blog.body.code} />
+				<MdxBlog code={blog.body.code} />
 			</div>
 		</>
 	)
