@@ -5,10 +5,10 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgePreview = () => {
-	const [variant, setVariant] = useState<"strong" | "neutral-outline" | "outline" | "pastel">("strong")
+	const [variant, setVariant] = useState<"strong" | "neutral" | "outline" | "soft">("strong")
 	const [color, setColor] = useState<"primary" | "info" | "success" | "error" | "warning">("primary")
 	const [closable, setClosable] = useState<"true" | "false">("false")
-	const [size, setSize] = useState<"24" | "20" | "28" | "32">("24")
+	const [size, setSize] = useState<"24" | "20" | "28">("24")
 	const [key, setKey] = useState(0)
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -23,15 +23,15 @@ const BadgePreview = () => {
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as "neutral-outline" | "strong")
+											setVariant(Array.from(keys)[0] as "neutral" | "strong")
 											setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
 										selectedValues={[variant]}>
-										<DropdownItem value="neutral-outline">Neutral-outline</DropdownItem>
+										<DropdownItem value="neutral">Neutral</DropdownItem>
 										<DropdownItem value="strong">Strong</DropdownItem>
 										<DropdownItem value="outline">Outline</DropdownItem>
-										<DropdownItem value="pastel">Pastel</DropdownItem>
+										<DropdownItem value="soft">Soft</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -42,7 +42,7 @@ const BadgePreview = () => {
 									<DropdownGroup
 										selectionMode="single"
 										onSelectedChange={(keys) => {
-											setSize(Array.from(keys)[0] as "24" | "20" | "28" | "32")
+											setSize(Array.from(keys)[0] as "24" | "20" | "28")
 											setKey((k) => k + 1)
 										}}
 										minSelectionCount={1}
@@ -50,7 +50,6 @@ const BadgePreview = () => {
 										<DropdownItem value="20">20</DropdownItem>
 										<DropdownItem value="24">24</DropdownItem>
 										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>

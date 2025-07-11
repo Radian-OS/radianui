@@ -1,0 +1,48 @@
+---
+title: Code Area
+description: Display code snippets with syntax highlighting and formatting
+source: https://github.com/Radian-os
+externalSiteRef: https://shiki.style/
+customLogo: /shiki.svg
+externalSiteName: Shiki
+---
+
+<CodeAreaPreview />
+
+## Installation
+
+<CLI mode="execute" code={`radianos add code-area`} />
+
+## Imports
+
+<Code language="tsx" code={`import {CodeArea} from "@/components/ui/CodeArea"`} />
+
+## Example
+
+<CodeWitTabsPreview />
+
+## Props
+
+| Prop Name       | Default Values | Values     |
+| --------------- | -------------- | ---------- |
+| code            | -              | -          |
+| language        | -              | -          |
+| theme           | -              | -          |
+| showLineNumbers | false          | true/false |
+| copiable        | true           | true/false |
+
+## Usage
+
+<Code
+	language="tsx"
+	code={`<Code
+language="tsx"
+code="your desired code"
+showLineNumbers={true}
+theme="github-dark-default"
+copiable={true}
+ />`}
+	showLineNumbers={true}
+	theme="github-dark-default"
+	copiable={true}
+/>

@@ -5,6 +5,7 @@ import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { CompactButton } from "./button"
 import { Divider } from "./divider"
 
 type closeIcon = "visible" | "hidden" | "hover"
@@ -57,9 +58,10 @@ function useModalContext() {
 }
 
 function Modal({ closeIcon = "hidden", backdrop = "overlay", withSeparator = false, children, ...props }: ModalProps) {
+	const ctxValues = React.useMemo(() => ({ closeIcon, backdrop, withSeparator }), [closeIcon, backdrop, withSeparator])
 	return (
 		<DialogPrimitive.Root {...props}>
-			<ModalContext.Provider value={{ closeIcon: closeIcon, backdrop: backdrop, withSeparator: withSeparator }}>{children}</ModalContext.Provider>
+			<ModalContext.Provider value={ctxValues}>{children}</ModalContext.Provider>
 		</DialogPrimitive.Root>
 	)
 }
@@ -104,9 +106,12 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 				{...props}>
 				{children}
 				{closeIcon !== "hidden" && (
-					<DialogPrimitive.Close className={closeButtonClass}>
-						<X className="text-text-disabled h-4 w-4" />
-						<span className="sr-only">Close</span>
+					<DialogPrimitive.Close asChild className={closeButtonClass}>
+						{/* <X className="text-text-disabled h-4 w-4" /> */}
+						<CompactButton color="neutral" variant="ghost">
+							<X />
+						</CompactButton>
+						{/* <span className="sr-only">Close</span> */}
 					</DialogPrimitive.Close>
 				)}
 			</DialogPrimitive.Content>

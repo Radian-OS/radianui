@@ -25,7 +25,7 @@ const BorderBeamPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="relative size-60 rounded-lg border p-5">
-						<h1>Content here</h1>
+						<p>Content here</p>
 
 						<BorderBeam size={100} />
 					</div>
@@ -37,7 +37,7 @@ const BorderBeamPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<div className="relative size-60 rounded-lg border">
-	<h1>Content here</h1>
+	<p>Content here</p>
 	
 	<BorderBeam size={100} />
 </div>`}

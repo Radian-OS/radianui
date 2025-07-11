@@ -4,7 +4,7 @@ import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, type TabsListWidth, type TabsSize, TabsTrigger, type TabsVariant } from "@/registry/ui/tabs"
 
-const variants = ["default", "open", "outline", "ghost"]
+const variants = ["default", "open", "outline", "ghost", "outline-ghost"]
 const sizes = ["sm", "md", "lg"]
 const widths = ["fit", "full"]
 const orientations = ["horizontal", "vertical"]

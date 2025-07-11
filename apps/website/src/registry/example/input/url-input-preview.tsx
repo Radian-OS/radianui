@@ -59,13 +59,13 @@ const UrlPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="flex flex-col gap-1.5">
 						<Label>Url</Label>
-						<div className="flex rounded-md">
+						<div className="flex">
 							<Input
 								className={` ${types === "trail" ? "w-58 rounded-r-none border-r-0 focus-within:border-r" : "w-80"} `}
 								size={size}
 								placeholder="radianos.com"
 								type="url"
-								lead={types === "lead" ? "https://" : ""}
+								start={types === "lead" ? "https://" : ""}
 								// hasError={hasError}
 								// hint={hint ? "There is an error" : ""}
 							/>
@@ -77,7 +77,7 @@ const UrlPreview = () => {
 									onSelectedChange={(values) => setDomain(values[0] as domainOption)}
 									disableOpenStyle={true}
 									size={size}
-									className="-ms-0 w-fit">
+									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 									<SelectItem value=".com">.com</SelectItem>
 									<SelectItem value=".org">.org</SelectItem>
 									<SelectItem value=".net">.net</SelectItem>
@@ -105,7 +105,7 @@ const UrlPreview = () => {
             size="${size}"
             placeholder="radianos"
             type="url"
-            lead="https://"
+            start="https://"
 
         />
 
@@ -126,7 +126,7 @@ const UrlPreview = () => {
     size="36"
     placeholder="radianos.com"
     type="url"
-    lead="https://"
+    start="https://"
 />`
 								: `<Input
     size="36"

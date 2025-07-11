@@ -1,24 +1,9 @@
 "use client"
 
 import React, { useRef } from "react"
-import { AnimatePresence, UseInViewOptions, Variants, motion, useInView } from "motion/react"
+import { AnimatePresence, Easing, UseInViewOptions, Variants, motion, useInView } from "motion/react"
 
-type EaseOption =
-	| "anticipate"
-	| "linear"
-	| "easeIn"
-	| "easeOut"
-	| "easeInOut"
-	| "easeIn"
-	| "easeOut"
-	| "easeInOut"
-	| "circIn"
-	| "circOut"
-	| "circInOut"
-	| "backIn"
-	| "backOut"
-	| "backInOut"
-	| number[]
+type EaseOption = Easing | [number, number, number, number] // Cubic bezier array must have exactly 4 numbers
 
 export type FadeDirection = "left" | "right" | "up" | "down"
 
@@ -51,7 +36,6 @@ const Fade = ({
 }: FadeProps) => {
 	const ref = useRef(null)
 	const inViewResult = useInView(ref, { once: true, margin: inViewMargin })
-
 	const shouldShow = inView ? inViewResult && isVisible : isVisible
 
 	const getOffset = (direction: FadeDirection) => {

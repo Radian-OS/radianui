@@ -38,7 +38,7 @@ function TextArea({ label, className, classNames, hasError = false, hint = "", r
 	// Using React's key property to force a remount when rows change
 	// This is a nuclear option but will ensure the textarea always respects the rows prop
 	return (
-		<div className={cn("flex w-full flex-col gap-1", className, classNames?.base)}>
+		<div className={cn("flex flex-col gap-1", classNames?.base)}>
 			{label && (
 				<label className={cn("text-sm font-medium", { "text-text-disabled": props.disabled }, classNames?.label)} htmlFor={id}>
 					{label}
@@ -56,6 +56,7 @@ function TextArea({ label, className, classNames, hasError = false, hint = "", r
 						"resize-none": resizable === false,
 						"border-border bg-fill-level1 text-text-disabled cursor-not-allowed": props.disabled,
 					},
+					className,
 					classNames?.textarea
 				)}
 				id={id}

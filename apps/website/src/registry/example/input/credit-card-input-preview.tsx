@@ -124,7 +124,7 @@ const CreditCardPreview = () => {
 								disabled={disabled}
 								size={size}
 								placeholder="Card Number"
-								trail={<CreditCard className={iconClass} />}
+								start={<CreditCard className={iconClass} />}
 								hasError={hasError}
 								className={`-ms rounded-b-none border-b-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-b"}`}
 							/>

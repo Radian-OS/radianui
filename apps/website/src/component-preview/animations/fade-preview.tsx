@@ -40,7 +40,7 @@ const FadePreview = () => {
 					</Dropdown>
 				</div>
 				<div className="flex gap-1">
-					<Button variant="neutral-outline" isIcon onClick={() => setCounter((prev) => prev + 1)}>
+					<Button variant="outline" color="neutral" isIcon onClick={() => setCounter((prev) => prev + 1)}>
 						<RotateCw />
 					</Button>
 					<TabsList>
@@ -52,7 +52,7 @@ const FadePreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Fade key={counter} direction={direction}>
-						<h1 className="text-2xl font-medium">Animated Component</h1>
+						<span className="text-2xl font-medium">Animated Component</span>
 					</Fade>
 				</div>
 			</TabsContent>
@@ -62,7 +62,7 @@ const FadePreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<FadeDown>
-    <h1 className="text-2xl font-medium">Animated Component</h1>
+    <span className="text-2xl font-medium">Animated Component</span>
 </FadeDown>`}
 				/>
 			</TabsContent>

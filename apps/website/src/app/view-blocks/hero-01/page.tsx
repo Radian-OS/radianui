@@ -9,7 +9,7 @@ import { Draggable } from "@/registry/animated/make-draggable"
 import { TextReveal } from "@/registry/animated/text-reveal"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerClose, DrawerTitle } from "@/registry/ui/drawer"
+import { Drawer, DrawerClose, DrawerContent, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 
 export default function Hero01() {
 	const companies = [
@@ -61,23 +61,25 @@ export default function Hero01() {
 
 							{/* Auth buttons */}
 							<div className="flex items-center gap-2">
-								<Button variant="neutral-outline" size="36" className="hidden sm:inline">
+								<Button variant="outline" color="neutral" size="36" className="hidden sm:inline">
 									Sign in
 								</Button>
 								<Button size="36">Get Started</Button>
-								<Drawer
-									trigger={
+								<Drawer>
+									<DrawerTrigger asChild>
 										<Button isIcon className="text-text-tertiary md:hidden" variant="ghost" size="36">
 											<Menu size={20} />
 										</Button>
-									}>
-									<DrawerTitle>
-										<DrawerClose>
-											<Button isIcon variant="neutral-soft">
-												<X className="size-5" />
-											</Button>
-										</DrawerClose>
-									</DrawerTitle>
+									</DrawerTrigger>
+									<DrawerContent>
+										<DrawerTitle>
+											<DrawerClose>
+												<Button isIcon color="neutral" variant="soft">
+													<X className="size-5" />
+												</Button>
+											</DrawerClose>
+										</DrawerTitle>
+									</DrawerContent>
 								</Drawer>
 							</div>
 						</div>
@@ -113,7 +115,7 @@ export default function Hero01() {
 								<Button lead={<Zap size={24} />} size="44" className="w-full sm:w-fit">
 									Try for free
 								</Button>
-								<Button lead={<CirclePlay size={24} />} className="text-text-secondary w-full sm:w-fit" variant="neutral-outline" size="44">
+								<Button lead={<CirclePlay size={24} />} className="text-text-secondary w-full sm:w-fit" variant="outline" color="neutral" size="44">
 									Watch Demo
 								</Button>
 							</div>
@@ -140,7 +142,7 @@ export default function Hero01() {
 				</section>
 
 				<Fade inView>
-					<h1 className="p-5 text-center text-3xl">Hello page from Radian</h1>
+					<span className="block p-5 text-center text-3xl">Hello page from Radian</span>
 				</Fade>
 
 				<div className="h-40"></div>

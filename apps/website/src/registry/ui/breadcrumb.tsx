@@ -1,7 +1,8 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { ChevronRight, Ellipsis, Slash } from "lucide-react"
+import { ChevronRight, Ellipsis } from "lucide-react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "./dropdown"
@@ -71,9 +72,9 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 													{invisibleItems.map((hiddenChild, hiddenIndex) =>
 														React.isValidElement<BreadcrumbItemProps>(hiddenChild) ? (
 															<DropdownItem key={hiddenChild.key ?? hiddenIndex}>
-																<a className="flex items-center justify-start gap-0.5" href={hiddenChild.props.href}>
+																<Link className="flex items-center justify-start gap-0.5" href={hiddenChild.props.href || "#"}>
 																	{hiddenChild.props.children}
-																</a>
+																</Link>
 															</DropdownItem>
 														) : null
 													)}
@@ -81,7 +82,7 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 											</DropdownContent>
 										</Dropdown>
 									</BreadcrumbItem>
-									{separator === "slash" ? <Slash size={14} className="stroke-text-tertiary" /> : <ChevronRight size={14} className="stroke-text-tertiary" />}
+									{separator === "slash" ? <span className="text-text-tertiary text-sm">/</span> : <ChevronRight size={14} className="stroke-text-tertiary" />}
 								</>
 							)}
 						</React.Fragment>
@@ -94,25 +95,34 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 Breadcrumb.displayName = "Breadcrumb"
 
 function BreadcrumbItem({ children, href, isCurrent = false, className = "", showSeparator = false, separator = "default", ...props }: BreadcrumbItemProps) {
-	const Comp = href ? "a" : "span"
-	const SeparatorIcon = separator === "slash" ? Slash : ChevronRight
-
 	return (
 		<>
 			<li className="flex items-center justify-center" {...props}>
-				<Comp
-					href={href}
-					className={cn(
-						"flex items-center gap-1 text-sm font-medium transition-colors",
-						isCurrent ? "font-medium" : "text-text-secondary",
-						href && "hover:underline",
-						"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
-						className
-					)}>
-					{children}
-				</Comp>
+				{href ? (
+					<Link
+						href={href}
+						className={cn(
+							"flex items-center gap-1 text-sm font-medium transition-colors",
+							isCurrent ? "font-medium" : "text-text-secondary",
+							"hover:underline",
+							"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
+							className
+						)}>
+						{children}
+					</Link>
+				) : (
+					<span
+						className={cn(
+							"flex items-center gap-1 text-sm font-medium transition-colors",
+							isCurrent ? "font-medium" : "text-text-secondary",
+							"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
+							className
+						)}>
+						{children}
+					</span>
+				)}
 			</li>
-			{showSeparator && <SeparatorIcon size={14} className="stroke-text-tertiary" />}
+			{showSeparator && (separator === "slash" ? <span className="text-text-tertiary text-sm">/</span> : <ChevronRight size={14} className="stroke-text-tertiary" />)}
 		</>
 	)
 }

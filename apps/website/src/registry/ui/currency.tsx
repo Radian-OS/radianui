@@ -6,8 +6,7 @@ import type { InputProps } from "./input"
 type CurrencyInputProps = {
 	currency?: string
 	locale?: string
-	allowDecimals?: boolean
-	decimalsLimit?: number
+	decimals?: number
 	decimalSeparator?: string
 	groupSeparator?: string
 	separator?: boolean
@@ -19,8 +18,7 @@ type CurrencyInputProps = {
 function CurrencyInput({
 	currency = "usd",
 	locale = "en-US",
-	allowDecimals = true,
-	decimalsLimit = 2,
+	decimals = 2,
 	decimalSeparator,
 	groupSeparator,
 	separator = true,
@@ -33,6 +31,9 @@ function CurrencyInput({
 	const [rawValue, setRawValue] = useState<string>((props.value as string) || "")
 	const [currencySymbol, setCurrencySymbol] = useState<string>("")
 	const inputRef = useRef<HTMLInputElement>(null)
+
+	const allowDecimals = decimals > 0
+	const decimalsLimit = Math.max(0, decimals)
 
 	const [detectedDecimalSep, detectedGroupSep] = useDetectSeparators(locale)
 	const effectiveDecimalSep = decimalSeparator || detectedDecimalSep
@@ -176,9 +177,9 @@ function CurrencyInput({
 		</div>
 	)
 
-	const wrappedTrail = props.trail ? (
+	const wrappedTrail = props.end ? (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto">
-			{props.trail}
+			{props.end}
 		</div>
 	) : (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
@@ -189,7 +190,8 @@ function CurrencyInput({
 	useEffect(() => {
 		setRawValue((props.value as string) || "")
 		try {
-			const parts = new Intl.NumberFormat(locale, {
+			// Always use en-US for symbol detection to get standard symbols
+			const parts = new Intl.NumberFormat("en-US", {
 				style: "currency",
 				currency: currency.toUpperCase(),
 			}).formatToParts(0)
@@ -204,8 +206,8 @@ function CurrencyInput({
 		<Input
 			value={rawValue}
 			ref={inputRef}
-			lead={currencyLead}
-			trail={wrappedTrail}
+			start={currencyLead}
+			end={wrappedTrail}
 			hint={hint}
 			onKeyDown={handleKeyDown}
 			onChange={handleChange}

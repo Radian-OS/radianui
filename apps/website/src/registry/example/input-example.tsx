@@ -173,7 +173,7 @@ const InputExample = () => {
 			<ProgressBar value={progress} />
 
 			<div className="my-4 flex w-full flex-col gap-4">
-				<Slider label="Test label" leadIcon={<BellOff size={20} />} trailIcon={<BellRing size={20} />} />
+				<Slider label="Test label" start={<BellOff size={20} />} end={<BellRing size={20} />} />
 
 				<Slider value={sliderValue} onValueChange={setSliderValue} />
 
@@ -213,7 +213,7 @@ const InputExample = () => {
 
 				<div className="flex h-64 gap-5">
 					<Slider orientation="vertical" />
-					<Slider leadIcon={<BellOff size={20} />} trailIcon={<BellRing size={20} />} orientation="vertical" />
+					<Slider start={<BellOff size={20} />} end={<BellRing size={20} />} orientation="vertical" />
 
 					<Slider
 						label="Vertical Label"

@@ -9,7 +9,6 @@ const PaginationPreview = () => {
 	const [, setRowsPerPage] = useState(5)
 
 	const [goTo, setGoTo] = useState<"true" | "false">("false")
-	const [buttonVariant, setButtonVariant] = useState<"strong" | "outline">("strong")
 	const [customRow, setCustomRow] = useState<"true" | "false">("false")
 	const [rowPerPageD, setRowsPerPageD] = useState<"true" | "false">("false")
 	const [control, setControl] = useState<"icon" | "text" | "both">("icon")
@@ -24,7 +23,7 @@ const PaginationPreview = () => {
 						<DropdownContent className="min-w-20">
 							<DropdownGroup>
 								<DropdownSub>
-									<DropdownSubTrigger>Control</DropdownSubTrigger>
+									<DropdownSubTrigger>Nav button</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
@@ -34,20 +33,6 @@ const PaginationPreview = () => {
 											<DropdownItem value="icon">Icon</DropdownItem>
 											<DropdownItem value="text">Text</DropdownItem>
 											<DropdownItem value="both">Icon and Text</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Button Variant</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setButtonVariant(Array.from(keys)[0] as typeof buttonVariant)}
-											minSelectionCount={1}
-											selectedValues={[buttonVariant]}>
-											<DropdownItem value="strong">Strong</DropdownItem>
-											<DropdownItem value="outline">Outline</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -114,20 +99,17 @@ const PaginationPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="mx-auto max-h-[200px] max-w-3xl">
-						<Pagination
-							key={key}
-							currentPage={currentPage}
-							totalPage={50}
-							onPageChange={(page) => setCurrentPage(page)}
-							onRowsPerPageChange={(rows) => setRowsPerPage(rows)}
-							control={`${control}`}
-							rowPerPage={rowPerPageD === "true"}
-							buttonVariant={`${buttonVariant}`}
-							goToPage={goTo === "true"}
-							enableCustomRows={customRow === "true"}
-						/>
-					</div>
+					<Pagination
+						key={key}
+						currentPage={currentPage}
+						totalPage={50}
+						onPageChange={(page) => setCurrentPage(page)}
+						onRowsPerPageChange={(rows) => setRowsPerPage(rows)}
+						navButton={`${control}`}
+						rowPerPage={rowPerPageD === "true"}
+						goToPage={goTo === "true"}
+						enableCustomRows={customRow === "true"}
+					/>
 				</div>
 			</TabsContent>
 
@@ -141,9 +123,8 @@ currentPage="${currentPage}"
 totalPage={50}
 onPageChange={(page) => setCurrentPage(page)}
 onRowsPerPageChange={(rows) => setRowsPerPage(rows)}
-control="${control}" 
+navButton="${control}" 
 rowPerPage="${rowPerPageD}"
-buttonVariant="${buttonVariant}" 
 goToPage="${goTo}"
 enableCustomRows="${customRow}"
 />`}

@@ -6,33 +6,20 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
+export type AlignOptions = "start" | "center" | "end"
+export type PlacementOptions = "top" | "bottom" | "left" | "right"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type VariantOptions = "input" | "button"
-const sizes = ["28", "32", "36", "40", "44", "48"]
+
+const alignOptions: AlignOptions[] = ["start", "center", "end"]
+const placementOptions: PlacementOptions[] = ["top", "bottom", "left", "right"]
 
 const DropdownPreview = () => {
-	const [mode, setMode] = useState<"single" | "multiple">("single")
-	const [selected, setSelected] = useState<string[]>(["1"])
 	const [startContent, setStartContent] = useState<boolean>(false)
 	const [endContent, setEndContent] = useState<boolean>(false)
 
-	const [size, setSize] = useState<SizeOptions>("36")
-	const [disabled, setDisabled] = useState(false)
-	const [leadIcon, setLeadIcon] = useState<boolean>(false)
-	const getLeadTrialClass = () => {
-		if (leadIcon && (size === "36" || size === "32" || size === "40")) {
-			return "size-5"
-		}
-		if (leadIcon && size === "28") {
-			return "size-4"
-		}
-		if (leadIcon && (size === "44" || size === "48")) {
-			return "size-6"
-		}
-		return ""
-	}
-
-	const iconClass = getLeadTrialClass()
+	const [align, setAlign] = useState<AlignOptions>("start")
+	const [placement, setPlacement] = useState<PlacementOptions>("bottom")
 
 	const code = `"use client"	
 import React from "react"
@@ -51,23 +38,18 @@ import { Button } from "@/registry/ui/button"
 	
 export const DropdownPreview=()=>{
 
-const [mode, setMode] = useState<"single" | "multiple">("single")
-const [selected, setSelected] = useState<string[]>(["1"])
 
 return(
 <Dropdown>
 <DropdownTrigger asChild >
-<Button variant="neutral-outline" >
+<Button variant="outline" color="neutral" >
 Dropdown <ChevronDown className="size-5" />
 <Button
-	size="${size}"
-	${leadIcon ? `lead={<Box className="${iconClass}" />}` : ""}
-	disabled={${disabled}}
-	variant="neutral-outline">
+	variant="outline">
 	Dropdown <ChevronDown className="size-5" />
 </Button>
 </DropdownTrigger>
-<DropdownContent className="w-48">
+<DropdownContent align={align} placement={placement} className="w-48">
 <DropdownGroup title="date range">
 <DropdownItem>This week</DropdownItem>
 <DropdownItem>This month</DropdownItem>
@@ -82,16 +64,14 @@ Dropdown <ChevronDown className="size-5" />
 </DropdownGroup>
 <DropdownGroup
 title="status"
-selectionMode={mode}
-onSelectedChange={(keys) => (mode === "single" ? setSelected([keys[0]]) : setSelected(keys))}
-selectedValues={selected}>
+>
 <DropdownItem 
-${startContent ? `startContent={<Box className="${iconClass}" />}` : ""}
-${endContent ? `endContent={<Box className="${iconClass}" />}` : ""}
+${startContent ? `startContent={<Box />}` : ""}
+${endContent ? `endContent={<Box />}` : ""}
 value="1">Active</DropdownItem>
 <DropdownItem
-${startContent ? `startContent={<Box className="${iconClass}" />}` : ""}
-${endContent ? `endContent={<Box className="${iconClass}" />}` : ""}
+${startContent ? `startContent={<Box />}` : ""}
+${endContent ? `endContent={<Box />}` : ""}
 value="2">Inactive</DropdownItem>
 <DropdownItem value="3">Lunch</DropdownItem>
 <DropdownItem value="4">Commuting</DropdownItem>
@@ -108,45 +88,6 @@ value="2">Inactive</DropdownItem>
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Selection Mode</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setMode(keys[0] as "single" | "multiple")} minSelectionCount={1} selectedValues={[mode]}>
-										<DropdownItem value="single">Single</DropdownItem>
-										<DropdownItem value="multiple">Multiple</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
-										{sizes.map((size) => (
-											<DropdownItem value={size} key={size}>
-												{size}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Lead</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(leadIcon)]} onSelectedChange={(values) => setLeadIcon(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Start Content</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -174,6 +115,32 @@ value="2">Inactive</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Align</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[align]} onSelectedChange={(values) => setAlign(values[0] as AlignOptions)}>
+										{alignOptions.map((alignOptions) => (
+											<DropdownItem value={alignOptions} key={alignOptions}>
+												{alignOptions.charAt(0).toUpperCase() + alignOptions.slice(1)}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Placement</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" selectedValues={[placement]} onSelectedChange={(values) => setPlacement(values[0] as PlacementOptions)}>
+										{placementOptions.map((placementOptions) => (
+											<DropdownItem value={placementOptions} key={placementOptions}>
+												{placementOptions.charAt(0).toUpperCase() + placementOptions.slice(1)}
+											</DropdownItem>
+										))}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -187,11 +154,11 @@ value="2">Inactive</DropdownItem>
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button size={size} lead={leadIcon ? <Box className={iconClass} /> : null} disabled={disabled} variant="neutral-outline">
+							<Button variant="outline">
 								Dropdown <ChevronDown className="size-5" />
 							</Button>
 						</DropdownTrigger>
-						<DropdownContent className="w-48">
+						<DropdownContent align={align} placement={placement} className="w-48">
 							<DropdownGroup title="date range">
 								<DropdownItem>This week</DropdownItem>
 								<DropdownItem>This month</DropdownItem>
@@ -204,15 +171,11 @@ value="2">Inactive</DropdownItem>
 									</DropdownSubContent>
 								</DropdownSub>
 							</DropdownGroup>
-							<DropdownGroup
-								title="status"
-								selectionMode={mode}
-								onSelectedChange={(keys) => (mode === "single" ? setSelected([keys[0]]) : setSelected(keys))}
-								selectedValues={selected}>
-								<DropdownItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="1">
+							<DropdownGroup title="status">
+								<DropdownItem startContent={startContent ? <Box /> : null} endContent={endContent ? <Box /> : null} value="1">
 									Active
 								</DropdownItem>
-								<DropdownItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="2">
+								<DropdownItem startContent={startContent ? <Box /> : null} endContent={endContent ? <Box /> : null} value="2">
 									Inactive
 								</DropdownItem>
 								<DropdownItem value="3">Lunch</DropdownItem>

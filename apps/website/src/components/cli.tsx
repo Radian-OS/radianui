@@ -1,22 +1,18 @@
-"use client"
-
 import { CodeArea } from "@/registry/ui/code"
 import { Divider } from "@/registry/ui/divider"
-import PackageManagerTabs from "./package-manager-tab"
+import CommandLineTabs from "./cli-tabs"
 
 const Cli = () => {
-	const language = "bash"
-	const pkg = ["pnpm", "yarn", "npm", "bun"]
 	return (
 		<div className="flex flex-col gap-8">
 			<div>
-				<h1 className="heading-5">init</h1>
+				<h5 className="heading-5">init</h5>
 				<Divider spacing="6" />
 			</div>
 			<div className="flex flex-col gap-8">
 				<p>Use the init command to initialize configuration and dependencies for a new project.</p>
 				<p>The init command installs dependencies, adds the radianos util, configures tailwind.config.js, and CSS variables for the project.</p>
-				<PackageManagerTabs isNpx={true} language={language} pkg={pkg} code={"radianos init"} />
+				<CommandLineTabs code={"radianos init"} />
 				<p>You will be asked a few questions to configure components.json:</p>
 				<CodeArea
 					language="tsx"
@@ -31,7 +27,7 @@ const Cli = () => {
 
 Success! Project initialization completed. You may now add components.`}
 				/>
-				<h1 className="heading-5">Options</h1>
+				<h5 className="heading-5">Options</h5>
 				<CodeArea
 					language="tsx"
 					code={`Usage: radianos init [options] [components...]
@@ -47,12 +43,12 @@ Options:
 				/>
 			</div>
 			<div>
-				<h1 className="heading-5">add</h1>
+				<h5 className="heading-5">add</h5>
 				<Divider spacing="6" />
 			</div>
 			<div className="flex flex-col gap-8">
 				<p>Use the add command to add components and dependencies to your project.</p>
-				<PackageManagerTabs isNpx={true} language={language} pkg={pkg} code={"radianos add [component]"} />
+				<CommandLineTabs code={"radianos add [component]"} />
 				<p>You will be presented with installation process:</p>
 				<CodeArea
 					language="tsx"

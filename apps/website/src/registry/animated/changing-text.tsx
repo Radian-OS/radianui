@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { AnimatePresence, MotionProps, motion } from "motion/react"
+import { AnimatePresence, MotionProps, easeOut, motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
 interface ChangingTextProps {
@@ -16,7 +16,6 @@ const ChangingText = ({ texts, duration = 2500, motionProps, direction = "down",
 	const [index, setIndex] = useState(0)
 
 	let axis: "x" | "y"
-
 	if (direction === "up" || direction === "down") {
 		axis = "y"
 	} else {
@@ -25,19 +24,17 @@ const ChangingText = ({ texts, duration = 2500, motionProps, direction = "down",
 
 	const offset = direction === "down" || direction === "right" ? -50 : 50
 
-	const defaultMotionProps = {
+	const defaultMotionProps: MotionProps = {
 		initial: { opacity: 0, [axis]: offset },
 		animate: { opacity: 1, [axis]: 0 },
 		exit: { opacity: 0, [axis]: -offset },
-		transition: { duration: 0.25, ease: "easeOut" },
+		transition: { duration: 0.25, ease: easeOut },
 	}
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setIndex((prevIndex) => (prevIndex + 1) % texts.length)
 		}, duration)
-
-		// Clean up interval on unmount
 		return () => clearInterval(interval)
 	}, [texts, duration])
 
@@ -46,9 +43,9 @@ const ChangingText = ({ texts, duration = 2500, motionProps, direction = "down",
 	return (
 		<div className="overflow-hidden py-2">
 			<AnimatePresence mode="wait">
-				<motion.h1 key={texts[index]} className={cn(className)} {...combinedMotionProps}>
+				<motion.p key={texts[index]} className={cn(className)} {...combinedMotionProps}>
 					{texts[index]}
-				</motion.h1>
+				</motion.p>
 			</AnimatePresence>
 		</div>
 	)

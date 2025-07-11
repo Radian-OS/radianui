@@ -8,12 +8,12 @@ const BadgeExamplePreview = () => {
 		{
 			name: "Destructive",
 			component: (
-				<Badge variant="pastel" color="error" size="24">
+				<Badge variant="soft" color="error" size="24">
 					Destructive
 				</Badge>
 			),
 			code: `<Badge
-variant="pastel" 
+variant="soft" 
 color="error" 
 size="24">
  Destructive
@@ -36,32 +36,32 @@ Label
 			name: "Avatar",
 			component: (
 				<Badge variant="strong" color="info" size="24">
-					<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 					Roman Shrestha
 				</Badge>
 			),
 			code: `<Badge
 variant="strong"
 color="info" size="24">
-<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 Roman Shrestha
 </Badge>`,
 		},
 		{
 			name: "Close Icon",
 			component: (
-				<Badge variant="pastel" color="warning" className="outline-warning outline" closable size="24">
-					<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+				<Badge variant="soft" color="warning" className="outline-warning outline" closable size="24">
+					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 					My Custom Badge
 				</Badge>
 			),
 			code: `<Badge
-variant="pastel" 
+variant="soft" 
 color="warning"
 className="outline-warning outline" 
 closable 
 size="24">
-<Avatar src="/avatar.png" name="Roman Shrestha" size="16" />
+<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 My Custom Badge
 </Badge>`,
 		},
@@ -71,7 +71,7 @@ My Custom Badge
 		<div className="mb-10 mt-2 space-y-8">
 			{badgeExamples.map((example, index) => (
 				<div key={index} className="overflow-hidden rounded-lg">
-					<h1 className="heading-6 mb-4 font-semibold">{example.name}</h1>
+					<h6 className="heading-6 mb-4 font-semibold">{example.name}</h6>
 					<Tabs defaultValue="preview">
 						<TabsList>
 							<TabsTrigger value="preview">Preview</TabsTrigger>

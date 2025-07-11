@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react"
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { CalendarDateTime, ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
 import { cva } from "class-variance-authority"
@@ -70,6 +70,8 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	disabled?: boolean
 	typeable?: boolean
 	disables?: boolean
+	onChange?: (dateTime: ZonedDateTime | null) => void // Add this line
+	value?: ZonedDateTime | null
 }
 // DatePicker component definition
 function DatePicker({
@@ -87,7 +89,7 @@ function DatePicker({
 	placeholder,
 	// timePickerProps,
 	// timeZoneProps,
-	// onSelectTime,
+	onSelectTime,
 	// selectedTimezone,
 	// onSelectTimezone,
 	size = defaultInputSize,
@@ -99,9 +101,22 @@ function DatePicker({
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? selected : internalSelected
 	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
-	// const [time, setTime] = React.useState<Time | null>(null)
-	// const [timezone, setTimezone] = React.useState<string | null>(null)
-	// const currenTimezone = selectedTimezone || timezone
+
+	// Add state for typeable date time
+	const [typeableDateTime, setTypeableDateTime] = useState<ZonedDateTime | null>(null)
+
+	// Handle typeable date time changes
+	const handleTypeableChange = (dateTime: ZonedDateTime | null) => {
+		setTypeableDateTime(dateTime)
+
+		// Convert ZonedDateTime to CalendarDate for consistency with existing onSelect
+		if (dateTime) {
+			const calendarDate = new CalendarDate(dateTime.year, dateTime.month, dateTime.day)
+			onSelect?.(calendarDate as CalendarDate & CalendarDate[] & CalendarRange, calendarDate, {}, mockMouseClick())
+		} else {
+			onSelect?.(undefined, today(getLocalTimeZone()), {}, mockMouseClick())
+		}
+	}
 
 	/**
 	 * This function manipulates the selected date according
@@ -148,6 +163,7 @@ function DatePicker({
 
 		if (e.currentTarget?.getAttribute("data-value") == null) setSelectedShortcut("custom")
 	}
+
 	// Effect hook to update the internal selected state based on the selected date
 	React.useEffect(function () {
 		if (defaultDateRangeShortcutValue) {
@@ -208,16 +224,16 @@ function DatePicker({
 	}
 
 	const [open, setOpen] = useState<boolean>(false)
-	const [time, setTime] = useState<string>("")
+	const [timeDisplay, setTimeDisplay] = useState<string>("")
 
 	useEffect(() => {
-		if (!displayText && !time) return // Skip setting input if both are empty
+		if (!displayText && !timeDisplay) return // Skip setting input if both are empty
 
 		// const todayFormatted = format(new Date(), "MMMM dd, yyyy");
 		const datePart = displayText
-		const combined = time ? `${datePart}, ${time}` : datePart
+		const combined = timeDisplay ? `${datePart}, ${timeDisplay}` : datePart
 		setInputValue(combined || "")
-	}, [displayText, time])
+	}, [displayText, timeDisplay])
 
 	const alignOffset = useMemo(() => {
 		if (showTime && showDateRangeShortcut && props.dualCalendar) return -581
@@ -243,6 +259,9 @@ function DatePicker({
 						hint={hint ? `${hint}` : ""}
 						showTime={showTime}
 						showDateRangeShortcut={showDateRangeShortcut}
+						onChange={handleTypeableChange}
+						value={props.value || typeableDateTime}
+						onSelectTime={onSelectTime}
 						{...props}
 					/>
 				</>
@@ -260,7 +279,7 @@ function DatePicker({
 						readOnly
 						value={inputValue}
 						placeholder="Select a date"
-						trail={
+						end={
 							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
 								<PopoverTrigger disabled={disabled}>
 									<CalendarIcon
@@ -276,7 +295,7 @@ function DatePicker({
 										<Calendar
 											onIndexChange={(value) => {
 												if (value !== null) {
-													setTime?.(value)
+													setTimeDisplay?.(value)
 												}
 											}}
 											mode="single"
@@ -292,7 +311,7 @@ function DatePicker({
 											mode="multiple"
 											onIndexChange={(value) => {
 												if (value !== null) {
-													setTime?.(value)
+													setTimeDisplay?.(value)
 												}
 											}}
 											selected={currentSelected as CalendarDate[]}
@@ -307,7 +326,7 @@ function DatePicker({
 											mode="range"
 											onIndexChange={(value) => {
 												if (value !== null) {
-													setTime?.(value)
+													setTimeDisplay?.(value)
 												}
 											}}
 											selected={currentSelected as CalendarRange}
@@ -412,11 +431,45 @@ function TypeableDatePicker({
 	className,
 	footer,
 	showDateRangeShortcut,
+	onSelectTime,
 	hint,
+	time,
+	onChange, // Add this prop
+	value, // Add this prop for controlled component
 	...props
-}: DatePickerProps) {
+}: DatePickerProps & {
+	onChange?: (dateTime: ZonedDateTime | null) => void
+	value?: ZonedDateTime | null
+}) {
 	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
 	const hideCaption: boolean = false
+
+	// Use controlled/uncontrolled pattern
+	const [internalDateTime, setInternalDateTime] = useState<ZonedDateTime | null>(null)
+	const isControlled = value !== undefined
+	const dateTime = isControlled ? value : internalDateTime
+
+	// Initialize dateTime from props if provided
+	useEffect(() => {
+		if (!isControlled && !internalDateTime) {
+			// Try to create initial dateTime from props
+			const today = new Date()
+			const initialHour = time?.hour || 0
+			const initialMinute = time?.minute || 0
+
+			const isoString =
+				`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}` +
+				`T${String(initialHour).padStart(2, "0")}:${String(initialMinute).padStart(2, "0")}` +
+				`[America/Los_Angeles]`
+
+			try {
+				const initialDateTime = parseZonedDateTime(isoString)
+				setInternalDateTime(initialDateTime)
+			} catch (error) {
+				console.error("Failed to parse initial dateTime", error)
+			}
+		}
+	}, [time, isControlled, internalDateTime])
 
 	// Merged class names for styling
 	const mergedClassNames = getMergedClassNames({
@@ -433,50 +486,81 @@ function TypeableDatePicker({
 			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-text" />
 			return <ChevronRight size={16} className="stroke-text" />
 		},
-		// ...customComponents,
 		...components,
 	}
 
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
-	// Convert Date to DateValue for the DateField
-	const [dateTime, setDateTime] = useState<ZonedDateTime | null>(null)
-
 	// Convert to DateValue for DateField
 	const dateValue = useMemo(() => {
-		if (!dateTime) return null
+		if (!dateTime) {
+			// If no dateTime but time prop exists, create a dateTime with today's date
+			if (time && !dateTime) {
+				const today = new Date()
+				const isoString =
+					`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}` +
+					`T${String(time.hour).padStart(2, "0")}:${String(time.minute).padStart(2, "0")}` +
+					`[America/Los_Angeles]`
+
+				try {
+					const tempDateTime = parseZonedDateTime(isoString)
+					return new CalendarDateTime(tempDateTime.year, tempDateTime.month, tempDateTime.day, showTime ? tempDateTime.hour : 0, showTime ? tempDateTime.minute : 0)
+				} catch (error) {
+					console.error("Failed to create dateValue from time prop", error)
+					return null
+				}
+			}
+			return null
+		}
 
 		return new CalendarDateTime(dateTime.year, dateTime.month, dateTime.day, showTime ? dateTime.hour : 0, showTime ? dateTime.minute : 0)
-	}, [dateTime, showTime])
+	}, [dateTime, showTime, time])
 
-	// Handle date changes with proper validation
-	const handleDateChange = (value: DateValue | null) => {
-		if (!value) {
-			setDateTime(null)
-			return
+	// Modified to call onChange callback
+	const handleDateTimeChange = (newDateTime: ZonedDateTime | null) => {
+		if (!isControlled) {
+			setInternalDateTime(newDateTime)
 		}
+		onChange?.(newDateTime) // Notify parent of changes
 
-		try {
-			// Ensure all date parts are properly formatted
-			const year = value.year
-			const month = "month" in value ? value.month : dateTime?.month || 1
-			const day = "day" in value ? value.day : dateTime?.day || 1
-			const hour = showTime && "hour" in value ? value.hour : dateTime?.hour || 0
-			const minute = showTime && "minute" in value ? value.minute : dateTime?.minute || 0
-
-			// Construct properly padded ISO string
-			const isoString =
-				`${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
-				`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
-				`[America/Los_Angeles]`
-
-			const newDateTime = parseZonedDateTime(isoString)
-			setDateTime(newDateTime)
-		} catch (error) {
-			console.error("Invalid date input", error)
-			// Optionally maintain previous valid state
+		// Also call onSelectTime if time changes
+		if (newDateTime && onSelectTime) {
+			const newTime = new Time(newDateTime.hour, newDateTime.minute)
+			onSelectTime(newTime)
 		}
 	}
+
+	// Handle date changes with proper validation
+	const handleDateChange = useCallback(
+		(value: DateValue | null) => {
+			if (!value) {
+				handleDateTimeChange(null)
+				return
+			}
+
+			try {
+				// Ensure all date parts are properly formatted
+				const year = value.year
+				const month = "month" in value ? value.month : dateTime?.month || 1
+				const day = "day" in value ? value.day : dateTime?.day || 1
+				const hour = showTime && "hour" in value ? value.hour : dateTime?.hour || 0
+				const minute = showTime && "minute" in value ? value.minute : dateTime?.minute || 0
+
+				// Construct properly padded ISO string
+				const isoString =
+					`${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
+					`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
+					`[America/Los_Angeles]`
+
+				const newDateTime = parseZonedDateTime(isoString)
+				handleDateTimeChange(newDateTime)
+			} catch (error) {
+				console.error("Invalid date input", error)
+			}
+		},
+		[dateTime, showTime, handleDateTimeChange]
+	)
+
 	const sizeHeightMapping = {
 		0: "",
 		28: "h-4 w-4",
@@ -488,17 +572,24 @@ function TypeableDatePicker({
 	}
 
 	useEffect(() => {
-		// If dateTime is not set, do nothing
 		if (!dateTime) return
 
-		// Find the matching index from timeOptions based on the dateTime hour and minute
 		const matchedIndex = timeOptions.findIndex((time) => time.hour === dateTime.hour && time.minute === dateTime.minute)
 
-		// If a matching time is found, update the selectedIndex to sync the checkmark
 		if (matchedIndex !== -1 && matchedIndex !== selectedIndex) {
 			setSelectedIndex(matchedIndex)
 		}
-	}, [dateTime, timeOptions, selectedIndex, setSelectedIndex])
+	}, [dateTime, selectedIndex])
+
+	// Update selectedIndex when time prop changes
+	useEffect(() => {
+		if (time && timeOptions) {
+			const matchedIndex = timeOptions.findIndex((option) => option.hour === time.hour && option.minute === time.minute)
+			if (matchedIndex !== -1) {
+				setSelectedIndex(matchedIndex)
+			}
+		}
+	}, [time, timeOptions])
 
 	return (
 		<Popover>
@@ -508,12 +599,9 @@ function TypeableDatePicker({
 					<div
 						className={cn("w-[320px]", dateInputStyles({ size, rounded }), {
 							"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
-
 							"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": !hasError && !disables,
-
 							"text-text-disables bg-fill-level1 cursor-not-allowed drop-shadow-none": disables,
 						})}>
-						{/* <I18nProvider locale="en-GB"> */}
 						<DateField
 							granularity={showTime ? "minute" : "day"}
 							className={cn("flex flex-col gap-1 border-none")}
@@ -540,7 +628,6 @@ function TypeableDatePicker({
 								)}
 							</DateInputRC>
 						</DateField>
-						{/* </I18nProvider> */}
 						<CalendarIcon
 							className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
 								"text-text-tertiary": !disables,
@@ -548,7 +635,7 @@ function TypeableDatePicker({
 							})}
 						/>
 					</div>
-					<Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
+					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
 				</div>
 			</PopoverTrigger>
 
@@ -573,7 +660,7 @@ function TypeableDatePicker({
 									const year = selectedDate.getFullYear()
 									const month = selectedDate.getMonth() + 1
 									const maxDay = new Date(year, month, 0).getDate()
-									const day = Math.min(selectedDate.getDate(), maxDay) // clamp invalid day
+									const day = Math.min(selectedDate.getDate(), maxDay)
 
 									const newDateTime = parseZonedDateTime(
 										`${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
@@ -581,7 +668,7 @@ function TypeableDatePicker({
 											`[America/Los_Angeles]`
 									)
 
-									setDateTime(newDateTime)
+									handleDateTimeChange(newDateTime)
 								}
 							}}
 							className={mergedClassName}
@@ -615,7 +702,7 @@ function TypeableDatePicker({
 											`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
 											`[America/Los_Angeles]`
 									)
-									setDateTime(newDateTime)
+									handleDateTimeChange(newDateTime)
 								}
 							}}
 						/>

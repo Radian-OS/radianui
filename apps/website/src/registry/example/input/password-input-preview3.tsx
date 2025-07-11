@@ -109,7 +109,7 @@ placeholder="Enter your password"
 <ProgressBar
 value={progress}
 />
-<div className="w-full text-sm gap-2 flex flex-col">
+<div className="w-full body-13 gap-2 flex flex-col">
 {[
 "At least 8 characters",
 "At least one number",
@@ -256,8 +256,9 @@ export default PasswordInputPreview
 							trail={trail}
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}
-						<ProgressBar value={progress} />
-						<div className="flex w-full flex-col gap-2 text-sm">
+						<div className="body-13 flex w-full flex-col gap-2">
+							<ProgressBar value={progress} />
+							<p className="text-sm font-semibold">Your Password must contain</p>
 							{["At least 8 characters", "At least one number", "At least one lowercase letter", "At least one uppercase letter"].map((label) => (
 								<p key={label} className="text-text-tertiary flex items-center gap-2">
 									<CircleCheck className={`size-4 ${isValid(label) ? "text-success" : ""}`} />

@@ -202,7 +202,8 @@ export default CounterInput
 									isIcon
 									size={size}
 									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-									variant="neutral-soft"
+									variant="soft"
+									color="neutral"
 									onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}>
 									<Minus className="text-text-disabled size-5" />
 								</Button>
@@ -218,7 +219,8 @@ export default CounterInput
 									isIcon
 									size={size}
 									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-									variant="neutral-soft"
+									variant="soft"
+									color="neutral"
 									onClick={() => setAmount((v) => String(Number(v || "0") + 1))}>
 									<Plus className="text-text-disabled size-5" />
 								</Button>
@@ -230,7 +232,7 @@ export default CounterInput
 							value={amount}
 							onChange={handleChange}
 							size={size}
-							lead={
+							start={
 								<Minus
 									onClick={(e) => {
 										e.stopPropagation()
@@ -240,7 +242,7 @@ export default CounterInput
 									onMouseDown={(e) => e.preventDefault()}
 								/>
 							}
-							trail={
+							end={
 								<Plus
 									className="size-5 cursor-pointer"
 									onClick={(e) => {

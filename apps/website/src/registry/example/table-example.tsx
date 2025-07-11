@@ -519,8 +519,6 @@ const TableExample = () => {
 					enableCustomRows={customRow[0] === "true"}
 					goToPage={goTo[0] === "true"}
 					customRows={5}
-					buttonVariant={`${buttonVariant}`}
-					control={`${control}`}
 				/>
 			</div>
 			<div className="mt-10 flex flex-wrap gap-4">

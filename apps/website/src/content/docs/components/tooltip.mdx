@@ -1,0 +1,37 @@
+---
+title: Tooltip
+description: Provide additional information on hover or focus
+source: https://github.com/Radian-os
+---
+
+<TooltipPreview />
+
+## Installation
+
+<CLI mode="execute" code={`radianos add tooltip`} />
+
+## Imports
+
+<Code language="tsx" code={`import {Tooltip} from "@/components/ui/tooltip"`} />
+
+## Props
+
+| Prop Name | Default Values | Values                   |
+| --------- | -------------- | ------------------------ |
+| position  | top            | top, left, right, bottom |
+| variant   | default        | default, arrow           |
+| content   | -              | -                        |
+
+## Usage
+
+<Code
+	language="tsx"
+	code={`<Tooltip 
+    content="Tooltip info" 
+    position="top"
+    variant="default">
+        <Button variant="outline">
+            Hover me
+        </Button>
+</Tooltip>`}
+/>

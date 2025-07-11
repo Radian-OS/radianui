@@ -1,17 +1,21 @@
 "use client"
 
 import React from "react"
+import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
+import { Spinner } from "./spinner"
 
 type ButtonProps = VariantProps<typeof buttonVariants> &
 	React.ButtonHTMLAttributes<HTMLButtonElement> & {
 		className?: string
 		children: React.ReactNode
 		isIcon?: boolean
-		color?: "primary" | "info" | "success" | "error" | "warning"
+		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
 		lead?: React.ReactNode
 		trail?: React.ReactNode
+		loading?: boolean
+		asChild?: boolean
 	}
 
 type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -21,7 +25,12 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	color?: ButtonProps["color"]
 }
 
-const buttonVariants = cva(
+type CompactButtonProps = Omit<ButtonProps, "isIcon" | "lead" | "trail" | "size"> & {
+	size?: "20" | "24"
+	asChild?: boolean
+}
+
+export const buttonVariants = cva(
 	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {
@@ -30,8 +39,6 @@ const buttonVariants = cva(
 				soft: "",
 				outline: "",
 				ghost: "",
-				"neutral-soft": "bg-bg-base font-medium hover:bg-fill-level1 focus-visible:outline-none focus-visible:ring-border-alpha",
-				"neutral-outline": "bg-bg-base font-medium outline-1 outline-border-alpha drop-shadow-xs hover:bg-fill-level2 focus-visible:ring-border-alpha",
 			},
 			size: {
 				"28": "[&>svg]:size-4 text-xs [&>span]:px-1 rounded-md",
@@ -40,6 +47,10 @@ const buttonVariants = cva(
 				"40": "[&>svg]:size-5 text-sm [&>span]:px-1 rounded-lg",
 				"44": "[&>svg]:size-6 text-base [&>span]:px-1 rounded-lg",
 				"48": "[&>svg]:size-6 text-base [&>span]:px-1 rounded-lg",
+			},
+			loading: {
+				true: "",
+				false: "",
 			},
 
 			isIcon: {
@@ -52,6 +63,7 @@ const buttonVariants = cva(
 				success: "",
 				error: "",
 				warning: "",
+				neutral: "",
 			},
 		},
 		defaultVariants: {
@@ -59,6 +71,7 @@ const buttonVariants = cva(
 			size: "36",
 			isIcon: false,
 			color: "primary",
+			loading: false,
 		},
 		compoundVariants: [
 			// Size variants
@@ -102,6 +115,11 @@ const buttonVariants = cva(
 				color: "warning",
 				className: "bg-warning font-medium text-static-white hover:bg-warning-hover focus-visible:ring-warning focus-visible:outline-none",
 			},
+			{
+				variant: "strong",
+				color: "neutral",
+				className: "bg-inverse-black font-medium text-inverse-white hover:bg-inverse-black/88 focus-visible:ring-inverse-black focus-visible:outline-none",
+			},
 
 			// Soft variant + colors
 			{
@@ -128,6 +146,11 @@ const buttonVariants = cva(
 				variant: "soft",
 				color: "warning",
 				className: "bg-warning-accent font-medium text-warning hover:bg-warning/15 focus-visible:ring-warning-focus focus-visible:outline-none",
+			},
+			{
+				variant: "soft",
+				color: "neutral",
+				className: "bg-fill-level2 font-medium text-text-secondary hover:bg-border-alpha focus-visible:bg-base focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Outline variant + colors
@@ -156,6 +179,12 @@ const buttonVariants = cva(
 				color: "warning",
 				className: "bg-transparent font-medium outline outline-warning-stroke text-warning hover:bg-warning-accent focus-visible:ring-warning-stroke",
 			},
+			{
+				variant: "outline",
+				color: "neutral",
+				className:
+					"bg-bg-level1 font-medium outline outline-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
+			},
 
 			// Ghost variant + colors
 			{
@@ -183,24 +212,58 @@ const buttonVariants = cva(
 				color: "warning",
 				className: "bg-transparent text-warning font-medium hover:bg-warning/10 focus-visible:outline-none focus-visible:ring-warning-focus",
 			},
+			{
+				variant: "ghost",
+				color: "neutral",
+				className: "bg-transparent text-text-secondary font-medium hover:bg-border-alpha focus-visible:outline-none focus-visible:ring-border",
+			},
+
+			// Neutral variants
 		],
 	}
 )
 
-function Button({ variant = "strong", size = "36", isIcon = false, color = "primary", className, children, disabled, lead, trail, ...props }: ButtonProps) {
-	// Create a combined class with a special treatment for disabled state
-	const combinedClass = cn(
-		buttonVariants({ variant, size, isIcon, color }),
-		disabled && "opacity-50", // Apply opacity only in disabled state
-		className
-	)
+function Button({
+	loading = false,
+	variant = "strong",
+	size = "36",
+	isIcon = false,
+	color = "primary",
+	className,
+	children,
+	disabled,
+	lead,
+	trail,
+	asChild = false,
+	...props
+}: ButtonProps) {
+	const combinedClass = cn(buttonVariants({ variant, size, isIcon, color }), disabled && "opacity-50", className)
 
+	const Comp = asChild ? Slot : "button"
+
+	// When using asChild, we need to pass the styling to the child element
+	// and cannot modify the children structure
+	if (asChild) {
+		// Don't allow lead/trail/loading when using asChild as it would break the single child requirement
+		if (lead || trail || loading) {
+			console.warn("Button: lead, trail, and loading props are not supported when using asChild")
+		}
+
+		return (
+			<Comp className={combinedClass} disabled={disabled} {...props}>
+				{children}
+			</Comp>
+		)
+	}
+
+	// Normal button behavior
 	return (
-		<button className={combinedClass} disabled={disabled} {...props}>
+		<Comp className={combinedClass} disabled={disabled} {...props}>
 			{lead}
+			{loading ? <Spinner size={size ? Number(size) : undefined} /> : null}
 			{children}
 			{trail}
-		</button>
+		</Comp>
 	)
 }
 Button.displayName = "Button"
@@ -220,10 +283,10 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 
 			// Special handling for different variants
 			let borderFixClass = ""
-			if (variant === "outline" || variant === "neutral-outline") {
+			if (variant === "outline") {
 				// For outline variants, we need to completely eliminate double borders
-				borderFixClass = !isFirst ? "border-l-0 -ml-[1px]" : ""
-			} else if (variant === "strong" || variant === "neutral-soft") {
+				borderFixClass = !isFirst ? "ml-[1px]" : ""
+			} else if (variant === "strong") {
 				// For solid variants
 				borderFixClass = !isFirst ? "-ml-[1px]" : ""
 			}
@@ -239,9 +302,7 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 						borderRadiusClass,
 						positionClass,
 						borderFixClass,
-						variant === "outline" && "outline-0 border border-current",
-						variant === "neutral-outline" && "outline-0 border border-border-alpha",
-						"hover:z-20 focus:z-30",
+						// "hover:z-20 focus:z-30",
 						child.props.className
 					),
 				})
@@ -258,4 +319,50 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 }
 ButtonGroup.displayName = "ButtonGroup"
 
-export { Button, ButtonGroup }
+function CompactButton({ loading = false, variant = "strong", size = "24", color = "primary", className, children, disabled, asChild = false, ...props }: CompactButtonProps) {
+	const sizeStyles = size === "20" ? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" : "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md"
+
+	const combinedClass = cn(
+		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
+		sizeStyles,
+		buttonVariants({ variant, size: "36", isIcon: true, color })
+			.split(" ")
+			.filter(
+				(cls) =>
+					!cls.includes("rounded") &&
+					!cls.includes("h-") &&
+					!cls.includes("w-") &&
+					!cls.includes("px-") &&
+					!cls.includes("gap-") &&
+					!cls.includes("[&>svg]") &&
+					!cls.includes("text-")
+			)
+			.join(" "),
+		disabled && "opacity-50",
+		className
+	)
+
+	const Comp = asChild ? Slot : "button"
+
+	// When using asChild, we need to pass the styling to the child element
+	if (asChild) {
+		if (loading) {
+			console.warn("CompactButton: loading prop is not supported when using asChild")
+		}
+
+		return (
+			<Comp className={combinedClass} disabled={disabled} {...props}>
+				{children}
+			</Comp>
+		)
+	}
+
+	return (
+		<Comp className={combinedClass} disabled={disabled} {...props}>
+			{loading ? <Spinner size={16} /> : children}
+		</Comp>
+	)
+}
+CompactButton.displayName = "CompactButton"
+
+export { Button, ButtonGroup, CompactButton }

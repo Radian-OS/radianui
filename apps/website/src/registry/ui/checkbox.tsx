@@ -86,6 +86,7 @@ function Checkbox({
 			<button
 				type="button"
 				role="checkbox"
+				data-checked={checked}
 				aria-checked={checked}
 				aria-disabled={disabled}
 				tabIndex={disabled ? -1 : 0}

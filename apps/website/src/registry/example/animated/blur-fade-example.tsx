@@ -11,7 +11,7 @@ export default function BlurFadeExample() {
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-end">
 				<div className="flex gap-1">
-					<Button variant="neutral-outline" isIcon onClick={() => setCounter((prev) => prev + 1)}>
+					<Button variant="outline" color="neutral" isIcon onClick={() => setCounter((prev) => prev + 1)}>
 						<RotateCw />
 					</Button>
 					<TabsList>
@@ -25,7 +25,7 @@ export default function BlurFadeExample() {
 				<div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
 					<div className="flex flex-col" key={counter}>
 						<Fade blur="6px" inView>
-							<h1 className="text-5xl font-semibold">Radian</h1>
+							<span className="text-5xl font-semibold">Radian</span>
 						</Fade>
 						<Fade blur="6px" delay={0.6} inView>
 							<p className="text-lg">Components that just work</p>
@@ -41,7 +41,7 @@ export default function BlurFadeExample() {
 					className="h-105"
 					code={`<div className="flex flex-col">
     <Fade blur="6px" inView>
-        <h1 className="text-5xl font-semibold">Radian</h1>
+        <span className="text-5xl font-semibold">Radian</span>
     </Fade>
     <Fade blur="6px" delay={0.6} inView>
         <p className="text-lg">Components that just work</p>

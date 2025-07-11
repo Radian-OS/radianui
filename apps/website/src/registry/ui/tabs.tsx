@@ -29,6 +29,7 @@ const tabsListStyles = cva(
 				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
 				outline: "border border-border",
 				ghost: "",
+				"outline-ghost": "bg-bg-base",
 			},
 		},
 		defaultVariants: {
@@ -77,7 +78,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 whitespace-nowrap font-medium ring-offset-background text-text-secondary focus-visible:ring-2 focus-visible:ring-offset-2 data-[state=active]:text-text w-fit data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
+	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-text-secondary data-[state=active]:text-text w-max data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
 	{
 		variants: {
 			size: {
@@ -90,37 +91,38 @@ const tabsTriggerStyles = cva(
 				outline: "data-[state=active]:bg-fill-level2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill-level2",
+				"outline-ghost": "data-[state=active]:bg-bg-base border border-transparent data-[state=active]:border-border-alpha data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [
 			{
 				size: "sm",
-				variant: "default",
+				variant: ["default"],
 				className: "rounded-md px-1.5 py-1",
 			},
 			{
 				size: "md",
-				variant: "default",
+				variant: ["default"],
 				className: "rounded-lg px-2.5 py-1.5",
 			},
 			{
 				size: "lg",
-				variant: "default",
+				variant: ["default"],
 				className: "rounded-[0.625rem] px-3 py-2",
 			},
 			{
 				size: "sm",
-				variant: ["outline", "ghost"],
+				variant: ["outline", "ghost", "outline-ghost"],
 				className: "p-1.5",
 			},
 			{
 				size: "md",
-				variant: ["outline", "ghost"],
-				className: " px-2.5 py-2",
+				variant: ["outline", "ghost", "outline-ghost"],
+				className: " p-2",
 			},
 			{
 				size: "lg",
-				variant: ["outline", "ghost"],
+				variant: ["outline", "ghost", "outline-ghost"],
 				className: " p-3",
 			},
 			{
@@ -158,17 +160,17 @@ const tabsTriggerStyles = cva(
 			},
 			{
 				size: "sm",
-				variant: "ghost",
-				className: "data-[state=active]:rounded-md",
+				variant: ["ghost", "outline-ghost"],
+				className: "data-[state=active]:rounded-md ",
 			},
 			{
 				size: "md",
-				variant: "ghost",
+				variant: ["ghost", "outline-ghost"],
 				className: "data-[state=active]:rounded-lg",
 			},
 			{
 				size: "lg",
-				variant: "ghost",
+				variant: ["ghost", "outline-ghost"],
 				className: "data-[state=active]:rounded-[0.625rem]",
 			},
 		],
@@ -200,8 +202,9 @@ function useTabs() {
 }
 
 function Tabs({ variant = "default", size = "md", className, defaultValue, children, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & TabsContextType) {
+	const ctxValues = React.useMemo(() => ({ variant, size }), [variant, size])
 	return (
-		<TabsContext.Provider value={{ variant: variant, size: size }}>
+		<TabsContext.Provider value={ctxValues}>
 			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3 data-[orientation=vertical]:flex-row", className)} defaultValue={defaultValue} {...props}>
 				{children}
 			</TabsPrimitive.Root>
@@ -244,12 +247,7 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
-	return (
-		<TabsPrimitive.Content
-			className={cn("focus-visible:ring-ring ring-offset-background focus-visible:outline-hidden m-0 max-w-full p-0 focus-visible:ring-2 focus-visible:ring-offset-2", className)}
-			{...props}
-		/>
-	)
+	return <TabsPrimitive.Content className={cn("flex-1 outline-none", className)} {...props} />
 }
 
 TabsContent.displayName = TabsPrimitive.Content.displayName

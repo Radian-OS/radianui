@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
-import { Drawer, DrawerBody, DrawerClose, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle } from "@/registry/ui/drawer"
+import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -11,28 +11,25 @@ const DrawerPreview = () => {
 	const [handle, setHandle] = useState<"true" | "false">("false")
 	const [backdrop, setBackdrop] = useState<"blur" | "overlay" | null | undefined>("overlay")
 
-	const code = `<Drawer
- type='${variant}'
- direction='${position}'
- handle={${handle}}
- backdrop='${backdrop}'
- trigger={<Button>Open Drawer</Button>}
- >
-<DrawerHeader>
- <DrawerTitle>This is a drawer header</DrawerTitle>
- <DrawerDescription>This is a drawer description message.</DrawerDescription>
-</DrawerHeader>
-<DrawerBody className="flex flex-col gap-3" >
- <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
- <div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
- <div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
-</DrawerBody>
-<DrawerFooter>
- <DrawerClose>
-  <Button variant="neutral-outline" >Close Drawer</Button>
- </DrawerClose>
-  <Button>Submit Action</Button>
-</DrawerFooter>
+	const code = `<Drawer type='${variant}' direction='${position}' handle={${handle}} backdrop='${backdrop}'>
+	<DrawerTrigger><Button>Open Trigger</Button></DrawerTrigger>
+	<DrawerContent>
+		<DrawerHeader>
+			<DrawerTitle>This is a drawer header</DrawerTitle>
+			<DrawerDescription>This is a drawer description message.</DrawerDescription>
+		</DrawerHeader>
+		<DrawerBody className="h-100 ${position === "left" || position === "right" ? "w-112.5 flex flex-col gap-3" : "flex gap-3"}">
+			<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+			<div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
+			<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+		</DrawerBody>
+			<DrawerFooter>
+			<DrawerClose>
+				<Button variant="outline" color="neutral" >Close Drawer</Button>
+			</DrawerClose>
+			<Button>Submit Action</Button>
+		</DrawerFooter>
+	</DrawerContent>
 </Drawer>`
 
 	return (
@@ -104,22 +101,27 @@ const DrawerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center rounded-xl border px-10">
-					<Drawer type={variant} direction={position} handle={handle === "true" ? true : false} backdrop={backdrop} trigger={<Button>Open Drawer</Button>}>
-						<DrawerHeader>
-							<DrawerTitle>This is a drawer header</DrawerTitle>
-							<DrawerDescription>This is a drawer description message.</DrawerDescription>
-						</DrawerHeader>
-						<DrawerBody className="flex flex-col gap-3">
-							<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
-							<div className="bg-fill-level3 rounded-radius-xl h-64"></div>
-							<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
-						</DrawerBody>
-						<DrawerFooter>
-							<DrawerClose>
-								<Button variant="neutral-outline">Close Drawer</Button>
-							</DrawerClose>
-							<Button>Submit Action</Button>
-						</DrawerFooter>
+					<Drawer type={variant} direction={position} handle={handle === "true" ? true : false} backdrop={backdrop}>
+						<DrawerTrigger>
+							<Button>Open Trigger</Button>
+						</DrawerTrigger>
+						<DrawerContent>
+							<DrawerHeader>
+								<DrawerTitle>This is a drawer header</DrawerTitle>
+								<DrawerDescription>This is a drawer description message.</DrawerDescription>
+							</DrawerHeader>
+							<DrawerBody className={`h-100 ${position === "left" || position === "right" ? "w-112.5 flex flex-col gap-3" : "flex gap-3"}`}>
+								<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
+								<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
+								<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
+							</DrawerBody>
+							<DrawerFooter>
+								<DrawerClose>
+									<Button variant="outline">Close Drawer</Button>
+								</DrawerClose>
+								<Button>Submit Action</Button>
+							</DrawerFooter>
+						</DrawerContent>
 					</Drawer>
 				</div>
 			</TabsContent>

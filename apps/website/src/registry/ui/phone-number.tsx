@@ -423,8 +423,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					aria-invalid={hasError || (validateOnChange && isValid === false)}
 					size={size}
 					disabled={disabled}
-					lead={lead}
-					trail={validationTrail}
+					start={lead}
+					end={validationTrail}
 					hasError={hasError || (validateOnChange && isValid === false)}
 					className={cn(showTrigger && "rounded-l-none", className, props.className)}
 					onKeyDown={handleKeyDown}
@@ -487,11 +487,12 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 						disabled={disabled}
 						renderTrigger={() => (
 							<Button
-								variant="neutral-soft"
+								variant="outline"
+								color="neutral"
 								size={size === "0" ? undefined : size}
 								disabled={disabled}
 								className={cn(
-									"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+									"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
 									{ "border-error": effectiveHasError && !disabled }
 								)}>
 								<Flag country={country} />
@@ -506,7 +507,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				)}
 				{showTrigger && !countryDropdown && (
 					<Button
-						variant="neutral-soft"
+						variant="soft"
+						color="neutral"
 						size={size === "0" ? undefined : size}
 						disabled={disabled}
 						className={cn("disabled:bg-fill-level2 border-border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {

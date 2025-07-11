@@ -1,249 +1,8 @@
 import React from "react"
 import ComponentCard from "@/components/home/component-card"
+import { navigationItems } from "@/config/navigation-config"
 
-type ComponentListItem = React.ComponentPropsWithoutRef<typeof ComponentCard>
-const componentsList: ComponentListItem[] = [
-	{
-		title: "Accordion",
-		description: "13 Components",
-		href: "/documentation/components/accordion",
-		svgUrl: "/landing-svg/accordion.svg",
-		darkModeSvgUrl: "landing-svg/accordion-dark.svg",
-		alt: "Accordion UI component illustration",
-	},
-	{
-		title: "Alert",
-		description: "12 Components",
-		href: "/documentation/components/alert",
-		svgUrl: "/landing-svg/alert.svg",
-		darkModeSvgUrl: "/landing-svg/alert-dark.svg",
-		alt: "Alert UI component illustration",
-	},
-	{
-		title: "Avatar",
-		description: "28 Components",
-		href: "/documentation/components/avatars",
-		svgUrl: "/landing-svg/avatar.svg",
-		darkModeSvgUrl: "/landing-svg/avatar-dark.svg",
-		alt: "Avatar UI component illustration",
-	},
-	{
-		title: "Avatar Group",
-		description: "28 Components",
-		href: "/documentation/components/avatars",
-		svgUrl: "/landing-svg/avatar-group.svg",
-		darkModeSvgUrl: "/landing-svg/avatar-group-dark.svg",
-		alt: "Avatar group UI component illustration",
-	},
-	{
-		title: "Badge",
-		description: "7 Components",
-		href: "/documentation/components/badge",
-		svgUrl: "/landing-svg/badge.svg",
-		darkModeSvgUrl: "/landing-svg/badge-dark.svg",
-		alt: "Badge UI component illustration",
-	},
-	{
-		title: "Banner",
-		description: "12 Components",
-		href: "/documentation/components/banner",
-		svgUrl: "/landing-svg/banner.svg",
-		darkModeSvgUrl: "/landing-svg/banner-dark.svg",
-		alt: "Banner UI component illustration",
-	},
-	{
-		title: "Breadcrumb",
-		description: "12 Components",
-		href: "/documentation/components/breadcrumb",
-		svgUrl: "/landing-svg/breadcrumb.svg",
-		darkModeSvgUrl: "/landing-svg/breadcrumb-dark.svg",
-		alt: "Breadcrumb UI component illustration",
-	},
-	{
-		title: "Button",
-		description: "60 Components",
-		href: "/documentation/components/buttons",
-		svgUrl: "/landing-svg/button.svg",
-		darkModeSvgUrl: "/landing-svg/button-dark.svg",
-		alt: "Button UI component illustration",
-	},
-	{
-		title: "Button Groups",
-		description: "60 Components",
-		href: "/documentation/components/button-group",
-		svgUrl: "/landing-svg/button-group.svg",
-		darkModeSvgUrl: "/landing-svg/button-group-dark.svg",
-		alt: "Button groups UI component illustration",
-	},
-	{
-		title: "Calendar",
-		description: "4 Components",
-		href: "/documentation/components/calendar",
-		svgUrl: "/landing-svg/calendar.svg",
-		darkModeSvgUrl: "/landing-svg/calendar-dark.svg",
-		alt: "Calendar UI component illustration",
-	},
-	{
-		title: "Checkbox",
-		description: "6 Components",
-		href: "/documentation/components/checkbox",
-		svgUrl: "/landing-svg/checkbox.svg",
-		darkModeSvgUrl: "/landing-svg/checkbox-dark.svg",
-		alt: "Checkbox UI component illustration",
-	},
-	{
-		title: "Code Area",
-		description: "49 Components",
-		href: "/documentation/components/code-area",
-		svgUrl: "/landing-svg/code-area.svg",
-		darkModeSvgUrl: "/landing-svg/code-area-dark.svg",
-		alt: "Code area UI component illustration",
-	},
-	{
-		title: "Command / Global Search",
-		description: "2 Components",
-		href: "/documentation/components/command",
-		svgUrl: "/landing-svg/command.svg",
-		darkModeSvgUrl: "/landing-svg/command-dark.svg",
-		alt: "Command or global search UI component illustration",
-	},
-	{
-		title: "Divider",
-		description: "17 Components",
-		href: "/documentation/components/divider",
-		svgUrl: "/landing-svg/divider.svg",
-		darkModeSvgUrl: "/landing-svg/divider-dark.svg",
-		alt: "Divider UI component illustration",
-	},
-	{
-		title: "Dropdown",
-		description: "8 Components",
-		href: "/documentation/components/dropdown",
-		svgUrl: "/landing-svg/dropdown.svg",
-		darkModeSvgUrl: "/landing-svg/dropdown-dark.svg",
-		alt: "Dropdown UI component illustration",
-	},
-	{
-		title: "File Upload",
-		description: "17 Components",
-		href: "/documentation/components/file-upload",
-		svgUrl: "/landing-svg/file-upload.svg",
-		darkModeSvgUrl: "/landing-svg/file-upload-dark.svg",
-		alt: "File upload UI component illustration",
-	},
-	{
-		title: "Hover Cards",
-		description: "21 Components",
-		href: "/documentation/components/hover-cards",
-		svgUrl: "/landing-svg/hover-cards.svg",
-		darkModeSvgUrl: "/landing-svg/hover-cards-dark.svg",
-		alt: "Hover cards UI component illustration",
-	},
-	{
-		title: "Inputs",
-		description: "49 Components",
-		href: "/documentation/components/inputs",
-		svgUrl: "/landing-svg/inputs.svg",
-		darkModeSvgUrl: "/landing-svg/inputs-dark.svg",
-		alt: "Inputs UI component illustration",
-	},
-	{
-		title: "Modal",
-		description: "13 Components",
-		href: "/documentation/components/modals",
-		svgUrl: "/landing-svg/modal.svg",
-		darkModeSvgUrl: "/landing-svg/modal-dark.svg",
-		alt: "Modal UI component illustration",
-	},
-	{
-		title: "Pagination",
-		description: "31 Components",
-		href: "/documentation/components/pagination",
-		svgUrl: "/landing-svg/pagination.svg",
-		darkModeSvgUrl: "/landing-svg/pagination-dark.svg",
-		alt: "Pagination UI component illustration",
-	},
-	{
-		title: "Popover",
-		description: "31 Components",
-		href: "/documentation/components/popover",
-		svgUrl: "/landing-svg/popover.svg",
-		darkModeSvgUrl: "/landing-svg/popover-dark.svg",
-		alt: "Popover UI component illustration",
-	},
-	{
-		title: "Progress Bar",
-		description: "2 Components",
-		href: "/documentation/components/progress-bar",
-		svgUrl: "/landing-svg/progress-bar.svg",
-		darkModeSvgUrl: "/landing-svg/progress-bar-dark.svg",
-		alt: "Progress bar UI component illustration",
-	},
-	{
-		title: "Radio Buttons",
-		description: "6 Components",
-		href: "/documentation/components/radio-buttons",
-		svgUrl: "/landing-svg/radio-buttons.svg",
-		darkModeSvgUrl: "/landing-svg/radio-buttons-dark.svg",
-		alt: "Radio buttons UI component illustration",
-	},
-	{
-		title: "Skeleton",
-		description: "31 Components",
-		href: "/documentation/components/skeleton",
-		svgUrl: "/landing-svg/skeleton.svg",
-		darkModeSvgUrl: "/landing-svg/skeleton-dark.svg",
-		alt: "Skeleton UI component illustration",
-	},
-	{
-		title: "Slider",
-		description: "17 Components",
-		href: "/documentation/components/slider",
-		svgUrl: "/landing-svg/slider.svg",
-		darkModeSvgUrl: "/landing-svg/slider-dark.svg",
-		alt: "Slider UI component illustration",
-	},
-	{
-		title: "Sooner / Toast",
-		description: "49 Components",
-		href: "/documentation/components/sonner",
-		svgUrl: "/landing-svg/sonner.svg",
-		darkModeSvgUrl: "/landing-svg/sonner-dark.svg",
-		alt: "Toast notification UI component illustration",
-	},
-	{
-		title: "Switch",
-		description: "6 Components",
-		href: "/documentation/components/switch",
-		svgUrl: "/landing-svg/switch.svg",
-		darkModeSvgUrl: "/landing-svg/switch-dark.svg",
-		alt: "Switch UI component illustration",
-	},
-	{
-		title: "Table",
-		description: "17 Components",
-		href: "/documentation/components/table",
-		svgUrl: "/landing-svg/table.svg",
-		darkModeSvgUrl: "/landing-svg/table-dark.svg",
-		alt: "Table UI component illustration",
-	},
-	{
-		title: "Tabs",
-		description: "12 Components",
-		href: "/documentation/components/tabs",
-		svgUrl: "/landing-svg/tabs.svg",
-		darkModeSvgUrl: "/landing-svg/tabs-dark.svg",
-		alt: "Tabs UI component illustration",
-	},
-	{
-		title: "Tooltip",
-		description: "31 Components",
-		href: "/documentation/components/tooltip",
-		svgUrl: "/landing-svg/tooltip.svg",
-		darkModeSvgUrl: "/landing-svg/tooltip-dark.svg",
-		alt: "Tooltip UI component illustration",
-	},
-]
+const components = navigationItems.find((section) => section.title === "Components")!
 
 export default function UiComponentsSection() {
 	return (
@@ -251,21 +10,21 @@ export default function UiComponentsSection() {
 			<div className="max-w-310 mx-auto">
 				<div id="header" className="lg:py-7.5 flex flex-col gap-1 px-4 py-6 md:p-6 lg:px-10">
 					<h2 className="heading-6 text-text">UI Components</h2>
-					<p className="body-15 text-text-secondary font-normal">Building blocks of an application or website</p>
+					<p className="body-15 text-text-secondary font-normal">{components.description}</p>
 				</div>
 				<div className="bg-border -ml-396 h-[0.5px] w-[calc(100%+999rem)]" />
 			</div>
 			<div className="max-w-310 mx-auto">
 				<div id="body" className="lg:pb-15 grid grid-cols-1 gap-4 px-4 pb-8 pt-6 sm:grid-cols-2 md:grid-cols-3 md:gap-6 md:px-6 lg:grid-cols-4 lg:p-10">
-					{componentsList.map((item, idx) => (
+					{components.items.map((item, idx) => (
 						<ComponentCard
-							alt={item.alt}
+							alt={item.alt!}
 							key={item.title + idx}
-							href={item.href}
+							url={item.url}
 							title={item.title}
-							description={item.description}
-							svgUrl={item.svgUrl}
-							darkModeSvgUrl={item.darkModeSvgUrl}
+							description={item.description!}
+							thumbnail={item.thumbnail!}
+							thumbnailDark={item.thumbnailDark!}
 						/>
 					))}
 				</div>

@@ -15,10 +15,9 @@ type PaginationProps = {
 	customRows?: number
 	enableCustomRows?: boolean
 	onRowsPerPageChange?: (rowsPerPage: number) => void // Callback for rows per page change
-	buttonVariant?: string
 	enableTextOnly?: boolean
 	enableIconOnly?: boolean
-	control?: string
+	navButton?: string
 }
 
 const Pagination: React.FC<PaginationProps> = function ({
@@ -29,9 +28,8 @@ const Pagination: React.FC<PaginationProps> = function ({
 	rowPerPage = true,
 	customRows = 5,
 	enableCustomRows = false,
-	buttonVariant = "strong",
 	onPageChange,
-	control = "icon",
+	navButton = "icon",
 }) {
 	const [rowsPerPage, setRowsPerPage] = useState(customRows || 10) // Default rows per page
 	const [totalPages, setTotalPages] = useState(Math.ceil(totalPage / rowsPerPage))
@@ -86,8 +84,9 @@ const Pagination: React.FC<PaginationProps> = function ({
 		if (startPage > 1) {
 			pages.push(
 				<Button
+					color="neutral"
 					key={1}
-					variant="neutral-outline"
+					variant="outline"
 					onClick={function () {
 						handlePageChange(1)
 					}}
@@ -105,13 +104,13 @@ const Pagination: React.FC<PaginationProps> = function ({
 						}}>
 						<Select
 							placeholder="..."
+							size="32"
 							endIcon={false}
 							selectedValues={[]}
-							size="32"
 							onSelectedChange={handleSelectChange}
-							className="text-text flex items-center justify-center bg-transparent">
+							className="border-border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 							{hiddenPages.map((page) => (
-								<SelectItem key={page} value={page.toString()}>
+								<SelectItem className="w-20" key={page} value={page.toString()}>
 									{page}
 								</SelectItem>
 							))}
@@ -124,14 +123,15 @@ const Pagination: React.FC<PaginationProps> = function ({
 		for (let i = startPage; i <= endPage; i++) {
 			pages.push(
 				<Button
-					variant={currentPage === i ? (buttonVariant as "strong" | "outline") : "neutral-outline"}
+					variant={currentPage === i ? "outline" : "outline"}
+					color={currentPage === i ? "primary" : "neutral"}
 					key={i}
 					onClick={function () {
 						handlePageChange(i)
 					}}
 					isIcon
 					size="32"
-					className={`w-8 font-semibold ${currentPage === i ? `text-white ${buttonVariant === "outline" ? "text-primary" : ""}` : ""}`}>
+					className={`w-8 font-semibold`}>
 					{i}
 				</Button>
 			)
@@ -151,9 +151,9 @@ const Pagination: React.FC<PaginationProps> = function ({
 							size="32"
 							endIcon={false}
 							onSelectedChange={handleSelectChange}
-							className="text-text flex items-center justify-center bg-transparent">
+							className="border-border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 							{hiddenPages.map((page) => (
-								<SelectItem key={page} value={page.toString()}>
+								<SelectItem className="w-20" key={page} value={page.toString()}>
 									{page}
 								</SelectItem>
 							))}
@@ -163,13 +163,14 @@ const Pagination: React.FC<PaginationProps> = function ({
 			}
 			pages.push(
 				<Button
-					variant="neutral-outline"
+					variant="outline"
+					color="neutral"
 					key={totalPages}
 					size="32"
 					onClick={function () {
 						handlePageChange(totalPages)
 					}}
-					className="text-text h-8 w-8 bg-transparent">
+					className="text-text h-8 w-8">
 					{totalPages}
 				</Button>
 			)
@@ -181,7 +182,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 	const indexOfLastRow = currentPage * rowsPerPage
 	const indexOfFirstRow = indexOfLastRow - rowsPerPage
 
-	const controls = [
+	const navButtons = [
 		{ type: "first", icon: <ChevronsLeft />, text: "First" },
 		{ type: "previous", icon: <ChevronLeft />, text: "Previous" },
 		{ type: "next", icon: <ChevronRight />, text: "Next" },
@@ -192,24 +193,26 @@ const Pagination: React.FC<PaginationProps> = function ({
 		<div className="relative flex flex-col items-center gap-4 md:flex-row md:justify-between md:gap-0">
 			<div className="flex flex-col items-center gap-3 sm:flex-row">
 				<div className="flex items-center gap-1.5">
-					{controls.slice(0, 2).map(function ({ type, icon, text }) {
+					{navButtons.slice(0, 2).map(function ({ type, icon, text }) {
 						return (
 							<React.Fragment key={type}>
-								{(control === "icon" || control === "both") && (
+								{(navButton === "icon" || navButton === "both") && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
+										color="neutral"
 										onClick={() => (type === "first" ? handlePageChange(1) : handlePageChange(currentPage - 1))}
 										disabled={currentPage === 1}
-										isIcon={control === "icon"}
+										isIcon={navButton === "icon"}
 										size="32"
 										className="flex gap-1.5">
 										{icon}
-										{control === "both" && <span>{text}</span>}
+										{navButton === "both" && <span>{text}</span>}
 									</Button>
 								)}
-								{control === "text" && (
+								{navButton === "text" && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
+										color="neutral"
 										onClick={() => (type === "first" ? handlePageChange(1) : handlePageChange(currentPage - 1))}
 										disabled={currentPage === 1}
 										size="32"
@@ -224,24 +227,26 @@ const Pagination: React.FC<PaginationProps> = function ({
 					{/* Pagination Numbers in the Middle */}
 					{renderPageNumbers()}
 
-					{controls.slice(2).map(function ({ type, icon, text }) {
+					{navButtons.slice(2).map(function ({ type, icon, text }) {
 						return (
 							<React.Fragment key={type}>
-								{(control === "icon" || control === "both") && (
+								{(navButton === "icon" || navButton === "both") && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
+										color="neutral"
 										onClick={() => (type === "last" ? handlePageChange(totalPages) : handlePageChange(currentPage + 1))}
 										disabled={currentPage === totalPages} // Adjust logic for last page
-										isIcon={control === "icon"}
+										isIcon={navButton === "icon"}
 										size="32"
 										className="flex gap-1.5">
-										{control === "both" && <span>{text}</span>}
+										{navButton === "both" && <span>{text}</span>}
 										{icon}
 									</Button>
 								)}
-								{control === "text" && (
+								{navButton === "text" && (
 									<Button
-										variant="neutral-outline"
+										variant="outline"
+										color="neutral"
 										onClick={() => (type === "last" ? handlePageChange(totalPages) : handlePageChange(currentPage + 1))}
 										disabled={currentPage === totalPages} // Adjust logic for last page
 										size="32"

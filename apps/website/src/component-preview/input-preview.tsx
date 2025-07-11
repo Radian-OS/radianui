@@ -138,8 +138,8 @@ const InputPreview = () => {
 						disabled={disabled}
 						label={label ? "Username" : undefined}
 						placeholder="Enter your username here"
-						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
-						trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
+						start={leadIcon ? <CircleUserRound className={iconClass} /> : null}
+						end={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						hasError={hasError}
 						hint={hint ? "Hint text to help the user with input" : ""}
 					/>
@@ -159,8 +159,8 @@ const InputPreview = () => {
     placeholder="Enter your username here"
     hasError={${hasError}}
 	${hint ? `hint="Hint text to help the user with input"` : ""}
-  	${leadIcon ? `lead={<CircleUserRound className="${iconClass}" />}` : ""}
-  	${trailIcon ? `trail={<CircleUserRound className="${iconClass}" />}` : ""}
+  	${leadIcon ? `start={<CircleUserRound className="${iconClass}" />}` : ""}
+  	${trailIcon ? `end={<CircleUserRound className="${iconClass}" />}` : ""}
 />`}
 				/>
 			</TabsContent>

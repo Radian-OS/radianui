@@ -1,0 +1,34 @@
+---
+title: Alert
+description: Display important messages with visual emphasis
+source: https://github.com/Radian-os
+---
+
+<AlertPreview />
+
+## Installation
+
+<CLI mode="execute" code={`radianos add alert`} />
+
+## Imports
+
+<Code language="tsx" code={`import {Alert} from "@/components/ui/alert"`} />
+
+## Props
+
+| Prop Name | Default Values | Values                                  |
+| --------- | -------------- | --------------------------------------- |
+| type      | default        | default, info, success, danger, warning |
+| title     | -              | -                                       |
+| message   | -              | -                                       |
+| shaders   | false          | boolean                                 |
+
+## Usage
+
+<Code
+	language="tsx"
+	code={`<Alert
+ color="success"
+ title="Operation Info"
+ message="Your operation was completed successfully."/>`}
+/>

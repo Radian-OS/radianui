@@ -3,7 +3,7 @@
 import type React from "react"
 import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useCallback, useRef, useState } from "react"
 import { cva } from "class-variance-authority"
-import { AlertCircleIcon, FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTextIcon, HeadphonesIcon, Upload, VideoIcon, XIcon } from "lucide-react"
+import { FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTextIcon, HeadphonesIcon, Upload, VideoIcon, XIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import { Input } from "./input"
@@ -40,7 +40,7 @@ const getFileIcon = (file: { file: File | { type: string; name: string; preview?
 }
 
 type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
-	maxSize?: number // Maximum file size allowed in bytes
+	maxSize?: number
 	containerClassName?: string
 	rounded?: RoundedOptions
 	label?: string
@@ -55,6 +55,9 @@ type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChan
 	title?: string
 	description?: string
 	hint?: string
+	hasError?: boolean
+	value?: FileWithPreview[] // External file list
+	onChange?: (files: FileWithPreview[]) => void // Callback when files change
 }
 const DEFAULT_MAX_SIZE = 5 * 1024 * 1024 // 5 MB in bytes
 
@@ -71,17 +74,40 @@ function FileUpload({
 	sizes = "36",
 	hint,
 	maxFiles = 4,
+	hasError = false,
 	title = "Drag and drop files to upload",
 	description = "JPG, PNG, GIF or other image files",
+	value,
+	onChange,
 }: FileUploadProps) {
+	// Convert external value to initialFiles format
+	const initialFiles = value
+		? value.map((fileWithPreview) => {
+				if (fileWithPreview.file instanceof File) {
+					return {
+						id: fileWithPreview.id,
+						name: fileWithPreview.file.name,
+						size: fileWithPreview.file.size,
+						type: fileWithPreview.file.type,
+						url: fileWithPreview.preview || URL.createObjectURL(fileWithPreview.file),
+					}
+				} else {
+					return fileWithPreview.file as FileMetadata
+				}
+			})
+		: []
+
 	const maxSizeValue = maxSize * 1024 * 1024
 
-	const [{ files, isDragging, errors }, { handleDragEnter, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps }] = useFileUpload({
-		accept,
-		maxSize: maxSizeValue,
-		multiple: maxFiles > 1 ? multiple : false,
-		maxFiles,
-	})
+	const [{ files, isDragging, errors }, { handleDragEnter, handleFileChange, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps }] =
+		useFileUpload({
+			accept,
+			maxSize: maxSizeValue,
+			multiple: maxFiles > 1 ? multiple : false,
+			maxFiles,
+			initialFiles,
+			onFilesChange: onChange,
+		})
 
 	const cvaFileUploadVariants = {
 		rounded: {
@@ -111,9 +137,21 @@ function FileUpload({
 	return (
 		<>
 			{variant === "input" ? (
-				<Input fileUploadSize={sizes} size="0" hint={hint} id="picture" type="file" label={label ? `${label}` : ""} rounded={rounded} disabled={disabled} multiple={multiple} />
+				<Input
+					fileUploadSize={sizes}
+					size="0"
+					onChange={handleFileChange}
+					id="picture"
+					type="file"
+					label={label ? `${label}` : ""}
+					rounded={rounded}
+					disabled={disabled}
+					multiple={multiple}
+					hint={errors.length > 0 ? errors[0] : hint}
+					hasError={errors.length > 0 || hasError}
+				/>
 			) : (
-				<div className={"flex w-80 flex-col gap-1.5"}>
+				<div className={cn("flex w-80 flex-col gap-1.5", className)}>
 					{label && <Label htmlFor="picture">{label}</Label>}
 					{/* Drop area */}
 					<div
@@ -131,7 +169,7 @@ function FileUpload({
 						})}>
 						<input id="picture" {...getInputProps()} className="sr-only" aria-label="Upload image file" />
 						<div className="flex flex-col items-center justify-center gap-4 px-4 py-3 text-center">
-							<Button disabled={disabled} variant="neutral-outline" size="36" isIcon>
+							<Button disabled={disabled} variant="outline" color="neutral" size="36" isIcon>
 								<Upload className="text-text-secondary size-6" />
 							</Button>
 							<div className="flex flex-col gap-2">
@@ -141,7 +179,7 @@ function FileUpload({
 								</p>
 							</div>
 							<Button
-								variant="neutral-outline"
+								variant="outline"
 								disabled={disabled}
 								size="32"
 								className={`text-text-secondary text-sm font-medium ${disabled ? "cursor-not-allowed" : ""}`}
@@ -155,11 +193,11 @@ function FileUpload({
 						</div>
 					</div>
 
-					{errors.length > 0 && (
-						<div className="text-error flex items-center gap-1 text-xs" role="alert">
-							<AlertCircleIcon className="size-3 shrink-0" />
-							<span>{errors[0]}</span>
-						</div>
+					{/* Show hint only if there are no errors, or show error in hint style */}
+					{(hint || errors.length > 0) && (
+						<Label className={`flex items-start text-xs font-normal ${errors.length > 0 || hasError ? "text-error" : "text-text-tertiary"}`}>
+							{errors.length > 0 ? errors[0] : hint}
+						</Label>
 					)}
 
 					{/* File list */}
@@ -182,7 +220,7 @@ function FileUpload({
 							{/* Remove all files button */}
 							{files.length > 0 && (
 								<div className={cn(className)}>
-									<Button size="28" variant="neutral-outline" onClick={clearFiles}>
+									<Button size="28" variant="outline" color="neutral" onClick={clearFiles}>
 										Remove all files
 									</Button>
 								</div>

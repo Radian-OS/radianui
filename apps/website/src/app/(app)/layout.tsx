@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import Navbar from "@/components/navbar"
+import { NavigationBar } from "@/components/navbar/navigation-bar"
 
 interface Props {
 	children: ReactNode
@@ -8,9 +8,7 @@ interface Props {
 export default function LandingLayout({ children }: Props) {
 	return (
 		<div>
-			<header className="sticky top-0 z-50 w-full">
-				<Navbar />
-			</header>
+			<NavigationBar />
 			{children}
 		</div>
 	)

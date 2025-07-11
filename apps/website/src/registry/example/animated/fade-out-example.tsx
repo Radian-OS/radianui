@@ -19,12 +19,12 @@ export default function FadeOutExample() {
 			<TabsContent value="preview">
 				<div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
 					<div className="flex flex-col items-center gap-10">
-						<Button variant="neutral-outline" onClick={() => setShow((prev) => !prev)}>
+						<Button variant="outline" color="neutral" onClick={() => setShow((prev) => !prev)}>
 							{show ? `Fade In` : `Fade Out`}
 						</Button>
 
 						<Fade isVisible={show} blur="6px">
-							<h1 className="text-5xl font-semibold">Hello World</h1>
+							<span className="text-5xl font-semibold">Hello World</span>
 						</Fade>
 					</div>
 				</div>
@@ -38,12 +38,12 @@ export default function FadeOutExample() {
 					code={`const [show, setShow] = useState(true)
 
 <div className="flex flex-col items-center gap-10">
-    <Button variant="neutral-outline" onClick={() => setShow((prev) => !prev)}>
+    <Button variant="outline" color="neutral" onClick={() => setShow((prev) => !prev)}>
         {show ? 'Fade In' : 'Fade Out'}
     </Button>
 
     <Fade isVisible={show} blur="6px">
-        <h1 className="text-5xl font-semibold">Hello World</h1>
+        <span className="text-5xl font-semibold">Hello World</span>
     </Fade>
 </div>`}
 				/>

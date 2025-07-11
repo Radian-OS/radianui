@@ -19,8 +19,7 @@ const CurrencyInputPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [hasError, setHasError] = useState<"true" | "false">("false")
 	const [label, setLabel] = useState<"true" | "false">("true")
-	const [allowDecimals, setAllowDecimals] = useState<"true" | "false">("true")
-	const [decimalsLimit, setDecimalsLimit] = useState("2")
+	const [decimals, setDecimals] = useState("2")
 	const [maxValue, setMaxValue] = useState("")
 	const [hint, setHint] = useState<boolean>(false)
 
@@ -173,29 +172,15 @@ const CurrencyInputPreview = () => {
 									</DropdownSubContent>
 								</DropdownSub>
 								<DropdownSub>
-									<DropdownSubTrigger>Allow decimals</DropdownSubTrigger>
+									<DropdownSubTrigger>Decimals</DropdownSubTrigger>
 									<DropdownSubContent>
 										<DropdownGroup
 											selectionMode="single"
 											onSelectedChange={(keys) => {
-												setAllowDecimals(Array.from(keys)[0] as "true" | "false")
+												setDecimals(Array.from(keys)[0])
 											}}
-											selectedValues={[allowDecimals]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-								<DropdownSub>
-									<DropdownSubTrigger>Decimals limit</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setDecimalsLimit(Array.from(keys)[0])
-											}}
-											selectedValues={[decimalsLimit]}>
-											<DropdownItem value="0">0</DropdownItem>
+											selectedValues={[decimals]}>
+											<DropdownItem value="0">0 (No decimals)</DropdownItem>
 											<DropdownItem value="1">1</DropdownItem>
 											<DropdownItem value="2">2</DropdownItem>
 											<DropdownItem value="3">3</DropdownItem>
@@ -244,8 +229,7 @@ const CurrencyInputPreview = () => {
 							disabled={disabled === "true"}
 							className="w-80"
 							hasError={hasError === "true"}
-							allowDecimals={allowDecimals === "true"}
-							decimalsLimit={parseInt(decimalsLimit)}
+							decimals={parseInt(decimals)}
 							maxValue={maxValue ? parseInt(maxValue) : undefined}
 						/>
 					</div>
@@ -267,8 +251,7 @@ const CurrencyInputPreview = () => {
   disabled={${disabled === "true"}}
   className="w-80"
   hasError={${hasError === "true"}}
-  allowDecimals={${allowDecimals === "true"}}
-  decimalsLimit={${decimalsLimit}}${maxValue ? `\n  maxValue={${maxValue}}` : ""}
+  decimals={${decimals}}${maxValue ? `\n  maxValue={${maxValue}}` : ""}
 />`}
 				/>
 			</TabsContent>

@@ -24,9 +24,9 @@ const GradientTextPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<h1 className="text-5xl font-semibold">
+					<p className="text-5xl font-semibold">
 						Turn bold ideas into beautiful and dynamic <GradientText>user interfaces</GradientText>
-					</h1>
+					</p>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -34,9 +34,9 @@ const GradientTextPreview = () => {
 					language="tsx"
 					showLineNumbers
 					className="h-[420px]"
-					code={`<h1 className="text-6xl font-semibold">
+					code={`<p className="text-6xl font-semibold">
 	Turn bold ideas into beautiful, responsive, and dynamic <GradientText>user interfaces</GradientText>
-</h1>
+</p>
 					`}
 				/>
 			</TabsContent>

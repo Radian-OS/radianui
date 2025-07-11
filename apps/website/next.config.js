@@ -1,26 +1,12 @@
+import bundleAnalyzer from "@next/bundle-analyzer"
 import { withContentlayer } from "next-contentlayer2"
 
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = bundleAnalyzer({
+	enabled: process.env.ANALYZE === "true",
+})
+
 const nextConfig = {
-	async redirects() {
-		return [
-			{
-				source: "/documentation",
-				destination: "/documentation/introduction",
-				permanent: true,
-			},
-			{
-				source: "/documentation/components",
-				destination: "/documentation/components/accordion",
-				permanent: true,
-			},
-			{
-				source: "/components",
-				destination: "/documentation/components/accordion",
-				permanent: true,
-			},
-		]
-	},
 	async rewrites() {
 		return [
 			{
@@ -35,9 +21,21 @@ const nextConfig = {
 				source: "/ingest/decide",
 				destination: "https://us.i.posthog.com/decide",
 			},
+			{
+				source: "/documentation",
+				destination: "/docs/getting-started/introduction",
+			},
+			{
+				source: "/docs/components",
+				destination: "/docs/components/accordion",
+			},
+			{
+				source: "/components",
+				destination: "/docs/components/accordion",
+			},
 		]
 	},
-	assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
+	// assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
 	// Add transpilePackages to handle proper transpilation in monorepo
 	// transpilePackages: ['contentlayer2', 'next-contentlayer2', 'mdx-bundler'],
 
@@ -84,6 +82,8 @@ const nextConfig = {
 		NEXT_PUBLIC_WEBAPP_URL: process.env.NEXT_PUBLIC_WEBAPP_URL,
 		NEXT_PUBLIC_WEBSITE_URL: process.env.NEXT_PUBLIC_WEBSITE_URL,
 		NEXT_PUBLIC_DEPLOYMENT_ENV: process.env.NEXT_PUBLIC_DEPLOYMENT_ENV,
+		NEXT_PUBLIC_AHREFS_ANALYTICS_KEY: process.env.NEXT_PUBLIC_AHREFS_ANALYTICS_KEY,
+		NEXT_PUBLIC_BLOCKS_URL: process.env.NEXT_PUBLIC_BLOCKS_URL,
 	},
 }
-export default withContentlayer(nextConfig)
+export default withBundleAnalyzer(withContentlayer(nextConfig))

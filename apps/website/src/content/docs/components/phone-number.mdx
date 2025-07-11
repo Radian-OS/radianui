@@ -1,0 +1,30 @@
+---
+title: Phone Number
+description: Display phone number input with validation and formatting
+source: https://github.com/Radian-os
+externalSiteRef: https://catamphetamine.gitlab.io/react-phone-number-input
+---
+
+<PhoneNumberPreview />
+
+## Installation
+
+<CLI mode="execute" code={`radianos add phone-number`} />
+
+## Imports
+
+<Code language="typescript" code={`import { PhoneNumber } from "@components/ui/phone-number"`} />
+
+## Props
+
+| Prop Name       | Default                | Values                     |
+| --------------- | ---------------------- | -------------------------- |
+| value           |                        | string                     |
+| onChange        |                        | (value: string) => void    |
+| country         |                        | [ISO 3166-1 alpha-2 code]  |
+| onCountryChange |                        | (country: Country) => void |
+| showTrigger     | `true`                 | true / false               |
+| disabled        | `false`                | true / false               |
+| placeholder     | `"Enter phone number"` | string                     |
+| className       |                        | string                     |
+| flagsOnly       | false                  | true / false               |

@@ -59,11 +59,11 @@ const DividerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className={`flex ${orientation === "horizontal" ? "flex-col" : ""} h-[420px] items-center justify-center overflow-auto rounded-xl border px-10`}>
-					<h1 className="heading-4">Heading1</h1>
+					<h4 className="heading-4">Heading1</h4>
 					<Divider spacing={spacing} orientation={orientation} />
-					<h1 className="heading-4">Heading2</h1>
+					<h4 className="heading-4">Heading2</h4>
 					<Divider spacing={spacing} orientation={orientation} />
-					<h1 className="heading-4">Heading3</h1>
+					<h4 className="heading-4">Heading3</h4>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -72,11 +72,11 @@ const DividerPreview = () => {
 					showLineNumbers
 					className="h-[420px]"
 					code={`<div className="${orientation === "horizontal" ? "flex flex-col" : "flex"}" >
-<h1 className="heading-4">Heading1</h1>
+<h4 className="heading-4">Heading1</h4>
 <Divider spacing="${spacing}" orientation="${orientation}" />
-<h1 className="heading-4">Heading2</h1>
+<h4 className="heading-4">Heading2</h4>
 <Divider spacing="${spacing}" orientation="${orientation}" />
-<h1 className="heading-4">Heading3</h1>
+<h4 className="heading-4">Heading3</h4>
 </div>
 `}
 				/>
