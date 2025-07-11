@@ -36,7 +36,7 @@ const contents = [
 
 function AccordionWithIconExample() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" className="mb-6">
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview">Preview</TabsTrigger>

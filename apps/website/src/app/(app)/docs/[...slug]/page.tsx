@@ -86,9 +86,8 @@ export default async function Page({ params }: DocPageProps) {
 			<div className="mx-auto w-full flex-1 overflow-y-auto py-10 lg:max-w-[720px]">
 				<span className="text-primary text-sm font-medium capitalize">{category}</span>
 				<div className="flex flex-col">
-					<h1 className="heading-4 mb-1">{doc.title}</h1>
-					<p className="text-text-secondary mb-5 text-base">{doc.description}</p>
-
+					<h1 className="heading-4 my-2">{doc.title}</h1>
+					<p className="text-text-secondary mb-4 text-base">{doc.description}</p>
 					<section className="mb-10 flex flex-wrap items-center gap-2">
 						{doc.source && (
 							<Link href={doc.source} target="_blank" rel="noopener noreferrer">
