@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
-import CodeSnippet from "@/components/code-snippet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -110,9 +110,9 @@ export default function AccordionPreview() {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeSnippet
+				<CodeArea
+					language="tsx"
 					className="h-[420px]"
-					title={"accordion.tsx"}
 					code={`const items = [
   {
     value: "value 1",

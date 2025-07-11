@@ -5,10 +5,10 @@ import { X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { navLinks } from "@/components/navbar/nav-links"
-import { DesktopThemeToggler, TabletMobileThemeToggler } from "@/components/theme-toggler"
 import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Button } from "@/registry/ui/button"
+import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"
 
@@ -52,14 +52,14 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 			className={`bg-bg-base z-100 fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
 				isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
 			}`}>
-			<div className="border-border-alpha flex min-h-16 items-center justify-between border-b">
+			{/* Top Bar */}
+			<div className="border-border-alpha -mx-4 flex min-h-16 items-center justify-between border-b px-4 md:-mx-5 md:px-5">
 				<WebsiteLogo />
 
 				<div className="flex items-center justify-center gap-2">
 					<div className="hidden items-center justify-center gap-2 sm:flex">
-						<DesktopThemeToggler />
 						<FigmaPreviewButton />
-						<Button>Get Started</Button>
+						<EarlyAccessButton />
 					</div>
 					<Button isIcon color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
 						<X className="size-5" />
@@ -68,9 +68,8 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 			</div>
 
 			<div className="flex flex-col items-center justify-center gap-2 pb-4 pt-6 sm:hidden">
-				<Button className="w-full">Get Started</Button>
-				<FigmaPreviewButton className="w-full" />
-				<TabletMobileThemeToggler />
+				<EarlyAccessButton size={"44"} className="w-full" />
+				<FigmaPreviewButton size={"44"} className="w-full" />
 			</div>
 
 			<div className="text-text">

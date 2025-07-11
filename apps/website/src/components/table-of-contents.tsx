@@ -80,27 +80,32 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 	if (!headings.length) return null
 
 	return (
-		<nav className="flex flex-col gap-1 text-sm font-medium">
-			<span className="block py-2">On This Page</span>
-			<ul className="no-scrollbar relative flex h-full max-h-[35vh] flex-1 flex-col gap-1 overflow-y-auto">
-				<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
-				{headings.map((heading) => (
-					<li key={heading.id} className="relative">
-						<Link
-							ref={activeHeadingId === heading.id ? activeRef : null}
-							className={cn("text-text-secondary group relative block py-1 pl-4 text-sm")}
-							href={`#${heading.id}`}
-							onClick={(e) => handleHeadingClick(e, heading.id)}>
-							{/* Active indicator */}
-							{activeHeadingId === heading.id && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
+		<nav className="flex max-h-full flex-col text-sm font-medium">
+			{/* Fixed title */}
+			<span className="mb-1 block py-2">On This Page</span>
 
-							{/* Hover indicator */}
-							{activeHeadingId !== heading.id && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
-							{heading.text}
-						</Link>
-					</li>
-				))}
-			</ul>
+			{/* Scrollable content container */}
+			<div className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
+				<ul className="relative flex h-full flex-col gap-1">
+					<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
+					{headings.map((heading) => (
+						<li key={heading.id} className="relative">
+							<Link
+								ref={activeHeadingId === heading.id ? activeRef : null}
+								className={cn("text-text-secondary group relative block py-1 pl-4 text-sm")}
+								href={`#${heading.id}`}
+								onClick={(e) => handleHeadingClick(e, heading.id)}>
+								{/* Active indicator */}
+								{activeHeadingId === heading.id && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
+
+								{/* Hover indicator */}
+								{activeHeadingId !== heading.id && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+								{heading.text}
+							</Link>
+						</li>
+					))}
+				</ul>
+			</div>
 		</nav>
 	)
 }
