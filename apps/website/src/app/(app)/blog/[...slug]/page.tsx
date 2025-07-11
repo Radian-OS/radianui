@@ -1,6 +1,7 @@
 import React from "react"
 import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/components/mdx-components-docs"
 import { Avatar } from "@/registry/ui/avatar"
@@ -49,14 +50,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
 				<span className="text-text-secondary text-sm">Author</span>
 				{blog.author?.map((author, index) =>
 					author.username && author.avatar ? (
-						<span key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
+						<Link target="_blank" href={author.link || "#"} key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
 							<Avatar size="24" name={author.name} src={author.avatar} />
 							<span className="flex flex-col">
 								<span className="text-sm font-medium">{author.name}</span>
 								<span className="text-text-secondary text-xs">{author.username}</span>
 							</span>
-						</span>
-					) : null
+						</Link>
+					) : (
+						<React.Fragment key={author._id || index}></React.Fragment>
+					)
 				)}
 			</div>
 			<Divider spacing="20" />
