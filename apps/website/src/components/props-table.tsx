@@ -14,7 +14,7 @@ export type PropsData = {
 }
 
 export const Table = ({ children, className, ...props }: HTMLAttributes<HTMLTableElement>) => (
-	<div className="no-scrollbar overflow-x-scroll">
+	<div className="overflow-x-auto">
 		<table className={cn("text-text-secondary border-soft w-full table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border", className)} {...props}>
 			{children}
 		</table>
@@ -83,7 +83,7 @@ export const PropsTable = ({ title, data, externalUrl }: { title?: string; data:
 					{data.map((prop) => (
 						<TableRow key={prop.name} className="odd:bg-fill-level1 bg-bg-base">
 							<TableCell>
-								<span className="flex items-center gap-2">
+								<span className="flex items-center gap-2 whitespace-nowrap">
 									<DescriptionTooltip description={prop.description} />
 									{prop.name}
 									{prop.required && <span className="text-primary ml-1">*</span>}

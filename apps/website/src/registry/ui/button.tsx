@@ -30,7 +30,7 @@ type CompactButtonProps = Omit<ButtonProps, "isIcon" | "lead" | "trail" | "size"
 	asChild?: boolean
 }
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
 	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {

@@ -1,10 +1,16 @@
 import React from "react"
+import { VariantProps } from "class-variance-authority"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { buttonVariants } from "@/registry/ui/button"
 
-export default function FigmaPreviewButton({ className }: { className?: string }) {
+type FigmaPreviewButtonProps = VariantProps<typeof buttonVariants> & {
+	className?: string
+}
+
+export default function FigmaPreviewButton({ size = "36", variant = "outline", color = "neutral", className }: FigmaPreviewButtonProps) {
 	return (
-		<Button className={cn("text-text-secondary", className)} variant="outline" color="neutral">
+		<Link href={"#"} className={cn(buttonVariants({ variant: variant, color: color, size: size }), className)}>
 			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 				<path
 					d="M9.72266 10.0001C9.72266 8.3893 11.0285 7.08344 12.6393 7.08344C14.2501 7.08344 15.556 8.3893 15.556 10.0001C15.556 11.6109 14.2501 12.9168 12.6393 12.9168C11.0285 12.9168 9.72266 11.6109 9.72266 10.0001Z"
@@ -19,6 +25,6 @@ export default function FigmaPreviewButton({ className }: { className?: string }
 				<path d="M3.88867 10.0001C3.88867 11.6109 5.19451 12.9168 6.80534 12.9168H9.722V7.08344H6.80534C5.19451 7.08344 3.88867 8.3893 3.88867 10.0001Z" fill="#A259FF" />
 			</svg>
 			Figma Preview
-		</Button>
+		</Link>
 	)
 }
