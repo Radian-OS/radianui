@@ -18,9 +18,9 @@ type BadgeSize = "20" | "24" | "28"
 const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
-			neutral: "outline outline-border-alpha text-text-secondary",
+			neutral: "border border-border-alpha text-text-secondary",
 			strong: "",
-			outline: "",
+			border: "",
 			soft: "",
 		},
 		size: {
@@ -69,31 +69,31 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			className: "bg-warning text-static-white font-semibold",
 		},
 
-		// Outline variant + colors
+		// border variant + colors
 		{
-			variant: "outline",
+			variant: "border",
 			color: "primary",
-			className: "text-primary-text outline outline-primary bg-transparent",
+			className: "text-primary-text border border-primary bg-transparent",
 		},
 		{
-			variant: "outline",
+			variant: "border",
 			color: "info",
-			className: "text-info-text outline outline-info bg-transparent",
+			className: "text-info-text border border-info bg-transparent",
 		},
 		{
-			variant: "outline",
+			variant: "border",
 			color: "success",
-			className: "text-success-text outline outline-success bg-transparent",
+			className: "text-success-text border border-success bg-transparent",
 		},
 		{
-			variant: "outline",
+			variant: "border",
 			color: "error",
-			className: "text-error-text outline outline-error bg-transparent",
+			className: "text-error-text border border-error bg-transparent",
 		},
 		{
-			variant: "outline",
+			variant: "border",
 			color: "warning",
-			className: "text-warning-text outline outline-warning bg-transparent",
+			className: "text-warning-text border border-warning bg-transparent",
 		},
 
 		// soft variant + colors
