@@ -20,7 +20,7 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 		variant: {
 			neutral: "border border-border-alpha text-text-secondary",
 			strong: "",
-			border: "",
+			outline: "",
 			soft: "",
 		},
 		size: {
@@ -71,27 +71,27 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 
 		// border variant + colors
 		{
-			variant: "border",
+			variant: "outline",
 			color: "primary",
 			className: "text-primary-text border border-primary bg-transparent",
 		},
 		{
-			variant: "border",
+			variant: "outline",
 			color: "info",
 			className: "text-info-text border border-info bg-transparent",
 		},
 		{
-			variant: "border",
+			variant: "outline",
 			color: "success",
 			className: "text-success-text border border-success bg-transparent",
 		},
 		{
-			variant: "border",
+			variant: "outline",
 			color: "error",
 			className: "text-error-text border border-error bg-transparent",
 		},
 		{
-			variant: "border",
+			variant: "outline",
 			color: "warning",
 			className: "text-warning-text border border-warning bg-transparent",
 		},
