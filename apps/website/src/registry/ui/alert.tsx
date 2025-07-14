@@ -11,7 +11,7 @@ type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 		children?: React.ReactNode
 	}
 
-const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
+export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
 	variants: {
 		color: {
 			neutral: "bg-fill-level2",

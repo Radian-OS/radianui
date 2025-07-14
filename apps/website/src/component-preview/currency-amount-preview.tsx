@@ -22,6 +22,7 @@ const CurrencyInputPreview = () => {
 	const [decimals, setDecimals] = useState("2")
 	const [maxValue, setMaxValue] = useState("")
 	const [hint, setHint] = useState<boolean>(false)
+	const [placeholder, setPlaceholder] = useState<"true" | "false">("true")
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -31,6 +32,57 @@ const CurrencyInputPreview = () => {
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownGroup title="Input">
+								<DropdownSub>
+									<DropdownSubTrigger>Label</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setLabel(Array.from(keys)[0] as "true" | "false")
+											}}
+											selectedValues={[label]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setPlaceholder(Array.from(keys)[0] as "true" | "false")
+											}}
+											minSelectionCount={1}
+											selectedValues={[placeholder]}>
+											<DropdownItem value="true">True</DropdownItem>
+											<DropdownItem value="false">False</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
+								<DropdownSub>
+									<DropdownSubTrigger>Size</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setSize(Array.from(keys)[0] as SizeOptions)
+											}}
+											minSelectionCount={1}
+											selectedValues={[size]}>
+											<DropdownItem value="28">28</DropdownItem>
+											<DropdownItem value="32">32</DropdownItem>
+											<DropdownItem value="36">36</DropdownItem>
+											<DropdownItem value="40">40</DropdownItem>
+											<DropdownItem value="44">44</DropdownItem>
+											<DropdownItem value="48">48</DropdownItem>
+										</DropdownGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+
 								<DropdownSub>
 									<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 									<DropdownSubContent>
@@ -45,9 +97,15 @@ const CurrencyInputPreview = () => {
 								</DropdownSub>
 
 								<DropdownSub>
-									<DropdownSubTrigger>Hint</DropdownSubTrigger>
+									<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
+										<DropdownGroup
+											selectionMode="single"
+											onSelectedChange={(keys) => {
+												setDisabled(Array.from(keys)[0])
+											}}
+											minSelectionCount={1}
+											selectedValues={[disabled]}>
 											<DropdownItem value="true">True</DropdownItem>
 											<DropdownItem value="false">False</DropdownItem>
 										</DropdownGroup>
@@ -69,51 +127,13 @@ const CurrencyInputPreview = () => {
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
+
 								<DropdownSub>
-									<DropdownSubTrigger>Label</DropdownSubTrigger>
+									<DropdownSubTrigger>Hint</DropdownSubTrigger>
 									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setLabel(Array.from(keys)[0] as "true" | "false")
-											}}
-											selectedValues={[label]}>
+										<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
 											<DropdownItem value="true">True</DropdownItem>
 											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-								<DropdownSub>
-									<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setDisabled(Array.from(keys)[0])
-											}}
-											minSelectionCount={1}
-											selectedValues={[disabled]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-								<DropdownSub>
-									<DropdownSubTrigger>Size</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setSize(Array.from(keys)[0] as SizeOptions)
-											}}
-											minSelectionCount={1}
-											selectedValues={[size]}>
-											<DropdownItem value="28">28</DropdownItem>
-											<DropdownItem value="32">32</DropdownItem>
-											<DropdownItem value="36">36</DropdownItem>
-											<DropdownItem value="40">40</DropdownItem>
-											<DropdownItem value="44">44</DropdownItem>
-											<DropdownItem value="48">48</DropdownItem>
 										</DropdownGroup>
 									</DropdownSubContent>
 								</DropdownSub>
@@ -225,7 +245,7 @@ const CurrencyInputPreview = () => {
 							currency={currency}
 							locale={locale}
 							hint={hint ? "Hint text to help the user with input" : ""}
-							placeholder="Enter amount"
+							placeholder={placeholder === "true" ? "Enter amount" : ""}
 							disabled={disabled === "true"}
 							className="w-80"
 							hasError={hasError === "true"}
@@ -247,7 +267,7 @@ const CurrencyInputPreview = () => {
   currency="${currency}"
   ${hint === true ? `hint="Hint text to help the user with input"` : ""}
   locale="${locale}"
-  placeholder="Enter amount"
+  ${placeholder === "true" ? `placeholder="Enter amount"` : ""}
   disabled={${disabled === "true"}}
   className="w-80"
   hasError={${hasError === "true"}}

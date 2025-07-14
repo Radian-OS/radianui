@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react"
 import { Check, CopyIcon } from "lucide-react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
@@ -15,6 +16,7 @@ export interface InstallationTabsProps {
 	mode?: InstallMode
 	pkg?: PackageManager[]
 	className?: string
+	icon?: boolean
 }
 
 const getCommand = (manager: PackageManager, code: string, mode: InstallMode) => {
@@ -44,7 +46,30 @@ const getCommand = (manager: PackageManager, code: string, mode: InstallMode) =>
 	return `${manager} ${code}`
 }
 
-export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm", "npm", "yarn", "bun"], className }: InstallationTabsProps) {
+// Icon component mapping - you can replace these with your actual icon components
+const PackageManagerIcon = ({ manager }: { manager: PackageManager }) => {
+	// Replace these with your actual icon components
+	switch (manager) {
+		case "pnpm":
+			return <PnpmIcon />
+		case "npm":
+			return <NpmIcon />
+		case "yarn":
+			return <YarnIcon />
+		case "bun":
+			return <BunIcon />
+		default:
+			return null
+	}
+}
+
+// Placeholder components - replace these with your actual icon components
+const PnpmIcon = () => <Image className="h-5 w-5" src="/icons/pnpm.webp" width={500} alt="pnpm-icon" height={500} />
+const NpmIcon = () => <Image className="h-5 w-5" src="/icons/npm.webp" width={500} alt="npm" height={500} />
+const YarnIcon = () => <Image className="h-5 w-5" src="/icons/yarn.png" width={500} alt="yarn" height={500} />
+const BunIcon = () => <Image className="h-5 w-5" src="/icons/bun.svg" width={500} alt="bun" height={500} />
+
+export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm", "npm", "yarn", "bun"], className, icon = false }: InstallationTabsProps) {
 	const { theme } = useTheme()
 	const [activeTab, setActiveTab] = useState<PackageManager>(pkg[0])
 
@@ -80,7 +105,8 @@ export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm",
 			<div className="flex justify-between pr-1">
 				<TabsList className="bg-transparent">
 					{pkg.map((manager) => (
-						<TabsTrigger key={manager} value={manager}>
+						<TabsTrigger key={manager} value={manager} className={icon ? "gap-1" : ""}>
+							{icon && <PackageManagerIcon manager={manager} />}
 							{manager}
 						</TabsTrigger>
 					))}
