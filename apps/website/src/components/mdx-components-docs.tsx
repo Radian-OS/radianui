@@ -114,17 +114,17 @@ const components: MDXComponents = {
 	PropsTable: ({ title, data, externalUrl }: { title?: string; data: PropsData[]; externalUrl?: string }) => <PropsTable title={title} data={data} externalUrl={externalUrl} />,
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => <div className="bg-bg-level0 mt-6 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>,
 	AccordionPreview: () => (
-		<div className="mb-6">
+		<div className="pb-6">
 			<AccordionPreview />
 		</div>
 	),
 	AccordionWithIconExample: () => (
-		<div className="mb-6">
+		<div className="pb-6">
 			<AccordionWithIconExample />
 		</div>
 	),
 	AlertPreview: () => (
-		<div className="mb-6">
+		<div className="pb-6">
 			<AlertPreview />
 		</div>
 	),
@@ -223,23 +223,23 @@ const components: MDXComponents = {
 
 	CLI: ({ code, mode = "execute" }: { code: string; mode: InstallMode }) => {
 		return (
-			<div className="mb-6">
+			<div className="pb-6">
 				<CommandLineTabs mode={mode} code={code} />
 			</div>
 		)
 	},
 	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
-		<div className="mb-6">
+		<div className="pb-6">
 			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
 		</div>
 	),
 	Code: ({ language, tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
 		tabs ? (
-			<div className="mb-6">
+			<div className="pb-6">
 				<CommandLineTabs mode="execute" code={code} />
 			</div>
 		) : (
-			<div className="mb-6">
+			<div className="pb-6">
 				<CodeArea language={language} code={code} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("", className)} {...props} />
 			</div>
 		),
@@ -249,12 +249,12 @@ const components: MDXComponents = {
 		</h1>
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! mb-4 mt-6", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! pb-4 pt-6", className)} {...props}>
 			{children}
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! mb-3", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! pb-3", className)} {...props}>
 			{children}
 		</h3>
 	),
@@ -323,5 +323,5 @@ export function Mdx({ code }: MdxProps) {
 		}
 	}, [code])
 
-	return <Component className="flex flex-col gap-12" components={components} />
+	return <Component components={components} />
 }

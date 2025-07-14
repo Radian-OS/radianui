@@ -1,6 +1,7 @@
 import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
+import CodeAreaTest from "@/components/codearea-test"
 import { EmailSubmit } from "@/hooks/use-email-sumbit"
 import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
@@ -78,6 +79,8 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 					</div>
 				</section>
 			)}
+
+			<CodeAreaTest code={"console.log('Hello, world!')"} language="javascript" />
 		</div>
 	)
 }

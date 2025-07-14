@@ -83,6 +83,7 @@
 		"react-dom": "19.1.0",
 		"react-phone-number-input": "^3.4.12",
 		"react-resizable-panels": "^2.1.7",
+		"react-shiki": "^0.7.2",
 		"react-syntax-highlighter": "^15.6.1",
 		"rehype-pretty-code": "^0.14.1",
 		"remark": "^15.0.1",
