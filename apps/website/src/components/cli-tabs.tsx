@@ -66,8 +66,8 @@ const PackageManagerIcon = ({ manager }: { manager: PackageManager }) => {
 // Placeholder components - replace these with your actual icon components
 const PnpmIcon = () => <Image className="h-5 w-5" src="/icons/pnpm.webp" width={500} alt="pnpm-icon" height={500} />
 const NpmIcon = () => <Image className="h-5 w-5" src="/icons/npm.webp" width={500} alt="npm" height={500} />
-const YarnIcon = () => <Image className="h-5 w-5" src="/icons/yarn.webp" width={500} alt="yarn" height={500} />
-const BunIcon = () => <Image className="h-5 w-5" src="/icons/bun.webp" width={500} alt="bun" height={500} />
+const YarnIcon = () => <Image className="h-5 w-5" src="/icons/yarn.png" width={500} alt="yarn" height={500} />
+const BunIcon = () => <Image className="h-5 w-5" src="/icons/bun.svg" width={500} alt="bun" height={500} />
 
 export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm", "npm", "yarn", "bun"], className, icon = false }: InstallationTabsProps) {
 	const { theme } = useTheme()
