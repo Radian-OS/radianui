@@ -14,7 +14,7 @@ const layout = ({ children }: Props) => {
 			<Sidebar />
 
 			{/* Main Content Area (children will handle their own layout) */}
-			<div className="flex-1">{children}</div>
+			<div className="flex-1 overflow-x-auto">{children}</div>
 		</div>
 	)
 }
