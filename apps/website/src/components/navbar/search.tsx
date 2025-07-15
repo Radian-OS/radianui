@@ -94,7 +94,7 @@ export function SearchDocs() {
 			{/* Mobile Search */}
 			<Drawer direction="bottom" type="rounded" handle={true} modal={true} preventScrollRestoration={true}>
 				<DrawerTrigger asChild>
-					<Button isIcon variant="outline" color="neutral" className="md:hidden">
+					<Button iconOnly variant="outline" color="neutral" className="md:hidden">
 						<Search />
 					</Button>
 				</DrawerTrigger>
@@ -115,7 +115,7 @@ export function SearchDocs() {
 						className="not-md:hidden gap-1"
 						variant={"outline"}
 						color={"neutral"}
-						isIcon
+						iconOnly
 						lead={<Search className="text-text-tertiary" />}
 						trail={
 							<Badge className="text-text-secondary" size="20" variant={"neutral"}>

@@ -129,7 +129,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 					onClick={function () {
 						handlePageChange(i)
 					}}
-					isIcon
+					iconOnly
 					size="32"
 					className={`w-8 font-semibold`}>
 					{i}
@@ -202,7 +202,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 										color="neutral"
 										onClick={() => (type === "first" ? handlePageChange(1) : handlePageChange(currentPage - 1))}
 										disabled={currentPage === 1}
-										isIcon={navButton === "icon"}
+										iconOnly={navButton === "icon"}
 										size="32"
 										className="flex gap-1.5">
 										{icon}
@@ -236,7 +236,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 										color="neutral"
 										onClick={() => (type === "last" ? handlePageChange(totalPages) : handlePageChange(currentPage + 1))}
 										disabled={currentPage === totalPages} // Adjust logic for last page
-										isIcon={navButton === "icon"}
+										iconOnly={navButton === "icon"}
 										size="32"
 										className="flex gap-1.5">
 										{navButton === "both" && <span>{text}</span>}

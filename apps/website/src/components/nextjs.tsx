@@ -55,7 +55,7 @@ Success! Project initialization completed. You may now add components.`}
 export default function App() {
   return (
     <div>
-        <Button variant="strong" size="base" rounded="rounded" isIcon={false}/>
+        <Button variant="strong" size="base" rounded="rounded" iconOnly={false}/>
             Button
         </Button>         
     </div>

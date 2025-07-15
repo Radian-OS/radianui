@@ -67,14 +67,14 @@ export default function Hero01() {
 								<Button size="36">Get Started</Button>
 								<Drawer>
 									<DrawerTrigger asChild>
-										<Button isIcon className="text-text-tertiary md:hidden" variant="ghost" size="36">
+										<Button iconOnly className="text-text-tertiary md:hidden" variant="ghost" size="36">
 											<Menu size={20} />
 										</Button>
 									</DrawerTrigger>
 									<DrawerContent>
 										<DrawerTitle>
 											<DrawerClose>
-												<Button isIcon color="neutral" variant="soft">
+												<Button iconOnly color="neutral" variant="soft">
 													<X className="size-5" />
 												</Button>
 											</DrawerClose>

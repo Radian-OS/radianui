@@ -119,7 +119,7 @@ const ButtonExample = () => {
 
 			<h3 className="mt-6 text-lg font-medium">Icon Button</h3>
 			<div className="flex items-center gap-4">
-				<Button variant={variant} size={size} color={color} isIcon>
+				<Button variant={variant} size={size} color={color} iconOnly>
 					<CirclePlus />
 				</Button>
 			</div>
@@ -161,13 +161,13 @@ const ButtonExample = () => {
 			<div>
 				<h3 className="mb-3 text-lg font-medium">Icon Group</h3>
 				<ButtonGroup variant={variant} size={size} color={color}>
-					<Button isIcon>
+					<Button iconOnly>
 						<ChevronLeft />
 					</Button>
-					<Button isIcon>
+					<Button iconOnly>
 						<Settings />
 					</Button>
-					<Button isIcon>
+					<Button iconOnly>
 						<CirclePlus />
 					</Button>
 				</ButtonGroup>

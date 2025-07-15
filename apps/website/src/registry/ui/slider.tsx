@@ -122,7 +122,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 				)}>
 				{showSteppers && isSingleThumb && (
 					<Button
-						isIcon
+						iconOnly
 						className={cn("size-8", {
 							"pointer-events-none cursor-not-allowed opacity-80": props.disabled,
 						})}
@@ -218,7 +218,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 				{end}
 				{showSteppers && isSingleThumb && (
 					<Button
-						isIcon
+						iconOnly
 						className={cn("size-8", {
 							"pointer-events-none cursor-not-allowed opacity-80": props.disabled,
 						})}

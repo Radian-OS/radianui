@@ -19,7 +19,7 @@ const BlogComponents: MDXComponents = {
 		<CodeSnippet className="my-5" code={code} title={title} showLineNumber={showLineNumbers} />
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! pb-4 pt-10", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! py-5", className)} {...props}>
 			{children}
 		</h2>
 	),

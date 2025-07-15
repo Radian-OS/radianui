@@ -1,9 +1,12 @@
 "use client"
 
 import { useState } from "react"
+import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+
+type BadgeSize = "20" | "24" | "28"
 
 type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 	Omit<VariantProps<typeof badgeVariants>, "size"> & {
@@ -11,9 +14,8 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 		size?: BadgeSize
 		className?: string
 		color?: "primary" | "info" | "success" | "error" | "warning"
+		asChild?: boolean
 	}
-
-type BadgeSize = "20" | "24" | "28"
 
 const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit whitespace-nowrap transition duration-200", {
 	variants: {
@@ -69,7 +71,7 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			className: "bg-warning text-static-white font-semibold",
 		},
 
-		// border variant + colors
+		// Outline variant + colors
 		{
 			variant: "outline",
 			color: "primary",
@@ -96,7 +98,7 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			className: "text-warning-text border border-warning bg-transparent",
 		},
 
-		// soft variant + colors
+		// Soft variant + colors
 		{
 			variant: "soft",
 			color: "primary",
@@ -125,13 +127,15 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 	],
 })
 
-function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, children, ...props }: BadgeProps) {
+function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
+	const Comp = asChild ? Slot : "div"
 
 	if (!showBadge) return null
 
-	return (
-		<div className={cn(badgeVariants({ variant, size, color }), "flex items-center gap-1", className)} {...props}>
+	// Wrap content in a single span if asChild is true
+	const content = (
+		<>
 			{Array.isArray(children)
 				? children.map((child, index) =>
 						typeof child === "object" && child !== null && "type" in child && (child.type === "svg" || typeof child.type === "function") ? <span key={index}>{child}</span> : child
@@ -143,7 +147,13 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 					className={cn(size === "20" || size === "24" ? "size-3" : "size-4", "cursor-pointer font-extrabold", variant === "neutral" && "text-text-disabled")}
 				/>
 			)}
-		</div>
+		</>
+	)
+
+	return (
+		<Comp className={cn(badgeVariants({ variant, size, color }), "flex items-center gap-1", className)} {...props}>
+			{asChild ? <span className="contents">{content}</span> : content}
+		</Comp>
 	)
 }
 
