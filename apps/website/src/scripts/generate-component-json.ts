@@ -2,6 +2,8 @@ import fs from "fs-extra"
 import path from "path"
 import { Project, SourceFile } from "ts-morph"
 
+export type RegistryType = "ui" | "component" | "page" | "hook" | "animated"
+
 type RegistryItem = {
 	name: string
 	dependencies?: string[]
@@ -12,8 +14,8 @@ type RegistryItem = {
 
 type RegistryFile = {
 	name: string
-	dir: string
 	content: string
+	type: RegistryType
 }
 
 const project = new Project({
@@ -24,6 +26,7 @@ const project = new Project({
 const IGNORED_DEPENDENCIES = ["react", "react-dom", "lucide-react", "class-variance-authority"]
 
 const UI_DIRECTORY_PATH = path.resolve("src/registry/ui")
+const ANIMATED_UI_DIRECTORY_PATH = path.resolve("src/registry/animated")
 const REGISTRY_PATH = path.resolve("src/app/api/components/components.json")
 
 /**
@@ -93,28 +96,45 @@ async function getRegistryComponents(): Promise<string[]> {
 }
 
 /**
+ * Retrieves a list of animated component file names from the registry directory.
+ */
+async function getRegistryAnimatedComponents(): Promise<string[]> {
+	return await fs.readdir(ANIMATED_UI_DIRECTORY_PATH)
+}
+
+/**
  * Generates and writes the `components.json` registry file.
  * Scans all components, extracts dependencies, and saves the structured output.
  */
 async function writeComponentJSON() {
 	const componentJSONContent: RegistryItem[] = []
-	const components = await getRegistryComponents()
 
-	for (const component of components) {
+	const ui = await getRegistryComponents()
+	const animated = await getRegistryAnimatedComponents()
+
+	const items: {
+		name: string
+		type: RegistryType
+	}[] = []
+
+	ui.map((component) => items.push({ name: component, type: "ui" }))
+	animated.map((component) => items.push({ name: component, type: "animated" }))
+
+	for (const component of items) {
 		// Process only TypeScript component files
-		if (!component.endsWith(".tsx")) continue
+		if (!component.name.endsWith(".tsx")) continue
 
-		const filePath = path.join(UI_DIRECTORY_PATH, component)
-		const name = component.replace(/\.(tsx?|js)$/, "")
+		const filePath = component.type == "ui" ? path.join(UI_DIRECTORY_PATH, component.name) : path.join(ANIMATED_UI_DIRECTORY_PATH, component.name)
+		const name = component.name.replace(/\.(tsx?|js)$/, "")
 
 		// Extract dependencies and content asynchronously
 		const [dependencyArray, registryDependencyArray, content] = await Promise.all([getDependencyArray(filePath), getRegistryDependencyArray(filePath), getContent(filePath)])
 
 		// Create the registry file object
 		const registryFile: RegistryFile = {
-			name: component,
-			dir: "components/ui",
+			name: component.name,
 			content: content,
+			type: component.type,
 		}
 
 		// Construct the registry item
@@ -125,7 +145,7 @@ async function writeComponentJSON() {
 			...(registryDependencyArray.length > 0 && {
 				registryDependencies: registryDependencyArray,
 			}),
-			type: "ui",
+			type: component.type,
 		}
 
 		componentJSONContent.push(registryItem)
