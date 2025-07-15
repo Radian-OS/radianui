@@ -161,7 +161,6 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 
 	return (
 		<div className={cn("no-scrollbar relative box-border overflow-auto rounded-xl text-sm", className)}>
-			{/* <div className="relative"> */}
 			<ShikiHighlighter
 				as={`pre`}
 				className="[&_pre]:no-scrollbar [&_pre]:h-full [&_pre]:w-full"
