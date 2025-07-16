@@ -118,7 +118,7 @@ const CodeWithTabsPreview = () => {
           variant="ghost"
           color="neutral"
           size="28"
-          isIcon
+          iconOnly
           aria-label="Copy command"
           onClick={copy}
         >
@@ -170,7 +170,7 @@ export default CodeWithTabsPreview
 									</TabsTrigger>
 								))}
 							</TabsList>
-							<Button variant="ghost" color="neutral" size="28" isIcon aria-label="Copy command" onClick={copy}>
+							<Button variant="ghost" color="neutral" size="28" iconOnly aria-label="Copy command" onClick={copy}>
 								{copied ? <Check size={16} /> : <CopyIcon size={16} />}
 							</Button>
 						</div>

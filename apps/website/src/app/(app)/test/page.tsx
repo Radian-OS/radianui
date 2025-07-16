@@ -40,7 +40,6 @@ export default function Test() {
 	const [selectedDate, setSelectedDate] = useState<CalendarDate | undefined>(undefined)
 	const [switchValue, setSwitchValue] = useState<boolean>(false)
 	const [radioValue, setRadioValue] = useState<string>("1")
-
 	const [errors, setErrors] = useState({
 		name: "",
 		email: "",
@@ -51,7 +50,6 @@ export default function Test() {
 		searchValue: "",
 		currencyValue: "",
 	})
-
 	const [submittedValues, setSubmittedValues] = useState<null | {
 		name: string
 		email: string
@@ -72,14 +70,12 @@ export default function Test() {
 		switchValue?: boolean
 		radioValue?: string
 	}>(null)
-
 	const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const value = e.target.value
 		if (/^\d{0,6}$/.test(value)) {
 			setVerificationCode(value)
 		}
 	}
-
 	const handleSubmit = () => {
 		const newErrors = {
 			name: nameValue.trim() ? "" : "Name is required",
@@ -91,11 +87,8 @@ export default function Test() {
 			searchValue: searchValue.trim() ? "" : "Search input cannot be empty",
 			currencyValue: currencyValue.trim() ? "" : "Currency value is required",
 		}
-
 		setErrors(newErrors)
-
 		if (Object.values(newErrors).some((e) => e !== "")) return
-
 		setSubmittedValues({
 			name: nameValue,
 			email: emailValue,
@@ -117,7 +110,6 @@ export default function Test() {
 			radioValue,
 		})
 	}
-
 	const getRadioDisplayText = (value: string) => {
 		switch (value) {
 			case "1":
@@ -130,7 +122,6 @@ export default function Test() {
 				return value
 		}
 	}
-
 	return (
 		<div className="items-center justify-items-center py-4">
 			<div className="flex gap-4">
@@ -139,7 +130,6 @@ export default function Test() {
 						<h1 className="text-text text-[20px] font-semibold">Multi Line Form</h1>
 						<p className="text-text-tertiary text-[14px]">This is a sample subtitle for your form</p>
 					</div>
-
 					<div className="flex flex-col gap-8">
 						{/* Personal Information Section */}
 						<div className="space-y-5">
@@ -190,7 +180,6 @@ export default function Test() {
 								hint={errors.phone}
 							/>
 						</div>
-
 						{/* Business Information Section */}
 						<div className="space-y-5">
 							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Business Information</h3>
@@ -240,7 +229,6 @@ export default function Test() {
 								</SelectGroup>
 							</Select>
 						</div>
-
 						{/* Preferences Section */}
 						<div className="space-y-5">
 							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Preferences & Settings</h3>
@@ -255,7 +243,6 @@ export default function Test() {
 								</RadioGroup>
 							</div>
 						</div>
-
 						{/* Customization Section */}
 						<div className="space-y-5">
 							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Customization</h3>
@@ -289,7 +276,6 @@ export default function Test() {
 								/>
 							</div>
 						</div>
-
 						{/* Additional Information Section */}
 						<div className="space-y-5">
 							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Additional Information</h3>
@@ -310,14 +296,11 @@ export default function Test() {
 							</div>
 						</div>
 					</div>
-
 					<Button onClick={handleSubmit}>Submit Form</Button>
 				</div>
-
 				{submittedValues && (
 					<div className="border-border h-max w-full max-w-2xl rounded-lg border p-6">
 						<h3 className="mb-4 text-xl font-semibold">Form Submission Summary</h3>
-
 						<div className="grid gap-6">
 							{/* Personal Information */}
 							<div className="border-border rounded-lg border p-4">
@@ -343,7 +326,6 @@ export default function Test() {
 									</div>
 								</div>
 							</div>
-
 							{/* Business Information */}
 							<div className="border-border rounded-lg border p-4">
 								<h4 className="mb-3 flex items-center gap-2 font-semibold">
@@ -362,7 +344,6 @@ export default function Test() {
 									</div>
 								</div>
 							</div>
-
 							{/* Preferences & Settings */}
 							<div className="border-border rounded-lg border p-4">
 								<h4 className="mb-3 flex items-center gap-2 font-semibold">
@@ -381,7 +362,6 @@ export default function Test() {
 									</div>
 								</div>
 							</div>
-
 							{/* Customization */}
 							<div className="border-border rounded-lg border p-4">
 								<h4 className="mb-3 flex items-center gap-2 font-semibold">
@@ -409,7 +389,6 @@ export default function Test() {
 									)}
 								</div>
 							</div>
-
 							{/* Additional Information */}
 							<div className="border-border rounded-lg border p-4">
 								<h4 className="mb-3 flex items-center gap-2 font-semibold">
@@ -452,3 +431,323 @@ export default function Test() {
 		</div>
 	)
 }
+//  import React from "react"
+//  import ShikiHighlighter from "react-shiki"
+//  import { cn } from "@/lib/utils"
+//  import { Button } from "@/registry/ui/button"
+
+// type PackageManager = "pnpm" | "npm" | "yarn" | "bun"
+
+// interface PackageManagerIconProps {
+// 	manager: PackageManager
+// }
+
+// interface PnpmIconProps {}
+// interface NpmIconProps {}
+// interface YarnIconProps {}
+// interface BunIconProps {}
+
+// const code = `import { useMemo, useState } from "react"
+// import { Check, CopyIcon } from "lucide-react"
+// import { useTheme } from "next-themes"
+// import Image from "next/image"
+// import { useCopyPaste } from "@/hooks/use-copy-paste"
+// import { cn } from "@/lib/utils"
+// import { Button } from "@/registry/ui/button"
+// import { CodeArea } from "@/registry/ui/code"
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+
+// export type PackageManager = "pnpm" | "npm" | "yarn" | "bun"
+// export type InstallMode = "install" | "execute"
+
+// export interface InstallationTabsProps {
+// 	code: string
+// 	mode?: InstallMode
+// 	pkg?: PackageManager[]
+// 	className?: string
+// 	icon?: boolean
+// }
+
+// const getCommand = (manager: PackageManager, code: string, mode: InstallMode): string => {
+// 	if (mode === "install") {
+// 		switch (manager) {
+// 			case "pnpm":
+// 				return \`pnpm add \${code}\`
+// 			case "npm":
+// 				return \`npm install \${code}\`
+// 			case "yarn":
+// 				return \`yarn add \${code}\`
+// 			case "bun":
+// 				return \`bun add \${code}\`
+// 		}
+// 	} else if (mode === "execute") {
+// 		switch (manager) {
+// 			case "pnpm":
+// 				return \`pnpm dlx \${code}\`
+// 			case "npm":
+// 				return \`npx \${code}\`
+// 			case "yarn":
+// 				return \`yarn dlx \${code}\`
+// 			case "bun":
+// 				return \`bunx \${code}\`
+// 		}
+// 	}
+// 	return \`\${manager} \${code}\`
+// }
+
+// // Icon component mapping - you can replace these with your actual icon components
+// const PackageManagerIcon = ({ manager }: PackageManagerIconProps): JSX.Element | null => {
+// 	// Replace these with your actual icon components
+// 	switch (manager) {
+// 		case "pnpm":
+// 			return <PnpmIcon />
+// 		case "npm":
+// 			return <NpmIcon />
+// 		case "yarn":
+// 			return <YarnIcon />
+// 		case "bun":
+// 			return <BunIcon />
+// 		default:
+// 			return null
+// 	}
+// }
+
+// // Placeholder components - replace these with your actual icon components
+// const PnpmIcon = ({}: PnpmIconProps): JSX.Element => <Image className="h-5 w-5" src="/icons/pnpm.webp" width={500} alt="pnpm-icon" height={500} />
+// const NpmIcon = ({}: NpmIconProps): JSX.Element => <Image className="h-5 w-5" src="/icons/npm.webp" width={500} alt="npm" height={500} />
+// const YarnIcon = ({}: YarnIconProps): JSX.Element => <Image className="h-5 w-5" src="/icons/yarn.png" width={500} alt="yarn" height={500} />
+// const BunIcon = ({}: BunIconProps): JSX.Element => <Image className="h-5 w-5" src="/icons/bun.svg" width={500} alt="bun" height={500} />
+
+// export default function CommandLineTabs({
+// 	code,
+// 	mode = "install",
+// 	pkg = ["pnpm", "npm", "yarn", "bun"],
+// 	className,
+// 	icon = false,
+// }: InstallationTabsProps): JSX.Element {
+// 	const { theme } = useTheme()
+// 	const [activeTab, setActiveTab] = useState<PackageManager>(pkg[0])
+
+// 	// Memoize commands for each manager
+// 	const commands: Record<PackageManager, string> = useMemo(
+// 		() =>
+// 			pkg.reduce(
+// 				(acc, manager) => ({
+// 					...acc,
+// 					[manager]: getCommand(manager as PackageManager, code, mode),
+// 				}),
+// 				{} as Record<PackageManager, string>
+// 			),
+// 		[pkg, code, mode]
+// 	)
+
+// 	const { copied, copy }: { copied: boolean; copy: () => void } = useCopyPaste({
+// 		code: commands[activeTab],
+// 		eventName: "block_cli_copy",
+// 		title: "Package Manager Command",
+// 		category: "CLI",
+// 	})
+
+// 	return (
+// 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// 		<Tabs
+// 			value={activeTab}
+// 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// 			onValueChange={setActiveTab as any}
+// 			variant="outline-ghost"
+// 			size="md"
+// 			className={cn("bg-fill-level2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+// 			<div className="flex justify-between pr-1">
+// 				<TabsList className="bg-transparent">
+// 					{pkg.map((manager) => (
+// 						<TabsTrigger key={manager} value={manager} className={icon ? "gap-1" : ""}>
+// 							{icon && <PackageManagerIcon manager={manager} />}
+// 							{manager}
+// 						</TabsTrigger>
+// 					))}
+// 				</TabsList>
+// 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
+// 					{copied ? <Check /> : <CopyIcon />}
+// 				</Button>
+// 			</div>
+// 			{pkg.map((manager) => (
+// 				<TabsContent key={manager} value={manager}>
+// 					<CodeArea
+// 						language="bash"
+// 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+// 						code={commands[manager as PackageManager]}
+// 						copiable={false}
+// 						showLineNumbers={false}
+// 						className={cn("border-soft rounded-[10px] border px-4 py-3", className)}
+// 					/>
+// 				</TabsContent>
+// 			))}
+// 		</Tabs>
+// 	)
+// }
+// `
+
+// type BundledLanguage =
+// 	| "angular-html"
+// 	| "angular-ts"
+// 	| "astro"
+// 	| "bash"
+// 	| "blade"
+// 	| "c"
+// 	| "c++"
+// 	| "coffee"
+// 	| "coffeescript"
+// 	| "cpp"
+// 	| "css"
+// 	| "glsl"
+// 	| "gql"
+// 	| "graphql"
+// 	| "haml"
+// 	| "handlebars"
+// 	| "hbs"
+// 	| "html"
+// 	| "html-derivative"
+// 	| "http"
+// 	| "imba"
+// 	| "jade"
+// 	| "java"
+// 	| "javascript"
+// 	| "jinja"
+// 	| "jison"
+// 	| "jl"
+// 	| "js"
+// 	| "json"
+// 	| "json5"
+// 	| "jsonc"
+// 	| "jsonl"
+// 	| "jsx"
+// 	| "julia"
+// 	| "less"
+// 	| "lit"
+// 	| "markdown"
+// 	| "marko"
+// 	| "md"
+// 	| "mdc"
+// 	| "mdx"
+// 	| "php"
+// 	| "postcss"
+// 	| "pug"
+// 	| "py"
+// 	| "python"
+// 	| "r"
+// 	| "regex"
+// 	| "regexp"
+// 	| "sass"
+// 	| "scss"
+// 	| "sh"
+// 	| "shell"
+// 	| "shellscript"
+// 	| "sql"
+// 	| "styl"
+// 	| "stylus"
+// 	| "svelte"
+// 	| "ts"
+// 	| "ts-tags"
+// 	| "tsx"
+// 	| "typescript"
+// 	| "vue"
+// 	| "vue-html"
+// 	| "wasm"
+// 	| "wgsl"
+// 	| "wit"
+// 	| "xml"
+// 	| "yaml"
+// 	| "yml"
+// 	| "zsh"
+
+// type Theme =
+// 	| "andromeeda"
+// 	| "aurora-x"
+// 	| "ayu-dark"
+// 	| "catppuccin-frappe"
+// 	| "catppuccin-latte"
+// 	| "catppuccin-macchiato"
+// 	| "catppuccin-mocha"
+// 	| "dark-plus"
+// 	| "dracula"
+// 	| "dracula-soft"
+// 	| "everforest-dark"
+// 	| "everforest-light"
+// 	| "github-dark"
+// 	| "github-dark-default"
+// 	| "github-dark-dimmed"
+// 	| "github-dark-high-contrast"
+// 	| "github-light"
+// 	| "github-light-default"
+// 	| "github-light-high-contrast"
+// 	| "gruvbox-dark-hard"
+// 	| "gruvbox-dark-medium"
+// 	| "gruvbox-dark-soft"
+// 	| "gruvbox-light-hard"
+// 	| "gruvbox-light-medium"
+// 	| "gruvbox-light-soft"
+// 	| "houston"
+// 	| "kanagawa-dragon"
+// 	| "kanagawa-lotus"
+// 	| "kanagawa-wave"
+// 	| "laserwave"
+// 	| "light-plus"
+// 	| "material-theme"
+// 	| "material-theme-darker"
+// 	| "material-theme-lighter"
+// 	| "material-theme-ocean"
+// 	| "material-theme-palenight"
+// 	| "min-dark"
+// 	| "min-light"
+// 	| "monokai"
+// 	| "night-owl"
+// 	| "nord"
+// 	| "one-dark-pro"
+// 	| "one-light"
+// 	| "plastic"
+// 	| "poimandres"
+// 	| "red"
+// 	| "rose-pine"
+// 	| "rose-pine-dawn"
+// 	| "rose-pine-moon"
+// 	| "slack-dark"
+// 	| "slack-ochin"
+// 	| "snazzy-light"
+// 	| "solarized-dark"
+// 	| "solarized-light"
+// 	| "synthwave-84"
+// 	| "tokyo-night"
+// 	| "vesper"
+// 	| "vitesse-black"
+// 	| "vitesse-dark"
+// 	| "vitesse-light"
+// const page = () => {
+// 	return (
+// 		// <div className="!max-h-100 !max-w-100 [&_pre]:h-50 no-scrollbar relative rounded-xl border [&_pre]:overflow-hidden">
+// 		// 	<div className="absolute right-2 top-2 z-[999] text-white">PPP</div>
+// 		// 	<ShikiHighlighter as={`pre`} className="[&_pre]:no-scrollbar [&_pre]:h-full [&_pre]:w-full" language="jsx" theme="synthwave-84" showLineNumbers={true} showLanguage={false}>
+// 		// 		{code.trim()}
+// 		// 	</ShikiHighlighter>
+// 		// </div>
+
+// 		<div className={cn("no-scrollbar h-200 w-200 box-border overflow-auto rounded-xl text-sm")}>
+// 			<div className="relative">
+// 				<ShikiHighlighter as={`pre`} className="[&_pre]:no-scrollbar [&_pre]:h-full [&_pre]:w-full" language="jsx" theme="synthwave-84" showLineNumbers={true} showLanguage={false}>
+// 					{code.trim()}
+// 				</ShikiHighlighter>
+
+// 				<Button
+// 					// onClick={handleCopy}
+// 					className="text-white! absolute right-3 top-3 z-50 rounded-md bg-transparent p-1.5 hover:bg-[#ffffff1a]"
+// 					aria-label="copy button"
+// 					size="32"
+// 					color="neutral"
+// 					variant="soft">
+// 					PPP
+// 				</Button>
+// 			</div>
+// 		</div>
+// 	)
+// }
+
+// export default page

@@ -111,7 +111,7 @@ export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm",
 						</TabsTrigger>
 					))}
 				</TabsList>
-				<Button variant="ghost" color="neutral" size={"28"} isIcon aria-label="Copy command" onClick={copy}>
+				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
 					{copied ? <Check /> : <CopyIcon />}
 				</Button>
 			</div>
@@ -123,7 +123,7 @@ export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm",
 						code={commands[manager as PackageManager]}
 						copiable={false}
 						showLineNumbers={false}
-						className={cn("border-soft rounded-[10px] border px-4 py-3", className)}
+						className={cn("border-soft max-w-full rounded-[10px] border", className)}
 					/>
 				</TabsContent>
 			))}

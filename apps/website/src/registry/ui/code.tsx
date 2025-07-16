@@ -1,15 +1,146 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Check, Clipboard } from "lucide-react"
-import { BundledLanguage, BundledTheme, createHighlighter } from "shiki/bundle/web"
+import { useState } from "react"
+import { Check, Copy } from "lucide-react"
+import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 
 type CodeAreaProps = {
-	theme?: BundledTheme
+	theme?:
+		| "andromeeda"
+		| "aurora-x"
+		| "ayu-dark"
+		| "catppuccin-frappe"
+		| "catppuccin-latte"
+		| "catppuccin-macchiato"
+		| "catppuccin-mocha"
+		| "dark-plus"
+		| "dracula"
+		| "dracula-soft"
+		| "everforest-dark"
+		| "everforest-light"
+		| "github-dark"
+		| "github-dark-default"
+		| "github-dark-dimmed"
+		| "github-dark-high-contrast"
+		| "github-light"
+		| "github-light-default"
+		| "github-light-high-contrast"
+		| "gruvbox-dark-hard"
+		| "gruvbox-dark-medium"
+		| "gruvbox-dark-soft"
+		| "gruvbox-light-hard"
+		| "gruvbox-light-medium"
+		| "gruvbox-light-soft"
+		| "houston"
+		| "kanagawa-dragon"
+		| "kanagawa-lotus"
+		| "kanagawa-wave"
+		| "laserwave"
+		| "light-plus"
+		| "material-theme"
+		| "material-theme-darker"
+		| "material-theme-lighter"
+		| "material-theme-ocean"
+		| "material-theme-palenight"
+		| "min-dark"
+		| "min-light"
+		| "monokai"
+		| "night-owl"
+		| "nord"
+		| "one-dark-pro"
+		| "one-light"
+		| "plastic"
+		| "poimandres"
+		| "red"
+		| "rose-pine"
+		| "rose-pine-dawn"
+		| "rose-pine-moon"
+		| "slack-dark"
+		| "slack-ochin"
+		| "snazzy-light"
+		| "solarized-dark"
+		| "solarized-light"
+		| "synthwave-84"
+		| "tokyo-night"
+		| "vesper"
+		| "vitesse-black"
+		| "vitesse-dark"
+		| "vitesse-light"
 	code: string
-	language: BundledLanguage
+	language:
+		| "angular-html"
+		| "angular-ts"
+		| "astro"
+		| "bash"
+		| "blade"
+		| "c"
+		| "c++"
+		| "coffee"
+		| "coffeescript"
+		| "cpp"
+		| "css"
+		| "glsl"
+		| "gql"
+		| "graphql"
+		| "haml"
+		| "handlebars"
+		| "hbs"
+		| "html"
+		| "html-derivative"
+		| "http"
+		| "imba"
+		| "jade"
+		| "java"
+		| "javascript"
+		| "jinja"
+		| "jison"
+		| "jl"
+		| "js"
+		| "json"
+		| "json5"
+		| "jsonc"
+		| "jsonl"
+		| "jsx"
+		| "julia"
+		| "less"
+		| "lit"
+		| "markdown"
+		| "marko"
+		| "md"
+		| "mdc"
+		| "mdx"
+		| "php"
+		| "postcss"
+		| "pug"
+		| "py"
+		| "python"
+		| "r"
+		| "regex"
+		| "regexp"
+		| "sass"
+		| "scss"
+		| "sh"
+		| "shell"
+		| "shellscript"
+		| "sql"
+		| "styl"
+		| "stylus"
+		| "svelte"
+		| "ts"
+		| "ts-tags"
+		| "tsx"
+		| "typescript"
+		| "vue"
+		| "vue-html"
+		| "wasm"
+		| "wgsl"
+		| "wit"
+		| "xml"
+		| "yaml"
+		| "yml"
+		| "zsh"
 	className?: string
 	showLineNumbers?: boolean
 	copiable?: boolean
@@ -20,34 +151,7 @@ type CodeAreaProps = {
 const DEFAULT_THEME = "github-dark-high-contrast"
 
 function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNumbers = false, copiable = true }: CodeAreaProps) {
-	const [highlightedCode, setHighlightedCode] = useState<string>("")
-	const [backgroundColor, setBackgroundColor] = useState<string>("#0d1117")
-	const [lineNumberColor, setLineNumberColor] = useState<string>("#808080")
 	const [copied, setCopied] = useState(false)
-
-	useEffect(() => {
-		const highlightCode = async () => {
-			const highlighter = await createHighlighter({
-				themes: [theme as BundledTheme],
-				langs: [language as BundledLanguage],
-			})
-			const selectedTheme = highlighter.getTheme(theme)
-			const bg = selectedTheme?.bg ?? "#0d1117"
-			const lineColor = selectedTheme?.colors?.["terminal.foreground"] ?? "#808080"
-
-			setBackgroundColor(bg)
-			setLineNumberColor(lineColor)
-
-			const html = highlighter.codeToHtml(code, {
-				lang: language,
-				theme,
-			})
-
-			setHighlightedCode(html)
-		}
-
-		highlightCode()
-	}, [code, language, theme])
 
 	function handleCopy() {
 		navigator.clipboard.writeText(code)
@@ -55,36 +159,32 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 		setTimeout(() => setCopied(false), 2000)
 	}
 
-	const lines = code.split("\n")
-
 	return (
-		<div className="relative w-full">
-			<div className={cn("group box-border overflow-auto rounded-xl px-5 py-4 text-sm", className)} style={{ backgroundColor }}>
-				<div className="flex h-full">
-					{showLineNumbers && (
-						<div className="w-12 flex-none">
-							{lines.map((_, i) => (
-								<div key={i} className="select-none text-left" style={{ color: lineNumberColor }}>
-									{i + 1}
-								</div>
-							))}
-						</div>
-					)}
-					<code className="grow" dangerouslySetInnerHTML={{ __html: highlightedCode }} />
-				</div>
-				{copiable && (
-					<Button
-						onClick={handleCopy}
-						className="text-white! absolute right-3 top-3 rounded-md bg-transparent p-1.5 hover:bg-[#ffffff1a]"
-						aria-label="copy button"
-						size="32"
-						color="neutral"
-						variant="soft">
-						{copied ? <Check className="size-4!" /> : <Clipboard className="size-4!" />}
-					</Button>
-				)}
-			</div>
+		<div className={cn("no-scrollbar relative box-border overflow-auto rounded-xl text-sm", className)}>
+			<ShikiHighlighter
+				as={`pre`}
+				className="[&_pre]:no-scrollbar [&_pre]:h-full [&_pre]:w-full"
+				language={language}
+				theme={theme}
+				showLineNumbers={showLineNumbers}
+				showLanguage={false}>
+				{code.trim()}
+			</ShikiHighlighter>
+
+			{copiable && (
+				<Button
+					onClick={handleCopy}
+					className="text-static-white absolute right-3 top-3 z-50 rounded-md bg-transparent p-1.5 hover:bg-[#ffffff1a]"
+					aria-label="copy button"
+					iconOnly
+					size="32"
+					color="neutral"
+					variant="soft">
+					{copied ? <Check className="text-text-tertiary size-4" /> : <Copy className="text-text-tertiary size-4" />}
+				</Button>
+			)}
 		</div>
+		// </div>
 	)
 }
 

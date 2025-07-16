@@ -10,7 +10,7 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 	React.ButtonHTMLAttributes<HTMLButtonElement> & {
 		className?: string
 		children: React.ReactNode
-		isIcon?: boolean
+		iconOnly?: boolean
 		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
 		lead?: React.ReactNode
 		trail?: React.ReactNode
@@ -25,7 +25,7 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	color?: ButtonProps["color"]
 }
 
-type CompactButtonProps = Omit<ButtonProps, "isIcon" | "lead" | "trail" | "size"> & {
+type CompactButtonProps = Omit<ButtonProps, "iconOnly" | "lead" | "trail" | "size"> & {
 	size?: "20" | "24"
 	asChild?: boolean
 }
@@ -53,7 +53,7 @@ export const buttonVariants = cva(
 				false: "",
 			},
 
-			isIcon: {
+			iconOnly: {
 				true: "",
 				false: "",
 			},
@@ -69,25 +69,25 @@ export const buttonVariants = cva(
 		defaultVariants: {
 			variant: "strong",
 			size: "36",
-			isIcon: false,
+			iconOnly: false,
 			color: "primary",
 			loading: false,
 		},
 		compoundVariants: [
 			// Size variants
-			{ isIcon: false, size: "28", className: "gap-2 h-7 px-2" },
-			{ isIcon: false, size: "32", className: "gap-2 h-8 px-2.5" },
-			{ isIcon: false, size: "36", className: "gap-2 h-9 px-3" },
-			{ isIcon: false, size: "40", className: "gap-2 h-10 px-3.5" },
-			{ isIcon: false, size: "44", className: "gap-2 h-11 px-4" },
-			{ isIcon: false, size: "48", className: "gap-2 h-12 px-4.5" },
+			{ iconOnly: false, size: "28", className: "gap-2 h-7 px-2" },
+			{ iconOnly: false, size: "32", className: "gap-2 h-8 px-2.5" },
+			{ iconOnly: false, size: "36", className: "gap-2 h-9 px-3" },
+			{ iconOnly: false, size: "40", className: "gap-2 h-10 px-3.5" },
+			{ iconOnly: false, size: "44", className: "gap-2 h-11 px-4" },
+			{ iconOnly: false, size: "48", className: "gap-2 h-12 px-4.5" },
 
-			{ isIcon: true, size: "28", className: "px-1.5 h-7 gap-2" },
-			{ isIcon: true, size: "32", className: "px-1.5 h-8 gap-2" },
-			{ isIcon: true, size: "36", className: "px-2 h-9 gap-2" },
-			{ isIcon: true, size: "40", className: "px-2.5 h-10 gap-2" },
-			{ isIcon: true, size: "44", className: "px-2.5 h-11 gap-2" },
-			{ isIcon: true, size: "48", className: "px-3 h-12 gap-2" },
+			{ iconOnly: true, size: "28", className: "px-1.5 h-7 gap-2" },
+			{ iconOnly: true, size: "32", className: "px-1.5 h-8 gap-2" },
+			{ iconOnly: true, size: "36", className: "px-2 h-9 gap-2" },
+			{ iconOnly: true, size: "40", className: "px-2.5 h-10 gap-2" },
+			{ iconOnly: true, size: "44", className: "px-2.5 h-11 gap-2" },
+			{ iconOnly: true, size: "48", className: "px-3 h-12 gap-2" },
 
 			// Strong variant + colors
 			{
@@ -227,7 +227,7 @@ function Button({
 	loading = false,
 	variant = "strong",
 	size = "36",
-	isIcon = false,
+	iconOnly = false,
 	color = "primary",
 	className,
 	children,
@@ -237,7 +237,7 @@ function Button({
 	asChild = false,
 	...props
 }: ButtonProps) {
-	const combinedClass = cn(buttonVariants({ variant, size, isIcon, color }), disabled && "opacity-50", className)
+	const combinedClass = cn(buttonVariants({ variant, size, iconOnly, color }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
@@ -325,7 +325,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	const combinedClass = cn(
 		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
 		sizeStyles,
-		buttonVariants({ variant, size: "36", isIcon: true, color })
+		buttonVariants({ variant, size: "36", iconOnly: true, color })
 			.split(" ")
 			.filter(
 				(cls) =>

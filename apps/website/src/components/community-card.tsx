@@ -160,10 +160,10 @@ export default function CommunityCard() {
 						Github
 					</Button>
 
-					<Button variant={"outline"} color={"neutral"} isIcon>
+					<Button variant={"outline"} color={"neutral"} iconOnly>
 						<DiscordIcon />
 					</Button>
-					<Button variant={"outline"} color={"neutral"} isIcon>
+					<Button variant={"outline"} color={"neutral"} iconOnly>
 						<XIcon />
 					</Button>
 				</div>

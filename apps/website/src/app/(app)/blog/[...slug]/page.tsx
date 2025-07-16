@@ -62,9 +62,9 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					)
 				)}
 			</div>
-			<Divider spacing="20" />
+			<Divider className="mt-5" spacing="0" />
 			{/* Blog Body */}
-			<div className="py-5">
+			<div className="pb-5">
 				<MdxBlog code={blog.body.code} />
 			</div>
 		</>

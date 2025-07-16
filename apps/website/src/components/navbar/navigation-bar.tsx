@@ -39,7 +39,7 @@ export function NavigationBar() {
 						<DesktopThemeToggler />
 
 						{/* Mobile Navigation */}
-						<Button isIcon color="neutral" variant="soft" className="xl:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+						<Button iconOnly color="neutral" variant="soft" className="xl:hidden" onClick={() => setIsMobileMenuOpen(true)}>
 							<HamburgerMenuIcon className="size-6" />
 						</Button>
 					</div>

@@ -169,7 +169,7 @@ function FileUpload({
 						})}>
 						<input id="picture" {...getInputProps()} className="sr-only" aria-label="Upload image file" />
 						<div className="flex flex-col items-center justify-center gap-4 px-4 py-3 text-center">
-							<Button disabled={disabled} variant="outline" color="neutral" size="36" isIcon>
+							<Button disabled={disabled} variant="outline" color="neutral" size="36" iconOnly>
 								<Upload className="text-text-secondary size-6" />
 							</Button>
 							<div className="flex flex-col gap-2">

@@ -90,7 +90,7 @@ const ButtonGroupPreview = () => {
 						<Button>Left</Button>
 						<Button>Center</Button>
 						<Button>Right</Button>
-						<Button isIcon>
+						<Button iconOnly>
 							<Ellipsis />
 						</Button>
 					</ButtonGroup>
@@ -105,7 +105,7 @@ const ButtonGroupPreview = () => {
 <Button>Left</Button>
 <Button>Center</Button>
 <Button>Right</Button>
-<Button isIcon ><Ellipsis /></Button>
+<Button iconOnly ><Ellipsis /></Button>
 </ButtonGroup>`}
 				/>
 			</TabsContent>

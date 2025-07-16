@@ -169,7 +169,7 @@ export function showToast({
 						{/* Optional close button for custom content */}
 						{shouldShowCloseButton && (
 							<Button
-								isIcon
+								iconOnly
 								onClick={(e) => {
 									e.stopPropagation() // Prevent triggering closeOnClick
 									toast.dismiss(toastId)

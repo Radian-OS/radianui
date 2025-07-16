@@ -19,7 +19,7 @@ const BlogComponents: MDXComponents = {
 		<CodeSnippet className="my-5" code={code} title={title} showLineNumber={showLineNumbers} />
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! pb-4 pt-10", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! py-5 pt-10", className)} {...props}>
 			{children}
 		</h2>
 	),
@@ -37,11 +37,11 @@ const BlogComponents: MDXComponents = {
 		</Alert>
 	),
 	MessageBox: ({ title, message }: { title?: string; message?: string }) => (
-		<Alert color="warning" variant="default" icon={<Box className="size-5" />} title={title} message={message} />
+		<Alert className="my-5" color="warning" variant="default" icon={<Box className="size-5" />} title={title} message={message} />
 	),
 	CLI: ({ code, mode = "execute" }: { code: string; mode: InstallMode }) => {
 		return (
-			<div className="mb-6">
+			<div className="my-5">
 				<CommandLineTabs icon mode={mode} code={code} />
 			</div>
 		)

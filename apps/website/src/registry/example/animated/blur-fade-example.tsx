@@ -11,7 +11,7 @@ export default function BlurFadeExample() {
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-end">
 				<div className="flex gap-1">
-					<Button variant="outline" color="neutral" isIcon onClick={() => setCounter((prev) => prev + 1)}>
+					<Button variant="outline" color="neutral" iconOnly onClick={() => setCounter((prev) => prev + 1)}>
 						<RotateCw />
 					</Button>
 					<TabsList>

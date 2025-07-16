@@ -61,7 +61,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 						<FigmaPreviewButton />
 						<EarlyAccessButton />
 					</div>
-					<Button isIcon color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
+					<Button iconOnly color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
 						<X className="size-5" />
 					</Button>
 				</div>

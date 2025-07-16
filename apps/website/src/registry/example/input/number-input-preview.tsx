@@ -63,7 +63,7 @@ ${
   <Label>Amount</Label>
   <div className="flex rounded-md">
     <Button
-      isIcon
+      iconOnly
       size={size}
       className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
       variant="neutral-soft"
@@ -81,7 +81,7 @@ ${
       value={amount}
     />
     <Button
-      isIcon
+      iconOnly
       size={size}
       className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
       variant="neutral-soft"
@@ -199,7 +199,7 @@ export default CounterInput
 							<Label>Amount</Label>
 							<div className="flex rounded-md">
 								<Button
-									isIcon
+									iconOnly
 									size={size}
 									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
 									variant="soft"
@@ -216,7 +216,7 @@ export default CounterInput
 									value={amount}
 								/>
 								<Button
-									isIcon
+									iconOnly
 									size={size}
 									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
 									variant="soft"
