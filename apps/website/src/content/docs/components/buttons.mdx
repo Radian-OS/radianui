@@ -12,11 +12,19 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<CodeSnippet title="/components/ui/button.tsx" code={`import {Button} from "@/components/ui/Button"`} />
+<Code language="tsx" code={`import {Button} from "@/components/ui/Button"`} />
 
 ## Props
 
 ## Usage
+
+<CodeSnippet
+	title="/components/ui/button.tsx"
+	code={`<Button variant="strong" size="base" rounded="rounded" iconOnly={false}/>
+   Button
+ </Button>
+ `}
+/>
 
 ## Social Buttons
 
@@ -44,26 +52,142 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Buttongroup,Button} from "@/components/ui/Buttongroup"`} />
+<CodeSnippet title="/components/ui/button.tsx" code={`import {Button,ButtonGroup,CompactButton} from "@/components/ui/button"`} />
 
 ## Props
 
-| Prop Name | Default Values | Values                                        |
-| --------- | -------------- | --------------------------------------------- |
-| variant   | strong         | strong, soft, outline, ghost, neutral-outline |
-| size      | base           | 28,32, 36, 40, 44, 48                         |
-| rounded   | rounded        | square, rounded, full                         |
-| iconOnly  | false          | true/false                                    |
+<PropsTableWrapper>
+	<PropsTable
+		title="Button"
+		data={[
+			{
+				name: "variant",
+				defaultValue: "strong",
+				values: ["strong", "soft", "outline", "ghost"],
+				required: false,
+				description: "Defines the visual style of the button",
+			},
+			{
+				name:"color",
+				defaultValue: "primary",
+				values: ["primary", "info", "success", "warning", "error", "neutral"],
+				required: false,
+				description: "Sets the color scheme of the button",
+			},
+			{
+				name: "size",
+				defaultValue: "36",
+				values: ["28", "32", "36", "40", "44", "48"],
+				required: false,
+				description: "Sets the size of the button",
+			},
+			{
+             name:"disabled",
+			 defaultValue: "false",
+			 values: ["true", "false"],
+			 required: false,
+			 description: "Disables interaction with the button when set to true",
+			},
+			{
+				name: "loading",
+				defaultValue: "false",
+				values: ["true", "false"],
+				required: false,
+				description: "If true, the button will show a loading spinner",
+			},
+			{
+               name:"lead",
+			   values: ["ReactNode"],
+			   required: false,
+			   description: "Sets the leading icon of the button",
+			},
+			{
+				name: "trail",
+				values: ["ReactNode"],
+				required: false,
+				description: "Sets the trailing icon of the button",
+			},
+			{
+				name: "asChild",
+				defaultValue: "false",
+				values: ["true", "false"],
+				required: false,
+				description: "If true, the button will render as a child component",
+			},
+    		{
+    			name: "iconOnly",
+    			defaultValue: "false",
+    			values: ["true", "false"],
+    			required: false,
+    			description: "If true, the button will be adjusted to only show the icon",
+    		},
+    	]}
+    />
+	<PropsTable
+		title="Buttongroup"
+		data={[
+			{
+				name: "variant",
+				defaultValue: "strong",
+				values: ["strong", "soft", "outline", "ghost"],
+				required: false,
+				description: "Defines the visual style of the button",
+			},
+			{
+				name:"color",
+				defaultValue: "primary",
+				values: ["primary", "info", "success", "warning", "error", "neutral"],
+				required: false,
+				description: "Sets the color scheme of the button",
+			},
+			{
+				name: "size",
+				defaultValue: "36",
+				values: ["28", "32", "36", "40", "44", "48"],
+				required: false,
+				description: "Sets the size of the button",
+			},
+			{
+				name:"children",
+				values: ["ReactNode"],
+				required: true,
+				description: "The buttons to be rendered inside the button group",
+			}
+		]}
+	/>
 
-## Usage
+    <PropsTable
+    title="CompactButton"
+    data={[
+        {
+            name: "variant",
+            defaultValue: "strong",
+            values: ["strong", "soft", "outline", "ghost"],
+            required: false,
+            description: "Defines the visual style of the button",
+        },
+        {
+            name:"color",
+            defaultValue: "primary",
+            values: ["primary", "info", "success", "warning", "error", "neutral"],
+            required: false,
+            description: "Sets the color scheme of the button",
+        },
+        {
+            name: "size",
+            defaultValue: "28",
+            values: ["28", "32"],
+            required: false,
+            description: "Sets the size of the button",
+        },
+    	{
+    		name:"disabled",
+    		defaultValue: "false",
+    		values: ["true", "false"],
+    		required: false,
+    		description: "Disables interaction with the button when set to true"
+    	},
+    ]}
+    />
 
-<Code
-	language="tsx"
-	code={`<ButtonGroup variant="strong" size="36" rounded="rounded"/>
-<Button>Button1</Button>
-<Button>Button2</Button>
-<Button>Button3</Button>
-<Button>Button4</Button>
- </ButtonGroup>
- `}
-/>
+</PropsTableWrapper>
