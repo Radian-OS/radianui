@@ -180,7 +180,7 @@ const AlertPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={generateCode()} />
+				<CodeArea language="tsx" showLineNumbers className="!h-[420px]" code={generateCode()} />
 			</TabsContent>
 		</Tabs>
 	)

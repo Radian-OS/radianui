@@ -12,23 +12,52 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Alert} from "@/components/ui/alert"`} />
+<CodeSnippet title="/components/ui/alert.tsx" code={`import {Alert} from "@/components/ui/alert"`} />
 
 ## Props
 
-| Prop Name | Default Values | Values                                  |
-| --------- | -------------- | --------------------------------------- |
-| type      | default        | default, info, success, danger, warning |
-| title     | -              | -                                       |
-| message   | -              | -                                       |
-| shaders   | false          | boolean                                 |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Alert
- color="success"
- title="Operation Info"
- message="Your operation was completed successfully."/>`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Alert"
+		data={[
+			{
+				name: "color",
+				defaultValue: "neutral",
+				values: ["neutral", "primary", "info", "success", "warning", "danger"],
+				required: false,
+				description: "Sets the color scheme of the alert",
+			},
+			{
+				name: "variant",
+				defaultValue: "default",
+				values: ["bordered", "default", "strong", "neutral-outline"],
+				required: false,
+				description: "Defines the visual style of the accordion",
+			},
+			{
+				name: "title",
+				values: ["string"],
+				required: false,
+				description: "The title of the alert, displayed prominently",
+			},
+			{
+				name: "message",
+				values: ["string"],
+				required: false,
+				description: "The message content of the alert",
+			},
+			{
+				name: "icon",
+				values: ["ReactNode"],
+				required: false,
+				description: "An optional icon to display alongside the alert",
+			},
+			{
+				name: "endContent",
+				values: ["ReactNode"],
+				required: false,
+				description: "An optional element to display at the end of the alert",
+			},
+		]}
+	/>
+</PropsTableWrapper>
