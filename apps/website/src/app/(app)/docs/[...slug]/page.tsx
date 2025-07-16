@@ -90,7 +90,11 @@ export default async function Page({ params }: DocPageProps) {
 					<p className="text-text-secondary mb-4 text-base">{doc.description}</p>
 					<section className="mb-10 flex flex-wrap items-center gap-2">
 						{doc.source && (
-							<Link href={doc.source} target="_blank" rel="noopener noreferrer">
+							<Link
+								href={doc.source}
+								className="focus-visible:ring-offset-bg-base focus-visible:inset-ring-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-offset-1"
+								target="_blank"
+								rel="noopener noreferrer">
 								<Badge size="28" variant={"neutral"} color="primary" className="shadow-2xs">
 									<svg width={16} height={16} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg " className="size-4">
 										<path

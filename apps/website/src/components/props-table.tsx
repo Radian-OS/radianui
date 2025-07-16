@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react"
-import { Box, Info } from "lucide-react"
+import { Box, ExternalLink, Info } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
@@ -62,7 +62,7 @@ export const DescriptionTooltip = ({ description }: { description: string }) => 
 	)
 }
 
-export const PropsTable = ({ title, data, externalUrl }: { title?: string; data: PropsData[]; externalUrl?: string }) => {
+export const PropsTable = ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => {
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex items-center gap-2 p-2">
@@ -79,9 +79,9 @@ export const PropsTable = ({ title, data, externalUrl }: { title?: string; data:
 						))}
 					</TableRow>
 				</TableHeader>
-				<TableBody>
+				<TableBody className="[&>tr:nth-child(odd)]:bg-fill-level1 [&>tr:nth-child(even)]:bg-bg-base">
 					{data.map((prop) => (
-						<TableRow key={prop.name} className="odd:bg-fill-level1 bg-bg-base">
+						<TableRow key={prop.name}>
 							<TableCell>
 								<span className="flex items-center gap-2 whitespace-nowrap">
 									<DescriptionTooltip description={prop.description} />
@@ -106,12 +106,23 @@ export const PropsTable = ({ title, data, externalUrl }: { title?: string; data:
 							</TableCell>
 						</TableRow>
 					))}
-					{externalUrl && (
+					{externalReference && (
 						<TableRow>
-							<TableCell colSpan={3} className="text-center">
-								<Link href={externalUrl} className="text-primary font-medium hover:underline" target="_blank" rel="noopener noreferrer">
-									View all props →
+							<TableCell>
+								<Link href={externalReference} className="text-primary flex items-center gap-2 text-sm font-medium" target="_blank" rel="noopener noreferrer">
+									<ExternalLink size={16} />
+									<span className="flex-1">External Reference</span>
 								</Link>
+							</TableCell>
+							<TableCell>
+								<Badge variant="soft" size="20">
+									-
+								</Badge>
+							</TableCell>
+							<TableCell>
+								<Badge variant="neutral" size="20">
+									-
+								</Badge>
 							</TableCell>
 						</TableRow>
 					)}

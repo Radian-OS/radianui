@@ -17,7 +17,10 @@ export default function Sidebar() {
 						{section.items.map((item) => (
 							<li key={item.title} className="relative">
 								<Link
-									className={cn("text-text-secondary hover:text-text group relative block py-1.5 pl-3 text-sm", pathName === item.url ? "text-text font-medium" : "")}
+									className={cn(
+										"text-text-secondary hover:text-text focus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+										pathName === item.url ? "text-text font-medium" : ""
+									)}
 									href={item.url}>
 									{/* Active indicator */}
 									{pathName === item.url && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}

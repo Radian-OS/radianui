@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { EyeIcon, SquareTerminal } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -37,7 +38,7 @@ export default function AccordionPreview() {
 	const [interaction, setInteraction] = useState<Interaction>(DEFAULT_INTERACTION)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"} className="mb-6">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>
@@ -49,8 +50,15 @@ export default function AccordionPreview() {
 				</TabsList>
 				<div className="flex items-center gap-3">
 					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
+						<DropdownTrigger asChild>
+							<Button variant="outline" color="neutral" size="36" isIcon>
+								<Settings />
+							</Button>
+						</DropdownTrigger>
+						<DropdownContent align="end" className="min-w-55">
+							{/* <DropdownItem endContent={<span>{size}</span>}>Size</DropdownItem>
+							<DropdownItem endContent={<span>{variant}</span>}>Variant</DropdownItem>
+							<DropdownItem endContent={<span>{interaction}</span>}>Interaction</DropdownItem> */}
 							{/* Dropdown for 'size' */}
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>

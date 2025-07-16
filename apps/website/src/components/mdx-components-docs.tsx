@@ -111,7 +111,9 @@ type MdxProps = {
 }
 
 const components: MDXComponents = {
-	PropsTable: ({ title, data, externalUrl }: { title?: string; data: PropsData[]; externalUrl?: string }) => <PropsTable title={title} data={data} externalUrl={externalUrl} />,
+	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
+		<PropsTable title={title} data={data} externalReference={externalReference} />
+	),
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => <div className="bg-bg-level0 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>,
 	AccordionPreview: () => (
 		<div className="pb-6">
