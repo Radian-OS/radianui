@@ -12,26 +12,45 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Badge} from "@/components/ui/Badge"`} />
+<CodeSnippet title="/components/ui/badge.tsx" code={`import {Badge} from "@/components/ui/Badge"`} />
 
 ## Props
 
-| Prop Name | Default Values | Values         |
-| --------- | -------------- | -------------- |
-| size      | 24             | 20, 24, 28, 32 |
-| variant   | outline        | outline,strong |
-| rounded   | false          | true/false     |
-| closable  | false          | true/false     |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Badge variant="strong" size="24" rounded={false}>
- Badge Example
- </Badge>
- `}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Badge"
+		data={[
+			{
+				name: "variant",
+				defaultValue: "neutral",
+				values: ["neutral", "strong", "outline", "soft"],
+				required: false,
+				description: "Defines the visual style of the badge",
+			},
+			{
+				name: "size",
+				defaultValue: "24",
+				values: ["20", "24", "28"],
+				required: false,
+				description: "Sets the size of the badge",
+			},
+			{
+				name: "color",
+				defaultValue: "primary",
+				values: ["primary", "info", "success", "warning", "danger"],
+				description: "Sets the color scheme of the badge",
+				required: false,
+			},
+			{
+				name: "closable",
+				defaultValue: "false",
+				values: ["true", "false"],
+				required: false,
+				description: "If true, the badge can be closed by the user",
+			},
+		]}
+	/>
+</PropsTableWrapper>
 
 ## Example Badges
 

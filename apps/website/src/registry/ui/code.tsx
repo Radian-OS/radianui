@@ -180,7 +180,7 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 					size="32"
 					color="neutral"
 					variant="soft">
-					{copied ? <Check className="text-text-tertiary size-4" /> : <Copy className="text-text-tertiary size-4" />}
+					{copied ? <Check className="size-4" /> : <Copy className="size-4" />}
 				</Button>
 			)}
 		</div>

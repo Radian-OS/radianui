@@ -13,25 +13,78 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Avatar} from "@/components/ui/avatar"`} />
+<CodeSnippet title="/components/ui/badge.tsx" language="tsx" code={`import {Avatar} from "@/components/ui/avatar"`} />
 
 ## Props
 
-| Prop Name | Default Value | Possible Values                                            |
-| --------- | ------------- | ---------------------------------------------------------- |
-| src       | -             | string                                                     |
-| name      | -             | string                                                     |
-| size      | "36"          | "16", "20", "24", "28", "32", "36", "40", "48", "64", "80" |
-| variant   | "circle"      | "circle", "square"                                         |
-| status    | -             | "online", "offline", "plus", "verified"                    |
-
+<PropsTableWrapper>
+	<PropsTable
+		title="Avatar"
+		data={[
+			{
+				name: "src",
+				values: ["string"],
+				required: false,
+				description: "The source URL of the avatar image",
+			},
+			{
+				name: "name",
+				values: ["string"],
+				required: false,
+				description: "The name of the user, used for accessibility",
+			},
+			{
+				name: "size",
+				defaultValue: "40",
+				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
+				required: false,
+				description: "Sets the size of the avatar",
+			},
+			{
+				name: "variant",
+				defaultValue: "circle",
+				values: ["circle", "square"],
+				required: false,
+				description: "Sets the shape of the avatar",
+			},
+			{
+				name: "status",
+				values: ["verified", "offline", "online", "plus"],
+				required: false,
+				description: "Sets the status of the avatar",
+			},
+		]}
+	/>
+</PropsTableWrapper>
 ## Avatargroup
 
 <AvatargroupPreview />
 
 ## Props
 
-| Prop Name | Default Value | Possible Values  |
-| --------- | ------------- | ---------------- |
-| size      | "20"          | "16", "20", "24" |
-| max       | 4             | number           |
+<PropsTableWrapper>
+	<PropsTable
+		title="AvatarGroup"
+		data={[
+			{
+				name: "max",
+				values: ["number"],
+				required: false,
+				description: "Sets the maximum number of avatars to display",
+			},
+			{
+				name: "size",
+				defaultValue: "40",
+				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
+				required: false,
+				description: "Sets the size of the avatars in the group",
+			},
+			{
+				name: "<Avatar />",
+				description: "The avatar component to display",
+				required: true,
+				values: ["Avatar"],
+			},
+		]}
+	/>
+</PropsTableWrapper>
