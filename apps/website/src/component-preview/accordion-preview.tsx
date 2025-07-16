@@ -51,7 +51,7 @@ export default function AccordionPreview() {
 				<div className="flex items-center gap-3">
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button variant="outline" color="neutral" size="36" isIcon>
+							<Button variant="outline" color="neutral" size="36" iconOnly>
 								<Settings />
 							</Button>
 						</DropdownTrigger>
