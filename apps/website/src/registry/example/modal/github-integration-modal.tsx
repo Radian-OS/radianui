@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"

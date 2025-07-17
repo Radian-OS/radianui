@@ -6,39 +6,65 @@ source: https://github.com/Radian-os
 
 <ColorPickerPreview />
 
-## Example
-
-<ColorPickerExample />
-
 ## Installation
 
 <CLI mode="execute" code={`radianos add color-picker`} />
 
 ## Imports
 
-<Code language="tsx" code={`import ColorPicker from "@/components/ui/color-picker"`} />
+<CodeSnippet title="/components/ui/color-picker" code={`import {ColorPicker} from "@/components/ui/color-picker"`} />
+
+## Example
+
+<ColorPickerExample />
 
 ## Props
 
-| Prop Name | Default Values | Values             |
-| --------- | -------------- | ------------------ |
-| rounded   | lg             | xs,sm,md,lg,xl,2xl |
-| size      | 36             | 28,32,36,40,44,48  |
-| label     | true           | true/false         |
-| disabled  | false          | true/false         |
-| hasError  | false          | true/false         |
-| hint      |                |                    |
+<PropsTableWrapper>
+	<PropsTable
+		title="ColorPicker"
+		data={[
+			{
+				name: "label",
+				values: ["string"],
+				required: false,
+				description: "The label for the color picker",
+			},
+			{
+				name: "size",
+				values: ["28", "32", "36", "40", "44", "48"],
+				defaultValue: "32",
+				required: false,
+				description: "The size of the color picker",
+			},
+			{
+				name: "disabled",
+				values: ["boolean"],
+				defaultValue: "false",
+				required: false,
+				description: "Whether the color picker is disabled",
+			},
+			{
+				name: "hint",
+				values: ["string"],
+				required: false,
+				description: "A hint or additional information for the color picker",
+			},
+            {
+                name:"hasError",
+                values: ["boolean"],
+                defaultValue: "false",
+                required: false,
+                description: "Indicates if the color picker has an error state",
+            },
+            {
+                name:"defaultColor",
+                values: ["string"],
+                required: false,
+                description: "The default color value for the color picker",
+            }
 
-## Usage
+    	]}
+    />
 
-<Code
-	language="tsx"
-	code={`<ColorPicker
-    rounded="sm"
-    size="32"
-    disabled={false}
-    label="Select Color"
-    hasError={false}
-    hint="Hint text to help the user with input"
-/>`}
-/>
+</PropsTableWrapper>

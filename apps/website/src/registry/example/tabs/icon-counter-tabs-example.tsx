@@ -1,6 +1,6 @@
 import React from "react"
 import { Archive, CheckCircle, Loader2 } from "lucide-react"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [

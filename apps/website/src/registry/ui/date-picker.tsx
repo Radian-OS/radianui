@@ -9,7 +9,7 @@ import { DateField, DateInput as DateInputRC, DateSegment, DateValue } from "rea
 import { ChevronProps, DayPicker, Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
 import { TimeSelector, formatTime, timeOptions } from "./calendar"
-import Calendar, { type CalendarProps, CalendarRange, getMergedClassNames } from "./calendar"
+import { Calendar, type CalendarProps, CalendarRange, getMergedClassNames } from "./calendar"
 import { Input, RoundedOptions, SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"

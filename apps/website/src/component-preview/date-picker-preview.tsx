@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code"
+// import { CodeArea } from "@/registry/ui/code-area"
+import { CodeArea } from "@/registry/ui/code-area"
 import DatePicker from "@/registry/ui/date-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

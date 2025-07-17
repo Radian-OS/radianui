@@ -12,24 +12,7 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Alert} from "@/components/ui/alert"`} />
-
-## Props
-
-| Prop Name | Default Values | Values                  |
-| --------- | -------------- | ----------------------- |
-| variant   | dark           | dark, transparent, soft |
-| message   | false          | true/false              |
-| children  | -              | -                       |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Banner closable variant="gray" >
-This is Banner Message
-</Banner>`}
-/>
+<CodeSnippet title="/components/ui/banner.tsx" language="tsx" code={`import {Banner} from "@/components/ui/banner"`} />
 
 ## Examples
 
@@ -37,10 +20,30 @@ This is Banner Message
 
 <BannerExamplePreview1 />
 
-### Info Banner
-
-<BannerExamplePreview2 />
-
 ### Neutral Banner
 
 <BannerExamplePreview3 />
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Banner"
+		data={[
+			{
+				name: "variant",
+				values: ["gray", "primary", "outline", "destructive"],
+				required: false,
+				description: "Sets the variant of the banner",
+				defaultValue: "gray",
+			},
+			{
+				name: "closable",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description: "If true, the banner can be closed by the user",
+			},
+		]}
+	/>
+</PropsTableWrapper>

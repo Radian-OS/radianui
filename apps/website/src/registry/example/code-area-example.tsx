@@ -1,4 +1,4 @@
-import { CodeArea } from "../ui/code"
+import { CodeArea } from "../ui/code-area"
 
 export default async function CodeAreaExample() {
 	const codeExample = `import {Accordion, AccordionItem} from "@radian-os/react";

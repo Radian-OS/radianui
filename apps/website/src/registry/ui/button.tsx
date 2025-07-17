@@ -41,12 +41,12 @@ export const buttonVariants = cva(
 				ghost: "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-xs [&>span]:px-1 rounded-md",
-				"32": "[&>svg]:size-5 text-sm [&>span]:px-1 rounded-lg",
-				"36": "[&>svg]:size-5 text-sm [&>span]:px-1 rounded-lg",
-				"40": "[&>svg]:size-5 text-sm [&>span]:px-1 rounded-lg",
-				"44": "[&>svg]:size-6 text-base [&>span]:px-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-base [&>span]:px-1 rounded-lg",
+				"28": "[&>svg]:size-4 text-xs px-1 rounded-md",
+				"32": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"44": "[&>svg]:size-6 text-base px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
 			},
 			loading: {
 				true: "",

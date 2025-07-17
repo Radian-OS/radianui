@@ -12,13 +12,38 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Breadcrumb} from "@/components/ui/breadcrumb"`} />
+<CodeSnippet title="/components/ui/breadcrumb.tsx" code={`import {Breadcrumb,BreadcrumbItem} from "@/components/ui/breadcrumb"`} />
 
 ## Props
 
-| Prop Name     | Default Values | Values         |
-| ------------- | -------------- | -------------- |
-| separatorType | default        | slash, default |
-| maxItems      | 5              | -              |
-| className     | -              | -              |
-| href          | -              | -              |
+<PropsTableWrapper>
+	<PropsTable
+		title="Breadcrumb"
+		data={[
+			{
+				name: "separator",
+				defaultValue: "default",
+				values: ["slash", "default"],
+				required: false,
+				description: "Defines the visual style of the breadcrumb separator",
+			},
+			{
+				name: "maxItems",
+				values: ["number"],
+				required: true,
+				description: "Sets the maximum number of items to display in the breadcrumb",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BreadcrumbItem"
+		data={[
+			{
+				name: "href",
+				values: ["string"],
+				required: true,
+				description: "Defines the link target for the breadcrumb item",
+			},
+		]}
+	/>
+</PropsTableWrapper>

@@ -1,7 +1,7 @@
 import { Lock } from "lucide-react"
 import Link from "next/link"
 import { Banner } from "@/registry/ui/banner"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerExamplePreview1 = () => {

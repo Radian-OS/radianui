@@ -4,7 +4,7 @@ import { useTheme } from "next-themes"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 
 interface CodeSnippetProps {
 	code: string

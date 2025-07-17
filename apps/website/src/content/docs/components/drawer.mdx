@@ -13,43 +13,127 @@ externalSiteRef: https://vaul.emilkowal.ski/
 
 ## Imports
 
-<Code
+<CodeSnippet
 	language="tsx"
-	code={`import 
-  {DrawerWrapper,
-  DrawerHeader,
-  DrawerBody,
-  DrawerFooter,
-  DrawerClose} 
-  from "@components/ui/Drawer"`}
+	title="/components/ui/drawer.tsx"
+	code={`import { Drawer,
+    DrawerBody,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger } from "@/registry/ui/drawer"`}
 />
 
 ## Props
 
-| Prop Name | Default Values | Values                       |
-| --------- | -------------- | ---------------------------- |
-| variant   | default        | float, default, rounded      |
-| handle    | false          | true,false                   |
-| position  | right          | top, bottom, left, right     |
-| backdrop  | overlay        | backdrop, overlay, undefined |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Drawer
- trigger={<h1>Trigger</h1>}
- variant="default"
- handle={false} 
- position="right" 
- backdrop="overlay"
- >
-<DrawerHeader>
-   Drawer Header
-   <DrawerClose><h1>Close</h1></DrawerClose>
-</DrawerHeader>
-  <DrawerBody>Drawer Body</DrawerBody>
-  <DrawerFooter>Drawer Footer</DrawerFooter>
-  </Drawer>
- `}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Drawer"
+		data={[
+			{
+				name: "type",
+				defaultValue: "default",
+				values: ["default", "float", "rounded"],
+				description: "Controls the type of the drawer.",
+				required: true,
+			},
+			{
+				name: "direction",
+				defaultValue: "right",
+				description: "The direction the drawer opens from.",
+				required: true,
+				values: ["left", "right", "top", "bottom"],
+			},
+			{
+				name: "handle",
+				defaultValue: "false",
+				description: "Whether to show a handle on the drawer.",
+				required: false,
+				values: ["boolean"],
+			},
+			{
+				name: "backdrop",
+				defaultValue: "overlay",
+				description: "The backdrop style of the drawer.",
+				required: true,
+				values: ["overlay", "blur", "none"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DrawerTrigger"
+		data={[
+			{
+				name: "asChild",
+				description: "The content of the trigger.",
+				required: true,
+				values: ["ReactNode"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DrawerClose"
+		data={[
+			{
+				name: "asChild",
+				description: "The content of the close.",
+				required: true,
+				values: ["ReactNode"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DrawerHeader"
+		data={[
+			{
+				name: "className",
+				description: "The content of the header.",
+				values: ["string"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DrawerTitle"
+		data={[
+			{
+				name: "className",
+				description: "The content of the Title.",
+				values: ["string"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DrawerDescription"
+		data={[
+			{
+				name: "className",
+				description: "The content of the Description.",
+				values: ["string"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DrawerBody"
+		data={[
+			{
+				name: "className",
+				description: "The content of the Body.",
+				values: ["string"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DrawerFooter"
+		data={[
+			{
+				name: "className",
+				description: "The content of the Footer.",
+				values: ["string"],
+			},
+		]}
+		externalReference="https://vaul.emilkowal.ski/getting-started"
+	/>
+</PropsTableWrapper>

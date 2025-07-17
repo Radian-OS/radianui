@@ -11,33 +11,29 @@ description: Reveal additional actions or content
 
 ## Imports
 
-<Code
-	language="tsx"
+<CodeSnippet
+	title="components/ui/dropdown.tsx"
 	code={`import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSub, DropdownSubTrigger, DropdownSubContent } from "@/components/ui/tabs"`}
 />
 
 ## Props
 
-| Prop Name     | Default Values | Values            |
-| ------------- | -------------- | ----------------- |
-| selectionMode | undefined      | single, multiple  |
-| size          | 36             | 28,32,36,40,44,48 |
-| lead          | icon           |                   |
-| disabled      | false          | true/false        |
-| startContent  | icon           |                   |
-| endContent    | icon           |                   |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Dropdown>
-        <DropdownTrigger>Dropdown</DropdownTrigger>
-        <DropdownContent>
-            <DropdownItem>This week</DropdownItem>
-            <DropdownItem>This month</DropdownItem>
-            <DropdownItem>This quarter</DropdownItem>
-        </DropdownContent>
-</Dropdown>
-`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Dropdown"
+		data={[
+			{
+				name: "children",
+				type: "ReactNode",
+				required: true,
+				description: "The content of the dropdown, including trigger and items.",
+			},
+			{
+				name: "className",
+				type: "string",
+				required: false,
+				description: "Additional CSS classes for custom styling.",
+			},
+		]}
+	/>
+</PropsTableWrapper>
