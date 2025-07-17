@@ -6,6 +6,14 @@ source: https://github.com/Radian-os
 
 <InputPreview />
 
+## Installation
+
+<CLI mode="execute" tabs={true} code={`radianos add input`} />
+
+## Imports
+
+<CodeSnippet title="components/ui/input.tsx" code={`import {Input} from "@/components/ui/input"`} />
+
 ## Email Input
 
 <EmailPreview />
@@ -22,40 +30,63 @@ source: https://github.com/Radian-os
 
 <CreditCardPreview />
 
-## Installation
-
-<CLI mode="execute" tabs={true} code={`radianos add input`} />
-
-## Imports
-
-<Code language="tsx" code={`import Input from "@/components/ui/input"`} />
-
 ## Props
 
-| Prop Name | Default Values | Values             |
-| --------- | -------------- | ------------------ |
-| rounded   | lg             | xs,sm,md,lg,xl,2xl |
-| size      | 36             | 28,32,36,40,44,48  |
-| label     | true           | true/false         |
-| disabled  | false          | true/false         |
-| start     | icon           |                    |
-| end       | icon           |                    |
-| hasError  | false          | true/false         |
-| hint      |                |                    |
+<PropsTableWrapper>
+	<PropsTable
+		title="Input"
+		data={[
+			{
+				name: "label",
+				description: "Label for the input field",
+				values: ["string"],
+			},
+			{
+				name: "placeholder",
+				description: "Placeholder text for the input field",
+				values: ["string"],
+			},
+            {
+                name:"size",
+                description: "Sets the size of the input field",
+                defaultValue: "36",
+                values: ["28", "32", "36", "40","44","48"],
 
-## Usage
+            },
+            {
+                name:"rounded",
+                description: "Sets the border radius of the input field",
+                defaultValue: "lg",
+                values: ["xs","sm", "md", "lg", "xl", "2xl"],
+            },
+            {
+                name:"disabled",
+                description: "If true, the input field is disabled",
+                defaultValue: "false",
+                values: ["boolean"],
+            },
+            {
+                name:"hasError",
+                description: "If true, the input field will show an error state",
+                defaultValue: "false",
+                values: ["boolean"],
+            },
+            {
+                name:"hint",
+                description: "Hint text displayed below the input field",
+                values: ["string"],
+            },
+            {
+                name:"lead",
+                description: "Lead Icon displayed in start of input field",
+                values: ["ReactNode"],
+            },
+            {
+                name:"trail",
+                description: "Trail Icon displayed at the end of input field",
+                values: ["ReactNode"],
+            }
+    	]}
+    />
 
-<Code
-	language="tsx"
-	code={`<Input 
-    rounded="sm"
-    size="32"
-    disabled={false}
-    label="Username"
-    placeholder="Enter your username here"
-    start={<Mail/>}
-    end={<ArrowRight/>}
-    hasError={false}
-    hint="Hint text to help the user with input"
-/>`}
-/>
+</PropsTableWrapper>
