@@ -1,7 +1,7 @@
 import React from "react"
 import { MousePointer2 } from "lucide-react"
 import { Pointer } from "@/registry/animated/pointer"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function CollaborationPointerExample() {

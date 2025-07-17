@@ -100,7 +100,7 @@ import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-ex
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import ToastExample from "@/registry/example/toast/toast-example"
-import { CodeArea, CodeAreaProps } from "@/registry/ui/code"
+import { CodeArea, CodeAreaProps } from "@/registry/ui/code-area"
 import { Divider } from "@/registry/ui/divider"
 import CodeSnippet from "./code-snippet"
 import { FrameworkDocs } from "./framework-docs"

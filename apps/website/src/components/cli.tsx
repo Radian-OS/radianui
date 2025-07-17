@@ -1,4 +1,4 @@
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Divider } from "@/registry/ui/divider"
 import CommandLineTabs from "./cli-tabs"
 

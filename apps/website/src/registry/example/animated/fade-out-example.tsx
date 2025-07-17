@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Fade } from "@/registry/animated/fade"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function FadeOutExample() {

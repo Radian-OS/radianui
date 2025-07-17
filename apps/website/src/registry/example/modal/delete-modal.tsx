@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 

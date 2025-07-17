@@ -14,15 +14,6 @@ source: https://github.com/Radian-os
 
 <CodeSnippet title="/components/ui/banner.tsx" language="tsx" code={`import {Banner} from "@/components/ui/banner"`} />
 
-## Usage
-
-<CodeSnippet
-	language="tsx"
-	code={`<Banner closable variant="gray" >
-This is Banner Message
-</Banner>`}
-/>
-
 ## Examples
 
 ### Destructive Banner
@@ -49,7 +40,7 @@ This is Banner Message
 			{
 				name: "closable",
 				defaultValue: "false",
-				values: ["true", "false"],
+				values: ["boolean"],
 				required: false,
 				description: "If true, the banner can be closed by the user",
 			},

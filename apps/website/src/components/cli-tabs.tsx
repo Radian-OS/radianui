@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type PackageManager = "pnpm" | "npm" | "yarn" | "bun"

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Spinner, SpinnerVariants } from "@/registry/ui/spinner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

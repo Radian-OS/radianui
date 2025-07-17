@@ -13,7 +13,7 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Checkbox} from "@/components/ui/checkbox"`} />
+<CodeSnippet title="/components/ui/checkbox" code={`import {Checkbox, CheckboxGroup} from "@/components/ui/checkbox"`} />
 
 ## Checkboxgroup Preview
 
@@ -31,26 +31,71 @@ source: https://github.com/Radian-os
 
 ## Props
 
-### Checkbox Props
+<PropsTableWrapper>
+<PropsTable
+title="Checkbox"
+data={[
+    {
+        name:"size",
+        defaultValue: "md",
+        values: ["sm", "md", "lg"],
+        required: false,
+        description: "Defines the size of the checkbox",
+    },
+    {
+        name: "icon",
+        defaultValue: "<Check/>",
+        values: ["ReactNode"],
+        required: false,
+        description: "Icon to be displayed inside the checkbox when checked",
+    },
+    {
+        name: "label",
+        defaultValue: "-",
+        values: ["string"],
+        required: false,
+        description: "Label for the checkbox",
+    },
+    {
+        name: "disabled",
+        defaultValue: "false",
+        values: ["boolean"],
+        required: false,
+        description: "If true, the checkbox will be disabled",
+    },
+]}
+/>
 
-| Prop Name      | Default Value | Possible Values              |
-| -------------- | ------------- | ---------------------------- |
-| name           | -             | string                       |
-| value          | -             | string or number             |
-| checked        | false         | boolean                      |
-| defaultChecked | false         | boolean                      |
-| onChange       | -             | `(checked: boolean) => void` |
-| disabled       | false         | boolean                      |
-| size           | "md"          | "sm", "md", "lg"             |
-| icon           | `<Check/>`    | React.ReactElement           |
+<PropsTable
+	title="CheckboxGroup"
+	data={[
+		{
+			name: "size",
+			defaultValue: "md",
+			values: ["sm", "md", "lg"],
+			required: false,
+			description: "Defines the size of the checkbox",
+		},
+		{
+			name: "label",
+			values: ["string"],
+			required: false,
+			description: "Label to be displayed above the checkbox group",
+		},
+		{
+			name: "defaultValue",
+			values: ["string"],
+			required: false,
+			description: "Default value for the checkbox group",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "If true, the checkbox group will be disabled",
+		},
+	]}
+/>
 
-### CheckboxGroup Props
-
-| Prop Name    | Default Value | Possible Values              |
-| ------------ | ------------- | ---------------------------- |
-| label        | -             | string                       |
-| size         | "md"          | "sm", "md", "lg"             |
-| defaultValue | -             | string[]                     |
-| value        | -             | string                       |
-| onChange     | -             | `(values: string[]) => void` |
-| disabled     | false         | boolean                      |
+</PropsTableWrapper>

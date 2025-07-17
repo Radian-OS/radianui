@@ -5,7 +5,7 @@ import { Check, CopyIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type PackageManager = "pnpm" | "npm" | "yarn" | "bun"

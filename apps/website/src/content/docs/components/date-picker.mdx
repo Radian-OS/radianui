@@ -15,38 +15,81 @@ externalSiteName: React DayPicker
 
 ## Imports
 
-<Code language="tsx" code={`import DatePicker from "@/components/ui/date-picker"`} />
+<CodeSnippet title="/components/ui/date-picker" code={`import {DatePicker} from "@/components/ui/date-picker"`} />
 
 ## Props
 
-| Prop Name             | Default Values | Values     |
-| --------------------- | -------------- | ---------- |
-| rounded               | sm             |            |
-| size                  |                |            |
-| label                 | false          | true/false |
-| disabled              | false          | true/false |
-| showDateRangeShortcut | false          |            |
-| dualCalendar          | false          |            |
-| footer                |                |            |
-| typeable              | false          | true/false |
-| hasError              | false          | true/false |
-| hint                  |                |            |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<DatePicker
-    mode="single"
-    placeholder="Select Date"
-    showDateRangeShortcut={false}
-    disabled={false}
-    dualCalendar={false}
-    navigatorStyle="button"
-    size="40"
-    rounded="sm"
-    typeable={false}
-    hasError="false"
-    hint="Hint text to help the user with input"
-/>`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="DatePicker"
+		data={[
+			{
+				name: "label",
+				values: ["string"],
+				required: false,
+				description: "The label for the date picker",
+			},
+			{
+				name: "size",
+				values: ["28", "32", "36", "40", "44", "48"],
+				defaultValue: "36",
+				required: false,
+				description: "The size of the date picker",
+			},
+			{
+				name: "disabled",
+				values: ["boolean"],
+				defaultValue: "false",
+				required: false,
+				description: "Whether the date picker is disabled",
+			},
+			{
+				name: "hint",
+				values: ["string"],
+				required: false,
+				description: "A hint or additional information for the date picker",
+			},
+			{
+				name: "hasError",
+				values: ["boolean"],
+				defaultValue: "false",
+				required: false,
+				description: "Indicates if the date picker has an error state",
+			},
+			{
+				name: "typeable",
+				values: ["boolean"],
+				defaultValue: "false",
+				required: false,
+				description: "Allows the user to type in a date",
+			},
+			{
+				name: "mode",
+				values: ["single", "multiple", "range"],
+				defaultValue: "single",
+				required: false,
+				description: "The selection mode of the date picker",
+			},
+			{
+				name: "dual",
+				values: ["boolean"],
+				defaultValue: "false",
+				required: false,
+				description: "Whether the date picker is in dual mode",
+			},
+			{
+				name: "showTime",
+				values: ["boolean"],
+				defaultValue: "false",
+				required: false,
+				description: "Whether the date picker includes time selection",
+			},
+			{
+				name: "footer",
+				values: ["ReactNode"],
+				required: false,
+				description: "Custom footer content for the date picker",
+			},
+		]}
+	/>
+</PropsTableWrapper>

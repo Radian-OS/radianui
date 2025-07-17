@@ -12,21 +12,34 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Divider} from "@/components/ui/Divider"`} />
+<CodeSnippet title="/components/ui/Divider" language="tsx" code={`import {Divider} from "@/components/ui/Divider"`} />
 
 ## Props
 
-| Prop Name   | Default Values | Values               |
-| ----------- | -------------- | -------------------- |
-| orientation | vertical       | vertical, horizontal |
-| className   | -              | -                    |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<h1 className="font-extrabold text-4xl" >Heading1</h1>
- <Divider orientation="horizontal" />
- <h1 className="font-extrabold text-4xl" >Heading2</h1>
- `}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Divider"
+		data={[
+			{
+				name: "orientation",
+				values: ["horizontal", "vertical"],
+				defaultValue: "horizontal",
+				required: false,
+				description: "The orientation of the divider",
+			},
+			{
+				name: "size",
+				values: ["0", "2", "4", "6", "8", "12", "16", "20", "24", "32", "40", "80", "120"],
+				defaultValue: "4",
+				required: true,
+				description: "The thickness of the divider",
+			},
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes for custom styling",
+			},
+		]}
+	/>
+</PropsTableWrapper>

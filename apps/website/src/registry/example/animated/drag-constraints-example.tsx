@@ -1,7 +1,7 @@
 import React from "react"
 import { Draggable } from "@/registry/animated/make-draggable"
 import { Badge } from "@/registry/ui/badge"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function CollaborationPointerExample() {

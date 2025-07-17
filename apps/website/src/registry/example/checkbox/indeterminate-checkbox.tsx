@@ -1,7 +1,7 @@
 import React from "react"
 import { Minus } from "lucide-react"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function IndeterminateCheckboxExample() {

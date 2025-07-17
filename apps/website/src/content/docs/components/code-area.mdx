@@ -15,7 +15,7 @@ externalSiteName: Shiki
 
 ## Imports
 
-<Code language="tsx" code={`import {CodeArea} from "@/components/ui/CodeArea"`} />
+<CodeSnippet title="/components/ui/CodeArea" code={`import {CodeArea} from "@/components/ui/CodeArea"`} />
 
 ## Example
 
@@ -23,26 +23,44 @@ externalSiteName: Shiki
 
 ## Props
 
-| Prop Name       | Default Values | Values     |
-| --------------- | -------------- | ---------- |
-| code            | -              | -          |
-| language        | -              | -          |
-| theme           | -              | -          |
-| showLineNumbers | false          | true/false |
-| copiable        | true           | true/false |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Code
-language="tsx"
-code="your desired code"
-showLineNumbers={true}
-theme="github-dark-default"
-copiable={true}
- />`}
-	showLineNumbers={true}
-	theme="github-dark-default"
-	copiable={true}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="CodeArea"
+		data={[
+			{
+				name: "code",
+				values: ["string"],
+				required: true,
+				description: "The code snippet to display",
+			},
+			{
+				name: "language",
+				values: ["typescript", "javascript", "python", "java", "csharp", "html", "css", "json", "markdown", "bash", "..."],
+				required: false,
+				description: "The programming language for syntax highlighting",
+			},
+			{
+				name: "theme",
+				defaultValue: "github-dark-high-contrast",
+				values: ["github-dark-high-contrast", "nord", "dracula", "solarized-light", "solarized-dark", "..."],
+				required: false,
+				description: "The theme for syntax highlighting",
+			},
+			{
+				name: "showLineNumbers",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description: "Whether to show line numbers in the code area",
+			},
+			{
+				name: "copiable",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description: "If true, the code can be copied to clipboard",
+			},
+		]}
+		externalReference="https://shiki.style/"
+	/>
+</PropsTableWrapper>

@@ -12,19 +12,7 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import {Button} from "@/components/ui/Button"`} />
-
-## Props
-
-## Usage
-
-<CodeSnippet
-	title="/components/ui/button.tsx"
-	code={`<Button variant="strong" size="base" rounded="rounded" iconOnly={false}/>
-   Button
- </Button>
- `}
-/>
+<CodeSnippet title="/components/ui/button.tsx" code={`import {Button,ButtonGroup,CompactButton} from "@/components/ui/button"`} />
 
 ## Social Buttons
 
@@ -45,14 +33,6 @@ source: https://github.com/Radian-os
 ## Compact Button
 
 <CompactButtonPreview />
-
-## Installation
-
-<CLI mode="execute" code={`radianos add button`} />
-
-## Imports
-
-<CodeSnippet title="/components/ui/button.tsx" code={`import {Button,ButtonGroup,CompactButton} from "@/components/ui/button"`} />
 
 ## Props
 
@@ -84,14 +64,14 @@ source: https://github.com/Radian-os
 			{
              name:"disabled",
 			 defaultValue: "false",
-			 values: ["true", "false"],
+			 values: ["boolean"],
 			 required: false,
 			 description: "Disables interaction with the button when set to true",
 			},
 			{
 				name: "loading",
 				defaultValue: "false",
-				values: ["true", "false"],
+				values: ["boolean"],
 				required: false,
 				description: "If true, the button will show a loading spinner",
 			},
@@ -110,14 +90,14 @@ source: https://github.com/Radian-os
 			{
 				name: "asChild",
 				defaultValue: "false",
-				values: ["true", "false"],
+				values: ["boolean"],
 				required: false,
 				description: "If true, the button will render as a child component",
 			},
     		{
     			name: "iconOnly",
     			defaultValue: "false",
-    			values: ["true", "false"],
+    			values: ["boolean"],
     			required: false,
     			description: "If true, the button will be adjusted to only show the icon",
     		},
@@ -177,7 +157,7 @@ source: https://github.com/Radian-os
     	{
     		name:"disabled",
     		defaultValue: "false",
-    		values: ["true", "false"],
+    		values: ["boolean"],
     		required: false,
     		description: "Disables interaction with the button when set to true"
     	},

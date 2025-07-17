@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import CommandLineTabs from "@/components/cli-tabs"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 
 const Manual = () => {
 	const [globalCSS, setGlobalCSS] = useState("")

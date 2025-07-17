@@ -1,7 +1,7 @@
 import React from "react"
 import { infiniteScrollData } from "@/component-preview/animations/infinite-scroll-preview"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function InfiniteScrollVerticalExample() {

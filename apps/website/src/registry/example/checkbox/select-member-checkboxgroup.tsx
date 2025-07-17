@@ -1,6 +1,6 @@
 import React from "react"
 import { Checkbox, CheckboxGroup } from "@/registry/ui/checkbox"
-import { CodeArea } from "@/registry/ui/code"
+import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 function SelectMamberCheckboxgroupExample() {
