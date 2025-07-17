@@ -1,4 +1,5 @@
 import { Pointer } from "@/registry/animated/pointer"
+// import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

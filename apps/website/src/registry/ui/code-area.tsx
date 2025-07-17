@@ -144,6 +144,8 @@ type CodeAreaProps = {
 	className?: string
 	showLineNumbers?: boolean
 	copiable?: boolean
+	pkg?: string[]
+	tabs?: boolean
 }
 
 const DEFAULT_THEME = "github-dark-high-contrast"
