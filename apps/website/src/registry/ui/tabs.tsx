@@ -247,7 +247,7 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
-	return <TabsPrimitive.Content className={cn("flex-1 outline-none", className)} {...props} />
+	return <TabsPrimitive.Content className={cn("flex-1 outline-none data-[state=inactive]:hidden", className)} {...props} />
 }
 
 TabsContent.displayName = TabsPrimitive.Content.displayName
