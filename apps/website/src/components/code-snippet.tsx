@@ -23,7 +23,7 @@ export default function CodeSnippet({ code, title, showLineNumber = false, class
 	})
 
 	return (
-		<div className={cn("bg-fill-level2 mb-4 flex flex-col gap-2 rounded-xl p-1.5", className)}>
+		<div className={cn("bg-fill-level2 flex flex-col gap-2 rounded-xl p-1.5", className)}>
 			<div className="inline-flex items-center gap-3 px-1 py-0.5">
 				<span className="bg-bg-base text-text-tertiary rounded-md p-1">
 					<Terminal className="size-4" />

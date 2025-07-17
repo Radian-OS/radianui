@@ -11,6 +11,7 @@ type TableOfContentsProps = {
 
 export default function TableOfContent({ headings }: TableOfContentsProps) {
 	const [activeHeadingId, setActiveHeadingId] = useState<string>("")
+	const [indicatorStyle, setIndicatorStyle] = useState({ transform: "translateY(0px)" })
 	const activeRef = useRef<HTMLAnchorElement | null>(null)
 
 	// Track which heading is currently visible
@@ -40,12 +41,23 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 		return () => observer.disconnect()
 	}, [headings])
 
+	// Animate indicator position when active heading changes
 	useEffect(() => {
 		if (activeRef.current) {
 			// Find the scrollable container (the ul element)
 			const scrollContainer = activeRef.current.closest("ul")
 			if (scrollContainer) {
-				// Simply scroll the active item into view
+				// Calculate the position of the active item relative to the container
+				const containerRect = scrollContainer.getBoundingClientRect()
+				const activeRect = activeRef.current.getBoundingClientRect()
+				const relativeTop = activeRect.top - containerRect.top
+
+				// Animate the indicator to the new position
+				setIndicatorStyle({
+					transform: `translateY(${relativeTop}px)`,
+				})
+
+				// Scroll the active item into view
 				activeRef.current.scrollIntoView({
 					block: "nearest",
 					behavior: "smooth",
@@ -87,7 +99,19 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 			{/* Scrollable content container */}
 			<div className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
 				<ul className="relative flex h-full flex-col gap-1">
+					{/* Background line */}
 					<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
+
+					{/* Animated active indicator */}
+					<div
+						className="bg-primary absolute left-0 w-px transition-transform duration-200 ease-out"
+						style={{
+							...indicatorStyle,
+							height: "1.5rem", // Match the height of each link (py-1 = 0.25rem top + bottom)
+							top: "0.25rem", // Offset to align with the first link's padding
+						}}
+					/>
+
 					{headings.map((heading) => (
 						<li key={heading.id} className="relative">
 							<Link
@@ -95,10 +119,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 								className={cn("text-text-secondary group relative block py-1 pl-4 text-sm")}
 								href={`#${heading.id}`}
 								onClick={(e) => handleHeadingClick(e, heading.id)}>
-								{/* Active indicator */}
-								{activeHeadingId === heading.id && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
-
-								{/* Hover indicator */}
+								{/* Hover indicator - only show when not active */}
 								{activeHeadingId !== heading.id && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
 								{heading.text}
 							</Link>

@@ -1,7 +1,7 @@
 import React from "react"
-import { Boxes, ComponentIcon, LucideShieldQuestion, TowerControlIcon } from "lucide-react"
+import { Boxes, ComponentIcon, EyeIcon, LucideShieldQuestion, SquareTerminal, TowerControlIcon } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const contents = [
@@ -36,11 +36,15 @@ const contents = [
 
 function AccordionWithIconExample() {
 	return (
-		<Tabs defaultValue="preview" className="mb-6">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} className="mb-6">
 			<div className="flex items-center justify-between">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}
@@ -63,10 +67,10 @@ function AccordionWithIconExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="accordion-with-icon.tsx"
+					showLineNumber
+					className="h-105 mb-0"
 					code={`const contents = [
 	{
 		id: 1,
