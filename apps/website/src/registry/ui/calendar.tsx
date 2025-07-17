@@ -224,7 +224,7 @@ export function getMergedClassNames({ props, navigatorStyle, dualCalendar, hideC
 }
 
 // Calendar component definition
-function CalendarComponent({
+function Calendar({
 	selected,
 	onSelect,
 	mode = "single",
@@ -501,4 +501,4 @@ export function SelectorNavigator({
 	)
 }
 
-export default CalendarComponent
+export { Calendar }

@@ -3,6 +3,7 @@
 import React from "react"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Button } from "./button"
 
 type CheckboxProps = {
 	name?: string
@@ -83,7 +84,10 @@ function Checkbox({
 				size === "lg" ? "text-base" : "text-sm",
 				className
 			)}>
-			<button
+			<Button
+				color={checked ? "primary" : "neutral"}
+				iconOnly
+				variant={checked ? "strong" : "outline"}
 				type="button"
 				role="checkbox"
 				data-checked={checked}
@@ -92,22 +96,14 @@ function Checkbox({
 				tabIndex={disabled ? -1 : 0}
 				onClick={handleClick}
 				onKeyDown={handleKeyDown}
-				className={cn(
-					"focus-visible:ring-primary focus-visible:ring-offset-bg-base outline-hidden relative box-border border transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-					sizeClasses[size],
-					{
-						"bg-bg-level1 cursor-not-allowed": disabled,
-						"cursor-pointer": !disabled,
-						"bg-primary border-none": checked && !disabled,
-						"bg-text-tertiary border-none": checked && disabled,
-					}
-				)}
+				disabled={disabled}
+				className={cn(sizeClasses[size])}
 				{...props}>
 				<input type="checkbox" checked={checked} name={name} value={value} hidden readOnly />
 
 				<div
 					className={cn(
-						"absolute flex items-center justify-center text-white transition-opacity",
+						"text-static-white absolute flex items-center justify-center transition-opacity",
 						checked ? "opacity-100" : "opacity-0",
 						size === "sm" ? "inset-0.25" : size === "md" ? "inset-0.5" : size === "lg" ? "inset-1" : ""
 					)}>
@@ -117,7 +113,7 @@ function Checkbox({
 							className: "",
 						})}
 				</div>
-			</button>
+			</Button>
 			{children && <span className={cn("select-none", disabled ? "text-text-tertiary" : "text-primary-foreground")}>{children}</span>}
 		</label>
 	)

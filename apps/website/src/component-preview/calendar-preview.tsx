@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
-import Calendar from "@/registry/ui/calendar"
+import { Calendar } from "@/registry/ui/calendar"
 import { CodeArea } from "@/registry/ui/code"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

@@ -15,32 +15,6 @@ externalSiteName: React DayPicker
 
 ## Imports
 
-<Code language="tsx" code={`import Calendar from "@/components/ui/calendar"`} />
+<CodeSnippet title="/components/ui/calendar" code={`import {Calendar} from "@/components/ui/calendar"`} />
 
 ## Props
-
-| Prop Name    | Default Values | Values                |
-| ------------ | -------------- | --------------------- |
-| mode         | single         | single,multiple,range |
-| dualCalendar | false          | true/false            |
-| showTime     | false          | true/false            |
-| showShortcut | false          | true/false            |
-| footer       |                |                       |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Calendar
-    mode="single"
-    dualCalendar={false}
-    showTime={false}
-    showShortcut={false}
-    footer={
-            <div className="p-3 flex gap-2">
-                    <Button variant="outline">Cancel</Button>
-                    <Button>Apply</Button>
-            </div>
-        }
-/>`}
-/>
