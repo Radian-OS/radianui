@@ -91,7 +91,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 			type={isPasswordVisible ? "text" : "password"}
 			onFocus={() => setIsFocused(true)}
 			onBlur={() => setIsFocused(false)}
-			start={trailContent}
+			end={trailContent}
 			{...props}
 		/>
 	)

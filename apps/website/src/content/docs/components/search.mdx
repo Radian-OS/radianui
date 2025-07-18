@@ -6,41 +6,77 @@ source: https://github.com/Radian-os
 
 <SearchPreview />
 
-## Example
-
-<SearchInputExample />
-
 ## Installation
 
 <CLI mode="execute" tabs={true} code={`radianos add search`} />
 
 ## Imports
 
-<Code language="tsx" code={`import Search from "@/components/ui/search"`} />
+<CodeSnippet title="/components/ui/search" code={`import {Search} from "@/components/ui/search"`} />
+
+## Example
+
+<SearchInputExample />
 
 ## Props
 
-| Prop Name   | Default Values | Values             |
-| ----------- | -------------- | ------------------ |
-| rounded     | lg             | xs,sm,md,lg,xl,2xl |
-| size        | 36             | 28,32,36,40,44,48  |
-| label       |                |                    |
-| disabled    | false          | true/false         |
-| placeholder |                |                    |
-| suggestion  | true           | true/false         |
-| hint        |                |                    |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Search 
-    rounded="lg"
-    size="36"
-    label="Search"
-    disabled={false}
-    placeholder="Search"
-    suggestion={true}
-    hint="Hint text to help the user with input"
-/>`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Search"
+		data={[
+			{
+				name: "showSearchResults",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Manually control the visibility of the search results popover.",
+				required: false,
+			},
+			{
+				name: "defaultShowSearchResults",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Sets the initial visibility of the search results popover.",
+				required: false,
+			},
+			{
+				name: "suggestion",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Enables rendering of the suggestion popover when true.",
+				required: false,
+			},
+			{
+				name: "label",
+				values: ["string"],
+				description: "Label displayed above the input field.",
+				required: false,
+			},
+			{
+				name: "hint",
+				values: ["string"],
+				description: "Helper text displayed below the input.",
+				required: false,
+			},
+			{
+				name: "hasError",
+				values: ["boolean"],
+				description: "Displays the input in an error state.",
+				required: false,
+			},
+			{
+				name: "size",
+				values: ["28", "32", "36", "40", "44", "48"],
+				defaultValue: "36",
+				description: "Controls the height of the input field.",
+				required: false,
+			},
+			{
+				name: "rounded",
+				values: ["none", "sm", "md", "lg", "xl", "2xl", "full"],
+				defaultValue: "md",
+				description: "Controls the border radius of the input.",
+				required: false,
+			},
+		]}
+	/>
+</PropsTableWrapper>

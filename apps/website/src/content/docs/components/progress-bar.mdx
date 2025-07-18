@@ -12,24 +12,37 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import Slider from "@/components/ui/progress-bar"`} />
+<CodeSnippet title="/components/ui/progress-bar" code={`import {ProgressBar} from "@/components/ui/progress-bar"`} />
 
 ## Props
 
-| Prop Name  | Default Values | Values     |
-| ---------- | -------------- | ---------- |
-| value      |                |            |
-| label      |                |            |
-| valueLabel | true           | true/false |
-| hint       |                |            |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<ProgressBar value={50}
-	label="ProgressBar"
-	valueLabel={true}
-	hint="Progress Bar"
-/>`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="ProgressBar"
+		data={[
+			{
+				name: "label",
+				values: ["string"],
+				required: false,
+				description: "Adds label for the component",
+			},
+			{
+				name: "valueLabel",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Shows numeric for the component",
+			},
+			{
+				name: "value",
+				values: ["number"],
+				required: true,
+				description: "Shows the value of the progress bar",
+			},
+			{
+				name: "hint",
+				values: ["string"],
+				description: "Shows the hint message below th progress bar",
+			},
+		]}
+	/>
+</PropsTableWrapper>

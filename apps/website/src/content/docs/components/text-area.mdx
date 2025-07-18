@@ -11,21 +11,7 @@ description: Displays a form textarea or a component that looks like a textarea
 
 ## Imports
 
-<Code language="tsx" code={`import { TextArea } from "@/registry/ui/text-area"`} />
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<TextArea
-label="Description"
-resizable={false}
-placeholder="Placeholder text..."
-hasError={false}
-disabled={false}
-rows={4}
- />`}
-/>
+<CodeSnippet title="/registry/ui/text-area" code={`import { TextArea } from "@/registry/ui/text-area"`} />
 
 ## Examples
 
@@ -35,9 +21,63 @@ rows={4}
 
 ## Props
 
-| Prop Name | Default Values | Values  |
-| --------- | -------------- | ------- |
-| resizable | false          | boolean |
-| hasError  | false          | boolean |
-| rows      | 4              | integer |
-| hint      | -              | string  |
+<PropsTableWrapper>
+	<PropsTable
+		title="TextArea"
+		data={[
+			{
+				name: "label",
+				values: ["string"],
+				required: false,
+				description: "Label text displayed above the textarea",
+			},
+			{
+				name: "resizable",
+				values: ["boolean"],
+				required: false,
+				description: "Whether the textarea can be resized by the user",
+				defaultValue: "true",
+			},
+			{
+				name: "rounded",
+				values: ["rounded", "square"],
+				required: false,
+				description: "Sets the border radius of the textarea",
+				defaultValue: "rounded",
+			},
+			{
+				name: "hasError",
+				values: ["boolean"],
+				required: false,
+				description: "Applies error styling to the textarea",
+				defaultValue: "false",
+			},
+			{
+				name: "hint",
+				values: ["string"],
+				required: false,
+				description: "Helper text displayed below the textarea",
+			},
+			{
+				name: "rows",
+				values: ["number"],
+				required: false,
+				description: "Number of visible text lines for the textarea",
+				defaultValue: "4",
+			},
+			{
+				name: "disabled",
+				values: ["boolean"],
+				required: false,
+				description: "Disables the textarea",
+				defaultValue: "false",
+			},
+			{
+				name: "placeholder",
+				values: ["string"],
+				required: false,
+				description: "Placeholder text shown when textarea is empty",
+			},
+		]}
+	/>
+</PropsTableWrapper>

@@ -12,56 +12,87 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import { Select, SelectGroup, SelectItem } from "@/components/ui/select"`} />
+<CodeSnippet title="/components/ui/select" code={`import { Select, SelectGroup, SelectItem } from "@/components/ui/select"`} />
 
 ## Props
 
-| Prop Name     | Default Values | Values             |
-| ------------- | -------------- | ------------------ |
-| rounded       | lg             | xs,sm,md,lg,xl,2xl |
-| size          | 36             | 28,32,36,40,44,48  |
-| label         |                |                    |
-| disabled      | false          | true/false         |
-| placeholder   |                |                    |
-| variants      | button         | input,button,tags  |
-| searchable    | false          | true/false         |
-| selectionMode | single         | single/multiple    |
-| lead          |                |                    |
-| hint          |                |                    |
-| hasError      | false          | true/false         |
-| startContent  | icon           |                    |
-| endContent    | icon           |                    |
+<PropsTableWrapper>
+<PropsTable
+ title="Select"
+ data={[
+    {
+        name:"label",
+        values:["string"],
+        description:"Shows label for select"
+    },
+    {
+				name: "placeholder",
+				description: "Placeholder text for the select field",
+				values: ["string"],
+			},
+             {
+                name:"size",
+                description: "Sets the size of the select field",
+                defaultValue: "36",
+                values: ["28", "32", "36", "40","44","48"],
+            },
+             {
+                name:"rounded",
+                description: "Sets the border radius of the select field",
+                defaultValue: "lg",
+                values: ["xs","sm", "md", "lg", "xl", "2xl"],
+            },
+              {
+                name:"disabled",
+                description: "If true, the select field is disabled",
+                defaultValue: "false",
+                values: ["boolean"],
+            },
+            {
+                name:"hint",
+                description: "Hint text displayed below the select field",
+                values: ["string"],
+            },
+            {
+                name:"isSearchable",
+                description:"If true can search for items",
+                values:["boolean"],
+                defaultValue:"false"
+            }
 
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Select
-    label="Choose your favourite framework"
-    placeholder="Pick an option"
-    rounded="lg"
-    variants="button"
-    size="36"
-    disabled={false}
-    isSearchable={true}
-    selectionMode="single"
-    hasError="false"
-    hint="Hint text to help the user with input"
-    lead={<CircleUserRound/>}
-    className="w-80">
-    <SelectGroup label="Backend Frameworks">
-        <SelectItem value="node-js">Node.js (Express)</SelectItem>
-        <SelectItem value="django">Django (Python)</SelectItem>
-        <SelectItem value="rails">Rails (Ruby)</SelectItem>
-        <SelectItem value="laravel">Laravel (PHP)</SelectItem>
-        <SelectItem value="spring">Spring Boot (Java)</SelectItem>
-    </SelectGroup>
-    <SelectGroup label="Mobile Frameworks">
-        <SelectItem value="react-native">React Native</SelectItem>
-        <SelectItem value="flutter">Flutter</SelectItem>
-        <SelectItem value="swiftui">SwiftUI</SelectItem>
-        <SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
-        <SelectItem value="xamarin">Xamarin</SelectItem>
-    </SelectGroup>
-</Select>`}
+]}
 />
+
+<PropsTable
+	title="SelectGroup"
+	data={[
+		{
+			name: "label",
+			values: ["string"],
+			description: "Shows label for select",
+		},
+	]}
+/>
+
+<PropsTable
+	title="SelectContent"
+	data={[
+		{
+			name: "startContent",
+			values: ["ReactNode"],
+			description: "Add an icon or start content",
+		},
+		{
+			name: "endContent",
+			values: ["ReactNode"],
+			description: "Add an icon or end content",
+		},
+		{
+			name: "value",
+			values: ["string"],
+			description: "Value for selecting items.",
+		},
+	]}
+/>
+
+</PropsTableWrapper>

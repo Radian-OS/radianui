@@ -23,17 +23,85 @@ description: Reveal additional actions or content
 		title="Dropdown"
 		data={[
 			{
-				name: "children",
-				type: "ReactNode",
-				required: true,
-				description: "The content of the dropdown, including trigger and items.",
-			},
-			{
-				name: "className",
-				type: "string",
-				required: false,
-				description: "Additional CSS classes for custom styling.",
+				name: "-",
+				required: "false",
+				description: "Wrapper component for the dropdown.",
+				values: ["-"],
 			},
 		]}
+	/>
+	<PropsTable
+		title="DropdownTrigger"
+		data={[
+			{
+				name: "asChild",
+				required: true,
+				defaultValue: "true",
+				description: "Use this prop to render the trigger as a child component.",
+				values: ["boolean"],
+			},
+		]}
+	/>
+	<PropsTable
+		title="DropdownContent"
+		data={[
+			{
+				name: "placement",
+				required: false,
+				description: "The placement of the dropdown.",
+				values: ["top", "bottom", "left", "right"],
+				defaultValue: "bottom",
+			},
+			{
+				name: "align",
+				required: false,
+				description: "The alignment of the dropdown content.",
+				values: ["start", "center", "end"],
+				defaultValue: "start",
+			},
+		]}
+	/>
+	<PropsTable
+		title="DropdownItem"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				description: "If true, the item will be inset.",
+				values: ["boolean"],
+				defaultValue: "false",
+			},
+			{
+				name: "shortcut",
+				required: false,
+				description: "The shortcut key for the item.",
+				values: ["string"],
+			},
+			{
+				name: "icon",
+				required: false,
+				description: "The icon to be displayed next to the item.",
+				values: ["ReactNode"],
+			},
+			{
+				name: "value",
+				required: false,
+				description: "The value of the item, used for identification.",
+				values: ["string"],
+			},
+			{
+				name: "startContent",
+				required: false,
+				description: "Content to be displayed at the start of the item.",
+				values: ["ReactNode"],
+			},
+			{
+				name: "endContent",
+				required: false,
+				description: "Content to be displayed at the end of the item.",
+				values: ["ReactNode"],
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
 	/>
 </PropsTableWrapper>

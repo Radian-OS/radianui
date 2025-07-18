@@ -12,40 +12,77 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import FileUpload from "@/components/ui/file-upload"`} />
+<CodeSnippet title="/components/ui/file-upload.tsx" code={`import {FileUpload} from "@/components/ui/file-upload"`} />
 
 ## Props
 
-| Prop Name       | Default Values                        | Values             |
-| --------------- | ------------------------------------- | ------------------ |
-| variant         | input                                 | input/container    |
-| accept          | image/\*                              |                    |
-| rounded         | lg                                    | xs,sm,md,lg,xl,2xl |
-| sizes           | lg                                    | xs,sm,md,lg,xl,2xl |
-| maxSize (in mb) | 5                                     |                    |
-| maxFiles        | 4                                     |                    |
-| label           | true                                  | true/false         |
-| disabled        | false                                 | true/false         |
-| maxFiles        | 4                                     |                    |
-| title           | Drag and drop files to upload         |                    |
-| description     | JPG, PNG, GIF or other image files    |                    |
-| hint            | Hint text to help the user with input |                    |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<FileUpload
-		title="Drag and drop files to upload"
-		description="JPG, PNG, GIF or other image files"
-		hint="Hint text to help the user with input"		
-		sizes="lg"
-		variant="input"
-		accept="image/*"
-		label="File"
-		rounded="lg"
-		maxSize={50}
-		disabled={false}
-		maxFiles={4}
-/>`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="FileUpload"
+		data={[
+			{
+				name: "label",
+				description: "The label for the file upload.",
+				type: "string",
+				values: ["string"],
+			},
+			{
+				name: "placeholder",
+				description: "The placeholder text for the file upload.",
+				values: ["string"],
+			},
+			{
+				name: "size",
+				defaultValue: "36",
+				description: "The size of the file upload.",
+				values: ["28", "32", "36", "40", "44", "48"],
+			},
+			{
+				name: "rounded",
+				defaultValue: "lg",
+				description: "The border radius of the file upload.",
+				values: ["xs", "sm", "md", "lg", "xl", "2xl"],
+			},
+			{
+				name: "disabled",
+				defaultValue: "false",
+				description: "Whether the file upload is disabled.",
+				values: ["boolean"],
+			},
+			{
+				name: "hasError",
+				defaultValue: "false",
+				description: "Whether the file upload has an error.",
+				values: ["boolean"],
+			},
+			{
+				name: "hint",
+				description: "The hint text for the file upload.",
+				values: ["string"],
+			},
+			{
+				name: "variant",
+				description: "The variant of the file upload.",
+				defaultValue: "input",
+				values: ["input", "container"],
+				required: true,
+			},
+			{
+				name: "accept",
+				description: "The accepted file types for the file upload.",
+				values: ["string"],
+			},
+			{
+				name: "maxSize",
+				description: "The maximum file size in bytes.",
+				values: ["number"],
+			},
+			{
+				name: "maxFiles",
+				description: "The maximum number of files that can be uploaded.",
+				values: ["number"],
+				defaultValue: "4",
+			},
+		]}
+	/>
+</PropsTableWrapper>

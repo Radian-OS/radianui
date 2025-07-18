@@ -11,4 +11,41 @@ description: Resizable panel groups and layouts with keyboard support
 
 ## Imports
 
-<Code language="tsx" code={`import {ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"`} />
+<CodeSnippet title="/components/ui/resizable" code={`import {ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"`} />
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="ResizablePanelGroup"
+		data={[
+			{
+				name: "direction",
+				values: ["top", "bottom", "left", "right"],
+				defaultValue: "right",
+				description: "Adds direction where content is dragged",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ResizablePanel"
+		data={[
+			{
+				name: "defaultSize",
+				values: ["number"],
+				description: "Controls size of containers",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ResizableHandle"
+		data={[
+			{
+				name: "withHandle",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Toggles Handle",
+			},
+		]}
+	/>
+</PropsTableWrapper>

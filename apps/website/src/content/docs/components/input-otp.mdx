@@ -8,3 +8,59 @@ description: A group of single-character text inputs to handle one-time password
 ## Installation
 
 <CLI mode="execute" tabs={true} code={`radianos add input-otp`} />
+
+## Imports
+
+<CodeSnippet title="/components/ui/input-otp.tsx" code={`import {InputOtp} from "@/components/ui/input-otp"`} showLineNumbers={false} />
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="InputOtp"
+		data={[
+			{
+				name: "size",
+				description: "Sets the size of OTP Input",
+				reauired: false,
+				defaultValue: "40",
+				values: ["28", "32", "36", "40", "44", "56"],
+			},
+			{
+				name: "disabled",
+				description: "Sets the disabled state",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+			},
+			{
+				name: "length",
+				description: "Sets the number of boxes",
+				required: false,
+				defaultValue: "6",
+				values: ["number"],
+			},
+			{
+				name: "label",
+				description: "Sets the label for Input OTP",
+				required: false,
+				values: ["string"],
+			},
+			{
+				name: "hasError",
+				description: "Sets the error state for Input OTP",
+				required: false,
+				defaultValue: "false",
+				values: ["boolean"],
+			},
+            {
+                name:"errorMsg",
+                description:"Sets the errorMsg for the Input OTP",
+                required:false,
+                values:["string"]
+
+            }
+    	]}
+    />
+
+</PropsTableWrapper>

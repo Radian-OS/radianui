@@ -11,30 +11,33 @@ description: Display active page and navigate between multiple pages
 
 ## Imports
 
-<Code language="tsx" code={`import Pagination from "@/components/ui/pagination"`} />
+<CodeSnippet title="/components/ui/pagination" code={`import Pagination from "@/components/ui/pagination"`} />
 
 ## Props
 
-| Prop Name          | Default Values | Values         |
-| ------------------ | -------------- | -------------- |
-| control            | icon           | icon,text,both |
-| rowPerPage         | false          | true/false     |
-| buttonVariant      | strong         | strong,outline |
-| goToPage           | false          | true/false     |
-| enableCustomRows   | false          | true/false     |
-| totalPage          | -              | -              |
-| currentPage        | -              | -              |
-| onRowPerPageChange | -              | -              |
-| onPageChange       | -              | -              |
+<PropsTableWrapper>
+	<PropsTable
+		title="Pagination"
+		data={[
+			{
+				name: "currentPage",
+				description: "Displays current page or index",
+				values: ["number"],
+				
+			},
+			{
+				name: "totalPage",
+				description: "Displays total number of pages",
+				values: ["number"],
+    		},
+			{
+				name:"navButton",
+				description: "Displays the type of media in pagination",
+				values:["icon","text","both"],
+				defaultValue:"icon"
+			},
+			
+    	]}
+    />
 
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Pagination 
-currentPage="1" 
-totalPage={50}
-onPageChange={(page) => setCurrentPage(page)}
-onRowsPerPageChange={(rows) => setRowsPerPage(rows)}
-/>`}
-/>
+</PropsTableWrapper>
