@@ -2,7 +2,7 @@ import React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-type AlertProps = React.HTMLAttributes<HTMLDivElement> &
+export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof alertVariants> & {
 		title?: string
 		message?: string
