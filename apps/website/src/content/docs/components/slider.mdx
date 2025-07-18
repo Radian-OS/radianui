@@ -12,45 +12,63 @@ source: https://github.com/Radian-os/radianos
 
 ## Imports
 
-<Code language="tsx" code={`import Slider from "@/components/ui/slider"`} />
+<CodeSnippet title="/components/ui/slider" code={`import Slider from "@/components/ui/slider"`} />
 
 ## Props
 
-| Prop Name    | Default Values | Values              |
-| ------------ | -------------- | ------------------- |
-| label        |                |                     |
-| disabled     | false          | true/false          |
-| withInput    | false          | true/false          |
-| showSteppers | false          | true/false          |
-| showTooltip  | true           | true/false          |
-| prefixIcon   | false          | true/false          |
-| suffixIcon   | false          | true/false          |
-| marks        |                |                     |
-| orientation  | horizontal     | horizontal/vertical |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={` 
-<Slider
-    label="Select volume label"
-    disabled={false}
-    withInput={false}
-    showSteppers={false}
-    showTooltip={true}
-    prefixIcon={<VolumeX />}
-    suffixIcon={<VolumeX />}
-    marks={
-        [
-			 { value: 0, label: "0%" },
-			 { value: 20, label: "20%" },
-			 { value: 40, label: "40%" },
-			 { value: 60, label: "60%" },
-			 { value: 80, label: "80%" },
-			 { value: 100, label: "100%" }
-		   ]
-			}
-    orientation="horizontal"
-/>`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Slider"
+		data={[
+			{
+				name: "label",
+				values: ["string"],
+				description: "Shows label for slider",
+			},
+			{
+				name: "disabled",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Shows disabled state for Slider",
+			},
+			{
+				name: "showSteppers",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Shows stepper buttons for increasing and decreasing values",
+			},
+			{
+				name: "withInput",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Shows input to insert value of slider",
+			},
+			{
+				name: "marks",
+				values: ["[value:'',label:'']"],
+				description: "Shows a marks to track value of slider",
+			},
+			{
+				name: "lead",
+				values: ["ReactNode"],
+				description: "Render custom icon or element at start",
+			},
+			{
+				name: "trail",
+				values: ["ReactNode"],
+				description: "Render custom icon or element at end",
+			},
+			{
+				name: "orientation",
+				values: ["horizantal", "vertical"],
+				description: "Displays and control orientation",
+			},
+			{
+				name: "showTooltip",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Toggles tooltip display",
+			},
+		]}
+	/>
+</PropsTableWrapper>

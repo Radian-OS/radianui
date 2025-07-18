@@ -13,9 +13,8 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code
-	showLineNumbers="true"
-	language="tsx"
+<CodeSnippet
+	title="/components/ui/modal"
 	code={`import { 
     Modal, 
     ModalClose, 
@@ -40,14 +39,89 @@ source: https://github.com/Radian-os
 
 ## Props
 
-### Modal Props
-
-| Prop Name     | Default Value | Possible Values                  |
-| ------------- | ------------- | -------------------------------- |
-| closeIcon     | "hidden"      | "visible", "hidden", "hover"     |
-| backdrop      | "overlay"     | "overlay", "blur", "transparent" |
-| withSeparator | false         | boolean                          |
-| defaultOpen   | -             | boolean                          |
-| open          | -             | boolean                          |
-| onOpenChange  | -             | `(open:boolean):void`            |
-| modal         | true          | boolean                          |
+<PropsTableWrapper>
+	<PropsTable
+		title="Modal"
+		data={[
+			{
+				name: "closeIcon",
+				values: ["hidden", "visible", "hover"],
+				defaultValue: "hidden",
+				description: "Show the close icon state",
+			},
+			{
+				name: "backdrop",
+				values: ["overlay", "blur", "transparent"],
+				defaultValue: "overlay",
+				description: "Show the backdrop state",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ModalTrigger"
+		data={[
+			{
+				name: "asChild",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Enable asChild functionality",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ModalContent"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				defaultValue: "-",
+				description: "No specific Props, Used for Structure",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ModalHeader"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				defaultValue: "-",
+				description: "No specific Props, Used for Structure",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ModalBody"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				defaultValue: "-",
+				description: "No specific Props, Used for Structure",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ModalFooter"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				defaultValue: "-",
+				description: "No specific Props, Used for Structure",
+			},
+		]}
+	/>
+	<PropsTable
+		title="ModalClose"
+		data={[
+			{
+				name: "asChild",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Enable asChild functionality",
+			},
+		]}
+		externalReference="https://www.npmjs.com/package/@radix-ui/react-dialog"
+	/>
+</PropsTableWrapper>

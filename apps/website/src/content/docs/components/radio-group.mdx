@@ -11,7 +11,7 @@ description: Allow a single selection from a set of options
 
 ## Imports
 
-<Code language="tsx" code={`import {RadioGroup, RadioGroupItem} from "@/components/ui/radiogroup"`} />
+<CodeSnippet title="/components/ui/radiogroup" code={`import {RadioGroup, RadioGroupItem} from "@/components/ui/radiogroup"`} />
 
 ## Example
 
@@ -25,22 +25,37 @@ description: Allow a single selection from a set of options
 
 ## Props
 
-### RadioGroup Props
-
-| Prop Name     | Default Value | Possible Values  |
-| ------------- | ------------- | ---------------- |
-| label         | -             | string           |
-| size          | "md"          | "sm", "md", "lg" |
-| value         | -             | string           |
-| defaultValue  | -             | string           |
-| onValueChange | -             | function         |
-| name          | -             | string           |
-| disabled      | -             | boolean          |
-
-### RadioGroupItem Props
-
-| Prop Name | Default Value | Possible Values  |
-| --------- | ------------- | ---------------- |
-| size      | "md"          | "sm", "md", "lg" |
-| value     | -             | string           |
-| disabled  | -             | boolean          |
+<PropsTableWrapper>
+	<PropsTable
+		title="RadioGroup"
+		data={[
+			{
+				name: "size",
+				values: ["sm", "md", "lg"],
+				defaultValue: "md",
+				description: "Controls Size for Radio Group",
+				required: false,
+			},
+			{
+				name: "label",
+				values: ["string"],
+				description: "Text label displayed above the group of radio options.",
+				required: false,
+			},
+			{
+				name: "disabled",
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "Disables all radio items inside the group.",
+				required: false,
+			},
+			{
+				name: "defaultValue",
+				values: ["string"],
+				description: "The value of the radio item that should be selected by default (uncontrolled).",
+				required: false,
+			},
+		]}
+		externalReference="https://www.npmjs.com/package/@radix-ui/react-radio-group"
+	/>
+</PropsTableWrapper>

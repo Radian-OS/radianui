@@ -11,7 +11,7 @@ description: Placeholder loading screen to enhance perceived performance
 
 ## Imports
 
-<Code language="tsx" code={`import { Skeleton } from "@/components/ui/skeleton"`} />
+<CodeSnippet title="/components/ui/skeleton" code={`import { Skeleton } from "@/components/ui/skeleton"`} />
 
 ## Examples
 
@@ -19,6 +19,21 @@ description: Placeholder loading screen to enhance perceived performance
 
 <ShimmerSkeletonExample />
 
-## Usage
+## Props
 
-<Code language="tsx" code={`<Skeleton className="h-4 w-3/4" />`} />
+<PropsTableWrapper>
+<PropsTable
+title="Skeleton"
+data={
+[
+    {
+        name:"animation",
+        values:["pulse","shimmer"],
+        defaultValue:"pulse",
+        description:"Type of animation to be shown in skeleton"
+    }
+]
+}
+/>
+
+</PropsTableWrapper>

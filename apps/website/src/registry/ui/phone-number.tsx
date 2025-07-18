@@ -33,7 +33,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	onChange,
 	country,
 	onCountryChange,
-	size,
+	size = "36",
 	showTrigger = true,
 	countryDropdown = true,
 	disabled = false,

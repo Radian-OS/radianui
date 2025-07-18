@@ -13,18 +13,103 @@ externalSiteRef: https://catamphetamine.gitlab.io/react-phone-number-input
 
 ## Imports
 
-<Code language="typescript" code={`import { PhoneNumber } from "@components/ui/phone-number"`} />
+<CodeSnippet title="/components/ui/phone-number" code={`import { PhoneNumber } from "@components/ui/phone-number"`} />
 
 ## Props
 
-| Prop Name       | Default                | Values                     |
-| --------------- | ---------------------- | -------------------------- |
-| value           |                        | string                     |
-| onChange        |                        | (value: string) => void    |
-| country         |                        | [ISO 3166-1 alpha-2 code]  |
-| onCountryChange |                        | (country: Country) => void |
-| showTrigger     | `true`                 | true / false               |
-| disabled        | `false`                | true / false               |
-| placeholder     | `"Enter phone number"` | string                     |
-| className       |                        | string                     |
-| flagsOnly       | false                  | true / false               |
+<PropsTableWrapper>
+	<PropsTable
+		title="PhoneNumber"
+		data={[
+			{
+				name: "country",
+				description: "Sets the default country (ISO 3166-1 alpha-2 code) for formatting and country code detection.",
+				type: "string",
+				required: false,
+				values: ["string"],
+			},
+			{
+				name: "showTrigger",
+				description: "Controls the visibility of the country selector button.",
+				type: "boolean",
+				defaultValue: "true",
+				required: false,
+				values: ["boolean"],
+			},
+			{
+				name: "countryDropdown",
+				description: "Toggles whether the country selector dropdown is interactive.",
+				type: "boolean",
+				defaultValue: "true",
+				required: false,
+				values: ["boolean"],
+			},
+			{
+				name: "onlyCountries",
+				description: "Limits the country selection to only these specified countries.",
+				required: false,
+				values: ["string []"],
+			},
+			{
+				name: "preferredCountries",
+				description: "Specifies countries that appear on top of the dropdown as preferred choices.",
+				required: false,
+				values: ["string []"],
+			},
+			{
+				name: "excludeCountries",
+				description: "Removes specific countries from the dropdown list.",
+				required: false,
+				values: ["string []"],
+			},
+			{
+				name: "international",
+				description: "Enables international format with country calling codes. If false, restricts input to national numbers.",
+				type: "boolean",
+				defaultValue: "false",
+				required: false,
+				values: ["boolean"],
+			},
+			{
+				name: "label",
+				description: "Text label displayed above the input field.",
+				required: false,
+				values: ["string"],
+			},
+			{
+				name: "placeholder",
+				description: "Placeholder text shown inside the input when it's empty.",
+				required: false,
+				values: ["string"],
+			},
+			{
+				name: "size",
+				description: "Controls the height of the input and trigger. Accepts Tailwind height values.",
+				defaultValue: "36",
+				required: false,
+				values: ["28", "32", "36", "40", "44", "48"],
+			},
+			{
+				name: "disabled",
+				description: "Disables the input and dropdown when set to true.",
+				defaultValue: "false",
+				required: false,
+				values: ["boolean"],
+			},
+			{
+				name: "hasError",
+				description: "Marks the input as invalid and displays error styles.",
+				defaultValue: "false",
+				required: false,
+				values: ["boolean"],
+			},
+			{
+				name: "hint",
+				description: "Helper text shown below the input, useful for validation messages.",
+				required: false,
+				values: ["string"],
+			},
+		]}
+		externalReference="https://catamphetamine.gitlab.io/react-phone-number-input/"
+	/>
+</PropsTableWrapper>

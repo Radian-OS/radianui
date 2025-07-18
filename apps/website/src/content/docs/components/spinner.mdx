@@ -11,7 +11,7 @@ description: Express an unspecified wait time or display the length of a process
 
 ## Imports
 
-<Code language="tsx" code={`import { Spinner }  from "@/components/ui/spinner"`} />
+<CodeSnippet title="/components/ui/spinner" code={`import { Spinner }  from "@/components/ui/spinner"`} />
 
 ## Examples
 
@@ -21,11 +21,24 @@ description: Express an unspecified wait time or display the length of a process
 
 ## Props
 
-| Prop Name | Default Values | Values |
-| --------- | -------------- | ------ |
-| size      | 36             |        |
-| color     |                |        |
+<PropsTableWrapper>
+	<PropsTable
+		title="Spinner"
+		data={[
+			{
+				name: "variant",
+				values: ["default", "simple", "activity", "wave", "snake"],
+				description: "Displays different spinner variants",
+                defaultValue:"default"
+			},
+            {
+                name:"size",
+                values:["24","32","36","40","48"],
+                description:"Controls the size of Spinner",
+                defaultValue:"36"
+            }
 
-## Usage
+    	]}
+    />
 
-<Code language="tsx" code={`<Spinner />`} />
+</PropsTableWrapper>
