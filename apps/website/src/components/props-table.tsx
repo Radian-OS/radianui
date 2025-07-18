@@ -15,7 +15,9 @@ export type PropsData = {
 
 export const Table = ({ children, className, ...props }: HTMLAttributes<HTMLTableElement>) => (
 	<div className="overflow-x-auto">
-		<table className={cn("text-text-secondary border-soft w-full table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border", className)} {...props}>
+		<table
+			className={cn("text-text-secondary border-soft w-full min-w-[650px] table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border", className)}
+			{...props}>
 			{children}
 		</table>
 	</div>
@@ -74,22 +76,22 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 			<Table>
 				<TableHeader>
 					<TableRow className="bg-bg-base">
-						<TableHead className="max-w-[200px]">Name</TableHead>
-						<TableHead className="max-w-[120px]">Default</TableHead>
+						<TableHead className="w-[200px]">Name</TableHead>
+						<TableHead className="w-[140px]">Default</TableHead>
 						<TableHead>Values</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody className="[&>tr:nth-child(odd)]:bg-fill-level1 [&>tr:nth-child(even)]:bg-bg-base">
 					{data.map((prop) => (
 						<TableRow key={prop.name}>
-							<TableCell className="max-w-[200px]">
+							<TableCell className="w-[200px]">
 								<span className="flex items-center gap-2 whitespace-nowrap">
 									<DescriptionTooltip description={prop.description} />
 									{prop.name}
 									{prop.required && <span className="text-primary ml-1">*</span>}
 								</span>
 							</TableCell>
-							<TableCell className="max-w-[120px]">
+							<TableCell className="w-[140px]">
 								<Badge variant="soft" size="20">
 									{prop.defaultValue ?? "-"}
 								</Badge>
