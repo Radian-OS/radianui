@@ -11,31 +11,6 @@ description: Display tabular data with sorting and pagination
 
 ## Imports
 
-<Code language="tsx" code={`import MainTable from "@/components/ui/table"`} />
+<CodeSnippet title="/components/ui/table" code={`import {MainTable} from "@/components/ui/table"`} />
 
 ## Props
-
-| Prop Name     | Default Values | Values                  |
-| ------------- | -------------- | ----------------------- |
-| checkbox      | false          | true/false              |
-| verticalLine  | false          | true/false              |
-| enableSorting | false          | true/false              |
-| stripedTable  | false          | true/false              |
-| dragAndDrop   | false          | true/false              |
-| resizable     | false          | true/false              |
-| sticky        | false          | true/false              |
-| tableHeight   | 250px          | 150px,200px,250px,300px |
-| headerHeight  | 40px           | 40px,60px,90px,110px    |
-| rowHeight     | 40px           | 40px,60px,90px,110px    |
-| data          | -              | -                       |
-| columns       | -              | -                       |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<MainTable 
-    data={datas} 
-    columns={columnsData}
-/>`}
-/>

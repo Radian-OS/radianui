@@ -15,7 +15,7 @@ export type PropsData = {
 
 export const Table = ({ children, className, ...props }: HTMLAttributes<HTMLTableElement>) => (
 	<div className="overflow-x-auto">
-		<table className={cn("text-text-secondary border-soft w-full table-fixed border-separate border-spacing-0 overflow-hidden rounded-lg border", className)} {...props}>
+		<table className={cn("text-text-secondary border-soft w-full table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border", className)} {...props}>
 			{children}
 		</table>
 	</div>
@@ -74,28 +74,28 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 			<Table>
 				<TableHeader>
 					<TableRow className="bg-bg-base">
-						{["Name", "Default", "Values"].map((item) => (
-							<TableHead key={item}>{item}</TableHead>
-						))}
+						<TableHead className="max-w-[200px]">Name</TableHead>
+						<TableHead className="max-w-[120px]">Default</TableHead>
+						<TableHead>Values</TableHead>
 					</TableRow>
 				</TableHeader>
 				<TableBody className="[&>tr:nth-child(odd)]:bg-fill-level1 [&>tr:nth-child(even)]:bg-bg-base">
 					{data.map((prop) => (
 						<TableRow key={prop.name}>
-							<TableCell>
+							<TableCell className="max-w-[200px]">
 								<span className="flex items-center gap-2 whitespace-nowrap">
 									<DescriptionTooltip description={prop.description} />
 									{prop.name}
 									{prop.required && <span className="text-primary ml-1">*</span>}
 								</span>
 							</TableCell>
-							<TableCell>
+							<TableCell className="max-w-[120px]">
 								<Badge variant="soft" size="20">
 									{prop.defaultValue ?? "-"}
 								</Badge>
 							</TableCell>
 
-							<TableCell>
+							<TableCell className="grow">
 								<span className="flex flex-wrap gap-1">
 									{prop.values?.map((value) => (
 										<Badge key={value} variant="neutral" size="20">
@@ -108,13 +108,13 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 					))}
 					{externalReference && (
 						<TableRow>
-							<TableCell>
+							<TableCell className="max-w-[150px]">
 								<Link href={externalReference} className="text-primary flex items-center gap-2 text-sm font-medium" target="_blank" rel="noopener noreferrer">
 									<ExternalLink size={16} />
 									<span className="flex-1">External Reference</span>
 								</Link>
 							</TableCell>
-							<TableCell>
+							<TableCell className="max-w-[120px]">
 								<Badge variant="soft" size="20">
 									-
 								</Badge>

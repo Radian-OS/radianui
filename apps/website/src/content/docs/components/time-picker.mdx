@@ -12,32 +12,96 @@ source: https://github.com/Radian-os
 
 ## Imports
 
-<Code language="tsx" code={`import TimePicker from "@/components/ui/time-picker"`} />
+<CodeSnippet title="/components/ui/time-picker" code={`import {TimePicker} from "@/components/ui/time-picker"`} />
 
 ## Props
 
-| Prop Name   | Default Values | Values     |
-| ----------- | -------------- | ---------- |
-| rounded     | sm             |            |
-| size        |                |            |
-| label       | false          | true/false |
-| disabled    | false          | true/false |
-| is24Hour    | false          |            |
-| interval    | 15             |            |
-| placeholder |                |            |
+<PropsTableWrapper>
+	<PropsTable
+		title="TimePicker"
+		data={[
+			{
+				name: "interval",
+				values: ["number"],
+				required: false,
+				description: "Time interval in minutes between selectable options",
+				defaultValue: "15",
+			},
 
-## Usage
+    		{
+    			name: "is24Hour",
+    			values: ["boolean"],
+    			required: false,
+    			description: "Whether to display time in 24-hour format or 12-hour format with AM/PM",
+    			defaultValue: "false",
+    		},
+    		{
+    			name: "minTime",
+    			values: ["string"],
+    			required: false,
+    			description: "Minimum selectable time in HH:mm format",
+    			defaultValue: "00:00",
+    		},
+    		{
+    			name: "maxTime",
+    			values: ["string"],
+    			required: false,
+    			description: "Maximum selectable time in HH:mm format",
+    			defaultValue: "23:59",
+    		},
+    		{
+    			name: "defaultValue",
+    			values: ["Time"],
+    			required: false,
+    			description: "The default selected time (uncontrolled)",
+    		},
+    		{
+    			name: "allowEmptySelection",
+    			values: ["boolean"],
+    			required: false,
+    			description: "Whether the user can deselect the time (empty selection)",
+    			defaultValue: "true",
+    		},
+    		{
+    			name: "lead",
+    			values: ["ReactNode"],
+    			required: false,
+    			description: "Icon or element to display at the start of the input",
+    		},
+    		{
+    			name: "label",
+    			values: ["string"],
+    			required: false,
+    			description: "Label text displayed above the time picker",
+    		},
+    		{
+    			name: "placeholder",
+    			values: ["string"],
+    			required: false,
+    			description: "Placeholder text shown when no time is selected",
+    		},
+    		{
+    			name: "size",
+    			values: ["28", "32", "36", "40", "44", "48"],
+    			required: false,
+    			description: "Size of the time picker input",
+    			defaultValue: "36",
+    		},
+    		{
+    			name: "rounded",
+    			values: ["xs", "sm","md","lg","xl","2xl"],
+    			required: false,
+    			description: "Border radius style of the input",
+    			defaultValue: "lg",
+    		},
+    		{
+    			name: "disabled",
+    			values: ["boolean"],
+    			required: false,
+    			description: "Disables the time picker",
+    			defaultValue: "false",
+    		},
+    	]}
+    />
 
-<Code
-	language="tsx"
-	code={`<TimePicker
-    label="Time Picker"
-    rounded="lg"
-    size={36}
-    disabled={false}
-    is24Hour={false}
-    interval={15}
-    placeholder="Select time"
-    classNames={{ base: "w-[320px] flex" }}
-/>`}
-/>
+</PropsTableWrapper>

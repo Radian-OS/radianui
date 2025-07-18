@@ -11,7 +11,7 @@ description: Organize content into navigable sections
 
 ## Imports
 
-<Code language="tsx" code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`} />
+<CodeSnippet title="/components/ui/tabs" code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`} />
 
 ## Examples
 
@@ -25,23 +25,91 @@ description: Organize content into navigable sections
 
 ## Props
 
-| Prop Name | Default Values | Values                        |
-| --------- | -------------- | ----------------------------- |
-| variant   | default        | default, open, outline, ghost |
-| size      | base           | small, base                   |
-| width     | fit            | fit, full                     |
-
-## Usage
-
-<Code
-	language="tsx"
-	code={`<Tabs>
-        <TabsList>
-            <TabsTrigger value="one">Tab One</TabsTrigger>
-            <TabsTrigger value="two">Tab Two</TabsTrigger>
-        </TabsList>
-        <TabsContent value="one">Content of tab one</TabsContent>
-        <TabsContent value="two">Content of tab two</TabsContent>
-</Tabs>
-`}
-/>
+<PropsTableWrapper>
+	<PropsTable
+		title="Tabs"
+		data={[
+			{
+				name: "variant",
+				values: ["default", "open", "outline", "ghost", "outline-ghost"],
+				required: false,
+				description: "Sets the visual style of the tabs",
+				defaultValue: "default",
+			},
+			{
+				name: "size",
+				values: ["sm", "md", "lg"],
+				required: false,
+				description: "Sets the size of the tabs",
+				defaultValue: "md",
+			},
+			{
+				name: "defaultValue",
+				values: ["string"],
+				required: false,
+				description: "The default active tab value",
+				defaultValue: "undefined",
+			},
+			{
+				name: "orientation",
+				values: ["horizontal", "vertical"],
+				required: false,
+				description: "Sets the orientation of the tabs",
+				defaultValue: "horizontal",
+			},
+		]}
+	/>
+	<PropsTable
+		title="TabsList"
+		data={[
+			{
+				name: "width",
+				values: ["fit", "full"],
+				required: false,
+				description: "Controls the width behavior of the tabs list",
+				defaultValue: "fit",
+			},
+		]}
+	/>
+	<PropsTable
+		title="TabsTrigger"
+		data={[
+			{
+				name: "value",
+				values: ["string"],
+				required: true,
+				description: "The unique value for the tab trigger",
+			},
+			{
+				name: "icon",
+				values: ["ReactNode"],
+				required: false,
+				description: "Icon to display in the tab trigger",
+			},
+			{
+				name: "counter",
+				values: ["number"],
+				required: false,
+				description: "Badge counter to display in the tab trigger",
+			},
+			{
+				name: "disabled",
+				values: ["boolean"],
+				required: false,
+				description: "Disables the tab trigger",
+				defaultValue: "false",
+			},
+		]}
+	/>
+	<PropsTable
+		title="TabsContent"
+		data={[
+			{
+				name: "value",
+				values: ["string"],
+				required: true,
+				description: "The value that matches the corresponding TabsTrigger",
+			},
+		]}
+	/>
+</PropsTableWrapper>
