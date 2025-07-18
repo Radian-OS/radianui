@@ -27,7 +27,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 				})
 			},
 			{
-				rootMargin: "-80px 0px -70% 0px",
+				rootMargin: "-80px 0px -80% 0px",
 				threshold: 0,
 			}
 		)
@@ -79,7 +79,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 
 			// Calculate position with navbar offset
 			const elementTop = element.offsetTop
-			const scrollPosition = elementTop - navbarHeight - 15
+			const scrollPosition = elementTop - navbarHeight - 10
 
 			window.scrollTo({
 				top: scrollPosition,

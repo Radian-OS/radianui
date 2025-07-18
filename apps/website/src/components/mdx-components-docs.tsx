@@ -1,6 +1,7 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
+import { Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Link from "next/link"
@@ -100,11 +101,23 @@ import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-ex
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import ToastExample from "@/registry/example/toast/toast-example"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionContentProps,
+	AccordionItem,
+	AccordionItemProps,
+	AccordionProps,
+	AccordionTrigger,
+	AccordionTriggerProps,
+} from "@/registry/ui/accordion"
+import { Alert, AlertProps } from "@/registry/ui/alert"
 import { CodeArea, CodeAreaProps } from "@/registry/ui/code-area"
 import { Divider } from "@/registry/ui/divider"
 import CodeSnippet from "./code-snippet"
 import { FrameworkDocs } from "./framework-docs"
 import { PropsData, PropsTable } from "./props-table"
+import SocialLinkCards from "./social-link-cards"
 
 type MdxProps = {
 	code: string
@@ -265,17 +278,37 @@ const components: MDXComponents = {
 			{children}
 		</p>
 	),
-
-	Divider: () => <Divider orientation={"horizontal"} spacing={"16"} />,
-
-	ul: ({ children }: { children?: React.ReactNode }) => (
-		<ul className="[&>li>strong]:text-text-secondary ml-4 mt-2 flex list-disc flex-col gap-2 [&>li>strong]:font-medium">{children}</ul>
+	strong: ({ children, className, ...props }: HTMLAttributes<HTMLBodyElement>) => (
+		<strong className={cn("text-text font-semibold", className)} {...props}>
+			{children}
+		</strong>
 	),
-	Preview: ({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-		<div className={cn("mb-5 flex min-h-[30rem] items-center justify-center rounded-lg border p-10", className)} {...props}>
-			<div className="w-full">{children}</div>
-		</div>
-	),
+	hr: () => <Divider orientation={"horizontal"} spacing={"16"} />,
+
+	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
+		return <ul className={cn("space-y-4 pb-6", className)}>{children}</ul>
+	},
+
+	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
+		return <li className={cn("text-text-secondary", className)}>{children}</li>
+	},
+
+	VersionAlert: (props: AlertProps) => {
+		return <Alert {...props} icon={<Settings className="content-start" />} />
+	},
+
+	Accordion: (props: AccordionProps) => {
+		return <Accordion {...props} size="lg" variant="open" />
+	},
+	AccordionItem: (props: AccordionItemProps) => {
+		return <AccordionItem {...props} />
+	},
+	AccordionTrigger: (props: AccordionTriggerProps) => {
+		return <AccordionTrigger {...props} />
+	},
+	AccordionContent: (props: AccordionContentProps) => {
+		return <AccordionContent {...props} />
+	},
 	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
 	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
 		<h3
@@ -290,6 +323,7 @@ const components: MDXComponents = {
 			{...props}
 		/>
 	),
+	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium underline underline-offset-4", className)} {...props} />,
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (

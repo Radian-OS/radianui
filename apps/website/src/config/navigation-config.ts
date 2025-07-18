@@ -32,7 +32,6 @@ export const navigationItems: NavigationSection[] = [
 		items: [
 			{ url: "/docs/installation/next", title: "Nextjs" },
 			{ url: "/docs/installation/vite", title: "Vite" },
-			{ url: "/docs/installation/laravel", title: "Laravel" },
 			{ url: "/docs/installation/manual", title: "Manual" },
 		],
 	},

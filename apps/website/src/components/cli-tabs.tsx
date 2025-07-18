@@ -102,7 +102,7 @@ export default function CommandLineTabs({ code, mode = "install", pkg = ["pnpm",
 			variant="outline-ghost"
 			size="md"
 			className={cn("bg-fill-level2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
-			<div className="flex justify-between pr-1">
+			<div className="flex items-center justify-between pr-1">
 				<TabsList className="bg-transparent">
 					{pkg.map((manager) => (
 						<TabsTrigger key={manager} value={manager} className={icon ? "gap-1" : ""}>

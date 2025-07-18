@@ -204,7 +204,7 @@ export default function AccordionPreview() {
 							<Settings />
 						</Button>
 					</PopoverTrigger>
-					<PopoverContent className="max-w-55 p-0">
+					<PopoverContent className="max-w-55 rounded-[10px] p-0">
 						<AnimateHeight>{renderPopoverContent()}</AnimateHeight>
 					</PopoverContent>
 				</Popover>

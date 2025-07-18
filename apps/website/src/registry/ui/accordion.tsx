@@ -27,15 +27,15 @@ type AccordionContextType = {
 	variant?: "box" | "table" | "open"
 }
 
-type AccordionProps = AccordionSingleProps | AccordionMultipleProps
+export type AccordionProps = AccordionSingleProps | AccordionMultipleProps
 
-type AccordionItemProps = React.ComponentProps<typeof AccordionPrimitive.Item> & {
+export type AccordionItemProps = React.ComponentProps<typeof AccordionPrimitive.Item> & {
 	className?: string
 }
-type AccordionTriggerProps = React.ComponentProps<typeof AccordionPrimitive.Trigger> & {
+export type AccordionTriggerProps = React.ComponentProps<typeof AccordionPrimitive.Trigger> & {
 	className?: string
 }
-type AccordionContentProps = React.ComponentProps<typeof AccordionPrimitive.Content> & {
+export type AccordionContentProps = React.ComponentProps<typeof AccordionPrimitive.Content> & {
 	className?: string
 }
 

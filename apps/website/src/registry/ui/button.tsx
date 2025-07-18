@@ -31,7 +31,7 @@ type CompactButtonProps = Omit<ButtonProps, "iconOnly" | "lead" | "trail" | "siz
 }
 
 export const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {
 			variant: {
@@ -41,7 +41,7 @@ export const buttonVariants = cva(
 				ghost: "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-xs px-1 rounded-md",
+				"28": "[&>svg]:size-4 text-xs/4 px-1 rounded-md",
 				"32": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
@@ -63,7 +63,7 @@ export const buttonVariants = cva(
 				success: "",
 				error: "",
 				warning: "",
-				neutral: "",
+				neutral: "[&>svg]:text-text-secondary",
 			},
 		},
 		defaultVariants: {
@@ -157,33 +157,32 @@ export const buttonVariants = cva(
 			{
 				variant: "outline",
 				color: "primary",
-				className: "bg-transparent font-medium outline outline-primary-stroke text-primary hover:bg-primary-accent focus-visible:ring-primary-stroke",
+				className: "bg-transparent font-medium border border-primary-stroke text-primary hover:bg-primary-accent focus-visible:ring-primary-stroke",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "bg-transparent font-medium outline outline-info-stroke text-info hover:bg-info-accent focus-visible:ring-info-stroke",
+				className: "bg-transparent font-medium border border-info-stroke text-info hover:bg-info-accent focus-visible:ring-info-stroke",
 			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "bg-transparent font-medium outline outline-success-stroke text-success hover:bg-success-accent focus-visible:ring-success-stroke",
+				className: "bg-transparent font-medium border border-success-stroke text-success hover:bg-success-accent focus-visible:ring-success-stroke",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "bg-transparent font-medium outline outline-error-stroke text-error hover:bg-error-accent focus-visible:ring-error-stroke",
+				className: "bg-transparent font-medium border border-error-stroke text-error hover:bg-error-accent focus-visible:ring-error-stroke",
 			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "bg-transparent font-medium outline outline-warning-stroke text-warning hover:bg-warning-accent focus-visible:ring-warning-stroke",
+				className: "bg-transparent font-medium border border-warning-stroke text-warning hover:bg-warning-accent focus-visible:ring-warning-stroke",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
-				className:
-					"bg-bg-level1 font-medium outline outline-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
+				className: "bg-bg-level1 font-medium border border-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
 			},
 
 			// Ghost variant + colors
