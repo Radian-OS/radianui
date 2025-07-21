@@ -1,5 +1,7 @@
 import { allDocs } from "contentlayer/generated"
+import { ExternalLinkIcon } from "lucide-react"
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Mdx } from "@/components/mdx-components-docs"
@@ -37,7 +39,6 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
 	return {
 		title: title,
 		description: description,
-		keywords: doc!.keywords ?? websiteMetadata.keywords,
 		openGraph: {
 			title: title,
 			description: description,
@@ -79,10 +80,10 @@ export default async function Page({ params }: DocPageProps) {
 			<div className="flex flex-col">
 				<h1 className="heading-4 my-2">{doc.title}</h1>
 				<p className="text-text-secondary mb-4 text-base">{doc.description}</p>
-				{(doc.apiRef || doc.source || doc.externalSiteRef) && (
+				{doc.links && (
 					<section className="flex flex-wrap items-center gap-2 pb-10">
-						{doc.source && (
-							<Link href={doc.source} target="_blank" rel="noopener noreferrer">
+						{doc.links.github && (
+							<Link href={doc.links.github.href} target="_blank" rel="noopener noreferrer">
 								<Badge size="28" variant={"neutral"} color="primary" className="shadow-2xs">
 									<svg width={16} height={16} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg " className="size-4">
 										<path
@@ -94,17 +95,21 @@ export default async function Page({ params }: DocPageProps) {
 								</Badge>
 							</Link>
 						)}
-						{doc.apiRef && (
-							<Link href={doc.apiRef} target="_blank" rel="noopener noreferrer">
+						{doc.links.externalReference && (
+							<Link href={doc.links.externalReference.href} target="_blank" rel="noopener noreferrer">
 								<Badge size="28" variant={"neutral"} color="primary" className="shadow-2xs">
-									<svg xmlns="http://www.w3.org/2000/svg" className="mr-0.75 size-4" fill="none" viewBox="0.064 0 0.272 0.4">
-										<path
-											d="M0.192 0.4a0.128 0.128 0 1 1 0 -0.256zm0 -0.4H0.064v0.128h0.128zm0.08 0.128a0.064 0.064 0 1 0 0 -0.128 0.064 0.064 0 0 0 0 0.128"
-											fill="currentcolor"
-											className="fill-text"
+									{doc.links.externalReference.icon ? (
+										<Image
+											className="size-4"
+											height={16}
+											width={16}
+											src={doc.links.externalReference.icon.startsWith("/") ? doc.links.externalReference.icon : "/" + doc.links.externalReference.icon}
+											alt={doc.links.externalReference.label}
 										/>
-									</svg>
-									Radix
+									) : (
+										<ExternalLinkIcon className="size-4" />
+									)}
+									{doc.links.externalReference.label ?? <>External Reference</>}
 								</Badge>
 							</Link>
 						)}

@@ -1,5 +1,5 @@
 import { useState } from "react"
-// import { CodeArea } from "@/registry/ui/code-area"
+import CodeSnippet from "@/components/code-snippet"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -149,7 +149,7 @@ free -h`,
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea language="tsx" code={getImplementationCode()} className="h-[420px]" theme="github-dark-default" showLineNumbers={false} copiable={true} />
+				<CodeSnippet title="code-area.tsx" code={getImplementationCode()} className="h-[420px]" showLineNumber />
 			</TabsContent>
 		</Tabs>
 	)

@@ -1,13 +1,23 @@
 ---
 title: Input OTP
 description: A group of single-character text inputs to handle one-time password verification
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <InputOtpPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add input-otp`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add input-otp",
+		npm: "npx radianos add input-otp",
+		yarn: "yarn radianos add input-otp",
+		bun: "bunx radianos add input-otp",
+	}}
+/>
 
 ## Imports
 

@@ -1,14 +1,23 @@
 ---
 title: Buttons
 description: Let users take action and make choices in a single
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <ButtonPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add button`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add button",
+		npm: "npx radianos add button",
+		yarn: "yarn radianos add button",
+		bun: "bunx radianos add button",
+	}}
+/>
 
 ## Imports
 

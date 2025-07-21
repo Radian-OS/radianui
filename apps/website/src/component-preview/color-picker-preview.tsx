@@ -1,10 +1,7 @@
 import { useState } from "react"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
+import CodeSnippet from "@/components/code-snippet"
 import ColorPicker from "@/registry/ui/color-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-// import { Label } from "@/registry/ui/label"
-// import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -113,9 +110,9 @@ export default function ColorPickerPreview() {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="color-picker.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<ColorPicker
 	rounded="${rounded}"
