@@ -108,15 +108,6 @@ export default async function Page({ params }: DocPageProps) {
 								</Badge>
 							</Link>
 						)}
-
-						{/* {doc.externalSiteRef && (
-							<Link href={doc.externalSiteRef} target="_blank" rel="noopener noreferrer">
-								<Badge size="28" variant={"neutral"} color="primary" className="shadow-2xs">
-									{doc.customLogo ? <Image className="size-4" height={16} width={16} alt="badge-img" src={doc.customLogo} /> : <ExternalLink className="stroke-text size-4" />}
-									{doc.externalSiteName ?? "External Reference"}
-								</Badge>
-							</Link>
-						)} */}
 					</section>
 				)}
 			</div>
