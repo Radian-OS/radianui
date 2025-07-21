@@ -1,14 +1,23 @@
 ---
 title: Banner
 description: Banner Description
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <BannerPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add banner`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add banner",
+		npm: "npx radianos add banner",
+		yarn: "yarn radianos add banner",
+		bun: "bunx radianos add banner",
+	}}
+/>
 
 ## Imports
 

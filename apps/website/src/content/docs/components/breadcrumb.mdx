@@ -1,14 +1,23 @@
 ---
 title: Breadcrumb
 description: Show navigation hierarchy for current page
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <BreadCrumbPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add breadcrumb`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add breadcrumb",
+		npm: "npx radianos add breadcrumb",
+		yarn: "yarn radianos add breadcrumb",
+		bun: "bunx radianos add breadcrumb",
+	}}
+/>
 
 ## Imports
 

@@ -1,17 +1,26 @@
 ---
 title: Date Picker
 description: UI for selecting a date
-source: https://github.com/Radian-os
-externalSiteRef: https://daypicker.dev/
-customLogo: /react-day-picker.webp
-externalSiteName: React DayPicker
+links:
+  github:
+    href: https://github.com/Radian-os
+  externalReference:
+    label: React DayPicker
+    href: https://daypicker.dev/
 ---
 
 <DatePickerPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add date-picker`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add date-picker",
+		npm: "npx radianos add date-picker",
+		yarn: "yarn radianos add date-picker",
+		bun: "bunx radianos add date-picker",
+	}}
+/>
 
 ## Imports
 

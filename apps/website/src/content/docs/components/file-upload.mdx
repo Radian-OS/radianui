@@ -1,14 +1,23 @@
 ---
 title: File Upload
 description: Allow users to upload files
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <FileUploadPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add file-upload`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add file-upload",
+		npm: "npx radianos add file-upload",
+		yarn: "yarn radianos add file-upload",
+		bun: "bunx radianos add file-upload",
+	}}
+/>
 
 ## Imports
 

@@ -1,15 +1,26 @@
 ---
 title: Phone Number
 description: Display phone number input with validation and formatting
-source: https://github.com/Radian-os
-externalSiteRef: https://catamphetamine.gitlab.io/react-phone-number-input
+links:
+  github:
+    href: https://github.com/Radian-os
+  externalReference:
+    label: React Phone Number Input
+    href: https://catamphetamine.gitlab.io/react-phone-number-input
 ---
 
 <PhoneNumberPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add phone-number`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add phone-number",
+		npm: "npx radianos add phone-number",
+		yarn: "yarn radianos add phone-number",
+		bun: "bunx radianos add phone-number",
+	}}
+/>
 
 ## Imports
 

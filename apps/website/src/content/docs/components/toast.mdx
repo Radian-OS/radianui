@@ -1,14 +1,23 @@
 ---
 title: Toast
 description: Display non-intrusive notifications or alerts
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <ToastPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add toast`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add toast",
+		npm: "npx radianos add toast",
+		yarn: "yarn radianos add toast",
+		bun: "bunx radianos add toast",
+	}}
+/>
 
 ## Imports
 

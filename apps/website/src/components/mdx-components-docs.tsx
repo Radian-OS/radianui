@@ -116,6 +116,7 @@ import { CodeArea, CodeAreaProps } from "@/registry/ui/code-area"
 import { Divider } from "@/registry/ui/divider"
 import CodeSnippet from "./code-snippet"
 import { FrameworkDocs } from "./framework-docs"
+import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
 import SocialLinkCards from "./social-link-cards"
 
@@ -243,6 +244,11 @@ const components: MDXComponents = {
 			</div>
 		)
 	},
+	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
+		<div className="pb-6">
+			<PackageManagerTabs commands={commands} className={className} withIcon={withIcon} />
+		</div>
+	),
 	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
 		<div className="pb-6">
 			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />

@@ -1,14 +1,23 @@
 ---
 title: Badge
 description: Highlight statuses or counts with compact labels
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <BadgePreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add badge`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add badge",
+		npm: "npx radianos add badge",
+		yarn: "yarn radianos add badge",
+		bun: "bunx radianos add badge",
+	}}
+/>
 
 ## Imports
 

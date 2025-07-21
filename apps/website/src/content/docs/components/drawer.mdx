@@ -1,15 +1,26 @@
 ---
 title: Drawer
 description: Slide-in panel for additional content or navigation
-source: https://github.com/Radian-os
-externalSiteRef: https://vaul.emilkowal.ski/
+links:
+  github:
+    href: https://github.com/Radian-os
+  externalReference:
+    label: Vaul
+    href: https://vaul.emilkowal.ski/
 ---
 
 <DrawerPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add drawer`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add drawer",
+		npm: "npx radianos add drawer",
+		yarn: "yarn radianos add drawer",
+		bun: "bunx radianos add drawer",
+	}}
+/>
 
 ## Imports
 
