@@ -24,6 +24,55 @@ links:
 
 ## Imports
 
-<CodeSnippet title="/components/ui/tooltip" code={`import {Tooltip} from "@/components/ui/tooltip"`} />
+<CodeSnippet title="/components/ui/tooltip" code={`import {Tooltip,TooltipContent,TooltipTrigger} from "@/components/ui/tooltip"`} />
 
 ## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Tooltip"
+		data={[
+			{
+				name: "side",
+				defaultValue: "top",
+				values: ["top", "left", "right", "bottom"],
+				description: "Position relative to the container",
+			},
+			{
+				name: "align",
+				defaultValue: "center",
+				values: ["center", "start", "end"],
+				description: "Alignment to the container",
+			},
+			{
+				name: "withArrow",
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "Toggles to show arrow or not",
+			},
+		]}
+	/>
+	<PropsTable
+		title="TooltipTrigger"
+		data={[
+			{
+				name: "asChild",
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "Implements asChild functionality",
+			},
+		]}
+	/>
+	<PropsTable
+		title="TooltipContent"
+		data={[
+			{
+				name: "-",
+				defaultValue: "-",
+				values: ["-"],
+				description: "No props used as Wrapper",
+			},
+		]}
+		externalReference="https://www.npmjs.com/package/@radix-ui/react-tooltip"
+	/>
+</PropsTableWrapper>

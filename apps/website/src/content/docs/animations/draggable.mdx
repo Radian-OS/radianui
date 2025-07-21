@@ -21,7 +21,7 @@ links:
 
 ## Imports
 
-<Code language="tsx" code={`import { Draggable } from "@/components/animated/make-draggable"`} showLineNumbers />
+<CodeSnippet code={`import { Draggable } from "@/components/animated/make-draggable"`} />
 
 ## Examples
 
@@ -31,11 +31,46 @@ links:
 
 ## Props
 
-| Prop Name       | Default Value | Possible Values |
-| --------------- | ------------- | --------------- |
-| drag            |               |                 |
-| dragConstraints |               |                 |
-| onDragEnd       |               |                 |
-| onDragStart     |               |                 |
-| dragElastic     |               |                 |
-| dragMomentum    |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="Draggable"
+		data={[
+			{
+				name: "drag",
+				defaultValue: "true",
+				values: ["boolean"],
+				description: "Toggles to init drag or not",
+			},
+			{
+				name: "dragConstraints",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "onDragEnd",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "onDragStart",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "dragElastic",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "dragMomentum",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+		]}
+	/>
+</PropsTableWrapper>
