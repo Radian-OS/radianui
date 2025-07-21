@@ -1,15 +1,23 @@
 ---
 title: Border Beam
 description: Light a beam of light on your container's border
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <BorderBeamPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add border-beam`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add border-beam",
+		npm: "npx radianos add border-beam",
+		yarn: "yarn radianos add border-beam",
+		bun: "bunx radianos add border-beam",
+	}}
+/>
 
 ## Imports
 

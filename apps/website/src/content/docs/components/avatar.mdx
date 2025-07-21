@@ -1,15 +1,23 @@
 ---
 title: Avatar
 description: Display user profile pictures or icons
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <AvatarPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add avatar`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add avatar",
+		npm: "npx radianos add avatar",
+		yarn: "yarn radianos add avatar",
+		bun: "bunx radianos add avatar",
+	}}
+/>
 
 ## Imports
 

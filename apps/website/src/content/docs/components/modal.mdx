@@ -1,15 +1,26 @@
 ---
 title: Modal
 description: Focus user attention with overlaid interactive dialogs
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
+  externalReference:
+    label: Radix
+    href: https://www.radix-ui.com/primitives/docs/components/dialog
 ---
 
 <ModalPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add modal`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add modal",
+		npm: "npx radianos add modal",
+		yarn: "yarn radianos add modal",
+		bun: "bunx radianos add modal",
+	}}
+/>
 
 ## Imports
 

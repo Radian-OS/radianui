@@ -3,10 +3,9 @@
 import { useState } from "react"
 import { EyeIcon, Settings, Sparkles, SquareTerminal } from "lucide-react"
 import Link from "next/link"
+import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -83,9 +82,9 @@ const BannerPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="banner.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Banner 
 variant="${variant}"

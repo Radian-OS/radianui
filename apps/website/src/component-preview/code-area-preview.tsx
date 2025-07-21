@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -157,7 +158,7 @@ free -h`,
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea language="tsx" code={getImplementationCode()} className="h-[420px]" theme="github-dark-default" showLineNumbers={false} copiable={true} />
+				<CodeSnippet title="code-area.tsx" code={getImplementationCode()} className="h-[420px]" showLineNumber />
 			</TabsContent>
 		</Tabs>
 	)

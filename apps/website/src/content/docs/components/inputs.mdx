@@ -1,14 +1,23 @@
 ---
 title: Inputs
 description: Capture text or data with customizable inputs
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os
 ---
 
 <InputPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add input`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx radianos add input",
+		npm: "npx radianos add input",
+		yarn: "yarn radianos add input",
+		bun: "bunx radianos add input",
+	}}
+/>
 
 ## Imports
 
