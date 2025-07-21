@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { ArrowRight, Mail } from "lucide-react"
+import { ArrowRight, EyeIcon, Mail, Settings, SquareTerminal } from "lucide-react"
+import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
@@ -27,54 +28,60 @@ const EmailPreview = () => {
 	const iconClass = sizeHeightMapping[size] ?? ""
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10 mt-2">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent>
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
-										{sizes.map((size) => (
-											<DropdownItem value={size} key={size}>
-												{size}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Example</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(trailIcon)]}
-										onSelectedChange={(values) => setTrailIcon(values[0] as iconOptions)}
-										minSelectionCount={1}>
-										<DropdownItem value="Default">Default</DropdownItem>
-										<DropdownItem value="Mail">Mail</DropdownItem>
-										<DropdownItem value="Arrow">Arrow</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>HasError</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent>
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+									{sizes.map((size) => (
+										<DropdownItem value={size} key={size}>
+											{size}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Example</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									selectedValues={[String(trailIcon)]}
+									onSelectedChange={(values) => setTrailIcon(values[0] as iconOptions)}
+									minSelectionCount={1}>
+									<DropdownItem value="Default">Default</DropdownItem>
+									<DropdownItem value="Mail">Mail</DropdownItem>
+									<DropdownItem value="Arrow">Arrow</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>HasError</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">

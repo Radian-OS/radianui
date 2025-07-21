@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
 
 type ButtonProps = VariantProps<typeof buttonVariants> &
-	React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	React.ComponentProps<"button"> & {
 		className?: string
 		children: React.ReactNode
 		iconOnly?: boolean
@@ -63,7 +63,7 @@ export const buttonVariants = cva(
 				success: "",
 				error: "",
 				warning: "",
-				neutral: "[&>svg]:text-text-secondary",
+				neutral: "",
 			},
 		},
 		defaultVariants: {
@@ -89,7 +89,6 @@ export const buttonVariants = cva(
 			{ iconOnly: true, size: "44", className: "px-2.5 h-11 gap-2" },
 			{ iconOnly: true, size: "48", className: "px-3 h-12 gap-2" },
 
-			// Strong variant + colors
 			{
 				variant: "strong",
 				color: "primary",
@@ -182,7 +181,8 @@ export const buttonVariants = cva(
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "bg-bg-level1 font-medium border border-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
+				className:
+					"bg-bg-level1 font-medium text-text-secondary border border-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
 			},
 
 			// Ghost variant + colors
@@ -334,7 +334,16 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 					!cls.includes("px-") &&
 					!cls.includes("gap-") &&
 					!cls.includes("[&>svg]") &&
-					!cls.includes("text-")
+					!(
+						cls.includes("text-") &&
+						!cls.includes("text-text-") &&
+						!cls.includes("text-primary") &&
+						!cls.includes("text-info") &&
+						!cls.includes("text-success") &&
+						!cls.includes("text-error") &&
+						!cls.includes("text-warning") &&
+						!cls.includes("text-static-")
+					)
 			)
 			.join(" "),
 		disabled && "opacity-50",

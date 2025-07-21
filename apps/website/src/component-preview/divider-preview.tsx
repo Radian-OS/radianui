@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Divider } from "@/registry/ui/divider"
@@ -10,53 +12,56 @@ const DividerPreview = () => {
 	const [spacing, setSpacing] = useState<"0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40">("4")
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Orientation</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setOrientation(Array.from(keys)[0] as "vertical" | "horizontal")}
-										selectedValues={[orientation]}>
-										<DropdownItem value="vertical">vertical</DropdownItem>
-										<DropdownItem value="horizontal">horizontal</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Spacing</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setSpacing(Array.from(keys)[0] as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}
-										minSelectionCount={1}
-										selectedValues={[spacing]}>
-										<DropdownItem value="0">0</DropdownItem>
-										<DropdownItem value="2">2</DropdownItem>
-										<DropdownItem value="4">4</DropdownItem>
-										<DropdownItem value="6">6</DropdownItem>
-										<DropdownItem value="8">8</DropdownItem>
-										<DropdownItem value="12">12</DropdownItem>
-										<DropdownItem value="16">16</DropdownItem>
-										<DropdownItem value="24">24</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>Orientation</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setOrientation(Array.from(keys)[0] as "vertical" | "horizontal")} selectedValues={[orientation]}>
+									<DropdownItem value="vertical">vertical</DropdownItem>
+									<DropdownItem value="horizontal">horizontal</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Spacing</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => setSpacing(Array.from(keys)[0] as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}
+									minSelectionCount={1}
+									selectedValues={[spacing]}>
+									<DropdownItem value="0">0</DropdownItem>
+									<DropdownItem value="2">2</DropdownItem>
+									<DropdownItem value="4">4</DropdownItem>
+									<DropdownItem value="6">6</DropdownItem>
+									<DropdownItem value="8">8</DropdownItem>
+									<DropdownItem value="12">12</DropdownItem>
+									<DropdownItem value="16">16</DropdownItem>
+									<DropdownItem value="24">24</DropdownItem>
+									<DropdownItem value="32">32</DropdownItem>
+									<DropdownItem value="40">40</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className={`flex ${orientation === "horizontal" ? "flex-col" : ""} h-[420px] items-center justify-center overflow-auto rounded-xl border px-10`}>

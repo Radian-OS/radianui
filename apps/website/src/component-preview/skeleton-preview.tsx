@@ -1,4 +1,5 @@
 import React from "react"
+import { EyeIcon, SquareTerminal } from "lucide-react"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Skeleton } from "@/registry/ui/skeleton"
@@ -6,11 +7,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 function SkeletonPreview() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" className="mb-10" variant="outline-ghost">
 			<div className="flex items-center justify-between">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 

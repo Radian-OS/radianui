@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Check, Heart, Star, X } from "lucide-react"
+import { Check, EyeIcon, Heart, Settings, SquareTerminal, Star, X } from "lucide-react"
+import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -25,53 +26,59 @@ export default function CheckboxPreview() {
 	}
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-										<DropdownItem value="sm">sm</DropdownItem>
-										<DropdownItem value="md">md</DropdownItem>
-										<DropdownItem value="lg">lg</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setDisabled(Array.from(keys)[0] === "true")}
-										minSelectionCount={1}
-										selectedValues={[disabled.toString()]}>
-										<DropdownItem value="false">false</DropdownItem>
-										<DropdownItem value="true">true</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Icon</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setIconType(Array.from(keys)[0] as IconType)} minSelectionCount={1} selectedValues={[iconType]}>
-										<DropdownItem value="check">Check</DropdownItem>
-										<DropdownItem value="x">X</DropdownItem>
-										<DropdownItem value="heart">Heart</DropdownItem>
-										<DropdownItem value="star">Star</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
+									<DropdownItem value="sm">sm</DropdownItem>
+									<DropdownItem value="md">md</DropdownItem>
+									<DropdownItem value="lg">lg</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => setDisabled(Array.from(keys)[0] === "true")}
+									minSelectionCount={1}
+									selectedValues={[disabled.toString()]}>
+									<DropdownItem value="false">false</DropdownItem>
+									<DropdownItem value="true">true</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Icon</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setIconType(Array.from(keys)[0] as IconType)} minSelectionCount={1} selectedValues={[iconType]}>
+									<DropdownItem value="check">Check</DropdownItem>
+									<DropdownItem value="x">X</DropdownItem>
+									<DropdownItem value="heart">Heart</DropdownItem>
+									<DropdownItem value="star">Star</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">

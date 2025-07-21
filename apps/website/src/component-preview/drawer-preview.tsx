@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -34,71 +35,77 @@ const DrawerPreview = () => {
 </Drawer>`
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as "float" | "default" | "rounded" | undefined)}
-										selectedValues={variant ? [variant] : []}>
-										<DropdownItem value="float">float</DropdownItem>
-										<DropdownItem value="default">default</DropdownItem>
-										<DropdownItem value="rounded">rounded</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Position</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as "right" | "bottom" | "left" | "top" | undefined)}
-										selectedValues={position ? [position] : []}>
-										<DropdownItem value="right">right</DropdownItem>
-										<DropdownItem value="bottom">bottom</DropdownItem>
-										<DropdownItem value="left">left</DropdownItem>
-										<DropdownItem value="top">top</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Handle</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setHandle(Array.from(keys)[0] as "true" | "false")} selectedValues={handle ? [handle] : []}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setBackdrop(Array.from(keys)[0] as "blur" | "overlay" | null | undefined)}
-										selectedValues={backdrop ? [backdrop] : []}>
-										<DropdownItem value="blur">blur</DropdownItem>
-										<DropdownItem value="overlay">overlay</DropdownItem>
-										<DropdownItem value="none">none</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>Variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as "float" | "default" | "rounded" | undefined)}
+									selectedValues={variant ? [variant] : []}>
+									<DropdownItem value="float">float</DropdownItem>
+									<DropdownItem value="default">default</DropdownItem>
+									<DropdownItem value="rounded">rounded</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Position</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as "right" | "bottom" | "left" | "top" | undefined)}
+									selectedValues={position ? [position] : []}>
+									<DropdownItem value="right">right</DropdownItem>
+									<DropdownItem value="bottom">bottom</DropdownItem>
+									<DropdownItem value="left">left</DropdownItem>
+									<DropdownItem value="top">top</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Handle</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setHandle(Array.from(keys)[0] as "true" | "false")} selectedValues={handle ? [handle] : []}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => setBackdrop(Array.from(keys)[0] as "blur" | "overlay" | null | undefined)}
+									selectedValues={backdrop ? [backdrop] : []}>
+									<DropdownItem value="blur">blur</DropdownItem>
+									<DropdownItem value="overlay">overlay</DropdownItem>
+									<DropdownItem value="none">none</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center rounded-xl border px-10">

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -13,7 +14,7 @@ const SvgButtonPreview = () => {
 	let getCodeToDisplay = ``
 	if (social === "appstore" && variant === "outline") {
 		getCodeToDisplay = `<Button disabled={${disabled === "true"}} className="[&>svg]:size-24" variant="outline" color="neutral" >
-								<svg width="93" height="24" viewBox="0 0 93 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<svg className="text-text"  width="93" height="24" viewBox="0 0 93 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M15.2338 11.4865C15.2447 10.6586 15.4699 9.84681 15.8886 9.12672C16.3072 8.40664 16.9056 7.80163 17.628 7.36799C17.1691 6.72804 16.5636 6.20139 15.8597 5.82987C15.1558 5.45835 14.3728 5.25218 13.573 5.22775C11.8669 5.05291 10.2129 6.22446 9.34349 6.22446C8.45726 6.22446 7.11869 5.24511 5.67725 5.27406C4.74489 5.30347 3.83624 5.56817 3.03982 6.04236C2.2434 6.51656 1.58638 7.18408 1.13277 7.97988C-0.832126 11.3012 0.633512 16.1825 2.51575 18.8673C3.45748 20.1819 4.55808 21.6504 5.99822 21.5983C7.40747 21.5413 7.9338 20.721 9.63488 20.721C11.3202 20.721 11.814 21.5983 13.2833 21.5652C14.7955 21.5413 15.7483 20.2447 16.657 18.9176C17.3336 17.9809 17.8543 16.9456 18.1997 15.8501C17.3212 15.4874 16.5714 14.8801 16.044 14.1041C15.5166 13.3282 15.2348 12.4178 15.2338 11.4865Z" fill="currentColor"/>
 <path d="M12.4586 3.46217C13.2832 2.49584 13.6894 1.25378 13.591 -0.000244141C12.3313 0.128923 11.1678 0.716692 10.3321 1.64595C9.92353 2.09992 9.61061 2.62805 9.41122 3.20016C9.21184 3.77227 9.1299 4.37714 9.1701 4.98018C9.80016 4.98651 10.4235 4.85318 10.9931 4.59024C11.5627 4.32729 12.0638 3.94159 12.4586 3.46217Z" fill="currentColor"/>
 <path d="M86.5793 6.12109C85.4402 6.12109 84.7322 5.42104 84.7322 4.24243V3.67686C84.7322 2.49033 85.5074 1.79819 86.5278 1.79819C87.5759 1.79819 88.3155 2.52593 88.3155 3.67686V4.16728H85.6023V4.37295C85.6023 4.97412 85.9583 5.41709 86.5753 5.41709C87.0341 5.41709 87.3505 5.19956 87.4098 4.93853H88.2681C88.2167 5.42104 87.7064 6.12109 86.5793 6.12109ZM85.6023 3.5938H87.4573V3.53843C87.4573 2.90957 87.0895 2.49033 86.5318 2.49033C85.9741 2.49033 85.6023 2.90957 85.6023 3.53843V3.5938Z" fill="currentColor"/>
@@ -89,7 +90,7 @@ const SvgButtonPreview = () => {
 	}
 	if (social === "playstore" && variant === "outline") {
 		getCodeToDisplay = `<Button disabled={${disabled === "true"}} className="[&>svg]:size-24" color="neutral" variant="outline" >
-	<svg width="93" height="28" viewBox="0 0 93 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	<svg className="text-text" width="93" height="28" viewBox="0 0 93 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 <path d="M9.02421 13.5158L0.280518 23.0056C0.281339 23.0073 0.281339 23.0098 0.28216 23.0115C0.550704 24.0419 1.47049 24.8003 2.56273 24.8003C2.99963 24.8003 3.40943 24.6794 3.76091 24.4677L3.78884 24.4509L13.6305 18.6437L9.02421 13.5158Z" fill="#EA4335"/>
 <path d="M17.8697 11.8998L17.8615 11.8939L13.6124 9.3753L8.82544 13.7314L13.6297 18.6426L17.8557 16.1492C18.5965 15.7394 19.0999 14.9407 19.0999 14.0203C19.0999 13.1049 18.6039 12.3104 17.8697 11.8998Z" fill="#FBBC04"/>
 <path d="M0.280188 4.99402C0.227629 5.19222 0.199707 5.40049 0.199707 5.61548V22.3848C0.199707 22.5997 0.227629 22.808 0.281009 23.0054L9.32445 13.7583L0.280188 4.99402Z" fill="#4285F4"/>
@@ -110,7 +111,7 @@ const SvgButtonPreview = () => {
 		if (social === "appstore" && variant === "outline") {
 			return (
 				<Button disabled={disabled === "true"} className="[&>svg]:size-24" variant="outline" color="neutral">
-					<svg width="93" height="24" viewBox="0 0 93 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="text-text" width="93" height="24" viewBox="0 0 93 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M15.2338 11.4865C15.2447 10.6586 15.4699 9.84681 15.8886 9.12672C16.3072 8.40664 16.9056 7.80163 17.628 7.36799C17.1691 6.72804 16.5636 6.20139 15.8597 5.82987C15.1558 5.45835 14.3728 5.25218 13.573 5.22775C11.8669 5.05291 10.2129 6.22446 9.34349 6.22446C8.45726 6.22446 7.11869 5.24511 5.67725 5.27406C4.74489 5.30347 3.83624 5.56817 3.03982 6.04236C2.2434 6.51656 1.58638 7.18408 1.13277 7.97988C-0.832126 11.3012 0.633512 16.1825 2.51575 18.8673C3.45748 20.1819 4.55808 21.6504 5.99822 21.5983C7.40747 21.5413 7.9338 20.721 9.63488 20.721C11.3202 20.721 11.814 21.5983 13.2833 21.5652C14.7955 21.5413 15.7483 20.2447 16.657 18.9176C17.3336 17.9809 17.8543 16.9456 18.1997 15.8501C17.3212 15.4874 16.5714 14.8801 16.044 14.1041C15.5166 13.3282 15.2348 12.4178 15.2338 11.4865Z"
 							fill="currentColor"
@@ -348,7 +349,7 @@ const SvgButtonPreview = () => {
 		if (social === "playstore" && variant === "outline") {
 			return (
 				<Button disabled={disabled === "true"} className="[&>svg]:size-24" color="neutral" variant="outline">
-					<svg width="93" height="28" viewBox="0 0 93 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<svg className="text-text" width="93" height="28" viewBox="0 0 93 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M9.02421 13.5158L0.280518 23.0056C0.281339 23.0073 0.281339 23.0098 0.28216 23.0115C0.550704 24.0419 1.47049 24.8003 2.56273 24.8003C2.99963 24.8003 3.40943 24.6794 3.76091 24.4677L3.78884 24.4509L13.6305 18.6437L9.02421 13.5158Z"
 							fill="#EA4335"
@@ -392,66 +393,72 @@ const SvgButtonPreview = () => {
 	}
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setDisabled(Array.from(keys)[0] as "true" | "false")
-										}}
-										minSelectionCount={1}
-										selectedValues={[disabled]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Social</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSocial(Array.from(keys)[0] as "appstore" | "playstore")
-										}}
-										minSelectionCount={1}
-										selectedValues={[social]}>
-										<DropdownItem value="appstore">Appstore</DropdownItem>
-										<DropdownItem value="playstore">Playstore</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as "outline" | "strong")
-										}}
-										minSelectionCount={1}
-										selectedValues={[variant]}>
-										<DropdownItem value="outline">Outline</DropdownItem>
-										<DropdownItem value="strong">Strong</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setDisabled(Array.from(keys)[0] as "true" | "false")
+									}}
+									minSelectionCount={1}
+									selectedValues={[disabled]}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Social</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setSocial(Array.from(keys)[0] as "appstore" | "playstore")
+									}}
+									minSelectionCount={1}
+									selectedValues={[social]}>
+									<DropdownItem value="appstore">Appstore</DropdownItem>
+									<DropdownItem value="playstore">Playstore</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setVariant(Array.from(keys)[0] as "outline" | "strong")
+									}}
+									minSelectionCount={1}
+									selectedValues={[variant]}>
+									<DropdownItem value="outline">Outline</DropdownItem>
+									<DropdownItem value="strong">Strong</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-2 overflow-auto rounded-xl border">{getButtonToDisplay()}</div>

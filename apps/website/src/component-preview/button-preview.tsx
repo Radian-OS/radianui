@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Box, CirclePlus } from "lucide-react"
+import { Box, CirclePlus, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -42,172 +42,178 @@ const ButtonPreview = () => {
 	const iconClass = getLeadTrialClass()
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as variants)
-										}}
-										minSelectionCount={1}
-										selectedValues={[variant]}>
-										<DropdownItem value="strong">strong</DropdownItem>
-										<DropdownItem value="soft">soft</DropdownItem>
-										<DropdownItem value="outline">outline</DropdownItem>
-										<DropdownItem value="ghost">ghost</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSize(Array.from(keys)[0] as sizes)
-										}}
-										minSelectionCount={1}
-										selectedValues={[size]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Color</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setColor(Array.from(keys)[0] as colors)
-										}}
-										minSelectionCount={1}
-										selectedValues={[color]}>
-										<DropdownItem value="primary">primary</DropdownItem>
-										<DropdownItem value="info">info</DropdownItem>
-										<DropdownItem value="success">success</DropdownItem>
-										<DropdownItem value="error">error</DropdownItem>
-										<DropdownItem value="warning">warning</DropdownItem>
-										<DropdownItem value="neutral">neutral</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Lead Icon</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[lead]}
-										onSelectedChange={(keys) => {
-											setLead(Array.from(keys)[0] as leadTrailType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Trail Icon</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[trail]}
-										onSelectedChange={(keys) => {
-											setTrail(Array.from(keys)[0] as leadTrailType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Icon Only</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[iconOnly]}
-										onSelectedChange={(keys) => {
-											setIsIcon(Array.from(keys)[0] as iconOnlyType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Lead Icon</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[lead]}
-										onSelectedChange={(keys) => {
-											setLead(Array.from(keys)[0] as leadTrailType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[disabled]}
-										onSelectedChange={(keys) => {
-											setDisabled(Array.from(keys)[0] as disabledType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Loading</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[loading]}
-										onSelectedChange={(keys) => {
-											setLoading(Array.from(keys)[0] as isloadingType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>Variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setVariant(Array.from(keys)[0] as variants)
+									}}
+									minSelectionCount={1}
+									selectedValues={[variant]}>
+									<DropdownItem value="strong">strong</DropdownItem>
+									<DropdownItem value="soft">soft</DropdownItem>
+									<DropdownItem value="outline">outline</DropdownItem>
+									<DropdownItem value="ghost">ghost</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setSize(Array.from(keys)[0] as sizes)
+									}}
+									minSelectionCount={1}
+									selectedValues={[size]}>
+									<DropdownItem value="28">28</DropdownItem>
+									<DropdownItem value="32">32</DropdownItem>
+									<DropdownItem value="36">36</DropdownItem>
+									<DropdownItem value="40">40</DropdownItem>
+									<DropdownItem value="44">44</DropdownItem>
+									<DropdownItem value="48">48</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Color</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setColor(Array.from(keys)[0] as colors)
+									}}
+									minSelectionCount={1}
+									selectedValues={[color]}>
+									<DropdownItem value="primary">primary</DropdownItem>
+									<DropdownItem value="info">info</DropdownItem>
+									<DropdownItem value="success">success</DropdownItem>
+									<DropdownItem value="error">error</DropdownItem>
+									<DropdownItem value="warning">warning</DropdownItem>
+									<DropdownItem value="neutral">neutral</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Lead Icon</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[lead]}
+									onSelectedChange={(keys) => {
+										setLead(Array.from(keys)[0] as leadTrailType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Trail Icon</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[trail]}
+									onSelectedChange={(keys) => {
+										setTrail(Array.from(keys)[0] as leadTrailType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Icon Only</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[iconOnly]}
+									onSelectedChange={(keys) => {
+										setIsIcon(Array.from(keys)[0] as iconOnlyType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Lead Icon</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[lead]}
+									onSelectedChange={(keys) => {
+										setLead(Array.from(keys)[0] as leadTrailType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[disabled]}
+									onSelectedChange={(keys) => {
+										setDisabled(Array.from(keys)[0] as disabledType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Loading</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[loading]}
+									onSelectedChange={(keys) => {
+										setLoading(Array.from(keys)[0] as isloadingType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">

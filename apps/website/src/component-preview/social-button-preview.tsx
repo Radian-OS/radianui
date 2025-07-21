@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -178,7 +179,7 @@ Continue with Facebook
 		if (socials === "apple" && variant === "outline") {
 			return (
 				<Button color="neutral" disabled={disabled === "true" ? true : false} size={size} variant="outline">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="text-text" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M19.8892 8.74791C19.1582 9.13547 18.5573 9.72959 18.1615 10.4562C17.7657 11.1829 17.5925 12.0099 17.6635 12.8343C17.7186 13.6647 18.0047 14.4631 18.4896 15.1394C18.9744 15.8157 19.6387 16.343 20.4074 16.6617C20.4115 16.693 20.4115 16.7246 20.4074 16.7559C19.8807 18.2791 19.047 19.6779 17.9579 20.8659C17.5333 21.3892 16.9508 21.761 16.2974 21.9258C15.8124 22.0108 15.3138 21.9702 14.8489 21.808C14.3543 21.6549 13.8715 21.4547 13.3651 21.3134C12.4758 21.1021 11.542 21.1848 10.7036 21.5489C10.2753 21.7055 9.83891 21.8391 9.39639 21.9493C9.12913 22.0108 8.85203 22.0164 8.5825 21.9657C8.31297 21.9151 8.05682 21.8093 7.83012 21.6549C7.29238 21.3068 6.81504 20.8732 6.41695 20.3713C5.00268 18.6502 4.07912 16.5793 3.74369 14.3771C3.4376 12.8871 3.5895 11.3394 4.17942 9.93733C4.49758 9.15653 5.00567 8.46752 5.65758 7.93283C6.30949 7.39814 7.08459 7.03469 7.91256 6.87545C8.67323 6.73068 9.45897 6.79582 10.1854 7.06388L11.7399 7.59382C12.0127 7.6991 12.315 7.6991 12.5878 7.59382C13.2464 7.34038 13.9187 7.12413 14.6016 6.94611C15.5156 6.68219 16.487 6.69213 17.3955 6.97471C18.3039 7.25729 19.1095 7.8001 19.7126 8.53594L19.8892 8.74791Z"
 							fill="currentColor"
@@ -238,7 +239,7 @@ Continue with Facebook
 		if (socials === "X" && variant === "outline") {
 			return (
 				<Button color="neutral" disabled={disabled === "true" ? true : false} size={size} variant="outline">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="text-text" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M17.7512 3H20.818L14.1179 10.6246L22 21H15.8284L10.9946 14.7074L5.46359 21H2.39494L9.5613 12.8446L2 3H8.32828L12.6976 8.75169L17.7512 3ZM16.6748 19.1723H18.3742L7.4049 4.73169H5.58133L16.6748 19.1723Z"
 							fill="currentColor"
@@ -265,7 +266,7 @@ Continue with Facebook
 		if (socials === "github" && variant === "outline") {
 			return (
 				<Button color="neutral" disabled={disabled === "true" ? true : false} size={size} variant="outline">
-					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="text-text" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M11.9633 2.38196C0.554219 2.62051 -1.82095 17.9295 8.85177 21.6012C9.34962 21.6945 9.53632 21.3833 9.53632 21.124C9.53632 20.8647 9.53632 20.2735 9.53632 19.4438C6.74627 20.0454 6.15506 18.1266 6.15506 18.1266C5.96795 17.5265 5.57009 17.0144 5.0349 16.6849C4.13255 16.0729 5.1075 16.0833 5.1075 16.0833C5.42624 16.1254 5.73084 16.241 5.99724 16.421C6.26364 16.601 6.48455 16.8405 6.64254 17.1205C6.92549 17.6131 7.39049 17.9749 7.93748 18.1281C8.48448 18.2814 9.06977 18.2138 9.56744 17.9399C9.61868 17.4406 9.84242 16.9747 10.2001 16.6226C7.97016 16.3737 5.63646 15.5232 5.63646 11.7478C5.62244 10.7644 5.99486 9.81471 6.67366 9.10297C6.35965 8.24547 6.39693 7.29866 6.77738 6.4685C6.77738 6.4685 7.61751 6.2092 9.53632 7.50569C11.1799 7.05965 12.9127 7.05965 14.5563 7.50569C16.4648 6.22995 17.3049 6.4685 17.3049 6.4685C17.6699 7.29557 17.7033 8.23123 17.3982 9.08223C18.077 9.79397 18.4495 10.7436 18.4354 11.7271C18.4354 15.5128 16.0914 16.353 13.8614 16.5915C14.8986 17.1412 14.463 20.6781 14.5252 21.1137C14.5252 21.373 14.7015 21.6841 15.2201 21.5908C25.8617 17.9502 23.3725 2.62051 11.9633 2.38196Z"
 							fill="currentColor"
@@ -292,92 +293,98 @@ Continue with Facebook
 	}
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10 mt-2">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							{/* Size Selector */}
-							<DropdownSub>
-								<DropdownSubTrigger>size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSize(Array.from(keys)[0] as sizes)
-										}}
-										minSelectionCount={1}
-										selectedValues={[size]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							{/* Disabled Selector */}
-							<DropdownSub>
-								<DropdownSubTrigger>disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[disabled]}
-										onSelectedChange={(keys) => {
-											setDisabled(Array.from(keys)[0] as disabledType)
-										}}>
-										<DropdownItem value="true">true</DropdownItem>
-										<DropdownItem value="false">false</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							{/* Social Selector */}
-							<DropdownSub>
-								<DropdownSubTrigger>social</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[socials]}
-										onSelectedChange={(keys) => {
-											setSocials(Array.from(keys)[0] as socials)
-										}}>
-										<DropdownItem value="google">Google</DropdownItem>
-										<DropdownItem value="apple">Apple</DropdownItem>
-										<DropdownItem value="facebook">Facebook</DropdownItem>
-										<DropdownItem value="X">X</DropdownItem>
-										<DropdownItem value="github">GitHub</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[variant]}
-										onSelectedChange={(keys) => {
-											setVariant(Array.from(keys)[0] as variant)
-										}}>
-										<DropdownItem value="outline">Outline</DropdownItem>
-										<DropdownItem value="strong">Strong</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						{/* Size Selector */}
+						<DropdownSub>
+							<DropdownSubTrigger>size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setSize(Array.from(keys)[0] as sizes)
+									}}
+									minSelectionCount={1}
+									selectedValues={[size]}>
+									<DropdownItem value="28">28</DropdownItem>
+									<DropdownItem value="32">32</DropdownItem>
+									<DropdownItem value="36">36</DropdownItem>
+									<DropdownItem value="40">40</DropdownItem>
+									<DropdownItem value="44">44</DropdownItem>
+									<DropdownItem value="48">48</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						{/* Disabled Selector */}
+						<DropdownSub>
+							<DropdownSubTrigger>disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[disabled]}
+									onSelectedChange={(keys) => {
+										setDisabled(Array.from(keys)[0] as disabledType)
+									}}>
+									<DropdownItem value="true">true</DropdownItem>
+									<DropdownItem value="false">false</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						{/* Social Selector */}
+						<DropdownSub>
+							<DropdownSubTrigger>social</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[socials]}
+									onSelectedChange={(keys) => {
+										setSocials(Array.from(keys)[0] as socials)
+									}}>
+									<DropdownItem value="google">Google</DropdownItem>
+									<DropdownItem value="apple">Apple</DropdownItem>
+									<DropdownItem value="facebook">Facebook</DropdownItem>
+									<DropdownItem value="X">X</DropdownItem>
+									<DropdownItem value="github">GitHub</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[variant]}
+									onSelectedChange={(keys) => {
+										setVariant(Array.from(keys)[0] as variant)
+									}}>
+									<DropdownItem value="outline">Outline</DropdownItem>
+									<DropdownItem value="strong">Strong</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			{/* PREVIEW */}

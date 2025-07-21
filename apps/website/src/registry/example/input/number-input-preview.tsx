@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Minus, Plus } from "lucide-react"
+import { EyeIcon, Minus, Plus, Settings, SquareTerminal } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -142,54 +142,60 @@ export default CounterInput
 	`
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10 mt-2">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSize(Array.from(keys)[0] as SizeOptions)
-										}}
-										minSelectionCount={1}
-										selectedValues={[size]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Example</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setExample(Array.from(keys)[0] as "custom" | "default" | "basic")
-										}}
-										minSelectionCount={1}
-										selectedValues={[example]}>
-										<DropdownItem value="custom">Custom</DropdownItem>
-										<DropdownItem value="default">Default</DropdownItem>
-										<DropdownItem value="basic">Basic</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setSize(Array.from(keys)[0] as SizeOptions)
+									}}
+									minSelectionCount={1}
+									selectedValues={[size]}>
+									<DropdownItem value="28">28</DropdownItem>
+									<DropdownItem value="32">32</DropdownItem>
+									<DropdownItem value="36">36</DropdownItem>
+									<DropdownItem value="40">40</DropdownItem>
+									<DropdownItem value="44">44</DropdownItem>
+									<DropdownItem value="48">48</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Example</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setExample(Array.from(keys)[0] as "custom" | "default" | "basic")
+									}}
+									minSelectionCount={1}
+									selectedValues={[example]}>
+									<DropdownItem value="custom">Custom</DropdownItem>
+									<DropdownItem value="default">Default</DropdownItem>
+									<DropdownItem value="basic">Basic</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
