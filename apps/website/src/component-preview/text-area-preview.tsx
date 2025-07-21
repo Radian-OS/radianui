@@ -1,4 +1,6 @@
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -14,10 +16,22 @@ const TextAreaPreview = () => {
 	const [rows, setRows] = useState<"4" | "5" | "6" | "7" | "8">("4")
 
 	return (
-		<Tabs className="mb-10" defaultValue="preview">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
+				<TabsList>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
+				</TabsList>
 				<Dropdown>
-					<DropdownTrigger>Properties</DropdownTrigger>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
 					<DropdownContent>
 						<DropdownSub>
 							<DropdownSubTrigger>Label</DropdownSubTrigger>
@@ -108,10 +122,6 @@ const TextAreaPreview = () => {
 						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
-				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
-				</TabsList>
 			</div>
 
 			<TabsContent value="preview">

@@ -1,5 +1,5 @@
 import React from "react"
-import { AppWindow, Film, Image, Music2 } from "lucide-react"
+import { AppWindow, EyeIcon, Film, Image, Music2, SquareTerminal } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -54,8 +54,12 @@ function VerticaTabsWithIconExample() {
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}

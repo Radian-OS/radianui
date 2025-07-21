@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { RotateCw } from "lucide-react"
+import { EyeIcon, RotateCw, SquareTerminal } from "lucide-react"
 import { Fade } from "@/registry/animated/fade"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -8,15 +8,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 export default function BlurFadeExample() {
 	const [counter, setCounter] = useState(0)
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
-			<div className="flex items-center justify-end">
+		<Tabs variant={"outline-ghost"} defaultValue="preview" className="mb-10">
+			<div className="flex items-center justify-start">
 				<div className="flex gap-1">
 					<Button variant="outline" color="neutral" iconOnly onClick={() => setCounter((prev) => prev + 1)}>
 						<RotateCw />
 					</Button>
 					<TabsList>
-						<TabsTrigger value="preview">Preview</TabsTrigger>
-						<TabsTrigger value="code">Code</TabsTrigger>
+						<TabsTrigger value="preview" icon={<EyeIcon />}>
+							Preview
+						</TabsTrigger>
+						<TabsTrigger value="code" icon={<SquareTerminal />}>
+							Code
+						</TabsTrigger>
 					</TabsList>
 				</div>
 			</div>

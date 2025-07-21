@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 // import { CodeArea } from "@/registry/ui/code-area"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -199,200 +201,206 @@ const TablePreview = () => {
 	const [key, setKey] = useState(0)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownGroup>
-								<DropdownSub>
-									<DropdownSubTrigger>Checkbox</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setCheckbox(Array.from(keys)[0] as typeof checkbox)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[checkbox]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Vertical line</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setVerticalLine(Array.from(keys)[0] as typeof verticalLine)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[verticalLine]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Stripe</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setStripe(Array.from(keys)[0] as typeof stripe)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[stripe]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Sorting</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setSorting(Array.from(keys)[0] as typeof sorting)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[sorting]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Dragable</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setDrag(Array.from(keys)[0] as typeof drag)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[drag]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Resizable</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setResize(Array.from(keys)[0] as typeof resize)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[resize]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Sticky</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setSticky(Array.from(keys)[0] as typeof sticky)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[sticky]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-								<DropdownSub>
-									<DropdownSubTrigger>Outline</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setDense(Array.from(keys)[0] as typeof dense)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[sticky]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Table height</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setTableHeight(Array.from(keys)[0] as typeof tableHeight)}
-											minSelectionCount={1}
-											selectedValues={[tableHeight]}>
-											<DropdownItem value="320">320px</DropdownItem>
-											<DropdownItem value="340">340px</DropdownItem>
-											<DropdownItem value="380">380px</DropdownItem>
-											<DropdownItem value="420">420px</DropdownItem>
-											<DropdownItem value="full">Full</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Header height</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setHeader(Array.from(keys)[0] as typeof header)}
-											minSelectionCount={1}
-											selectedValues={[header]}>
-											<DropdownItem value="40px">40px</DropdownItem>
-											<DropdownItem value="60px">60px</DropdownItem>
-											<DropdownItem value="90px">90px</DropdownItem>
-											<DropdownItem value="110px">110px</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Row height</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setRow(Array.from(keys)[0] as typeof row)} minSelectionCount={1} selectedValues={[row]}>
-											<DropdownItem value="40px">40px</DropdownItem>
-											<DropdownItem value="60px">60px</DropdownItem>
-											<DropdownItem value="90px">90px</DropdownItem>
-											<DropdownItem value="110px">110px</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-							</DropdownGroup>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownGroup>
+							<DropdownSub>
+								<DropdownSubTrigger>Checkbox</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setCheckbox(Array.from(keys)[0] as typeof checkbox)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[checkbox]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Vertical line</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setVerticalLine(Array.from(keys)[0] as typeof verticalLine)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[verticalLine]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Stripe</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setStripe(Array.from(keys)[0] as typeof stripe)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[stripe]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Sorting</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setSorting(Array.from(keys)[0] as typeof sorting)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[sorting]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Dragable</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setDrag(Array.from(keys)[0] as typeof drag)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[drag]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Resizable</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setResize(Array.from(keys)[0] as typeof resize)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[resize]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Sticky</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setSticky(Array.from(keys)[0] as typeof sticky)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[sticky]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Outline</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setDense(Array.from(keys)[0] as typeof dense)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[sticky]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Table height</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setTableHeight(Array.from(keys)[0] as typeof tableHeight)}
+										minSelectionCount={1}
+										selectedValues={[tableHeight]}>
+										<DropdownItem value="320">320px</DropdownItem>
+										<DropdownItem value="340">340px</DropdownItem>
+										<DropdownItem value="380">380px</DropdownItem>
+										<DropdownItem value="420">420px</DropdownItem>
+										<DropdownItem value="full">Full</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Header height</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setHeader(Array.from(keys)[0] as typeof header)}
+										minSelectionCount={1}
+										selectedValues={[header]}>
+										<DropdownItem value="40px">40px</DropdownItem>
+										<DropdownItem value="60px">60px</DropdownItem>
+										<DropdownItem value="90px">90px</DropdownItem>
+										<DropdownItem value="110px">110px</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Row height</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setRow(Array.from(keys)[0] as typeof row)} minSelectionCount={1} selectedValues={[row]}>
+										<DropdownItem value="40px">40px</DropdownItem>
+										<DropdownItem value="60px">60px</DropdownItem>
+										<DropdownItem value="90px">90px</DropdownItem>
+										<DropdownItem value="110px">110px</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+						</DropdownGroup>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">

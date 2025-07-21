@@ -1,4 +1,5 @@
 import React from "react"
+import { EyeIcon, SquareTerminal } from "lucide-react"
 import { infiniteScrollData } from "@/component-preview/animations/infinite-scroll-preview"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -6,11 +7,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function InfiniteScrollVerticalExample() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
-			<div className="flex items-center justify-end">
+		<Tabs variant={"outline-ghost"} defaultValue="preview" className="mb-10">
+			<div className="flex items-center justify-start">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}

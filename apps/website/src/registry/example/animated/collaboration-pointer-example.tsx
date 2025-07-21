@@ -1,16 +1,20 @@
 import React from "react"
-import { MousePointer2 } from "lucide-react"
+import { EyeIcon, MousePointer2, SquareTerminal } from "lucide-react"
 import { Pointer } from "@/registry/animated/pointer"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function CollaborationPointerExample() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
-			<div className="flex items-center justify-end">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} className="mb-10">
+			<div className="flex items-center justify-start">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}

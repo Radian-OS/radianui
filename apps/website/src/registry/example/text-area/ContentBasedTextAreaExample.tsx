@@ -1,15 +1,19 @@
+import { EyeIcon, SquareTerminal } from "lucide-react"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { TextArea } from "@/registry/ui/text-area"
 
 export default function ContentBasedTextAreaExample() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs variant={"outline-ghost"} defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3"></div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 

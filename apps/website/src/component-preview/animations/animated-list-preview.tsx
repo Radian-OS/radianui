@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { RotateCw } from "lucide-react"
+import { EyeIcon, RotateCw, Settings, SquareTerminal } from "lucide-react"
 import { AnimatedList } from "@/registry/animated/animated-list"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -21,11 +21,28 @@ const AnimatedListPreview = () => {
 	const [counter, setCounter] = useState(0)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
+				<TabsList>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
+				</TabsList>
+				<div className="flex gap-2">
+					<div className="flex gap-1">
+						<Button variant="outline" color="neutral" iconOnly onClick={() => setCounter((prev) => prev + 1)}>
+							<RotateCw />
+						</Button>
+					</div>
 					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
+						<DropdownTrigger asChild>
+							<Button variant="outline" color="neutral" size="36" iconOnly>
+								<Settings />
+							</Button>
+						</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownGroup>
 								<DropdownSub></DropdownSub>
@@ -33,16 +50,8 @@ const AnimatedListPreview = () => {
 						</DropdownContent>
 					</Dropdown>
 				</div>
-				<div className="flex gap-1">
-					<Button variant="outline" color="neutral" iconOnly onClick={() => setCounter((prev) => prev + 1)}>
-						<RotateCw />
-					</Button>
-					<TabsList>
-						<TabsTrigger value="preview">Preview</TabsTrigger>
-						<TabsTrigger value="code">Code</TabsTrigger>
-					</TabsList>
-				</div>
 			</div>
+
 			<TabsContent value="preview">
 				<div className="relative flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="relative size-80 overflow-hidden">

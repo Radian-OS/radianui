@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { EyeIcon, SquareTerminal } from "lucide-react"
 import { Fade } from "@/registry/animated/fade"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -8,11 +9,15 @@ export default function FadeOutExample() {
 	const [show, setShow] = useState(true)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
-			<div className="flex items-center justify-end">
+		<Tabs variant={"outline-ghost"} defaultValue="preview" className="mb-10">
+			<div className="flex items-center justify-start">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}
