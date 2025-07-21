@@ -9,11 +9,11 @@ source: https://github.com/Radian-os
 
 ## Installation
 
-<Code language="bash" code={`radianos add infinite-scroll`} />
+<CLI mode="execute" language="bash" code={`radianos add infinite-scroll`} />
 
 ## Imports
 
-<Code language="tsx" code={`import { InfiniteScroll } from "@/components/animated/infinite-scroll"`} showLineNumbers />
+<CodeSnippet title="/components/animated/infinite-scroll" code={`import { InfiniteScroll } from "@/components/animated/infinite-scroll"`} showLineNumbers />
 
 ## Examples
 
@@ -23,9 +23,34 @@ source: https://github.com/Radian-os
 
 ## Props
 
-| Prop Name    | Default Value | Possible Values |
-| ------------ | ------------- | --------------- |
-| reverse      | false         |                 |
-| duration     |               |                 |
-| vertical     | false         |                 |
-| pauseOnHover | true          |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="InfiniteScroll"
+		data={[
+			{
+				name: "reverse",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "duration",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "vertical",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "pauseOnHover",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+		]}
+	/>
+</PropsTableWrapper>

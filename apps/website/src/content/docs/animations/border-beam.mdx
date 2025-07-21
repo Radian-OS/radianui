@@ -9,23 +9,73 @@ source: https://github.com/Radian-os
 
 ## Installation
 
-<Code language="bash" code={`radianos add border-beam`} />
+<CLI mode="execute" code={`radianos add border-beam`} />
 
 ## Imports
 
-<Code language="tsx" code={`import { BorderBeam } from "@/components/animated/border-beam"`} showLineNumbers />
+<CodeSnippet title="/components/animated/border-beam" code={`import { BorderBeam } from "@/components/animated/border-beam"`} />
 
 ## Props
 
-| Prop Name     | Default Value | Possible Values |
-| ------------- | ------------- | --------------- |
-| size          |               |                 |
-| duration      |               |                 |
-| delay         |               |                 |
-| fromColor     |               |                 |
-| toColor       |               |                 |
-| transition    |               |                 |
-| className     |               |                 |
-| style         |               |                 |
-| reverse       |               |                 |
-| initialOffset |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="BorderBeam"
+		data={[
+			{
+				name: "size",
+				values: ["number"],
+				defaultValue: "50",
+				description: "Sets the length of the border",
+			},
+			{
+				name: "duration",
+				values: ["number"],
+				defaultValue: "6",
+				description: "Sets the duration of the beam",
+			},
+			{
+				name: "delay",
+				values: ["number"],
+				defaultValue: "0",
+				description: "Sets the delay of beam",
+			},
+			{
+				name: "fromColor",
+				values: ["string"],
+				defaultValue: "#ffaa40",
+				description: "Sets the initial gradient of the beam",
+			},
+			{
+				name: "toColor",
+				values: ["string"],
+				defaultValue: "#9c40ff",
+				description: "Sets the end gradient of the beam",
+			},
+			{
+				name: "reverse",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Toggles the direction of the beam",
+			},
+			{
+				name: "initialOffset",
+				values: ["number"],
+				defaultValue: "0",
+				description: "Sets the offset of the beam",
+			},
+			{
+				name: "style",
+				values: ["-"],
+				defaultValue: "-",
+				description: "Css styles using style prop",
+			},
+			{
+				name: "transition",
+				values: ["-"],
+				defaultValue: "-",
+				description: "Motion dev transition property",
+			},
+		]}
+		externalReference="https://motion.dev/docs"
+	/>
+</PropsTableWrapper>

@@ -9,18 +9,40 @@ source: https://github.com/Radian-os
 
 ## Installation
 
-<Code language="bash" code={`radianos add changing-text`} />
+<CLI mode="execute" code={`radianos add changing-text`} />
 
 ## Imports
 
-<Code language="tsx" code={`import { ChangingText } from "@/components/animated/changing-text"`} showLineNumbers />
+<CodeSnippet title="/components/animated/changing-text" code={`import { ChangingText } from "@/components/animated/changing-text"`} showLineNumbers />
 
 ## Props
 
-| Prop Name   | Default Value | Possible Values |
-| ----------- | ------------- | --------------- |
-| texts       |               |                 |
-| direction   |               |                 |
-| duration    |               |                 |
-| motionProps |               |                 |
-| className   |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="ChangingText"
+		data={[
+			{
+				name: "texts",
+				values: ["string []"],
+				description: "Changes the values in the array provided",
+			},
+			{
+				name: "direction",
+				values: ["up", "down", "left", "right"],
+				defaultValue: ["down"],
+			},
+			{
+				name: "duration",
+				values: ["number"],
+				defaultValue: "2500",
+				description: "Sets the duration of the changing text",
+			},
+			{
+				name: "motionProps",
+				values: ["-"],
+				description: "Props from motion dev",
+			},
+		]}
+		externalReference="https://motion.dev/docs"
+	/>
+</PropsTableWrapper>

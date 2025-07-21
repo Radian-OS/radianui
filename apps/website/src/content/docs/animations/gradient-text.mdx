@@ -9,18 +9,48 @@ source: https://github.com/Radian-os
 
 ## Installation
 
-<Code language="bash" code={`radianos add gradient-text`} />
+<CLI mode="execute" code={`radianos add gradient-text`} />
 
 ## Imports
 
-<Code language="tsx" code={`import { GradientText } from "@/components/animated/gradient-text"`} showLineNumbers />
+<CodeSnippet title="/components/animated/gradient-text" code={`import { GradientText } from "@/components/animated/gradient-text"`} showLineNumbers />
 
 ## Props
 
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| fromColor | #ff6b6b       |                 |
-| toColor   | #4ecdc4       |                 |
-| degree    | 90            |                 |
-| duration  | 2             |                 |
-| as        |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="GradientText"
+		data={[
+			{
+				name: "fromColor",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "toColor",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "degree",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "duration",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "as",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+		]}
+	/>
+</PropsTableWrapper>

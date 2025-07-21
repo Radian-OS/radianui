@@ -9,11 +9,11 @@ source: https://github.com/Radian-os
 
 ## Installation
 
-<Code language="bash" code={`radianos add fade`} />
+<CLI mode="execute" code={`radianos add fade`} />
 
 ## Imports
 
-<Code language="tsx" code={`import { Fade } from "@/components/animated/fade"`} showLineNumbers />
+<CodeSnippet title="/components/animated/fade" code={`import { Fade } from "@/components/animated/fade"`} showLineNumbers />
 
 ## Examples
 
@@ -27,16 +27,70 @@ source: https://github.com/Radian-os
 
 ## Props
 
-| Prop Name    | Default Value | Possible Values |
-| ------------ | ------------- | --------------- |
-| duration     | 0.6 (seconds) |                 |
-| inView       |               |                 |
-| blur         |               |                 |
-| variants     |               |                 |
-| inViewMargin |               |                 |
-| direction    | up            |                 |
-| delay        |               |                 |
-| as           |               |                 |
-| ease         | easeOut       |                 |
-| offset       | 10            |                 |
-| isVisible    |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="Fade"
+		data={[
+			{
+				name: "duration",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "inView",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "blur",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "variants",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "inViewMargin",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "direction",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "delay",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "as",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "offset",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "isVisible",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+		]}
+	/>
+</PropsTableWrapper>
