@@ -100,7 +100,7 @@ export default async function Page({ params }: DocPageProps) {
 								<Badge size="28" variant={"neutral"} color="primary" className="shadow-2xs">
 									{doc.links.externalReference.icon ? (
 										<Image
-											className="size-4"
+											className="text-text-secondary size-4"
 											height={16}
 											width={16}
 											src={doc.links.externalReference.icon.startsWith("/") ? doc.links.externalReference.icon : "/" + doc.links.externalReference.icon}
