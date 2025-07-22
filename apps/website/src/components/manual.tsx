@@ -2,9 +2,8 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import CommandLineTabs from "@/components/cli-tabs"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
+import CodeSnippet from "./code-snippet"
+import PackageManagerTabs from "./package-manager-tabs"
 
 const Manual = () => {
 	const [globalCSS, setGlobalCSS] = useState("")
@@ -33,7 +32,14 @@ const Manual = () => {
 							<p>Add the following dependencies to your project:</p>
 						</div>
 					</div>
-					<CommandLineTabs mode="execute" code={"add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react"} />
+					<PackageManagerTabs
+						commands={{
+							npm: "npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+							yarn: "yarn add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+							pnpm: "pnpm add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+							bun: "bun add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+						}}
+					/>
 				</div>
 
 				<div className="flex flex-col gap-6">
@@ -42,9 +48,9 @@ const Manual = () => {
 						<h6 className="heading-6">Configure path aliases</h6>
 					</div>
 					<p>Configure the path aliases in your tsconfig.json file.</p>
-					<CodeArea
-						language="json"
-						showLineNumbers
+					<CodeSnippet
+						title="tsconfig.json"
+						showLineNumber
 						code={`{
   "compilerOptions": {
     "baseUrl": ".",
@@ -62,7 +68,7 @@ const Manual = () => {
 						<h6 className="heading-6">Configure styles</h6>
 					</div>
 					<p>Add the following to your styles/globals.css file.</p>
-					<CodeArea language="json" className="h-[30rem]" code={globalCSS} />
+					<CodeSnippet title="globals.css" showLineNumber code={globalCSS} />
 				</div>
 			</div>
 		</div>

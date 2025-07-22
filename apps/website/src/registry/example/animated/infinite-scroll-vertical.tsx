@@ -1,8 +1,8 @@
 import React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import { infiniteScrollData } from "@/component-preview/animations/infinite-scroll-preview"
+import CodeSnippet from "@/components/code-snippet"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function InfiniteScrollVerticalExample() {
@@ -35,10 +35,10 @@ export default function InfiniteScrollVerticalExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="infinite-scroll-vertical-example.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`const infiniteScrollData = [
 	{
 		name: "Jack",

@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { CircleAlert, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Modal, ModalBody, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -109,9 +108,9 @@ const PopoverPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="modal.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Modal backdrop="${backdrop}" closeIcon="${closeIcon}" ${withSeparator === "true" ? "withSeparator" : ""}>
 	<ModalTrigger asChild>

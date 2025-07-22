@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Fade } from "@/registry/animated/fade"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function FadeOutExample() {
@@ -36,10 +36,10 @@ export default function FadeOutExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="fade-out-example.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`const [show, setShow] = useState(true)
 
 <div className="flex flex-col items-center gap-10">

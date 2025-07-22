@@ -2,8 +2,8 @@
 
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import Image from "next/image"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
@@ -68,10 +68,10 @@ export default function GithubIntegrationModalExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="github-integration-modal.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`<Modal closeIcon="hover">
     <ModalTrigger asChild>
         <Button>Integrate Now</Button>

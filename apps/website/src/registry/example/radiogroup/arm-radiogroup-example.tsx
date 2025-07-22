@@ -1,6 +1,6 @@
 import React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
-import { CodeArea } from "@/registry/ui/code-area"
+import CodeSnippet from "@/components/code-snippet"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -36,10 +36,10 @@ export default function ARMRadiogroupExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="arm-radiogroup-example.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`<div className="bg-bg-base min-w-80 rounded-md border p-4 shadow-sm">
 	<RadioGroup defaultValue="m3_max" label="Select Your ARM Chip" className="gap-4">
 		<RadioGroupItem value="m3">M3</RadioGroupItem>

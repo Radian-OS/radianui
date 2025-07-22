@@ -355,7 +355,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	// When using asChild, we need to pass the styling to the child element
 	if (asChild) {
 		if (loading) {
-			console.warn("CompactButton: loading prop is not supported when using asChild")
+			throw new Error("CompactButton: loading prop is not supported when using asChild")
 		}
 
 		return (

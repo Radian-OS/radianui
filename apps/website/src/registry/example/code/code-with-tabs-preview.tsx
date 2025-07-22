@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import { Check, CopyIcon, EyeIcon, SquareTerminal } from "lucide-react"
 import { useTheme } from "next-themes"
+import CodeSnippet from "@/components/code-snippet"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -194,7 +195,7 @@ export default CodeWithTabsPreview
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea language="tsx" code={getImplementationCode()} className="h-[420px]" theme="github-dark-default" showLineNumbers={false} copiable={true} />
+				<CodeSnippet title="code-with-tabs-preview.tsx" showLineNumber className="h-[420px]" code={getImplementationCode()} />
 			</TabsContent>
 		</Tabs>
 	)

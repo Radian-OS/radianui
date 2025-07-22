@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import Link from "next/link"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Password } from "@/registry/ui/password"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -171,7 +171,7 @@ const PasswordInputPreview2 = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={code} />
+				<CodeSnippet title="password-input-preview2.tsx" showLineNumber className="h-[420px]" code={code} />
 			</TabsContent>
 		</Tabs>
 	)

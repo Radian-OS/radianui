@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { EyeIcon, RotateCw, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { AnimatedList } from "@/registry/animated/animated-list"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -68,9 +68,9 @@ const AnimatedListPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="animated-list.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<div className="relative size-80 overflow-hidden">
 	<AnimatedList key={counter}>

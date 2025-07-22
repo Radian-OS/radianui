@@ -1,7 +1,7 @@
 import React from "react"
 import { EyeIcon, Minus, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function IndeterminateCheckboxExample() {
@@ -25,10 +25,10 @@ export default function IndeterminateCheckboxExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="indeterminate-checkbox.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`<Checkbox icon={<Minus />}>
 	Indeterminate Checkbox
 </Checkbox>`}

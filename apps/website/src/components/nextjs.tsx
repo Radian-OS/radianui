@@ -1,6 +1,5 @@
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
-import CommandLineTabs from "./cli-tabs"
+import CodeSnippet from "./code-snippet"
+import PackageManagerTabs from "./package-manager-tabs"
 
 const Nextjs = () => {
 	return (
@@ -14,7 +13,14 @@ const Nextjs = () => {
 					<p>
 						Run the <code>init</code> command to create a new Next.js project or to setup an existing one:
 					</p>
-					<CommandLineTabs mode="execute" code={"radianos init"} />
+					<PackageManagerTabs
+						commands={{
+							npm: "npx @radianos/radianbeta init",
+							yarn: "yarn dlx @radianos/radianbeta init",
+							pnpm: "pnpm dlx @radianos/radianbeta init",
+							bun: "bunx @radianos/radianbeta init",
+						}}
+					/>
 				</div>
 				<div className="flex flex-col gap-[10px]">
 					<div className="relative">
@@ -24,9 +30,9 @@ const Nextjs = () => {
 					<p>
 						You will be asked a few questions to configure <code>components.json</code>:
 					</p>
-					<CodeArea
-						language="tsx"
-						showLineNumbers
+					<CodeSnippet
+						title="components.json"
+						showLineNumber
 						code={`√ What would you like to name your project? ... my-app
 √ Would you like to use /src directory? ... yes
 √ Creating a new Next.js project. This might take some time.
@@ -44,13 +50,20 @@ Success! Project initialization completed. You may now add components.`}
 						<h6 className="heading-6">Add Component</h6>
 					</div>
 					<p>You can now start adding components to your project.</p>
-					<CommandLineTabs mode="execute" code={"radianos add button"} />
+					<PackageManagerTabs
+						commands={{
+							npm: "npx @radianos/radianbeta add button",
+							yarn: "yarn dlx @radianos/radianbeta add button",
+							pnpm: "pnpm dlx @radianos/radianbeta add button",
+							bun: "bunx @radianos/radianbeta add button",
+						}}
+					/>
 					<p>
 						The command above will add the <code>Button</code> component to your project. You can then import it like this:
 					</p>
-					<CodeArea
-						language="tsx"
-						showLineNumbers
+					<CodeSnippet
+						title="app.tsx"
+						showLineNumber
 						code={`import {Button} from "@/components/ui/Button"
 
 export default function App() {

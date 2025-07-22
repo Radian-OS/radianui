@@ -84,7 +84,7 @@ function Alert({ color = "neutral", variant = "default", title, message, icon, e
 
 			{hasChildrenOnly ? (
 				// Render children directly when no title/message provided
-				<div className="flex-grow text-sm">{children}</div>
+				<div className="text-sm">{children}</div>
 			) : (
 				// Original title/message structure
 				<div className="flex flex-grow flex-col">

@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { Bookmark, CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, Trash2, TriangleAlert } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -186,7 +186,7 @@ const AlertPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="!h-[420px]" code={generateCode()} />
+				<CodeSnippet title="alert.tsx" showLineNumber className="h-[420px]" code={generateCode()} />
 			</TabsContent>
 		</Tabs>
 	)

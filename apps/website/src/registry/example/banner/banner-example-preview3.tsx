@@ -1,6 +1,6 @@
 import { EyeIcon, SquareTerminal, Trophy } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerExamplePreview3 = () => {
@@ -28,13 +28,14 @@ const BannerExamplePreview3 = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
+				<CodeSnippet
+					title="banner-example-preview3.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Banner variant="destructive" >
 Subscription Expired. Please upgrade your account to Pro Subscription 
 <Link className="underline" href="#" >Upgrade</Link>
 </Banner>`}
-					language="tsx"
 				/>
 			</TabsContent>
 		</Tabs>

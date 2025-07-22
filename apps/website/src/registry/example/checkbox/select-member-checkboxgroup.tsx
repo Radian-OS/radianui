@@ -1,7 +1,7 @@
 import React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Checkbox, CheckboxGroup } from "@/registry/ui/checkbox"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 function SelectMamberCheckboxgroupExample() {
@@ -58,10 +58,10 @@ function SelectMamberCheckboxgroupExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="select-member-checkboxgroup.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`<div className="bg-bg-base max-w-80 rounded-md border p-4 shadow-sm">
 	<CheckboxGroup defaultValue={["angus_mac_gyver", "mike_torrello", "angela_bower"]} label="Select Members" className="gap-3.5">
 		<Checkbox value="mike_torrello" className="items-start">

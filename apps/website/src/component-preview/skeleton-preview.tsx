@@ -1,7 +1,6 @@
 import React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
+import CodeSnippet from "@/components/code-snippet"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -39,9 +38,9 @@ function SkeletonPreview() {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="skeleton.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<div className="inline-flex w-80 flex-col items-start justify-start gap-5 rounded-xl border p-5">
 	{Array.from({ length: 5 }).map((_, index) => (

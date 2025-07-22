@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal, Volume2, VolumeX } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import Slider from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -185,9 +184,9 @@ const SliderPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="slider.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`  <Slider
 		label=${label ? `"Select volume label"` : "undefined"}

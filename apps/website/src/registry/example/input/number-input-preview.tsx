@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { EyeIcon, Minus, Plus, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
@@ -267,7 +267,7 @@ export default CounterInput
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={code} />
+				<CodeSnippet title="number-input-preview.tsx" showLineNumber className="h-[420px]" code={code} />
 			</TabsContent>
 		</Tabs>
 	)

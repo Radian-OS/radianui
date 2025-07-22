@@ -1,7 +1,7 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { GradientText } from "@/registry/animated/gradient-text"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -38,9 +38,9 @@ const GradientTextPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="gradient-text.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<p className="text-6xl font-semibold">
 	Turn bold ideas into beautiful, responsive, and dynamic <GradientText>user interfaces</GradientText>

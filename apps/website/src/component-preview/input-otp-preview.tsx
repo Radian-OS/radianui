@@ -1,8 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { InputOtp } from "@/registry/ui/input-otp"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -112,9 +111,9 @@ export default function InputOtpPreview() {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="input-otp.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<InputOtp ${size !== DEFAULT_SIZE ? `size="${size}"` : ""} ${length !== DEFAULT_LENGTH ? `length="${length}"` : ""} ${label ? `label="Enter One-Time-Password"` : ""} ${disabled ? `disabled=${disabled}` : ""} ${hasError ? `hasError=${hasError}` : ""} ${hasError ? `errorMsg="This is an error mmessage"` : ""}/>`}
 				/>

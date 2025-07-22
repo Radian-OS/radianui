@@ -1,9 +1,8 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -142,9 +141,9 @@ const AvatarPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="avatar.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Avatar src="${people[0].image}" name="${people[0].name}"${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${status !== DEFAULT_STATUS ? ` status="${status}"` : ""} />`}
 				/>

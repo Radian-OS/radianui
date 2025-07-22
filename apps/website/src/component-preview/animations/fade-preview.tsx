@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { EyeIcon, RotateCw, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Fade, FadeDirection } from "@/registry/animated/fade"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -66,9 +66,9 @@ const FadePreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="fade.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<FadeDown>
     <span className="text-2xl font-medium">Animated Component</span>

@@ -1,8 +1,7 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Pointer } from "@/registry/animated/pointer"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -40,9 +39,9 @@ const InfiniteScrollPreview = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="pointer.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<div className="mx-auto size-60 rounded-md bg-pink-400 p-2">
 	<span>Hover over here</span>

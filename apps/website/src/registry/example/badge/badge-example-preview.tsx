@@ -1,7 +1,7 @@
 import { EyeIcon, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgeExamplePreview = () => {
@@ -86,7 +86,7 @@ My Custom Badge
 							<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">{example.component}</div>
 						</TabsContent>
 						<TabsContent value="code">
-							<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={example.code} />
+							<CodeSnippet title="badge-example-preview.tsx" showLineNumber className="h-[420px]" code={example.code} />
 						</TabsContent>
 					</Tabs>
 				</div>

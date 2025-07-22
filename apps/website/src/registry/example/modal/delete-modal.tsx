@@ -1,8 +1,8 @@
 "use client"
 
 import { EyeIcon, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -49,10 +49,10 @@ export default function DeleteModalExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="delete-modal.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`<Modal>
 	<ModalTrigger asChild>
 		<Button variant={"strong"}  color={"error"}>Delete</Button>

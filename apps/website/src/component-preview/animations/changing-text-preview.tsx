@@ -1,7 +1,7 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { ChangingText } from "@/registry/animated/changing-text"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -42,9 +42,9 @@ const ChangingTextPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="changing-text.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<span className="w-100 flex items-center gap-1.5 text-3xl font-medium">
     UI library for

@@ -62,7 +62,6 @@ import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Cli from "@/components/cli"
-import CommandLineTabs, { type InstallMode } from "@/components/cli-tabs"
 import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
 import Manual from "@/components/manual"
@@ -76,7 +75,6 @@ import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
-// import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
@@ -112,7 +110,6 @@ import {
 	AccordionTriggerProps,
 } from "@/registry/ui/accordion"
 import { Alert, AlertProps } from "@/registry/ui/alert"
-import { CodeArea, CodeAreaProps } from "@/registry/ui/code-area"
 import { Divider } from "@/registry/ui/divider"
 import CodeSnippet from "./code-snippet"
 import { FrameworkDocs } from "./framework-docs"
@@ -236,14 +233,6 @@ const components: MDXComponents = {
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
-
-	CLI: ({ code, mode = "execute" }: { code: string; mode: InstallMode }) => {
-		return (
-			<div className="pb-6">
-				<CommandLineTabs mode={mode} code={code} />
-			</div>
-		)
-	},
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<div className="pb-6">
 			<PackageManagerTabs commands={commands} className={className} withIcon={withIcon} />
@@ -254,16 +243,6 @@ const components: MDXComponents = {
 			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
 		</div>
 	),
-	Code: ({ language, tabs = false, code, showLineNumbers, copiable = true, className, ...props }: CodeAreaProps) =>
-		tabs ? (
-			<div className="pb-6">
-				<CommandLineTabs mode="execute" code={code} />
-			</div>
-		) : (
-			<div className="pb-6">
-				<CodeArea language={language} code={code} showLineNumbers={showLineNumbers} copiable={copiable} className={cn("", className)} {...props} />
-			</div>
-		),
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
 			{children}
@@ -299,8 +278,20 @@ const components: MDXComponents = {
 		return <li className={cn("text-text-secondary", className)}>{children}</li>
 	},
 
-	VersionAlert: (props: AlertProps) => {
-		return <Alert {...props} icon={<Settings className="content-start" />} />
+	VersionAlert: (props: Pick<AlertProps, "title" | "message" | "variant" | "color">) => {
+		return (
+			<Alert variant={props.variant} color={props.color}>
+				<div className="flex w-full gap-3">
+					<span className="flex flex-shrink-0 items-start">
+						<Settings className="size-5" />
+					</span>
+					<div className="flex flex-1 flex-col">
+						<p className="text-sm font-semibold">{props.title}</p>
+						<p className="text-sm">{props.message}</p>
+					</div>
+				</div>
+			</Alert>
+		)
 	},
 
 	Accordion: (props: AccordionProps) => {
