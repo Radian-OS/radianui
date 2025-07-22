@@ -1,6 +1,6 @@
 import React from "react"
-import { AppWindow, Film, Image, Music2 } from "lucide-react"
-import { CodeArea } from "@/registry/ui/code-area"
+import { AppWindow, EyeIcon, Film, Image, Music2, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
@@ -54,8 +54,12 @@ function VerticaTabsWithIconExample() {
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}
@@ -66,10 +70,10 @@ function VerticaTabsWithIconExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="vertical-tabs-with-icon-example.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`const data = [
   {
     id: 1,

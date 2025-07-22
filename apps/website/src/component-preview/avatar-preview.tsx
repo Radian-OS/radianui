@@ -1,7 +1,8 @@
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
-// import { CodeArea } from "@/registry/ui/code"
-import { CodeArea } from "@/registry/ui/code-area"
+import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -62,61 +63,69 @@ const AvatarPreview = () => {
 	const [status, setStatus] = useState<Status>(DEFAULT_STATUS)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							{/* Dropdown for 'size' */}
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-										<DropdownItem value="16">16</DropdownItem>
-										<DropdownItem value="20">20</DropdownItem>
-										<DropdownItem value="24">24</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="48">48</DropdownItem>
-										<DropdownItem value="64">64</DropdownItem>
-										<DropdownItem value="80">80</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							{/* Dropdown for 'variant' */}
-							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
-										<DropdownItem value="circle">Circle</DropdownItem>
-										<DropdownItem value="square">Square</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							{/* Dropdown for 'status' */}
-							<DropdownSub>
-								<DropdownSubTrigger>Status</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStatus(Array.from(keys)[0] as Status)} minSelectionCount={1} selectedValues={[status]}>
-										<DropdownItem value="online">Online</DropdownItem>
-										<DropdownItem value="offline">Offline</DropdownItem>
-										<DropdownItem value="verified">Verified</DropdownItem>
-										<DropdownItem value="plus">Plus</DropdownItem>
-										<DropdownItem value="none">None</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger>
+						<DropdownTrigger asChild>
+							<Button variant="outline" color="neutral" size="36" iconOnly>
+								<Settings />
+							</Button>
+						</DropdownTrigger>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						{/* Dropdown for 'size' */}
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
+									<DropdownItem value="16">16</DropdownItem>
+									<DropdownItem value="20">20</DropdownItem>
+									<DropdownItem value="24">24</DropdownItem>
+									<DropdownItem value="32">32</DropdownItem>
+									<DropdownItem value="36">36</DropdownItem>
+									<DropdownItem value="40">40</DropdownItem>
+									<DropdownItem value="48">48</DropdownItem>
+									<DropdownItem value="64">64</DropdownItem>
+									<DropdownItem value="80">80</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						{/* Dropdown for 'variant' */}
+						<DropdownSub>
+							<DropdownSubTrigger>Variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
+									<DropdownItem value="circle">Circle</DropdownItem>
+									<DropdownItem value="square">Square</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						{/* Dropdown for 'status' */}
+						<DropdownSub>
+							<DropdownSubTrigger>Status</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStatus(Array.from(keys)[0] as Status)} minSelectionCount={1} selectedValues={[status]}>
+									<DropdownItem value="online">Online</DropdownItem>
+									<DropdownItem value="offline">Offline</DropdownItem>
+									<DropdownItem value="verified">Verified</DropdownItem>
+									<DropdownItem value="plus">Plus</DropdownItem>
+									<DropdownItem value="none">None</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -132,9 +141,9 @@ const AvatarPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="avatar.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Avatar src="${people[0].image}" name="${people[0].name}"${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${status !== DEFAULT_STATUS ? ` status="${status}"` : ""} />`}
 				/>

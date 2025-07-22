@@ -1,6 +1,6 @@
 import React from "react"
-import { Archive, CheckCircle, Loader2 } from "lucide-react"
-import { CodeArea } from "@/registry/ui/code-area"
+import { Archive, CheckCircle, EyeIcon, Loader2, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
@@ -48,11 +48,15 @@ function IconCounterTabs() {
 
 function IconCounterTabsExample() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} className="mb-10">
 			<div className="flex items-center justify-between">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}
@@ -63,10 +67,10 @@ function IconCounterTabsExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="icon-counter-tabs-example.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`const data = [
 	{
 		id: 1,

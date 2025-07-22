@@ -1,29 +1,35 @@
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { ChangingText } from "@/registry/animated/changing-text"
-import { CodeArea } from "@/registry/ui/code-area"
+import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const ChangingTextPreview = () => {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-
-						<DropdownContent className="min-w-20">
-							<DropdownGroup>
-								<DropdownSub></DropdownSub>
-							</DropdownGroup>
-						</DropdownContent>
-					</Dropdown>
-				</div>
-
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+
+					<DropdownContent className="min-w-20">
+						<DropdownGroup>
+							<DropdownSub></DropdownSub>
+						</DropdownGroup>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -36,9 +42,9 @@ const ChangingTextPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="changing-text.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<span className="w-100 flex items-center gap-1.5 text-3xl font-medium">
     UI library for

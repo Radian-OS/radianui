@@ -1,7 +1,7 @@
 import { useState } from "react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
@@ -13,68 +13,74 @@ const TooltipPreview = () => {
 	const [key, setKey] = useState(0)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownGroup>
-								<DropdownSub>
-									<DropdownSubTrigger>Position</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as typeof position)}
-											minSelectionCount={1}
-											selectedValues={[position]}>
-											<DropdownItem value="top">Top</DropdownItem>
-											<DropdownItem value="left">Left</DropdownItem>
-											<DropdownItem value="right">Right</DropdownItem>
-											<DropdownItem value="bottom">Bottom</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Align</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
-											minSelectionCount={1}
-											selectedValues={[variant]}>
-											<DropdownItem value="start">Start</DropdownItem>
-											<DropdownItem value="center">Center</DropdownItem>
-											<DropdownItem value="end">End</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>With arrow</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setWithArrow(Array.from(keys)[0] as typeof withArrow)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[withArrow]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-							</DropdownGroup>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownGroup>
+							<DropdownSub>
+								<DropdownSubTrigger>Position</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as typeof position)}
+										minSelectionCount={1}
+										selectedValues={[position]}>
+										<DropdownItem value="top">Top</DropdownItem>
+										<DropdownItem value="left">Left</DropdownItem>
+										<DropdownItem value="right">Right</DropdownItem>
+										<DropdownItem value="bottom">Bottom</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Align</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
+										minSelectionCount={1}
+										selectedValues={[variant]}>
+										<DropdownItem value="start">Start</DropdownItem>
+										<DropdownItem value="center">Center</DropdownItem>
+										<DropdownItem value="end">End</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>With arrow</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setWithArrow(Array.from(keys)[0] as typeof withArrow)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[withArrow]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+						</DropdownGroup>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -93,9 +99,9 @@ const TooltipPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="tooltip.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Tooltip side="${position}" withArrow={${withArrow}} align="${variant}">
 	<TooltipTrigger asChild>

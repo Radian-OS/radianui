@@ -5,10 +5,10 @@ import { Box } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/dist/client"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
+import CodeSnippet from "@/components/code-snippet"
+import PackageManagerTabs, { PackageManagerTabsProps } from "@/components/package-manager-tabs"
 import { cn } from "@/lib/utils"
 import { Alert } from "@/registry/ui/alert"
-import CommandLineTabs, { InstallMode } from "./cli-tabs"
-import CodeSnippet from "./code-snippet"
 
 type MdxBlogProps = {
 	code: string
@@ -39,13 +39,11 @@ const BlogComponents: MDXComponents = {
 	MessageBox: ({ title, message }: { title?: string; message?: string }) => (
 		<Alert className="my-5" color="warning" variant="default" icon={<Box className="size-5" />} title={title} message={message} />
 	),
-	CLI: ({ code, mode = "execute" }: { code: string; mode: InstallMode }) => {
-		return (
-			<div className="my-5">
-				<CommandLineTabs icon mode={mode} code={code} />
-			</div>
-		)
-	},
+	PackageManagerTabs: ({ commands, className, withIcon = true }: PackageManagerTabsProps) => (
+		<div className="my-5">
+			<PackageManagerTabs commands={commands} className={className} withIcon={withIcon} />
+		</div>
+	),
 }
 
 /**
