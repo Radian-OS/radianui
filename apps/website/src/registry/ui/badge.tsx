@@ -1,13 +1,12 @@
 "use client"
 
-import { useState } from "react"
+import React, { useState } from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 type BadgeSize = "20" | "24" | "28"
-
 type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 	Omit<VariantProps<typeof badgeVariants>, "size"> & {
 		closable?: boolean
@@ -70,7 +69,6 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			color: "warning",
 			className: "bg-warning text-static-white font-semibold",
 		},
-
 		// Outline variant + colors
 		{
 			variant: "outline",
@@ -97,7 +95,6 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 			color: "warning",
 			className: "text-warning-text border border-warning bg-transparent",
 		},
-
 		// Soft variant + colors
 		{
 			variant: "soft",
@@ -129,34 +126,44 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 
 function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
-	const Comp = asChild ? Slot : "div"
 
 	if (!showBadge) return null
 
-	// Wrap content in a single span if asChild is true
-	const content = (
-		<>
-			{Array.isArray(children)
-				? children.map((child, index) =>
-						typeof child === "object" && child !== null && "type" in child && (child.type === "svg" || typeof child.type === "function") ? <span key={index}>{child}</span> : child
-					)
-				: children}
-			{closable && (
-				<X
-					onClick={() => setShowBadge(false)}
-					className={cn(size === "20" || size === "24" ? "size-3" : "size-4", "cursor-pointer font-extrabold", variant === "neutral" && "text-text-disabled")}
-				/>
-			)}
-		</>
+	const badgeClasses = cn(
+		badgeVariants({ variant, size, color }),
+		"gap-1", // Keep gap for flex layout
+		className
 	)
 
+	const closeButton = closable && (
+		<X
+			onClick={() => setShowBadge(false)}
+			className={cn(
+				size === "20" || size === "24" ? "size-3" : "size-4",
+				"ml-1 cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
+				variant === "neutral" && "text-text-disabled"
+			)}
+		/>
+	)
+
+	if (asChild) {
+		// When asChild is true, let Slot handle merging props with the child
+		return (
+			<Slot className={badgeClasses} {...props}>
+				{/* Only pass the first child to Slot, handle close button separately if needed */}
+				{React.Children.only(children)}
+				{/* Note: closable might not work well with asChild since we can't easily inject the close button */}
+			</Slot>
+		)
+	}
+
 	return (
-		<Comp className={cn(badgeVariants({ variant, size, color }), "flex items-center gap-1", className)} {...props}>
-			{asChild ? <span className="contents">{content}</span> : content}
-		</Comp>
+		<div className={badgeClasses} {...props}>
+			{children}
+			{closeButton}
+		</div>
 	)
 }
 
 Badge.displayName = "Badge"
-
 export { Badge }
