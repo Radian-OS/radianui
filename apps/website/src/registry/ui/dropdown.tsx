@@ -19,15 +19,7 @@ function Dropdown({ children, ...props }: React.ComponentPropsWithoutRef<typeof 
 Dropdown.displayName = "Dropdown"
 
 //Create a DropdownTrigger component
-function DropdownTrigger({ asChild, children, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
-	if (asChild) {
-		return (
-			<DropdownMenuPrimitive.Trigger asChild {...props}>
-				{children}
-			</DropdownMenuPrimitive.Trigger>
-		)
-	}
-
+function DropdownTrigger({ children, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
 	return <DropdownMenuPrimitive.Trigger {...props}>{children}</DropdownMenuPrimitive.Trigger>
 }
 DropdownTrigger.displayName = "DropdownTrigger"
