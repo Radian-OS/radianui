@@ -24,12 +24,10 @@ const BadgePreview = () => {
 					</TabsTrigger>
 				</TabsList>
 				<Dropdown>
-					<DropdownTrigger>
-						<DropdownTrigger asChild>
-							<Button variant="outline" color="neutral" size="36" iconOnly>
-								<Settings />
-							</Button>
-						</DropdownTrigger>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>

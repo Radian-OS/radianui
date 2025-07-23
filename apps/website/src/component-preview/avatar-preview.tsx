@@ -75,11 +75,9 @@ const AvatarPreview = () => {
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger>
-						<DropdownTrigger asChild>
-							<Button variant="outline" color="neutral" size="36" iconOnly>
-								<Settings />
-							</Button>
-						</DropdownTrigger>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						{/* Dropdown for 'size' */}
