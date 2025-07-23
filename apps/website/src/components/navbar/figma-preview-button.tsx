@@ -1,10 +1,17 @@
-import React from "react"
+import React, { ComponentProps } from "react"
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
 
-export default function FigmaPreviewButton({ className }: { className: string }) {
+type FigmaPreviewButtonProps = {
+	size?: ComponentProps<typeof Button>["size"]
+	variant?: ComponentProps<typeof Button>["variant"]
+	color?: ComponentProps<typeof Button>["color"]
+	className?: string
+}
+
+export default function FigmaPreviewButton({ size, variant, color, className }: FigmaPreviewButtonProps) {
 	return (
-		<Button size={"36"} variant={"outline"} color={"neutral"} className={className} asChild>
+		<Button size={size ?? "36"} variant={variant ?? "outline"} color={color ?? "neutral"} className={className} asChild>
 			<Link href={"#"}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 					<path
