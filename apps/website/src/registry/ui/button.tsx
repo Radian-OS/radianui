@@ -280,23 +280,9 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 		if (React.isValidElement(child)) {
 			const isFirst = index === 0
 			const isLast = index === React.Children.count(children) - 1
-			const totalChildren = React.Children.count(children)
 
 			// Define border radius class consistently
 			const borderRadiusClass = isFirst ? "rounded-l-lg" : isLast ? "rounded-r-lg" : "rounded-none"
-
-			// Set position for proper z-index layering
-			const positionClass = isFirst ? "relative z-10" : `relative z-[${totalChildren - index}]`
-
-			// Special handling for different variants
-			let borderFixClass = ""
-			if (variant === "outline") {
-				// For outline variants, we need to completely eliminate double borders
-				borderFixClass = !isFirst ? "ml-[1px]" : ""
-			} else if (variant === "strong") {
-				// For solid variants
-				borderFixClass = !isFirst ? "-ml-[1px]" : ""
-			}
 
 			// Check if this is a Button component that should receive our props
 			if (React.isValidElement<ButtonProps>(child)) {
@@ -304,14 +290,7 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 					variant,
 					size,
 					color, // Ensure color is passed to child buttons
-					className: cn(
-						"rounded-none",
-						borderRadiusClass,
-						positionClass,
-						borderFixClass,
-						// "hover:z-20 focus:z-30",
-						child.props.className
-					),
+					className: cn("rounded-none", borderRadiusClass, "-ml-[1px]", `${!isLast ? "border-r-0" : ""}`, child.props.className),
 				})
 			}
 		}
