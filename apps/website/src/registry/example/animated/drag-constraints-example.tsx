@@ -1,4 +1,5 @@
 import React from "react"
+import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Draggable } from "@/registry/animated/make-draggable"
 import { Badge } from "@/registry/ui/badge"
@@ -8,11 +9,15 @@ export default function CollaborationPointerExample() {
 	const containerRef = React.useRef(null)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
-			<div className="flex items-center justify-end">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} className="mb-10">
+			<div className="flex items-center justify-start">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}
