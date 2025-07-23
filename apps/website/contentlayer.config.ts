@@ -32,7 +32,7 @@ const LinksField = defineNestedType(() => ({
 	name: "LinksField",
 	fields: {
 		github: { type: "nested", of: GithubLink, required: false },
-		externalReference: { type: "nested", of: ExternalReferenceLink, required: false },
+		externalReference: { type: "list", of: ExternalReferenceLink, required: false },
 	},
 }))
 

@@ -9,11 +9,9 @@ export function DesktopNavigation() {
 			<ul className="text-fg1 flex items-center gap-1 text-sm font-medium">
 				{navLinks.map((item) => (
 					<li key={item.name}>
-						<Link href={item.link} tabIndex={-1}>
-							<Button variant={"ghost"} color={"neutral"}>
-								{item.name}
-							</Button>
-						</Link>
+						<Button variant={"ghost"} color={"neutral"} asChild>
+							<Link href={item.link}>{item.name}</Link>
+						</Button>
 					</li>
 				))}
 			</ul>

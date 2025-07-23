@@ -34,7 +34,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 
 	useEffect(() => {
 		const handleResize = () => {
-			if (window.innerWidth >= 1024) {
+			if (window.innerWidth >= 1280) {
 				setIsMobileMenuOpen(false)
 			}
 		}
