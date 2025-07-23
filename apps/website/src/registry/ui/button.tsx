@@ -89,6 +89,14 @@ export const buttonVariants = cva(
 			{ iconOnly: true, size: "44", className: "px-2.5 h-11 gap-2" },
 			{ iconOnly: true, size: "48", className: "px-3 h-12 gap-2" },
 
+			// outline variants
+			{ iconOnly: true, size: "28", variant: "outline", className: "px-1.25 h-7 gap-2" },
+			{ iconOnly: true, size: "32", variant: "outline", className: "px-1.25 h-8 gap-2" },
+			{ iconOnly: true, size: "36", variant: "outline", className: "px-1.75 h-9 gap-2" },
+			{ iconOnly: true, size: "40", variant: "outline", className: "px-2.25 h-10 gap-2" },
+			{ iconOnly: true, size: "44", variant: "outline", className: "px-2.25 h-11 gap-2" },
+			{ iconOnly: true, size: "48", variant: "outline", className: "px-2.75 h-12 gap-2" },
+
 			{
 				variant: "strong",
 				color: "primary",
