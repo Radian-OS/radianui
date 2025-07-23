@@ -306,14 +306,14 @@ const components: MDXComponents = {
 	AccordionContent: (props: AccordionContentProps) => {
 		return <AccordionContent {...props} />
 	},
-	Steps: ({ ...props }) => <div className="[&>h3]:step steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:pl-8" {...props} />,
-	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
-		<h3
+	Steps: ({ ...props }) => <div className="steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:border-dashed md:pl-8" {...props} />,
+	Step: ({ className, ...props }: React.ComponentProps<"div">) => (
+		<div
 			className={cn(
-				"step relative mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
-				"before:absolute before:left-[-2.9rem] before:top-1/2 before:-translate-y-1/2",
+				"step relative mt-8 scroll-m-20",
+				"before:absolute before:left-[-2.9rem]",
 				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
-				"before:rounded-full before:bg-gray-200 before:text-sm before:font-medium before:text-gray-800",
+				"before:bg-border before:text-text before:rounded-full before:text-sm before:font-medium",
 				"before:counter-increment-[step] before:content-[counter(step)]",
 				className
 			)}

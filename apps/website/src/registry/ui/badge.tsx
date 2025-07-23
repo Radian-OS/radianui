@@ -15,7 +15,6 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 		color?: "primary" | "info" | "success" | "error" | "warning"
 		asChild?: boolean
 	}
-
 const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
@@ -123,18 +122,14 @@ const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit
 		},
 	],
 })
-
 function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
-
 	if (!showBadge) return null
-
 	const badgeClasses = cn(
 		badgeVariants({ variant, size, color }),
 		"gap-1", // Keep gap for flex layout
 		className
 	)
-
 	const closeButton = closable && (
 		<X
 			onClick={() => setShowBadge(false)}
@@ -145,7 +140,6 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 			)}
 		/>
 	)
-
 	if (asChild) {
 		// When asChild is true, let Slot handle merging props with the child
 		return (
@@ -156,7 +150,6 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 			</Slot>
 		)
 	}
-
 	return (
 		<div className={badgeClasses} {...props}>
 			{children}
@@ -164,6 +157,5 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 		</div>
 	)
 }
-
 Badge.displayName = "Badge"
 export { Badge }

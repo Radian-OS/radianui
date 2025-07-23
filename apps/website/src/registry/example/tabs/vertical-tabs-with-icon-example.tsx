@@ -1,5 +1,5 @@
 import React from "react"
-import { AppWindow, EyeIcon, Film, Image, Music2, SquareTerminal } from "lucide-react"
+import { AppWindow, EyeIcon, Film, Music2, Image as Picture, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -25,7 +25,7 @@ const data = [
 	{
 		id: 4,
 		trigger: "Pictures",
-		icon: <Image />,
+		icon: <Picture />,
 		content: "Explore the latest pictures you have clicked.",
 	},
 ]
