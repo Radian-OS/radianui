@@ -1,5 +1,5 @@
 import React from "react"
-import { VariantProps, cva } from "class-variance-authority"
+import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import Link from "next/link"
 import { Toaster as Sonner, toast } from "sonner"
