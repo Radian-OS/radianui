@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { VariantProps, cva } from "class-variance-authority"
+import { type VariantProps, cva } from "class-variance-authority"
 import { type OTPInputProps, OTPInput as Root, type SlotProps } from "input-otp"
 import { cn } from "@/lib/utils"
 import { Label } from "./label"
