@@ -61,11 +61,8 @@ import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
-import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
-import Manual from "@/components/manual"
-import Nextjs from "@/components/nextjs"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
@@ -174,10 +171,7 @@ const components: MDXComponents = {
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
 	DropdownPreview: () => <DropdownPreview />,
 	ResizablePreview: () => <ResizablePreview />,
-	Nextjs: () => <Nextjs />,
-	Cli: () => <Cli />,
 	Installation: () => <Installation />,
-	Manual: () => <Manual />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
@@ -185,7 +179,6 @@ const components: MDXComponents = {
 	EmailPreview: () => <EmailPreview />,
 	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
-	// BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,
@@ -258,6 +251,15 @@ const components: MDXComponents = {
 			{children}
 		</h3>
 	),
+	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
+		<a
+			aria-label="Link"
+			rel="noopener noreferrer"
+			target="_blank"
+			className={cn("text-primary hover:text-primary-hover font-medium underline underline-offset-4 transition-colors duration-200", className)}
+			{...props}
+		/>
+	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={cn("text-text-secondary text-base", className)} {...props}>
 			{children}
@@ -322,7 +324,7 @@ const components: MDXComponents = {
 	),
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
-	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium underline underline-offset-4", className)} {...props} />,
+	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
 			className={cn("bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10", className)}
