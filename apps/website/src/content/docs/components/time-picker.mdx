@@ -1,14 +1,28 @@
 ---
 title: Time Picker
 description: UI for selecting a time
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/time-picker.tsx
+
+  externalReference:
+    - label: internationalized/date
+      href: https://www.npmjs.com/package/@internationalized/date
+      icon: npm.svg
 ---
 
 <TimePickerPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add time-picker`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add time-picker",
+		npm: "npx @radianos/radianbeta add time-picker",
+		yarn: "yarn @radianos/radianbeta add time-picker",
+		bun: "bunx @radianos/radianbeta add time-picker",
+	}}
+/>
 
 ## Imports
 

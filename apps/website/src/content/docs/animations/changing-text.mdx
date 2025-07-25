@@ -1,26 +1,60 @@
 ---
 title: Changing Text
 description: Animate through an array of words/text with smooth transitions
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/changing-text.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <ChangingTextPreview />
 
 ## Installation
 
-<Code language="bash" code={`radianos add changing-text`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add changing-text",
+		npm: "npx @radianos/radianbeta add changing-text",
+		yarn: "yarn @radianos/radianbeta add changing-text",
+		bun: "bunx @radianos/radianbeta add changing-text",
+	}}
+/>
 
 ## Imports
 
-<Code language="tsx" code={`import { ChangingText } from "@/components/animated/changing-text"`} showLineNumbers />
+<CodeSnippet title="/components/animated/changing-text" code={`import { ChangingText } from "@/components/animated/changing-text"`} showLineNumbers />
 
 ## Props
 
-| Prop Name   | Default Value | Possible Values |
-| ----------- | ------------- | --------------- |
-| texts       |               |                 |
-| direction   |               |                 |
-| duration    |               |                 |
-| motionProps |               |                 |
-| className   |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="ChangingText"
+		data={[
+			{
+				name: "texts",
+				values: ["string []"],
+				description: "Changes the values in the array provided",
+			},
+			{
+				name: "direction",
+				values: ["up", "down", "left", "right"],
+				defaultValue: ["down"],
+			},
+			{
+				name: "duration",
+				values: ["number"],
+				defaultValue: "2500",
+				description: "Sets the duration of the changing text",
+			},
+			{
+				name: "motionProps",
+				values: ["-"],
+				description: "Props from motion dev",
+			},
+		]}
+		externalReference="https://motion.dev/docs"
+	/>
+</PropsTableWrapper>

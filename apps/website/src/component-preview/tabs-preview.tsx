@@ -1,7 +1,7 @@
 import React from "react"
-import { File, Package2, ShoppingBag, User2 } from "lucide-react"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
+import { EyeIcon, File, Package2, Settings, ShoppingBag, SquareTerminal, User2 } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
+import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, type TabsListWidth, type TabsSize, TabsTrigger, type TabsVariant } from "@/registry/ui/tabs"
 
@@ -62,119 +62,121 @@ const TablePreview = () => {
 	const [counter, setCounter] = React.useState<"true" | "false">(DEFAULT_COUNTER)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownSub>
-								<DropdownSubTrigger>variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(values) => setVariant(values[0] as TabsVariant)} minSelectionCount={1} selectedValues={[variant!]}>
-										{variants.map((v) => (
-											<DropdownItem key={v} value={v}>
-												{v}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(values) => setSize(values[0] as TabsSize)} minSelectionCount={1} selectedValues={[size!]}>
-										{sizes.map((v) => (
-											<DropdownItem key={v} value={v}>
-												{v}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>width</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(values) => setWidth(values[0] as TabsListWidth)} minSelectionCount={1} selectedValues={[width]}>
-										{widths.map((v) => (
-											<DropdownItem key={v} value={v}>
-												{v}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>orientation</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(values) => setOrientation(values[0] as "horizontal" | "vertical")}
-										minSelectionCount={1}
-										selectedValues={[orientation]}>
-										{orientations.map((v) => (
-											<DropdownItem key={v} value={v}>
-												{v}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>activationMode</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(values) => setActivationMode(values[0] as "manual" | "automatic")}
-										minSelectionCount={1}
-										selectedValues={[activationMode]}>
-										{activationModes.map((v) => (
-											<DropdownItem key={v} value={v}>
-												{v}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>icon</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(values) => setIcon(values[0] === "true" ? "true" : "false")}
-										minSelectionCount={1}
-										selectedValues={[icon]}>
-										{booleanValues.map((v) => (
-											<DropdownItem key={v} value={v}>
-												{v}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>counter</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(values) => setCounter(values[0] === "true" ? "true" : "false")}
-										minSelectionCount={1}
-										selectedValues={[counter]}>
-										{booleanValues.map((v) => (
-											<DropdownItem key={v} value={v}>
-												{v}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setVariant(values[0] as TabsVariant)} minSelectionCount={1} selectedValues={[variant!]}>
+									{variants.map((v) => (
+										<DropdownItem key={v} value={v}>
+											{v}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setSize(values[0] as TabsSize)} minSelectionCount={1} selectedValues={[size!]}>
+									{sizes.map((v) => (
+										<DropdownItem key={v} value={v}>
+											{v}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>width</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setWidth(values[0] as TabsListWidth)} minSelectionCount={1} selectedValues={[width]}>
+									{widths.map((v) => (
+										<DropdownItem key={v} value={v}>
+											{v}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>orientation</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(values) => setOrientation(values[0] as "horizontal" | "vertical")}
+									minSelectionCount={1}
+									selectedValues={[orientation]}>
+									{orientations.map((v) => (
+										<DropdownItem key={v} value={v}>
+											{v}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>activationMode</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(values) => setActivationMode(values[0] as "manual" | "automatic")}
+									minSelectionCount={1}
+									selectedValues={[activationMode]}>
+									{activationModes.map((v) => (
+										<DropdownItem key={v} value={v}>
+											{v}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>icon</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setIcon(values[0] === "true" ? "true" : "false")} minSelectionCount={1} selectedValues={[icon]}>
+									{booleanValues.map((v) => (
+										<DropdownItem key={v} value={v}>
+											{v}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>counter</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(values) => setCounter(values[0] === "true" ? "true" : "false")}
+									minSelectionCount={1}
+									selectedValues={[counter]}>
+									{booleanValues.map((v) => (
+										<DropdownItem key={v} value={v}>
+											{v}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -202,9 +204,9 @@ const TablePreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="tabs.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`const data = [
 	{

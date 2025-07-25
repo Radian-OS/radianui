@@ -1,6 +1,7 @@
+import { EyeIcon, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgeExamplePreview = () => {
@@ -72,16 +73,20 @@ My Custom Badge
 			{badgeExamples.map((example, index) => (
 				<div key={index} className="overflow-hidden rounded-lg">
 					<h6 className="heading-6 mb-4 font-semibold">{example.name}</h6>
-					<Tabs defaultValue="preview">
+					<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 						<TabsList>
-							<TabsTrigger value="preview">Preview</TabsTrigger>
-							<TabsTrigger value="code">Code</TabsTrigger>
+							<TabsTrigger value="preview" icon={<EyeIcon />}>
+								Preview
+							</TabsTrigger>
+							<TabsTrigger value="code" icon={<SquareTerminal />}>
+								Code
+							</TabsTrigger>
 						</TabsList>
 						<TabsContent value="preview">
 							<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">{example.component}</div>
 						</TabsContent>
 						<TabsContent value="code">
-							<CodeArea language="tsx" showLineNumbers className="h-[420px]" code={example.code} />
+							<CodeSnippet title="badge-example-preview.tsx" showLineNumber className="h-[420px]" code={example.code} />
 						</TabsContent>
 					</Tabs>
 				</div>

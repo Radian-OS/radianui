@@ -1,14 +1,27 @@
 ---
 title: Select
 description: Display a collapsible list of options and allows a user to select one or more of them
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/select.tsx
+  externalReference:
+    - label: cmdk
+      href: https://www.npmjs.com/package/cmdk
+      icon: npm.svg
 ---
 
 <SelectPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add select`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add select",
+		npm: "npx @radianos/radianbeta add select",
+		yarn: "yarn @radianos/radianbeta add select",
+		bun: "bunx @radianos/radianbeta add select",
+	}}
+/>
 
 ## Imports
 

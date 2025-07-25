@@ -1,14 +1,26 @@
 ---
 title: Slider
 description: Select values by dragging a handle along a track
-source: https://github.com/Radian-os/radianos
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/slider.tsx
+  externalReference:
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/slider
 ---
 
 <SliderPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add slider`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add slider",
+		npm: "npx @radianos/radianbeta add slider",
+		yarn: "yarn @radianos/radianbeta add slider",
+		bun: "bunx @radianos/radianbeta add slider",
+	}}
+/>
 
 ## Imports
 

@@ -1,19 +1,31 @@
 ---
 title: Draggable
 description: Make any component draggable
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/make-draggable.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <DraggablePreview />
 
 ## Installation
 
-<Code language="bash" code={`radianos add make-draggable`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add make-draggable",
+		npm: "npx @radianos/radianbeta add make-draggable",
+		yarn: "yarn @radianos/radianbeta add make-draggable",
+		bun: "bunx @radianos/radianbeta add make-draggable",
+	}}
+/>
 
 ## Imports
 
-<Code language="tsx" code={`import { Draggable } from "@/components/animated/make-draggable"`} showLineNumbers />
+<CodeSnippet code={`import { Draggable } from "@/components/animated/make-draggable"`} />
 
 ## Examples
 
@@ -23,11 +35,46 @@ source: https://github.com/Radian-os
 
 ## Props
 
-| Prop Name       | Default Value | Possible Values |
-| --------------- | ------------- | --------------- |
-| drag            |               |                 |
-| dragConstraints |               |                 |
-| onDragEnd       |               |                 |
-| onDragStart     |               |                 |
-| dragElastic     |               |                 |
-| dragMomentum    |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="Draggable"
+		data={[
+			{
+				name: "drag",
+				defaultValue: "true",
+				values: ["boolean"],
+				description: "Toggles to init drag or not",
+			},
+			{
+				name: "dragConstraints",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "onDragEnd",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "onDragStart",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "dragElastic",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "dragMomentum",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+		]}
+	/>
+</PropsTableWrapper>

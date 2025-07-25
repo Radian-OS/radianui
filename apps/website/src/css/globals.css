@@ -2,8 +2,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./website.css";
-
-@import "./website.css";
+@import "./animations.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -356,42 +355,6 @@
 	--color-static-black: oklch(14.4% 0.002 286.1);
 }
 
-@theme inline {
-	--animate-infinite-scroll: infinite-scroll var(--duration) infinite linear;
-	--animate-infinite-scroll-vertical: infinite-scroll-vertical var(--duration) infinite linear;
-
-	@keyframes infinite-scroll {
-		from {
-			transform: translateX(0);
-		}
-		to {
-			transform: translateX(calc(-100% - var(--gap)));
-		}
-	}
-
-	@keyframes infinite-scroll-vertical {
-		from {
-			transform: translateY(0);
-		}
-		to {
-			transform: translateY(calc(-100% - var(--gap)));
-		}
-	}
-}
-
-/* Animation for shimmer effect in skeleton */
-@theme inline {
-	--animate-shimmer: shimmer 2s ease-out infinite;
-	@keyframes shimmer {
-		from {
-			background-position: 100% 50%;
-		}
-		to {
-			background-position: 0 50%;
-		}
-	}
-}
-
 @layer base {
 	* {
 		border-color: var(--color-border);
@@ -399,10 +362,6 @@
 	body {
 		@apply font-body bg-bg-base text-text;
 	}
-}
-
-@utility animation-pause {
-	animation-play-state: paused;
 }
 
 @utility border-border {

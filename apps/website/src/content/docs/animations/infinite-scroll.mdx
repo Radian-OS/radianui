@@ -1,19 +1,31 @@
 ---
 title: Infinite Scroll
 description: An infinite scrolling component that can be used to display text, images or videos.
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/infinite-scroll.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <InfiniteScrollPreview />
 
 ## Installation
 
-<Code language="bash" code={`radianos add infinite-scroll`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add infinite-scroll",
+		npm: "npx @radianos/radianbeta add infinite-scroll",
+		yarn: "yarn @radianos/radianbeta add infinite-scroll",
+		bun: "bunx @radianos/radianbeta add infinite-scroll",
+	}}
+/>
 
 ## Imports
 
-<Code language="tsx" code={`import { InfiniteScroll } from "@/components/animated/infinite-scroll"`} showLineNumbers />
+<CodeSnippet title="/components/animated/infinite-scroll" code={`import { InfiniteScroll } from "@/components/animated/infinite-scroll"`} showLineNumbers />
 
 ## Examples
 
@@ -23,9 +35,34 @@ source: https://github.com/Radian-os
 
 ## Props
 
-| Prop Name    | Default Value | Possible Values |
-| ------------ | ------------- | --------------- |
-| reverse      | false         |                 |
-| duration     |               |                 |
-| vertical     | false         |                 |
-| pauseOnHover | true          |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="InfiniteScroll"
+		data={[
+			{
+				name: "reverse",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "duration",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "vertical",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "pauseOnHover",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+		]}
+	/>
+</PropsTableWrapper>

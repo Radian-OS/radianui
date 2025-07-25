@@ -1,22 +1,28 @@
 ---
 title: Typing Text
 description: Characters appearing in typed animation
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/typing-text.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <TypingTextPreview />
 
 ## Installation
 
-<Code language="bash" code={`radianos add typing-text`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add typing-text",
+		npm: "npx @radianos/radianbeta add typing-text",
+		yarn: "yarn @radianos/radianbeta add typing-text",
+		bun: "bunx @radianos/radianbeta add typing-text",
+	}}
+/>
 
 ## Imports
 
-<Code language="tsx" code={`import { TypingText } from "@/components/animated/typing-text"`} showLineNumbers />
-
-## Props
-
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-|           |               |                 |
+<CodeSnippet title="/components/animated/typing-text" code={`import { TypingText } from "@/components/animated/typing-text"`} showLineNumbers />

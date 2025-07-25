@@ -1,15 +1,19 @@
-import { Lock } from "lucide-react"
+import { EyeIcon, Lock, SquareTerminal } from "lucide-react"
 import Link from "next/link"
+import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerExamplePreview1 = () => {
 	return (
-		<Tabs className="mb-10" defaultValue="preview">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<TabsList>
-				<TabsTrigger value="preview">Preview</TabsTrigger>
-				<TabsTrigger value="code">Code</TabsTrigger>
+				<TabsTrigger value="preview" icon={<EyeIcon />}>
+					Preview
+				</TabsTrigger>
+				<TabsTrigger value="code" icon={<SquareTerminal />}>
+					Code
+				</TabsTrigger>
 			</TabsList>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
@@ -23,13 +27,14 @@ const BannerExamplePreview1 = () => {
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeArea
+				<CodeSnippet
+					title="banner-example-preview1.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Banner variant="destructive" >
 Subscription Expired. Please upgrade your account to Pro Subscription 
 <Link className="underline" href="#" >Upgrade</Link>
 </Banner>`}
-					language="tsx"
 				/>
 			</TabsContent>
 		</Tabs>

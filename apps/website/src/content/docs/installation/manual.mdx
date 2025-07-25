@@ -3,4 +3,59 @@ title: Manual Installation
 description: Add dependencies to your project manually.
 ---
 
-<Manual />
+{/* <Manual /> */}
+
+## Add Tailwind CSS
+
+Components are styled using Tailwind CSS. You need to install Tailwind CSS in your project.
+
+<br />
+{/* <Link href="https://tailwindcss.com/docs/installation" className="underline underline-offset-4" target="_blank" rel="noopener noreferrer">
+	Follow the Tailwind CSS installation instructions to get started.
+</Link> */}
+[Follow the Tailwind CSS installation instructions to get started.](https://tailwindcss.com/docs/installation)
+
+## Add dependencies
+
+Add the following dependencies to your project:
+
+<br />
+<PackageManagerTabs
+	commands={{
+		npm: "npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+		yarn: "yarn add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+		pnpm: "pnpm add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+		bun: "bun add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react",
+	}}
+/>
+
+## Configure path aliases
+
+Configure the path aliases in your tsconfig.json file.
+
+<br />
+<CodeSnippet
+	title="tsconfig.json"
+	showLineNumber
+	code={`{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
+}`}
+/>
+
+## Configure styles
+
+Add the following to your styles/globals.css file.
+
+<br />
+<CodeSnippet
+	title="globals.css"
+	showLineNumber
+	code={`@tailwind base;
+@tailwind components;
+@tailwind utilities;`}
+/>

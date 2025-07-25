@@ -2,7 +2,7 @@ import { eq } from "drizzle-orm"
 import { db } from "@/db"
 import { emailSubscribers } from "@/db/schema"
 
-export async function GET(req: Request, { params }: { params: Promise<{ token: string }> }) {
+export async function GET(_req: Request, { params }: { params: Promise<{ token: string }> }) {
 	const { token } = await params
 
 	try {

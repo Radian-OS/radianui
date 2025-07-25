@@ -1,15 +1,23 @@
 ---
 title: Alert
 description: Display important messages with visual emphasis
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/alert.tsx
 ---
 
 <AlertPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add alert`} />
-
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add alert",
+		npm: "npx @radianos/radianbeta add alert",
+		yarn: "yarn @radianos/radianbeta add alert",
+		bun: "bunx @radianos/radianbeta add alert",
+	}}
+/>
 ## Imports
 
 <CodeSnippet title="/components/ui/alert.tsx" code={`import {Alert} from "@/components/ui/alert"`} />

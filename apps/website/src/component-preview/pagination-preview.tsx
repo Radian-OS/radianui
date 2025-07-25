@@ -1,6 +1,7 @@
 import { useState } from "react"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
+import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import Pagination from "@/registry/ui/pagination"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -16,86 +17,92 @@ const PaginationPreview = () => {
 	const [key, setKey] = useState(0)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownGroup>
-								<DropdownSub>
-									<DropdownSubTrigger>Nav button</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setControl(Array.from(keys)[0] as typeof control)}
-											minSelectionCount={1}
-											selectedValues={[control]}>
-											<DropdownItem value="icon">Icon</DropdownItem>
-											<DropdownItem value="text">Text</DropdownItem>
-											<DropdownItem value="both">Icon and Text</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>RowPerPage</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setRowsPerPageD(Array.from(keys)[0] as typeof rowPerPageD)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[rowPerPageD]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Goto page</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setGoTo(Array.from(keys)[0] as typeof goTo)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[goTo]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Total Page</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setCustomRow(Array.from(keys)[0] as typeof customRow)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[customRow]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-							</DropdownGroup>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownGroup>
+							<DropdownSub>
+								<DropdownSubTrigger>Nav button</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setControl(Array.from(keys)[0] as typeof control)}
+										minSelectionCount={1}
+										selectedValues={[control]}>
+										<DropdownItem value="icon">Icon</DropdownItem>
+										<DropdownItem value="text">Text</DropdownItem>
+										<DropdownItem value="both">Icon and Text</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>RowPerPage</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setRowsPerPageD(Array.from(keys)[0] as typeof rowPerPageD)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[rowPerPageD]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Goto page</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setGoTo(Array.from(keys)[0] as typeof goTo)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[goTo]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Total Page</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setCustomRow(Array.from(keys)[0] as typeof customRow)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[customRow]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+						</DropdownGroup>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -115,9 +122,9 @@ const PaginationPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="pagination.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Pagination 
 currentPage="${currentPage}" 

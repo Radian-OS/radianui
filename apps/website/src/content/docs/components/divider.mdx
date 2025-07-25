@@ -1,14 +1,23 @@
 ---
 title: Divider
 description: Visually separate sections or content
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/divider.tsx
 ---
 
 <DividerPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add divider`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add divider",
+		npm: "npx @radianos/radianbeta add divider",
+		yarn: "yarn @radianos/radianbeta add divider",
+		bun: "bunx @radianos/radianbeta add divider",
+	}}
+/>
 
 ## Imports
 

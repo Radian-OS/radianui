@@ -1,26 +1,68 @@
 ---
 title: Gradient Text
 description: Characters appearing in typed animation
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/gradient-text.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <GradientTextPreview />
 
 ## Installation
 
-<Code language="bash" code={`radianos add gradient-text`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add gradient-text",
+		npm: "npx @radianos/radianbeta add gradient-text",
+		yarn: "yarn @radianos/radianbeta add gradient-text",
+		bun: "bunx @radianos/radianbeta add gradient-text",
+	}}
+/>
 
 ## Imports
 
-<Code language="tsx" code={`import { GradientText } from "@/components/animated/gradient-text"`} showLineNumbers />
+<CodeSnippet title="/components/animated/gradient-text" code={`import { GradientText } from "@/components/animated/gradient-text"`} showLineNumbers />
 
 ## Props
 
-| Prop Name | Default Value | Possible Values |
-| --------- | ------------- | --------------- |
-| fromColor | #ff6b6b       |                 |
-| toColor   | #4ecdc4       |                 |
-| degree    | 90            |                 |
-| duration  | 2             |                 |
-| as        |               |                 |
+<PropsTableWrapper>
+	<PropsTable
+		title="GradientText"
+		data={[
+			{
+				name: "fromColor",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "toColor",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "degree",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "duration",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+			{
+				name: "as",
+				defaultValue: "-",
+				values: ["-"],
+				description: "-",
+			},
+		]}
+	/>
+</PropsTableWrapper>

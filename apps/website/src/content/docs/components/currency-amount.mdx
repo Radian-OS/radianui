@@ -1,13 +1,23 @@
 ---
 title: Currency Amount
 description: Display currency amount
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/currency.tsx
 ---
 
 <CurrencyAmountPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add currency`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add currency",
+		npm: "npx @radianos/radianbeta add currency",
+		yarn: "yarn @radianos/radianbeta add currency",
+		bun: "bunx @radianos/radianbeta add currency",
+	}}
+/>
 
 ## Imports
 
