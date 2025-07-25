@@ -1,6 +1,6 @@
 import React from "react"
 import { Box } from "lucide-react"
-import { EmailSubmit } from "@/hooks/use-email-sumbit"
+import { EmailSubscribe } from "@/components/email-subscribe"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 
@@ -19,7 +19,7 @@ export default function HeroSection() {
 				<p className="text-text-secondary text-lg font-normal">
 					Radian is a high quality design and development library to build systems that scale quickly. Get from design to product in few hours.
 				</p>
-				<EmailSubmit />
+				<EmailSubscribe />
 			</section>
 		</div>
 	)

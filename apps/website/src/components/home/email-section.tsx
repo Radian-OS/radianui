@@ -2,28 +2,13 @@
 
 import React from "react"
 import { Mail } from "lucide-react"
-import { subscribe } from "@/app/api/email/actions"
+import { useEmailSubscribe } from "@/hooks/use-email-subscribe"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
 
 export default function EmailSection() {
-	const [email, setEmail] = React.useState("")
-	const [isPending, startTransition] = React.useTransition()
-	const [subscriptionResult, setSubscriptionResult] = React.useState<{
-		success: boolean
-		message: string
-	}>()
-
-	async function handleSubscribe(e: React.FormEvent<HTMLFormElement>) {
-		e.preventDefault()
-		startTransition(() => {
-			subscribe(email).then((result) => {
-				setSubscriptionResult(result)
-				if (result.success) setEmail("")
-			})
-		})
-	}
+	const { email, setEmail, isPending, subscriptionResult, handleSubscribe } = useEmailSubscribe()
 
 	return (
 		<div className="max-w-310 mx-auto">
@@ -46,7 +31,7 @@ export default function EmailSection() {
 								onChange={(e) => setEmail(e.target.value)}
 								required
 							/>
-							<Button size="40" disabled={isPending} type="submit" className="w-full sm:w-fit">
+							<Button size="40" loading={isPending} disabled={isPending} type="submit" className="w-full sm:w-fit">
 								{!isPending ? "Subscribe" : "Subscribing"}
 							</Button>
 						</div>
