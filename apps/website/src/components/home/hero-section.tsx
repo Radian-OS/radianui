@@ -14,7 +14,7 @@ export default function HeroSection() {
 						<span>Under Development</span>
 					</Badge>
 					{/* <div className="border-soft-alpha h-7 w-40 rounded-md border p-1">123</div> */}
-					<BorderBeam />
+					<BorderBeam size={30} />
 				</div>
 				<h1 className="heading-1">Ship next generation of world class products and solutions</h1>
 				<p className="text-text-secondary text-lg font-normal">
