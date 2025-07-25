@@ -38,7 +38,6 @@ const SpinnerPreview = () => {
 									<DropdownItem value="simple">simple</DropdownItem>
 									<DropdownItem value="activity">activity</DropdownItem>
 									<DropdownItem value="wave">wave</DropdownItem>
-									<DropdownItem value="snake">snake</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
