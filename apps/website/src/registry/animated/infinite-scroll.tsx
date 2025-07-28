@@ -1,10 +1,19 @@
+"use client"
+
 import React from "react"
 import { css } from "@emotion/css"
 import { cn } from "@/lib/utils"
 
-type InfiniteScrollProps = { duration?: number; pauseOnHover?: boolean; reverse?: boolean; vertical?: boolean; className?: string; children?: React.ReactNode }
+type InfiniteScrollProps = {
+	duration?: number
+	pauseOnHover?: boolean
+	reverse?: boolean
+	vertical?: boolean
+	className?: string
+	children?: React.ReactNode
+}
 
-const infiniteScrollCSS = css`
+const infiniteScrollX = css`
 	@keyframes infinite-scroll {
 		from {
 			transform: translateX(0);
@@ -13,6 +22,10 @@ const infiniteScrollCSS = css`
 			transform: translateX(calc(-100% - var(--gap)));
 		}
 	}
+	animation: infinite-scroll var(--duration) linear infinite;
+`
+
+const infiniteScrollY = css`
 	@keyframes infinite-scroll-vertical {
 		from {
 			transform: translateY(0);
@@ -21,15 +34,13 @@ const infiniteScrollCSS = css`
 			transform: translateY(calc(-100% - var(--gap)));
 		}
 	}
-
-	.animate-infinite-scroll {
-		animation: infinite-scroll var(--duration) linear infinite;
-	}
-
-	.animate-infinite-scroll-vertical {
-		animation: infinite-scroll-vertical var(--duration) linear infinite;
-	}
+	animation: infinite-scroll-vertical var(--duration) linear infinite;
 `
+
+const getClass = (isVertical: boolean) => {
+	if (isVertical) return infiniteScrollY
+	return infiniteScrollX
+}
 
 const InfiniteScroll = ({ duration = 20, reverse = false, vertical = false, pauseOnHover = true, className, children }: InfiniteScrollProps) => {
 	return (
@@ -40,7 +51,6 @@ const InfiniteScroll = ({ duration = 20, reverse = false, vertical = false, paus
 					"flex-row": !vertical,
 					"flex-col": vertical,
 				},
-				infiniteScrollCSS,
 				className
 			)}
 			style={
@@ -53,12 +63,16 @@ const InfiniteScroll = ({ duration = 20, reverse = false, vertical = false, paus
 				.map((_, i) => (
 					<div
 						key={i}
-						className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
-							"![animation-direction:reverse]": reverse,
-							"animate-infinite-scroll flex-row": !vertical,
-							"animate-infinite-scroll-vertical flex-col": vertical,
-							"group-hover:![animation-play-state:paused]": pauseOnHover,
-						})}>
+						className={cn(
+							"flex shrink-0 justify-around [gap:var(--gap)]",
+							{
+								"![animation-direction:reverse]": reverse,
+								"flex-row": !vertical,
+								"flex-col": vertical,
+								"group-hover:![animation-play-state:paused]": pauseOnHover,
+							},
+							getClass(vertical)
+						)}>
 						{children}
 					</div>
 				))}
