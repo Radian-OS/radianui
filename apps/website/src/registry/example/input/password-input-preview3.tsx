@@ -40,7 +40,7 @@ const PasswordInputPreview = () => {
 	// Extract error messages
 	const errors = useMemo(() => {
 		if (validation.success) return []
-		return validation.error.errors.map((e) => e.message)
+		return validation.error.issues.map((e) => e.message)
 	}, [validation])
 
 	// Calculate progress based on the number of passed validations
