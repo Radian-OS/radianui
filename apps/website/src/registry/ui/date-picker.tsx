@@ -894,3 +894,5 @@ function TypeableDatePicker({
 		</Popover>
 	)
 }
+
+export { DatePicker }
