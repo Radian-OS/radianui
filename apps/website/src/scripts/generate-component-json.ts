@@ -23,7 +23,7 @@ const project = new Project({
 })
 
 // Define constants for file paths and ignored dependencies
-const IGNORED_DEPENDENCIES = ["react", "react-dom", "lucide-react", "class-variance-authority"]
+const IGNORED_DEPENDENCIES = ["react", "react-dom", "lucide-react", "class-variance-authority", "next"]
 
 const UI_DIRECTORY_PATH = path.resolve("src/registry/ui")
 const ANIMATED_UI_DIRECTORY_PATH = path.resolve("src/registry/animated")
@@ -55,9 +55,11 @@ async function getDependencyArray(filePath: string): Promise<string[]> {
 	sourceFile.getImportDeclarations().forEach((importDeclaration) => {
 		const moduleName = importDeclaration.getModuleSpecifierValue()
 
-		if (!IGNORED_DEPENDENCIES.includes(moduleName) && !moduleName.startsWith("@/") && !moduleName.startsWith("./")) {
+		if (!moduleName.startsWith("@/") && !moduleName.startsWith("./")) {
 			const baseModule = !moduleName.startsWith("@") && moduleName.includes("/") ? moduleName.split("/")[0] : moduleName
-			dependencies.add(baseModule)
+			if (!IGNORED_DEPENDENCIES.includes(baseModule)) {
+				dependencies.add(baseModule)
+			}
 		}
 	})
 
