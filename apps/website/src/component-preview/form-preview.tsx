@@ -1,21 +1,29 @@
 import React, { useCallback, useMemo, useState } from "react"
+import { CalendarDate } from "@internationalized/date"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { Value } from "react-phone-number-input"
+import * as RPNInput from "react-phone-number-input"
 import { z } from "zod"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import ColorPicker from "@/registry/ui/color-picker"
 import { CurrencyInput } from "@/registry/ui/currency"
+import DatePicker from "@/registry/ui/date-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import FileUpload, { FileWithPreview } from "@/registry/ui/file-upload"
 import { Input } from "@/registry/ui/input"
 import { InputOtp } from "@/registry/ui/input-otp"
 import { Password } from "@/registry/ui/password"
+import { PhoneNumber } from "@/registry/ui/phone-number"
 import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
+import Slider from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { TextArea } from "@/registry/ui/text-area"
 import { Toaster, showToast } from "@/registry/ui/toast"
 
 // Field type definitions
-type FieldType = "username" | "password" | "colorPicker" | "select" | "otp" | "currency" | "searchInput"
+type FieldType = "username" | "password" | "colorPicker" | "select" | "otp" | "currency" | "searchInput" | "date" | "file" | "phoneno" | "textarea" | "slider"
 
 interface FormData {
 	username: string
@@ -25,6 +33,11 @@ interface FormData {
 	otp: string
 	currency: string
 	searchInput: string
+	date: string
+	file: string
+	phoneno: string
+	textarea?: string
+	slider?: number
 }
 
 interface FieldErrors {
@@ -35,6 +48,11 @@ interface FieldErrors {
 	otp?: string
 	currency?: string
 	searchInput?: string
+	date?: string
+	file?: string
+	phoneno?: string
+	textarea?: string
+	slider?: string
 }
 
 // Schema definitions moved outside component to prevent recreation
@@ -54,6 +72,9 @@ const fieldSchemas = {
 	currency: z.object({
 		currency: z.string().min(1, "Currency amount is required"),
 	}),
+	textarea: z.object({
+		textarea: z.string().min(5, "Textarea must be at least 5 characters long"),
+	}),
 } as const
 
 const FormPreview = () => {
@@ -65,10 +86,21 @@ const FormPreview = () => {
 		otp: "",
 		currency: "",
 		searchInput: "",
+		date: "",
+		file: "",
+		phoneno: "",
+		textarea: "",
+		slider: 0,
 	})
 	const [errors, setErrors] = useState<FieldErrors>({})
 	const [selectedValue, setSelectedValue] = useState<string[]>(["username"])
 	const [displayField, setDisplayField] = useState<FieldType>("username")
+	const [selectedDate, setSelectedDate] = useState<CalendarDate | undefined>(undefined)
+	const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([])
+	const [sliderValue, setSliderValue] = useState([25])
+
+	const [phoneValue, setPhoneValue] = useState<Value>()
+	const [selectedCountry, setSelectedCountry] = useState<RPNInput.Country>("US")
 	const [colorValues, setColorValues] = useState<{ hsv: number[]; rgb: number[]; hex: string }>({
 		hsv: [],
 		rgb: [],
@@ -90,6 +122,10 @@ const FormPreview = () => {
 			searchInput: (value: string) => {
 				const result = fieldSchemas.searchInput.safeParse({ searchInput: value })
 				return result.success ? undefined : result.error.flatten().fieldErrors.searchInput?.[0]
+			},
+			textarea: (value: string) => {
+				const result = fieldSchemas.textarea.safeParse({ textarea: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.textarea?.[0]
 			},
 			otp: (value: string) => {
 				if (value.length === 0) return undefined // No error for empty field
@@ -140,6 +176,16 @@ const FormPreview = () => {
 					return false
 				}
 			},
+			textarea: () => {
+				const result = fieldSchemas.textarea.safeParse({ textarea: formData.textarea })
+				if (result.success) {
+					showToast({ title: "Textarea: " + result.data.textarea })
+					return true
+				} else {
+					setErrors({ textarea: result.error.flatten().fieldErrors.textarea?.[0] })
+					return false
+				}
+			},
 			colorPicker: () => {
 				showToast({ title: "Color Picker (HEX): " + colorValues.hex })
 				return true
@@ -154,6 +200,51 @@ const FormPreview = () => {
 					return true
 				}
 			},
+			date: () => {
+				if (formData.date.length === 0) {
+					setErrors({ date: "Please select a date" })
+					return false
+				} else {
+					showToast({ title: "Selected Date: " + formData.date })
+					return true
+				}
+			},
+			slider: () => {
+				if (sliderValue.length === 0) {
+					setErrors({ slider: "Please select a value" })
+					return false
+				} else {
+					showToast({ title: "Slider Value: " + sliderValue[0] })
+					return true
+				}
+			},
+			phoneno: () => {
+				if (!phoneValue || phoneValue.length === 0) {
+					setErrors({ phoneno: "Please enter a valid phone number" })
+					return false
+				} else {
+					showToast({ title: "Phone Number: " + phoneValue + " (" + selectedCountry + ")" })
+					return true
+				}
+			},
+			file: () => {
+				if (uploadedFiles.length === 0) {
+					setErrors({ file: "Please upload a file" })
+					return false
+				} else {
+					const fileInfo = uploadedFiles
+						.map((file) => {
+							const sizeInKB = (file.file.size / 1024).toFixed(2)
+							const sizeInMB = (file.file.size / (1024 * 1024)).toFixed(2)
+							const displaySize = file.file.size > 1024 * 1024 ? `${sizeInMB} MB` : `${sizeInKB} KB`
+							return `${file.file.name} | (${displaySize}) | ${file.file.type}`
+						})
+						.join(", ")
+					showToast({ title: "Uploaded Files: " + fileInfo })
+					return true
+				}
+			},
+
 			otp: () => {
 				if (formData.otp.length !== 6) {
 					setErrors({ otp: "OTP must be 6 digits" })
@@ -174,9 +265,18 @@ const FormPreview = () => {
 				}
 			},
 		}),
-		[formData, colorValues.hex, selectValues]
+		[formData, colorValues.hex, selectValues, uploadedFiles, fieldValidators]
 	)
 
+	const handlePhoneChange = useCallback((value: Value) => {
+		setPhoneValue(value)
+		setFormData((prev) => ({ ...prev, phoneno: value || "" }))
+
+		// Clear phone error when user starts typing
+		if (value && value.length > 0) {
+			setErrors((prev) => ({ ...prev, phoneno: undefined }))
+		}
+	}, [])
 	// Optimized change handler with useCallback
 	const handleChange = useCallback(
 		(e: React.ChangeEvent<HTMLInputElement>) => {
@@ -258,6 +358,36 @@ const FormPreview = () => {
 		},
 		[displayField, fieldValidators]
 	)
+
+	// Fixed file upload handler
+	const handleFileChange = useCallback((files: FileWithPreview[]) => {
+		setUploadedFiles(files)
+		// Update formData.file with file names
+		const fileNames = files.map((file) => file.file.name).join(", ")
+		setFormData((prev) => ({ ...prev, file: fileNames }))
+		// Clear file error when files are uploaded
+		if (files.length > 0) {
+			setErrors((prev) => ({ ...prev, file: undefined }))
+		}
+	}, [])
+
+	// Add a separate change handler for textarea
+	const handleTextAreaChange = useCallback(
+		(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+			const { name, value } = e.target
+
+			setFormData((prev) => ({ ...prev, [name]: value }))
+
+			// Validate only if current field and has validator
+			const fieldName = name as keyof typeof fieldValidators
+			if (displayField === fieldName && fieldValidators[fieldName]) {
+				const error = fieldValidators[fieldName](value)
+				setErrors((prev) => ({ ...prev, [fieldName]: error }))
+			}
+		},
+		[displayField, fieldValidators]
+	)
+
 	// Field render functions using lookup object instead of nested if-else
 	const fieldRenderers = useMemo(
 		() => ({
@@ -339,8 +469,83 @@ const FormPreview = () => {
 					hint={errors.searchInput}
 				/>
 			),
+			date: () => (
+				<DatePicker
+					mode="single"
+					selected={selectedDate}
+					onSelect={(value: CalendarDate | undefined) => {
+						setSelectedDate(value)
+						setFormData((prev) => ({ ...prev, date: value ? value.toString() : "" }))
+						if (value) {
+							setErrors((prev) => ({ ...prev, date: undefined }))
+						}
+					}}
+					showTime={false}
+					label="Start Date"
+					placeholder="Pick a date"
+					hasError={!!errors.date}
+					hint={errors.date}
+				/>
+			),
+			file: () => <FileUpload label="Upload Documents" maxFiles={1} accept="*" value={uploadedFiles} onChange={handleFileChange} hasError={!!errors.file} hint={errors.file} />,
+			phoneno: () => (
+				<PhoneNumber
+					label="Phone Number"
+					value={phoneValue}
+					onChange={handlePhoneChange}
+					country={selectedCountry}
+					onCountryChange={(c) => setSelectedCountry(c || "US")}
+					international
+					countryCallingCodeEditable
+					showTrigger
+					countryDropdown
+					hasError={!!errors.phoneno}
+					hint={errors.phoneno}
+				/>
+			),
+			textarea: () => (
+				<TextArea
+					label="Description"
+					name="textarea"
+					value={formData.textarea}
+					onChange={handleTextAreaChange}
+					placeholder="Tell us more about your requirements..."
+					hasError={!!errors.textarea}
+					hint={errors.textarea}
+				/>
+			),
+			slider: () => (
+				<Slider
+					label="Slider"
+					value={sliderValue}
+					onValueChange={(newValue) => {
+						setSliderValue(newValue)
+						setFormData((prev) => ({ ...prev, slider: newValue[0] }))
+
+						// Clear slider error when user moves slider
+						if (newValue.length > 0) {
+							setErrors((prev) => ({ ...prev, slider: undefined }))
+						}
+					}}
+					min={0}
+					max={100}
+				/>
+			),
 		}),
-		[formData, errors, handleChange, handleColorChange, handleSelectChange, selectValues, handleOtpChange, handleCurrencyChange]
+		[
+			formData,
+			errors,
+			handleChange,
+			handleColorChange,
+			handleSelectChange,
+			selectValues,
+			handleOtpChange,
+			handleCurrencyChange,
+			uploadedFiles,
+			handleFileChange,
+			selectedDate,
+			handleTextAreaChange,
+		]
 	)
 
 	return (
@@ -369,6 +574,11 @@ const FormPreview = () => {
 							<DropdownItem value="otp">OTP</DropdownItem>
 							<DropdownItem value="currency">Currency</DropdownItem>
 							<DropdownItem value="searchInput">Search Input</DropdownItem>
+							<DropdownItem value="date">Date</DropdownItem>
+							<DropdownItem value="file">File Upload</DropdownItem>
+							<DropdownItem value="phoneno">Phone Number</DropdownItem>
+							<DropdownItem value="textarea">Textarea</DropdownItem>
+							<DropdownItem value="slider">Slider</DropdownItem>
 						</DropdownGroup>
 					</DropdownContent>
 				</Dropdown>
