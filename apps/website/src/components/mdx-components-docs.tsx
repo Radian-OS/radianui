@@ -108,7 +108,9 @@ import {
 } from "@/registry/ui/accordion"
 import { Alert, AlertProps } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import CodeSnippet from "./code-snippet"
+import { ComponentSource } from "./component-source"
 import { FrameworkDocs } from "./framework-docs"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
@@ -236,6 +238,7 @@ const components: MDXComponents = {
 			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
 		</div>
 	),
+	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
 			{children}
@@ -247,7 +250,7 @@ const components: MDXComponents = {
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! pb-3", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! pt-6", className)} {...props}>
 			{children}
 		</h3>
 	),
@@ -308,20 +311,21 @@ const components: MDXComponents = {
 	AccordionContent: (props: AccordionContentProps) => {
 		return <AccordionContent {...props} />
 	},
-	Steps: ({ ...props }) => <div className="steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:border-dashed md:pl-8" {...props} />,
-	Step: ({ className, ...props }: React.ComponentProps<"div">) => (
-		<div
-			className={cn(
-				"step relative mt-8 scroll-m-20",
-				"before:absolute before:left-[-2.9rem]",
-				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
-				"before:bg-border before:text-text before:rounded-full before:text-sm before:font-medium",
-				"before:counter-increment-[step] before:content-[counter(step)]",
-				className
-			)}
-			{...props}
-		/>
-	),
+	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
+		return <Tabs {...props} variant="default" size="md" className="gap-4" />
+	},
+	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
+		return <TabsList width="full" {...props} />
+	},
+
+	TabsTrigger: (props: React.ComponentProps<typeof TabsTrigger>) => {
+		return <TabsTrigger {...props} />
+	},
+	TabsContent: (props: React.ComponentProps<typeof TabsContent>) => {
+		return <TabsContent {...props} />
+	},
+	Step: ({ className, ...props }: React.ComponentProps<"h3">) => <h3 className={cn("heading-6 mb-4 mt-8 scroll-m-32 font-medium", className)} {...props} />,
+	Steps: ({ ...props }) => <div className="[&>h3]:step steps *:[h3]:first:!mt-0 mb-6 [counter-reset:step]" {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,

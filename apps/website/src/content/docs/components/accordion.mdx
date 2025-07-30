@@ -13,14 +13,41 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add accordion",
-		npm: "npx @radianos/radianbeta add accordion",
-		yarn: "yarn @radianos/radianbeta add accordion",
-		bun: "bunx @radianos/radianbeta add accordion",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add accordion",
+				npm: "npx @radianos/radianbeta add accordion",
+				yarn: "yarn @radianos/radianbeta add accordion",
+				bun: "bunx @radianos/radianbeta add accordion",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-accordion",
+				npm: "npm install @radix-ui/react-accordion",
+				yarn: "yarn add @radix-ui/react-accordion",
+				bun: "bun add @radix-ui/react-accordion",
+			}}
+		/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="accordion" title="components/ui/accordion.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
 
 ## Imports
 

@@ -6,6 +6,7 @@ import { useEmailSubscribe } from "@/hooks/use-email-subscribe"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
+import { ComponentSource } from "../component-source"
 
 export default function EmailSection() {
 	const { email, setEmail, isPending, subscriptionResult, handleSubscribe } = useEmailSubscribe()
@@ -46,6 +47,7 @@ export default function EmailSection() {
 					</form>
 				</div>
 				<div className="bg-border -ml-396 hidden h-[0.5px] w-[calc(100%+999rem)] lg:block"></div>
+				<ComponentSource name="skeleton" title="components/ui/skeleton.tsx" collapsible />
 			</div>
 		</div>
 	)
