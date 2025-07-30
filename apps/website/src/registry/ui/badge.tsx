@@ -15,7 +15,7 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 		color?: "primary" | "info" | "success" | "error" | "warning"
 		asChild?: boolean
 	}
-const badgeVariants = cva("inline-flex items-center font-medium box-border w-fit whitespace-nowrap transition duration-200", {
+const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
 			neutral: "border border-border-alpha text-text-secondary",

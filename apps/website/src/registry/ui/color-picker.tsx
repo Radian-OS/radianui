@@ -25,7 +25,7 @@ type DragType = "saturation" | "hue" | "alpha" | null
 export type SizeOptions = "0" | "28" | "32" | "36" | "40" | "44" | "48"
 export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 type ColorPickerProps = {
-	onColorChange?: (hsv: number[], rgb: number[]) => void
+	onColorChange?: (hsv: number[], rgb: number[], hex: string) => void
 	defaultColor?:
 		| string
 		| {
@@ -866,7 +866,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		setSelectedColor(rgb)
 
 		if (onColorChange) {
-			onColorChange([Math.round(hue), Math.round(saturation), Math.round(value), Math.round(alpha)], [rgb.r, rgb.g, rgb.b, Math.round(alpha)])
+			onColorChange([Math.round(hue), Math.round(saturation), Math.round(value), Math.round(alpha)], [rgb.r, rgb.g, rgb.b, Math.round(alpha)], rgbToHex(rgb.r, rgb.g, rgb.b))
 		}
 
 		// Only update input value if user is not currently typing

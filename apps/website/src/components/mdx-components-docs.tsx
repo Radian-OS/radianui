@@ -37,6 +37,7 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
+import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -79,6 +80,9 @@ import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import FormExample1 from "@/registry/example/form/form-example1"
+import FormExample2 from "@/registry/example/form/form-example2"
+import FormExample3 from "@/registry/example/form/form-example3"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
@@ -212,6 +216,10 @@ const components: MDXComponents = {
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWitTabsPreview: () => <CodeWithTabs />,
+	FormPreview: () => <FormPreview />,
+	FormExample1: () => <FormExample1 />,
+	FormExample2: () => <FormExample2 />,
+	FormExample3: () => <FormExample3 />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
