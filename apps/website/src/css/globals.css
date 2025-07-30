@@ -142,20 +142,20 @@
 	--color-gray-0: hsl(230, 6%, 0%); */
 }
 
-@theme static {
+@theme {
 	/* Border radius variables */
-	--radius-radius-none: 0px;
+	/* --radius-radius-none: 0px;
 	--radius-radius-xs: 2px;
 	--radius-radius-sm: 4px;
 	--radius-radius-md: 6px;
 	--radius-radius-lg: 8px;
 	--radius-radius-xl: 12px;
-	--radius-radius-2xl: 16px;
+	--radius-radius-2xl: 16px; */
 
 	/* primary */
 	--color-primary: oklch(53.2% 0.215 282);
 	--color-primary-accent: oklch(95.2% 0.023 276.9);
-	--color-primary-focus: oklch(92.3% 0.037 280.6);
+	--color-primary-focus: oklch(67.626% 0.15878 276.51);
 	--color-primary-stroke: oklch(58.7% 0.215 282);
 	--color-primary-hover: oklch(58.7% 0.215 282);
 	--color-primary-text: oklch(47% 0.221 283);
@@ -354,42 +354,6 @@
 	--color-static-black: oklch(14.4% 0.002 286.1);
 }
 
-@theme inline {
-	--animate-infinite-scroll: infinite-scroll var(--duration) infinite linear;
-	--animate-infinite-scroll-vertical: infinite-scroll-vertical var(--duration) infinite linear;
-
-	@keyframes infinite-scroll {
-		from {
-			transform: translateX(0);
-		}
-		to {
-			transform: translateX(calc(-100% - var(--gap)));
-		}
-	}
-
-	@keyframes infinite-scroll-vertical {
-		from {
-			transform: translateY(0);
-		}
-		to {
-			transform: translateY(calc(-100% - var(--gap)));
-		}
-	}
-}
-
-/* Animation for shimmer effect in skeleton */
-@theme inline {
-	--animate-shimmer: shimmer 2s ease-out infinite;
-	@keyframes shimmer {
-		from {
-			background-position: 100% 50%;
-		}
-		to {
-			background-position: 0 50%;
-		}
-	}
-}
-
 @layer base {
 	* {
 		border-color: var(--color-border);
@@ -397,10 +361,6 @@
 	body {
 		@apply font-body bg-bg-base text-text;
 	}
-}
-
-@utility animation-pause {
-	animation-play-state: paused;
 }
 
 @utility border-border {
@@ -429,7 +389,6 @@
 }
 
 @utility heading-1 {
-	/* Heading styles */
 	@apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
 
 	@media (width >=theme(--breakpoint-sm)) {

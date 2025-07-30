@@ -37,6 +37,7 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
+import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -61,11 +62,8 @@ import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
-import Cli from "@/components/cli"
 import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
-import Manual from "@/components/manual"
-import Nextjs from "@/components/nextjs"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
@@ -82,6 +80,9 @@ import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import FormExample1 from "@/registry/example/form/form-example1"
+import FormExample2 from "@/registry/example/form/form-example2"
+import FormExample3 from "@/registry/example/form/form-example3"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
@@ -111,7 +112,9 @@ import {
 } from "@/registry/ui/accordion"
 import { Alert, AlertProps } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import CodeSnippet from "./code-snippet"
+import { ComponentSource } from "./component-source"
 import { FrameworkDocs } from "./framework-docs"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
@@ -174,10 +177,7 @@ const components: MDXComponents = {
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
 	DropdownPreview: () => <DropdownPreview />,
 	ResizablePreview: () => <ResizablePreview />,
-	Nextjs: () => <Nextjs />,
-	Cli: () => <Cli />,
 	Installation: () => <Installation />,
-	Manual: () => <Manual />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
@@ -185,7 +185,6 @@ const components: MDXComponents = {
 	EmailPreview: () => <EmailPreview />,
 	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
-	// BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,
@@ -217,6 +216,10 @@ const components: MDXComponents = {
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWitTabsPreview: () => <CodeWithTabs />,
+	FormPreview: () => <FormPreview />,
+	FormExample1: () => <FormExample1 />,
+	FormExample2: () => <FormExample2 />,
+	FormExample3: () => <FormExample3 />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -243,6 +246,7 @@ const components: MDXComponents = {
 			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
 		</div>
 	),
+	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
 			{children}
@@ -254,9 +258,18 @@ const components: MDXComponents = {
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! pb-3", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! pt-6", className)} {...props}>
 			{children}
 		</h3>
+	),
+	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
+		<a
+			aria-label="Link"
+			rel="noopener noreferrer"
+			target="_blank"
+			className={cn("text-primary hover:text-primary-hover font-medium underline underline-offset-4 transition-colors duration-200", className)}
+			{...props}
+		/>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={cn("text-text-secondary text-base", className)} {...props}>
@@ -306,23 +319,24 @@ const components: MDXComponents = {
 	AccordionContent: (props: AccordionContentProps) => {
 		return <AccordionContent {...props} />
 	},
-	Steps: ({ ...props }) => <div className="steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:border-dashed md:pl-8" {...props} />,
-	Step: ({ className, ...props }: React.ComponentProps<"div">) => (
-		<div
-			className={cn(
-				"step relative mt-8 scroll-m-20",
-				"before:absolute before:left-[-2.9rem]",
-				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
-				"before:bg-border before:text-text before:rounded-full before:text-sm before:font-medium",
-				"before:counter-increment-[step] before:content-[counter(step)]",
-				className
-			)}
-			{...props}
-		/>
-	),
+	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
+		return <Tabs {...props} variant="default" size="md" className="gap-4" />
+	},
+	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
+		return <TabsList width="full" {...props} />
+	},
+
+	TabsTrigger: (props: React.ComponentProps<typeof TabsTrigger>) => {
+		return <TabsTrigger {...props} />
+	},
+	TabsContent: (props: React.ComponentProps<typeof TabsContent>) => {
+		return <TabsContent {...props} />
+	},
+	Step: ({ className, ...props }: React.ComponentProps<"h3">) => <h3 className={cn("heading-6 mb-4 mt-8 scroll-m-32 font-medium", className)} {...props} />,
+	Steps: ({ ...props }) => <div className="[&>h3]:step steps *:[h3]:first:!mt-0 mb-6 [counter-reset:step]" {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
-	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium underline underline-offset-4", className)} {...props} />,
+	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
 			className={cn("bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10", className)}

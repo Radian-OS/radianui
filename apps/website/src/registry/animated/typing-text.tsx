@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { Easing, Variants, motion } from "motion/react"
 

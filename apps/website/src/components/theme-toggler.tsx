@@ -22,14 +22,14 @@ export function DesktopThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<Button variant="outline" color="neutral" iconOnly>
+			<Button variant="outline" color="neutral" iconOnly disabled>
 				<Loader2 className="size-5 animate-spin" />
 			</Button>
 		)
 	}
 
 	return (
-		<Button iconOnly variant="outline" color="neutral" onClick={toggleTheme}>
+		<Button variant="outline" color="neutral" onClick={toggleTheme} iconOnly>
 			{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
 		</Button>
 	)
