@@ -202,7 +202,7 @@ export function showToast({
 							"flex-row items-center gap-2": placement === "horizontal",
 						})}>
 						{/* Content */}
-						<div className="gap-0.5 px-1">
+						<div className="flex min-w-0 flex-1 flex-col gap-0.5 px-1">
 							{title && (
 								<div
 									className={cn("font-medium", {
@@ -212,7 +212,7 @@ export function showToast({
 									{title}
 								</div>
 							)}
-							{description && <div className={cn("w-47", {})}>{description}</div>}
+							{description && <div className="min-w-47 whitespace-pre-wrap break-words">{description}</div>}
 						</div>
 
 						{/* Buttons */}

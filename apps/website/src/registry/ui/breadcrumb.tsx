@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react"
 import { ChevronRight, Ellipsis } from "lucide-react"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "./badge"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "./dropdown"
@@ -18,7 +17,7 @@ type BreadcrumbProps = BaseProps & {
 }
 
 type BreadcrumbItemProps = BaseProps & {
-	href?: string
+	asChild?: boolean
 	isCurrent?: boolean
 	showSeparator?: boolean
 	separator?: "default" | "slash"
@@ -71,11 +70,7 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 												<DropdownGroup>
 													{invisibleItems.map((hiddenChild, hiddenIndex) =>
 														React.isValidElement<BreadcrumbItemProps>(hiddenChild) ? (
-															<DropdownItem key={hiddenChild.key ?? hiddenIndex}>
-																<Link className="flex items-center justify-start gap-0.5" href={hiddenChild.props.href || "#"}>
-																	{hiddenChild.props.children}
-																</Link>
-															</DropdownItem>
+															<DropdownItem key={hiddenChild.key ?? hiddenIndex}>{hiddenChild.props.children}</DropdownItem>
 														) : null
 													)}
 												</DropdownGroup>
@@ -94,32 +89,28 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 }
 Breadcrumb.displayName = "Breadcrumb"
 
-function BreadcrumbItem({ children, href, isCurrent = false, className = "", showSeparator = false, separator = "default", ...props }: BreadcrumbItemProps) {
+function BreadcrumbItem({ children, asChild = false, isCurrent = false, className = "", showSeparator = false, separator = "default", ...props }: BreadcrumbItemProps) {
+	const baseStyles = cn(
+		"flex items-center gap-1 text-sm font-medium transition-colors",
+		isCurrent ? "font-medium" : "text-text-secondary",
+		"hover:underline",
+		"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
+		className
+	)
+
 	return (
 		<>
 			<li className="flex items-center justify-center" {...props}>
-				{href ? (
-					<Link
-						href={href}
-						className={cn(
-							"flex items-center gap-1 text-sm font-medium transition-colors",
-							isCurrent ? "font-medium" : "text-text-secondary",
-							"hover:underline",
-							"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
-							className
-						)}>
-						{children}
-					</Link>
+				{asChild ? (
+					React.isValidElement(children) ? (
+						React.cloneElement(children as React.ReactElement<HTMLAnchorElement>, {
+							className: cn(baseStyles, (children as React.ReactElement<HTMLAnchorElement>).props?.className),
+						})
+					) : (
+						children
+					)
 				) : (
-					<span
-						className={cn(
-							"flex items-center gap-1 text-sm font-medium transition-colors",
-							isCurrent ? "font-medium" : "text-text-secondary",
-							"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
-							className
-						)}>
-						{children}
-					</span>
+					<span className={baseStyles}>{children}</span>
 				)}
 			</li>
 			{showSeparator && (separator === "slash" ? <span className="text-text-tertiary text-sm">/</span> : <ChevronRight size={14} className="stroke-text-tertiary" />)}
