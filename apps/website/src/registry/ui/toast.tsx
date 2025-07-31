@@ -1,6 +1,7 @@
 import React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+import Link from "next/link"
 import { Toaster as Sonner, toast } from "sonner"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
@@ -218,7 +219,7 @@ export function showToast({
 						{buttons.length > 0 && (
 							<div className="flex gap-3 px-1">
 								{buttons.map((button, index) => (
-									<a
+									<Link
 										href={button.href || ""} // Use the href from button or fallback to empty string
 										className="inline-flex h-5 items-center" // Set specific height
 										key={index}
@@ -235,7 +236,7 @@ export function showToast({
 											})}>
 											{button.label}
 										</span>
-									</a>
+									</Link>
 								))}
 							</div>
 						)}
