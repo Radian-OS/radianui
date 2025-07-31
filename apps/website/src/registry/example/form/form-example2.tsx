@@ -9,64 +9,52 @@ import { TextArea } from "@/registry/ui/text-area"
 import { Toaster, showToast } from "@/registry/ui/toast"
 
 interface FormData {
-	username: string
-	password: string
-	phoneno: string
 	fullname: string
 	email: string
-	confirmPassword: string
+	subject: string
+	message: string
 }
 
 interface FieldErrors {
-	username?: string
-	password?: string
-	phoneno?: string
 	fullname?: string
 	email?: string
-	confirmPassword?: string
+	subject?: string
+	message?: string
 }
 
 // Schema definitions moved outside component to prevent recreation
 const fieldSchemas = {
-	username: z.object({
-		username: z.string().min(3, "Username must be at least 3 characters long"),
-	}),
-	password: z.object({
-		password: z.string().min(8, "Password must be at least 8 characters long"),
-	}),
 	fullname: z.object({
-		fullname: z.string().min(3, "Full name must be at least 3 characters long"),
+		fullname: z
+			.string()
+			.min(1, "Full name is required")
+			.min(3, "Full name must be at least 3 characters long")
+			.max(50, "Full name must not exceed 50 characters")
+			.regex(/^[a-zA-Z\s]+$/, "Full name can only contain letters and spaces"),
 	}),
 	email: z.object({
-		email: z.string().email("Invalid email address"),
+		email: z.string().min(1, "Email is required").email("Invalid email address").max(100, "Email must not exceed 100 characters"),
 	}),
-	confirmPassword: z.object({
-		confirmPassword: z.string().min(8, "Confirm password must be at least 8 characters long"),
+	subject: z.object({
+		subject: z.string().min(1, "Subject is required").min(3, "Subject must be at least 3 characters long").max(100, "Subject must not exceed 100 characters"),
+	}),
+	message: z.object({
+		message: z.string().min(1, "Message is required").min(10, "Message must be at least 10 characters long").max(1000, "Message must not exceed 1000 characters"),
 	}),
 } as const
 
 const FormExample2 = () => {
 	const [formData, setFormData] = useState<FormData>({
-		username: "",
-		password: "",
-		phoneno: "",
 		fullname: "",
 		email: "",
-		confirmPassword: "",
+		subject: "",
+		message: "",
 	})
 	const [errors, setErrors] = useState<FieldErrors>({})
 
 	// Field validation handlers using lookup object instead of if-else
 	const fieldValidators = useMemo(
 		() => ({
-			username: (value: string) => {
-				const result = fieldSchemas.username.safeParse({ username: value })
-				return result.success ? undefined : result.error.flatten().fieldErrors.username?.[0]
-			},
-			password: (value: string) => {
-				const result = fieldSchemas.password.safeParse({ password: value })
-				return result.success ? undefined : result.error.flatten().fieldErrors.password?.[0]
-			},
 			fullname: (value: string) => {
 				const result = fieldSchemas.fullname.safeParse({ fullname: value })
 				return result.success ? undefined : result.error.flatten().fieldErrors.fullname?.[0]
@@ -75,13 +63,21 @@ const FormExample2 = () => {
 				const result = fieldSchemas.email.safeParse({ email: value })
 				return result.success ? undefined : result.error.flatten().fieldErrors.email?.[0]
 			},
+			subject: (value: string) => {
+				const result = fieldSchemas.subject.safeParse({ subject: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.subject?.[0]
+			},
+			message: (value: string) => {
+				const result = fieldSchemas.message.safeParse({ message: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.message?.[0]
+			},
 		}),
 		[]
 	)
 
 	// Updated change handler - validate each field as it changes
 	const handleChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
+		(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 			const { name, value } = e.target
 
 			setFormData((prev) => ({ ...prev, [name]: value }))
@@ -124,12 +120,21 @@ const FormExample2 = () => {
 				}
 
 				showToast({
-					title: "Form Submitted Successfully!",
+					title: "Contact detail!",
 					variant: "inverse",
 					description: JSON.stringify(allData, null, 2),
 					icon: <CircleUser />,
 					closable: false,
 				})
+
+				// Reset form after successful submission
+				setFormData({
+					fullname: "",
+					email: "",
+					subject: "",
+					message: "",
+				})
+				setErrors({})
 			}
 		},
 		[formData, fieldValidators]
@@ -156,6 +161,7 @@ const FormExample2 = () => {
 							<h1 className="text-center text-3xl font-bold">Get In Touch</h1>
 							<p className="text-center text-lg">Send us a message and we&apos;ll respond as soon as possible.</p>
 						</div>
+
 						{/* Full Name */}
 						<Input
 							name="fullname"
@@ -165,55 +171,65 @@ const FormExample2 = () => {
 							className="w-full"
 							value={formData.fullname}
 							onChange={handleChange}
-							placeholder="Enter full name"
+							placeholder="Enter your full name"
 							hasError={!!errors.fullname}
 							hint={errors.fullname}
 						/>
 
+						{/* Email */}
 						<Input
 							name="email"
 							id="email"
+							type="email"
 							start={<Mail />}
 							label="Email Address *"
 							className="w-full"
 							value={formData.email}
 							onChange={handleChange}
-							placeholder="Enter email address"
+							placeholder="Enter your email address"
 							hasError={!!errors.email}
 							hint={errors.email}
 						/>
 
+						{/* Subject */}
 						<Input
 							name="subject"
 							id="subject"
 							label="Subject *"
 							start={<MessageCircle />}
 							className="w-full"
-							value={formData.username}
+							value={formData.subject}
 							onChange={handleChange}
-							placeholder="Enter username"
-							hasError={!!errors.username}
-							hint={errors.username}
-						/>
-						<TextArea
-							label="Message *"
-							name="textarea"
-							// value={formData.textarea}
-							// onChange={handleTextAreaChange}
-							placeholder="Tell us more about your inquiry..."
-							// hasError={!!errors.textarea}
-							// hint={errors.textarea}
+							placeholder="What is this regarding?"
+							hasError={!!errors.subject}
+							hint={errors.subject}
 						/>
 
-						<Button type="submit" className="bg-success w-full">
-							Submit
+						{/* Message */}
+						<TextArea
+							label="Message *"
+							name="message"
+							id="message"
+							value={formData.message}
+							onChange={handleChange}
+							placeholder="Tell us more about your inquiry... (minimum 10 characters)"
+							hasError={!!errors.message}
+							hint={errors.message}
+							rows={6}
+						/>
+
+						{/* Character count for message */}
+						<div className="text-right text-sm text-gray-500">{formData.message.length}/1000 characters</div>
+
+						<Button type="submit" className="w-full">
+							Send Message
 						</Button>
 					</form>
 				</div>
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeSnippet title="form-preview-all-fields.tsx" showLineNumber className="h-[420px]" code={``} />
+				<CodeSnippet title="contact-form-with-validation.tsx" showLineNumber className="h-[420px]" code={``} />
 			</TabsContent>
 		</Tabs>
 	)

@@ -10,64 +10,108 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Toaster, showToast } from "@/registry/ui/toast"
 
 interface FormData {
-	username: string
-	password: string
-	phoneno: string
 	fullname: string
 	email: string
-	confirmPassword: string
+	streetAddress: string
+	city: string
+	state: string
+	zipCode: string
+	billingStreetAddress: string
+	billingCity: string
+	billingState: string
+	billingZipCode: string
+	cardNumber: string
+	expirationDate: string
+	cvv: string
+	promoCode: string
 }
 
 interface FieldErrors {
-	username?: string
-	password?: string
-	phoneno?: string
 	fullname?: string
 	email?: string
-	confirmPassword?: string
+	streetAddress?: string
+	city?: string
+	state?: string
+	zipCode?: string
+	billingStreetAddress?: string
+	billingCity?: string
+	billingState?: string
+	billingZipCode?: string
+	cardNumber?: string
+	expirationDate?: string
+	cvv?: string
+	promoCode?: string
 }
 
 // Schema definitions moved outside component to prevent recreation
 const fieldSchemas = {
-	username: z.object({
-		username: z.string().min(3, "Username must be at least 3 characters long"),
-	}),
-	password: z.object({
-		password: z.string().min(8, "Password must be at least 8 characters long"),
-	}),
 	fullname: z.object({
 		fullname: z.string().min(3, "Full name must be at least 3 characters long"),
 	}),
 	email: z.object({
 		email: z.string().email("Invalid email address"),
 	}),
-	confirmPassword: z.object({
-		confirmPassword: z.string().min(8, "Confirm password must be at least 8 characters long"),
+	streetAddress: z.object({
+		streetAddress: z.string().min(5, "Street address must be at least 5 characters long"),
+	}),
+	city: z.object({
+		city: z.string().min(2, "City must be at least 2 characters long"),
+	}),
+	state: z.object({
+		state: z.string().min(2, "State must be at least 2 characters long"),
+	}),
+	zipCode: z.object({
+		zipCode: z.string().regex(/^\d{5}(-\d{4})?$/, "Invalid ZIP code format"),
+	}),
+	billingStreetAddress: z.object({
+		billingStreetAddress: z.string().min(5, "Billing street address must be at least 5 characters long"),
+	}),
+	billingCity: z.object({
+		billingCity: z.string().min(2, "Billing city must be at least 2 characters long"),
+	}),
+	billingState: z.object({
+		billingState: z.string().min(2, "Billing state must be at least 2 characters long"),
+	}),
+	billingZipCode: z.object({
+		billingZipCode: z.string().regex(/^\d{5}(-\d{4})?$/, "Invalid billing ZIP code format"),
+	}),
+	cardNumber: z.object({
+		cardNumber: z.string().regex(/^\d{4}\s?\d{4}\s?\d{4}\s?\d{4}$/, "Invalid card number format"),
+	}),
+	expirationDate: z.object({
+		expirationDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Invalid expiration date format (MM/YY)"),
+	}),
+	cvv: z.object({
+		cvv: z.string().regex(/^\d{3,4}$/, "CVV must be 3 or 4 digits"),
+	}),
+	promoCode: z.object({
+		promoCode: z.string().optional(),
 	}),
 } as const
 
 const FormExample3 = () => {
 	const [formData, setFormData] = useState<FormData>({
-		username: "",
-		password: "",
-		phoneno: "",
 		fullname: "",
 		email: "",
-		confirmPassword: "",
+		streetAddress: "",
+		city: "",
+		state: "",
+		zipCode: "",
+		billingStreetAddress: "",
+		billingCity: "",
+		billingState: "",
+		billingZipCode: "",
+		cardNumber: "",
+		expirationDate: "",
+		cvv: "",
+		promoCode: "",
 	})
 	const [errors, setErrors] = useState<FieldErrors>({})
+	const [sameAsShipping, setSameAsShipping] = useState(false)
 
 	// Field validation handlers using lookup object instead of if-else
 	const fieldValidators = useMemo(
 		() => ({
-			username: (value: string) => {
-				const result = fieldSchemas.username.safeParse({ username: value })
-				return result.success ? undefined : result.error.flatten().fieldErrors.username?.[0]
-			},
-			password: (value: string) => {
-				const result = fieldSchemas.password.safeParse({ password: value })
-				return result.success ? undefined : result.error.flatten().fieldErrors.password?.[0]
-			},
 			fullname: (value: string) => {
 				const result = fieldSchemas.fullname.safeParse({ fullname: value })
 				return result.success ? undefined : result.error.flatten().fieldErrors.fullname?.[0]
@@ -75,6 +119,54 @@ const FormExample3 = () => {
 			email: (value: string) => {
 				const result = fieldSchemas.email.safeParse({ email: value })
 				return result.success ? undefined : result.error.flatten().fieldErrors.email?.[0]
+			},
+			streetAddress: (value: string) => {
+				const result = fieldSchemas.streetAddress.safeParse({ streetAddress: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.streetAddress?.[0]
+			},
+			city: (value: string) => {
+				const result = fieldSchemas.city.safeParse({ city: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.city?.[0]
+			},
+			state: (value: string) => {
+				const result = fieldSchemas.state.safeParse({ state: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.state?.[0]
+			},
+			zipCode: (value: string) => {
+				const result = fieldSchemas.zipCode.safeParse({ zipCode: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.zipCode?.[0]
+			},
+			billingStreetAddress: (value: string) => {
+				const result = fieldSchemas.billingStreetAddress.safeParse({ billingStreetAddress: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.billingStreetAddress?.[0]
+			},
+			billingCity: (value: string) => {
+				const result = fieldSchemas.billingCity.safeParse({ billingCity: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.billingCity?.[0]
+			},
+			billingState: (value: string) => {
+				const result = fieldSchemas.billingState.safeParse({ billingState: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.billingState?.[0]
+			},
+			billingZipCode: (value: string) => {
+				const result = fieldSchemas.billingZipCode.safeParse({ billingZipCode: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.billingZipCode?.[0]
+			},
+			cardNumber: (value: string) => {
+				const result = fieldSchemas.cardNumber.safeParse({ cardNumber: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.cardNumber?.[0]
+			},
+			expirationDate: (value: string) => {
+				const result = fieldSchemas.expirationDate.safeParse({ expirationDate: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.expirationDate?.[0]
+			},
+			cvv: (value: string) => {
+				const result = fieldSchemas.cvv.safeParse({ cvv: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.cvv?.[0]
+			},
+			promoCode: (value: string) => {
+				const result = fieldSchemas.promoCode.safeParse({ promoCode: value })
+				return result.success ? undefined : result.error.flatten().fieldErrors.promoCode?.[0]
 			},
 		}),
 		[]
@@ -97,6 +189,31 @@ const FormExample3 = () => {
 		[fieldValidators]
 	)
 
+	// Handle checkbox change
+	const handleCheckboxChange = useCallback((checked: boolean) => {
+		setSameAsShipping(checked)
+
+		// If same as shipping is checked, copy shipping data to billing
+		if (checked) {
+			setFormData((prev) => ({
+				...prev,
+				billingStreetAddress: prev.streetAddress,
+				billingCity: prev.city,
+				billingState: prev.state,
+				billingZipCode: prev.zipCode,
+			}))
+
+			// Clear billing errors when copying from shipping
+			setErrors((prev) => ({
+				...prev,
+				billingStreetAddress: undefined,
+				billingCity: undefined,
+				billingState: undefined,
+				billingZipCode: undefined,
+			}))
+		}
+	}, [])
+
 	// Updated submit handler to validate all fields
 	const handleSubmit = useCallback(
 		(e: React.FormEvent) => {
@@ -105,8 +222,14 @@ const FormExample3 = () => {
 			const newErrors: FieldErrors = {}
 			let hasErrors = false
 
-			// Validate all fields
-			Object.keys(fieldValidators).forEach((fieldName) => {
+			// Required fields that should always be validated
+			const requiredFields = ["fullname", "email", "streetAddress", "city", "state", "zipCode", "cardNumber", "expirationDate", "cvv"] as const
+
+			// Add billing fields to validation if not using same as shipping
+			const fieldsToValidate = sameAsShipping ? requiredFields : ([...requiredFields, "billingStreetAddress", "billingCity", "billingState", "billingZipCode"] as const)
+
+			// Validate all required fields
+			fieldsToValidate.forEach((fieldName) => {
 				const field = fieldName as keyof typeof fieldValidators
 				const value = formData[field] as string
 				const error = fieldValidators[field](value)
@@ -120,20 +243,21 @@ const FormExample3 = () => {
 
 			if (!hasErrors) {
 				// All validation passed - show success toast with all data
-				const allData = {
+				const submissionData = {
 					...formData,
+					sameAsShipping,
 				}
 
 				showToast({
 					title: "Form Submitted Successfully!",
 					variant: "inverse",
-					description: JSON.stringify(allData, null, 2),
+					description: JSON.stringify(submissionData, null, 2),
 					icon: <CircleUser />,
 					closable: false,
 				})
 			}
 		},
-		[formData, fieldValidators]
+		[formData, fieldValidators, sameAsShipping]
 	)
 
 	return (
@@ -158,7 +282,7 @@ const FormExample3 = () => {
 							<p className="text-center text-lg">Complete your order with our secure payment system</p>
 						</div>
 
-						{/* Full Name */}
+						{/* Contact Information */}
 						<div className="space-y-4">
 							<h3 className="flex items-center text-lg font-semibold">
 								<User className="mr-2 h-5 w-5" />
@@ -167,6 +291,7 @@ const FormExample3 = () => {
 
 							<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 								<Input
+									name="fullname"
 									label="Full Name *"
 									className="w-full"
 									value={formData.fullname}
@@ -177,6 +302,7 @@ const FormExample3 = () => {
 								/>
 
 								<Input
+									name="email"
 									label="Email Address *"
 									className="w-full"
 									value={formData.email}
@@ -199,21 +325,49 @@ const FormExample3 = () => {
 
 							<div className="grid grid-cols-1 gap-4">
 								<Input
+									name="streetAddress"
 									label="Street Address *"
 									className="w-full"
-									value={formData.email}
+									value={formData.streetAddress}
 									onChange={handleChange}
 									placeholder="New Road"
-									hasError={!!errors.email}
-									hint={errors.email}
+									hasError={!!errors.streetAddress}
+									hint={errors.streetAddress}
 								/>
 
 								<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-									<Input label="City *" className="w-full" value={formData.email} onChange={handleChange} placeholder="Kathmandu" hasError={!!errors.email} hint={errors.email} />
+									<Input
+										name="city"
+										label="City *"
+										className="w-full"
+										value={formData.city}
+										onChange={handleChange}
+										placeholder="Kathmandu"
+										hasError={!!errors.city}
+										hint={errors.city}
+									/>
 
-									<Input label="State *" className="w-full" value={formData.email} onChange={handleChange} placeholder="KTM" hasError={!!errors.email} hint={errors.email} />
+									<Input
+										name="state"
+										label="State *"
+										className="w-full"
+										value={formData.state}
+										onChange={handleChange}
+										placeholder="KTM"
+										hasError={!!errors.state}
+										hint={errors.state}
+									/>
 
-									<Input label="ZIP Code *" className="w-full" value={formData.email} onChange={handleChange} placeholder="44600" hasError={!!errors.email} hint={errors.email} />
+									<Input
+										name="zipCode"
+										label="ZIP Code *"
+										className="w-full"
+										value={formData.zipCode}
+										onChange={handleChange}
+										placeholder="44600"
+										hasError={!!errors.zipCode}
+										hint={errors.zipCode}
+									/>
 								</div>
 							</div>
 						</div>
@@ -228,28 +382,58 @@ const FormExample3 = () => {
 									Billing Address
 								</h3>
 								<div className="flex items-center space-x-2">
-									<Checkbox>Same as shipping address</Checkbox>
+									<Checkbox checked={sameAsShipping} onChange={handleCheckboxChange}>
+										Same as shipping address
+									</Checkbox>
 								</div>
 							</div>
 
-							{false && (
+							{!sameAsShipping && (
 								<div className="grid grid-cols-1 gap-4">
 									<Input
+										name="billingStreetAddress"
 										label="Street Address *"
 										className="w-full"
-										value={formData.email}
+										value={formData.billingStreetAddress}
 										onChange={handleChange}
 										placeholder="New Road"
-										hasError={!!errors.email}
-										hint={errors.email}
+										hasError={!!errors.billingStreetAddress}
+										hint={errors.billingStreetAddress}
 									/>
 
 									<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-										<Input label="City *" className="w-full" value={formData.email} onChange={handleChange} placeholder="Kathmandu" hasError={!!errors.email} hint={errors.email} />
+										<Input
+											name="billingCity"
+											label="City *"
+											className="w-full"
+											value={formData.billingCity}
+											onChange={handleChange}
+											placeholder="Kathmandu"
+											hasError={!!errors.billingCity}
+											hint={errors.billingCity}
+										/>
 
-										<Input label="State *" className="w-full" value={formData.email} onChange={handleChange} placeholder="KTM" hasError={!!errors.email} hint={errors.email} />
+										<Input
+											name="billingState"
+											label="State *"
+											className="w-full"
+											value={formData.billingState}
+											onChange={handleChange}
+											placeholder="KTM"
+											hasError={!!errors.billingState}
+											hint={errors.billingState}
+										/>
 
-										<Input label="ZIP Code *" className="w-full" value={formData.email} onChange={handleChange} placeholder="44600" hasError={!!errors.email} hint={errors.email} />
+										<Input
+											name="billingZipCode"
+											label="ZIP Code *"
+											className="w-full"
+											value={formData.billingZipCode}
+											onChange={handleChange}
+											placeholder="44600"
+											hasError={!!errors.billingZipCode}
+											hint={errors.billingZipCode}
+										/>
 									</div>
 								</div>
 							)}
@@ -266,27 +450,29 @@ const FormExample3 = () => {
 
 							<div className="grid grid-cols-1 gap-4">
 								<Input
+									name="cardNumber"
 									label="Card Number *"
 									className="w-full"
-									value={formData.email}
+									value={formData.cardNumber}
 									onChange={handleChange}
 									placeholder="1234 5678 9012 3456"
-									hasError={!!errors.email}
-									hint={errors.email}
+									hasError={!!errors.cardNumber}
+									hint={errors.cardNumber}
 								/>
 
 								<div className="grid grid-cols-2 gap-4">
 									<Input
+										name="expirationDate"
 										label="Expiration Date *"
 										className="w-full"
-										value={formData.email}
+										value={formData.expirationDate}
 										onChange={handleChange}
 										placeholder="MM/YY"
-										hasError={!!errors.email}
-										hint={errors.email}
+										hasError={!!errors.expirationDate}
+										hint={errors.expirationDate}
 									/>
 
-									<Input label="CVV *" className="w-full" value={formData.email} onChange={handleChange} placeholder="123" hasError={!!errors.email} hint={errors.email} />
+									<Input name="cvv" label="CVV *" className="w-full" value={formData.cvv} onChange={handleChange} placeholder="123" hasError={!!errors.cvv} hint={errors.cvv} />
 								</div>
 							</div>
 						</div>
@@ -300,17 +486,19 @@ const FormExample3 = () => {
 								Promo Code <span className="text-sm font-normal text-gray-500">(optional)</span>
 							</h3>
 
-							<div className="flex gap-2">
-								<Input className="w-full" value={formData.email} onChange={handleChange} placeholder="Enter promo code" hasError={!!errors.email} hint={errors.email} />
-								<Button type="button" size="40" variant="outline">
-									Apply
-								</Button>
-							</div>
-							{false && <p className="text-sm font-medium text-green-600">✓ Promo code applied successfully!</p>}
+							<Input
+								name="promoCode"
+								className="w-full"
+								value={formData.promoCode}
+								onChange={handleChange}
+								placeholder="Enter promo code"
+								hasError={!!errors.promoCode}
+								hint={errors.promoCode}
+							/>
 						</div>
 
 						{/* Submit Button */}
-						<Button type="submit" className="bg-primary w-full transform rounded-lg px-4 py-4 font-semibold transition duration-200 ease-in-out hover:scale-105">
+						<Button type="submit" className="w-full">
 							Place Order / Pay Now
 						</Button>
 					</form>
