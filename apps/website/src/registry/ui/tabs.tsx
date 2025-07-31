@@ -56,7 +56,7 @@ const tabsListStyles = cva(
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-[10px]",
+				className: "rounded-[0.625rem]",
 			},
 			{
 				size: "lg",

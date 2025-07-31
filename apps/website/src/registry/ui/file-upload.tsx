@@ -206,7 +206,7 @@ function FileUpload({
 							{files.map((file) => (
 								<div key={file.id} className="bg-background flex items-center justify-between gap-2 rounded-lg border p-2 pe-3">
 									<div className="flex items-center gap-3 overflow-hidden">
-										<div className="flex aspect-square size-10 shrink-0 items-center justify-center overflow-hidden rounded border">{getFileIcon(file)}</div>
+										<div className="flex aspect-square size-10 shrink-0 items-center justify-center overflow-hidden rounded-sm border">{getFileIcon(file)}</div>
 										<div className="flex min-w-0 flex-col gap-0.5">
 											<p className="truncate text-[13px] font-medium">{file.file.name}</p>
 											<p className="text-muted-foreground text-xs">{formatBytes(file.file.size)}</p>

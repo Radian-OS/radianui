@@ -60,6 +60,10 @@
     "db:migrate": {
       "dependsOn": [],
       "outputs": []
+    },
+    "generate-component-json": {
+      "dependsOn": [],
+      "outputs": []
     }
   }
 }
