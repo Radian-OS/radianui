@@ -1,6 +1,22 @@
 import React, { useCallback, useMemo, useState } from "react"
 import { CalendarDate } from "@internationalized/date"
-import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import {
+	Banknote,
+	BookKey,
+	Calendar,
+	CircleUser,
+	EyeIcon,
+	Image,
+	KeyRound,
+	NotebookPen,
+	Phone,
+	Pipette,
+	Search,
+	Settings,
+	Sliders,
+	SquareMousePointer,
+	SquareTerminal,
+} from "lucide-react"
 import { Value } from "react-phone-number-input"
 import * as RPNInput from "react-phone-number-input"
 import { z } from "zod"
@@ -149,7 +165,7 @@ const FormPreview = () => {
 			username: () => {
 				const result = fieldSchemas.username.safeParse({ username: formData.username })
 				if (result.success) {
-					showToast({ title: "Username: " + result.data.username })
+					showToast({ title: "Username: ", variant: "inverse", description: `${JSON.stringify(result.data, null, 2)}`, icon: <CircleUser />, closable: false })
 					return true
 				} else {
 					setErrors({ username: result.error.flatten().fieldErrors.username?.[0] })
@@ -159,7 +175,7 @@ const FormPreview = () => {
 			password: () => {
 				const result = fieldSchemas.password.safeParse({ password: formData.password })
 				if (result.success) {
-					showToast({ title: "Password: " + result.data.password })
+					showToast({ title: "Password: ", variant: "inverse", description: `${JSON.stringify(result.data, null, 2)}`, icon: <KeyRound />, closable: false })
 					return true
 				} else {
 					setErrors({ password: result.error.flatten().fieldErrors.password?.[0] })
@@ -169,7 +185,7 @@ const FormPreview = () => {
 			searchInput: () => {
 				const result = fieldSchemas.searchInput.safeParse({ searchInput: formData.searchInput })
 				if (result.success) {
-					showToast({ title: "Search Input: " + result.data.searchInput })
+					showToast({ title: "Search Input: ", variant: "inverse", description: `${JSON.stringify(result.data, null, 2)}`, icon: <Search />, closable: false })
 					return true
 				} else {
 					setErrors({ searchInput: result.error.flatten().fieldErrors.searchInput?.[0] })
@@ -179,7 +195,8 @@ const FormPreview = () => {
 			textarea: () => {
 				const result = fieldSchemas.textarea.safeParse({ textarea: formData.textarea })
 				if (result.success) {
-					showToast({ title: "Textarea: " + result.data.textarea })
+					showToast({ title: "Textarea: ", variant: "inverse", description: `${JSON.stringify(result.data, null, 2)}`, icon: <NotebookPen />, closable: false })
+
 					return true
 				} else {
 					setErrors({ textarea: result.error.flatten().fieldErrors.textarea?.[0] })
@@ -187,7 +204,8 @@ const FormPreview = () => {
 				}
 			},
 			colorPicker: () => {
-				showToast({ title: "Color Picker (HEX): " + colorValues.hex })
+				showToast({ title: "Color Picker: ", variant: "inverse", description: `${JSON.stringify(colorValues)}`, icon: <Pipette />, closable: false })
+
 				return true
 			},
 			select: () => {
@@ -196,7 +214,13 @@ const FormPreview = () => {
 					setErrors({ select: "Please select an option" })
 					return false
 				} else {
-					showToast({ title: "Selected Value: " + selectValues })
+					showToast({
+						title: "Selected Value: ",
+						variant: "inverse",
+						description: `{"selectedValue": ${JSON.stringify(selectValues)}}`,
+						icon: <SquareMousePointer />,
+						closable: false,
+					})
 					return true
 				}
 			},
@@ -205,7 +229,7 @@ const FormPreview = () => {
 					setErrors({ date: "Please select a date" })
 					return false
 				} else {
-					showToast({ title: "Selected Date: " + formData.date })
+					showToast({ title: "Selected Date: ", variant: "inverse", description: `{"date": "${formData.date}"}`, icon: <Calendar />, closable: false })
 					return true
 				}
 			},
@@ -214,7 +238,7 @@ const FormPreview = () => {
 					setErrors({ slider: "Please select a value" })
 					return false
 				} else {
-					showToast({ title: "Slider Value: " + sliderValue[0] })
+					showToast({ title: "Slider Value: ", variant: "inverse", description: `{"sliderValue": ${sliderValue}}`, icon: <Sliders />, closable: false })
 					return true
 				}
 			},
@@ -223,7 +247,13 @@ const FormPreview = () => {
 					setErrors({ phoneno: "Please enter a valid phone number" })
 					return false
 				} else {
-					showToast({ title: "Phone Number: " + phoneValue + " (" + selectedCountry + ")" })
+					showToast({
+						title: "Phone Number: ",
+						variant: "inverse",
+						description: `{"phoneNumber": "${phoneValue}","country": "${selectedCountry}"}`,
+						icon: <Phone />,
+						closable: false,
+					})
 					return true
 				}
 			},
@@ -232,15 +262,23 @@ const FormPreview = () => {
 					setErrors({ file: "Please upload a file" })
 					return false
 				} else {
-					const fileInfo = uploadedFiles
-						.map((file) => {
-							const sizeInKB = (file.file.size / 1024).toFixed(2)
-							const sizeInMB = (file.file.size / (1024 * 1024)).toFixed(2)
-							const displaySize = file.file.size > 1024 * 1024 ? `${sizeInMB} MB` : `${sizeInKB} KB`
-							return `${file.file.name} | (${displaySize}) | ${file.file.type}`
-						})
-						.join(", ")
-					showToast({ title: "Uploaded Files: " + fileInfo })
+					const fileInfo = uploadedFiles.map((file) => {
+						const sizeInKB = (file.file.size / 1024).toFixed(2)
+						const sizeInMB = (file.file.size / (1024 * 1024)).toFixed(2)
+						const displaySize = file.file.size > 1024 * 1024 ? `${sizeInMB} MB` : `${sizeInKB} KB`
+						return {
+							name: file.file.name,
+							size: displaySize,
+							type: file.file.type,
+						}
+					})
+					showToast({
+						title: "Uploaded Files: ",
+						variant: "inverse",
+						description: JSON.stringify(fileInfo),
+						icon: <Image />,
+						closable: false,
+					})
 					return true
 				}
 			},
@@ -250,7 +288,7 @@ const FormPreview = () => {
 					setErrors({ otp: "OTP must be 6 digits" })
 					return false
 				} else {
-					showToast({ title: "OTP: " + formData.otp })
+					showToast({ title: "OTP: ", variant: "inverse", description: `{ "otp": "${formData.otp}" }`, icon: <BookKey />, closable: false })
 					return true
 				}
 			},
@@ -260,7 +298,7 @@ const FormPreview = () => {
 					setErrors({ currency: error })
 					return false
 				} else {
-					showToast({ title: "Currency: " + formData.currency })
+					showToast({ title: "Currency: ", variant: "inverse", description: `{ "currency": "${formData.currency}" }`, icon: <Banknote />, closable: false })
 					return true
 				}
 			},
