@@ -1,5 +1,4 @@
 import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/source-files"
-import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 
@@ -136,15 +135,6 @@ export default makeSource({
 	disableImportAliasWarning: true,
 	mdx: {
 		remarkPlugins: [remarkGfm],
-		rehypePlugins: [
-			[
-				rehypePrettyCode as any,
-				{
-					theme: "github-dark-default",
-					keepBackground: false,
-				},
-			],
-			rehypeSlug,
-		],
+		rehypePlugins: [rehypeSlug],
 	},
 })
