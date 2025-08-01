@@ -36,7 +36,7 @@ import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 import Slider from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { TextArea } from "@/registry/ui/text-area"
-import { Toaster, showToast } from "@/registry/ui/toast"
+import { showToast } from "@/registry/ui/toast"
 
 // Field type definitions
 type FieldType = "username" | "password" | "colorPicker" | "select" | "otp" | "currency" | "searchInput" | "date" | "file" | "phoneno" | "textarea" | "slider"
@@ -624,7 +624,6 @@ const FormPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Toaster position="bottom-right" />
 					<form onSubmit={handleSubmit} className="w-80 space-y-4">
 						{fieldRenderers[displayField]?.()}
 						<Button type="submit" className="w-full">

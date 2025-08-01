@@ -7,7 +7,7 @@ import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import { Input } from "@/registry/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import { Toaster, showToast } from "@/registry/ui/toast"
+import { showToast } from "@/registry/ui/toast"
 
 interface FormData {
 	fullname: string
@@ -275,7 +275,6 @@ const FormExample3 = () => {
 
 			<TabsContent value="preview">
 				<div className="flex items-center justify-center overflow-auto rounded-xl border p-10">
-					<Toaster position="bottom-right" />
 					<form onSubmit={handleSubmit} className="w-full max-w-4xl space-y-6">
 						<div>
 							<h1 className="text-center text-3xl font-bold">Secure Checkout</h1>
