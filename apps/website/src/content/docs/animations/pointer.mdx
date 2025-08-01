@@ -1,15 +1,27 @@
 ---
 title: Pointer
 description: Custom pointer to display over your components
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/pointer.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <PointerPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add pointer`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add pointer",
+		npm: "npx @radianos/radianbeta add pointer",
+		yarn: "yarn @radianos/radianbeta add pointer",
+		bun: "bunx @radianos/radianbeta add pointer",
+	}}
+/>
 
 ## Imports
 

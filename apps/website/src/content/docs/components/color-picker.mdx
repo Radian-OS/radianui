@@ -1,14 +1,27 @@
 ---
 title: Color Picker
 description: For color selection
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/color-picker.tsx
+  externalReference:
+    - label: Culori
+      href: https://culorijs.org/
+      icon: culori.webp
 ---
 
 <ColorPickerPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add color-picker`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add color-picker",
+		npm: "npx @radianos/radianbeta add color-picker",
+		yarn: "yarn @radianos/radianbeta add color-picker",
+		bun: "bunx @radianos/radianbeta add color-picker",
+	}}
+/>
 
 ## Imports
 

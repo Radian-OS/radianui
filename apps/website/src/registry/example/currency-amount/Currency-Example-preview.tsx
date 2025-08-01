@@ -1,5 +1,7 @@
 import { useState } from "react"
-import { CodeArea } from "@/registry/ui/code-area"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
+import { Button } from "@/registry/ui/button"
 import { CurrencyInput } from "@/registry/ui/currency"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
@@ -16,31 +18,37 @@ const CurrencyPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10 mt-2">
+		<Tabs defaultValue="preview" variant={"outline-ghost"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent>
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
-										{sizes.map((size) => (
-											<DropdownItem value={size} key={size}>
-												{size}
-											</DropdownItem>
-										))}
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent>
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+									{sizes.map((size) => (
+										<DropdownItem value={size} key={size}>
+											{size}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -74,9 +82,9 @@ const CurrencyPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="currency-example-preview.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<div className="flex gap-1.5 flex-col">
   <Label>Amount</Label>

@@ -1,14 +1,26 @@
 ---
 title: Progress Bar
 description: Show progress indicator for tasks visually
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/progress-bar.tsx
+  externalReference:
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/progress
 ---
 
 <ProgressBarPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add progress-bar`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add progress-bar",
+		npm: "npx @radianos/radianbeta add progress-bar",
+		yarn: "yarn @radianos/radianbeta add progress-bar",
+		bun: "bunx @radianos/radianbeta add progress-bar",
+	}}
+/>
 
 ## Imports
 

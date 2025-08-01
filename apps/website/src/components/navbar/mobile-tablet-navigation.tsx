@@ -34,7 +34,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 
 	useEffect(() => {
 		const handleResize = () => {
-			if (window.innerWidth >= 1024) {
+			if (window.innerWidth >= 1280) {
 				setIsMobileMenuOpen(false)
 			}
 		}
@@ -67,7 +67,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 				</div>
 			</div>
 
-			<div className="flex flex-col items-center justify-center gap-2 pb-4 pt-6 sm:hidden">
+			<div className="flex flex-col items-center justify-center gap-3 pb-4 pt-6 sm:hidden">
 				<EarlyAccessButton size={"44"} className="w-full" />
 				<FigmaPreviewButton size={"44"} className="w-full" />
 			</div>

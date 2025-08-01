@@ -1,13 +1,26 @@
 ---
 title: Tabs
 description: Organize content into navigable sections
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/tabs.tsx
+  externalReference:
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/tabs
 ---
 
 <TabsPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add tabs`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add tabs",
+		npm: "npx @radianos/radianbeta add tabs",
+		yarn: "yarn @radianos/radianbeta add tabs",
+		bun: "bunx @radianos/radianbeta add tabs",
+	}}
+/>
 
 ## Imports
 

@@ -1,17 +1,27 @@
 ---
 title: Code Area
 description: Display code snippets with syntax highlighting and formatting
-source: https://github.com/Radian-os
-externalSiteRef: https://shiki.style/
-customLogo: /shiki.svg
-externalSiteName: Shiki
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/code-area.tsx
+  externalReference:
+    - label: Shiki
+      href: https://shiki.style/
+      icon: shiki.svg
 ---
 
 <CodeAreaPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add code-area`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add code-area",
+		npm: "npx @radianos/radianbeta add code-area",
+		yarn: "yarn @radianos/radianbeta add code-area",
+		bun: "bunx @radianos/radianbeta add code-area",
+	}}
+/>
 
 ## Imports
 

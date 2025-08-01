@@ -1,14 +1,23 @@
 ---
 title: Search
 description: SSearch inputs using customizable input fields
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/search.tsx
 ---
 
 <SearchPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add search`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add search",
+		npm: "npx @radianos/radianbeta add search",
+		yarn: "yarn @radianos/radianbeta add search",
+		bun: "bunx @radianos/radianbeta add search",
+	}}
+/>
 
 ## Imports
 

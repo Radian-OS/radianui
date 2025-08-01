@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { Box } from "lucide-react"
+import { Box, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code-area"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Toaster, showToast } from "@/registry/ui/toast"
@@ -22,205 +21,211 @@ const ToastPreview = () => {
 	const [key, setKey] = useState(0)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							<DropdownGroup>
-								<DropdownSub>
-									<DropdownSubTrigger>Position</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as typeof position)}
-											minSelectionCount={1}
-											selectedValues={[position]}>
-											<DropdownItem value="bottom-right">Bottom Right</DropdownItem>
-											<DropdownItem value="top-left">Top Left</DropdownItem>
-											<DropdownItem value="top-center">Top Center</DropdownItem>
-											<DropdownItem value="top-right">Top Right</DropdownItem>
-											<DropdownItem value="bottom-left">Bottom Left</DropdownItem>
-											<DropdownItem value="bottom-center">Bottom Center</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Variant</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
-											minSelectionCount={1}
-											selectedValues={[variant]}>
-											<DropdownItem value="outline">Outline</DropdownItem>
-											<DropdownItem value="strong">Strong</DropdownItem>
-											<DropdownItem value="inverse">Inverse</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>State</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setState(Array.from(keys)[0] as typeof state)} minSelectionCount={1} selectedValues={[state]}>
-											<DropdownItem value="neutral">Neutral</DropdownItem>
-											<DropdownItem value="primary">Primary</DropdownItem>
-											<DropdownItem value="info">Information</DropdownItem>
-											<DropdownItem value="success">Success</DropdownItem>
-											<DropdownItem value="warning">Warning</DropdownItem>
-											<DropdownItem value="error">Error</DropdownItem>{" "}
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Button Placement</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setPlacement(Array.from(keys)[0] as typeof placement)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[placement]}>
-											<DropdownItem value="horizontal">Horizontal</DropdownItem>
-											<DropdownItem value="vertical">Vertical</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>End Content</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setActionButton(Array.from(keys)[0] as typeof actionButton)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[actionButton]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Icon</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setIcon(Array.from(keys)[0] as typeof icon)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[icon]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Title</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setTitle(Array.from(keys)[0] as typeof title)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[title]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Description</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setDesc(Array.from(keys)[0] as typeof desc)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[desc]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Stackable</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setStackable(Array.from(keys)[0] as typeof stackable)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[stackable]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Closeable</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setClosable(Array.from(keys)[0] as typeof closable)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[closable]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-
-								<DropdownSub>
-									<DropdownSubTrigger>Visible toast</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setVisibleToasts(Array.from(keys)[0] as typeof visibleToasts)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[visibleToasts]}>
-											<DropdownItem value="3">3</DropdownItem>
-											<DropdownItem value="4">4</DropdownItem>
-											<DropdownItem value="5">5</DropdownItem>
-											<DropdownItem value="6">6</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-							</DropdownGroup>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						<DropdownGroup>
+							<DropdownSub>
+								<DropdownSubTrigger>Position</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as typeof position)}
+										minSelectionCount={1}
+										selectedValues={[position]}>
+										<DropdownItem value="bottom-right">Bottom Right</DropdownItem>
+										<DropdownItem value="top-left">Top Left</DropdownItem>
+										<DropdownItem value="top-center">Top Center</DropdownItem>
+										<DropdownItem value="top-right">Top Right</DropdownItem>
+										<DropdownItem value="bottom-left">Bottom Left</DropdownItem>
+										<DropdownItem value="bottom-center">Bottom Center</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
+										minSelectionCount={1}
+										selectedValues={[variant]}>
+										<DropdownItem value="outline">Outline</DropdownItem>
+										<DropdownItem value="strong">Strong</DropdownItem>
+										<DropdownItem value="inverse">Inverse</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>State</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setState(Array.from(keys)[0] as typeof state)} minSelectionCount={1} selectedValues={[state]}>
+										<DropdownItem value="neutral">Neutral</DropdownItem>
+										<DropdownItem value="primary">Primary</DropdownItem>
+										<DropdownItem value="info">Information</DropdownItem>
+										<DropdownItem value="success">Success</DropdownItem>
+										<DropdownItem value="warning">Warning</DropdownItem>
+										<DropdownItem value="error">Error</DropdownItem>{" "}
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Button Placement</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setPlacement(Array.from(keys)[0] as typeof placement)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[placement]}>
+										<DropdownItem value="horizontal">Horizontal</DropdownItem>
+										<DropdownItem value="vertical">Vertical</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>End Content</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setActionButton(Array.from(keys)[0] as typeof actionButton)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[actionButton]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Icon</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setIcon(Array.from(keys)[0] as typeof icon)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[icon]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Title</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setTitle(Array.from(keys)[0] as typeof title)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[title]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Description</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setDesc(Array.from(keys)[0] as typeof desc)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[desc]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Stackable</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setStackable(Array.from(keys)[0] as typeof stackable)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[stackable]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Closeable</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setClosable(Array.from(keys)[0] as typeof closable)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[closable]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Visible toast</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setVisibleToasts(Array.from(keys)[0] as typeof visibleToasts)
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[visibleToasts]}>
+										<DropdownItem value="3">3</DropdownItem>
+										<DropdownItem value="4">4</DropdownItem>
+										<DropdownItem value="5">5</DropdownItem>
+										<DropdownItem value="6">6</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+						</DropdownGroup>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -253,9 +258,9 @@ const ToastPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="toast.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
 <Button

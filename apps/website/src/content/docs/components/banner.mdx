@@ -1,14 +1,23 @@
 ---
 title: Banner
 description: Banner Description
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/banner.tsx
 ---
 
 <BannerPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add banner`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add banner",
+		npm: "npx @radianos/radianbeta add banner",
+		yarn: "yarn @radianos/radianbeta add banner",
+		bun: "bunx @radianos/radianbeta add banner",
+	}}
+/>
 
 ## Imports
 

@@ -1,15 +1,27 @@
 ---
 title: Gradient Text
 description: Characters appearing in typed animation
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/gradient-text.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <GradientTextPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add gradient-text`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add gradient-text",
+		npm: "npx @radianos/radianbeta add gradient-text",
+		yarn: "yarn @radianos/radianbeta add gradient-text",
+		bun: "bunx @radianos/radianbeta add gradient-text",
+	}}
+/>
 
 ## Imports
 

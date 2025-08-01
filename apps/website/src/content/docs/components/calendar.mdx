@@ -1,17 +1,35 @@
 ---
 title: Calendar
 description: Display and select dates with interactive calendar + Select dates from a calendar
-source: https://github.com/Radian-os
-externalSiteRef: https://daypicker.dev/
-customLogo: /react-day-picker.webp
-externalSiteName: React DayPicker
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/calendar.tsx
+  externalReference:
+    - label: React DayPicker
+      href: https://daypicker.dev/
+      icon: react-day-picker.webp
+
+    - label: "@internationalized/date"
+      href: https://www.npmjs.com/package/@internationalized/date
+      icon: npm.svg
+
+    - label: date-fns
+      href: https://www.npmjs.com/package/date-fns
+      icon: npm.svg
 ---
 
 <CalendarPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add calendar`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add calendar",
+		npm: "npx @radianos/radianbeta add calendar",
+		yarn: "yarn @radianos/radianbeta add calendar",
+		bun: "bunx @radianos/radianbeta add calendar",
+	}}
+/>
 
 ## Imports
 

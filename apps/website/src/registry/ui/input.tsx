@@ -28,7 +28,7 @@ export const cvaInputVariants = {
 	},
 }
 
-export const defaultInputSize = "36"
+export const defaultInputSize = "40"
 export const defaultInputRadius = "lg"
 
 // Creating a variant for input styles using cva

@@ -1,15 +1,27 @@
 ---
 title: Changing Text
 description: Animate through an array of words/text with smooth transitions
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/changing-text.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <ChangingTextPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add changing-text`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add changing-text",
+		npm: "npx @radianos/radianbeta add changing-text",
+		yarn: "yarn @radianos/radianbeta add changing-text",
+		bun: "bunx @radianos/radianbeta add changing-text",
+	}}
+/>
 
 ## Imports
 

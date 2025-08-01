@@ -1,13 +1,23 @@
 ---
 title: Skeleton
 description: Placeholder loading screen to enhance perceived performance
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/skeleton.tsx
 ---
 
 <SkeletonPreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add skeleton`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add skeleton",
+		npm: "npx @radianos/radianbeta add skeleton",
+		yarn: "yarn @radianos/radianbeta add skeleton",
+		bun: "bunx @radianos/radianbeta add skeleton",
+	}}
+/>
 
 ## Imports
 

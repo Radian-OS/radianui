@@ -2,7 +2,7 @@
 
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { DropdownMenuContentProps, DropdownMenuGroupProps, DropdownMenuItemProps, DropdownMenuSubContentProps, DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu"
+import { type DropdownMenuContentProps, type DropdownMenuGroupProps, type DropdownMenuItemProps, type DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Divider } from "./divider"
@@ -19,15 +19,7 @@ function Dropdown({ children, ...props }: React.ComponentPropsWithoutRef<typeof 
 Dropdown.displayName = "Dropdown"
 
 //Create a DropdownTrigger component
-function DropdownTrigger({ asChild, children, ...props }: DropdownMenuTriggerProps & React.RefAttributes<HTMLButtonElement>) {
-	if (asChild) {
-		return (
-			<DropdownMenuPrimitive.Trigger asChild {...props}>
-				{children}
-			</DropdownMenuPrimitive.Trigger>
-		)
-	}
-
+function DropdownTrigger({ children, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
 	return <DropdownMenuPrimitive.Trigger {...props}>{children}</DropdownMenuPrimitive.Trigger>
 }
 DropdownTrigger.displayName = "DropdownTrigger"

@@ -1,15 +1,27 @@
 ---
 title: Draggable
 description: Make any component draggable
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/make-draggable.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <DraggablePreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add make-draggable`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add make-draggable",
+		npm: "npx @radianos/radianbeta add make-draggable",
+		yarn: "yarn @radianos/radianbeta add make-draggable",
+		bun: "bunx @radianos/radianbeta add make-draggable",
+	}}
+/>
 
 ## Imports
 

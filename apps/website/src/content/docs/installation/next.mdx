@@ -3,4 +3,73 @@ title: Next.js
 description: Install and configure Next.js.
 ---
 
-<Nextjs />
+## Create Project
+
+Run the `init` command to create a new Next.js project or to setup an existing one:
+
+<br />
+<PackageManagerTabs
+	commands={{
+		npm: "npx @radianos/radianbeta init",
+		yarn: "yarn dlx @radianos/radianbeta init",
+		pnpm: "pnpm dlx @radianos/radianbeta init",
+		bun: "bunx @radianos/radianbeta init",
+	}}
+/>
+
+## Configure components.json
+
+You will be asked a few questions to configure `components.json`:
+
+<br/>
+<CodeSnippet
+					title="components.json"
+					showLineNumber
+					code={`✔ No package.json found at /home/ashmitbastola/Desktop/Personal/next. Create a new project? … yes
+✔ What would you like to name your project? … my-app
+✔ Which framework do you want to use? › Next.js
+✔ Would you like to use /src directory? … yes
+✔ Creating next project...
+✔ Writing components.json file
+⠋ Setting up project configuration✅ Next.js project setup completed
+✔ Setting up project configuration
+✔ Installing dependencies
+
+Success! Project initialization completed. You may now add components.
+`}
+/>
+
+## Add Components
+
+You can now start adding components to your project.
+
+<br />
+<PackageManagerTabs
+	commands={{
+		npm: "npx @radianos/radianbeta add button",
+		yarn: "yarn dlx @radianos/radianbeta add button",
+		pnpm: "pnpm dlx @radianos/radianbeta add button",
+		bun: "bunx @radianos/radianbeta add button",
+	}}
+/>
+
+The command above will add the `Button` component to your project. You can then import it like this:
+
+<br/>
+<CodeSnippet
+					title="app.tsx"
+					showLineNumber
+					code={`import {Button} from "@/components/ui/Button"
+
+export default function App() {
+  return (
+    <div>
+        <Button variant="strong" size="base" rounded="rounded" iconOnly={false}/>
+            Button
+        </Button>         
+    </div>
+  )
+}                   `}
+/
+
+>

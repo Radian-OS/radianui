@@ -1,15 +1,27 @@
 ---
 title: Text Reveal
 description: Fade in text as you scroll down the page.
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/text-reveal.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <TextRevealPreview />
 
 ## Installation
 
-<CLI mode="execute" language="bash" code={`radianos add text-reveal`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add text-reveal",
+		npm: "npx @radianos/radianbeta add text-reveal",
+		yarn: "yarn @radianos/radianbeta add text-reveal",
+		bun: "bunx @radianos/radianbeta add text-reveal",
+	}}
+/>
 
 ## Imports
 

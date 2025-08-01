@@ -1,16 +1,10 @@
-import { useLayoutEffect, useRef, useState } from "react"
-import { CheckIcon, ChevronLeft, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { useState } from "react"
+import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { cn } from "@/lib/utils"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Button } from "@/registry/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-
-type Size = "sm" | "lg"
-type Variant = "open" | "box" | "table"
-type Interaction = "single" | "multiple"
-type View = "main" | "size" | "variant" | "interaction"
 
 const items = [
 	{
@@ -30,162 +24,18 @@ const items = [
 	},
 ]
 
+type Size = "sm" | "lg"
+type Variant = "open" | "box" | "table"
+type Interaction = "single" | "multiple"
+
 const DEFAULT_SIZE: Size = "sm"
 const DEFAULT_VARIANT: Variant = "box"
 const DEFAULT_INTERACTION: Interaction = "single"
 
-const SIZE_OPTIONS: Size[] = ["sm", "lg"]
-const VARIANT_OPTIONS: Variant[] = ["open", "box", "table"]
-const INTERACTION_OPTIONS: Interaction[] = ["single", "multiple"]
-
-const PopoverHeader = ({ children, onClick, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) => {
-	const baseClasses = "text-text-secondary w-full border-b px-2 py-2.5 text-start text-sm font-medium"
-
-	if (onClick) {
-		return (
-			<button className={cn(baseClasses, "flex cursor-pointer items-center gap-2")} onClick={onClick} {...props}>
-				<ChevronLeft size={20} className="text-text-tertiary" />
-				{children}
-			</button>
-		)
-	}
-
-	return (
-		<div className={baseClasses} {...(props as React.HTMLAttributes<HTMLDivElement>)}>
-			{children}
-		</div>
-	)
-}
-
-const PopoverMenuItem = ({
-	children,
-	endContent,
-	className = "",
-	...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-	endContent?: React.ReactNode
-}) => {
-	return (
-		<button
-			type="button"
-			className={cn(
-				"hover:bg-bg-alpha-4 text-text-secondary focus-visible:ring-text-tertiary focus-visible:ring-offset-bg-base flex w-full cursor-pointer items-center justify-between rounded-md px-2 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-				className
-			)}
-			{...props}>
-			<span className="flex-1 text-left font-medium">{children}</span>
-			{endContent && <span className="text-muted-foreground font-normal">{endContent}</span>}
-		</button>
-	)
-}
-
-const AnimateHeight = ({ children }: { children: React.ReactNode }) => {
-	const [height, setHeight] = useState<number | undefined>(undefined)
-	const contentRef = useRef<HTMLDivElement>(null)
-
-	useLayoutEffect(() => {
-		if (contentRef.current) {
-			setHeight(contentRef.current.scrollHeight)
-		}
-	}, [children])
-
-	return (
-		<div className="overflow-hidden transition-[height] duration-200 ease-in-out" style={{ height: height ? `${height}px` : undefined }}>
-			<div ref={contentRef}>{children}</div>
-		</div>
-	)
-}
-
 export default function AccordionPreview() {
-	// States for properties(props)
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
 	const [interaction, setInteraction] = useState<Interaction>(DEFAULT_INTERACTION)
-
-	// States for navigation
-	const [currentView, setCurrentView] = useState<View>("main")
-	const [navigationStack, setNavigationStack] = useState<View[]>(["main"])
-
-	const navigateToView = (view: View) => {
-		setCurrentView(view)
-		setNavigationStack((prev) => [...prev, view])
-	}
-
-	const goBack = () => {
-		if (navigationStack.length > 1) {
-			const newStack = navigationStack.slice(0, -1)
-			setNavigationStack(newStack)
-			setCurrentView(newStack[newStack.length - 1])
-		}
-	}
-
-	const resetNavigation = () => {
-		setCurrentView("main")
-		setNavigationStack(["main"])
-	}
-
-	const renderPopoverContent = () => {
-		switch (currentView) {
-			case "main":
-				return (
-					<>
-						<PopoverHeader>Properties</PopoverHeader>
-						<div className="p-1.5">
-							<PopoverMenuItem endContent={size} onClick={() => navigateToView("size")}>
-								Size
-							</PopoverMenuItem>
-							<PopoverMenuItem endContent={variant} onClick={() => navigateToView("variant")}>
-								Variant
-							</PopoverMenuItem>
-							<PopoverMenuItem endContent={interaction} onClick={() => navigateToView("interaction")}>
-								Interaction
-							</PopoverMenuItem>
-						</div>
-					</>
-				)
-			case "size":
-				return (
-					<>
-						<PopoverHeader onClick={goBack}>Size</PopoverHeader>
-						<div className="p-1.5">
-							{SIZE_OPTIONS.map((opt) => (
-								<PopoverMenuItem key={opt} endContent={size === opt ? <CheckIcon size={16} /> : null} onClick={() => setSize(opt)}>
-									{opt}
-								</PopoverMenuItem>
-							))}
-						</div>
-					</>
-				)
-			case "variant":
-				return (
-					<>
-						<PopoverHeader onClick={goBack}>Variant</PopoverHeader>
-						<div className="p-1.5">
-							{VARIANT_OPTIONS.map((opt) => (
-								<PopoverMenuItem key={opt} endContent={variant === opt ? <CheckIcon size={16} /> : null} onClick={() => setVariant(opt)}>
-									{opt}
-								</PopoverMenuItem>
-							))}
-						</div>
-					</>
-				)
-			case "interaction":
-				return (
-					<>
-						<PopoverHeader onClick={goBack}>Interaction</PopoverHeader>
-						<div className="p-1.5">
-							{INTERACTION_OPTIONS.map((opt) => (
-								<PopoverMenuItem key={opt} endContent={interaction === opt ? <CheckIcon size={16} /> : null} onClick={() => setInteraction(opt)}>
-									{opt}
-								</PopoverMenuItem>
-							))}
-						</div>
-					</>
-				)
-			default:
-				return null
-		}
-	}
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -198,16 +48,54 @@ export default function AccordionPreview() {
 						Code
 					</TabsTrigger>
 				</TabsList>
-				<Popover align="end" side="bottom" onOpenChange={(open) => !open && resetNavigation()}>
-					<PopoverTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
-							<Settings />
-						</Button>
-					</PopoverTrigger>
-					<PopoverContent className="max-w-55 rounded-[10px] p-0">
-						<AnimateHeight>{renderPopoverContent()}</AnimateHeight>
-					</PopoverContent>
-				</Popover>
+				<div className="flex items-center gap-3">
+					<Dropdown>
+						<DropdownTrigger asChild>
+							<Button variant="outline" color="neutral" size="36" iconOnly>
+								Properties
+							</Button>
+						</DropdownTrigger>
+						<DropdownContent className="min-w-20">
+							{/* Dropdown for 'size' */}
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
+										<DropdownItem value="sm">Small</DropdownItem>
+										<DropdownItem value="lg">Large</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							{/* Dropdown for 'variant' */}
+							<DropdownSub>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
+										<DropdownItem value="open">Open</DropdownItem>
+										<DropdownItem value="box">Box</DropdownItem>
+										<DropdownItem value="table">Table</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							{/* Dropdown for 'interaction' */}
+							<DropdownSub>
+								<DropdownSubTrigger>Interaction</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setInteraction(Array.from(keys)[0] as Interaction)}
+										minSelectionCount={1}
+										selectedValues={[interaction.toString()]}>
+										<DropdownItem value="single">Single</DropdownItem>
+										<DropdownItem value="multiple">Multiple</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+						</DropdownContent>
+					</Dropdown>
+				</div>
 			</div>
 
 			<TabsContent value="preview">
@@ -228,7 +116,7 @@ export default function AccordionPreview() {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="accordion.tsx"
+					title="accordion-preview.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`const items = [

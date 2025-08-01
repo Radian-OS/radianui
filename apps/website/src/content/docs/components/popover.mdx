@@ -1,15 +1,26 @@
 ---
 title: Popover
 description: Display additional content or action on hover or click
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/popover.tsx
+  externalReference:
+    - label: Radix
+      href: https://www.radix-ui.com/primitives/docs/components/popover
 ---
 
 <PopoverPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add popover`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add popover",
+		npm: "npx @radianos/radianbeta add popover",
+		yarn: "yarn @radianos/radianbeta add popover",
+		bun: "bunx @radianos/radianbeta add popover",
+	}}
+/>
 
 ## Imports
 

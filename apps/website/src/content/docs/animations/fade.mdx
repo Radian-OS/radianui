@@ -1,15 +1,27 @@
 ---
 title: Fade
 description: Add fade in/out animation to any component or text. Supports blur too.
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/fade.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <FadePreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add fade`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add fade",
+		npm: "npx @radianos/radianbeta add fade",
+		yarn: "yarn @radianos/radianbeta add fade",
+		bun: "bunx @radianos/radianbeta add fade",
+	}}
+/>
 
 ## Imports
 

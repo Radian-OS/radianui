@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
 
 type ButtonProps = VariantProps<typeof buttonVariants> &
-	React.ButtonHTMLAttributes<HTMLButtonElement> & {
+	React.ComponentProps<"button"> & {
 		className?: string
 		children: React.ReactNode
 		iconOnly?: boolean
@@ -63,7 +63,7 @@ export const buttonVariants = cva(
 				success: "",
 				error: "",
 				warning: "",
-				neutral: "[&>svg]:text-text-secondary",
+				neutral: "",
 			},
 		},
 		defaultVariants: {
@@ -89,7 +89,14 @@ export const buttonVariants = cva(
 			{ iconOnly: true, size: "44", className: "px-2.5 h-11 gap-2" },
 			{ iconOnly: true, size: "48", className: "px-3 h-12 gap-2" },
 
-			// Strong variant + colors
+			// outline variants
+			{ iconOnly: true, size: "28", variant: "outline", className: "px-1.25 h-7 gap-2" },
+			{ iconOnly: true, size: "32", variant: "outline", className: "px-1.25 h-8 gap-2" },
+			{ iconOnly: true, size: "36", variant: "outline", className: "px-1.75 h-9 gap-2" },
+			{ iconOnly: true, size: "40", variant: "outline", className: "px-2.25 h-10 gap-2" },
+			{ iconOnly: true, size: "44", variant: "outline", className: "px-2.25 h-11 gap-2" },
+			{ iconOnly: true, size: "48", variant: "outline", className: "px-2.75 h-12 gap-2" },
+
 			{
 				variant: "strong",
 				color: "primary",
@@ -182,7 +189,8 @@ export const buttonVariants = cva(
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "bg-bg-level1 font-medium border border-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
+				className:
+					"bg-bg-level1 font-medium text-text-secondary border border-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
 			},
 
 			// Ghost variant + colors
@@ -272,23 +280,9 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 		if (React.isValidElement(child)) {
 			const isFirst = index === 0
 			const isLast = index === React.Children.count(children) - 1
-			const totalChildren = React.Children.count(children)
 
 			// Define border radius class consistently
 			const borderRadiusClass = isFirst ? "rounded-l-lg" : isLast ? "rounded-r-lg" : "rounded-none"
-
-			// Set position for proper z-index layering
-			const positionClass = isFirst ? "relative z-10" : `relative z-[${totalChildren - index}]`
-
-			// Special handling for different variants
-			let borderFixClass = ""
-			if (variant === "outline") {
-				// For outline variants, we need to completely eliminate double borders
-				borderFixClass = !isFirst ? "ml-[1px]" : ""
-			} else if (variant === "strong") {
-				// For solid variants
-				borderFixClass = !isFirst ? "-ml-[1px]" : ""
-			}
 
 			// Check if this is a Button component that should receive our props
 			if (React.isValidElement<ButtonProps>(child)) {
@@ -296,14 +290,7 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 					variant,
 					size,
 					color, // Ensure color is passed to child buttons
-					className: cn(
-						"rounded-none",
-						borderRadiusClass,
-						positionClass,
-						borderFixClass,
-						// "hover:z-20 focus:z-30",
-						child.props.className
-					),
+					className: cn("rounded-none", borderRadiusClass, "-ml-[1px]", `${!isLast ? "border-r-0" : ""}`, child.props.className),
 				})
 			}
 		}
@@ -334,7 +321,16 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 					!cls.includes("px-") &&
 					!cls.includes("gap-") &&
 					!cls.includes("[&>svg]") &&
-					!cls.includes("text-")
+					!(
+						cls.includes("text-") &&
+						!cls.includes("text-text-") &&
+						!cls.includes("text-primary") &&
+						!cls.includes("text-info") &&
+						!cls.includes("text-success") &&
+						!cls.includes("text-error") &&
+						!cls.includes("text-warning") &&
+						!cls.includes("text-static-")
+					)
 			)
 			.join(" "),
 		disabled && "opacity-50",
@@ -346,7 +342,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	// When using asChild, we need to pass the styling to the child element
 	if (asChild) {
 		if (loading) {
-			console.warn("CompactButton: loading prop is not supported when using asChild")
+			throw new Error("CompactButton: loading prop is not supported when using asChild")
 		}
 
 		return (

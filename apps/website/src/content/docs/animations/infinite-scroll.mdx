@@ -1,15 +1,27 @@
 ---
 title: Infinite Scroll
 description: An infinite scrolling component that can be used to display text, images or videos.
-apiRef: https://github.com/Radian-os/
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/infinite-scroll.tsx
+  externalReference:
+    - label: Motion
+      href: https://motion.dev/docs
+      icon: motion.webp
 ---
 
 <InfiniteScrollPreview />
 
 ## Installation
 
-<CLI mode="execute" language="bash" code={`radianos add infinite-scroll`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add infinite-scroll",
+		npm: "npx @radianos/radianbeta add infinite-scroll",
+		yarn: "yarn @radianos/radianbeta add infinite-scroll",
+		bun: "bunx @radianos/radianbeta add infinite-scroll",
+	}}
+/>
 
 ## Imports
 

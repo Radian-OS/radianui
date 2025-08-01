@@ -1,13 +1,26 @@
 ---
 title: Table
 description: Display tabular data with sorting and pagination
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/table.tsx
+  externalReference:
+    - label: Tanstack Table
+      href: https://tanstack.com/table/latest/docs/introduction
 ---
 
 <TablePreview />
 
 ## Installation
 
-<CLI mode="execute" tabs={true} code={`radianos add table`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add table",
+		npm: "npx @radianos/radianbeta add table",
+		yarn: "yarn @radianos/radianbeta add table",
+		bun: "bunx @radianos/radianbeta add table",
+	}}
+/>
 
 ## Imports
 

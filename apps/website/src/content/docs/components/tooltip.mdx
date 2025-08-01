@@ -1,14 +1,26 @@
 ---
 title: Tooltip
 description: Provide additional information on hover or focus
-source: https://github.com/Radian-os
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/tooltip.tsx
+  externalReference:
+    - label: Radix
+      href: https://www.radix-ui.com/primitives/docs/components/tooltip
 ---
 
 <TooltipPreview />
 
 ## Installation
 
-<CLI mode="execute" code={`radianos add tooltip`} />
+<PackageManagerTabs
+	commands={{
+		pnpm: "pnpm dlx @radianos/radianbeta add tooltip",
+		npm: "npx @radianos/radianbeta add tooltip",
+		yarn: "yarn @radianos/radianbeta add tooltip",
+		bun: "bunx @radianos/radianbeta add tooltip",
+	}}
+/>
 
 ## Imports
 

@@ -1,6 +1,7 @@
 import { useState } from "react"
-// import { CodeArea } from "@/registry/ui/code"
-import { CodeArea } from "@/registry/ui/code-area"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
+import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { InputOtp } from "@/registry/ui/input-otp"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -21,73 +22,79 @@ export default function InputOtpPreview() {
 	const [hasError, setHasError] = useState<boolean>(DEFAULT_HAS_ERROR)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
-				<div className="flex items-center gap-3">
-					<Dropdown>
-						<DropdownTrigger>Properties</DropdownTrigger>
-						<DropdownContent className="min-w-20">
-							{/* Dropdown for 'size' */}
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[String(size)]}>
-										<DropdownItem value="28">28</DropdownItem>
-										<DropdownItem value="32">32</DropdownItem>
-										<DropdownItem value="36">36</DropdownItem>
-										<DropdownItem value="40">40</DropdownItem>
-										<DropdownItem value="44">44</DropdownItem>
-										<DropdownItem value="56">56</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Length</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setLength(Number(keys[0]))} minSelectionCount={1} selectedValues={[String(length)]}>
-										<DropdownItem value="5">5</DropdownItem>
-										<DropdownItem value="6">6</DropdownItem>
-										<DropdownItem value="7">7</DropdownItem>
-										<DropdownItem value="8">8</DropdownItem>
-										<DropdownItem value="9">9</DropdownItem>
-										<DropdownItem value="10">10</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Label</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setLabel(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(label)]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setDisabled(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(disabled)]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Has error</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setHasError(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(hasError)]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownContent>
-					</Dropdown>
-				</div>
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
+				<Dropdown>
+					<DropdownTrigger asChild>
+						<Button variant="outline" color="neutral" size="36" iconOnly>
+							<Settings />
+						</Button>
+					</DropdownTrigger>
+					<DropdownContent className="min-w-20">
+						{/* Dropdown for 'size' */}
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[String(size)]}>
+									<DropdownItem value="28">28</DropdownItem>
+									<DropdownItem value="32">32</DropdownItem>
+									<DropdownItem value="36">36</DropdownItem>
+									<DropdownItem value="40">40</DropdownItem>
+									<DropdownItem value="44">44</DropdownItem>
+									<DropdownItem value="56">56</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Length</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setLength(Number(keys[0]))} minSelectionCount={1} selectedValues={[String(length)]}>
+									<DropdownItem value="5">5</DropdownItem>
+									<DropdownItem value="6">6</DropdownItem>
+									<DropdownItem value="7">7</DropdownItem>
+									<DropdownItem value="8">8</DropdownItem>
+									<DropdownItem value="9">9</DropdownItem>
+									<DropdownItem value="10">10</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Label</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setLabel(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(label)]}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setDisabled(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(disabled)]}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Has error</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setHasError(keys[0] === "true")} minSelectionCount={1} selectedValues={[String(hasError)]}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+					</DropdownContent>
+				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
@@ -104,9 +111,9 @@ export default function InputOtpPreview() {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="input-otp.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={`<InputOtp ${size !== DEFAULT_SIZE ? `size="${size}"` : ""} ${length !== DEFAULT_LENGTH ? `length="${length}"` : ""} ${label ? `label="Enter One-Time-Password"` : ""} ${disabled ? `disabled=${disabled}` : ""} ${hasError ? `hasError=${hasError}` : ""} ${hasError ? `errorMsg="This is an error mmessage"` : ""}/>`}
 				/>

@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { ChevronDown, ChevronUp, PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
-import { Value, getCountries, getCountryCallingCode, isValidPhoneNumber } from "react-phone-number-input"
+import { type Value, getCountries, getCountryCallingCode, isValidPhoneNumber } from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
-import { Input, InputProps } from "./input"
+import { Input, type InputProps } from "./input"
 import { Label } from "./label"
 import { Select, SelectGroup, SelectItem } from "./select"
 

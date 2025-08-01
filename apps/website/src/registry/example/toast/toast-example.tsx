@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Box } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Toaster, showToast } from "@/registry/ui/toast"
@@ -127,9 +127,9 @@ const ToastExample = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
+				<CodeSnippet
+					title="toast-example.tsx"
+					showLineNumber
 					className="h-[420px]"
 					code={` <Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
 	<Button

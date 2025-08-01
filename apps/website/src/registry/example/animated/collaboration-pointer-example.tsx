@@ -1,16 +1,20 @@
 import React from "react"
-import { MousePointer2 } from "lucide-react"
+import { EyeIcon, MousePointer2, SquareTerminal } from "lucide-react"
+import CodeSnippet from "@/components/code-snippet"
 import { Pointer } from "@/registry/animated/pointer"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function CollaborationPointerExample() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10">
-			<div className="flex items-center justify-end">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} className="mb-10">
+			<div className="flex items-center justify-start">
 				<TabsList>
-					<TabsTrigger value="preview">Preview</TabsTrigger>
-					<TabsTrigger value="code">Code</TabsTrigger>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
+						Code
+					</TabsTrigger>
 				</TabsList>
 			</div>
 			{/* Preview Tab */}
@@ -29,10 +33,10 @@ export default function CollaborationPointerExample() {
 			</TabsContent>
 			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeArea
-					language="tsx"
-					showLineNumbers
-					className="h-105"
+				<CodeSnippet
+					title="collaboration-pointer-example.tsx"
+					showLineNumber
+					className="h-[420px]"
 					code={`<div className="w-100 bg-fill-level2 flex h-80 items-center justify-center rounded-lg border">
     <span>Collaboration Pointer Example</span>
     <Pointer>
