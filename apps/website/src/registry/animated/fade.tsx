@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useRef } from "react"
-import { AnimatePresence, Easing, UseInViewOptions, Variants, motion, useInView } from "motion/react"
+import { AnimatePresence, type Easing, type UseInViewOptions, type Variants, motion, useInView } from "motion/react"
 
 type EaseOption = Easing | [number, number, number, number] // Cubic bezier array must have exactly 4 numbers
 

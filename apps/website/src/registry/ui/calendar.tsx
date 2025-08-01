@@ -2,9 +2,9 @@ import React, { useEffect, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, parseDate, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
-import { ChevronProps, CustomComponents, DateRange, DayPicker, Modifiers, useDayPicker } from "react-day-picker"
+import { type ChevronProps, type CustomComponents, type DateRange, DayPicker, type Modifiers, useDayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { DateRangeShortcut, DateRangeShortcutValues, mockMouseClick } from "./date-picker"
+import { DateRangeShortcut, type DateRangeShortcutValues, mockMouseClick } from "./date-picker"
 import { Select, SelectItem } from "./select"
 
 /**

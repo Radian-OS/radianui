@@ -889,7 +889,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				start={
 					<PopoverTrigger disabled={disabled}>
 						<div
-							className="relative h-5 w-5 cursor-pointer overflow-hidden rounded"
+							className="relative h-5 w-5 cursor-pointer overflow-hidden rounded-sm"
 							style={{
 								backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='checkerboard' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3e%3crect fill='%23cccccc' x='0' width='10' height='10' y='0'/%3e%3crect fill='%23cccccc' x='10' width='10' height='10' y='10'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23checkerboard)' /%3e%3c/svg%3e")`,
 								backgroundSize: "20px 20px", // Smaller pattern for better visibility at 20px size
@@ -942,7 +942,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 							{/* Eyedropper Tool */}
 							<div
 								onClick={handleEyedropper}
-								className={`flex h-9 w-9 items-center justify-center rounded p-2 transition-colors ${
+								className={`flex h-9 w-9 items-center justify-center rounded-sm p-2 transition-colors ${
 									isEyedropperSupported ? "bg-border-alpha text-text-secondary cursor-pointer" : "bg-text-disabled text-text-disabled cursor-not-allowed"
 								}`}
 								// title={isEyedropperSupported ? "Pick color from screen" : "EyeDropper not supported in this browser"}

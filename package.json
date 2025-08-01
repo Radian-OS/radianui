@@ -12,6 +12,7 @@
     "format:check": "turbo run format:check",
     "format:write": "turbo run format:write",
     "check-types": "turbo run check-types",
+    "generate-component-json": "turbo run generate-component-json",
     "lint": "turbo run lint"
   },
   "resolutions": {

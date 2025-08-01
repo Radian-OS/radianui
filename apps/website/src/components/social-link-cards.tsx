@@ -47,7 +47,7 @@ export default function SocialLinkCards() {
 		<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
 			{socialLinks.map((link) => {
 				return (
-					<Link href={link.href} key={link.name} className="hover:bg-bg-level1 rounded-rounded-sm group cursor-pointer border p-4 transition-all duration-200 hover:shadow-md">
+					<Link href={link.href} key={link.name} className="hover:bg-bg-level1 group cursor-pointer rounded-[0.625rem] border p-4 transition-all duration-200 hover:shadow-md">
 						<span className="sr-only">{link.description}</span>
 						<div className="flex h-full items-center gap-3">
 							<div className="flex-shrink-0">

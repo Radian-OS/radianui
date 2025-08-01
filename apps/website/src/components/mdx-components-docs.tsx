@@ -332,8 +332,20 @@ const components: MDXComponents = {
 	TabsContent: (props: React.ComponentProps<typeof TabsContent>) => {
 		return <TabsContent {...props} />
 	},
-	Step: ({ className, ...props }: React.ComponentProps<"h3">) => <h3 className={cn("heading-6 mb-4 mt-8 scroll-m-32 font-medium", className)} {...props} />,
-	Steps: ({ ...props }) => <div className="[&>h3]:step steps *:[h3]:first:!mt-0 mb-6 [counter-reset:step]" {...props} />,
+	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
+		<h3
+			className={cn(
+				"font-heading not-first:mt-6 mb-3 scroll-m-20 text-xl font-semibold tracking-tight",
+				"relative [counter-increment:step]",
+				"before:absolute before:-left-12 before:top-0 before:flex before:size-8 before:items-center before:justify-center",
+				"before:bg-border before:text-text before:rounded-full before:text-base before:font-semibold",
+				"before:content-[counter(step)]",
+				className
+			)}
+			{...props}
+		/>
+	),
+	Steps: ({ ...props }) => <div className={cn("mb-12 border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-8")} {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,
