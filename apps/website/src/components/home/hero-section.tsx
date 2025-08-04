@@ -8,8 +8,8 @@ export default function HeroSection() {
 	return (
 		<div className="relative box-border flex flex-col gap-1 px-4 pb-4 pt-6 md:px-6 lg:px-10 lg:py-16">
 			<section className="max-w-187 flex flex-col justify-between gap-6">
-				<div className="relative box-content size-fit rounded-md">
-					<Badge size="28" className="bg-primary-focus text-primary-text w-fit text-sm font-medium">
+				<div className="relative size-fit rounded-md">
+					<Badge size="28" variant={"soft"}>
 						<Box size={20} />
 						<span>Under Development</span>
 					</Badge>

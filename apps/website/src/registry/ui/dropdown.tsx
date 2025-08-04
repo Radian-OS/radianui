@@ -2,7 +2,7 @@
 
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { DropdownMenuContentProps, DropdownMenuGroupProps, DropdownMenuItemProps, DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
+import { type DropdownMenuContentProps, type DropdownMenuGroupProps, type DropdownMenuItemProps, type DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Divider } from "./divider"

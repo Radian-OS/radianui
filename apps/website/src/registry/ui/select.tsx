@@ -11,7 +11,7 @@ import { Divider } from "./divider"
 import { Dropdown, DropdownContent, DropdownTrigger } from "./dropdown"
 import {
 	Input,
-	InputProps,
+	type InputProps,
 	//cvaInputVariants,
 	defaultInputRadius,
 	defaultInputSize,

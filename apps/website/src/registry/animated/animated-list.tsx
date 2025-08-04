@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ComponentPropsWithoutRef, useEffect, useMemo, useState } from "react"
+import React, { type ComponentPropsWithoutRef, useEffect, useMemo, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { cn } from "@/lib/utils"
 
