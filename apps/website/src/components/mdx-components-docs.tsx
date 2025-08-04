@@ -258,7 +258,7 @@ const components: MDXComponents = {
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! pt-6", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! py-3", className)} {...props}>
 			{children}
 		</h3>
 	),
