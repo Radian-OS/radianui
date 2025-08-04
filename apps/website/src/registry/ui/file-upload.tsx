@@ -40,22 +40,22 @@ const getFileIcon = (file: { file: File | { type: string; name: string; preview?
 }
 
 type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
+	label?: string
+	title?: string
+	description?: string
+	rounded?: RoundedOptions
+	disabled?: boolean
+	hasError?: boolean
+	hint?: string
 	maxSize?: number
 	containerClassName?: string
-	rounded?: RoundedOptions
-	label?: string
 	variant?: string
 	className?: string
 	accept?: string
 	error?: boolean
-	disabled?: boolean
 	multiple?: boolean
 	maxFiles?: number
 	sizes?: SizeOptions
-	title?: string
-	description?: string
-	hint?: string
-	hasError?: boolean
 	value?: FileWithPreview[] // External file list
 	onChange?: (files: FileWithPreview[]) => void // Callback when files change
 }
@@ -587,3 +587,5 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 
 	return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i]
 }
+
+export { FileUpload }
