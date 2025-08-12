@@ -1,0 +1,9 @@
+{
+    "name": "geist",
+    "label": "Geist",
+    "importURL": "https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap",
+    "cssVariables": {
+        "heading-font": "Geist",
+        "body-font": "Geist"
+    }
+}
