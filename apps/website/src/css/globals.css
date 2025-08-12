@@ -47,51 +47,47 @@
 	--color-warning-text: oklch(48.6% 0.124 50.1);
 
 	/* background */
-	--color-bg-level0: oklch(0.9677 0.0027 286.35);
-	--color-bg-base: oklch(1 0 0);
-	--color-bg-level1: oklch(1 0 0);
-	--color-bg-level2: oklch(1 0 0);
+	--color-elevation-negative: oklch(0.9677 0.0027 286.35);
+	--color-base: oklch(1 0 0);
+	--color-elevation-level1: oklch(1 0 0);
+	--color-elevation-level2: oklch(1 0 0);
 	--color-bg-alpha-2: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
 	--color-bg-alpha-4: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
 	--color-bg-alpha-8: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
 	--color-bg-alpha-12: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
 	--color-bg-alpha-16: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 84%);
 
-	--color-text: oklch(0.2314 0.0078 274.6);
-	--color-text-secondary: oklch(0.4515 0.0243 285.39);
-	--color-text-tertiary: oklch(0.6261 0.0268 285.6);
-	--color-text-disabled: oklch(0.8352 0.011 286.16);
-	--color-text-inverse: oklch(1 0 0);
+	--color-fg: oklch(0.2314 0.0078 274.6);
+	--color-fg-secondary: oklch(0.4515 0.0243 285.39);
+	--color-fg-tertiary: oklch(0.6261 0.0268 285.6);
+	--color-fg-disabled: oklch(0.8352 0.011 286.16);
+	--color-fg-inverse: oklch(1 0 0);
 
 	/* stroke */
 	--color-border: oklch(0.902 0.0068 286.26);
 	--color-soft: oklch(0.9349 0.004 286.32);
 	--color-soft-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
-	--color-border-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
+	--color-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
 	/* 2% opacity */
 	/* fill */
-	--color-fill-level1: oklch(0.9824 0.0013 286.38);
-	--color-fill-level2: oklch(0.9677 0.0027 286.35);
-	--color-fill-level3: oklch(0.9349 0.004 286.32);
-	--color-fill-level4: oklch(0.902 0.0068 286.26);
+	--color-fill1: oklch(0.9824 0.0013 286.38);
+	--color-fill2: oklch(0.9677 0.0027 286.35);
+	--color-fill3: oklch(0.9349 0.004 286.32);
+	--color-fill4: oklch(0.902 0.0068 286.26);
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, oklch(1 0 0), transparent 98%);
+	--color-inverse-fill1: color-mix(in srgb, oklch(1 0 0), transparent 98%);
 	/* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, oklch(1 0 0), transparent 96%);
+	--color-inverse-fill2: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	/* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+	--color-inverse-fill3: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	/* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, oklch(1 0 0), transparent 84%);
+	--color-inverse-fill4: color-mix(in srgb, oklch(1 0 0), transparent 84%);
 	/* 16% opacity */
 
-	/* static */
-	--color-static-white: oklch(1 0 0);
-	--color-static-black: oklch(0.144 0.0028 247.09);
-
 	/* inverse */
-	--color-inverse-black: oklch(0.144 0.0028 247.09);
-	--color-inverse-white: oklch(1 0 0);
+	--color-black-inverse: oklch(0.144 0.0028 247.09);
+	--color-white-inverse: oklch(1 0 0);
 
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
@@ -148,10 +144,10 @@
 	--color-warning-text: oklch(87% 0.173 90.9);
 
 	/* Background */
-	--color-bg-level0: oklch(0 0 0);
-	--color-bg-base: oklch(0.144 0.0028 247.09);
-	--color-bg-level1: oklch(0.1881 0.006 285.81);
-	--color-bg-level2: oklch(0.2314 0.0078 274.6);
+	--color-elevation-negative: oklch(0 0 0);
+	--color-base: oklch(0.144 0.0028 247.09);
+	--color-elevation-level1: oklch(0.1881 0.006 285.81);
+	--color-elevation-level2: oklch(0.2314 0.0078 274.6);
 	--color-bg-alpha-2: color-mix(in srgb, oklch(1 0 0), transparent 98%);
 	--color-bg-alpha-4: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	--color-bg-alpha-8: color-mix(in srgb, oklch(1 0 0), transparent 92%);
@@ -159,53 +155,45 @@
 	--color-bg-alpha-16: color-mix(in srgb, oklch(1 0 0), transparent 84%);
 
 	/* foreground */
-	--color-text: oklch(1 0 0);
-	--color-text-secondary: oklch(0.6261 0.0268 285.6);
-	--color-text-tertiary: oklch(0.5553 0.0292 285.41);
-	--color-text-disabled: oklch(0.4515 0.0243 285.39);
-	--color-text-inverse: oklch(0.144 0.0028 247.09);
+	--color-fg: oklch(1 0 0);
+	--color-fg-secondary: oklch(0.6261 0.0268 285.6);
+	--color-fg-tertiary: oklch(0.5553 0.0292 285.41);
+	--color-fg-disabled: oklch(0.4515 0.0243 285.39);
+	--color-fg-inverse: oklch(0.144 0.0028 247.09);
 
 	/* stroke */
 	--color-border: oklch(0.2738 0.0093 276.77);
-	--color-border-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+	--color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
 	--color-soft: oklch(0.2314 0.0078 274.6);
 	--color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	/* fill */
-	--color-fill-level1: oklch(0.1652 0.0062 285.7);
+	--color-fill1: oklch(0.1652 0.0062 285.7);
 	/* 2% opacity */
-	--color-fill-level2: oklch(0.1881 0.006 285.81);
+	--color-fill2: oklch(0.1881 0.006 285.81);
 	/* 4% opacity */
-	--color-fill-level3: oklch(0.2314 0.0078 274.6);
+	--color-fill3: oklch(0.2314 0.0078 274.6);
 	/* 8% opacity */
-	--color-fill-level4: oklch(0.2738 0.0093 276.77);
+	--color-fill4: oklch(0.2738 0.0093 276.77);
 	/* 16% opacity */
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
+	--color-inverse-fill1: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
 	/* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
+	--color-inverse-fill2: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
 	/* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
+	--color-inverse-fill3: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
 	/* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 84%);
+	--color-inverse-fill4: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 84%);
 	/* 16% opacity */
 
-	/* static */
-	--color-static-white: oklch(1 0 0);
-	--color-static-black: oklch(0.144 0.0028 247.09);
-
 	/* inverse */
-	--color-inverse-black: oklch(1 0 0);
-	--color-inverse-white: oklch(0.144 0.0028 247.09);
+	--color-black-inverse: oklch(1 0 0);
+	--color-white-inverse: oklch(0.144 0.0028 247.09);
 
 	--color-text-primary: oklch(1 0 0);
 	/* --color-text-paragraph: var(--color-white-10); */
 	--color-text-disabled: oklch(0.4515 0.0243 285.39);
 	/* --color-text-4: var(--color-black-5); */
-
-	/* static */
-	--color-static-white: oklch(1 0 0);
-	--color-static-black: oklch(0.1452 0.0021 286.13);
 }
 
 @layer base {
@@ -213,7 +201,7 @@
 		border-color: var(--color-border);
 	}
 	body {
-		@apply font-body bg-bg-base text-text;
+		@apply font-body bg-base text-fg;
 	}
 }
 
@@ -221,8 +209,8 @@
 	border-color: var(--color-border);
 }
 
-@utility border-border-alpha {
-	border-color: var(--color-border-alpha);
+@utility border-alpha {
+	border-color: var(--color-alpha);
 }
 
 /*

@@ -19,18 +19,18 @@ function ProgressBar({ value, valueLabel, className, indicatorClassName, hint, h
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled }, className)}>
 			{(label || valueLabel) && (
 				<div className="flex w-full justify-between">
-					<Label className={cn({ "text-text-disabled cursor-not-allowed": disabled })}>{label}</Label>
+					<Label className={cn({ "text-fg-disabled cursor-not-allowed": disabled })}>{label}</Label>
 					{valueLabel && <span>{value}%</span>}
 				</div>
 			)}
 
-			<ProgressPrimitive.Root className={cn("bg-fill-level3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full", className)} value={value} {...props}>
+			<ProgressPrimitive.Root className={cn("bg-fill3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full", className)} value={value} {...props}>
 				<ProgressPrimitive.Indicator
 					className={cn("bg-primary h-full w-full transition-transform duration-[660ms] [transition-timing-function:cubic-bezier(0,0,1,1)]", indicatorClassName)}
 					style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
 				/>
 			</ProgressPrimitive.Root>
-			<Label className={`flex items-start text-sm font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>
+			<Label className={`flex items-start text-sm font-normal ${hasError ? "text-error" : "text-fg-tertiary"}`}>{hint}</Label>
 		</div>
 	)
 }

@@ -94,7 +94,7 @@ const drawerVariants = cva("fixed bg-transparent z-[51] bg-base", {
 const backdropVariants = cva("z-50 fixed", {
 	variants: {
 		backdrop: {
-			overlay: "inset-0 bg-static-black/50",
+			overlay: "inset-0 bg-black/50",
 			blur: "backdrop-blur-sm inset-0",
 		},
 	},
@@ -118,7 +118,7 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! roun
 })
 
 function getContentClass(type: DrawerType, direction: DirectionType) {
-	const baseClasses = "bg-bg-base flex flex-col gap-5 overflow-hidden"
+	const baseClasses = "bg-base flex flex-col gap-5 overflow-hidden"
 
 	// Handle float type
 	if (type === "float") {
@@ -214,7 +214,7 @@ function DrawerTitle({ children, className }: DrawerTitleProps) {
 }
 
 function DrawerDescription({ children, className }: DrawerDescriptionProps) {
-	return <DrawerPrimitives.Description className={cn("text-text-secondary gap-1 text-sm", className)}>{children}</DrawerPrimitives.Description>
+	return <DrawerPrimitives.Description className={cn("text-fg-secondary gap-1 text-sm", className)}>{children}</DrawerPrimitives.Description>
 }
 
 function DrawerBody({ children, className }: DrawerDescriptionProps) {

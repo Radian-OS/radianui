@@ -9,7 +9,7 @@ const CompactButtonPreview = () => {
 	type sizes = "20" | "24"
 	const [size, setSize] = useState<sizes>("20")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
-	const [variant, setVariant] = useState<"outline" | "ghost" | "static-white">("outline")
+	const [variant, setVariant] = useState<"outline" | "ghost" | "white">("outline")
 
 	const code = (() => {
 		if (variant === "outline") {
@@ -35,14 +35,14 @@ color="neutral"
 </CompactButton>`
 		}
 
-		if (variant === "static-white") {
+		if (variant === "white") {
 			return `<CompactButton
 size="${size}"
 disabled={${disabled === "true"}}
 variant="ghost"
 color="neutral"
 >
- <X className="stroke-static-white" />
+ <X className="stroke-white" />
 </CompactButton>`
 		}
 
@@ -95,7 +95,7 @@ color="neutral"
 									selectedValues={[variant]}>
 									<DropdownItem value="outline">Outline</DropdownItem>
 									<DropdownItem value="ghost">Ghost</DropdownItem>
-									<DropdownItem value="static-white">Static White</DropdownItem>
+									<DropdownItem value="white">Static White</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -120,9 +120,9 @@ color="neutral"
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-2 overflow-auto rounded-xl border">
-					{variant === "static-white" && (
+					{variant === "white" && (
 						<CompactButton size={size} disabled={disabled === "true"} variant="ghost" color="neutral">
-							<X className="stroke-static-white" />
+							<X className="stroke-white" />
 						</CompactButton>
 					)}
 					{variant === "ghost" && (

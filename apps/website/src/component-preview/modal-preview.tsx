@@ -93,7 +93,7 @@ const PopoverPreview = () => {
 								</div>
 							</ModalHeader>
 							<ModalBody>
-								<div className="bg-bg-level0 h-40 rounded-lg" />
+								<div className="bg-elevation-negative h-40 rounded-lg" />
 							</ModalBody>
 							<ModalFooter>
 								<ModalClose asChild>
@@ -129,7 +129,7 @@ const PopoverPreview = () => {
 			</div>
 		</ModalHeader>
 		<ModalBody>
-			<div className="bg-bg-level0 h-40 rounded-lg" />
+			<div className="bg-elevation-negative h-40 rounded-lg" />
 		</ModalBody>
 		<ModalFooter>
 			<ModalClose asChild>

@@ -55,7 +55,7 @@ function AccordionWithIconExample() {
 							<AccordionItem value={item.id.toString()} key={item.id}>
 								<AccordionTrigger>
 									<span className="flex items-center gap-3">
-										<item.icon size={20} className="text-text-secondary shrink-0" aria-hidden="true" />
+										<item.icon size={20} className="text-fg-secondary shrink-0" aria-hidden="true" />
 										<span>{item.trigger}</span>
 									</span>
 								</AccordionTrigger>
@@ -109,7 +109,7 @@ export function AccordionWithIcon() {
 				<AccordionItem value={item.id.toString()} key={item.id}>
 					<AccordionTrigger>
 						<span className="flex items-center gap-3">
-							<item.icon size={20} className="text-text-secondary shrink-0" aria-hidden="true" />
+							<item.icon size={20} className="text-fg-secondary shrink-0" aria-hidden="true" />
 							<span>{item.trigger}</span>
 						</span>
 					</AccordionTrigger>
@@ -132,7 +132,7 @@ export function AccordionWithIcon() {
 				<AccordionItem value={item.id.toString()} key={item.id}>
 					<AccordionTrigger>
 						<span className="flex items-center gap-3">
-							<item.icon size={20} className="text-text-secondary shrink-0" aria-hidden="true" />
+							<item.icon size={20} className="text-fg-secondary shrink-0" aria-hidden="true" />
 							<span>{item.trigger}</span>
 						</span>
 					</AccordionTrigger>

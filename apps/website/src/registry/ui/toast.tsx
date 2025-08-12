@@ -49,9 +49,9 @@ const SonnerVariant = cva("group toast rounded-lg flex justify-between text-sm g
 			info: "",
 		},
 		variant: {
-			outline: "bg-bg-level1 border border-border group-[.toaster]:text-text-secondary",
+			outline: "bg-elevation-level1 border border-border group-[.toaster]:text-fg-secondary",
 			strong: "",
-			inverse: " bg-inverse-black group-[.toaster]:text-text-inverse",
+			inverse: " bg-black-inverse group-[.toaster]:text-fg-inverse",
 		},
 		placement: {
 			horizontal: "items-center",
@@ -63,32 +63,32 @@ const SonnerVariant = cva("group toast rounded-lg flex justify-between text-sm g
 		{
 			variant: "strong",
 			state: "primary",
-			class: "bg-primary text-static-white",
+			class: "bg-primary text-white",
 		},
 		{
 			variant: "strong",
 			state: "neutral",
-			class: "bg-static-black !text-white relative before:absolute before:inset-0 before:!bg-bg-alpha-4 overflow-hidden before:pointer-events-none",
+			class: "bg-black !text-white relative before:absolute before:inset-0 before:!bg-bg-alpha-4 overflow-hidden before:pointer-events-none",
 		},
 		{
 			variant: "strong",
 			state: "success",
-			class: "bg-success text-static-white",
+			class: "bg-success text-white",
 		},
 		{
 			variant: "strong",
 			state: "error",
-			class: "bg-error text-static-white",
+			class: "bg-error text-white",
 		},
 		{
 			variant: "strong",
 			state: "warning",
-			class: "bg-warning text-static-white",
+			class: "bg-warning text-white",
 		},
 		{
 			variant: "strong",
 			state: "info",
-			class: "bg-info text-static-white",
+			class: "bg-info text-white",
 		},
 	],
 	defaultVariants: {
@@ -106,9 +106,9 @@ const getIconColorClass = (variant?: string, state?: string): string => {
 	if (variant === "strong") {
 		// For strong variant, icons are always white
 		if (state === "neutral") {
-			return "text-statiC-white"
+			return "text-white"
 		}
-		return "text-static-white"
+		return "text-white"
 	} else if (variant === "outline") {
 		// For neutral and inverse variants, use state color
 		return state ? `text-${state}` : ""
@@ -122,7 +122,7 @@ const getIconColorClass = (variant?: string, state?: string): string => {
 		}
 		return (state && stateHoverColors[state as keyof typeof stateHoverColors]) || ""
 	}
-	return "text-static-black dark:text-static-white"
+	return "text-black dark:text-white"
 }
 
 // Minimal container for custom content
@@ -206,8 +206,8 @@ export function showToast({
 							{title && (
 								<div
 									className={cn("font-medium", {
-										"text-text": variant === "outline",
-										"text-text-inverse": variant === "inverse",
+										"text-fg": variant === "outline",
+										"text-fg-inverse": variant === "inverse",
 									})}>
 									{title}
 								</div>
@@ -231,8 +231,8 @@ export function showToast({
 										}}>
 										<span
 											className={cn("font-inter whitespace-nowrap font-medium tracking-tight underline", {
-												"text-text": variant === "outline",
-												"text-text-inverse": variant === "inverse",
+												"text-fg": variant === "outline",
+												"text-fg-inverse": variant === "inverse",
 											})}>
 											{button.label}
 										</span>
@@ -289,7 +289,7 @@ type ToasterProps = React.ComponentProps<typeof Sonner> & {
 }
 
 // Define the styles for the toaster using `class-variance-authority`
-const toastClass = cva("group !p-0 rounded-lg toast group-[.toaster]:text-text-secondary", {
+const toastClass = cva("group !p-0 rounded-lg toast group-[.toaster]:text-fg-secondary", {
 	variants: {
 		position: {
 			// Center positions get the negative margin

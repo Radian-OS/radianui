@@ -71,7 +71,7 @@ const CurrencyPreview = () => {
 								disableOpenStyle={true}
 								size={size}
 								minSelectionCount={1}
-								className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+								className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 								<SelectItem value="usd">USD</SelectItem>
 								<SelectItem value="eur">EUR</SelectItem>
 								<SelectItem value="gbp">GBP</SelectItem>

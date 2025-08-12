@@ -36,8 +36,8 @@ export default function Sidebar() {
 										<li key={item.title} className="relative" ref={isActive ? activeItemRef : null}>
 											<Link
 												className={cn(
-													"text-text-secondary hover:text-text focus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
-													isActive ? "text-text font-medium" : ""
+													"text-fg-secondary hover:text-fgfocus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+													isActive ? "text-fgfont-medium" : ""
 												)}
 												href={item.url}>
 												{/* Active indicator */}

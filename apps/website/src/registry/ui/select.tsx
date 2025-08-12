@@ -65,10 +65,10 @@ function SelectItem({ value, children, startContent, endContent, ref, className,
 				}
 			}}
 			className={cn(
-				"text-text flex cursor-pointer justify-between",
+				"text-fgflex cursor-pointer justify-between",
 				{
-					"bg-fill-level2": isSelected,
-					"hover:bg-fill-level2": !isSelected,
+					"bg-fill2": isSelected,
+					"hover:bg-fill2": !isSelected,
 				},
 				className
 			)}
@@ -78,7 +78,7 @@ function SelectItem({ value, children, startContent, endContent, ref, className,
 				<span className={`flex flex-1 items-center gap-2 truncate [&_svg]:size-5`}>{children}</span>
 
 				{endContent && <span>{endContent}</span>}
-				{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
+				{showSelectedCheck && (isSelected ? <Check size={20} className="stroke-fg" /> : "")}
 			</div>
 		</CommandItem>
 	)
@@ -102,7 +102,7 @@ function SelectGroup({ label, children }: SelectGroupProps) {
 	return <CommandGroup heading={label ? label : undefined}>{children}</CommandGroup>
 }
 // Variants for the Select trigger styling using class variance authority
-// const SelectTriggerVariations = cva("active:bg-fill-level3 justify-start gap-2 border-border px-3 py-2.5 text-text drop-shadow-xs hover:bg-fill-level2", {
+// const SelectTriggerVariations = cva("active:bg-fill3 justify-start gap-2 border-border px-3 py-2.5 text-fgdrop-shadow-xs hover:bg-fill2", {
 // 	variants: {
 // 		...cvaInputVariants,
 // 	},
@@ -268,7 +268,7 @@ function Select({
 					showSelectedCheck,
 				}}>
 				<div className={cn("flex h-full w-full flex-col gap-1", classNames?.base)}>
-					{label && <Label className={cn({ "text-text-tertiary": disabled }, classNames?.label)}>{label}</Label>}
+					{label && <Label className={cn({ "text-fg-tertiary": disabled }, classNames?.label)}>{label}</Label>}
 					<Dropdown
 						open={open}
 						onOpenChange={(newOpen) => {
@@ -285,7 +285,7 @@ function Select({
 										<Input
 											placeholder={placeholder}
 											start={lead}
-											end={!open ? <ChevronDown size={20} className="text-text-tertiary" /> : <ChevronUp size={20} className="text-text-tertiary" />}
+											end={!open ? <ChevronDown size={20} className="text-fg-tertiary" /> : <ChevronUp size={20} className="text-fg-tertiary" />}
 											size={size}
 											rounded={rounded}
 											value={selectedLabels}
@@ -302,7 +302,7 @@ function Select({
 											disabled={disabled}
 											className={className}>
 											<span
-												className={cn("text-text flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
+												className={cn("text-fgflex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
 													"text-base": size === "44" || size === "48",
 												})}>
 												{selectedLabels.length == 0 && placeholder}
@@ -310,16 +310,16 @@ function Select({
 												{selectionMode === "single" && selectedLabels.length === 1 && " " + selectedLabels[0]}
 												{selectionMode === "multiple" && selectedLabels.length > 0 && " " + selectedLabels.join(", ")}
 											</span>
-											{endIcon && (!open ? <ChevronDown size={16} className="text-text-tertiary" /> : <ChevronUp size={16} className="text-text-tertiary" />)}
+											{endIcon && (!open ? <ChevronDown size={16} className="text-fg-tertiary" /> : <ChevronUp size={16} className="text-fg-tertiary" />)}
 										</Button>
 									) : (
 										<div
 											tabIndex={0}
-											className={`focus-within:border-primary focus-within:ring-primary/10 border-border-alpha flex cursor-pointer border focus-within:ring-2 ${
-												disabled ? "text-text-disabled bg-fill-level1 cursor-not-allowed drop-shadow-none" : ""
+											className={`focus-within:border-primary focus-within:ring-primary/10 border-alpha flex cursor-pointer border focus-within:ring-2 ${
+												disabled ? "text-fg-disabled bg-fill1 cursor-not-allowed drop-shadow-none" : ""
 											} flex min-h-[35px] w-full flex-wrap items-center gap-2 rounded-${rounded} p-2 text-sm`}>
 											{internalSelectedValues.length === 0 ? (
-												<span className="text-text-tertiary">{placeholder}</span>
+												<span className="text-fg-tertiary">{placeholder}</span>
 											) : (
 												internalSelectedValues.map((value) => (
 													<span key={value} className="flex items-center">
@@ -361,7 +361,7 @@ function SelectDivider() {
 }
 // Command component that wraps the CommandPrimitive with additional styling
 function Command({ className, ...props }: React.ComponentPropsWithoutRef<typeof CommandPrimitive>) {
-	return <CommandPrimitive className={cn("bg-bg-level2 text-text flex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
+	return <CommandPrimitive className={cn("bg-elevation-level2 text-fgflex h-full w-full flex-col overflow-hidden rounded-md", className)} {...props} />
 }
 Command.displayName = CommandPrimitive.displayName
 // CommandInput component that renders an input field with a search icon
@@ -371,7 +371,7 @@ function CommandInput({ className, ...props }: React.ComponentPropsWithRef<typeo
 			<Search className="h-5 w-5 shrink-0 opacity-50" />
 			<CommandPrimitive.Input
 				className={cn(
-					"placeholder:text-text-tertiary outline-hidden flex h-8 w-full rounded-md bg-transparent py-3 text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
+					"placeholder:text-fg-tertiary outline-hidden flex h-8 w-full rounded-md bg-transparent py-3 text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -452,7 +452,7 @@ function CommandGroup({ className, ...props }: React.ComponentPropsWithRef<typeo
 			<CommandPrimitive.Group
 				ref={groupRef}
 				className={cn(
-					"text-text [&_[cmdk-group-heading]]:text-text-tertiary overflow-hidden p-0 px-1.5 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-0.5",
+					"text-fg[&_[cmdk-group-heading]]:text-fg-tertiary overflow-hidden p-0 px-1.5 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-items]]:flex [&_[cmdk-group-items]]:flex-col [&_[cmdk-group-items]]:gap-0.5",
 					className
 				)}
 				{...props}
@@ -467,7 +467,7 @@ function CommandItem({ className, ...props }: React.ComponentPropsWithRef<typeof
 	return (
 		<CommandPrimitive.Item
 			className={cn(
-				"hover:bg-fill-level2 outline-hidden relative flex cursor-default select-none items-center rounded-sm px-2.5 py-1.5 text-sm font-normal data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"hover:bg-fill2 outline-hidden relative flex cursor-default select-none items-center rounded-sm px-2.5 py-1.5 text-sm font-normal data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}

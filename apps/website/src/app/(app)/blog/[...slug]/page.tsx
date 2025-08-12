@@ -37,7 +37,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 					{blog.card}
 				</Badge>
 				<h1 className="heading-3 font-semibold">{blog.title}</h1>
-				<p className="text-text-secondary text-sm">{blog.formattedDate}</p>
+				<p className="text-fg-secondary text-sm">{blog.formattedDate}</p>
 			</div>
 
 			{/* Blog Image */}
@@ -47,14 +47,14 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
 			{/* Author Info */}
 			<div className="flex items-center gap-3">
-				<span className="text-text-secondary text-sm">Author</span>
+				<span className="text-fg-secondary text-sm">Author</span>
 				{blog.author?.map((author, index) =>
 					author.username && author.avatar ? (
 						<Link target="_blank" href={author.link || "#"} key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
 							<Avatar size="24" name={author.name} src={author.avatar} />
 							<span className="flex flex-col">
 								<span className="text-sm font-medium">{author.name}</span>
-								<span className="text-text-secondary text-xs">{author.username}</span>
+								<span className="text-fg-secondary text-xs">{author.username}</span>
 							</span>
 						</Link>
 					) : (

@@ -200,7 +200,7 @@ const MainTable = function <TData>({
 							width: resizable ? table.getCenterTotalSize() : "100%",
 							minWidth: dragAndDrop ? table.getCenterTotalSize() : "auto",
 						}}>
-						<TableHeader className={`${sticky ? "bg-bg-base sticky top-0 z-10" : ""}`}>
+						<TableHeader className={`${sticky ? "bg-base sticky top-0 z-10" : ""}`}>
 							{table.getHeaderGroups().map((headerGroup) => (
 								<TableRow style={{ height: headerHeight }} key={headerGroup.id}>
 									<SortableContext items={columnOrder} strategy={horizontalListSortingStrategy}>
@@ -226,7 +226,7 @@ const MainTable = function <TData>({
 								table.getRowModel().rows.map((row, rowIndex) => (
 									<TableRow
 										style={{ height: rowHeight }}
-										className={`${stripedTable && rowIndex % 2 === 0 ? "bg-bg-level0" : "hover:bg-bg-level0"} ${rowIndex % 2 !== 0 && stripedTable ? "hover:bg-transparent" : ""} `}
+										className={`${stripedTable && rowIndex % 2 === 0 ? "bg-elevation-negative" : "hover:bg-elevation-negative"} ${rowIndex % 2 !== 0 && stripedTable ? "hover:bg-transparent" : ""} `}
 										key={row.id}
 										data-state={row.getIsSelected() && "selected"}>
 										{row.getVisibleCells().map((cell: Cell<TData, unknown>, cellIndex) => {
@@ -284,7 +284,7 @@ const DraggableTableHeader = function <TData>({
 		position: "relative",
 		transform: CSS.Translate.toString(transform),
 		transition,
-		background: " bg-bg-level0",
+		background: " bg-elevation-negative",
 		whiteSpace: "nowrap",
 		width: header.column.getSize(),
 		zIndex: isDragging ? 1 : 0,
@@ -293,20 +293,20 @@ const DraggableTableHeader = function <TData>({
 	return (
 		<TableHead
 			ref={setNodeRef}
-			className={`before:bg-border relative before:absolute before:inset-y-0 before:start-0 first:before:bg-transparent ${dense ? "bg-bg-level0" : ""} ${(verticalLine && headerGroup) || (resizable && headerGroup) ? "border-border border-r" : ""} `}
+			className={`before:bg-border relative before:absolute before:inset-y-0 before:start-0 first:before:bg-transparent ${dense ? "bg-elevation-negative" : ""} ${(verticalLine && headerGroup) || (resizable && headerGroup) ? "border-border border-r" : ""} `}
 			style={{ ...style, width: header.getSize() }}
 			colSpan={header.colSpan}>
 			{header.column.id !== "select" ? (
 				<div className="flex items-center justify-start">
 					{dragAndDrop && (
-						<button className="hover:bg-bg-level0 -ml-2 rounded-md py-1 shadow-none" {...attributes} {...listeners} aria-label="Drag to reorder">
-							<GripVertical className="text-text-secondary h-4 opacity-60" strokeWidth={2} aria-hidden="true" />
+						<button className="hover:bg-elevation-negative -ml-2 rounded-md py-1 shadow-none" {...attributes} {...listeners} aria-label="Drag to reorder">
+							<GripVertical className="text-fg-secondary h-4 opacity-60" strokeWidth={2} aria-hidden="true" />
 						</button>
 					)}
-					<span className="text-text-secondary z-10 ml-2 grow truncate">{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</span>
+					<span className="text-fg-secondary z-10 ml-2 grow truncate">{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</span>
 					{enableSorting && (
 						<button
-							className="text-text-secondary group -mr-1 bg-transparent py-0 shadow-none"
+							className="text-fg-secondary group -mr-1 bg-transparent py-0 shadow-none"
 							onClick={header.column.getToggleSortingHandler()}
 							onKeyDown={(e) => {
 								// Enhanced keyboard handling for sorting
@@ -376,7 +376,7 @@ const DragAlongCell = function <TData>({
 		position: "relative",
 		transform: CSS.Translate.toString(transform),
 		transition,
-		background: "bg-bg-level0",
+		background: "bg-elevation-negative",
 		width: cell.column.getSize(),
 		zIndex: isDragging ? 1 : 0,
 	}

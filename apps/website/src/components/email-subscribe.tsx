@@ -21,7 +21,7 @@ export const EmailSubscribe = () => {
 				</Button>
 			</form>
 			<p
-				className={cn("text-text-tertiary text-xs font-normal", {
+				className={cn("text-fg-tertiary text-xs font-normal", {
 					"text-error-text": subscriptionResult?.success == false,
 				})}>
 				{subscriptionResult?.message ? subscriptionResult.message : "Alpha release. Subscribe for latest updates"}

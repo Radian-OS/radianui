@@ -110,7 +110,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 				className,
 				classNames?.base
 			)}>
-			{label && <label className={cn("text-sm font-medium", { "text-text-tertiary": props.disabled }, classNames?.label)}>{label}</label>}
+			{label && <label className={cn("text-sm font-medium", { "text-fg-tertiary": props.disabled }, classNames?.label)}>{label}</label>}
 			<div
 				className={cn(
 					"flex gap-2",
@@ -153,7 +153,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 						{...props}>
 						<SliderPrimitive.Track
 							className={cn(
-								"bg-fill-level3 relative h-2 grow overflow-hidden rounded-full data-[orientation=horizontal]:h-2 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-2",
+								"bg-fill3 relative h-2 grow overflow-hidden rounded-full data-[orientation=horizontal]:h-2 data-[orientation=vertical]:h-full data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-2",
 								classNames?.sliderTrack
 							)}>
 							<SliderPrimitive.Range className={cn("bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-8", classNames?.sliderRange)} />
@@ -164,7 +164,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 									<TooltipTrigger asChild>
 										<SliderPrimitive.Thumb
 											className={cn(
-												"border-primary bg-bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-5 cursor-pointer rounded-full border-2 transition-colors",
+												"border-primary bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-5 cursor-pointer rounded-full border-2 transition-colors",
 												classNames?.sliderThumb
 											)}
 										/>
@@ -175,7 +175,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 								<SliderPrimitive.Thumb
 									key={index}
 									className={cn(
-										"border-primary bg-bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block h-5 w-5 cursor-pointer rounded-full border-2 transition-colors",
+										"border-primary bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block h-5 w-5 cursor-pointer rounded-full border-2 transition-colors",
 										classNames?.sliderThumb
 									)}
 								/>
@@ -196,7 +196,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 									<div
 										key={mark.value}
 										className={cn(
-											"text-text-secondary absolute cursor-pointer text-xs font-medium",
+											"text-fg-secondary absolute cursor-pointer text-xs font-medium",
 											{
 												"-translate-x-1/2": orientation === "horizontal",
 												"ml-2 translate-y-1/2": orientation === "vertical",

@@ -113,10 +113,7 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 				)}
 				{...props}>
 				{children}
-				<ChevronDownIcon
-					className={classNames("AccordionChevron text-text-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")}
-					aria-hidden
-				/>
+				<ChevronDownIcon className={classNames("AccordionChevron text-fg-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")} aria-hidden />
 			</AccordionPrimitive.Trigger>
 		</AccordionPrimitive.Header>
 	)
@@ -135,7 +132,7 @@ function AccordionContent({ children, className, ...props }: AccordionContentPro
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames("text-text-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all", className)}
+			className={classNames("text-fg-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all", className)}
 			{...props}>
 			<div className={classNames(paddingClass, "pt-0")}>{children}</div>
 		</AccordionPrimitive.Content>

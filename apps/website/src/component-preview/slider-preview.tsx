@@ -176,8 +176,8 @@ const SliderPreview = () => {
 									]
 								: undefined
 						}
-						start={startContent ? <VolumeX className="text-text-tertiary" /> : undefined}
-						end={endContent ? <Volume2 className="text-text-tertiary" /> : undefined}
+						start={startContent ? <VolumeX className="text-fg-tertiary" /> : undefined}
+						end={endContent ? <Volume2 className="text-fg-tertiary" /> : undefined}
 						orientation={orientation}
 					/>
 				</div>
@@ -196,8 +196,8 @@ const SliderPreview = () => {
 		showSteppers={${showSteppers}}
 		showTooltip={${showTooltip}}
 		orientation="${orientation}"
-		${startContent ? 'start={<VolumeX className="text-text-tertiary" />}' : ""}
-		${endContent ? 'end={<VolumeX className="text-text-tertiary" />}' : ""}
+		${startContent ? 'start={<VolumeX className="text-fg-tertiary" />}' : ""}
+		${endContent ? 'end={<VolumeX className="text-fg-tertiary" />}' : ""}
 		${
 			showMarks
 				? `marks={[

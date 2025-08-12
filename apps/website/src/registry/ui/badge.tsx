@@ -18,7 +18,7 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
-			neutral: "border border-border-alpha text-text-secondary",
+			neutral: "border border-alpha text-fg-secondary",
 			strong: "",
 			outline: "",
 			soft: "",
@@ -46,27 +46,27 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{
 			variant: "strong",
 			color: "primary",
-			className: "bg-primary text-static-white font-semibold",
+			className: "bg-primary text-white font-semibold",
 		},
 		{
 			variant: "strong",
 			color: "info",
-			className: "bg-info text-static-white font-semibold",
+			className: "bg-info text-white font-semibold",
 		},
 		{
 			variant: "strong",
 			color: "success",
-			className: "bg-success text-static-white font-semibold",
+			className: "bg-success text-white font-semibold",
 		},
 		{
 			variant: "strong",
 			color: "error",
-			className: "bg-error text-static-white font-semibold",
+			className: "bg-error text-white font-semibold",
 		},
 		{
 			variant: "strong",
 			color: "warning",
-			className: "bg-warning text-static-white font-semibold",
+			className: "bg-warning text-white font-semibold",
 		},
 		// Outline variant + colors
 		{
@@ -136,7 +136,7 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 			className={cn(
 				size === "20" || size === "24" ? "size-3" : "size-4",
 				"ml-1 cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
-				variant === "neutral" && "text-text-disabled"
+				variant === "neutral" && "text-fg-disabled"
 			)}
 		/>
 	)

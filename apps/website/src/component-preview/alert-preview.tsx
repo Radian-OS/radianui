@@ -63,7 +63,7 @@ const AlertPreview = () => {
 
 		if (showEndContent) {
 			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
-			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-static-white/30 hover:bg-static-white/40"' : ""
+			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
 			code += `
   endContent={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
 		}
@@ -175,7 +175,7 @@ const AlertPreview = () => {
 							? {
 									endContent: (
 										<Button
-											className={`${variant === "strong" && color !== "neutral" ? "bg-static-white/30 hover:bg-static-white/40" : ""}`}
+											className={`${variant === "strong" && color !== "neutral" ? "bg-white/30 hover:bg-white/40" : ""}`}
 											color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>
 											Action
 										</Button>

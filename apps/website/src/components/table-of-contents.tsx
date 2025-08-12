@@ -116,7 +116,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 						<li key={heading.id} className="relative">
 							<Link
 								ref={activeHeadingId === heading.id ? activeRef : null}
-								className={cn("text-text-secondary group relative block py-1 pl-4 text-sm")}
+								className={cn("text-fg-secondary group relative block py-1 pl-4 text-sm")}
 								href={`#${heading.id}`}
 								onClick={(e) => handleHeadingClick(e, heading.id)}>
 								{/* Hover indicator - only show when not active */}
