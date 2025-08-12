@@ -16,7 +16,7 @@ export default function HeroSection() {
 					<BorderBeam size={30} />
 				</div>
 				<h1 className="heading-1">Ship next generation of world class products and solutions</h1>
-				<p className="text-text-secondary text-lg font-normal">
+				<p className="text-fg-secondary text-lg font-normal">
 					Radian is a high quality design and development library to build systems that scale quickly. Get from design to product in few hours.
 				</p>
 				<EmailSubscribe />

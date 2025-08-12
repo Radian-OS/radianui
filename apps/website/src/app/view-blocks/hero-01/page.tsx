@@ -29,7 +29,7 @@ export default function Hero01() {
 		<div className="min-h-screen">
 			{/* Header */}
 			<Fade delay={0.2}>
-				<div className="border-b-border-alpha bg-bg-level1 border-b">
+				<div className="border-b-border-alpha bg-elevation-level1 border-b">
 					<div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 						<div className="flex h-16 items-center justify-between">
 							{/* Logo */}
@@ -42,19 +42,19 @@ export default function Hero01() {
 
 							{/* Navigation */}
 							<nav className="text-sm-p hidden items-center gap-10 font-medium md:flex">
-								<Link href="#" className="text-text">
+								<Link href="#" className="text-fg">
 									Features
 								</Link>
-								<Link href="#" className="text-text">
+								<Link href="#" className="text-fg">
 									Pricing
 								</Link>
-								<Link href="#" className="text-text">
+								<Link href="#" className="text-fg">
 									About
 								</Link>
-								<Link href="#" className="text-text">
+								<Link href="#" className="text-fg">
 									Blog
 								</Link>
-								<Link href="#" className="text-text">
+								<Link href="#" className="text-fg">
 									Resources
 								</Link>
 							</nav>
@@ -67,7 +67,7 @@ export default function Hero01() {
 								<Button size="36">Get Started</Button>
 								<Drawer>
 									<DrawerTrigger asChild>
-										<Button iconOnly className="text-text-tertiary md:hidden" variant="ghost" size="36">
+										<Button iconOnly className="text-fg-tertiary md:hidden" variant="ghost" size="36">
 											<Menu size={20} />
 										</Button>
 									</DrawerTrigger>
@@ -87,7 +87,7 @@ export default function Hero01() {
 				</div>
 			</Fade>
 
-			<main className="bg-bg-base">
+			<main className="bg-base">
 				{/* Hero Section */}
 				<Fade>
 					<div className="pt-25 relative px-5 sm:px-6 lg:px-8">
@@ -102,10 +102,10 @@ export default function Hero01() {
 
 							{/* Main heading */}
 							<div>
-								<h1 className="text-text heading-1 mb-6 text-left font-bold sm:text-center">Ship next generation of world class products & solutions</h1>
+								<h1 className="text-fgheading-1 mb-6 text-left font-bold sm:text-center">Ship next generation of world class products & solutions</h1>
 
 								{/* Description */}
-								<p className="max-w-175 text-text-secondary mx-auto mb-8 text-left text-lg font-normal sm:text-center">
+								<p className="max-w-175 text-fg-secondary mx-auto mb-8 text-left text-lg font-normal sm:text-center">
 									Radian is a high-quality design and development library that empowers you to build systems capable of scaling efficiently.
 								</p>
 							</div>
@@ -115,7 +115,7 @@ export default function Hero01() {
 								<Button lead={<Zap size={24} />} size="44" className="w-full sm:w-fit">
 									Try for free
 								</Button>
-								<Button lead={<CirclePlay size={24} />} className="text-text-secondary w-full sm:w-fit" variant="outline" color="neutral" size="44">
+								<Button lead={<CirclePlay size={24} />} className="text-fg-secondary w-full sm:w-fit" variant="outline" color="neutral" size="44">
 									Watch Demo
 								</Button>
 							</div>
@@ -137,7 +137,7 @@ export default function Hero01() {
 				{/* Home page content */}
 				<section className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 					<div className="aspect-[16/9] w-full">
-						<div className="bg-fill-level3 outline-border-alpha/20 h-full w-full rounded-xl outline-8 drop-shadow"></div>
+						<div className="bg-fill3 outline-border-alpha/20 h-full w-full rounded-xl outline-8 drop-shadow"></div>
 					</div>
 				</section>
 

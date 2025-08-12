@@ -100,32 +100,32 @@ export const buttonVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "bg-primary font-medium text-static-white hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
+				className: "bg-primary font-medium text-white hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "info",
-				className: "bg-info font-medium text-static-white hover:bg-info-hover focus-visible:ring-info focus-visible:outline-none",
+				className: "bg-info font-medium text-white hover:bg-info-hover focus-visible:ring-info focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "bg-success font-medium text-static-white hover:bg-success-hover focus-visible:ring-success focus-visible:outline-none",
+				className: "bg-success font-medium text-white hover:bg-success-hover focus-visible:ring-success focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "bg-error font-medium text-static-white hover:bg-error-hover focus-visible:ring-error focus-visible:outline-none",
+				className: "bg-error font-medium text-white hover:bg-error-hover focus-visible:ring-error focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "bg-warning font-medium text-static-white hover:bg-warning-hover focus-visible:ring-warning focus-visible:outline-none",
+				className: "bg-warning font-medium text-white hover:bg-warning-hover focus-visible:ring-warning focus-visible:outline-none",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "bg-inverse-black font-medium text-inverse-white hover:bg-inverse-black/88 focus-visible:ring-inverse-black focus-visible:outline-none",
+				className: "bg-black-inverse font-medium text-white-inverse hover:bg-black-inverse/88 focus-visible:ring-black-inverse focus-visible:outline-none",
 			},
 
 			// Soft variant + colors
@@ -157,7 +157,7 @@ export const buttonVariants = cva(
 			{
 				variant: "soft",
 				color: "neutral",
-				className: "bg-fill-level2 font-medium text-text-secondary hover:bg-border-alpha focus-visible:bg-base focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-fill2 font-medium text-fg-secondary hover:bg-border-alpha focus-visible:bg-base focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Outline variant + colors
@@ -190,7 +190,7 @@ export const buttonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-bg-level1 font-medium text-text-secondary border border-border  hover:bg-bg-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
+					"bg-elevation-level1 font-medium text-fg-secondary border border-border  hover:bg-elevation-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
 			},
 
 			// Ghost variant + colors
@@ -222,7 +222,7 @@ export const buttonVariants = cva(
 			{
 				variant: "ghost",
 				color: "neutral",
-				className: "bg-transparent text-text-secondary font-medium hover:bg-border-alpha focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-transparent text-fg-secondary font-medium hover:bg-border-alpha focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Neutral variants
@@ -323,7 +323,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 					!cls.includes("[&>svg]") &&
 					!(
 						cls.includes("text-") &&
-						!cls.includes("text-text-") &&
+						!cls.includes("text-fg-") &&
 						!cls.includes("text-primary") &&
 						!cls.includes("text-info") &&
 						!cls.includes("text-success") &&

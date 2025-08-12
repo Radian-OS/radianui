@@ -943,7 +943,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 							<div
 								onClick={handleEyedropper}
 								className={`flex h-9 w-9 items-center justify-center rounded-sm p-2 transition-colors ${
-									isEyedropperSupported ? "bg-border-alpha text-text-secondary cursor-pointer" : "bg-text-disabled text-text-disabled cursor-not-allowed"
+									isEyedropperSupported ? "bg-border-alpha text-fg-secondary cursor-pointer" : "bg-text-disabled text-fg-disabled cursor-not-allowed"
 								}`}
 								// title={isEyedropperSupported ? "Pick color from screen" : "EyeDropper not supported in this browser"}
 							>
@@ -1029,7 +1029,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						</div>
 
 						{/* Color Values Display */}
-						<div className="text-text-secondary font-mono text-sm">
+						<div className="text-fg-secondary font-mono text-sm">
 							{displayFormat === "HEX" && (
 								<Input
 									value={isUserTyping ? displayValues.hex.raw : displayValues.hex.formatted}

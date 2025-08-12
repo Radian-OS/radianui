@@ -120,25 +120,25 @@ Add the following to your styles/globals.css file.
     --color-border-alpha: color-mix(in srgb, hsl(240, 5%, 4%), transparent 88%);
     /* 2% opacity */
     /* fill */
-    --color-fill-level1: hsl(230, 6%, 98%);
-    --color-fill-level2: hsl(230, 6%, 96%);
-    --color-fill-level3: hsl(230, 6%, 88%);
-    --color-fill-level4: hsl(230, 6%, 84%);
+    --color-fill1: hsl(230, 6%, 98%);
+    --color-fill2: hsl(230, 6%, 96%);
+    --color-fill3: hsl(230, 6%, 88%);
+    --color-fill4: hsl(230, 6%, 84%);
     /* fill-inverse */
-    --color-inverse-fill-level1: color-mix(in srgb, hsl(0, 0%, 100%), transparent 98%);
+    --color-inverse-fill1: color-mix(in srgb, hsl(0, 0%, 100%), transparent 98%);
     /* 2% opacity */
-    --color-inverse-fill-level2: color-mix(in srgb, hsl(0, 0%, 100%), transparent 96%);
+    --color-inverse-fill2: color-mix(in srgb, hsl(0, 0%, 100%), transparent 96%);
     /* 4% opacity */
-    --color-inverse-fill-level3: color-mix(in srgb, hsl(0, 0%, 100%), transparent 92%);
+    --color-inverse-fill3: color-mix(in srgb, hsl(0, 0%, 100%), transparent 92%);
     /* 8% opacity */
-    --color-inverse-fill-level4: color-mix(in srgb, hsl(0, 0%, 100%), transparent 84%);
+    --color-inverse-fill4: color-mix(in srgb, hsl(0, 0%, 100%), transparent 84%);
     /* 16% opacity */
     /* static */
-    --color-static-white: hsl(0, 0%, 100%);
-    --color-static-black: hsl(230, 6%, 4%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-black: hsl(230, 6%, 4%);
     /* inverse */
-    --color-inverse-black: hsl(230, 6%, 4%);
-    --color-inverse-white: hsl(0, 0%, 100%);
+    --color-black-inverse: hsl(230, 6%, 4%);
+    --color-white-inverse: hsl(0, 0%, 100%);
     /* Breakpoints */
     --breakpoint-laptop: 90rem;
     /* Font families */
@@ -203,43 +203,43 @@ Add the following to your styles/globals.css file.
     --color-soft: hsl(230, 6%, 12%);
     --color-soft-alpha: color-mix(in srgb, hsl(0, 0%, 100%), transparent 92%);
     /* fill */
-    --color-fill-level1: hsl(230, 6%, 6%);
+    --color-fill1: hsl(230, 6%, 6%);
     /* 2% opacity */
-    --color-fill-level2: hsl(230, 6%, 8%);
+    --color-fill2: hsl(230, 6%, 8%);
     /* 4% opacity */
-    --color-fill-level3: hsl(230, 6%, 12%);
+    --color-fill3: hsl(230, 6%, 12%);
     /* 8% opacity */
-    --color-fill-level4: hsl(230, 6%, 16%);
+    --color-fill4: hsl(230, 6%, 16%);
     /* 16% opacity */
     /* fill-inverse */
-    --color-inverse-fill-level1: color-mix(in srgb, hsl(240, 5%, 4%), transparent 98%);
+    --color-inverse-fill1: color-mix(in srgb, hsl(240, 5%, 4%), transparent 98%);
     /* 2% opacity */
-    --color-inverse-fill-level2: color-mix(in srgb, hsl(240, 5%, 4%), transparent 96%);
+    --color-inverse-fill2: color-mix(in srgb, hsl(240, 5%, 4%), transparent 96%);
     /* 4% opacity */
-    --color-inverse-fill-level3: color-mix(in srgb, hsl(240, 5%, 4%), transparent 92%);
+    --color-inverse-fill3: color-mix(in srgb, hsl(240, 5%, 4%), transparent 92%);
     /* 8% opacity */
-    --color-inverse-fill-level4: color-mix(in srgb, hsl(240, 5%, 4%), transparent 84%);
+    --color-inverse-fill4: color-mix(in srgb, hsl(240, 5%, 4%), transparent 84%);
     /* 16% opacity */
     /* static */
-    --color-static-white: hsl(0, 0%, 100%);
-    --color-static-black: hsl(230, 6%, 4%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-black: hsl(230, 6%, 4%);
     /* inverse */
-    --color-inverse-black: hsl(0, 0%, 100%);
-    --color-inverse-white: hsl(230, 6%, 4%);
+    --color-black-inverse: hsl(0, 0%, 100%);
+    --color-white-inverse: hsl(230, 6%, 4%);
     --color-text-primary: hsl(0, 0%, 100%);
     /* --color-text-paragraph: var(--color-white-10); */
     --color-text-disabled: hsl(230, 6%, 36%);
     /* --color-text-4: var(--color-black-5); */
     /* static */
-    --color-static-white: hsl(0, 0%, 100%);
-    --color-static-black: hsl(240, 5%, 4%);
+    --color-white: hsl(0, 0%, 100%);
+    --color-black: hsl(240, 5%, 4%);
 }
 @layer base {
     * {
         @apply border-border;
     }
 body {
-        @apply font-body bg-bg-base text-text;
+        @apply font-body bg-base text-fg;
     }
 }
 @utility font-heading {

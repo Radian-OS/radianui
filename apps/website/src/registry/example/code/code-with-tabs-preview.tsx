@@ -105,7 +105,7 @@ const CodeWithTabsPreview = () => {
       onValueChange={(val) => setActiveTab(val as PackageManager)}
       variant="outline-ghost"
       size="md"
-      className="bg-fill-level2 gap-2 overflow-hidden rounded-xl p-1.5 w-full"
+      className="bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5 w-full"
     >
       <div className="flex justify-between pr-1">
         <TabsList className="bg-transparent">
@@ -166,7 +166,7 @@ export default CodeWithTabsPreview
 						onValueChange={(val) => setActiveTab(val as PackageManager)}
 						variant="outline-ghost"
 						size="md"
-						className="bg-fill-level2 w-full gap-2 overflow-hidden rounded-xl p-1.5">
+						className="bg-fill2 w-full gap-2 overflow-hidden rounded-xl p-1.5">
 						<div className="flex justify-between pr-1">
 							<TabsList className="bg-transparent">
 								{pkg.map((manager) => (

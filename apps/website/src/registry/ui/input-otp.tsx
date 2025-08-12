@@ -38,7 +38,7 @@ type OTPInputContextType = {
 const OTPInputContext = React.createContext<OTPInputContextType | null>(null)
 
 const slotVariants = cva(
-	"relative rounded-lg shadow-2xs font-semibold bg-bg-base text-text flex items-center justify-center placeholder:select-none appearance-none transition-all outline-hidden border border-border-alpha",
+	"relative rounded-lg shadow-2xs font-semibold bg-base text-fgflex items-center justify-center placeholder:select-none appearance-none transition-all outline-hidden border border-alpha",
 	{
 		variants: {
 			size: {
@@ -69,7 +69,7 @@ function InputOtp({ size = "40", length = 6, label, disabled, hasError, errorMsg
 				{label && (
 					<Label
 						className={cn("w-fit text-sm font-medium", {
-							"text-text-disabled cursor-not-allowed select-none": disabled,
+							"text-fg-disabled cursor-not-allowed select-none": disabled,
 						})}>
 						{label}
 					</Label>
@@ -100,7 +100,7 @@ function Slot({ isActive, hasFakeCaret, char }: SlotProps) {
 		<div
 			className={cn(slotVariants({ size: size }), {
 				"ring-primary-focus border-primary-stroke ring-3": isActive,
-				"bg-bg-level0 border-border cursor-not-allowed": disabled,
+				"bg-elevation-negative border-border cursor-not-allowed": disabled,
 				"border-error-stroke ring-error-focus": hasError,
 			})}>
 			{char !== null && <div>{char}</div>}

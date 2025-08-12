@@ -79,7 +79,7 @@ export default async function Page({ params }: DocPageProps) {
 			<span className="text-primary text-sm font-medium capitalize">{category}</span>
 			<div className="flex flex-col">
 				<h1 className="heading-4 my-2">{doc.title}</h1>
-				<p className="text-text-secondary mb-4 text-base">{doc.description}</p>
+				<p className="text-fg-secondary mb-4 text-base">{doc.description}</p>
 				{doc.links && (
 					<section className="flex flex-wrap items-center gap-2 pb-10">
 						{doc.links.github && (
@@ -101,7 +101,7 @@ export default async function Page({ params }: DocPageProps) {
 								<Badge key={link.href} size="28" variant={"neutral"} className="shadow-2xs" asChild>
 									<Link href={link.href} target="_blank" rel="noopener noreferrer">
 										{link.icon ? (
-											<Image className="text-text-secondary size-4" height={16} width={16} src={link.icon.startsWith("/") ? link.icon : "/" + link.icon} alt={link.label} />
+											<Image className="text-fg-secondary size-4" height={16} width={16} src={link.icon.startsWith("/") ? link.icon : "/" + link.icon} alt={link.label} />
 										) : (
 											<ExternalLinkIcon className="size-4" />
 										)}

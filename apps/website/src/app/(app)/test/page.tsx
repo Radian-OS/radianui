@@ -127,13 +127,13 @@ export default function Test() {
 			<div className="flex gap-4">
 				<div className="border-border rounded-radius-xl flex w-[708px] flex-col gap-8 border p-6">
 					<div>
-						<h1 className="text-text text-[20px] font-semibold">Multi Line Form</h1>
-						<p className="text-text-tertiary text-[14px]">This is a sample subtitle for your form</p>
+						<h1 className="text-fgtext-[20px] font-semibold">Multi Line Form</h1>
+						<p className="text-fg-tertiary text-[14px]">This is a sample subtitle for your form</p>
 					</div>
 					<div className="flex flex-col gap-8">
 						{/* Personal Information Section */}
 						<div className="space-y-5">
-							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Personal Information</h3>
+							<h3 className="text-fgborder-border border-b pb-2 text-lg font-medium">Personal Information</h3>
 							<div className="grid grid-cols-2 gap-5">
 								<Input label="Name" value={nameValue} onChange={(e) => setNameValue(e.target.value)} placeholder="Enter your name" hasError={!!errors.name} hint={errors.name} />
 								<Input
@@ -182,7 +182,7 @@ export default function Test() {
 						</div>
 						{/* Business Information Section */}
 						<div className="space-y-5">
-							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Business Information</h3>
+							<h3 className="text-fgborder-border border-b pb-2 text-lg font-medium">Business Information</h3>
 							<div className="grid grid-cols-2 gap-5">
 								<SearchInput
 									label="Search Product"
@@ -231,7 +231,7 @@ export default function Test() {
 						</div>
 						{/* Preferences Section */}
 						<div className="space-y-5">
-							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Preferences & Settings</h3>
+							<h3 className="text-fgborder-border border-b pb-2 text-lg font-medium">Preferences & Settings</h3>
 							<div className="space-y-4">
 								<Switch isSelected={switchValue} onValueChange={setSwitchValue}>
 									Enable notifications
@@ -245,7 +245,7 @@ export default function Test() {
 						</div>
 						{/* Customization Section */}
 						<div className="space-y-5">
-							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Customization</h3>
+							<h3 className="text-fgborder-border border-b pb-2 text-lg font-medium">Customization</h3>
 							<div className="grid grid-cols-2 gap-5">
 								<ColorPicker
 									rounded="lg"
@@ -278,7 +278,7 @@ export default function Test() {
 						</div>
 						{/* Additional Information Section */}
 						<div className="space-y-5">
-							<h3 className="text-text border-border border-b pb-2 text-lg font-medium">Additional Information</h3>
+							<h3 className="text-fgborder-border border-b pb-2 text-lg font-medium">Additional Information</h3>
 							<TextArea label="Description" value={textarea} onChange={(e) => setTextarea(e.target.value)} placeholder="Tell us more about your requirements..." />
 							<Slider
 								label="Priority Level"
@@ -292,7 +292,7 @@ export default function Test() {
 							/>
 							<div className="flex items-center gap-3 pt-2">
 								<Checkbox checked={checked} onChange={() => setChecked(!checked)} />
-								<p className="text-text text-sm">I agree to the terms and conditions</p>
+								<p className="text-fgtext-sm">I agree to the terms and conditions</p>
 							</div>
 						</div>
 					</div>
@@ -556,7 +556,7 @@ export default function Test() {
 // 			onValueChange={setActiveTab as any}
 // 			variant="outline-ghost"
 // 			size="md"
-// 			className={cn("bg-fill-level2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+// 			className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
 // 			<div className="flex justify-between pr-1">
 // 				<TabsList className="bg-transparent">
 // 					{pkg.map((manager) => (

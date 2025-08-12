@@ -39,7 +39,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 				size={20}
 				onMouseDown={(e) => e.preventDefault()} // prevent blur
 				onClick={handleToggleVisibility}
-				className={cn("text-text-tertiary cursor-pointer", {
+				className={cn("text-fg-tertiary cursor-pointer", {
 					"cursor-not-allowed": disabled,
 				})}
 			/>
@@ -48,7 +48,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 				size={20}
 				onMouseDown={(e) => e.preventDefault()} // prevent blur
 				onClick={handleToggleVisibility}
-				className={cn("text-text-tertiary cursor-pointer", {
+				className={cn("text-fg-tertiary cursor-pointer", {
 					"cursor-not-allowed": disabled,
 				})}
 			/>
@@ -63,7 +63,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 					size={20}
 					onMouseDown={(e) => e.preventDefault()} // prevent blur
 					onClick={handleToggleVisibility}
-					className={cn("text-text-tertiary cursor-pointer", {
+					className={cn("text-fg-tertiary cursor-pointer", {
 						"cursor-not-allowed": disabled,
 					})}
 				/>
@@ -72,7 +72,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 					size={20}
 					onMouseDown={(e) => e.preventDefault()} // prevent blur
 					onClick={handleToggleVisibility}
-					className={cn("text-text-tertiary cursor-pointer", {
+					className={cn("text-fg-tertiary cursor-pointer", {
 						"cursor-not-allowed": disabled,
 					})}
 				/>

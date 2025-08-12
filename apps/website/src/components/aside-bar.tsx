@@ -29,7 +29,7 @@ const AsideBar = () => {
 	return (
 		<>
 			{pathname.startsWith("/docs/") && (
-				<aside className="bg-bg-base w-65 not-custom:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] py-10">
+				<aside className="bg-base w-65 not-custom:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] py-10">
 					<div className="flex h-full flex-col gap-10">
 						{/* TOC takes remaining space and allows internal scrolling */}
 						<div className="min-h-0 overflow-hidden">

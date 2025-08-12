@@ -59,7 +59,7 @@ const AnimatedListPreview = () => {
 							{animatedListData.map((d, i) => (
 								<div className="w-80 rounded-lg border p-2" key={i}>
 									<p>{d.text}</p>
-									<p className="text-text-tertiary text-sm">{d.time}</p>
+									<p className="text-fg-tertiary text-sm">{d.time}</p>
 								</div>
 							))}
 						</AnimatedList>
@@ -77,7 +77,7 @@ const AnimatedListPreview = () => {
 		{animatedListData.map((d, i) => (
 			<div className="w-80 rounded-lg border p-2" key={i}>
 				<p>{d.text}</p>
-				<p className="text-text-tertiary text-sm">{d.time}</p>
+				<p className="text-fg-tertiary text-sm">{d.time}</p>
 			</div>
 		))}
 	</AnimatedList>

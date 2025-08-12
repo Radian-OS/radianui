@@ -173,7 +173,7 @@ function CurrencyInput({
 
 	const currencyLead = (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-			<span className={cn("text-text-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currencySymbol}</span>
+			<span className={cn("text-fg-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currencySymbol}</span>
 		</div>
 	)
 
@@ -183,7 +183,7 @@ function CurrencyInput({
 		</div>
 	) : (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-			<span className={cn("text-text-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currency}</span>
+			<span className={cn("text-fg-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currency}</span>
 		</div>
 	)
 

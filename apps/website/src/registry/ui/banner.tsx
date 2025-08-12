@@ -16,10 +16,10 @@ type BannerProps = HTMLAttributes<HTMLDivElement> &
 const bannerVariants = cva("py-2 px-4 flex items-center justify-center gap-2.5 relative text-sm w-full", {
 	variants: {
 		variant: {
-			gray: "bg-fill-level2",
-			primary: "bg-primary text-static-white",
+			gray: "bg-fill2",
+			primary: "bg-primary text-white",
 			outline: "bg-base  border-b",
-			destructive: "bg-error text-static-white",
+			destructive: "bg-error text-white",
 		},
 	},
 	defaultVariants: {
@@ -31,10 +31,10 @@ function Banner({ children, variant = "gray", closable, className = "", ...props
 	const [showBanner, setShowBanner] = useState(true)
 	function getClosableVariant() {
 		if (["primary", "destructive"].includes(variant)) {
-			return "text-static-white"
+			return "text-white"
 		}
 		if (["outline", "gray"].includes(variant)) {
-			return "text-text-disabled"
+			return "text-fg-disabled"
 		}
 	}
 

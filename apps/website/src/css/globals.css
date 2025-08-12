@@ -5,143 +5,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-:root {
-	/* primary */
-	/* --color-primary-50: hsl(230, 100%, 96%);
-	--color-primary-100: hsl(234, 100%, 94%);
-	--color-primary-200: hsl(235, 100%, 90%);
-	--color-primary-300: hsl(237, 100%, 82%);
-	--color-primary-400: hsl(241, 95%, 74%);
-	--color-primary-500: hsl(246, 89%, 67%);
-	--color-primary-600: hsl(250, 80%, 60%);
-	--color-primary-700: hsl(252, 62%, 51%);
-	--color-primary-800: hsl(251, 58%, 41%);
-	--color-primary-900: hsl(249, 51%, 30%);
-	--color-primary-950: hsl(252, 51%, 20%); */
-
-	/* information */
-	/* --color-info-50: hsl(197, 100%, 96%);
-	--color-info-100: hsl(189, 100%, 92%);
-	--color-info-200: hsl(196, 100%, 85%);
-	--color-info-300: hsl(195, 100%, 76%);
-	--color-info-400: hsl(196, 100%, 64%);
-	--color-info-500: hsl(201, 100%, 56%);
-	--color-info-600: hsl(206, 100%, 51%);
-	--color-info-700: hsl(210, 100%, 50%);
-	--color-info-800: hsl(212, 92%, 40%);
-	--color-info-900: hsl(210, 85%, 30%);
-	--color-info-950: hsl(212, 74%, 21%); */
-
-	/* success */
-	/* --color-success-50: hsl(136, 65%, 96%);
-	--color-success-100: hsl(134, 68%, 93%);
-	--color-success-200: hsl(134, 63%, 85%);
-	--color-success-300: hsl(134, 61%, 73%);
-	--color-success-400: hsl(134, 54%, 58%);
-	--color-success-500: hsl(135, 55%, 45%);
-	--color-success-600: hsl(135, 60%, 40%);
-	--color-success-700: hsl(135, 56%, 29%);
-	--color-success-800: hsl(136, 50%, 24%);
-	--color-success-900: hsl(136, 48%, 20%);
-	--color-success-950: hsl(138, 65%, 10%); */
-
-	/* error */
-	/* --color-error-50: hsl(0, 100%, 96%);
-	--color-error-100: hsl(0, 100%, 94%);
-	--color-error-200: hsl(0, 100%, 89%);
-	--color-error-300: hsl(0, 100%, 81%);
-	--color-error-400: hsl(0, 100%, 71%);
-	--color-error-500: hsl(0, 93%, 60%);
-	--color-error-600: hsl(0, 80%, 55%);
-	--color-error-700: hsl(0, 81%, 42%);
-	--color-error-800: hsl(0, 78%, 35%);
-	--color-error-900: hsl(0, 69%, 30%);
-	--color-error-950: hsl(0, 82%, 15%); */
-
-	/* warning */
-	/* --color-warning-50: hsl(51, 100%, 94%);
-	--color-warning-100: hsl(52, 100%, 88%);
-	--color-warning-200: hsl(52, 100%, 76%);
-	--color-warning-300: hsl(50, 100%, 64%);
-	--color-warning-400: hsl(47, 100%, 56%);
-	--color-warning-500: hsl(41, 98%, 50%);
-	--color-warning-600: hsl(35, 100%, 45%);
-	--color-warning-700: hsl(29, 96%, 37%);
-	--color-warning-800: hsl(26, 88%, 31%);
-	--color-warning-900: hsl(25, 82%, 26%);
-	--color-warning-950: hsl(23, 97%, 14%); */
-
-	/* neutral */
-	/* --color-neutral-50: #f7f7f7;
-	--color-neutral-100: #f2f2f3;
-	--color-neutral-200: #e5e4e7;
-	--color-neutral-300: #dadadd;
-	--color-neutral-400: #aba9b1;
-	--color-neutral-500: #716f7b;
-	--color-neutral-600: #54525b;
-	--color-neutral-700: #3b3a40;
-	--color-neutral-800: #28272b;
-	--color-neutral-900: #1d1d20;
-	--color-neutral-950: #141415; */
-
-	/* extended white */
-	/* --color-white-1: #ffffff;
-	--color-white-2: #f7f7f8;
-	--color-white-3: #f2f1f3;
-	--color-white-4: #eaeaec;
-	--color-white-5: #d7d7db;
-	--color-white-6: #cac9cf;
-	--color-white-7: #bdbcc2;
-	--color-white-8: #b0afb6;
-	--color-white-9: #a3a1aa;
-	--color-white-10: #96949e;
-	--color-white-11: #888792;
-	--color-white-12: #7b7986; */
-
-	/* extended */
-	/* --color-black-1: #7a7887;
-	--color-black-2: #6e6c7a;
-	--color-black-3: #62606c;
-	--color-black-4: #56545f;
-	--color-black-5: #494851;
-	--color-black-6: #3d3c44;
-	--color-black-7: #313036;
-	--color-black-8: #252428;
-	--color-black-9: #19181b;
-	--color-black-10: #141415;
-	--color-black-11: #0a0a0b;
-	--color-black-12: #000000; */
-
-	/* gray */
-	/* --color-gray-100: hsl(0, 0%, 100%);
-	--color-gray-98: hsl(230, 6%, 98%);
-	--color-gray-96: hsl(230, 6%, 96%);
-	--color-gray-92: hsl(230, 6%, 92%);
-	--color-gray-88: hsl(230, 6%, 88%);
-	--color-gray-84: hsl(230, 6%, 84%);
-	--color-gray-80: hsl(230, 6%, 80%);
-	--color-gray-76: hsl(230, 6%, 76%);
-	--color-gray-72: hsl(230, 6%, 72%);
-	--color-gray-68: hsl(230, 6%, 68%);
-	--color-gray-64: hsl(230, 6%, 64%);
-	--color-gray-60: hsl(230, 6%, 60%);
-	--color-gray-56: hsl(230, 6%, 56%);
-	--color-gray-52: hsl(230, 6%, 52%);
-	--color-gray-48: hsl(230, 6%, 48%);
-	--color-gray-44: hsl(230, 6%, 44%);
-	--color-gray-40: hsl(230, 6%, 40%);
-	--color-gray-36: hsl(230, 6%, 36%);
-	--color-gray-32: hsl(230, 6%, 32%);
-	--color-gray-28: hsl(230, 6%, 28%);
-	--color-gray-24: hsl(230, 6%, 24%);
-	--color-gray-20: hsl(230, 6%, 20%);
-	--color-gray-16: hsl(230, 6%, 16%);
-	--color-gray-12: hsl(230, 6%, 12%);
-	--color-gray-8: hsl(230, 6%, 8%);
-	--color-gray-4: hsl(230, 6%, 4%);
-	--color-gray-0: hsl(230, 6%, 0%); */
-}
-
 @theme {
 	/* primary */
 	--color-primary: oklch(53.2% 0.215 282);
@@ -184,51 +47,47 @@
 	--color-warning-text: oklch(48.6% 0.124 50.1);
 
 	/* background */
-	--color-bg-level0: oklch(96.8% 0.001 277.2);
-	--color-bg-base: oklch(100% 0 0);
-	--color-bg-level1: oklch(100% 0 0);
-	--color-bg-level2: oklch(100% 0 0);
-	--color-bg-alpha-2: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 98%);
-	--color-bg-alpha-4: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 96%);
-	--color-bg-alpha-8: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 92%);
-	--color-bg-alpha-12: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 88%);
-	--color-bg-alpha-16: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 84%);
+	--color-elevation-negative: oklch(0.9677 0.0027 286.35);
+	--color-base: oklch(1 0 0);
+	--color-elevation-level1: oklch(1 0 0);
+	--color-elevation-level2: oklch(1 0 0);
+	--color-bg-alpha-2: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
+	--color-bg-alpha-4: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
+	--color-bg-alpha-8: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
+	--color-bg-alpha-12: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
+	--color-bg-alpha-16: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 84%);
 
-	--color-text: oklch(14.4% 0.002 276.9);
-	--color-text-secondary: oklch(46.2% 0.015 276.8);
-	--color-text-tertiary: oklch(67.1% 0.015 276.9);
-	--color-text-disabled: oklch(84% 0.007 277.1);
-	--color-text-inverse: oklch(100% 0 0);
+	--color-fg: oklch(0.2314 0.0078 274.6);
+	--color-fg-secondary: oklch(0.4515 0.0243 285.39);
+	--color-fg-tertiary: oklch(0.6261 0.0268 285.6);
+	--color-fg-disabled: oklch(0.8352 0.011 286.16);
+	--color-fg-inverse: oklch(1 0 0);
 
 	/* stroke */
-	--color-border: oklch(90.5% 0.004 277.2);
-	--color-soft: oklch(93.7% 0.003 277.2);
-	--color-soft-alpha: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 92%);
-	--color-border-alpha: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 88%);
+	--color-border: oklch(0.902 0.0068 286.26);
+	--color-soft: oklch(0.9349 0.004 286.32);
+	--color-soft-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
+	--color-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
 	/* 2% opacity */
 	/* fill */
-	--color-fill-level1: oklch(98.4% 0.001 277.3);
-	--color-fill-level2: oklch(96.8% 0.001 277.2);
-	--color-fill-level3: oklch(93.7% 0.0028 277.22);
-	--color-fill-level4: oklch(90.5% 0.004 277.2);
+	--color-fill1: oklch(0.9824 0.0013 286.38);
+	--color-fill2: oklch(0.9677 0.0027 286.35);
+	--color-fill3: oklch(0.9349 0.004 286.32);
+	--color-fill4: oklch(0.902 0.0068 286.26);
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, oklch(100% 0 0), transparent 98%);
+	--color-inverse-fill1: color-mix(in srgb, oklch(1 0 0), transparent 98%);
 	/* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, oklch(100% 0 0), transparent 96%);
+	--color-inverse-fill2: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	/* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, oklch(100% 0 0), transparent 92%);
+	--color-inverse-fill3: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	/* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, oklch(100% 0 0), transparent 84%);
+	--color-inverse-fill4: color-mix(in srgb, oklch(1 0 0), transparent 84%);
 	/* 16% opacity */
 
-	/* static */
-	--color-static-white: oklch(100% 0 0);
-	--color-static-black: oklch(14.4% 0.002 276.9);
-
 	/* inverse */
-	--color-inverse-black: oklch(14.4% 0.002 276.9);
-	--color-inverse-white: oklch(100% 0 0);
+	--color-black-inverse: oklch(0.144 0.0028 247.09);
+	--color-white-inverse: oklch(1 0 0);
 
 	/* Breakpoints */
 	--breakpoint-laptop: 90rem;
@@ -285,64 +144,56 @@
 	--color-warning-text: oklch(87% 0.173 90.9);
 
 	/* Background */
-	--color-bg-level0: oklch(0% 0 0);
-	--color-bg-base: oklch(14.4% 0.002 276.9);
-	--color-bg-level1: oklch(19% 0.004 276.9);
-	--color-bg-level2: oklch(23.3% 0.006 276.9);
-	--color-bg-alpha-2: color-mix(in srgb, oklch(100% 0 0), transparent 98%);
-	--color-bg-alpha-4: color-mix(in srgb, oklch(100% 0 0), transparent 96%);
-	--color-bg-alpha-8: color-mix(in srgb, oklch(100% 0 0), transparent 92%);
-	--color-bg-alpha-12: color-mix(in srgb, oklch(100% 0 0), transparent 88%);
-	--color-bg-alpha-16: color-mix(in srgb, oklch(100% 0 0), transparent 84%);
+	--color-elevation-negative: oklch(0 0 0);
+	--color-base: oklch(0.144 0.0028 247.09);
+	--color-elevation-level1: oklch(0.1881 0.006 285.81);
+	--color-elevation-level2: oklch(0.2314 0.0078 274.6);
+	--color-bg-alpha-2: color-mix(in srgb, oklch(1 0 0), transparent 98%);
+	--color-bg-alpha-4: color-mix(in srgb, oklch(1 0 0), transparent 96%);
+	--color-bg-alpha-8: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+	--color-bg-alpha-12: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+	--color-bg-alpha-16: color-mix(in srgb, oklch(1 0 0), transparent 84%);
 
 	/* foreground */
-	--color-text: oklch(100% 0 0);
-	--color-text-secondary: oklch(67.1% 0.015 276.9);
-	--color-text-tertiary: oklch(56.6% 0.019 276.8);
-	--color-text-disabled: oklch(46.2% 0.015 276.8);
-	--color-text-inverse: oklch(14.4% 0.002 276.9);
+	--color-fg: oklch(1 0 0);
+	--color-fg-secondary: oklch(0.6619 0.0235 285.74);
+	--color-fg-tertiary: oklch(0.5553 0.0292 285.41);
+	--color-fg-disabled: oklch(0.4515 0.0243 285.39);
+	--color-fg-inverse: oklch(0.2314 0.0078 274.6);
 
 	/* stroke */
-	--color-border: oklch(27.4% 0.008 276.9);
-	--color-border-alpha: color-mix(in srgb, oklch(100% 0 0), transparent 88%);
-	--color-soft: oklch(23.3% 0.006 276.9);
-	--color-soft-alpha: color-mix(in srgb, oklch(100% 0 0), transparent 92%);
+	--color-border: oklch(0.2738 0.0093 276.77);
+	--color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+	--color-soft: oklch(0.2314 0.0078 274.6);
+	--color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	/* fill */
-	--color-fill-level1: oklch(16.7% 0.003 277);
+	--color-fill1: oklch(0.1652 0.0062 285.7);
 	/* 2% opacity */
-	--color-fill-level2: oklch(19% 0.004 276.9);
+	--color-fill2: oklch(0.1881 0.006 285.81);
 	/* 4% opacity */
-	--color-fill-level3: oklch(23.3% 0.006 276.9);
+	--color-fill3: oklch(0.2314 0.0078 274.6);
 	/* 8% opacity */
-	--color-fill-level4: oklch(27.4% 0.008 276.9);
+	--color-fill4: oklch(0.2738 0.0093 276.77);
 	/* 16% opacity */
 
 	/* fill-inverse */
-	--color-inverse-fill-level1: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 98%);
+	--color-inverse-fill1: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
 	/* 2% opacity */
-	--color-inverse-fill-level2: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 96%);
+	--color-inverse-fill2: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
 	/* 4% opacity */
-	--color-inverse-fill-level3: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 92%);
+	--color-inverse-fill3: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
 	/* 8% opacity */
-	--color-inverse-fill-level4: color-mix(in srgb, oklch(14.4% 0.002 286.1), transparent 84%);
+	--color-inverse-fill4: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 84%);
 	/* 16% opacity */
 
-	/* static */
-	--color-static-white: oklch(100% 0 0);
-	--color-static-black: oklch(14.4% 0.002 276.9);
-
 	/* inverse */
-	--color-inverse-black: oklch(100% 0 0);
-	--color-inverse-white: oklch(14.4% 0.002 276.9);
+	--color-black-inverse: oklch(1 0 0);
+	--color-white-inverse: oklch(0.144 0.0028 247.09);
 
-	--color-text-primary: oklch(100% 0 0);
+	--color-text-primary: oklch(1 0 0);
 	/* --color-text-paragraph: var(--color-white-10); */
-	--color-text-disabled: oklch(46.2% 0.015 276.8);
+	--color-text-disabled: oklch(0.4515 0.0243 285.39);
 	/* --color-text-4: var(--color-black-5); */
-
-	/* static */
-	--color-static-white: oklch(100% 0 0);
-	--color-static-black: oklch(14.4% 0.002 286.1);
 }
 
 @layer base {
@@ -350,7 +201,7 @@
 		border-color: var(--color-border);
 	}
 	body {
-		@apply font-body bg-bg-base text-text;
+		@apply font-body bg-base text-fg;
 	}
 }
 
@@ -358,8 +209,8 @@
 	border-color: var(--color-border);
 }
 
-@utility border-border-alpha {
-	border-color: var(--color-border-alpha);
+@utility border-alpha {
+	border-color: var(--color-alpha);
 }
 
 /*

@@ -15,16 +15,14 @@ export type PropsData = {
 
 export const Table = ({ children, className, ...props }: HTMLAttributes<HTMLTableElement>) => (
 	<div className="overflow-x-auto">
-		<table
-			className={cn("text-text-secondary border-soft w-full min-w-[650px] table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border", className)}
-			{...props}>
+		<table className={cn("text-fg-secondary border-soft w-full min-w-[650px] table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border", className)} {...props}>
 			{children}
 		</table>
 	</div>
 )
 
 export const TableHeader = ({ children, className, ...props }: HTMLAttributes<HTMLTableSectionElement>) => (
-	<thead className={cn("bg-bg-base", className)} {...props}>
+	<thead className={cn("bg-base", className)} {...props}>
 		{children}
 	</thead>
 )
@@ -68,20 +66,20 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex items-center gap-2 p-2">
-				<span className="text-text-tertiary bg-bg-base rounded-md p-1">
+				<span className="text-fg-tertiary bg-base rounded-md p-1">
 					<Box size={16} />
 				</span>
-				<span className="text-text-secondary text-sm font-medium">{`<${title}>`}</span>
+				<span className="text-fg-secondary text-sm font-medium">{`<${title}>`}</span>
 			</div>
 			<Table>
 				<TableHeader>
-					<TableRow className="bg-bg-base">
+					<TableRow className="bg-base">
 						<TableHead className="w-[200px]">Name</TableHead>
 						<TableHead className="w-[140px]">Default</TableHead>
 						<TableHead>Values</TableHead>
 					</TableRow>
 				</TableHeader>
-				<TableBody className="[&>tr:nth-child(odd)]:bg-fill-level1 [&>tr:nth-child(even)]:bg-bg-base">
+				<TableBody className="[&>tr:nth-child(odd)]:bg-fill1 [&>tr:nth-child(even)]:bg-base">
 					{data.map((prop) => (
 						<TableRow key={prop.name}>
 							<TableCell className="w-[200px]">

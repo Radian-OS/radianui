@@ -470,7 +470,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	return (
 		<div className={cn("text-fg-1 flex flex-col items-start gap-1.5 text-sm", { "cursor-not-allowed": disabled })}>
 			{label && (
-				<Label htmlFor={id} className={cn({ "text-text-disabled cursor-not-allowed": disabled })}>
+				<Label htmlFor={id} className={cn({ "text-fg-disabled cursor-not-allowed": disabled })}>
 					{label}
 				</Label>
 			)}
@@ -492,13 +492,13 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 								size={size === "0" ? undefined : size}
 								disabled={disabled}
 								className={cn(
-									"disabled:bg-fill-level2 focus-visible:border-primary border-border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+									"disabled:bg-fill2 focus-visible:border-primary border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
 									{ "border-error": effectiveHasError && !disabled }
 								)}>
 								<Flag country={country} />
-								{international && <span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+								{international && <span className="text-fg-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
 								{/* Always show chevron since dropdown is always functional */}
-								{selectOpen ? <ChevronUp className="text-text-disabled size-4" /> : <ChevronDown className="text-text-disabled size-4" />}
+								{selectOpen ? <ChevronUp className="text-fg-disabled size-4" /> : <ChevronDown className="text-fg-disabled size-4" />}
 							</Button>
 						)}>
 						{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
@@ -511,11 +511,11 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 						color="neutral"
 						size={size === "0" ? undefined : size}
 						disabled={disabled}
-						className={cn("disabled:bg-fill-level2 border-border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
+						className={cn("disabled:bg-fill2 border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
 							"border-error": effectiveHasError && !disabled,
 						})}>
 						<Flag country={country} />
-						{international && <span className="text-text-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+						{international && <span className="text-fg-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
 						{/* No chevron icon when dropdown is disabled */}
 					</Button>
 				)}
@@ -542,14 +542,14 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				/>
 			</div>
 			{(effectiveHasError || effectiveHint) && (
-				<Label className={`flex items-start text-xs font-normal ${effectiveHasError ? "text-error" : "text-text-tertiary"}`}>{effectiveHint}</Label>
+				<Label className={`flex items-start text-xs font-normal ${effectiveHasError ? "text-error" : "text-fg-tertiary"}`}>{effectiveHint}</Label>
 			)}
 		</div>
 	)
 }
 
 const Flag = ({ country }: { country?: RPNInput.Country }) => {
-	if (!country) return <PhoneIcon className="text-text-disabled h-5 w-5" />
+	if (!country) return <PhoneIcon className="text-fg-disabled h-5 w-5" />
 	const CountryFlag = flags[country]
 	return (
 		<span className="flex items-center justify-center overflow-hidden rounded-sm [&>svg]:size-5">

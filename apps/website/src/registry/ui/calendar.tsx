@@ -158,8 +158,8 @@ export function TimeSelector({ showTime, timeOptions, selectedIndex, setSelected
 	return (
 		<div
 			ref={containerRef}
-			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
-			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT TIME</p>
+			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill1 text-fg-disabled cursor-not-allowed" : "text-fg"}`}>
+			<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT TIME</p>
 			{timeOptions.map((time, index) => {
 				const formatted = formatTime(time)
 				const isSelected = selectedIndex === index
@@ -167,14 +167,14 @@ export function TimeSelector({ showTime, timeOptions, selectedIndex, setSelected
 				return (
 					<span
 						key={index}
-						className={`${mode === "type" ? "text-text-disabled cursor-not-allowed" : "text-text hover:bg-fill-level2 cursor-pointer"} text-text group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
+						className={`${mode === "type" ? "text-fg-disabled cursor-not-allowed" : "text-fghover:bg-fill2 cursor-pointer"} text-fggroup flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
 						data-value={time}
 						onClick={() => {
 							setSelectedIndex(index)
 							onTimeSelect?.(formatted)
 						}}>
 						{formatted}
-						{isSelected && mode !== "type" ? <Check className="stroke-text-secondary" size={16} /> : <span className="size-4" />}
+						{isSelected && mode !== "type" ? <Check className="stroke-fg-secondary" size={16} /> : <span className="size-4" />}
 					</span>
 				)
 			})}
@@ -193,7 +193,7 @@ type GetMergedClassNamesParams = {
 export function getMergedClassNames({ props, navigatorStyle, dualCalendar, hideCaption, classNames = {} }: GetMergedClassNamesParams): Record<string, string> {
 	return {
 		root: cn({ "cursor-not-allowed": props.disabled }),
-		months: cn("relative flex flex-col bg-bg-level1 w-full gap-5 p-0", {
+		months: cn("relative flex flex-col bg-elevation-level1 w-full gap-5 p-0", {
 			"flex-row pt-10": navigatorStyle === "selector",
 			"sm:flex-row": navigatorStyle !== "selector",
 		}),
@@ -204,12 +204,12 @@ export function getMergedClassNames({ props, navigatorStyle, dualCalendar, hideC
 		month: "flex flex-col gap-3",
 		month_grid: "flex flex-col gap-1.5 items-center",
 		weekdays: "w-full flex gap-1.5",
-		weekday: "text-text-tertiary text-sm font-medium size-8 shrink-0 flex items-center justify-center",
+		weekday: "text-fg-tertiary text-sm font-medium size-8 shrink-0 flex items-center justify-center",
 		weeks: "w-full flex flex-col gap-1.5",
 		week: "w-full flex gap-1.5",
 		day: "size-8 p-0 shrink-0 group text-sm aria-selected:opacity-100",
 		day_button:
-			"text-center rounded-lg text-text text-sm font-medium hover:bg-bg-level1 size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-text-tertiary group-data-selected:text-white group-data-disabled:text-text-tertiary group-data-outside:text-text-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-text group-data-selected:group-data-outside:text-white",
+			"text-center rounded-lg text-fgtext-sm font-medium hover:bg-elevation-level1 size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-fg-tertiary group-data-selected:text-white group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-fggroup-data-selected:group-data-outside:text-white",
 		button_previous: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
 			"pointer-events-none": props.disabled,
 		}),
@@ -257,7 +257,7 @@ function Calendar({
 		[selected]
 	)
 
-	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
+	const mergedClassName = cn(`p-3 bg-elevation-level1 ${showTime ? " border-r" : ""}`, className)
 
 	// Merged class names for styling
 	const mergedClassNames = getMergedClassNames({
@@ -278,8 +278,8 @@ function Calendar({
 	// Merged components including custom ones
 	const mergedComponents = {
 		Chevron: (props: ChevronProps) => {
-			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-text" />
-			return <ChevronRight size={16} className="stroke-text" />
+			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
+			return <ChevronRight size={16} className="stroke-fg" />
 		},
 		...customComponents,
 		...components,
@@ -345,7 +345,7 @@ function Calendar({
 
 	if (mode === "single") {
 		return (
-			<div className="bg-bg-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
+			<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{showShortcut && <DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
@@ -379,7 +379,7 @@ function Calendar({
 
 	if (mode == "multiple") {
 		return (
-			<div className="bg-bg-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
+			<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 					{showShortcut && <DateRangeShortcut mode="multiple" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
@@ -412,7 +412,7 @@ function Calendar({
 	}
 
 	return (
-		<div className="bg-bg-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
+		<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 			<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 				{showShortcut && <DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 				<DayPicker

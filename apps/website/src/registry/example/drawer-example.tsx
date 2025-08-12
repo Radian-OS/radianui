@@ -47,9 +47,9 @@
 // 						<DrawerDescription>This is a drawer description message.</DrawerDescription>
 // 					</DrawerHeader>
 // 					<DrawerBody className="flex flex-col gap-3">
-// 						<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
-// 						<div className="bg-fill-level3 rounded-radius-xl h-64"></div>
-// 						<div className="bg-fill-level4 rounded-radius-xl h-64"></div>
+// 						<div className="bg-fill4 rounded-radius-xl h-64"></div>
+// 						<div className="bg-fill3 rounded-radius-xl h-64"></div>
+// 						<div className="bg-fill4 rounded-radius-xl h-64"></div>
 // 					</DrawerBody>
 // 					<DrawerFooter>
 // 						<DrawerClose>

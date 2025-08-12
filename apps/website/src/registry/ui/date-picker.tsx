@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { type SelectProps } from "./select"
 import { type TimePickerProps } from "./time-picker"
 
-export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
+export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-base cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -269,7 +269,7 @@ function SegmentedDateInput({ value, onChange, showTime = false, disabled = fals
 			{segments.map((segment, index) => {
 				if (!segment.editable) {
 					return (
-						<span key={index} className="text-text-tertiary mx-1 select-none">
+						<span key={index} className="text-fg-tertiary mx-1 select-none">
 							{segment.placeholder}
 						</span>
 					)
@@ -291,12 +291,12 @@ function SegmentedDateInput({ value, onChange, showTime = false, disabled = fals
 						placeholder={segment.placeholder}
 						className={cn(
 							"inline-block rounded-sm border-none bg-transparent text-center outline-none",
-							"data-[focused]:bg-fill-level3",
-							"placeholder:text-text-tertiary",
+							"data-[focused]:bg-fill3",
+							"placeholder:text-fg-tertiary",
 							"focus:outline-hidden focus:caret-transparent",
 							{
-								"bg-fill-level3": focusedIndex === index,
-								"text-text-disabled placeholder-text-disabled cursor-not-allowed": disabled,
+								"bg-fill3": focusedIndex === index,
+								"text-fg-disabled placeholder-text-disabled cursor-not-allowed": disabled,
 							}
 						)}
 						style={{
@@ -543,14 +543,14 @@ function DatePicker({
 							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
 								<PopoverTrigger disabled={disabled}>
 									<CalendarIcon
-										className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
-											"text-text-tertiary": !disabled,
-											"text-text-disabled cursor-not-allowed": disabled,
+										className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
+											"text-fg-tertiary": !disabled,
+											"text-fg-disabled cursor-not-allowed": disabled,
 										})}
 									/>
 								</PopoverTrigger>
 
-								<PopoverContent alignOffset={alignOffset} className={cn("bg-bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+								<PopoverContent alignOffset={alignOffset} className={cn("bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
 									{mode === "single" && (
 										<Calendar
 											onIndexChange={(value) => {
@@ -630,8 +630,8 @@ export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }:
 	return (
 		<div
 			ref={containerRef}
-			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
-			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
+			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill1 text-fg-disabled cursor-not-allowed" : "text-fg"}`}>
+			<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					mode={mode}
@@ -660,13 +660,13 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill-level2 cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
+			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill2 cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
 			data-value={value}
 			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}>
 			{label}
 			{selectedValue === value ? (
 				mode !== "single" && mode !== "multiple" ? (
-					<Check className="stroke-text-secondary" size={16} />
+					<Check className="stroke-fg-secondary" size={16} />
 				) : (
 					<span className="size-4" />
 				)
@@ -703,7 +703,7 @@ function TypeableDatePicker({
 	onChange?: (dateTime: ZonedDateTime | null) => void
 	value?: ZonedDateTime | null
 }) {
-	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
+	const mergedClassName = cn(`p-3 bg-elevation-level1 ${showTime ? " border-r" : ""}`, className)
 	const hideCaption: boolean = false
 
 	// Use controlled/uncontrolled pattern
@@ -745,8 +745,8 @@ function TypeableDatePicker({
 	// Merged components including custom ones
 	const mergedComponents = {
 		Chevron: (props: ChevronProps) => {
-			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-text" />
-			return <ChevronRight size={16} className="stroke-text" />
+			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
+			return <ChevronRight size={16} className="stroke-fg" />
 		},
 		...components,
 	}
@@ -801,27 +801,27 @@ function TypeableDatePicker({
 		<Popover>
 			<PopoverTrigger disabled={disables} asChild>
 				<div className="flex flex-col items-start gap-1.5">
-					{label && <Label className={cn({ "text-text-disabled cursor-not-allowed": disables })}>{label}</Label>}
+					{label && <Label className={cn({ "text-fg-disabled cursor-not-allowed": disables })}>{label}</Label>}
 					<div
 						className={cn("w-[320px]", dateInputStyles({ size, rounded }), {
 							"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
-							"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": !hasError && !disables,
-							"text-text-disables bg-fill-level1 cursor-not-allowed drop-shadow-none": disables,
+							"focus-within:border-primary focus-within:ring-primary/10 border-alpha focus-within:ring-2": !hasError && !disables,
+							"text-fg-disables bg-fill1 cursor-not-allowed drop-shadow-none": disables,
 						})}>
 						<SegmentedDateInput value={dateTime} onChange={handleDateTimeChange} showTime={showTime} disabled={disables} size={size} />
 						<CalendarIcon
-							className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
-								"text-text-tertiary": !disables,
-								"text-text-disabled cursor-not-allowed": disables,
+							className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
+								"text-fg-tertiary": !disables,
+								"text-fg-disabled cursor-not-allowed": disables,
 							})}
 						/>
 					</div>
-					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
+					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-fg-tertiary"}`}>{hint}</Label>}
 				</div>
 			</PopoverTrigger>
 
 			<PopoverContent className="w-auto border-none p-0">
-				<div className="bg-bg-level1 border-border drop-shadow-xs w-fit overflow-hidden rounded-xl border">
+				<div className="bg-elevation-level1 border-border drop-shadow-xs w-fit overflow-hidden rounded-xl border">
 					<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 						{showDateRangeShortcut && <DateRangeShortcut mode="single" />}
 						<DayPicker

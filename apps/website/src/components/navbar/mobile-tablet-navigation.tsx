@@ -49,11 +49,11 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 
 	return (
 		<nav
-			className={`bg-bg-base z-100 fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
+			className={`bg-base z-100 fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
 				isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
 			}`}>
 			{/* Top Bar */}
-			<div className="border-border-alpha -mx-4 flex min-h-16 items-center justify-between border-b px-4 md:-mx-5 md:px-5">
+			<div className="border-alpha -mx-4 flex min-h-16 items-center justify-between border-b px-4 md:-mx-5 md:px-5">
 				<WebsiteLogo />
 
 				<div className="flex items-center justify-center gap-2">
@@ -72,7 +72,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 				<FigmaPreviewButton size={"44"} className="w-full" />
 			</div>
 
-			<div className="text-text">
+			<div className="text-fg">
 				<ul className="text-fg1 flex flex-col items-start text-base font-medium">
 					{navLinks.map((item) => (
 						<li key={item.name} className="flex w-full items-center">
@@ -94,7 +94,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 											<Link
 												onClick={() => setIsMobileMenuOpen(false)}
 												key={item.url}
-												className={`${pathname === item.url ? "text-fg0" : ""} text-text flex w-full items-center py-3 text-base font-normal`}
+												className={`${pathname === item.url ? "text-fg0" : ""} text-fgflex w-full items-center py-3 text-base font-normal`}
 												href={item.url}>
 												{item.title}
 											</Link>

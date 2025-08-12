@@ -26,10 +26,10 @@ const ButtonExample = () => {
 	const ControlPanel = () => (
 		<div className="mb-8 space-y-4">
 			<div className="flex gap-4">
-				<button onClick={() => setActiveSection("single")} className={`rounded px-4 py-2 ${activeSection === "single" ? "bg-primary text-white" : "bg-bg-level0"}`}>
+				<button onClick={() => setActiveSection("single")} className={`rounded px-4 py-2 ${activeSection === "single" ? "bg-primary text-white" : "bg-elevation-negative"}`}>
 					Single Button
 				</button>
-				<button onClick={() => setActiveSection("group")} className={`rounded px-4 py-2 ${activeSection === "group" ? "bg-primary text-white" : "bg-bg-level0"}`}>
+				<button onClick={() => setActiveSection("group")} className={`rounded px-4 py-2 ${activeSection === "group" ? "bg-primary text-white" : "bg-elevation-negative"}`}>
 					Button Group
 				</button>
 			</div>
@@ -39,7 +39,7 @@ const ButtonExample = () => {
 					<label htmlFor="variant" className="mb-2 block text-sm font-medium">
 						Variant:
 					</label>
-					<select id="variant" value={variant} onChange={(e) => setVariant(e.target.value as VariantOptions)} className="bg-bg-base border-border w-full rounded p-2">
+					<select id="variant" value={variant} onChange={(e) => setVariant(e.target.value as VariantOptions)} className="bg-base border-border w-full rounded p-2">
 						<option value="strong">Strong</option>
 						<option value="soft">Soft</option>
 						<option value="outline">Outline</option>
@@ -53,7 +53,7 @@ const ButtonExample = () => {
 					<label htmlFor="size" className="mb-2 block text-sm font-medium">
 						Size:
 					</label>
-					<select id="size" value={size} onChange={(e) => setSize(e.target.value as SizeOptions)} className="border-border bg-bg-base w-full rounded p-2">
+					<select id="size" value={size} onChange={(e) => setSize(e.target.value as SizeOptions)} className="border-border bg-base w-full rounded p-2">
 						<option value="28">28</option>
 						<option value="32">32</option>
 						<option value="36">36</option>
@@ -73,7 +73,7 @@ const ButtonExample = () => {
 							id="rounded"
 							// value={rounded}
 							// onChange={(e) => setRounded(e.target.value as RoundedOptions)}
-							className="border-border bg-bg-base w-full rounded p-2">
+							className="border-border bg-base w-full rounded p-2">
 							<option value="square">Square</option>
 							<option value="rounded">Rounded</option>
 							<option value="full">Full</option>
@@ -85,7 +85,7 @@ const ButtonExample = () => {
 					<label htmlFor="color" className="mb-2 block text-sm font-medium">
 						Color:
 					</label>
-					<select id="color" value={color} onChange={(e) => setColor(e.target.value as ColorOptions)} className="border-border bg-bg-base w-full rounded p-2">
+					<select id="color" value={color} onChange={(e) => setColor(e.target.value as ColorOptions)} className="border-border bg-base w-full rounded p-2">
 						<option value="primary">Primary</option>
 						<option value="information">Information</option>
 						<option value="success">Success</option>

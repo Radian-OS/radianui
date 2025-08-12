@@ -24,7 +24,7 @@ const BlogComponents: MDXComponents = {
 		</h2>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-text-secondary text-base", className)} {...props}>
+		<p className={cn("text-fg-secondary text-base", className)} {...props}>
 			{children}
 		</p>
 	),
@@ -32,7 +32,7 @@ const BlogComponents: MDXComponents = {
 		<Image src={src} alt={alt || ""} className={cn("max-w-200 max-h-100 my-5 h-full w-full rounded-lg object-cover", className)} height={500} width={500} {...props} />
 	),
 	Alert: ({ children, className }: HTMLAttributes<HTMLDivElement>) => (
-		<Alert icon={<Box className="size-5" />} color="neutral" variant="bordered" className={cn("text-text-secondary my-5 text-sm", className)}>
+		<Alert icon={<Box className="size-5" />} color="neutral" variant="bordered" className={cn("text-fg-secondary my-5 text-sm", className)}>
 			{children}
 		</Alert>
 	),

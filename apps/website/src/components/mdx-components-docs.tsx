@@ -128,7 +128,9 @@ const components: MDXComponents = {
 	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
 		<PropsTable title={title} data={data} externalReference={externalReference} />
 	),
-	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => <div className="bg-bg-level0 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>,
+	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
+		<div className="bg-elevation-negative flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
+	),
 	AccordionPreview: () => (
 		<div className="pb-6">
 			<AccordionPreview />
@@ -258,7 +260,7 @@ const components: MDXComponents = {
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! pt-6", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! py-3", className)} {...props}>
 			{children}
 		</h3>
 	),
@@ -272,12 +274,12 @@ const components: MDXComponents = {
 		/>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-text-secondary text-base", className)} {...props}>
+		<p className={cn("text-fg-secondary text-base", className)} {...props}>
 			{children}
 		</p>
 	),
 	strong: ({ children, className, ...props }: HTMLAttributes<HTMLBodyElement>) => (
-		<strong className={cn("text-text font-semibold", className)} {...props}>
+		<strong className={cn("text-fgfont-semibold", className)} {...props}>
 			{children}
 		</strong>
 	),
@@ -288,7 +290,7 @@ const components: MDXComponents = {
 	},
 
 	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
-		return <li className={cn("text-text-secondary", className)}>{children}</li>
+		return <li className={cn("text-fg-secondary", className)}>{children}</li>
 	},
 
 	VersionAlert: (props: Pick<AlertProps, "title" | "message" | "variant" | "color">) => {
@@ -338,7 +340,7 @@ const components: MDXComponents = {
 				"font-heading not-first:mt-6 mb-3 scroll-m-20 text-xl font-semibold tracking-tight",
 				"relative [counter-increment:step]",
 				"before:absolute before:-left-12 before:top-0 before:flex before:size-8 before:items-center before:justify-center",
-				"before:bg-border before:text-text before:rounded-full before:text-base before:font-semibold",
+				"before:bg-border before:text-fgbefore:rounded-full before:text-base before:font-semibold",
 				"before:content-[counter(step)]",
 				className
 			)}

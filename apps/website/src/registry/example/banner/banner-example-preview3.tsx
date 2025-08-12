@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerExamplePreview3 = () => {
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="mb-10 pb-6" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<TabsList>
 				<TabsTrigger value="preview" icon={<EyeIcon />}>
 					Preview
@@ -17,12 +17,12 @@ const BannerExamplePreview3 = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
 					<Banner className="flex items-center justify-center">
-						<span className="bg-inverse-white flex h-9 w-9 items-center justify-center rounded-full">
-							<Trophy size={20} className="text-text-tertiary" />
+						<span className="bg-white-inverse flex h-9 w-9 items-center justify-center rounded-full">
+							<Trophy size={20} className="text-fg-tertiary" />
 						</span>
 						<span>
 							<p>Radian is now available at 20% for all users in Nepal. Claim your subscription now</p>
-							<p className="text-text-secondary">Offer is valid only up to January 31, 2025</p>
+							<p className="text-fg-secondary">Offer is valid only up to January 31, 2025</p>
 						</span>
 					</Banner>
 				</div>

@@ -28,8 +28,8 @@ const shimmer = css`
 const skeletonVariants = cva("rounded-md", {
 	variants: {
 		animation: {
-			pulse: "bg-fill-level3 animate-pulse",
-			shimmer: `bg-[linear-gradient(-61deg,var(--color-fill-level3)_40%,var(--color-fill-level2)_50%,var(--color-fill-level3)_60%)] bg-size-[300%] ${shimmer}`,
+			pulse: "bg-fill3 animate-pulse",
+			shimmer: `bg-[linear-gradient(-61deg,var(--color-fill3)_40%,var(--color-fill2)_50%,var(--color-fill3)_60%)] bg-size-[300%] ${shimmer}`,
 		},
 	},
 })

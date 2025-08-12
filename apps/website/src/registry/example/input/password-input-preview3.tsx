@@ -117,7 +117,7 @@ value={progress}
 "At least one lowercase letter",
 "At least one uppercase letter",
 ].map((label) => (
-<p key={label} className="flex items-center gap-2 text-text-tertiary">
+<p key={label} className="flex items-center gap-2 text-fg-tertiary">
 <CircleCheck className={${codeCname}} />
 {label}
 </p>
@@ -267,7 +267,7 @@ export default PasswordInputPreview
 							<ProgressBar value={progress} />
 							<p className="text-sm font-semibold">Your Password must contain</p>
 							{["At least 8 characters", "At least one number", "At least one lowercase letter", "At least one uppercase letter"].map((label) => (
-								<p key={label} className="text-text-tertiary flex items-center gap-2">
+								<p key={label} className="text-fg-tertiary flex items-center gap-2">
 									<CircleCheck className={`size-4 ${isValid(label) ? "text-success" : ""}`} />
 									{label}
 								</p>
