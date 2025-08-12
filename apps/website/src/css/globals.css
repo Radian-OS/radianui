@@ -143,15 +143,6 @@
 }
 
 @theme {
-	/* Border radius variables */
-	/* --radius-radius-none: 0px;
-	--radius-radius-xs: 2px;
-	--radius-radius-sm: 4px;
-	--radius-radius-md: 6px;
-	--radius-radius-lg: 8px;
-	--radius-radius-xl: 12px;
-	--radius-radius-2xl: 16px; */
-
 	/* primary */
 	--color-primary: oklch(53.2% 0.215 282);
 	--color-primary-accent: oklch(95.2% 0.023 276.9);
