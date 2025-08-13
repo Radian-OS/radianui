@@ -146,7 +146,7 @@ export default function CommunityCard() {
 				<Logo className="size-8" />
 
 				<div>
-					<span className="text-fgmb-1 text-base font-semibold">Join the Conversation</span>
+					<span className="text-fgmb-1 text-fg font-semibold">Join the Conversation</span>
 					<p className="text-fg-secondary body-13">
 						Community of product builders,
 						<br />

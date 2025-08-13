@@ -47,7 +47,7 @@ const slotVariants = cva(
 				"36": "size-9 text-sm p-2",
 				"40": "size-10 text-sm p-2.5",
 				"44": "size-11 text-sm p-2.5",
-				"56": "size-14 text-base p-4",
+				"56": "size-14 text-fgp-4",
 			},
 		},
 	}

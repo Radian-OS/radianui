@@ -73,7 +73,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 			</div>
 
 			<div className="text-fg">
-				<ul className="text-fg1 flex flex-col items-start text-base font-medium">
+				<ul className="text-fg1 text-fgfont-medium flex flex-col items-start">
 					{navLinks.map((item) => (
 						<li key={item.name} className="flex w-full items-center">
 							<Link onClick={() => setIsMobileMenuOpen(false)} className={`${pathname === item.link ? "text-fg0" : ""} text-fg1 w-full py-3 leading-6`} href={item.link}>
@@ -94,7 +94,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 											<Link
 												onClick={() => setIsMobileMenuOpen(false)}
 												key={item.url}
-												className={`${pathname === item.url ? "text-fg0" : ""} text-fgflex w-full items-center py-3 text-base font-normal`}
+												className={`${pathname === item.url ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
 												href={item.url}>
 												{item.title}
 											</Link>

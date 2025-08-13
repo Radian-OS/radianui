@@ -14,7 +14,7 @@ type ColorProps = {
 export default function Color({ variants, name, defaultWeight = 600 }: ColorProps) {
 	return (
 		<div className="min-h-24.5 mb-5 flex flex-col items-start justify-start gap-2">
-			<span className="text-base font-semibold">{name}</span>
+			<span className="text-fgfont-semibold">{name}</span>
 			<div className="gap-1.75 flex w-full flex-wrap items-center justify-start">
 				{variants?.map((variant, index) => (
 					<div

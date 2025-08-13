@@ -36,15 +36,15 @@ export default function Sidebar() {
 										<li key={item.title} className="relative" ref={isActive ? activeItemRef : null}>
 											<Link
 												className={cn(
-													"text-fg-secondary hover:text-fgfocus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
-													isActive ? "text-fgfont-medium" : ""
+													"text-fg-secondary hover:text-fg focus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+													isActive ? "text-fg font-medium" : ""
 												)}
 												href={item.url}>
 												{/* Active indicator */}
 												{isActive && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
 
 												{/* Hover indicator */}
-												{!isActive && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+												{!isActive && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
 												{item.title}
 											</Link>
 										</li>

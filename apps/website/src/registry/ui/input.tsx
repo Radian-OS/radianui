@@ -23,8 +23,8 @@ export const cvaInputVariants = {
 		"32": "h-8 text-sm px-3 py-1.5",
 		"36": "h-9 text-sm px-2.5 py-2",
 		"40": "h-10 text-sm px-3 py-2.5",
-		"44": "h-11 text-base py-2.5 px-3.5",
-		"48": "h-12 text-base py-3 px-3.5",
+		"44": "h-11 text-fgpy-2.5 px-3.5",
+		"48": "h-12 text-fgpy-3 px-3.5",
 	},
 }
 
@@ -84,8 +84,8 @@ function Input({
 		"32": "file:h-8 text-sm file:px-3 file:py-1.5",
 		"36": "file:h-9 text-sm file:px-2.5 file:py-2",
 		"40": "file:h-10 text-sm file:px-3 file:py-2.5",
-		"44": "file:h-11 text-base file:py-2.5 file:px-3.5",
-		"48": "file:h-12 text-base file:py-3 file:px-3.5",
+		"44": "file:h-11 text-fgfile:py-2.5 file:px-3.5",
+		"48": "file:h-12 text-fgfile:py-3 file:px-3.5",
 	}
 	const fileSizeClass = type === "file" && fileUploadSize in fileSizeMap ? fileSizeMap[fileUploadSize as keyof typeof fileSizeMap] : ""
 
@@ -135,14 +135,14 @@ function Input({
 						size && {
 							"text-xs placeholder:text-xs": size === "28",
 							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
-							"text-base placeholder:text-base": ["44", "48"].includes(size),
+							"text-fgplaceholder:text-base": ["44", "48"].includes(size),
 						},
 						type === "file" && fileBaseClass,
 						fileSizeClass,
 						size && {
 							"text-xs placeholder:text-xs": size === "28",
 							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
-							"text-base placeholder:text-base": ["44", "48"].includes(size),
+							"text-fgplaceholder:text-base": ["44", "48"].includes(size),
 						},
 						className
 					)}

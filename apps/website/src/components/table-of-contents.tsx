@@ -120,7 +120,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 								href={`#${heading.id}`}
 								onClick={(e) => handleHeadingClick(e, heading.id)}>
 								{/* Hover indicator - only show when not active */}
-								{activeHeadingId !== heading.id && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+								{activeHeadingId !== heading.id && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
 								{heading.text}
 							</Link>
 						</li>

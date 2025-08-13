@@ -22,7 +22,7 @@ function B({ className }: { className?: string }) {
 	return (
 		<div className={cn("bg-base border-border h-200 right-10 top-48 flex w-80 scale-90 flex-col justify-between rounded-2xl border duration-1000", className)}>
 			<div className="flex flex-col">
-				<div className="text-fgflex items-center gap-2 px-3 py-4">
+				<div className="text-fg flex items-center gap-2 px-3 py-4">
 					<div className="p-2">
 						<Menu className="text-fg" />
 					</div>
@@ -30,7 +30,7 @@ function B({ className }: { className?: string }) {
 					<Image className="hidden dark:block" src={"/radian-dark.svg"} width={90} height={24} alt="logo-radian" />
 				</div>
 				<div className="flex items-center justify-center px-3 py-1">
-					<div className="border-border text-fgflex w-full items-center justify-center gap-3 rounded-lg border px-3 py-2.5">
+					<div className="border-border text-fg flex w-full items-center justify-center gap-3 rounded-lg border px-3 py-2.5">
 						<Image src="/hero-section-avatar.webp" width={32} height={32} alt="Avatar" />
 						<div className="flex flex-1 flex-col">
 							<span className="text-sm font-medium">Radian OS</span>
@@ -84,7 +84,7 @@ function B({ className }: { className?: string }) {
 			<div className="flex gap-3 px-3 py-2">
 				<Avatar src="/icons/Avatar-2.webp" size="32" name="JM" />
 				<div className="flex flex-col">
-					<p className="text-fgtext-sm font-medium">James Mitchell</p>
+					<p className="text-fg text-sm font-medium">James Mitchell</p>
 					<p className="text-fg-secondary text-xs">james@radianos.com</p>
 				</div>
 			</div>

@@ -76,7 +76,7 @@ function A({ className }: { className?: string }) {
 
 			{/* Workspace Panel */}
 			<div className="bg-base flex w-full flex-col">
-				<span className="w-full px-4 py-5 text-base font-medium leading-6">My Workspace</span>
+				<span className="text-fg w-full px-4 py-5 font-medium leading-6">My Workspace</span>
 				<div className="text-fg-secondary flex flex-col gap-0.5 px-3">
 					<span className="text-fg-disabled py-2.25 px-2 text-xs font-medium">USER PANEL</span>
 					<Item id="dashboard" icon={<Cube />} text="Dashboard" active={activeItem === "dashboard"} onClick={() => setActiveItem("dashboard")} />

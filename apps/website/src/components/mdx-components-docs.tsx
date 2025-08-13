@@ -274,12 +274,12 @@ const components: MDXComponents = {
 		/>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-fg-secondary text-base", className)} {...props}>
+		<p className={cn("text-fg-secondary", className)} {...props}>
 			{children}
 		</p>
 	),
 	strong: ({ children, className, ...props }: HTMLAttributes<HTMLBodyElement>) => (
-		<strong className={cn("text-fgfont-semibold", className)} {...props}>
+		<strong className={cn("text-fg font-semibold", className)} {...props}>
 			{children}
 		</strong>
 	),
@@ -340,7 +340,7 @@ const components: MDXComponents = {
 				"font-heading not-first:mt-6 mb-3 scroll-m-20 text-xl font-semibold tracking-tight",
 				"relative [counter-increment:step]",
 				"before:absolute before:-left-12 before:top-0 before:flex before:size-8 before:items-center before:justify-center",
-				"before:bg-border before:text-fgbefore:rounded-full before:text-base before:font-semibold",
+				"before:bg-border before:text-fg before:rounded-full before:font-semibold",
 				"before:content-[counter(step)]",
 				className
 			)}

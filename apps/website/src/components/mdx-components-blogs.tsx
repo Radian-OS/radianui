@@ -24,7 +24,7 @@ const BlogComponents: MDXComponents = {
 		</h2>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-fg-secondary text-base", className)} {...props}>
+		<p className={cn("text-fg-secondary", className)} {...props}>
 			{children}
 		</p>
 	),

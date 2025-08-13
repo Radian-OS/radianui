@@ -68,7 +68,7 @@ const SonnerVariant = cva("group toast rounded-lg flex justify-between text-sm g
 		{
 			variant: "strong",
 			state: "neutral",
-			class: "bg-black !text-white relative before:absolute before:inset-0 before:!bg-bg-alpha-4 overflow-hidden before:pointer-events-none",
+			class: "bg-black !text-white relative before:absolute before:inset-0 before:!bg-fill4-alpha overflow-hidden before:pointer-events-none",
 		},
 		{
 			variant: "strong",

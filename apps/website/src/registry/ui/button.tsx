@@ -45,8 +45,8 @@ export const buttonVariants = cva(
 				"32": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-6 text-base px-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
+				"44": "[&>svg]:size-6 text-fgpx-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-fgpx-1 rounded-lg",
 			},
 			loading: {
 				true: "",
