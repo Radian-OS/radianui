@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 import { Label } from "./label"
 
 const textareaStyles = cva(
-	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-alpha bg-base px-3 py-2 font-normal drop-shadow-xs focus:border-primary-stroke focus:outline-hidden focus:ring-2 focus:ring-primary-stroke/10",
+	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-alpha bg-base px-3 py-2 font-normal drop-shadow-xs focus:border-primary-hover focus:outline-hidden focus:ring-2 focus:ring-primary-hover/10",
 	{
 		variants: {
 			rounded: {

@@ -99,7 +99,7 @@ function Slot({ isActive, hasFakeCaret, char }: SlotProps) {
 	return (
 		<div
 			className={cn(slotVariants({ size: size }), {
-				"ring-primary-focus border-primary-stroke ring-3": isActive,
+				"ring-primary-focus border-primary-hover ring-3": isActive,
 				"bg-elevation-negative border-border cursor-not-allowed": disabled,
 				"border-error-stroke ring-error-focus": hasError,
 			})}>

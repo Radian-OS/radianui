@@ -157,40 +157,40 @@ export const buttonVariants = cva(
 			{
 				variant: "soft",
 				color: "neutral",
-				className: "bg-fill2 font-medium text-fg-secondary hover:bg-border-alpha focus-visible:bg-base focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-fill2 font-medium text-fg-secondary hover:bg-alpha focus-visible:bg-base focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Outline variant + colors
 			{
 				variant: "outline",
 				color: "primary",
-				className: "bg-transparent font-medium border border-primary-stroke text-primary hover:bg-primary-accent focus-visible:ring-primary-stroke",
+				className: "bg-transparent font-medium border border-primary-hover text-primary hover:bg-primary-accent focus-visible:ring-primary-hover",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "bg-transparent font-medium border border-info-stroke text-info hover:bg-info-accent focus-visible:ring-info-stroke",
+				className: "bg-transparent font-medium border border-info-hover text-info hover:bg-info-accent focus-visible:ring-info-hover",
 			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "bg-transparent font-medium border border-success-stroke text-success hover:bg-success-accent focus-visible:ring-success-stroke",
+				className: "bg-transparent font-medium border border-success-hover text-success hover:bg-success-accent focus-visible:ring-success-hover",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "bg-transparent font-medium border border-error-stroke text-error hover:bg-error-accent focus-visible:ring-error-stroke",
+				className: "bg-transparent font-medium border border-error-hover text-error hover:bg-error-accent focus-visible:ring-error-hover",
 			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "bg-transparent font-medium border border-warning-stroke text-warning hover:bg-warning-accent focus-visible:ring-warning-stroke",
+				className: "bg-transparent font-medium border border-warning-hover text-warning hover:bg-warning-accent focus-visible:ring-warning-hover",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 font-medium text-fg-secondary border border-border  hover:bg-elevation-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-bg-alpha-2",
+					"bg-elevation-level1 font-medium text-fg-secondary border border-border  hover:bg-elevation-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-fill2-alpha",
 			},
 
 			// Ghost variant + colors
@@ -222,7 +222,7 @@ export const buttonVariants = cva(
 			{
 				variant: "ghost",
 				color: "neutral",
-				className: "bg-transparent text-fg-secondary font-medium hover:bg-border-alpha focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-transparent text-fg-secondary font-medium hover:bg-alpha focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Neutral variants
