@@ -55,298 +55,334 @@ Add the following to your styles/globals.css file.
 <CodeSnippet
 	title="globals.css"
 	showLineNumber
-	code={`@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+	code={`@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
-@custom-variant dark (&:is(.dark *));
-@theme static {
-    /* Border radius variables */
-    --radius-radius-none: 0px;
-    --radius-radius-xs: 2px;
-    --radius-radius-sm: 4px;
-    --radius-radius-md: 6px;
-    --radius-radius-lg: 8px;
-    --radius-radius-xl: 12px;
-    --radius-radius-2xl: 16px;
-    /* primary */
-    --color-primary: hsl(250, 80%, 60%);
-    --color-primary-accent: hsl(230, 100%, 96%);
-    --color-primary-focus: hsl(234, 100%, 94%);
-    --color-primary-hover: hsl(246, 89%, 67%);
-    --color-primary-hover: hsl(246, 89%, 67%);
-    --color-primary-text: hsl(252, 62%, 51%);
-    /* information */
-    --color-info: hsl(210, 100%, 50%);
-    --color-info-accent: hsl(197, 100%, 96%);
-    --color-info-focus: hsl(196, 100%, 85%);
-    --color-info-stroke: hsl(196, 100%, 64%);
-    --color-info-hover: hsl(206, 100%, 51%);
-    --color-info-text: hsl(210, 100%, 50%);
+
+@custom-variant dark (&:is(.dark \*));
+
+@theme {
+/_ primary _/
+--color-primary: oklch(0.528 0.2539 282.58);
+--color-primary-accent: oklch(0.94 0.0271 295.05);
+--color-primary-focus: oklch(0.9169 0.0383 295.46);
+--color-primary-hover: oklch(0.5768 0.2279 286.25);
+--color-primary-text: oklch(0.4304 0.202 282.82);
+
     /* success */
-    --color-success: hsl(135, 56%, 29%);
-    --color-success-accent: hsl(136, 65%, 96%);
-    --color-success-focus: hsl(134, 68%, 93%);
-    --color-success-stroke: hsl(135, 60%, 40%);
-    --color-success-hover: hsl(135, 60%, 40%);
-    --color-success-text: hsl(136, 48%, 20%);
+    --color-success: oklch(0.6334 0.171 148.65);
+    --color-success-accent: oklch(0.9685 0.0336 157.66);
+    --color-success-focus: oklch(0.9489 0.0556 156.34);
+    --color-success-hover: oklch(0.6901 0.1748 149.64);
+    --color-success-text: oklch(0.5388 0.1339 149.74);
+
     /* error */
-    --color-error: hsl(0, 80%, 55%);
-    --color-error-accent: hsl(0, 100%, 96%);
-    --color-error-focus: hsl(0, 100%, 94%);
-    --color-error-stroke: hsl(0, 93%, 60%);
-    --color-error-hover: hsl(0, 93%, 60%);
-    --color-error-text: hsl(0, 81%, 42%);
+    --color-error: oklch(0.64 0.22 26.04);
+    --color-error-accent: oklch(0.9465 0.0252 17.61);
+    --color-error-focus: oklch(0.9133 0.0414 17.93);
+    --color-error-hover: oklch(0.6786 0.2095 24.66);
+    --color-error-text: oklch(0.5716 0.2125 27.27);
+
     /* warning */
-    --color-warning: hsl(29, 96%, 37%);
-    --color-warning-accent: hsl(51, 100%, 94%);
-    --color-warning-focus: hsl(52, 100%, 88%);
-    --color-warning-stroke: hsl(35, 100%, 45%);
-    --color-warning-hover: hsl(35, 100%, 45%);
-    --color-warning-text: hsl(26, 88%, 31%);
+    --color-warning: oklch(0.8016 0.1705 73.27);
+    --color-warning-accent: oklch(0.9622 0.0384 83.83);
+    --color-warning-focus: oklch(0.946 0.0574 85.03);
+    --color-warning-hover: oklch(0.8342 0.1594 79.51);
+    --color-warning-text: oklch(0.5461 0.1088 77.73);
+
+    /* information */
+    --color-info: oklch(0.6092 0.2041 255.8);
+    --color-info-accent: oklch(0.949 0.0213 245.85);
+    --color-info-focus: oklch(0.9135 0.0358 249.52);
+    --color-info-hover: oklch(0.6722 0.1615 251.56);
+    --color-info-text: oklch(0.4663 0.1065 251.21);
+
     /* background */
-    --color-bg-level0: hsl(230, 6%, 96%);
-    --color-bg-base: hsl(0, 0%, 100%);
-    --color-bg-level1: hsl(0, 0%, 100%);
-    --color-bg-level2: hsl(0, 0%, 100%);
-    --color-text: hsl(230, 6%, 4%);
-    --color-text-secondary: hsl(230, 6%, 36%);
-    --color-text-tertiary: hsl(230, 6%, 60%);
-    --color-text-disabled: hsl(230, 6%, 80%);
-    --color-text-inverse: hsl(0, 0%, 100%);
-    /* stroke */
-    --color-border: hsl(230, 6%, 88%);
-    --color-soft: hsl(230, 6%, 92%);
-    --color-soft-alpha: color-mix(in srgb, hsl(240, 5%, 4%), transparent 92%);
-    --color-border-alpha: color-mix(in srgb, hsl(240, 5%, 4%), transparent 88%);
-    /* 2% opacity */
-    /* fill */
-    --color-fill1: hsl(230, 6%, 98%);
-    --color-fill2: hsl(230, 6%, 96%);
-    --color-fill3: hsl(230, 6%, 88%);
-    --color-fill4: hsl(230, 6%, 84%);
-    /* fill-inverse */
-    --color-inverse-fill1: color-mix(in srgb, hsl(0, 0%, 100%), transparent 98%);
-    /* 2% opacity */
-    --color-inverse-fill2: color-mix(in srgb, hsl(0, 0%, 100%), transparent 96%);
-    /* 4% opacity */
-    --color-inverse-fill3: color-mix(in srgb, hsl(0, 0%, 100%), transparent 92%);
-    /* 8% opacity */
-    --color-inverse-fill4: color-mix(in srgb, hsl(0, 0%, 100%), transparent 84%);
-    /* 16% opacity */
-    /* static */
-    --color-white: hsl(0, 0%, 100%);
-    --color-black: hsl(230, 6%, 4%);
+    --color-base: oklch(1 0 0);
+    --color-fill1: oklch(0.9824 0.0013 286.38);
+    --color-fill2: oklch(0.9677 0.0027 286.35);
+    --color-fill3: oklch(0.9349 0.004 286.32);
+    --color-fill4: oklch(0.902 0.0068 286.26);
+
+    /* foreground */
+    --color-fg: oklch(0.2314 0.0078 274.6);
+    --color-fg-secondary: oklch(0.4515 0.0243 285.39);
+    --color-fg-tertiary: oklch(0.6261 0.0268 285.6);
+    --color-fg-disabled: oklch(0.8352 0.011 286.16);
+    --color-fg-inverse: oklch(1 0 0);
+
+    /* border */
+    --color-border: oklch(0.902 0.0068 286.26);
+    --color-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
+    --color-soft: oklch(0.9349 0.004 286.32);
+    --color-soft-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
+
+    /* background elevation */
+    --color-elevation-negative: oklch(0.9677 0.0027 286.35);
+    --color-elevation-level1: oklch(1 0 0);
+    --color-elevation-level2: oklch(1 0 0);
+
     /* inverse */
-    --color-black-inverse: hsl(230, 6%, 4%);
-    --color-white-inverse: hsl(0, 0%, 100%);
+    --color-white-inverse: oklch(1 0 0);
+    --color-black-inverse: oklch(0.144 0.0028 247.09);
+
+    /* fill alpha */
+    --color-fill1-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
+    /* 2% opacity */
+    --color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
+    /* 4% opacity */
+    --color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
+    /* 8% opacity */
+    --color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
+    /* 12% opacity */
+
     /* Breakpoints */
     --breakpoint-laptop: 90rem;
+
     /* Font families */
     --heading-font: "Inter Display", system-ui, sans-serif;
     --body-font: "Inter", system-ui, sans-serif;
+
 }
+
 .dark {
-    /* primary */
-    --color-primary: hsl(246, 89%, 67%);
-    --color-primary-accent: hsl(252, 51%, 20%);
-    --color-primary-accent-secondary: hsl(249, 51%, 30%);
-    --color-primary-focus: hsl(249, 51%, 30%);
-    --color-primary-hover: hsl(251, 58%, 41%);
-    --color-primary-hover: hsl(241, 95%, 74%);
-    --color-primary-text: hsl(241, 95%, 74%);
-    /* information */
-    --color-info: hsl(206, 100%, 51%);
-    --color-info-accent: hsl(212, 74%, 21%);
-    --color-info-accent-secondary: hsl(210, 85%, 30%);
-    --color-info-focus: hsl(210, 85%, 30%);
-    --color-info-stroke: hsl(212, 92%, 40%);
-    --color-info-hover: hsl(201, 100%, 56%);
-    --color-info-text: hsl(196, 100%, 64%);
+/_ primary _/
+--color-primary: oklch(0.528 0.2539 282.58);
+--color-primary-accent: oklch(0.2294 0.0753 289.19);
+--color-primary-focus: oklch(0.2538 0.1064 285.61);
+--color-primary-hover: oklch(0.5768 0.2279 286.25);
+--color-primary-text: oklch(0.7757 0.1162 292.43);
+
     /* success */
-    --color-success: hsl(135, 56%, 29%);
-    --color-success-accent: hsl(138, 65%, 10%);
-    --color-success-accent-secondary: hsl(136, 48%, 20%);
-    --color-success-focus: hsl(136, 48%, 20%);
-    --color-success-stroke: hsl(136, 50%, 24%);
-    --color-success-hover: hsl(135, 55%, 45%);
-    --color-success-text: hsl(134, 54%, 58%);
+    --color-success: oklch(0.6334 0.171 148.65);
+    --color-success-accent: oklch(0.271 0.0537 151.74);
+    --color-success-focus: oklch(0.3887 0.0924 150.55);
+    --color-success-hover: oklch(0.6901 0.1748 149.64);
+    --color-success-text: oklch(0.871 0.1501 153.14);
+
     /* error */
-    --color-error: hsl(0, 80%, 55%);
-    --color-error-accent: hsl(0, 82%, 15%);
-    --color-error-accent-secondary: hsl(0, 69%, 30%);
-    --color-error-focus: hsl(0, 69%, 30%);
-    --color-error-stroke: hsl(0, 78%, 35%);
-    --color-error-hover: hsl(0, 100%, 71%);
-    --color-error-text: hsl(0, 100%, 71%);
+    --color-error: oklch(0.64 0.22 26.04);
+    --color-error-accent: oklch(0.2567 0.0648 22.77);
+    --color-error-focus: oklch(0.2973 0.0922 24.71);
+    --color-error-hover: oklch(0.6786 0.2095 24.66);
+    --color-error-text: oklch(0.7884 0.1226 20.19);
+
     /* warning */
-    --color-warning: hsl(29, 96%, 37%);
-    --color-warning-accent: hsl(23, 97%, 14%);
-    --color-warning-accent-secondary: hsl(25, 82%, 26%);
-    --color-warning-focus: hsl(25, 82%, 26%);
-    --color-warning-stroke: hsl(26, 88%, 31%);
-    --color-warning-hover: hsl(41, 98%, 50%);
-    --color-warning-text: hsl(47, 100%, 56%);
+    --color-warning: oklch(0.8016 0.1705 73.27);
+    --color-warning-accent: oklch(0.2663 0.0372 84.34);
+    --color-warning-focus: oklch(0.3744 0.0636 81.14);
+    --color-warning-hover: oklch(0.8342 0.1594 79.51);
+    --color-warning-text: oklch(0.8776 0.1255 82.88);
+
+    /* information */
+    --color-info: oklch(0.6092 0.2041 255.8);
+    --color-info-accent: oklch(0.2739 0.0462 248.76);
+    --color-info-focus: oklch(0.3147 0.0668 250.78);
+    --color-info-hover: oklch(0.6722 0.1615 251.56);
+    --color-info-text: oklch(0.829 0.0811 248.83);
+
     /* Background */
-    --color-bg-level0: hsl(230, 6%, 0%);
-    --color-bg-base: hsl(230, 6%, 4%);
-    --color-bg-level1: hsl(230, 6%, 8%);
-    --color-bg-level2: hsl(230, 6%, 12%);
+    --color-base: oklch(0.144 0.0028 247.09);
+    --color-fill1: oklch(0.1652 0.0062 285.7);
+    --color-fill2: oklch(0.1881 0.006 285.81);
+    --color-fill3: oklch(0.2314 0.0078 274.6);
+    --color-fill4: oklch(0.2738 0.0093 276.77);
+
     /* foreground */
-    --color-text: hsl(0, 0%, 100%);
-    --color-text-secondary: hsl(230, 6%, 60%);
-    --color-text-tertiary: hsl(230, 6%, 48%);
-    --color-text-disabled: hsl(230, 6%, 36%);
-    --color-text-inverse: hsl(230, 6%, 4%);
-    /* stroke */
-    --color-border: hsl(230, 6%, 16%);
-    --color-border-alpha: color-mix(in srgb, hsl(0, 0%, 100%), transparent 88%);
-    --color-soft: hsl(230, 6%, 12%);
-    --color-soft-alpha: color-mix(in srgb, hsl(0, 0%, 100%), transparent 92%);
-    /* fill */
-    --color-fill1: hsl(230, 6%, 6%);
-    /* 2% opacity */
-    --color-fill2: hsl(230, 6%, 8%);
-    /* 4% opacity */
-    --color-fill3: hsl(230, 6%, 12%);
-    /* 8% opacity */
-    --color-fill4: hsl(230, 6%, 16%);
-    /* 16% opacity */
-    /* fill-inverse */
-    --color-inverse-fill1: color-mix(in srgb, hsl(240, 5%, 4%), transparent 98%);
-    /* 2% opacity */
-    --color-inverse-fill2: color-mix(in srgb, hsl(240, 5%, 4%), transparent 96%);
-    /* 4% opacity */
-    --color-inverse-fill3: color-mix(in srgb, hsl(240, 5%, 4%), transparent 92%);
-    /* 8% opacity */
-    --color-inverse-fill4: color-mix(in srgb, hsl(240, 5%, 4%), transparent 84%);
-    /* 16% opacity */
-    /* static */
-    --color-white: hsl(0, 0%, 100%);
-    --color-black: hsl(230, 6%, 4%);
+    --color-fg: oklch(1 0 0);
+    --color-fg-secondary: oklch(0.6619 0.0235 285.74);
+    --color-fg-tertiary: oklch(0.5553 0.0292 285.41);
+    --color-fg-disabled: oklch(0.4515 0.0243 285.39);
+    --color-fg-inverse: oklch(0.2314 0.0078 274.6);
+
+    /* border */
+    --color-border: oklch(0.2738 0.0093 276.77);
+    --color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+    --color-soft: oklch(0.2314 0.0078 274.6);
+    --color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+
+    /* background elevation */
+    --color-elevation-negative: oklch(0 0 0);
+    --color-elevation-level1: oklch(0.1881 0.006 285.81);
+    --color-elevation-level2: oklch(0.2314 0.0078 274.6);
+
     /* inverse */
-    --color-black-inverse: hsl(0, 0%, 100%);
-    --color-white-inverse: hsl(230, 6%, 4%);
-    --color-text-primary: hsl(0, 0%, 100%);
+    --color-white-inverse: oklch(0.144 0.0028 247.09);
+    --color-black-inverse: oklch(1 0 0);
+
+    /* fill alpha */
+    --color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 98%);
+    --color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
+    --color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+    --color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+
+    --color-text-primary: oklch(1 0 0);
     /* --color-text-paragraph: var(--color-white-10); */
-    --color-text-disabled: hsl(230, 6%, 36%);
+    --color-text-disabled: oklch(0.4515 0.0243 285.39);
     /* --color-text-4: var(--color-black-5); */
-    /* static */
-    --color-white: hsl(0, 0%, 100%);
-    --color-black: hsl(240, 5%, 4%);
+
 }
-@layer base {
-    * {
-        @apply border-border;
-    }
+
+@layer base { \* {
+border-color: var(--color-border);
+}
 body {
-        @apply font-body bg-base text-fg;
-    }
+@apply font-body bg-base text-fg;
 }
+}
+
+@utility border-border {
+border-color: var(--color-border);
+}
+
+@utility border-alpha {
+border-color: var(--color-alpha);
+}
+
+/\*
+The default border color has changed to currentColor in Tailwind CSS v4,
+so we've added these compatibility styles to make sure everything still
+looks the same as it did with Tailwind CSS v3.
+
+If we ever want to remove these styles, we need to add an explicit border
+color utility to any element that depends on these defaults.
+_/
 @utility font-heading {
-    /* Base typography classes for headings and body */
-    font-family: var(--heading-font);
+/_ Base typography classes for headings and body \*/
+font-family: var(--heading-font);
 }
+
 @utility font-body {
-    font-family: var(--body-font);
+font-family: var(--body-font);
 }
+
 @utility heading-1 {
-    /* Heading styles */
-    @apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
+@apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
+
     @media (width >=theme(--breakpoint-sm)) {
-        font-size: 3rem;
-        line-height: 3.5rem;
+    	font-size: 3rem;
+    	line-height: 3.5rem;
     }
+
     @media (width >=theme(--breakpoint-lg)) {
-        font-size: 4rem;
-        line-height: 4.5rem;
+    	font-size: 4rem;
+    	line-height: 4.5rem;
     }
+
 }
+
 @utility heading-2 {
-    @apply font-heading text-[2rem] font-bold leading-[2.5rem];
+@apply font-heading text-[2rem] font-bold leading-[2.5rem];
+
     @media (width >=theme(--breakpoint-sm)) {
-        font-size: 2.5rem;
-        line-height: 3rem;
+    	font-size: 2.5rem;
+    	line-height: 3rem;
     }
+
     @media (width >=theme(--breakpoint-lg)) {
-        font-size: 3rem;
-        line-height: 3.5rem;
+    	font-size: 3rem;
+    	line-height: 3.5rem;
     }
+
 }
+
 @utility heading-3 {
-    @apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
+@apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
+
     @media (width >=theme(--breakpoint-sm)) {
-        font-size: 2.25rem;
-        line-height: 2.75rem;
+    	font-size: 2.25rem;
+    	line-height: 2.75rem;
     }
+
     @media (width >=theme(--breakpoint-lg)) {
-        font-size: 2.5rem;
-        line-height: 3rem;
+    	font-size: 2.5rem;
+    	line-height: 3rem;
     }
+
 }
+
 @utility heading-4 {
-    @apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
+@apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
+
     @media (width >=theme(--breakpoint-sm)) {
-        font-size: 1.875rem;
-        line-height: 2.375rem;
+    	font-size: 1.875rem;
+    	line-height: 2.375rem;
     }
+
     @media (width >=theme(--breakpoint-lg)) {
-        font-size: 2rem;
-        line-height: 2.5rem;
+    	font-size: 2rem;
+    	line-height: 2.5rem;
     }
+
 }
+
 @utility heading-5 {
-    @apply font-heading text-[1.5rem] font-bold leading-[2rem];
+@apply font-heading text-[1.5rem] font-bold leading-[2rem];
+
     @media (width >=theme(--breakpoint-sm)) {
-        font-size: 1.5rem;
-        line-height: 2rem;
+    	font-size: 1.5rem;
+    	line-height: 2rem;
     }
+
     @media (width >=theme(--breakpoint-lg)) {
-        font-size: 1.5rem;
-        line-height: 2rem;
+    	font-size: 1.5rem;
+    	line-height: 2rem;
     }
+
 }
+
 @utility heading-6 {
-    @apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
+@apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
+
     @media (width >=theme(--breakpoint-sm)) {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
+    	font-size: 1.25rem;
+    	line-height: 1.75rem;
     }
+
     @media (width >=theme(--breakpoint-lg)) {
-        font-size: 1.25rem;
-        line-height: 1.75rem;
+    	font-size: 1.25rem;
+    	line-height: 1.75rem;
     }
+
 }
+
 @utility body-15 {
-    @apply font-body text-[0.9375rem] leading-[1.375];
+@apply font-body text-[0.9375rem] leading-[1.375];
 }
+
 @utility text-sm-p {
-    @apply font-body text-sm leading-[1.25rem];
+@apply font-body text-sm leading-[1.25rem];
 }
+
 @utility body-13 {
-    @apply font-body text-[0.8125rem] leading-[1.125rem];
+@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
+
 @utility no-scrollbar {
-    -ms-overflow-style: none;
-    /* IE and Edge */
-    scrollbar-width: none;
-    /* Firefox */
+-ms-overflow-style: none;
+/_ IE and Edge _/
+scrollbar-width: none;
+/_ Firefox _/
+
     &::-webkit-scrollbar {
-        display: none;
-        /* Chrome, Safari and Opera */
+    	display: none;
+    	/* Chrome, Safari and Opera */
     }
+
 }
+
 @layer utilities {
-    /* Chrome & other browser puts a background color on autofill inputs,
-     this removes it */
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    input:-webkit-autofill:active {
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: inherit;
-        transition: background-color 5000s ease-in-out 0s;
-        box-shadow: inset 0 0 20px 20px transparent;
-    }
+/_ Chrome & other browser puts a background color on autofill inputs,
+this removes it _/
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+-webkit-background-clip: text;
+-webkit-text-fill-color: inherit;
+transition: background-color 5000s ease-in-out 0s;
+box-shadow: inset 0 0 20px 20px transparent;
+}
 }`}
 />
 
