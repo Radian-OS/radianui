@@ -1,4 +1,5 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Draggable } from "@/registry/animated/make-draggable"
 import { Badge } from "@/registry/ui/badge"

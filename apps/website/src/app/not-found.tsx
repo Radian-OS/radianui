@@ -1,4 +1,5 @@
 import Link from "next/link"
+
 import { Button } from "@/registry/ui/button"
 
 export default function NotFound() {

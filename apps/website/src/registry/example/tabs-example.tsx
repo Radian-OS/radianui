@@ -1,7 +1,9 @@
 "use client"
 
 import { useState } from "react"
+
 import { Bolt, ClipboardSignature } from "lucide-react"
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Variants = "default" | "open" | "outline" | "ghost"

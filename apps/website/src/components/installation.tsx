@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+
 import { frameworkItems } from "@/config/framework-config"
 
 export default function Installation() {

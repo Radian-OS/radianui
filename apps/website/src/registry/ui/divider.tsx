@@ -1,5 +1,7 @@
 import React from "react"
+
 import { type VariantProps, cva } from "class-variance-authority"
+
 import { cn } from "@/lib/utils"
 
 export type Orientation = "horizontal" | "vertical"

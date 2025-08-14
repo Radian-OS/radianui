@@ -1,10 +1,13 @@
 "use client"
 
 import * as React from "react"
+
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+
 import { cn } from "@/lib/utils"
+
 import { CompactButton } from "./button"
 import { Divider } from "./divider"
 

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+
 import { Button } from "@/registry/ui/button"
 import { InputOtp } from "@/registry/ui/input-otp"
 

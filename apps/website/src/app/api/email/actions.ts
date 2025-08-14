@@ -2,6 +2,7 @@
 
 import { encodeBase32LowerCaseNoPadding } from "@oslojs/encoding"
 import { eq } from "drizzle-orm"
+
 import { db } from "@/db"
 import { emailSubscribers } from "@/db/schema"
 

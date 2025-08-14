@@ -2,11 +2,13 @@
 
 // import { Map, User } from "lucide-react";
 import { useState } from "react"
+
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import Pagination from "@/registry/ui/pagination"
 import { Select, SelectItem } from "@/registry/ui/select"
 import MainTable from "@/registry/ui/table"
+
 import Demo from "./table-pagination-demo"
 
 // type Person = {

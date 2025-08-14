@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { EyeIcon, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Button } from "@/registry/ui/button"

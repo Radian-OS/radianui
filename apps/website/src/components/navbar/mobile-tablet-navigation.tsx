@@ -1,13 +1,16 @@
 "use client"
 
 import React, { useEffect } from "react"
+
 import { X } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+
 import { navLinks } from "@/components/navbar/nav-links"
 import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Button } from "@/registry/ui/button"
+
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"

@@ -2,7 +2,9 @@
 
 import { Sparkles } from "lucide-react"
 import Link from "next/link"
+
 import { Banner } from "@/registry/ui/banner"
+
 import { Button } from "../ui/button"
 
 // import { useState } from "react"

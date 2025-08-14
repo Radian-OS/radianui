@@ -1,9 +1,12 @@
 "use client"
 
 import React from "react"
+
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
+
 import { cn } from "@/lib/utils"
+
 import { Spinner } from "./spinner"
 
 type ButtonProps = VariantProps<typeof buttonVariants> &

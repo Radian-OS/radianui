@@ -1,7 +1,9 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
+
 import Link from "next/link"
+
 import { MdxHeading } from "@/lib/get-mdx-headings"
 import { cn } from "@/lib/utils"
 

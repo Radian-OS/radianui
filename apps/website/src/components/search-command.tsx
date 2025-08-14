@@ -1,6 +1,8 @@
 import { useRef } from "react"
+
 import { ArrowDown, ArrowUp, Search, X } from "lucide-react"
 import Link from "next/link"
+
 import { NavigationItem } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
 import { ModalClose } from "@/registry/ui/modal"

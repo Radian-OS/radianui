@@ -1,4 +1,5 @@
 import { Box } from "lucide-react"
+
 import { Banner } from "@/registry/ui/banner"
 
 export default function UnderDevelopmentBanner() {

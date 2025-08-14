@@ -1,4 +1,5 @@
 import { EyeIcon, SquareTerminal, Trophy } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
