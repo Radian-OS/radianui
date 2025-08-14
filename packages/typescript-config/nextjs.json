@@ -21,6 +21,6 @@
       }
     ],
     "jsx": "preserve",
-    "noEmit": true,
+    "noEmit": true
   }
 }
