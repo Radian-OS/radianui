@@ -72,16 +72,9 @@
 
 	/* fill alpha */
 	--color-fill1-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
-	/* 2% opacity */
 	--color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
-	/* 4% opacity */
 	--color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
-	/* 8% opacity */
 	--color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
-	/* 12% opacity */
-
-	/* Breakpoints */
-	--breakpoint-laptop: 90rem;
 
 	/* Font families */
 	--heading-font: "Inter Display", system-ui, sans-serif;
@@ -158,13 +151,9 @@
 	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-
-	--color-text-primary: oklch(1 0 0);
-	/* --color-text-paragraph: var(--color-white-10); */
-	--color-text-disabled: oklch(0.4515 0.0243 285.39);
-	/* --color-text-4: var(--color-black-5); */
 }
 
+/* Base styles */
 @layer base {
 	* {
 		border-color: var(--color-border);
@@ -174,31 +163,17 @@
 	}
 }
 
-@utility border-border {
-	border-color: var(--color-border);
-}
-
-@utility border-alpha {
-	border-color: var(--color-alpha);
-}
-
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Typography */
 @utility font-heading {
-	/* Base typography classes for headings and body */
 	font-family: var(--heading-font);
 }
 
+/* Body */
 @utility font-body {
 	font-family: var(--body-font);
 }
 
+/* Headings 1 */
 @utility heading-1 {
 	@apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
 
@@ -213,6 +188,7 @@
 	}
 }
 
+/* Headings 2 */
 @utility heading-2 {
 	@apply font-heading text-[2rem] font-bold leading-[2.5rem];
 
@@ -227,6 +203,7 @@
 	}
 }
 
+/* Headings 3 */
 @utility heading-3 {
 	@apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
 
@@ -241,6 +218,7 @@
 	}
 }
 
+/* Headings 4 */
 @utility heading-4 {
 	@apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
 
@@ -255,6 +233,7 @@
 	}
 }
 
+/* Headings 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-bold leading-[2rem];
 
@@ -269,6 +248,7 @@
 	}
 }
 
+/* Headings 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
 
