@@ -10,6 +10,11 @@
   "bin": {
     "radianos": "dist/index.js"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "package.json"
+  ],
   "scripts": {
     "dev": "tsup --watch && tsup",
     "build": "tsup"
