@@ -19,65 +19,6 @@ export const COMPONENTS_JSON_CONFIG = `{
   "hasSrcDir": true
 }`
 
-export const TAILWIND_CONFIG_WITH_VARIABLES = `import type { Config } from "tailwindcss";
-export default {
-	darkMode: ["class"],
-	content: [
-		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
-    	'./components/**/*.{js,ts,jsx,tsx,mdx}',
-    	'./app/**/*.{js,ts,jsx,tsx,mdx}',
-    	'./src/**/*.{js,ts,jsx,tsx,mdx}',
-	],
-	safelist: ["font-heading", "font-body", "heading-1", "heading-2", "heading-3", "heading-4", "heading-5", "heading-6", "body-lg", "body-base", "body-sm", "body-xs"],
-	theme: {
-		extend: {
-			colors: {
-				bg1: "hsl(var(--bg1))",
-				bg2: "hsl(var(--bg2))",
-				bg3: "hsl(var(--bg3))",
-				bg4: "hsl(var(--bg4))",
-				fg1: "hsl(var(--fg1))",
-				fg2: "hsl(var(--fg2))",
-				fg3: "hsl(var(--fg3))",
-				information: "hsl(var(--information))",
-				success: "hsl(var(--success))",
-				error: "hsl(var(--error))",
-				warning: "hsl(var(--warning))",
-				white: "hsl(var(--static-white))",
-				black: "hsl(var(--static-black))",
-				primary: "hsl(var(--primary))",
-				border: {
-					DEFAULT: "hsl(var(--border))",
-					secondary: "hsl(var(--border-secondary))",
-					information: "hsl(var(--border-information))",
-					success: "hsl(var(--border-success))",
-					error: "hsl(var(--border-error))",
-					warning: "hsl(var(--border-warning))",
-				},
-			},
-			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)",
-			},
-			keyframes: {
-				"accordion-down": {
-					from: { height: "0" },
-					to: { height: "var(--radix-accordion-content-height)" },
-				},
-				"accordion-up": {
-					from: { height: "var(--radix-accordion-content-height)" },
-					to: { height: "0" },
-				},
-			},
-			animation: {
-				"accordion-down": "accordion-down 0.2s ease-out",
-				"accordion-up": "accordion-up 0.2s ease-out",
-			},
-		},
-	},
-} satisfies Config;`
-
 export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
