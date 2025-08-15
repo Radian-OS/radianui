@@ -12,7 +12,7 @@
         [
             "@semantic-release/npm",
             {
-                "pkgRoot": "dist"
+                "pkgRoot": "packages/cli/"
             }
         ],
         "@semantic-release/github"
