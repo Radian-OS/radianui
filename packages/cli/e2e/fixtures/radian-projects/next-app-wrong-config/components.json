@@ -1,0 +1,11 @@
+{
+  "$schema": "https://radianos.com/schema.json",
+  "aliases": {
+    "ui": "@/components/ui",
+    "animated": "@/components/animated",
+    "lib": "@/lib",
+    "hooks": "@/hooks",
+    "jpt": "key"
+  },
+  "hasSrcDir": true
+}

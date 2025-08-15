@@ -43,10 +43,20 @@ export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
   }
 
   try {
-    return rawConfigSchema.parse(result.config)
+    let parsed = rawConfigSchema.parse(result.config)
+
+    // Provide fallback values
+    parsed = {
+      ...parsed,
+      aliases: {
+        ...parsed.aliases,
+        animated: parsed.aliases.animated ? parsed.aliases.animated : '@/components/animated',
+        hooks: parsed.aliases.hooks ? parsed.aliases.hooks : '@/components/hooks',
+        lib: parsed.aliases.lib ? parsed.aliases.lib : '@/components/lib',
+      },
+    }
+    return parsed
   } catch (error) {
-    throw new Error(
-      `Error loading components.json configuration: ${error instanceof Error ? error.message : 'Unknown error'}`
-    )
+    throw new Error(`Error loading components.json configuration: Invalid components.json file`)
   }
 }
