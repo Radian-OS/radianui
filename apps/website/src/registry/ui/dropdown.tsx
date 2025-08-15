@@ -1,10 +1,13 @@
 "use client"
 
 import React from "react"
+
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { DropdownMenuContentProps, DropdownMenuGroupProps, DropdownMenuItemProps, DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
+import { type DropdownMenuContentProps, type DropdownMenuGroupProps, type DropdownMenuItemProps, type DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight } from "lucide-react"
+
 import { cn } from "@/lib/utils"
+
 import { Divider } from "./divider"
 
 // Create a Dropdown component
@@ -39,7 +42,7 @@ function DropdownContent({
 				align="start"
 				side={placement}
 				className={cn(
-					"no-scrollbar border-border bg-bg-level2 drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5",
+					"no-scrollbar border-border bg-elevation-level2 drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border px-1.5 py-1.5",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 
 					className
@@ -114,8 +117,8 @@ function DropdownItem({
 				"focus:text-primary-foreground outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer items-center justify-between gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
 				inset && "pl-9",
 				{
-					"bg-fill-level2": isSelected,
-					"hover:bg-fill-level2": !isSelected,
+					"bg-fill2": isSelected,
+					"hover:bg-fill2": !isSelected,
 				},
 				className
 			)}
@@ -132,7 +135,7 @@ function DropdownItem({
 					</div>
 					<div className="flex items-center gap-2">
 						{endContent && <span>{endContent}</span>}
-						{isSelectable && (isSelected ? <Check size={20} className="stroke-text" /> : "")}
+						{isSelectable && (isSelected ? <Check size={20} className="stroke-fg" /> : "")}
 					</div>
 				</>
 			)}
@@ -201,10 +204,10 @@ function DropdownGroup({
 	}, [children])
 
 	return (
-		<div className="bg-bg-level2" ref={groupRef}>
+		<div className="bg-elevation-level2" ref={groupRef}>
 			<DropdownCtx.Provider value={contextValue}>
 				<DropdownMenuPrimitive.Group className={cn(className, "z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0")} data-radix-dropdown-menu-group {...props}>
-					{title && <label className="text-text-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
+					{title && <label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
 					{children}
 				</DropdownMenuPrimitive.Group>
 			</DropdownCtx.Provider>
@@ -244,7 +247,7 @@ function DropdownSubTrigger({
 		<DropdownMenuPrimitive.SubTrigger
 			disabled={disabled}
 			className={cn(
-				"focus:text-primary-foreground hover:bg-fill-level2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+				"focus:text-primary-foreground hover:bg-fill2 outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 flex cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
 				className
 			)}
 			{...props}>
@@ -262,7 +265,7 @@ function DropdownSubContent({ children, className, ...props }: DropdownMenuSubCo
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.SubContent
 				className={cn(
-					"border-border bg-bg-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
+					"border-border bg-elevation-level2 drop-shadow-xs z-50 flex min-w-36 flex-col items-stretch justify-start rounded-lg border p-1.5",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className
 				)}

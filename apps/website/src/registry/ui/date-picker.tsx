@@ -1,22 +1,24 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
-import { CalendarDateTime, ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
+import { ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
 import { cva } from "class-variance-authority"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, Check } from "lucide-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { DateField, DateInput as DateInputRC, DateSegment, DateValue } from "react-aria-components"
-import { ChevronProps, DayPicker, Modifiers } from "react-day-picker"
+import { type ChevronProps, DayPicker, type Modifiers } from "react-day-picker"
+
 import { cn } from "@/lib/utils"
+
 import { TimeSelector, formatTime, timeOptions } from "./calendar"
-import { Calendar, type CalendarProps, CalendarRange, getMergedClassNames } from "./calendar"
-import { Input, RoundedOptions, SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
+import { Calendar, type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
+import { Input, type RoundedOptions, type SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { SelectProps } from "./select"
-import { TimePickerProps } from "./time-picker"
+import { type SelectProps } from "./select"
+import { type TimePickerProps } from "./time-picker"
 
-export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg-base cursor-text", {
+export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-base cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -40,12 +42,277 @@ Intl.supportedValuesOf("timeZone").map(function (zone) {
 		.map((part) => part.replace(/_/g, " ").replace(/(^|\s)\S/g, (t) => t.toUpperCase()))
 		.join("/")
 })
-// const TIME_ZONES = Intl.supportedValuesOf("timeZone")
 
 const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
 export type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
 
 export type DatePickerModes = "single" | "multiple" | "range" | "time"
+
+// Custom Segmented Date Input Types and Component
+interface DateSegment {
+	type: "month" | "day" | "year" | "hour" | "minute" | "ampm" | "literal"
+	value: string
+	placeholder: string
+	maxLength: number
+	editable: boolean
+}
+
+interface SegmentedDateInputProps {
+	value?: ZonedDateTime | null
+	onChange?: (dateTime: ZonedDateTime | null) => void
+	showTime?: boolean
+	disabled?: boolean
+	className?: string
+	size?: SizeOptions
+}
+
+function SegmentedDateInput({ value, onChange, showTime = false, disabled = false, className = "", size = "32" }: SegmentedDateInputProps) {
+	const [focusedIndex, setFocusedIndex] = useState<number>(-1)
+	const [segments, setSegments] = useState<DateSegment[]>([])
+	const inputRefs = useRef<(HTMLInputElement | null)[]>([])
+
+	// Initialize segments based on showTime
+	const initializeSegments = useCallback(() => {
+		const baseSegments: DateSegment[] = [
+			{ type: "month", value: "", placeholder: "mm ", maxLength: 2, editable: true },
+			{ type: "literal", value: "/", placeholder: "/", maxLength: 1, editable: false },
+			{ type: "day", value: "", placeholder: "dd", maxLength: 2, editable: true },
+			{ type: "literal", value: "/", placeholder: "/", maxLength: 1, editable: false },
+			{ type: "year", value: "", placeholder: "yyyy", maxLength: 4, editable: true },
+		]
+
+		if (showTime) {
+			baseSegments.push(
+				{ type: "literal", value: " ", placeholder: " ", maxLength: 1, editable: false },
+				{ type: "hour", value: "", placeholder: "hh", maxLength: 2, editable: true },
+				{ type: "literal", value: ":", placeholder: ":", maxLength: 1, editable: false },
+				{ type: "minute", value: "", placeholder: "mm ", maxLength: 2, editable: true },
+				{ type: "literal", value: " ", placeholder: " ", maxLength: 1, editable: false },
+				{ type: "ampm", value: "", placeholder: "AM", maxLength: 2, editable: true }
+			)
+		}
+
+		setSegments(baseSegments)
+	}, [showTime])
+
+	// Update segments from ZonedDateTime value
+	const updateSegmentsFromValue = useCallback((dateTime: ZonedDateTime | null) => {
+		setSegments((prev) =>
+			prev.map((segment) => {
+				if (!dateTime) {
+					return { ...segment, value: segment.editable ? "" : segment.placeholder }
+				}
+
+				switch (segment.type) {
+					case "month":
+						return { ...segment, value: String(dateTime.month).padStart(2, "0") }
+					case "day":
+						return { ...segment, value: String(dateTime.day).padStart(2, "0") }
+					case "year":
+						return { ...segment, value: String(dateTime.year) }
+					case "hour":
+						const displayHour = dateTime.hour % 12 || 12
+						return { ...segment, value: String(displayHour).padStart(2, "0") }
+					case "minute":
+						return { ...segment, value: String(dateTime.minute).padStart(2, "0") }
+					case "ampm":
+						return { ...segment, value: dateTime.hour >= 12 ? "PM" : "AM" }
+					default:
+						return segment
+				}
+			})
+		)
+	}, [])
+
+	// Initialize segments on mount
+	useEffect(() => {
+		initializeSegments()
+	}, [initializeSegments])
+
+	// Update segments when value prop changes
+	useEffect(() => {
+		if (segments.length > 0) {
+			updateSegmentsFromValue(value ?? null)
+		}
+	}, [value, segments.length, updateSegmentsFromValue])
+
+	const handleSegmentChange = (index: number, newValue: string) => {
+		const segment = segments[index]
+		if (!segment.editable) return
+
+		// Validate input based on segment type
+		let validatedValue = newValue
+
+		switch (segment.type) {
+			case "month":
+				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+				if (parseInt(validatedValue) > 12 && validatedValue.length === 2) validatedValue = "12"
+				break
+			case "day":
+				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+				if (parseInt(validatedValue) > 31 && validatedValue.length === 2) validatedValue = "31"
+				break
+			case "year":
+				validatedValue = newValue.replace(/\D/g, "").slice(0, 4)
+				break
+			case "hour":
+				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+				const hourNum = parseInt(validatedValue)
+				if (hourNum > 12 && validatedValue.length === 2) validatedValue = "12"
+				if (hourNum === 0 && validatedValue.length === 2) validatedValue = "01"
+				break
+			case "minute":
+				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+				if (parseInt(validatedValue) > 59 && validatedValue.length === 2) validatedValue = "59"
+				break
+			case "ampm":
+				const upper = newValue.toUpperCase()
+				if (upper.startsWith("A")) validatedValue = "AM"
+				else if (upper.startsWith("P")) validatedValue = "PM"
+				else validatedValue = upper.slice(0, 2).replace(/[^AP]/g, "")
+				break
+		}
+
+		const newSegments = [...segments]
+		newSegments[index] = { ...segment, value: validatedValue }
+		setSegments(newSegments)
+
+		// Try to parse and notify parent
+		setTimeout(() => {
+			const updatedSegments = [...segments]
+			updatedSegments[index] = { ...segment, value: validatedValue }
+
+			const monthSegment = updatedSegments.find((s) => s.type === "month")
+			const daySegment = updatedSegments.find((s) => s.type === "day")
+			const yearSegment = updatedSegments.find((s) => s.type === "year")
+
+			const month = monthSegment?.value
+			const day = daySegment?.value
+			const year = yearSegment?.value
+
+			if (month && day && year && month.length >= 1 && day.length >= 1 && year.length === 4) {
+				let hour = 0
+				let minute = 0
+
+				if (showTime) {
+					const hourSegment = updatedSegments.find((s) => s.type === "hour")?.value
+					const minuteSegment = updatedSegments.find((s) => s.type === "minute")?.value
+					const ampm = updatedSegments.find((s) => s.type === "ampm")?.value
+
+					if (hourSegment && minuteSegment && ampm && hourSegment.length >= 1 && minuteSegment.length >= 1) {
+						hour = parseInt(hourSegment, 10)
+						minute = parseInt(minuteSegment, 10)
+
+						if (ampm === "AM" && hour === 12) hour = 0
+						if (ampm === "PM" && hour !== 12) hour += 12
+					} else if (showTime) {
+						onChange?.(null)
+						return
+					}
+				}
+
+				const isoString = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}[America/Los_Angeles]`
+				const parsedDateTime = parseZonedDateTime(isoString)
+				onChange?.(parsedDateTime)
+			} else if (!month && !day && !year) {
+				onChange?.(null)
+			}
+		}, 0)
+
+		// Auto-advance to next editable segment
+		if (validatedValue.length === segment.maxLength) {
+			const nextEditableIndex = segments.findIndex((s, i) => i > index && s.editable)
+			if (nextEditableIndex !== -1) {
+				setTimeout(() => {
+					inputRefs.current[nextEditableIndex]?.focus()
+				}, 0)
+			}
+		}
+	}
+
+	const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
+		const segment = segments[index]
+
+		if (e.key === "ArrowRight" || (e.key === "Tab" && !e.shiftKey)) {
+			const nextIndex = segments.findIndex((s, i) => i > index && s.editable)
+			if (nextIndex !== -1) {
+				e.preventDefault()
+				inputRefs.current[nextIndex]?.focus()
+			}
+		} else if (e.key === "ArrowLeft" || (e.key === "Tab" && e.shiftKey)) {
+			const prevSegments = segments.slice(0, index).reverse()
+			const prevIndex = prevSegments.findIndex((s) => s.editable)
+			if (prevIndex !== -1) {
+				const actualIndex = index - prevIndex - 1
+				e.preventDefault()
+				inputRefs.current[actualIndex]?.focus()
+			}
+		} else if (e.key === "Backspace" && segment.value === "") {
+			const prevSegments = segments.slice(0, index).reverse()
+			const prevIndex = prevSegments.findIndex((s) => s.editable)
+			if (prevIndex !== -1) {
+				const actualIndex = index - prevIndex - 1
+				inputRefs.current[actualIndex]?.focus()
+			}
+		}
+	}
+
+	const sizeClassMap = {
+		0: "h-fit",
+		28: "h-7 text-xs ",
+		32: "h-8 text-sm",
+		36: "h-9 text-sm",
+		40: "h-10 text-sm",
+		44: "h-11 text-base",
+		48: "h-12 text-base",
+	}
+
+	return (
+		<div className={`flex items-center ${sizeClassMap[size]} ${className}`}>
+			{segments.map((segment, index) => {
+				if (!segment.editable) {
+					return (
+						<span key={index} className="text-fg-tertiary mx-1 select-none">
+							{segment.placeholder}
+						</span>
+					)
+				}
+
+				return (
+					<input
+						key={index}
+						ref={(el) => {
+							inputRefs.current[index] = el
+						}}
+						type="text"
+						value={segment.value}
+						onChange={(e) => handleSegmentChange(index, e.target.value)}
+						onKeyDown={(e) => handleKeyDown(index, e)}
+						onFocus={() => setFocusedIndex(index)}
+						onBlur={() => setFocusedIndex(-1)}
+						disabled={disabled}
+						placeholder={segment.placeholder}
+						className={cn(
+							"inline-block rounded-sm border-none bg-transparent text-center outline-none",
+							"data-[focused]:bg-fill3",
+							"placeholder:text-fg-tertiary",
+							"focus:outline-hidden focus:caret-transparent",
+							{
+								"bg-fill3": focusedIndex === index,
+								"text-fg-disabled placeholder-text-disabled cursor-not-allowed": disabled,
+							}
+						)}
+						style={{
+							width: `${Math.max(segment.placeholder.length * 0.8, 1.5)}em`,
+							minWidth: "1.2em",
+						}}
+					/>
+				)
+			})}
+		</div>
+	)
+}
+
 // Type definition for DatePickerProps props
 export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	triggerClassName?: string
@@ -70,9 +337,10 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	disabled?: boolean
 	typeable?: boolean
 	disables?: boolean
-	onChange?: (dateTime: ZonedDateTime | null) => void // Add this line
+	onChange?: (dateTime: ZonedDateTime | null) => void
 	value?: ZonedDateTime | null
 }
+
 // DatePicker component definition
 function DatePicker({
 	selected,
@@ -87,11 +355,7 @@ function DatePicker({
 	showDateRangeShortcut = false,
 	defaultDateRangeShortcutValue,
 	placeholder,
-	// timePickerProps,
-	// timeZoneProps,
 	onSelectTime,
-	// selectedTimezone,
-	// onSelectTimezone,
 	size = defaultInputSize,
 	rounded = defaultInputRadius,
 	typeable = false,
@@ -229,7 +493,6 @@ function DatePicker({
 	useEffect(() => {
 		if (!displayText && !timeDisplay) return // Skip setting input if both are empty
 
-		// const todayFormatted = format(new Date(), "MMMM dd, yyyy");
 		const datePart = displayText
 		const combined = timeDisplay ? `${datePart}, ${timeDisplay}` : datePart
 		setInputValue(combined || "")
@@ -283,14 +546,14 @@ function DatePicker({
 							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
 								<PopoverTrigger disabled={disabled}>
 									<CalendarIcon
-										className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
-											"text-text-tertiary": !disabled,
-											"text-text-disabled cursor-not-allowed": disabled,
+										className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
+											"text-fg-tertiary": !disabled,
+											"text-fg-disabled cursor-not-allowed": disabled,
 										})}
 									/>
 								</PopoverTrigger>
 
-								<PopoverContent alignOffset={alignOffset} className={cn("bg-bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+								<PopoverContent alignOffset={alignOffset} className={cn("bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
 									{mode === "single" && (
 										<Calendar
 											onIndexChange={(value) => {
@@ -352,6 +615,7 @@ type DateRangeShortcutProps = {
 	selectedValue?: string | null
 	mode?: string
 }
+
 // DateRangeShortcut component definition
 export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }: DateRangeShortcutProps) {
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -369,8 +633,8 @@ export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }:
 	return (
 		<div
 			ref={containerRef}
-			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill-level1 text-text-disabled cursor-not-allowed" : "text-text"}`}>
-			<p className="text-text-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
+			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill1 text-fg-disabled cursor-not-allowed" : "text-fg"}`}>
+			<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
 			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
 				<DateRangeShortcutItem
 					mode={mode}
@@ -386,6 +650,7 @@ export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }:
 		</div>
 	)
 }
+
 type DateRangeShortcutItemProps = {
 	selectedValue: string | null
 	onClick: (e: React.MouseEvent<HTMLSpanElement>) => void
@@ -398,13 +663,13 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill-level2 cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
+			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill2 cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
 			data-value={value}
 			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}>
 			{label}
 			{selectedValue === value ? (
 				mode !== "single" && mode !== "multiple" ? (
-					<Check className="stroke-text-secondary" size={16} />
+					<Check className="stroke-fg-secondary" size={16} />
 				) : (
 					<span className="size-4" />
 				)
@@ -434,14 +699,14 @@ function TypeableDatePicker({
 	onSelectTime,
 	hint,
 	time,
-	onChange, // Add this prop
-	value, // Add this prop for controlled component
+	onChange,
+	value,
 	...props
 }: DatePickerProps & {
 	onChange?: (dateTime: ZonedDateTime | null) => void
 	value?: ZonedDateTime | null
 }) {
-	const mergedClassName = cn(`p-3 bg-bg-level1 ${showTime ? " border-r" : ""}`, className)
+	const mergedClassName = cn(`p-3 bg-elevation-level1 ${showTime ? " border-r" : ""}`, className)
 	const hideCaption: boolean = false
 
 	// Use controlled/uncontrolled pattern
@@ -483,38 +748,13 @@ function TypeableDatePicker({
 	// Merged components including custom ones
 	const mergedComponents = {
 		Chevron: (props: ChevronProps) => {
-			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-text" />
-			return <ChevronRight size={16} className="stroke-text" />
+			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
+			return <ChevronRight size={16} className="stroke-fg" />
 		},
 		...components,
 	}
 
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-
-	// Convert to DateValue for DateField
-	const dateValue = useMemo(() => {
-		if (!dateTime) {
-			// If no dateTime but time prop exists, create a dateTime with today's date
-			if (time && !dateTime) {
-				const today = new Date()
-				const isoString =
-					`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}` +
-					`T${String(time.hour).padStart(2, "0")}:${String(time.minute).padStart(2, "0")}` +
-					`[America/Los_Angeles]`
-
-				try {
-					const tempDateTime = parseZonedDateTime(isoString)
-					return new CalendarDateTime(tempDateTime.year, tempDateTime.month, tempDateTime.day, showTime ? tempDateTime.hour : 0, showTime ? tempDateTime.minute : 0)
-				} catch (error) {
-					console.error("Failed to create dateValue from time prop", error)
-					return null
-				}
-			}
-			return null
-		}
-
-		return new CalendarDateTime(dateTime.year, dateTime.month, dateTime.day, showTime ? dateTime.hour : 0, showTime ? dateTime.minute : 0)
-	}, [dateTime, showTime, time])
 
 	// Modified to call onChange callback
 	const handleDateTimeChange = (newDateTime: ZonedDateTime | null) => {
@@ -529,37 +769,6 @@ function TypeableDatePicker({
 			onSelectTime(newTime)
 		}
 	}
-
-	// Handle date changes with proper validation
-	const handleDateChange = useCallback(
-		(value: DateValue | null) => {
-			if (!value) {
-				handleDateTimeChange(null)
-				return
-			}
-
-			try {
-				// Ensure all date parts are properly formatted
-				const year = value.year
-				const month = "month" in value ? value.month : dateTime?.month || 1
-				const day = "day" in value ? value.day : dateTime?.day || 1
-				const hour = showTime && "hour" in value ? value.hour : dateTime?.hour || 0
-				const minute = showTime && "minute" in value ? value.minute : dateTime?.minute || 0
-
-				// Construct properly padded ISO string
-				const isoString =
-					`${String(year).padStart(4, "0")}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
-					`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
-					`[America/Los_Angeles]`
-
-				const newDateTime = parseZonedDateTime(isoString)
-				handleDateTimeChange(newDateTime)
-			} catch (error) {
-				console.error("Invalid date input", error)
-			}
-		},
-		[dateTime, showTime, handleDateTimeChange]
-	)
 
 	const sizeHeightMapping = {
 		0: "",
@@ -595,52 +804,27 @@ function TypeableDatePicker({
 		<Popover>
 			<PopoverTrigger disabled={disables} asChild>
 				<div className="flex flex-col items-start gap-1.5">
-					{label && <Label className={cn({ "text-text-disabled cursor-not-allowed": disables })}>{label}</Label>}
+					{label && <Label className={cn({ "text-fg-disabled cursor-not-allowed": disables })}>{label}</Label>}
 					<div
 						className={cn("w-[320px]", dateInputStyles({ size, rounded }), {
 							"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
-							"focus-within:border-primary focus-within:ring-primary/10 border-border-alpha focus-within:ring-2": !hasError && !disables,
-							"text-text-disables bg-fill-level1 cursor-not-allowed drop-shadow-none": disables,
+							"focus-within:border-primary focus-within:ring-primary/10 border-alpha focus-within:ring-2": !hasError && !disables,
+							"text-fg-disables bg-fill1 cursor-not-allowed drop-shadow-none": disables,
 						})}>
-						<DateField
-							granularity={showTime ? "minute" : "day"}
-							className={cn("flex flex-col gap-1 border-none")}
-							value={dateValue}
-							onChange={handleDateChange}
-							isDisabled={disables}
-							{...props}>
-							<DateInputRC>
-								{(segment) => (
-									<DateSegment
-										className={cn(
-											size,
-											"rounded-sm text-end",
-											"data-[focused]:bg-fill-level3",
-											"data-placeholder:text-text-tertiary",
-											"focus:outline-hidden focus:caret-transparent",
-											"data-[type=dayPeriod]:mr-0.5 data-[type=literal]:mr-0.5",
-											{
-												"text-text-disabled placeholder-text-disabled cursor-not-allowed": disables,
-											}
-										)}
-										segment={segment}
-									/>
-								)}
-							</DateInputRC>
-						</DateField>
+						<SegmentedDateInput value={dateTime} onChange={handleDateTimeChange} showTime={showTime} disabled={disables} size={size} />
 						<CalendarIcon
-							className={cn(sizeHeightMapping[size || 36], "stroke-text-tertiary cursor-pointer", {
-								"text-text-tertiary": !disables,
-								"text-text-disabled cursor-not-allowed": disables,
+							className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
+								"text-fg-tertiary": !disables,
+								"text-fg-disabled cursor-not-allowed": disables,
 							})}
 						/>
 					</div>
-					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-text-tertiary"}`}>{hint}</Label>}
+					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-fg-tertiary"}`}>{hint}</Label>}
 				</div>
 			</PopoverTrigger>
 
 			<PopoverContent className="w-auto border-none p-0">
-				<div className="bg-bg-level1 border-border drop-shadow-xs w-fit overflow-hidden rounded-xl border">
+				<div className="bg-elevation-level1 border-border drop-shadow-xs w-fit overflow-hidden rounded-xl border">
 					<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
 						{showDateRangeShortcut && <DateRangeShortcut mode="single" />}
 						<DayPicker
@@ -713,3 +897,5 @@ function TypeableDatePicker({
 		</Popover>
 	)
 }
+
+export { DatePicker }

@@ -1,8 +1,10 @@
 "use client"
 
 import { useMemo, useState } from "react"
+
 import { CircleCheck, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import { z } from "zod"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -40,7 +42,7 @@ const PasswordInputPreview = () => {
 	// Extract error messages
 	const errors = useMemo(() => {
 		if (validation.success) return []
-		return validation.error.errors.map((e) => e.message)
+		return validation.error.issues.map((e) => e.message)
 	}, [validation])
 
 	// Calculate progress based on the number of passed validations
@@ -117,7 +119,7 @@ value={progress}
 "At least one lowercase letter",
 "At least one uppercase letter",
 ].map((label) => (
-<p key={label} className="flex items-center gap-2 text-text-tertiary">
+<p key={label} className="flex items-center gap-2 text-fg-tertiary">
 <CircleCheck className={${codeCname}} />
 {label}
 </p>
@@ -267,7 +269,7 @@ export default PasswordInputPreview
 							<ProgressBar value={progress} />
 							<p className="text-sm font-semibold">Your Password must contain</p>
 							{["At least 8 characters", "At least one number", "At least one lowercase letter", "At least one uppercase letter"].map((label) => (
-								<p key={label} className="text-text-tertiary flex items-center gap-2">
+								<p key={label} className="text-fg-tertiary flex items-center gap-2">
 									<CircleCheck className={`size-4 ${isValid(label) ? "text-success" : ""}`} />
 									{label}
 								</p>

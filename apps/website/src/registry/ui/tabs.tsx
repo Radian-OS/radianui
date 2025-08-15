@@ -1,10 +1,13 @@
 "use client"
 
 import * as React from "react"
+
 import * as TabsPrimitive from "@radix-ui/react-tabs"
-import { TabsListProps } from "@radix-ui/react-tabs"
+import { type TabsListProps } from "@radix-ui/react-tabs"
 import { type VariantProps, cva } from "class-variance-authority"
+
 import { cn } from "@/lib/utils"
+
 import { Badge } from "./badge"
 
 export type TabsVariant = VariantProps<typeof tabsListStyles>["variant"]
@@ -25,11 +28,11 @@ const tabsListStyles = cva(
 				lg: "",
 			},
 			variant: {
-				default: "bg-fill-level3",
+				default: "bg-fill3",
 				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
 				outline: "border border-border",
 				ghost: "",
-				"outline-ghost": "bg-bg-base",
+				"outline-ghost": "bg-base",
 			},
 		},
 		defaultVariants: {
@@ -56,7 +59,7 @@ const tabsListStyles = cva(
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-[10px]",
+				className: "rounded-[0.625rem]",
 			},
 			{
 				size: "lg",
@@ -78,7 +81,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-text-secondary data-[state=active]:text-text w-max data-[orientation=vertical]:w-full disabled:text-text-disabled disabled:cursor-not-allowed",
+	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fgw-max data-[orientation=vertical]:w-full disabled:text-fg-disabled disabled:cursor-not-allowed",
 	{
 		variants: {
 			size: {
@@ -87,11 +90,11 @@ const tabsTriggerStyles = cva(
 				lg: "text-sm",
 			},
 			variant: {
-				default: "data-[state=active]:bg-bg-base border border-transparent data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
-				outline: "data-[state=active]:bg-fill-level2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
+				default: "data-[state=active]:bg-base border border-transparent data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
+				outline: "data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
-				ghost: "data-[state=active]:bg-fill-level2",
-				"outline-ghost": "data-[state=active]:bg-bg-base border border-transparent data-[state=active]:border-border-alpha data-[state=active]:drop-shadow-xs",
+				ghost: "data-[state=active]:bg-fill2",
+				"outline-ghost": "data-[state=active]:bg-base border border-transparent data-[state=active]:border-alpha data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [
@@ -181,7 +184,7 @@ const tabsTriggerStyles = cva(
 	}
 )
 
-const tabTriggerIconStyles = cva("[&>svg]:text-text-tertiary", {
+const tabTriggerIconStyles = cva("[&>svg]:text-fg-tertiary", {
 	variants: {
 		size: {
 			sm: "[&>svg]:size-4",

@@ -1,6 +1,7 @@
 "use client"
 
 import { Heart, HeartCrack } from "lucide-react"
+
 import { Checkbox, CheckboxGroup } from "../ui/checkbox"
 
 function CheckboxExample() {
@@ -39,31 +40,31 @@ function CheckboxExample() {
 						<Checkbox value="mike_torrello">
 							<div className="flex flex-col">
 								<span className="font-medium">Mike Torello</span>
-								<p className="text-text-tertiary font-normal">Head of Department of Physics</p>
+								<p className="text-fg-tertiary font-normal">Head of Department of Physics</p>
 							</div>
 						</Checkbox>
 						<Checkbox value="angela_bower">
 							<div className="flex flex-col">
 								<span className="font-medium">Angela Bower</span>
-								<p className="text-text-tertiary font-normal">Department of Neurology</p>
+								<p className="text-fg-tertiary font-normal">Department of Neurology</p>
 							</div>
 						</Checkbox>
 						<Checkbox value="anna_mureum">
 							<div className="flex flex-col">
 								<span className="font-medium">Anna Mureum</span>
-								<p className="text-text-tertiary font-normal">Head of Engineering</p>
+								<p className="text-fg-tertiary font-normal">Head of Engineering</p>
 							</div>
 						</Checkbox>
 						<Checkbox value="theodore_calvin">
 							<div className="flex flex-col">
 								<span className="font-medium">Theodore T.C. Calvin</span>
-								<p className="text-text-tertiary font-normal">Department of Thermodynamics</p>
+								<p className="text-fg-tertiary font-normal">Department of Thermodynamics</p>
 							</div>
 						</Checkbox>
 						<Checkbox value="angus_mac_gyver" disabled>
 							<div className="flex flex-col">
 								<span className="font-medium">Angus MacGyver</span>
-								<p className="text-text-tertiary font-normal">Resigned</p>
+								<p className="text-fg-tertiary font-normal">Resigned</p>
 							</div>
 						</Checkbox>
 					</CheckboxGroup>

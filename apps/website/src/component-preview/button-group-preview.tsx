@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { Ellipsis, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button, ButtonGroup } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -15,7 +17,7 @@ const ButtonGroupPreview = () => {
 	const [color, setColor] = useState<colors>("primary")
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="mb-10 pb-6" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>

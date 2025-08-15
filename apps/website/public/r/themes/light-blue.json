@@ -1,0 +1,20 @@
+{
+	"name": "light-blue",
+	"label": "Light Blue",
+	"cssVariables": {
+		"light": {
+			"primary": "oklch(0.6092 0.2041 255.8)",
+			"primary-accent": "oklch(0.949 0.0213 245.85)",
+			"primary-focus": "oklch(0.9135 0.0358 249.52)",
+			"primary-hover": "oklch(0.6722 0.1615 251.56)",
+			"primary-text": "oklch(0.4663 0.1065 251.21)"
+		},
+		"dark": {
+			"primary": "oklch(0.6092 0.2041 255.8)",
+			"primary-accent": "oklch(0.2739 0.0462 248.76)",
+			"primary-focus": "oklch(0.3147 0.0668 250.78)",
+			"primary-hover": "oklch(0.6722 0.1615 251.56)",
+			"primary-text": "oklch(0.829 0.0811 248.83)"
+		}
+	}
+}

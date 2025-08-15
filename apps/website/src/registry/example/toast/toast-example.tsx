@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { Box } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -95,7 +97,7 @@ const ToastExample = () => {
 							onClick={() =>
 								showToast({
 									customContent: (
-										<div className="bg-bg-level2 gap-2 rounded-lg p-3 text-white">
+										<div className="bg-elevation-level2 gap-2 rounded-lg p-3 text-white">
 											<div className="flex items-center space-x-3">
 												<Box />
 												<div>
@@ -137,7 +139,7 @@ const ToastExample = () => {
 		onClick={() =>
 			showToast({
 				customContent: (
-					<div className="bg-bg-level2 gap-2 rounded-lg p-3 text-white">
+					<div className="bg-elevation-level2 gap-2 rounded-lg p-3 text-white">
 						<div className="flex items-center space-x-3">
 							<Box />
 							<div>

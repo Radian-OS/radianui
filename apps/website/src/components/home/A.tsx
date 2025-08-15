@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState } from "react"
+
 import BarChart from "@public/icons/bar-chart-12.svg"
 import Cube from "@public/icons/cube-01.svg"
 import CubeOutline from "@public/icons/cube-outline.svg"
@@ -14,6 +15,7 @@ import Settings from "@public/icons/settings-02.svg"
 import Share from "@public/icons/share-07.svg"
 import User from "@public/icons/user-circle.svg"
 import Image from "next/image"
+
 import { cn } from "@/lib/utils"
 import { Avatar } from "@/registry/ui/avatar"
 import { Divider } from "@/registry/ui/divider"
@@ -24,7 +26,7 @@ function A({ className }: { className?: string }) {
 
 	return (
 		<div className={cn("border-border right-38 h-200 w-90 top-20 flex overflow-hidden rounded-2xl border transition-all duration-1000", className)}>
-			<div className="bg-bg-level0 flex w-fit flex-col justify-between px-2 py-3">
+			<div className="bg-elevation-negative flex w-fit flex-col justify-between px-2 py-3">
 				<div className="flex h-full flex-col items-center justify-between">
 					<div className="flex flex-col items-center gap-3">
 						<div className="p-1.5">
@@ -33,38 +35,38 @@ function A({ className }: { className?: string }) {
 						<div className="flex flex-col gap-0.5">
 							<SidebarIcon
 								id="homesmile"
-								icon={<HomeSmile className="text-text-secondary" />}
+								icon={<HomeSmile className="text-fg-secondary" />}
 								active={activeSidebarIcon === "homesmile"}
 								onClick={() => setActiveSidebarIcon("homesmile")}
 							/>
-							<SidebarIcon id="inbox" icon={<Inbox className="text-text-secondary" />} active={activeSidebarIcon === "inbox"} onClick={() => setActiveSidebarIcon("inbox")} />
+							<SidebarIcon id="inbox" icon={<Inbox className="text-fg-secondary" />} active={activeSidebarIcon === "inbox"} onClick={() => setActiveSidebarIcon("inbox")} />
 							<SidebarIcon
 								id="barchart"
-								icon={<BarChart className="text-text-secondary" />}
+								icon={<BarChart className="text-fg-secondary" />}
 								active={activeSidebarIcon === "barchart"}
 								onClick={() => setActiveSidebarIcon("barchart")}
 							/>
 							<SidebarIcon
 								id="lightning"
-								icon={<Lightning className="text-text-secondary" />}
+								icon={<Lightning className="text-fg-secondary" />}
 								active={activeSidebarIcon === "lightning"}
 								onClick={() => setActiveSidebarIcon("lightning")}
 							/>
-							<SidebarIcon id="cube" icon={<Cube className="text-text-secondary" />} active={activeSidebarIcon === "cube"} onClick={() => setActiveSidebarIcon("cube")} />
-							<SidebarIcon id="share" icon={<Share className="text-text-secondary" />} active={activeSidebarIcon === "share"} onClick={() => setActiveSidebarIcon("share")} />
+							<SidebarIcon id="cube" icon={<Cube className="text-fg-secondary" />} active={activeSidebarIcon === "cube"} onClick={() => setActiveSidebarIcon("cube")} />
+							<SidebarIcon id="share" icon={<Share className="text-fg-secondary" />} active={activeSidebarIcon === "share"} onClick={() => setActiveSidebarIcon("share")} />
 						</div>
 					</div>
 					<div className="flex flex-col items-center gap-3">
 						<div className="flex flex-col gap-0.5">
 							<SidebarIcon
 								id="lifebuoy"
-								icon={<LifeBuoy className="text-text-secondary" />}
+								icon={<LifeBuoy className="text-fg-secondary" />}
 								active={activeSidebarIcon === "lifebuoy"}
 								onClick={() => setActiveSidebarIcon("lifebuoy")}
 							/>
 							<SidebarIcon
 								id="settings-left"
-								icon={<Settings className="text-text-secondary" />}
+								icon={<Settings className="text-fg-secondary" />}
 								active={activeSidebarIcon === "settings-left"}
 								onClick={() => setActiveSidebarIcon("settings-left")}
 							/>
@@ -75,10 +77,10 @@ function A({ className }: { className?: string }) {
 			</div>
 
 			{/* Workspace Panel */}
-			<div className="bg-bg-base flex w-full flex-col">
-				<span className="w-full px-4 py-5 text-base font-medium leading-6">My Workspace</span>
-				<div className="text-text-secondary flex flex-col gap-0.5 px-3">
-					<span className="text-text-disabled py-2.25 px-2 text-xs font-medium">USER PANEL</span>
+			<div className="bg-base flex w-full flex-col">
+				<span className="text-fg w-full px-4 py-5 font-medium leading-6">My Workspace</span>
+				<div className="text-fg-secondary flex flex-col gap-0.5 px-3">
+					<span className="text-fg-disabled py-2.25 px-2 text-xs font-medium">USER PANEL</span>
 					<Item id="dashboard" icon={<Cube />} text="Dashboard" active={activeItem === "dashboard"} onClick={() => setActiveItem("dashboard")} />
 					<Item id="components" icon={<Search />} text="Components" active={activeItem === "components"} onClick={() => setActiveItem("components")} />
 					<Item id="blocks" icon={<CubeOutline />} text="Blocks" active={activeItem === "blocks"} onClick={() => setActiveItem("blocks")} />
@@ -87,9 +89,9 @@ function A({ className }: { className?: string }) {
 					<Item id="settings-user" icon={<Settings />} text="Settings" active={activeItem === "settings-user"} onClick={() => setActiveItem("settings-user")} />
 				</div>
 				<Divider spacing="8" />
-				<div className="bg-bg-base flex w-full flex-col">
-					<div className="text-text-secondary flex flex-col gap-0.5 px-3">
-						<span className="text-text-disabled py-2.25 px-2 text-xs font-medium">ADMIN</span>
+				<div className="bg-base flex w-full flex-col">
+					<div className="text-fg-secondary flex flex-col gap-0.5 px-3">
+						<span className="text-fg-disabled py-2.25 px-2 text-xs font-medium">ADMIN</span>
 						<Item id="analytics-admin" icon={<LineChart />} text="Analytics" active={activeItem === "analytics-admin"} onClick={() => setActiveItem("analytics-admin")} />
 						<Item id="settings-admin" icon={<Settings />} text="Settings" active={activeItem === "settings-admin"} onClick={() => setActiveItem("settings-admin")} />
 					</div>
@@ -113,8 +115,8 @@ function Item({ id, icon, text, active, onClick }: ItemProps) {
 			id={id}
 			onClick={onClick}
 			className={cn("font-mediu flex cursor-default items-center gap-3 rounded-md p-2 text-sm", {
-				"bg-bg-level0": active,
-				"hover:bg-fill-level1": !active,
+				"bg-elevation-negative": active,
+				"hover:bg-fill1": !active,
 			})}>
 			{icon} <span>{text}</span>
 		</div>
@@ -134,8 +136,8 @@ function SidebarIcon({ id, icon, active, onClick }: SidebarIconProps) {
 			id={id}
 			onClick={onClick}
 			className={cn("cursor-default rounded-md p-3", {
-				"bg-bg-base": active,
-				"hover:bg-inverse-fill-level4": !active,
+				"bg-base": active,
+				"hover:bg-inverse-fill4": !active,
 			})}>
 			{icon}
 		</div>

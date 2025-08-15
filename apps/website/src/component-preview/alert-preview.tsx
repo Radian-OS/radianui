@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { Bookmark, CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, Trash2, TriangleAlert } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
@@ -63,7 +65,7 @@ const AlertPreview = () => {
 
 		if (showEndContent) {
 			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
-			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-static-white/30 hover:bg-static-white/40"' : ""
+			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
 			code += `
   endContent={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
 		}
@@ -175,7 +177,7 @@ const AlertPreview = () => {
 							? {
 									endContent: (
 										<Button
-											className={`${variant === "strong" && color !== "neutral" ? "bg-static-white/30 hover:bg-static-white/40" : ""}`}
+											className={`${variant === "strong" && color !== "neutral" ? "bg-white/30 hover:bg-white/40" : ""}`}
 											color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>
 											Action
 										</Button>

@@ -1,9 +1,12 @@
 "use client"
 
 import { useState } from "react"
+
 import { Check, Copy } from "lucide-react"
 import ShikiHighlighter from "react-shiki"
+
 import { cn } from "@/lib/utils"
+
 import { Button } from "./button"
 
 type CodeAreaProps = {
@@ -174,7 +177,7 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 			{copiable && (
 				<Button
 					onClick={handleCopy}
-					className="text-static-white absolute right-3 top-3 z-50 rounded-md bg-transparent p-1.5 hover:bg-[#ffffff1a]"
+					className="absolute right-3 top-3 z-50 rounded-md bg-transparent p-1.5 text-white hover:bg-[#ffffff1a]"
 					aria-label="copy button"
 					iconOnly
 					size="32"

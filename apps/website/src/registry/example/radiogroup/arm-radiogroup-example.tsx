@@ -1,5 +1,7 @@
 import React from "react"
+
 import { EyeIcon, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -20,7 +22,7 @@ export default function ARMRadiogroupExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="bg-bg-base min-w-80 rounded-md border p-4 shadow-sm">
+					<div className="bg-base min-w-80 rounded-md border p-4 shadow-sm">
 						<RadioGroup defaultValue="m3_max" label="Select Your ARM Chip" className="gap-4">
 							<RadioGroupItem value="m3">M3</RadioGroupItem>
 							<RadioGroupItem value="m3_pro">M3 Pro</RadioGroupItem>
@@ -40,7 +42,7 @@ export default function ARMRadiogroupExample() {
 					title="arm-radiogroup-example.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<div className="bg-bg-base min-w-80 rounded-md border p-4 shadow-sm">
+					code={`<div className="bg-base min-w-80 rounded-md border p-4 shadow-sm">
 	<RadioGroup defaultValue="m3_max" label="Select Your ARM Chip" className="gap-4">
 		<RadioGroupItem value="m3">M3</RadioGroupItem>
 		<RadioGroupItem value="m3_pro">M3 Pro</RadioGroupItem>

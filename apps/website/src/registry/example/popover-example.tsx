@@ -21,7 +21,7 @@ const PopoverExample = () => {
 						<Avatar name="Aurther Dominic" src="https://randomuser.me/api/portraits/women/21.jpg" />
 						<div className="flex flex-col text-sm">
 							<div className="font-medium">Aurther Dominic</div>
-							<div className="text-text-secondary">dominic@radianos.com</div>
+							<div className="text-fg-secondary">dominic@radianos.com</div>
 						</div>
 					</div>
 					<div className="flex gap-3">

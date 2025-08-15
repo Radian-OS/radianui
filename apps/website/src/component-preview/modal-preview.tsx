@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { CircleAlert, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -93,7 +95,7 @@ const PopoverPreview = () => {
 								</div>
 							</ModalHeader>
 							<ModalBody>
-								<div className="bg-bg-level0 h-40 rounded-lg" />
+								<div className="bg-elevation-negative h-40 rounded-lg" />
 							</ModalBody>
 							<ModalFooter>
 								<ModalClose asChild>
@@ -129,7 +131,7 @@ const PopoverPreview = () => {
 			</div>
 		</ModalHeader>
 		<ModalBody>
-			<div className="bg-bg-level0 h-40 rounded-lg" />
+			<div className="bg-elevation-negative h-40 rounded-lg" />
 		</ModalBody>
 		<ModalFooter>
 			<ModalClose asChild>

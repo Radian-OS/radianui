@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
@@ -177,7 +179,7 @@ const TablePreview = () => {
 			header: "Status",
 			cell: ({ row }: { row: { original: PersonData } }) => (
 				<>
-					<Badge size="20" className={cn(row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary", row.original.status === "Active" && "bg-white text-black")}>
+					<Badge size="20" className={cn(row.original.status === "Inactive" && "bg-elevation-level1 text-fg-secondary", row.original.status === "Active" && "bg-white text-black")}>
 						{row.original.status}
 					</Badge>
 				</>

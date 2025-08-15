@@ -2,11 +2,13 @@
 
 // import { Map, User } from "lucide-react";
 import { useState } from "react"
+
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import Pagination from "@/registry/ui/pagination"
 import { Select, SelectItem } from "@/registry/ui/select"
 import MainTable from "@/registry/ui/table"
+
 import Demo from "./table-pagination-demo"
 
 // type Person = {
@@ -265,7 +267,7 @@ const columnsData = [
 		size: 200,
 		cell: ({ row }: { row: { original: PersonData } }) => (
 			<>
-				<Badge size="20" className={cn(row.original.status === "Inactive" && "bg-bg-level1 text-text-secondary", row.original.status === "Active" && "bg-white text-black")}>
+				<Badge size="20" className={cn(row.original.status === "Inactive" && "bg-elevation-level1 text-fg-secondary", row.original.status === "Active" && "bg-white text-black")}>
 					{row.original.status}
 				</Badge>
 			</>

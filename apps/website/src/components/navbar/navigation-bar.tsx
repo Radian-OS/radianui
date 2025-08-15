@@ -1,11 +1,14 @@
 "use client"
 
 import React, { useState } from "react"
+
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
+
 import { MobileNavigation } from "@/components/navbar/mobile-tablet-navigation"
 import { SearchDocs } from "@/components/navbar/search"
 import { DesktopThemeToggler } from "@/components/theme-toggler"
 import { Button } from "@/registry/ui/button"
+
 import { DesktopNavigation } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
@@ -17,7 +20,7 @@ export function NavigationBar() {
 
 	return (
 		<>
-			<nav className="border-soft bg-bg-base/80 sticky top-0 z-50 box-content w-full border-b backdrop-blur-sm">
+			<nav className="border-soft bg-base/80 sticky top-0 z-50 box-content w-full border-b backdrop-blur-sm">
 				<div className="max-w-368 mx-auto flex w-full items-center justify-between px-4 py-4 md:px-5 lg:gap-2">
 					{/* Left-hand side containing the logo and version badge */}
 					<div className="flex h-9 flex-shrink-0 items-center gap-2">

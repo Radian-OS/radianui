@@ -1,9 +1,12 @@
 "use client"
 
 import React from "react"
+
 import { Eye, EyeOff } from "lucide-react"
+
 import { cn } from "@/lib/utils"
-import { Input, InputProps } from "./input"
+
+import { Input, type InputProps } from "./input"
 
 type trailType = "show" | "hide" | "onFocus"
 
@@ -39,7 +42,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 				size={20}
 				onMouseDown={(e) => e.preventDefault()} // prevent blur
 				onClick={handleToggleVisibility}
-				className={cn("text-text-tertiary cursor-pointer", {
+				className={cn("text-fg-tertiary cursor-pointer", {
 					"cursor-not-allowed": disabled,
 				})}
 			/>
@@ -48,7 +51,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 				size={20}
 				onMouseDown={(e) => e.preventDefault()} // prevent blur
 				onClick={handleToggleVisibility}
-				className={cn("text-text-tertiary cursor-pointer", {
+				className={cn("text-fg-tertiary cursor-pointer", {
 					"cursor-not-allowed": disabled,
 				})}
 			/>
@@ -63,7 +66,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 					size={20}
 					onMouseDown={(e) => e.preventDefault()} // prevent blur
 					onClick={handleToggleVisibility}
-					className={cn("text-text-tertiary cursor-pointer", {
+					className={cn("text-fg-tertiary cursor-pointer", {
 						"cursor-not-allowed": disabled,
 					})}
 				/>
@@ -72,7 +75,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 					size={20}
 					onMouseDown={(e) => e.preventDefault()} // prevent blur
 					onClick={handleToggleVisibility}
-					className={cn("text-text-tertiary cursor-pointer", {
+					className={cn("text-fg-tertiary cursor-pointer", {
 						"cursor-not-allowed": disabled,
 					})}
 				/>

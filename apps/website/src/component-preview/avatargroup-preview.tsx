@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
@@ -57,7 +59,7 @@ const AvatargroupPreview = () => {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="mb-10 pb-6" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>

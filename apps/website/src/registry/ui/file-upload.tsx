@@ -2,9 +2,12 @@
 
 import type React from "react"
 import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useCallback, useRef, useState } from "react"
+
 import { cva } from "class-variance-authority"
 import { FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTextIcon, HeadphonesIcon, Upload, VideoIcon, XIcon } from "lucide-react"
+
 import { cn } from "@/lib/utils"
+
 import { Button } from "./button"
 import { Input } from "./input"
 import { Label } from "./label"
@@ -40,22 +43,22 @@ const getFileIcon = (file: { file: File | { type: string; name: string; preview?
 }
 
 type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
+	label?: string
+	title?: string
+	description?: string
+	rounded?: RoundedOptions
+	disabled?: boolean
+	hasError?: boolean
+	hint?: string
 	maxSize?: number
 	containerClassName?: string
-	rounded?: RoundedOptions
-	label?: string
 	variant?: string
 	className?: string
 	accept?: string
 	error?: boolean
-	disabled?: boolean
 	multiple?: boolean
 	maxFiles?: number
 	sizes?: SizeOptions
-	title?: string
-	description?: string
-	hint?: string
-	hasError?: boolean
 	value?: FileWithPreview[] // External file list
 	onChange?: (files: FileWithPreview[]) => void // Callback when files change
 }
@@ -123,7 +126,7 @@ function FileUpload({
 	const defaultFileUploadRadius = "lg"
 
 	const fileUploadVariants = cva(
-		"border-border-alpha bg-fill-level1 max-h-50 relative flex h-55 w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
+		"border-alpha bg-fill1 max-h-50 relative flex h-55 w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
 		{
 			variants: {
 				...cvaFileUploadVariants,
@@ -164,17 +167,17 @@ function FileUpload({
 						className={cn(fileUploadVariants({ rounded }), {
 							"border-primary bg-primary/5": isDragging,
 							"border-error bg-error/5": error,
-							"bg-bg-level0 cursor-not-allowed": disabled,
+							"bg-elevation-negative cursor-not-allowed": disabled,
 							"hover:border-primary hover:bg-primary/5": !disabled,
 						})}>
 						<input id="picture" {...getInputProps()} className="sr-only" aria-label="Upload image file" />
 						<div className="flex flex-col items-center justify-center gap-4 px-4 py-3 text-center">
 							<Button disabled={disabled} variant="outline" color="neutral" size="36" iconOnly>
-								<Upload className="text-text-secondary size-6" />
+								<Upload className="text-fg-secondary size-6" />
 							</Button>
 							<div className="flex flex-col gap-2">
-								<p className="text-text text-sm font-semibold leading-5">{title}</p>
-								<p className="text-text-tertiary text-xs font-normal leading-4">
+								<p className="text-fgtext-sm font-semibold leading-5">{title}</p>
+								<p className="text-fg-tertiary text-xs font-normal leading-4">
 									{description} (max. {maxSize} MB){" "}
 								</p>
 							</div>
@@ -182,7 +185,7 @@ function FileUpload({
 								variant="outline"
 								disabled={disabled}
 								size="32"
-								className={`text-text-secondary text-sm font-medium ${disabled ? "cursor-not-allowed" : ""}`}
+								className={`text-fg-secondary text-sm font-medium ${disabled ? "cursor-not-allowed" : ""}`}
 								onClick={() => {
 									if (!disabled) {
 										openFileDialog()
@@ -195,7 +198,7 @@ function FileUpload({
 
 					{/* Show hint only if there are no errors, or show error in hint style */}
 					{(hint || errors.length > 0) && (
-						<Label className={`flex items-start text-xs font-normal ${errors.length > 0 || hasError ? "text-error" : "text-text-tertiary"}`}>
+						<Label className={`flex items-start text-xs font-normal ${errors.length > 0 || hasError ? "text-error" : "text-fg-tertiary"}`}>
 							{errors.length > 0 ? errors[0] : hint}
 						</Label>
 					)}
@@ -206,14 +209,14 @@ function FileUpload({
 							{files.map((file) => (
 								<div key={file.id} className="bg-background flex items-center justify-between gap-2 rounded-lg border p-2 pe-3">
 									<div className="flex items-center gap-3 overflow-hidden">
-										<div className="flex aspect-square size-10 shrink-0 items-center justify-center overflow-hidden rounded border">{getFileIcon(file)}</div>
+										<div className="flex aspect-square size-10 shrink-0 items-center justify-center overflow-hidden rounded-sm border">{getFileIcon(file)}</div>
 										<div className="flex min-w-0 flex-col gap-0.5">
 											<p className="truncate text-[13px] font-medium">{file.file.name}</p>
 											<p className="text-muted-foreground text-xs">{formatBytes(file.file.size)}</p>
 										</div>
 									</div>
 
-									<XIcon className="text-text-tertiary size-4 shrink-0 cursor-pointer" onClick={() => removeFile(file.id)} aria-hidden="true" />
+									<XIcon className="text-fg-tertiary size-4 shrink-0 cursor-pointer" onClick={() => removeFile(file.id)} aria-hidden="true" />
 								</div>
 							))}
 
@@ -587,3 +590,5 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 
 	return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i]
 }
+
+export { FileUpload }

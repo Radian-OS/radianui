@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
+
 import { EyeIcon, Minus, Plus, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -65,11 +67,11 @@ ${
     <Button
       iconOnly
       size={size}
-      className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+      className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
       variant="neutral-soft"
       onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}
     >
-      <Minus className="text-text-disabled size-5" />
+      <Minus className="text-fg-disabled size-5" />
     </Button>
     <Input
       className="w-61 rounded-l-none border-l-0 border-r-0 focus-within:border-l focus-within:border-r"
@@ -83,11 +85,11 @@ ${
     <Button
       iconOnly
       size={size}
-      className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+      className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
       variant="neutral-soft"
       onClick={() => setAmount((v) => String(Number(v || "0") + 1))}
     >
-      <Plus className="text-text-disabled size-5" />
+      <Plus className="text-fg-disabled size-5" />
     </Button>
   </div>
 </div>
@@ -207,11 +209,11 @@ export default CounterInput
 								<Button
 									iconOnly
 									size={size}
-									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
 									variant="soft"
 									color="neutral"
 									onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}>
-									<Minus className="text-text-disabled size-5" />
+									<Minus className="text-fg-disabled size-5" />
 								</Button>
 								<Input
 									className="w-61 rounded-l-none border-l-0 border-r-0 text-center focus-within:border-l focus-within:border-r"
@@ -224,11 +226,11 @@ export default CounterInput
 								<Button
 									iconOnly
 									size={size}
-									className="border-border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
 									variant="soft"
 									color="neutral"
 									onClick={() => setAmount((v) => String(Number(v || "0") + 1))}>
-									<Plus className="text-text-disabled size-5" />
+									<Plus className="text-fg-disabled size-5" />
 								</Button>
 							</div>
 						</div>

@@ -1,5 +1,7 @@
 import { useState } from "react"
-import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
+import { EyeIcon, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Button } from "@/registry/ui/button"
@@ -52,7 +54,7 @@ export default function AccordionPreview() {
 					<Dropdown>
 						<DropdownTrigger asChild>
 							<Button variant="outline" color="neutral" size="36" iconOnly>
-								<Settings />
+								Properties
 							</Button>
 						</DropdownTrigger>
 						<DropdownContent className="min-w-20">

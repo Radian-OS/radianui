@@ -2,8 +2,10 @@
 
 import React, { SVGProps } from "react"
 import type { JSX } from "react"
+
 import { Check, CopyIcon } from "lucide-react"
 import { useTheme } from "next-themes"
+
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -161,7 +163,7 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 	}
 
 	return (
-		<Tabs value={activeTab} onValueChange={handleTabChange} variant="outline-ghost" size="md" className={cn("bg-fill-level2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+		<Tabs value={activeTab} onValueChange={handleTabChange} variant="outline-ghost" size="md" className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
 			<div className="flex items-center justify-between pr-1">
 				<TabsList className="bg-transparent">
 					{pkg.map((manager) => (

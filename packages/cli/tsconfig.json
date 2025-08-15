@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "target": "ES2019",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "noImplicitAny": false,
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
+    "baseUrl": "./src/",
+    "paths": {
+      "@utils/*": ["utils/*"],
+      "@preflights/*": ["preflights/*"],
+      "@commands/*": ["commands/*"]
+    }
+  },
+  "lib": ["ESNext"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

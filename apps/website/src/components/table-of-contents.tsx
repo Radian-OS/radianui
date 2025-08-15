@@ -1,7 +1,9 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
+
 import Link from "next/link"
+
 import { MdxHeading } from "@/lib/get-mdx-headings"
 import { cn } from "@/lib/utils"
 
@@ -116,11 +118,11 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 						<li key={heading.id} className="relative">
 							<Link
 								ref={activeHeadingId === heading.id ? activeRef : null}
-								className={cn("text-text-secondary group relative block py-1 pl-4 text-sm")}
+								className={cn("text-fg-secondary group relative block py-1 pl-4 text-sm")}
 								href={`#${heading.id}`}
 								onClick={(e) => handleHeadingClick(e, heading.id)}>
 								{/* Hover indicator - only show when not active */}
-								{activeHeadingId !== heading.id && <div className="bg-border-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+								{activeHeadingId !== heading.id && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
 								{heading.text}
 							</Link>
 						</li>

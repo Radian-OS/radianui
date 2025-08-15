@@ -1,8 +1,10 @@
 "use client"
 
 import React from "react"
+
 import { type VariantProps, cva } from "class-variance-authority"
 import { CirclePlus } from "lucide-react"
+
 import { cn } from "@/lib/utils"
 
 type AvatarVariant = NonNullable<VariantProps<typeof avatarVariants>["variant"]>
@@ -46,7 +48,7 @@ const AvatarFallbackIcon = ({ className, variant }: { className: string; variant
 					d="M18.0081 19.8C21.9759 19.8 25.1998 16.5761 25.1998 12.6083C25.1998 8.64044 21.9759 5.40002 18.0081 5.40002C14.0402 5.40002 10.7998 8.6239 10.7998 12.5918C10.7998 16.5596 14.0237 19.7835 17.9915 19.7835C18.0081 19.8"
 					className="fill-bg-base"
 				/>
-				<rect x="1" y="1" width="34" height="34" rx={borderRadiusSecondRect} ry={borderRadiusSecondRect} className="stroke-text-disabled" strokeWidth={2} />
+				<rect x="1" y="1" width="34" height="34" rx={borderRadiusSecondRect} ry={borderRadiusSecondRect} className="stroke-fg-disabled" strokeWidth={2} />
 			</g>
 		</svg>
 	)
@@ -174,7 +176,7 @@ function Avatar({ src, name, className, size = "36", variant = "circle", status 
 				<span
 					className={cn(
 						"flex size-full items-center justify-center rounded-[inherit]",
-						name ? "bg-primary truncate overflow-ellipsis px-1 text-white" : "text-text-level2 overflow-hidden bg-[inherit]"
+						name ? "bg-primary truncate overflow-ellipsis px-1 text-white" : "text-fg-level2 overflow-hidden bg-[inherit]"
 					)}>
 					{name ? getInitials(name, size) : <AvatarFallbackIcon variant={variant} className={"text-bg-base size-full"} />}
 				</span>

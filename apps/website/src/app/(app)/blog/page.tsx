@@ -1,6 +1,7 @@
 import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
+
 import { EmailSubscribe } from "@/components/email-subscribe"
 import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
@@ -22,7 +23,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 						<Badge>Blogs and Updates</Badge>
 						<h1 className="heading-3">Latest Updates and Insights from the Radian Team</h1>
 					</div>
-					<p className="text-text-secondary text-base">Learn more about Radian OS, updates, and reads from our team and industry leading experts</p>
+					<p className="text-fg-secondary text-base">Learn more about Radian OS, updates, and reads from our team and industry leading experts</p>
 					<EmailSubscribe />
 				</section>
 				<div className="hidden items-center md:flex">
@@ -46,14 +47,14 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 						<Image className="md:w-70 md:h-45 h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
 						<section className="flex flex-col lg:items-start">
 							<div className="flex flex-col gap-1 pt-2 lg:items-start lg:pt-0">
-								<p className="text-text-tertiary text-sm">{blog.card}</p>
+								<p className="text-fg-tertiary text-sm">{blog.card}</p>
 								<span className="heading-6">{blog.title}</span>
 							</div>
 							<div className="flex gap-2 pb-5 pt-3">
 								<AvatarGroup>{blog.author ? blog.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup>
-								<span className="text-text-secondary">{blog.formattedDate}</span>
+								<span className="text-fg-secondary">{blog.formattedDate}</span>
 							</div>
-							<p className="text-text-secondary max-w-121 text-sm lg:text-start">{blog.description}</p>
+							<p className="text-fg-secondary max-w-121 text-sm lg:text-start">{blog.description}</p>
 						</section>
 					</Link>
 				</span>
@@ -70,7 +71,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 					</div>
 					<div className="flex flex-col items-center gap-3">
 						<span className="heading-6">No updates for the team yet!</span>
-						<p className="text-text-secondary max-w-105 text-center text-base">
+						<p className="text-fg-secondary max-w-105 text-center text-base">
 							Looks like you’re a bit early here. No worries, our team are working hard to bring you the first update
 						</p>
 					</div>

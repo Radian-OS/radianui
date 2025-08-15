@@ -1,4 +1,5 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Pointer } from "@/registry/animated/pointer"
 import { Button } from "@/registry/ui/button"
@@ -32,7 +33,7 @@ const InfiniteScrollPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="w-100 bg-fill-level2 mx-auto flex h-80 items-center justify-center rounded-lg p-2">
+					<div className="w-100 bg-fill2 mx-auto flex h-80 items-center justify-center rounded-lg p-2">
 						<span>Hover over here</span>
 						<Pointer />
 					</div>

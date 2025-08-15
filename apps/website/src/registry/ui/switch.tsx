@@ -1,7 +1,9 @@
 "use client"
 
 import React, { useEffect, useId, useRef, useState } from "react"
+
 import { cva } from "class-variance-authority"
+
 import { cn } from "@/lib/utils"
 
 const switchStyles = cva("relative flex cursor-pointer items-center gap-2.5 rounded-full bg-border p-0.75 transition-all duration-[400ms] ease-in-out", {
@@ -16,7 +18,7 @@ const switchStyles = cva("relative flex cursor-pointer items-center gap-2.5 roun
 	},
 })
 
-const sliderStyles = cva("absolute select-none rounded-full bg-static-white transition-all duration-[400ms] ease-in-out", {
+const sliderStyles = cva("absolute select-none rounded-full bg-white transition-all duration-[400ms] ease-in-out", {
 	variants: {
 		size: {
 			"20": "size-3.5",
@@ -70,7 +72,7 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 					className={cn(
 						switchStyles({ size }),
 						// Add focus styles using peer selector
-						"peer-focus-visible:ring-primary peer-focus-visible:ring-offset-bg-base text-text peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
+						"peer-focus-visible:ring-primary peer-focus-visible:ring-offset-bg-base text-fgpeer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
 						{
 							"bg-primary": selected,
 							"cursor-not-allowed": disabled,
@@ -90,7 +92,7 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 				<label
 					htmlFor={switchId}
 					className={cn("select-none font-normal", {
-						"text-text-disabled cursor-not-allowed": disabled,
+						"text-fg-disabled cursor-not-allowed": disabled,
 						"text-sm": size === "20",
 						"text-base": size === "24",
 					})}>

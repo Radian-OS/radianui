@@ -1,5 +1,8 @@
+"use client"
+
 import React from "react"
-import { Easing, Variants, motion } from "motion/react"
+
+import { type Easing, type Variants, motion } from "motion/react"
 
 type EaseOption = Easing | [number, number, number, number] // Cubic bezier array must have exactly 4 numbers
 

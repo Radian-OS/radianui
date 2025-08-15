@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { EyeIcon, RotateCw, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { AnimatedList } from "@/registry/animated/animated-list"
 import { Button } from "@/registry/ui/button"
@@ -59,7 +61,7 @@ const AnimatedListPreview = () => {
 							{animatedListData.map((d, i) => (
 								<div className="w-80 rounded-lg border p-2" key={i}>
 									<p>{d.text}</p>
-									<p className="text-text-tertiary text-sm">{d.time}</p>
+									<p className="text-fg-tertiary text-sm">{d.time}</p>
 								</div>
 							))}
 						</AnimatedList>
@@ -77,7 +79,7 @@ const AnimatedListPreview = () => {
 		{animatedListData.map((d, i) => (
 			<div className="w-80 rounded-lg border p-2" key={i}>
 				<p>{d.text}</p>
-				<p className="text-text-tertiary text-sm">{d.time}</p>
+				<p className="text-fg-tertiary text-sm">{d.time}</p>
 			</div>
 		))}
 	</AnimatedList>

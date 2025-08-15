@@ -1,9 +1,12 @@
 "use client"
 
 import * as React from "react"
+
 import { type VariantProps, cva } from "class-variance-authority"
 import { type OTPInputProps, OTPInput as Root, type SlotProps } from "input-otp"
+
 import { cn } from "@/lib/utils"
+
 import { Label } from "./label"
 
 type SlotSize = NonNullable<VariantProps<typeof slotVariants>["size"]>
@@ -38,7 +41,7 @@ type OTPInputContextType = {
 const OTPInputContext = React.createContext<OTPInputContextType | null>(null)
 
 const slotVariants = cva(
-	"relative rounded-lg shadow-2xs font-semibold bg-bg-base text-text flex items-center justify-center placeholder:select-none appearance-none transition-all outline-hidden border border-border-alpha",
+	"relative rounded-lg shadow-2xs font-semibold bg-base text-fgflex items-center justify-center placeholder:select-none appearance-none transition-all outline-hidden border border-alpha",
 	{
 		variants: {
 			size: {
@@ -47,7 +50,7 @@ const slotVariants = cva(
 				"36": "size-9 text-sm p-2",
 				"40": "size-10 text-sm p-2.5",
 				"44": "size-11 text-sm p-2.5",
-				"56": "size-14 text-base p-4",
+				"56": "size-14 text-fgp-4",
 			},
 		},
 	}
@@ -69,7 +72,7 @@ function InputOtp({ size = "40", length = 6, label, disabled, hasError, errorMsg
 				{label && (
 					<Label
 						className={cn("w-fit text-sm font-medium", {
-							"text-text-disabled cursor-not-allowed select-none": disabled,
+							"text-fg-disabled cursor-not-allowed select-none": disabled,
 						})}>
 						{label}
 					</Label>
@@ -99,8 +102,8 @@ function Slot({ isActive, hasFakeCaret, char }: SlotProps) {
 	return (
 		<div
 			className={cn(slotVariants({ size: size }), {
-				"ring-primary-focus border-primary-stroke ring-3": isActive,
-				"bg-bg-level0 border-border cursor-not-allowed": disabled,
+				"ring-primary-focus border-primary-hover ring-3": isActive,
+				"bg-elevation-negative border-border cursor-not-allowed": disabled,
 				"border-error-stroke ring-error-focus": hasError,
 			})}>
 			{char !== null && <div>{char}</div>}

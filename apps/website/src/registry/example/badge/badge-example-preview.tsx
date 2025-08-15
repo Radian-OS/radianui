@@ -1,4 +1,5 @@
 import { EyeIcon, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
@@ -69,7 +70,7 @@ My Custom Badge
 	]
 
 	return (
-		<div className="mb-10 mt-2 space-y-8">
+		<div className="mb-10 mt-2 space-y-8 pb-6">
 			{badgeExamples.map((example, index) => (
 				<div key={index} className="overflow-hidden rounded-lg">
 					<h6 className="heading-6 mb-4 font-semibold">{example.name}</h6>

@@ -1,7 +1,9 @@
 "use client"
 
 import { useState } from "react"
+
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -38,7 +40,6 @@ const SpinnerPreview = () => {
 									<DropdownItem value="simple">simple</DropdownItem>
 									<DropdownItem value="activity">activity</DropdownItem>
 									<DropdownItem value="wave">wave</DropdownItem>
-									<DropdownItem value="snake">snake</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>

@@ -1,4 +1,5 @@
 import React from "react"
+
 import Footer from "@/components/footer"
 import A from "@/components/home/A"
 import B from "@/components/home/B"
@@ -11,7 +12,7 @@ import { cn } from "@/lib/utils"
 export default function Home() {
 	return (
 		<div className="w-full overflow-x-hidden">
-			<div className="border-border-alpha max-w-310 mx-auto box-border border-l border-r">
+			<div className="border-alpha max-w-310 mx-auto box-border border-l border-r">
 				<div className="relative">
 					<div className="relative overflow-hidden pb-20 pt-12">
 						<HeroSection />

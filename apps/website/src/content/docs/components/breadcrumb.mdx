@@ -23,6 +23,8 @@ links:
 
 <CodeSnippet title="/components/ui/breadcrumb.tsx" code={`import {Breadcrumb,BreadcrumbItem} from "@/components/ui/breadcrumb"`} />
 
+---
+
 ## Props
 
 <PropsTableWrapper>
@@ -48,10 +50,11 @@ links:
 		title="BreadcrumbItem"
 		data={[
 			{
-				name: "href",
-				values: ["string"],
+				name: "asChild",
+				values: ["boolean"],
 				required: true,
-				description: "Defines the link target for the breadcrumb item",
+				description: "Anchor or Link tag expected as children",
+				defaultValue: "true",
 			},
 		]}
 	/>

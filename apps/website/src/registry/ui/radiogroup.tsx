@@ -1,7 +1,9 @@
 "use client"
 
 import * as React from "react"
+
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
+
 import { cn } from "@/lib/utils"
 
 type RadioGroupSize = "sm" | "md" | "lg"
@@ -55,7 +57,7 @@ function RadioGroupItem({ className, size: itemSize, disabled: itemDisabled, chi
 			className={cn(
 				"flex max-w-fit cursor-pointer items-center gap-2 text-sm font-medium",
 				{
-					"text-text-tertiary cursor-not-allowed": disabled,
+					"text-fg-tertiary cursor-not-allowed": disabled,
 					"text-base": size === "lg",
 				},
 				className
@@ -64,7 +66,7 @@ function RadioGroupItem({ className, size: itemSize, disabled: itemDisabled, chi
 				disabled={disabled}
 				data-slot="radio-item"
 				className={cn(
-					"outline-hidden border-border-alpha data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-text-tertiary focus-visible:ring-primary focus-visible:ring-offset-bg-base flex aspect-square items-center justify-center rounded-full border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed data-[state=checked]:border-none",
+					"outline-hidden border-alpha data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-text-tertiary focus-visible:ring-primary focus-visible:ring-offset-bg-base flex aspect-square items-center justify-center rounded-full border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed data-[state=checked]:border-none",
 					{
 						"size-4": size === "sm",
 						"size-5": size === "md",
@@ -73,7 +75,7 @@ function RadioGroupItem({ className, size: itemSize, disabled: itemDisabled, chi
 				)}
 				{...props}>
 				<RadioGroupPrimitive.Indicator
-					className={cn("bg-bg-base flex items-center justify-center rounded-full", {
+					className={cn("bg-base flex items-center justify-center rounded-full", {
 						"size-2": size === "sm",
 						"size-2.5": size === "md",
 						"size-3": size === "lg",

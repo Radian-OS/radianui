@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
@@ -20,9 +22,9 @@ const DrawerPreview = () => {
 			<DrawerDescription>This is a drawer description message.</DrawerDescription>
 		</DrawerHeader>
 		<DrawerBody className="h-100 ${position === "left" || position === "right" ? "w-112.5 flex flex-col gap-3" : "flex gap-3"}">
-			<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
-			<div className="bg-fill-level3 h-64 rounded-radius-xl" ></div>
-			<div className="bg-fill-level4 h-64 rounded-radius-xl" ></div>
+			<div className="bg-fill4 h-64 rounded-radius-xl" ></div>
+			<div className="bg-fill3 h-64 rounded-radius-xl" ></div>
+			<div className="bg-fill4 h-64 rounded-radius-xl" ></div>
 		</DrawerBody>
 			<DrawerFooter>
 			<DrawerClose>
@@ -118,9 +120,9 @@ const DrawerPreview = () => {
 								<DrawerDescription>This is a drawer description message.</DrawerDescription>
 							</DrawerHeader>
 							<DrawerBody className={`h-100 ${position === "left" || position === "right" ? "w-112.5 flex flex-col gap-3" : "flex gap-3"}`}>
-								<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
-								<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
-								<div className="bg-fill-level2 h-full w-full rounded-xl"></div>
+								<div className="bg-fill2 h-full w-full rounded-xl"></div>
+								<div className="bg-fill2 h-full w-full rounded-xl"></div>
+								<div className="bg-fill2 h-full w-full rounded-xl"></div>
 							</DrawerBody>
 							<DrawerFooter>
 								<DrawerClose>

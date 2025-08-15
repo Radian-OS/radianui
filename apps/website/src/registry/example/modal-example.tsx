@@ -1,5 +1,6 @@
 import { CircleAlert } from "lucide-react"
 import Image from "next/image"
+
 import { Button } from "../ui/button"
 import { Divider } from "../ui/divider"
 import { Input } from "../ui/input"
@@ -41,7 +42,7 @@ const Modal1 = () => (
 				</div>
 			</ModalHeader>
 			<ModalBody>
-				<div className="bg-bg-level0 h-40 rounded-lg" />
+				<div className="bg-elevation-negative h-40 rounded-lg" />
 			</ModalBody>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -64,7 +65,7 @@ const Modal2 = () => (
 				<ModalDescription>Are you sure you want to change the content in this section.</ModalDescription>
 			</ModalHeader>
 			<Divider className="w-100 -mx-5 my-0" />
-			<div className="bg-bg-level0 h-40 rounded-lg"></div>
+			<div className="bg-elevation-negative h-40 rounded-lg"></div>
 			<Divider className="w-100 -mx-5 my-0" />
 			<ModalFooter>
 				<ModalClose asChild>
@@ -92,10 +93,10 @@ const Modal3 = () => (
 					<TabsTrigger value="followers">Followers</TabsTrigger>
 					<TabsTrigger value="invites">Invites</TabsTrigger>
 				</TabsList>
-				<TabsContent value="view" className="bg-bg-level0 h-[67px] rounded-lg" />
-				<TabsContent value="mentions" className="bg-bg-level0 h-[67px] rounded-lg" />
-				<TabsContent value="followers" className="bg-bg-level0 h-[67px] rounded-lg" />
-				<TabsContent value="invites" className="bg-bg-level0 h-[67px] rounded-lg" />
+				<TabsContent value="view" className="bg-elevation-negative h-[67px] rounded-lg" />
+				<TabsContent value="mentions" className="bg-elevation-negative h-[67px] rounded-lg" />
+				<TabsContent value="followers" className="bg-elevation-negative h-[67px] rounded-lg" />
+				<TabsContent value="invites" className="bg-elevation-negative h-[67px] rounded-lg" />
 			</Tabs>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -118,9 +119,9 @@ const Modal4 = () => (
 				<ModalDescription>Select a template to start working on your project</ModalDescription>
 			</ModalHeader>
 			<div className="flex flex-col gap-4">
-				<div className="bg-bg-level0 h-[100px] rounded-lg" />
-				<div className="bg-bg-level0 h-[100px] rounded-lg" />
-				<div className="bg-bg-level0 h-[100px] rounded-lg" />
+				<div className="bg-elevation-negative h-[100px] rounded-lg" />
+				<div className="bg-elevation-negative h-[100px] rounded-lg" />
+				<div className="bg-elevation-negative h-[100px] rounded-lg" />
 			</div>
 			<ModalFooter>
 				<ModalClose asChild>
@@ -139,7 +140,7 @@ const Modal5 = () => (
 		</ModalTrigger>
 		<ModalContent>
 			<ModalTitle className="hidden">Plain</ModalTitle>
-			<div className="bg-bg-level0 flex h-[100px] items-center justify-center rounded-lg">
+			<div className="bg-elevation-negative flex h-[100px] items-center justify-center rounded-lg">
 				<span>Content Area</span>
 			</div>
 		</ModalContent>
@@ -217,7 +218,7 @@ const Modal8 = () => (
 			<Button>Modal8</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg-level0 h-[220px] w-full rounded-lg" />
+			<div className="bg-elevation-negative h-[220px] w-full rounded-lg" />
 			<ModalHeader className="text-center">
 				<ModalTitle>Create a new account</ModalTitle>
 				<ModalDescription>This is a sample modal to stress test the xyz container in a modal. Here is a sample</ModalDescription>
@@ -242,7 +243,7 @@ const Modal9 = () => (
 			<Button>Modal9</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg-level0 h-[220px] w-full rounded-lg" />
+			<div className="bg-elevation-negative h-[220px] w-full rounded-lg" />
 			<ModalHeader>
 				<ModalTitle>Unlock Unlimited Access</ModalTitle>
 				<ModalDescription>Join the Radian team to unlock unlimited features and subsets of products</ModalDescription>
@@ -266,7 +267,7 @@ const Modal10 = () => (
 			<Button>Modal10</Button>
 		</ModalTrigger>
 		<ModalContent>
-			<div className="bg-bg-level0 h-[220px] w-full rounded-lg" />
+			<div className="bg-elevation-negative h-[220px] w-full rounded-lg" />
 			<ModalHeader>
 				<ModalTitle>Unlock Unlimited Access</ModalTitle>
 				<ModalDescription>Join the Radian team to unlock unlimited features and subsets of products</ModalDescription>

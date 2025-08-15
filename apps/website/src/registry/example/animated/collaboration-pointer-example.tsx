@@ -1,5 +1,7 @@
 import React from "react"
+
 import { EyeIcon, MousePointer2, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Pointer } from "@/registry/animated/pointer"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -20,7 +22,7 @@ export default function CollaborationPointerExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
-					<div className="w-100 bg-fill-level2 flex h-80 items-center justify-center rounded-lg border">
+					<div className="w-100 bg-fill2 flex h-80 items-center justify-center rounded-lg border">
 						<span>Collaboration Pointer Example</span>
 						<Pointer>
 							<div className="w-18 relative h-12">
@@ -37,7 +39,7 @@ export default function CollaborationPointerExample() {
 					title="collaboration-pointer-example.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<div className="w-100 bg-fill-level2 flex h-80 items-center justify-center rounded-lg border">
+					code={`<div className="w-100 bg-fill2 flex h-80 items-center justify-center rounded-lg border">
     <span>Collaboration Pointer Example</span>
     <Pointer>
         <div className="w-18 relative h-12">

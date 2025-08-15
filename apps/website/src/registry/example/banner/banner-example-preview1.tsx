@@ -1,12 +1,13 @@
 import { EyeIcon, Lock, SquareTerminal } from "lucide-react"
 import Link from "next/link"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerExamplePreview1 = () => {
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="mb-10 pb-6" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<TabsList>
 				<TabsTrigger value="preview" icon={<EyeIcon />}>
 					Preview

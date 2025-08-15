@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
+
 import { Star } from "lucide-react"
+
 import Pagination from "@/registry/ui/pagination"
 import MainTable from "@/registry/ui/table"
 

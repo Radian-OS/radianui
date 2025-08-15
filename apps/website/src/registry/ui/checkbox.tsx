@@ -1,8 +1,11 @@
 "use client"
 
 import React from "react"
+
 import { Check } from "lucide-react"
+
 import { cn } from "@/lib/utils"
+
 import { Button } from "./button"
 
 type CheckboxProps = {
@@ -80,7 +83,7 @@ function Checkbox({
 		<label
 			className={cn(
 				"inline-flex w-fit cursor-pointer items-center gap-2",
-				disabled ? "text-text-tertiary cursor-not-allowed" : "cursor-pointer",
+				disabled ? "text-fg-tertiary cursor-not-allowed" : "cursor-pointer",
 				size === "lg" ? "text-base" : "text-sm",
 				className
 			)}>
@@ -103,7 +106,7 @@ function Checkbox({
 
 				<div
 					className={cn(
-						"text-static-white absolute flex items-center justify-center transition-opacity",
+						"absolute flex items-center justify-center text-white transition-opacity",
 						checked ? "opacity-100" : "opacity-0",
 						size === "sm" ? "inset-0.25" : size === "md" ? "inset-0.5" : size === "lg" ? "inset-1" : ""
 					)}>
@@ -114,7 +117,7 @@ function Checkbox({
 						})}
 				</div>
 			</Button>
-			{children && <span className={cn("select-none", disabled ? "text-text-tertiary" : "text-primary-foreground")}>{children}</span>}
+			{children && <span className={cn("select-none", disabled ? "text-fg-tertiary" : "text-primary-foreground")}>{children}</span>}
 		</label>
 	)
 }

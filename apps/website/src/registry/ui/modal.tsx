@@ -1,10 +1,13 @@
 "use client"
 
 import * as React from "react"
+
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
+
 import { cn } from "@/lib/utils"
+
 import { CompactButton } from "./button"
 import { Divider } from "./divider"
 
@@ -99,7 +102,7 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 			<DialogPrimitive.Content
 				data-slot="modal-content"
 				className={cn(
-					"bg-bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-border-alpa group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					"bg-base data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-border-alpa group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
 					{ "gap-0 p-0": withSeparator },
 					className
 				)}
@@ -107,7 +110,7 @@ function ModalContent({ className, children, ...props }: ModalContentProps) {
 				{children}
 				{closeIcon !== "hidden" && (
 					<DialogPrimitive.Close asChild className={closeButtonClass}>
-						{/* <X className="text-text-disabled h-4 w-4" /> */}
+						{/* <X className="text-fg-disabled h-4 w-4" /> */}
 						<CompactButton color="neutral" variant="ghost">
 							<X />
 						</CompactButton>
@@ -154,7 +157,7 @@ function ModalTitle({ className, ...props }: ModalTitleProps) {
 ModalTitle.displayName = DialogPrimitive.Title.displayName
 
 function ModalDescription({ className, ...props }: ModalDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-text-secondary text-sm/5 leading-tight", className)} {...props} />
+	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-fg-secondary text-sm/5 leading-tight", className)} {...props} />
 }
 ModalDescription.displayName = DialogPrimitive.Description.displayName
 

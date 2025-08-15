@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { CreditCard, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -144,7 +146,7 @@ const CreditCardPreview = () => {
 							</div>
 						</div>
 						{(hint || hasError) && (
-							<Label className={`${hasError ? "text-error" : "text-text-tertiary"} flex items-start text-xs font-normal`}>Hint text to help the user with input</Label>
+							<Label className={`${hasError ? "text-error" : "text-fg-tertiary"} flex items-start text-xs font-normal`}>Hint text to help the user with input</Label>
 						)}
 					</div>
 				</div>
@@ -169,7 +171,7 @@ const CreditCardPreview = () => {
 			<Input size={${size}} placeholder="CVC" className="rounded-l-none rounded-t-none" />
 		</div>
 	</div>
-	${hint ? `<Label className="flex items-start text-xs font-normal text-text-tertiary">Hint text to help the user with input</Label>` : ""}
+	${hint ? `<Label className="flex items-start text-xs font-normal text-fg-tertiary">Hint text to help the user with input</Label>` : ""}
 </div>`}
 				/>
 			</TabsContent>

@@ -1,8 +1,10 @@
 "use client"
 
 import React from "react"
+
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDownIcon } from "lucide-react"
+
 import { cn as classNames } from "@/lib/utils"
 
 type BaseProps = AccordionContextType & {
@@ -107,16 +109,13 @@ function AccordionTrigger({ children, className, ...props }: AccordionTriggerPro
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
-					"bg-bg1 text-fg1 outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all [&[data-state=open]>.AccordionChevron]:rotate-180",
+					"bg-base text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all [&[data-state=open]>.AccordionChevron]:rotate-180",
 					paddingClass,
 					className
 				)}
 				{...props}>
 				{children}
-				<ChevronDownIcon
-					className={classNames("AccordionChevron text-text-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")}
-					aria-hidden
-				/>
+				<ChevronDownIcon className={classNames("AccordionChevron text-fg-tertiary shrink-0 transition-transform duration-200", size === "sm" ? "size-5" : "size-6")} aria-hidden />
 			</AccordionPrimitive.Trigger>
 		</AccordionPrimitive.Header>
 	)
@@ -135,7 +134,7 @@ function AccordionContent({ children, className, ...props }: AccordionContentPro
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames("text-text-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all", className)}
+			className={classNames("text-fg-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all", className)}
 			{...props}>
 			<div className={classNames(paddingClass, "pt-0")}>{children}</div>
 		</AccordionPrimitive.Content>

@@ -1,10 +1,12 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
+
 import { Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Link from "next/link"
+
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
@@ -37,6 +39,7 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
+import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -79,6 +82,9 @@ import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import FormExample1 from "@/registry/example/form/form-example1"
+import FormExample2 from "@/registry/example/form/form-example2"
+import FormExample3 from "@/registry/example/form/form-example3"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
@@ -108,7 +114,10 @@ import {
 } from "@/registry/ui/accordion"
 import { Alert, AlertProps } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+
 import CodeSnippet from "./code-snippet"
+import { ComponentSource } from "./component-source"
 import { FrameworkDocs } from "./framework-docs"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
@@ -122,7 +131,9 @@ const components: MDXComponents = {
 	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
 		<PropsTable title={title} data={data} externalReference={externalReference} />
 	),
-	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => <div className="bg-bg-level0 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>,
+	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
+		<div className="bg-elevation-negative flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
+	),
 	AccordionPreview: () => (
 		<div className="pb-6">
 			<AccordionPreview />
@@ -210,6 +221,10 @@ const components: MDXComponents = {
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWitTabsPreview: () => <CodeWithTabs />,
+	FormPreview: () => <FormPreview />,
+	FormExample1: () => <FormExample1 />,
+	FormExample2: () => <FormExample2 />,
+	FormExample3: () => <FormExample3 />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -236,6 +251,7 @@ const components: MDXComponents = {
 			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
 		</div>
 	),
+	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
 			{children}
@@ -247,7 +263,7 @@ const components: MDXComponents = {
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! pb-3", className)} {...props}>
+		<h3 className={cn("heading-6 font-semibold! py-3", className)} {...props}>
 			{children}
 		</h3>
 	),
@@ -261,12 +277,12 @@ const components: MDXComponents = {
 		/>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-text-secondary text-base", className)} {...props}>
+		<p className={cn("text-fg-secondary", className)} {...props}>
 			{children}
 		</p>
 	),
 	strong: ({ children, className, ...props }: HTMLAttributes<HTMLBodyElement>) => (
-		<strong className={cn("text-text font-semibold", className)} {...props}>
+		<strong className={cn("text-fg font-semibold", className)} {...props}>
 			{children}
 		</strong>
 	),
@@ -277,7 +293,7 @@ const components: MDXComponents = {
 	},
 
 	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
-		return <li className={cn("text-text-secondary", className)}>{children}</li>
+		return <li className={cn("text-fg-secondary", className)}>{children}</li>
 	},
 
 	VersionAlert: (props: Pick<AlertProps, "title" | "message" | "variant" | "color">) => {
@@ -308,20 +324,33 @@ const components: MDXComponents = {
 	AccordionContent: (props: AccordionContentProps) => {
 		return <AccordionContent {...props} />
 	},
-	Steps: ({ ...props }) => <div className="steps mb-12 [counter-reset:step] md:ml-4 md:border-l md:border-dashed md:pl-8" {...props} />,
-	Step: ({ className, ...props }: React.ComponentProps<"div">) => (
-		<div
+	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
+		return <Tabs {...props} variant="default" size="md" className="gap-4" />
+	},
+	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
+		return <TabsList width="full" {...props} />
+	},
+
+	TabsTrigger: (props: React.ComponentProps<typeof TabsTrigger>) => {
+		return <TabsTrigger {...props} />
+	},
+	TabsContent: (props: React.ComponentProps<typeof TabsContent>) => {
+		return <TabsContent {...props} />
+	},
+	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
+		<h3
 			className={cn(
-				"step relative mt-8 scroll-m-20",
-				"before:absolute before:left-[-2.9rem]",
-				"before:flex before:h-7 before:w-7 before:items-center before:justify-center",
-				"before:bg-border before:text-text before:rounded-full before:text-sm before:font-medium",
-				"before:counter-increment-[step] before:content-[counter(step)]",
+				"font-heading not-first:mt-6 mb-3 scroll-m-20 text-xl font-semibold tracking-tight",
+				"relative [counter-increment:step]",
+				"before:absolute before:-left-12 before:top-0 before:flex before:size-8 before:items-center before:justify-center",
+				"before:bg-border before:text-fg before:rounded-full before:font-semibold",
+				"before:content-[counter(step)]",
 				className
 			)}
 			{...props}
 		/>
 	),
+	Steps: ({ ...props }) => <div className={cn("mb-12 border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-8")} {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,

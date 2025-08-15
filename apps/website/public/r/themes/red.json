@@ -1,0 +1,20 @@
+{
+	"name": "red",
+	"label": "Red",
+	"cssVariables": {
+		"light": {
+			"primary": "oklch(0.64 0.22 26.04)",
+			"primary-accent": "oklch(0.9465 0.0252 17.61)",
+			"primary-focus": "oklch(0.9133 0.0414 17.93)",
+			"primary-hover": "oklch(0.6786 0.2095 24.66)",
+			"primary-text": "oklch(0.5716 0.2125 27.27)"
+		},
+		"dark": {
+			"primary": "oklch(0.64 0.22 26.04)",
+			"primary-accent": "oklch(0.2567 0.0648 22.77)",
+			"primary-focus": "oklch(0.2973 0.0922 24.71)",
+			"primary-hover": "oklch(0.6786 0.2095 24.66)",
+			"primary-text": "oklch(0.7884 0.1226 20.19)"
+		}
+	}
+}

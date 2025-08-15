@@ -1,5 +1,8 @@
 import { useState } from "react"
+
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import Link from "next/link"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
 import { Button } from "@/registry/ui/button"
@@ -64,11 +67,21 @@ const BreadCrumbPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Breadcrumb separator={separator} maxItems={parseInt(maxItems)}>
-						<BreadcrumbItem href="/">Home</BreadcrumbItem>
-						<BreadcrumbItem href="/docs/installation/next">Installation</BreadcrumbItem>
-						<BreadcrumbItem href="/docs/components">Components</BreadcrumbItem>
-						<BreadcrumbItem href="/docs/animations/animated-list">Animations</BreadcrumbItem>
-						<BreadcrumbItem href="/docs/getting-started/cli">CLI</BreadcrumbItem>
+						<BreadcrumbItem asChild>
+							<Link href="/">Home</Link>
+						</BreadcrumbItem>
+						<BreadcrumbItem>
+							<Link href="/docs/installation/next">Installation</Link>
+						</BreadcrumbItem>
+						<BreadcrumbItem>
+							<Link href="/docs/components">Components</Link>
+						</BreadcrumbItem>
+						<BreadcrumbItem>
+							<Link href="/docs/animations/animated-list">Animations</Link>
+						</BreadcrumbItem>
+						<BreadcrumbItem>
+							<Link href="/docs/getting-started/cli">CLI</Link>
+						</BreadcrumbItem>
 					</Breadcrumb>
 				</div>
 			</TabsContent>
@@ -78,11 +91,27 @@ const BreadCrumbPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`<Breadcrumb separator="${separator}" maxItems={${maxItems}} >
-<BreadcrumbItem href="/">Home</BreadcrumbItem>
-<BreadcrumbItem href="/docs/getting-started/installation">Installation</BreadcrumbItem>
-<BreadcrumbItem href="/docs/components">Components</BreadcrumbItem>
-<BreadcrumbItem href="/docs/animations/animated-list">Animations</BreadcrumbItem>
-<BreadcrumbItem href="/docs/getting-started/cli">CLI</BreadcrumbItem>
+
+<BreadcrumbItem asChild >
+ <Link href="/" >Home</Link>
+</BreadcrumbItem>
+
+<BreadcrumbItem asChild >
+ <Link href="/docs/installation/next" >Installation</Link>
+</BreadcrumbItem>
+
+<BreadcrumbItem asChild >
+ <Link href="/docs/components" >Components</Link>
+</BreadcrumbItem>
+
+<BreadcrumbItem asChild >
+ <Link href="/docs/animations/animated-list" >Animations</Link>
+</BreadcrumbItem>
+
+<BreadcrumbItem asChild >
+ <Link href="/docs/getting-started/cli" >CLI</Link>
+</BreadcrumbItem>
+
 </Breadcrumb>`}
 				/>
 			</TabsContent>

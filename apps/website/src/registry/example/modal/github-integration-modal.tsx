@@ -2,6 +2,7 @@
 
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import Image from "next/image"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"

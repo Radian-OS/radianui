@@ -1,4 +1,5 @@
 import React from "react"
+
 import { getPackageVersion } from "@/lib/get-package-info"
 import { Badge } from "@/registry/ui/badge"
 

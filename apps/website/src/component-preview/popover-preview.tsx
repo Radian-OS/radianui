@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
@@ -83,7 +85,7 @@ const PopoverPreview = () => {
 								<Avatar name="Aurther Dominic" src={profile.avatar} />
 								<div className="flex flex-col text-sm">
 									<div className="font-medium">{profile.name}</div>
-									<div className="text-text-secondary">{profile.email}</div>
+									<div className="text-fg-secondary">{profile.email}</div>
 								</div>
 							</div>
 							<div className="flex gap-3">

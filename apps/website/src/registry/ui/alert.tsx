@@ -1,5 +1,7 @@
 import React from "react"
+
 import { type VariantProps, cva } from "class-variance-authority"
+
 import { cn } from "@/lib/utils"
 
 export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
@@ -14,7 +16,7 @@ export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
 	variants: {
 		color: {
-			neutral: "bg-fill-level2",
+			neutral: "bg-fill2",
 			primary: "border-primary bg-primary/10 text-primary-text",
 			info: "border-info bg-info/10 text-info-text",
 			success: "border-success bg-success/10 text-success-text",
@@ -41,32 +43,32 @@ export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justif
 		{
 			color: "primary",
 			variant: "strong",
-			className: "bg-primary text-static-white",
+			className: "bg-primary text-white",
 		},
 		{
 			color: "info",
 			variant: "strong",
-			className: "bg-info text-static-white",
+			className: "bg-info text-white",
 		},
 		{
 			color: "success",
 			variant: "strong",
-			className: "bg-success text-static-white",
+			className: "bg-success text-white",
 		},
 		{
 			color: "warning",
 			variant: "strong",
-			className: "bg-warning text-static-white",
+			className: "bg-warning text-white",
 		},
 		{
 			color: "danger",
 			variant: "strong",
-			className: "bg-error text-static-white",
+			className: "bg-error text-white",
 		},
 		{
 			color: "neutral",
 			variant: "strong",
-			className: "bg-text text-inverse-white",
+			className: "bg-text text-white-inverse",
 		},
 	],
 })
@@ -88,8 +90,8 @@ function Alert({ color = "neutral", variant = "default", title, message, icon, e
 			) : (
 				// Original title/message structure
 				<div className="flex flex-grow flex-col">
-					{title && <h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-text", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
-					{message && <p className={cn("text-sm", isNeutralOutline && "text-text-secondary", isNeutralOutline && hasCustomTextColor && "!text-current opacity-80")}>{message}</p>}
+					{title && <h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-fg", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
+					{message && <p className={cn("text-sm", isNeutralOutline && "text-fg-secondary", isNeutralOutline && hasCustomTextColor && "!text-current opacity-80")}>{message}</p>}
 					{children}
 				</div>
 			)}

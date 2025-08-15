@@ -1,5 +1,6 @@
 import * as React from "react"
 import { SVGProps } from "react"
+
 import { Button } from "@/registry/ui/button"
 
 const Logo = (props: SVGProps<SVGSVGElement>) => (
@@ -86,7 +87,7 @@ const GithubIcon = (props: SVGProps<SVGSVGElement>) => (
 		<path
 			d="M9.96974 1.98495C0.462177 2.18375 -1.51713 14.9412 7.3768 18.001C7.79168 18.0787 7.94726 17.8194 7.94726 17.6033C7.94726 17.3872 7.94726 16.8946 7.94726 16.2032C5.62222 16.7045 5.12954 15.1055 5.12954 15.1055C4.97362 14.6054 4.64207 14.1787 4.19608 13.9041C3.44412 13.3941 4.25658 13.4027 4.25658 13.4027C4.52219 13.4378 4.77603 13.5342 4.99803 13.6842C5.22003 13.8342 5.40412 14.0337 5.53578 14.2671C5.77157 14.6776 6.15907 14.9791 6.61489 15.1067C7.07073 15.2345 7.55847 15.1782 7.97319 14.9499C8.01589 14.5338 8.20234 14.1456 8.50041 13.8522C6.64213 13.6447 4.69738 12.936 4.69738 9.78982C4.68569 8.97032 4.99604 8.17891 5.56171 7.5858C5.30004 6.87121 5.3311 6.08221 5.64814 5.39041C5.64814 5.39041 6.34825 5.17432 7.94726 6.25473C9.31691 5.88303 10.7609 5.88303 12.1306 6.25473C13.721 5.19161 14.4211 5.39041 14.4211 5.39041C14.7252 6.07963 14.7531 6.85935 14.4988 7.56851C15.0645 8.16163 15.3749 8.95299 15.3632 9.77257C15.3632 12.9273 13.4098 13.6275 11.5515 13.8262C12.4158 14.2843 12.0528 17.2317 12.1047 17.5947C12.1047 17.8108 12.2516 18.0701 12.6837 17.9923C21.5517 14.9585 19.4774 2.18375 9.96974 1.98495Z"
 			fill="#FFFFFF"
-			className="fill-inverse-white"
+			className="fill-white-inverse"
 		/>
 	</svg>
 )
@@ -104,7 +105,7 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
 			d="M6.69141 3L10.1836 7.5957L10.5537 8.08301L10.957 7.62305L15.0195 3H16.2432L11.3896 8.52344L11.1201 8.83105L11.3672 9.15625L17.3262 17H13.4365L9.55859 11.9512L9.18848 11.4688L8.78711 11.9258L4.32715 17H3.10156L8.34375 11.0342L8.61523 10.7256L8.36426 10.3994L2.68164 3H6.69141ZM4.25488 4.24805L13.499 16.2812L13.6494 16.4766H16.3203L15.71 15.6748L6.56934 3.64062L6.41895 3.44336H3.63672L4.25488 4.24805Z"
 			fill="#0A0A0B"
 			stroke="#565861"
-			className="fill-text stroke-text-secondary"
+			className="fill-text stroke-fg-secondary"
 		/>
 	</svg>
 )
@@ -126,7 +127,7 @@ const DotPattern = (props: SVGProps<SVGSVGElement>) => (
 				height="10.75268817204301%"
 				x={128.5}
 				patternContentUnits="objectBoundingBox">
-				<rect x={17418} y={-43} width={2} height={2} rx={1} fill="#dfdfe2" className="fill-fill-level4" />
+				<rect x={17418} y={-43} width={2} height={2} rx={1} fill="#dfdfe2" className="fill-fill4" />
 			</pattern>
 		</defs>
 	</svg>
@@ -146,8 +147,8 @@ export default function CommunityCard() {
 				<Logo className="size-8" />
 
 				<div>
-					<span className="text-text mb-1 text-base font-semibold">Join the Conversation</span>
-					<p className="text-text-secondary body-13">
+					<span className="text-fgmb-1 text-fg font-semibold">Join the Conversation</span>
+					<p className="text-fg-secondary body-13">
 						Community of product builders,
 						<br />
 						designers and developers
