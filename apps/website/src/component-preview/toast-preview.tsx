@@ -75,15 +75,15 @@ const ToastPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>State</DropdownSubTrigger>
+								<DropdownSubTrigger>Color</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setState(Array.from(keys)[0] as typeof state)} minSelectionCount={1} selectedValues={[state]}>
-										<DropdownItem value="neutral">Neutral</DropdownItem>
 										<DropdownItem value="primary">Primary</DropdownItem>
-										<DropdownItem value="info">Information</DropdownItem>
+										<DropdownItem value="neutral">Neutral</DropdownItem>
 										<DropdownItem value="success">Success</DropdownItem>
+										<DropdownItem value="error">Error</DropdownItem>
 										<DropdownItem value="warning">Warning</DropdownItem>
-										<DropdownItem value="error">Error</DropdownItem>{" "}
+										<DropdownItem value="info">Info</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -235,12 +235,13 @@ const ToastPreview = () => {
 					<Toaster position={`${position}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
 					<Button
 						key={key}
-						variant="outline"
+						variant="strong"
+						color="neutral"
 						onClick={() =>
 							showToast({
 								icon: icon === "true" ? <Box className="size-5" /> : undefined,
 								variant,
-								state,
+								color: state,
 								placement,
 								title: title === "true" ? "Toast Title" : "",
 								closable: closable === "true",
@@ -271,7 +272,7 @@ const ToastPreview = () => {
 		showToast({
 			${icon === "true" ? "icon:<Box className='size-5'/>," : ""}
 			variant:'${variant}',
-			state:'${state}',
+			color:'${state}',
 			placement:'${placement}',
 			${title === "true" ? "title:'Toast Title'," : ""}
 			${closable === "true" ? "closable," : "closable:false"}

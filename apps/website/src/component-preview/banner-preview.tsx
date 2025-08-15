@@ -35,7 +35,7 @@ const BannerPreview = () => {
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Variant</DropdownSubTrigger>
+							<DropdownSubTrigger>Color</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
@@ -48,7 +48,7 @@ const BannerPreview = () => {
 									<DropdownItem value="primary">Primary</DropdownItem>
 									<DropdownItem value="outline">Outline</DropdownItem>
 									<DropdownItem value="gray">Gray</DropdownItem>
-									<DropdownItem value="destructive">Destructive</DropdownItem>
+									<DropdownItem value="destructive">Error</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>

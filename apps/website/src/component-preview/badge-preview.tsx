@@ -43,7 +43,6 @@ const BadgePreview = () => {
 									}}
 									minSelectionCount={1}
 									selectedValues={[variant]}>
-									<DropdownItem value="neutral">Neutral</DropdownItem>
 									<DropdownItem value="strong">Strong</DropdownItem>
 									<DropdownItem value="outline">Outline</DropdownItem>
 									<DropdownItem value="soft">Soft</DropdownItem>
@@ -81,10 +80,11 @@ const BadgePreview = () => {
 									minSelectionCount={1}
 									selectedValues={[color]}>
 									<DropdownItem value="primary">Primary</DropdownItem>
-									<DropdownItem value="info">Info</DropdownItem>
+									<DropdownItem value="neutral">Neutral</DropdownItem>
 									<DropdownItem value="success">Success</DropdownItem>
 									<DropdownItem value="error">Error</DropdownItem>
 									<DropdownItem value="warning">Warning</DropdownItem>
+									<DropdownItem value="info">Info</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>

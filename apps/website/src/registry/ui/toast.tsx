@@ -20,7 +20,7 @@ type ButtonType = {
 type ToastProps = {
 	title?: string
 	icon?: React.ReactNode
-	state?: VariantType
+	color?: VariantType
 	description?: string
 	buttons?: ButtonType[]
 	duration?: number
@@ -43,7 +43,7 @@ type ToastProps = {
 // Variant styles
 const SonnerVariant = cva("group toast rounded-lg flex justify-between text-sm gap-1 p-2.5 ", {
 	variants: {
-		state: {
+		color: {
 			neutral: "",
 			primary: "",
 			success: "",
@@ -62,68 +62,68 @@ const SonnerVariant = cva("group toast rounded-lg flex justify-between text-sm g
 		},
 	},
 	compoundVariants: [
-		// Apply state colors only when variant is "strong"
+		// Apply color colors only when variant is "strong"
 		{
 			variant: "strong",
-			state: "primary",
+			color: "primary",
 			class: "bg-primary text-white",
 		},
 		{
 			variant: "strong",
-			state: "neutral",
+			color: "neutral",
 			class: "bg-black !text-white relative before:absolute before:inset-0 before:!bg-fill4-alpha overflow-hidden before:pointer-events-none",
 		},
 		{
 			variant: "strong",
-			state: "success",
+			color: "success",
 			class: "bg-success text-white",
 		},
 		{
 			variant: "strong",
-			state: "error",
+			color: "error",
 			class: "bg-error text-white",
 		},
 		{
 			variant: "strong",
-			state: "warning",
+			color: "warning",
 			class: "bg-warning text-white",
 		},
 		{
 			variant: "strong",
-			state: "info",
+			color: "info",
 			class: "bg-info text-white",
 		},
 	],
 	defaultVariants: {
-		state: "neutral",
+		color: "neutral",
 		variant: "outline",
 		placement: "vertical",
 	},
 })
 
 // Define the type for the toast variant
-type VariantType = VariantProps<typeof SonnerVariant>["state"]
+type VariantType = VariantProps<typeof SonnerVariant>["color"]
 
-// Helper function to get icon color class based on variant and state
-const getIconColorClass = (variant?: string, state?: string): string => {
+// Helper function to get icon color class based on variant and color
+const getIconColorClass = (variant?: string, color?: string): string => {
 	if (variant === "strong") {
 		// For strong variant, icons are always white
-		if (state === "neutral") {
+		if (color === "neutral") {
 			return "text-white"
 		}
 		return "text-white"
 	} else if (variant === "outline") {
-		// For neutral and inverse variants, use state color
-		return state ? `text-${state}` : ""
+		// For neutral and inverse variants, use color color
+		return color ? `text-${color}` : ""
 	} else if (variant === "inverse") {
-		const stateHoverColors = {
+		const colorHoverColors = {
 			primary: "text-primary-hover",
 			error: "text-error-hover",
 			success: "text-success-hover",
 			warning: "text-warning-hover",
 			info: "text-info-hover",
 		}
-		return (state && stateHoverColors[state as keyof typeof stateHoverColors]) || ""
+		return (color && colorHoverColors[color as keyof typeof colorHoverColors]) || ""
 	}
 	return "text-black dark:text-white"
 }
@@ -147,7 +147,7 @@ export function showToast({
 	customContent,
 	description,
 	variant,
-	state = "neutral",
+	color = "neutral",
 	applyDefaultStyling = false,
 	closeOnClick = false,
 	showCloseButton,
@@ -191,13 +191,13 @@ export function showToast({
 				icon && React.isValidElement(icon)
 					? React.cloneElement(icon as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
 							...(icon.props || {}),
-							className: cn((icon.props && (icon.props as React.HTMLAttributes<HTMLElement>).className) || "", getIconColorClass(variant, state ?? undefined)),
+							className: cn((icon.props && (icon.props as React.HTMLAttributes<HTMLElement>).className) || "", getIconColorClass(variant, color ?? undefined)),
 						})
 					: icon
 
 			// Default structured toast
 			return (
-				<div className={SonnerVariant({ state, variant, placement })}>
+				<div className={SonnerVariant({ color, variant, placement })}>
 					{coloredIcon}
 					<div
 						className={cn("flex", {
