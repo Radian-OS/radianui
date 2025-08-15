@@ -19,65 +19,6 @@ export const COMPONENTS_JSON_CONFIG = `{
   "hasSrcDir": true
 }`
 
-export const TAILWIND_CONFIG_WITH_VARIABLES = `import type { Config } from "tailwindcss";
-export default {
-	darkMode: ["class"],
-	content: [
-		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
-    	'./components/**/*.{js,ts,jsx,tsx,mdx}',
-    	'./app/**/*.{js,ts,jsx,tsx,mdx}',
-    	'./src/**/*.{js,ts,jsx,tsx,mdx}',
-	],
-	safelist: ["font-heading", "font-body", "heading-1", "heading-2", "heading-3", "heading-4", "heading-5", "heading-6", "body-lg", "body-base", "body-sm", "body-xs"],
-	theme: {
-		extend: {
-			colors: {
-				bg1: "hsl(var(--bg1))",
-				bg2: "hsl(var(--bg2))",
-				bg3: "hsl(var(--bg3))",
-				bg4: "hsl(var(--bg4))",
-				fg1: "hsl(var(--fg1))",
-				fg2: "hsl(var(--fg2))",
-				fg3: "hsl(var(--fg3))",
-				information: "hsl(var(--information))",
-				success: "hsl(var(--success))",
-				error: "hsl(var(--error))",
-				warning: "hsl(var(--warning))",
-				white: "hsl(var(--static-white))",
-				black: "hsl(var(--static-black))",
-				primary: "hsl(var(--primary))",
-				border: {
-					DEFAULT: "hsl(var(--border))",
-					secondary: "hsl(var(--border-secondary))",
-					information: "hsl(var(--border-information))",
-					success: "hsl(var(--border-success))",
-					error: "hsl(var(--border-error))",
-					warning: "hsl(var(--border-warning))",
-				},
-			},
-			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)",
-			},
-			keyframes: {
-				"accordion-down": {
-					from: { height: "0" },
-					to: { height: "var(--radix-accordion-content-height)" },
-				},
-				"accordion-up": {
-					from: { height: "var(--radix-accordion-content-height)" },
-					to: { height: "0" },
-				},
-			},
-			animation: {
-				"accordion-down": "accordion-down 0.2s ease-out",
-				"accordion-up": "accordion-up 0.2s ease-out",
-			},
-		},
-	},
-} satisfies Config;`
-
 export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -149,22 +90,11 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-white-inverse: oklch(1 0 0);
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
-	/* fill alpha */
+	/* background fill alpha */
 	--color-fill1-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
-	/* 2% opacity */
 	--color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
-	/* 4% opacity */
 	--color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
-	/* 8% opacity */
 	--color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
-	/* 12% opacity */
-
-	/* Breakpoints */
-	--breakpoint-laptop: 90rem;
-
-	/* Font families */
-	--heading-font: "Inter Display", system-ui, sans-serif;
-	--body-font: "Inter", system-ui, sans-serif;
 }
 
 .dark {
@@ -203,7 +133,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
 	--color-info-text: oklch(0.829 0.0811 248.83);
 
-	/* Background */
+	/* background */
 	--color-base: oklch(0.144 0.0028 247.09);
 	--color-fill1: oklch(0.1652 0.0062 285.7);
 	--color-fill2: oklch(0.1881 0.006 285.81);
@@ -232,52 +162,37 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-white-inverse: oklch(0.144 0.0028 247.09);
 	--color-black-inverse: oklch(1 0 0);
 
-	/* fill alpha */
+	/* background fill alpha */
 	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 98%);
 	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-
-	--color-text-primary: oklch(1 0 0);
-	/* --color-text-paragraph: var(--color-white-10); */
-	--color-text-disabled: oklch(0.4515 0.0243 285.39);
-	/* --color-text-4: var(--color-black-5); */
 }
 
+/* Base styles */
 @layer base {
 	* {
 		border-color: var(--color-border);
 	}
 	body {
 		@apply font-body bg-base text-fg;
+		/* Font families */
+		--heading-font: "Inter Display", system-ui, sans-serif;
+		--body-font: "Inter", system-ui, sans-serif;
 	}
 }
 
-@utility border-border {
-	border-color: var(--color-border);
-}
-
-@utility border-alpha {
-	border-color: var(--color-alpha);
-}
-
-/*
-  The default border color has changed to currentColor in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Custom heading font */
 @utility font-heading {
-	/* Base typography classes for headings and body */
 	font-family: var(--heading-font);
 }
 
+/* Custom body font */
 @utility font-body {
 	font-family: var(--body-font);
 }
 
+/* Heading 1 */
 @utility heading-1 {
 	@apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
 
@@ -292,6 +207,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 2 */
 @utility heading-2 {
 	@apply font-heading text-[2rem] font-bold leading-[2.5rem];
 
@@ -306,6 +222,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 3 */
 @utility heading-3 {
 	@apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
 
@@ -320,6 +237,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 4 */
 @utility heading-4 {
 	@apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
 
@@ -334,6 +252,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-bold leading-[2rem];
 
@@ -348,6 +267,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
 
@@ -362,6 +282,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Additional body fonts */
 @utility body-15 {
 	@apply font-body text-[0.9375rem] leading-[1.375];
 }
@@ -374,6 +295,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
 
+/* Hides scrollbar in multiple browsers*/
 @utility no-scrollbar {
 	-ms-overflow-style: none;
 	/* IE and Edge */
@@ -383,20 +305,6 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	&::-webkit-scrollbar {
 		display: none;
 		/* Chrome, Safari and Opera */
-	}
-}
-
-@layer utilities {
-	/* Chrome & other browser puts a background color on autofill inputs,
-	 this removes it */
-	input:-webkit-autofill,
-	input:-webkit-autofill:hover,
-	input:-webkit-autofill:focus,
-	input:-webkit-autofill:active {
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: inherit;
-		transition: background-color 5000s ease-in-out 0s;
-		box-shadow: inset 0 0 20px 20px transparent;
 	}
 }
 `
