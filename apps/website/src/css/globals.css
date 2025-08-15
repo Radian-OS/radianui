@@ -70,15 +70,11 @@
 	--color-white-inverse: oklch(1 0 0);
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
-	/* fill alpha */
+	/* background fill alpha */
 	--color-fill1-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
 	--color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
 	--color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
-
-	/* Font families */
-	--heading-font: "Inter Display", system-ui, sans-serif;
-	--body-font: "Inter", system-ui, sans-serif;
 }
 
 .dark {
@@ -117,7 +113,7 @@
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
 	--color-info-text: oklch(0.829 0.0811 248.83);
 
-	/* Background */
+	/* background */
 	--color-base: oklch(0.144 0.0028 247.09);
 	--color-fill1: oklch(0.1652 0.0062 285.7);
 	--color-fill2: oklch(0.1881 0.006 285.81);
@@ -146,7 +142,7 @@
 	--color-white-inverse: oklch(0.144 0.0028 247.09);
 	--color-black-inverse: oklch(1 0 0);
 
-	/* fill alpha */
+	/* background fill alpha */
 	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 98%);
 	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
@@ -160,20 +156,23 @@
 	}
 	body {
 		@apply font-body bg-base text-fg;
+		/* Font families */
+		--heading-font: "Inter Display", system-ui, sans-serif;
+		--body-font: "Inter", system-ui, sans-serif;
 	}
 }
 
-/* Typography */
+/* Custom heading font */
 @utility font-heading {
 	font-family: var(--heading-font);
 }
 
-/* Body */
+/* Custom body font */
 @utility font-body {
 	font-family: var(--body-font);
 }
 
-/* Headings 1 */
+/* Heading 1 */
 @utility heading-1 {
 	@apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
 
@@ -188,7 +187,7 @@
 	}
 }
 
-/* Headings 2 */
+/* Heading 2 */
 @utility heading-2 {
 	@apply font-heading text-[2rem] font-bold leading-[2.5rem];
 
@@ -203,7 +202,7 @@
 	}
 }
 
-/* Headings 3 */
+/* Heading 3 */
 @utility heading-3 {
 	@apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
 
@@ -218,7 +217,7 @@
 	}
 }
 
-/* Headings 4 */
+/* Heading 4 */
 @utility heading-4 {
 	@apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
 
@@ -233,7 +232,7 @@
 	}
 }
 
-/* Headings 5 */
+/* Heading 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-bold leading-[2rem];
 
@@ -248,7 +247,7 @@
 	}
 }
 
-/* Headings 6 */
+/* Heading 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
 
@@ -263,6 +262,7 @@
 	}
 }
 
+/* Additional body fonts */
 @utility body-15 {
 	@apply font-body text-[0.9375rem] leading-[1.375];
 }
@@ -275,6 +275,7 @@
 	@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
 
+/* Hides scrollbar in multiple browsers*/
 @utility no-scrollbar {
 	-ms-overflow-style: none;
 	/* IE and Edge */
@@ -284,19 +285,5 @@
 	&::-webkit-scrollbar {
 		display: none;
 		/* Chrome, Safari and Opera */
-	}
-}
-
-@layer utilities {
-	/* Chrome & other browser puts a background color on autofill inputs,
-	 this removes it */
-	input:-webkit-autofill,
-	input:-webkit-autofill:hover,
-	input:-webkit-autofill:focus,
-	input:-webkit-autofill:active {
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: inherit;
-		transition: background-color 5000s ease-in-out 0s;
-		box-shadow: inset 0 0 20px 20px transparent;
 	}
 }
