@@ -109,11 +109,11 @@ const ButtonPreview = () => {
 									minSelectionCount={1}
 									selectedValues={[color]}>
 									<DropdownItem value="primary">primary</DropdownItem>
-									<DropdownItem value="info">info</DropdownItem>
+									<DropdownItem value="neutral">neutral</DropdownItem>
 									<DropdownItem value="success">success</DropdownItem>
 									<DropdownItem value="error">error</DropdownItem>
 									<DropdownItem value="warning">warning</DropdownItem>
-									<DropdownItem value="neutral">neutral</DropdownItem>
+									<DropdownItem value="info">info</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>

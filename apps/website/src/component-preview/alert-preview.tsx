@@ -9,7 +9,7 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertPreview = () => {
-	const [color, setColor] = useState<"neutral" | "primary" | "info" | "success" | "warning" | "danger">("neutral")
+	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "danger" | "info">("neutral")
 	const [variant, setVariant] = useState<"default" | "bordered" | "strong" | "neutral-outline">("default")
 	const [showIcon, setShowIcon] = useState(true)
 	const [showEndContent, setShowEndContent] = useState(true)
@@ -111,12 +111,12 @@ const AlertPreview = () => {
 								<DropdownSubTrigger>Color</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setColor(Array.from(keys)[0] as typeof color)} minSelectionCount={1} selectedValues={[color]}>
-										<DropdownItem value="neutral">Neutral</DropdownItem>
 										<DropdownItem value="primary">Primary</DropdownItem>
-										<DropdownItem value="info">Information</DropdownItem>
+										<DropdownItem value="neutral">Neutral</DropdownItem>
 										<DropdownItem value="success">Success</DropdownItem>
+										<DropdownItem value="danger">Error</DropdownItem>
 										<DropdownItem value="warning">Warning</DropdownItem>
-										<DropdownItem value="danger">Danger</DropdownItem>
+										<DropdownItem value="info">Info</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
