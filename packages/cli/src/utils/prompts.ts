@@ -44,29 +44,29 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
     : options.vite
       ? 'vite'
       : (
-          await prompts({
-            type: 'select',
-            name: 'framework',
-            message: 'Which framework do you want to use?',
-            choices: [
-              { title: 'Next.js', value: 'next-app' },
-              { title: 'Vite', value: 'vite' },
-            ],
-            initial: 0,
-          })
-        ).framework
+        await prompts({
+          type: 'select',
+          name: 'framework',
+          message: 'Which framework do you want to use?',
+          choices: [
+            { title: 'Next.js', value: 'next-app' },
+            { title: 'Vite', value: 'vite' },
+          ],
+          initial: 0,
+        })
+      ).framework
 
   // Get src dir preference (only for Next.js)
   const useSrcDir =
     framework === 'next-app'
       ? (
-          await prompts({
-            type: 'confirm',
-            name: 'useSrcDir',
-            message: 'Would you like to use /src directory?',
-            initial: true,
-          })
-        ).useSrcDir
+        await prompts({
+          type: 'confirm',
+          name: 'useSrcDir',
+          message: 'Would you like to use /src directory?',
+          initial: true,
+        })
+      ).useSrcDir
       : true
 
   // Get brand color
@@ -138,42 +138,3 @@ export async function promptForComponents(options: AddOptions): Promise<string[]
     throw new Error('Failed to fetch available components.')
   }
 }
-
-// type PromptForTheme = {
-//   brandColor: Color
-//   font: Font
-// }
-
-// export const promptForTheme = async (skipPrompts = false): Promise<PromptForTheme> => {
-//   if (skipPrompts) {
-//     return { brandColor: 'emerald', font: 'inter' }
-//   }
-//   const { brandColor, font } = await prompts([
-//     {
-//       type: 'select',
-//       name: 'brandColor',
-//       message: 'Which color would you like to use as your brand color?',
-//       choices: [
-//         { title: 'Violet', value: 'violet' },
-//         { title: 'Emerald', value: 'emerald' },
-//         { title: 'Blue', value: 'blue' },
-//         { title: 'Amber', value: 'amber' },
-//         { title: 'Red', value: 'red' },
-//       ],
-//       initial: 0,
-//     },
-//     {
-//       type: 'select',
-//       name: 'font',
-//       message: 'Which font would you like to use for your project?',
-//       choices: [
-//         { title: 'Inter', value: 'inter' },
-//         { title: 'Roboto', value: 'roboto' },
-//         { title: 'Geist', value: 'geist' },
-//       ],
-//       initial: 0,
-//     },
-//   ])
-
-//   return { brandColor, font }
-// }
