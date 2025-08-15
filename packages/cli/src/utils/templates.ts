@@ -307,4 +307,5 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 		/* Chrome, Safari and Opera */
 	}
 }
+
 `
