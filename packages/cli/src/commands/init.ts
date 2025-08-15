@@ -42,9 +42,9 @@ export const init = new Command()
 	.option("--useSrc", "use src directory")
 	.option("--color <color>", "set brand color")
 	.option("--font <font>", "set default font")
-	.option("-s,--skipPrompts", "skip confirmation prompts", false)
-	.option("-d,--defaultConfigurations", "use default configurations", false)
-	.option("-c,--cwd <cwd>", "current working directory", process.cwd())
+	.option("-s, --skipPrompts", "skip confirmation prompts", false)
+	.option("-d, --defaultConfigurations", "use default configurations", false)
+	.option("-c, --cwd <cwd>", "current working directory", process.cwd())
 	.action(async (projectName, opts) => {
 		try {
 			const options = initOptionsSchema.parse({ ...opts, projectName })
