@@ -1,10 +1,12 @@
 "use client"
 
 import { HTMLAttributes, useMemo } from "react"
+
 import { Box } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/dist/client"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
+
 import CodeSnippet from "@/components/code-snippet"
 import PackageManagerTabs, { PackageManagerTabsProps } from "@/components/package-manager-tabs"
 import { cn } from "@/lib/utils"

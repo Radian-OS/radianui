@@ -1,4 +1,5 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { TextReveal } from "@/registry/animated/text-reveal"
 import { Button } from "@/registry/ui/button"

@@ -1,9 +1,12 @@
 "use client"
 
 import { useState } from "react"
+
 import { Check, Copy } from "lucide-react"
 import ShikiHighlighter from "react-shiki"
+
 import { cn } from "@/lib/utils"
+
 import { Button } from "./button"
 
 type CodeAreaProps = {

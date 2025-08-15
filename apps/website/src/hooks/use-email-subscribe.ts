@@ -1,4 +1,5 @@
 import { useState, useTransition } from "react"
+
 import { subscribe } from "@/app/api/email/actions"
 
 export function useEmailSubscribe() {

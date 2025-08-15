@@ -1,7 +1,9 @@
 "use client"
 
 import React, { type ComponentPropsWithoutRef, useEffect, useMemo, useState } from "react"
+
 import { AnimatePresence, motion } from "motion/react"
+
 import { cn } from "@/lib/utils"
 
 /* Based on AnimatedList component from MagicUI - MIT License */

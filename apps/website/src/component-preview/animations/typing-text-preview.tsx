@@ -1,5 +1,7 @@
 import { useState } from "react"
+
 import { EyeIcon, RotateCw, Settings, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { TypingText } from "@/registry/animated/typing-text"
 import { Button } from "@/registry/ui/button"

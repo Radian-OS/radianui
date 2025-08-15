@@ -1,0 +1,17 @@
+.vscode/
+node_modules/
+src/
+
+.gitignore
+.prettierignore
+.prettierrc
+.releaserc
+
+pnpm-lock.*
+tsconfig.*
+tsup.config.*
+
+
+
+
+

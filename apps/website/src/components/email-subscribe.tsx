@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+
 import { useEmailSubscribe } from "@/hooks/use-email-subscribe"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"

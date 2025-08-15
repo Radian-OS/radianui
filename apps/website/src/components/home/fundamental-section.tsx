@@ -1,4 +1,5 @@
 import React from "react"
+
 import ComponentCard from "@/components/home/component-card"
 import { navigationItems } from "@/config/navigation-config"
 

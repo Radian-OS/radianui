@@ -1,9 +1,12 @@
 "use client"
 
 import React from "react"
+
 import { allDocs } from "contentlayer/generated"
 import { usePathname } from "next/navigation"
+
 import { getHeadingsFromMdx } from "@/lib/get-mdx-headings"
+
 import CommunityCard from "./community-card"
 import TableOfContent from "./table-of-contents"
 

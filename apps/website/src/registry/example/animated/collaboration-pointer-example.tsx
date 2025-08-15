@@ -1,5 +1,7 @@
 import React from "react"
+
 import { EyeIcon, MousePointer2, SquareTerminal } from "lucide-react"
+
 import CodeSnippet from "@/components/code-snippet"
 import { Pointer } from "@/registry/animated/pointer"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
