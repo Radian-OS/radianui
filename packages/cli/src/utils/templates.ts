@@ -149,22 +149,11 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-white-inverse: oklch(1 0 0);
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
-	/* fill alpha */
+	/* background fill alpha */
 	--color-fill1-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
-	/* 2% opacity */
 	--color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
-	/* 4% opacity */
 	--color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
-	/* 8% opacity */
 	--color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
-	/* 12% opacity */
-
-	/* Breakpoints */
-	--breakpoint-laptop: 90rem;
-
-	/* Font families */
-	--heading-font: "Inter Display", system-ui, sans-serif;
-	--body-font: "Inter", system-ui, sans-serif;
 }
 
 .dark {
@@ -203,7 +192,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
 	--color-info-text: oklch(0.829 0.0811 248.83);
 
-	/* Background */
+	/* background */
 	--color-base: oklch(0.144 0.0028 247.09);
 	--color-fill1: oklch(0.1652 0.0062 285.7);
 	--color-fill2: oklch(0.1881 0.006 285.81);
@@ -232,52 +221,37 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-white-inverse: oklch(0.144 0.0028 247.09);
 	--color-black-inverse: oklch(1 0 0);
 
-	/* fill alpha */
+	/* background fill alpha */
 	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 98%);
 	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-
-	--color-text-primary: oklch(1 0 0);
-	/* --color-text-paragraph: var(--color-white-10); */
-	--color-text-disabled: oklch(0.4515 0.0243 285.39);
-	/* --color-text-4: var(--color-black-5); */
 }
 
+/* Base styles */
 @layer base {
 	* {
 		border-color: var(--color-border);
 	}
 	body {
 		@apply font-body bg-base text-fg;
+		/* Font families */
+		--heading-font: "Inter Display", system-ui, sans-serif;
+		--body-font: "Inter", system-ui, sans-serif;
 	}
 }
 
-@utility border-border {
-	border-color: var(--color-border);
-}
-
-@utility border-alpha {
-	border-color: var(--color-alpha);
-}
-
-/*
-  The default border color has changed to currentColor in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Custom heading font */
 @utility font-heading {
-	/* Base typography classes for headings and body */
 	font-family: var(--heading-font);
 }
 
+/* Custom body font */
 @utility font-body {
 	font-family: var(--body-font);
 }
 
+/* Heading 1 */
 @utility heading-1 {
 	@apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
 
@@ -292,6 +266,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 2 */
 @utility heading-2 {
 	@apply font-heading text-[2rem] font-bold leading-[2.5rem];
 
@@ -306,6 +281,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 3 */
 @utility heading-3 {
 	@apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
 
@@ -320,6 +296,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 4 */
 @utility heading-4 {
 	@apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
 
@@ -334,6 +311,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-bold leading-[2rem];
 
@@ -348,6 +326,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Heading 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
 
@@ -362,6 +341,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	}
 }
 
+/* Additional body fonts */
 @utility body-15 {
 	@apply font-body text-[0.9375rem] leading-[1.375];
 }
@@ -374,6 +354,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
 
+/* Hides scrollbar in multiple browsers*/
 @utility no-scrollbar {
 	-ms-overflow-style: none;
 	/* IE and Edge */
@@ -383,20 +364,6 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	&::-webkit-scrollbar {
 		display: none;
 		/* Chrome, Safari and Opera */
-	}
-}
-
-@layer utilities {
-	/* Chrome & other browser puts a background color on autofill inputs,
-	 this removes it */
-	input:-webkit-autofill,
-	input:-webkit-autofill:hover,
-	input:-webkit-autofill:focus,
-	input:-webkit-autofill:active {
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: inherit;
-		transition: background-color 5000s ease-in-out 0s;
-		box-shadow: inset 0 0 20px 20px transparent;
 	}
 }
 `
