@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Run unit tests
-        run: npm unit
+        run: npm run unit
         working-directory: packages/cli
 
   release:
