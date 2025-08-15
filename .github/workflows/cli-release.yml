@@ -20,6 +20,9 @@ jobs:
       issues: write
       pull-requests: write
       id-token: write
+    defaults:
+      run:
+        working-directory: packages/cli
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,14 +35,13 @@ jobs:
           node-version: "lts/*"
 
       - name: Install dependencies
-        run: cd packages/cli && pnpm install
+        run: npm install
 
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: cd packages/cli && pnpm audit signatures
+        run: npm audit signatures
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: cd packages/cli && npx semantic-release
-        working-directory: packages/cli
+        run: npx semantic-release
