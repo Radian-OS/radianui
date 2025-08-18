@@ -195,7 +195,7 @@ const DatePickerPreview = () => {
 						disabled={disabled}
 						triggerClassName="w-[320px]"
 						showDateRangeShortcut={showDateRangeShortcut}
-						dualCalendar={doubleCalendar}
+						dual={doubleCalendar}
 						showTime={showTime}
 						typeable={typeable}
 						size={size}
