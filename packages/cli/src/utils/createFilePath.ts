@@ -1,6 +1,6 @@
-import { FrameworkName } from './frameworks'
-import { RawConfig } from './getConfig'
-import { RegistryComponentFile } from './registry'
+import { FrameworkName } from '@utils/frameworks'
+import { RawConfig } from '@utils/getConfig'
+import { RegistryComponentFile } from '@utils/registry'
 import path from 'path'
 
 /**

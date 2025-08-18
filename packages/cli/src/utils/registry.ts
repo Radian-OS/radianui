@@ -5,7 +5,7 @@ import * as fs from "fs"
 import path from "path"
 import { pipeline } from "stream/promises"
 
-import { spinner } from "./spinner"
+import { spinner } from "@utils/spinner"
 
 const WEBSITE_URL = "https://radianos.com"
 const BLOCKS_URL = "https://blocks.radianos.com"

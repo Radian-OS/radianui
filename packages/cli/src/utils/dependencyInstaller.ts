@@ -1,4 +1,4 @@
-import { RegistryComponents } from './registry'
+import { RegistryComponents } from '@utils/registry'
 import { execa } from 'execa'
 
 import { AddOptions } from '@commands/add'

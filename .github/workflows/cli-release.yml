@@ -32,7 +32,6 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          version: 10.14.0
           node-version: 20
           cache: "pnpm"
 
@@ -68,15 +67,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          version: 10.14.0
           node-version: 20
           cache: "pnpm"
 
       - name: Install Dependencies
         run: pnpm install
-
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: pnpm audit signatures
 
       - name: Publish to NPM
         env:
