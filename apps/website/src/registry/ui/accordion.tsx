@@ -14,13 +14,13 @@ type BaseProps = AccordionContextType & {
 }
 
 type AccordionSingleProps = {
-	interaction?: "single"
+	expand?: "single"
 	collapsible?: boolean
 } & Omit<AccordionPrimitive.AccordionSingleProps, "type" | "collapsible"> &
 	BaseProps
 
 type AccordionMultipleProps = {
-	interaction: "multiple"
+	expand: "multiple"
 } & Omit<AccordionPrimitive.AccordionMultipleProps, "type"> &
 	BaseProps
 
@@ -51,9 +51,9 @@ function useAccordion() {
 	return context
 }
 
-function Accordion({ size = "sm", variant = "box", interaction = "single", className, children, ...rest }: AccordionProps) {
+function Accordion({ size = "sm", variant = "box", expand = "single", className, children, ...rest }: AccordionProps) {
 	const rootProps =
-		interaction === "single"
+		expand === "single"
 			? {
 					...(rest as AccordionPrimitive.AccordionSingleProps),
 					type: "single" as const,
@@ -83,7 +83,7 @@ function AccordionItem({ children, className, ...props }: AccordionItemProps) {
 	const { variant, size } = useAccordion()
 	let variantClass = ""
 	if (variant === "box") {
-		variantClass = size === "sm" ? "border-stroke shadow-2xs mb-1.5 rounded-md border last:mb-0" : "border-stroke shadow-2xs mb-2 rounded-md border last:mb-0"
+		variantClass = size === "sm" ? "border-stroke shadow-2xs mb-1.5 rounded-lg border last:mb-0" : "border-stroke shadow-2xs mb-2 rounded-[10px] border last:mb-0"
 	} else {
 		variantClass = "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0"
 	}
