@@ -160,7 +160,7 @@ const InputExample = () => {
 			<div className="flex flex-col gap-3">
 				<DatePicker placeholder="Default datepicker" navigatorStyle="selector" />
 				<DatePicker triggerClassName="w-[10rem]" navigatorStyle="selector" mode="single" placeholder="Single Date" />
-				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" dualCalendar={true} showDateRangeShortcut={true} />
+				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" dual={true} showDateRangeShortcut={true} />
 			</div>
 			<FileUpload
 			// value={file}

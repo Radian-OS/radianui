@@ -222,7 +222,7 @@ const DatePickerPreview = () => {
     placeholder="Select Date"
     showDateRangeShortcut={${showDateRangeShortcut}}
     disabled={${disabled}}
-    dualCalendar={${doubleCalendar}}
+    dual={${doubleCalendar}}
     showTime={${showTime}}
     size="${size}"
     rounded="${rounded}"
