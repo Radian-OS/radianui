@@ -1,4 +1,4 @@
-import { RegistryComponents } from './registry'
+import { RegistryComponents } from '@utils/registry'
 
 /**
  * Identifies components that are dependencies of a block from the resolved components.

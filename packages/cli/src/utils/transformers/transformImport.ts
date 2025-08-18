@@ -1,4 +1,4 @@
-import { RawConfig } from '../getConfig'
+import { RawConfig } from '@utils/getConfig'
 import { SourceFile } from 'ts-morph'
 
 export function transformImport(sourceFile: SourceFile, config: RawConfig): string {

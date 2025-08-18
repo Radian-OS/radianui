@@ -5,7 +5,7 @@ import * as fs from "fs"
 import path from "path"
 import { pipeline } from "stream/promises"
 
-import { spinner } from "./spinner"
+import { spinner } from "@utils/spinner"
 
 const WEBSITE_URL = "https://radianos.com"
 const BLOCKS_URL = "https://blocks.radianos.com"
@@ -139,7 +139,7 @@ export type ColorData = {
 
 export const getBrandColor = async (color: Color): Promise<ColorData> => {
 	try {
-		const response = await fetch(`http://localhost:3001/r/themes/${color}.json`)
+		const response = await fetch(`${WEBSITE_URL}/r/themes/${color}.json`)
 		if (!response.ok) {
 			const errorMessage = `Failed to fetch data from ${response.url}.\nStatus: ${response.status} - ${response.statusText}`
 			throw new Error(errorMessage)
@@ -165,7 +165,7 @@ export type FontData = {
 
 export const getFont = async (font: Font): Promise<FontData> => {
 	try {
-		const response = await fetch(`http://localhost:3001/r/fonts/${font}.json`)
+		const response = await fetch(`${WEBSITE_URL}/r/fonts/${font}.json`)
 		if (!response.ok) {
 			const errorMessage = `Failed to fetch data from ${response.url}.\nStatus: ${response.status} - ${response.statusText}`
 			throw new Error(errorMessage)

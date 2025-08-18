@@ -1,4 +1,4 @@
-import { txt } from './colors'
+import { txt } from '@utils/colors'
 import fs from 'fs-extra'
 import JSON5 from 'json5'
 import path from 'path'

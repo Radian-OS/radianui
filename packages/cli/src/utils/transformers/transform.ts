@@ -1,5 +1,5 @@
-import { transformImport } from './transformImport'
-import { transformRsc } from './transformRsc'
+import { transformImport } from '@utils/transformers/transformImport'
+import { transformRsc } from '@utils/transformers/transformRsc'
 import { Project } from 'ts-morph'
 
 import { RawConfig } from '@utils/getConfig'

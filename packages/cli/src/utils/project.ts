@@ -1,4 +1,3 @@
-import { RawConfig } from './getConfig'
 import { execa } from 'execa'
 import fs from 'fs-extra'
 import path from 'path'
