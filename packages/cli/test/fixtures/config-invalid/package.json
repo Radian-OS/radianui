@@ -1,0 +1,7 @@
+{
+  "name": "config-invalid",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Radian",
+  "license": "MIT"
+}

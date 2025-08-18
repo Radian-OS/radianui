@@ -1,5 +1,10 @@
+# Ignore normal lockfiles and node_modules
 node_modules
 dist
 package-lock.*
 pnpm-lock.*
 .env
+
+# But keep lockfiles in test fixtures for CI
+!packages/cli/test/fixtures/**/pnpm-lock.yaml
+!packages/cli/test/fixtures/**/package-lock.json

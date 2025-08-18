@@ -16,7 +16,7 @@ const CalendarPreview = () => {
 	const [mode, setMode] = useState<DatePickerModes>("range")
 	const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
 	const [showTime, setShowTime] = useState<boolean>(false)
-	const [showShortcut, setShowShortCut] = useState<boolean>(false)
+	const [quickSelection, setquickSelection] = useState<boolean>(false)
 	const [footer, setFooter] = useState<boolean>(false)
 
 	return (
@@ -38,7 +38,7 @@ const CalendarPreview = () => {
 					</DropdownTrigger>
 					<DropdownContent>
 						<DropdownSub>
-							<DropdownSubTrigger>Selection mode</DropdownSubTrigger>
+							<DropdownSubTrigger>Selection</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup selectionMode="single" selectedValues={[mode]} onSelectedChange={(values) => setMode(values[0] as DatePickerModes)} minSelectionCount={1}>
 									<DropdownItem value="single">Single</DropdownItem>
@@ -48,7 +48,7 @@ const CalendarPreview = () => {
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
-							<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
+							<DropdownSubTrigger>Dual</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
@@ -70,12 +70,12 @@ const CalendarPreview = () => {
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
-							<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
+							<DropdownSubTrigger>Quick Selection</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
-									selectedValues={[String(showShortcut)]}
-									onSelectedChange={(values) => setShowShortCut(values[0] === "true")}
+									selectedValues={[String(quickSelection)]}
+									onSelectedChange={(values) => setquickSelection(values[0] === "true")}
 									minSelectionCount={1}>
 									<DropdownItem value="true">True</DropdownItem>
 									<DropdownItem value="false">False</DropdownItem>
@@ -96,10 +96,10 @@ const CalendarPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col ${doubleCalendar && showShortcut ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
+				<div className={`flex h-[420px] flex-col ${doubleCalendar && quickSelection ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
 					{mode === "single" && (
 						<Calendar
-							showShortcut={showShortcut}
+							quickSelection={quickSelection}
 							mode={"single"}
 							footer={
 								footer && (
@@ -109,16 +109,16 @@ const CalendarPreview = () => {
 									</div>
 								)
 							}
-							showTime={showTime}
-							dualCalendar={doubleCalendar}
+							time={showTime}
+							dual={doubleCalendar}
 							showOutsideDays
 						/>
 					)}
 					{mode === "multiple" && (
 						<Calendar
-							showShortcut={showShortcut}
+							quickSelection={quickSelection}
 							mode={"multiple"}
-							showTime={showTime}
+							time={showTime}
 							footer={
 								footer && (
 									<div className="flex gap-2 p-3">
@@ -127,13 +127,13 @@ const CalendarPreview = () => {
 									</div>
 								)
 							}
-							dualCalendar={doubleCalendar}
+							dual={doubleCalendar}
 							showOutsideDays
 						/>
 					)}
 					{mode === "range" && (
 						<Calendar
-							showShortcut={showShortcut}
+							quickSelection={quickSelection}
 							mode={"range"}
 							footer={
 								footer && (
@@ -143,8 +143,8 @@ const CalendarPreview = () => {
 									</div>
 								)
 							}
-							showTime={showTime}
-							dualCalendar={doubleCalendar}
+							time={showTime}
+							dual={doubleCalendar}
 							showOutsideDays
 						/>
 					)}
@@ -158,9 +158,9 @@ const CalendarPreview = () => {
 					className="h-[420px]"
 					code={`<Calendar
     mode="${mode}"
-    dualCalendar={${doubleCalendar}}
-    showTime={${showTime}}
-    showShortcut={${showShortcut}}
+    dual={${doubleCalendar}}
+    time={${showTime}}
+    quickSelection={${quickSelection}}
     footer=${
 			footer
 				? `{

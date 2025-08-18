@@ -84,12 +84,12 @@ export type CalendarRangeSelect = {
 // Main CalendarProps type combining different selection modes and additional props
 export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "selected" | "onSelect" | "numberOfMonths" | "disabled"> &
 	(CalendarSingleSelect | CalendarMultipleSelect | CalendarRangeSelect) & {
-		dualCalendar?: boolean
+		dual?: boolean
 		navigatorStyle?: "button" | "selector"
 		disabled?: boolean
-		showTime?: boolean
+		time?: boolean
 		defaultDateRangeShortcutValue?: DateRangeShortcutValues
-		showShortcut?: boolean
+		quickSelection?: boolean
 		footer?: React.ReactNode
 		onIndexChange?: (value: string | null) => void
 	}
@@ -132,7 +132,7 @@ export function formatTime(time: Time) {
 }
 
 type TimeSelectorProps = {
-	showTime: boolean
+	time: boolean
 	timeOptions: Time[] // Updated to accept Time[]
 	selectedIndex: number | null
 	setSelectedIndex: (index: number | null) => void
@@ -140,7 +140,7 @@ type TimeSelectorProps = {
 	onTimeSelect?: (formattedTime: string) => void
 	mode?: string
 }
-export function TimeSelector({ showTime, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode, onTimeSelect }: TimeSelectorProps) {
+export function TimeSelector({ time, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode, onTimeSelect }: TimeSelectorProps) {
 	const containerRef = useRef<HTMLDivElement>(null)
 
 	// Close the time selector if clicked outside
@@ -156,7 +156,7 @@ export function TimeSelector({ showTime, timeOptions, selectedIndex, setSelected
 		}
 	}, [setSelectedIndex])
 
-	if (!showTime) return null
+	if (!time) return null
 
 	return (
 		<div
@@ -188,12 +188,12 @@ export function TimeSelector({ showTime, timeOptions, selectedIndex, setSelected
 type GetMergedClassNamesParams = {
 	props: { disabled?: boolean; hideNavigation?: boolean }
 	navigatorStyle: string
-	dualCalendar: boolean
+	dual: boolean
 	hideCaption?: boolean
 	classNames?: Record<string, string>
 }
 
-export function getMergedClassNames({ props, navigatorStyle, dualCalendar, hideCaption, classNames = {} }: GetMergedClassNamesParams): Record<string, string> {
+export function getMergedClassNames({ props, navigatorStyle, dual, hideCaption, classNames = {} }: GetMergedClassNamesParams): Record<string, string> {
 	return {
 		root: cn({ "cursor-not-allowed": props.disabled }),
 		months: cn("relative flex flex-col bg-elevation-level1 w-full gap-5 p-0", {
@@ -201,7 +201,7 @@ export function getMergedClassNames({ props, navigatorStyle, dualCalendar, hideC
 			"sm:flex-row": navigatorStyle !== "selector",
 		}),
 		month_caption: cn("mx-10 flex items-center justify-center z-20 p-0 text-sm font-semibold h-7", {
-			hidden: props.hideNavigation || hideCaption || (navigatorStyle === "selector" && !dualCalendar),
+			hidden: props.hideNavigation || hideCaption || (navigatorStyle === "selector" && !dual),
 		}),
 		nav: "absolute top-0 flex w-full justify-between z-10 p-0",
 		month: "flex flex-col gap-3",
@@ -212,7 +212,7 @@ export function getMergedClassNames({ props, navigatorStyle, dualCalendar, hideC
 		week: "w-full flex gap-1.5",
 		day: "size-8 p-0 shrink-0 group text-sm aria-selected:opacity-100",
 		day_button:
-			"text-center rounded-lg text-fgtext-sm font-medium hover:bg-elevation-level1 size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-fg-tertiary group-data-selected:text-white group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-fggroup-data-selected:group-data-outside:text-white",
+			"text-center rounded-lg text-fg text-sm font-medium hover:bg-fill2-alpha cursor-pointer size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary group-data-selected:text-white hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-fg-tertiary group-data-selected:text-white group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-primary group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-fg group-data-selected:group-data-outside:text-white",
 		button_previous: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
 			"pointer-events-none": props.disabled,
 		}),
@@ -233,12 +233,12 @@ function Calendar({
 	mode = "single",
 	onSelect: customOnSelect,
 	classNames,
-	showShortcut = true,
+	quickSelection = true,
 	components,
 	showOutsideDays = true,
 	navigatorStyle = "button",
-	showTime = false,
-	dualCalendar = false,
+	time = false,
+	dual = false,
 	defaultDateRangeShortcutValue,
 	className,
 	footer,
@@ -260,13 +260,13 @@ function Calendar({
 		[selected]
 	)
 
-	const mergedClassName = cn(`p-3 bg-elevation-level1 ${showTime ? " border-r" : ""}`, className)
+	const mergedClassName = cn(`p-3 bg-elevation-level1 ${time ? " border-r" : ""}`, className)
 
 	// Merged class names for styling
 	const mergedClassNames = getMergedClassNames({
 		props,
 		navigatorStyle,
-		dualCalendar,
+		dual,
 		hideCaption,
 		classNames,
 	})
@@ -350,7 +350,7 @@ function Calendar({
 		return (
 			<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-					{showShortcut && <DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
+					{quickSelection && <DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
 						classNames={mergedClassNames}
 						components={mergedComponents}
@@ -359,16 +359,16 @@ function Calendar({
 						mode="single"
 						selected={currentSelected as Date}
 						onSelect={handleOnSelect}
-						numberOfMonths={dualCalendar ? 2 : 1}
+						numberOfMonths={dual ? 2 : 1}
 						{...props}
 					/>
-					{showTime && (
+					{time && (
 						<TimeSelector
 							timeOptions={timeOptions}
 							selectedIndex={selectedIndex}
 							setSelectedIndex={setSelectedIndex}
 							formatTime={formatTime}
-							showTime={showTime}
+							time={time}
 							onTimeSelect={(formatted) => {
 								onIndexChange?.(formatted)
 							}}
@@ -384,7 +384,7 @@ function Calendar({
 		return (
 			<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-					{showShortcut && <DateRangeShortcut mode="multiple" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
+					{quickSelection && <DateRangeShortcut mode="multiple" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
 						classNames={mergedClassNames}
 						components={mergedComponents}
@@ -393,16 +393,16 @@ function Calendar({
 						mode="multiple"
 						selected={currentSelected as Date[]}
 						onSelect={handleOnSelect}
-						numberOfMonths={dualCalendar ? 2 : 1}
+						numberOfMonths={dual ? 2 : 1}
 						{...props}
 					/>
-					{showTime && (
+					{time && (
 						<TimeSelector
 							timeOptions={timeOptions}
 							selectedIndex={selectedIndex}
 							setSelectedIndex={setSelectedIndex}
 							formatTime={formatTime}
-							showTime={showTime}
+							time={time}
 							onTimeSelect={(formatted) => {
 								onIndexChange?.(formatted)
 							}}
@@ -417,7 +417,7 @@ function Calendar({
 	return (
 		<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
 			<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-				{showShortcut && <DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
+				{quickSelection && <DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 				<DayPicker
 					classNames={mergedClassNames}
 					components={mergedComponents}
@@ -426,16 +426,16 @@ function Calendar({
 					mode="range"
 					selected={currentSelected as DateRange}
 					onSelect={handleOnSelect}
-					numberOfMonths={dualCalendar ? 2 : 1}
+					numberOfMonths={dual ? 2 : 1}
 					{...props}
 				/>
-				{showTime && (
+				{time && (
 					<TimeSelector
 						timeOptions={timeOptions}
 						selectedIndex={selectedIndex}
 						setSelectedIndex={setSelectedIndex}
 						formatTime={formatTime}
-						showTime={showTime}
+						time={time}
 						onTimeSelect={(formatted) => {
 							onIndexChange?.(formatted)
 						}}

@@ -1,3 +1,4 @@
+import { txt } from './colors'
 import fs from 'fs-extra'
 import JSON5 from 'json5'
 import path from 'path'
@@ -13,14 +14,16 @@ export const updateTsConfigForVite = async (projectPath: string) => {
   }
 
   try {
-    if (await fs.pathExists(tsConfigPath)) {
-      const tsConfig = await fs.readJson(tsConfigPath)
-      tsConfig.compilerOptions = {
-        ...tsConfig.compilerOptions,
-        ...alias,
-      }
-      await fs.writeJson(tsConfigPath, tsConfig, { spaces: 2 })
+    if (!(await fs.pathExists(tsConfigPath))) {
+      throw new Error(`${txt.info('tsconfig.json')} not found at ${txt.info(tsConfigPath)}`)
     }
+
+    const tsConfig = await fs.readJson(tsConfigPath)
+    tsConfig.compilerOptions = {
+      ...tsConfig.compilerOptions,
+      ...alias,
+    }
+    await fs.writeJson(tsConfigPath, tsConfig, { spaces: 2 })
   } catch (err) {
     throw new Error(`Failed to update tsconfig.json: ${err}`)
   }
@@ -39,23 +42,23 @@ export const updateTsConfigAppForVite = async (projectPath: string, framework: '
   }
 
   try {
-    if (await fs.pathExists(tsConfigPath)) {
-      const raw = await fs.readFile(tsConfigPath, 'utf8')
-      const tsConfig = JSON5.parse(raw)
-
-      tsConfig.compilerOptions = {
-        ...(tsConfig.compilerOptions || {}),
-        ...newCompilerOptions,
-        paths: {
-          ...(tsConfig.compilerOptions?.paths || {}),
-          ...newCompilerOptions.paths,
-        },
-      }
-
-      await fs.writeJson(tsConfigPath, tsConfig, { spaces: 2 })
-    } else {
+    if (!(await fs.pathExists(tsConfigPath))) {
       throw new Error(`tsconfig.app.json not found at ${tsConfigPath}`)
     }
+
+    const raw = await fs.readFile(tsConfigPath, 'utf8')
+    const tsConfig = JSON5.parse(raw)
+
+    tsConfig.compilerOptions = {
+      ...(tsConfig.compilerOptions || {}),
+      ...newCompilerOptions,
+      paths: {
+        ...(tsConfig.compilerOptions?.paths || {}),
+        ...newCompilerOptions.paths,
+      },
+    }
+
+    await fs.writeJson(tsConfigPath, tsConfig, { spaces: 2 })
   } catch (err) {
     throw new Error(`Failed to update tsconfig.app.json: ${err}`)
   }

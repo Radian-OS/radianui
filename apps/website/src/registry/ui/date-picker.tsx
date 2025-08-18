@@ -499,15 +499,15 @@ function DatePicker({
 	}, [displayText, timeDisplay])
 
 	const alignOffset = useMemo(() => {
-		if (showTime && showDateRangeShortcut && props.dualCalendar) return -581
-		if (props.dualCalendar && showTime) return -378
-		if (props.dualCalendar && showDateRangeShortcut) return -458
+		if (showTime && showDateRangeShortcut && props.dual) return -581
+		if (props.dual && showTime) return -378
+		if (props.dual && showDateRangeShortcut) return -458
 		if (showTime && showDateRangeShortcut) return -298
-		if (props.dualCalendar) return -259
+		if (props.dual) return -259
 		if (showTime) return -98
 		if (showDateRangeShortcut) return -178
 		return 20
-	}, [props.dualCalendar, showTime, showDateRangeShortcut])
+	}, [props.dual, showTime, showDateRangeShortcut])
 
 	return (
 		<div>
@@ -564,8 +564,8 @@ function DatePicker({
 											mode="single"
 											selected={currentSelected as CalendarDate}
 											onSelect={onSelectHandler}
-											showTime={showTime}
-											showShortcut={showDateRangeShortcut}
+											time={showTime}
+											quickSelection={showDateRangeShortcut}
 											{...props}
 										/>
 									)}
@@ -579,8 +579,8 @@ function DatePicker({
 											}}
 											selected={currentSelected as CalendarDate[]}
 											onSelect={onSelectHandler}
-											showTime={showTime}
-											showShortcut={showDateRangeShortcut}
+											time={showTime}
+											quickSelection={showDateRangeShortcut}
 											{...props}
 										/>
 									)}
@@ -593,8 +593,8 @@ function DatePicker({
 												}
 											}}
 											selected={currentSelected as CalendarRange}
-											showTime={showTime}
-											showShortcut={showDateRangeShortcut}
+											time={showTime}
+											quickSelection={showDateRangeShortcut}
 											onSelect={onSelectHandler}
 											{...props}
 										/>
@@ -663,7 +663,7 @@ type DateRangeShortcutItemProps = {
 function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
 	return (
 		<span
-			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill2 cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
+			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill2-alpha cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
 			data-value={value}
 			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}>
 			{label}
@@ -692,7 +692,7 @@ function TypeableDatePicker({
 	components,
 	navigatorStyle = "button",
 	showTime = false,
-	dualCalendar = false,
+	dual = false,
 	className,
 	footer,
 	showDateRangeShortcut,
@@ -740,7 +740,7 @@ function TypeableDatePicker({
 	const mergedClassNames = getMergedClassNames({
 		props,
 		navigatorStyle,
-		dualCalendar,
+		dual,
 		hideCaption,
 		classNames,
 	})
@@ -829,7 +829,7 @@ function TypeableDatePicker({
 						{showDateRangeShortcut && <DateRangeShortcut mode="single" />}
 						<DayPicker
 							mode="single"
-							numberOfMonths={dualCalendar ? 2 : 1}
+							numberOfMonths={dual ? 2 : 1}
 							selected={dateTime ? new Date(dateTime.year, dateTime.month - 1, dateTime.day) : undefined}
 							month={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
 							onSelect={(selectedDate) => {
@@ -866,7 +866,7 @@ function TypeableDatePicker({
 							selectedIndex={selectedIndex}
 							setSelectedIndex={setSelectedIndex}
 							formatTime={formatTime}
-							showTime={showTime}
+							time={showTime}
 							onTimeSelect={(formattedTime) => {
 								const [timePart, rawPeriod] = formattedTime.trim().split(" ")
 								if (!timePart || !rawPeriod) return
