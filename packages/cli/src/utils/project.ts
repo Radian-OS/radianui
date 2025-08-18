@@ -1,3 +1,4 @@
+import { RawConfig } from './getConfig'
 import { execa } from 'execa'
 import fs from 'fs-extra'
 import path from 'path'
@@ -82,7 +83,10 @@ export const setupProjectConfig = async (projectPath: string, framework: Framewo
   // Common config in both frameworks
   const componentSpinner = spinner('Writing components.json file').start()
   const targetPath = path.resolve(projectPath, 'components.json')
-  await fs.writeFile(targetPath, COMPONENTS_JSON_CONFIG, 'utf8')
+
+  const componentsJsonConfig = JSON.parse(COMPONENTS_JSON_CONFIG)
+  componentsJsonConfig.hasSrcDir = hasSrcDir
+  await fs.writeFile(targetPath, JSON.stringify(componentsJsonConfig, null, 2), 'utf8')
   componentSpinner.succeed()
 
   const configurationSpinner = spinner('Setting up project configuration').start()
@@ -157,7 +161,11 @@ const setupNextJsConfig = async (projectDir: string, hasSrcDir: boolean, framewo
     if (!(await fs.pathExists(baseFilePath))) {
       throw new Error(`File not found at ${baseFilePath}`)
     }
-    await removeNextDefaultFont(baseFilePath)
+
+    // Remove default next font
+    const content = await fs.readFile(baseFilePath, 'utf-8')
+    const removedFontContent = removeNextDefaultFont(content)
+    await fs.writeFile(baseFilePath, removedFontContent)
   } catch (error) {
     throw new Error(`Next.js setup failed: ${error.message}`)
   }

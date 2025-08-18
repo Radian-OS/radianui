@@ -18,7 +18,6 @@ export type ProjectInfo = {
   aliasPrefix: string | null
 }
 
-
 export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
   const [configFiles, hasSrcDir, isTsx, tailwindConfigFile, tailwindCssFile, aliasPrefix] = await Promise.all([
     getConfigFile(cwd),
@@ -26,7 +25,7 @@ export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
     getIsTypescriptProject(cwd),
     getTailwindConfigFile(cwd),
     getTailwindCssFile(cwd),
-    getAliasPrefixFromTailwindConfigFile(cwd),
+    getAliasPrefixFromTsConfigFile(cwd),
   ])
 
   const isUsingAppDir = await fs.pathExists(path.resolve(cwd, `${hasSrcDir ? 'src/' : ''}app`))
@@ -127,7 +126,7 @@ export const getIsTypescriptProject = async (cwd: string) => {
   return files.length > 0
 }
 
-export const getAliasPrefixFromTailwindConfigFile = async (cwd: string) => {
+export const getAliasPrefixFromTsConfigFile = async (cwd: string) => {
   const tsConfigFile = loadConfig(cwd)
 
   if (tsConfigFile.resultType === 'failed' || !tsConfigFile.paths) {

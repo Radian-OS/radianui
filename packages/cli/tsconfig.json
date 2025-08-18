@@ -12,12 +12,27 @@
     "strictNullChecks": true,
     "baseUrl": "./src/",
     "paths": {
-      "@utils/*": ["utils/*"],
-      "@preflights/*": ["preflights/*"],
-      "@commands/*": ["commands/*"]
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@preflights/*": [
+        "preflights/*"
+      ],
+      "@commands/*": [
+        "commands/*"
+      ]
     }
   },
-  "lib": ["ESNext"],
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "lib": [
+    "ESNext"
+  ],
+  "include": [
+    "src/**/*",
+    "test/**/*",
+    "e2e/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

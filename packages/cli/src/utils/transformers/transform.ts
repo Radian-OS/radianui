@@ -28,12 +28,10 @@ export const transform = async (
 
   // If this is a Vite project, apply RSC transformation
   if (projectInfo.framework.name === 'vite') {
-    const transformedSourceFile = await transformRsc({
+    transformedContent = transformRsc({
       sourceFile,
-      config: projectInfo,
+      projectInfo,
     })
-
-    transformedContent = transformedSourceFile.getFullText()
   }
 
   sourceFile.delete()

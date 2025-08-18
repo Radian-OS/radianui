@@ -1,9 +1,11 @@
 import { JsxAttribute, Project, SyntaxKind } from 'ts-morph'
 
-export async function removeNextDefaultFont(baseFilePath: string) {
-  const project = new Project()
+export function removeNextDefaultFont(content: string): string {
+  const project = new Project({
+    useInMemoryFileSystem: true,
+  })
 
-  const sourceFile = project.addSourceFileAtPath(baseFilePath)
+  const sourceFile = project.createSourceFile('temp.tsx', content)
 
   // Remove font imports
   sourceFile.getImportDeclarations().forEach((importDecl) => {
@@ -46,5 +48,5 @@ export async function removeNextDefaultFont(baseFilePath: string) {
     }
   })
 
-  await sourceFile.save()
+  return sourceFile.getFullText()
 }

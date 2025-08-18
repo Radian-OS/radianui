@@ -8,10 +8,10 @@ export const logger = {
     console.log(txt.info(args.join(' ')))
   },
   warn: (...args: unknown[]) => {
-    console.log(txt.warning(args.join(' ')))
+    console.warn(txt.warning(args.join(' ')))
   },
   error: (...args: unknown[]) => {
-    console.log(txt.error(args.join(' ')))
+    console.error(txt.error(args.join(' ')))
   },
   log: (...args: unknown[]) => {
     console.log(txt.dark(args.join('')))

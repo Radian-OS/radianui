@@ -23,7 +23,6 @@ export const installDependencies = async (projectDir: string, dependencies: stri
     dependencySpinner.succeed()
   } catch (error) {
     dependencySpinner.fail()
-    console.log(error)
     handleError('Failed to install dependencies.')
   }
 }
