@@ -12,15 +12,14 @@
         [
             "@semantic-release/npm",
             {
-                "npmPublish": false
+                "npmPublish": true
             }
         ],
         [
             "@semantic-release/exec",
             {
-                "prepareCmd": "npm run build",
-                "publishCmd": "npm publish"
-            } 
+                "prepareCmd": "npm run build"
+            }
         ],
         "@semantic-release/github"
     ]
