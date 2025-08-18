@@ -156,7 +156,7 @@
 	}
 	body {
 		@apply font-body bg-base text-fg;
-		/* Font families */
+		/* Font Families */
 		--heading-font: "Inter Display", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
 	}

@@ -181,10 +181,14 @@ function addNewFontImport(root: Root, importURL: string): void {
  * @param fontData - Font data containing CSS variable definitions
  */
 function updateFontDeclarations(root: Root, fontData: FontData): void {
-  root.walkAtRules('theme', (atRule: AtRule) => {
-    atRule.walkDecls((decl: Declaration) => {
-      updateFontDeclaration(decl, fontData)
-    })
+  root.walkAtRules('layer', (atRule: AtRule) => {
+    if (atRule.params.trim() === 'base') {
+      atRule.walkDecls((decl: Declaration) => {
+        if (decl.prop === '--heading-font' || decl.prop === '--body-font') {
+          updateFontDeclaration(decl, fontData)
+        }
+      })
+    }
   })
 }
 

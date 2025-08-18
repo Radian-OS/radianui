@@ -44,63 +44,63 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
     : options.vite
       ? 'vite'
       : (
-          await prompts({
-            type: 'select',
-            name: 'framework',
-            message: 'Which framework do you want to use?',
-            choices: [
-              { title: 'Next.js', value: 'next-app' },
-              { title: 'Vite', value: 'vite' },
-            ],
-            initial: 0,
-          })
-        ).framework
+        await prompts({
+          type: 'select',
+          name: 'framework',
+          message: 'Which framework do you want to use?',
+          choices: [
+            { title: 'Next.js', value: 'next-app' },
+            { title: 'Vite', value: 'vite' },
+          ],
+          initial: 0,
+        })
+      ).framework
 
   // Get src dir preference (only for Next.js)
   const useSrcDir =
     framework === 'next-app'
       ? options.useSrc ||
-        (
-          await prompts({
-            type: 'confirm',
-            name: 'useSrcDir',
-            message: 'Would you like to use /src directory?',
-            initial: true,
-          })
-        ).useSrcDir
+      (
+        await prompts({
+          type: 'confirm',
+          name: 'useSrcDir',
+          message: 'Would you like to use /src directory?',
+          initial: true,
+        })
+      ).useSrcDir
       : true
 
   // Get brand color
   const { brandColor } = options.color
     ? { brandColor: options.color }
     : await prompts({
-        type: 'select',
-        name: 'brandColor',
-        message: 'Which color would you like to use as your brand color?',
-        choices: [
-          { title: 'Amber (Default)', value: 'amber' },
-          { title: 'Blue', value: 'blue' },
-          { title: 'Emerald', value: 'emerald' },
-          { title: 'Red', value: 'red' },
-          { title: 'Violet', value: 'violet' },
-        ],
-        initial: 0,
-      })
+      type: 'select',
+      name: 'brandColor',
+      message: 'Which color would you like to use as your brand color?',
+      choices: [
+        { title: 'Amber (Default)', value: 'amber' },
+        { title: 'Light Blue', value: 'light-blue' },
+        { title: 'Emerald', value: 'emerald' },
+        { title: 'Red', value: 'red' },
+        { title: 'Violet Blue', value: 'violet-blue' },
+      ],
+      initial: 0,
+    })
 
   // Get font
   const { font } = options.font
     ? { font: options.font }
     : await prompts({
-        type: 'select',
-        name: 'font',
-        message: 'Which font would you like to use for your project?',
-        choices: [
-          { title: 'Inter - Inter Display (Default)', value: 'inter' },
-          { title: 'Roboto', value: 'roboto' },
-          { title: 'Geist', value: 'geist' },
-        ],
-        initial: 0,
-      })
+      type: 'select',
+      name: 'font',
+      message: 'Which font would you like to use for your project?',
+      choices: [
+        { title: 'Inter - Inter Display (Default)', value: 'inter' },
+        { title: 'Roboto', value: 'roboto' },
+        { title: 'Geist', value: 'geist' },
+      ],
+      initial: 0,
+    })
 
   return { projectName, useSrcDir, framework, brandColor, font }
 }
