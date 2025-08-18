@@ -20,7 +20,7 @@
             {
                 "prepareCmd": "npm run build",
                 "publishCmd": "npm publish"
-            }
+            } 
         ],
         "@semantic-release/github"
     ]
