@@ -9,7 +9,7 @@ import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Password } from "@/registry/ui/password"
-import ProgressBar from "@/registry/ui/progress-bar"
+import { ProgressBar } from "@/registry/ui/progress-bar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 // Define the Zod schema for password validation

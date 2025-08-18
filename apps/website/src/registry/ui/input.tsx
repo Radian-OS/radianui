@@ -44,6 +44,7 @@ const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 bo
 		rounded: defaultInputRadius,
 	},
 })
+
 export type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	label?: string
 	hint?: string

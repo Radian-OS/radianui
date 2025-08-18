@@ -5,7 +5,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import ProgressBar from "@/registry/ui/progress-bar"
+import { ProgressBar } from "@/registry/ui/progress-bar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type ProgressOptions = "0" | "25" | "50" | "75" | "100"
@@ -84,7 +84,7 @@ const ProgressBarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<ProgressBar label={label ? "Progress Bar" : undefined} hint={hint ? "Progress Bar" : undefined} className="w-80" valueLabel={valueLabel} value={Number(progress)} />
+					<ProgressBar label={label ? "Progress Bar" : undefined} hint={hint ? "Progress Bar" : undefined} valueLabel={valueLabel} value={Number(progress)} />
 				</div>
 			</TabsContent>
 
