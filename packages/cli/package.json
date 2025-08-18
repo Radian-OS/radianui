@@ -54,6 +54,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@semantic-release/exec": "^7.1.0",
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/adm-zip": "^0.5.7",
     "@types/fs-extra": "^11.0.4",
