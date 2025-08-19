@@ -296,7 +296,7 @@ const components: MDXComponents = {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
 	},
 
-	VersionAlert: (props: Pick<AlertProps, "title" | "message" | "variant" | "color">) => {
+	VersionAlert: (props: Pick<AlertProps, "title" | "description" | "variant" | "color">) => {
 		return (
 			<Alert variant={props.variant} color={props.color}>
 				<div className="flex w-full gap-3">
@@ -305,7 +305,7 @@ const components: MDXComponents = {
 					</span>
 					<div className="flex flex-1 flex-col">
 						<p className="text-sm font-semibold">{props.title}</p>
-						<p className="text-sm">{props.message}</p>
+						<p className="text-sm">{props.description}</p>
 					</div>
 				</div>
 			</Alert>
