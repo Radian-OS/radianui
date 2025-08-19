@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerExamplePreview3 = () => {
 	return (
-		<Tabs className="mb-10 pb-6" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<TabsList>
 				<TabsTrigger value="preview" icon={<EyeIcon />}>
 					Preview

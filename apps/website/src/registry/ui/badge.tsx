@@ -124,6 +124,7 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		},
 	],
 })
+
 function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
 	if (!showBadge) return null
@@ -159,5 +160,7 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 		</div>
 	)
 }
+
 Badge.displayName = "Badge"
+
 export { Badge }

@@ -70,10 +70,10 @@ My Custom Badge
 	]
 
 	return (
-		<div className="mb-10 mt-2 space-y-8 pb-6">
+		<div className="mt-6 space-y-8">
 			{badgeExamples.map((example, index) => (
 				<div key={index} className="overflow-hidden rounded-lg">
-					<h6 className="heading-6 mb-4 font-semibold">{example.name}</h6>
+					<h6 className="heading-6 mb-3 font-semibold">{example.name}</h6>
 					<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 						<TabsList>
 							<TabsTrigger value="preview" icon={<EyeIcon />}>

@@ -1,5 +1,5 @@
 ---
-title: Buttons
+title: Button
 description: Let users take action and make choices in a single
 links:
   github:
@@ -13,44 +13,82 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add button",
-		npm: "npx @radianos/radianbeta add button",
-		yarn: "yarn @radianos/radianbeta add button",
-		bun: "bunx @radianos/radianbeta add button",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add button",
+				npm: "npx @radianos/radianbeta add button",
+				yarn: "yarn @radianos/radianbeta add button",
+				bun: "bunx @radianos/radianbeta add button",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+		<Step>Install component dependencies</Step> 
+		<p>Button component is made using `Spinner`. See installation for [Spinner](https://radianos.com/docs/components/spinner)</p>
 
-## Imports
+        <Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add @radix-ui/react-slot",
+    			npm: "npm install @radix-ui/react-slot",
+    			yarn: "yarn add @radix-ui/react-slot",
+    			bun: "bun add @radix-ui/react-slot",
+    		}}
+    	/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/button.tsx" code={`import {Button,ButtonGroup,CompactButton} from "@/components/ui/button"`} />
 
+### Code
+
+<CodeSnippet title="/components/ui/button.tsx" code={`<Button>Click Me</Button>`} />
+
 ---
 
-## Social Buttons
+## Examples
+
+### Social Buttons
 
 <SocialButtonPreview />
 
-## Svg Buttons
+### Svg Buttons
 
 <SvgButtonPreview />
 
-## ButtonGroup
+### ButtonGroup
 
 <ButtonGroupPreview />
 
-## Fancy Button
+### Fancy Button
 
 <FancyButtonPreview />
 
-## Compact Button
+### Compact Button
 
 <CompactButtonPreview />
 
 ---
 
-## Props
+### Props
 
 <PropsTableWrapper>
 	<PropsTable

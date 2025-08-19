@@ -13,12 +13,12 @@ links:
 
 ## Installation
 
-<Tabs defaultValue="cli">
-	<TabsList>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
 		<TabsTrigger value="cli">CLI</TabsTrigger>
 		<TabsTrigger value="manual">Manual</TabsTrigger>
 	</TabsList>
-	<TabsContent value="cli">
+	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
 				pnpm: "pnpm dlx @radianos/radianbeta add accordion",
@@ -28,7 +28,7 @@ links:
 			}}
 		/>
 	</TabsContent>
-	<TabsContent value="manual">
+	<TabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
@@ -49,13 +49,29 @@ links:
 
 </Tabs>
 
-## Imports
+## Usage
 
-<CodeSnippet
-	title="/components/ui/accordion.tsx"
-	code={`import {Accordion,AccordionContent,AccordionItem,AccordionTrigger} from "@/components/ui/accordion"`}
-	showLineNumbers={true}
-/>
+### Imports
+
+<CodeSnippet title="/components/ui/accordion.tsx" code={`import {Accordion,AccordionContent,AccordionItem,AccordionTrigger} from "@/components/ui/accordion"`} />
+
+### Code
+
+<CodeSnippet title="/components/ui/accordion.tsx" code={`<Accordion size="sm" variant="box" interaction="single" className="max-w-md mx-auto">
+      <AccordionItem value="item-1">
+        <AccordionTrigger>First Item</AccordionTrigger>
+        <AccordionContent>
+          <p>This is the content of the first accordion item.</p>
+        </AccordionContent>
+      </AccordionItem>
+
+      <AccordionItem value="item-2">
+        <AccordionTrigger>Second Item</AccordionTrigger>
+        <AccordionContent>
+          <p>This is the content of the second accordion item.</p>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>`}/>
 
 ---
 
@@ -67,7 +83,7 @@ links:
 
 ---
 
-## Props
+### Props
 
 <PropsTableWrapper>
 <PropsTable

@@ -10,22 +10,47 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add avatar",
-		npm: "npx @radianos/radianbeta add avatar",
-		yarn: "yarn @radianos/radianbeta add avatar",
-		bun: "bunx @radianos/radianbeta add avatar",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add avatar",
+				npm: "npx @radianos/radianbeta add avatar",
+				yarn: "yarn @radianos/radianbeta add avatar",
+				bun: "bunx @radianos/radianbeta add avatar",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="avatar" title="components/ui/avatar.tsx" collapsible />
 
-## Imports
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/avatar.tsx" language="tsx" code={`import {Avatar} from "@/components/ui/avatar"`} />
 
+### Code
+
+<CodeSnippet title="/components/ui/avatar.tsx" code={`<Avatar src="https://randomuser.me/api/portraits/men/2.jpg" name="Dinesh Chugtai" />`} />
+
 ---
 
-## Avatargroup
+## Examples
+
+### Avatar Group
 
 <AvatargroupPreview />
 

@@ -80,7 +80,7 @@ export default async function Page({ params }: DocPageProps) {
 			<span className="text-primary text-sm font-medium capitalize">{category}</span>
 			<div className="flex flex-col">
 				<h1 className="heading-4 my-2">{doc.title}</h1>
-				<p className="text-fg-secondary mb-4">{doc.description}</p>
+				<p className="text-fg-secondary mb-5">{doc.description}</p>
 				{doc.links && (
 					<section className="flex flex-wrap items-center gap-2 pb-10">
 						{doc.links.github && (

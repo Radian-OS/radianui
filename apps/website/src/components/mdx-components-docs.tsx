@@ -132,23 +132,11 @@ const components: MDXComponents = {
 		<PropsTable title={title} data={data} externalReference={externalReference} />
 	),
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
-		<div className="bg-elevation-negative flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
+		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	AccordionPreview: () => (
-		<div className="pb-6">
-			<AccordionPreview />
-		</div>
-	),
-	AccordionWithIconExample: () => (
-		<div className="pb-6">
-			<AccordionWithIconExample />
-		</div>
-	),
-	AlertPreview: () => (
-		<div className="pb-6">
-			<AlertPreview />
-		</div>
-	),
+	AccordionPreview: () => <AccordionPreview />,
+	AccordionWithIconExample: () => <AccordionWithIconExample />,
+	AlertPreview: () => <AlertPreview />,
 	AvatarPreview: () => <AvatarPreview />,
 	AvatargroupPreview: () => <AvatargroupPreview />,
 	BadgePreview: () => <BadgePreview />,
@@ -242,14 +230,10 @@ const components: MDXComponents = {
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
-		<div className="pb-6">
-			<PackageManagerTabs commands={commands} className={className} withIcon={withIcon} />
-		</div>
+		<PackageManagerTabs commands={commands} className={cn("mt-3", className)} withIcon={withIcon} />
 	),
 	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
-		<div className="pb-6">
-			<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
-		</div>
+		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} className="mt-3" />
 	),
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
@@ -258,12 +242,12 @@ const components: MDXComponents = {
 		</h1>
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! pb-4 pt-6", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! mt-10", className)} {...props}>
 			{children}
 		</h2>
 	),
 	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("heading-6 font-semibold! py-3", className)} {...props}>
+		<h3 className={cn("mb-3 mt-6 text-lg font-medium leading-7", className)} {...props}>
 			{children}
 		</h3>
 	),
@@ -286,7 +270,7 @@ const components: MDXComponents = {
 			{children}
 		</strong>
 	),
-	hr: () => <Divider orientation={"horizontal"} spacing={"16"} />,
+	hr: () => <Divider orientation={"horizontal"} spacing={"0"} className="mt-10" />,
 
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("space-y-4 pb-6", className)}>{children}</ul>
@@ -325,12 +309,11 @@ const components: MDXComponents = {
 		return <AccordionContent {...props} />
 	},
 	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
-		return <Tabs {...props} variant="default" size="md" className="gap-4" />
+		return <Tabs {...props} variant="default" size="md" />
 	},
 	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
 		return <TabsList width="full" {...props} />
 	},
-
 	TabsTrigger: (props: React.ComponentProps<typeof TabsTrigger>) => {
 		return <TabsTrigger {...props} />
 	},
@@ -340,17 +323,17 @@ const components: MDXComponents = {
 	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
 		<h3
 			className={cn(
-				"font-heading not-first:mt-6 mb-3 scroll-m-20 text-xl font-semibold tracking-tight",
+				"mt-6 scroll-m-20 text-lg font-medium",
 				"relative [counter-increment:step]",
-				"before:absolute before:-left-12 before:top-0 before:flex before:size-8 before:items-center before:justify-center",
-				"before:bg-border before:text-fg before:rounded-full before:font-semibold",
+				"before:absolute before:-left-12 before:top-0 before:flex before:size-7 before:items-center before:justify-center",
+				"before:border-soft-alpha before:bg-elevation-level1 before:text-fg before:rounded-lg before:border before:text-sm before:font-medium",
 				"before:content-[counter(step)]",
 				className
 			)}
 			{...props}
 		/>
 	),
-	Steps: ({ ...props }) => <div className={cn("mb-12 border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-8")} {...props} />,
+	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-8")} {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,

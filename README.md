@@ -1,4 +1,3 @@
-
 <p align="center">
   <a href="https://radianos.com">
       <img width="20%" src="https://github.com/Radian-os/radianos/blob/main/apps/website/public/radian-mb.svg" alt="radian" />
@@ -16,7 +15,6 @@ Built for developers who want full control, great defaults, and scalability — 
 
 _Free. Open Source. Developer-first._
 
-
 ## 📚 Documentation
 
 Explore the full documentation, including installation, components, variants, theming, and best practices:
@@ -32,7 +30,6 @@ Explore the full documentation, including installation, components, variants, th
 - 🧩 **Variants via CVA** — Powerful, scalable component styling
 - ♿ **Accessibility-first** — Powered by [Radix UI Primitives](https://www.radix-ui.com/)
 - 🛠️ **Framework-friendly** — Designed for React + Next.js (App Router support)
-- 🧱 **Build your own UI system** — Like ShadCN, but with even more control
 
 ---
 
