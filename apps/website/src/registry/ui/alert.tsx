@@ -17,20 +17,21 @@ export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 		closable?: boolean
 	}
 
-export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
+export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-3", {
 	variants: {
 		color: {
 			neutral: "bg-fill2",
 			primary: "border-primary bg-primary/10 text-primary-text",
 			info: "border-info bg-info/10 text-info-text",
 			success: "border-success bg-success/10 text-success-text",
-			danger: "border-error bg-error/10 text-error-text",
+			error: "border-error bg-error/10 text-error-text",
 			warning: "border-warning bg-warning/10 text-warning-text",
 		},
 		variant: {
 			default: "",
-			bordered: "border bg-transparent",
-			"neutral-outline": "border border-border bg-transparent",
+			soft: "",
+			"soft-outline": "border bg-transparent",
+			outline: "border border-border bg-transparent",
 		},
 	},
 	defaultVariants: {
@@ -40,35 +41,40 @@ export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justif
 	compoundVariants: [
 		{
 			color: "neutral",
-			variant: "bordered",
+			variant: "soft-outline",
 			className: "border bg-transparent",
 		},
 		{
 			color: "primary",
-			className: "bg-primary text-white",
+			variant: "soft",
+			className: "bg-primary-accent text-white",
 		},
 		{
 			color: "info",
-			className: "bg-info text-white",
+			variant: "soft",
+			className: "bg-info-accent text-white",
 		},
 		{
 			color: "success",
-			className: "bg-success text-white",
+			variant: "soft",
+			className: "bg-success-accent text-white",
 		},
 		{
 			color: "warning",
-			className: "bg-warning text-white",
+			variant: "soft",
+			className: "bg-warning-accent text-white",
 		},
 		{
-			color: "danger",
-			className: "bg-error text-white",
+			color: "error",
+			variant: "soft",
+			className: "bg-error-accent text-white",
 		},
 	],
 })
 
 function Alert({ color = "primary", variant = "default", title, closable, description, start, end, className, children, ...props }: AlertProps) {
 	const [showAlert, setShowAlert] = useState(true)
-	const isNeutralOutline = variant === "neutral-outline"
+	const isNeutralOutline = variant === "outline"
 	const hasCustomTextColor = className?.includes("text-")
 
 	// Check if we're using the children pattern

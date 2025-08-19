@@ -9,20 +9,21 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertPreview = () => {
-	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "danger" | "info">("primary")
-	const [variant, setVariant] = useState<"default" | "bordered" | "neutral-outline">("default")
-	const [showIcon, setShowIcon] = useState(true)
-	const [showEndContent, setShowEndContent] = useState(true)
+	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
+	const [variant, setVariant] = useState<"default" | "soft-outline" | "outline">("default")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
+	const [start, setStart] = useState<"none" | "star" | "bookmark" | "info" | "alert" | "trash">("star")
+	const [end, setEnd] = useState<"none" | "button" | "link">("link")
 
 	const icons = {
-		neutral: <Star />,
-		primary: <Bookmark />,
-		info: <Info />,
-		success: <CircleCheck />,
-		warning: <TriangleAlert />,
-		danger: <Trash2 />,
+		star: <Star size={20} />,
+		bookmark: <Bookmark size={20} />,
+		info: <Info size={20} />,
+		success: <CircleCheck size={20} />,
+		alert: <TriangleAlert size={20} />,
+		trash: <Trash2 size={20} />,
+		none: "",
 	}
 
 	const getAlertContent = (type: string) => {
@@ -47,7 +48,7 @@ const AlertPreview = () => {
 				title: "Action Required",
 				message: "Please review your settings before proceeding with the operation",
 			},
-			danger: {
+			error: {
 				title: "Critical Error",
 				message: "Unable to complete the requested operation. Please try again",
 			},
@@ -56,7 +57,7 @@ const AlertPreview = () => {
 	}
 
 	const alertContent = getAlertContent(color)
-	const selectedIcon = icons[color as keyof typeof icons]
+	const selectedIcon = icons[start as keyof typeof icons]
 
 	const generateCode = () => {
 		let code = `<Alert
@@ -66,22 +67,21 @@ const AlertPreview = () => {
   message=\"${alertContent.message}\"
   closable={${closable}}`
 
-		if (showEndContent) {
-			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
-			const btnClassName = color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
-			code += `
+		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
+		const btnClassName = color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
+		code += `
   end={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
-		}
 
-		if (showIcon) {
-			const iconComponent = {
-				neutral: "Star",
-				primary: "Bookmark",
-				info: "Info",
-				success: "CircleCheck",
-				warning: "TriangleAlert",
-				danger: "Trash2",
-			}[color]
+		const iconComponent = {
+			star: "Star",
+			bookmark: "Bookmark",
+			info: "Info",
+			success: "CircleCheck",
+			alert: "TriangleAlert",
+			trash: "Trash2",
+			none: "",
+		}[start]
+		if (iconComponent !== "none" && iconComponent !== "") {
 			code += `
   start={<${iconComponent} />}`
 		}
@@ -118,9 +118,9 @@ const AlertPreview = () => {
 										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
 										minSelectionCount={1}
 										selectedValues={[variant]}>
-										<DropdownItem value="default">Default (Shaded)</DropdownItem>
-										<DropdownItem value="bordered">Bordered</DropdownItem>
-										<DropdownItem value="neutral-outline">Neutral Outline</DropdownItem>
+										<DropdownItem value="default">Soft</DropdownItem>
+										<DropdownItem value="soft-outline">Soft Outline</DropdownItem>
+										<DropdownItem value="outline">Outline</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -132,7 +132,7 @@ const AlertPreview = () => {
 										<DropdownItem value="primary">Primary</DropdownItem>
 										<DropdownItem value="neutral">Neutral</DropdownItem>
 										<DropdownItem value="success">Success</DropdownItem>
-										<DropdownItem value="danger">Error</DropdownItem>
+										<DropdownItem value="error">Error</DropdownItem>
 										<DropdownItem value="warning">Warning</DropdownItem>
 										<DropdownItem value="info">Info</DropdownItem>
 									</DropdownGroup>
@@ -142,26 +142,24 @@ const AlertPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Start</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setShowIcon(Array.from(keys)[0] === "show")}
-										minSelectionCount={1}
-										selectedValues={[showIcon ? "show" : "hide"]}>
-										<DropdownItem value="show">True</DropdownItem>
-										<DropdownItem value="hide">False</DropdownItem>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStart(Array.from(keys)[0] as typeof start)} minSelectionCount={1} selectedValues={[start]}>
+										<DropdownItem value="none">None</DropdownItem>
+										<DropdownItem value="star">Star</DropdownItem>
+										<DropdownItem value="bookmark">Bookmark</DropdownItem>
+										<DropdownItem value="info">Info</DropdownItem>
+										<DropdownItem value="alert">Triangle Alert</DropdownItem>
+										<DropdownItem value="trash">Trash</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
 							<DropdownSub>
 								<DropdownSubTrigger>End</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setShowEndContent(Array.from(keys)[0] === "show")}
-										minSelectionCount={1}
-										selectedValues={[showEndContent ? "show" : "hide"]}>
-										<DropdownItem value="show">True</DropdownItem>
-										<DropdownItem value="hide">False</DropdownItem>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setEnd(Array.from(keys)[0] as typeof end)} minSelectionCount={1} selectedValues={[end]}>
+										<DropdownItem value="none">None</DropdownItem>
+										<DropdownItem value="button">Button</DropdownItem>
+										<DropdownItem value="link">Link</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -194,18 +192,16 @@ const AlertPreview = () => {
 						color={color}
 						variant={variant}
 						closable={closable === "true" ? true : false}
-						start={showIcon ? selectedIcon : undefined}
-						{...(showEndContent
-							? {
-									end: (
-										<Button
-											className={`${color !== "neutral" ? "bg-white/30 hover:bg-white/40" : ""}`}
-											color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>
-											Action
-										</Button>
-									),
-								}
-							: {})}
+						start={selectedIcon}
+						end={
+							end === "button" ? (
+								<Button color={color}>Action</Button>
+							) : end === "link" ? (
+								<a href="#" className={`text-${color}-text text-sm underline`}>
+									Button Label
+								</a>
+							) : undefined
+						}
 					/>
 				</div>
 			</TabsContent>

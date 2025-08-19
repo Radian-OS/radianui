@@ -7,7 +7,7 @@ const AlertExample = () => {
 			<Tabs defaultValue="default-variant">
 				<TabsList>
 					<TabsTrigger value="default-variant">Default Variant</TabsTrigger>
-					<TabsTrigger value="bordered-variant">Bordered Variant</TabsTrigger>
+					<TabsTrigger value="soft-outline-variant">soft-outline Variant</TabsTrigger>
 				</TabsList>
 
 				<TabsContent value="default-variant" className="space-y-4">
@@ -15,15 +15,15 @@ const AlertExample = () => {
 					<Alert color="info" title="Information" description="Your description has been successfully sent to the recipient." />
 					<Alert color="success" title="Operation Info" description="Your operation was completed successfully." />
 					<Alert color="warning" title="Warning" description="Please check the details before proceeding." />
-					<Alert color="danger" title="Error" description="Something went wrong with your operation." />
+					<Alert color="error" title="Error" description="Something went wrong with your operation." />
 				</TabsContent>
 
-				<TabsContent value="bordered-variant" className="space-y-4">
-					<Alert variant="bordered" color="neutral" title="Default Alert" description="This is a generic alert description." />
-					<Alert variant="bordered" color="info" title="Information" description="Your description has been successfully sent to the recipient." />
-					<Alert variant="bordered" color="success" title="Operation Info" description="Your operation was completed successfully." />
-					<Alert variant="bordered" color="warning" title="Warning" description="Please check the details before proceeding." />
-					<Alert variant="bordered" color="danger" title="Error" description="Something went wrong with your operation." />
+				<TabsContent value="soft-outline-variant" className="space-y-4">
+					<Alert variant="soft-outline" color="neutral" title="Default Alert" description="This is a generic alert description." />
+					<Alert variant="soft-outline" color="info" title="Information" description="Your description has been successfully sent to the recipient." />
+					<Alert variant="soft-outline" color="success" title="Operation Info" description="Your operation was completed successfully." />
+					<Alert variant="soft-outline" color="warning" title="Warning" description="Please check the details before proceeding." />
+					<Alert variant="soft-outline" color="error" title="Error" description="Something went wrong with your operation." />
 				</TabsContent>
 			</Tabs>
 		</div>

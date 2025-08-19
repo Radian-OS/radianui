@@ -34,12 +34,12 @@ const BlogComponents: MDXComponents = {
 		<Image src={src} alt={alt || ""} className={cn("max-w-200 max-h-100 my-5 h-full w-full rounded-lg object-cover", className)} height={500} width={500} {...props} />
 	),
 	Alert: ({ children, className }: HTMLAttributes<HTMLDivElement>) => (
-		<Alert start={<Box className="size-5" />} color="neutral" variant="bordered" className={cn("text-fg-secondary my-5 text-sm", className)}>
+		<Alert start={<Box className="size-5" />} color="neutral" variant="soft-outline" className={cn("text-fg-secondary my-5 text-sm", className)}>
 			{children}
 		</Alert>
 	),
 	MessageBox: ({ title, message }: { title?: string; message?: string }) => (
-		<Alert className="my-5" color="warning" variant="default" start={<Box className="size-5" />} title={title} description={message} />
+		<Alert className="my-5" color="warning" variant="soft" start={<Box className="size-5" />} title={title} description={message} />
 	),
 	PackageManagerTabs: ({ commands, className, withIcon = true }: PackageManagerTabsProps) => (
 		<div className="my-5">
