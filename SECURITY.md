@@ -1,21 +1,31 @@
 # Security Policy
 
-## Supported Versions
+## 🚨 Found a Security Issue?
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+**Don't create a public issue!**
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+If you've discovered a security vulnerability in RadianOS, please report it privately to keep our users safe.
 
-## Reporting a Vulnerability
+Email us directly at **security@radianos.com**
 
-Use this section to tell people how to report a vulnerability.
+## 📋 What to Send
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+- **What's broken**: Describe the security issue you found
+- **How to break it**: Provide steps to reproduce the vulnerability
+- **What you think should happen**: Share your suggestions for fixing it
+- **Your contact info**: Let us know how to reach you (optional)
+
+## ⏱️ We'll Get Back to You
+
+- **First response**: We'll acknowledge your report within 48 hours
+- **Fix timeline**: We'll work on a solution as quickly as possible
+
+## 🔒 We Promise
+
+- **Keep it private**: We won't publicly disclose the vulnerability until it's fixed
+- **Respect your privacy**: We won't share your name without your explicit permission
+- **Give you credit**: We'll acknowledge your contribution in our security advisories if you'd like
+
+---
+
+**Thanks for helping keep RadianOS secure!** 🎯
