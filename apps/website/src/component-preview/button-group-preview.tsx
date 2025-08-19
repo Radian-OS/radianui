@@ -17,7 +17,7 @@ const ButtonGroupPreview = () => {
 	const [color, setColor] = useState<colors>("primary")
 
 	return (
-		<Tabs className="mb-10 pb-6" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>

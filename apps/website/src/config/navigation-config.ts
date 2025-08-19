@@ -169,7 +169,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Button",
 				description: "12 Components",
-				url: "/docs/components/buttons",
+				url: "/docs/components/button",
 				thumbnail: "/thumbnails/button.webp",
 				thumbnailDark: `/thumbnails/button-dark.webp`,
 				alt: "Button UI component illustration",

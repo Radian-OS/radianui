@@ -10,21 +10,53 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add alert",
-		npm: "npx @radianos/radianbeta add alert",
-		yarn: "yarn @radianos/radianbeta add alert",
-		bun: "bunx @radianos/radianbeta add alert",
-	}}
-/>
-## Imports
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add alert",
+				npm: "npx @radianos/radianbeta add alert",
+				yarn: "yarn @radianos/radianbeta add alert",
+				bun: "bunx @radianos/radianbeta add alert",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="alert" title="components/ui/alert.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/alert.tsx" code={`import {Alert} from "@/components/ui/alert"`} />
 
+### Code
+
+<CodeSnippet
+	title="/components/ui/alert.tsx"
+	code={`<Alert
+      color="info"
+      variant="bordered"
+      title="Information"
+      message="This is an informational alert with an icon."
+    />`}
+/>
+
 ---
 
-## Props
+### Props
 
 <PropsTableWrapper>
 	<PropsTable

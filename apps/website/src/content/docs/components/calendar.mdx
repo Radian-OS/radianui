@@ -22,22 +22,63 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add calendar",
-		npm: "npx @radianos/radianbeta add calendar",
-		yarn: "yarn @radianos/radianbeta add calendar",
-		bun: "bunx @radianos/radianbeta add calendar",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add calendar",
+				npm: "npx @radianos/radianbeta add calendar",
+				yarn: "yarn @radianos/radianbeta add calendar",
+				bun: "bunx @radianos/radianbeta add calendar",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+		<Step>Install component dependencies</Step> 
+		<p>Calendar component is made using `Date Picker` and `Select`. See installation for [Date Picker](https://radianos.com/docs/components/date-picker) and [Select](https://radianos.com/docs/components/select)</p>
 
-## Imports
+        <Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add react-day-picker date-fns @internationalized/date",
+    			npm: "npm install react-day-picker date-fns @internationalized/date",
+    			yarn: "yarn add react-day-picker date-fns @internationalized/date",
+    			bun: "bun add react-day-picker date-fns @internationalized/date",
+    		}}
+    	/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="calendar" title="components/ui/calendar.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/calendar" code={`import {Calendar} from "@/components/ui/calendar"`} />
 
+### Code
+
+<CodeSnippet
+	title="/components/ui/calendar"
+	code={`<Calendar
+    mode="range"
+/>`}
+/>
+
 ---
 
-## Props
+### Props
 
 <PropsTableWrapper>
 	<PropsTable
