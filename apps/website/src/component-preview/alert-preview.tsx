@@ -9,10 +9,12 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertPreview = () => {
-	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "danger" | "info">("neutral")
-	const [variant, setVariant] = useState<"default" | "bordered" | "strong" | "neutral-outline">("default")
+	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "danger" | "info">("primary")
+	const [variant, setVariant] = useState<"default" | "bordered" | "neutral-outline">("default")
 	const [showIcon, setShowIcon] = useState(true)
 	const [showEndContent, setShowEndContent] = useState(true)
+	const [closable, setClosable] = useState<"true" | "false">("false")
+	const [key, setKey] = useState(0)
 
 	const icons = {
 		neutral: <Star />,
@@ -61,13 +63,14 @@ const AlertPreview = () => {
   color=\"${color}\"
   variant=\"${variant}\"
   title=\"${alertContent.title}\"
-  message=\"${alertContent.message}\"`
+  message=\"${alertContent.message}\"
+  closable={${closable}}`
 
 		if (showEndContent) {
 			const btnColor = color === "neutral" ? "primary" : color === "danger" ? "error" : color
-			const btnClassName = variant === "strong" && color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
+			const btnClassName = color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
 			code += `
-  endContent={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
+  end={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
 		}
 
 		if (showIcon) {
@@ -80,7 +83,7 @@ const AlertPreview = () => {
 				danger: "Trash2",
 			}[color]
 			code += `
-  icon={<${iconComponent} />}`
+  start={<${iconComponent} />}`
 		}
 
 		code += `
@@ -108,6 +111,21 @@ const AlertPreview = () => {
 					<DropdownContent className="min-w-20">
 						<DropdownGroup>
 							<DropdownSub>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
+										minSelectionCount={1}
+										selectedValues={[variant]}>
+										<DropdownItem value="default">Default (Shaded)</DropdownItem>
+										<DropdownItem value="bordered">Bordered</DropdownItem>
+										<DropdownItem value="neutral-outline">Neutral Outline</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
 								<DropdownSubTrigger>Color</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setColor(Array.from(keys)[0] as typeof color)} minSelectionCount={1} selectedValues={[color]}>
@@ -120,23 +138,9 @@ const AlertPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
 							<DropdownSub>
-								<DropdownSubTrigger>Variant</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
-										minSelectionCount={1}
-										selectedValues={[variant]}>
-										<DropdownItem value="default">Default (Shaded)</DropdownItem>
-										<DropdownItem value="bordered">Bordered</DropdownItem>
-										<DropdownItem value="strong">Strong</DropdownItem>
-										<DropdownItem value="neutral-outline">Neutral Outline</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Icon</DropdownSubTrigger>
+								<DropdownSubTrigger>Start</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -149,7 +153,7 @@ const AlertPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>End content</DropdownSubTrigger>
+								<DropdownSubTrigger>End</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
@@ -161,6 +165,22 @@ const AlertPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Closable</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => {
+											setClosable(Array.from(keys)[0] as "true" | "false")
+											setKey((k) => k + 1)
+										}}
+										minSelectionCount={1}
+										selectedValues={[closable]}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownGroup>
 					</DropdownContent>
 				</Dropdown>
@@ -168,16 +188,18 @@ const AlertPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Alert
+						key={key}
 						title={alertContent.title}
-						message={alertContent.message}
+						description={alertContent.message}
 						color={color}
 						variant={variant}
-						icon={showIcon ? selectedIcon : undefined}
+						closable={closable === "true" ? true : false}
+						start={showIcon ? selectedIcon : undefined}
 						{...(showEndContent
 							? {
-									endContent: (
+									end: (
 										<Button
-											className={`${variant === "strong" && color !== "neutral" ? "bg-white/30 hover:bg-white/40" : ""}`}
+											className={`${color !== "neutral" ? "bg-white/30 hover:bg-white/40" : ""}`}
 											color={color === "neutral" ? "primary" : color === "danger" ? "error" : color}>
 											Action
 										</Button>

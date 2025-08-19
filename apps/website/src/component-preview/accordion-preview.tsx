@@ -28,16 +28,16 @@ const items = [
 
 type Size = "sm" | "lg"
 type Variant = "open" | "box" | "table"
-type Interaction = "single" | "multiple"
+type Expand = "single" | "multiple"
 
 const DEFAULT_SIZE: Size = "sm"
 const DEFAULT_VARIANT: Variant = "box"
-const DEFAULT_INTERACTION: Interaction = "single"
+const DEFAULT_Expand: Expand = "single"
 
 export default function AccordionPreview() {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
-	const [interaction, setInteraction] = useState<Interaction>(DEFAULT_INTERACTION)
+	const [expand, setExpand] = useState<Expand>(DEFAULT_Expand)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -81,15 +81,15 @@ export default function AccordionPreview() {
 								</DropdownSubContent>
 							</DropdownSub>
 
-							{/* Dropdown for 'interaction' */}
+							{/* Dropdown for 'Expand' */}
 							<DropdownSub>
-								<DropdownSubTrigger>Interaction</DropdownSubTrigger>
+								<DropdownSubTrigger>Expand</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup
 										selectionMode="single"
-										onSelectedChange={(keys) => setInteraction(Array.from(keys)[0] as Interaction)}
+										onSelectedChange={(keys) => setExpand(Array.from(keys)[0] as Expand)}
 										minSelectionCount={1}
-										selectedValues={[interaction.toString()]}>
+										selectedValues={[expand.toString()]}>
 										<DropdownItem value="single">Single</DropdownItem>
 										<DropdownItem value="multiple">Multiple</DropdownItem>
 									</DropdownGroup>
@@ -104,7 +104,7 @@ export default function AccordionPreview() {
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Accordion
 						{...(variant !== DEFAULT_VARIANT && { variant: variant })}
-						{...(interaction !== DEFAULT_INTERACTION && { interaction: interaction })}
+						{...(expand !== DEFAULT_Expand && { expand: expand })}
 						{...(size !== DEFAULT_SIZE && { size: size })}>
 						{items.map((item) => (
 							<AccordionItem key={item.value} value={item.value}>
@@ -139,7 +139,7 @@ export default function AccordionPreview() {
   },
 ]
 
-<Accordion${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${interaction !== DEFAULT_INTERACTION ? ` interaction="${interaction}"` : ""}>
+<Accordion${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${expand !== DEFAULT_Expand ? ` expand="${expand}"` : ""}>
   {items.map((item) => (
     <AccordionItem key={item.value} value={item.value}>
       <AccordionTrigger>{item.trigger}</AccordionTrigger>
