@@ -1,16 +1,20 @@
-import React from "react"
+"use client"
+
+import React, { useState } from "react"
 
 import { type VariantProps, cva } from "class-variance-authority"
+import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
 export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof alertVariants> & {
 		title?: string
-		message?: string
-		icon?: React.ReactNode
-		endContent?: React.ReactNode
+		description?: string
 		children?: React.ReactNode
+		start?: React.ReactNode
+		end?: React.ReactNode
+		closable?: boolean
 	}
 
 export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justify-center gap-3", {
@@ -26,7 +30,6 @@ export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justif
 		variant: {
 			default: "",
 			bordered: "border bg-transparent",
-			strong: "",
 			"neutral-outline": "border border-border bg-transparent",
 		},
 	},
@@ -42,62 +45,58 @@ export const alertVariants = cva("w-full rounded-xl p-4 flex items-center justif
 		},
 		{
 			color: "primary",
-			variant: "strong",
 			className: "bg-primary text-white",
 		},
 		{
 			color: "info",
-			variant: "strong",
 			className: "bg-info text-white",
 		},
 		{
 			color: "success",
-			variant: "strong",
 			className: "bg-success text-white",
 		},
 		{
 			color: "warning",
-			variant: "strong",
 			className: "bg-warning text-white",
 		},
 		{
 			color: "danger",
-			variant: "strong",
 			className: "bg-error text-white",
-		},
-		{
-			color: "neutral",
-			variant: "strong",
-			className: "bg-text text-white-inverse",
 		},
 	],
 })
 
-function Alert({ color = "neutral", variant = "default", title, message, icon, endContent, className, children, ...props }: AlertProps) {
+function Alert({ color = "primary", variant = "default", title, closable, description, start, end, className, children, ...props }: AlertProps) {
+	const [showAlert, setShowAlert] = useState(true)
 	const isNeutralOutline = variant === "neutral-outline"
 	const hasCustomTextColor = className?.includes("text-")
 
 	// Check if we're using the children pattern
-	const hasChildrenOnly = children && !title && !message
+	const hasChildrenOnly = children && !title && !description
 
 	return (
-		<div className={cn(alertVariants({ color, variant }), className)} {...props}>
-			{icon && <div className="flex-shrink-0">{icon}</div>}
+		showAlert && (
+			<div className={cn(alertVariants({ color, variant }), className)} {...props}>
+				{start && <div className="flex-shrink-0">{start}</div>}
 
-			{hasChildrenOnly ? (
-				// Render children directly when no title/message provided
-				<div className="text-sm">{children}</div>
-			) : (
-				// Original title/message structure
-				<div className="flex flex-grow flex-col">
-					{title && <h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-fg", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
-					{message && <p className={cn("text-sm", isNeutralOutline && "text-fg-secondary", isNeutralOutline && hasCustomTextColor && "!text-current opacity-80")}>{message}</p>}
-					{children}
-				</div>
-			)}
+				{hasChildrenOnly ? (
+					// Render children directly when no title/description provided
+					<div className="text-sm">{children}</div>
+				) : (
+					// Original title/description structure
+					<div className="flex flex-grow flex-col">
+						{title && <h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-fg", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
+						{description && (
+							<p className={cn("text-sm", isNeutralOutline && "text-fg-secondary", isNeutralOutline && hasCustomTextColor && "!text-current opacity-80")}>{description}</p>
+						)}
+						{children}
+					</div>
+				)}
 
-			{endContent && <div className="flex-shrink-0">{endContent}</div>}
-		</div>
+				{end && <div className="flex-shrink-0">{end}</div>}
+				{closable && <X size={20} onClick={() => setShowAlert(false)} className={`text-fg-tertiary cursor-pointer`} />}
+			</div>
+		)
 	)
 }
 
