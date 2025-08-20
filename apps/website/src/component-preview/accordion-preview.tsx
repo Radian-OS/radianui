@@ -50,54 +50,54 @@ export default function AccordionPreview() {
 						Code
 					</TabsTrigger>
 				</TabsList>
-			</div>
-			<div className="flex items-center gap-3">
-				<Dropdown>
-					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
-							<Settings />
-						</Button>
-					</DropdownTrigger>
-					<DropdownContent className="min-w-20">
-						{/* Dropdown for 'size' */}
-						<DropdownSub>
-							<DropdownSubTrigger>Size</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-									<DropdownItem value="sm">Small</DropdownItem>
-									<DropdownItem value="lg">Large</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
+				<div className="flex items-center gap-3">
+					<Dropdown>
+						<DropdownTrigger asChild>
+							<Button variant="outline" color="neutral" size="36" iconOnly>
+								<Settings />
+							</Button>
+						</DropdownTrigger>
+						<DropdownContent className="min-w-20">
+							{/* Dropdown for 'size' */}
+							<DropdownSub>
+								<DropdownSubTrigger>Size</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
+										<DropdownItem value="sm">Small</DropdownItem>
+										<DropdownItem value="lg">Large</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 
-						{/* Dropdown for 'variant' */}
-						<DropdownSub>
-							<DropdownSubTrigger>Variant</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
-									<DropdownItem value="open">Open</DropdownItem>
-									<DropdownItem value="box">Box</DropdownItem>
-									<DropdownItem value="table">Table</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
+							{/* Dropdown for 'variant' */}
+							<DropdownSub>
+								<DropdownSubTrigger>Variant</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
+										<DropdownItem value="open">Open</DropdownItem>
+										<DropdownItem value="box">Box</DropdownItem>
+										<DropdownItem value="table">Table</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 
-						{/* Dropdown for 'Expand' */}
-						<DropdownSub>
-							<DropdownSubTrigger>Expand</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setExpand(Array.from(keys)[0] as Expand)}
-									minSelectionCount={1}
-									selectedValues={[expand.toString()]}>
-									<DropdownItem value="single">Single</DropdownItem>
-									<DropdownItem value="multiple">Multiple</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-					</DropdownContent>
-				</Dropdown>
+							{/* Dropdown for 'Expand' */}
+							<DropdownSub>
+								<DropdownSubTrigger>Expand</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										onSelectedChange={(keys) => setExpand(Array.from(keys)[0] as Expand)}
+										minSelectionCount={1}
+										selectedValues={[expand.toString()]}>
+										<DropdownItem value="single">Single</DropdownItem>
+										<DropdownItem value="multiple">Multiple</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+						</DropdownContent>
+					</Dropdown>
+				</div>
 			</div>
 
 			<TabsContent value="preview">
