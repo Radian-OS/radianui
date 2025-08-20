@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal, Star } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
@@ -8,7 +8,7 @@ import { Button, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const AlertPreview = () => {
+const AlertExamplePreview = () => {
 	type titleType = "true" | "false"
 	type descriptionType = "true" | "false"
 
@@ -21,13 +21,13 @@ const AlertPreview = () => {
 	const [title, setTitle] = useState<titleType>("true")
 	const [description, setDescription] = useState<descriptionType>("true")
 
-	const icons = {
-		star: <Star size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		info: <Info size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		check: <CircleCheck size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		alert: <TriangleAlert size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		none: "",
-	}
+	// const icons = {
+	// 	star: <Star size={20} />,
+	// 	info: <Info size={20} />,
+	// 	check: <CircleCheck size={20} />,
+	// 	alert: <TriangleAlert size={20} />,
+	// 	none: "",
+	// }
 
 	const getAlertContent = (type: string) => {
 		const contents = {
@@ -60,7 +60,7 @@ const AlertPreview = () => {
 	}
 
 	const alertContent = getAlertContent(color)
-	const selectedIcon = icons[start as keyof typeof icons]
+	// const selectedIcon = icons[start as keyof typeof icons]
 
 	const generateCode = () => {
 		let code = `<Alert
@@ -79,7 +79,7 @@ const AlertPreview = () => {
 
 		if (iconComponent !== "none" && iconComponent !== "") {
 			code += `
-  start={<${iconComponent} ${color === "neutral" ? 'className="text-fg-secondary"' : ""}/>}`
+  start={<${iconComponent} />}`
 		}
 
 		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
@@ -229,7 +229,11 @@ const AlertPreview = () => {
 						color={color}
 						variant={variant}
 						closable={closable === "true" ? true : false}
-						start={selectedIcon}
+						start={
+							<div className="flex h-full flex-col items-start justify-end">
+								<Star size={16} />
+							</div>
+						}
 						end={
 							end === "button" ? (
 								<Button color={color}>Action</Button>
@@ -249,4 +253,4 @@ const AlertPreview = () => {
 	)
 }
 
-export default AlertPreview
+export default AlertExamplePreview

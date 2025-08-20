@@ -43,6 +43,7 @@ import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
+import LinkButtonPreview from "@/component-preview/link-button-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
@@ -68,6 +69,7 @@ import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
+import AlertExamplePreview from "@/registry/example/alert/alert-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
 import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
@@ -206,6 +208,7 @@ const components: MDXComponents = {
 	ColorSpinnerExample: () => <ColorSpinnerExample />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
 	CompactButtonPreview: () => <CompactButtonPreview />,
+	LinkButtonPreview: () => <LinkButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWitTabsPreview: () => <CodeWithTabs />,
@@ -213,6 +216,7 @@ const components: MDXComponents = {
 	FormExample1: () => <FormExample1 />,
 	FormExample2: () => <FormExample2 />,
 	FormExample3: () => <FormExample3 />,
+	AlertExamplePreview: () => <AlertExamplePreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

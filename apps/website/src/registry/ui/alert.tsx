@@ -17,7 +17,7 @@ export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 		closable?: boolean
 	}
 
-export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-3", {
+export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-2", {
 	variants: {
 		color: {
 			neutral: "bg-fill2",
@@ -83,7 +83,7 @@ function Alert({ color = "primary", variant = "default", title, closable, descri
 	return (
 		showAlert && (
 			<div className={cn(alertVariants({ color, variant }), className)} {...props}>
-				{start && <div className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`}>{start}</div>}
+				{start && start}
 
 				{hasChildrenOnly ? (
 					// Render children directly when no title/description provided
@@ -91,7 +91,7 @@ function Alert({ color = "primary", variant = "default", title, closable, descri
 				) : (
 					// Original title/description structure
 					<div className="flex flex-grow flex-col">
-						{title && <h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-fg", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
+						{title && <h5 className={cn("text-sm font-medium", isNeutralOutline && "text-fg", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
 						{description && (
 							<p className={cn("text-sm", isNeutralOutline && "text-fg-secondary", isNeutralOutline && hasCustomTextColor && "!text-current opacity-80")}>{description}</p>
 						)}
