@@ -380,7 +380,7 @@ const linkButtonVariants = cva(
 	{
 		variants: {
 			color: {
-				primary: "text-primary-text font-medium focus-visible:ring-primary focus-visible:outline-none focus-visible:rounded-md",
+				primary: "text-primary font-medium focus-visible:ring-primary focus-visible:outline-none focus-visible:rounded-md",
 				info: "text-info font-medium focus-visible:ring-info focus-visible:outline-none focus-visible:rounded-md",
 				success: "text-success font-medium focus-visible:ring-success focus-visible:outline-none focus-visible:rounded-md",
 				error: "text-error font-medium focus-visible:ring-error focus-visible:outline-none focus-visible:rounded-md",
