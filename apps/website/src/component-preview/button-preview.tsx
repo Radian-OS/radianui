@@ -3,7 +3,7 @@ import { useState } from "react"
 import { Box, CirclePlus, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
+import { Button, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -229,6 +229,10 @@ const ButtonPreview = () => {
 						disabled={disabled === "true"}>
 						{iconOnly === "true" ? <CirclePlus /> : "Button"}
 					</Button>
+
+					<LinkButton href="https://google.com" target="_blank" size="16" color="info">
+						Open in New Tab
+					</LinkButton>
 					{/* <Button color="neutral" variant="outline" iconOnly >
 <svg width="76" height="90" viewBox="0 0 76 90" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M62.8411 47.8602C62.8866 44.4106 63.8252 41.0282 65.5694 38.0279C67.3137 35.0275 69.8069 32.5066 72.8172 30.6998C70.9049 28.0334 68.382 25.839 65.4491 24.291C62.5161 22.7429 59.2538 21.8839 55.9213 21.7821C48.8125 21.0536 41.9209 25.9351 38.2983 25.9351C34.6057 25.9351 29.0283 21.8545 23.0223 21.9751C19.1375 22.0976 15.3514 23.2005 12.033 25.1763C8.71461 27.1522 5.97702 29.9335 4.08697 33.2494C-4.10009 47.0883 2.00674 67.427 9.8494 78.6135C13.7733 84.0911 18.3591 90.2098 24.3597 89.9928C30.2316 89.7551 32.4246 86.3373 39.5125 86.3373C46.5345 86.3373 48.592 89.9928 54.7144 89.8549C61.0152 89.7551 64.985 84.3529 68.7712 78.8233C71.5905 74.9203 73.76 70.6066 75.1992 66.042C71.5386 64.5305 68.4147 62.0003 66.2171 58.7671C64.0195 55.5339 62.8454 51.7406 62.8411 47.8602Z" fill="currentColor"/>

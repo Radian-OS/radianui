@@ -33,6 +33,18 @@ type CompactButtonProps = Omit<ButtonProps, "iconOnly" | "lead" | "trail" | "siz
 	asChild?: boolean
 }
 
+type LinkButtonProps = {
+	loading?: boolean
+	size?: "14" | "16"
+	href: string
+	color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
+	className?: string
+	children: React.ReactNode
+	disabled?: boolean
+	target?: string
+	rel?: string
+}
+
 export const buttonVariants = cva(
 	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
@@ -363,4 +375,47 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 }
 CompactButton.displayName = "CompactButton"
 
-export { Button, ButtonGroup, CompactButton }
+const linkButtonVariants = cva(
+	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline",
+	{
+		variants: {
+			color: {
+				primary: "text-primary-text font-medium focus-visible:ring-primary focus-visible:outline-none focus-visible:rounded-md",
+				info: "text-info font-medium focus-visible:ring-info focus-visible:outline-none focus-visible:rounded-md",
+				success: "text-success font-medium focus-visible:ring-success focus-visible:outline-none focus-visible:rounded-md",
+				error: "text-error font-medium focus-visible:ring-error focus-visible:outline-none focus-visible:rounded-md",
+				warning: "text-warning font-medium focus-visible:ring-warning focus-visible:outline-none focus-visible:rounded-md",
+				neutral: "text-black-inverse font-medium focus-visible:ring-black-inverse focus-visible:outline-none focus-visible:rounded-md",
+			},
+			size: {
+				"14": "text-sm",
+				"16": "text-[16px]",
+			},
+		},
+		defaultVariants: {
+			color: "primary",
+		},
+	}
+)
+
+function LinkButton({ size = "14", href, color = "primary", className, children, disabled, target, rel, ...props }: LinkButtonProps) {
+	const combinedClass = cn(linkButtonVariants({ color, size }), disabled && "opacity-50 pointer-events-none", className)
+
+	if (disabled) {
+		return (
+			<span className={combinedClass} {...props}>
+				{children}
+			</span>
+		)
+	}
+
+	return (
+		<a href={href} className={combinedClass} target={target} rel={rel} {...props}>
+			{children}
+		</a>
+	)
+}
+
+LinkButton.displayName = "LinkButton"
+
+export { Button, ButtonGroup, CompactButton, LinkButton }
