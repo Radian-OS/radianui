@@ -16,7 +16,7 @@ const CheckboxPreview = () => {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="mt-3" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>

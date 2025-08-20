@@ -15,18 +15,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add time-picker",
-		npm: "npx @radianos/radianbeta add time-picker",
-		yarn: "yarn @radianos/radianbeta add time-picker",
-		bun: "bunx @radianos/radianbeta add time-picker",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add time-picker",
+				npm: "npx @radianos/radianbeta add time-picker",
+				yarn: "yarn @radianos/radianbeta add time-picker",
+				bun: "bunx @radianos/radianbeta add time-picker",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @internationalized/date",
+				npm: "npm install @internationalized/date",
+				yarn: "yarn add @internationalized/date",
+				bun: "bun add @internationalized/date",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="time-picker" title="components/ui/time-picker.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/time-picker" code={`import {TimePicker} from "@/components/ui/time-picker"`} />
+
+### Code
+
+<CodeSnippet title="Usage" code={`<TimePicker />`} />
 
 ---
 

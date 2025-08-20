@@ -50,6 +50,8 @@ export default function AccordionPreview() {
 						Code
 					</TabsTrigger>
 				</TabsList>
+			</div>
+			<div className="flex items-center gap-3">
 				<Dropdown>
 					<DropdownTrigger asChild>
 						<Button variant="outline" color="neutral" size="36" iconOnly>

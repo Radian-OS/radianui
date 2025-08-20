@@ -10,18 +10,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add skeleton",
-		npm: "npx @radianos/radianbeta add skeleton",
-		yarn: "yarn @radianos/radianbeta add skeleton",
-		bun: "bunx @radianos/radianbeta add skeleton",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add skeleton",
+				npm: "npx @radianos/radianbeta add skeleton",
+				yarn: "yarn @radianos/radianbeta add skeleton",
+				bun: "bunx @radianos/radianbeta add skeleton",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @emotion/css",
+				npm: "npm install @emotion/css",
+				yarn: "yarn add @emotion/css",
+				bun: "bun add @emotion/css",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="skeleton" title="components/ui/skeleton.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/skeleton" code={`import { Skeleton } from "@/components/ui/skeleton"`} />
+
+### Code
+
+<CodeSnippet title="/components/ui/skeleton" code={`<Skeleton className="w-full h-10" />`} />
 
 ---
 
@@ -30,6 +63,8 @@ links:
 ### Shimmer Skeleton
 
 <ShimmerSkeletonExample />
+
+---
 
 ## Props
 

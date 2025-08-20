@@ -17,7 +17,7 @@ const ButtonGroupPreview = () => {
 	const [color, setColor] = useState<colors>("primary")
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="mt-3" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>
@@ -110,10 +110,10 @@ const ButtonGroupPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`<ButtonGroup variant="${variant}" size="${size}" color="${color}">
-<Button>Left</Button>
-<Button>Center</Button>
-<Button>Right</Button>
-<Button iconOnly ><Ellipsis /></Button>
+	<Button>Left</Button>
+	<Button>Center</Button>
+	<Button>Right</Button>
+	<Button iconOnly ><Ellipsis /></Button>
 </ButtonGroup>`}
 				/>
 			</TabsContent>

@@ -10,24 +10,52 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add checkbox",
-		npm: "npx @radianos/radianbeta add checkbox",
-		yarn: "yarn @radianos/radianbeta add checkbox",
-		bun: "bunx @radianos/radianbeta add checkbox",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add checkbox",
+				npm: "npx @radianos/radianbeta add checkbox",
+				yarn: "yarn @radianos/radianbeta add checkbox",
+				bun: "bunx @radianos/radianbeta add checkbox",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
 
-## Imports
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/checkbox" code={`import {Checkbox, CheckboxGroup} from "@/components/ui/checkbox"`} />
 
----
+### Code
 
-## Checkboxgroup Preview
+<CodeSnippet
+	title="/components/ui/checkbox"
+	code={`<Checkbox defaultChecked value="newsletter">
+		Subscribe to newsletter
+</Checkbox>`}
+/>
+
+## Checkbox Group
 
 <CheckboxgroupPreview />
+
+---
 
 ## Examples
 

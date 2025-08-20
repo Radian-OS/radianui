@@ -10,18 +10,60 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add file-upload",
-		npm: "npx @radianos/radianbeta add file-upload",
-		yarn: "yarn @radianos/radianbeta add file-upload",
-		bun: "bunx @radianos/radianbeta add file-upload",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add file-upload",
+				npm: "npx @radianos/radianbeta add file-upload",
+				yarn: "yarn @radianos/radianbeta add file-upload",
+				bun: "bunx @radianos/radianbeta add file-upload",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-file-upload",
+				npm: "npm install @radix-ui/react-file-upload",
+				yarn: "yarn add @radix-ui/react-file-upload",
+				bun: "bun add @radix-ui/react-file-upload",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="file-upload" title="components/ui/file-upload.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/file-upload.tsx" code={`import {FileUpload} from "@/components/ui/file-upload"`} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/file-upload.tsx"
+	code={`<FileUpload
+		title="Drag and drop files to upload"
+		description="JPG, PNG, GIF or other image files"
+		className="w-80"
+		variant="input"
+		accept="image/*"
+/>`}
+/>
 
 ---
 
