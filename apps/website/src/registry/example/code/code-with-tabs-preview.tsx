@@ -149,7 +149,7 @@ export default CodeWithTabsPreview
 	}
 
 	return (
-		<Tabs defaultValue="preview" variant="outline-ghost">
+		<Tabs className="mt-3" defaultValue="preview" variant="outline-ghost">
 			<div className="flex items-center">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>

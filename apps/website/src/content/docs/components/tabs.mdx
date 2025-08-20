@@ -13,18 +13,61 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add tabs",
-		npm: "npx @radianos/radianbeta add tabs",
-		yarn: "yarn @radianos/radianbeta add tabs",
-		bun: "bunx @radianos/radianbeta add tabs",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add tabs",
+				npm: "npx @radianos/radianbeta add tabs",
+				yarn: "yarn @radianos/radianbeta add tabs",
+				bun: "bunx @radianos/radianbeta add tabs",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+		<Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-tabs",
+				npm: "npm install @radix-ui/react-tabs",
+				yarn: "yarn add @radix-ui/react-tabs",
+				bun: "bun add @radix-ui/react-tabs",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="tabs" title="components/ui/tabs.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/tabs" code={`import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"`} />
+
+### Code
+
+<CodeSnippet
+	title="Usage"
+	code={`<Tabs defaultValue="account" className="w-[400px]">
+		<TabsList>
+			<TabsTrigger value="account">Account</TabsTrigger>
+			<TabsTrigger value="password">Password</TabsTrigger>
+		</TabsList>
+		<TabsContent value="account">Make changes to your account here.</TabsContent>
+		<TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>`}
+/>
 
 ---
 
@@ -37,6 +80,8 @@ links:
 ### Vertical Tabs With Icon Example
 
 <VerticalTabsWithIconExample />
+
+---
 
 ## Props
 

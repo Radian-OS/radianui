@@ -14,18 +14,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add table",
-		npm: "npx @radianos/radianbeta add table",
-		yarn: "yarn @radianos/radianbeta add table",
-		bun: "bunx @radianos/radianbeta add table",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add table",
+				npm: "npx @radianos/radianbeta add table",
+				yarn: "yarn @radianos/radianbeta add table",
+				bun: "bunx @radianos/radianbeta add table",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities @tanstack/react-table",
+				npm: "npm install @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities @tanstack/react-table",
+				yarn: "yarn add @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities @tanstack/react-table",
+				bun: "bun add @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities @tanstack/react-table",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="table" title="components/ui/table.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/table" code={`import {MainTable} from "@/components/ui/table"`} />
+
+### Code
+
+<CodeSnippet title="Usage" code={`<MainTable />`} />
 
 ---
 

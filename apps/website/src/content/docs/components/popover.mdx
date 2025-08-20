@@ -13,18 +13,64 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add popover",
-		npm: "npx @radianos/radianbeta add popover",
-		yarn: "yarn @radianos/radianbeta add popover",
-		bun: "bunx @radianos/radianbeta add popover",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add popover",
+				npm: "npx @radianos/radianbeta add popover",
+				yarn: "yarn @radianos/radianbeta add popover",
+				bun: "bunx @radianos/radianbeta add popover",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-popover",
+				npm: "npm install @radix-ui/react-popover",
+				yarn: "yarn add @radix-ui/react-popover",
+				bun: "bun add @radix-ui/react-popover",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="popover" title="components/ui/popover.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/popover" code={`import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"`} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/popover"
+	code={`<Popover>
+
+        <PopoverTrigger asChild>
+          <Button variant="outline">Open Popover</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <p className="text-sm">This is a simple popover content.</p>
+        </PopoverContent>
+
+    </Popover>`}
+
+/>
 
 ---
 

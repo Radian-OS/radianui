@@ -10,18 +10,62 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add pagination",
-		npm: "npx @radianos/radianbeta add pagination",
-		yarn: "yarn @radianos/radianbeta add pagination",
-		bun: "bunx @radianos/radianbeta add pagination",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add pagination",
+				npm: "npx @radianos/radianbeta add pagination",
+				yarn: "yarn @radianos/radianbeta add pagination",
+				bun: "bunx @radianos/radianbeta add pagination",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-pagination",
+				npm: "npm install @radix-ui/react-pagination",
+				yarn: "yarn add @radix-ui/react-pagination",
+				bun: "bun add @radix-ui/react-pagination",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="pagination" title="components/ui/pagination.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/pagination" code={`import Pagination from "@/components/ui/pagination"`} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/pagination"
+	code={`<Pagination
+		currentPage={2}
+		totalPage={20}
+		rowPerPage={true}
+		goToPage={true}
+		enableCustomRows={true}
+		customRows={5}
+		navButton="both"
+/>`}
+/>
 
 ---
 

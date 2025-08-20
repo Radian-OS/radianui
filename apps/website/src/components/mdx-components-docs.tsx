@@ -237,7 +237,7 @@ const components: MDXComponents = {
 		<PackageManagerTabs commands={commands} className={cn("mt-3", className)} withIcon={withIcon} />
 	),
 	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
-		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} className="mt-3" />
+		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
 	),
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (

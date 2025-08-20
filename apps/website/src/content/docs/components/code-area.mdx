@@ -14,24 +14,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add code-area",
-		npm: "npx @radianos/radianbeta add code-area",
-		yarn: "yarn @radianos/radianbeta add code-area",
-		bun: "bunx @radianos/radianbeta add code-area",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add code-area",
+				npm: "npx @radianos/radianbeta add code-area",
+				yarn: "yarn @radianos/radianbeta add code-area",
+				bun: "bunx @radianos/radianbeta add code-area",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="code-area" title="components/ui/code-area.tsx" collapsible />
 
-## Imports
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/CodeArea" code={`import {CodeArea} from "@/components/ui/CodeArea"`} />
+
+### Code
+
+<CodeSnippet title="/components/ui/CodeArea" code={`console.log("Hello, World!")`} />
 
 ---
 
 ## Example
 
+### Code Area with Tabs
+
 <CodeWitTabsPreview />
+
+---
 
 ## Props
 

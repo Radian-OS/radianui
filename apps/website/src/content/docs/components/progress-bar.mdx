@@ -13,18 +13,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add progress-bar",
-		npm: "npx @radianos/radianbeta add progress-bar",
-		yarn: "yarn @radianos/radianbeta add progress-bar",
-		bun: "bunx @radianos/radianbeta add progress-bar",
-	}}
-/>
+<Tabs defaultValue="cli" className="gap-0">
+	<TabsList className="mt-3">
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add progress-bar",
+				npm: "npx @radianos/radianbeta add progress-bar",
+				yarn: "yarn @radianos/radianbeta add progress-bar",
+				bun: "bunx @radianos/radianbeta add progress-bar",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-progress",
+				npm: "npm install @radix-ui/react-progress",
+				yarn: "yarn add @radix-ui/react-progress",
+				bun: "bun add @radix-ui/react-progress",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="progress-bar" title="components/ui/progress-bar.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/progress-bar" code={`import {ProgressBar} from "@/components/ui/progress-bar"`} />
+
+### Code
+
+<CodeSnippet title="/components/ui/progress-bar" code={`<ProgressBar label="Loading..." value={50} valueLabel />`} />
 
 ---
 
