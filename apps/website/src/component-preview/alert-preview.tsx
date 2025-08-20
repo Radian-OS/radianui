@@ -66,8 +66,8 @@ const AlertPreview = () => {
 		let code = `<Alert
   variant="${variant}"
   color="${color}"
-  title="${alertContent.title}"
-  description="${alertContent.message}"`
+  ${title === "true" ? `title="${alertContent.title}"` : ""}
+  ${description === "true" ? `description="${alertContent.message}"` : ""}`
 
 		const iconComponent = {
 			star: "Star",
