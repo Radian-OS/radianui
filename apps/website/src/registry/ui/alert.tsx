@@ -21,16 +21,16 @@ export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justif
 	variants: {
 		color: {
 			neutral: "bg-fill2",
-			primary: "ring-primary bg-primary/10 text-primary-text",
-			info: "ring-info bg-info/10 text-info-text",
-			success: "ring-success bg-success/10 text-success-text",
-			error: "ring-error bg-error/10 text-error-text",
-			warning: "ring-warning bg-warning/10 text-warning-text",
+			primary: "ring-primary bg-primary-accent text-primary-text",
+			info: "ring-info bg-info-accent text-info-text",
+			success: "ring-success bg-success-accent text-success-text",
+			error: "ring-error bg-error-accent text-error-text",
+			warning: "ring-warning bg-warning-accent text-warning-text",
 		},
 		variant: {
 			default: "",
 			soft: "",
-			"soft-outline": "ring-1 ring-inset bg-transparent",
+			"soft-outline": "ring-1 ring-inset",
 			outline: "ring-1 ring-inset ring-border bg-transparent",
 		},
 	},
@@ -42,7 +42,7 @@ export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justif
 		{
 			color: "neutral",
 			variant: "soft-outline",
-			className: "ring-1 ring-inset ring-border bg-transparent",
+			className: "ring-1 ring-inset ring-border bg-fill2",
 		},
 		{
 			color: "primary",

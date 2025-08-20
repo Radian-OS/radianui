@@ -43,6 +43,8 @@ type LinkButtonProps = {
 	disabled?: boolean
 	target?: string
 	rel?: string
+	start?: React.ReactNode
+	end?: React.ReactNode
 }
 
 export const buttonVariants = cva(
@@ -376,20 +378,20 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 CompactButton.displayName = "CompactButton"
 
 const linkButtonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline",
+	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline",
 	{
 		variants: {
 			color: {
-				primary: "text-primary font-medium focus-visible:ring-primary focus-visible:outline-none focus-visible:rounded-md",
-				info: "text-info font-medium focus-visible:ring-info focus-visible:outline-none focus-visible:rounded-md",
-				success: "text-success font-medium focus-visible:ring-success focus-visible:outline-none focus-visible:rounded-md",
-				error: "text-error font-medium focus-visible:ring-error focus-visible:outline-none focus-visible:rounded-md",
-				warning: "text-warning font-medium focus-visible:ring-warning focus-visible:outline-none focus-visible:rounded-md",
-				neutral: "text-black-inverse font-medium focus-visible:ring-black-inverse focus-visible:outline-none focus-visible:rounded-md",
+				primary: "text-primary font-medium focus-visible:ring-primary focus-visible:outline-none",
+				info: "text-info font-medium focus-visible:ring-info focus-visible:outline-none",
+				success: "text-success font-medium focus-visible:ring-success focus-visible:outline-none",
+				error: "text-error font-medium focus-visible:ring-error focus-visible:outline-none",
+				warning: "text-warning font-medium focus-visible:ring-warning focus-visible:outline-none",
+				neutral: "text-black-inverse font-medium focus-visible:ring-black-inverse focus-visible:outline-none",
 			},
 			size: {
-				"14": "text-sm",
-				"16": "text-[16px]",
+				"14": "text-sm focus-visible:rounded-sm",
+				"16": "text-[16px] focus-visible:rounded-md",
 			},
 		},
 		defaultVariants: {
@@ -398,20 +400,24 @@ const linkButtonVariants = cva(
 	}
 )
 
-function LinkButton({ size = "14", href, color = "primary", className, children, disabled, target, rel, ...props }: LinkButtonProps) {
+function LinkButton({ size = "14", href, color = "primary", start, end, className, children, disabled, target, rel, ...props }: LinkButtonProps) {
 	const combinedClass = cn(linkButtonVariants({ color, size }), disabled && "opacity-50 pointer-events-none", className)
 
 	if (disabled) {
 		return (
 			<span className={combinedClass} {...props}>
+				{start && start}
 				{children}
+				{end && end}
 			</span>
 		)
 	}
 
 	return (
 		<a href={href} className={combinedClass} target={target} rel={rel} {...props}>
+			{start && start}
 			{children}
+			{end && end}
 		</a>
 	)
 }

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { ChevronLeft, ChevronRight, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
 import { Button, LinkButton } from "@/registry/ui/button"
@@ -14,6 +14,8 @@ const LinkButtonPreview = () => {
 	const [size, setSize] = useState<sizes>("14")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
 	const [color, setColor] = useState<colors>("primary")
+	const [start, setStart] = useState<"true" | "false">("false")
+	const [end, setEnd] = useState<"true" | "false">("false")
 
 	const code = (() => {
 		return `<LinkButton
@@ -48,22 +50,6 @@ color="${color}"
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setDisabled(Array.from(keys)[0] as "true" | "false")
-									}}
-									minSelectionCount={1}
-									selectedValues={[disabled]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
 							<DropdownSubTrigger>Color</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
@@ -82,9 +68,8 @@ color="${color}"
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
 						<DropdownSub>
-							<DropdownSubTrigger>size</DropdownSubTrigger>
+							<DropdownSubTrigger>Text Size</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
@@ -98,12 +83,64 @@ color="${color}"
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Start</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[start]}
+									onSelectedChange={(keys) => {
+										setStart(Array.from(keys)[0] as "true" | "false")
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>End</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[end]}
+									onSelectedChange={(keys) => {
+										setEnd(Array.from(keys)[0] as "true" | "false")
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setDisabled(Array.from(keys)[0] as "true" | "false")
+									}}
+									minSelectionCount={1}
+									selectedValues={[disabled]}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-2 overflow-auto rounded-xl border">
-					<LinkButton href="/docs/components/button" target="_blank" size={size} disabled={disabled === "true"} color={color}>
+					<LinkButton
+						start={start === "true" ? <ChevronLeft /> : undefined}
+						end={end === "true" ? <ChevronRight /> : undefined}
+						href="/docs/components/button"
+						target="_blank"
+						size={size}
+						disabled={disabled === "true"}
+						color={color}>
 						Button Label
 					</LinkButton>
 				</div>
