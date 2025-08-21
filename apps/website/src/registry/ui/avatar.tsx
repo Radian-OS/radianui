@@ -95,8 +95,8 @@ const avatarRadius = cva("flex items-center justify-center shrink-0 font-semibol
 			"32": "size-8 text-sm",
 			"36": "size-9 text-sm",
 			"40": "size-10 text-sm",
-			"48": "size-12 text-[16px]",
-			"64": "size-16 text-[16px]",
+			"48": "size-12 text-base ",
+			"64": "size-16 text-base ",
 			"80": "size-20 text-lg",
 		},
 		radius: {

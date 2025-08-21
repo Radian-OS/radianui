@@ -22,7 +22,7 @@ function DisabledRadiogroupExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="bg-base min-w-80 rounded-md border p-4 shadow-sm">
+					<div className="bg-bg min-w-80 rounded-md border p-4 shadow-sm">
 						<RadioGroup defaultValue="m4" label="Select Your ARM Chip" className="gap-4" disabled>
 							<RadioGroupItem value="m4">M4</RadioGroupItem>
 							<RadioGroupItem value="m4_pro">M4 Pro</RadioGroupItem>
@@ -39,7 +39,7 @@ function DisabledRadiogroupExample() {
 					title="disabled-radiogroup-example.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<div className="bg-base min-w-80 rounded-md border p-4 shadow-sm">
+					code={`<div className="bg-bg min-w-80 rounded-md border p-4 shadow-sm">
 	<RadioGroup defaultValue="m4" label="Select Your ARM Chip" className="gap-4" disabled>
 		<RadioGroupItem value="m4">M4</RadioGroupItem>
 		<RadioGroupItem value="m4_pro">M4 Pro</RadioGroupItem>

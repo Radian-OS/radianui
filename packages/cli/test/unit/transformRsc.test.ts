@@ -1,16 +1,15 @@
-import { Project } from 'ts-morph'
-import { describe, expect, it } from 'vitest'
-
-import { ProjectInfo } from '@utils/getProjectInfo'
-import { transformRsc } from '@utils/transformers/transformRsc'
+import { ProjectInfo } from "@utils/getProjectInfo"
+import { transformRsc } from "@utils/transformers/transformRsc"
+import { Project } from "ts-morph"
+import { describe, expect, it } from "vitest"
 
 const project = new Project({
-  useInMemoryFileSystem: true,
+	useInMemoryFileSystem: true,
 })
 
-describe('transform rsc', () => {
-  it('should remove all NextJS specific tags when correct input is given', () => {
-    const content = `import { Button } from "@/registry/ui/button";
+describe("transform rsc", () => {
+	it("should remove all NextJS specific tags when correct input is given", () => {
+		const content = `import { Button } from "@/registry/ui/button";
 import { Input } from "@/registry/ui/input";
 import { Password } from "@/registry/ui/password";
 import Link from "next/link";
@@ -21,8 +20,8 @@ import { Divider } from "@/registry/ui/divider";
 
 export default function Page() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-bg-level1 px-5">
-      <div className="w-200 flex rounded-2xl border border-border bg-bg-base">
+    <div className="h-screen w-screen flex justify-center items-center bg-bg -level1 px-5">
+      <div className="w-200 flex rounded-2xl border border-border bg-bg -base">
         <div className="flex-1 px-8 py-10 flex flex-col gap-6">
           <div>
             <Image
@@ -88,25 +87,25 @@ export default function Page() {
   );
 }
 `
-    const sourceFile = project.createSourceFile('temp.tsx', content)
+		const sourceFile = project.createSourceFile("temp.tsx", content)
 
-    const projectInfo: ProjectInfo = {
-      hasSrcDir: true,
-      framework: {
-        name: 'vite',
-        label: '',
-        link: {
-          installation: '',
-          tailwind: '',
-        },
-      },
-      isRSC: false,
-      aliasPrefix: '@',
-      isTsx: true,
-      tailwindConfigFile: null,
-      tailwindCssFile: 'globals.css',
-    }
+		const projectInfo: ProjectInfo = {
+			hasSrcDir: true,
+			framework: {
+				name: "vite",
+				label: "",
+				link: {
+					installation: "",
+					tailwind: "",
+				},
+			},
+			isRSC: false,
+			aliasPrefix: "@",
+			isTsx: true,
+			tailwindConfigFile: null,
+			tailwindCssFile: "globals.css",
+		}
 
-    expect(transformRsc({ sourceFile: sourceFile, projectInfo })).toMatchSnapshot()
-  })
+		expect(transformRsc({ sourceFile: sourceFile, projectInfo })).toMatchSnapshot()
+	})
 })

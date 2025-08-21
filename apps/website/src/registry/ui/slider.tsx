@@ -167,7 +167,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 									<TooltipTrigger asChild>
 										<SliderPrimitive.Thumb
 											className={cn(
-												"border-primary bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-5 cursor-pointer rounded-full border-2 transition-colors",
+												"border-primary bg-bg drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-5 cursor-pointer rounded-full border-2 transition-colors",
 												classNames?.sliderThumb
 											)}
 										/>
@@ -178,7 +178,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 								<SliderPrimitive.Thumb
 									key={index}
 									className={cn(
-										"border-primary bg-base drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block h-5 w-5 cursor-pointer rounded-full border-2 transition-colors",
+										"border-primary bg-bg drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block h-5 w-5 cursor-pointer rounded-full border-2 transition-colors",
 										classNames?.sliderThumb
 									)}
 								/>

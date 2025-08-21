@@ -52,7 +52,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 
 	return (
 		<nav
-			className={`bg-base z-100 fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
+			className={`bg-bg z-100 fixed right-0 top-0 flex h-screen w-full transform flex-col overflow-y-auto px-4 transition-transform duration-300 ease-in-out md:px-5 ${
 				isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
 			}`}>
 			{/* Top Bar */}

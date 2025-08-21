@@ -77,7 +77,7 @@ function A({ className }: { className?: string }) {
 			</div>
 
 			{/* Workspace Panel */}
-			<div className="bg-base flex w-full flex-col">
+			<div className="bg-bg flex w-full flex-col">
 				<span className="text-fg w-full px-4 py-5 font-medium leading-6">My Workspace</span>
 				<div className="text-fg-secondary flex flex-col gap-0.5 px-3">
 					<span className="text-fg-disabled py-2.25 px-2 text-xs font-medium">USER PANEL</span>
@@ -89,7 +89,7 @@ function A({ className }: { className?: string }) {
 					<Item id="settings-user" icon={<Settings />} text="Settings" active={activeItem === "settings-user"} onClick={() => setActiveItem("settings-user")} />
 				</div>
 				<Divider spacing="8" />
-				<div className="bg-base flex w-full flex-col">
+				<div className="bg-bg flex w-full flex-col">
 					<div className="text-fg-secondary flex flex-col gap-0.5 px-3">
 						<span className="text-fg-disabled py-2.25 px-2 text-xs font-medium">ADMIN</span>
 						<Item id="analytics-admin" icon={<LineChart />} text="Analytics" active={activeItem === "analytics-admin"} onClick={() => setActiveItem("analytics-admin")} />

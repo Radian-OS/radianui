@@ -20,7 +20,7 @@ const bannerVariants = cva("py-2 px-4 flex items-center justify-center gap-2.5 r
 		variant: {
 			gray: "bg-fill2",
 			primary: "bg-primary text-white",
-			outline: "bg-base  border-b",
+			outline: "bg-bg  border-b",
 			destructive: "bg-error text-white",
 		},
 	},

@@ -48,7 +48,7 @@ type LinkButtonProps = {
 }
 
 export const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {
 			variant: {
@@ -174,7 +174,7 @@ export const buttonVariants = cva(
 			{
 				variant: "soft",
 				color: "neutral",
-				className: "bg-fill2 font-medium text-fg-secondary hover:bg-alpha focus-visible:bg-base focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-fill2 font-medium text-fg-secondary hover:bg-alpha focus-visible:bg-bg focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Outline variant + colors
@@ -326,7 +326,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	const sizeStyles = size === "20" ? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" : "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md"
 
 	const combinedClass = cn(
-		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base disabled:pointer-events-none hover:cursor-pointer w-fit",
+		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 		sizeStyles,
 		buttonVariants({ variant, size: "36", iconOnly: true, color })
 			.split(" ")
@@ -391,7 +391,7 @@ const linkButtonVariants = cva(
 			},
 			size: {
 				"14": "text-sm focus-visible:rounded-sm",
-				"16": "text-[16px] focus-visible:rounded-md",
+				"16": "text-base  focus-visible:rounded-md",
 			},
 		},
 		defaultVariants: {

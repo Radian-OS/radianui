@@ -35,7 +35,7 @@ export const defaultInputSize = "40"
 export const defaultInputRadius = "lg"
 
 // Creating a variant for input styles using cva
-const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-base cursor-text", {
+const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},

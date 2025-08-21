@@ -22,7 +22,7 @@ function SelectMamberCheckboxgroupExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<div className="bg-base min-w-80 rounded-md border p-4 shadow-sm">
+					<div className="bg-bg min-w-80 rounded-md border p-4 shadow-sm">
 						<CheckboxGroup defaultValue={["angus_mac_gyver", "mike_torrello", "angela_bower"]} label="Select Members" className="gap-3.5">
 							<Checkbox value="mike_torrello" className="items-start">
 								<div className="flex flex-col">
@@ -64,7 +64,7 @@ function SelectMamberCheckboxgroupExample() {
 					title="select-member-checkboxgroup.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<div className="bg-base max-w-80 rounded-md border p-4 shadow-sm">
+					code={`<div className="bg-bg max-w-80 rounded-md border p-4 shadow-sm">
 	<CheckboxGroup defaultValue={["angus_mac_gyver", "mike_torrello", "angela_bower"]} label="Select Members" className="gap-3.5">
 		<Checkbox value="mike_torrello" className="items-start">
 			<div className="flex flex-col">

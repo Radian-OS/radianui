@@ -58,7 +58,7 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{
 			variant: "strong",
 			color: "success",
-			className: "bg-success text-white font-semibold",
+			className: "bg-success  text-white font-semibold",
 		},
 		{
 			variant: "strong",
