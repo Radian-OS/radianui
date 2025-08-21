@@ -63,3 +63,93 @@ links:
 ---
 
 ## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="TypingText"
+		data={[
+			{
+				name: "texts",
+				values: ["string[]"],
+				description: "An array of strings that will be typed out in sequence.",
+				required: true,
+			},
+			{
+				name: "duration",
+				values: ["number"],
+				defaultValue: "0.05",
+				description: "Duration of animation of one character.",
+				required: false,
+			},
+			{
+				name: "deleteSpeed",
+				values: ["number"],
+				defaultValue: "0.03",
+				description: "Speed at which characters are deleted(in seconds).",
+				required: false,
+			},
+			{
+				name: "delay",
+				values: ["number"],
+				defaultValue: "-",
+				description: "Delay before typing starts(in seconds).",
+				required: false,
+			},
+			{
+				name: "pauseBetween",
+				values: ["number"],
+				defaultValue: "1.5",
+				description: "Pause duration between typing different texts (in seconds).",
+				required: false,
+			},
+			{
+				name: "ease",
+				values: ["EaseOption"],
+				defaultValue: "linear",
+				description: "Easing function to control typing speed variations.",
+				required: false,
+			},
+			{
+				name: "showCursor",
+				values: ["boolean"],
+				defaultValue: "true",
+				description: "Whether to display the typing cursor.",
+				required: false,
+			},
+			{
+				name: "cursorDuration",
+				values: ["number"],
+				defaultValue: "0.8",
+				description: "Blinking interval for the cursor (in seconds).",
+				required: false,
+			},
+			{
+				name: "cursorChar",
+				values: ["string"],
+				defaultValue: "|",
+				description: "Character used as the cursor.",
+				required: false,
+			},
+			{
+				name: "loop",
+				values: ["boolean"],
+				defaultValue: "true",
+				description: "If true, typing will loop through texts indefinitely.",
+				required: false,
+			},
+			{
+				name: "onComplete",
+				values: ["function"],
+				description: "Callback function triggered when typing finishes (if not looping).",
+				required: false,
+			},
+			{
+				name: "as",
+				values: ["React.ElementType"],
+				defaultValue: "span",
+				description: "Custom component or HTML element to render as.",
+				required: false,
+			},
+		]}
+	/>
+</PropsTableWrapper>

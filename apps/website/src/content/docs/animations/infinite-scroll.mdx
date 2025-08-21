@@ -42,28 +42,32 @@ links:
 		title="InfiniteScroll"
 		data={[
 			{
-				name: "reverse",
-				defaultValue: "-",
-				values: ["-"],
-				description: "-",
-			},
-			{
 				name: "duration",
-				defaultValue: "-",
-				values: ["-"],
-				description: "-",
-			},
-			{
-				name: "vertical",
-				defaultValue: "-",
-				values: ["-"],
-				description: "-",
+				values: ["number"],
+				defaultValue: "20",
+				description: "The time (in seconds) it takes for one full scroll cycle.",
+				required: false,
 			},
 			{
 				name: "pauseOnHover",
-				defaultValue: "-",
-				values: ["-"],
-				description: "-",
+				values: ["boolean"],
+				defaultValue: "true",
+				description: "Pauses the scrolling animation when the container is hovered.",
+				required: false,
+			},
+			{
+				name: "reverse",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Reverses the scroll direction.",
+				required: false,
+			},
+			{
+				name: "vertical",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Enables vertical scrolling instead of horizontal.",
+				required: false,
 			},
 		]}
 	/>
