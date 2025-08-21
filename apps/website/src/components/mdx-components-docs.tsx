@@ -234,7 +234,7 @@ const components: MDXComponents = {
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
-		<PackageManagerTabs commands={commands} className={cn("mt-3", className)} withIcon={withIcon} />
+		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
 	),
 	CodeSnippet: ({ code, title, showLineNumbers }: { code: string; title: string; showLineNumbers: boolean }) => (
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} />
@@ -246,7 +246,7 @@ const components: MDXComponents = {
 		</h1>
 	),
 	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! mt-10", className)} {...props}>
+		<h2 className={cn("heading-5 font-semibold! mb-3 mt-10", className)} {...props}>
 			{children}
 		</h2>
 	),
@@ -327,7 +327,7 @@ const components: MDXComponents = {
 	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
 		<h3
 			className={cn(
-				"mt-6 scroll-m-20 text-lg font-medium",
+				"mb-3 mt-6 scroll-m-20 text-lg font-medium first:mt-0 last:mb-0",
 				"relative [counter-increment:step]",
 				"before:absolute before:-left-12 before:top-0 before:flex before:size-7 before:items-center before:justify-center",
 				"before:border-soft-alpha before:bg-elevation-level1 before:text-fg before:rounded-lg before:border before:text-sm before:font-medium",

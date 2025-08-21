@@ -1,10 +1,7 @@
-"use client"
-
-import React, { useEffect, useState } from "react"
-
 import { Check, CopyIcon, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
 
+import components from "@/app/api/components/components.json"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
@@ -21,49 +18,27 @@ type ComponentSourceProps = {
 
 function ComponentSource({ name, title, collapsible = true, className }: ComponentSourceProps) {
 	const { theme } = useTheme()
-	const [code, setCode] = useState<string>("")
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const component = components.find((comp: any) => comp.name === name)
+
+	if (!component) {
+		throw new Error(`Component "${name}" not found in registry`)
+	}
+
+	// Get the first file's content (most components have one file)
+	const code = component.files[0]?.content
+
+	if (!code) {
+		throw new Error(`No source code found for component "${name}"`)
+	}
+
 	const { copied, copy } = useCopyPaste({
 		code,
 		eventName: "block_cli_copy",
 		title: "CodeSnippet",
 		category: "CodeSnippet",
 	})
-
-	async function fetchComponentCode() {
-		try {
-			const response = await fetch("/api/components")
-
-			if (!response.ok) {
-				throw new Error(`Failed to fetch components: ${response.statusText}`)
-			}
-
-			const components = await response.json()
-
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			const component = components.find((comp: any) => comp.name === name)
-
-			if (!component) {
-				throw new Error(`Component "${name}" not found in registry`)
-			}
-
-			// Get the first file's content (most components have one file)
-			const fileContent = component.files[0]?.content
-
-			if (!fileContent) {
-				throw new Error(`No source code found for component "${name}"`)
-			}
-
-			setCode(fileContent)
-		} catch (err) {
-			throw new Error(err instanceof Error ? err.message : "Failed to load component source code")
-		}
-	}
-
-	useEffect(() => {
-		if (name) {
-			fetchComponentCode()
-		}
-	}, [name])
 
 	return (
 		<div className={cn("bg-fill2 flex flex-col gap-2 rounded-xl p-1.5", className)}>
