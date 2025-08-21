@@ -14,20 +14,20 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 		closable?: boolean
 		size?: BadgeSize
 		className?: string
-		color?: "primary" | "info" | "success" | "error" | "warning"
+		color?: "primary" | "neutral" | "info" | "success" | "error" | "warning"
 		asChild?: boolean
 	}
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
-			neutral: "border border-alpha text-fg-secondary",
+			neutral: "border border-soft-alpha text-fg-secondary",
 			strong: "",
 			outline: "",
 			soft: "",
 		},
 		size: {
 			"20": "h-5 px-1.5 text-xs rounded-sm",
-			"24": "h-6 px-2 text-xs rounded-sm",
+			"24": "h-6 px-2 text-xs rounded-md",
 			"28": "h-7 px-2 text-sm rounded-md",
 		},
 		color: {
@@ -138,7 +138,7 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 			onClick={() => setShowBadge(false)}
 			className={cn(
 				size === "20" || size === "24" ? "size-3" : "size-4",
-				"ml-1 cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
+				"cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
 				variant === "neutral" && "text-fg-disabled"
 			)}
 		/>
