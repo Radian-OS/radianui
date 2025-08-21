@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react"
-
 import { NavigationBar } from "@/components/navbar/navigation-bar"
 
 interface Props {

@@ -1,8 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react"
-
 import { CircleUser, CreditCard, EyeIcon, Lock, MapPin, SquareTerminal, Tag, User } from "lucide-react"
 import { z } from "zod"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"

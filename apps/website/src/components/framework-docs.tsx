@@ -1,10 +1,8 @@
 "use client"
 
 import * as React from "react"
-
 import { allDocs } from "contentlayer/generated"
-
-import { Mdx } from "./mdx-components-docs"
+import { Mdx } from "@/components/mdx-components-docs"
 
 interface FrameworkDocsProps extends React.HTMLAttributes<HTMLDivElement> {
 	data: string

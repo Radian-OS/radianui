@@ -1,14 +1,11 @@
 "use client"
 
 import React from "react"
-
 import { allDocs } from "contentlayer/generated"
 import { usePathname } from "next/navigation"
-
+import CommunityCard from "@/components/community-card"
+import TableOfContent from "@/components/table-of-contents"
 import { getHeadingsFromMdx } from "@/lib/get-mdx-headings"
-
-import CommunityCard from "./community-card"
-import TableOfContent from "./table-of-contents"
 
 const AsideBar = () => {
 	const pathname = usePathname()

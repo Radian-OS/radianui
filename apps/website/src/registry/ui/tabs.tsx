@@ -1,13 +1,10 @@
 "use client"
 
 import * as React from "react"
-
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import { type TabsListProps } from "@radix-ui/react-tabs"
 import { type VariantProps, cva } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
-
 import { Badge } from "./badge"
 
 export type TabsVariant = VariantProps<typeof tabsListStyles>["variant"]

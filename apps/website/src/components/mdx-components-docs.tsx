@@ -1,12 +1,10 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
-
 import { Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Link from "next/link"
-
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
@@ -115,7 +113,6 @@ import {
 import { Alert, AlertProps } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-
 import CodeSnippet from "./code-snippet"
 import { ComponentSource } from "./component-source"
 import { FrameworkDocs } from "./framework-docs"

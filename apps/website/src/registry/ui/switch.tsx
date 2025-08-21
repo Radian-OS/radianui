@@ -1,9 +1,7 @@
 "use client"
 
 import React, { useEffect, useId, useRef, useState } from "react"
-
 import { cva } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 const switchStyles = cva("relative flex cursor-pointer items-center gap-2.5 rounded-full bg-border p-0.75 transition-all duration-[400ms] ease-in-out", {

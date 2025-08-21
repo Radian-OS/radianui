@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react"
-
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-
 import { ScrollArea } from "@/components/scroll-area"
 import { navigationItems } from "@/config/navigation-config"
 import { cn } from "@/lib/utils"

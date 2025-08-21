@@ -1,6 +1,5 @@
 import * as React from "react"
 import { SVGProps } from "react"
-
 import { Button } from "@/registry/ui/button"
 
 const Logo = (props: SVGProps<SVGSVGElement>) => (

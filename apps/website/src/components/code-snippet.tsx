@@ -1,8 +1,6 @@
 import React from "react"
-
 import { Check, CopyIcon, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
-
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"

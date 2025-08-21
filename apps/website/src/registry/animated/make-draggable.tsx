@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-
 import { type MotionProps, motion } from "motion/react"
 
 type DraggableProps = {

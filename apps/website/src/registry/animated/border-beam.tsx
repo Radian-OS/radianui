@@ -1,7 +1,6 @@
 "use client"
 
 import { type MotionStyle, type Transition, motion } from "motion/react"
-
 import { cn } from "@/lib/utils"
 
 /* Based on Border Beam component from MagicUI - MIT License */

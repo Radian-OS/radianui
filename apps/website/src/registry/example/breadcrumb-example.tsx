@@ -2,7 +2,6 @@
 
 import { House, HouseIcon, Puzzle } from "lucide-react"
 import Link from "next/link"
-
 import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
 
 const BreadcrumbExample = () => {

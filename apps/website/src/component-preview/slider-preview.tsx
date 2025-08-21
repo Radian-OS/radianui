@@ -1,7 +1,5 @@
 import { useState } from "react"
-
 import { EyeIcon, Settings, SquareTerminal, Volume2, VolumeX } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"

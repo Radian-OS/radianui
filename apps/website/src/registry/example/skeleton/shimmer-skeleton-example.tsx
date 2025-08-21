@@ -1,7 +1,5 @@
 import React from "react"
-
 import { EyeIcon, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

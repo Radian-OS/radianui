@@ -1,5 +1,4 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { GradientText } from "@/registry/animated/gradient-text"
 import { Button } from "@/registry/ui/button"

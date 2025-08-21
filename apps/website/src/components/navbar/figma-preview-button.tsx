@@ -1,7 +1,5 @@
 import React, { ComponentProps } from "react"
-
 import Link from "next/link"
-
 import { Button } from "@/registry/ui/button"
 
 type FigmaPreviewButtonProps = {

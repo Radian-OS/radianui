@@ -1,7 +1,5 @@
 import React from "react"
-
 import { EyeIcon, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Checkbox, CheckboxGroup } from "@/registry/ui/checkbox"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

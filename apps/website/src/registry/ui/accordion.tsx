@@ -1,10 +1,8 @@
 "use client"
 
 import React from "react"
-
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import { ChevronDownIcon } from "lucide-react"
-
 import { cn as classNames } from "@/lib/utils"
 
 type BaseProps = AccordionContextType & {

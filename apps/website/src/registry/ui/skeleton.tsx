@@ -2,7 +2,6 @@
 
 import { css } from "@emotion/css"
 import { cva } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 type SkeletonProps = React.ComponentProps<"div"> & {

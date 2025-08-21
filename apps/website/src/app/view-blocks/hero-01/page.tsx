@@ -3,7 +3,6 @@
 import { CirclePlay, Menu, X, Zap } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-
 import { Fade } from "@/registry/animated/fade"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Draggable } from "@/registry/animated/make-draggable"

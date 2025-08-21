@@ -2,10 +2,8 @@
 
 import React, { SVGProps } from "react"
 import type { JSX } from "react"
-
 import { Check, CopyIcon } from "lucide-react"
 import { useTheme } from "next-themes"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"

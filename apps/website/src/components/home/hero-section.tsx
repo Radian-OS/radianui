@@ -1,7 +1,5 @@
 import React from "react"
-
 import { Box } from "lucide-react"
-
 import { EmailSubscribe } from "@/components/email-subscribe"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"

@@ -1,8 +1,6 @@
 import React, { useState } from "react"
-
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import type { Country, Value } from "react-phone-number-input"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"

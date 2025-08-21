@@ -1,5 +1,4 @@
 import { EyeIcon, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { TextArea } from "@/registry/ui/text-area"

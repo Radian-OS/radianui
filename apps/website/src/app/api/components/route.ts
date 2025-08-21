@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server"
-
 import components from "./components.json"
 
 export function GET() {

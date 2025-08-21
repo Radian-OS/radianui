@@ -1,8 +1,6 @@
 import React from "react"
-
 import { ArrowLeft, ArrowRight } from "lucide-react"
 import Link from "next/link"
-
 import { getPrevNext } from "@/lib/get-prev-next"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"

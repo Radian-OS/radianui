@@ -1,7 +1,5 @@
 import React from "react"
-
 import { Boxes, ComponentIcon, EyeIcon, LucideShieldQuestion, SquareTerminal, TowerControlIcon } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

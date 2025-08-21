@@ -1,7 +1,5 @@
 import React from "react"
-
 import { EyeIcon, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

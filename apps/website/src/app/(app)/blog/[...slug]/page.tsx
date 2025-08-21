@@ -1,10 +1,8 @@
 import React from "react"
-
 import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-
 import { MdxBlog } from "@/components/mdx-components-blogs"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"

@@ -1,16 +1,13 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-
 import { Check, CopyIcon, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
-
+import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
-
-import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 
 type ComponentSourceProps = {
 	name: string

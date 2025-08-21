@@ -27,7 +27,6 @@
     "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/node": "^22.14.0",
     "husky": "^9.1.7",
-    "pettier": "^1.1.0",
     "prettier": "^3.5.3",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "turbo": "^2.4.4",

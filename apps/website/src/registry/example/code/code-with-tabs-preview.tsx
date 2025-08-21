@@ -1,10 +1,8 @@
 "use client"
 
 import { useMemo, useState } from "react"
-
 import { Check, CopyIcon, EyeIcon, SquareTerminal } from "lucide-react"
 import { useTheme } from "next-themes"
-
 import CodeSnippet from "@/components/code-snippet"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"

@@ -1,9 +1,7 @@
 "use client"
 
 import React from "react"
-
 import { AnimatePresence, motion, useMotionValue } from "motion/react"
-
 import { cn } from "@/lib/utils"
 
 const Pointer = ({ children }: { children?: React.ReactNode }) => {

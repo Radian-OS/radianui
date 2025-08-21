@@ -1,7 +1,6 @@
 "use client"
 
 import { useRef, useState } from "react"
-
 import Switch from "../ui/switch"
 
 const SwitchExample = () => {

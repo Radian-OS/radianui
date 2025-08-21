@@ -1,9 +1,6 @@
 import React from "react"
-
 import { Time } from "@internationalized/date"
-
 import { cn } from "@/lib/utils"
-
 import { Select, SelectItem, type SelectProps } from "./select"
 
 export type TimePickerProps = Pick<SelectProps, "className" | "classNames" | "defaultSelected" | "label" | "placeholder" | "rounded" | "size" | "renderTrigger" | "disabled"> & {

@@ -1,11 +1,10 @@
-import { handleError } from "@utils/handleError"
 import AdmZip from "adm-zip"
 import { createWriteStream } from "fs"
 import * as fs from "fs"
 import path from "path"
 import { pipeline } from "stream/promises"
-
-import { spinner } from "@utils/spinner"
+import { handleError } from "@/utils/handleError"
+import { spinner } from "@/utils/spinner"
 
 const WEBSITE_URL = "https://radianos.com"
 const BLOCKS_URL = "https://blocks.radianos.com"

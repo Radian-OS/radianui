@@ -1,10 +1,8 @@
 "use client"
 
 import React from "react"
-
 import { type VariantProps, cva } from "class-variance-authority"
 import { CirclePlus } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
 type AvatarVariant = NonNullable<VariantProps<typeof avatarVariants>["variant"]>

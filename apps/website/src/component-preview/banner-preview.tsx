@@ -1,10 +1,8 @@
 "use client"
 
 import { useState } from "react"
-
 import { EyeIcon, Settings, Sparkles, SquareTerminal } from "lucide-react"
 import Link from "next/link"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
 import { Button } from "@/registry/ui/button"

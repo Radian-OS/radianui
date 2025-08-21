@@ -1,10 +1,7 @@
 import React from "react"
-
 import { EyeIcon, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-
 import { Spinner } from "../ui/spinner"
 
 export default function ColorSpinnerExample() {

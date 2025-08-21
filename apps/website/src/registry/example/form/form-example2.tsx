@@ -1,8 +1,6 @@
 import React, { useCallback, useMemo, useState } from "react"
-
 import { CircleUser, EyeIcon, Mail, MessageCircle, SquareTerminal, User } from "lucide-react"
 import { z } from "zod"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
