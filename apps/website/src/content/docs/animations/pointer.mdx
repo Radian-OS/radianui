@@ -14,18 +14,57 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add pointer",
-		npm: "npx @radianos/radianbeta add pointer",
-		yarn: "yarn @radianos/radianbeta add pointer",
-		bun: "bunx @radianos/radianbeta add pointer",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add pointer",
+				npm: "npx @radianos/radianbeta add pointer",
+				yarn: "yarn @radianos/radianbeta add pointer",
+				bun: "bunx @radianos/radianbeta add pointer",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add motion/react",
+				npm: "npm install motion/react",
+				yarn: "yarn add motion/react",
+				bun: "bun add motion/react",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="pointer" title="components/ui/pointer.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/animated/pointer" code={`import { Pointer } from "@/components/animated/pointer"`} showLineNumbers />
+
+### Code
+
+<CodeSnippet
+	title="/components/animated/pointer"
+	code={`<div className="size-60">
+      <Pointer />
+</div>`}
+	showLineNumbers
+/>
 
 ---
 

@@ -14,17 +14,52 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add typing-text",
-		npm: "npx @radianos/radianbeta add typing-text",
-		yarn: "yarn @radianos/radianbeta add typing-text",
-		bun: "bunx @radianos/radianbeta add typing-text",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add typing-text",
+				npm: "npx @radianos/radianbeta add typing-text",
+				yarn: "yarn @radianos/radianbeta add typing-text",
+				bun: "bunx @radianos/radianbeta add typing-text",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add motion/react",
+				npm: "npm install motion/react",
+				yarn: "yarn add motion/react",
+				bun: "bun add motion/react",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="typing-text" title="components/ui/typing-text.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/animated/typing-text" code={`import { TypingText } from "@/components/animated/typing-text"`} showLineNumbers />
 
+### Code
+
+<CodeSnippet title="/components/animated/typing-text" code={`<TypingText>Your text here</TypingText>`} showLineNumbers />
+
 ---
+
+## Props
