@@ -9,10 +9,10 @@ const AvatarExample = () => {
 				<Avatar size={"80"} name="Binaya Thapa" />
 				<Avatar size={"80"} name="Binaya Thapa" src={people[2].image} />
 				<Avatar size={"80"} name="Binaya Thapa" src={people[2].image} status="online" />
-				<Avatar variant="square" size={"80"} />
-				<Avatar variant="square" size={"80"} name="Binaya Thapa" />
-				<Avatar variant="square" size={"80"} name="Binaya Thapa" src={people[2].image} />
-				<Avatar variant="square" size={"80"} name="Binaya Thapa" src={people[2].image} status="online" />
+				<Avatar radius="square" size={"80"} />
+				<Avatar radius="square" size={"80"} name="Binaya Thapa" />
+				<Avatar radius="square" size={"80"} name="Binaya Thapa" src={people[2].image} />
+				<Avatar radius="square" size={"80"} name="Binaya Thapa" src={people[2].image} status="online" />
 			</div>
 			<div className="flex flex-wrap items-center gap-10">
 				<Avatar size={"16"} status="plus" name="John Prasad Rai" />
@@ -32,7 +32,7 @@ const AvatarExample = () => {
 				<Avatar size={"40"} status="verified" src={people[1].image} />
 				<Avatar size={"48"} status="verified" src={people[1].image} />
 				<Avatar size={"64"} status="verified" src={people[1].image} />
-				<Avatar size={"80"} status="verified" variant="square" src={people[1].image} />
+				<Avatar size={"80"} status="verified" radius="square" src={people[1].image} />
 			</div>
 			<div className="flex flex-wrap items-center gap-10">
 				<Avatar size={"16"} status="offline" />
