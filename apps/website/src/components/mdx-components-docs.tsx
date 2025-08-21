@@ -75,6 +75,9 @@ import CollaborationPointerExample from "@/registry/example/animated/collaborati
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
+import IndicatorAvatarPreview from "@/registry/example/avatar/indicator-avatar-preview"
+import RingAvatarPreview from "@/registry/example/avatar/ring-avatar-preview"
+import VerifiedAvatarPreview from "@/registry/example/avatar/verified-avatar-preview"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
@@ -217,6 +220,9 @@ const components: MDXComponents = {
 	FormExample2: () => <FormExample2 />,
 	FormExample3: () => <FormExample3 />,
 	AlertExamplePreview: () => <AlertExamplePreview />,
+	VerifiedAvatarPreview: () => <VerifiedAvatarPreview />,
+	IndicatorAvatarPreview: () => <IndicatorAvatarPreview />,
+	RingAvatarPreview: () => <RingAvatarPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
