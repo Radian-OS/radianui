@@ -63,7 +63,7 @@ const AnimatedListPreview = () => {
 								</div>
 							))}
 						</AnimatedList>
-						<div className="from-bg-base pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t" />
+						<div className="from-bg-bg pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t" />
 					</div>
 				</div>
 			</TabsContent>
@@ -81,7 +81,7 @@ const AnimatedListPreview = () => {
 			</div>
 		))}
 	</AnimatedList>
-	<div className="from-bg-base pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t" />
+	<div className="from-bg-bg pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t" />
 </div>`}
 				/>
 			</TabsContent>

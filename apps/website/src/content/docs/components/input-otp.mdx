@@ -14,20 +14,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add input-otp",
-		npm: "npx @radianos/radianbeta add input-otp",
-		yarn: "yarn @radianos/radianbeta add input-otp",
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add input-otp",
+				npm: "npx @radianos/radianbeta add input-otp",
+				yarn: "yarn @radianos/radianbeta add input-otp",
+				bun: "bunx @radianos/radianbeta add input-otp",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-input-otp",
+				npm: "npm install @radix-ui/react-input-otp",
+				yarn: "yarn add @radix-ui/react-input-otp",
+				bun: "bun add @radix-ui/react-input-otp",
+			}}
+		/>
 
-    	bun: "bunx @radianos/radianbeta add input-otp",
-    }}
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="input-otp" title="components/ui/input-otp.tsx" collapsible />
 
-/>
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
 
-## Imports
+</Tabs>
 
-<CodeSnippet title="/components/ui/input-otp.tsx" code={`import {InputOtp} from "@/components/ui/input-otp"`} showLineNumbers={false} />
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/input-otp.tsx" code={`import { InputOtp } from "@/components/ui/input-otp"`} showLineNumbers={false} />
+
+### Code
+
+<CodeSnippet title="/components/ui/input-otp.tsx" code={`<InputOtp />`} showLineNumbers={false} />
 
 ---
 

@@ -200,7 +200,7 @@ const MainTable = function <TData>({
 							width: resizable ? table.getCenterTotalSize() : "100%",
 							minWidth: dragAndDrop ? table.getCenterTotalSize() : "auto",
 						}}>
-						<TableHeader className={`${sticky ? "bg-base sticky top-0 z-10" : ""}`}>
+						<TableHeader className={`${sticky ? "bg-bg sticky top-0 z-10" : ""}`}>
 							{table.getHeaderGroups().map((headerGroup) => (
 								<TableRow style={{ height: headerHeight }} key={headerGroup.id}>
 									<SortableContext items={columnOrder} strategy={horizontalListSortingStrategy}>

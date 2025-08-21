@@ -20,7 +20,7 @@ function B({ className }: { className?: string }) {
 	const [activeAccordionItem, setActiveAccordionItem] = React.useState<string | null>(null)
 
 	return (
-		<div className={cn("bg-base border-border h-200 right-10 top-48 flex w-80 scale-90 flex-col justify-between rounded-2xl border duration-1000", className)}>
+		<div className={cn("bg-bg border-border h-200 right-10 top-48 flex w-80 scale-90 flex-col justify-between rounded-2xl border duration-1000", className)}>
 			<div className="flex flex-col">
 				<div className="text-fg flex items-center gap-2 px-3 py-4">
 					<div className="p-2">

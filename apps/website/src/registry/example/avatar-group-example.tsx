@@ -58,17 +58,17 @@ export const people = [
 const AvatarGroupExample = () => {
 	return (
 		<div className="flex flex-col gap-4">
-			<AvatarGroup max={3} size={"16"}>
+			<AvatarGroup maxItems={3} size={"16"}>
 				{people.map((person) => (
 					<Avatar src={person.image} name={person.name} key={person.image} />
 				))}
 			</AvatarGroup>
-			<AvatarGroup max={3} size={"20"}>
+			<AvatarGroup maxItems={3} size={"20"}>
 				{people.map((person) => (
 					<Avatar src={person.image} name={person.name} key={person.image} />
 				))}
 			</AvatarGroup>
-			<AvatarGroup max={3} size={"24"}>
+			<AvatarGroup maxItems={3} size={"24"}>
 				{people.map((person) => (
 					<Avatar src={person.image} name={person.name} key={person.image} />
 				))}

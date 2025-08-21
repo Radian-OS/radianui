@@ -15,21 +15,21 @@ export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 		closable?: boolean
 	}
 
-export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-3", {
+export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-2", {
 	variants: {
 		color: {
 			neutral: "bg-fill2",
-			primary: "border-primary bg-primary/10 text-primary-text",
-			info: "border-info bg-info/10 text-info-text",
-			success: "border-success bg-success/10 text-success-text",
-			error: "border-error bg-error/10 text-error-text",
-			warning: "border-warning bg-warning/10 text-warning-text",
+			primary: "ring-primary bg-primary-accent text-primary-text",
+			info: "ring-info bg-info-accent text-info-text",
+			success: "ring-success bg-success-accent text-success-text",
+			error: "ring-error bg-error-accent text-error-text",
+			warning: "ring-warning bg-warning-accent text-warning-text",
 		},
 		variant: {
 			default: "",
 			soft: "",
-			"soft-outline": "border bg-transparent",
-			outline: "border border-border bg-transparent",
+			"soft-outline": "ring-1 ring-inset",
+			outline: "ring-1 ring-inset ring-border bg-transparent",
 		},
 	},
 	defaultVariants: {
@@ -40,7 +40,7 @@ export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justif
 		{
 			color: "neutral",
 			variant: "soft-outline",
-			className: "border bg-transparent",
+			className: "ring-1 ring-inset ring-border bg-fill2",
 		},
 		{
 			color: "primary",
@@ -81,7 +81,7 @@ function Alert({ color = "primary", variant = "default", title, closable, descri
 	return (
 		showAlert && (
 			<div className={cn(alertVariants({ color, variant }), className)} {...props}>
-				{start && <div className="flex-shrink-0">{start}</div>}
+				{start && start}
 
 				{hasChildrenOnly ? (
 					// Render children directly when no title/description provided
@@ -89,7 +89,7 @@ function Alert({ color = "primary", variant = "default", title, closable, descri
 				) : (
 					// Original title/description structure
 					<div className="flex flex-grow flex-col">
-						{title && <h5 className={cn("text-sm font-semibold", isNeutralOutline && "text-fg", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
+						{title && <h5 className={cn("text-sm font-medium", isNeutralOutline && "text-fg", isNeutralOutline && hasCustomTextColor && "!text-current")}>{title}</h5>}
 						{description && (
 							<p className={cn("text-sm", isNeutralOutline && "text-fg-secondary", isNeutralOutline && hasCustomTextColor && "!text-current opacity-80")}>{description}</p>
 						)}

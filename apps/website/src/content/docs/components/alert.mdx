@@ -10,8 +10,8 @@ links:
 
 ## Installation
 
-<Tabs defaultValue="cli" className="gap-0">
-	<TabsList className="mt-3">
+<Tabs defaultValue="cli">
+	<TabsList>
 		<TabsTrigger value="cli">CLI</TabsTrigger>
 		<TabsTrigger value="manual">Manual</TabsTrigger>
 	</TabsList>
@@ -56,6 +56,12 @@ links:
 
 ---
 
+## Examples
+
+### Alert Example
+
+<AlertExamplePreview />
+
 ### Props
 
 <PropsTableWrapper>
@@ -65,14 +71,14 @@ links:
 			{
 				name: "color",
 				defaultValue: "neutral",
-				values: ["neutral", "primary", "info", "success", "warning", "danger"],
+				values: ["neutral", "primary", "info", "success", "warning", "error"],
 				required: false,
 				description: "Sets the color scheme of the alert",
 			},
 			{
 				name: "variant",
 				defaultValue: "default",
-				values: ["bordered", "default", "strong", "neutral-outline"],
+				values: ["default", "soft-outline", "outline"],
 				required: false,
 				description: "Defines the visual style of the accordion",
 			},
@@ -89,16 +95,23 @@ links:
 				description: "The message content of the alert",
 			},
 			{
-				name: "icon",
+				name: "start",
 				values: ["ReactNode"],
 				required: false,
 				description: "An optional icon to display alongside the alert",
 			},
 			{
-				name: "endContent",
+				name: "end",
 				values: ["ReactNode"],
 				required: false,
 				description: "An optional element to display at the end of the alert",
+			},
+			{
+				name: "closable",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description: "If true, the alert can be closed by the user",
 			},
 		]}
 	/>

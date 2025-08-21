@@ -13,30 +13,85 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add modal",
-		npm: "npx @radianos/radianbeta add modal",
-		yarn: "yarn @radianos/radianbeta add modal",
-		bun: "bunx @radianos/radianbeta add modal",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add modal",
+				npm: "npx @radianos/radianbeta add modal",
+				yarn: "yarn @radianos/radianbeta add modal",
+				bun: "bunx @radianos/radianbeta add modal",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-modal",
+				npm: "npm install @radix-ui/react-modal",
+				yarn: "yarn add @radix-ui/react-modal",
+				bun: "bun add @radix-ui/react-modal",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="modal" title="components/ui/modal.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Code
+
+### Imports
 
 <CodeSnippet
 	title="/components/ui/modal"
 	code={`import { 
-    Modal, 
-    ModalClose, 
-    ModalContent, 
-    ModalDescription, 
-    ModalFooter, 
-    ModalHeader, 
-    ModalTitle, 
-    ModalTrigger 
+		Modal, 
+		ModalClose, 
+		ModalContent, 
+		ModalDescription, 
+		ModalFooter, 
+		ModalHeader, 
+		ModalTitle, 
+		ModalTrigger 
     } from "@/components/ui/modal";`}
 />
+
+### Code
+
+<CodeSnippet title="/components/ui/modal" code={`<Modal>
+
+      <ModalTrigger asChild>
+        <button className="px-4 py-2 bg-blue-500 text-white rounded">Open Modal</button>
+      </ModalTrigger>
+
+      <ModalContent>
+        <ModalHeader>
+          <ModalTitle>My Modal</ModalTitle>
+          <ModalClose />
+        </ModalHeader>
+
+        <ModalBody>
+          <p>This is a simple modal body content.</p>
+        </ModalBody>
+
+        <ModalFooter>
+          <button className="px-3 py-1 bg-gray-200 rounded">Cancel</button>
+          <button className="px-3 py-1 bg-blue-500 text-white rounded">Confirm</button>
+        </ModalFooter>
+      </ModalContent>
+
+</Modal>`} />
 
 ---
 
@@ -49,6 +104,8 @@ links:
 ### Github Integration
 
 <GithubIntegrationModalExample />
+
+---
 
 ## Props
 

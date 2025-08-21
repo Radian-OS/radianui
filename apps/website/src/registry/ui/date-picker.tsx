@@ -15,7 +15,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { type SelectProps } from "./select"
 import { type TimePickerProps } from "./time-picker"
 
-export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-base cursor-text", {
+export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg cursor-text", {
 	variants: {
 		...cvaInputVariants,
 	},
@@ -550,7 +550,7 @@ function DatePicker({
 									/>
 								</PopoverTrigger>
 
-								<PopoverContent alignOffset={alignOffset} className={cn("bg-base drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+								<PopoverContent alignOffset={alignOffset} className={cn("bg-bg drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
 									{mode === "single" && (
 										<Calendar
 											onIndexChange={(value) => {

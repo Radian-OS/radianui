@@ -13,18 +13,61 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add tooltip",
-		npm: "npx @radianos/radianbeta add tooltip",
-		yarn: "yarn @radianos/radianbeta add tooltip",
-		bun: "bunx @radianos/radianbeta add tooltip",
-	}}
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add tooltip",
+				npm: "npx @radianos/radianbeta add tooltip",
+				yarn: "yarn @radianos/radianbeta add tooltip",
+				bun: "bunx @radianos/radianbeta add tooltip",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-tooltip",
+				npm: "npm install @radix-ui/react-tooltip",
+				yarn: "yarn add @radix-ui/react-tooltip",
+				bun: "bun add @radix-ui/react-tooltip",
+			}}
+		/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="tooltip" title="components/ui/tooltip.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/tooltip" code={`import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"`} />
+
+### Code
+
+<CodeSnippet
+	title="Usage"
+	code={`<Tooltip>
+		<TooltipTrigger>
+			Hover me
+		</TooltipTrigger>
+		<TooltipContent>
+			This is a tooltip!
+		</TooltipContent>
+	</Tooltip>`}
 />
-
-## Imports
-
-<CodeSnippet title="/components/ui/tooltip" code={`import {Tooltip,TooltipContent,TooltipTrigger} from "@/components/ui/tooltip"`} />
 
 ---
 

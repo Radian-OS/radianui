@@ -118,7 +118,7 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! roun
 })
 
 function getContentClass(type: DrawerType, direction: DirectionType) {
-	const baseClasses = "bg-base flex flex-col gap-5 overflow-hidden"
+	const baseClasses = "bg-bg flex flex-col gap-5 overflow-hidden"
 
 	// Handle float type
 	if (type === "float") {

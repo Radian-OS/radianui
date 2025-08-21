@@ -206,12 +206,12 @@
 	--color-static-black: hsl(240, 5%, 4%);
 }
 @layer base {
-    * {
-        @apply border-border;
-    }
-body {
-        @apply font-body bg-bg-base text-text;
-    }
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply font-body bg-bg -bgtext-text;
+	}
 }
 @utility font-heading {
 	/* Base typography classes for headings and body */

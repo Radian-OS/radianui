@@ -7,60 +7,20 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "16" | "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80"
-type Variant = "circle" | "square"
-type Status = "online" | "offline" | "verified" | "plus" | "none"
+type Radius = "circle" | "square"
+type Status = "online" | "offline" | "none"
+type Variant = "fallback" | "initial" | "image"
 
 const DEFAULT_SIZE: Size = "36"
-const DEFAULT_VARIANT: Variant = "circle"
+const DEFAULT_RADIUS: Radius = "circle"
 const DEFAULT_STATUS: Status = "none"
-
-export const people = [
-	{
-		name: "John Doe",
-		image: "https://randomuser.me/api/portraits/men/1.jpg",
-	},
-	{
-		name: "Jane Smith",
-		image: "https://randomuser.me/api/portraits/women/1.jpg",
-	},
-	{
-		name: "Michael Brown",
-		image: "https://randomuser.me/api/portraits/men/2.jpg",
-	},
-	{
-		name: "Emily Davis",
-		image: "https://randomuser.me/api/portraits/women/2.jpg",
-	},
-	{
-		name: "Chris Johnson",
-		image: "https://randomuser.me/api/portraits/men/3.jpg",
-	},
-	{
-		name: "Sophia Lee",
-		image: "https://randomuser.me/api/portraits/women/3.jpg",
-	},
-	{
-		name: "Daniel Garcia",
-		image: "https://randomuser.me/api/portraits/men/4.jpg",
-	},
-	{
-		name: "Olivia Martinez",
-		image: "https://randomuser.me/api/portraits/women/4.jpg",
-	},
-	{
-		name: "Ethan Wilson",
-		image: "https://randomuser.me/api/portraits/men/5.jpg",
-	},
-	{
-		name: "Mia Taylor",
-		image: "https://randomuser.me/api/portraits/women/5.jpg",
-	},
-]
+const DEFAULT_VARIANT: Variant = "image"
 
 const AvatarPreview = () => {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
 	const [status, setStatus] = useState<Status>(DEFAULT_STATUS)
+	const [radius, setRadius] = useState<Radius>(DEFAULT_RADIUS)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -80,7 +40,6 @@ const AvatarPreview = () => {
 						</Button>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
-						{/* Dropdown for 'size' */}
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -98,11 +57,21 @@ const AvatarPreview = () => {
 							</DropdownSubContent>
 						</DropdownSub>
 
-						{/* Dropdown for 'variant' */}
 						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
+									<DropdownItem value="fallback">Fallback</DropdownItem>
+									<DropdownItem value="initial">Initial</DropdownItem>
+									<DropdownItem value="image">Image</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Radius</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setRadius(Array.from(keys)[0] as Radius)} minSelectionCount={1} selectedValues={[radius]}>
 									<DropdownItem value="circle">Circle</DropdownItem>
 									<DropdownItem value="square">Square</DropdownItem>
 								</DropdownGroup>
@@ -116,8 +85,6 @@ const AvatarPreview = () => {
 								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStatus(Array.from(keys)[0] as Status)} minSelectionCount={1} selectedValues={[status]}>
 									<DropdownItem value="online">Online</DropdownItem>
 									<DropdownItem value="offline">Offline</DropdownItem>
-									<DropdownItem value="verified">Verified</DropdownItem>
-									<DropdownItem value="plus">Plus</DropdownItem>
 									<DropdownItem value="none">None</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
@@ -129,10 +96,10 @@ const AvatarPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Avatar
-						src={people[0].image}
-						name={people[0].name}
+						{...(variant === "image" && { src: "https://randomuser.me/api/portraits/men/1.jpg" })}
+						{...(variant === "initial" && { name: "John Doe" })}
 						{...(size !== DEFAULT_SIZE && { size: size })}
-						{...(variant !== DEFAULT_VARIANT && { variant: variant })}
+						{...(radius !== DEFAULT_RADIUS && { radius: radius })}
 						{...(status !== DEFAULT_STATUS && { status: status })}
 					/>
 				</div>
@@ -143,7 +110,7 @@ const AvatarPreview = () => {
 					title="avatar.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Avatar src="${people[0].image}" name="${people[0].name}"${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${status !== DEFAULT_STATUS ? ` status="${status}"` : ""} />`}
+					code={`<Avatar ${variant === "image" ? `src="https://randomuser.me/api/portraits/men/1.jpg"` : ""}${variant === "initial" ? `name="John Doe"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${radius !== DEFAULT_RADIUS ? ` radius="${radius}"` : ""}${status !== DEFAULT_STATUS ? ` status="${status}"` : ""} />`}
 				/>
 			</TabsContent>
 		</Tabs>

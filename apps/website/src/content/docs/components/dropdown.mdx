@@ -13,21 +13,68 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add dropdown",
-		npm: "npx @radianos/radianbeta add dropdown",
-		yarn: "yarn @radianos/radianbeta add dropdown",
-		bun: "bunx @radianos/radianbeta add dropdown",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add dropdown",
+				npm: "npx @radianos/radianbeta add dropdown",
+				yarn: "yarn @radianos/radianbeta add dropdown",
+				bun: "bunx @radianos/radianbeta add dropdown",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-dropdown",
+				npm: "npm install @radix-ui/react-dropdown",
+				yarn: "yarn add @radix-ui/react-dropdown",
+				bun: "bun add @radix-ui/react-dropdown",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="dropdown" title="components/ui/dropdown.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet
 	title="components/ui/dropdown.tsx"
 	code={`import { Dropdown, DropdownTrigger, DropdownContent, DropdownItem, DropdownSub, DropdownSubTrigger, DropdownSubContent } from "@/components/ui/tabs"`}
 />
+
+### Code
+
+<CodeSnippet title="components/ui/dropdown.tsx" code={`<Dropdown>
+
+    	<DropdownTrigger asChild>
+    		<Button variant="outline">Open Menu</Button>
+    	</DropdownTrigger>
+
+    	<DropdownContent>
+    		<DropdownGroup title="Actions" selectionMode="single">
+    		<DropdownItem value="new">New File</DropdownItem>
+    		<DropdownItem value="open">Open File</DropdownItem>
+    		<DropdownItem value="save">Save</DropdownItem>
+    		</DropdownGroup>
+    	</DropdownContent>
+
+</Dropdown>`} />
 
 ---
 

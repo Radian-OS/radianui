@@ -10,18 +10,41 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add textarea",
-		npm: "npx @radianos/radianbeta add textarea",
-		yarn: "yarn @radianos/radianbeta add textarea",
-		bun: "bunx @radianos/radianbeta add textarea",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add text-area",
+				npm: "npx @radianos/radianbeta add text-area",
+				yarn: "yarn @radianos/radianbeta add text-area",
+				bun: "bunx @radianos/radianbeta add text-area",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="text-area" title="components/ui/text-area.tsx" collapsible />
 
-## Imports
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/registry/ui/text-area" code={`import { TextArea } from "@/registry/ui/text-area"`} />
+
+### Code
+
+<CodeSnippet title="Usage" code={`<TextArea label="Message" placeholder="Enter your message" />`} />
 
 ---
 
@@ -30,6 +53,8 @@ links:
 ### Content size based text area
 
 <ContentBasedTextAreaExample />
+
+---
 
 ## Props
 

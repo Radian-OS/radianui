@@ -87,11 +87,11 @@ const tabsTriggerStyles = cva(
 				lg: "text-sm",
 			},
 			variant: {
-				default: "data-[state=active]:bg-base border border-transparent data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
+				default: "data-[state=active]:bg-bg border border-transparent data-[state=active]:border data-[state=active]:border-border data-[state=active]:drop-shadow-xs",
 				outline: "data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill2",
-				"outline-ghost": "data-[state=active]:bg-base border border-transparent data-[state=active]:border-alpha data-[state=active]:drop-shadow-xs",
+				"outline-ghost": "data-[state=active]:bg-bg border border-transparent data-[state=active]:border-alpha data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [

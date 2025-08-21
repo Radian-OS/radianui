@@ -38,7 +38,7 @@ type OTPInputContextType = {
 const OTPInputContext = React.createContext<OTPInputContextType | null>(null)
 
 const slotVariants = cva(
-	"relative rounded-lg shadow-2xs font-semibold bg-base text-fgflex items-center justify-center placeholder:select-none appearance-none transition-all outline-hidden border border-alpha",
+	"relative rounded-lg shadow-2xs font-semibold bg-bg text-fgflex items-center justify-center placeholder:select-none appearance-none transition-all outline-hidden border border-alpha",
 	{
 		variants: {
 			size: {

@@ -10,8 +10,8 @@ import { Divider } from "@/registry/ui/divider";
 
 export default function Page() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-bg-level1 px-5">
-      <div className="w-200 flex rounded-2xl border border-border bg-bg-base">
+    <div className="h-screen w-screen flex justify-center items-center bg-bg -level1 px-5">
+      <div className="w-200 flex rounded-2xl border border-border bg-bg -base">
         <div className="flex-1 px-8 py-10 flex flex-col gap-6">
           <div>
             <img src="/signin-01/Logo.svg" height={32} width={32} alt="Logo" />

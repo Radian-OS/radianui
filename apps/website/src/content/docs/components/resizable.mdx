@@ -14,16 +14,49 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add resizable",
-		npm: "npx @radianos/radianbeta add resizable",
-		yarn: "yarn @radianos/radianbeta add resizable",
-		bun: "bunx @radianos/radianbeta add resizable",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add resizable",
+				npm: "npx @radianos/radianbeta add resizable",
+				yarn: "yarn @radianos/radianbeta add resizable",
+				bun: "bunx @radianos/radianbeta add resizable",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-resizable",
+				npm: "npm install @radix-ui/react-resizable",
+				yarn: "yarn add @radix-ui/react-resizable",
+				bun: "bun add @radix-ui/react-resizable",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="resizable" title="components/ui/resizable.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/resizable" code={`import {ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"`} />
+
+### Code
 
 <CodeSnippet title="/components/ui/resizable" code={`import {ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"`} />
 

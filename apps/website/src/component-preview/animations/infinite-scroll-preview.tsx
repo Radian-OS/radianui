@@ -59,8 +59,8 @@ const InfiniteScrollPreview = () => {
 							</div>
 						))}
 					</InfiniteScroll>
-					<div className="from-bg-base pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-					<div className="from-bg-base pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+					<div className="from-bg-bg pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
+					<div className="from-bg-bg pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -97,8 +97,8 @@ const InfiniteScrollPreview = () => {
 		))}
 	</InfiniteScroll>
 	{/* Left and right mask overlay */}
-	<div className="from-bg-base pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
-	<div className="from-bg-base pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
+	<div className="from-bg-bg pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r"></div>
+	<div className="from-bg-bg pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l"></div>
 </div>`}
 				/>
 			</TabsContent>

@@ -62,7 +62,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-info-text: oklch(0.4663 0.1065 251.21);
 
 	/* background */
-	--color-base: oklch(1 0 0);
+	--color-bg: oklch(1 0 0);
 	--color-fill1: oklch(0.9824 0.0013 286.38);
 	--color-fill2: oklch(0.9677 0.0027 286.35);
 	--color-fill3: oklch(0.9349 0.004 286.32);
@@ -134,7 +134,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-info-text: oklch(0.829 0.0811 248.83);
 
 	/* background */
-	--color-base: oklch(0.144 0.0028 247.09);
+	--color-bg: oklch(0.144 0.0028 247.09);
 	--color-fill1: oklch(0.1652 0.0062 285.7);
 	--color-fill2: oklch(0.1881 0.006 285.81);
 	--color-fill3: oklch(0.2314 0.0078 274.6);
@@ -175,8 +175,8 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 		border-color: var(--color-border);
 	}
 	body {
-		@apply font-body bg-base text-fg;
-		/* Font families */
+		@apply font-body bg-bg text-fg;
+		/* Font Families */
 		--heading-font: "Inter Display", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
 	}
@@ -307,5 +307,20 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 		/* Chrome, Safari and Opera */
 	}
 }
+
+@layer utilities {
+	/* Chrome & other browser puts a background color on autofill inputs,
+	 this removes it */
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: inherit;
+		transition: background-color 5000s ease-in-out 0s;
+		box-shadow: inset 0 0 20px 20px transparent;
+	}
+}
+
 
 `

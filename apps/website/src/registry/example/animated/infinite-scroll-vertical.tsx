@@ -29,8 +29,8 @@ export default function InfiniteScrollVerticalExample() {
 							</div>
 						))}
 					</InfiniteScroll>
-					<div className="from-bg-base pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b"></div>
-					<div className="from-bg-base pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t"></div>
+					<div className="from-bg-bg pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b"></div>
+					<div className="from-bg-bg pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t"></div>
 				</div>
 			</TabsContent>
 			{/* Code Tab */}
@@ -68,8 +68,8 @@ export default function InfiniteScrollVerticalExample() {
         ))}
     </InfiniteScroll>
     {/* Top and bottom mask overlay */}
-    <div className="from-bg-base pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b"></div>
-    <div className="from-bg-base pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t"></div>
+    <div className="from-bg-bg pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b"></div>
+    <div className="from-bg-bg pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t"></div>
 </div>
 `}
 				/>

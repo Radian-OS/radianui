@@ -13,22 +13,62 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add radiogroup",
-		npm: "npx @radianos/radianbeta add radiogroup",
-		yarn: "yarn @radianos/radianbeta add radiogroup",
-		bun: "bunx @radianos/radianbeta add radiogroup",
-	}}
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add radiogroup",
+				npm: "npx @radianos/radianbeta add radiogroup",
+				yarn: "yarn @radianos/radianbeta add radiogroup",
+				bun: "bunx @radianos/radianbeta add radiogroup",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-radio-group",
+				npm: "npm install @radix-ui/react-radio-group",
+				yarn: "yarn add @radix-ui/react-radio-group",
+				bun: "bun add @radix-ui/react-radio-group",
+			}}
+		/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="radiogroup" title="components/ui/radiogroup.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/radiogroup" code={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radiogroup"`} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/radiogroup"
+	code={`<RadioGroup label="Choose a fruit" defaultValue="apple">
+        <RadioGroupItem value="apple">Apple</RadioGroupItem>
+        <RadioGroupItem value="banana">Banana</RadioGroupItem>
+        <RadioGroupItem value="orange">Orange</RadioGroupItem>
+	</RadioGroup>`}
 />
-
-## Imports
-
-<CodeSnippet title="/components/ui/radiogroup" code={`import {RadioGroup, RadioGroupItem} from "@/components/ui/radiogroup"`} />
 
 ---
 
-## Example
+## Examples
 
 ### ARM Chip Radio Group Example
 
@@ -37,6 +77,8 @@ links:
 ### Disabled Radio Group Example
 
 <DisabledRadiogroupExample />
+
+---
 
 ## Props
 

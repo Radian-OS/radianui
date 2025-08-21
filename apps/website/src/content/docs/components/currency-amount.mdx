@@ -10,24 +10,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add currency",
-		npm: "npx @radianos/radianbeta add currency",
-		yarn: "yarn @radianos/radianbeta add currency",
-		bun: "bunx @radianos/radianbeta add currency",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add currency-amount",
+				npm: "npx @radianos/radianbeta add currency-amount",
+				yarn: "yarn @radianos/radianbeta add currency-amount",
+				bun: "bunx @radianos/radianbeta add currency-amount",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="currency-amount" title="components/ui/currency-amount.tsx" collapsible />
 
-## Imports
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/registry/ui/currency" code={`import { CurrencyInput } from "@/registry/ui/currency"`} />
+
+### Code
+
+<CodeSnippet title="/registry/ui/currency" code={`<CurrencyInput currency="usd" />`} />
 
 ---
 
 ## Example
 
+### Currency With Select Example
+
 <CurrencyExamplePreview />
+
+---
 
 ## Props
 

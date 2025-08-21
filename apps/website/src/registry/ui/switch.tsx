@@ -70,12 +70,12 @@ function Switch({ size = "24", defaultSelected = false, isSelected, onValueChang
 					className={cn(
 						switchStyles({ size }),
 						// Add focus styles using peer selector
-						"peer-focus-visible:ring-primary peer-focus-visible:ring-offset-bg-base text-fgpeer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
+						"peer-focus-visible:ring-primary peer-focus-visible:ring-offset-bg-bg text-fgpeer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
 						{
 							"bg-primary": selected,
 							"cursor-not-allowed": disabled,
 							"opacity-50": disabled && selected,
-							"peer-focus-visible:ring-border peer-focus-visible:ring-offset-bg-base peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2": !selected,
+							"peer-focus-visible:ring-border peer-focus-visible:ring-offset-bg-bg peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2": !selected,
 						}
 					)}>
 					<span

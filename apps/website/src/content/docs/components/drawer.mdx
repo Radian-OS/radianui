@@ -14,16 +14,45 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add drawer",
-		npm: "npx @radianos/radianbeta add drawer",
-		yarn: "yarn @radianos/radianbeta add drawer",
-		bun: "bunx @radianos/radianbeta add drawer",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add drawer",
+				npm: "npx @radianos/radianbeta add drawer",
+				yarn: "yarn @radianos/radianbeta add drawer",
+				bun: "bunx @radianos/radianbeta add drawer",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-drawer",
+				npm: "npm install @radix-ui/react-drawer",
+				yarn: "yarn add @radix-ui/react-drawer",
+				bun: "bun add @radix-ui/react-drawer",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="drawer" title="components/ui/drawer.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet
 	language="tsx"
@@ -37,6 +66,19 @@ links:
     DrawerHeader,
     DrawerTitle,
     DrawerTrigger } from "@/registry/ui/drawer"`}
+/>
+
+### Code
+
+<CodeSnippet
+	language="tsx"
+	title="/components/ui/drawer.tsx"
+	code={`<Drawer handle={false} backdrop='overlay'>
+		<DrawerTrigger><Button>Open Trigger</Button></DrawerTrigger>
+		<DrawerContent>
+			<Button variant="outline" color="neutral" >Close Drawer</Button>
+		</DrawerContent>
+</Drawer>`}
 />
 
 ---

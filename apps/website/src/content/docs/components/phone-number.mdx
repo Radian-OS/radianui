@@ -14,18 +14,58 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add phone-number",
-		npm: "npx @radianos/radianbeta add phone-number",
-		yarn: "yarn @radianos/radianbeta add phone-number",
-		bun: "bunx @radianos/radianbeta add phone-number",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add phone-number",
+				npm: "npx @radianos/radianbeta add phone-number",
+				yarn: "yarn @radianos/radianbeta add phone-number",
+				bun: "bunx @radianos/radianbeta add phone-number",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-phone-number",
+				npm: "npm install @radix-ui/react-phone-number",
+				yarn: "yarn add @radix-ui/react-phone-number",
+				bun: "bun add @radix-ui/react-phone-number",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="phone-number" title="components/ui/phone-number.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/ui/phone-number" code={`import { PhoneNumber } from "@components/ui/phone-number"`} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/phone-number"
+	code={`<PhoneNumber
+		label="Phone Number"
+		size="36"
+		className="w-62"
+/>`}
+/>
 
 ---
 

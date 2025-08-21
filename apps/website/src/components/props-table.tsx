@@ -66,7 +66,7 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex items-center gap-2 p-2">
-				<span className="text-fg-tertiary bg-base rounded-md p-1">
+				<span className="text-fg-tertiary bg-bg rounded-md p-1">
 					<Box size={16} />
 				</span>
 				<span className="text-fg-secondary text-sm font-medium">{`<${title}>`}</span>

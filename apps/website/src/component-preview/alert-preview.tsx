@@ -1,26 +1,29 @@
 import { useState } from "react"
-import { Bookmark, CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, Trash2, TriangleAlert } from "lucide-react"
+import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
-import { Button } from "@/registry/ui/button"
+import { Button, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertPreview = () => {
+	type titleType = "true" | "false"
+	type descriptionType = "true" | "false"
+
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"default" | "soft-outline" | "outline">("default")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
-	const [start, setStart] = useState<"none" | "star" | "bookmark" | "info" | "alert" | "trash">("star")
-	const [end, setEnd] = useState<"none" | "button" | "link">("link")
+	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
+	const [end, setEnd] = useState<"none" | "button" | "link">("button")
+	const [title, setTitle] = useState<titleType>("true")
+	const [description, setDescription] = useState<descriptionType>("true")
 
 	const icons = {
-		star: <Star size={20} />,
-		bookmark: <Bookmark size={20} />,
-		info: <Info size={20} />,
-		success: <CircleCheck size={20} />,
-		alert: <TriangleAlert size={20} />,
-		trash: <Trash2 size={20} />,
+		star: <Star size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		info: <Info size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		check: <CircleCheck size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		alert: <TriangleAlert size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
 		none: "",
 	}
 
@@ -59,33 +62,36 @@ const AlertPreview = () => {
 
 	const generateCode = () => {
 		let code = `<Alert
-  color=\"${color}\"
-  variant=\"${variant}\"
-  title=\"${alertContent.title}\"
-  message=\"${alertContent.message}\"
-  closable={${closable}}`
-
-		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
-		const btnClassName = color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
-		code += `
-  end={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
+  variant="${variant}"
+  color="${color}"
+  ${title === "true" ? `title="${alertContent.title}"` : ""}
+  ${description === "true" ? `description="${alertContent.message}"` : ""}`
 
 		const iconComponent = {
 			star: "Star",
-			bookmark: "Bookmark",
 			info: "Info",
-			success: "CircleCheck",
+			check: "CircleCheck",
 			alert: "TriangleAlert",
-			trash: "Trash2",
 			none: "",
 		}[start]
+
 		if (iconComponent !== "none" && iconComponent !== "") {
 			code += `
-  start={<${iconComponent} />}`
+  start={<${iconComponent} ${color === "neutral" ? 'className="text-fg-secondary"' : ""}/>}`
 		}
+
+		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
+		const btnClassName = color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
+
+		code += `
+  end={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
+
+		code += `
+  closable={${closable}}`
 
 		code += `
 />`
+
 		return code
 	}
 
@@ -138,15 +144,46 @@ const AlertPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
+								<DropdownSubTrigger>Title</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[title]}
+										onSelectedChange={(keys) => {
+											setTitle(Array.from(keys)[0] as titleType)
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Description</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownGroup
+										selectionMode="single"
+										minSelectionCount={1}
+										selectedValues={[description]}
+										onSelectedChange={(keys) => {
+											setDescription(Array.from(keys)[0] as descriptionType)
+										}}>
+										<DropdownItem value="true">True</DropdownItem>
+										<DropdownItem value="false">False</DropdownItem>
+									</DropdownGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
 								<DropdownSubTrigger>Start</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStart(Array.from(keys)[0] as typeof start)} minSelectionCount={1} selectedValues={[start]}>
 										<DropdownItem value="none">None</DropdownItem>
 										<DropdownItem value="star">Star</DropdownItem>
-										<DropdownItem value="bookmark">Bookmark</DropdownItem>
 										<DropdownItem value="info">Info</DropdownItem>
 										<DropdownItem value="alert">Triangle Alert</DropdownItem>
-										<DropdownItem value="trash">Trash</DropdownItem>
+										<DropdownItem value="check">Check</DropdownItem>
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -185,8 +222,8 @@ const AlertPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Alert
 						key={key}
-						title={alertContent.title}
-						description={alertContent.message}
+						title={title === "true" ? `${alertContent.title}` : ""}
+						description={description === "true" ? `${alertContent.message}` : ""}
 						color={color}
 						variant={variant}
 						closable={closable === "true" ? true : false}
@@ -195,9 +232,9 @@ const AlertPreview = () => {
 							end === "button" ? (
 								<Button color={color}>Action</Button>
 							) : end === "link" ? (
-								<a href="#" className={`text-${color}-text text-sm underline`}>
+								<LinkButton target="_blank" href="/docs/components/alert" size="14" color={color}>
 									Button Label
-								</a>
+								</LinkButton>
 							) : undefined
 						}
 					/>
