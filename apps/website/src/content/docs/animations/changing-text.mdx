@@ -14,18 +14,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add changing-text",
-		npm: "npx @radianos/radianbeta add changing-text",
-		yarn: "yarn @radianos/radianbeta add changing-text",
-		bun: "bunx @radianos/radianbeta add changing-text",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add changing-text",
+				npm: "npx @radianos/radianbeta add changing-text",
+				yarn: "yarn @radianos/radianbeta add changing-text",
+				bun: "bunx @radianos/radianbeta add changing-text",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add motion/react",
+				npm: "npm install motion/react",
+				yarn: "yarn add motion/react",
+				bun: "bun add motion/react",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="changing-text" title="components/ui/changing-text.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/animated/changing-text" code={`import { ChangingText } from "@/components/animated/changing-text"`} showLineNumbers />
+
+### Code
+
+<CodeSnippet title="/components/animated/changing-text" code={`<ChangingText texts={["Text 1", "Text 2"]} />`} showLineNumbers />
 
 ---
 

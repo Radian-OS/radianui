@@ -14,18 +14,60 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add animated-list",
-		npm: "npx @radianos/radianbeta add animated-list",
-		yarn: "yarn @radianos/radianbeta add animated-list",
-		bun: "bunx @radianos/radianbeta add animated-list",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add animated-list",
+				npm: "npx @radianos/radianbeta add animated-list",
+				yarn: "yarn @radianos/radianbeta add animated-list",
+				bun: "bunx @radianos/radianbeta add animated-list",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add motion/react",
+				npm: "npm install motion/react",
+				yarn: "yarn add motion/react",
+				bun: "bun add motion/react",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="animated-list" title="components/ui/animated-list.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/animated/animated-list" code={`import { AnimatedList } from "@/components/animated/animated-list"`} showLineNumbers />
+
+### Code
+
+<CodeSnippet
+	title="/components/animated/animated-list"
+	code={`<AnimatedList delay={500} className="w-64">
+      <div className="p-4 bg-blue-200 rounded">Item 1</div>
+      <div className="p-4 bg-green-200 rounded">Item 2</div>
+      <div className="p-4 bg-purple-200 rounded">Item 3</div>
+      <div className="p-4 bg-pink-200 rounded">Item 4</div>
+  </AnimatedList>`}
+	showLineNumbers
+/>
 
 ---
 

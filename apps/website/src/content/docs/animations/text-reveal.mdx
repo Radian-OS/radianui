@@ -1,6 +1,6 @@
 ---
 title: Text Reveal
-description: Fade in text as you scroll down the page.
+description: text-reveal in text as you scroll down the page.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/animated/text-reveal.tsx
@@ -14,18 +14,51 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add text-reveal",
-		npm: "npx @radianos/radianbeta add text-reveal",
-		yarn: "yarn @radianos/radianbeta add text-reveal",
-		bun: "bunx @radianos/radianbeta add text-reveal",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add text-reveal",
+				npm: "npx @radianos/radianbeta add text-reveal",
+				yarn: "yarn @radianos/radianbeta add text-reveal",
+				bun: "bunx @radianos/radianbeta add text-reveal",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add motion/react",
+				npm: "npm install motion/react",
+				yarn: "yarn add motion/react",
+				bun: "bun add motion/react",
+			}}
+		/>
 
-## Imports
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="text-reveal" title="components/ui/text-reveal.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
 
 <CodeSnippet title="/components/animated/text-reveal" code={`import { TextReveal } from "@/components/animated/text-reveal"`} showLineNumbers />
+
+### Code
+
+<CodeSnippet title="/components/animated/text-reveal" code={`<TextReveal>Your text here</TextReveal>`} showLineNumbers />
 
 ---
 
