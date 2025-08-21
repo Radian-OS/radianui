@@ -27,8 +27,6 @@ color="${color}"
 >
  Button Label
 </LinkButton>`
-
-		return "" // fallback
 	})()
 
 	return (

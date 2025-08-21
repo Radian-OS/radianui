@@ -7,33 +7,33 @@ import { CirclePlus } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-type AvatarVariant = NonNullable<VariantProps<typeof avatarVariants>["variant"]>
+type AvatarRadius = NonNullable<VariantProps<typeof avatarRadius>["radius"]>
 
-type AvatarSize = NonNullable<VariantProps<typeof avatarVariants>["size"]>
+type AvatarSize = NonNullable<VariantProps<typeof avatarRadius>["size"]>
 
 type AvatarProps = {
 	src?: string
 	name?: string
 	className?: string
 	size?: AvatarSize
-	variant?: AvatarVariant
+	radius?: AvatarRadius
 	status?: "online" | "offline" | "verified" | "plus"
 }
 
 type AvatarGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	children: React.ReactElement<typeof Avatar> | React.ReactElement<typeof Avatar>[]
 	size?: NonNullable<VariantProps<typeof avatarGroupVariants>["size"]>
-	max?: number
+	maxItems?: number
 	className?: string
 }
 
 type ImageStatus = "loading" | "loaded" | "error"
 
-const AvatarFallbackIcon = ({ className, variant }: { className: string; variant: AvatarVariant }) => {
-	const clipPathId = `avatar-clip-${variant}`
+const AvatarFallbackIcon = ({ className, radius }: { className: string; radius: AvatarRadius }) => {
+	const clipPathId = `avatar-clip-${radius}`
 
-	const borderRadiusFirstRect = variant === "circle" ? 20 : 8
-	const borderRadiusSecondRect = variant === "circle" ? 20 : 0
+	const borderRadiusFirstRect = radius === "circle" ? 20 : 8
+	const borderRadiusSecondRect = radius === "circle" ? 20 : 0
 
 	return (
 		<svg width="100" height="100" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -43,10 +43,10 @@ const AvatarFallbackIcon = ({ className, variant }: { className: string; variant
 				</clipPath>
 			</defs>
 			<g clipPath="url(#clip0_5846_11264)">
-				<path d="M5.3999 36C5.3999 29.0536 10.7999 23.4 17.9999 23.4C25.1999 23.4 30.5999 29.0536 30.5999 36" className="fill-bg-base" />
+				<path d="M5.3999 36C5.3999 29.0536 10.7999 23.4 17.9999 23.4C25.1999 23.4 30.5999 29.0536 30.5999 36" className="fill-black-inverse" />
 				<path
 					d="M18.0081 19.8C21.9759 19.8 25.1998 16.5761 25.1998 12.6083C25.1998 8.64044 21.9759 5.40002 18.0081 5.40002C14.0402 5.40002 10.7998 8.6239 10.7998 12.5918C10.7998 16.5596 14.0237 19.7835 17.9915 19.7835C18.0081 19.8"
-					className="fill-bg-base"
+					className="fill-black-inverse"
 				/>
 				<rect x="1" y="1" width="34" height="34" rx={borderRadiusSecondRect} ry={borderRadiusSecondRect} className="stroke-fg-disabled" strokeWidth={2} />
 			</g>
@@ -72,7 +72,7 @@ const VerifiedIcon = ({ className }: { className?: string }) => {
 const OnlineIcon = ({ className }: { className?: string }) => {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" width={120} height={120} overflow={"visible"} viewBox="0 0 20 20" fill="none" className={className}>
-			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-bg-base" />
+			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-base" />
 			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" className="fill-success" />
 		</svg>
 	)
@@ -80,13 +80,13 @@ const OnlineIcon = ({ className }: { className?: string }) => {
 const OfflineIcon = ({ className }: { className?: string }) => {
 	return (
 		<svg xmlns="http://www.w3.org/2000/svg" width={120} height={120} overflow={"visible"} viewBox="0 0 20 20" fill="none" className={className}>
-			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-bg-base" />
-			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" className="fill-text-disabled" />
+			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" stroke="white" strokeWidth={12} className="stroke-base" />
+			<path d="M4 10a6 6 0 1 1 12 0 6 6 0 0 1 -12 0Z" className="fill-fg-disabled" />
 		</svg>
 	)
 }
 
-const avatarVariants = cva("flex items-center justify-center shrink-0 font-semibold text-fg2", {
+const avatarRadius = cva("flex items-center justify-center shrink-0 font-semibold text-elevation-level2", {
 	variants: {
 		size: {
 			"16": "size-4 text-xs",
@@ -95,22 +95,22 @@ const avatarVariants = cva("flex items-center justify-center shrink-0 font-semib
 			"32": "size-8 text-sm",
 			"36": "size-9 text-sm",
 			"40": "size-10 text-sm",
-			"48": "size-12 text-base",
-			"64": "size-16 text-base",
+			"48": "size-12 text-[16px]",
+			"64": "size-16 text-[16px]",
 			"80": "size-20 text-lg",
 		},
-		variant: {
+		radius: {
 			circle: "rounded-full",
 			square: "rounded-md ",
 		},
 	},
 	defaultVariants: {
 		size: "40",
-		variant: "circle",
+		radius: "circle",
 	},
 })
 
-const indicatorVariants = cva("absolute z-10box-content bottom-0 right-0", {
+const indicatorVariants = cva("absolute z-10 box-content bottom-0 right-0", {
 	variants: {
 		size: {
 			"16": "size-1.5",
@@ -148,7 +148,7 @@ function getInitials(name: string, size: AvatarProps["size"]) {
 	return size && parseInt(size) < 32 ? initials[0] : initials.slice(0, 2).join("")
 }
 
-function Avatar({ src, name, className, size = "36", variant = "circle", status }: AvatarProps) {
+function Avatar({ src, name, className, size = "36", radius = "circle", status }: AvatarProps) {
 	const [imageStatus, setImageStatus] = React.useState<ImageStatus>("loading")
 
 	React.useEffect(() => {
@@ -169,26 +169,26 @@ function Avatar({ src, name, className, size = "36", variant = "circle", status 
 	}, [src])
 
 	return (
-		<div data-slot="avatar" className={cn(avatarVariants({ size, variant }), className, "bg-text-disabled relative")}>
+		<div data-slot="avatar" className={cn(avatarRadius({ size, radius }), className, "bg-fg-disabled relative")}>
 			{src && imageStatus === "loaded" ? (
 				<img src={src} alt={name} className="size-full rounded-[inherit] object-cover" />
 			) : (
 				<span
 					className={cn(
 						"flex size-full items-center justify-center rounded-[inherit]",
-						name ? "bg-primary truncate overflow-ellipsis px-1 text-white" : "text-fg-level2 overflow-hidden bg-[inherit]"
+						name ? "bg-primary truncate overflow-ellipsis px-1 text-white" : "text-elevation-level2 overflow-hidden bg-[inherit]"
 					)}>
-					{name ? getInitials(name, size) : <AvatarFallbackIcon variant={variant} className={"text-bg-base size-full"} />}
+					{name ? getInitials(name, size) : <AvatarFallbackIcon radius={radius} className={"size-full text-base"} />}
 				</span>
 			)}
 
 			{/*Render indicator based on status */}
 			{status !== undefined && (
 				<>
-					{status === "verified" && <VerifiedIcon className={cn(indicatorVariants({ size }), "stroke-bg-base fill-info")} />}
-					{status === "online" && <OnlineIcon className={cn(indicatorVariants({ size }), "stroke-bg-base fill-success")} />}
-					{status === "offline" && <OfflineIcon className={cn(indicatorVariants({ size }), "stroke-bg-base fill-text-disabled")} />}
-					{status === "plus" && <CirclePlus className={cn(indicatorVariants({ size }), "fill-primary stroke-bg-base stroke-3 rounded-full")} />}
+					{status === "verified" && <VerifiedIcon className={cn(indicatorVariants({ size }), "stroke-base fill-info")} />}
+					{status === "online" && <OnlineIcon className={cn(indicatorVariants({ size }), "stroke-base fill-success")} />}
+					{status === "offline" && <OfflineIcon className={cn(indicatorVariants({ size }), "stroke-base fill-fg-disabled")} />}
+					{status === "plus" && <CirclePlus className={cn(indicatorVariants({ size }), "fill-primary stroke-base stroke-3 rounded-full")} />}
 				</>
 			)}
 		</div>
@@ -197,12 +197,12 @@ function Avatar({ src, name, className, size = "36", variant = "circle", status 
 
 Avatar.displayName = "Avatar"
 
-function AvatarGroup({ children, size = "20", max = 4, className, ...props }: AvatarGroupProps) {
+function AvatarGroup({ children, size = "20", maxItems = 4, className, ...props }: AvatarGroupProps) {
 	const avatarChildren = React.Children.toArray(children)
 
 	// Calculate how many avatars to show and if we need a count
-	const visibleAvatars = avatarChildren.slice(0, max)
-	const remainingCount = Math.max(0, avatarChildren.length - max)
+	const visibleAvatars = avatarChildren.slice(0, maxItems)
+	const remainingCount = Math.max(0, avatarChildren.length - maxItems)
 	const visibleCount = remainingCount > 99 ? "+99" : `+${remainingCount}`
 
 	return (
@@ -211,13 +211,13 @@ function AvatarGroup({ children, size = "20", max = 4, className, ...props }: Av
 				<div key={index}>
 					{React.cloneElement(child as React.ReactElement<AvatarProps>, {
 						size,
-						className: cn("border-2 border-bg-base box-content", (child as React.ReactElement<AvatarProps>).props.className),
+						className: cn("border-2 border-base box-content", (child as React.ReactElement<AvatarProps>).props.className),
 					})}
 				</div>
 			))}
 
 			{/* Show remaining count if any */}
-			{remainingCount > 0 && <Avatar name={visibleCount} size={size} className={"border-bg-base bg-primary box-content border-2 font-normal text-white"} />}
+			{remainingCount > 0 && <Avatar name={visibleCount} size={size} className={"border-base bg-primary box-content border-2 font-normal text-white"} />}
 		</div>
 	)
 }
