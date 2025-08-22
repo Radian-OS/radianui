@@ -9,8 +9,8 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgePreview = () => {
-	const [variant, setVariant] = useState<"strong" | "neutral" | "outline" | "soft">("strong")
-	const [color, setColor] = useState<"primary" | "info" | "success" | "error" | "warning">("primary")
+	const [variant, setVariant] = useState<"default" | "strong" | "outline" | "soft">("default")
+	const [color, setColor] = useState<"primary" | "neutral" | "info" | "success" | "error" | "warning">("primary")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [size, setSize] = useState<"24" | "20" | "28">("24")
 	const [key, setKey] = useState(0)
@@ -38,32 +38,15 @@ const BadgePreview = () => {
 								<DropdownGroup
 									selectionMode="single"
 									onSelectedChange={(keys) => {
-										setVariant(Array.from(keys)[0] as "neutral" | "strong")
+										setVariant(Array.from(keys)[0] as "default" | "strong")
 										setKey((k) => k + 1)
 									}}
 									minSelectionCount={1}
 									selectedValues={[variant]}>
+									<DropdownItem value="default">Default</DropdownItem>
 									<DropdownItem value="strong">Strong</DropdownItem>
 									<DropdownItem value="outline">Outline</DropdownItem>
 									<DropdownItem value="soft">Soft</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Size</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setSize(Array.from(keys)[0] as "24" | "20" | "28")
-										setKey((k) => k + 1)
-									}}
-									minSelectionCount={1}
-									selectedValues={[size]}>
-									<DropdownItem value="20">20</DropdownItem>
-									<DropdownItem value="24">24</DropdownItem>
-									<DropdownItem value="28">28</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -85,6 +68,24 @@ const BadgePreview = () => {
 									<DropdownItem value="error">Error</DropdownItem>
 									<DropdownItem value="warning">Warning</DropdownItem>
 									<DropdownItem value="info">Info</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setSize(Array.from(keys)[0] as "24" | "20" | "28")
+										setKey((k) => k + 1)
+									}}
+									minSelectionCount={1}
+									selectedValues={[size]}>
+									<DropdownItem value="20">20</DropdownItem>
+									<DropdownItem value="24">24</DropdownItem>
+									<DropdownItem value="28">28</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>

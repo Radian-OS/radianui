@@ -51,7 +51,7 @@ const IndicatorAvatarPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="relative inline-block">
-						<div className="bg-primary border-3 border-bg absolute bottom-0 right-0 z-10 translate-x-1 translate-y-1 transform rounded-full text-white shadow-sm">
+						<div className="bg-primary border-3 border-bg absolute bottom-0 right-0 z-10 translate-x-1 translate-y-1 transform rounded-full text-white">
 							{icon === "bell" && <Bell size={20} className="p-0.5" />}
 							{icon === "alert" && <TriangleAlert size={20} className="p-0.5" />}
 							{icon === "check" && <Check size={20} className="p-0.5" />}
@@ -69,7 +69,7 @@ const IndicatorAvatarPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`<div className="relative inline-block">
-	<div className="bg-primary border-3 border-bg absolute bottom-0 right-0 z-10 translate-x-1 translate-y-1 transform rounded-full text-white shadow-sm">
+	<div className="bg-primary border-3 border-bg absolute bottom-0 right-0 z-10 translate-x-1 translate-y-1 transform rounded-full text-white">
 		${icon === "bell" ? `<Bell size={20} className="p-0.5" />` : ""}${icon === "alert" ? `<TriangleAlert size={20} className="p-0.5" />` : ""}${icon === "check" ? `<Check size={20} className="p-0.5" />` : ""}${icon === "plus" ? `<Plus size={20} className="p-0.5" />` : ""}
 	</div>
 	<Avatar src="https://randomuser.me/api/portraits/men/1.jpg" name="John Doe" size="64"></Avatar>

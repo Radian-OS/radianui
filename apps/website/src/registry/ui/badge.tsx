@@ -20,7 +20,7 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
-			neutral: "border border-soft-alpha text-fg-secondary",
+			default: "border border-soft-alpha text-fg-secondary bg-elevation-level1",
 			strong: "",
 			outline: "",
 			soft: "",
@@ -36,10 +36,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			success: "",
 			error: "",
 			warning: "",
+			neutral: " bg-elevation-level1 border-alpha",
 		},
 	},
 	defaultVariants: {
-		variant: "neutral",
+		variant: "default",
 		size: "24",
 		color: "primary",
 	},
@@ -70,6 +71,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			color: "warning",
 			className: "bg-warning text-white font-semibold",
 		},
+		{
+			variant: "strong",
+			color: "neutral",
+			className: "bg-black-inverse border border-alpha text-white-inverse font-medium",
+		},
 		// Outline variant + colors
 		{
 			variant: "outline",
@@ -95,6 +101,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			variant: "outline",
 			color: "warning",
 			className: "text-warning-text border border-warning bg-transparent",
+		},
+		{
+			variant: "outline",
+			color: "neutral",
+			className: "text-fg-secondary border bg-transparent",
 		},
 		// Soft variant + colors
 		{
@@ -122,10 +133,15 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			color: "warning",
 			className: "bg-warning-accent text-warning-text",
 		},
+		{
+			variant: "soft",
+			color: "neutral",
+			className: "bg-fill2 text-fg-secondary",
+		},
 	],
 })
 
-function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
+function Badge({ variant = "default", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
 	if (!showBadge) return null
 	const badgeClasses = cn(
@@ -139,7 +155,7 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 			className={cn(
 				size === "20" || size === "24" ? "size-3" : "size-4",
 				"cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
-				variant === "neutral" && "text-fg-disabled"
+				variant === "default" && "text-fg-disabled"
 			)}
 		/>
 	)
