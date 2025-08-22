@@ -62,8 +62,8 @@ export const buttonVariants = cva(
 				"32": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-6 text-fgpx-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-fgpx-1 rounded-lg",
+				"44": "[&>svg]:size-6 text-fg px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-fg px-1 rounded-lg",
 			},
 			loading: {
 				true: "",
@@ -274,7 +274,7 @@ function Button({
 		}
 
 		return (
-			<Comp className={combinedClass} disabled={disabled} {...props}>
+			<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 				{children}
 			</Comp>
 		)
@@ -282,7 +282,7 @@ function Button({
 
 	// Normal button behavior
 	return (
-		<Comp className={combinedClass} disabled={disabled} {...props}>
+		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 			{lead}
 			{loading ? <Spinner size={size ? Number(size) : undefined} /> : null}
 			{children}
