@@ -162,7 +162,7 @@ function Avatar({ src, name, className, size = "36", radius = "circle", status }
 				<span
 					className={cn(
 						"flex size-full items-center justify-center rounded-[inherit]",
-						name ? "bg-primary-focus text-primary truncate overflow-ellipsis px-1" : "text-elevation-level2 overflow-hidden bg-[inherit]"
+						name ? "bg-primary-focus text-primary-text truncate overflow-ellipsis px-1" : "text-elevation-level2 overflow-hidden bg-[inherit]"
 					)}>
 					{name ? getInitials(name, size) : <AvatarFallbackIcon radius={radius} className={"size-full text-base"} />}
 				</span>
@@ -201,7 +201,7 @@ function AvatarGroup({ children, size = "20", maxItems = 4, className, ...props 
 			))}
 
 			{/* Show remaining count if any */}
-			{remainingCount > 0 && <Avatar name={visibleCount} size={size} className={"border-bg bg-primary-focus text-primary box-content border-2 font-semibold"} />}
+			{remainingCount > 0 && <Avatar name={visibleCount} size={size} className={"border-bg bg-primary-focus text-primary-text box-content border-2 font-semibold"} />}
 		</div>
 	)
 }
