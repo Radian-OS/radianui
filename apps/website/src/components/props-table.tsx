@@ -100,7 +100,7 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 							<TableCell className="grow">
 								<span className="flex flex-wrap gap-1">
 									{prop.values?.map((value) => (
-										<Badge key={value} variant="neutral" size="20">
+										<Badge key={value} variant="outline" color="neutral" size="20">
 											{value}
 										</Badge>
 									))}
@@ -122,7 +122,7 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 								</Badge>
 							</TableCell>
 							<TableCell>
-								<Badge variant="neutral" size="20">
+								<Badge variant="outline" color="neutral" size="20">
 									-
 								</Badge>
 							</TableCell>

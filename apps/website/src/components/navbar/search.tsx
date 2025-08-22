@@ -121,7 +121,7 @@ export function SearchDocs() {
 						iconOnly
 						lead={<Search className="text-fg-tertiary" />}
 						trail={
-							<Badge className="text-fg-secondary" size="20" variant={"neutral"}>
+							<Badge className="text-fg-secondary" size="20" variant="outline" color="neutral">
 								⌘K
 							</Badge>
 						}>
