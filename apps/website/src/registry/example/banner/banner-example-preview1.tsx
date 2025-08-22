@@ -18,7 +18,7 @@ const BannerExamplePreview1 = () => {
 			</TabsList>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Banner variant="destructive">
+					<Banner color="error" variant="soft">
 						<Lock size={20} />
 						Subscription Expired. Please upgrade your account to Pro Subscription{" "}
 						<Link className="underline" href="#">

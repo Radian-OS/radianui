@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { EyeIcon, Settings, Sparkles, SquareTerminal } from "lucide-react"
+import { Box, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import Link from "next/link"
 
 import CodeSnippet from "@/components/code-snippet"
@@ -12,7 +12,8 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerPreview = () => {
-	const [variant, setVariant] = useState<"primary" | "outline" | "gray" | "destructive">("gray")
+	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
+	const [variant, setVariant] = useState<"strong" | "outline" | "soft">("strong")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
 
@@ -35,20 +36,30 @@ const BannerPreview = () => {
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Color</DropdownSubTrigger>
+							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setVariant(Array.from(keys)[0] as "primary" | "outline" | "gray" | "destructive")
-										setKey((k) => k + 1)
-									}}
+									onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
 									minSelectionCount={1}
 									selectedValues={[variant]}>
-									<DropdownItem value="primary">Primary</DropdownItem>
+									<DropdownItem value="strong">Strong</DropdownItem>
 									<DropdownItem value="outline">Outline</DropdownItem>
-									<DropdownItem value="gray">Gray</DropdownItem>
-									<DropdownItem value="destructive">Error</DropdownItem>
+									<DropdownItem value="soft">Soft</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Color</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setColor(Array.from(keys)[0] as typeof color)} minSelectionCount={1} selectedValues={[color]}>
+									<DropdownItem value="primary">Primary</DropdownItem>
+									<DropdownItem value="neutral">Neutral</DropdownItem>
+									<DropdownItem value="success">Success</DropdownItem>
+									<DropdownItem value="error">Error</DropdownItem>
+									<DropdownItem value="warning">Warning</DropdownItem>
+									<DropdownItem value="info">Info</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -74,8 +85,8 @@ const BannerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border">
-					<Banner key={key} closable={closable === "true" ? true : false} variant={variant} className="w-full">
-						<Sparkles size={20} className="stroke-warning" />
+					<Banner key={key} closable={closable === "true" ? true : false} color={color} variant={variant} className="w-full">
+						<Box size={20} className="stroke-warning" />
 						<p>This is a sample banner for design</p>
 						<Link className="underline" href="#">
 							Upgrade
