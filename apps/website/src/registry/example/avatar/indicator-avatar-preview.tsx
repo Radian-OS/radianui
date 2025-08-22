@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Icon = "plus" | "alert" | "check" | "bell"
 
-const DEFAULT_ICON: Icon = "bell"
+const DEFAULT_ICON: Icon = "plus"
 
 const IndicatorAvatarPreview = () => {
 	const [icon, setIcon] = useState<Icon>(DEFAULT_ICON)

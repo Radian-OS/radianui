@@ -50,7 +50,7 @@ type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed bg-transparent z-[51] bg-base", {
+const drawerVariants = cva("fixed bg-transparent z-[51] bg-bg", {
 	variants: {
 		type: {
 			float: "",

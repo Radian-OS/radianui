@@ -51,12 +51,13 @@ export const people = [
 	},
 ]
 
-type Size = "16" | "20" | "24"
+type Size = "16" | "20" | "24" | "32"
 
 const DEFAULT_SIZE: Size = "20"
 
 const AvatargroupPreview = () => {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
+	const [maxItems, setMaxItems] = useState<number>(5)
 
 	return (
 		<Tabs className="mt-3" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -83,6 +84,22 @@ const AvatargroupPreview = () => {
 									<DropdownItem value="16">16</DropdownItem>
 									<DropdownItem value="20">20</DropdownItem>
 									<DropdownItem value="24">24</DropdownItem>
+									<DropdownItem value="32">32</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Max Items</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => setMaxItems(Number(Array.from(keys)[0]))}
+									minSelectionCount={1}
+									selectedValues={[String(maxItems)]}>
+									<DropdownItem value="2">2</DropdownItem>
+									<DropdownItem value="3">3</DropdownItem>
+									<DropdownItem value="4">4</DropdownItem>
+									<DropdownItem value="5">5</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -92,7 +109,7 @@ const AvatargroupPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<AvatarGroup {...(size !== DEFAULT_SIZE && { size })}>
+					<AvatarGroup maxItems={maxItems} {...(size !== DEFAULT_SIZE && { size })}>
 						{people.map((person) => (
 							<Avatar src={person.image} name={person.name} key={person.image} />
 						))}
@@ -151,7 +168,7 @@ const AvatargroupPreview = () => {
 
 export function AvatarGroupPreview() {
 	return (
-		<AvatarGroup ${size !== DEFAULT_SIZE ? `size="${size}"` : ""}>
+		<AvatarGroup maxItems={${maxItems}} {...(size !== DEFAULT_SIZE && { size })}>
 			{people.map((person) => (
 				<Avatar src={person.image} name={person.name} key={person.image} />
 			))}

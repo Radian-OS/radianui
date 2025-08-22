@@ -32,7 +32,7 @@ const tabsListStyles = cva(
 				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
 				outline: "border border-border",
 				ghost: "",
-				"outline-ghost": "bg-base",
+				"outline-ghost": "bg-bg",
 			},
 		},
 		defaultVariants: {

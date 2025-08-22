@@ -104,11 +104,6 @@ const AvatarPreview = () => {
 						{...(radius !== DEFAULT_RADIUS && { radius: radius })}
 						{...(status !== DEFAULT_STATUS && { status: status })}
 					/>
-					{/* <div className="rounded-full border-4 border-red-500">
-						<div className="border-4 border-transparent">
-							<Avatar src="https://randomuser.me/api/portraits/men/1.jpg" name="Test" />
-						</div>
-					</div> */}
 				</div>
 			</TabsContent>
 

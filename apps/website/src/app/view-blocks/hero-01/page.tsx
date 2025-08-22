@@ -88,7 +88,7 @@ export default function Hero01() {
 				</div>
 			</Fade>
 
-			<main className="bg-base">
+			<main className="bg-bg">
 				{/* Hero Section */}
 				<Fade>
 					<div className="pt-25 relative px-5 sm:px-6 lg:px-8">

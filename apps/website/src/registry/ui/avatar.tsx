@@ -42,10 +42,10 @@ const AvatarFallbackIcon = ({ className, radius }: { className: string; radius: 
 				</clipPath>
 			</defs>
 			<g clipPath="url(#clip0_5846_11264)">
-				<path d="M5.3999 36C5.3999 29.0536 10.7999 23.4 17.9999 23.4C25.1999 23.4 30.5999 29.0536 30.5999 36" className="fill-black-inverse" />
+				<path d="M5.3999 36C5.3999 29.0536 10.7999 23.4 17.9999 23.4C25.1999 23.4 30.5999 29.0536 30.5999 36" className="fill-elevation-level1" />
 				<path
 					d="M18.0081 19.8C21.9759 19.8 25.1998 16.5761 25.1998 12.6083C25.1998 8.64044 21.9759 5.40002 18.0081 5.40002C14.0402 5.40002 10.7998 8.6239 10.7998 12.5918C10.7998 16.5596 14.0237 19.7835 17.9915 19.7835C18.0081 19.8"
-					className="fill-black-inverse"
+					className="fill-elevation-level1"
 				/>
 				{/* <rect x="1" y="1" width="34" height="34" rx={borderRadiusSecondRect} ry={borderRadiusSecondRect} className="stroke-fg-disabled" strokeWidth={2} /> */}
 			</g>
@@ -69,15 +69,26 @@ const avatarRadius = cva("flex items-center justify-center shrink-0 font-semibol
 			"32": "size-8 text-sm",
 			"36": "size-9 text-sm",
 			"40": "size-10 text-sm",
-			"48": "size-12 text-base ",
-			"64": "size-16 text-base ",
-			"80": "size-20 text-lg",
+			"48": "size-12 text-base",
+			"64": "size-16 text-xl",
+			"80": "size-20 text-2xl",
 		},
 		radius: {
 			circle: "rounded-full",
-			square: "rounded-md ",
+			square: "",
 		},
 	},
+	compoundVariants: [
+		{ size: "16", radius: "square", class: "rounded-sm" },
+		{ size: "20", radius: "square", class: "rounded-sm" },
+		{ size: "24", radius: "square", class: "rounded-md" },
+		{ size: "32", radius: "square", class: "rounded-md" },
+		{ size: "36", radius: "square", class: "rounded-lg" },
+		{ size: "40", radius: "square", class: "rounded-lg" },
+		{ size: "48", radius: "square", class: "rounded-[10px]" },
+		{ size: "64", radius: "square", class: "rounded-xl" },
+		{ size: "80", radius: "square", class: "rounded-2xl" },
+	],
 	defaultVariants: {
 		size: "40",
 		radius: "circle",
@@ -87,15 +98,15 @@ const avatarRadius = cva("flex items-center justify-center shrink-0 font-semibol
 const indicatorVariants = cva("absolute z-10 box-content bottom-0 right-0", {
 	variants: {
 		size: {
-			"16": "size-1.5",
-			"20": "size-1.5",
-			"24": "size-2",
-			"32": "size-2.5",
-			"36": "size-2.5",
-			"40": "size-3",
-			"48": "size-3",
-			"64": "size-4",
-			"80": "size-5",
+			"16": "size-1 border",
+			"20": "size-1 border",
+			"24": "size-1.5 border 2",
+			"32": "size-1.5 border-2",
+			"36": "size-1.5 border-2",
+			"40": "size-2 border-2",
+			"48": "size-3 border-2",
+			"64": "size-3 border-2",
+			"80": "size-4 border-2",
 		},
 	},
 })
@@ -106,6 +117,7 @@ const avatarGroupVariants = cva("flex items-center", {
 			"16": "-space-x-2",
 			"20": "-space-x-2",
 			"24": "-space-x-2.5",
+			"32": "-space-x-2.5",
 		},
 	},
 	defaultVariants: {
@@ -143,14 +155,14 @@ function Avatar({ src, name, className, size = "36", radius = "circle", status }
 	}, [src])
 
 	return (
-		<div data-slot="avatar" className={cn(avatarRadius({ size, radius }), className, "bg-fg-disabled relative")}>
+		<div data-slot="avatar" className={cn(avatarRadius({ size, radius }), className, "bg-fill4 relative")}>
 			{src && imageStatus === "loaded" ? (
 				<img src={src} alt={name} className="size-full rounded-[inherit] object-cover" />
 			) : (
 				<span
 					className={cn(
 						"flex size-full items-center justify-center rounded-[inherit]",
-						name ? "bg-primary truncate overflow-ellipsis px-1 text-white" : "text-elevation-level2 overflow-hidden bg-[inherit]"
+						name ? "bg-primary-focus text-primary truncate overflow-ellipsis px-1" : "text-elevation-level2 overflow-hidden bg-[inherit]"
 					)}>
 					{name ? getInitials(name, size) : <AvatarFallbackIcon radius={radius} className={"size-full text-base"} />}
 				</span>
@@ -159,8 +171,8 @@ function Avatar({ src, name, className, size = "36", radius = "circle", status }
 			{/*Render indicator based on status */}
 			{status !== undefined && (
 				<>
-					{status === "online" && <OnlineIcon className={cn(indicatorVariants({ size }), "bg-success border-bg border-3 rounded-full")} />}
-					{status === "offline" && <OfflineIcon className={cn(indicatorVariants({ size }), "bg-fg-disabled border-bg border-3 rounded-full")} />}
+					{status === "online" && <OnlineIcon className={cn(indicatorVariants({ size }), "bg-success border-bg rounded-full")} />}
+					{status === "offline" && <OfflineIcon className={cn(indicatorVariants({ size }), "bg-fg-disabled border-bg rounded-full")} />}
 				</>
 			)}
 		</div>
@@ -183,13 +195,13 @@ function AvatarGroup({ children, size = "20", maxItems = 4, className, ...props 
 				<div key={index}>
 					{React.cloneElement(child as React.ReactElement<AvatarProps>, {
 						size,
-						className: cn("border-2 border-base box-content", (child as React.ReactElement<AvatarProps>).props.className),
+						className: cn("border-2 border-bg box-content", (child as React.ReactElement<AvatarProps>).props.className),
 					})}
 				</div>
 			))}
 
 			{/* Show remaining count if any */}
-			{remainingCount > 0 && <Avatar name={visibleCount} size={size} className={"border-base bg-primary box-content border-2 font-normal text-white"} />}
+			{remainingCount > 0 && <Avatar name={visibleCount} size={size} className={"border-bg bg-primary-focus text-primary box-content border-2 font-semibold"} />}
 		</div>
 	)
 }

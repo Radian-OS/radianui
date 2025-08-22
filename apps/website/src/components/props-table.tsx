@@ -24,7 +24,7 @@ export const Table = ({ children, className, ...props }: HTMLAttributes<HTMLTabl
 )
 
 export const TableHeader = ({ children, className, ...props }: HTMLAttributes<HTMLTableSectionElement>) => (
-	<thead className={cn("bg-base", className)} {...props}>
+	<thead className={cn("bg-bg", className)} {...props}>
 		{children}
 	</thead>
 )
@@ -75,13 +75,13 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 			</div>
 			<Table>
 				<TableHeader>
-					<TableRow className="bg-base">
+					<TableRow className="bg-bg">
 						<TableHead className="w-[200px]">Name</TableHead>
 						<TableHead className="w-[140px]">Default</TableHead>
 						<TableHead>Values</TableHead>
 					</TableRow>
 				</TableHeader>
-				<TableBody className="[&>tr:nth-child(odd)]:bg-fill1 [&>tr:nth-child(even)]:bg-base">
+				<TableBody className="[&>tr:nth-child(odd)]:bg-fill1 [&>tr:nth-child(even)]:bg-bg">
 					{data.map((prop) => (
 						<TableRow key={prop.name}>
 							<TableCell className="w-[200px]">
