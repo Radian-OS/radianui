@@ -3,7 +3,6 @@ import { EyeIcon, FolderCog, LogOut, Settings, SquareTerminal, UserCog } from "l
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-import { Checkbox } from "@/registry/ui/checkbox"
 import { Dropdown, DropdownContent, DropdownDivider, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -62,10 +61,6 @@ const UserMenuDropdownExample = () => {
 							<DropdownDivider />
 							<DropdownItem className="px-2 py-1.5" start={<LogOut />}>
 								Logout
-							</DropdownItem>
-							<DropdownItem onClick={(e) => e.preventDefault()}>
-								<Checkbox />
-								British Pound
 							</DropdownItem>
 						</DropdownContent>
 					</Dropdown>
