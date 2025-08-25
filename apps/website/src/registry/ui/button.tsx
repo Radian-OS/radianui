@@ -274,7 +274,7 @@ function Button({
 		}
 
 		return (
-			<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
+			<Comp className={combinedClass} disabled={disabled} {...props}>
 				{children}
 			</Comp>
 		)
