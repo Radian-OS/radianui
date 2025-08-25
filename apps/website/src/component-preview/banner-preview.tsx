@@ -2,20 +2,69 @@
 
 import { useState } from "react"
 
-import { Box, EyeIcon, Settings, SquareTerminal } from "lucide-react"
-import Link from "next/link"
+import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
-import { Button } from "@/registry/ui/button"
+import { Button, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerPreview = () => {
+	type booleanType = "true" | "false"
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"strong" | "outline" | "soft">("strong")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
+	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
+	const [end, setEnd] = useState<"none" | "button" | "link">("link")
+	const [title, setTitle] = useState<booleanType>("true")
+	const [description, setDescription] = useState<booleanType>("true")
+
+	const icons = {
+		star: <Star size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		info: <Info size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		check: <CircleCheck size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		alert: <TriangleAlert size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		none: "",
+	}
+
+	const selectedIcon = icons[start as keyof typeof icons]
+
+	const generateCode = () => {
+		let code = `<Banner
+  variant="${variant}"
+  color="${color}"
+  ${title === "true" ? `title="Banner Title Here"` : ""}
+  ${description === "true" ? `description="Enter your banner message here"` : ""}`
+
+		const iconComponent = {
+			star: "Star",
+			info: "Info",
+			check: "CircleCheck",
+			alert: "TriangleAlert",
+			none: "",
+		}[start]
+
+		if (iconComponent !== "none" && iconComponent !== "") {
+			code += `
+  start={<${iconComponent} ${color === "neutral" ? 'className="text-fg-secondary"' : ""}/>}`
+		}
+
+		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
+
+		code += `
+  end={<Button color='${btnColor}'>Action</Button>}`
+
+		code += `
+  closable={${closable}}`
+
+		code += `
+>
+</Banner>`
+
+		return code
+	}
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -63,7 +112,61 @@ const BannerPreview = () => {
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Title</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[title]}
+									onSelectedChange={(keys) => {
+										setTitle(Array.from(keys)[0] as booleanType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 
+						<DropdownSub>
+							<DropdownSubTrigger>Description</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									minSelectionCount={1}
+									selectedValues={[description]}
+									onSelectedChange={(keys) => {
+										setDescription(Array.from(keys)[0] as booleanType)
+									}}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Start</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStart(Array.from(keys)[0] as typeof start)} minSelectionCount={1} selectedValues={[start]}>
+									<DropdownItem value="none">None</DropdownItem>
+									<DropdownItem value="star">Star</DropdownItem>
+									<DropdownItem value="info">Info</DropdownItem>
+									<DropdownItem value="alert">Triangle Alert</DropdownItem>
+									<DropdownItem value="check">Check</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>End</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setEnd(Array.from(keys)[0] as typeof end)} minSelectionCount={1} selectedValues={[end]}>
+									<DropdownItem value="none">None</DropdownItem>
+									<DropdownItem value="button">Button</DropdownItem>
+									<DropdownItem value="link">Link</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Closable</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -85,28 +188,28 @@ const BannerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border">
-					<Banner key={key} closable={closable === "true" ? true : false} color={color} variant={variant} className="w-full">
-						<Box size={20} className="stroke-warning" />
-						<p>This is a sample banner for design</p>
-						<Link className="underline" href="#">
-							Upgrade
-						</Link>
-					</Banner>
+					<Banner
+						title={title === "true" ? "Banner Title Here" : ""}
+						description={description === "true" ? "Enter your banner message here" : ""}
+						start={<div className={`${variant === "strong" ? "text-white" : `text-${color}`}`}>{selectedIcon}</div>}
+						end={
+							end === "button" ? (
+								<Button color={color}>Action</Button>
+							) : end === "link" ? (
+								<LinkButton target="_blank" href="/docs/components/alert" size="14" className={`${variant === "strong" ? "text-white" : "text-black"}`}>
+									Button Label
+								</LinkButton>
+							) : undefined
+						}
+						key={key}
+						closable={closable === "true" ? true : false}
+						color={color}
+						variant={variant}
+						className="w-full"></Banner>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeSnippet
-					title="banner.tsx"
-					showLineNumber
-					className="h-[420px]"
-					code={`<Banner 
-variant="${variant}"
-closable={${closable}}>
-<Sparkles size={20} className="stroke-warning" />
-<p>This is a sample banner for design</p>
-<Link className="underline" href="#" >Upgrade</Link>
-</Banner>`}
-				/>
+				<CodeSnippet title="banner.tsx" showLineNumber className="h-[420px]" code={generateCode()} />
 			</TabsContent>
 		</Tabs>
 	)

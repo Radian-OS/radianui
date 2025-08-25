@@ -9,16 +9,20 @@ import { cn } from "@/lib/utils"
 
 type BannerProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof bannerVariants> & {
-		children: ReactNode
+		children?: ReactNode
 		closable?: boolean
 		className?: string
+		start?: ReactNode
+		end?: ReactNode
+		title?: string
+		description?: string
 	}
 
-const bannerVariants = cva("py-2 px-4 flex items-center justify-center gap-2.5 relative text-sm w-full", {
+const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative text-sm w-full", {
 	variants: {
 		variant: {
 			strong: "",
-			outline: "border-b border-soft-alpha",
+			outline: "border-b border-border",
 			soft: "",
 		},
 		color: {
@@ -39,112 +43,116 @@ const bannerVariants = cva("py-2 px-4 flex items-center justify-center gap-2.5 r
 		{
 			variant: "strong",
 			color: "primary",
-			className: "bg-primary text-white font-semibold",
+			className: "bg-primary",
 		},
 		{
 			variant: "strong",
 			color: "info",
-			className: "bg-info text-white font-semibold",
+			className: "bg-info",
 		},
 		{
 			variant: "strong",
 			color: "success",
-			className: "bg-success  text-white font-semibold",
+			className: "bg-success",
 		},
 		{
 			variant: "strong",
 			color: "error",
-			className: "bg-error text-white font-semibold",
+			className: "bg-error",
 		},
 		{
 			variant: "strong",
 			color: "warning",
-			className: "bg-warning text-white font-semibold",
+			className: "bg-warning",
 		},
 		{
 			variant: "strong",
 			color: "neutral",
-			className: "bg-black-inverse border border-alpha text-white-inverse font-medium",
+			className: "bg-black-inverse",
 		},
 		// Outline variant + colors
 		{
 			variant: "outline",
 			color: "primary",
-			className: "text-primary-text border-b border-primary bg-transparent",
+			className: "bg-transparent",
 		},
 		{
 			variant: "outline",
 			color: "info",
-			className: "text-info-text border-b border-info bg-transparent",
+			className: "bg-transparent",
 		},
 		{
 			variant: "outline",
 			color: "success",
-			className: "text-success-text border-b border-success bg-transparent",
+			className: "bg-transparent",
 		},
 		{
 			variant: "outline",
 			color: "error",
-			className: "text-error-text border-b border-error bg-transparent",
+			className: "bg-transparent",
 		},
 		{
 			variant: "outline",
 			color: "warning",
-			className: "text-warning-text border-b border-warning bg-transparent",
+			className: "bg-transparent",
 		},
 		{
 			variant: "outline",
 			color: "neutral",
-			className: "text-fg-secondary border-b border-neutral bg-transparent",
+			className: "bg-transparent",
 		},
 		// Soft variant + colors
 		{
 			variant: "soft",
 			color: "primary",
-			className: "bg-primary-accent text-primary-text",
+			className: "bg-primary-accent",
 		},
 		{
 			variant: "soft",
 			color: "info",
-			className: "bg-info-accent text-info-text",
+			className: "bg-info-accent",
 		},
 		{
 			variant: "soft",
 			color: "success",
-			className: "bg-success-accent text-success-text",
+			className: "bg-success-accent",
 		},
 		{
 			variant: "soft",
 			color: "error",
-			className: "bg-error-accent text-error-text",
+			className: "bg-error-accent",
 		},
 		{
 			variant: "soft",
 			color: "warning",
-			className: "bg-warning-accent text-warning-text",
+			className: "bg-warning-accent",
 		},
 		{
 			variant: "soft",
 			color: "neutral",
-			className: "bg-fill2 text-fg-secondary",
+			className: "bg-fill2",
 		},
 	],
 })
-function Banner({ children, color = "neutral", variant = "strong", closable, className = "", ...props }: BannerProps) {
+function Banner({ children, color = "neutral", variant = "strong", start, end, title, description, closable, className = "", ...props }: BannerProps) {
 	const [showBanner, setShowBanner] = useState(true)
 	function getClosableVariant() {
-		if (["primary", "destructive"].includes(color)) {
+		if (["primary"].includes(color)) {
 			return "text-white"
 		}
-		if (["outline", "gray"].includes(color)) {
-			return "text-fg-disabled"
+		if (["outline"].includes(color)) {
+			return "text-fg-secondary"
 		}
 	}
 
 	return (
 		showBanner && (
 			<div {...props} className={cn(bannerVariants({ color, variant }), className)}>
+				{start && start}
+				{title && <h4 className={`font-medium ${variant === "strong" ? "text-white" : "text-black"}`}>{title}</h4>}
+				{description && <p className={`font-normal ${variant === "strong" ? "text-white" : variant === "outline" ? "text-fg-secondary" : "text-black"}`}>{description}</p>}
 				{children}
+				{end && end}
 				{closable && <X size={20} onClick={() => setShowBanner(false)} className={`${getClosableVariant()} absolute right-4 cursor-pointer`} />}
 			</div>
 		)
