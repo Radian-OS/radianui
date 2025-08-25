@@ -8,29 +8,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 const BadgeExamplePreview = () => {
 	const badgeExamples = [
 		{
-			name: "Destructive",
-			component: (
-				<Badge variant="soft" color="error" size="24">
-					Destructive
-				</Badge>
-			),
-			code: `<Badge
-variant="soft" 
-color="error" 
-size="24">
- Destructive
-</Badge>`,
-		},
-		{
 			name: "Dot",
 			component: (
-				<Badge size="24" closable={true}>
-					<div className="bg-success h-1.5 w-1.5 rounded-full"></div>
+				<Badge size="28" color="primary" variant="outline" closable={true}>
+					<div className="bg-primary h-2 w-2 rounded-full"></div>
 					<span>Label</span>
 				</Badge>
 			),
-			code: `<Badge size="24" closable={true}>
-<div className="h-1.5 w-1.5 rounded-full bg-success"></div>
+			code: `<Badge size="28" color="primary" variant="outline" closable={true}>
+<div className="h-2 w-2 rounded-full bg-primary"></div>
 Label
 </Badge>`,
 		},
@@ -52,7 +38,7 @@ Roman Shrestha
 		{
 			name: "Close Icon",
 			component: (
-				<Badge variant="soft" color="warning" className="outline-warning outline" closable size="24">
+				<Badge variant="soft" color="warning" closable size="24">
 					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 					My Custom Badge
 				</Badge>
@@ -60,7 +46,6 @@ Roman Shrestha
 			code: `<Badge
 variant="soft" 
 color="warning"
-className="outline-warning outline" 
 closable 
 size="24">
 <Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />

@@ -111,32 +111,32 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{
 			variant: "soft",
 			color: "primary",
-			className: "bg-primary-accent text-primary-text",
+			className: "bg-primary-accent text-primary-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "info",
-			className: "bg-info-accent text-info-text",
+			className: "bg-info-accent text-info-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "success",
-			className: "bg-success-accent text-success-text",
+			className: "bg-success-accent text-success-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "error",
-			className: "bg-error-accent text-error-text",
+			className: "bg-error-accent text-error-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "warning",
-			className: "bg-warning-accent text-warning-text",
+			className: "bg-warning-accent text-warning-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "neutral",
-			className: "bg-fill2 text-fg-secondary",
+			className: "bg-fill2 text-fg-secondary border border-soft-alpha",
 		},
 	],
 })
@@ -155,7 +155,7 @@ function Badge({ variant = "default", size = "24", color = "primary", closable =
 			className={cn(
 				size === "20" || size === "24" ? "size-3" : "size-4",
 				"cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
-				variant === "default" && "text-fg-disabled"
+				variant === "default" && "text-fg-secondary"
 			)}
 		/>
 	)
