@@ -81,6 +81,9 @@ import VerifiedAvatarPreview from "@/registry/example/avatar/verified-avatar-pre
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
+import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
+import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
+import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -225,6 +228,9 @@ const components: MDXComponents = {
 	VerifiedAvatarPreview: () => <VerifiedAvatarPreview />,
 	IndicatorAvatarPreview: () => <IndicatorAvatarPreview />,
 	RingAvatarPreview: () => <RingAvatarPreview />,
+	BreadcrumbExample1: () => <BreadcrumbExample1 />,
+	BreadcrumbExample2: () => <BreadcrumbExample2 />,
+	BreadcrumbExample3: () => <BreadcrumbExample3 />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

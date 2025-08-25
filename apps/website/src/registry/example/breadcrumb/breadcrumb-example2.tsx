@@ -1,11 +1,11 @@
-import { Component, EyeIcon, Home, SquareTerminal, Upload } from "lucide-react"
+import { EyeIcon, Home, SquareTerminal } from "lucide-react"
 import Link from "next/link"
 
 import CodeSnippet from "@/components/code-snippet"
 import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const BreadCrumbExample1 = () => {
+const BreadCrumbExample2 = () => {
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
@@ -21,22 +21,17 @@ const BreadCrumbExample1 = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Breadcrumb separator="default">
-						<BreadcrumbItem asChild>
+					<Breadcrumb separator="default" className="bg-elevation-level1 rounded-md border px-3 py-2">
+						<BreadcrumbItem>
 							<Link href="/">
-								<Home size={16} /> Home
+								<Home size={16} />
 							</Link>
 						</BreadcrumbItem>
-						<BreadcrumbItem asChild>
-							<Link href="/docs/installation/next">
-								<Upload size={16} /> Installation
-							</Link>
+						<BreadcrumbItem>
+							<Link href="/docs/installation/next">Installation</Link>
 						</BreadcrumbItem>
-						<BreadcrumbItem asChild>
-							<Link href="/docs/components">
-								<Component size={16} />
-								Components
-							</Link>
+						<BreadcrumbItem>
+							<Link href="/docs/components">Components</Link>
 						</BreadcrumbItem>
 						<BreadcrumbItem>
 							<Link href="/docs/animations/animated-list">Animations</Link>
@@ -52,18 +47,18 @@ const BreadCrumbExample1 = () => {
 					title="breadcrumb.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Breadcrumb separator="default" >
+					code={`<Breadcrumb separator="default" className="bg-elevation-level1 rounded-md border px-3 py-2" >
 
-<BreadcrumbItem asChild >
- <Link href="/" ><Home size={16} /> Home</Link>
+<BreadcrumbItem >
+ <Link href="/" ><Home size={16} /></Link>
 </BreadcrumbItem>
 
-<BreadcrumbItem asChild >
- <Link href="/docs/installation/next" ><Upload size={16} /> Installation</Link>
+<BreadcrumbItem >
+ <Link href="/docs/installation/next" >Installation</Link>
 </BreadcrumbItem>
 
-<BreadcrumbItem asChild >
- <Link href="/docs/components" ><Component size={16} /> Components</Link>
+<BreadcrumbItem >
+ <Link href="/docs/components" >Components</Link>
 </BreadcrumbItem>
 
 <BreadcrumbItem >
@@ -80,4 +75,4 @@ const BreadCrumbExample1 = () => {
 		</Tabs>
 	)
 }
-export default BreadCrumbExample1
+export default BreadCrumbExample2
