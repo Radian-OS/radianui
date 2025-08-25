@@ -10,7 +10,7 @@ type AvatarRadius = NonNullable<VariantProps<typeof avatarRadius>["radius"]>
 
 type AvatarSize = NonNullable<VariantProps<typeof avatarRadius>["size"]>
 
-type AvatarProps = {
+type AvatarProps = React.ComponentProps<"div"> & {
 	src?: string
 	name?: string
 	className?: string
@@ -134,7 +134,7 @@ function getInitials(name: string, size: AvatarProps["size"]) {
 	return size && parseInt(size) < 32 ? initials[0] : initials.slice(0, 2).join("")
 }
 
-function Avatar({ src, name, className, size = "36", radius = "circle", status }: AvatarProps) {
+function Avatar({ src, name, className, size = "36", radius = "circle", status, ...props }: AvatarProps) {
 	const [imageStatus, setImageStatus] = React.useState<ImageStatus>("loading")
 
 	React.useEffect(() => {
@@ -155,7 +155,7 @@ function Avatar({ src, name, className, size = "36", radius = "circle", status }
 	}, [src])
 
 	return (
-		<div data-slot="avatar" className={cn(avatarRadius({ size, radius }), className, "bg-fill4 relative")}>
+		<div data-slot="avatar" className={cn(avatarRadius({ size, radius }), className, "bg-fill4 relative")} {...props}>
 			{src && imageStatus === "loaded" ? (
 				<img src={src} alt={name} className="size-full rounded-[inherit] object-cover" />
 			) : (
