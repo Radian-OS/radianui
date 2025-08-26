@@ -22,10 +22,10 @@ const BannerPreview = () => {
 	const [description, setDescription] = useState<booleanType>("true")
 
 	const icons = {
-		star: <Star size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		info: <Info size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		check: <CircleCheck size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		alert: <TriangleAlert size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		star: <Star size={20} />,
+		info: <Info size={20} />,
+		check: <CircleCheck size={20} />,
+		alert: <TriangleAlert size={20} />,
 		none: "",
 	}
 
@@ -190,7 +190,7 @@ const BannerPreview = () => {
 					<Banner
 						title={title === "true" ? "Banner Title Here" : ""}
 						description={description === "true" ? "Enter your banner message here" : ""}
-						start={<div className={`${variant === "strong" ? "text-white" : `text-${color}`}`}>{selectedIcon}</div>}
+						start={<div className={`${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : `text-${color}`}`}>{selectedIcon}</div>}
 						end={
 							end === "link" ? (
 								<LinkButton
