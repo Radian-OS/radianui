@@ -9,7 +9,7 @@ import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, Dr
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgePreview = () => {
-	const [variant, setVariant] = useState<"default" | "strong" | "outline" | "soft">("default")
+	const [variant, setVariant] = useState<"default" | "strong" | "outline" | "soft">("soft")
 	const [color, setColor] = useState<"primary" | "neutral" | "info" | "success" | "error" | "warning">("primary")
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [size, setSize] = useState<"24" | "20" | "28">("24")
@@ -91,7 +91,7 @@ const BadgePreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Closable</DropdownSubTrigger>
+							<DropdownSubTrigger>OnClose</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
@@ -111,7 +111,7 @@ const BadgePreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Badge color={color} key={key} closable={closable === "true" ? true : false} variant={variant} size={size}>
+					<Badge color={color} key={key} onClose={closable === "true" ? () => setKey((k) => k + 1) : undefined} variant={variant} size={size}>
 						Badge Example
 					</Badge>
 				</div>
@@ -124,7 +124,7 @@ const BadgePreview = () => {
 					code={`<Badge 
  size="${size}" 
  variant="${variant}" 
- closable={${closable}}
+ onClose={() => console.log("Badge closed")}
  color="${color}"
  >
  Badge Example
