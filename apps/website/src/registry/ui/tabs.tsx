@@ -19,13 +19,13 @@ export type TabsContextType = {
 }
 
 const tabsListStyles = cva(
-	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center h-fit w-max data-[orientation=vertical]:flex-col min-w-max max-w-full overflow-x-scroll no-scrollbar",
+	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center w-max data-[orientation=vertical]:flex-col min-w-max max-w-full overflow-x-scroll no-scrollbar",
 	{
 		variants: {
 			size: {
-				sm: "",
-				md: "",
-				lg: "",
+				sm: "data-[orientation=horizontal]:h-7",
+				md: "data-[orientation=horizontal]:h-9",
+				lg: "data-[orientation=horizontal]:h-11",
 			},
 			variant: {
 				default: "bg-fill2",
@@ -41,16 +41,10 @@ const tabsListStyles = cva(
 		},
 		compoundVariants: [
 			{
-				size: ["sm", "md"],
+				size: ["sm", "md", "lg"],
 				variant: "default",
 				className: "p-0.5",
 			},
-			{
-				size: "lg",
-				variant: "default",
-				className: "p-1",
-			},
-
 			{
 				size: "sm",
 				variant: ["default", "outline", "ghost"],
@@ -69,19 +63,19 @@ const tabsListStyles = cva(
 			{
 				size: ["sm", "md"],
 				variant: "open",
-				className: "gap-3",
+				className: "data-[orientation=horizontal]:gap-3 data-[orientation=vertical]:gap-2",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "gap-4",
+				className: "data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3",
 			},
 		],
 	}
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fgw-max data-[orientation=vertical]:w-full disabled:text-fg-disabled disabled:cursor-not-allowed",
+	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fgw-max data-[orientation=vertical]:w-full disabled:text-fg-disabled disabled:cursor-not-allowed box-border",
 	{
 		variants: {
 			size: {
@@ -102,47 +96,47 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: ["default"],
-				className: "rounded-md px-1.5 py-1",
+				className: "rounded-md px-1.5 py-1 h-full",
 			},
 			{
 				size: "md",
 				variant: ["default"],
-				className: "rounded-lg px-2.5 py-1.5",
+				className: "rounded-lg px-2.5 py-1.5 h-full",
 			},
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "rounded-[0.625rem] px-3 py-2",
+				className: "rounded-[0.625rem] px-3 py-2 h-full",
 			},
 			{
 				size: "sm",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "p-1.5",
+				className: "p-1.5 data-[orientation=horizontal]:h-7",
 			},
 			{
 				size: "md",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: " p-2",
+				className: "p-2",
 			},
 			{
 				size: "lg",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: " p-3",
+				className: "p-3",
 			},
 			{
 				size: "sm",
 				variant: "open",
-				className: "data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5",
+				className: "data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5 h-7",
 			},
 			{
 				size: "md",
 				variant: "open",
-				className: "data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2",
+				className: "data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3",
+				className: "data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3 h-11",
 			},
 			{
 				size: "sm",
@@ -160,7 +154,7 @@ const tabsTriggerStyles = cva(
 				size: "lg",
 				variant: "outline",
 				className:
-					"data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=vertical]:last:roonded-b-xl",
+					"data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=vertical]:last:roonded-b-xl data-[orientation=horizontal]:h-11",
 			},
 			{
 				size: "sm",
@@ -170,12 +164,12 @@ const tabsTriggerStyles = cva(
 			{
 				size: "md",
 				variant: ["ghost", "outline-ghost"],
-				className: "data-[state=active]:rounded-lg",
+				className: "data-[state=active]:rounded-lg h-full",
 			},
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "data-[state=active]:rounded-[0.625rem]",
+				className: "data-[state=active]:rounded-[0.625rem] h-full",
 			},
 		],
 		defaultVariants: {
@@ -243,7 +237,7 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 	return (
 		<TabsPrimitive.Trigger className={cn(tabsTriggerStyles({ variant, size }), className)} {...props}>
 			{icon && <span className={cn(tabTriggerIconStyles({ size }))}>{icon}</span>}
-			{children}
+			<span className="px-0.5">{children}</span>
 			{counter !== undefined && <Badge className={cn("h-5 rounded-full", { "h-4": size === "sm" })}>{counter}</Badge>}
 		</TabsPrimitive.Trigger>
 	)
