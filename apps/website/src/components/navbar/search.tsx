@@ -119,8 +119,8 @@ export function SearchDocs() {
 						variant={"outline"}
 						color={"neutral"}
 						iconOnly
-						lead={<Search className="text-fg-tertiary" />}
-						trail={
+						start={<Search className="text-fg-tertiary" />}
+						end={
 							<Badge className="text-fg-secondary" size="20" variant="outline" color="neutral">
 								⌘K
 							</Badge>
