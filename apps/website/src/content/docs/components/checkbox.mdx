@@ -27,8 +27,29 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+		<Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add @radix-ui/react-slot",
+    			npm: "npm install @radix-ui/react-slot",
+    			yarn: "yarn add @radix-ui/react-slot",
+    			bun: "bun add @radix-ui/react-slot",
+    		}}
+    	/>
+
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
+    	<Tabs defaultValue="checkbox">
+    		<TabsList>
+    			<TabsTrigger value="checkbox">Checkbox</TabsTrigger>
+    			<TabsTrigger value="button">Button</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="checkbox">
+    			<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="button">
+    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>

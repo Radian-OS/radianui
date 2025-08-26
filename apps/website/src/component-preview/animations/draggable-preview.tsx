@@ -1,7 +1,7 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
-import { Draggable } from "@/registry/animated/make-draggable"
+import { Draggable } from "@/registry/animated/draggable"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"

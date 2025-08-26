@@ -34,15 +34,26 @@ links:
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm add @radix-ui/react-input-otp",
-				npm: "npm install @radix-ui/react-input-otp",
-				yarn: "yarn add @radix-ui/react-input-otp",
-				bun: "bun add @radix-ui/react-input-otp",
+				pnpm: "pnpm add input-otp @radix-ui/react-label",
+				npm: "npm install input-otp @radix-ui/react-label",
+				yarn: "yarn add input-otp @radix-ui/react-label",
+				bun: "bun add input-otp @radix-ui/react-label",
 			}}
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="input-otp" title="components/ui/input-otp.tsx" collapsible />
+    	<Tabs defaultValue="input-otp">
+    		<TabsList>
+    			<TabsTrigger value="input-otp">Input OTP</TabsTrigger>
+    			<TabsTrigger value="label">Label</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="input-otp">
+    			<ComponentSource name="input-otp" title="components/ui/input-otp.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="label">
+    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>

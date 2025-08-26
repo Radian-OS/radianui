@@ -5,7 +5,7 @@ links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/table.tsx
   externalReference:
-    - label: Tanstack Table
+    - checkbox: Tanstack Table
       href: https://tanstack.com/table/latest/docs/introduction
       icon: tanstack.png
 ---
@@ -42,7 +42,26 @@ links:
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="table" title="components/ui/table.tsx" collapsible />
+    	<Tabs defaultValue="table">
+    		<TabsList>
+    			<TabsTrigger value="table">Table</TabsTrigger>
+    			<TabsTrigger value="checkbox">Checkbox</TabsTrigger>
+    			<TabsTrigger value="button">Button</TabsTrigger>
+    			<TabsTrigger value="spinner">Spinner</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="table">
+    			<ComponentSource name="table" title="components/ui/table.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="checkbox">
+    			<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="button">
+    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="spinner">
+    			<ComponentSource name="spinner" title="components/ui/spinner.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>

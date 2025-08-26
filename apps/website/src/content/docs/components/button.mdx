@@ -30,9 +30,6 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
-		<Step>Install component dependencies</Step> 
-		<p>Button component is made using `Spinner`. See installation for [Spinner](https://radianos.com/docs/components/spinner)</p>
-
         <Step>Install the following dependencies:</Step>
     	<PackageManagerTabs
     		commands={{
@@ -44,7 +41,18 @@ links:
     	/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+    	<Tabs defaultValue="button">
+    		<TabsList>
+    			<TabsTrigger value="button">Button</TabsTrigger>
+    			<TabsTrigger value="spinner">Spinner</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="button">
+    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="spinner">
+    			<ComponentSource name="spinner" title="components/ui/spinner.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>

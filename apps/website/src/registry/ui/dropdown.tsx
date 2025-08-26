@@ -110,14 +110,10 @@ function DropdownItem({
 		<DropdownMenuPrimitive.Item
 			data-slot="dropdown-menu-item"
 			className={cn(
-				"data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden",
+				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden",
 				"relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm",
-				"transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
+				"[&_svg]:text-fg-secondary transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
 				inset && "pl-9",
-				{
-					"bg-fill2": isSelected,
-					"focus:bg-fill2-alpha": !isSelected,
-				},
 				className
 			)}
 			onSelect={handleSelect}

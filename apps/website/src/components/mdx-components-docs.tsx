@@ -43,6 +43,7 @@ import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
+import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
@@ -90,6 +91,7 @@ import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import FormExample1 from "@/registry/example/form/form-example1"
 import FormExample2 from "@/registry/example/form/form-example2"
@@ -179,11 +181,13 @@ const components: MDXComponents = {
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
 	DropdownPreview: () => <DropdownPreview />,
 	UserMenuDropdownExample: () => <UserMenuDropdownExample />,
+	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
 	ResizablePreview: () => <ResizablePreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
+	LabelPreview: () => <LabelPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
 	CreditCardPreview: () => <CreditCardPreview />,

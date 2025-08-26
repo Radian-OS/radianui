@@ -33,15 +33,34 @@ links:
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm add @radix-ui/react-modal",
-				npm: "npm install @radix-ui/react-modal",
-				yarn: "yarn add @radix-ui/react-modal",
-				bun: "bun add @radix-ui/react-modal",
+				pnpm: "pnpm add @radix-ui/react-dialog @radix-ui/react-slot",
+				npm: "npm install @radix-ui/react-dialog @radix-ui/react-slot",
+				yarn: "yarn add @radix-ui/react-dialog @radix-ui/react-slot",
+				bun: "bun add @radix-ui/react-dialog @radix-ui/react-slot",
 			}}
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="modal" title="components/ui/modal.tsx" collapsible />
+    	<Tabs defaultValue="modal">
+    		<TabsList>
+    			<TabsTrigger value="modal">Modal</TabsTrigger>
+    			<TabsTrigger value="button">Button</TabsTrigger>
+    			<TabsTrigger value="spinner">Spinner</TabsTrigger>
+    			<TabsTrigger value="divider">Divider</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="modal">
+    			<ComponentSource name="modal" title="components/ui/modal.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="button">
+    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="spinner">
+    			<ComponentSource name="spinner" title="components/ui/spinner.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="divider">
+    			<ComponentSource name="divider" title="components/ui/divider.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
