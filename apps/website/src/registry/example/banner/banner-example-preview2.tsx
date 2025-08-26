@@ -13,18 +13,18 @@ const BannerExamplePreview2 = () => {
 				<TabsTrigger value="code">Code</TabsTrigger>
 			</TabsList>
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
+				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border">
 					<Banner variant="soft" color="neutral">
 						<div className="w-full">
 							<div className="flex gap-2 md:items-center">
 								<div className="flex grow gap-3 md:items-center">
-									<div className="bg-primary-accent flex size-9 shrink-0 items-center justify-center rounded-full max-md:mt-0.5" aria-hidden="true">
+									<div className="bg-bg flex size-9 shrink-0 items-center justify-center rounded-full max-md:mt-0.5" aria-hidden="true">
 										<RocketIcon className="opacity-80" size={16} />
 									</div>
 									<div className="flex grow flex-col justify-between gap-3 md:flex-row md:items-center">
 										<div className="space-y-0.5">
 											<p className="text-sm font-medium">Boost your experience with RadianOS UI</p>
-											<p className="text-sm">The new feature is live! Try it out and let us know what you think.</p>
+											<p className="text-fg-tertiary text-sm">The new feature is live! Try it out and let us know what you think.</p>
 										</div>
 										<div className="flex gap-2 max-md:flex-wrap">
 											<Button size="28" className="text-sm">

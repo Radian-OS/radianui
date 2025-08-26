@@ -17,18 +17,17 @@ const BannerExamplePreview3 = () => {
 				</TabsTrigger>
 			</TabsList>
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Banner variant="outline" color="neutral">
-						<div>
-							<p className="text-center text-sm">
-								<span className="mr-1 text-base leading-none">📫</span> Subscribe to our newsletter and get 10% off your first order!
-								<span className="text-muted-foreground mx-1">·</span>
-								<LinkButton href="#" className="text-fg">
-									Subscribe
-								</LinkButton>
-							</p>
-						</div>
-					</Banner>
+				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border">
+					<Banner
+						start="📫"
+						description="Subscribe to our newsletter and get 10% off your first order! ·"
+						variant="outline"
+						end={
+							<LinkButton href="#" className="text-fg">
+								Subscribe
+							</LinkButton>
+						}
+						color="neutral"></Banner>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -36,16 +35,16 @@ const BannerExamplePreview3 = () => {
 					title="banner-example-preview3.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Banner variant="outline" color="neutral">
-	<div>
-		<p className="text-center text-sm">
-			<span className="mr-1 text-base leading-none">📫</span> Subscribe to our newsletter and get 10% off your first order!
-			<span className="text-muted-foreground mx-1">·</span>
-			<LinkButton href="#" className="text-fg">
-				Subscribe
-			</LinkButton>
-		</p>
-	</div>
+					code={`<Banner
+	start="📫"
+	description="Subscribe to our newsletter and get 10% off your first order! ·"
+	variant="outline"
+	end={
+		<LinkButton href="#" className="text-fg">
+			Subscribe
+		</LinkButton>
+		}
+	color="neutral">
 </Banner>`}
 				/>
 			</TabsContent>
