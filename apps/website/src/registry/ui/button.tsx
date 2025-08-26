@@ -15,8 +15,8 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 		children: React.ReactNode
 		iconOnly?: boolean
 		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
-		lead?: React.ReactNode
-		trail?: React.ReactNode
+		start?: React.ReactNode
+		end?: React.ReactNode
 		loading?: boolean
 		asChild?: boolean
 	}
@@ -28,7 +28,7 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	color?: ButtonProps["color"]
 }
 
-type CompactButtonProps = Omit<ButtonProps, "iconOnly" | "lead" | "trail" | "size"> & {
+type CompactButtonProps = Omit<ButtonProps, "iconOnly" | "start" | "end" | "size"> & {
 	size?: "20" | "24"
 	asChild?: boolean
 }
@@ -207,7 +207,7 @@ export const buttonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 font-medium text-fg-secondary border border-border  hover:bg-elevation-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-fill2-alpha",
+					"bg-elevation-level1 overflow-hidden font-medium text-fg-secondary border border-border  hover:bg-elevation-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-fill2-alpha",
 			},
 
 			// Ghost variant + colors
@@ -256,8 +256,8 @@ function Button({
 	className,
 	children,
 	disabled,
-	lead,
-	trail,
+	start,
+	end,
 	asChild = false,
 	...props
 }: ButtonProps) {
@@ -268,9 +268,9 @@ function Button({
 	// When using asChild, we need to pass the styling to the child element
 	// and cannot modify the children structure
 	if (asChild) {
-		// Don't allow lead/trail/loading when using asChild as it would break the single child requirement
-		if (lead || trail || loading) {
-			console.warn("Button: lead, trail, and loading props are not supported when using asChild")
+		// Don't allow start/end/loading when using asChild as it would break the single child requirement
+		if (start || end || loading) {
+			console.warn("Button: start, end, and loading props are not supported when using asChild")
 		}
 
 		return (
@@ -283,10 +283,10 @@ function Button({
 	// Normal button behavior
 	return (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
-			{lead}
+			{start}
 			{loading ? <Spinner size={size ? Number(size) : undefined} /> : null}
 			{children}
-			{trail}
+			{end}
 		</Comp>
 	)
 }

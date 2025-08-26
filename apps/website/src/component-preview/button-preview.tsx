@@ -14,7 +14,7 @@ const ButtonPreview = () => {
 	type iconOnlyType = "true" | "false"
 	type isloadingType = "true" | "false"
 	type disabledType = "true" | "false"
-	type leadTrailType = "true" | "false"
+	type startendType = "true" | "false"
 	// Colors type; neutral is removed.
 	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
 
@@ -24,23 +24,23 @@ const ButtonPreview = () => {
 	const [loading, setLoading] = useState<isloadingType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
 	const [color, setColor] = useState<colors>("primary")
-	const [lead, setLead] = useState<leadTrailType>("false")
-	const [trail, setTrail] = useState<leadTrailType>("false")
+	const [start, setstart] = useState<startendType>("false")
+	const [end, setend] = useState<startendType>("false")
 
-	const getLeadTrialClass = () => {
-		if ((lead === "true" || trail === "true") && (size === "36" || size === "32" || size === "40")) {
+	const getstartTrialClass = () => {
+		if ((start === "true" || end === "true") && (size === "36" || size === "32" || size === "40")) {
 			return "size-5"
 		}
-		if ((lead === "true" || trail === "true") && size === "28") {
+		if ((start === "true" || end === "true") && size === "28") {
 			return "size-4"
 		}
-		if ((lead === "true" || trail === "true") && (size === "44" || size === "48")) {
+		if ((start === "true" || end === "true") && (size === "44" || size === "48")) {
 			return "size-6"
 		}
 		return ""
 	}
 
-	const iconClass = getLeadTrialClass()
+	const iconClass = getstartTrialClass()
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -119,14 +119,14 @@ const ButtonPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Lead Icon</DropdownSubTrigger>
+							<DropdownSubTrigger>Start</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
 									minSelectionCount={1}
-									selectedValues={[lead]}
+									selectedValues={[start]}
 									onSelectedChange={(keys) => {
-										setLead(Array.from(keys)[0] as leadTrailType)
+										setstart(Array.from(keys)[0] as startendType)
 									}}>
 									<DropdownItem value="true">True</DropdownItem>
 									<DropdownItem value="false">False</DropdownItem>
@@ -135,14 +135,14 @@ const ButtonPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Trail Icon</DropdownSubTrigger>
+							<DropdownSubTrigger>End</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
 									selectionMode="single"
 									minSelectionCount={1}
-									selectedValues={[trail]}
+									selectedValues={[end]}
 									onSelectedChange={(keys) => {
-										setTrail(Array.from(keys)[0] as leadTrailType)
+										setend(Array.from(keys)[0] as startendType)
 									}}>
 									<DropdownItem value="true">True</DropdownItem>
 									<DropdownItem value="false">False</DropdownItem>
@@ -159,22 +159,6 @@ const ButtonPreview = () => {
 									selectedValues={[iconOnly]}
 									onSelectedChange={(keys) => {
 										setIsIcon(Array.from(keys)[0] as iconOnlyType)
-									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Lead Icon</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[lead]}
-									onSelectedChange={(keys) => {
-										setLead(Array.from(keys)[0] as leadTrailType)
 									}}>
 									<DropdownItem value="true">True</DropdownItem>
 									<DropdownItem value="false">False</DropdownItem>
@@ -219,8 +203,8 @@ const ButtonPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
 					<Button
-						lead={lead === "true" ? <Box className={iconClass} /> : undefined}
-						trail={trail === "true" ? <Box className={iconClass} /> : undefined}
+						start={start === "true" ? <Box className={iconClass} /> : undefined}
+						end={end === "true" ? <Box className={iconClass} /> : undefined}
 						iconOnly={iconOnly === "true"}
 						variant={variant}
 						size={size}
@@ -250,7 +234,7 @@ const ButtonPreview = () => {
   variant="${variant}" 
   color="${color}"
   iconOnly={${iconOnly === "true"}}
-  disabled={${disabled === "true"}}${lead === "true" ? `\n  lead={<Box className="${iconClass}" />}` : ""}${trail === "true" ? `\n  trail={<Box className="${iconClass}" />}` : ""}>
+  disabled={${disabled === "true"}}${start === "true" ? `\n  start={<Box className="${iconClass}" />}` : ""}${end === "true" ? `\n  end={<Box className="${iconClass}" />}` : ""}>
   ${iconOnly === "true" ? `<CirclePlus />` : "Button"}
 </Button>`}
 				/>
