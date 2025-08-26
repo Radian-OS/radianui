@@ -81,6 +81,7 @@ import RingAvatarPreview from "@/registry/example/avatar/ring-avatar-preview"
 import VerifiedAvatarPreview from "@/registry/example/avatar/verified-avatar-preview"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
+import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
@@ -192,6 +193,7 @@ const components: MDXComponents = {
 	EmailPreview: () => <EmailPreview />,
 	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
+	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,

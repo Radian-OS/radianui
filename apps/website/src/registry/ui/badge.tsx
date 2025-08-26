@@ -16,6 +16,7 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 		className?: string
 		color?: "primary" | "neutral" | "info" | "success" | "error" | "warning"
 		asChild?: boolean
+		onClose?: () => void
 	}
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200", {
 	variants: {
@@ -141,7 +142,7 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 	],
 })
 
-function Badge({ variant = "default", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
+function Badge({ variant = "soft", size = "24", color = "primary", onClose, className, asChild = false, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
 	if (!showBadge) return null
 	const badgeClasses = cn(
@@ -149,13 +150,13 @@ function Badge({ variant = "default", size = "24", color = "primary", closable =
 		"gap-1", // Keep gap for flex layout
 		className
 	)
-	const closeButton = closable && (
+	const closeButton = onClose && (
 		<X
+			size={12}
 			onClick={() => setShowBadge(false)}
 			className={cn(
-				size === "20" || size === "24" ? "size-3" : "size-4",
 				"cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
-				variant === "default" && "text-fg-secondary"
+				variant === "default" && "text-fg-tertiary"
 			)}
 		/>
 	)

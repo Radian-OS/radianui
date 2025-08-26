@@ -17,7 +17,7 @@ const BannerPreview = () => {
 	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
-	const [end, setEnd] = useState<"none" | "button" | "link">("link")
+	const [end, setEnd] = useState<"none" | "link">("link")
 	const [title, setTitle] = useState<booleanType>("true")
 	const [description, setDescription] = useState<booleanType>("true")
 
@@ -162,7 +162,6 @@ const BannerPreview = () => {
 							<DropdownSubContent>
 								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setEnd(Array.from(keys)[0] as typeof end)} minSelectionCount={1} selectedValues={[end]}>
 									<DropdownItem value="none">None</DropdownItem>
-									<DropdownItem value="button">Button</DropdownItem>
 									<DropdownItem value="link">Link</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
@@ -193,10 +192,12 @@ const BannerPreview = () => {
 						description={description === "true" ? "Enter your banner message here" : ""}
 						start={<div className={`${variant === "strong" ? "text-white" : `text-${color}`}`}>{selectedIcon}</div>}
 						end={
-							end === "button" ? (
-								<Button color={color}>Action</Button>
-							) : end === "link" ? (
-								<LinkButton target="_blank" href="/docs/components/alert" size="14" className={`${variant === "strong" ? "text-white" : "text-black"}`}>
+							end === "link" ? (
+								<LinkButton
+									target="_blank"
+									href="/docs/components/alert"
+									size="14"
+									className={`${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : `text-fg`}`}>
 									Button Label
 								</LinkButton>
 							) : undefined
