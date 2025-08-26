@@ -7,6 +7,8 @@ import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
+import { CompactButton } from "./button"
+
 type BannerProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof bannerVariants> & {
 		children?: ReactNode
@@ -31,7 +33,7 @@ const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative 
 			success: "",
 			error: "",
 			warning: "",
-			neutral: " bg-elevation-level1 border-alpha",
+			neutral: " bg-elevation-level1 border-alpha text-fg-inverse",
 		},
 	},
 	defaultVariants: {
@@ -99,7 +101,7 @@ const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative 
 		{
 			variant: "outline",
 			color: "neutral",
-			className: "bg-transparent",
+			className: "bg-transparent text-black-inverse",
 		},
 		// Soft variant + colors
 		{
@@ -130,30 +132,37 @@ const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative 
 		{
 			variant: "soft",
 			color: "neutral",
-			className: "bg-fill2",
+			className: "bg-fill2 text-black-inverse",
 		},
 	],
 })
 function Banner({ children, color = "neutral", variant = "strong", start, end, title, description, closable, className = "", ...props }: BannerProps) {
 	const [showBanner, setShowBanner] = useState(true)
-	function getClosableVariant() {
-		if (["primary"].includes(color)) {
-			return "text-white"
-		}
-		if (["outline"].includes(color)) {
-			return "text-fg-secondary"
-		}
-	}
 
 	return (
 		showBanner && (
 			<div {...props} className={cn(bannerVariants({ color, variant }), className)}>
 				{start && start}
-				{title && <h4 className={`font-medium ${variant === "strong" ? "text-white" : "text-black"}`}>{title}</h4>}
-				{description && <p className={`font-normal ${variant === "strong" ? "text-white" : variant === "outline" ? "text-fg-secondary" : "text-black"}`}>{description}</p>}
+				{title && <h4 className={`font-medium ${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>{title}</h4>}
+				{description && (
+					<p
+						className={`font-normal ${variant === "outline" ? "text-fg-secondary" : variant === "soft" ? "text-fg" : variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>
+						{description}
+					</p>
+				)}
 				{children}
 				{end && end}
-				{closable && <X size={20} onClick={() => setShowBanner(false)} className={`${getClosableVariant()} absolute right-4 cursor-pointer`} />}
+				{closable && (
+					<CompactButton
+						onClick={() => setShowBanner(false)}
+						size="20"
+						disabled={false}
+						color="neutral"
+						variant="ghost"
+						className={`absolute right-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-4 ${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>
+						<X />
+					</CompactButton>
+				)}
 			</div>
 		)
 	)
