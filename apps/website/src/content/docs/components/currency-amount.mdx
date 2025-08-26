@@ -27,8 +27,33 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+		<Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add @radix-ui/react-label",
+    			npm: "npm install @radix-ui/react-label",
+    			yarn: "yarn add @radix-ui/react-label",
+    			bun: "bun add @radix-ui/react-label",
+    		}}
+    	/>
+
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="currency-amount" title="components/ui/currency-amount.tsx" collapsible />
+    	<Tabs defaultValue="currency-amount">
+    		<TabsList>
+    			<TabsTrigger value="currency-amount">Currency Amount</TabsTrigger>
+    			<TabsTrigger value="input">Input</TabsTrigger>
+    			<TabsTrigger value="label">Label</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="currency-amount">
+    			<ComponentSource name="currency-amount" title="components/ui/currency-amount.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="input">
+    			<ComponentSource name="input" title="components/ui/input.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="label">
+    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -40,17 +65,17 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/registry/ui/currency" code={`import { CurrencyInput } from "@/registry/ui/currency"`} />
+<CodeSnippet title="/registry/ui/currency-amount" code={`import { CurrencyInput } from "@/registry/ui/currency-amount"`} />
 
 ### Code
 
-<CodeSnippet title="/registry/ui/currency" code={`<CurrencyInput currency="usd" />`} />
+<CodeSnippet title="/registry/ui/currency-amount" code={`<CurrencyInput currency="usd" />`} />
 
 ---
 
 ## Example
 
-### Currency With Select Example
+### Currency With input Example
 
 <CurrencyExamplePreview />
 

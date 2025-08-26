@@ -1,0 +1,71 @@
+---
+title: Label
+description: Renders an accessible label associated with controls.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/label.tsx
+---
+
+<LabelPreview />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add label",
+				npm: "npx @radianos/radianbeta add label",
+				yarn: "yarn @radianos/radianbeta add label",
+				bun: "bunx @radianos/radianbeta add label",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-label",
+				npm: "npm install @radix-ui/react-label",
+				yarn: "yarn add @radix-ui/react-label",
+				bun: "bun add @radix-ui/react-label",
+			}}
+		/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="components/ui/label.tsx" code={`import { Label } from "@/components/ui/label"`} />
+
+### Code
+
+<CodeSnippet title="components/ui/label.tsx" code={`<Label>Your text here</Label>`} />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Label"
+		data={[
+			
+    	]}
+    />
+
+</PropsTableWrapper>

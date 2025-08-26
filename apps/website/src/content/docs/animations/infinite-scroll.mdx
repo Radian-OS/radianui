@@ -14,14 +14,41 @@ links:
 
 ## Installation
 
-<PackageManagerTabs
-	commands={{
-		pnpm: "pnpm dlx @radianos/radianbeta add infinite-scroll",
-		npm: "npx @radianos/radianbeta add infinite-scroll",
-		yarn: "yarn @radianos/radianbeta add infinite-scroll",
-		bun: "bunx @radianos/radianbeta add infinite-scroll",
-	}}
-/>
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add infinite-scroll",
+				npm: "npx @radianos/radianbeta add infinite-scroll",
+				yarn: "yarn @radianos/radianbeta add infinite-scroll",
+				bun: "bunx @radianos/radianbeta add infinite-scroll",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @emotion/css",
+				npm: "npm install @emotion/css",
+				yarn: "yarn add @emotion/css",
+				bun: "bun add @emotion/css",
+			}}
+		/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="infinite-scroll" title="components/ui/infinite-scroll.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
 
 ## Imports
 

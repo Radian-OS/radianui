@@ -43,6 +43,7 @@ import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
+import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
@@ -186,6 +187,7 @@ const components: MDXComponents = {
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
+	LabelPreview: () => <LabelPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
 	CreditCardPreview: () => <CreditCardPreview />,
