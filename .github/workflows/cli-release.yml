@@ -5,7 +5,7 @@ name: Release CLI
 on:
   push:
     branches:
-      - main
+      - replace-with-branch-name
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
