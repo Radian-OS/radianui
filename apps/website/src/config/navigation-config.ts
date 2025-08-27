@@ -247,6 +247,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Hover Card UI component illustration",
 			},
 			{
+				title: "Label",
+				description: "Label text",
+				url: "/docs/components/label",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Label text",
+			},
+			{
 				title: "Modal",
 				description: "2 Components",
 				url: "/docs/components/modal",

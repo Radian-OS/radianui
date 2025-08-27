@@ -15,26 +15,6 @@ const AvatarExample = () => {
 				<Avatar radius="square" size={"80"} name="Binaya Thapa" src={people[2].image} status="online" />
 			</div>
 			<div className="flex flex-wrap items-center gap-10">
-				<Avatar size={"16"} status="plus" name="John Prasad Rai" />
-				<Avatar size={"20"} status="plus" name="Nischal Kharel" />
-				<Avatar size={"24"} status="plus" name="Yuvraj" />
-				<Avatar size={"32"} status="plus" name="Ashmit Bastola" />
-				<Avatar size={"40"} status="plus" name="Binaya Bahadur Thapa" />
-				<Avatar size={"48"} status="plus" />
-				<Avatar size={"64"} status="plus" />
-				<Avatar size={"80"} status="plus" />
-			</div>
-			<div className="flex flex-wrap items-center gap-10">
-				<Avatar size={"16"} status="verified" src={people[1].image} />
-				<Avatar size={"20"} status="verified" src={people[1].image} />
-				<Avatar size={"24"} status="verified" src={people[1].image} />
-				<Avatar size={"32"} status="verified" src={people[1].image} />
-				<Avatar size={"40"} status="verified" src={people[1].image} />
-				<Avatar size={"48"} status="verified" src={people[1].image} />
-				<Avatar size={"64"} status="verified" src={people[1].image} />
-				<Avatar size={"80"} status="verified" radius="square" src={people[1].image} />
-			</div>
-			<div className="flex flex-wrap items-center gap-10">
 				<Avatar size={"16"} status="offline" />
 				<Avatar size={"20"} status="offline" />
 				<Avatar size={"24"} status="offline" />

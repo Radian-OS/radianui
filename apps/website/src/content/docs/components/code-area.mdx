@@ -31,8 +31,29 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+		<Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add react-shiki @radix-ui/react-slot",
+    			npm: "npm install react-shiki @radix-ui/react-slot",
+    			yarn: "yarn add react-shiki @radix-ui/react-slot",
+    			bun: "bun add react-shiki @radix-ui/react-slot",
+    		}}
+    	/>
+		
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="code-area" title="components/ui/code-area.tsx" collapsible />
+		<Tabs defaultValue="code-area">
+    		<TabsList>
+    			<TabsTrigger value="code-area">Code Area</TabsTrigger>
+    			<TabsTrigger value="button">Button</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="code-area">
+    			<ComponentSource name="code-area" title="components/ui/code-area.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="button">
+    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -44,7 +65,7 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/CodeArea" code={`import {CodeArea} from "@/components/ui/CodeArea"`} />
+<CodeSnippet title="/components/ui/CodeArea" code={`import { CodeArea } from "@/components/ui/CodeArea"`} />
 
 ### Code
 

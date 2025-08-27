@@ -21,9 +21,9 @@ import { Value } from "react-phone-number-input"
 import * as RPNInput from "react-phone-number-input"
 import { z } from "zod"
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import ColorPicker from "@/registry/ui/color-picker"
-import { CurrencyInput } from "@/registry/ui/currency"
+import { CurrencyInput } from "@/registry/ui/currency-amount"
 import DatePicker from "@/registry/ui/date-picker"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import FileUpload, { FileWithPreview } from "@/registry/ui/file-upload"
@@ -599,9 +599,9 @@ const FormPreview = () => {
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
+						<IconButton variant="outline" color="neutral" size="36">
 							<Settings />
-						</Button>
+						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-35">
 						<DropdownGroup selectionMode="single" selectedValues={selectedValue} onSelectedChange={handleSelectionChange}>

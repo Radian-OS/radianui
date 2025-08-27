@@ -295,7 +295,7 @@ function Select({
 										/>
 									) : variants === "button" ? (
 										<Button
-											lead={lead}
+											end={lead}
 											variant="soft"
 											color="neutral"
 											size={["28", "32", "36", "40", "44", "48"].includes(String(size)) ? (size as "28" | "32" | "36" | "40" | "44" | "48") : "40"}

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { Loader2, MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 
 export function DesktopThemeToggler() {
 	// This component is only rendered on the client, so we can use useEffect to set the mounted state
@@ -29,9 +29,9 @@ export function DesktopThemeToggler() {
 	}
 
 	return (
-		<Button variant="outline" color="neutral" onClick={toggleTheme} iconOnly>
+		<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
 			{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
-		</Button>
+		</IconButton>
 	)
 }
 

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -35,9 +35,9 @@ const AvatarPreview = () => {
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
+						<IconButton variant="outline" color="neutral" size="36">
 							<Settings />
-						</Button>
+						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>

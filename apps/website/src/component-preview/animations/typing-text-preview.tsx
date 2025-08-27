@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, RotateCw, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { TypingText } from "@/registry/animated/typing-text"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownSub, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -22,15 +22,15 @@ const TypingTextPreview = () => {
 				</TabsList>
 				<div className="flex gap-2">
 					<div className="flex gap-1">
-						<Button variant="outline" color="neutral" iconOnly onClick={() => setCounter((prev) => prev + 1)}>
+						<IconButton variant="outline" color="neutral" onClick={() => setCounter((prev) => prev + 1)}>
 							<RotateCw />
-						</Button>
+						</IconButton>
 					</div>
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button variant="outline" color="neutral" size="36" iconOnly>
+							<IconButton variant="outline" color="neutral" size="36">
 								<Settings />
-							</Button>
+							</IconButton>
 						</DropdownTrigger>
 						<DropdownContent className="min-w-20">
 							<DropdownGroup>

@@ -83,7 +83,7 @@ export default async function Page({ params }: DocPageProps) {
 				{doc.links && (
 					<section className="flex flex-wrap items-center gap-2 pb-10">
 						{doc.links.github && (
-							<Badge size="28" variant={"neutral"} className="shadow-2xs" asChild>
+							<Badge size="28" variant="outline" color="neutral" className="shadow-2xs" asChild>
 								<Link href={doc.links.github.href} target="_blank" rel="noopener noreferrer">
 									<svg width={16} height={16} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg " className="size-4">
 										<path
@@ -98,7 +98,7 @@ export default async function Page({ params }: DocPageProps) {
 						{doc.links.externalReference &&
 							doc.links.externalReference.length > 0 &&
 							doc.links.externalReference.map((link) => (
-								<Badge key={link.href} size="28" variant={"neutral"} className="shadow-2xs" asChild>
+								<Badge key={link.href} size="28" variant="outline" color="neutral" className="shadow-2xs" asChild>
 									<Link href={link.href} target="_blank" rel="noopener noreferrer">
 										{link.icon ? (
 											<Image className="text-fg-secondary size-4" height={16} width={16} src={link.icon.startsWith("/") ? link.icon : "/" + link.icon} alt={link.label} />

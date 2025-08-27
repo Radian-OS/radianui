@@ -134,7 +134,7 @@ function SidebarIcon({ id, icon, active, onClick }: SidebarIconProps) {
 			id={id}
 			onClick={onClick}
 			className={cn("cursor-default rounded-md p-3", {
-				"bg-base": active,
+				"bg-bg": active,
 				"hover:bg-inverse-fill4": !active,
 			})}>
 			{icon}

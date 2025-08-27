@@ -31,6 +31,16 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+		<Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add react-shiki @radix-ui/react-slot",
+    			npm: "npm install react-shiki @radix-ui/react-slot",
+    			yarn: "yarn add react-shiki @radix-ui/react-slot",
+    			bun: "bun add react-shiki @radix-ui/react-slot",
+    		}}
+    	/>
+
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="color-picker" title="components/ui/color-picker.tsx" collapsible />
 
@@ -44,7 +54,7 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/color-picker" code={`import {ColorPicker} from "@/components/ui/color-picker"`} />
+<CodeSnippet title="/components/ui/color-picker" code={`import { ColorPicker } from "@/components/ui/color-picker"`} />
 
 ### Code
 

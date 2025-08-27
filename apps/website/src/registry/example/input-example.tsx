@@ -3,7 +3,7 @@
 import React from "react"
 import { BellOff, BellRing } from "lucide-react"
 import { Calendar } from "../ui/calendar"
-import { CurrencyInput } from "../ui/currency"
+import { CurrencyInput } from "../ui/currency-amount"
 import DatePicker from "../ui/date-picker"
 import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"

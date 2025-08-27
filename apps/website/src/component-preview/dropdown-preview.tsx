@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Box, ChevronDown, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -15,8 +15,8 @@ const alignOptions: AlignOptions[] = ["start", "center", "end"]
 const placementOptions: PlacementOptions[] = ["top", "bottom", "left", "right"]
 
 const DropdownPreview = () => {
-	const [startContent, setStartContent] = useState<boolean>(false)
-	const [endContent, setEndContent] = useState<boolean>(false)
+	const [start, setStart] = useState<boolean>(false)
+	const [end, setEnd] = useState<boolean>(false)
 
 	const [align, setAlign] = useState<AlignOptions>("start")
 	const [placement, setPlacement] = useState<PlacementOptions>("bottom")
@@ -66,12 +66,12 @@ Dropdown <ChevronDown className="size-5" />
 title="status"
 >
 <DropdownItem 
-${startContent ? `startContent={<Box />}` : ""}
-${endContent ? `endContent={<Box />}` : ""}
+${start ? `start={<Box />}` : ""}
+${end ? `end={<Box />}` : ""}
 value="1">Active</DropdownItem>
 <DropdownItem
-${startContent ? `startContent={<Box />}` : ""}
-${endContent ? `endContent={<Box />}` : ""}
+${start ? `start={<Box />}` : ""}
+${end ? `end={<Box />}` : ""}
 value="2">Inactive</DropdownItem>
 <DropdownItem value="3">Lunch</DropdownItem>
 <DropdownItem value="4">Commuting</DropdownItem>
@@ -94,19 +94,15 @@ value="2">Inactive</DropdownItem>
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
+						<IconButton variant="outline" color="neutral" size="36">
 							<Settings />
-						</Button>
+						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Start Content</DropdownSubTrigger>
+							<DropdownSubTrigger>Start</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[String(startContent)]}
-									onSelectedChange={(values) => setStartContent(values[0] === "true")}
-									minSelectionCount={1}>
+								<DropdownGroup selectionMode="single" selectedValues={[String(start)]} onSelectedChange={(values) => setStart(values[0] === "true")} minSelectionCount={1}>
 									<DropdownItem value="true">True</DropdownItem>
 									<DropdownItem value="false">False</DropdownItem>
 								</DropdownGroup>
@@ -114,28 +110,11 @@ value="2">Inactive</DropdownItem>
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>End Content</DropdownSubTrigger>
+							<DropdownSubTrigger>End</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[String(endContent)]}
-									onSelectedChange={(values) => setEndContent(values[0] === "true")}
-									minSelectionCount={1}>
+								<DropdownGroup selectionMode="single" selectedValues={[String(end)]} onSelectedChange={(values) => setEnd(values[0] === "true")} minSelectionCount={1}>
 									<DropdownItem value="true">True</DropdownItem>
 									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Align</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[align]} onSelectedChange={(values) => setAlign(values[0] as AlignOptions)}>
-									{alignOptions.map((alignOptions) => (
-										<DropdownItem value={alignOptions} key={alignOptions}>
-											{alignOptions.charAt(0).toUpperCase() + alignOptions.slice(1)}
-										</DropdownItem>
-									))}
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -152,6 +131,19 @@ value="2">Inactive</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Align</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup selectionMode="single" selectedValues={[align]} onSelectedChange={(values) => setAlign(values[0] as AlignOptions)}>
+									{alignOptions.map((alignOptions) => (
+										<DropdownItem value={alignOptions} key={alignOptions}>
+											{alignOptions.charAt(0).toUpperCase() + alignOptions.slice(1)}
+										</DropdownItem>
+									))}
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -160,7 +152,7 @@ value="2">Inactive</DropdownItem>
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button variant="outline">
+							<Button color="neutral" variant="outline">
 								Dropdown <ChevronDown className="size-5" />
 							</Button>
 						</DropdownTrigger>
@@ -178,10 +170,10 @@ value="2">Inactive</DropdownItem>
 								</DropdownSub>
 							</DropdownGroup>
 							<DropdownGroup title="status">
-								<DropdownItem startContent={startContent ? <Box /> : null} endContent={endContent ? <Box /> : null} value="1">
+								<DropdownItem start={start ? <Box /> : null} end={end ? <Box /> : null} value="1">
 									Active
 								</DropdownItem>
-								<DropdownItem startContent={startContent ? <Box /> : null} endContent={endContent ? <Box /> : null} value="2">
+								<DropdownItem start={start ? <Box /> : null} end={end ? <Box /> : null} value="2">
 									Inactive
 								</DropdownItem>
 								<DropdownItem value="3">Lunch</DropdownItem>

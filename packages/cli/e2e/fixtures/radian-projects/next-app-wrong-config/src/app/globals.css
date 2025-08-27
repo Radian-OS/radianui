@@ -56,7 +56,7 @@
 
 	/* background */
 	--color-bg-level0: hsl(230, 6%, 96%);
-	--color-bg-base: hsl(0, 0%, 100%);
+	--color-bg-bg: hsl(0, 0%, 100%);
 	--color-bg-level1: hsl(0, 0%, 100%);
 	--color-bg-level2: hsl(0, 0%, 100%);
 
@@ -152,7 +152,7 @@
 
 	/* Background */
 	--color-bg-level0: hsl(230, 6%, 0%);
-	--color-bg-base: hsl(230, 6%, 4%);
+	--color-bg-bg: hsl(230, 6%, 4%);
 	--color-bg-level1: hsl(230, 6%, 8%);
 	--color-bg-level2: hsl(230, 6%, 12%);
 

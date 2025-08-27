@@ -40,17 +40,31 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/avatar.tsx" language="tsx" code={`import {Avatar} from "@/components/ui/avatar"`} />
+<CodeSnippet title="/components/ui/avatar.tsx" language="tsx" code={`import { Avatar } from "@/components/ui/avatar"`} />
 
 ### Code
 
 <CodeSnippet title="/components/ui/avatar.tsx" code={`<Avatar src="https://randomuser.me/api/portraits/men/2.jpg" name="Dinesh Chugtai" />`} />
 
----
-
 ## Avatar Group
 
 <AvatargroupPreview />
+
+---
+
+## Examples
+
+### Verified Avatar
+
+<VerifiedAvatarPreview />
+
+### Indicator Avatar
+
+<IndicatorAvatarPreview />
+
+### Ring Avatar
+
+<RingAvatarPreview />
 
 ---
 
@@ -80,7 +94,7 @@ links:
 				description: "Sets the size of the avatar",
 			},
 			{
-				name: "variant",
+				name: "radius",
 				defaultValue: "circle",
 				values: ["circle", "square"],
 				required: false,
@@ -98,7 +112,7 @@ links:
 		title="AvatarGroup"
 		data={[
 			{
-				name: "max",
+				name: "maxItems",
 				values: ["number"],
 				required: false,
 				description: "Sets the maximum number of avatars to display",

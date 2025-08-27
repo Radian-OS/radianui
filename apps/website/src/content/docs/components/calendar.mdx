@@ -42,15 +42,30 @@ links:
         <Step>Install the following dependencies:</Step>
     	<PackageManagerTabs
     		commands={{
-    			pnpm: "pnpm add react-day-picker date-fns @internationalized/date",
-    			npm: "npm install react-day-picker date-fns @internationalized/date",
-    			yarn: "yarn add react-day-picker date-fns @internationalized/date",
-    			bun: "bun add react-day-picker date-fns @internationalized/date",
+    			pnpm: "pnpm add culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
+    			npm: "npm install culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
+    			yarn: "yarn add culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
+    			bun: "bun add culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
     		}}
     	/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="calendar" title="components/ui/calendar.tsx" collapsible />
+    	<Tabs defaultValue="calendar">
+    		<TabsList>
+    			<TabsTrigger value="calendar">Calendar</TabsTrigger>
+    			<TabsTrigger value="select">Select</TabsTrigger>
+    			<TabsTrigger value="select">Date Picker</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="calendar">
+    			<ComponentSource name="calendar" title="components/ui/calendar.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="select">
+    			<ComponentSource name="select" title="components/ui/select.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="date-picker">
+    			<ComponentSource name="date-picker" title="components/ui/date-picker.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -62,7 +77,7 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/calendar" code={`import {Calendar} from "@/components/ui/calendar"`} />
+<CodeSnippet title="/components/ui/calendar" code={`import { Calendar } from "@/components/ui/calendar"`} />
 
 ### Code
 

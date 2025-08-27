@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { EyeIcon, Minus, Plus, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
@@ -63,7 +63,7 @@ ${
   <Label>Amount</Label>
   <div className="flex rounded-md">
     <Button
-      iconOnly
+      
       size={size}
       className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
       variant="neutral-soft"
@@ -81,7 +81,7 @@ ${
       value={amount}
     />
     <Button
-      iconOnly
+      
       size={size}
       className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
       variant="neutral-soft"
@@ -154,9 +154,9 @@ export default CounterInput
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
+						<IconButton variant="outline" color="neutral" size="36">
 							<Settings />
-						</Button>
+						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
@@ -204,15 +204,14 @@ export default CounterInput
 						<div className="flex flex-col gap-1.5">
 							<Label>Amount</Label>
 							<div className="flex rounded-md">
-								<Button
-									iconOnly
+								<IconButton
 									size={size}
 									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
 									variant="soft"
 									color="neutral"
 									onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}>
 									<Minus className="text-fg-disabled size-5" />
-								</Button>
+								</IconButton>
 								<Input
 									className="w-61 rounded-l-none border-l-0 border-r-0 text-center focus-within:border-l focus-within:border-r"
 									size={size}
@@ -221,15 +220,14 @@ export default CounterInput
 									onChange={handleChange}
 									value={amount}
 								/>
-								<Button
-									iconOnly
+								<IconButton
 									size={size}
 									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
 									variant="soft"
 									color="neutral"
 									onClick={() => setAmount((v) => String(Number(v || "0") + 1))}>
 									<Plus className="text-fg-disabled size-5" />
-								</Button>
+								</IconButton>
 							</div>
 						</div>
 					)}

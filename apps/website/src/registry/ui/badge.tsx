@@ -14,17 +14,18 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 		className?: string
 		color?: "primary" | "neutral" | "info" | "success" | "error" | "warning"
 		asChild?: boolean
+		onClose?: () => void
 	}
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200", {
 	variants: {
 		variant: {
-			neutral: "border border-soft-alpha text-fg-secondary",
+			default: "border border-soft-alpha text-fg-secondary bg-elevation-level1",
 			strong: "",
 			outline: "",
 			soft: "",
 		},
 		size: {
-			"20": "h-5 px-1.5 text-xs rounded-sm",
+			"20": "h-5 px-1.5 text-xs rounded-md",
 			"24": "h-6 px-2 text-xs rounded-md",
 			"28": "h-7 px-2 text-sm rounded-md",
 		},
@@ -34,10 +35,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			success: "",
 			error: "",
 			warning: "",
+			neutral: " bg-elevation-level1 border-alpha",
 		},
 	},
 	defaultVariants: {
-		variant: "neutral",
+		variant: "default",
 		size: "24",
 		color: "primary",
 	},
@@ -68,6 +70,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			color: "warning",
 			className: "bg-warning text-white font-semibold",
 		},
+		{
+			variant: "strong",
+			color: "neutral",
+			className: "bg-black-inverse border border-alpha text-white-inverse font-medium",
+		},
 		// Outline variant + colors
 		{
 			variant: "outline",
@@ -94,36 +101,46 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			color: "warning",
 			className: "text-warning-text border border-warning bg-transparent",
 		},
+		{
+			variant: "outline",
+			color: "neutral",
+			className: "text-fg-secondary border bg-transparent",
+		},
 		// Soft variant + colors
 		{
 			variant: "soft",
 			color: "primary",
-			className: "bg-primary-accent text-primary-text",
+			className: "bg-primary-accent text-primary-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "info",
-			className: "bg-info-accent text-info-text",
+			className: "bg-info-accent text-info-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "success",
-			className: "bg-success-accent text-success-text",
+			className: "bg-success-accent text-success-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "error",
-			className: "bg-error-accent text-error-text",
+			className: "bg-error-accent text-error-text border border-soft-alpha",
 		},
 		{
 			variant: "soft",
 			color: "warning",
-			className: "bg-warning-accent text-warning-text",
+			className: "bg-warning-accent text-warning-text border border-soft-alpha",
+		},
+		{
+			variant: "soft",
+			color: "neutral",
+			className: "bg-fill2 text-fg-secondary border border-soft-alpha",
 		},
 	],
 })
 
-function Badge({ variant = "neutral", size = "24", color = "primary", closable = false, className, asChild = false, children, ...props }: BadgeProps) {
+function Badge({ variant = "soft", size = "24", color = "primary", onClose, className, asChild = false, children, ...props }: BadgeProps) {
 	const [showBadge, setShowBadge] = useState(true)
 	if (!showBadge) return null
 	const badgeClasses = cn(
@@ -131,13 +148,13 @@ function Badge({ variant = "neutral", size = "24", color = "primary", closable =
 		"gap-1", // Keep gap for flex layout
 		className
 	)
-	const closeButton = closable && (
+	const closeButton = onClose && (
 		<X
+			size={12}
 			onClick={() => setShowBadge(false)}
 			className={cn(
-				size === "20" || size === "24" ? "size-3" : "size-4",
 				"cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
-				variant === "neutral" && "text-fg-disabled"
+				variant === "default" && "text-fg-tertiary"
 			)}
 		/>
 	)

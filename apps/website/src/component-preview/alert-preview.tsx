@@ -2,22 +2,21 @@ import { useState } from "react"
 import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button, IconButton, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertPreview = () => {
-	type titleType = "true" | "false"
-	type descriptionType = "true" | "false"
+	type booleanType = "true" | "false"
 
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"default" | "soft-outline" | "outline">("default")
-	const [closable, setClosable] = useState<"true" | "false">("false")
+	const [closable, setClosable] = useState<booleanType>("false")
 	const [key, setKey] = useState(0)
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "button" | "link">("button")
-	const [title, setTitle] = useState<titleType>("true")
-	const [description, setDescription] = useState<descriptionType>("true")
+	const [title, setTitle] = useState<booleanType>("true")
+	const [description, setDescription] = useState<booleanType>("true")
 
 	const icons = {
 		star: <Star size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
@@ -81,10 +80,9 @@ const AlertPreview = () => {
 		}
 
 		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
-		const btnClassName = color !== "neutral" ? ' className="bg-white/30 hover:bg-white/40"' : ""
 
 		code += `
-  end={<Button color='${btnColor}'${btnClassName}>Action</Button>}`
+  end={<Button color='${btnColor}'>Action</Button>}`
 
 		code += `
   closable={${closable}}`
@@ -108,9 +106,9 @@ const AlertPreview = () => {
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
+						<IconButton variant="outline" color="neutral" size="36">
 							<Settings />
-						</Button>
+						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownGroup>
@@ -151,7 +149,7 @@ const AlertPreview = () => {
 										minSelectionCount={1}
 										selectedValues={[title]}
 										onSelectedChange={(keys) => {
-											setTitle(Array.from(keys)[0] as titleType)
+											setTitle(Array.from(keys)[0] as booleanType)
 										}}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>
@@ -167,7 +165,7 @@ const AlertPreview = () => {
 										minSelectionCount={1}
 										selectedValues={[description]}
 										onSelectedChange={(keys) => {
-											setDescription(Array.from(keys)[0] as descriptionType)
+											setDescription(Array.from(keys)[0] as booleanType)
 										}}>
 										<DropdownItem value="true">True</DropdownItem>
 										<DropdownItem value="false">False</DropdownItem>

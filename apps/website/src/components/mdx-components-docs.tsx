@@ -5,6 +5,7 @@ import { Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Link from "next/link"
+import IconButtonPreview from "@/component-preview/Icon-button-preview"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
@@ -41,6 +42,7 @@ import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
+import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import ModalPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
@@ -73,15 +75,24 @@ import CollaborationPointerExample from "@/registry/example/animated/collaborati
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
+import IndicatorAvatarPreview from "@/registry/example/avatar/indicator-avatar-preview"
+import RingAvatarPreview from "@/registry/example/avatar/ring-avatar-preview"
+import VerifiedAvatarPreview from "@/registry/example/avatar/verified-avatar-preview"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
+import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
+import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
+import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
+import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
+import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import FormExample1 from "@/registry/example/form/form-example1"
 import FormExample2 from "@/registry/example/form/form-example2"
 import FormExample3 from "@/registry/example/form/form-example3"
@@ -168,15 +179,19 @@ const components: MDXComponents = {
 	IconCounterTabsExample: () => <IconCounterTabsExample />,
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
 	DropdownPreview: () => <DropdownPreview />,
+	UserMenuDropdownExample: () => <UserMenuDropdownExample />,
+	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
 	ResizablePreview: () => <ResizablePreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
+	LabelPreview: () => <LabelPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
 	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
+	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,
@@ -214,6 +229,13 @@ const components: MDXComponents = {
 	FormExample2: () => <FormExample2 />,
 	FormExample3: () => <FormExample3 />,
 	AlertExamplePreview: () => <AlertExamplePreview />,
+	VerifiedAvatarPreview: () => <VerifiedAvatarPreview />,
+	IndicatorAvatarPreview: () => <IndicatorAvatarPreview />,
+	RingAvatarPreview: () => <RingAvatarPreview />,
+	BreadcrumbExample1: () => <BreadcrumbExample1 />,
+	BreadcrumbExample2: () => <BreadcrumbExample2 />,
+	BreadcrumbExample3: () => <BreadcrumbExample3 />,
+	IconButtonPreview: () => <IconButtonPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -326,7 +348,7 @@ const components: MDXComponents = {
 			className={cn(
 				"mb-3 mt-6 scroll-m-20 text-lg font-medium first:mt-0 last:mb-0",
 				"relative [counter-increment:step]",
-				"before:absolute before:-left-12 before:top-0 before:flex before:size-7 before:items-center before:justify-center",
+				"before:absolute before:-left-10 before:top-0 before:flex before:size-7 before:items-center before:justify-center",
 				"before:border-soft-alpha before:bg-elevation-level1 before:text-fg before:rounded-lg before:border before:text-sm before:font-medium",
 				"before:content-[counter(step)]",
 				className
@@ -334,7 +356,7 @@ const components: MDXComponents = {
 			{...props}
 		/>
 	),
-	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-8")} {...props} />,
+	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-6")} {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,

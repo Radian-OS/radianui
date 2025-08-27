@@ -27,8 +27,30 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+		<Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-label",
+				npm: "npm install @radix-ui/react-label",
+				yarn: "yarn add @radix-ui/react-label",
+				bun: "bun add @radix-ui/react-label",
+			}}
+		/>
+
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="text-area" title="components/ui/text-area.tsx" collapsible />
+    	<Tabs defaultValue="text-area">
+    		<TabsList>
+    			<TabsTrigger value="text-area">Text Area</TabsTrigger>
+    			<TabsTrigger value="label">Label</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="text-area">
+    			<ComponentSource name="text-area" title="components/ui/text-area.tsx" collapsible />
+    		</TabsContent>
+    		<TabsContent value="label">
+    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
+
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>

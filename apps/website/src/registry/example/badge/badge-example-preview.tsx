@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
@@ -5,32 +6,65 @@ import { Badge } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BadgeExamplePreview = () => {
+	const initialframeworks = ["Nextjs", "Vite", "Angular", "Vue"]
+	const [frameworks, setFrameworks] = useState(initialframeworks)
+
+	const handleClose = (frameworkToRemove: string): void => {
+		setFrameworks(frameworks.filter((framework) => framework !== frameworkToRemove))
+		if (frameworks.length === 1) {
+			setFrameworks(initialframeworks)
+		}
+	}
+
 	const badgeExamples = [
 		{
-			name: "Destructive",
+			name: "Close Icon ",
 			component: (
-				<Badge variant="soft" color="error" size="24">
-					Destructive
-				</Badge>
+				<div className="flex gap-2">
+					{frameworks.map((framework, index) => (
+						<Badge key={index} variant="default" onClose={() => handleClose(framework)}>
+							{framework}
+						</Badge>
+					))}
+				</div>
 			),
-			code: `<Badge
-variant="soft" 
-color="error" 
-size="24">
- Destructive
-</Badge>`,
+			code: `	const initialframeworks = ["Nextjs", "Vite", "Angular", "Vue"]
+
+export default function BadgeOncloseExample() { 
+	const [frameworks, setFrameworks] = useState(initialframeworks)
+
+	const handleClose = (frameworkToRemove: string): void => {
+		setFrameworks(frameworks.filter((framework) => framework !== frameworkToRemove))
+		if (frameworks.length === 1) {
+			setFrameworks(initialframeworks)
+		}
+	}
+  return (
+	<div className="flex gap-2">
+		{frameworks.map((framework, index) => (
+			<Badge key={index} variant="default" onClose={() => handleClose(framework)}>
+				{framework}
+			</Badge>
+		))}
+	</div>
+  );
+}`,
 		},
 		{
 			name: "Dot",
 			component: (
-				<Badge size="24" closable={true}>
-					<div className="bg-success h-1.5 w-1.5 rounded-full"></div>
+				<Badge size="28" className="py-1 pl-1 pr-2" color="primary" variant="outline">
+					<div className="flex h-4 w-4 items-center justify-center">
+						<div className="bg-primary h-1.5 w-1.5 rounded-full"></div>
+					</div>
 					<span>Label</span>
 				</Badge>
 			),
-			code: `<Badge size="24" closable={true}>
-<div className="h-1.5 w-1.5 rounded-full bg-success"></div>
-Label
+			code: `<Badge size="28" className="py-1 pl-1 pr-2" color="primary" variant="outline">
+	<div className="flex h-4 w-4 items-center justify-center">
+		<div className="bg-primary h-1.5 w-1.5 rounded-full"></div>
+	</div>
+	<span>Label</span>
 </Badge>`,
 		},
 		{
@@ -46,24 +80,6 @@ variant="strong"
 color="info" size="24">
 <Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
 Roman Shrestha
-</Badge>`,
-		},
-		{
-			name: "Close Icon",
-			component: (
-				<Badge variant="soft" color="warning" className="outline-warning outline" closable size="24">
-					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
-					My Custom Badge
-				</Badge>
-			),
-			code: `<Badge
-variant="soft" 
-color="warning"
-className="outline-warning outline" 
-closable 
-size="24">
-<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
-My Custom Badge
 </Badge>`,
 		},
 	]

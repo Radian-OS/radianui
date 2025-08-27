@@ -1,7 +1,7 @@
-import { EyeIcon, Lock, SquareTerminal } from "lucide-react"
-import Link from "next/link"
+import { Eclipse, EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
+import { LinkButton } from "@/registry/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerExamplePreview1 = () => {
@@ -16,14 +16,17 @@ const BannerExamplePreview1 = () => {
 				</TabsTrigger>
 			</TabsList>
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Banner variant="destructive">
-						<Lock size={20} />
-						Subscription Expired. Please upgrade your account to Pro Subscription{" "}
-						<Link className="underline" href="#">
-							Upgrade
-						</Link>
-					</Banner>
+				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border">
+					<Banner
+						start={<Eclipse size={16} />}
+						description="We just added something awesome to make your experience even better"
+						end={
+							<LinkButton href="#" className="text-white-inverse">
+								Learn more
+							</LinkButton>
+						}
+						color="neutral"
+						variant="strong"></Banner>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -31,9 +34,16 @@ const BannerExamplePreview1 = () => {
 					title="banner-example-preview1.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Banner variant="destructive" >
-Subscription Expired. Please upgrade your account to Pro Subscription 
-<Link className="underline" href="#" >Upgrade</Link>
+					code={`<Banner
+	start={<Eclipse size={16}/>}
+	description="We just added something awesome to make your experience even better"
+	end={
+		<LinkButton href="#" className="text-white-inverse">
+			Learn more
+		</LinkButton>
+		}
+	color="neutral"
+	variant="strong">
 </Banner>`}
 				/>
 			</TabsContent>
