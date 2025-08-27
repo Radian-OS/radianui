@@ -58,7 +58,7 @@ export const buttonVariants = cva(
 				ghost: "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-[13px] px-1 rounded-md",
+				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
 				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
@@ -99,12 +99,12 @@ export const buttonVariants = cva(
 			{ iconOnly: false, size: "44", className: "gap-1 h-11 px-3 py-2.5" },
 			{ iconOnly: false, size: "48", className: "gap-1 h-12 px-3.5 py-3" },
 
-			{ iconOnly: true, size: "28", className: "px-1.5 h-7 gap-1" },
-			{ iconOnly: true, size: "32", className: "px-1.75 h-8 gap-1" },
-			{ iconOnly: true, size: "36", className: "px-2 h-9 gap-1" },
-			{ iconOnly: true, size: "40", className: "px-2.5 h-10 gap-1" },
-			{ iconOnly: true, size: "44", className: "px-3 h-11 gap-1" },
-			{ iconOnly: true, size: "48", className: "px-3.5 h-12 gap-1" },
+			{ iconOnly: true, size: "28", className: "p-1.5 h-7 gap-1" },
+			{ iconOnly: true, size: "32", className: "p-1.75 h-8 gap-1" },
+			{ iconOnly: true, size: "36", className: "p-2 h-9 gap-1" },
+			{ iconOnly: true, size: "40", className: "p-2.5 h-10 gap-1" },
+			{ iconOnly: true, size: "44", className: "p-3 h-11 gap-1" },
+			{ iconOnly: true, size: "48", className: "p-3.5 h-12 gap-1" },
 
 			{
 				variant: "strong",
@@ -134,7 +134,7 @@ export const buttonVariants = cva(
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "bg-black-inverse font-medium text-white-inverse hover:bg-black-inverse/88 focus-visible:ring-black-inverse focus-visible:outline-none",
+				className: "bg-black-inverse font-medium text-white-inverse hover:bg-fg focus-visible:ring-black-inverse focus-visible:outline-none",
 			},
 
 			// Soft variant + colors
@@ -166,7 +166,7 @@ export const buttonVariants = cva(
 			{
 				variant: "soft",
 				color: "neutral",
-				className: "bg-fill2 font-medium text-fg-secondary hover:bg-alpha focus-visible:bg-bg focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-fill2 font-medium text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Outline variant + colors
@@ -199,7 +199,7 @@ export const buttonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 overflow-hidden font-medium text-fg-secondary border border-border  hover:bg-elevation-level1 focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-fill2-alpha",
+					"bg-elevation-level1 overflow-hidden font-medium text-fg-secondary border border-border  hover:bg-fill1-alpha focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-fill2-alpha",
 			},
 
 			// Ghost variant + colors
@@ -231,7 +231,7 @@ export const buttonVariants = cva(
 			{
 				variant: "ghost",
 				color: "neutral",
-				className: "bg-transparent text-fg-secondary font-medium hover:bg-alpha focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-transparent text-fg-secondary font-medium hover:bg-fill2 focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Neutral variants
@@ -275,8 +275,7 @@ function Button({
 	// Normal button behavior
 	return (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
-			{start}
-			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
+			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : start}
 			<span className={cn(innerSpanClassName, "px-0.5")}>{children}</span>
 			{end}
 		</Comp>

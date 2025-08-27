@@ -22,6 +22,8 @@ target="_blank"
 size="${size}"
 disabled={${disabled === "true"}}
 color="${color}"
+${start === "true" ? "start={<ChevronLeft />}" : ""}
+${end === "true" ? "end={<ChevronRight />}" : ""}
 >
  Button Label
 </LinkButton>`
