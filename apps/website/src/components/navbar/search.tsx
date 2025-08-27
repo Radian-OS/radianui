@@ -1,15 +1,12 @@
 "use client"
 
 import { useCallback, useEffect, useRef, useState } from "react"
-
 import { Search } from "lucide-react"
-
 import { navigationItems } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
-
 import SearchCommand from "../search-command"
 
 export function SearchDocs() {

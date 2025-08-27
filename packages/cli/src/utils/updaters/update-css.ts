@@ -1,24 +1,22 @@
-import type { AtRule, Declaration, PluginCreator, Root, Rule } from 'postcss'
-import postcss from 'postcss'
-
-import { logger } from '@utils/logger'
-import { Color, type Font, type FontData, getBrandColor, getFont } from '@utils/registry'
-
+import type { AtRule, Declaration, PluginCreator, Root, Rule } from "postcss"
+import postcss from "postcss"
+import { logger } from "@/utils/logger"
+import { Color, type Font, type FontData, getBrandColor, getFont } from "@/utils/registry"
 
 export interface ThemeUpdateOptions {
-  color?: Color
-  font?: Font
+	color?: Color
+	font?: Font
 }
 
 type ColorSet = Record<string, string>
 
 const CSS_CONSTANTS = {
-  DARK_SELECTOR: '.dark',
-  COLOR_PRIMARY_PREFIX: '--color-primary',
-  GOOGLE_FONTS_DOMAIN: 'fonts.googleapis.com',
-  HEADING_FONT_PROP: '--heading-font',
-  BODY_FONT_PROP: '--body-font',
-  FALLBACK_FONTS: 'system-ui, sans-serif',
+	DARK_SELECTOR: ".dark",
+	COLOR_PRIMARY_PREFIX: "--color-primary",
+	GOOGLE_FONTS_DOMAIN: "fonts.googleapis.com",
+	HEADING_FONT_PROP: "--heading-font",
+	BODY_FONT_PROP: "--body-font",
+	FALLBACK_FONTS: "system-ui, sans-serif",
 } as const
 
 /**
@@ -29,9 +27,9 @@ const CSS_CONSTANTS = {
  * @param colorSet - Object mapping color names to their CSS values
  */
 function updateLightThemeColors(root: Root, colorSet: ColorSet): void {
-  root.walkAtRules('theme', (atRule: AtRule) => {
-    updateColorDeclarations(atRule, colorSet, 'light theme @theme rule')
-  })
+	root.walkAtRules("theme", (atRule: AtRule) => {
+		updateColorDeclarations(atRule, colorSet, "light theme @theme rule")
+	})
 }
 
 /**
@@ -42,11 +40,11 @@ function updateLightThemeColors(root: Root, colorSet: ColorSet): void {
  * @param colorSet - Object mapping color names to their CSS values
  */
 function updateDarkThemeColors(root: Root, colorSet: ColorSet): void {
-  root.walkRules((rule: Rule) => {
-    if (rule.selector === CSS_CONSTANTS.DARK_SELECTOR) {
-      updateColorDeclarations(rule, colorSet, 'dark theme rule')
-    }
-  })
+	root.walkRules((rule: Rule) => {
+		if (rule.selector === CSS_CONSTANTS.DARK_SELECTOR) {
+			updateColorDeclarations(rule, colorSet, "dark theme rule")
+		}
+	})
 }
 
 /**
@@ -58,20 +56,20 @@ function updateDarkThemeColors(root: Root, colorSet: ColorSet): void {
  * @param context - Context string for logging purposes
  */
 function updateColorDeclarations(node: AtRule | Rule, colorSet: ColorSet, context: string): void {
-  node.walkDecls((decl: Declaration) => {
-    if (!decl.prop.startsWith(CSS_CONSTANTS.COLOR_PRIMARY_PREFIX)) {
-      return
-    }
+	node.walkDecls((decl: Declaration) => {
+		if (!decl.prop.startsWith(CSS_CONSTANTS.COLOR_PRIMARY_PREFIX)) {
+			return
+		}
 
-    const colorKey = extractColorKey(decl.prop)
-    const fullColorName = buildFullColorName(colorKey)
+		const colorKey = extractColorKey(decl.prop)
+		const fullColorName = buildFullColorName(colorKey)
 
-    if (colorSet[fullColorName]) {
-      decl.value = colorSet[fullColorName]
-    } else {
-      logger.error(`No color found for: ${fullColorName} in ${context}`)
-    }
-  })
+		if (colorSet[fullColorName]) {
+			decl.value = colorSet[fullColorName]
+		} else {
+			logger.error(`No color found for: ${fullColorName} in ${context}`)
+		}
+	})
 }
 
 /**
@@ -82,7 +80,7 @@ function updateColorDeclarations(node: AtRule | Rule, colorSet: ColorSet, contex
  * @returns The extracted color key suffix
  */
 function extractColorKey(prop: string): string {
-  return prop.replace(CSS_CONSTANTS.COLOR_PRIMARY_PREFIX, '') || ''
+	return prop.replace(CSS_CONSTANTS.COLOR_PRIMARY_PREFIX, "") || ""
 }
 
 /**
@@ -93,7 +91,7 @@ function extractColorKey(prop: string): string {
  * @returns The full color name for lookup
  */
 function buildFullColorName(colorKey: string): string {
-  return colorKey ? `primary${colorKey}` : 'primary'
+	return colorKey ? `primary${colorKey}` : "primary"
 }
 
 /**
@@ -104,15 +102,15 @@ function buildFullColorName(colorKey: string): string {
  * @param fontData - Font configuration data containing import URL and CSS variables
  */
 function updateFontVariables(root: Root, fontData: FontData): void {
-  validateFontData(fontData)
+	validateFontData(fontData)
 
-  const importUpdated = updateExistingFontImport(root, fontData.importURL)
+	const importUpdated = updateExistingFontImport(root, fontData.importURL)
 
-  if (!importUpdated) {
-    addNewFontImport(root, fontData.importURL)
-  }
+	if (!importUpdated) {
+		addNewFontImport(root, fontData.importURL)
+	}
 
-  updateFontDeclarations(root, fontData)
+	updateFontDeclarations(root, fontData)
 }
 
 /**
@@ -122,9 +120,9 @@ function updateFontVariables(root: Root, fontData: FontData): void {
  * @throws Error if required font data is missing
  */
 function validateFontData(fontData: FontData): void {
-  if (!fontData.importURL || !fontData.cssVariables) {
-    throw new Error('Font data must contain importURL and cssVariables')
-  }
+	if (!fontData.importURL || !fontData.cssVariables) {
+		throw new Error("Font data must contain importURL and cssVariables")
+	}
 }
 
 /**
@@ -135,18 +133,18 @@ function validateFontData(fontData: FontData): void {
  * @returns True if an import was found and updated, false otherwise
  */
 function updateExistingFontImport(root: Root, importURL: string): boolean {
-  let foundImport = false
+	let foundImport = false
 
-  root.walkAtRules('import', (atRule: AtRule) => {
-    const params = atRule.params.replace(/['"]/g, '')
+	root.walkAtRules("import", (atRule: AtRule) => {
+		const params = atRule.params.replace(/['"]/g, "")
 
-    if (isGoogleFontsImport(params)) {
-      atRule.params = `url("${importURL}")`
-      foundImport = true
-    }
-  })
+		if (isGoogleFontsImport(params)) {
+			atRule.params = `url("${importURL}")`
+			foundImport = true
+		}
+	})
 
-  return foundImport
+	return foundImport
 }
 
 /**
@@ -156,7 +154,7 @@ function updateExistingFontImport(root: Root, importURL: string): boolean {
  * @returns True if this is a Google Fonts import
  */
 function isGoogleFontsImport(params: string): boolean {
-  return params.startsWith('url(') && params.includes(CSS_CONSTANTS.GOOGLE_FONTS_DOMAIN)
+	return params.startsWith("url(") && params.includes(CSS_CONSTANTS.GOOGLE_FONTS_DOMAIN)
 }
 
 /**
@@ -166,12 +164,12 @@ function isGoogleFontsImport(params: string): boolean {
  * @param importURL - Google Fonts import URL to add
  */
 function addNewFontImport(root: Root, importURL: string): void {
-  const newImport = postcss.atRule({
-    name: 'import',
-    params: `url("${importURL}")`,
-  })
+	const newImport = postcss.atRule({
+		name: "import",
+		params: `url("${importURL}")`,
+	})
 
-  root.prepend(newImport)
+	root.prepend(newImport)
 }
 
 /**
@@ -181,15 +179,15 @@ function addNewFontImport(root: Root, importURL: string): void {
  * @param fontData - Font data containing CSS variable definitions
  */
 function updateFontDeclarations(root: Root, fontData: FontData): void {
-  root.walkAtRules('layer', (atRule: AtRule) => {
-    if (atRule.params.trim() === 'base') {
-      atRule.walkDecls((decl: Declaration) => {
-        if (decl.prop === '--heading-font' || decl.prop === '--body-font') {
-          updateFontDeclaration(decl, fontData)
-        }
-      })
-    }
-  })
+	root.walkAtRules("layer", (atRule: AtRule) => {
+		if (atRule.params.trim() === "base") {
+			atRule.walkDecls((decl: Declaration) => {
+				if (decl.prop === "--heading-font" || decl.prop === "--body-font") {
+					updateFontDeclaration(decl, fontData)
+				}
+			})
+		}
+	})
 }
 
 /**
@@ -199,13 +197,13 @@ function updateFontDeclarations(root: Root, fontData: FontData): void {
  * @param fontData - Font data containing CSS variable definitions
  */
 function updateFontDeclaration(decl: Declaration, fontData: FontData): void {
-  const { cssVariables } = fontData
+	const { cssVariables } = fontData
 
-  if (decl.prop === CSS_CONSTANTS.HEADING_FONT_PROP && cssVariables['heading-font']) {
-    decl.value = buildFontValue(cssVariables['heading-font'])
-  } else if (decl.prop === CSS_CONSTANTS.BODY_FONT_PROP && cssVariables['body-font']) {
-    decl.value = buildFontValue(cssVariables['body-font'])
-  }
+	if (decl.prop === CSS_CONSTANTS.HEADING_FONT_PROP && cssVariables["heading-font"]) {
+		decl.value = buildFontValue(cssVariables["heading-font"])
+	} else if (decl.prop === CSS_CONSTANTS.BODY_FONT_PROP && cssVariables["body-font"]) {
+		decl.value = buildFontValue(cssVariables["body-font"])
+	}
 }
 
 /**
@@ -215,7 +213,7 @@ function updateFontDeclaration(decl: Declaration, fontData: FontData): void {
  * @returns Complete font-family CSS value with fallbacks
  */
 function buildFontValue(fontName: string): string {
-  return `"${fontName}", ${CSS_CONSTANTS.FALLBACK_FONTS}`
+	return `"${fontName}", ${CSS_CONSTANTS.FALLBACK_FONTS}`
 }
 
 /**
@@ -230,29 +228,29 @@ function buildFontValue(fontName: string): string {
  * @returns PostCSS plugin configuration object
  */
 const themeUpdatePlugin: PluginCreator<ThemeUpdateOptions> = (options = {}) => {
-  const { color, font } = options
+	const { color, font } = options
 
-  return {
-    postcssPlugin: 'theme-update',
+	return {
+		postcssPlugin: "theme-update",
 
-    /**
-     * Main plugin execution - runs once per CSS processing
-     */
-    async Once(root: Root): Promise<void> {
-      try {
-        validatePluginOptions(color, font)
+		/**
+		 * Main plugin execution - runs once per CSS processing
+		 */
+		async Once(root: Root): Promise<void> {
+			try {
+				validatePluginOptions(color, font)
 
-        // Fetch theme and font data concurrently for better performance
-        const [themeData, fontData] = await Promise.all([getBrandColor(color!), getFont(font!)])
+				// Fetch theme and font data concurrently for better performance
+				const [themeData, fontData] = await Promise.all([getBrandColor(color!), getFont(font!)])
 
-        // Update fonts and colors concurrently
-        await Promise.all([updateThemeFonts(root, fontData, font!), updateThemeColors(root, themeData, color!)])
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-        throw new Error(`Error updating theme colors: ${errorMessage}`)
-      }
-    },
-  }
+				// Update fonts and colors concurrently
+				await Promise.all([updateThemeFonts(root, fontData, font!), updateThemeColors(root, themeData, color!)])
+			} catch (error) {
+				const errorMessage = error instanceof Error ? error.message : "Unknown error"
+				throw new Error(`Error updating theme colors: ${errorMessage}`)
+			}
+		},
+	}
 }
 
 /**
@@ -263,9 +261,9 @@ const themeUpdatePlugin: PluginCreator<ThemeUpdateOptions> = (options = {}) => {
  * @throws Error if required options are missing
  */
 function validatePluginOptions(color?: Color, font?: Font): void {
-  if (!color || !font) {
-    throw new Error('Both color and font options are required for theme updates')
-  }
+	if (!color || !font) {
+		throw new Error("Both color and font options are required for theme updates")
+	}
 }
 
 /**
@@ -276,11 +274,11 @@ function validatePluginOptions(color?: Color, font?: Font): void {
  * @param font - Font identifier for error messages
  */
 async function updateThemeFonts(root: Root, fontData: FontData, font: Font): Promise<void> {
-  if (!fontData?.importURL || !fontData?.cssVariables) {
-    throw new Error(`Invalid or incomplete font data for font: ${font}`)
-  }
+	if (!fontData?.importURL || !fontData?.cssVariables) {
+		throw new Error(`Invalid or incomplete font data for font: ${font}`)
+	}
 
-  updateFontVariables(root, fontData)
+	updateFontVariables(root, fontData)
 }
 
 /**
@@ -291,19 +289,19 @@ async function updateThemeFonts(root: Root, fontData: FontData, font: Font): Pro
  * @param color - Color theme identifier for error messages
  */
 async function updateThemeColors(root: Root, themeData: any, color: Color): Promise<void> {
-  if (!themeData?.cssVariables) {
-    throw new Error(`No theme color data found for theme: ${color}`)
-  }
+	if (!themeData?.cssVariables) {
+		throw new Error(`No theme color data found for theme: ${color}`)
+	}
 
-  const { light, dark } = themeData.cssVariables
+	const { light, dark } = themeData.cssVariables
 
-  if (light) {
-    updateLightThemeColors(root, light)
-  }
+	if (light) {
+		updateLightThemeColors(root, light)
+	}
 
-  if (dark) {
-    updateDarkThemeColors(root, dark)
-  }
+	if (dark) {
+		updateDarkThemeColors(root, dark)
+	}
 }
 
 // Mark plugin as PostCSS compatible
@@ -325,18 +323,18 @@ export default themeUpdatePlugin
  * @throws Error if file operations or theme updates fail
  */
 export async function updateCssWithTheme(cssFilePath: string, color: Color, font: Font): Promise<void> {
-  try {
-    const fs = await import('fs/promises')
+	try {
+		const fs = await import("fs/promises")
 
-    // Read existing CSS content
-    const css = await fs.readFile(cssFilePath, 'utf-8')
+		// Read existing CSS content
+		const css = await fs.readFile(cssFilePath, "utf-8")
 
-    // Process CSS with theme updates
-    const result = await postcss([themeUpdatePlugin({ color, font })]).process(css, { from: cssFilePath })
+		// Process CSS with theme updates
+		const result = await postcss([themeUpdatePlugin({ color, font })]).process(css, { from: cssFilePath })
 
-    // Write updated CSS back to file
-    await fs.writeFile(cssFilePath, result.css)
-  } catch (error) {
-    throw new Error(`Error updating CSS file: ${error instanceof Error ? error.message : 'Unknown error'}`)
-  }
+		// Write updated CSS back to file
+		await fs.writeFile(cssFilePath, result.css)
+	} catch (error) {
+		throw new Error(`Error updating CSS file: ${error instanceof Error ? error.message : "Unknown error"}`)
+	}
 }

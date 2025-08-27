@@ -1,12 +1,9 @@
 "use client"
 
 import { type HTMLAttributes, type ReactNode, useState } from "react"
-
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
-
 import { cn } from "@/lib/utils"
-
 import { CompactButton } from "./button"
 
 type BannerProps = HTMLAttributes<HTMLDivElement> &

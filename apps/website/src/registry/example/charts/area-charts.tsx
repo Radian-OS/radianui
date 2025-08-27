@@ -1,9 +1,7 @@
 "use client"
 
 import * as React from "react"
-
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
-
 import { ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@/registry/ui/chart"
 
 export const description = "An interactive area chart"

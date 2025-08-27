@@ -1,12 +1,9 @@
 "use client"
 
 import React from "react"
-
 import * as SliderPrimitive from "@radix-ui/react-slider"
 import { Minus, Plus } from "lucide-react"
-
 import { cn } from "@/lib/utils"
-
 import { Button } from "./button"
 import { Input } from "./input"
 // import NumberInput from "./number"

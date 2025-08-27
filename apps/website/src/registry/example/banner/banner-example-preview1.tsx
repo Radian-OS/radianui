@@ -1,5 +1,4 @@
 import { Eclipse, EyeIcon, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
 import { LinkButton } from "@/registry/ui/button"

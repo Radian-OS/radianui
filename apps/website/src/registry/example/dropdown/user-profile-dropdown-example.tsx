@@ -1,5 +1,4 @@
 import { EyeIcon, FolderCog, LogOut, Settings, SquareTerminal, UserCog } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"

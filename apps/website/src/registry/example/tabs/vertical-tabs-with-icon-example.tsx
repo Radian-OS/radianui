@@ -1,7 +1,5 @@
 import React from "react"
-
 import { AppWindow, EyeIcon, Film, Music2, Image as Picture, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 

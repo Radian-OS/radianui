@@ -1,7 +1,5 @@
 import { useState } from "react"
-
 import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
 import { Button, IconButton, LinkButton } from "@/registry/ui/button"

@@ -1,14 +1,11 @@
 "use client"
 
 import React, { useState } from "react"
-
 import { HamburgerMenuIcon } from "@radix-ui/react-icons"
-
 import { MobileNavigation } from "@/components/navbar/mobile-tablet-navigation"
 import { SearchDocs } from "@/components/navbar/search"
 import { DesktopThemeToggler } from "@/components/theme-toggler"
 import { IconButton } from "@/registry/ui/button"
-
 import { DesktopNavigation } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"

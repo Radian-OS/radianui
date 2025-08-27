@@ -1,7 +1,5 @@
 import React, { useState } from "react"
-
 import { EyeIcon, RotateCw, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Fade } from "@/registry/animated/fade"
 import { Button } from "@/registry/ui/button"

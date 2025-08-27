@@ -1,9 +1,7 @@
 "use client"
 
 import React from "react"
-
 import { type VariantProps, cva } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 type AvatarRadius = NonNullable<VariantProps<typeof avatarRadius>["radius"]>

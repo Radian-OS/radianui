@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
 import { Password } from "@/registry/ui/password"

@@ -1,11 +1,8 @@
 "use client"
 
 import React from "react"
-
 import { cva } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
-
 import { Label } from "./label"
 
 export type SizeOptions = "0" | "28" | "32" | "36" | "40" | "44" | "48"

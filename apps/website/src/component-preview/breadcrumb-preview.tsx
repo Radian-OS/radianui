@@ -1,8 +1,6 @@
 import { useState } from "react"
-
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import Link from "next/link"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
 import { IconButton } from "@/registry/ui/button"

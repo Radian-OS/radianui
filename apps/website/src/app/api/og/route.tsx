@@ -1,6 +1,5 @@
 import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
-
 import { loadFonts } from "./fonts"
 
 export const runtime = "edge"

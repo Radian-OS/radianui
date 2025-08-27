@@ -1,5 +1,4 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { IconButton } from "@/registry/ui/button"

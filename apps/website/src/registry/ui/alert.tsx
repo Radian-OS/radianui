@@ -1,10 +1,8 @@
 "use client"
 
 import React, { useState } from "react"
-
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
 export type AlertProps = React.HTMLAttributes<HTMLDivElement> &

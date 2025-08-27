@@ -1,5 +1,4 @@
 import React from "react"
-
 import Footer from "@/components/footer"
 import A from "@/components/home/A"
 import B from "@/components/home/B"

@@ -1,9 +1,9 @@
-import { AddOptions } from "@commands/add"
-import { getDependencyInstaller, getPackageManager } from "@utils/getPackageManager"
-import { handleError } from "@utils/handleError"
-import { RegistryComponents } from "@utils/registry"
-import { spinner } from "@utils/spinner"
 import { execa } from "execa"
+import { AddOptions } from "@/commands/add"
+import { getDependencyInstaller, getPackageManager } from "@/utils/getPackageManager"
+import { handleError } from "@/utils/handleError"
+import { RegistryComponents } from "@/utils/registry"
+import { spinner } from "@/utils/spinner"
 
 export const installDependencies = async (projectDir: string, dependencies: string[], silent?: boolean) => {
 	if (!dependencies.length) return

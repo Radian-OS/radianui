@@ -1,6 +1,7 @@
 {
-  "name": "@radianos/radianbeta",
-  "version": "1.1.15",
+  "name": "radianui",
+  "description": "Add components to your project",
+  "version": "0.1.0-alpha.0",
   "main": "index.js",
   "type": "module",
   "publishConfig": {
@@ -18,6 +19,12 @@
   "scripts": {
     "dev": "tsup --watch && tsup",
     "build": "tsup",
+    "release": "changeset version",
+    "pre:enter": "changeset pre enter alpha",
+    "pre:exit": "changeset pre exit",
+    "pub:alpha": "pnpm build && pnpm publish --no-git-checks --access public --tag alpha",
+    "pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
+    "pub:release": "pnpm build && pnpm publish --no-git-checks --access public",
     "unit": "vitest run unit",
     "e2e": "vitest run cli",
     "test": "vitest run",
@@ -33,9 +40,13 @@
     "tailwind",
     "radix-ui"
   ],
-  "author": "Radian OS",
-  "license": "ISC",
-  "description": "Add components to your project",
+  "author": "RadianOS <radianos44@gmail.com> (https://radianos.com)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Radian-os/radianos"
+  },
+  "homepage": "https://github.com/Radian-os/radianos#readme",
   "dependencies": {
     "@clack/prompts": "^0.9.1",
     "adm-zip": "^0.5.16",
@@ -59,16 +70,11 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@semantic-release/exec": "^7.1.0",
-    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "@types/adm-zip": "^0.5.7",
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.7.9",
     "@types/prompts": "^2.4.9",
     "@vitest/coverage-istanbul": "^3.2.4",
-    "prettier": "^3.4.2",
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "semantic-release": "^24.2.7",
     "typescript": "^5.6.3",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4"

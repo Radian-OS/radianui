@@ -1,6 +1,5 @@
 import { CircleAlert } from "lucide-react"
 import Image from "next/image"
-
 import { Button } from "../ui/button"
 import { Divider } from "../ui/divider"
 import { Input } from "../ui/input"

@@ -1,5 +1,4 @@
 import { RocketIcon } from "lucide-react"
-
 import { Banner } from "@/registry/ui/banner"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"

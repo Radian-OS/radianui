@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
-
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"

@@ -1,7 +1,5 @@
 import React from "react"
-
 import { EyeIcon, SquareTerminal } from "lucide-react"
-
 import { infiniteScrollData } from "@/component-preview/animations/infinite-scroll-preview"
 import CodeSnippet from "@/components/code-snippet"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"

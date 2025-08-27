@@ -1,11 +1,9 @@
 "use client"
 
 import React, { useState } from "react"
-
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
 type BadgeSize = "20" | "24" | "28"

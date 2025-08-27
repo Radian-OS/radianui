@@ -1,80 +1,52 @@
-name: CLI Release
+# Adapted from create-t3-app.
+
+name: Release CLI
+
 on:
   push:
     branches:
-      - main
-      - dev
+      - replace-with-branch-name
 
-    paths:
-      - "packages/cli/**"
-
-permissions:
-  contents: read
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/cli
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10.14.0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "pnpm"
-
-      - name: Install Dependencies
-        run: pnpm install
-
-      - name: Run Unit Tests
-        run: pnpm run unit
-
   release:
-    name: Release
+    if: ${{ github.repository_owner == 'Radian-os' }}
+    name: Create a PR for release workflow
     runs-on: ubuntu-latest
-    needs: test
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-      id-token: write
-    defaults:
-      run:
-        working-directory: packages/cli
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout Repo
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
+      - name: Use PNPM
         uses: pnpm/action-setup@v4
         with:
           version: 10.14.0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Use Node.js 18
+        uses: actions/setup-node@v3
         with:
-          node-version: 20
+          version: 10.14.0
+          node-version: 18
           cache: "pnpm"
 
-      - name: Install Dependencies
+      - name: Install NPM Dependencies
         run: pnpm install
 
-      - name: Publish to NPM
+      - name: Build the package
+        run: pnpm cli:build
+
+      - name: Create Version PR or Publish to NPM
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          commit: "chore(release): version packages"
+          title: "chore(release): version packages"
+          version: node .github/changeset-version.js
+          publish: npx changeset publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: pnpm dlx semantic-release
+          NODE_ENV: "production"

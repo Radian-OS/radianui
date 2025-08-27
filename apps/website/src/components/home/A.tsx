@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from "react"
-
 import BarChart from "@public/icons/bar-chart-12.svg"
 import Cube from "@public/icons/cube-01.svg"
 import CubeOutline from "@public/icons/cube-outline.svg"
@@ -15,7 +14,6 @@ import Settings from "@public/icons/settings-02.svg"
 import Share from "@public/icons/share-07.svg"
 import User from "@public/icons/user-circle.svg"
 import Image from "next/image"
-
 import { cn } from "@/lib/utils"
 import { Avatar } from "@/registry/ui/avatar"
 import { Divider } from "@/registry/ui/divider"

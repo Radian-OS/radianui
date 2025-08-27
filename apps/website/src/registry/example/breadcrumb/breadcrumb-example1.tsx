@@ -1,6 +1,5 @@
 import { Component, EyeIcon, Home, SquareTerminal, Upload } from "lucide-react"
 import Link from "next/link"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"

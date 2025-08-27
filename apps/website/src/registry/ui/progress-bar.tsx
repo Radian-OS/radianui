@@ -1,9 +1,6 @@
 import React from "react"
-
 import * as ProgressPrimitive from "@radix-ui/react-progress"
-
 import { cn } from "@/lib/utils"
-
 import { Label } from "./label"
 
 // Defines the props for the ProgressBar component, extending the props of ProgressPrimitive.Root

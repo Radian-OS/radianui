@@ -1,5 +1,4 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { ChangingText } from "@/registry/animated/changing-text"
 import { IconButton } from "@/registry/ui/button"

@@ -1,10 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-
 import { Loader2, MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
-
 import { Button, IconButton } from "@/registry/ui/button"
 
 export function DesktopThemeToggler() {

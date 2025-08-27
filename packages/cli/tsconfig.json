@@ -10,17 +10,10 @@
     "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "strictNullChecks": true,
-    "baseUrl": "./src/",
     "paths": {
-      "@utils/*": [
-        "utils/*"
+      "@/*": [
+        "./src/*"
       ],
-      "@preflights/*": [
-        "preflights/*"
-      ],
-      "@commands/*": [
-        "commands/*"
-      ]
     }
   },
   "lib": [

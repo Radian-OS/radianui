@@ -1,8 +1,6 @@
 import React, { HTMLAttributes } from "react"
-
 import { Box, ExternalLink, Info } from "lucide-react"
 import Link from "next/link"
-
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"

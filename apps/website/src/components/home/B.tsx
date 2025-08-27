@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-
 import Chevron from "@public/icons/chevron-selector-vertical.svg"
 import Cube from "@public/icons/cube-01.svg"
 import CubeOutline from "@public/icons/cube-outline.svg"
@@ -11,7 +10,6 @@ import Search from "@public/icons/search-refraction.svg"
 import Settings from "@public/icons/settings-02.svg"
 import User from "@public/icons/user-circle.svg"
 import Image from "next/image"
-
 import { cn } from "@/lib/utils"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Avatar } from "@/registry/ui/avatar"

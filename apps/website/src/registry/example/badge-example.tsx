@@ -1,9 +1,7 @@
 "use client"
 
 import { useState } from "react"
-
 import { Camera, Heart, Star } from "lucide-react"
-
 import { Badge } from "@/registry/ui/badge"
 
 interface SelectOption {

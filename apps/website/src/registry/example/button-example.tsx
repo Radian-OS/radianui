@@ -1,9 +1,7 @@
 "use client"
 
 import { useState } from "react"
-
 import { ChevronLeft, ChevronRight, CirclePlus, Settings } from "lucide-react"
-
 import { Button, ButtonGroup } from "@/registry/ui/button"
 
 // Types for variant, size, and color options

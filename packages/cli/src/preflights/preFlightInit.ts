@@ -1,10 +1,9 @@
-import fs from 'fs-extra'
-import path from 'path'
-
-import { type InitOptions } from '@commands/init'
-import { txt } from '@utils/colors'
-import { type ProjectInfo, getProjectInfo } from '@utils/getProjectInfo'
-import { spinner } from '@utils/spinner'
+import fs from "fs-extra"
+import path from "path"
+import { type InitOptions } from "@/commands/init"
+import { txt } from "@/utils/colors"
+import { type ProjectInfo, getProjectInfo } from "@/utils/getProjectInfo"
+import { spinner } from "@/utils/spinner"
 
 /**
  * Runs preflight checks before project initialization.
@@ -14,85 +13,80 @@ import { spinner } from '@utils/spinner'
  * - Checks TypeScript import alias configuration.
  */
 export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo: ProjectInfo | null }> => {
-  // Check for empty project. We assume if no package.json exists, the project is empty.
-  if (!fs.existsSync(options.cwd) || !fs.existsSync(path.resolve(options.cwd, 'package.json'))) {
-    return { projectInfo: null }
-  }
+	// Check for empty project. We assume if no package.json exists, the project is empty.
+	if (!fs.existsSync(options.cwd) || !fs.existsSync(path.resolve(options.cwd, "package.json"))) {
+		return { projectInfo: null }
+	}
 
-  const projectInfo = await getProjectInfo(options.cwd)
+	const projectInfo = await getProjectInfo(options.cwd)
 
-  const errors: string[] = []
+	const errors: string[] = []
 
-  const beforeInitCheckSpinner = spinner('Preflight checks', {
-    silent: false,
-  }).start()
+	const beforeInitCheckSpinner = spinner("Preflight checks", {
+		silent: false,
+	}).start()
 
-  if (fs.existsSync(path.resolve(options.cwd, 'components.json'))) {
-    beforeInitCheckSpinner.fail()
-    errors.push(`The ${txt.info('components.json')} file already exists at ${txt.info(options.cwd)}.
-        \nTo start over, remove the ${txt.info('components.json')} file and run ${txt.info('init')} command again`)
-  } else {
-    beforeInitCheckSpinner.succeed('Before init checks completed')
-  }
+	if (fs.existsSync(path.resolve(options.cwd, "components.json"))) {
+		beforeInitCheckSpinner.fail()
+		errors.push(`The ${txt.info("components.json")} file already exists at ${txt.info(options.cwd)}.
+        \nTo start over, remove the ${txt.info("components.json")} file and run ${txt.info("init")} command again`)
+	} else {
+		beforeInitCheckSpinner.succeed("Before init checks completed")
+	}
 
-  const frameworkSpinner = spinner('Detecting framework', {
-    silent: false,
-  }).start()
+	const frameworkSpinner = spinner("Detecting framework", {
+		silent: false,
+	}).start()
 
-  if (!projectInfo || projectInfo?.framework.name === 'manual') {
-    frameworkSpinner?.fail()
-    if (projectInfo?.framework.link.installation) {
-      errors.push(
-        `We could not detect a supported framework at ${txt.info(options.cwd)}.\n` +
-          `Visit ${txt.info(
-            projectInfo?.framework.link.installation
-          )} to manually configure your project.\nOnce configured, you can use the cli to add components.`
-      )
-    }
-  } else {
-    frameworkSpinner?.succeed(`Detecting framework. Detected ${txt.info(projectInfo.framework.label)}.`)
-  }
+	if (!projectInfo || projectInfo?.framework.name === "manual") {
+		frameworkSpinner?.fail()
+		if (projectInfo?.framework.link.installation) {
+			errors.push(
+				`We could not detect a supported framework at ${txt.info(options.cwd)}.\n` +
+					`Visit ${txt.info(projectInfo?.framework.link.installation)} to manually configure your project.\nOnce configured, you can use the cli to add components.`
+			)
+		}
+	} else {
+		frameworkSpinner?.succeed(`Detecting framework. Detected ${txt.info(projectInfo.framework.label)}.`)
+	}
 
-  const tailwindSpinner = spinner('Verifying tailwind configuration', {
-    silent: false,
-  }).start()
+	const tailwindSpinner = spinner("Verifying tailwind configuration", {
+		silent: false,
+	}).start()
 
-  if (!projectInfo.tailwindCssFile) {
-    tailwindSpinner?.fail()
-    if (projectInfo.framework.name === 'vite') {
-      errors.push(
-        `We could not find a Tailwind config at ${txt.info(options.cwd)}.\n` +
-          `Make sure you have a Tailwind installed your project.\n` +
-          `Visit ${txt.info('https://tailwindcss.com/docs/installation')} to get started.`
-      )
-    } else {
-      // For NextJS projects
-      errors.push(
-        `We could not find a Tailwind config at ${txt.info(options.cwd)}.\n` +
-          `Make sure you have a Tailwind installed your project.\n` +
-          `Visit ${txt.info('https://tailwindcss.com/docs/installation/framework-guides/nextjs')} to get started.`
-      )
-    }
-  } else {
-    tailwindSpinner?.succeed(`Verifying tailwind configuration. Found Tailwind configuration.`)
-  }
+	if (!projectInfo.tailwindCssFile) {
+		tailwindSpinner?.fail()
+		if (projectInfo.framework.name === "vite") {
+			errors.push(
+				`We could not find a Tailwind config at ${txt.info(options.cwd)}.\n` +
+					`Make sure you have a Tailwind installed your project.\n` +
+					`Visit ${txt.info("https://tailwindcss.com/docs/installation")} to get started.`
+			)
+		} else {
+			// For NextJS projects
+			errors.push(
+				`We could not find a Tailwind config at ${txt.info(options.cwd)}.\n` +
+					`Make sure you have a Tailwind installed your project.\n` +
+					`Visit ${txt.info("https://tailwindcss.com/docs/installation/framework-guides/nextjs")} to get started.`
+			)
+		}
+	} else {
+		tailwindSpinner?.succeed(`Verifying tailwind configuration. Found Tailwind configuration.`)
+	}
 
-  const tsConfigSpinner = spinner('Validating import alias', {
-    silent: false,
-  }).start()
-  if (!projectInfo.aliasPrefix) {
-    tsConfigSpinner?.fail()
-    errors.push(
-      `No import alias found in your tsconfig.json file.\n` +
-        `Visit ${txt.info('https://radianos.com/docs/installation/vite')} to learn how to set an import alias.`
-    )
-  } else {
-    tsConfigSpinner?.succeed(`Verifying import alias. Found import alias prefix: ${projectInfo.aliasPrefix}`)
-  }
+	const tsConfigSpinner = spinner("Validating import alias", {
+		silent: false,
+	}).start()
+	if (!projectInfo.aliasPrefix) {
+		tsConfigSpinner?.fail()
+		errors.push(`No import alias found in your tsconfig.json file.\n` + `Visit ${txt.info("https://radianos.com/docs/installation/vite")} to learn how to set an import alias.`)
+	} else {
+		tsConfigSpinner?.succeed(`Verifying import alias. Found import alias prefix: ${projectInfo.aliasPrefix}`)
+	}
 
-  if (errors.length > 0) {
-    throw new Error(errors.join('\n\n'))
-  }
+	if (errors.length > 0) {
+		throw new Error(errors.join("\n\n"))
+	}
 
-  return { projectInfo }
+	return { projectInfo }
 }

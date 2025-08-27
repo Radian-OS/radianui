@@ -1,5 +1,4 @@
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { IconButton } from "@/registry/ui/button"

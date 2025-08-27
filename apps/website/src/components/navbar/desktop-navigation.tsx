@@ -1,7 +1,5 @@
 import React from "react"
-
 import Link from "next/link"
-
 import { navLinks } from "@/components/navbar/nav-links"
 import { Button } from "@/registry/ui/button"
 

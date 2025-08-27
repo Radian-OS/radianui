@@ -1,9 +1,7 @@
 "use client"
 
 import { useState } from "react"
-
 import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
-
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
 import { IconButton, LinkButton } from "@/registry/ui/button"
