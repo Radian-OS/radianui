@@ -48,7 +48,7 @@ type LinkButtonProps = {
 }
 
 export const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {
 			variant: {
@@ -58,12 +58,12 @@ export const buttonVariants = cva(
 				ghost: "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 text-xs/4 px-1 rounded-md",
-				"32": "[&>svg]:size-5 text-sm px-1 rounded-lg",
+				"28": "[&>svg]:size-4 text-[13px] px-1 rounded-md",
+				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-6 text-fg px-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-fg px-1 rounded-lg",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
+				"48": "[&>svg]:size-5 text-base px-1 rounded-lg",
 			},
 			loading: {
 				true: "",
@@ -92,27 +92,27 @@ export const buttonVariants = cva(
 		},
 		compoundVariants: [
 			// Size variants
-			{ iconOnly: false, size: "28", className: "gap-2 h-7 px-2" },
-			{ iconOnly: false, size: "32", className: "gap-2 h-8 px-2.5" },
-			{ iconOnly: false, size: "36", className: "gap-2 h-9 px-3" },
-			{ iconOnly: false, size: "40", className: "gap-2 h-10 px-3.5" },
-			{ iconOnly: false, size: "44", className: "gap-2 h-11 px-4" },
-			{ iconOnly: false, size: "48", className: "gap-2 h-12 px-4.5" },
+			{ iconOnly: false, size: "28", className: "gap-0.5 h-7 px-2 py-1.5" },
+			{ iconOnly: false, size: "32", className: "gap-0.5 h-8 px-2 py-1.5" },
+			{ iconOnly: false, size: "36", className: "gap-1 h-9 px-2.5 py-2" },
+			{ iconOnly: false, size: "40", className: "gap-1 h-10 px-3 py-2.5" },
+			{ iconOnly: false, size: "44", className: "gap-1 h-11 px-3 py-2.5" },
+			{ iconOnly: false, size: "48", className: "gap-1 h-12 px-3.5 py-3" },
 
-			{ iconOnly: true, size: "28", className: "px-1.5 h-7 gap-2" },
-			{ iconOnly: true, size: "32", className: "px-1.5 h-8 gap-2" },
-			{ iconOnly: true, size: "36", className: "px-2 h-9 gap-2" },
-			{ iconOnly: true, size: "40", className: "px-2.5 h-10 gap-2" },
-			{ iconOnly: true, size: "44", className: "px-2.5 h-11 gap-2" },
-			{ iconOnly: true, size: "48", className: "px-3 h-12 gap-2" },
+			{ iconOnly: true, size: "28", className: "px-1.5 h-7 gap-1" },
+			{ iconOnly: true, size: "32", className: "px-1.5 h-8 gap-1" },
+			{ iconOnly: true, size: "36", className: "px-2 h-9 gap-1" },
+			{ iconOnly: true, size: "40", className: "px-2.5 h-10 gap-1" },
+			{ iconOnly: true, size: "44", className: "px-2.5 h-11 gap-1" },
+			{ iconOnly: true, size: "48", className: "px-3 h-12 gap-1" },
 
 			// outline variants
-			{ iconOnly: true, size: "28", variant: "outline", className: "px-1.25 h-7 gap-2" },
-			{ iconOnly: true, size: "32", variant: "outline", className: "px-1.25 h-8 gap-2" },
-			{ iconOnly: true, size: "36", variant: "outline", className: "px-1.75 h-9 gap-2" },
-			{ iconOnly: true, size: "40", variant: "outline", className: "px-2.25 h-10 gap-2" },
-			{ iconOnly: true, size: "44", variant: "outline", className: "px-2.25 h-11 gap-2" },
-			{ iconOnly: true, size: "48", variant: "outline", className: "px-2.75 h-12 gap-2" },
+			{ iconOnly: true, size: "28", variant: "outline", className: "px-1.25 h-7 gap-1" },
+			{ iconOnly: true, size: "32", variant: "outline", className: "px-1.25 h-8 gap-1" },
+			{ iconOnly: true, size: "36", variant: "outline", className: "px-1.75 h-9 gap-1" },
+			{ iconOnly: true, size: "40", variant: "outline", className: "px-2.25 h-10 gap-1" },
+			{ iconOnly: true, size: "44", variant: "outline", className: "px-2.25 h-11 gap-1" },
+			{ iconOnly: true, size: "48", variant: "outline", className: "px-2.75 h-12 gap-1" },
 
 			{
 				variant: "strong",
@@ -149,27 +149,27 @@ export const buttonVariants = cva(
 			{
 				variant: "soft",
 				color: "primary",
-				className: "bg-primary-accent font-medium text-primary hover:bg-primary/15 focus-visible:ring-primary-focus focus-visible:outline-none",
+				className: "bg-primary-accent font-medium text-primary hover:bg-primary-focus focus-visible:ring-primary-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "info",
-				className: "bg-info-accent font-medium text-info hover:bg-info/15 focus-visible:ring-info-focus focus-visible:outline-none",
+				className: "bg-info-accent font-medium text-info hover:bg-info-focus focus-visible:ring-info-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "success",
-				className: "bg-success-accent font-medium text-success hover:bg-success/15 focus-visible:ring-success-focus focus-visible:outline-none",
+				className: "bg-success-accent font-medium text-success hover:bg-success-focus focus-visible:ring-success-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "error",
-				className: "bg-error-accent font-medium text-error hover:bg-error/15 focus-visible:ring-error-focus focus-visible:outline-none",
+				className: "bg-error-accent font-medium text-error hover:bg-error-focus focus-visible:ring-error-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "warning",
-				className: "bg-warning-accent font-medium text-warning hover:bg-warning/15 focus-visible:ring-warning-focus focus-visible:outline-none",
+				className: "bg-warning-accent font-medium text-warning hover:bg-warning-focus focus-visible:ring-warning-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
@@ -214,27 +214,27 @@ export const buttonVariants = cva(
 			{
 				variant: "ghost",
 				color: "primary",
-				className: "bg-transparent text-primary font-medium hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-primary-focus",
+				className: "bg-transparent text-primary font-medium hover:bg-primary-focus focus-visible:outline-none focus-visible:ring-primary-focus",
 			},
 			{
 				variant: "ghost",
 				color: "info",
-				className: "bg-transparent text-info font-medium hover:bg-info/10 focus-visible:outline-none focus-visible:ring-info-focus",
+				className: "bg-transparent text-info font-medium hover:bg-info-focus focus-visible:outline-none focus-visible:ring-info-focus",
 			},
 			{
 				variant: "ghost",
 				color: "success",
-				className: "bg-transparent text-success font-medium hover:bg-success/10 focus-visible:outline-none focus-visible:ring-success-focus",
+				className: "bg-transparent text-success font-medium hover:bg-success-focus focus-visible:outline-none focus-visible:ring-success-focus",
 			},
 			{
 				variant: "ghost",
 				color: "error",
-				className: "bg-transparent text-error font-medium hover:bg-error/10 focus-visible:outline-none focus-visible:ring-error-focus",
+				className: "bg-transparent text-error font-medium hover:bg-error-focus focus-visible:outline-none focus-visible:ring-error-focus",
 			},
 			{
 				variant: "ghost",
 				color: "warning",
-				className: "bg-transparent text-warning font-medium hover:bg-warning/10 focus-visible:outline-none focus-visible:ring-warning-focus",
+				className: "bg-transparent text-warning font-medium hover:bg-warning-focus focus-visible:outline-none focus-visible:ring-warning-focus",
 			},
 			{
 				variant: "ghost",
@@ -247,21 +247,8 @@ export const buttonVariants = cva(
 	}
 )
 
-function Button({
-	loading = false,
-	variant = "strong",
-	size = "36",
-	iconOnly = false,
-	color = "primary",
-	className,
-	children,
-	disabled,
-	start,
-	end,
-	asChild = false,
-	...props
-}: ButtonProps) {
-	const combinedClass = cn(buttonVariants({ variant, size, iconOnly, color }), disabled && "opacity-50", className)
+function Button({ loading = false, variant = "strong", size = "36", color = "primary", className, children, disabled, start, end, asChild = false, ...props }: ButtonProps) {
+	const combinedClass = cn(buttonVariants({ variant, size, color }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
@@ -275,7 +262,7 @@ function Button({
 
 		return (
 			<Comp className={combinedClass} disabled={disabled} {...props}>
-				{children}
+				<span className="px-0.5">{children}</span>
 			</Comp>
 		)
 	}
@@ -284,8 +271,8 @@ function Button({
 	return (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 			{start}
-			{loading ? <Spinner size={size ? Number(size) : undefined} /> : null}
-			{children}
+			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
+			<span className="px-0.5">{children}</span>
 			{end}
 		</Comp>
 	)
@@ -371,7 +358,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 
 	return (
 		<Comp className={combinedClass} disabled={disabled} {...props}>
-			{loading ? <Spinner size={16} /> : children}
+			{loading ? <Spinner variant="simple" size={16} /> : children}
 		</Comp>
 	)
 }
@@ -424,4 +411,46 @@ function LinkButton({ size = "14", href, color = "primary", start, end, classNam
 
 LinkButton.displayName = "LinkButton"
 
-export { Button, ButtonGroup, CompactButton, LinkButton }
+function IconButton({
+	loading = false,
+	variant = "strong",
+	size = "36",
+	iconOnly = true,
+	color = "primary",
+	className,
+	children,
+	disabled,
+	asChild = false,
+	...props
+}: ButtonProps) {
+	const combinedClass = cn(buttonVariants({ variant, size, iconOnly, color }), disabled && "opacity-50", className)
+
+	const Comp = asChild ? Slot : "button"
+
+	// When using asChild, we need to pass the styling to the child element
+	// and cannot modify the children structure
+	if (asChild) {
+		// Don't allow loading when using asChild as it would break the single child requirement
+		if (loading) {
+			console.warn("Button: loading prop is not supported when using asChild")
+		}
+
+		return (
+			<Comp className={combinedClass} disabled={disabled} {...props}>
+				<span className="px-0.5">{children}</span>
+			</Comp>
+		)
+	}
+
+	// Normal button behavior
+	return (
+		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
+			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
+			<span className="px-0.5">{children}</span>
+		</Comp>
+	)
+}
+
+IconButton.displayName = "IconButton"
+
+export { Button, ButtonGroup, CompactButton, LinkButton, IconButton }

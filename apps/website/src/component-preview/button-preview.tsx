@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { Box, CirclePlus, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
@@ -11,36 +11,42 @@ const ButtonPreview = () => {
 	type variants = "strong" | "soft" | "outline" | "ghost"
 	// Updated sizes type to include "28"
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
-	type iconOnlyType = "true" | "false"
 	type isloadingType = "true" | "false"
 	type disabledType = "true" | "false"
-	type startendType = "true" | "false"
 	// Colors type; neutral is removed.
 	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
+	type iconType = "star" | "info" | "alert" | "check"
 
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("36")
-	const [iconOnly, setIsIcon] = useState<iconOnlyType>("false")
 	const [loading, setLoading] = useState<isloadingType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
 	const [color, setColor] = useState<colors>("primary")
-	const [start, setstart] = useState<startendType>("false")
-	const [end, setend] = useState<startendType>("false")
+	const [start, setstart] = useState<iconType>("check")
+	const [end, setend] = useState<iconType>("check")
 
 	const getstartTrialClass = () => {
-		if ((start === "true" || end === "true") && (size === "36" || size === "32" || size === "40")) {
+		if (size === "36" || size === "32" || size === "40") {
 			return "size-5"
 		}
-		if ((start === "true" || end === "true") && size === "28") {
+		if (size === "28") {
 			return "size-4"
 		}
-		if ((start === "true" || end === "true") && (size === "44" || size === "48")) {
+		if (size === "44" || size === "48") {
 			return "size-6"
 		}
 		return ""
 	}
 
 	const iconClass = getstartTrialClass()
+	const icons = {
+		star: <Star />,
+		info: <Info />,
+		check: <CircleCheck />,
+		alert: <TriangleAlert />,
+	}
+	const startSelectedIcon = icons[start as keyof typeof icons]
+	const endSelectedIcon = icons[end as keyof typeof icons]
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -126,10 +132,12 @@ const ButtonPreview = () => {
 									minSelectionCount={1}
 									selectedValues={[start]}
 									onSelectedChange={(keys) => {
-										setstart(Array.from(keys)[0] as startendType)
+										setstart(Array.from(keys)[0] as iconType)
 									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
+									<DropdownItem value="star">Star</DropdownItem>
+									<DropdownItem value="info">Info</DropdownItem>
+									<DropdownItem value="alert">Alert</DropdownItem>
+									<DropdownItem value="check">Check</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -142,26 +150,12 @@ const ButtonPreview = () => {
 									minSelectionCount={1}
 									selectedValues={[end]}
 									onSelectedChange={(keys) => {
-										setend(Array.from(keys)[0] as startendType)
+										setend(Array.from(keys)[0] as iconType)
 									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Icon Only</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[iconOnly]}
-									onSelectedChange={(keys) => {
-										setIsIcon(Array.from(keys)[0] as iconOnlyType)
-									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
+									<DropdownItem value="star">Star</DropdownItem>
+									<DropdownItem value="info">Info</DropdownItem>
+									<DropdownItem value="alert">Alert</DropdownItem>
+									<DropdownItem value="check">Check</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -202,16 +196,8 @@ const ButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
-					<Button
-						start={start === "true" ? <Box className={iconClass} /> : undefined}
-						end={end === "true" ? <Box className={iconClass} /> : undefined}
-						iconOnly={iconOnly === "true"}
-						variant={variant}
-						size={size}
-						loading={loading === "true"}
-						color={color}
-						disabled={disabled === "true"}>
-						{iconOnly === "true" ? <CirclePlus /> : "Button"}
+					<Button start={startSelectedIcon} end={endSelectedIcon} variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
+						Button
 					</Button>
 
 					{/* <Button color="neutral" variant="outline" iconOnly >
@@ -233,9 +219,8 @@ const ButtonPreview = () => {
   loading={${loading === "true"}}
   variant="${variant}" 
   color="${color}"
-  iconOnly={${iconOnly === "true"}}
-  disabled={${disabled === "true"}}${start === "true" ? `\n  start={<Box className="${iconClass}" />}` : ""}${end === "true" ? `\n  end={<Box className="${iconClass}" />}` : ""}>
-  ${iconOnly === "true" ? `<CirclePlus />` : "Button"}
+  disabled={${disabled === "true"}}${start === "alert" ? `\n  start={<Box className="${iconClass}" />}` : ""}${end === "alert" ? `\n  end={<Box className="${iconClass}" />}` : ""}>
+  Button
 </Button>`}
 				/>
 			</TabsContent>
