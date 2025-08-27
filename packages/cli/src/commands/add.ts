@@ -1,9 +1,3 @@
-import { Command } from "commander"
-import fs from "fs-extra"
-import path from "path"
-import prompts from "prompts"
-import { z } from "zod"
-
 import { InitOptions } from "@commands/init"
 import { preflightAdd } from "@preflights/preFlightAdd"
 import { txt } from "@utils/colors"
@@ -19,6 +13,11 @@ import { promptForComponents, promptForNewProject } from "@utils/prompts"
 import { BlockAsset, RegistryComponentFile, type RegistryComponents, getAssets, getRegistryComponents, resolveComponents } from "@utils/registry"
 import { spinner } from "@utils/spinner"
 import { transform } from "@utils/transformers/transform"
+import { Command } from "commander"
+import fs from "fs-extra"
+import path from "path"
+import prompts from "prompts"
+import { z } from "zod"
 
 const addOptionsSchema = z.object({
 	components: z.array(z.string()).optional(),
