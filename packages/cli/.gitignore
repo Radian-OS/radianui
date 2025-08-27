@@ -2,6 +2,7 @@
 node_modules
 *-lock.*
 dist
+.turbo
 
 # But keep lockfiles in test fixtures for CI
 !packages/cli/test/fixtures/**/pnpm-lock.yaml
