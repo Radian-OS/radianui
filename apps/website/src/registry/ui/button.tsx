@@ -8,6 +8,7 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 import { Spinner } from "./spinner"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 
 type ButtonProps = VariantProps<typeof buttonVariants> &
 	React.ComponentProps<"button"> & {
@@ -19,6 +20,8 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 		end?: React.ReactNode
 		loading?: boolean
 		asChild?: boolean
+		tooltip?: string
+		innerSpanClassName?: string
 	}
 
 type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -239,7 +242,20 @@ export const buttonVariants = cva(
 	}
 )
 
-function Button({ loading = false, variant = "strong", size = "36", color = "primary", className, children, disabled, start, end, asChild = false, ...props }: ButtonProps) {
+function Button({
+	loading = false,
+	variant = "strong",
+	size = "36",
+	color = "primary",
+	innerSpanClassName,
+	className,
+	children,
+	disabled,
+	start,
+	end,
+	asChild = false,
+	...props
+}: ButtonProps) {
 	const combinedClass = cn(buttonVariants({ variant, size, color }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
@@ -264,7 +280,7 @@ function Button({ loading = false, variant = "strong", size = "36", color = "pri
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 			{start}
 			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
-			<span className="px-0.5">{children}</span>
+			<span className={cn(innerSpanClassName, "px-0.5")}>{children}</span>
 			{end}
 		</Comp>
 	)
@@ -413,6 +429,7 @@ function IconButton({
 	children,
 	disabled,
 	asChild = false,
+	tooltip = "",
 	...props
 }: ButtonProps) {
 	const combinedClass = cn(buttonVariants({ variant, size, iconOnly, color }), disabled && "opacity-50", className)
@@ -427,7 +444,16 @@ function IconButton({
 			console.warn("Button: loading prop is not supported when using asChild")
 		}
 
-		return (
+		return tooltip ? (
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Comp className={combinedClass} disabled={disabled} {...props}>
+						{children}
+					</Comp>
+				</TooltipTrigger>
+				<TooltipContent>{tooltip}</TooltipContent>
+			</Tooltip>
+		) : (
 			<Comp className={combinedClass} disabled={disabled} {...props}>
 				{children}
 			</Comp>
@@ -435,7 +461,16 @@ function IconButton({
 	}
 
 	// Normal button behavior
-	return (
+	return tooltip ? (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
+					{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : children}
+				</Comp>
+			</TooltipTrigger>
+			<TooltipContent>{tooltip}</TooltipContent>
+		</Tooltip>
+	) : (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : children}
 		</Comp>

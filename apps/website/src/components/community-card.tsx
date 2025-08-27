@@ -1,7 +1,7 @@
 import * as React from "react"
 import { SVGProps } from "react"
 
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 
 const Logo = (props: SVGProps<SVGSVGElement>) => (
 	<svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} viewBox="0 0 32 32" fill="none" {...props}>
@@ -156,17 +156,19 @@ export default function CommunityCard() {
 				</div>
 
 				<div className="flex gap-2">
-					<Button disabled={false} size={"36"} variant={"strong"} color={"neutral"}>
-						<GithubIcon />
-						Github
+					<Button asChild disabled={false} size={"36"} variant={"strong"} color={"neutral"}>
+						<div>
+							<GithubIcon />
+							Github
+						</div>
 					</Button>
 
-					<Button variant={"outline"} color={"neutral"} iconOnly>
+					<IconButton variant={"outline"} color={"neutral"}>
 						<DiscordIcon />
-					</Button>
-					<Button variant={"outline"} color={"neutral"} iconOnly>
+					</IconButton>
+					<IconButton variant={"outline"} color={"neutral"}>
 						<XIcon />
-					</Button>
+					</IconButton>
 				</div>
 			</div>
 		</div>

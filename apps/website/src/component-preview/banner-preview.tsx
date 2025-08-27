@@ -6,7 +6,7 @@ import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAle
 
 import CodeSnippet from "@/components/code-snippet"
 import { Banner } from "@/registry/ui/banner"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { IconButton, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -79,9 +79,9 @@ const BannerPreview = () => {
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
+						<IconButton variant="outline" color="neutral" size="36">
 							<Settings />
-						</Button>
+						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>

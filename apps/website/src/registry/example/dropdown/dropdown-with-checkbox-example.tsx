@@ -1,7 +1,7 @@
 import { EyeIcon, SquareTerminal } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -25,9 +25,9 @@ const DropdownWithCheckboxExample = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button variant="outline" color="neutral">
+							<IconButton variant="outline" color="neutral">
 								Open
-							</Button>
+							</IconButton>
 						</DropdownTrigger>
 						<DropdownContent align="center" className="w-80 space-y-0.5">
 							<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>

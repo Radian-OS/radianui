@@ -6,7 +6,7 @@ import { Search } from "lucide-react"
 
 import { navigationItems } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 
@@ -97,9 +97,9 @@ export function SearchDocs() {
 			{/* Mobile Search */}
 			<Drawer direction="bottom" type="rounded" handle={true} modal={true} preventScrollRestoration={true}>
 				<DrawerTrigger asChild>
-					<Button iconOnly variant="outline" color="neutral" className="md:hidden">
+					<IconButton variant="outline" color="neutral" className="md:hidden">
 						<Search />
-					</Button>
+					</IconButton>
 				</DrawerTrigger>
 				<DrawerContent ref={drawerRef} className="bg-fill3 h-[90dvh] p-3">
 					<DrawerHeader>
@@ -118,14 +118,14 @@ export function SearchDocs() {
 						className="not-md:hidden gap-1"
 						variant={"outline"}
 						color={"neutral"}
-						iconOnly
+						innerSpanClassName="text-fg-tertiary w-43 flex-1 px-1 text-start"
 						start={<Search className="text-fg-tertiary" />}
 						end={
 							<Badge className="text-fg-secondary" size="20" variant="outline" color="neutral">
 								⌘K
 							</Badge>
 						}>
-						<span className="text-fg-tertiary w-43 flex-1 px-1 text-start">Search</span>
+						Search
 					</Button>
 				</ModalTrigger>
 				<ModalContent className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">

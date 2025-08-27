@@ -3,7 +3,7 @@ import { useState } from "react"
 import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -15,15 +15,15 @@ const ButtonPreview = () => {
 	type disabledType = "true" | "false"
 	// Colors type; neutral is removed.
 	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
-	type iconType = "star" | "info" | "alert" | "check"
+	type iconType = "star" | "info" | "alert" | "check" | "none"
 
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("36")
 	const [loading, setLoading] = useState<isloadingType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
 	const [color, setColor] = useState<colors>("primary")
-	const [start, setstart] = useState<iconType>("check")
-	const [end, setend] = useState<iconType>("check")
+	const [start, setstart] = useState<iconType>("none")
+	const [end, setend] = useState<iconType>("none")
 
 	const getstartTrialClass = () => {
 		if (size === "36" || size === "32" || size === "40") {
@@ -44,6 +44,7 @@ const ButtonPreview = () => {
 		info: <Info />,
 		check: <CircleCheck />,
 		alert: <TriangleAlert />,
+		none: "",
 	}
 	const startSelectedIcon = icons[start as keyof typeof icons]
 	const endSelectedIcon = icons[end as keyof typeof icons]
@@ -61,9 +62,9 @@ const ButtonPreview = () => {
 				</TabsList>
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<Button variant="outline" color="neutral" size="36" iconOnly>
+						<IconButton variant="outline" color="neutral" size="36">
 							<Settings />
-						</Button>
+						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
@@ -134,6 +135,7 @@ const ButtonPreview = () => {
 									onSelectedChange={(keys) => {
 										setstart(Array.from(keys)[0] as iconType)
 									}}>
+									<DropdownItem value="none">None</DropdownItem>
 									<DropdownItem value="star">Star</DropdownItem>
 									<DropdownItem value="info">Info</DropdownItem>
 									<DropdownItem value="alert">Alert</DropdownItem>
@@ -152,6 +154,7 @@ const ButtonPreview = () => {
 									onSelectedChange={(keys) => {
 										setend(Array.from(keys)[0] as iconType)
 									}}>
+									<DropdownItem value="none">None</DropdownItem>
 									<DropdownItem value="star">Star</DropdownItem>
 									<DropdownItem value="info">Info</DropdownItem>
 									<DropdownItem value="alert">Alert</DropdownItem>

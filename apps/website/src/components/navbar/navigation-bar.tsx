@@ -7,7 +7,7 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons"
 import { MobileNavigation } from "@/components/navbar/mobile-tablet-navigation"
 import { SearchDocs } from "@/components/navbar/search"
 import { DesktopThemeToggler } from "@/components/theme-toggler"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 
 import { DesktopNavigation } from "./desktop-navigation"
 import EarlyAccessButton from "./early-access-button"
@@ -42,9 +42,9 @@ export function NavigationBar() {
 						<DesktopThemeToggler />
 
 						{/* Mobile Navigation */}
-						<Button iconOnly color="neutral" variant="soft" className="xl:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+						<IconButton color="neutral" variant="soft" className="xl:hidden" onClick={() => setIsMobileMenuOpen(true)}>
 							<HamburgerMenuIcon className="size-6" />
-						</Button>
+						</IconButton>
 					</div>
 				</div>
 			</nav>
