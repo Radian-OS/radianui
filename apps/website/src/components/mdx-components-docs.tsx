@@ -349,7 +349,7 @@ const components: MDXComponents = {
 			className={cn(
 				"mb-3 mt-6 scroll-m-20 text-lg font-medium first:mt-0 last:mb-0",
 				"relative [counter-increment:step]",
-				"before:absolute before:-left-12 before:top-0 before:flex before:size-7 before:items-center before:justify-center",
+				"before:absolute before:-left-10 before:top-0 before:flex before:size-7 before:items-center before:justify-center",
 				"before:border-soft-alpha before:bg-elevation-level1 before:text-fg before:rounded-lg before:border before:text-sm before:font-medium",
 				"before:content-[counter(step)]",
 				className
@@ -357,7 +357,7 @@ const components: MDXComponents = {
 			{...props}
 		/>
 	),
-	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-8")} {...props} />,
+	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-6")} {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,
