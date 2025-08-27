@@ -7,6 +7,7 @@ import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Link from "next/link"
 
+import IconButtonPreview from "@/component-preview/Icon-button-preview"
 import AccordionPreview from "@/component-preview/accordion-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
@@ -237,6 +238,7 @@ const components: MDXComponents = {
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
 	BreadcrumbExample2: () => <BreadcrumbExample2 />,
 	BreadcrumbExample3: () => <BreadcrumbExample3 />,
+	IconButtonPreview: () => <IconButtonPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

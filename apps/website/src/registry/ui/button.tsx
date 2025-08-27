@@ -100,19 +100,11 @@ export const buttonVariants = cva(
 			{ iconOnly: false, size: "48", className: "gap-1 h-12 px-3.5 py-3" },
 
 			{ iconOnly: true, size: "28", className: "px-1.5 h-7 gap-1" },
-			{ iconOnly: true, size: "32", className: "px-1.5 h-8 gap-1" },
+			{ iconOnly: true, size: "32", className: "px-1.75 h-8 gap-1" },
 			{ iconOnly: true, size: "36", className: "px-2 h-9 gap-1" },
 			{ iconOnly: true, size: "40", className: "px-2.5 h-10 gap-1" },
-			{ iconOnly: true, size: "44", className: "px-2.5 h-11 gap-1" },
-			{ iconOnly: true, size: "48", className: "px-3 h-12 gap-1" },
-
-			// outline variants
-			{ iconOnly: true, size: "28", variant: "outline", className: "px-1.25 h-7 gap-1" },
-			{ iconOnly: true, size: "32", variant: "outline", className: "px-1.25 h-8 gap-1" },
-			{ iconOnly: true, size: "36", variant: "outline", className: "px-1.75 h-9 gap-1" },
-			{ iconOnly: true, size: "40", variant: "outline", className: "px-2.25 h-10 gap-1" },
-			{ iconOnly: true, size: "44", variant: "outline", className: "px-2.25 h-11 gap-1" },
-			{ iconOnly: true, size: "48", variant: "outline", className: "px-2.75 h-12 gap-1" },
+			{ iconOnly: true, size: "44", className: "px-3 h-11 gap-1" },
+			{ iconOnly: true, size: "48", className: "px-3.5 h-12 gap-1" },
 
 			{
 				variant: "strong",
@@ -262,7 +254,7 @@ function Button({ loading = false, variant = "strong", size = "36", color = "pri
 
 		return (
 			<Comp className={combinedClass} disabled={disabled} {...props}>
-				<span className="px-0.5">{children}</span>
+				{children}
 			</Comp>
 		)
 	}
@@ -437,7 +429,7 @@ function IconButton({
 
 		return (
 			<Comp className={combinedClass} disabled={disabled} {...props}>
-				<span className="px-0.5">{children}</span>
+				{children}
 			</Comp>
 		)
 	}
@@ -445,8 +437,7 @@ function IconButton({
 	// Normal button behavior
 	return (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
-			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
-			<span className="px-0.5">{children}</span>
+			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : children}
 		</Comp>
 	)
 }
