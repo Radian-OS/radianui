@@ -11,8 +11,6 @@ const AlertPreview = () => {
 
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"default" | "soft-outline" | "outline">("default")
-	const [closable, setClosable] = useState<booleanType>("false")
-	const [key, setKey] = useState(0)
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "button" | "link">("button")
 	const [title, setTitle] = useState<booleanType>("true")
@@ -83,9 +81,6 @@ const AlertPreview = () => {
 
 		code += `
   end={<Button color='${btnColor}'>Action</Button>}`
-
-		code += `
-  closable={${closable}}`
 
 		code += `
 />`
@@ -196,22 +191,6 @@ const AlertPreview = () => {
 									</DropdownGroup>
 								</DropdownSubContent>
 							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Closable</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setClosable(Array.from(keys)[0] as "true" | "false")
-											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[closable]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
 						</DropdownGroup>
 					</DropdownContent>
 				</Dropdown>
@@ -219,12 +198,10 @@ const AlertPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Alert
-						key={key}
 						title={title === "true" ? `${alertContent.title}` : ""}
 						description={description === "true" ? `${alertContent.message}` : ""}
 						color={color}
 						variant={variant}
-						closable={closable === "true" ? true : false}
 						start={selectedIcon}
 						end={
 							end === "button" ? (

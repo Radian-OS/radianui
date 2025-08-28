@@ -24,9 +24,6 @@ const AlertExamplePreview = () => {
   end={<Button color="primary">Action</Button>}`
 
 		code += `
-  closable={false}`
-
-		code += `
 />`
 
 		return code
@@ -76,7 +73,6 @@ const AlertExamplePreview = () => {
 						description="This is a standard notification message"
 						color="primary"
 						variant="default"
-						closable={false}
 						start={
 							<div className={`flex h-full flex-col ${position === "top" ? "justify-start" : position === "bottom" ? "justify-end" : "justify-center"}`}>
 								<Star size={16} />

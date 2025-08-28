@@ -10,11 +10,13 @@ const CompactButtonPreview = () => {
 	const [size, setSize] = useState<sizes>("20")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
 	const [variant, setVariant] = useState<"outline" | "ghost" | "white">("outline")
+	const [loading, setLoading] = useState<"true" | "false">("false")
 
 	const code = (() => {
 		if (variant === "outline") {
 			return `<CompactButton
 size="${size}"
+loading={${loading === "true"}}
 disabled={${disabled === "true"}}
 color="neutral"
 variant="outline"
@@ -27,6 +29,7 @@ className="focus-visible:ring-offset-4 focus-visible:ring-2"
 		if (variant === "ghost") {
 			return `<CompactButton
 size="${size}"
+loading={${loading === "true"}}
 disabled={${disabled === "true"}}
 variant="ghost"
 color="neutral"
@@ -38,6 +41,7 @@ color="neutral"
 		if (variant === "white") {
 			return `<CompactButton
 size="${size}"
+loading={${loading === "true"}}
 disabled={${disabled === "true"}}
 variant="ghost"
 color="neutral"
@@ -84,6 +88,22 @@ color="neutral"
 						</DropdownSub>
 
 						<DropdownSub>
+							<DropdownSubTrigger>Loading</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownGroup
+									selectionMode="single"
+									onSelectedChange={(keys) => {
+										setLoading(Array.from(keys)[0] as "true" | "false")
+									}}
+									minSelectionCount={1}
+									selectedValues={[loading]}>
+									<DropdownItem value="true">True</DropdownItem>
+									<DropdownItem value="false">False</DropdownItem>
+								</DropdownGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
@@ -121,17 +141,23 @@ color="neutral"
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-2 overflow-auto rounded-xl border">
 					{variant === "white" && (
-						<CompactButton size={size} disabled={disabled === "true"} variant="ghost" color="neutral">
+						<CompactButton loading={loading === "true"} size={size} disabled={disabled === "true"} variant="ghost" color="neutral">
 							<X className="stroke-white" />
 						</CompactButton>
 					)}
 					{variant === "ghost" && (
-						<CompactButton size={size} disabled={disabled === "true"} variant="ghost" color="neutral">
+						<CompactButton loading={loading === "true"} size={size} disabled={disabled === "true"} variant="ghost" color="neutral">
 							<X />
 						</CompactButton>
 					)}
 					{variant === "outline" && (
-						<CompactButton size={size} disabled={disabled === "true"} color="neutral" variant="outline" className="focus-visible:ring-2 focus-visible:ring-offset-4">
+						<CompactButton
+							loading={loading === "true"}
+							size={size}
+							disabled={disabled === "true"}
+							color="neutral"
+							variant="outline"
+							className="focus-visible:ring-2 focus-visible:ring-offset-4">
 							<X />
 						</CompactButton>
 					)}
