@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SvgButtonPreview = () => {
@@ -412,48 +412,42 @@ const SvgButtonPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setDisabled(Array.from(keys)[0] as "true" | "false")
-									}}
-									minSelectionCount={1}
-									selectedValues={[disabled]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Social</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setSocial(Array.from(keys)[0] as "appstore" | "playstore")
-									}}
-									minSelectionCount={1}
-									selectedValues={[social]}>
-									<DropdownItem value="appstore">Appstore</DropdownItem>
-									<DropdownItem value="playstore">Playstore</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={social} onValueChange={(value) => setSocial(value as "appstore" | "playstore")}>
+									<DropdownRadioItem value="appstore" onSelect={(e) => e.preventDefault()}>
+										Appstore
+									</DropdownRadioItem>
+									<DropdownRadioItem value="playstore" onSelect={(e) => e.preventDefault()}>
+										Playstore
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setVariant(Array.from(keys)[0] as "outline" | "strong")
-									}}
-									minSelectionCount={1}
-									selectedValues={[variant]}>
-									<DropdownItem value="outline">Outline</DropdownItem>
-									<DropdownItem value="strong">Strong</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "outline" | "strong")}>
+									<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
+										Outline
+									</DropdownRadioItem>
+									<DropdownRadioItem value="strong" onSelect={(e) => e.preventDefault()}>
+										Strong
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

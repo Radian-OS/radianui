@@ -2,7 +2,17 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import Pagination from "@/registry/ui/pagination"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -38,66 +48,74 @@ const PaginationPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Nav button</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setControl(Array.from(keys)[0] as typeof control)}
-										minSelectionCount={1}
-										selectedValues={[control]}>
-										<DropdownItem value="icon">Icon</DropdownItem>
-										<DropdownItem value="text">Text</DropdownItem>
-										<DropdownItem value="both">Icon and Text</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={control} onValueChange={(value) => setControl(value as typeof control)}>
+										<DropdownRadioItem value="icon" onSelect={(e) => e.preventDefault()}>
+											Icon
+										</DropdownRadioItem>
+										<DropdownRadioItem value="text" onSelect={(e) => e.preventDefault()}>
+											Text
+										</DropdownRadioItem>
+										<DropdownRadioItem value="both" onSelect={(e) => e.preventDefault()}>
+											Icon and Text
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>RowPerPage</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setRowsPerPageD(Array.from(keys)[0] as typeof rowPerPageD)
+									<DropdownRadioGroup
+										value={rowPerPageD}
+										onValueChange={(value) => {
+											setRowsPerPageD(value as typeof rowPerPageD)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[rowPerPageD]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Goto page</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setGoTo(Array.from(keys)[0] as typeof goTo)
+									<DropdownRadioGroup
+										value={goTo}
+										onValueChange={(value) => {
+											setGoTo(value as typeof goTo)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[goTo]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Total Page</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setCustomRow(Array.from(keys)[0] as typeof customRow)
+									<DropdownRadioGroup
+										value={customRow}
+										onValueChange={(value) => {
+											setCustomRow(value as typeof customRow)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[customRow]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 						</DropdownGroup>

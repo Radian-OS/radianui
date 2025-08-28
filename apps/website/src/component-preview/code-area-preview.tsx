@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CodeAreaPreview = () => {
@@ -73,72 +73,80 @@ free -h`,
 						<DropdownSub>
 							<DropdownSubTrigger>Theme</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setTheme(Array.from(keys)[0] as themetype)
-									}}
-									minSelectionCount={1}
-									selectedValues={[theme]}>
-									<DropdownItem value="one-dark-pro">one-dark-pro</DropdownItem>
-									<DropdownItem value="night-owl">night-owl</DropdownItem>
-									<DropdownItem value="github-dark-default">github-dark-default</DropdownItem>
-									<DropdownItem value="material-theme">material-theme</DropdownItem>
-									<DropdownItem value="github-light">github-light</DropdownItem>
-									<DropdownItem value="dracula">dracula</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={theme} onValueChange={(value) => setTheme(value as themetype)}>
+									<DropdownRadioItem value="one-dark-pro" onSelect={(e) => e.preventDefault()}>
+										one-dark-pro
+									</DropdownRadioItem>
+									<DropdownRadioItem value="night-owl" onSelect={(e) => e.preventDefault()}>
+										night-owl
+									</DropdownRadioItem>
+									<DropdownRadioItem value="github-dark-default" onSelect={(e) => e.preventDefault()}>
+										github-dark-default
+									</DropdownRadioItem>
+									<DropdownRadioItem value="material-theme" onSelect={(e) => e.preventDefault()}>
+										material-theme
+									</DropdownRadioItem>
+									<DropdownRadioItem value="github-light" onSelect={(e) => e.preventDefault()}>
+										github-light
+									</DropdownRadioItem>
+									<DropdownRadioItem value="dracula" onSelect={(e) => e.preventDefault()}>
+										dracula
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Language</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[language]}
-									onSelectedChange={(keys) => {
-										setLanguage(Array.from(keys)[0] as languageType)
-									}}>
-									<DropdownItem value="tsx">tsx</DropdownItem>
-									<DropdownItem value="javascript">javascript</DropdownItem>
-									<DropdownItem value="python">python</DropdownItem>
-									<DropdownItem value="html">html</DropdownItem>
-									<DropdownItem value="bash">bash</DropdownItem>
-									<DropdownItem value="shell">shell</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={language} onValueChange={(value) => setLanguage(value as languageType)}>
+									<DropdownRadioItem value="tsx" onSelect={(e) => e.preventDefault()}>
+										tsx
+									</DropdownRadioItem>
+									<DropdownRadioItem value="javascript" onSelect={(e) => e.preventDefault()}>
+										javascript
+									</DropdownRadioItem>
+									<DropdownRadioItem value="python" onSelect={(e) => e.preventDefault()}>
+										python
+									</DropdownRadioItem>
+									<DropdownRadioItem value="html" onSelect={(e) => e.preventDefault()}>
+										html
+									</DropdownRadioItem>
+									<DropdownRadioItem value="bash" onSelect={(e) => e.preventDefault()}>
+										bash
+									</DropdownRadioItem>
+									<DropdownRadioItem value="shell" onSelect={(e) => e.preventDefault()}>
+										shell
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Copiable</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[copiable]}
-									onSelectedChange={(keys) => {
-										setCopiable(Array.from(keys)[0] as copyType)
-									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={copiable} onValueChange={(value) => setCopiable(value as copyType)}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Show line numbers</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[showLineNumbers]}
-									onSelectedChange={(keys) => {
-										setShowLineNumbers(Array.from(keys)[0] as showLineNumbersType)
-									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={showLineNumbers} onValueChange={(value) => setShowLineNumbers(value as showLineNumbersType)}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

@@ -7,6 +7,8 @@ import {
 	DropdownDivider,
 	DropdownGroup,
 	DropdownItem,
+	DropdownRadioGroup,
+	DropdownRadioItem,
 	DropdownSub,
 	DropdownSubContent,
 	DropdownSubTrigger,
@@ -32,12 +34,18 @@ const DropdownExample = () => {
 						<DropdownItem>Last month </DropdownItem>
 						<DropdownSub>
 							<DropdownSubTrigger>Show submenu</DropdownSubTrigger>
-							<DropdownSubContent className="max-w-[8rem]">
-								<DropdownGroup selectionMode="single" selectedValues={selectedValues} onSelectedChange={setselectedValues} minSelectionCount={2}>
-									<DropdownItem value="bookmarks">Show Bookmarks show bookmarks</DropdownItem>
-									<DropdownItem value="urls">Show Urls</DropdownItem>
-									<DropdownItem value="icons">Show Icons</DropdownItem>
-								</DropdownGroup>
+							<DropdownSubContent className="min-w-[10rem]">
+								<DropdownRadioGroup value={selectedValues[0] || ""} onValueChange={(value) => setselectedValues([value])}>
+									<DropdownRadioItem value="bookmarks" onSelect={(e) => e.preventDefault()}>
+										Show Bookmarks show bookmarks
+									</DropdownRadioItem>
+									<DropdownRadioItem value="urls" onSelect={(e) => e.preventDefault()}>
+										Show Urls
+									</DropdownRadioItem>
+									<DropdownRadioItem value="icons" onSelect={(e) => e.preventDefault()}>
+										Show Icons
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownItem>All time</DropdownItem>
@@ -51,11 +59,15 @@ const DropdownExample = () => {
 					<DropdownItem>Test</DropdownItem>
 					<DropdownSub>
 						<DropdownSubTrigger>Location</DropdownSubTrigger>
-						<DropdownSubContent>
-							<DropdownGroup selectionMode="single" selectedValues={selectedValues2} onSelectedChange={setselectedValues2} minSelectionCount={1}>
-								<DropdownItem value="loc1">Location1</DropdownItem>
-								<DropdownItem value="loc2">Location2</DropdownItem>
-							</DropdownGroup>
+						<DropdownSubContent className="min-w-32">
+							<DropdownRadioGroup value={selectedValues2[0] || ""} onValueChange={(value) => setselectedValues2([value])}>
+								<DropdownRadioItem value="loc1" onSelect={(e) => e.preventDefault()}>
+									Location1
+								</DropdownRadioItem>
+								<DropdownRadioItem value="loc2" onSelect={(e) => e.preventDefault()}>
+									Location2
+								</DropdownRadioItem>
+							</DropdownRadioGroup>
 						</DropdownSubContent>
 					</DropdownSub>
 				</DropdownContent>

@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
 import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DrawerPreview = () => {
@@ -54,53 +54,70 @@ const DrawerPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as "float" | "default" | "rounded" | undefined)}
-									selectedValues={variant ? [variant] : []}>
-									<DropdownItem value="float">float</DropdownItem>
-									<DropdownItem value="default">default</DropdownItem>
-									<DropdownItem value="rounded">rounded</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={variant ?? ""} onValueChange={(value) => setVariant((value || undefined) as "float" | "default" | "rounded" | undefined)}>
+									<DropdownRadioItem value="float" onSelect={(e) => e.preventDefault()}>
+										float
+									</DropdownRadioItem>
+									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
+										default
+									</DropdownRadioItem>
+									<DropdownRadioItem value="rounded" onSelect={(e) => e.preventDefault()}>
+										rounded
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Position</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as "right" | "bottom" | "left" | "top" | undefined)}
-									selectedValues={position ? [position] : []}>
-									<DropdownItem value="right">right</DropdownItem>
-									<DropdownItem value="bottom">bottom</DropdownItem>
-									<DropdownItem value="left">left</DropdownItem>
-									<DropdownItem value="top">top</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={position ?? ""} onValueChange={(value) => setPosition((value || undefined) as "right" | "bottom" | "left" | "top" | undefined)}>
+									<DropdownRadioItem value="right" onSelect={(e) => e.preventDefault()}>
+										right
+									</DropdownRadioItem>
+									<DropdownRadioItem value="bottom" onSelect={(e) => e.preventDefault()}>
+										bottom
+									</DropdownRadioItem>
+									<DropdownRadioItem value="left" onSelect={(e) => e.preventDefault()}>
+										left
+									</DropdownRadioItem>
+									<DropdownRadioItem value="top" onSelect={(e) => e.preventDefault()}>
+										top
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Handle</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setHandle(Array.from(keys)[0] as "true" | "false")} selectedValues={handle ? [handle] : []}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={handle ?? "false"} onValueChange={(value) => setHandle(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setBackdrop(Array.from(keys)[0] as "blur" | "overlay" | null | undefined)}
-									selectedValues={backdrop ? [backdrop] : []}>
-									<DropdownItem value="blur">blur</DropdownItem>
-									<DropdownItem value="overlay">overlay</DropdownItem>
-									<DropdownItem value="none">none</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup
+									value={(backdrop ?? "none") as string}
+									onValueChange={(value) => setBackdrop(value === "none" ? undefined : (value as "blur" | "overlay" | null))}>
+									<DropdownRadioItem value="blur" onSelect={(e) => e.preventDefault()}>
+										blur
+									</DropdownRadioItem>
+									<DropdownRadioItem value="overlay" onSelect={(e) => e.preventDefault()}>
+										overlay
+									</DropdownRadioItem>
+									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
+										none
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

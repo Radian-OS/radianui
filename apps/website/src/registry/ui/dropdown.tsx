@@ -2,7 +2,7 @@
 
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { type DropdownMenuContentProps, type DropdownMenuGroupProps, type DropdownMenuItemProps, type DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
+import { type DropdownMenuContentProps, type DropdownMenuItemProps, type DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
 import { Slot } from "@radix-ui/react-slot"
 import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -12,8 +12,8 @@ function Dropdown({ ...props }: React.ComponentPropsWithoutRef<typeof DropdownMe
 }
 Dropdown.displayName = "Dropdown"
 
-function DropdownTrigger({ ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
-	return <DropdownMenuPrimitive.Trigger data-slot="dropdown-menu-trigger" {...props} />
+function DropdownTrigger({ className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
+	return <DropdownMenuPrimitive.Trigger data-slot="dropdown-menu-trigger" className={cn("outline-none", className)} {...props} />
 }
 DropdownTrigger.displayName = "DropdownTrigger"
 
@@ -44,42 +44,9 @@ function DropdownContent({
 }
 DropdownContent.displayName = "DropdownContent"
 
-function useDropdownSelection(value?: string) {
-	const { selectedValues = [], onSelectedChange, selectionMode, minSelectionCount = 0 } = React.use(DropdownCtx)
-	const isSelectable = selectionMode === "single" || selectionMode === "multiple"
-	const isSelected = value ? selectedValues.includes(value) : false
-
-	const handleSelect = React.useCallback(
-		(e: Event) => {
-			if (!isSelectable || !value || !onSelectedChange) return
-			e.preventDefault()
-			const currentKeys = selectedValues || []
-			if (selectionMode === "multiple") {
-				if (isSelected) {
-					if (currentKeys.length > minSelectionCount) {
-						onSelectedChange(currentKeys.filter((key) => key !== value))
-					}
-				} else {
-					onSelectedChange([...currentKeys, value])
-				}
-			} else if (selectionMode === "single") {
-				if (isSelected && minSelectionCount === 0) {
-					onSelectedChange([])
-				} else if (!isSelected) {
-					onSelectedChange([value])
-				}
-			}
-		},
-		[isSelectable, value, onSelectedChange, selectedValues, selectionMode, minSelectionCount, isSelected]
-	)
-
-	return { isSelectable, isSelected, handleSelect }
-}
-
 function DropdownItem({
 	className,
 	inset,
-	value,
 	children,
 	asChild = false,
 	start,
@@ -90,12 +57,9 @@ function DropdownItem({
 		inset?: boolean
 		shortcut?: string
 		icon?: React.ReactNode
-		value?: string
 		start?: React.ReactNode
 		end?: React.ReactNode
 	}) {
-	const { isSelectable, isSelected, handleSelect } = useDropdownSelection(value)
-
 	if (asChild) {
 		return (
 			<DropdownMenuPrimitive.Item data-slot="dropdown-menu-item" asChild className={className} {...props}>
@@ -114,59 +78,55 @@ function DropdownItem({
 				inset && "pl-9",
 				className
 			)}
-			onSelect={handleSelect}
 			{...props}>
 			{start && <span>{start}</span>}
 			<span className="flex items-center gap-2 truncate">{children}</span>
 			{end && <span className="ml-auto">{end}</span>}
-			{isSelectable && isSelected && <Check size={20} className="stroke-fg ml-auto" />}
 		</DropdownMenuPrimitive.Item>
 	)
 }
 DropdownItem.displayName = "DropdownItem"
 
-type DropdownGroupProps = {
-	selectionMode?: "single" | "multiple"
-	selectedValues?: string[]
-	onSelectedChange?: (selectedValues: string[]) => void
-	minSelectionCount?: number
+function DropdownCheckboxItem({ children, className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) {
+	return (
+		<DropdownMenuPrimitive.CheckboxItem
+			data-slot="dropdown-menu-checkbox-item"
+			className={cn("flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm", className)}
+			{...props}>
+			{children}
+			<span className="ml-auto flex size-5 items-center justify-center">
+				<DropdownMenuPrimitive.ItemIndicator>
+					<Check size={20} className="text-fg-secondary" />
+				</DropdownMenuPrimitive.ItemIndicator>
+			</span>
+		</DropdownMenuPrimitive.CheckboxItem>
+	)
 }
 
-const DropdownCtx = React.createContext<DropdownGroupProps>({
-	selectionMode: undefined,
-})
+function DropdownRadioGroup({ ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>) {
+	return <DropdownMenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />
+}
 
-function DropdownGroup({
-	children,
-	title,
-	selectionMode,
-	selectedValues = [],
-	onSelectedChange,
-	className,
-	minSelectionCount = 0,
-	...props
-}: DropdownMenuGroupProps & React.RefAttributes<HTMLDivElement> & DropdownGroupProps) {
-	if (minSelectionCount < 0) throw new Error("minSelectionCount cannot be negative")
-
-	React.useEffect(
-		function () {
-			if (selectedValues.length < minSelectionCount) console.warn("minSelectionCount is greater than the number of selected keys")
-		},
-		[selectedValues, minSelectionCount]
+function DropdownRadioItem({ children, className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) {
+	return (
+		<DropdownMenuPrimitive.RadioItem
+			data-slot="dropdown-menu-radio-item"
+			className={cn(
+				"focus:bg-fill2-alpha flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				className
+			)}
+			{...props}>
+			{children}
+			<span className="ml-auto flex size-5 items-center justify-center">
+				<DropdownMenuPrimitive.ItemIndicator>
+					<Check size={20} className="text-fg-secondary" />
+				</DropdownMenuPrimitive.ItemIndicator>
+			</span>
+		</DropdownMenuPrimitive.RadioItem>
 	)
+}
 
-	const contextValue = React.useMemo(
-		function () {
-			return {
-				selectionMode,
-				selectedValues,
-				onSelectedChange,
-				minSelectionCount,
-			}
-		},
-		[selectionMode, selectedValues, onSelectedChange, minSelectionCount]
-	)
-
+function DropdownGroup({ children, title, className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Group>) {
 	// Check if this group should have a divider after it
 	const groupRef = React.useRef<HTMLDivElement>(null)
 	const [shouldAddDivider, setShouldAddDivider] = React.useState(false)
@@ -185,16 +145,14 @@ function DropdownGroup({
 
 	return (
 		<div className="bg-elevation-level2" ref={groupRef}>
-			<DropdownCtx.Provider value={contextValue}>
-				<DropdownMenuPrimitive.Group
-					data-slot="dropdown-menu-group"
-					className={cn(className, "z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0")}
-					data-radix-dropdown-menu-group
-					{...props}>
-					{title && <label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
-					{children}
-				</DropdownMenuPrimitive.Group>
-			</DropdownCtx.Provider>
+			<DropdownMenuPrimitive.Group
+				data-slot="dropdown-menu-group"
+				className={cn(className, "z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0")}
+				data-radix-dropdown-menu-group
+				{...props}>
+				{title && <label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
+				{children}
+			</DropdownMenuPrimitive.Group>
 			{shouldAddDivider && <DropdownDivider />}
 		</div>
 	)
@@ -264,4 +222,17 @@ function DropdownDivider() {
 	return <DropdownMenuPrimitive.Separator data-slot="dropdown-menu-separator" className={cn("bg-soft-alpha -mx-1 my-1 h-px")} />
 }
 
-export { Dropdown, DropdownContent, DropdownDivider, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger }
+export {
+	Dropdown,
+	DropdownContent,
+	DropdownDivider,
+	DropdownGroup,
+	DropdownItem,
+	DropdownCheckboxItem,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+}

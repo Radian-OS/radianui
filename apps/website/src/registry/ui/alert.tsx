@@ -12,7 +12,6 @@ export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 		children?: React.ReactNode
 		start?: React.ReactNode
 		end?: React.ReactNode
-		closable?: boolean
 		onClose?: () => void
 	}
 
@@ -85,7 +84,6 @@ function Alert({ color = "primary", variant = "default", onClose, title, descrip
 		showAlert && (
 			<div className={cn(alertVariants({ color, variant }), className)} {...props}>
 				{start && start}
-
 				{hasChildrenOnly ? (
 					// Render children directly when no title/description provided
 					<div className="text-sm">{children}</div>
@@ -99,7 +97,6 @@ function Alert({ color = "primary", variant = "default", onClose, title, descrip
 						{children}
 					</div>
 				)}
-
 				{end && <div className="flex-shrink-0">{end}</div>}
 				{closeButton}
 			</div>

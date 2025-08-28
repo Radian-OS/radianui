@@ -3,7 +3,7 @@ import { Check, EyeIcon, Heart, Settings, SquareTerminal, Star, X } from "lucide
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "sm" | "md" | "lg"
@@ -45,35 +45,49 @@ export default function CheckboxPreview() {
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-									<DropdownItem value="sm">sm</DropdownItem>
-									<DropdownItem value="md">md</DropdownItem>
-									<DropdownItem value="lg">lg</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as Size)}>
+									<DropdownRadioItem value="sm" onSelect={(e) => e.preventDefault()}>
+										sm
+									</DropdownRadioItem>
+									<DropdownRadioItem value="md" onSelect={(e) => e.preventDefault()}>
+										md
+									</DropdownRadioItem>
+									<DropdownRadioItem value="lg" onSelect={(e) => e.preventDefault()}>
+										lg
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setDisabled(Array.from(keys)[0] === "true")}
-									minSelectionCount={1}
-									selectedValues={[disabled.toString()]}>
-									<DropdownItem value="false">false</DropdownItem>
-									<DropdownItem value="true">true</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled.toString()} onValueChange={(value) => setDisabled(value === "true")}>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Icon</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setIconType(Array.from(keys)[0] as IconType)} minSelectionCount={1} selectedValues={[iconType]}>
-									<DropdownItem value="check">Check</DropdownItem>
-									<DropdownItem value="x">X</DropdownItem>
-									<DropdownItem value="heart">Heart</DropdownItem>
-									<DropdownItem value="star">Star</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={iconType} onValueChange={(value) => setIconType(value as IconType)}>
+									<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
+										Check
+									</DropdownRadioItem>
+									<DropdownRadioItem value="x" onSelect={(e) => e.preventDefault()}>
+										X
+									</DropdownRadioItem>
+									<DropdownRadioItem value="heart" onSelect={(e) => e.preventDefault()}>
+										Heart
+									</DropdownRadioItem>
+									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
+										Star
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

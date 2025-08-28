@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import SearchInput from "@/registry/ui/search"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -14,12 +14,14 @@ const sizes = ["28", "32", "36", "40", "44", "48"]
 const SearchPreview = () => {
 	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
-	const [disabled, setDisabled] = useState<boolean>(false)
-	const [label, setLabel] = useState<boolean>(true)
-	const [suggestion, setSuggestion] = useState<boolean>(false)
+	type booleanType = "true" | "false"
+
+	const [disabled, setDisabled] = useState<booleanType>("false")
+	const [label, setLabel] = useState<booleanType>("true")
+	const [suggestion, setSuggestion] = useState<booleanType>("false")
 	const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([])
 	const [searchValue, setSearchValue] = useState("")
-	const [hint, setHint] = useState<boolean>(false)
+	const [hint, setHint] = useState<booleanType>("false")
 
 	useEffect(() => {
 		const fetchResults = async () => {
@@ -106,65 +108,61 @@ const renderSearchResults = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={rounded} onValueChange={(value: string) => setRounded(value as RoundedOptions)}>
 									{roundedOptions.map((roundedOption) => (
-										<DropdownItem value={roundedOption} key={roundedOption}>
+										<DropdownRadioItem value={roundedOption} key={roundedOption}>
 											{roundedOption}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={size} onValueChange={(value: string) => setSize(value as SizeOptions)}>
 									{sizes.map((size) => (
-										<DropdownItem value={size} key={size}>
+										<DropdownRadioItem value={size} key={size}>
 											{size}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Label</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={label} onValueChange={(value: string) => setLabel(value as booleanType)}>
+									<DropdownRadioItem value="true">True</DropdownRadioItem>
+									<DropdownRadioItem value="false">False</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled} onValueChange={(value: string) => setDisabled(value as booleanType)}>
+									<DropdownRadioItem value="true">True</DropdownRadioItem>
+									<DropdownRadioItem value="false">False</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Suggestion</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[String(suggestion)]}
-									onSelectedChange={(values) => setSuggestion(values[0] === "true")}
-									minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={suggestion} onValueChange={(value: string) => setSuggestion(value as booleanType)}>
+									<DropdownRadioItem value="true">True</DropdownRadioItem>
+									<DropdownRadioItem value="false">False</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Hint</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={hint} onValueChange={(value: string) => setHint(value as booleanType)}>
+									<DropdownRadioItem value="true">True</DropdownRadioItem>
+									<DropdownRadioItem value="false">False</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>
@@ -174,16 +172,16 @@ const renderSearchResults = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<SearchInput
-						label={label ? "Search" : undefined}
+						label={label === "true" ? "Search" : undefined}
 						placeholder="Search"
 						size={size}
-						hint={hint ? "Hint text to help the user with input" : ""}
+						hint={hint === "true" ? "Hint text to help the user with input" : ""}
 						rounded={rounded}
-						disabled={disabled}
+						disabled={disabled === "true"}
 						onChange={(e) => handleSearchChange(e.target.value)}
 						value={searchValue}
 						id="search-input"
-						suggestion={suggestion}
+						suggestion={suggestion === "true"}
 						renderSearchResults={renderSearchResults}
 						className="w-80"
 					/>

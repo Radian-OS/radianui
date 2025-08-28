@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DividerPreview = () => {
@@ -31,32 +31,52 @@ const DividerPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Orientation</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setOrientation(Array.from(keys)[0] as "vertical" | "horizontal")} selectedValues={[orientation]}>
-									<DropdownItem value="vertical">vertical</DropdownItem>
-									<DropdownItem value="horizontal">horizontal</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={orientation} onValueChange={(value) => setOrientation(value as "vertical" | "horizontal")}>
+									<DropdownRadioItem value="vertical" onSelect={(e) => e.preventDefault()}>
+										vertical
+									</DropdownRadioItem>
+									<DropdownRadioItem value="horizontal" onSelect={(e) => e.preventDefault()}>
+										horizontal
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Spacing</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setSpacing(Array.from(keys)[0] as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}
-									minSelectionCount={1}
-									selectedValues={[spacing]}>
-									<DropdownItem value="0">0</DropdownItem>
-									<DropdownItem value="2">2</DropdownItem>
-									<DropdownItem value="4">4</DropdownItem>
-									<DropdownItem value="6">6</DropdownItem>
-									<DropdownItem value="8">8</DropdownItem>
-									<DropdownItem value="12">12</DropdownItem>
-									<DropdownItem value="16">16</DropdownItem>
-									<DropdownItem value="24">24</DropdownItem>
-									<DropdownItem value="32">32</DropdownItem>
-									<DropdownItem value="40">40</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={spacing} onValueChange={(value) => setSpacing(value as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}>
+									<DropdownRadioItem value="0" onSelect={(e) => e.preventDefault()}>
+										0
+									</DropdownRadioItem>
+									<DropdownRadioItem value="2" onSelect={(e) => e.preventDefault()}>
+										2
+									</DropdownRadioItem>
+									<DropdownRadioItem value="4" onSelect={(e) => e.preventDefault()}>
+										4
+									</DropdownRadioItem>
+									<DropdownRadioItem value="6" onSelect={(e) => e.preventDefault()}>
+										6
+									</DropdownRadioItem>
+									<DropdownRadioItem value="8" onSelect={(e) => e.preventDefault()}>
+										8
+									</DropdownRadioItem>
+									<DropdownRadioItem value="12" onSelect={(e) => e.preventDefault()}>
+										12
+									</DropdownRadioItem>
+									<DropdownRadioItem value="16" onSelect={(e) => e.preventDefault()}>
+										16
+									</DropdownRadioItem>
+									<DropdownRadioItem value="24" onSelect={(e) => e.preventDefault()}>
+										24
+									</DropdownRadioItem>
+									<DropdownRadioItem value="32" onSelect={(e) => e.preventDefault()}>
+										32
+									</DropdownRadioItem>
+									<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
+										40
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

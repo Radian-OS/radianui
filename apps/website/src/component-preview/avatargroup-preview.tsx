@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export const people = [
@@ -78,27 +78,39 @@ const AvatargroupPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-									<DropdownItem value="16">16</DropdownItem>
-									<DropdownItem value="20">20</DropdownItem>
-									<DropdownItem value="24">24</DropdownItem>
-									<DropdownItem value="32">32</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as Size)}>
+									<DropdownRadioItem value="16" onSelect={(e) => e.preventDefault()}>
+										16
+									</DropdownRadioItem>
+									<DropdownRadioItem value="20" onSelect={(e) => e.preventDefault()}>
+										20
+									</DropdownRadioItem>
+									<DropdownRadioItem value="24" onSelect={(e) => e.preventDefault()}>
+										24
+									</DropdownRadioItem>
+									<DropdownRadioItem value="32" onSelect={(e) => e.preventDefault()}>
+										32
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Max Items</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setMaxItems(Number(Array.from(keys)[0]))}
-									minSelectionCount={1}
-									selectedValues={[String(maxItems)]}>
-									<DropdownItem value="2">2</DropdownItem>
-									<DropdownItem value="3">3</DropdownItem>
-									<DropdownItem value="4">4</DropdownItem>
-									<DropdownItem value="5">5</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(maxItems)} onValueChange={(value) => setMaxItems(Number(value))}>
+									<DropdownRadioItem value="2" onSelect={(e) => e.preventDefault()}>
+										2
+									</DropdownRadioItem>
+									<DropdownRadioItem value="3" onSelect={(e) => e.preventDefault()}>
+										3
+									</DropdownRadioItem>
+									<DropdownRadioItem value="4" onSelect={(e) => e.preventDefault()}>
+										4
+									</DropdownRadioItem>
+									<DropdownRadioItem value="5" onSelect={(e) => e.preventDefault()}>
+										5
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

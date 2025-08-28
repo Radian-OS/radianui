@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -34,11 +34,17 @@ const RadiogroupPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-									<DropdownItem value="sm">sm</DropdownItem>
-									<DropdownItem value="md">md</DropdownItem>
-									<DropdownItem value="lg">lg</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as Size)}>
+									<DropdownRadioItem value="sm" onSelect={(e) => e.preventDefault()}>
+										sm
+									</DropdownRadioItem>
+									<DropdownRadioItem value="md" onSelect={(e) => e.preventDefault()}>
+										md
+									</DropdownRadioItem>
+									<DropdownRadioItem value="lg" onSelect={(e) => e.preventDefault()}>
+										lg
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { CircleAlert, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Modal, ModalBody, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -36,38 +36,46 @@ const PopoverPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Close icon</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setCloseIcon(Array.from(keys)[0] as CloseIconVisibility)}
-									minSelectionCount={1}
-									selectedValues={[closeIcon]}>
-									<DropdownItem value="hidden">Hidden</DropdownItem>
-									<DropdownItem value="visible">Visible</DropdownItem>
-									<DropdownItem value="hover">Hover</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={closeIcon} onValueChange={(value) => setCloseIcon(value as CloseIconVisibility)}>
+									<DropdownRadioItem value="hidden" onSelect={(e) => e.preventDefault()}>
+										Hidden
+									</DropdownRadioItem>
+									<DropdownRadioItem value="visible" onSelect={(e) => e.preventDefault()}>
+										Visible
+									</DropdownRadioItem>
+									<DropdownRadioItem value="hover" onSelect={(e) => e.preventDefault()}>
+										Hover
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setBackdrop(Array.from(keys)[0] as Backdrop)} minSelectionCount={1} selectedValues={[backdrop]}>
-									<DropdownItem value="overlay">Overlay</DropdownItem>
-									<DropdownItem value="blur">Blur</DropdownItem>
-									<DropdownItem value="transparent">Transparent</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={backdrop} onValueChange={(value) => setBackdrop(value as Backdrop)}>
+									<DropdownRadioItem value="overlay" onSelect={(e) => e.preventDefault()}>
+										Overlay
+									</DropdownRadioItem>
+									<DropdownRadioItem value="blur" onSelect={(e) => e.preventDefault()}>
+										Blur
+									</DropdownRadioItem>
+									<DropdownRadioItem value="transparent" onSelect={(e) => e.preventDefault()}>
+										Transparent
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>With separator</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setWithSeparator(Array.from(keys)[0] as WithSeparator)}
-									minSelectionCount={1}
-									selectedValues={[withSeparator]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={withSeparator} onValueChange={(value) => setWithSeparator(value as WithSeparator)}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>
