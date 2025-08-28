@@ -152,8 +152,8 @@ value="2">Inactive</DropdownItem>
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
 						<DropdownTrigger asChild>
-							<Button color="neutral" variant="outline">
-								Dropdown <ChevronDown className="size-5" />
+							<Button color="neutral" variant="outline" end={<ChevronDown className="size-5" />}>
+								Dropdown
 							</Button>
 						</DropdownTrigger>
 						<DropdownContent align={align} placement={placement} className="w-48">

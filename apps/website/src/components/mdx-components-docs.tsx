@@ -69,6 +69,7 @@ import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
+import AlertCloseExamplePreview from "@/registry/example/alert/alert-close-example-preview"
 import AlertExamplePreview from "@/registry/example/alert/alert-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
 import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
@@ -79,6 +80,7 @@ import IndicatorAvatarPreview from "@/registry/example/avatar/indicator-avatar-p
 import RingAvatarPreview from "@/registry/example/avatar/ring-avatar-preview"
 import VerifiedAvatarPreview from "@/registry/example/avatar/verified-avatar-preview"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
+import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
@@ -236,6 +238,8 @@ const components: MDXComponents = {
 	BreadcrumbExample2: () => <BreadcrumbExample2 />,
 	BreadcrumbExample3: () => <BreadcrumbExample3 />,
 	IconButtonPreview: () => <IconButtonPreview />,
+	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
+	AlertCloseExamplePreview: () => <AlertCloseExamplePreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

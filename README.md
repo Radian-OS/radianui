@@ -21,8 +21,6 @@ Explore the full documentation, including installation, components, variants, th
 
 🔗 [https://radianos.com/documentation](https://radianos.com/documentation)
 
-<br/>
-
 ## 🚀 Features
 
 - ✨ **Drop-in components** — Copy, customize, or install with our CLI
@@ -31,21 +29,15 @@ Explore the full documentation, including installation, components, variants, th
 - ♿ **Accessibility-first** — Powered by [Radix UI Primitives](https://www.radix-ui.com/)
 - 🛠️ **Framework-friendly** — Designed for React + Next.js (App Router support)
 
----
-
 ## 🤝 Contributing
 
 We welcome contributions to RadianOs — whether it’s improving components, fixing bugs, or suggesting new ideas.  
 Please read our [Contributing Guide](/CONTRIBUTING.md) to get started.
 
----
-
 ## ⚖️ License
 
 RadianOs is licensed under the [MIT License](https://github.com/Radian-os/radianos/blob/main/LICENSE.md).  
 Feel free to use, modify, and distribute — with attribution.
-
----
 
 ## 💬 Community
 

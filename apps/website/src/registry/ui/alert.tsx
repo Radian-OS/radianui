@@ -13,6 +13,7 @@ export type AlertProps = React.HTMLAttributes<HTMLDivElement> &
 		start?: React.ReactNode
 		end?: React.ReactNode
 		closable?: boolean
+		onClose?: () => void
 	}
 
 export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-2", {
@@ -70,13 +71,15 @@ export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justif
 	],
 })
 
-function Alert({ color = "primary", variant = "default", title, closable, description, start, end, className, children, ...props }: AlertProps) {
+function Alert({ color = "primary", variant = "default", onClose, title, description, start, end, className, children, ...props }: AlertProps) {
 	const [showAlert, setShowAlert] = useState(true)
 	const isNeutralOutline = variant === "outline"
 	const hasCustomTextColor = className?.includes("text-")
 
 	// Check if we're using the children pattern
 	const hasChildrenOnly = children && !title && !description
+
+	const closeButton = onClose && <X size={20} onClick={() => setShowAlert(false)} className={cn("text-fg-tertiary cursor-pointer")} />
 
 	return (
 		showAlert && (
@@ -98,7 +101,7 @@ function Alert({ color = "primary", variant = "default", title, closable, descri
 				)}
 
 				{end && <div className="flex-shrink-0">{end}</div>}
-				{closable && <X size={20} onClick={() => setShowAlert(false)} className={`text-fg-tertiary cursor-pointer`} />}
+				{closeButton}
 			</div>
 		)
 	)
