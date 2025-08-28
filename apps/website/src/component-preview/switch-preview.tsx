@@ -6,7 +6,6 @@ import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import Switch from "@/registry/ui/switch"
-import { Switch as Switch2 } from "@/registry/ui/switch2"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SwitchPreview = () => {
@@ -67,8 +66,6 @@ const SwitchPreview = () => {
 					<Switch size={size} disabled={disabled === "true"}>
 						Switch Label
 					</Switch>
-
-					<Switch2 />
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
