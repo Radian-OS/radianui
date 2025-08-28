@@ -15,6 +15,7 @@ type BannerProps = HTMLAttributes<HTMLDivElement> &
 		end?: ReactNode
 		title?: string
 		description?: string
+		onClose?: () => void
 	}
 
 const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative text-sm w-full", {
@@ -133,8 +134,20 @@ const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative 
 		},
 	],
 })
-function Banner({ children, color = "neutral", variant = "strong", start, end, title, description, closable, className = "", ...props }: BannerProps) {
+function Banner({ children, color = "neutral", variant = "strong", onClose, start, end, title, description, className = "", ...props }: BannerProps) {
 	const [showBanner, setShowBanner] = useState(true)
+
+	const closeButton = onClose && (
+		<CompactButton
+			size="20"
+			disabled={false}
+			color="neutral"
+			variant="ghost"
+			onClick={() => setShowBanner(false)}
+			className={`absolute right-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-4 ${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>
+			<X />
+		</CompactButton>
+	)
 
 	return (
 		showBanner && (
@@ -149,17 +162,7 @@ function Banner({ children, color = "neutral", variant = "strong", start, end, t
 				)}
 				{children}
 				{end && end}
-				{closable && (
-					<CompactButton
-						onClick={() => setShowBanner(false)}
-						size="20"
-						disabled={false}
-						color="neutral"
-						variant="ghost"
-						className={`absolute right-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-4 ${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>
-						<X />
-					</CompactButton>
-				)}
+				{closeButton}
 			</div>
 		)
 	)

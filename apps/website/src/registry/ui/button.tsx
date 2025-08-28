@@ -319,7 +319,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	const combinedClass = cn(
 		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 		sizeStyles,
-		buttonVariants({ variant, size: "36", iconOnly: true, color })
+		buttonVariants({ variant, size: "36", iconOnly: false, color })
 			.split(" ")
 			.filter(
 				(cls) =>
