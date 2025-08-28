@@ -79,7 +79,7 @@ export const buttonVariants = cva(
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
-				"48": "[&>svg]:size-5 text-base px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
 			},
 			loading: {
 				true: "",
@@ -120,14 +120,14 @@ export const buttonVariants = cva(
 			{ iconOnly: true, size: "36", className: "p-2 h-9 gap-1" },
 			{ iconOnly: true, size: "40", className: "p-2.5 h-10 gap-1" },
 			{ iconOnly: true, size: "44", className: "p-3 h-11 gap-1" },
-			{ iconOnly: true, size: "48", className: "p-3.5 h-12 gap-1" },
+			{ iconOnly: true, size: "48", className: "p-3 h-12 gap-1" },
 
 			{ iconOnly: true, variant: "outline", size: "28", className: "p-1.25 h-7 gap-1" },
 			{ iconOnly: true, variant: "outline", size: "32", className: "p-1.5 h-8 gap-1" },
 			{ iconOnly: true, variant: "outline", size: "36", className: "p-1.75 h-9 gap-1" },
 			{ iconOnly: true, variant: "outline", size: "40", className: "p-2.25 h-10 gap-1" },
 			{ iconOnly: true, variant: "outline", size: "44", className: "p-2.75 h-11 gap-1" },
-			{ iconOnly: true, variant: "outline", size: "48", className: "p-3.25 h-12 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "48", className: "p-2.75 h-12 gap-1" },
 
 			{
 				variant: "strong",
@@ -298,7 +298,7 @@ function Button({
 	return (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 			{start}
-			{loading ? <Spinner size={size ? Number(size) : undefined} /> : null}
+			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
 			<span className={cn(innerSpanClassName, "px-0.5")}>{children}</span>
 			{end}
 		</Comp>
@@ -389,7 +389,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 CompactButton.displayName = "CompactButton"
 
 const linkButtonVariants = cva(
-	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline",
+	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline [&>svg]:size-5",
 	{
 		variants: {
 			color: {
