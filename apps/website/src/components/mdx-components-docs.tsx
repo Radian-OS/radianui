@@ -297,7 +297,7 @@ const components: MDXComponents = {
 			{children}
 		</strong>
 	),
-	hr: () => <Divider orientation={"horizontal"} spacing={"0"} className="mt-10" />,
+	hr: () => <Divider orientation={"horizontal"} margin={"0"} className="mt-10" />,
 
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("space-y-4 pb-6", className)}>{children}</ul>

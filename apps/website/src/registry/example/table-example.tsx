@@ -548,7 +548,7 @@ const TableExample = () => {
 					<SelectItem value="false">False</SelectItem>
 				</Select>
 			</div>
-			{/* <Divider spacing="80" />
+			{/* <Divider margin="80" />
 
             <h1 className="text-2xl font-bold mb-4">Searching Table</h1>
 

@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DividerPreview = () => {
 	const [orientation, setOrientation] = useState<"vertical" | "horizontal">("vertical")
-	const [spacing, setSpacing] = useState<"0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40">("4")
+	const [margin, setmargin] = useState<"0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40">("4")
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -43,9 +43,9 @@ const DividerPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Spacing</DropdownSubTrigger>
+							<DropdownSubTrigger>Margin</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={spacing} onValueChange={(value) => setSpacing(value as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}>
+								<DropdownRadioGroup value={margin} onValueChange={(value) => setmargin(value as "0" | "2" | "4" | "6" | "8" | "12" | "16" | "24" | "32" | "40")}>
 									<DropdownRadioItem value="0" onSelect={(e) => e.preventDefault()}>
 										0
 									</DropdownRadioItem>
@@ -85,9 +85,9 @@ const DividerPreview = () => {
 			<TabsContent value="preview">
 				<div className={`flex ${orientation === "horizontal" ? "flex-col" : ""} h-[420px] items-center justify-center overflow-auto rounded-xl border px-10`}>
 					<h4 className="heading-4">Heading1</h4>
-					<Divider spacing={spacing} orientation={orientation} />
+					<Divider margin={margin} orientation={orientation} />
 					<h4 className="heading-4">Heading2</h4>
-					<Divider spacing={spacing} orientation={orientation} />
+					<Divider margin={margin} orientation={orientation} />
 					<h4 className="heading-4">Heading3</h4>
 				</div>
 			</TabsContent>
@@ -98,9 +98,9 @@ const DividerPreview = () => {
 					className="h-[420px]"
 					code={`<div className="${orientation === "horizontal" ? "flex flex-col" : "flex"}" >
 <h4 className="heading-4">Heading1</h4>
-<Divider spacing="${spacing}" orientation="${orientation}" />
+<Divider margin="${margin}" orientation="${orientation}" />
 <h4 className="heading-4">Heading2</h4>
-<Divider spacing="${spacing}" orientation="${orientation}" />
+<Divider margin="${margin}" orientation="${orientation}" />
 <h4 className="heading-4">Heading3</h4>
 </div>
 `}

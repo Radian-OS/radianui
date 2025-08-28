@@ -41,7 +41,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 
 			{filteredBlogs.map((blog) => (
 				<span key={blog._id}>
-					<Divider spacing="40" />
+					<Divider margin="40" />
 					<Link href={blog.slug} className="flex flex-col items-start gap-9 md:flex-row">
 						<Image className="md:w-70 md:h-45 h-full w-full rounded-lg object-cover" alt="blog-image" height={400} width={400} src={blog.image ?? "/og/static-og.png"} />
 						<section className="flex flex-col lg:items-start">
