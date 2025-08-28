@@ -1,34 +1,31 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { cn } from "@/lib/utils"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const FancyButtonPreview = () => {
-	type Sizes = "28" | "32" | "36" | "40" | "44" | "48"
-	const [size, setSize] = useState<Sizes>("40")
+	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
+	const [size, setSize] = useState<sizes>("40")
 	const [disabled, setDisabled] = useState<"true" | "false">("false")
 	const [variant, setVariant] = useState<"variant1" | "variant2">("variant1")
-
-	const generateCode = (variant: "variant1" | "variant2") => {
-		const baseClasses =
-			variant === "variant1"
-				? "bg-gradient-to-b from-[#6347EB] to-[#5133CF] hover:from-[#6A52F2] hover:to-[#5B3FE0]"
-				: "bg-gradient-to-b from-[#5133CF] to-[#6347EB] hover:from-[#5B3FE0] hover:to-[#6A52F2]"
-
-		return `<Button
-  size='${size}'
-  disabled={${disabled === "true"}}
-  className="${baseClasses} shadow-lg shadow-[#5B3FE0]/50 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300"
->
-  Fancy Button ${variant === "variant2" ? 2 : ""}
+	const code =
+		variant === "variant1"
+			? `<Button
+size='${size}'
+disabled={${disabled === "true"}}
+className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+Fancy Button
 </Button>`
-	}
-
+			: `<Button
+    size='${size}'
+	disabled={${disabled === "true"}}
+	className="border-primary-hover mt-2 border bg-gradient-to-b from-[#5133CF] to-[#6347EB] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#5B3FE0] hover:to-[#6A52F2]"
+	Fancy Button 2
+</Button>`
 	return (
-		<Tabs defaultValue="preview" variant="outline-ghost" size="md">
+		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
 				<TabsList>
 					<TabsTrigger value="preview" icon={<EyeIcon />}>
@@ -45,92 +42,84 @@ const FancyButtonPreview = () => {
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
-						{/* Disabled */}
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setDisabled(Array.from(keys)[0] as "true" | "false")}
-									minSelectionCount={1}
-									selectedValues={[disabled]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						{/* Size */}
 						<DropdownSub>
-							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubTrigger>size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Sizes)} minSelectionCount={1} selectedValues={[size]}>
-									{["28", "32", "36", "40", "44", "48"].map((s) => (
-										<DropdownItem key={s} value={s}>
-											{s}
-										</DropdownItem>
-									))}
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as sizes)}>
+									<DropdownRadioItem value="28" onSelect={(e) => e.preventDefault()}>
+										28
+									</DropdownRadioItem>
+									<DropdownRadioItem value="32" onSelect={(e) => e.preventDefault()}>
+										32
+									</DropdownRadioItem>
+									<DropdownRadioItem value="36" onSelect={(e) => e.preventDefault()}>
+										36
+									</DropdownRadioItem>
+									<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
+										40
+									</DropdownRadioItem>
+									<DropdownRadioItem value="44" onSelect={(e) => e.preventDefault()}>
+										44
+									</DropdownRadioItem>
+									<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
+										48
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						{/* Variant */}
 						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as "variant1" | "variant2")}
-									minSelectionCount={1}
-									selectedValues={[variant]}>
-									<DropdownItem value="variant1">Variant 1</DropdownItem>
-									<DropdownItem value="variant2">Variant 2</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "variant1" | "variant2")}>
+									<DropdownRadioItem value="variant1" onSelect={(e) => e.preventDefault()}>
+										Variant 1
+									</DropdownRadioItem>
+									<DropdownRadioItem value="variant2" onSelect={(e) => e.preventDefault()}>
+										Variant 2
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
-
-			{/* Preview */}
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border p-4">
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
 					{variant === "variant1" && (
 						<Button
 							size={size}
 							disabled={disabled === "true"}
-							className={cn(
-								"backface-hidden relative inline-flex transform-gpu items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-300",
-								"bg-gradient-to-b from-[#6347EB] to-[#5133CF] hover:from-[#6A52F2] hover:to-[#5B3FE0]",
-								"shadow-lg shadow-[#5B3FE0]/50",
-								disabled === "true" && "pointer-events-none opacity-50"
-							)}>
+							className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
 							Fancy Button
 						</Button>
 					)}
-
 					{variant === "variant2" && (
 						<Button
 							size={size}
 							disabled={disabled === "true"}
-							className={cn(
-								"backface-hidden relative inline-flex transform-gpu items-center justify-center whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium text-white transition-all duration-300",
-								"bg-gradient-to-b from-[#5133CF] to-[#6347EB] hover:from-[#5B3FE0] hover:to-[#6A52F2]",
-								"shadow-lg shadow-[#5B3FE0]/50",
-								disabled === "true" && "pointer-events-none opacity-50"
-							)}>
+							className="border-primary-hover border bg-gradient-to-b from-[#5133CF] to-[#6347EB] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#5B3FE0] hover:to-[#6A52F2]">
 							Fancy Button 2
 						</Button>
 					)}
 				</div>
 			</TabsContent>
-
-			{/* Code */}
 			<TabsContent value="code">
-				<CodeSnippet title="fancy-button.tsx" showLineNumber className="h-[420px]" code={generateCode(variant)} />
+				<CodeSnippet title="fancy-button.tsx" showLineNumber className="h-[420px]" code={code} />
 			</TabsContent>
 		</Tabs>
 	)
 }
-
 export default FancyButtonPreview

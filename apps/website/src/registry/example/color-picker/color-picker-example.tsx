@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import ColorPicker from "@/registry/ui/color-picker"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -45,43 +45,51 @@ export default function ColorPickerExample() {
 						<DropdownSub>
 							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
 									{roundedOptions.map((roundedOption) => (
-										<DropdownItem value={roundedOption} key={roundedOption}>
+										<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
 											{roundedOption}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
 									{sizes.map((size) => (
-										<DropdownItem value={size} key={size}>
+										<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
 											{size}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Label</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(label)} onValueChange={(value) => setLabel(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Hint</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

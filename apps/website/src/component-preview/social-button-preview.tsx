@@ -4,7 +4,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SocialButtonPreview = () => {
@@ -334,20 +334,26 @@ Continue with Facebook
 						<DropdownSub>
 							<DropdownSubTrigger>size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setSize(Array.from(keys)[0] as sizes)
-									}}
-									minSelectionCount={1}
-									selectedValues={[size]}>
-									<DropdownItem value="28">28</DropdownItem>
-									<DropdownItem value="32">32</DropdownItem>
-									<DropdownItem value="36">36</DropdownItem>
-									<DropdownItem value="40">40</DropdownItem>
-									<DropdownItem value="44">44</DropdownItem>
-									<DropdownItem value="48">48</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as sizes)}>
+									<DropdownRadioItem value="28" onSelect={(e) => e.preventDefault()}>
+										28
+									</DropdownRadioItem>
+									<DropdownRadioItem value="32" onSelect={(e) => e.preventDefault()}>
+										32
+									</DropdownRadioItem>
+									<DropdownRadioItem value="36" onSelect={(e) => e.preventDefault()}>
+										36
+									</DropdownRadioItem>
+									<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
+										40
+									</DropdownRadioItem>
+									<DropdownRadioItem value="44" onSelect={(e) => e.preventDefault()}>
+										44
+									</DropdownRadioItem>
+									<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
+										48
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
@@ -355,16 +361,14 @@ Continue with Facebook
 						<DropdownSub>
 							<DropdownSubTrigger>disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[disabled]}
-									onSelectedChange={(keys) => {
-										setDisabled(Array.from(keys)[0] as disabledType)
-									}}>
-									<DropdownItem value="true">true</DropdownItem>
-									<DropdownItem value="false">false</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as disabledType)}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
@@ -372,35 +376,37 @@ Continue with Facebook
 						<DropdownSub>
 							<DropdownSubTrigger>social</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[socials]}
-									onSelectedChange={(keys) => {
-										setSocials(Array.from(keys)[0] as socials)
-									}}>
-									<DropdownItem value="google">Google</DropdownItem>
-									<DropdownItem value="apple">Apple</DropdownItem>
-									<DropdownItem value="facebook">Facebook</DropdownItem>
-									<DropdownItem value="X">X</DropdownItem>
-									<DropdownItem value="github">GitHub</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={socials} onValueChange={(value) => setSocials(value as socials)}>
+									<DropdownRadioItem value="google" onSelect={(e) => e.preventDefault()}>
+										Google
+									</DropdownRadioItem>
+									<DropdownRadioItem value="apple" onSelect={(e) => e.preventDefault()}>
+										Apple
+									</DropdownRadioItem>
+									<DropdownRadioItem value="facebook" onSelect={(e) => e.preventDefault()}>
+										Facebook
+									</DropdownRadioItem>
+									<DropdownRadioItem value="X" onSelect={(e) => e.preventDefault()}>
+										X
+									</DropdownRadioItem>
+									<DropdownRadioItem value="github" onSelect={(e) => e.preventDefault()}>
+										GitHub
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[variant]}
-									onSelectedChange={(keys) => {
-										setVariant(Array.from(keys)[0] as variant)
-									}}>
-									<DropdownItem value="outline">Outline</DropdownItem>
-									<DropdownItem value="strong">Strong</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as variant)}>
+									<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
+										Outline
+									</DropdownRadioItem>
+									<DropdownRadioItem value="strong" onSelect={(e) => e.preventDefault()}>
+										Strong
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

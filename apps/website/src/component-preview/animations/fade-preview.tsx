@@ -3,7 +3,7 @@ import { EyeIcon, RotateCw, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Fade, FadeDirection } from "@/registry/animated/fade"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const FadePreview = () => {
@@ -36,23 +36,25 @@ const FadePreview = () => {
 							</IconButton>
 						</DropdownTrigger>
 						<DropdownContent className="min-w-20">
-							<DropdownGroup>
-								<DropdownSub>
-									<DropdownSubTrigger>Direction</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											minSelectionCount={1}
-											selectedValues={[direction]}
-											onSelectedChange={(values) => setDirection(values[0] as FadeDirection)}>
-											<DropdownItem value="up">Up</DropdownItem>
-											<DropdownItem value="left">Left</DropdownItem>
-											<DropdownItem value="right">Right</DropdownItem>
-											<DropdownItem value="down">Down</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-							</DropdownGroup>
+							<DropdownSub>
+								<DropdownSubTrigger>Direction</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownRadioGroup value={direction} onValueChange={(value) => setDirection(value as FadeDirection)}>
+										<DropdownRadioItem value="up" onSelect={(e) => e.preventDefault()}>
+											Up
+										</DropdownRadioItem>
+										<DropdownRadioItem value="left" onSelect={(e) => e.preventDefault()}>
+											Left
+										</DropdownRadioItem>
+										<DropdownRadioItem value="right" onSelect={(e) => e.preventDefault()}>
+											Right
+										</DropdownRadioItem>
+										<DropdownRadioItem value="down" onSelect={(e) => e.preventDefault()}>
+											Down
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>

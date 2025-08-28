@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
@@ -36,27 +36,33 @@ const UrlPreview = () => {
 							<Settings />
 						</IconButton>
 					</DropdownTrigger>
-					<DropdownContent>
+					<DropdownContent className="min-w-20">
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
 									{sizes.map((size) => (
-										<DropdownItem value={size} key={size}>
+										<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
 											{size}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Examples</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(types)]} onSelectedChange={(values) => setType(values[0] as typeOptions)} minSelectionCount={1}>
-									<DropdownItem value="default">Default</DropdownItem>
-									<DropdownItem value="trail">Trail</DropdownItem>
-									<DropdownItem value="lead">Lead</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={types} onValueChange={(value) => setType(value as typeOptions)}>
+									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
+										Default
+									</DropdownRadioItem>
+									<DropdownRadioItem value="trail" onSelect={(e) => e.preventDefault()}>
+										Trail
+									</DropdownRadioItem>
+									<DropdownRadioItem value="lead" onSelect={(e) => e.preventDefault()}>
+										Lead
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

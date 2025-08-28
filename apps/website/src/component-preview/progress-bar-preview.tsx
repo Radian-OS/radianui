@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { ProgressBar } from "@/registry/ui/progress-bar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -36,44 +36,52 @@ const ProgressBarPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Label</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(label)} onValueChange={(value) => setLabel(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Value label</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[String(valueLabel)]}
-									onSelectedChange={(values) => setValueLabel(values[0] === "true")}
-									minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(valueLabel)} onValueChange={(value) => setValueLabel(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Progress</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[progress]} onSelectedChange={(values) => setProgress(values[0] as ProgressOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={progress} onValueChange={(value) => setProgress(value as ProgressOptions)}>
 									{sizes.map((size) => (
-										<DropdownItem value={size} key={size}>
+										<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
 											{size}%
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Hint</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

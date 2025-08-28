@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { FileUpload, FileWithPreview } from "@/registry/ui/file-upload"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -60,111 +60,137 @@ const FileUploadPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Label</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(label)} onValueChange={(value) => setLabel(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[variant]} onSelectedChange={(values) => setVariant(values[0])} minSelectionCount={1}>
-									<DropdownItem value="input">Input</DropdownItem>
-									<DropdownItem value="container">Container</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value)}>
+									<DropdownRadioItem value="input" onSelect={(e) => e.preventDefault()}>
+										Input
+									</DropdownRadioItem>
+									<DropdownRadioItem value="container" onSelect={(e) => e.preventDefault()}>
+										Container
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Accept</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[format]} onSelectedChange={(values) => setFormat(values[0])} minSelectionCount={1}>
-									<DropdownItem value="image/*">Image</DropdownItem>
-									<DropdownItem value="application/*,text/*">Document</DropdownItem>
-									<DropdownItem value="audio/*">Audio</DropdownItem>
-									<DropdownItem value="video/*">Video</DropdownItem>
-									<DropdownItem value="*">All</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={format} onValueChange={(value) => setFormat(value)}>
+									<DropdownRadioItem value="image/*" onSelect={(e) => e.preventDefault()}>
+										Image
+									</DropdownRadioItem>
+									<DropdownRadioItem value="application/*,text/*" onSelect={(e) => e.preventDefault()}>
+										Document
+									</DropdownRadioItem>
+									<DropdownRadioItem value="audio/*" onSelect={(e) => e.preventDefault()}>
+										Audio
+									</DropdownRadioItem>
+									<DropdownRadioItem value="video/*" onSelect={(e) => e.preventDefault()}>
+										Video
+									</DropdownRadioItem>
+									<DropdownRadioItem value="*" onSelect={(e) => e.preventDefault()}>
+										All
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
 									{roundedOptions.map((roundedOption) => (
-										<DropdownItem value={roundedOption} key={roundedOption}>
+										<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
 											{roundedOption}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
 									{sizes.map((size) => (
-										<DropdownItem value={size} key={size}>
+										<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
 											{size}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Hint</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Has error</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[String(hasError)]}
-									onSelectedChange={(hasError) => setHasError(hasError[0] === "true")}
-									minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(hasError)} onValueChange={(value) => setHasError(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(disabled)} onValueChange={(value) => setDisabled(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Max size (mb)</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[maxSize]} onSelectedChange={(values) => setMaxSize(values[0] as MaxSizeOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={maxSize} onValueChange={(value) => setMaxSize(value as MaxSizeOptions)}>
 									{maxSizeOptions.map((maxOption) => (
-										<DropdownItem value={maxOption} key={maxOption}>
+										<DropdownRadioItem value={maxOption} key={maxOption} onSelect={(e) => e.preventDefault()}>
 											{maxOption}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Max files</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[maxFile]} onSelectedChange={(values) => setMaxFile(values[0] as MaxFileOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={maxFile} onValueChange={(value) => setMaxFile(value as MaxFileOptions)}>
 									{maxFileOptions.map((maxFileOption) => (
-										<DropdownItem value={maxFileOption} key={maxFileOption}>
+										<DropdownRadioItem value={maxFileOption} key={maxFileOption} onSelect={(e) => e.preventDefault()}>
 											{maxFileOption}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

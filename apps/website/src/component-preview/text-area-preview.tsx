@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { TextArea } from "@/registry/ui/text-area"
 
@@ -35,88 +35,88 @@ const TextAreaPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Label</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[label]}
-									onSelectedChange={(keys) => {
-										setLabel(Array.from(keys)[0] as "true" | "false")
-									}}>
-									<DropdownItem value="true">true</DropdownItem>
-									<DropdownItem value="false">false</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={label} onValueChange={(value) => setLabel(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Resizable</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[resizable]}
-									onSelectedChange={(keys) => {
-										setResizable(Array.from(keys)[0] as "true" | "false")
-									}}>
-									<DropdownItem value="true">true</DropdownItem>
-									<DropdownItem value="false">false</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={resizable} onValueChange={(value) => setResizable(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Has Error</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[hasError]}
-									onSelectedChange={(keys) => {
-										setHasError(Array.from(keys)[0] as "true" | "false")
-									}}>
-									<DropdownItem value="true">true</DropdownItem>
-									<DropdownItem value="false">false</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={hasError} onValueChange={(value) => setHasError(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[disabled]}
-									onSelectedChange={(keys) => {
-										setDisabled(Array.from(keys)[0] as "true" | "false")
-									}}>
-									<DropdownItem value="true">true</DropdownItem>
-									<DropdownItem value="false">false</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Rows</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[hint]}
-									onSelectedChange={(keys) => {
-										setRows(Array.from(keys)[0] as "4" | "5" | "6" | "7" | "8")
-									}}>
-									<DropdownItem value="4">4</DropdownItem>
-									<DropdownItem value="5">5</DropdownItem>
-									<DropdownItem value="6">6</DropdownItem>
-									<DropdownItem value="7">7</DropdownItem>
-									<DropdownItem value="8">8</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={rows} onValueChange={(value) => setRows(value as "4" | "5" | "6" | "7" | "8")}>
+									<DropdownRadioItem value="4" onSelect={(e) => e.preventDefault()}>
+										4
+									</DropdownRadioItem>
+									<DropdownRadioItem value="5" onSelect={(e) => e.preventDefault()}>
+										5
+									</DropdownRadioItem>
+									<DropdownRadioItem value="6" onSelect={(e) => e.preventDefault()}>
+										6
+									</DropdownRadioItem>
+									<DropdownRadioItem value="7" onSelect={(e) => e.preventDefault()}>
+										7
+									</DropdownRadioItem>
+									<DropdownRadioItem value="8" onSelect={(e) => e.preventDefault()}>
+										8
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Hint</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									selectedValues={[hint]}
-									onSelectedChange={(keys) => {
-										setHint(Array.from(keys)[0] as "true" | "false")
-									}}>
-									<DropdownItem value="true">true</DropdownItem>
-									<DropdownItem value="false">false</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={hint} onValueChange={(value) => setHint(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

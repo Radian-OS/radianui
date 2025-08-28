@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "16" | "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80"
@@ -43,38 +43,66 @@ const AvatarPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-									<DropdownItem value="16">16</DropdownItem>
-									<DropdownItem value="20">20</DropdownItem>
-									<DropdownItem value="24">24</DropdownItem>
-									<DropdownItem value="32">32</DropdownItem>
-									<DropdownItem value="36">36</DropdownItem>
-									<DropdownItem value="40">40</DropdownItem>
-									<DropdownItem value="48">48</DropdownItem>
-									<DropdownItem value="64">64</DropdownItem>
-									<DropdownItem value="80">80</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as Size)}>
+									<DropdownRadioItem value="16" onSelect={(e) => e.preventDefault()}>
+										16
+									</DropdownRadioItem>
+									<DropdownRadioItem value="20" onSelect={(e) => e.preventDefault()}>
+										20
+									</DropdownRadioItem>
+									<DropdownRadioItem value="24" onSelect={(e) => e.preventDefault()}>
+										24
+									</DropdownRadioItem>
+									<DropdownRadioItem value="32" onSelect={(e) => e.preventDefault()}>
+										32
+									</DropdownRadioItem>
+									<DropdownRadioItem value="36" onSelect={(e) => e.preventDefault()}>
+										36
+									</DropdownRadioItem>
+									<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
+										40
+									</DropdownRadioItem>
+									<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
+										48
+									</DropdownRadioItem>
+									<DropdownRadioItem value="64" onSelect={(e) => e.preventDefault()}>
+										64
+									</DropdownRadioItem>
+									<DropdownRadioItem value="80" onSelect={(e) => e.preventDefault()}>
+										80
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
-									<DropdownItem value="fallback">Fallback</DropdownItem>
-									<DropdownItem value="initial">Initial</DropdownItem>
-									<DropdownItem value="image">Image</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as Variant)}>
+									<DropdownRadioItem value="fallback" onSelect={(e) => e.preventDefault()}>
+										Fallback
+									</DropdownRadioItem>
+									<DropdownRadioItem value="initial" onSelect={(e) => e.preventDefault()}>
+										Initial
+									</DropdownRadioItem>
+									<DropdownRadioItem value="image" onSelect={(e) => e.preventDefault()}>
+										Image
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Radius</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setRadius(Array.from(keys)[0] as Radius)} minSelectionCount={1} selectedValues={[radius]}>
-									<DropdownItem value="circle">Circle</DropdownItem>
-									<DropdownItem value="square">Square</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={radius} onValueChange={(value) => setRadius(value as Radius)}>
+									<DropdownRadioItem value="circle" onSelect={(e) => e.preventDefault()}>
+										Circle
+									</DropdownRadioItem>
+									<DropdownRadioItem value="square" onSelect={(e) => e.preventDefault()}>
+										Square
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
@@ -82,11 +110,17 @@ const AvatarPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Status</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStatus(Array.from(keys)[0] as Status)} minSelectionCount={1} selectedValues={[status]}>
-									<DropdownItem value="online">Online</DropdownItem>
-									<DropdownItem value="offline">Offline</DropdownItem>
-									<DropdownItem value="none">None</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={status} onValueChange={(value) => setStatus(value as Status)}>
+									<DropdownRadioItem value="online" onSelect={(e) => e.preventDefault()}>
+										Online
+									</DropdownRadioItem>
+									<DropdownRadioItem value="offline" onSelect={(e) => e.preventDefault()}>
+										Offline
+									</DropdownRadioItem>
+									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
+										None
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

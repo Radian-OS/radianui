@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { CurrencyInput } from "@/registry/ui/currency-amount"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -34,17 +34,17 @@ const CurrencyPreview = () => {
 							<Settings />
 						</IconButton>
 					</DropdownTrigger>
-					<DropdownContent>
+					<DropdownContent className="min-w-20">
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
 									{sizes.map((size) => (
-										<DropdownItem value={size} key={size}>
+										<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
 											{size}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

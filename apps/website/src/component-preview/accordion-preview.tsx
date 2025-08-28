@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const items = [
@@ -60,10 +60,14 @@ export default function AccordionPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSize(Array.from(keys)[0] as Size)} minSelectionCount={1} selectedValues={[size]}>
-										<DropdownItem value="sm">Small</DropdownItem>
-										<DropdownItem value="lg">Large</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as Size)}>
+										<DropdownRadioItem value="sm" onSelect={(e) => e.preventDefault()}>
+											Small
+										</DropdownRadioItem>
+										<DropdownRadioItem value="lg" onSelect={(e) => e.preventDefault()}>
+											Large
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
@@ -71,11 +75,17 @@ export default function AccordionPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as Variant)} minSelectionCount={1} selectedValues={[variant]}>
-										<DropdownItem value="open">Open</DropdownItem>
-										<DropdownItem value="box">Box</DropdownItem>
-										<DropdownItem value="table">Table</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as Variant)}>
+										<DropdownRadioItem value="open" onSelect={(e) => e.preventDefault()}>
+											Open
+										</DropdownRadioItem>
+										<DropdownRadioItem value="box" onSelect={(e) => e.preventDefault()}>
+											Box
+										</DropdownRadioItem>
+										<DropdownRadioItem value="table" onSelect={(e) => e.preventDefault()}>
+											Table
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
@@ -83,14 +93,14 @@ export default function AccordionPreview() {
 							<DropdownSub>
 								<DropdownSubTrigger>Expand</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setExpand(Array.from(keys)[0] as Expand)}
-										minSelectionCount={1}
-										selectedValues={[expand.toString()]}>
-										<DropdownItem value="single">Single</DropdownItem>
-										<DropdownItem value="multiple">Multiple</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={expand} onValueChange={(value) => setExpand(value as Expand)}>
+										<DropdownRadioItem value="single" onSelect={(e) => e.preventDefault()}>
+											Single
+										</DropdownRadioItem>
+										<DropdownRadioItem value="multiple" onSelect={(e) => e.preventDefault()}>
+											Multiple
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 						</DropdownContent>
