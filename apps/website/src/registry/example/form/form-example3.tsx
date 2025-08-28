@@ -381,7 +381,7 @@ const FormExample3 = () => {
 									Billing Address
 								</h3>
 								<div className="flex items-center space-x-2">
-									<Checkbox checked={sameAsShipping} onChange={handleCheckboxChange}>
+									<Checkbox checked={sameAsShipping} onCheckedChange={handleCheckboxChange}>
 										Same as shipping address
 									</Checkbox>
 								</div>
