@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton, LinkButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const LinkButtonPreview = () => {
@@ -50,80 +50,78 @@ ${end === "true" ? "end={<ChevronRight />}" : ""}
 						<DropdownSub>
 							<DropdownSubTrigger>Color</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setColor(Array.from(keys)[0] as colors)
-									}}
-									minSelectionCount={1}
-									selectedValues={[color]}>
-									<DropdownItem value="primary">primary</DropdownItem>
-									<DropdownItem value="neutral">neutral</DropdownItem>
-									<DropdownItem value="success">success</DropdownItem>
-									<DropdownItem value="error">error</DropdownItem>
-									<DropdownItem value="warning">warning</DropdownItem>
-									<DropdownItem value="info">info</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={color} onValueChange={(value) => setColor(value as colors)}>
+									<DropdownRadioItem value="primary" onSelect={(e) => e.preventDefault()}>
+										primary
+									</DropdownRadioItem>
+									<DropdownRadioItem value="neutral" onSelect={(e) => e.preventDefault()}>
+										neutral
+									</DropdownRadioItem>
+									<DropdownRadioItem value="success" onSelect={(e) => e.preventDefault()}>
+										success
+									</DropdownRadioItem>
+									<DropdownRadioItem value="error" onSelect={(e) => e.preventDefault()}>
+										error
+									</DropdownRadioItem>
+									<DropdownRadioItem value="warning" onSelect={(e) => e.preventDefault()}>
+										warning
+									</DropdownRadioItem>
+									<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
+										info
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Text Size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setSize(Array.from(keys)[0] as sizes)
-									}}
-									minSelectionCount={1}
-									selectedValues={[size]}>
-									<DropdownItem value="14">14</DropdownItem>
-									<DropdownItem value="16">16</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as sizes)}>
+									<DropdownRadioItem value="14" onSelect={(e) => e.preventDefault()}>
+										14
+									</DropdownRadioItem>
+									<DropdownRadioItem value="16" onSelect={(e) => e.preventDefault()}>
+										16
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Start</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[start]}
-									onSelectedChange={(keys) => {
-										setStart(Array.from(keys)[0] as "true" | "false")
-									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={start} onValueChange={(value) => setStart(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>End</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									selectedValues={[end]}
-									onSelectedChange={(keys) => {
-										setEnd(Array.from(keys)[0] as "true" | "false")
-									}}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={end} onValueChange={(value) => setEnd(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setDisabled(Array.from(keys)[0] as "true" | "false")
-									}}
-									minSelectionCount={1}
-									selectedValues={[disabled]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

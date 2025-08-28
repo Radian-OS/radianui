@@ -2,7 +2,7 @@ import React from "react"
 import { EyeIcon, File, Package2, Settings, ShoppingBag, SquareTerminal, User2 } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, type TabsListWidth, type TabsSize, TabsTrigger, type TabsVariant } from "@/registry/ui/tabs"
 
 const variants = ["default", "open", "outline", "ghost", "outline-ghost"]
@@ -82,97 +82,85 @@ const TablePreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setVariant(values[0] as TabsVariant)} minSelectionCount={1} selectedValues={[variant!]}>
+								<DropdownRadioGroup value={variant!} onValueChange={(value) => setVariant(value as TabsVariant)}>
 									{variants.map((v) => (
-										<DropdownItem key={v} value={v}>
+										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setSize(values[0] as TabsSize)} minSelectionCount={1} selectedValues={[size!]}>
+								<DropdownRadioGroup value={size!} onValueChange={(value) => setSize(value as TabsSize)}>
 									{sizes.map((v) => (
-										<DropdownItem key={v} value={v}>
+										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>width</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setWidth(values[0] as TabsListWidth)} minSelectionCount={1} selectedValues={[width]}>
+								<DropdownRadioGroup value={width} onValueChange={(value) => setWidth(value as TabsListWidth)}>
 									{widths.map((v) => (
-										<DropdownItem key={v} value={v}>
+										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>orientation</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(values) => setOrientation(values[0] as "horizontal" | "vertical")}
-									minSelectionCount={1}
-									selectedValues={[orientation]}>
+								<DropdownRadioGroup value={orientation} onValueChange={(value) => setOrientation(value as "horizontal" | "vertical")}>
 									{orientations.map((v) => (
-										<DropdownItem key={v} value={v}>
+										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>activationMode</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(values) => setActivationMode(values[0] as "manual" | "automatic")}
-									minSelectionCount={1}
-									selectedValues={[activationMode]}>
+								<DropdownRadioGroup value={activationMode} onValueChange={(value) => setActivationMode(value as "manual" | "automatic")}>
 									{activationModes.map((v) => (
-										<DropdownItem key={v} value={v}>
+										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>icon</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(values) => setIcon(values[0] === "true" ? "true" : "false")} minSelectionCount={1} selectedValues={[icon]}>
+								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value === "true" ? "true" : "false")}>
 									{booleanValues.map((v) => (
-										<DropdownItem key={v} value={v}>
+										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>counter</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(values) => setCounter(values[0] === "true" ? "true" : "false")}
-									minSelectionCount={1}
-									selectedValues={[counter]}>
+								<DropdownRadioGroup value={counter} onValueChange={(value) => setCounter(value === "true" ? "true" : "false")}>
 									{booleanValues.map((v) => (
-										<DropdownItem key={v} value={v}>
+										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
-										</DropdownItem>
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

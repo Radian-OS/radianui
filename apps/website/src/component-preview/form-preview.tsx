@@ -25,7 +25,7 @@ import { Button, IconButton } from "@/registry/ui/button"
 import ColorPicker from "@/registry/ui/color-picker"
 import { CurrencyInput } from "@/registry/ui/currency-amount"
 import DatePicker from "@/registry/ui/date-picker"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import FileUpload, { FileWithPreview } from "@/registry/ui/file-upload"
 import { Input } from "@/registry/ui/input"
 import { InputOtp } from "@/registry/ui/input-otp"
@@ -603,21 +603,21 @@ const FormPreview = () => {
 							<Settings />
 						</IconButton>
 					</DropdownTrigger>
-					<DropdownContent className="min-w-35">
-						<DropdownGroup selectionMode="single" selectedValues={selectedValue} onSelectedChange={handleSelectionChange}>
-							<DropdownItem value="username">Username</DropdownItem>
-							<DropdownItem value="password">Password</DropdownItem>
-							<DropdownItem value="colorPicker">Color Picker</DropdownItem>
-							<DropdownItem value="select">Select</DropdownItem>
-							<DropdownItem value="otp">OTP</DropdownItem>
-							<DropdownItem value="currency">Currency</DropdownItem>
-							<DropdownItem value="searchInput">Search Input</DropdownItem>
-							<DropdownItem value="date">Date</DropdownItem>
-							<DropdownItem value="file">File Upload</DropdownItem>
-							<DropdownItem value="phoneno">Phone Number</DropdownItem>
-							<DropdownItem value="textarea">Textarea</DropdownItem>
-							<DropdownItem value="slider">Slider</DropdownItem>
-						</DropdownGroup>
+					<DropdownContent className="min-w-35" align="end">
+						<DropdownRadioGroup value={selectedValue[0]} onValueChange={(value) => handleSelectionChange([value])}>
+							<DropdownRadioItem value="username">Username</DropdownRadioItem>
+							<DropdownRadioItem value="password">Password</DropdownRadioItem>
+							<DropdownRadioItem value="colorPicker">Color Picker</DropdownRadioItem>
+							<DropdownRadioItem value="select">Select</DropdownRadioItem>
+							<DropdownRadioItem value="otp">OTP</DropdownRadioItem>
+							<DropdownRadioItem value="currency">Currency</DropdownRadioItem>
+							<DropdownRadioItem value="searchInput">Search Input</DropdownRadioItem>
+							<DropdownRadioItem value="date">Date</DropdownRadioItem>
+							<DropdownRadioItem value="file">File Upload</DropdownRadioItem>
+							<DropdownRadioItem value="phoneno">Phone Number</DropdownRadioItem>
+							<DropdownRadioItem value="textarea">Textarea</DropdownRadioItem>
+							<DropdownRadioItem value="slider">Slider</DropdownRadioItem>
+						</DropdownRadioGroup>
 					</DropdownContent>
 				</Dropdown>
 			</div>

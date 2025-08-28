@@ -4,7 +4,7 @@ import Link from "next/link"
 import CodeSnippet from "@/components/code-snippet"
 import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BreadCrumbPreview = () => {
@@ -31,31 +31,35 @@ const BreadCrumbPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Separator</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									onSelectedChange={(keys) => setSeparatorType(Array.from(keys)[0] as "default" | "slash")}
-									selectedValues={[separator]}>
-									<DropdownItem value="default">Default</DropdownItem>
-									<DropdownItem value="slash">Slash</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={separator} onValueChange={(value) => setSeparatorType(value as "default" | "slash")}>
+									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
+										Default
+									</DropdownRadioItem>
+									<DropdownRadioItem value="slash" onSelect={(e) => e.preventDefault()}>
+										Slash
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Max items</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									minSelectionCount={1}
-									onSelectedChange={(keys) => setMaxItems(Array.from(keys)[0] as "2" | "3" | "4" | "5")}
-									selectedValues={[maxItems]}>
-									<DropdownItem value="2">2</DropdownItem>
-									<DropdownItem value="3">3</DropdownItem>
-									<DropdownItem value="4">4</DropdownItem>
-									<DropdownItem value="5">5</DropdownItem>
-									{/* <DropdownItem value="6">6</DropdownItem> */}
-								</DropdownGroup>
+								<DropdownRadioGroup value={maxItems} onValueChange={(value) => setMaxItems(value as "2" | "3" | "4" | "5")}>
+									<DropdownRadioItem value="2" onSelect={(e) => e.preventDefault()}>
+										2
+									</DropdownRadioItem>
+									<DropdownRadioItem value="3" onSelect={(e) => e.preventDefault()}>
+										3
+									</DropdownRadioItem>
+									<DropdownRadioItem value="4" onSelect={(e) => e.preventDefault()}>
+										4
+									</DropdownRadioItem>
+									<DropdownRadioItem value="5" onSelect={(e) => e.preventDefault()}>
+										5
+									</DropdownRadioItem>
+									{/* <DropdownRadioItem value="6" onSelect={(e) => e.preventDefault()}>6</DropdownRadioItem> */}
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

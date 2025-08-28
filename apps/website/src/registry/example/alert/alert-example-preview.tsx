@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal, Star } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertExamplePreview = () => {
@@ -50,22 +50,22 @@ const AlertExamplePreview = () => {
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
-						<DropdownGroup>
-							<DropdownSub>
-								<DropdownSubTrigger>Position</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as typeof position)}
-										minSelectionCount={1}
-										selectedValues={[position]}>
-										<DropdownItem value="top">Top</DropdownItem>
-										<DropdownItem value="bottom">Bottom</DropdownItem>
-										<DropdownItem value="center">Center</DropdownItem>
-									</DropdownGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownGroup>
+						<DropdownSub>
+							<DropdownSubTrigger>Position</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={position} onValueChange={(value) => setPosition(value as typeof position)}>
+									<DropdownRadioItem value="top" onSelect={(e) => e.preventDefault()}>
+										Top
+									</DropdownRadioItem>
+									<DropdownRadioItem value="bottom" onSelect={(e) => e.preventDefault()}>
+										Bottom
+									</DropdownRadioItem>
+									<DropdownRadioItem value="center" onSelect={(e) => e.preventDefault()}>
+										Center
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>

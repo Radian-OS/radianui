@@ -3,7 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -45,12 +45,20 @@ const HovercardPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Side</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setSide(Array.from(keys)[0] as Side)} minSelectionCount={1} selectedValues={[side]}>
-									<DropdownItem value="top">Top</DropdownItem>
-									<DropdownItem value="right">Right</DropdownItem>
-									<DropdownItem value="bottom">Bottom</DropdownItem>
-									<DropdownItem value="left">Left</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={side} onValueChange={(value) => setSide(value as Side)}>
+									<DropdownRadioItem value="top" onSelect={(e) => e.preventDefault()}>
+										Top
+									</DropdownRadioItem>
+									<DropdownRadioItem value="right" onSelect={(e) => e.preventDefault()}>
+										Right
+									</DropdownRadioItem>
+									<DropdownRadioItem value="bottom" onSelect={(e) => e.preventDefault()}>
+										Bottom
+									</DropdownRadioItem>
+									<DropdownRadioItem value="left" onSelect={(e) => e.preventDefault()}>
+										Left
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
@@ -58,21 +66,31 @@ const HovercardPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Align</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setAlign(Array.from(keys)[0] as Align)} minSelectionCount={1} selectedValues={[align]}>
-									<DropdownItem value="start">Start</DropdownItem>
-									<DropdownItem value="center">Center</DropdownItem>
-									<DropdownItem value="end">End</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={align} onValueChange={(value) => setAlign(value as Align)}>
+									<DropdownRadioItem value="start" onSelect={(e) => e.preventDefault()}>
+										Start
+									</DropdownRadioItem>
+									<DropdownRadioItem value="center" onSelect={(e) => e.preventDefault()}>
+										Center
+									</DropdownRadioItem>
+									<DropdownRadioItem value="end" onSelect={(e) => e.preventDefault()}>
+										End
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>With arrow</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setArrow(Array.from(keys)[0] as Arrow)} minSelectionCount={1} selectedValues={[arrow]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={arrow} onValueChange={(value) => setArrow(value as Arrow)}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

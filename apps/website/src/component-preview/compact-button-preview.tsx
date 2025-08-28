@@ -2,7 +2,7 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal, X } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { CompactButton, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CompactButtonPreview = () => {
@@ -70,49 +70,45 @@ color="neutral"
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setDisabled(Array.from(keys)[0] as "true" | "false")
-									}}
-									minSelectionCount={1}
-									selectedValues={[disabled]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setVariant(Array.from(keys)[0] as "outline" | "ghost")
-									}}
-									minSelectionCount={1}
-									selectedValues={[variant]}>
-									<DropdownItem value="outline">Outline</DropdownItem>
-									<DropdownItem value="ghost">Ghost</DropdownItem>
-									<DropdownItem value="white">Static White</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "outline" | "ghost" | "white")}>
+									<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
+										Outline
+									</DropdownRadioItem>
+									<DropdownRadioItem value="ghost" onSelect={(e) => e.preventDefault()}>
+										Ghost
+									</DropdownRadioItem>
+									<DropdownRadioItem value="white" onSelect={(e) => e.preventDefault()}>
+										Static White
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>size</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setSize(Array.from(keys)[0] as sizes)
-									}}
-									minSelectionCount={1}
-									selectedValues={[size]}>
-									<DropdownItem value="20">20</DropdownItem>
-									<DropdownItem value="24">24</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as sizes)}>
+									<DropdownRadioItem value="20" onSelect={(e) => e.preventDefault()}>
+										20
+									</DropdownRadioItem>
+									<DropdownRadioItem value="24" onSelect={(e) => e.preventDefault()}>
+										24
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>
