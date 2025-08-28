@@ -74,7 +74,7 @@ function DropdownItem({
 			className={cn(
 				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden",
 				"relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm",
-				"[&_svg]:text-fg-secondary transition-colors [&_svg]:pointer-events-none [&_svg]:size-5 [&_svg]:shrink-0",
+				"[&_svg]:text-fg-secondary transition-colors [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
 			)}
@@ -91,12 +91,15 @@ function DropdownCheckboxItem({ children, className, ...props }: React.Component
 	return (
 		<DropdownMenuPrimitive.CheckboxItem
 			data-slot="dropdown-menu-checkbox-item"
-			className={cn("flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm", className)}
+			className={cn(
+				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary outline-hidden flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				className
+			)}
 			{...props}>
 			{children}
 			<span className="ml-auto flex size-5 items-center justify-center">
 				<DropdownMenuPrimitive.ItemIndicator>
-					<Check size={20} className="text-fg-secondary" />
+					<Check size={20} />
 				</DropdownMenuPrimitive.ItemIndicator>
 			</span>
 		</DropdownMenuPrimitive.CheckboxItem>
@@ -112,14 +115,14 @@ function DropdownRadioItem({ children, className, ...props }: React.ComponentPro
 		<DropdownMenuPrimitive.RadioItem
 			data-slot="dropdown-menu-radio-item"
 			className={cn(
-				"focus:bg-fill2-alpha flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary outline-hidden flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}>
 			{children}
 			<span className="ml-auto flex size-5 items-center justify-center">
 				<DropdownMenuPrimitive.ItemIndicator>
-					<Check size={20} className="text-fg-secondary" />
+					<Check size={20} />
 				</DropdownMenuPrimitive.ItemIndicator>
 			</span>
 		</DropdownMenuPrimitive.RadioItem>
