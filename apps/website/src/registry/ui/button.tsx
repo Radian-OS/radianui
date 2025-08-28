@@ -122,6 +122,13 @@ export const buttonVariants = cva(
 			{ iconOnly: true, size: "44", className: "p-3 h-11 gap-1" },
 			{ iconOnly: true, size: "48", className: "p-3.5 h-12 gap-1" },
 
+			{ iconOnly: true, variant: "outline", size: "28", className: "p-1.25 h-7 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "32", className: "p-1.5 h-8 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "36", className: "p-1.75 h-9 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "40", className: "p-2.25 h-10 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "44", className: "p-2.75 h-11 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "48", className: "p-3.25 h-12 gap-1" },
+
 			{
 				variant: "strong",
 				color: "primary",
