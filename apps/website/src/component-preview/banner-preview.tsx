@@ -12,8 +12,6 @@ const BannerPreview = () => {
 	type booleanType = "true" | "false"
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"strong" | "outline" | "soft">("strong")
-	const [closable, setClosable] = useState<"true" | "false">("false")
-	const [key, setKey] = useState(0)
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "link">("link")
 	const [title, setTitle] = useState<booleanType>("true")
@@ -53,9 +51,6 @@ const BannerPreview = () => {
 
 		code += `
   end={<Button color='${btnColor}'>Action</Button>}`
-
-		code += `
-  closable={${closable}}`
 
 		code += `
 >
@@ -164,22 +159,6 @@ const BannerPreview = () => {
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Closable</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownGroup
-									selectionMode="single"
-									onSelectedChange={(keys) => {
-										setClosable(Array.from(keys)[0] as "true" | "false")
-										setKey((k) => k + 1)
-									}}
-									minSelectionCount={1}
-									selectedValues={[closable]}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -200,8 +179,6 @@ const BannerPreview = () => {
 								</LinkButton>
 							) : undefined
 						}
-						key={key}
-						closable={closable === "true" ? true : false}
 						color={color}
 						variant={variant}
 						className="w-full"></Banner>
