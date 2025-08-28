@@ -12,7 +12,6 @@ const BannerPreview = () => {
 	type booleanType = "true" | "false"
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"strong" | "outline" | "soft">("strong")
-	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "link">("link")
 	const [title, setTitle] = useState<booleanType>("true")
@@ -52,9 +51,6 @@ const BannerPreview = () => {
 
 		code += `
   end={<Button color='${btnColor}'>Action</Button>}`
-
-		code += `
-  closable={${closable}}`
 
 		code += `
 >
@@ -187,19 +183,6 @@ const BannerPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Closable</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={closable} onValueChange={(value) => setClosable(value as "true" | "false")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -220,7 +203,6 @@ const BannerPreview = () => {
 								</LinkButton>
 							) : undefined
 						}
-						closable={closable === "true" ? true : false}
 						color={color}
 						variant={variant}
 						className="w-full"></Banner>

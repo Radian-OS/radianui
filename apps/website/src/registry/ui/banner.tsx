@@ -9,7 +9,6 @@ import { CompactButton } from "./button"
 type BannerProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof bannerVariants> & {
 		children?: ReactNode
-		closable?: boolean
 		className?: string
 		start?: ReactNode
 		end?: ReactNode

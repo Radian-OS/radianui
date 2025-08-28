@@ -1,14 +1,15 @@
 "use client"
 
 import React from "react"
+import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-type AvatarRadius = NonNullable<VariantProps<typeof avatarRadius>["radius"]>
+type AvatarRadius = NonNullable<VariantProps<typeof avatarRadiusVariants>["radius"]>
 
-type AvatarSize = NonNullable<VariantProps<typeof avatarRadius>["size"]>
+type AvatarSize = NonNullable<VariantProps<typeof avatarRadiusVariants>["size"]>
 
-type AvatarProps = React.ComponentProps<"div"> & {
+type AvatarProps = React.ComponentProps<typeof AvatarPrimitive.Root> & {
 	src?: string
 	name?: string
 	className?: string
@@ -24,13 +25,10 @@ type AvatarGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	className?: string
 }
 
-type ImageStatus = "loading" | "loaded" | "error"
-
 const AvatarFallbackIcon = ({ className, radius }: { className: string; radius: AvatarRadius }) => {
 	const clipPathId = `avatar-clip-${radius}`
 
 	const borderRadiusFirstRect = radius === "circle" ? 20 : 8
-	// const borderRadiusSecondRect = radius === "circle" ? 20 : 0
 
 	return (
 		<svg width="100" height="100" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -45,20 +43,17 @@ const AvatarFallbackIcon = ({ className, radius }: { className: string; radius: 
 					d="M18.0081 19.8C21.9759 19.8 25.1998 16.5761 25.1998 12.6083C25.1998 8.64044 21.9759 5.40002 18.0081 5.40002C14.0402 5.40002 10.7998 8.6239 10.7998 12.5918C10.7998 16.5596 14.0237 19.7835 17.9915 19.7835C18.0081 19.8"
 					className="fill-elevation-level1"
 				/>
-				{/* <rect x="1" y="1" width="34" height="34" rx={borderRadiusSecondRect} ry={borderRadiusSecondRect} className="stroke-fg-disabled" strokeWidth={2} /> */}
 			</g>
 		</svg>
 	)
 }
 
-const OnlineIcon = ({ className }: { className?: string }) => {
-	return <div className={className}></div>
-}
-const OfflineIcon = ({ className }: { className?: string }) => {
+// Used to render the dot circle indicator(online/offline)
+const DotCircleIcon = ({ className }: { className?: string }) => {
 	return <div className={className}></div>
 }
 
-const avatarRadius = cva("flex items-center justify-center shrink-0 font-semibold text-elevation-level2", {
+const avatarRadiusVariants = cva("flex items-center justify-center shrink-0 font-semibold text-elevation-level2", {
 	variants: {
 		size: {
 			"16": "size-4 text-xs",
@@ -93,7 +88,7 @@ const avatarRadius = cva("flex items-center justify-center shrink-0 font-semibol
 	},
 })
 
-const indicatorVariants = cva("absolute z-10 box-content bottom-0 right-0", {
+const indicatorVariants = cva("absolute z-10 border-bg rounded-full box-content bottom-0 right-0", {
 	variants: {
 		size: {
 			"16": "size-1 border",
@@ -123,6 +118,7 @@ const avatarGroupVariants = cva("flex items-center", {
 	},
 })
 
+// Renders the initials of the name based on the size of the avatar
 function getInitials(name: string, size: AvatarProps["size"]) {
 	if (!name) return ""
 	if (name.startsWith("+")) return name
@@ -133,47 +129,33 @@ function getInitials(name: string, size: AvatarProps["size"]) {
 }
 
 function Avatar({ src, name, className, size = "36", radius = "circle", status, ...props }: AvatarProps) {
-	const [imageStatus, setImageStatus] = React.useState<ImageStatus>("loading")
-
-	React.useEffect(() => {
-		if (!src) {
-			setImageStatus("error")
-			return
-		}
-
-		const img = new Image()
-		img.src = src
-		img.onload = () => setImageStatus("loaded")
-		img.onerror = () => setImageStatus("error")
-
-		return () => {
-			img.onload = null
-			img.onerror = null
-		}
-	}, [src])
-
 	return (
-		<div data-slot="avatar" className={cn(avatarRadius({ size, radius }), className, "bg-fill4 relative")} {...props}>
-			{src && imageStatus === "loaded" ? (
-				<img src={src} alt={name} className="size-full rounded-[inherit] object-cover" />
-			) : (
-				<span
-					className={cn(
-						"flex size-full items-center justify-center rounded-[inherit]",
-						name ? "bg-primary-focus text-primary-text truncate overflow-ellipsis px-1" : "text-elevation-level2 overflow-hidden bg-[inherit]"
-					)}>
-					{name ? getInitials(name, size) : <AvatarFallbackIcon radius={radius} className={"size-full text-base"} />}
-				</span>
-			)}
+		<AvatarPrimitive.Root data-slot="avatar" className={cn(avatarRadiusVariants({ size, radius }), className, "bg-fill4 relative")} {...props}>
+			<AvatarPrimitive.Image className="aspect-square size-full rounded-[inherit] object-cover" src={src} alt={name} />
+			<AvatarPrimitive.Fallback
+				className={cn(
+					"flex size-full items-center justify-center rounded-[inherit]",
+					name ? "bg-primary-focus text-primary-text truncate overflow-ellipsis px-1" : "text-elevation-level2 overflow-hidden bg-[inherit]"
+				)}>
+				{name ? getInitials(name, size) : <AvatarFallbackIcon radius={radius} className={"size-full text-base"} />}
+			</AvatarPrimitive.Fallback>
 
-			{/*Render indicator based on status */}
+			{/*Render dot circle indicator based on status */}
 			{status !== undefined && (
 				<>
-					{status === "online" && <OnlineIcon className={cn(indicatorVariants({ size }), "bg-success border-bg rounded-full")} />}
-					{status === "offline" && <OfflineIcon className={cn(indicatorVariants({ size }), "bg-fg-disabled border-bg rounded-full")} />}
+					{(() => {
+						switch (status) {
+							case "online":
+								return <DotCircleIcon className={cn(indicatorVariants({ size }), "bg-success")} />
+							case "offline":
+								return <DotCircleIcon className={cn(indicatorVariants({ size }), "bg-fg-disabled")} />
+							default:
+								return null
+						}
+					})()}
 				</>
 			)}
-		</div>
+		</AvatarPrimitive.Root>
 	)
 }
 
