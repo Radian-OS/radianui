@@ -59,19 +59,6 @@ export default function CheckboxPreview() {
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
-							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={disabled.toString()} onValueChange={(value) => setDisabled(value === "true")}>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										false
-									</DropdownRadioItem>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										true
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
 							<DropdownSubTrigger>Icon</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={iconType} onValueChange={(value) => setIconType(value as IconType)}>
@@ -86,6 +73,19 @@ export default function CheckboxPreview() {
 									</DropdownRadioItem>
 									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
 										Star
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={disabled.toString()} onValueChange={(value) => setDisabled(value === "true")}>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										false
+									</DropdownRadioItem>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										true
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>

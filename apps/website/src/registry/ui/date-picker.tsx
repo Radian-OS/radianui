@@ -10,10 +10,7 @@ import { cn } from "@/lib/utils"
 import { DateRangeShortcut, DateRangeShortcutValues, TimeSelector, formatTime, mockMouseClick, timeOptions } from "./calendar"
 import { Calendar, type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
 import { Input, type RoundedOptions, type SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
-import { Label } from "./label"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
-import { type SelectProps } from "./select"
-import { type TimePickerProps } from "./time-picker"
 
 export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg cursor-text", {
 	variants: {
@@ -24,6 +21,18 @@ export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2
 		size: "40",
 	},
 })
+
+export type TimePickerProps = {
+	interval?: number
+	value?: Time | null
+	onValueChange?: (time: Time | null) => void
+	is24Hour?: boolean
+	minTime?: string
+	maxTime?: string
+	defaultValue?: Time
+	allowEmptySelection?: boolean
+	lead?: React.ReactNode
+}
 
 type TimeZone = Record<string, string>
 const timeZones: TimeZone = {}
@@ -309,7 +318,7 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	defaultDateRangeShortcutValue?: DateRangeShortcutValues
 	placeholder?: string
 	timePickerProps?: Partial<TimePickerProps>
-	timeZoneProps?: Partial<SelectProps> & {
+	timeZoneProps?: {
 		allowedTimezones?: string[]
 	}
 	hint?: string
@@ -722,7 +731,9 @@ function TypeableDatePicker({
 		<Popover>
 			<PopoverTrigger disabled={disables} asChild>
 				<div className="flex flex-col items-start gap-1.5">
-					{label && <Label className={cn({ "text-fg-disabled cursor-not-allowed": disables })}>{label}</Label>}
+					{label && (
+						<p className={cn({ "text-fg-disabled cursor-not-allowed text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70": disables })}>{label}</p>
+					)}
 					<div
 						className={cn("w-[320px]", dateInputStyles({ size, rounded }), {
 							"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
@@ -737,7 +748,11 @@ function TypeableDatePicker({
 							})}
 						/>
 					</div>
-					{hint && <Label className={`flex items-start text-xs font-normal ${hasError ? "text-error" : "text-fg-tertiary"}`}>{hint}</Label>}
+					{hint && (
+						<p className={`flex items-start text-xs font-normal peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${hasError ? "text-error" : "text-fg-tertiary"}`}>
+							{hint}
+						</p>
+					)}
 				</div>
 			</PopoverTrigger>
 
