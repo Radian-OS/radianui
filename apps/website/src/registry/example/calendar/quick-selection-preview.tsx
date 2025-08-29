@@ -1,18 +1,16 @@
-"use client"
-
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
+import { Calendar } from "@/registry/ui/calendar"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Switch } from "@/registry/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const SwitchPreview = () => {
-	type sizeProps = "20" | "24"
-	type disabledType = "true" | "false"
-	const [size, setSize] = useState<sizeProps>("20")
-	const [disabled, setDisabled] = useState<disabledType>("false")
+export type DatePickerModes = "single" | "multiple" | "range"
+
+const QuickSelectionCalendarPreview = () => {
+	const [mode, setMode] = useState<DatePickerModes>("range")
+	const [quickSelection, setquickSelection] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -31,24 +29,28 @@ const SwitchPreview = () => {
 							<Settings />
 						</IconButton>
 					</DropdownTrigger>
-					<DropdownContent className="min-w-20">
+					<DropdownContent>
 						<DropdownSub>
-							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubTrigger>Selection</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as sizeProps)}>
-									<DropdownRadioItem value="20" onSelect={(e) => e.preventDefault()}>
-										20
+								<DropdownRadioGroup value={mode} onValueChange={(value) => setMode(value as DatePickerModes)}>
+									<DropdownRadioItem value="single" onSelect={(e) => e.preventDefault()}>
+										Single
 									</DropdownRadioItem>
-									<DropdownRadioItem value="24" onSelect={(e) => e.preventDefault()}>
-										24
+									<DropdownRadioItem value="multiple" onSelect={(e) => e.preventDefault()}>
+										Multiple
+									</DropdownRadioItem>
+									<DropdownRadioItem value="range" onSelect={(e) => e.preventDefault()}>
+										Range
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+
 						<DropdownSub>
-							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubTrigger>Quick Selection</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as disabledType)}>
+								<DropdownRadioGroup value={String(quickSelection)} onValueChange={(value) => setquickSelection(value === "true")}>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 										True
 									</DropdownRadioItem>
@@ -61,25 +63,28 @@ const SwitchPreview = () => {
 					</DropdownContent>
 				</Dropdown>
 			</div>
+
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Switch size={size} disabled={disabled === "true"}>
-						Switch Label
-					</Switch>
+				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
+					{mode === "single" && <Calendar quickSelection={quickSelection} mode={"single"} showOutsideDays />}
+					{mode === "multiple" && <Calendar quickSelection={quickSelection} mode={"multiple"} showOutsideDays />}
+					{mode === "range" && <Calendar quickSelection={quickSelection} mode={"range"} showOutsideDays />}
 				</div>
 			</TabsContent>
+
 			<TabsContent value="code">
 				<CodeSnippet
-					title="switch.tsx"
+					title="calendar.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Switch size={${size}} disabled={${disabled === "true"}} >
-Switch Label
-</Switch>`}
+					code={`<Calendar
+    mode="${mode}"
+    quickSelection={${quickSelection}}
+/>`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
 
-export default SwitchPreview
+export default QuickSelectionCalendarPreview

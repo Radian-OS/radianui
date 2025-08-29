@@ -92,7 +92,7 @@ export function SearchDocs() {
 	return (
 		<>
 			{/* Mobile Search */}
-			<Drawer direction="bottom" type="rounded" handle={true} modal={true} preventScrollRestoration={true}>
+			<Drawer direction="bottom" variant="rounded" handle={true} modal={true} preventScrollRestoration={true}>
 				<DrawerTrigger asChild>
 					<IconButton variant="outline" color="neutral" className="md:hidden">
 						<Search />

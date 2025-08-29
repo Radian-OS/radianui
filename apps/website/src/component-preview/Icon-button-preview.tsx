@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Box, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { Box, EyeIcon, Send, Settings, SquareTerminal, Star, User } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -10,6 +10,7 @@ const IconButtonPreview = () => {
 	// Updated sizes type to include "28"
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type booleanType = "true" | "false"
+	type IconType = "box" | "settings" | "star" | "user" | "send"
 	// Colors type; neutral is removed.
 	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
 
@@ -18,7 +19,8 @@ const IconButtonPreview = () => {
 	const [loading, setLoading] = useState<booleanType>("false")
 	const [disabled, setDisabled] = useState<booleanType>("false")
 	const [color, setColor] = useState<colors>("primary")
-	const [tooltip, setTooltip] = useState<booleanType>("false")
+	const [tooltip, setTooltip] = useState<booleanType>("true")
+	const [icon, setIcon] = useState<IconType>("box")
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -79,6 +81,29 @@ const IconButtonPreview = () => {
 									</DropdownRadioItem>
 									<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
 										48
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Icon</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value as IconType)}>
+									<DropdownRadioItem value="box" onSelect={(e) => e.preventDefault()}>
+										Box
+									</DropdownRadioItem>
+									<DropdownRadioItem value="settings" onSelect={(e) => e.preventDefault()}>
+										Settings
+									</DropdownRadioItem>
+									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
+										Star
+									</DropdownRadioItem>
+									<DropdownRadioItem value="user" onSelect={(e) => e.preventDefault()}>
+										User
+									</DropdownRadioItem>
+									<DropdownRadioItem value="send" onSelect={(e) => e.preventDefault()}>
+										Send
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -156,8 +181,12 @@ const IconButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
-					<IconButton tooltip={tooltip === "true" ? "box" : ""} variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
-						<Box />
+					<IconButton tooltip={tooltip === "true" ? icon : ""} variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
+						{icon === "box" && <Box />}
+						{icon === "settings" && <Settings />}
+						{icon === "star" && <Star />}
+						{icon === "user" && <User />}
+						{icon === "send" && <Send />}
 					</IconButton>
 				</div>
 			</TabsContent>

@@ -87,12 +87,16 @@ import BannerExamplePreview3 from "@/registry/example/banner/banner-example-prev
 import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
+import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
+import NumberOfCalendarPreview from "@/registry/example/calendar/month-preview"
+import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import FormExample1 from "@/registry/example/form/form-example1"
@@ -240,6 +244,10 @@ const components: MDXComponents = {
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	AlertCloseExamplePreview: () => <AlertCloseExamplePreview />,
+	DividerExamplePreview: () => <DividerExamplePreview />,
+	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
+	NumberOfCalendarPreview: () => <NumberOfCalendarPreview />,
+	FooterCalendarPreview: () => <FooterCalendarPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -297,7 +305,7 @@ const components: MDXComponents = {
 			{children}
 		</strong>
 	),
-	hr: () => <Divider orientation={"horizontal"} spacing={"0"} className="mt-10" />,
+	hr: () => <Divider orientation={"horizontal"} margin={"0"} className="mt-10" />,
 
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("space-y-4 pb-6", className)}>{children}</ul>

@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, parseDate, today } from "@internationalized/date"
 import { format } from "date-fns"
 import { Check, ChevronLeft, ChevronRight } from "lucide-react"
-import { type ChevronProps, type CustomComponents, type DateRange, DayPicker, type Modifiers, useDayPicker } from "react-day-picker"
+import { type ChevronProps, type DateRange, DayPicker, type Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { DateRangeShortcut, type DateRangeShortcutValues, mockMouseClick } from "./date-picker"
-import { Select, SelectItem } from "./select"
+
+// import { Select, SelectItem } from "./select"
 
 /**
  * Convert different form of Date object to
@@ -13,6 +13,85 @@ import { Select, SelectItem } from "./select"
  * @param selected
  * @returns native Date object in original provided form
  */
+
+// Mock mouse click event
+export function mockMouseClick(): React.MouseEvent {
+	return new MouseEvent("click") as unknown as React.MouseEvent
+}
+
+export const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
+export type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
+
+type DateRangeShortcutItemProps = {
+	selectedValue: string | null
+	onClick: (e: React.MouseEvent<HTMLSpanElement>) => void
+	value: string
+	label: string
+	mode?: string
+}
+
+// DateRangeShortcutItem component definition
+function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
+	return (
+		<span
+			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill2-alpha cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
+			data-value={value}
+			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}>
+			{label}
+			{selectedValue === value ? (
+				mode !== "single" && mode !== "multiple" ? (
+					<Check className="stroke-fg-secondary" size={16} />
+				) : (
+					<span className="size-4" />
+				)
+			) : (
+				<span className="size-4" />
+			)}
+		</span>
+	)
+}
+
+// Type definition for DateRangeShortcutProps props
+type DateRangeShortcutProps = {
+	handleShortcutSelect?: (shortcut: DateRangeShortcutValues) => void
+	selectedValue?: string | null
+	mode?: string
+}
+
+// DateRangeShortcut component definition
+export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }: DateRangeShortcutProps) {
+	const containerRef = useRef<HTMLDivElement>(null)
+	useEffect(() => {
+		function handleClickOutside(event: MouseEvent) {
+			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+				handleShortcutSelect?.("custom") // clear selection
+			}
+		}
+		document.addEventListener("mousedown", handleClickOutside)
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside)
+		}
+	}, [handleShortcutSelect])
+	return (
+		<div
+			ref={containerRef}
+			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill1 text-fg-disabled cursor-not-allowed" : "text-fg"}`}>
+			<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
+			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
+				<DateRangeShortcutItem
+					mode={mode}
+					key={value}
+					label={value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1)}
+					value={value}
+					onClick={function () {
+						handleShortcutSelect?.(value)
+					}}
+					selectedValue={selectedValue || null}
+				/>
+			))}
+		</div>
+	)
+}
 
 // Function to convert CalendarDate to native Date object
 export function convertToNativeDate(selected: CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate }): Date | Date[] | undefined | DateRange {
@@ -89,6 +168,7 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		quickSelection?: boolean
 		footer?: React.ReactNode
 		onIndexChange?: (value: string | null) => void
+		numberOfMonths?: number
 	}
 const minTime = "00:00"
 const maxTime = "23:59"
@@ -230,7 +310,7 @@ function Calendar({
 	mode = "single",
 	onSelect: customOnSelect,
 	classNames,
-	quickSelection = true,
+	quickSelection = false,
 	components,
 	showOutsideDays = true,
 	navigatorStyle = "button",
@@ -240,6 +320,7 @@ function Calendar({
 	className,
 	footer,
 	onIndexChange,
+	numberOfMonths = 1,
 	...props
 }: CalendarProps) {
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
@@ -247,7 +328,7 @@ function Calendar({
 	const [internalSelected, setInternalSelected] = React.useState<Date | Date[] | DateRange | undefined>(convertToNativeDate(selected))
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? convertToNativeDate(selected) : internalSelected
-	let hideCaption: boolean = false
+	// let hideCaption: boolean = false
 
 	// Effect to update internal selected state when external selected changes
 	React.useEffect(
@@ -264,16 +345,16 @@ function Calendar({
 		props,
 		navigatorStyle,
 		dual,
-		hideCaption,
+		// hideCaption,
 		classNames,
 	})
 
 	// Custom components for the calendar
-	const customComponents: Partial<CustomComponents> = {}
-	if (navigatorStyle === "selector") {
-		hideCaption = false
-		customComponents["Nav"] = () => <SelectorNavigator localeCode={props.locale?.code as Intl.LocalesArgument} />
-	}
+	// const customComponents: Partial<CustomComponents> = {}
+	// if (navigatorStyle === "selector") {
+	// 	hideCaption = false
+	// 	customComponents["Nav"] = () => <SelectorNavigator localeCode={props.locale?.code as Intl.LocalesArgument} />
+	// }
 
 	// Merged components including custom ones
 	const mergedComponents = {
@@ -281,7 +362,7 @@ function Calendar({
 			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
 			return <ChevronRight size={16} className="stroke-fg" />
 		},
-		...customComponents,
+		// ...customComponents,
 		...components,
 	}
 
@@ -356,7 +437,7 @@ function Calendar({
 						mode="single"
 						selected={currentSelected as Date}
 						onSelect={handleOnSelect}
-						numberOfMonths={dual ? 2 : 1}
+						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
 					{time && (
@@ -390,7 +471,7 @@ function Calendar({
 						mode="multiple"
 						selected={currentSelected as Date[]}
 						onSelect={handleOnSelect}
-						numberOfMonths={dual ? 2 : 1}
+						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
 					{time && (
@@ -423,7 +504,7 @@ function Calendar({
 					mode="range"
 					selected={currentSelected as DateRange}
 					onSelect={handleOnSelect}
-					numberOfMonths={dual ? 2 : 1}
+					numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 					{...props}
 				/>
 				{time && (
@@ -444,61 +525,61 @@ function Calendar({
 	)
 }
 
-export function SelectorNavigator({
-	localeCode = "en-US",
-	minYear = new Date().getFullYear() - 5,
-	maxYear = new Date().getFullYear() + 5,
-}: {
-	localeCode?: Intl.LocalesArgument
-	minYear?: number
-	maxYear?: number
-}) {
-	const { months, goToMonth } = useDayPicker()
-	const pickedYear = months[0].date.getFullYear()
-	const allMonths = Array.from({ length: 12 }, function (_, i) {
-		return {
-			name: new Intl.DateTimeFormat(localeCode, { month: "long" }).format(new Date(pickedYear, i)),
-			date: new Date(pickedYear, i),
-		}
-	})
-	const years = Array.from({ length: maxYear - minYear + 1 }, (_, index) => minYear + index)
-	const [year, setYear] = React.useState<string[]>([pickedYear.toString()])
+// export function SelectorNavigator({
+// 	localeCode = "en-US",
+// 	minYear = new Date().getFullYear() - 5,
+// 	maxYear = new Date().getFullYear() + 5,
+// }: {
+// 	localeCode?: Intl.LocalesArgument
+// 	minYear?: number
+// 	maxYear?: number
+// }) {
+// 	const { months, goToMonth } = useDayPicker()
+// 	const pickedYear = months[0].date.getFullYear()
+// 	const allMonths = Array.from({ length: 12 }, function (_, i) {
+// 		return {
+// 			name: new Intl.DateTimeFormat(localeCode, { month: "long" }).format(new Date(pickedYear, i)),
+// 			date: new Date(pickedYear, i),
+// 		}
+// 	})
+// 	const years = Array.from({ length: maxYear - minYear + 1 }, (_, index) => minYear + index)
+// 	const [year, setYear] = React.useState<string[]>([pickedYear.toString()])
 
-	return (
-		<div className="absolute top-0 flex h-fit w-full gap-1.5">
-			<Select
-				selectedValues={[months[0].date.getMonth().toString()]}
-				onSelectedChange={function (values) {
-					goToMonth(new Date(pickedYear, parseInt(values[0])))
-				}}
-				placeholder="Month"
-				classNames={{ content: "max-h-60 z-50" }}
-				minSelectionCount={1}
-				size="36">
-				{allMonths.map((month, i) => (
-					<SelectItem key={i} value={month.date.getMonth().toString()}>
-						{month.name}
-					</SelectItem>
-				))}
-			</Select>
-			<Select
-				placeholder="Year"
-				selectedValues={year}
-				onSelectedChange={function (years) {
-					setYear(years)
-					goToMonth(new Date(parseInt(years[0]), months[0].date.getMonth()))
-				}}
-				classNames={{ content: "max-h-60 z-50" }}
-				minSelectionCount={1}
-				size="36">
-				{years.map((year) => (
-					<SelectItem key={year} value={year.toString()}>
-						{year}
-					</SelectItem>
-				))}
-			</Select>
-		</div>
-	)
-}
+// 	return (
+// 		<div className="absolute top-0 flex h-fit w-full gap-1.5">
+// 			<Select
+// 				selectedValues={[months[0].date.getMonth().toString()]}
+// 				onSelectedChange={function (values) {
+// 					goToMonth(new Date(pickedYear, parseInt(values[0])))
+// 				}}
+// 				placeholder="Month"
+// 				classNames={{ content: "max-h-60 z-50" }}
+// 				minSelectionCount={1}
+// 				size="36">
+// 				{allMonths.map((month, i) => (
+// 					<SelectItem key={i} value={month.date.getMonth().toString()}>
+// 						{month.name}
+// 					</SelectItem>
+// 				))}
+// 			</Select>
+// 			<Select
+// 				placeholder="Year"
+// 				selectedValues={year}
+// 				onSelectedChange={function (years) {
+// 					setYear(years)
+// 					goToMonth(new Date(parseInt(years[0]), months[0].date.getMonth()))
+// 				}}
+// 				classNames={{ content: "max-h-60 z-50" }}
+// 				minSelectionCount={1}
+// 				size="36">
+// 				{years.map((year) => (
+// 					<SelectItem key={year} value={year.toString()}>
+// 						{year}
+// 					</SelectItem>
+// 				))}
+// 			</Select>
+// 		</div>
+// 	)
+// }
 
 export { Calendar }

@@ -17,7 +17,7 @@ import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
 import Slider from "@/registry/ui/slider"
-import Switch from "@/registry/ui/switch"
+import { Switch } from "@/registry/ui/switch"
 import { TextArea } from "@/registry/ui/text-area"
 import TimePicker from "@/registry/ui/time-picker"
 
@@ -149,7 +149,7 @@ export default function Test() {
 							<div className="grid grid-cols-2 gap-5">
 								<Password
 									label="Password"
-									trail="show"
+									end="show"
 									value={passwordValue}
 									onChange={(e) => setPasswordValue(e.target.value)}
 									placeholder="Enter your password"
@@ -233,7 +233,7 @@ export default function Test() {
 						<div className="space-y-5">
 							<h3 className="text-fgborder-border border-b pb-2 text-lg font-medium">Preferences & Settings</h3>
 							<div className="space-y-4">
-								<Switch isSelected={switchValue} onValueChange={setSwitchValue}>
+								<Switch checked={switchValue} onCheckedChange={setSwitchValue}>
 									Enable notifications
 								</Switch>
 								<RadioGroup defaultValue="1" value={radioValue} onValueChange={setRadioValue} label="Notify me about...">

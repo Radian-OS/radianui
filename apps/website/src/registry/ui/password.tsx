@@ -5,19 +5,20 @@ import { Eye, EyeOff } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Input, type InputProps } from "./input"
 
-type trailType = "show" | "hide" | "onFocus"
+type visibilityType = "show" | "hide" | "onFocus"
 
 interface PasswordProps extends Omit<InputProps, "leadIcon" | "trailIcon"> {
-	trail?: trailType
+	visibility?: visibilityType
 }
+
 /**
  * Password shows a toggle icon:
- * - When trail="visibilityIcon", the icon is always visible
- * - When trail is not specified or true, the icon only appears when input is focused
- * - When trail is false, no icon is shown
+ * - When visibility="show", the icon is always visible
+ * - When visibility is not specified or "onFocus", the icon only appears when input is focused
+ * - When visibility="hide", no icon is shown
  * Prevents blur when clicking the icon so toggling works.
  */
-export function Password({ label, disabled = false, hint, hasError = false, size = "40", rounded = "md", id, trail, ...props }: PasswordProps) {
+export function Password({ label, disabled = false, hint, hasError = false, size = "40", rounded = "md", id, visibility, ...props }: PasswordProps) {
 	const [isFocused, setIsFocused] = React.useState(false)
 	const [isPasswordVisible, setIsPasswordVisible] = React.useState(false)
 
@@ -25,15 +26,15 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 		if (!disabled) setIsPasswordVisible((v) => !v)
 	}
 
-	//Determine what to show in the trail prop
+	//Determine what to show in the visibility prop
 	let trailContent = null
 
-	// When trail is explicitly false, don't show any icon
-	if (trail === "hide") {
+	// When visibility is explicitly "hide", don't show any icon
+	if (visibility === "hide") {
 		trailContent = null
 	}
-	// When visibilityIcon is specified, always show the icon
-	else if (trail === "show") {
+	// When "show" is specified, always show the icon
+	else if (visibility === "show") {
 		trailContent = isPasswordVisible ? (
 			<Eye
 				size={20}
@@ -55,7 +56,7 @@ export function Password({ label, disabled = false, hint, hasError = false, size
 		)
 	}
 	// Default behavior: show only when focused
-	else if (trail === "onFocus") {
+	else if (visibility === "onFocus") {
 		trailContent =
 			isFocused &&
 			(isPasswordVisible ? (

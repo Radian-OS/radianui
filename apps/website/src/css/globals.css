@@ -160,6 +160,24 @@
 		--heading-font: "Inter Display", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
 	}
+	/* Safari button fix - prevents shrinking on hover */
+	button,
+	[role="button"],
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"] {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		will-change: auto;
+	}
+
+	/* Specific fix for gradient buttons */
+	button[class*="bg-gradient"],
+	[role="button"][class*="bg-gradient"] {
+		will-change: background-image;
+	}
 }
 
 /* Custom heading font */

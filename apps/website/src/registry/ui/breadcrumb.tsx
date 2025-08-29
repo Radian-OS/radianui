@@ -62,7 +62,7 @@ function Breadcrumb({ children, className = "", separator = "default", maxItems:
 									<BreadcrumbItem className="cursor-default hover:no-underline">
 										<Dropdown>
 											<DropdownTrigger asChild>
-												<Badge className="cursor-pointer" size="20">
+												<Badge color="neutral" className="cursor-pointer" size="20">
 													<Ellipsis size={16} />
 												</Badge>
 											</DropdownTrigger>

@@ -48,9 +48,9 @@ type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed bg-transparent z-[51] bg-bg", {
+const drawerVariants = cva("fixed  z-[51] bg-bg", {
 	variants: {
-		type: {
+		variant: {
 			float: "",
 			default: "outline outline-border",
 			rounded: "rounded-xl", // No outline for rounded type to avoid the border issue
@@ -64,27 +64,27 @@ const drawerVariants = cva("fixed bg-transparent z-[51] bg-bg", {
 	},
 	defaultVariants: {
 		direction: "right",
-		type: "default",
+		variant: "default",
 	},
 
 	compoundVariants: [
 		{
-			type: "float", // to show gap on all sides
+			variant: "float", // to show gap on all sides
 			direction: "top",
 			className: "top-2 left-2 w-[calc(100%-1rem)]",
 		},
 		{
-			type: "float",
+			variant: "float",
 			direction: "bottom",
 			className: "bottom-2 left-2 w-[calc(100%-1rem)]",
 		},
 		{
-			type: "float",
+			variant: "float",
 			direction: "left",
 			className: "top-2 left-2 h-[calc(100%-1rem)]",
 		},
 		{
-			type: "float",
+			variant: "float",
 			direction: "right",
 			className: "top-2 right-2 h-[calc(100%-1rem)]",
 		},
@@ -197,7 +197,9 @@ function DrawerContent({ children, className, ...props }: React.ComponentPropsWi
 	return (
 		<DrawerPrimitives.Portal>
 			<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
-			<DrawerPrimitives.Content className={cn(drawerVariants({ direction, type }), getPaddingClass(handle, direction), getContentClass(type, direction), className)} {...props}>
+			<DrawerPrimitives.Content
+				className={cn(drawerVariants({ direction, variant: type }), getPaddingClass(handle, direction), getContentClass(type, direction), className)}
+				{...props}>
 				{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 				{children}
 			</DrawerPrimitives.Content>
