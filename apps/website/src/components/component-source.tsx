@@ -55,8 +55,8 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 						language="tsx"
 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 						code={code}
-						copiable={false}
-						showLineNumbers={true}
+						copyButton={false}
+						lineNumbers={true}
 						className={cn("border-soft flex-1 rounded-[10px] border", className)}
 					/>
 				</CodeCollapsibleWrapper>
@@ -66,8 +66,8 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 					language="tsx"
 					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 					code={code}
-					copiable={false}
-					showLineNumbers={true}
+					copyButton={false}
+					lineNumbers={true}
 					className={cn("border-soft flex-1 rounded-[10px] border", className)}
 				/>
 			)}
