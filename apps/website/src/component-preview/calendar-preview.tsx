@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Button, IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -14,8 +14,8 @@ const CalendarPreview = () => {
 	const [mode, setMode] = useState<DatePickerModes>("range")
 	const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
 	const [showTime, setShowTime] = useState<boolean>(false)
-	const [quickSelection, setquickSelection] = useState<boolean>(false)
-	const [footer, setFooter] = useState<boolean>(false)
+	// const [quickSelection, setquickSelection] = useState<boolean>(false)
+	// const [footer, setFooter] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -67,7 +67,7 @@ const CalendarPreview = () => {
 								</DropdownGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
+						{/* <DropdownSub>
 							<DropdownSubTrigger>Quick Selection</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup
@@ -79,8 +79,8 @@ const CalendarPreview = () => {
 									<DropdownItem value="false">False</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
+						</DropdownSub> */}
+						{/* <DropdownSub>
 							<DropdownSubTrigger>Footer</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownGroup selectionMode="single" selectedValues={[String(footer)]} onSelectedChange={(values) => setFooter(values[0] === "true")} minSelectionCount={1}>
@@ -88,25 +88,25 @@ const CalendarPreview = () => {
 									<DropdownItem value="false">False</DropdownItem>
 								</DropdownGroup>
 							</DropdownSubContent>
-						</DropdownSub>
+						</DropdownSub> */}
 					</DropdownContent>
 				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col ${doubleCalendar && quickSelection ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
+				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
 					{mode === "single" && (
 						<Calendar
-							quickSelection={quickSelection}
+							// quickSelection={quickSelection}
 							mode={"single"}
-							footer={
-								footer && (
-									<div className="flex gap-2 p-3">
-										<Button variant="outline">Cancel</Button>
-										<Button>Apply</Button>
-									</div>
-								)
-							}
+							// footer={
+							// 	footer && (
+							// 		<div className="flex gap-2 p-3">
+							// 			<Button variant="outline">Cancel</Button>
+							// 			<Button>Apply</Button>
+							// 		</div>
+							// 	)
+							// }
 							time={showTime}
 							dual={doubleCalendar}
 							showOutsideDays
@@ -114,33 +114,33 @@ const CalendarPreview = () => {
 					)}
 					{mode === "multiple" && (
 						<Calendar
-							quickSelection={quickSelection}
+							// quickSelection={quickSelection}
 							mode={"multiple"}
 							time={showTime}
-							footer={
-								footer && (
-									<div className="flex gap-2 p-3">
-										<Button variant="outline">Cancel</Button>
-										<Button>Apply</Button>
-									</div>
-								)
-							}
+							// footer={
+							// 	footer && (
+							// 		<div className="flex gap-2 p-3">
+							// 			<Button variant="outline">Cancel</Button>
+							// 			<Button>Apply</Button>
+							// 		</div>
+							// 	)
+							// }
 							dual={doubleCalendar}
 							showOutsideDays
 						/>
 					)}
 					{mode === "range" && (
 						<Calendar
-							quickSelection={quickSelection}
+							// quickSelection={quickSelection}
 							mode={"range"}
-							footer={
-								footer && (
-									<div className="flex gap-2 p-3">
-										<Button variant="outline">Cancel</Button>
-										<Button>Apply</Button>
-									</div>
-								)
-							}
+							// footer={
+							// 	footer && (
+							// 		<div className="flex gap-2 p-3">
+							// 			<Button variant="outline">Cancel</Button>
+							// 			<Button>Apply</Button>
+							// 		</div>
+							// 	)
+							// }
 							time={showTime}
 							dual={doubleCalendar}
 							showOutsideDays
@@ -158,17 +158,6 @@ const CalendarPreview = () => {
     mode="${mode}"
     dual={${doubleCalendar}}
     time={${showTime}}
-    quickSelection={${quickSelection}}
-    footer=${
-			footer
-				? `{
-            <div className="p-3 flex gap-2">
-                <Button variant="outline">Cancel</Button>
-                <Button>Apply</Button>
-            </div>
-            }`
-				: `{false}`
-		}
 />`}
 				/>
 			</TabsContent>
