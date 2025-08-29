@@ -93,6 +93,7 @@ import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import FormExample1 from "@/registry/example/form/form-example1"
@@ -240,6 +241,7 @@ const components: MDXComponents = {
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	AlertCloseExamplePreview: () => <AlertCloseExamplePreview />,
+	DividerExamplePreview: () => <DividerExamplePreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
