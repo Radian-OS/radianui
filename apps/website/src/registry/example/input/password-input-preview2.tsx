@@ -22,14 +22,16 @@ const PasswordInputPreview2 = () => {
 	const [error, setError] = useState<ErrorOptions>("false")
 	const [trail, settrail] = useState<trailOptions>("onFocus")
 	const [hint, setHint] = useState<boolean>(false)
+	const [rounded, setRounded] = useState<RoundedOptions>("md")
 
 	const code = `<div className="relative w-full">
-  <Link href="#" className="text-primary text-sm absolute right-0">Forgot Password ?</Link>
+  <Link href="#" className="text-primary text-sm absolute right-0.75">Forgot Password ?</Link>
   <Password
     ${label === "true" ? 'label="Password"' : ""}
     ${disabled === "true" ? "disabled={true}" : ""}
     ${size !== "36" ? `size="${size}"` : ""}
-    trail='${trail}'
+    visibility='${trail}'
+	rounded='${rounded}'
 	${hint === true ? `hint="Hint text to help the user with input"` : ""}
 	${error === "true" ? "hasError={true}" : ""}  />
 </div>`
@@ -52,6 +54,20 @@ const PasswordInputPreview2 = () => {
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
+						<DropdownSub>
+							<DropdownSubTrigger>Label</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={label} onValueChange={(value) => setLabel(value as LabelOptions)}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -79,23 +95,35 @@ const PasswordInputPreview2 = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as DisabledOptions)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
+								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
+									<DropdownRadioItem value="xs" onSelect={(e) => e.preventDefault()}>
+										xs
 									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
+									<DropdownRadioItem value="sm" onSelect={(e) => e.preventDefault()}>
+										sm
+									</DropdownRadioItem>
+									<DropdownRadioItem value="md" onSelect={(e) => e.preventDefault()}>
+										md
+									</DropdownRadioItem>
+									<DropdownRadioItem value="lg" onSelect={(e) => e.preventDefault()}>
+										lg
+									</DropdownRadioItem>
+									<DropdownRadioItem value="xl" onSelect={(e) => e.preventDefault()}>
+										xl
+									</DropdownRadioItem>
+									<DropdownRadioItem value="2xl" onSelect={(e) => e.preventDefault()}>
+										2xl
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Hint</DropdownSubTrigger>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as DisabledOptions)}>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 										True
 									</DropdownRadioItem>
@@ -121,9 +149,9 @@ const PasswordInputPreview2 = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Label</DropdownSubTrigger>
+							<DropdownSubTrigger>Hint</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={label} onValueChange={(value) => setLabel(value as LabelOptions)}>
+								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 										True
 									</DropdownRadioItem>
@@ -135,7 +163,7 @@ const PasswordInputPreview2 = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Trail</DropdownSubTrigger>
+							<DropdownSubTrigger>Visibility</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={trail} onValueChange={(value) => settrail(value as trailOptions)}>
 									<DropdownRadioItem value="show" onSelect={(e) => e.preventDefault()}>
@@ -157,7 +185,7 @@ const PasswordInputPreview2 = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="relative">
-						<Link href="#" className="text-primary-text absolute right-0 text-sm font-medium">
+						<Link href="#" className="text-primary-text right-0.75 absolute text-sm font-medium">
 							Forgot Password ?
 						</Link>
 						<Password
@@ -167,7 +195,8 @@ const PasswordInputPreview2 = () => {
 							hasError={error === "true"}
 							hint={hint ? "Hint text to help the user with input" : ""}
 							className="w-80"
-							trail={trail}
+							visibility={trail}
+							rounded={rounded}
 							// {...(trail === "false" ? { trail: false } : trail === "visibilityIcon" ? { trail: "visibilityIcon" } : {})}
 						/>
 					</div>

@@ -12,7 +12,7 @@ const DrawerPreview = () => {
 	const [handle, setHandle] = useState<"true" | "false">("false")
 	const [backdrop, setBackdrop] = useState<"blur" | "overlay" | null | undefined>("overlay")
 
-	const code = `<Drawer type='${variant}' direction='${position}' handle={${handle}} backdrop='${backdrop}'>
+	const code = `<Drawer variant='${variant}' direction='${position}' handle={${handle}} backdrop='${backdrop}'>
 	<DrawerTrigger><Button>Open Trigger</Button></DrawerTrigger>
 	<DrawerContent>
 		<DrawerHeader>
@@ -69,7 +69,7 @@ const DrawerPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Position</DropdownSubTrigger>
+							<DropdownSubTrigger>Direction</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={position ?? ""} onValueChange={(value) => setPosition((value || undefined) as "right" | "bottom" | "left" | "top" | undefined)}>
 									<DropdownRadioItem value="right" onSelect={(e) => e.preventDefault()}>
@@ -125,7 +125,7 @@ const DrawerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center rounded-xl border px-10">
-					<Drawer type={variant} direction={position} handle={handle === "true" ? true : false} backdrop={backdrop}>
+					<Drawer variant={variant} direction={position} handle={handle === "true" ? true : false} backdrop={backdrop}>
 						<DrawerTrigger>
 							<Button>Open Trigger</Button>
 						</DrawerTrigger>
