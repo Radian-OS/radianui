@@ -5,8 +5,6 @@ import { Check, ChevronLeft, ChevronRight } from "lucide-react"
 import { type ChevronProps, type DateRange, DayPicker, type Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
 
-// import { Select, SelectItem } from "./select"
-
 /**
  * Convert different form of Date object to
  * native Date object
