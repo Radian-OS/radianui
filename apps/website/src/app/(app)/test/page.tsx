@@ -149,7 +149,7 @@ export default function Test() {
 							<div className="grid grid-cols-2 gap-5">
 								<Password
 									label="Password"
-									trail="show"
+									end="show"
 									value={passwordValue}
 									onChange={(e) => setPasswordValue(e.target.value)}
 									placeholder="Enter your password"

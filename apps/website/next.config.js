@@ -21,24 +21,27 @@ const nextConfig = {
 				source: "/ingest/decide",
 				destination: "https://us.i.posthog.com/decide",
 			},
+		]
+	},
+	async redirects() {
+		return [
 			{
 				source: "/documentation",
 				destination: "/docs/getting-started/introduction",
+				permanent: true,
 			},
 			{
 				source: "/docs/components",
 				destination: "/docs/components/accordion",
+				permanent: true,
 			},
 			{
 				source: "/components",
 				destination: "/docs/components/accordion",
+				permanent: true,
 			},
 		]
 	},
-	// assetPrefix: process.env.NEXT_PUBLIC_WEBSITE_URL,
-	// Add transpilePackages to handle proper transpilation in monorepo
-	// transpilePackages: ['contentlayer2', 'next-contentlayer2', 'mdx-bundler'],
-
 	skipTrailingSlashRedirect: true,
 	pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 	images: {

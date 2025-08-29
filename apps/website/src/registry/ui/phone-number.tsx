@@ -492,13 +492,15 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 								size={size === "0" ? undefined : size}
 								disabled={disabled}
 								className={cn(
-									"disabled:bg-fill2 focus-visible:border-primary border-alpha focus-visible:border-r-1 flex flex-shrink-0 items-center justify-center gap-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
+									"disabled:bg-fill2 focus-visible:border-primary border-alpha focus-visible:border-r-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
 									{ "border-error": effectiveHasError && !disabled }
 								)}>
-								<Flag country={country} />
-								{international && <span className="text-fg-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
-								{/* Always show chevron since dropdown is always functional */}
-								{selectOpen ? <ChevronUp className="text-fg-disabled size-4" /> : <ChevronDown className="text-fg-disabled size-4" />}
+								<span className="flex flex-shrink-0 items-center justify-center gap-1">
+									<Flag country={country} />
+									{international && <span className="text-fg-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+									{/* Always show chevron since dropdown is always functional */}
+									{selectOpen ? <ChevronUp className="text-fg-disabled size-4" /> : <ChevronDown className="text-fg-disabled size-4" />}
+								</span>
 							</Button>
 						)}>
 						{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}

@@ -168,6 +168,7 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		quickSelection?: boolean
 		footer?: React.ReactNode
 		onIndexChange?: (value: string | null) => void
+		numberOfMonths?: number
 	}
 const minTime = "00:00"
 const maxTime = "23:59"
@@ -319,6 +320,7 @@ function Calendar({
 	className,
 	footer,
 	onIndexChange,
+	numberOfMonths = 1,
 	...props
 }: CalendarProps) {
 	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
@@ -435,7 +437,7 @@ function Calendar({
 						mode="single"
 						selected={currentSelected as Date}
 						onSelect={handleOnSelect}
-						numberOfMonths={dual ? 2 : 1}
+						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
 					{time && (
@@ -469,7 +471,7 @@ function Calendar({
 						mode="multiple"
 						selected={currentSelected as Date[]}
 						onSelect={handleOnSelect}
-						numberOfMonths={dual ? 2 : 1}
+						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
 					{time && (
@@ -502,7 +504,7 @@ function Calendar({
 					mode="range"
 					selected={currentSelected as DateRange}
 					onSelect={handleOnSelect}
-					numberOfMonths={dual ? 2 : 1}
+					numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 					{...props}
 				/>
 				{time && (
