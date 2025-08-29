@@ -1,12 +1,11 @@
 name: "Pull Request Template for RadianOs"
 
-about: >
-  Thank you for contributing to RadianOs!  
+about: Thank you for contributing to RadianOs!
   Please fill out this template to help us review your changes efficiently.
 
 title: "[Component/Feature/Fix]: Brief Description"
 
-labels: 
+labels:
   - "needs review"
   - "type: enhancement"
   - "type: bug"
@@ -45,7 +44,7 @@ body:
     id: checklist
     attributes:
       label: Checklist
-      description: Please ensure your pull request meets these requirements:
+      description: Please ensure your pull request meets these requirements.
       options:
         - label: Code follows the RadianOs coding conventions and style guidelines.
           required: true
@@ -64,4 +63,3 @@ body:
       label: Additional Notes
       description: Anything else the maintainers should know? (e.g. screenshots, performance impacts, breaking changes)
       placeholder: ""
-
