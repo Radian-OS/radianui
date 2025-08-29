@@ -181,8 +181,8 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 						language="bash"
 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 						code={commands[manager]}
-						copiable={false}
-						showLineNumbers={false}
+						copyButton={false}
+						lineNumbers={false}
 						className={cn("border-soft max-w-full rounded-[10px] border", className)}
 					/>
 				</TabsContent>

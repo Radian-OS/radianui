@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react"
 import { Check, CopyIcon, EyeIcon, SquareTerminal } from "lucide-react"
 import { useTheme } from "next-themes"
-import CodeSnippet from "@/components/code-snippet"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -132,8 +131,8 @@ const CodeWithTabsPreview = () => {
             language="bash"
             theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
             code={commands[manager]}
-            copiable={false}
-            showLineNumbers={false}
+            copyButton={false}
+            lineNumbers={false}
             className="border-soft rounded-[10px] border px-4 py-3"
           />
         </TabsContent>
@@ -180,13 +179,13 @@ export default CodeWithTabsPreview
 							</Button>
 						</div>
 						{pkg.map((manager) => (
-							<TabsContent key={manager} value={manager}>
+							<TabsContent key={manager} value={manager} className="p-0">
 								<CodeArea
 									language="bash"
 									theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 									code={commands[manager]}
-									copiable={false}
-									showLineNumbers={false}
+									copyButton={false}
+									lineNumbers={false}
 									className="border-soft rounded-[10px] border px-4 py-3"
 								/>
 							</TabsContent>
@@ -194,8 +193,15 @@ export default CodeWithTabsPreview
 					</Tabs>
 				</div>
 			</TabsContent>
-			<TabsContent value="code">
-				<CodeSnippet title="code-with-tabs-preview.tsx" showLineNumber className="h-[420px]" code={getImplementationCode()} />
+			<TabsContent value="code" className="p-0">
+				<CodeArea
+					language="bash"
+					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+					code={getImplementationCode()}
+					copyButton={false}
+					lineNumbers={false}
+					className="border-soft rounded-[10px] border"
+				/>
 			</TabsContent>
 		</Tabs>
 	)
