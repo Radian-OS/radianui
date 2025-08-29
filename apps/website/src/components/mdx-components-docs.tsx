@@ -87,6 +87,9 @@ import BannerExamplePreview3 from "@/registry/example/banner/banner-example-prev
 import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
+import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
+import NumberOfCalendarPreview from "@/registry/example/calendar/month-preview"
+import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -240,6 +243,9 @@ const components: MDXComponents = {
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	AlertCloseExamplePreview: () => <AlertCloseExamplePreview />,
+	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
+	NumberOfCalendarPreview: () => <NumberOfCalendarPreview />,
+	FooterCalendarPreview: () => <FooterCalendarPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

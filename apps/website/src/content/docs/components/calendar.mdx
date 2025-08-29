@@ -53,17 +53,9 @@ links:
     	<Tabs defaultValue="calendar">
     		<TabsList>
     			<TabsTrigger value="calendar">Calendar</TabsTrigger>
-    			<TabsTrigger value="select">Select</TabsTrigger>
-    			<TabsTrigger value="select">Date Picker</TabsTrigger>
     		</TabsList>
     		<TabsContent value="calendar">
     			<ComponentSource name="calendar" title="components/ui/calendar.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="select">
-    			<ComponentSource name="select" title="components/ui/select.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="date-picker">
-    			<ComponentSource name="date-picker" title="components/ui/date-picker.tsx" collapsible />
     		</TabsContent>
     	</Tabs>
 
@@ -87,6 +79,22 @@ links:
     mode="range"
 />`}
 />
+
+---
+
+## Examples
+
+### Quick Selection Calendar
+
+<QuickSelectionCalendarPreview />
+
+### Number of Month Calendar
+
+<NumberOfCalendarPreview />
+
+### Calendar Footer
+
+<FooterCalendarPreview />
 
 ---
 
