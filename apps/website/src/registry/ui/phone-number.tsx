@@ -26,6 +26,8 @@ type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputCompon
 	validateOnChange?: boolean
 	showValidationIcon?: boolean
 	onValidationChange?: (isValid: boolean) => void
+	// New prop for controlling auto-selection behavior
+	autoSelectFirstCountry?: boolean
 }
 
 const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
@@ -51,6 +53,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	validateOnChange = false,
 	showValidationIcon = false,
 	onValidationChange,
+	autoSelectFirstCountry = false, // Conservative default
 	...rpnInputProps
 }) => {
 	const id = useId()
@@ -198,24 +201,26 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		[]
 	)
 
-	// Helper: detect country from raw "digits" (without "+")
+	// Helper: detect country from raw "digits" (without "+") - uses ALL countries for detection
 	const detectCountryFromNumber = useCallback(
 		(numberWithoutPlus: string): RPNInput.Country | null => {
-			const sorted = [...countries].sort((a, b) => {
-				return countryCodeMap.get(b)!.length - countryCodeMap.get(a)!.length
+			// Use ALL countries for detection, not just filtered ones
+			const sorted = [...allCountries].sort((a, b) => {
+				return getCountryCallingCode(b).length - getCountryCallingCode(a).length
 			})
-			const matches = sorted.filter((c) => numberWithoutPlus.startsWith(countryCodeMap.get(c)!))
+
+			const matches = sorted.filter((c) => numberWithoutPlus.startsWith(getCountryCallingCode(c)))
 			if (matches.length === 0) return null
 
 			let selected = matches[0]
-			const firstMatchCode = countryCodeMap.get(matches[0])!
+			const firstMatchCode = getCountryCallingCode(matches[0])
 
 			// Check if we have a manually selected country that shares the same calling code
 			if (lastManuallySelectedCountry) {
-				const manuallySelectedCode = countryCodeMap.get(lastManuallySelectedCountry)
+				const manuallySelectedCode = getCountryCallingCode(lastManuallySelectedCountry)
 				if (manuallySelectedCode === firstMatchCode && matches.includes(lastManuallySelectedCountry)) {
 					// Keep the manually selected country if it has the same calling code
-					return lastManuallySelectedCountry
+					selected = lastManuallySelectedCountry
 				}
 			}
 
@@ -227,10 +232,57 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					selected = prioCountry as RPNInput.Country
 				}
 			}
-			return selected
+
+			// CRITICAL: Only return the detected country if it's in our allowed countries list
+			return countries.includes(selected) ? selected : null
 		},
-		[countries, countryCodeMap, countryPriority, lastManuallySelectedCountry]
+		[allCountries, countries, countryPriority, lastManuallySelectedCountry]
 	)
+
+	// Smart country management - only applies when autoSelectFirstCountry is true
+	const effectiveCountry = useMemo(() => {
+		if (autoSelectFirstCountry) {
+			// Aggressive mode: auto-select and override
+			if (!country && countries.length > 0) {
+				return countries[0]
+			}
+			if (country && !countries.includes(country)) {
+				return countries.length > 0 ? countries[0] : undefined
+			}
+		}
+		return country
+	}, [country, countries, autoSelectFirstCountry])
+
+	// Conservative display country - only affects UI display, not actual state
+	const getDisplayCountry = useCallback(() => {
+		// If we have a valid country, use it
+		if (effectiveCountry && countries.includes(effectiveCountry)) {
+			return effectiveCountry
+		}
+
+		// If country is invalid/undefined and we have onlyCountries restriction,
+		// show the first allowed country for display purposes only (don't change the actual state)
+		if (!autoSelectFirstCountry && onlyCountries && onlyCountries.length > 0 && countries.length > 0) {
+			return countries[0]
+		}
+
+		// Otherwise, keep original behavior
+		return effectiveCountry
+	}, [effectiveCountry, countries, onlyCountries, autoSelectFirstCountry])
+
+	// Update parent component when effective country changes (only in aggressive mode)
+	useEffect(() => {
+		if (autoSelectFirstCountry && effectiveCountry !== country && effectiveCountry && onCountryChange) {
+			onCountryChange(effectiveCountry)
+		}
+	}, [effectiveCountry, country, onCountryChange, autoSelectFirstCountry])
+
+	// Update the lastManuallySelectedCountry when country prop changes from outside
+	useEffect(() => {
+		if (effectiveCountry) {
+			setLastManuallySelectedCountry(effectiveCountry)
+		}
+	}, [effectiveCountry])
 
 	// Validation logic with debouncing
 	const validatePhoneNumber = useCallback(
@@ -290,7 +342,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 			// 🔒 If country calling code is not editable (but international is true), prevent country changes
 			if (!effectiveCountryCallingCodeEditable) {
 				// Handle locked mode input restrictions for international mode
-				const lockedPrefix = country ? `+${countryCodeMap.get(country)}` : "+"
+				const lockedPrefix = effectiveCountry ? `+${countryCodeMap.get(effectiveCountry)}` : "+"
 
 				if (val === undefined) {
 					onChange?.(undefined)
@@ -315,20 +367,23 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 				return
 			}
 
-			// Only run country detection logic if country calling code is editable AND international
+			// For international mode with editable country calling codes
 			if (effectiveCountryCallingCodeEditable && international && val && val.startsWith("+")) {
 				const numberWithoutPlus = val.slice(1)
 				const detected = detectCountryFromNumber(numberWithoutPlus)
 
-				if (detected && detected !== country) {
+				// Only change country if detected country is in our allowed list
+				if (detected && detected !== effectiveCountry) {
 					onCountryChange?.(detected)
 				}
+				// If detected country is not in allowed list, we simply don't change the country
+				// but still allow the phone number input to proceed
 			}
 
 			onChange?.(val)
 			validatePhoneNumber(val)
 		},
-		[disabled, international, effectiveCountryCallingCodeEditable, country, countryCodeMap, onChange, validatePhoneNumber, detectCountryFromNumber, onCountryChange]
+		[disabled, international, effectiveCountryCallingCodeEditable, effectiveCountry, countryCodeMap, onChange, validatePhoneNumber, detectCountryFromNumber, onCountryChange]
 	)
 
 	// When user selects country from dropdown - allow manual selection even when countryCallingCodeEditable is false
@@ -345,24 +400,23 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		[disabled, countries, onCountryChange]
 	)
 
-	// Update the lastManuallySelectedCountry when country prop changes from outside
-	useEffect(() => {
-		if (country) {
-			setLastManuallySelectedCountry(country)
-		}
-	}, [country])
-
-	// Wrapper for onCountryChange - only block automatic detection, allow manual changes
+	// Wrapper for onCountryChange - block automatic country changes that aren't in our allowed list
 	const handleCountryChangeWrapper = useCallback(
 		(newCountry: RPNInput.Country | undefined) => {
-			// Allow manual country changes via dropdown, but block automatic detection when effectiveCountryCallingCodeEditable is false
-			// This gets called by the RPNInput component for automatic detection, so we block it when locked
+			// Block automatic detection when country calling code is not editable
 			if (!effectiveCountryCallingCodeEditable) {
 				return
 			}
+
+			// Only allow country changes if the new country is in our allowed countries list
+			if (newCountry && !countries.includes(newCountry)) {
+				// Block the country change if it's not in our allowed list
+				return
+			}
+
 			onCountryChange?.(newCountry)
 		},
-		[effectiveCountryCallingCodeEditable, onCountryChange]
+		[effectiveCountryCallingCodeEditable, onCountryChange, countries]
 	)
 
 	// Custom input component that applies className only to the actual Input
@@ -479,7 +533,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					<Select
 						open={selectOpen}
 						onOpenChange={handleSelectOpenChange}
-						selectedValues={country ? [country] : []} // ISO code in array
+						selectedValues={getDisplayCountry() ? [getDisplayCountry()!] : []} // Use display country for UI
 						onSelectedChange={handleCountrySelection}
 						selectionMode="single"
 						isSearchable={true} // Always allow search
@@ -496,8 +550,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 									{ "border-error": effectiveHasError && !disabled }
 								)}>
 								<span className="flex flex-shrink-0 items-center justify-center gap-1">
-									<Flag country={country} />
-									{international && <span className="text-fg-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+									<Flag country={getDisplayCountry()} />
+									{international && <span className="text-fg-tertiary">{getDisplayCountry() ? `+${countryCodeMap.get(getDisplayCountry()!)}` : null}</span>}
 									{/* Always show chevron since dropdown is always functional */}
 									{selectOpen ? <ChevronUp className="text-fg-disabled size-4" /> : <ChevronDown className="text-fg-disabled size-4" />}
 								</span>
@@ -516,8 +570,8 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 						className={cn("disabled:bg-fill2 border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
 							"border-error": effectiveHasError && !disabled,
 						})}>
-						<Flag country={country} />
-						{international && <span className="text-fg-tertiary">{country ? `+${countryCodeMap.get(country)}` : null}</span>}
+						<Flag country={getDisplayCountry()} />
+						{international && <span className="text-fg-tertiary">{getDisplayCountry() ? `+${countryCodeMap.get(getDisplayCountry()!)}` : null}</span>}
 						{/* No chevron icon when dropdown is disabled */}
 					</Button>
 				)}
@@ -526,7 +580,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					{...rpnInputProps}
 					id={id}
 					className="flex-1"
-					country={country}
+					country={effectiveCountry} // Use effective country for the actual input
 					value={value}
 					onChange={handlePhoneChange}
 					onCountryChange={handleCountryChangeWrapper}
@@ -535,12 +589,15 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					inputComponent={InputWithClass}
 					placeholder="Enter phone number"
 					disabled={disabled}
-					countries={countries}
+					countries={countries} // This restricts the library's internal country detection
 					international={international}
 					withCountryCallingCode={international}
 					countryCallingCodeEditable={effectiveCountryCallingCodeEditable}
 					// Force domestic format when international is false
-					defaultCountry={international ? undefined : country}
+					defaultCountry={international ? undefined : effectiveCountry}
+					// Add these props to further restrict the library's behavior
+					addInternationalOption={false}
+					countryOptionsOrder={countries} // Explicitly set the order to our filtered countries
 				/>
 			</div>
 			{(effectiveHasError || effectiveHint) && (
