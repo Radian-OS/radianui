@@ -3,11 +3,11 @@ import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/
 import { ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
 import { cva } from "class-variance-authority"
 import { format } from "date-fns"
-import { Calendar as CalendarIcon, Check } from "lucide-react"
+import { Calendar as CalendarIcon } from "lucide-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { type ChevronProps, DayPicker, type Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { TimeSelector, formatTime, timeOptions } from "./calendar"
+import { DateRangeShortcut, DateRangeShortcutValues, TimeSelector, formatTime, mockMouseClick, timeOptions } from "./calendar"
 import { Calendar, type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
 import { Input, type RoundedOptions, type SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Label } from "./label"
@@ -25,11 +25,6 @@ export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2
 	},
 })
 
-// Mock mouse click event
-export function mockMouseClick(): React.MouseEvent {
-	return new MouseEvent("click") as unknown as React.MouseEvent
-}
-
 type TimeZone = Record<string, string>
 const timeZones: TimeZone = {}
 // Populate the timeZones object with the supported timezones
@@ -39,9 +34,6 @@ Intl.supportedValuesOf("timeZone").map(function (zone) {
 		.map((part) => part.replace(/_/g, " ").replace(/(^|\s)\S/g, (t) => t.toUpperCase()))
 		.join("/")
 })
-
-const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
-export type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
 
 export type DatePickerModes = "single" | "multiple" | "range" | "time"
 
@@ -603,77 +595,6 @@ function DatePicker({
 				</>
 			)}
 		</div>
-	)
-}
-
-// Type definition for DateRangeShortcutProps props
-type DateRangeShortcutProps = {
-	handleShortcutSelect?: (shortcut: DateRangeShortcutValues) => void
-	selectedValue?: string | null
-	mode?: string
-}
-
-// DateRangeShortcut component definition
-export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }: DateRangeShortcutProps) {
-	const containerRef = useRef<HTMLDivElement>(null)
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent) {
-			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-				handleShortcutSelect?.("custom") // clear selection
-			}
-		}
-		document.addEventListener("mousedown", handleClickOutside)
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside)
-		}
-	}, [handleShortcutSelect])
-	return (
-		<div
-			ref={containerRef}
-			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill1 text-fg-disabled cursor-not-allowed" : "text-fg"}`}>
-			<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
-			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
-				<DateRangeShortcutItem
-					mode={mode}
-					key={value}
-					label={value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1)}
-					value={value}
-					onClick={function () {
-						handleShortcutSelect?.(value)
-					}}
-					selectedValue={selectedValue || null}
-				/>
-			))}
-		</div>
-	)
-}
-
-type DateRangeShortcutItemProps = {
-	selectedValue: string | null
-	onClick: (e: React.MouseEvent<HTMLSpanElement>) => void
-	value: string
-	label: string
-	mode?: string
-}
-
-// DateRangeShortcutItem component definition
-function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
-	return (
-		<span
-			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill2-alpha cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
-			data-value={value}
-			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}>
-			{label}
-			{selectedValue === value ? (
-				mode !== "single" && mode !== "multiple" ? (
-					<Check className="stroke-fg-secondary" size={16} />
-				) : (
-					<span className="size-4" />
-				)
-			) : (
-				<span className="size-4" />
-			)}
-		</span>
 	)
 }
 
