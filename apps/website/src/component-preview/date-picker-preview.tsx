@@ -3,7 +3,17 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
 import { DatePicker } from "@/registry/ui/date-picker"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -49,63 +59,79 @@ const DatePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[rounded]} onSelectedChange={(values) => setRounded(values[0] as RoundedOptions)} minSelectionCount={1}>
+									<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
 										{roundedOptions.map((roundedOption) => (
-											<DropdownItem value={roundedOption} key={roundedOption}>
+											<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
 												{roundedOption}
-											</DropdownItem>
+											</DropdownRadioItem>
 										))}
-									</DropdownGroup>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Size</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[size]} onSelectedChange={(values) => setSize(values[0] as SizeOptions)} minSelectionCount={1}>
+									<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
 										{sizes.map((size) => (
-											<DropdownItem value={size} key={size}>
+											<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
 												{size}
-											</DropdownItem>
+											</DropdownRadioItem>
 										))}
-									</DropdownGroup>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Label</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(label)]} onSelectedChange={(values) => setLabel(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(label)} onValueChange={(value) => setLabel(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(disabled)]} onSelectedChange={(values) => setDisabled(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(disabled)} onValueChange={(value) => setDisabled(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Has error</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(hasError)]} onSelectedChange={(values) => setHasError(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(hasError)} onValueChange={(value) => setHasError(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Hint</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(hint)]} onSelectedChange={(values) => setHint(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 						</DropdownGroup>
@@ -114,68 +140,86 @@ const DatePickerPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Mode</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[mode]} onSelectedChange={(values) => setMode(values[0] as DatePickerModes)} minSelectionCount={1}>
+									<DropdownRadioGroup value={mode} onValueChange={(value) => setMode(value as DatePickerModes)}>
 										{!typeable && (
 											<>
-												<DropdownItem value="single">Single</DropdownItem>
-												<DropdownItem value="multiple">Multiple</DropdownItem>
+												<DropdownRadioItem value="single" onSelect={(e) => e.preventDefault()}>
+													Single
+												</DropdownRadioItem>
+												<DropdownRadioItem value="multiple" onSelect={(e) => e.preventDefault()}>
+													Multiple
+												</DropdownRadioItem>
 											</>
 										)}
-										<DropdownItem value="range">Range</DropdownItem>
-									</DropdownGroup>
+										<DropdownRadioItem value="range" onSelect={(e) => e.preventDefault()}>
+											Range
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(showDateRangeShortcut)]}
-										onSelectedChange={(values) => setShowDateRangeShortcut(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(showDateRangeShortcut)} onValueChange={(value) => setShowDateRangeShortcut(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										selectedValues={[String(doubleCalendar)]}
-										onSelectedChange={(values) => setDoubleCalendar(values[0] === "true")}
-										minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(doubleCalendar)} onValueChange={(value) => setDoubleCalendar(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Time</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(showTime)]} onSelectedChange={(values) => setShowTime(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(showTime)} onValueChange={(value) => setShowTime(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Footer</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(footer)]} onSelectedChange={(values) => setFooter(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(footer)} onValueChange={(value) => setFooter(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Typeable</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" selectedValues={[String(typeable)]} onSelectedChange={(values) => setTypeable(values[0] === "true")} minSelectionCount={1}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={String(typeable)} onValueChange={(value) => setTypeable(value === "true")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 						</DropdownGroup>

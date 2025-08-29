@@ -35,9 +35,9 @@ const BreadCrumbExample3 = () => {
 								</DropdownTrigger>
 								<DropdownContent>
 									<DropdownGroup>
-										<DropdownItem value="nextjs">Nextjs</DropdownItem>
-										<DropdownItem value="vite">Vite</DropdownItem>
-										<DropdownItem value="manual">Manual</DropdownItem>
+										<DropdownItem>Nextjs</DropdownItem>
+										<DropdownItem>Vite</DropdownItem>
+										<DropdownItem>Manual</DropdownItem>
 									</DropdownGroup>
 								</DropdownContent>
 							</Dropdown>

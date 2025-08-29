@@ -5,15 +5,17 @@ import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
+import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 
 interface CodeSnippetProps {
 	code: string
 	title: string
+	collapsible?: boolean
 	showLineNumber?: boolean
 	className?: string
 }
 
-export default function CodeSnippet({ code, title, showLineNumber = false, className }: CodeSnippetProps) {
+export default function CodeSnippet({ code, title, collapsible = false, showLineNumber = false, className }: CodeSnippetProps) {
 	const { theme } = useTheme()
 	const { copied, copy } = useCopyPaste({
 		code,
@@ -30,17 +32,31 @@ export default function CodeSnippet({ code, title, showLineNumber = false, class
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
-					{copied ? <Check /> : <CopyIcon />}
+					{copied ? <Check size={16} /> : <CopyIcon size={16} />}
 				</Button>
 			</div>
-			<CodeArea
-				language="tsx"
-				theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
-				code={code}
-				copiable={false}
-				showLineNumbers={showLineNumber}
-				className={cn("border-soft flex-1 rounded-[10px] border", className)}
-			/>
+			{collapsible && (
+				<CodeCollapsibleWrapper>
+					<CodeArea
+						language="tsx"
+						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+						code={code}
+						copiable={false}
+						showLineNumbers={showLineNumber}
+						className={cn("border-soft flex-1 rounded-[10px] border", className)}
+					/>
+				</CodeCollapsibleWrapper>
+			)}
+			{!collapsible && (
+				<CodeArea
+					language="tsx"
+					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+					code={code}
+					copiable={false}
+					showLineNumbers={showLineNumber}
+					className={cn("border-soft flex-1 rounded-[10px] border", className)}
+				/>
+			)}
 		</div>
 	)
 }

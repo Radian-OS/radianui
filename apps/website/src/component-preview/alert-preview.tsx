@@ -3,7 +3,17 @@ import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAle
 import CodeSnippet from "@/components/code-snippet"
 import { Alert } from "@/registry/ui/alert"
 import { Button, IconButton, LinkButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const AlertPreview = () => {
@@ -12,7 +22,6 @@ const AlertPreview = () => {
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"default" | "soft-outline" | "outline">("default")
 	const [closable, setClosable] = useState<booleanType>("false")
-	const [key, setKey] = useState(0)
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "button" | "link">("button")
 	const [title, setTitle] = useState<booleanType>("true")
@@ -85,9 +94,6 @@ const AlertPreview = () => {
   end={<Button color='${btnColor}'>Action</Button>}`
 
 		code += `
-  closable={${closable}}`
-
-		code += `
 />`
 
 		return code
@@ -115,101 +121,124 @@ const AlertPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
-										minSelectionCount={1}
-										selectedValues={[variant]}>
-										<DropdownItem value="default">Soft</DropdownItem>
-										<DropdownItem value="soft-outline">Soft Outline</DropdownItem>
-										<DropdownItem value="outline">Outline</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as typeof variant)}>
+										<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
+											Soft
+										</DropdownRadioItem>
+										<DropdownRadioItem value="soft-outline" onSelect={(e) => e.preventDefault()}>
+											Soft Outline
+										</DropdownRadioItem>
+										<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
+											Outline
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Color</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setColor(Array.from(keys)[0] as typeof color)} minSelectionCount={1} selectedValues={[color]}>
-										<DropdownItem value="primary">Primary</DropdownItem>
-										<DropdownItem value="neutral">Neutral</DropdownItem>
-										<DropdownItem value="success">Success</DropdownItem>
-										<DropdownItem value="error">Error</DropdownItem>
-										<DropdownItem value="warning">Warning</DropdownItem>
-										<DropdownItem value="info">Info</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={color} onValueChange={(value) => setColor(value as typeof color)}>
+										<DropdownRadioItem value="primary" onSelect={(e) => e.preventDefault()}>
+											Primary
+										</DropdownRadioItem>
+										<DropdownRadioItem value="neutral" onSelect={(e) => e.preventDefault()}>
+											Neutral
+										</DropdownRadioItem>
+										<DropdownRadioItem value="success" onSelect={(e) => e.preventDefault()}>
+											Success
+										</DropdownRadioItem>
+										<DropdownRadioItem value="error" onSelect={(e) => e.preventDefault()}>
+											Error
+										</DropdownRadioItem>
+										<DropdownRadioItem value="warning" onSelect={(e) => e.preventDefault()}>
+											Warning
+										</DropdownRadioItem>
+										<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
+											Info
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Title</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[title]}
-										onSelectedChange={(keys) => {
-											setTitle(Array.from(keys)[0] as booleanType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={title} onValueChange={(value) => setTitle(value as booleanType)}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Description</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										minSelectionCount={1}
-										selectedValues={[description]}
-										onSelectedChange={(keys) => {
-											setDescription(Array.from(keys)[0] as booleanType)
-										}}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={description} onValueChange={(value) => setDescription(value as booleanType)}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Start</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setStart(Array.from(keys)[0] as typeof start)} minSelectionCount={1} selectedValues={[start]}>
-										<DropdownItem value="none">None</DropdownItem>
-										<DropdownItem value="star">Star</DropdownItem>
-										<DropdownItem value="info">Info</DropdownItem>
-										<DropdownItem value="alert">Triangle Alert</DropdownItem>
-										<DropdownItem value="check">Check</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={start} onValueChange={(value) => setStart(value as typeof start)}>
+										<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
+											None
+										</DropdownRadioItem>
+										<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
+											Star
+										</DropdownRadioItem>
+										<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
+											Info
+										</DropdownRadioItem>
+										<DropdownRadioItem value="alert" onSelect={(e) => e.preventDefault()}>
+											Triangle Alert
+										</DropdownRadioItem>
+										<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
+											Check
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>End</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setEnd(Array.from(keys)[0] as typeof end)} minSelectionCount={1} selectedValues={[end]}>
-										<DropdownItem value="none">None</DropdownItem>
-										<DropdownItem value="button">Button</DropdownItem>
-										<DropdownItem value="link">Link</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={end} onValueChange={(value) => setEnd(value as typeof end)}>
+										<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
+											None
+										</DropdownRadioItem>
+										<DropdownRadioItem value="button" onSelect={(e) => e.preventDefault()}>
+											Button
+										</DropdownRadioItem>
+										<DropdownRadioItem value="link" onSelect={(e) => e.preventDefault()}>
+											Link
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Closable</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setClosable(Array.from(keys)[0] as "true" | "false")
-											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[closable]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={closable} onValueChange={(value) => setClosable(value as "true" | "false")}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 						</DropdownGroup>
@@ -219,12 +248,10 @@ const AlertPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Alert
-						key={key}
 						title={title === "true" ? `${alertContent.title}` : ""}
 						description={description === "true" ? `${alertContent.message}` : ""}
 						color={color}
 						variant={variant}
-						closable={closable === "true" ? true : false}
 						start={selectedIcon}
 						end={
 							end === "button" ? (

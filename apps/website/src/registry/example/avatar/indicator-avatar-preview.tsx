@@ -3,7 +3,7 @@ import { Bell, Check, EyeIcon, Plus, Settings, SquareTerminal, TriangleAlert } f
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Icon = "plus" | "alert" | "check" | "bell"
@@ -34,12 +34,20 @@ const IndicatorAvatarPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Icon</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setIcon(Array.from(keys)[0] as Icon)} minSelectionCount={1} selectedValues={[icon]}>
-									<DropdownItem value="bell">Bell</DropdownItem>
-									<DropdownItem value="plus">Plus</DropdownItem>
-									<DropdownItem value="alert">Alert</DropdownItem>
-									<DropdownItem value="check">Check</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value as Icon)}>
+									<DropdownRadioItem value="bell" onSelect={(e) => e.preventDefault()}>
+										Bell
+									</DropdownRadioItem>
+									<DropdownRadioItem value="plus" onSelect={(e) => e.preventDefault()}>
+										Plus
+									</DropdownRadioItem>
+									<DropdownRadioItem value="alert" onSelect={(e) => e.preventDefault()}>
+										Alert
+									</DropdownRadioItem>
+									<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
+										Check
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>

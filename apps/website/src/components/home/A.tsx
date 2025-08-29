@@ -86,7 +86,7 @@ function A({ className }: { className?: string }) {
 					<Item id="analytics-user" icon={<LineChart />} text="Analytics" active={activeItem === "analytics-user"} onClick={() => setActiveItem("analytics-user")} />
 					<Item id="settings-user" icon={<Settings />} text="Settings" active={activeItem === "settings-user"} onClick={() => setActiveItem("settings-user")} />
 				</div>
-				<Divider spacing="8" />
+				<Divider margin="8" />
 				<div className="bg-bg flex w-full flex-col">
 					<div className="text-fg-secondary flex flex-col gap-0.5 px-3">
 						<span className="text-fg-disabled py-2.25 px-2 text-xs font-medium">ADMIN</span>

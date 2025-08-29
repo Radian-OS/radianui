@@ -4,7 +4,17 @@ import CodeSnippet from "@/components/code-snippet"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import MainTable from "@/registry/ui/table"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -221,180 +231,214 @@ const TablePreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Checkbox</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setCheckbox(Array.from(keys)[0] as typeof checkbox)
+									<DropdownRadioGroup
+										value={checkbox}
+										onValueChange={(value) => {
+											setCheckbox(value as typeof checkbox)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[checkbox]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Vertical line</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setVerticalLine(Array.from(keys)[0] as typeof verticalLine)
+									<DropdownRadioGroup
+										value={verticalLine}
+										onValueChange={(value) => {
+											setVerticalLine(value as typeof verticalLine)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[verticalLine]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Stripe</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setStripe(Array.from(keys)[0] as typeof stripe)
+									<DropdownRadioGroup
+										value={stripe}
+										onValueChange={(value) => {
+											setStripe(value as typeof stripe)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[stripe]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Sorting</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSorting(Array.from(keys)[0] as typeof sorting)
+									<DropdownRadioGroup
+										value={sorting}
+										onValueChange={(value) => {
+											setSorting(value as typeof sorting)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[sorting]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Dragable</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setDrag(Array.from(keys)[0] as typeof drag)
+									<DropdownRadioGroup
+										value={drag}
+										onValueChange={(value) => {
+											setDrag(value as typeof drag)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[drag]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Resizable</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setResize(Array.from(keys)[0] as typeof resize)
+									<DropdownRadioGroup
+										value={resize}
+										onValueChange={(value) => {
+											setResize(value as typeof resize)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[resize]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Sticky</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setSticky(Array.from(keys)[0] as typeof sticky)
+									<DropdownRadioGroup
+										value={sticky}
+										onValueChange={(value) => {
+											setSticky(value as typeof sticky)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[sticky]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
 								<DropdownSubTrigger>Outline</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setDense(Array.from(keys)[0] as typeof dense)
+									<DropdownRadioGroup
+										value={dense}
+										onValueChange={(value) => {
+											setDense(value as typeof dense)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[sticky]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Table height</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setTableHeight(Array.from(keys)[0] as typeof tableHeight)}
-										minSelectionCount={1}
-										selectedValues={[tableHeight]}>
-										<DropdownItem value="320">320px</DropdownItem>
-										<DropdownItem value="340">340px</DropdownItem>
-										<DropdownItem value="380">380px</DropdownItem>
-										<DropdownItem value="420">420px</DropdownItem>
-										<DropdownItem value="full">Full</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={tableHeight} onValueChange={(value) => setTableHeight(value as typeof tableHeight)}>
+										<DropdownRadioItem value="320" onSelect={(e) => e.preventDefault()}>
+											320px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="340" onSelect={(e) => e.preventDefault()}>
+											340px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="380" onSelect={(e) => e.preventDefault()}>
+											380px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="420" onSelect={(e) => e.preventDefault()}>
+											420px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="full" onSelect={(e) => e.preventDefault()}>
+											Full
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Header height</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setHeader(Array.from(keys)[0] as typeof header)}
-										minSelectionCount={1}
-										selectedValues={[header]}>
-										<DropdownItem value="40px">40px</DropdownItem>
-										<DropdownItem value="60px">60px</DropdownItem>
-										<DropdownItem value="90px">90px</DropdownItem>
-										<DropdownItem value="110px">110px</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={header} onValueChange={(value) => setHeader(value as typeof header)}>
+										<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
+											40px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="60" onSelect={(e) => e.preventDefault()}>
+											60px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="90" onSelect={(e) => e.preventDefault()}>
+											90px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="110" onSelect={(e) => e.preventDefault()}>
+											110px
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Row height</DropdownSubTrigger>
 								<DropdownSubContent>
-									<DropdownGroup selectionMode="single" onSelectedChange={(keys) => setRow(Array.from(keys)[0] as typeof row)} minSelectionCount={1} selectedValues={[row]}>
-										<DropdownItem value="40px">40px</DropdownItem>
-										<DropdownItem value="60px">60px</DropdownItem>
-										<DropdownItem value="90px">90px</DropdownItem>
-										<DropdownItem value="110px">110px</DropdownItem>
-									</DropdownGroup>
+									<DropdownRadioGroup value={row} onValueChange={(value) => setRow(value as typeof row)}>
+										<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
+											40px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="60" onSelect={(e) => e.preventDefault()}>
+											60px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="90" onSelect={(e) => e.preventDefault()}>
+											90px
+										</DropdownRadioItem>
+										<DropdownRadioItem value="110" onSelect={(e) => e.preventDefault()}>
+											110px
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 						</DropdownGroup>

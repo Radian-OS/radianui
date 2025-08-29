@@ -1,20 +1,13 @@
 "use client"
 
 import React from "react"
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
 import { Check } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 
-type CheckboxProps = {
-	name?: string
-	value?: string | number
-	checked?: boolean
-	defaultChecked?: boolean
-	onChange?: (checked: boolean) => void
-	disabled?: boolean
+type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> & {
 	size?: "sm" | "md" | "lg"
 	icon?: React.ReactElement
-	className?: string
 	children?: React.ReactNode
 }
 
@@ -29,92 +22,43 @@ type CheckboxGroupProps = {
 	children?: React.ReactNode
 }
 
-function Checkbox({
-	name,
-	value,
-	checked: checkedProp,
-	defaultChecked = false,
-	onChange,
-	disabled = false,
-	size = "md",
-	icon = <Check />,
-	className,
-	children,
-	...props
-}: CheckboxProps) {
-	const [isChecked, setIsChecked] = React.useState(defaultChecked)
-
-	const checked = checkedProp !== undefined ? checkedProp : isChecked
-
-	React.useEffect(() => {
-		if (checkedProp !== undefined) {
-			setIsChecked(checkedProp)
-		}
-	}, [checkedProp])
-
-	const handleClick = () => {
-		if (disabled) return
-
-		const newChecked = !checked
-		if (onChange) {
-			onChange(newChecked)
-		} else {
-			setIsChecked(newChecked)
-		}
-	}
-
-	const handleKeyDown = (e: React.KeyboardEvent) => {
-		if (e.key === " " || e.key === "Enter") {
-			e.preventDefault()
-			handleClick()
-		}
-	}
-
+function Checkbox({ size = "md", icon = <Check />, children, className, ...props }: CheckboxProps) {
 	const sizeClasses: Record<string, string> = {
 		sm: "size-4 rounded-sm",
 		md: "size-5 rounded-sm",
 		lg: "size-6 rounded-md",
 	}
 
+	const iconSizes: Record<string, number> = {
+		sm: 14,
+		md: 16,
+		lg: 18,
+	}
+
 	return (
 		<label
-			className={cn(
-				"inline-flex w-fit cursor-pointer items-center gap-2",
-				disabled ? "text-fg-tertiary cursor-not-allowed" : "cursor-pointer",
-				size === "lg" ? "text-base" : "text-sm",
-				className
-			)}>
-			<Button
-				color={checked ? "primary" : "neutral"}
-				iconOnly
-				variant={checked ? "strong" : "outline"}
-				type="button"
-				role="checkbox"
-				data-checked={checked}
-				aria-checked={checked}
-				aria-disabled={disabled}
-				tabIndex={disabled ? -1 : 0}
-				onClick={handleClick}
-				onKeyDown={handleKeyDown}
-				disabled={disabled}
-				className={cn(sizeClasses[size])}
+			data-checked={props.checked}
+			data-disabled={props.disabled}
+			className={cn("peer inline-flex w-fit items-center gap-2", "data-[disabled]:text-fg-tertiary data-[disabled]:cursor-not-allowed", className)}>
+			<CheckboxPrimitive.Root
+				className={cn(
+					"focus-visible:ring-primary flex items-center justify-center border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+					sizeClasses[size],
+					"data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-white",
+					"data-[state=unchecked]:border-border data-[state=unchecked]:bg-background",
+					"hover:border-primary/50",
+					"data-[disabled]:cursor-not-allowed data-[disabled]:opacity-50"
+				)}
 				{...props}>
-				<input type="checkbox" checked={checked} name={name} value={value} hidden readOnly />
-
-				<div
-					className={cn(
-						"absolute flex items-center justify-center text-white transition-opacity",
-						checked ? "opacity-100" : "opacity-0",
-						size === "sm" ? "inset-0.25" : size === "md" ? "inset-0.5" : size === "lg" ? "inset-1" : ""
-					)}>
+				<CheckboxPrimitive.Indicator className="flex items-center justify-center text-white">
 					{React.isValidElement(icon) &&
 						React.cloneElement(icon as React.ReactElement<React.ComponentProps<"svg"> & { size?: number }>, {
-							size: size === "sm" ? 14 : 16,
+							size: iconSizes[size],
 							className: "",
 						})}
-				</div>
-			</Button>
-			{children && <span className={cn("select-none", disabled ? "text-fg-tertiary" : "text-primary-foreground")}>{children}</span>}
+				</CheckboxPrimitive.Indicator>
+			</CheckboxPrimitive.Root>
+			{children && <span className={cn(size === "lg" ? "text-base" : "text-sm", "select-none")}>{children}</span>}
 		</label>
 	)
 }
@@ -150,11 +94,11 @@ function CheckboxGroup({ defaultValue = [], label, value, onChange, size = "md",
 			size,
 			disabled: disabled || childProps.disabled,
 			checked: selectedValues.includes(childValue as string),
-			onChange: (checked: boolean) => {
+			onCheckedChange: (checked: boolean) => {
 				if (childValue) {
 					handleCheckboxChange(childValue, checked)
 				}
-				childProps.onChange?.(checked)
+				childProps.onCheckedChange?.(checked)
 			},
 		})
 	}

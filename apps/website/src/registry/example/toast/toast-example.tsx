@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Box } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Toaster, showToast } from "@/registry/ui/toast"
 
@@ -21,61 +21,75 @@ const ToastExample = () => {
 					<Dropdown>
 						<DropdownTrigger>Properties</DropdownTrigger>
 						<DropdownContent className="min-w-20">
-							<DropdownGroup>
-								<DropdownSub>
-									<DropdownSubTrigger>Position</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as typeof position)}
-											minSelectionCount={1}
-											selectedValues={[position]}>
-											<DropdownItem value="bottom-right">Bottom Right</DropdownItem>
-											<DropdownItem value="top-left">Top Left</DropdownItem>
-											<DropdownItem value="top-center">Top Center</DropdownItem>
-											<DropdownItem value="top-right">Top Right</DropdownItem>
-											<DropdownItem value="bottom-left">Bottom Left</DropdownItem>
-											<DropdownItem value="bottom-center">Bottom Center</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Position</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownRadioGroup value={position} onValueChange={(value) => setPosition(value as typeof position)}>
+										<DropdownRadioItem value="bottom-right" onSelect={(e) => e.preventDefault()}>
+											Bottom Right
+										</DropdownRadioItem>
+										<DropdownRadioItem value="top-left" onSelect={(e) => e.preventDefault()}>
+											Top Left
+										</DropdownRadioItem>
+										<DropdownRadioItem value="top-center" onSelect={(e) => e.preventDefault()}>
+											Top Center
+										</DropdownRadioItem>
+										<DropdownRadioItem value="top-right" onSelect={(e) => e.preventDefault()}>
+											Top Right
+										</DropdownRadioItem>
+										<DropdownRadioItem value="bottom-left" onSelect={(e) => e.preventDefault()}>
+											Bottom Left
+										</DropdownRadioItem>
+										<DropdownRadioItem value="bottom-center" onSelect={(e) => e.preventDefault()}>
+											Bottom Center
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 
-								<DropdownSub>
-									<DropdownSubTrigger>Stackable</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setStackable(Array.from(keys)[0] as typeof stackable)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[stackable]}>
-											<DropdownItem value="true">True</DropdownItem>
-											<DropdownItem value="false">False</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
+							<DropdownSub>
+								<DropdownSubTrigger>Stackable</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownRadioGroup
+										value={stackable}
+										onValueChange={(value) => {
+											setStackable(value as typeof stackable)
+											setKey((k) => k + 1)
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 
-								<DropdownSub>
-									<DropdownSubTrigger>Visible toast</DropdownSubTrigger>
-									<DropdownSubContent>
-										<DropdownGroup
-											selectionMode="single"
-											onSelectedChange={(keys) => {
-												setVisibleToasts(Array.from(keys)[0] as typeof visibleToasts)
-												setKey((k) => k + 1)
-											}}
-											minSelectionCount={1}
-											selectedValues={[visibleToasts]}>
-											<DropdownItem value="3">3</DropdownItem>
-											<DropdownItem value="4">4</DropdownItem>
-											<DropdownItem value="5">5</DropdownItem>
-											<DropdownItem value="6">6</DropdownItem>
-										</DropdownGroup>
-									</DropdownSubContent>
-								</DropdownSub>
-							</DropdownGroup>
+							<DropdownSub>
+								<DropdownSubTrigger>Visible toast</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownRadioGroup
+										value={visibleToasts}
+										onValueChange={(value) => {
+											setVisibleToasts(value as typeof visibleToasts)
+											setKey((k) => k + 1)
+										}}>
+										<DropdownRadioItem value="3" onSelect={(e) => e.preventDefault()}>
+											3
+										</DropdownRadioItem>
+										<DropdownRadioItem value="4" onSelect={(e) => e.preventDefault()}>
+											4
+										</DropdownRadioItem>
+										<DropdownRadioItem value="5" onSelect={(e) => e.preventDefault()}>
+											5
+										</DropdownRadioItem>
+										<DropdownRadioItem value="6" onSelect={(e) => e.preventDefault()}>
+											6
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
+								</DropdownSubContent>
+							</DropdownSub>
 						</DropdownContent>
 					</Dropdown>
 				</div>

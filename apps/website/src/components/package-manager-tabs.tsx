@@ -172,7 +172,7 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 					))}
 				</TabsList>
 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={handleCopy}>
-					{copied ? <Check /> : <CopyIcon />}
+					{copied ? <Check size={16} /> : <CopyIcon size={16} />}
 				</Button>
 			</div>
 			{pkg.map((manager) => (

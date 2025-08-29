@@ -2,7 +2,18 @@ import React, { useState } from "react"
 import { Box, ChevronDown, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownItem,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -102,46 +113,54 @@ value="2">Inactive</DropdownItem>
 						<DropdownSub>
 							<DropdownSubTrigger>Start</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(start)]} onSelectedChange={(values) => setStart(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(start)} onValueChange={(value) => setStart(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>End</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[String(end)]} onSelectedChange={(values) => setEnd(values[0] === "true")} minSelectionCount={1}>
-									<DropdownItem value="true">True</DropdownItem>
-									<DropdownItem value="false">False</DropdownItem>
-								</DropdownGroup>
+								<DropdownRadioGroup value={String(end)} onValueChange={(value) => setEnd(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Placement</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[placement]} onSelectedChange={(values) => setPlacement(values[0] as PlacementOptions)}>
-									{placementOptions.map((placementOptions) => (
-										<DropdownItem value={placementOptions} key={placementOptions}>
-											{placementOptions.charAt(0).toUpperCase() + placementOptions.slice(1)}
-										</DropdownItem>
+								<DropdownRadioGroup value={placement} onValueChange={(value) => setPlacement(value as PlacementOptions)}>
+									{placementOptions.map((placementOption) => (
+										<DropdownRadioItem value={placementOption} key={placementOption} onSelect={(e) => e.preventDefault()}>
+											{placementOption.charAt(0).toUpperCase() + placementOption.slice(1)}
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 
 						<DropdownSub>
 							<DropdownSubTrigger>Align</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownGroup selectionMode="single" selectedValues={[align]} onSelectedChange={(values) => setAlign(values[0] as AlignOptions)}>
-									{alignOptions.map((alignOptions) => (
-										<DropdownItem value={alignOptions} key={alignOptions}>
-											{alignOptions.charAt(0).toUpperCase() + alignOptions.slice(1)}
-										</DropdownItem>
+								<DropdownRadioGroup value={align} onValueChange={(value) => setAlign(value as AlignOptions)}>
+									{alignOptions.map((alignOption) => (
+										<DropdownRadioItem value={alignOption} key={alignOption} onSelect={(e) => e.preventDefault()}>
+											{alignOption.charAt(0).toUpperCase() + alignOption.slice(1)}
+										</DropdownRadioItem>
 									))}
-								</DropdownGroup>
+								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
 					</DropdownContent>
@@ -170,14 +189,14 @@ value="2">Inactive</DropdownItem>
 								</DropdownSub>
 							</DropdownGroup>
 							<DropdownGroup title="status">
-								<DropdownItem start={start ? <Box /> : null} end={end ? <Box /> : null} value="1">
+								<DropdownItem start={start ? <Box /> : null} end={end ? <Box /> : null}>
 									Active
 								</DropdownItem>
-								<DropdownItem start={start ? <Box /> : null} end={end ? <Box /> : null} value="2">
+								<DropdownItem start={start ? <Box /> : null} end={end ? <Box /> : null}>
 									Inactive
 								</DropdownItem>
-								<DropdownItem value="3">Lunch</DropdownItem>
-								<DropdownItem value="4">Commuting</DropdownItem>
+								<DropdownItem>Lunch</DropdownItem>
+								<DropdownItem>Commuting</DropdownItem>
 							</DropdownGroup>
 						</DropdownContent>
 					</Dropdown>

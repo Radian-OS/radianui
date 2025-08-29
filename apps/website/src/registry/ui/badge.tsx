@@ -153,7 +153,7 @@ function Badge({ variant = "soft", size = "24", color = "primary", onClose, clas
 			size={12}
 			onClick={() => setShowBadge(false)}
 			className={cn(
-				"cursor-pointer font-extrabold", // ml-1 for spacing when gap might not work
+				"cursor-pointer font-extrabold", // ml-1 for margin when gap might not work
 				variant === "default" && "text-fg-tertiary"
 			)}
 		/>

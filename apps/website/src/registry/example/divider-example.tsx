@@ -23,7 +23,7 @@ const DividerExample = () => {
 			<div className="flex h-[200px] items-center justify-center">
 				<Divider orientation="vertical" />
 				<h2 className="mb-4 text-lg font-semibold">Vertical</h2>
-				<Divider orientation="vertical" spacing="12" />
+				<Divider orientation="vertical" margin="12" />
 			</div>
 		</div>
 	)

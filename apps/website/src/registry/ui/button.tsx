@@ -3,6 +3,7 @@
 import React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
@@ -11,13 +12,11 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 	React.ComponentProps<"button"> & {
 		className?: string
 		children: React.ReactNode
-		iconOnly?: boolean
 		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
 		start?: React.ReactNode
 		end?: React.ReactNode
 		loading?: boolean
 		asChild?: boolean
-		tooltip?: string
 		innerSpanClassName?: string
 	}
 
@@ -28,10 +27,16 @@ type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	color?: ButtonProps["color"]
 }
 
-type CompactButtonProps = Omit<ButtonProps, "iconOnly" | "start" | "end" | "size"> & {
+type CompactButtonProps = {
+	loading?: boolean
+	variant?: "strong" | "soft" | "outline" | "ghost"
 	size?: "20" | "24"
+	color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
+	className?: string
+	children: React.ReactNode
+	disabled?: boolean
 	asChild?: boolean
-}
+} & React.ComponentProps<"button">
 
 type LinkButtonProps = {
 	loading?: boolean
@@ -46,6 +51,17 @@ type LinkButtonProps = {
 	start?: React.ReactNode
 	end?: React.ReactNode
 }
+
+type IconButtonProps = VariantProps<typeof buttonVariants> &
+	Omit<React.ComponentProps<"button">, "color"> & {
+		className?: string
+		children: React.ReactNode
+		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
+		loading?: boolean
+		asChild?: boolean
+		tooltip?: string
+		iconOnly?: boolean
+	}
 
 export const buttonVariants = cva(
 	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
@@ -63,7 +79,7 @@ export const buttonVariants = cva(
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
-				"48": "[&>svg]:size-5 text-base px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
 			},
 			loading: {
 				true: "",
@@ -104,7 +120,14 @@ export const buttonVariants = cva(
 			{ iconOnly: true, size: "36", className: "p-2 h-9 gap-1" },
 			{ iconOnly: true, size: "40", className: "p-2.5 h-10 gap-1" },
 			{ iconOnly: true, size: "44", className: "p-3 h-11 gap-1" },
-			{ iconOnly: true, size: "48", className: "p-3.5 h-12 gap-1" },
+			{ iconOnly: true, size: "48", className: "p-3 h-12 gap-1" },
+
+			{ iconOnly: true, variant: "outline", size: "28", className: "p-1.25 h-7 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "32", className: "p-1.5 h-8 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "36", className: "p-1.75 h-9 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "40", className: "p-2.25 h-10 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "44", className: "p-2.75 h-11 gap-1" },
+			{ iconOnly: true, variant: "outline", size: "48", className: "p-2.75 h-12 gap-1" },
 
 			{
 				variant: "strong",
@@ -141,27 +164,27 @@ export const buttonVariants = cva(
 			{
 				variant: "soft",
 				color: "primary",
-				className: "bg-primary-accent font-medium text-primary hover:bg-primary-focus focus-visible:ring-primary-focus focus-visible:outline-none",
+				className: "bg-primary-accent font-medium text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "info",
-				className: "bg-info-accent font-medium text-info hover:bg-info-focus focus-visible:ring-info-focus focus-visible:outline-none",
+				className: "bg-info-accent font-medium text-info-text hover:bg-info-focus focus-visible:ring-info-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "success",
-				className: "bg-success-accent font-medium text-success hover:bg-success-focus focus-visible:ring-success-focus focus-visible:outline-none",
+				className: "bg-success-accent font-medium text-success-text hover:bg-success-focus focus-visible:ring-success-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "error",
-				className: "bg-error-accent font-medium text-error hover:bg-error-focus focus-visible:ring-error-focus focus-visible:outline-none",
+				className: "bg-error-accent font-medium text-error-text hover:bg-error-focus focus-visible:ring-error-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
 				color: "warning",
-				className: "bg-warning-accent font-medium text-warning hover:bg-warning-focus focus-visible:ring-warning-focus focus-visible:outline-none",
+				className: "bg-warning-accent font-medium text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus focus-visible:outline-none",
 			},
 			{
 				variant: "soft",
@@ -173,27 +196,27 @@ export const buttonVariants = cva(
 			{
 				variant: "outline",
 				color: "primary",
-				className: "bg-transparent font-medium border border-primary-hover text-primary hover:bg-primary-accent focus-visible:ring-primary-hover",
+				className: "bg-transparent font-medium border border-primary-hover text-primary-text hover:bg-primary-accent focus-visible:ring-primary-hover",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "bg-transparent font-medium border border-info-hover text-info hover:bg-info-accent focus-visible:ring-info-hover",
+				className: "bg-transparent font-medium border border-info-hover text-info-text hover:bg-info-accent focus-visible:ring-info-hover",
 			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "bg-transparent font-medium border border-success-hover text-success hover:bg-success-accent focus-visible:ring-success-hover",
+				className: "bg-transparent font-medium border border-success-hover text-success-text hover:bg-success-accent focus-visible:ring-success-hover",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "bg-transparent font-medium border border-error-hover text-error hover:bg-error-accent focus-visible:ring-error-hover",
+				className: "bg-transparent font-medium border border-error-hover text-error-text hover:bg-error-accent focus-visible:ring-error-hover",
 			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "bg-transparent font-medium border border-warning-hover text-warning hover:bg-warning-accent focus-visible:ring-warning-hover",
+				className: "bg-transparent font-medium border border-warning-hover text-warning-text hover:bg-warning-accent focus-visible:ring-warning-hover",
 			},
 			{
 				variant: "outline",
@@ -206,27 +229,27 @@ export const buttonVariants = cva(
 			{
 				variant: "ghost",
 				color: "primary",
-				className: "bg-transparent text-primary font-medium hover:bg-primary-focus focus-visible:outline-none focus-visible:ring-primary-focus",
+				className: "bg-transparent text-primary-text font-medium hover:bg-primary-focus focus-visible:outline-none focus-visible:ring-primary-focus",
 			},
 			{
 				variant: "ghost",
 				color: "info",
-				className: "bg-transparent text-info font-medium hover:bg-info-focus focus-visible:outline-none focus-visible:ring-info-focus",
+				className: "bg-transparent text-info-text font-medium hover:bg-info-focus focus-visible:outline-none focus-visible:ring-info-focus",
 			},
 			{
 				variant: "ghost",
 				color: "success",
-				className: "bg-transparent text-success font-medium hover:bg-success-focus focus-visible:outline-none focus-visible:ring-success-focus",
+				className: "bg-transparent text-success-text font-medium hover:bg-success-focus focus-visible:outline-none focus-visible:ring-success-focus",
 			},
 			{
 				variant: "ghost",
 				color: "error",
-				className: "bg-transparent text-error font-medium hover:bg-error-focus focus-visible:outline-none focus-visible:ring-error-focus",
+				className: "bg-transparent text-error-text font-medium hover:bg-error-focus focus-visible:outline-none focus-visible:ring-error-focus",
 			},
 			{
 				variant: "ghost",
 				color: "warning",
-				className: "bg-transparent text-warning font-medium hover:bg-warning-focus focus-visible:outline-none focus-visible:ring-warning-focus",
+				className: "bg-transparent text-warning-text font-medium hover:bg-warning-focus focus-visible:outline-none focus-visible:ring-warning-focus",
 			},
 			{
 				variant: "ghost",
@@ -251,16 +274,16 @@ function Button({
 	start,
 	end,
 	asChild = false,
+	// Extract iconOnly from props to prevent it from reaching DOM
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	iconOnly: _iconOnly,
 	...props
 }: ButtonProps) {
-	const combinedClass = cn(buttonVariants({ variant, size, color }), disabled && "opacity-50", className)
+	const combinedClass = cn(buttonVariants({ variant, size, color, iconOnly: false }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
-	// When using asChild, we need to pass the styling to the child element
-	// and cannot modify the children structure
 	if (asChild) {
-		// Don't allow start/end/loading when using asChild as it would break the single child requirement
 		if (start || end || loading) {
 			console.warn("Button: start, end, and loading props are not supported when using asChild")
 		}
@@ -272,10 +295,10 @@ function Button({
 		)
 	}
 
-	// Normal button behavior
 	return (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
-			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : start}
+			{start}
+			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
 			<span className={cn(innerSpanClassName, "px-0.5")}>{children}</span>
 			{end}
 		</Comp>
@@ -289,15 +312,13 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 			const isFirst = index === 0
 			const isLast = index === React.Children.count(children) - 1
 
-			// Define border radius class consistently
 			const borderRadiusClass = isFirst ? "rounded-l-lg" : isLast ? "rounded-r-lg" : "rounded-none"
 
-			// Check if this is a Button component that should receive our props
 			if (React.isValidElement<ButtonProps>(child)) {
 				return React.cloneElement(child, {
 					variant,
 					size,
-					color, // Ensure color is passed to child buttons
+					color,
 					className: cn("rounded-none", borderRadiusClass, "-ml-[1px]", `${!isLast ? "border-r-0" : ""}`, child.props.className),
 				})
 			}
@@ -347,7 +368,6 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 
 	const Comp = asChild ? Slot : "button"
 
-	// When using asChild, we need to pass the styling to the child element
 	if (asChild) {
 		if (loading) {
 			throw new Error("CompactButton: loading prop is not supported when using asChild")
@@ -355,7 +375,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 
 		return (
 			<Comp className={combinedClass} disabled={disabled} {...props}>
-				{children}
+				{loading ? <Spinner variant="simple" size={Number(size)} /> : children}
 			</Comp>
 		)
 	}
@@ -369,7 +389,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 CompactButton.displayName = "CompactButton"
 
 const linkButtonVariants = cva(
-	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline",
+	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline [&>svg]:size-5",
 	{
 		variants: {
 			color: {
@@ -391,25 +411,27 @@ const linkButtonVariants = cva(
 	}
 )
 
-function LinkButton({ size = "14", href, color = "primary", start, end, className, children, disabled, target, rel, ...props }: LinkButtonProps) {
+function LinkButton({ size = "14", href, color = "primary", start, end, className, children, disabled, target, rel, loading, ...props }: LinkButtonProps) {
 	const combinedClass = cn(linkButtonVariants({ color, size }), disabled && "opacity-50 pointer-events-none", className)
 
 	if (disabled) {
 		return (
 			<span className={combinedClass} {...props}>
-				{start && start}
+				{start}
+				{loading ? <Spinner variant="simple" size={size === "14" ? 14 : 16} /> : null}
 				{children}
-				{end && end}
+				{end}
 			</span>
 		)
 	}
 
 	return (
-		<a href={href} className={combinedClass} target={target} rel={rel} {...props}>
-			{start && start}
+		<Link href={href} className={combinedClass} target={target} rel={rel} {...props}>
+			{start}
+			{loading ? <Spinner variant="simple" size={size === "14" ? 14 : 16} /> : null}
 			{children}
-			{end && end}
-		</a>
+			{end}
+		</Link>
 	)
 }
 
@@ -425,21 +447,15 @@ function IconButton({
 	children,
 	disabled,
 	asChild = false,
-	tooltip = "",
+	tooltip,
+	// Extract these props to prevent them from reaching DOM
 	...props
-}: ButtonProps) {
+}: IconButtonProps) {
 	const combinedClass = cn(buttonVariants({ variant, size, iconOnly, color }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
-	// When using asChild, we need to pass the styling to the child element
-	// and cannot modify the children structure
 	if (asChild) {
-		// Don't allow loading when using asChild as it would break the single child requirement
-		if (loading) {
-			console.warn("Button: loading prop is not supported when using asChild")
-		}
-
 		return tooltip ? (
 			<Tooltip>
 				<TooltipTrigger asChild>
@@ -456,7 +472,6 @@ function IconButton({
 		)
 	}
 
-	// Normal button behavior
 	return tooltip ? (
 		<Tooltip>
 			<TooltipTrigger asChild>

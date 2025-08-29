@@ -328,13 +328,13 @@ const DraggableTableHeader = function <TData>({
 						<Checkbox
 							icon={<Minus />} // Minus if some are selected
 							checked={true}
-							onChange={onSelectAllChange} // Toggle logic handled in parent
+							onCheckedChange={onSelectAllChange} // Toggle logic handled in parent
 							size="md"
 						/>
 					) : (
 						<Checkbox
 							checked={selectAll} // True if all selected
-							onChange={onSelectAllChange} // Toggle logic handled in parent
+							onCheckedChange={onSelectAllChange} // Toggle logic handled in parent
 							size="md"
 						/>
 					)}
@@ -387,7 +387,7 @@ const DragAlongCell = function <TData>({
 				<div className="flex items-center">
 					<Checkbox
 						checked={selectedRows.has(rowIndex)}
-						onChange={function (checked: boolean) {
+						onCheckedChange={function (checked: boolean) {
 							onRowSelectChange(rowIndex, checked)
 						}}
 						size="md"

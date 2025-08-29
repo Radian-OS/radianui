@@ -2,7 +2,17 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
@@ -33,49 +43,57 @@ const TooltipPreview = () => {
 						<DropdownGroup>
 							<DropdownSub>
 								<DropdownSubTrigger>Position</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setPosition(Array.from(keys)[0] as typeof position)}
-										minSelectionCount={1}
-										selectedValues={[position]}>
-										<DropdownItem value="top">Top</DropdownItem>
-										<DropdownItem value="left">Left</DropdownItem>
-										<DropdownItem value="right">Right</DropdownItem>
-										<DropdownItem value="bottom">Bottom</DropdownItem>
-									</DropdownGroup>
+								<DropdownSubContent className="min-w-24">
+									<DropdownRadioGroup value={position} onValueChange={(value) => setPosition(value as typeof position)}>
+										<DropdownRadioItem value="top" onSelect={(e) => e.preventDefault()}>
+											Top
+										</DropdownRadioItem>
+										<DropdownRadioItem value="left" onSelect={(e) => e.preventDefault()}>
+											Left
+										</DropdownRadioItem>
+										<DropdownRadioItem value="right" onSelect={(e) => e.preventDefault()}>
+											Right
+										</DropdownRadioItem>
+										<DropdownRadioItem value="bottom" onSelect={(e) => e.preventDefault()}>
+											Bottom
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>Align</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => setVariant(Array.from(keys)[0] as typeof variant)}
-										minSelectionCount={1}
-										selectedValues={[variant]}>
-										<DropdownItem value="start">Start</DropdownItem>
-										<DropdownItem value="center">Center</DropdownItem>
-										<DropdownItem value="end">End</DropdownItem>
-									</DropdownGroup>
+								<DropdownSubContent className="min-w-24">
+									<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as typeof variant)}>
+										<DropdownRadioItem value="start" onSelect={(e) => e.preventDefault()}>
+											Start
+										</DropdownRadioItem>
+										<DropdownRadioItem value="center" onSelect={(e) => e.preventDefault()}>
+											Center
+										</DropdownRadioItem>
+										<DropdownRadioItem value="end" onSelect={(e) => e.preventDefault()}>
+											End
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 
 							<DropdownSub>
 								<DropdownSubTrigger>With arrow</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownGroup
-										selectionMode="single"
-										onSelectedChange={(keys) => {
-											setWithArrow(Array.from(keys)[0] as typeof withArrow)
+								<DropdownSubContent className="min-w-24">
+									<DropdownRadioGroup
+										value={withArrow}
+										onValueChange={(value) => {
+											setWithArrow(value as typeof withArrow)
 											setKey((k) => k + 1)
-										}}
-										minSelectionCount={1}
-										selectedValues={[withArrow]}>
-										<DropdownItem value="true">True</DropdownItem>
-										<DropdownItem value="false">False</DropdownItem>
-									</DropdownGroup>
+										}}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
 						</DropdownGroup>
