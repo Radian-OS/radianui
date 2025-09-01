@@ -461,7 +461,6 @@ const FormPreview = () => {
 					label="Product Category"
 					placeholder="--Choose a product--"
 					variants="input"
-					rounded="lg"
 					selectionMode="single"
 					selectedValues={selectValues}
 					onSelectedChange={handleSelectChange}
