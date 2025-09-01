@@ -1,15 +1,10 @@
 name: "Pull Request Template for RadianOs"
-
-about: Thank you for contributing to RadianOs!
-  Please fill out this template to help us review your changes efficiently.
-
+description: "Thank you for contributing! Please fill this out."
 title: "[Component/Feature/Fix]: Brief Description"
-
 labels:
   - "needs review"
   - "type: enhancement"
   - "type: bug"
-
 body:
   - type: markdown
     attributes:
