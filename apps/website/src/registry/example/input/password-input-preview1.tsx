@@ -11,7 +11,6 @@ export type LabelOptions = "true" | "false"
 export type DisabledOptions = "true" | "false"
 export type ErrorOptions = "true" | "false"
 export type trailOptions = "show" | "hide" | "onFocus"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 
 const PasswordInputPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
@@ -20,8 +19,7 @@ const PasswordInputPreview = () => {
 	const [error, setError] = useState<ErrorOptions>("false")
 	const [trail, settrail] = useState<trailOptions>("onFocus")
 	const [hint, setHint] = useState<boolean>(false)
-	const [rounded, setRounded] = useState<RoundedOptions>("md")
-
+	const [placeholder, setPlaceholder] = useState<"true" | "false">("true")
 	const code = `<Password
 	${label === "true" ? 'label="Password"' : ""}
 	${disabled === "true" ? "disabled={true}" : ""}
@@ -29,7 +27,7 @@ const PasswordInputPreview = () => {
 	visibility='${trail}'
 	${hint === true ? `hint="Hint text to help the user with input"` : ""}
 	${error === "true" ? "hasError={true}" : ""}
-	rounded='${rounded}'
+	${placeholder === "true" ? `placeholder="Enter your password"` : ""}
   />`
 
 	return (
@@ -65,6 +63,20 @@ const PasswordInputPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
+							<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={placeholder} onValueChange={(value) => setPlaceholder(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
@@ -85,32 +97,6 @@ const PasswordInputPreview = () => {
 									</DropdownRadioItem>
 									<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
 										48
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-									<DropdownRadioItem value="xs" onSelect={(e) => e.preventDefault()}>
-										xs
-									</DropdownRadioItem>
-									<DropdownRadioItem value="sm" onSelect={(e) => e.preventDefault()}>
-										sm
-									</DropdownRadioItem>
-									<DropdownRadioItem value="md" onSelect={(e) => e.preventDefault()}>
-										md
-									</DropdownRadioItem>
-									<DropdownRadioItem value="lg" onSelect={(e) => e.preventDefault()}>
-										lg
-									</DropdownRadioItem>
-									<DropdownRadioItem value="xl" onSelect={(e) => e.preventDefault()}>
-										xl
-									</DropdownRadioItem>
-									<DropdownRadioItem value="2xl" onSelect={(e) => e.preventDefault()}>
-										2xl
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -188,7 +174,7 @@ const PasswordInputPreview = () => {
 								size={size}
 								hasError={error === "true"}
 								hint={hint ? "Hint text to help the user with input" : ""}
-								placeholder="Enter Password"
+								placeholder={placeholder === "true" ? "Enter your password" : ""}
 								className="w-80"
 								visibility={trail}
 							/>
