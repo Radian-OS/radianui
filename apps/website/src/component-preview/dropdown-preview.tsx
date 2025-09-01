@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, ChevronDown, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { Box, ChevronDown, ChevronUp, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
@@ -26,70 +26,67 @@ const alignOptions: AlignOptions[] = ["start", "center", "end"]
 const placementOptions: PlacementOptions[] = ["top", "bottom", "left", "right"]
 
 const DropdownPreview = () => {
+	const [open, setOpen] = useState<boolean>(false)
 	const [start, setStart] = useState<boolean>(false)
 	const [end, setEnd] = useState<boolean>(false)
 
 	const [align, setAlign] = useState<AlignOptions>("start")
 	const [placement, setPlacement] = useState<PlacementOptions>("bottom")
 
-	const code = `"use client"	
+	const code = `"use client"
 import React from "react"
 import { ChevronDown } from "lucide-react"
 import {
-	Dropdown,
-	DropdownContent,
-	DropdownGroup,
-	DropdownItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
+  Dropdown,
+  DropdownContent,
+  DropdownGroup,
+  DropdownItem,
+  DropdownSub,
+  DropdownSubContent,
+  DropdownSubTrigger,
+  DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Button } from "@/registry/ui/button"
-	
-export const DropdownPreview=()=>{
 
+export const DropdownPreview = () => {
+  const [open, setOpen] = useState<boolean>(false)
 
-return(
-<Dropdown>
-<DropdownTrigger asChild >
-<Button variant="outline" color="neutral" >
-Dropdown <ChevronDown className="size-5" />
-<Button
-	variant="outline">
-	Dropdown <ChevronDown className="size-5" />
-</Button>
-</DropdownTrigger>
-<DropdownContent align={align} placement={placement} className="w-48">
-<DropdownGroup title="date range">
-<DropdownItem>This week</DropdownItem>
-<DropdownItem>This month</DropdownItem>
-<DropdownItem>This quarter</DropdownItem>
-<DropdownSub>
-<DropdownSubTrigger>Last quarter</DropdownSubTrigger>
-<DropdownSubContent>
-<DropdownItem>Last 1 quarter</DropdownItem>
-<DropdownItem>Last 2 quarter</DropdownItem>
-</DropdownSubContent>
-</DropdownSub>
-</DropdownGroup>
-<DropdownGroup
-title="status"
->
-<DropdownItem 
-${start ? `start={<Box />}` : ""}
-${end ? `end={<Box />}` : ""}
-value="1">Active</DropdownItem>
-<DropdownItem
-${start ? `start={<Box />}` : ""}
-${end ? `end={<Box />}` : ""}
-value="2">Inactive</DropdownItem>
-<DropdownItem value="3">Lunch</DropdownItem>
-<DropdownItem value="4">Commuting</DropdownItem>
-</DropdownGroup>
-</DropdownContent>
-</Dropdown>
-)
+  return (
+    <Dropdown open={open} onOpenChange={setOpen}>
+      <DropdownTrigger asChild>
+			<Button color="neutral" variant="outline" end={open ? <ChevronUp /> : <ChevronDown />}>
+				Dropdown
+			</Button>
+      </DropdownTrigger>
+
+      <DropdownContent align={align} placement={placement} className="w-48">
+        <DropdownGroup title="date range">
+          <DropdownItem>This week</DropdownItem>
+          <DropdownItem>This month</DropdownItem>
+          <DropdownItem>This quarter</DropdownItem>
+
+          <DropdownSub>
+            <DropdownSubTrigger>Last quarter</DropdownSubTrigger>
+            <DropdownSubContent>
+              <DropdownItem>Last 1 quarter</DropdownItem>
+              <DropdownItem>Last 2 quarter</DropdownItem>
+            </DropdownSubContent>
+          </DropdownSub>
+        </DropdownGroup>
+
+        <DropdownGroup title="status">
+          <DropdownItem${start ? ` start={<Box />}` : ""}${end ? ` end={<Box />}` : ""} value="1">
+            Active
+          </DropdownItem>
+          <DropdownItem${start ? ` start={<Box />}` : ""}${end ? ` end={<Box />}` : ""} value="2">
+            Inactive
+          </DropdownItem>
+          <DropdownItem value="3">Lunch</DropdownItem>
+          <DropdownItem value="4">Commuting</DropdownItem>
+        </DropdownGroup>
+      </DropdownContent>
+    </Dropdown>
+  )
 }`
 
 	return (
@@ -169,9 +166,9 @@ value="2">Inactive</DropdownItem>
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Dropdown>
+					<Dropdown open={open} onOpenChange={setOpen}>
 						<DropdownTrigger asChild>
-							<Button color="neutral" variant="outline" end={<ChevronDown className="size-5" />}>
+							<Button color="neutral" variant="outline" end={open ? <ChevronUp /> : <ChevronDown />}>
 								Dropdown
 							</Button>
 						</DropdownTrigger>
