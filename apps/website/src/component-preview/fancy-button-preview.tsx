@@ -104,15 +104,15 @@ Fancy Button 2
 						<Button
 							size={size}
 							disabled={disabled === "true"}
-							className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
-							Fancy Button
+							className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#6A52F2]">
+							Fancy Button 1
 						</Button>
 					)}
 					{variant === "variant2" && (
 						<Button
 							size={size}
 							disabled={disabled === "true"}
-							className="border-primary-hover mt-2 border bg-gradient-to-b from-[#5133CF] to-[#6347EB] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#5B3FE0] hover:to-[#6A52F2]">
+							className="border-primary-hover mt-2 border bg-gradient-to-b from-[#5133CF] to-[#6347EB] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#5B3FE0] hover:to-[#5B3FE0]">
 							Fancy Button 2
 						</Button>
 					)}
