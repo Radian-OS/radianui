@@ -88,7 +88,6 @@ import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
-import NumberOfCalendarPreview from "@/registry/example/calendar/month-preview"
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
@@ -233,7 +232,7 @@ const components: MDXComponents = {
 	LinkButtonPreview: () => <LinkButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
-	CodeWitTabsPreview: () => <CodeWithTabs />,
+	CodeWithTabsPreview: () => <CodeWithTabs />,
 	FormPreview: () => <FormPreview />,
 	FormExample1: () => <FormExample1 />,
 	FormExample2: () => <FormExample2 />,
@@ -250,7 +249,6 @@ const components: MDXComponents = {
 	AlertCloseExamplePreview: () => <AlertCloseExamplePreview />,
 	DividerExamplePreview: () => <DividerExamplePreview />,
 	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
-	NumberOfCalendarPreview: () => <NumberOfCalendarPreview />,
 	FooterCalendarPreview: () => <FooterCalendarPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
