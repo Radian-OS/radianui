@@ -12,7 +12,7 @@ const rootStyles = cva(
 	{
 		variants: {
 			size: {
-				"20": "w-9 h-5",
+				"20": "w-8.5 h-5",
 				"24": "w-10.5 h-6",
 			},
 		},
@@ -25,7 +25,7 @@ const rootStyles = cva(
 const thumbStyles = cva("block rounded-full bg-white transition-transform data-[state=unchecked]:translate-x-[3px]", {
 	variants: {
 		size: {
-			"20": "size-3.5 data-[state=checked]:translate-x-4.5",
+			"20": "size-3.5 data-[state=checked]:translate-x-4",
 			"24": "size-4.5 data-[state=checked]:translate-x-5",
 		},
 	},

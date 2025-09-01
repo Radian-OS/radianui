@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import { Check, CopyIcon, EyeIcon, SquareTerminal } from "lucide-react"
 import { useTheme } from "next-themes"
+import CodeSnippet from "@/components/code-snippet"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -186,7 +187,7 @@ export default CodeWithTabsPreview
 									code={commands[manager]}
 									copyButton={false}
 									lineNumbers={false}
-									className="border-soft rounded-[10px] border px-4 py-3"
+									className="border-soft rounded-[10px] border"
 								/>
 							</TabsContent>
 						))}
@@ -194,14 +195,15 @@ export default CodeWithTabsPreview
 				</div>
 			</TabsContent>
 			<TabsContent value="code" className="p-0">
-				<CodeArea
+				{/* <CodeArea
 					language="bash"
 					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 					code={getImplementationCode()}
 					copyButton={false}
 					lineNumbers={false}
-					className="border-soft rounded-[10px] border"
-				/>
+					className="border-soft rounded-[10px] border px-4 py-3"
+				/> */}
+				<CodeSnippet title="code-with-tabs-preview.tsx" code={getImplementationCode()} showLineNumber={false} />
 			</TabsContent>
 		</Tabs>
 	)
