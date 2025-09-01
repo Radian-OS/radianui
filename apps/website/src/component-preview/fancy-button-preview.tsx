@@ -104,7 +104,7 @@ Fancy Button 2
 						<Button
 							size={size}
 							disabled={disabled === "true"}
-							className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+							className="before:!border-white/12 relative !border-0 !bg-gradient-to-b !from-[#6347EB] !to-[#5133CF] !text-white !shadow-[0px_4px_4px_rgba(24,25,27,0.16)] !ring-[1.5px] !ring-inset !ring-[#5B3FE0] !transition-all !duration-200 !ease-linear before:!pointer-events-none before:!absolute before:!inset-px before:!rounded-[7px] before:!border hover:!from-[#6A52F2] hover:!to-[#5B3FE0] hover:!ring-[#6A52F2]">
 							Fancy Button
 						</Button>
 					)}
