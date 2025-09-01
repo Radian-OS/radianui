@@ -144,7 +144,6 @@ function FileUpload({
 					id="picture"
 					type="file"
 					label={label ? `${label}` : ""}
-					rounded={rounded}
 					disabled={disabled}
 					multiple={multiple}
 					hint={errors.length > 0 ? errors[0] : hint}

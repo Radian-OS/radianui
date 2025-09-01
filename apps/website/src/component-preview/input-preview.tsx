@@ -7,12 +7,9 @@ import { Input } from "@/registry/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const InputPreview = () => {
-	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [trailIcon, setTrailIcon] = useState<boolean>(false)
@@ -50,18 +47,6 @@ const InputPreview = () => {
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent>
-						<DropdownSub>
-							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-									{roundedOptions.map((roundedOption) => (
-										<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
-											{roundedOption}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -160,7 +145,6 @@ const InputPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Input
 						className="w-80"
-						rounded={rounded}
 						size={size}
 						disabled={disabled}
 						label={label ? "Username" : undefined}
@@ -179,7 +163,6 @@ const InputPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`<Input 
-    rounded="${rounded}"
     size="${size}"
     disabled={${disabled}}
     label="${label ? "Username" : ""}"

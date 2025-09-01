@@ -196,7 +196,6 @@ const PasswordInputPreview2 = () => {
 							hint={hint ? "Hint text to help the user with input" : ""}
 							className="w-80"
 							visibility={trail}
-							rounded={rounded}
 							// {...(trail === "false" ? { trail: false } : trail === "visibilityIcon" ? { trail: "visibilityIcon" } : {})}
 						/>
 					</div>
