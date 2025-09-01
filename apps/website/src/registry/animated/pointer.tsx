@@ -1,10 +1,12 @@
 "use client"
 
 import React from "react"
-import { AnimatePresence, motion, useMotionValue } from "motion/react"
+import { AnimatePresence, HTMLMotionProps, motion, useMotionValue } from "motion/react"
 import { cn } from "@/lib/utils"
 
-const Pointer = ({ children }: { children?: React.ReactNode }) => {
+type PointerProps = Omit<HTMLMotionProps<"div">, "ref">
+
+const Pointer = ({ style, children }: PointerProps) => {
 	const divRef = React.useRef<HTMLDivElement>(null)
 
 	const x = useMotionValue(0)
@@ -56,9 +58,9 @@ const Pointer = ({ children }: { children?: React.ReactNode }) => {
 						initial={{ scale: 0, opacity: 0 }}
 						animate={{ scale: 1, opacity: 1 }}
 						exit={{ scale: 0, opacity: 0 }}
-						className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-1/2"
-						style={{ top: y, left: x }}>
-						{children ?? (
+						className="transform-[translate(-50%,-50%)] pointer-events-none fixed z-50"
+						style={{ top: y, left: x, ...style }}>
+						{children || (
 							<svg
 								stroke="currentColor"
 								fill="currentColor"
