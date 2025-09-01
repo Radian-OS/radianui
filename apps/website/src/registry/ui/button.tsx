@@ -64,7 +64,7 @@ type IconButtonProps = VariantProps<typeof buttonVariants> &
 	}
 
 export const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border  focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {
 			variant: {
@@ -338,7 +338,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	const sizeStyles = size === "20" ? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" : "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md"
 
 	const combinedClass = cn(
-		"inline-flex whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
+		"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 		sizeStyles,
 		buttonVariants({ variant, size: "36", iconOnly: false, color })
 			.split(" ")
@@ -389,7 +389,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 CompactButton.displayName = "CompactButton"
 
 const linkButtonVariants = cva(
-	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border transition-colors duration-200 transform focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline [&>svg]:size-5",
+	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline [&>svg]:size-5",
 	{
 		variants: {
 			color: {
