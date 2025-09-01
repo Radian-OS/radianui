@@ -203,7 +203,7 @@ const IconButtonPreview = () => {
   disabled={${disabled === "true"}}
   ${tooltip === "true" ? 'tooltip="box"' : ""}
 >
-  <Box />
+  ${(icon === "box" && `<Box />`) || (icon === "settings" && `<Settings />`) || (icon === "star" && `<Star />`) || (icon === "user" && `<User />`) || (icon === "send" && `<Send />`)}
 </IconButton>`}
 				/>
 			</TabsContent>
