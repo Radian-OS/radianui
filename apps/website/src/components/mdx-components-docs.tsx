@@ -97,6 +97,8 @@ import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
+import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
+import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import FormExample1 from "@/registry/example/form/form-example1"
 import FormExample2 from "@/registry/example/form/form-example2"
@@ -186,6 +188,8 @@ const components: MDXComponents = {
 	DropdownPreview: () => <DropdownPreview />,
 	UserMenuDropdownExample: () => <UserMenuDropdownExample />,
 	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
+	DropdownWithDropdownCheckboxExample: () => <DropdownWithDropdownCheckbox />,
+	DropdownWithRadioExample: () => <DropdownWithRadioExample />,
 	ResizablePreview: () => <ResizablePreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
@@ -228,7 +232,7 @@ const components: MDXComponents = {
 	LinkButtonPreview: () => <LinkButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
-	CodeWitTabsPreview: () => <CodeWithTabs />,
+	CodeWithTabsPreview: () => <CodeWithTabs />,
 	FormPreview: () => <FormPreview />,
 	FormExample1: () => <FormExample1 />,
 	FormExample2: () => <FormExample2 />,
@@ -303,7 +307,7 @@ const components: MDXComponents = {
 			{children}
 		</strong>
 	),
-	hr: () => <Divider orientation={"horizontal"} margin={"0"} className="mt-10" />,
+	hr: () => <Divider orientation={"horizontal"} className="mt-10" />,
 
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("space-y-4 pb-6", className)}>{children}</ul>

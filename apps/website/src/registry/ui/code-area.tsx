@@ -173,13 +173,12 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, lineNumber
 			{copyButton && (
 				<button
 					onClick={handleCopy}
-					className="absolute right-3 top-3 z-50 flex size-8 items-center justify-center rounded-md bg-transparent p-1.5 text-white hover:bg-[#ffffff1a]"
+					className="bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border absolute right-3 top-3 z-50 flex size-8 items-center justify-center rounded-md p-1.5 font-medium focus-visible:outline-none"
 					aria-label="copy button">
 					{copied ? <Check className="size-4" /> : <Copy className="size-4" />}
 				</button>
 			)}
 		</div>
-		// </div>
 	)
 }
 

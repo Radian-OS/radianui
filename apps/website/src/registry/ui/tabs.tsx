@@ -234,7 +234,7 @@ function TabsTrigger({ className, icon, counter, children, ...props }: Primitive
 	return (
 		<TabsPrimitive.Trigger className={cn(tabsTriggerStyles({ variant, size }), className)} {...props}>
 			{icon && <span className={cn(tabTriggerIconStyles({ size }))}>{icon}</span>}
-			<span className="px-0.5">{children}</span>
+			<span className="flex items-center justify-center gap-1.5 px-0.5">{children}</span>
 			{counter !== undefined && <Badge className={cn("h-5 rounded-full", { "h-4": size === "sm" })}>{counter}</Badge>}
 		</TabsPrimitive.Trigger>
 	)

@@ -46,7 +46,7 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
-					{copied ? <Check /> : <CopyIcon />}
+					{copied ? <Check size={16} /> : <CopyIcon size={16} />}
 				</Button>
 			</div>
 			{collapsible && (

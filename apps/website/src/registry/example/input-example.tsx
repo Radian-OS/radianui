@@ -5,7 +5,7 @@ import { BellOff, BellRing } from "lucide-react"
 import { Calendar } from "../ui/calendar"
 import { CurrencyInput } from "../ui/currency-amount"
 import DatePicker from "../ui/date-picker"
-import { Divider } from "../ui/divider"
+// import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"
 import { Input, type RoundedOptions, type SizeOptions } from "../ui/input"
 import { InputOtp } from "../ui/input-otp"
@@ -94,22 +94,22 @@ const InputExample = () => {
 			<Input placeholder="Disabled" disabled={true} size={size} rounded={rounded} />
 			<Input placeholder="With error" hint="Invalid username" hasError={true} size={size} rounded={rounded} />
 
-			<Divider margin="4" />
+			{/* <Divider margin="4" /> */}
 
 			<Input label="Email" placeholder="Placeholder here" type="email" size={size} rounded={rounded} />
 
-			<Divider margin="4" />
+			{/* <Divider margin="4" /> */}
 
 			<Password label="Password" placeholder="Password here" size={size} rounded={rounded} />
 			<Password placeholder="Disabled" disabled={true} size={size} rounded={rounded} />
 			<Password hint="The input field has an error" hasError={true} size={size} rounded={rounded} />
 
-			<Divider margin="4" />
+			{/* <Divider margin="4" /> */}
 			{/* 
 			<NumberInput label="Number" placeholder="Placeholder" showStepper={false} size={size} rounded={rounded} /> */}
 			<Input label="Enter URL" placeholder="Placeholder here" type="url" size={size} rounded={rounded} />
 
-			<Divider margin="4" />
+			{/* <Divider margin="4" /> */}
 
 			<SearchInput
 				label="Search"
@@ -122,16 +122,16 @@ const InputExample = () => {
 				className="w-80"
 			/>
 
-			<Divider margin="4" />
+			{/* <Divider margin="4" /> */}
 
 			<TextArea placeholder="Hello test" rows={10} resizable={true} className="font-medium" />
 
-			<Divider margin="4" />
+			{/* <Divider margin="4" /> */}
 
 			{/* <span>{phone}</span> */}
 			{/* <PhoneNumber defaultCountryCode="NP" onValueChange={setPhone} size={size} rounded={rounded} /> */}
 
-			<Divider margin="4" />
+			{/* <Divider margin="4" /> */}
 
 			<CurrencyInput
 				value={currency}
