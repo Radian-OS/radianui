@@ -53,15 +53,7 @@ const CalendarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
-					{mode === "single" && <Calendar mode={"single"} showOutsideDays />}
-					{mode === "multiple" && (
-						<Calendar
-							// quickSelection={quickSelection}
-							mode={"multiple"}
-							showOutsideDays
-						/>
-					)}
-					{mode === "range" && <Calendar mode={"range"} showOutsideDays />}
+					<Calendar mode={mode} showOutsideDays />
 				</div>
 			</TabsContent>
 
@@ -72,6 +64,7 @@ const CalendarPreview = () => {
 					className="h-[420px]"
 					code={`<Calendar
     mode="${mode}"
+	showOutsideDays
 />`}
 				/>
 			</TabsContent>

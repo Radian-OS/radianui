@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
 import { cva } from "class-variance-authority"
@@ -7,7 +7,6 @@ import { Calendar as CalendarIcon } from "lucide-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { type ChevronProps, DayPicker, type Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { DateRangeShortcut, DateRangeShortcutValues, TimeSelector, formatTime, mockMouseClick, timeOptions } from "./calendar"
 import { Calendar, type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
 import { Input, type RoundedOptions, type SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
@@ -315,7 +314,6 @@ function SegmentedDateInput({ value, onChange, showTime = false, disabled = fals
 export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	triggerClassName?: string
 	showDateRangeShortcut?: boolean
-	defaultDateRangeShortcutValue?: DateRangeShortcutValues
 	placeholder?: string
 	timePickerProps?: Partial<TimePickerProps>
 	timeZoneProps?: {
@@ -329,7 +327,6 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	size?: SizeOptions
 	rounded?: RoundedOptions
 	mode?: DatePickerModes
-	showTime?: boolean
 	label?: string
 	hasError?: boolean
 	disabled?: boolean
@@ -348,10 +345,8 @@ function DatePicker({
 	label,
 	hint,
 	hasError = false,
-	showTime = true,
 	triggerClassName,
 	showDateRangeShortcut = false,
-	defaultDateRangeShortcutValue,
 	placeholder,
 	onSelectTime,
 	size = defaultInputSize,
@@ -362,11 +357,13 @@ function DatePicker({
 	const [internalSelected, setInternalSelected] = React.useState<CalendarDate | CalendarDate[] | CalendarRange | undefined>(selected || undefined)
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? selected : internalSelected
-	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
 
 	// Add state for typeable date time
 	const [typeableDateTime, setTypeableDateTime] = useState<ZonedDateTime | null>(null)
 
+	function mockMouseClick(): React.MouseEvent {
+		return new MouseEvent("click") as unknown as React.MouseEvent
+	}
 	// Handle typeable date time changes
 	const handleTypeableChange = (dateTime: ZonedDateTime | null) => {
 		setTypeableDateTime(dateTime)
@@ -385,27 +382,6 @@ function DatePicker({
 	 * to the range shortcut value passed
 	 * @param shortcut - Value of the shortcut type
 	 */
-	function handleShortcutSelect(shortcut: DateRangeShortcutValues) {
-		const todayDate = today(getLocalTimeZone())
-		const rangeMap: Record<DateRangeShortcutValues, { from: CalendarDate; to: CalendarDate }> = {
-			today: { from: todayDate, to: today(getLocalTimeZone()) },
-			last_7_days: { from: todayDate.subtract({ weeks: 1 }), to: todayDate },
-			last_30_days: { from: todayDate.subtract({ months: 1 }), to: todayDate },
-			last_3_months: { from: todayDate.subtract({ months: 3 }), to: todayDate },
-			last_6_months: { from: todayDate.subtract({ months: 6 }), to: todayDate },
-			last_12_months: {
-				from: todayDate.subtract({ months: 12 }),
-				to: todayDate,
-			},
-			custom: { from: todayDate, to: todayDate },
-		}
-
-		if (shortcut !== "custom") {
-			const range = rangeMap[shortcut]
-			onSelectHandler(range, todayDate, {}, mockMouseClick())
-		}
-		setSelectedShortcut(shortcut)
-	}
 
 	// Function to handle the selection of the date
 	function onSelectHandler(
@@ -423,24 +399,9 @@ function DatePicker({
 		setInternalSelected(selected)
 		onSelect?.(selected as CalendarDate & CalendarDate[] & CalendarRange, triggerDate, modifiers, e)
 
-		if (e.currentTarget?.getAttribute("data-value") == null) setSelectedShortcut("custom")
-	}
-
-	// Effect hook to update the internal selected state based on the selected date
-	React.useEffect(function () {
-		if (defaultDateRangeShortcutValue) {
-			handleShortcutSelect(defaultDateRangeShortcutValue)
+		if (e.currentTarget?.getAttribute("data-value") == null) {
 		}
-	}, [])
-
-	// Effect hook to update the internal selected state based on the selected time zone and time
-	React.useEffect(
-		function () {
-			setInternalSelected(undefined)
-			onSelect?.(undefined, today(getLocalTimeZone()), {}, mockMouseClick())
-		},
-		[mode]
-	)
+	}
 
 	// Type guard for CalendarRange
 	function isCalendarRange(value: CalendarDate | CalendarDate[] | CalendarRange): value is CalendarRange {
@@ -459,14 +420,7 @@ function DatePicker({
 		}
 
 		if (mode === "range" && isCalendarRange(currentSelected)) {
-			if (showDateRangeShortcut && selectedShortcut && selectedShortcut !== "custom") {
-				return selectedShortcut
-					.split("_")
-					.map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-					.join(" ")
-			} else {
-				return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`
-			}
+			return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`
 		}
 
 		return placeholder
@@ -496,17 +450,6 @@ function DatePicker({
 		setInputValue(combined || "")
 	}, [displayText, timeDisplay])
 
-	const alignOffset = useMemo(() => {
-		if (showTime && showDateRangeShortcut && props.dual) return -581
-		if (props.dual && showTime) return -378
-		if (props.dual && showDateRangeShortcut) return -458
-		if (showTime && showDateRangeShortcut) return -298
-		if (props.dual) return -259
-		if (showTime) return -98
-		if (showDateRangeShortcut) return -178
-		return 20
-	}, [props.dual, showTime, showDateRangeShortcut])
-
 	return (
 		<div>
 			{typeable ? (
@@ -518,7 +461,6 @@ function DatePicker({
 						disables={disabled}
 						hasError={hasError}
 						hint={hint ? `${hint}` : ""}
-						showTime={showTime}
 						showDateRangeShortcut={showDateRangeShortcut}
 						onChange={handleTypeableChange}
 						value={props.value || typeableDateTime}
@@ -551,7 +493,7 @@ function DatePicker({
 									/>
 								</PopoverTrigger>
 
-								<PopoverContent alignOffset={alignOffset} className={cn("bg-bg drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+								<PopoverContent className={cn("bg-bg drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
 									{mode === "single" && (
 										<Calendar
 											onIndexChange={(value) => {
@@ -562,8 +504,6 @@ function DatePicker({
 											mode="single"
 											selected={currentSelected as CalendarDate}
 											onSelect={onSelectHandler}
-											time={showTime}
-											quickSelection={showDateRangeShortcut}
 											{...props}
 										/>
 									)}
@@ -577,8 +517,6 @@ function DatePicker({
 											}}
 											selected={currentSelected as CalendarDate[]}
 											onSelect={onSelectHandler}
-											time={showTime}
-											quickSelection={showDateRangeShortcut}
 											{...props}
 										/>
 									)}
@@ -591,8 +529,6 @@ function DatePicker({
 												}
 											}}
 											selected={currentSelected as CalendarRange}
-											time={showTime}
-											quickSelection={showDateRangeShortcut}
 											onSelect={onSelectHandler}
 											{...props}
 										/>
@@ -615,14 +551,11 @@ function TypeableDatePicker({
 	rounded,
 	disables,
 	hasError,
-	classNames,
 	components,
 	navigatorStyle = "button",
-	showTime = false,
 	dual = false,
 	className,
 	footer,
-	showDateRangeShortcut,
 	onSelectTime,
 	hint,
 	time,
@@ -633,7 +566,7 @@ function TypeableDatePicker({
 	onChange?: (dateTime: ZonedDateTime | null) => void
 	value?: ZonedDateTime | null
 }) {
-	const mergedClassName = cn(`p-3 bg-elevation-level1 ${showTime ? " border-r" : ""}`, className)
+	const mergedClassName = cn(`p-3 bg-elevation-level1`, className)
 	const hideCaption: boolean = false
 
 	// Use controlled/uncontrolled pattern
@@ -669,7 +602,6 @@ function TypeableDatePicker({
 		navigatorStyle,
 		dual,
 		hideCaption,
-		classNames,
 	})
 
 	// Merged components including custom ones
@@ -680,8 +612,6 @@ function TypeableDatePicker({
 		},
 		...components,
 	}
-
-	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
 
 	// Modified to call onChange callback
 	const handleDateTimeChange = (newDateTime: ZonedDateTime | null) => {
@@ -707,26 +637,6 @@ function TypeableDatePicker({
 		48: "h-6 w-6",
 	}
 
-	useEffect(() => {
-		if (!dateTime) return
-
-		const matchedIndex = timeOptions.findIndex((time) => time.hour === dateTime.hour && time.minute === dateTime.minute)
-
-		if (matchedIndex !== -1 && matchedIndex !== selectedIndex) {
-			setSelectedIndex(matchedIndex)
-		}
-	}, [dateTime, selectedIndex])
-
-	// Update selectedIndex when time prop changes
-	useEffect(() => {
-		if (time && timeOptions) {
-			const matchedIndex = timeOptions.findIndex((option) => option.hour === time.hour && option.minute === time.minute)
-			if (matchedIndex !== -1) {
-				setSelectedIndex(matchedIndex)
-			}
-		}
-	}, [time, timeOptions])
-
 	return (
 		<Popover>
 			<PopoverTrigger disabled={disables} asChild>
@@ -740,7 +650,7 @@ function TypeableDatePicker({
 							"focus-within:border-primary focus-within:ring-primary/10 border-alpha focus-within:ring-2": !hasError && !disables,
 							"text-fg-disables bg-fill1 cursor-not-allowed drop-shadow-none": disables,
 						})}>
-						<SegmentedDateInput value={dateTime} onChange={handleDateTimeChange} showTime={showTime} disabled={disables} size={size} />
+						<SegmentedDateInput value={dateTime} onChange={handleDateTimeChange} disabled={disables} size={size} />
 						<CalendarIcon
 							className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
 								"text-fg-tertiary": !disables,
@@ -759,7 +669,6 @@ function TypeableDatePicker({
 			<PopoverContent className="w-auto border-none p-0">
 				<div className="bg-elevation-level1 border-border drop-shadow-xs w-fit overflow-hidden rounded-xl border">
 					<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-						{showDateRangeShortcut && <DateRangeShortcut mode="single" />}
 						<DayPicker
 							mode="single"
 							numberOfMonths={dual ? 2 : 1}
@@ -793,35 +702,6 @@ function TypeableDatePicker({
 							defaultMonth={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
 							components={mergedComponents}
 							classNames={mergedClassNames}
-						/>
-						<TimeSelector
-							timeOptions={timeOptions}
-							selectedIndex={selectedIndex}
-							setSelectedIndex={setSelectedIndex}
-							formatTime={formatTime}
-							time={showTime}
-							onTimeSelect={(formattedTime) => {
-								const [timePart, rawPeriod] = formattedTime.trim().split(" ")
-								if (!timePart || !rawPeriod) return
-
-								const period = rawPeriod.toUpperCase() === "PM" ? "PM" : "AM"
-								const [hourStr, minuteStr] = timePart.split(":")
-								let hour = parseInt(hourStr, 10)
-								const minute = parseInt(minuteStr, 10)
-
-								// Convert to 24-hour format
-								if (period === "AM" && hour === 12) hour = 0
-								if (period === "PM" && hour !== 12) hour += 12
-
-								if (dateTime) {
-									const newDateTime = parseZonedDateTime(
-										`${dateTime.year}-${String(dateTime.month).padStart(2, "0")}-${String(dateTime.day).padStart(2, "0")}` +
-											`T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}` +
-											`[America/Los_Angeles]`
-									)
-									handleDateTimeChange(newDateTime)
-								}
-							}}
 						/>
 					</div>
 					<div className="flex w-full justify-end">{footer && footer}</div>
