@@ -6,12 +6,11 @@ import { Calendar } from "@/registry/ui/calendar"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type DatePickerModes = "single" | "multiple" | "range"
 
 const CalendarPreview = () => {
 	const [mode, setMode] = useState<DatePickerModes>("range")
+	const [totalCalendar, setTotalCalendar] = useState<number>(1)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -47,13 +46,29 @@ const CalendarPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Number of Months</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={String(totalCalendar)} onValueChange={(value) => setTotalCalendar(Number(value))}>
+									<DropdownRadioItem value="1" onSelect={(e) => e.preventDefault()}>
+										1
+									</DropdownRadioItem>
+									<DropdownRadioItem value="2" onSelect={(e) => e.preventDefault()}>
+										2
+									</DropdownRadioItem>
+									<DropdownRadioItem value="3" onSelect={(e) => e.preventDefault()}>
+										3
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
-					<Calendar mode={mode} showOutsideDays />
+				<div className={`flex h-[420px] flex-col ${totalCalendar === 3 ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
+					<Calendar mode={mode} numberOfMonths={totalCalendar} showOutsideDays />
 				</div>
 			</TabsContent>
 
@@ -64,6 +79,7 @@ const CalendarPreview = () => {
 					className="h-[420px]"
 					code={`<Calendar
     mode="${mode}"
+	numberOfMonths={${totalCalendar}}
 	showOutsideDays
 />`}
 				/>
