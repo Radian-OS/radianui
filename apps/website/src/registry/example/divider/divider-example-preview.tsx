@@ -17,10 +17,10 @@ const DividerExamplePreview = () => {
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] items-center justify-center overflow-hidden rounded-xl border px-10`}>
-					<Divider className="mr-4" />
-					<span className="text-fg-tertiary">OR</span>
-					<Divider className="ml-4" />
+				<div className="flex h-[420px] items-center justify-center overflow-x-auto rounded-xl border px-10">
+					<Divider className="flex-1" />
+					<span className="text-fg-tertiary px-4 text-sm">OR</span>
+					<Divider className="flex-1" />
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -28,10 +28,10 @@ const DividerExamplePreview = () => {
 					title="divider.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<div className="flex h-[420px] items-center justify-center overflow-hidden rounded-xl border px-10">
-<Divider className="mr-4" />
-<span className="text-fg-tertiary" >OR</span>
-<Divider className="ml-4" />
+					code={`<div className="flex h-[420px] items-center justify-center overflow-x-auto rounded-xl border px-10">
+<Divider className="flex-1" />
+<span className="text-fg-tertiary px-4 text-sm">OR</span>
+<Divider className="flex-1" />
 </div>`}
 				/>
 			</TabsContent>
