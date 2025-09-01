@@ -287,14 +287,14 @@ function Select({
 										/>
 									) : variants === "button" ? (
 										<Button
-											end={lead}
+											end={endIcon && (!open ? <ChevronDown size={16} className="text-fg-tertiary" /> : <ChevronUp size={16} className="text-fg-tertiary" />)}
 											variant="soft"
 											color="neutral"
 											size={["28", "32", "36", "40", "44", "48"].includes(String(size)) ? (size as "28" | "32" | "36" | "40" | "44" | "48") : "40"}
 											disabled={disabled}
 											className={className}>
 											<span
-												className={cn("text-fgflex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
+												className={cn("text-fg flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
 													"text-base": size === "44" || size === "48",
 												})}>
 												{selectedLabels.length == 0 && placeholder}
@@ -302,7 +302,6 @@ function Select({
 												{selectionMode === "single" && selectedLabels.length === 1 && " " + selectedLabels[0]}
 												{selectionMode === "multiple" && selectedLabels.length > 0 && " " + selectedLabels.join(", ")}
 											</span>
-											{endIcon && (!open ? <ChevronDown size={16} className="text-fg-tertiary" /> : <ChevronUp size={16} className="text-fg-tertiary" />)}
 										</Button>
 									) : (
 										<div

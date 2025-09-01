@@ -8,10 +8,9 @@ import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type domainOption = ".com" | ".org" | ".net"
-export type typeOptions = "trail" | "lead" | "default"
+type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
+type domainOption = ".com" | ".org" | ".net"
+type typeOptions = "trail" | "lead" | "default"
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const UrlPreview = () => {
@@ -56,11 +55,11 @@ const UrlPreview = () => {
 									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
 										Default
 									</DropdownRadioItem>
-									<DropdownRadioItem value="trail" onSelect={(e) => e.preventDefault()}>
-										Trail
-									</DropdownRadioItem>
 									<DropdownRadioItem value="lead" onSelect={(e) => e.preventDefault()}>
-										Lead
+										Start
+									</DropdownRadioItem>
+									<DropdownRadioItem value="trail" onSelect={(e) => e.preventDefault()}>
+										End
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -80,8 +79,6 @@ const UrlPreview = () => {
 								placeholder="radianos.com"
 								type="url"
 								start={types === "lead" ? "https://" : ""}
-								// hasError={hasError}
-								// hint={hint ? "There is an error" : ""}
 							/>
 
 							{types === "trail" ? (
