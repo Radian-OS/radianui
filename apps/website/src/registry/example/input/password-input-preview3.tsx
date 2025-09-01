@@ -284,7 +284,6 @@ export default PasswordInputPreview
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="flex flex-col gap-4">
 						<Password
-							rounded={rounded}
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 							placeholder="Enter your password"

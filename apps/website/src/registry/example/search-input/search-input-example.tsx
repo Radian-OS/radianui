@@ -158,7 +158,6 @@ const SearchInputExample = () => {
 						end={<Badge size="20">Ctrl + K</Badge>}
 						placeholder="Search"
 						size={size}
-						rounded={rounded}
 						disabled={disabled}
 						onChange={(e) => handleSearchChange(e.target.value)}
 						value={searchValue}

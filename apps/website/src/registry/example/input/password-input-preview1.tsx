@@ -183,7 +183,6 @@ const PasswordInputPreview = () => {
 					<div className="flex flex-col items-center gap-4">
 						<div className="flex flex-col items-center gap-5">
 							<Password
-								rounded={rounded}
 								label={label === "true" ? "Password" : ""}
 								disabled={disabled === "true"}
 								size={size}

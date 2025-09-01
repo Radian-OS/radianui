@@ -8,16 +8,20 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { type ChevronProps, DayPicker, type Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
 import { Calendar, type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
-import { Input, type RoundedOptions, type SizeOptions, cvaInputVariants, defaultInputRadius, defaultInputSize } from "./input"
+import { Input, type SizeOptions } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 
-export const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg cursor-text", {
+const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg cursor-text", {
 	variants: {
-		...cvaInputVariants,
-	},
-	defaultVariants: {
-		rounded: "md",
-		size: "40",
+		size: {
+			"0": "h-fit",
+			"28": "h-7 text-xs p-1.5 rounded-md",
+			"32": "h-8 text-sm px-3 py-1.5 rounded-md",
+			"36": "h-9 text-sm px-2.5 py-2 rounded-lg",
+			"40": "h-10 text-sm px-3 py-2.5 rounded-lg",
+			"44": "h-11 text-fgpy-2.5 px-3.5 rounded-[10px]",
+			"48": "h-12 text-fgpy-3 px-3.5 rounded-[10px]",
+		},
 	},
 })
 
@@ -325,7 +329,6 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 	selectedTimezone?: string
 	onSelectTimezone?: (timezone: string | null) => void
 	size?: SizeOptions
-	rounded?: RoundedOptions
 	mode?: DatePickerModes
 	label?: string
 	hasError?: boolean
@@ -349,8 +352,7 @@ function DatePicker({
 	showDateRangeShortcut = false,
 	placeholder,
 	onSelectTime,
-	size = defaultInputSize,
-	rounded = defaultInputRadius,
+	size = "40",
 	typeable = false,
 	...props
 }: DatePickerProps) {
@@ -457,7 +459,6 @@ function DatePicker({
 					<TypeableDatePicker
 						size={size}
 						label={label}
-						rounded={rounded}
 						disables={disabled}
 						hasError={hasError}
 						hint={hint ? `${hint}` : ""}
@@ -474,7 +475,6 @@ function DatePicker({
 						size={size}
 						onClick={() => !disabled && setOpen(true)}
 						label={label}
-						rounded={rounded}
 						disabled={disabled}
 						hasError={hasError}
 						hint={hint ? `${hint}` : ""}
@@ -548,7 +548,6 @@ export default DatePicker
 function TypeableDatePicker({
 	size,
 	label,
-	rounded,
 	disables,
 	hasError,
 	components,
@@ -645,7 +644,7 @@ function TypeableDatePicker({
 						<p className={cn({ "text-fg-disabled cursor-not-allowed text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70": disables })}>{label}</p>
 					)}
 					<div
-						className={cn("w-[320px]", dateInputStyles({ size, rounded }), {
+						className={cn("w-[320px]", dateInputStyles({ size }), {
 							"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
 							"focus-within:border-primary focus-within:ring-primary/10 border-alpha focus-within:ring-2": !hasError && !disables,
 							"text-fg-disables bg-fill1 cursor-not-allowed drop-shadow-none": disables,

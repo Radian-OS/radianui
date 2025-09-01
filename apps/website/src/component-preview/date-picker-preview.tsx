@@ -211,7 +211,6 @@ const DatePickerPreview = () => {
 						dual={doubleCalendar}
 						typeable={typeable}
 						size={size}
-						rounded={rounded}
 						footer={
 							footer && (
 								<div className="flex gap-2 p-3">

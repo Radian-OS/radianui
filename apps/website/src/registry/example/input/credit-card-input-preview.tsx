@@ -139,7 +139,6 @@ const CreditCardPreview = () => {
 						{label && <Label>Credit Card</Label>}
 						<div className="w-80">
 							<Input
-								rounded={rounded}
 								disabled={disabled}
 								size={size}
 								placeholder="Card Number"
@@ -149,14 +148,13 @@ const CreditCardPreview = () => {
 							/>
 							<div className="flex">
 								<Input
-									rounded={rounded}
 									disabled={disabled}
 									size={size}
 									hasError={hasError}
 									placeholder="MM / YY"
 									className={`rounded-r-none rounded-t-none border-r-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-r"}`}
 								/>
-								<Input rounded={rounded} disabled={disabled} size={size} hasError={hasError} placeholder="CVC" className="rounded-l-none rounded-t-none" />
+								<Input disabled={disabled} size={size} hasError={hasError} placeholder="CVC" className="rounded-l-none rounded-t-none" />
 							</div>
 						</div>
 						{(hint || hasError) && (
