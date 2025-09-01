@@ -7,12 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import TimePicker from "@/registry/ui/time-picker"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const TimePickerPreview = () => {
-	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
@@ -53,18 +50,6 @@ const TimePickerPreview = () => {
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent>
-						<DropdownSub>
-							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-									{roundedOptions.map((roundedOption) => (
-										<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
-											{roundedOption}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -151,7 +136,6 @@ const TimePickerPreview = () => {
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<TimePicker
 						label={label ? "Time Picker" : undefined}
-						rounded={rounded as RoundedOptions}
 						size={size as SizeOptions}
 						lead={leadIcon ? <Clock className={iconClass} /> : null}
 						disabled={disabled}
@@ -170,7 +154,6 @@ const TimePickerPreview = () => {
 					className="h-[420px]"
 					code={`<TimePicker
     label="${label}"
-    rounded="${rounded}"
     size={${size}}
     disabled={${disabled}}
     is24Hour={${is24Hour}}
