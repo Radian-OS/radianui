@@ -8,9 +8,8 @@
  * @author Bijay Khapung
  * @since August, 2025
  */
-import { getRegistryComponents, resolveComponents } from "@utils/registry"
-
 import components from "../../../../apps/website/src/app/api/components/components.json"
+import { getRegistryComponents, resolveComponents } from "./registry"
 
 const registryComps = await getRegistryComponents()
 

@@ -12,10 +12,6 @@ export type DatePickerModes = "single" | "multiple" | "range"
 
 const CalendarPreview = () => {
 	const [mode, setMode] = useState<DatePickerModes>("range")
-	const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
-	// const [showTime, setShowTime] = useState<boolean>(false)
-	// const [quickSelection, setquickSelection] = useState<boolean>(false)
-	// const [footer, setFooter] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -51,115 +47,13 @@ const CalendarPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Dual</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(doubleCalendar)} onValueChange={(value) => setDoubleCalendar(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						{/* <DropdownSub>
-							<DropdownSubTrigger>Time</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(showTime)} onValueChange={(value) => setShowTime(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub> */}
-						{/* <DropdownSub>
-							<DropdownSubTrigger>Quick Selection</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(quickSelection)} onValueChange={(value) => setquickSelection(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub> */}
-						{/* <DropdownSub>
-							<DropdownSubTrigger>Footer</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(footer)} onValueChange={(value) => setFooter(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub> */}
 					</DropdownContent>
 				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
-					{mode === "single" && (
-						<Calendar
-							// quickSelection={quickSelection}
-							mode={"single"}
-							// footer={
-							// 	footer && (
-							// 		<div className="flex gap-2 p-3">
-							// 			<Button variant="outline">Cancel</Button>
-							// 			<Button>Apply</Button>
-							// 		</div>
-							// 	)
-							// }
-							// time={showTime}
-							dual={doubleCalendar}
-							showOutsideDays
-						/>
-					)}
-					{mode === "multiple" && (
-						<Calendar
-							// quickSelection={quickSelection}
-							mode={"multiple"}
-							// time={showTime}
-							// footer={
-							// 	footer && (
-							// 		<div className="flex gap-2 p-3">
-							// 			<Button variant="outline">Cancel</Button>
-							// 			<Button>Apply</Button>
-							// 		</div>
-							// 	)
-							// }
-							dual={doubleCalendar}
-							showOutsideDays
-						/>
-					)}
-					{mode === "range" && (
-						<Calendar
-							// quickSelection={quickSelection}
-							mode={"range"}
-							// footer={
-							// 	footer && (
-							// 		<div className="flex gap-2 p-3">
-							// 			<Button variant="outline">Cancel</Button>
-							// 			<Button>Apply</Button>
-							// 		</div>
-							// 	)
-							// }
-							// time={showTime}
-							dual={doubleCalendar}
-							showOutsideDays
-						/>
-					)}
+					<Calendar mode={mode} showOutsideDays />
 				</div>
 			</TabsContent>
 
@@ -170,7 +64,7 @@ const CalendarPreview = () => {
 					className="h-[420px]"
 					code={`<Calendar
     mode="${mode}"
-    dual={${doubleCalendar}}
+	showOutsideDays
 />`}
 				/>
 			</TabsContent>

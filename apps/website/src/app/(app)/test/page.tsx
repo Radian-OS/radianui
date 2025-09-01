@@ -270,7 +270,6 @@ export default function Test() {
 										setSelectedDate(value)
 										console.log("Selected date:", value)
 									}}
-									showTime={false}
 									label="Start Date"
 									placeholder="Pick a date"
 								/>

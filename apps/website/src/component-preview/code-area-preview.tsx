@@ -46,8 +46,8 @@ free -h`,
   code={\`${codeSnippets[language].replace(/`/g, "\\`")}\`}
   language="${language}"
   theme="${theme}"
-  showLineNumbers={${showLineNumbers}}
-  copiable={${copiable}}
+  lineNumbers={${showLineNumbers}}
+  copyButton={${copiable}}
   className="h-full w-full"
 />`
 	}
@@ -70,32 +70,6 @@ free -h`,
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
-						<DropdownSub>
-							<DropdownSubTrigger>Theme</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={theme} onValueChange={(value) => setTheme(value as themetype)}>
-									<DropdownRadioItem value="one-dark-pro" onSelect={(e) => e.preventDefault()}>
-										one-dark-pro
-									</DropdownRadioItem>
-									<DropdownRadioItem value="night-owl" onSelect={(e) => e.preventDefault()}>
-										night-owl
-									</DropdownRadioItem>
-									<DropdownRadioItem value="github-dark-default" onSelect={(e) => e.preventDefault()}>
-										github-dark-default
-									</DropdownRadioItem>
-									<DropdownRadioItem value="material-theme" onSelect={(e) => e.preventDefault()}>
-										material-theme
-									</DropdownRadioItem>
-									<DropdownRadioItem value="github-light" onSelect={(e) => e.preventDefault()}>
-										github-light
-									</DropdownRadioItem>
-									<DropdownRadioItem value="dracula" onSelect={(e) => e.preventDefault()}>
-										dracula
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
 						<DropdownSub>
 							<DropdownSubTrigger>Language</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -123,9 +97,35 @@ free -h`,
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Copiable</DropdownSubTrigger>
+							<DropdownSubTrigger>Theme</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={copiable} onValueChange={(value) => setCopiable(value as copyType)}>
+								<DropdownRadioGroup value={theme} onValueChange={(value) => setTheme(value as themetype)}>
+									<DropdownRadioItem value="one-dark-pro" onSelect={(e) => e.preventDefault()}>
+										one-dark-pro
+									</DropdownRadioItem>
+									<DropdownRadioItem value="night-owl" onSelect={(e) => e.preventDefault()}>
+										night-owl
+									</DropdownRadioItem>
+									<DropdownRadioItem value="github-dark-default" onSelect={(e) => e.preventDefault()}>
+										github-dark-default
+									</DropdownRadioItem>
+									<DropdownRadioItem value="material-theme" onSelect={(e) => e.preventDefault()}>
+										material-theme
+									</DropdownRadioItem>
+									<DropdownRadioItem value="github-light" onSelect={(e) => e.preventDefault()}>
+										github-light
+									</DropdownRadioItem>
+									<DropdownRadioItem value="dracula" onSelect={(e) => e.preventDefault()}>
+										dracula
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Line numbers</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={showLineNumbers} onValueChange={(value) => setShowLineNumbers(value as showLineNumbersType)}>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 										True
 									</DropdownRadioItem>
@@ -137,9 +137,9 @@ free -h`,
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Show line numbers</DropdownSubTrigger>
+							<DropdownSubTrigger>Copy button</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={showLineNumbers} onValueChange={(value) => setShowLineNumbers(value as showLineNumbersType)}>
+								<DropdownRadioGroup value={copiable} onValueChange={(value) => setCopiable(value as copyType)}>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 										True
 									</DropdownRadioItem>
@@ -156,8 +156,8 @@ free -h`,
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border p-5">
 					<CodeArea
 						className="h-full w-full"
-						copiable={copiable === "true"}
-						showLineNumbers={showLineNumbers === "true"}
+						copyButton={copiable === "true"}
+						lineNumbers={showLineNumbers === "true"}
 						theme={theme}
 						language={language}
 						code={codeSnippets[language]}

@@ -46,7 +46,7 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
-					{copied ? <Check /> : <CopyIcon />}
+					{copied ? <Check size={16} /> : <CopyIcon size={16} />}
 				</Button>
 			</div>
 			{collapsible && (
@@ -55,8 +55,8 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 						language="tsx"
 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 						code={code}
-						copiable={false}
-						showLineNumbers={true}
+						copyButton={false}
+						lineNumbers={true}
 						className={cn("border-soft flex-1 rounded-[10px] border", className)}
 					/>
 				</CodeCollapsibleWrapper>
@@ -66,8 +66,8 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 					language="tsx"
 					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 					code={code}
-					copiable={false}
-					showLineNumbers={true}
+					copyButton={false}
+					lineNumbers={true}
 					className={cn("border-soft flex-1 rounded-[10px] border", className)}
 				/>
 			)}

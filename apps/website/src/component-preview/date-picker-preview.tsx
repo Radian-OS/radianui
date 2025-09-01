@@ -27,9 +27,7 @@ const DatePickerPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [mode, setMode] = useState<DatePickerModes>("range")
-	const [showDateRangeShortcut, setShowDateRangeShortcut] = useState<boolean>(false)
 	const [doubleCalendar, setDoubleCalendar] = useState<boolean>(false)
-	const [showTime, setShowTime] = useState<boolean>(false)
 	const [footer, setFooter] = useState<boolean>(false)
 	const [typeable, setTypeable] = useState<boolean>(false)
 
@@ -158,35 +156,9 @@ const DatePickerPreview = () => {
 								</DropdownSubContent>
 							</DropdownSub>
 							<DropdownSub>
-								<DropdownSubTrigger>Show shortcut</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup value={String(showDateRangeShortcut)} onValueChange={(value) => setShowDateRangeShortcut(value === "true")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
 								<DropdownSubTrigger>Dual calendar</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownRadioGroup value={String(doubleCalendar)} onValueChange={(value) => setDoubleCalendar(value === "true")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Time</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup value={String(showTime)} onValueChange={(value) => setShowTime(value === "true")}>
 										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 											True
 										</DropdownRadioItem>
@@ -236,9 +208,7 @@ const DatePickerPreview = () => {
 						hint={hint ? "Hint text to help the user with input" : ""}
 						disabled={disabled}
 						triggerClassName="w-[320px]"
-						showDateRangeShortcut={showDateRangeShortcut}
 						dual={doubleCalendar}
-						showTime={showTime}
 						typeable={typeable}
 						size={size}
 						rounded={rounded}
@@ -262,10 +232,8 @@ const DatePickerPreview = () => {
 					code={`<DatePicker
     mode="${mode}"
     placeholder="Select Date"
-    showDateRangeShortcut={${showDateRangeShortcut}}
     disabled={${disabled}}
     dual={${doubleCalendar}}
-    showTime={${showTime}}
     size="${size}"
     rounded="${rounded}"
     typeable={${typeable}}

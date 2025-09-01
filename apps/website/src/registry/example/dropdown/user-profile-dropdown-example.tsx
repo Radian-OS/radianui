@@ -1,11 +1,15 @@
-import { EyeIcon, FolderCog, LogOut, Settings, SquareTerminal, UserCog } from "lucide-react"
+import { useState } from "react"
+import { EyeIcon, FolderCog, Ghost, LogOut, Settings, SquareTerminal, UserCog } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Dropdown, DropdownContent, DropdownDivider, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Switch } from "@/registry/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const UserMenuDropdownExample = () => {
+	const [incognito, setIncognito] = useState(false)
+
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"}>
 			<div className="flex items-center justify-between">
@@ -57,6 +61,16 @@ const UserMenuDropdownExample = () => {
 							<DropdownItem className="px-2 py-1.5" start={<FolderCog />}>
 								Automations
 							</DropdownItem>
+							<DropdownItem
+								onSelect={(e) => {
+									setIncognito((prev) => !prev)
+									e.preventDefault()
+								}}
+								start={<Ghost />}
+								end={<Switch id="incognito" checked={incognito} />}
+								className="px-2 py-1.5">
+								Go Incognito
+							</DropdownItem>
 							<DropdownDivider />
 							<DropdownItem className="px-2 py-1.5" start={<LogOut />}>
 								Logout
@@ -72,49 +86,71 @@ const UserMenuDropdownExample = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`
-<Dropdown>
-	<DropdownTrigger asChild>
-		<Button variant="outline" color="neutral">
-			My Profile
-		</Button>
-	</DropdownTrigger>
-	<DropdownContent align="center" className="w-80 space-y-0.5">
-		<div className="flex w-full gap-3 p-2">
-			<Avatar src="https://randomuser.me/api/portraits/men/1.jpg" size="36" />
-			<div className="flex-1">
-				<p className="text-sm-p font-medium">Wames Magar</p>
-				<p className="body-13 text-fg-tertiary font-normal">wames@radian.com</p>
-			</div>
-			<Button variant="strong" color="primary">
-				PRO
-			</Button>
-		</div>
-		<DropdownDivider />
-		<div className="flex w-full items-center gap-3 p-2">
-			<div className="flex-1">
-				<p className="text-sm-p font-medium">Account Storage</p>
-				<p className="body-13 text-fg-tertiary font-normal">Your account has 2GB storage</p>
-			</div>
-			<Badge variant="soft" color="primary">
-				Manage
-			</Badge>
-		</div>
-		<DropdownDivider />
-		<DropdownItem className="px-2 py-1.5" start={<Settings />}>
-			Settings
-		</DropdownItem>
-		<DropdownItem className="px-2 py-1.5" start={<UserCog />}>
-			Manage Account
-		</DropdownItem>
-		<DropdownItem className="px-2 py-1.5" start={<FolderCog />}>
-			Automations
-		</DropdownItem>
-		<DropdownDivider />
-		<DropdownItem className="px-2 py-1.5" start={<LogOut />}>
-			Logout
-		</DropdownItem>
-	</DropdownContent>
-</Dropdown>`}
+import { useState } from "react"
+import { Avatar } from "@/registry/ui/avatar"
+import { Badge } from "@/registry/ui/badge"
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownDivider, DropdownItem } from "@/registry/ui/dropdown"
+import { Switch } from "@/registry/ui/switch"
+import { Button } from "@/registry/ui/button"
+import { Settings, UserCog, FolderCog, Ghost, LogOut } from "lucide-react"
+
+export default function UserMenuDropdown() {
+	const [incognito, setIncognito] = useState(false)
+
+	return (
+		<Dropdown>
+			<DropdownTrigger asChild>
+				<Button variant="outline" color="neutral">
+					My Profile
+				</Button>
+			</DropdownTrigger>
+			<DropdownContent align="center" className="w-80 space-y-0.5">
+				<div className="flex w-full gap-3 p-2">
+					<Avatar src="https://randomuser.me/api/portraits/men/1.jpg" size="36" />
+					<div className="flex-1">
+						<p className="text-sm-p font-medium">Wames Magar</p>
+						<p className="body-13 text-fg-tertiary font-normal">wames@radian.com</p>
+					</div>
+					<Badge variant="strong" color="primary">PRO</Badge>
+				</div>
+				<DropdownDivider />
+				<div className="flex w-full items-center gap-3 p-2">
+					<div className="flex-1">
+						<p className="text-sm-p font-medium">Account Storage</p>
+						<p className="body-13 text-fg-tertiary font-normal">Your account has 2GB storage</p>
+					</div>
+					<Badge variant="soft" color="primary">Manage</Badge>
+				</div>
+				<DropdownDivider />
+				<DropdownItem className="px-2 py-1.5" start={<Settings />}>
+					Settings
+				</DropdownItem>
+				<DropdownItem className="px-2 py-1.5" start={<UserCog />}>
+					Manage Account
+				</DropdownItem>
+				<DropdownItem className="px-2 py-1.5" start={<FolderCog />}>
+					Automations
+				</DropdownItem>
+				<DropdownItem
+					onSelect={(e) => {
+						setIncognito((prev) => !prev)
+						e.preventDefault()
+					}}
+					start={<Ghost />}
+					end={<Switch id="incognito" checked={incognito} />}
+					className="px-2 py-1.5"
+				>
+					Go Incognito
+				</DropdownItem>
+				<DropdownDivider />
+				<DropdownItem className="px-2 py-1.5" start={<LogOut />}>
+					Logout
+				</DropdownItem>
+			</DropdownContent>
+		</Dropdown>
+	)
+}
+`}
 				/>
 			</TabsContent>
 		</Tabs>

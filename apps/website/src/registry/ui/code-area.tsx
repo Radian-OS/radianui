@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Check, Copy } from "lucide-react"
 import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
 
 type CodeAreaProps = {
 	theme?:
@@ -142,15 +141,15 @@ type CodeAreaProps = {
 		| "yml"
 		| "zsh"
 	className?: string
-	showLineNumbers?: boolean
-	copiable?: boolean
+	lineNumbers?: boolean
+	copyButton?: boolean
 	pkg?: string[]
 	tabs?: boolean
 }
 
 const DEFAULT_THEME = "github-dark-high-contrast"
 
-function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNumbers = false, copiable = true }: CodeAreaProps) {
+function CodeArea({ code, theme = DEFAULT_THEME, language, className, lineNumbers = false, copyButton = true }: CodeAreaProps) {
 	const [copied, setCopied] = useState(false)
 
 	function handleCopy() {
@@ -166,22 +165,18 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, showLineNu
 				className="[&_pre]:no-scrollbar h-full w-full [&_pre]:h-full [&_pre]:w-full"
 				language={language}
 				theme={theme}
-				showLineNumbers={showLineNumbers}
+				showLineNumbers={lineNumbers}
 				showLanguage={false}>
 				{code.trim()}
 			</ShikiHighlighter>
 
-			{copiable && (
-				<Button
+			{copyButton && (
+				<button
 					onClick={handleCopy}
-					className="absolute right-3 top-3 z-50 rounded-md bg-transparent p-1.5 text-white hover:bg-[#ffffff1a]"
-					aria-label="copy button"
-					iconOnly
-					size="32"
-					color="neutral"
-					variant="soft">
+					className="absolute right-3 top-3 z-50 flex size-8 items-center justify-center rounded-md bg-transparent p-1.5 text-white hover:bg-[#ffffff1a]"
+					aria-label="copy button">
 					{copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-				</Button>
+				</button>
 			)}
 		</div>
 		// </div>

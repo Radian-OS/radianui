@@ -518,7 +518,6 @@ const FormPreview = () => {
 							setErrors((prev) => ({ ...prev, date: undefined }))
 						}
 					}}
-					showTime={false}
 					label="Start Date"
 					placeholder="Pick a date"
 					hasError={!!errors.date}

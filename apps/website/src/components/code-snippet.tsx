@@ -41,8 +41,8 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 						language="tsx"
 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 						code={code}
-						copiable={false}
-						showLineNumbers={showLineNumber}
+						copyButton={false}
+						lineNumbers={showLineNumber}
 						className={cn("border-soft flex-1 rounded-[10px] border", className)}
 					/>
 				</CodeCollapsibleWrapper>
@@ -52,8 +52,8 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 					language="tsx"
 					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 					code={code}
-					copiable={false}
-					showLineNumbers={showLineNumber}
+					copyButton={false}
+					lineNumbers={showLineNumber}
 					className={cn("border-soft flex-1 rounded-[10px] border", className)}
 				/>
 			)}
