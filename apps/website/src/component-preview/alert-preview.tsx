@@ -28,10 +28,10 @@ const AlertPreview = () => {
 	const [description, setDescription] = useState<booleanType>("true")
 
 	const icons = {
-		star: <Star size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		info: <Info size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		check: <CircleCheck size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		alert: <TriangleAlert size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		star: <Star size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		info: <Info size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		check: <CircleCheck size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		alert: <TriangleAlert size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
 		none: "",
 	}
 
@@ -84,8 +84,11 @@ const AlertPreview = () => {
 		}[start]
 
 		if (iconComponent !== "none" && iconComponent !== "") {
+			// Updated to include flex-shrink-0 class
+			const iconClassName = color === "neutral" ? 'className="flex-shrink-0 text-fg-secondary"' : 'className="flex-shrink-0"'
+
 			code += `
-  start={<${iconComponent} ${color === "neutral" ? 'className="text-fg-secondary"' : ""}/>}`
+  start={<${iconComponent} size={20} ${iconClassName} />}`
 		}
 
 		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
