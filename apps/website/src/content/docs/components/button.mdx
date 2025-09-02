@@ -146,13 +146,13 @@ links:
 				description: "If true, the button will show a loading spinner",
 			},
 			{
-               name:"lead",
+               name:"start",
 			   values: ["ReactNode"],
 			   required: false,
 			   description: "Sets the leading icon of the button",
 			},
 			{
-				name: "trail",
+				name: "end",
 				values: ["ReactNode"],
 				required: false,
 				description: "Sets the trailing icon of the button",
@@ -163,14 +163,7 @@ links:
 				values: ["boolean"],
 				required: false,
 				description: "If true, the button will render as a child component",
-			},
-    		{
-    			name: "iconOnly",
-    			defaultValue: "false",
-    			values: ["boolean"],
-    			required: false,
-    			description: "If true, the button will be adjusted to only show the icon",
-    		},
+			}
     	]}
     />
 	<PropsTable

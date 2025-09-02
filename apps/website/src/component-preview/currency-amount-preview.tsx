@@ -19,15 +19,12 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CurrencyInputPreview = () => {
-	type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-	const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 
 	const [separator, setSeparator] = useState<string>("true")
 	const [currency, setCurrency] = useState("usd")
 	const [locale, setLocale] = useState("en-US")
 	const [disabled, setDisabled] = useState("false")
-	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [hasError, setHasError] = useState<"true" | "false">("false")
 	const [label, setLabel] = useState<"true" | "false">("true")
@@ -105,19 +102,6 @@ const CurrencyInputPreview = () => {
 										<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
 											48
 										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-										{roundedOptions.map((roundedOption) => (
-											<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
-												{roundedOption}
-											</DropdownRadioItem>
-										))}
 									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
@@ -297,7 +281,7 @@ const CurrencyInputPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`<CurrencyInput
-  rounded="${rounded}"
+  separator={${separator === "true"}}
   size="${size}"
   label="${label === "true" ? "Currency Input" : ""}"
   currency="${currency}"
