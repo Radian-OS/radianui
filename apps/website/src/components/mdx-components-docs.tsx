@@ -292,7 +292,7 @@ const components: MDXComponents = {
 			.replace(/\s+/g, "-")
 			.replace(/[^\w-]/g, "")
 		return (
-			<h2 className={cn("heading-5 font-semibold! group mb-3 mt-10 flex items-center", className)} {...props}>
+			<h2 className={cn("heading-5 font-semibold! group mb-3 mt-10 flex scroll-mt-20 items-center", className)} {...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
 					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
@@ -307,7 +307,7 @@ const components: MDXComponents = {
 			.replace(/\s+/g, "-")
 			.replace(/[^\w-]/g, "")
 		return (
-			<h3 className={cn("group mb-3 mt-6 flex items-center text-lg font-medium leading-7", className)} {...props}>
+			<h3 className={cn("group mb-3 mt-6 flex scroll-mt-20 items-center text-lg font-medium leading-7", className)} {...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
 					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
