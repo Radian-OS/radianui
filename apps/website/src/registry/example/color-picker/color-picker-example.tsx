@@ -102,7 +102,6 @@ export default function ColorPickerExample() {
 						{label && <Label>Select Color</Label>}
 						<div className="flex rounded-md">
 							<ColorPicker
-								rounded={rounded}
 								hint={hint ? "Hint text to help the user with input" : ""}
 								size={size}
 								inputFormat={inputFormat}
@@ -115,7 +114,6 @@ export default function ColorPickerExample() {
 								onSelectedChange={(values) => handleFormatChange(values[0] as ColorFormatOptions)}
 								disableOpenStyle={true}
 								size={size}
-								rounded={rounded}
 								className="-ms-0 w-fit">
 								<SelectItem value="HEX">HEX</SelectItem>
 								<SelectItem value="HSL">HSL</SelectItem>

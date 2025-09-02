@@ -24,7 +24,6 @@ const PasswordInputPreview = () => {
 	type DisabledOptions = "true" | "false"
 	type ErrorOptions = "true" | "false"
 	type trailOptions = "show" | "hide" | "onFocus"
-	type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 
 	const [password, setPassword] = useState("")
 	const [size, setSize] = useState<SizeOptions>("36")
@@ -33,7 +32,7 @@ const PasswordInputPreview = () => {
 	const [error, setError] = useState<ErrorOptions>("false")
 	const [trail, settrail] = useState<trailOptions>("onFocus")
 	const [hint, setHint] = useState<boolean>(false)
-	const [rounded, setRounded] = useState<RoundedOptions>("md")
+	const [placeholder, setPlaceholder] = useState<"true" | "false">("true")
 
 	// Validate the password using Zod
 	const validation = useMemo(() => passwordSchema.safeParse(password), [password])
@@ -104,10 +103,9 @@ ${size !== "36" ? `size="${size}"` : ""}
 visibility='${trail}'
 ${hint === true ? `hint="Hint text to help the user with input"` : ""}
 ${error === "true" ? "hasError={true}" : ""}
-rounded='${rounded}'
+${placeholder === "true" ? `placeholder="Enter your password"` : ""}	
 value={password}
 onChange={(e) => setPassword(e.target.value)}
-placeholder="Enter your password"
 />
 {/* Make sure the progress bar has a specified height and visible styling */}
 <ProgressBar
@@ -167,6 +165,20 @@ export default PasswordInputPreview
 						</DropdownSub>
 
 						<DropdownSub>
+							<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={placeholder} onValueChange={(value) => setPlaceholder(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
@@ -187,32 +199,6 @@ export default PasswordInputPreview
 									</DropdownRadioItem>
 									<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
 										48
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-									<DropdownRadioItem value="xs" onSelect={(e) => e.preventDefault()}>
-										xs
-									</DropdownRadioItem>
-									<DropdownRadioItem value="sm" onSelect={(e) => e.preventDefault()}>
-										sm
-									</DropdownRadioItem>
-									<DropdownRadioItem value="md" onSelect={(e) => e.preventDefault()}>
-										md
-									</DropdownRadioItem>
-									<DropdownRadioItem value="lg" onSelect={(e) => e.preventDefault()}>
-										lg
-									</DropdownRadioItem>
-									<DropdownRadioItem value="xl" onSelect={(e) => e.preventDefault()}>
-										xl
-									</DropdownRadioItem>
-									<DropdownRadioItem value="2xl" onSelect={(e) => e.preventDefault()}>
-										2xl
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -284,10 +270,9 @@ export default PasswordInputPreview
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="flex flex-col gap-4">
 						<Password
-							rounded={rounded}
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
-							placeholder="Enter your password"
+							placeholder={placeholder === "true" ? "Enter your password" : ""}
 							className="w-80"
 							label={label === "true" ? "Password" : ""}
 							disabled={disabled === "true"}

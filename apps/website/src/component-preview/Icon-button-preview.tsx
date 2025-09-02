@@ -19,7 +19,6 @@ const IconButtonPreview = () => {
 	const [loading, setLoading] = useState<booleanType>("false")
 	const [disabled, setDisabled] = useState<booleanType>("false")
 	const [color, setColor] = useState<colors>("primary")
-	const [tooltip, setTooltip] = useState<booleanType>("true")
 	const [icon, setIcon] = useState<IconType>("box")
 
 	return (
@@ -87,29 +86,6 @@ const IconButtonPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Icon</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value as IconType)}>
-									<DropdownRadioItem value="box" onSelect={(e) => e.preventDefault()}>
-										Box
-									</DropdownRadioItem>
-									<DropdownRadioItem value="settings" onSelect={(e) => e.preventDefault()}>
-										Settings
-									</DropdownRadioItem>
-									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
-										Star
-									</DropdownRadioItem>
-									<DropdownRadioItem value="user" onSelect={(e) => e.preventDefault()}>
-										User
-									</DropdownRadioItem>
-									<DropdownRadioItem value="send" onSelect={(e) => e.preventDefault()}>
-										Send
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
 							<DropdownSubTrigger>Color</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={color} onValueChange={(value) => setColor(value as colors)}>
@@ -164,14 +140,23 @@ const IconButtonPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Tooltip</DropdownSubTrigger>
+							<DropdownSubTrigger>Icon</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={tooltip} onValueChange={(value) => setTooltip(value as booleanType)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
+								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value as IconType)}>
+									<DropdownRadioItem value="box" onSelect={(e) => e.preventDefault()}>
+										Box
 									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
+									<DropdownRadioItem value="settings" onSelect={(e) => e.preventDefault()}>
+										Settings
+									</DropdownRadioItem>
+									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
+										Star
+									</DropdownRadioItem>
+									<DropdownRadioItem value="user" onSelect={(e) => e.preventDefault()}>
+										User
+									</DropdownRadioItem>
+									<DropdownRadioItem value="send" onSelect={(e) => e.preventDefault()}>
+										Send
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -181,7 +166,7 @@ const IconButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
-					<IconButton tooltip={tooltip === "true" ? icon : ""} variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
+					<IconButton variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
 						{icon === "box" && <Box />}
 						{icon === "settings" && <Settings />}
 						{icon === "star" && <Star />}
@@ -201,9 +186,8 @@ const IconButtonPreview = () => {
   variant="${variant}" 
   color="${color}"
   disabled={${disabled === "true"}}
-  ${tooltip === "true" ? 'tooltip="box"' : ""}
 >
-  <Box />
+  ${(icon === "box" && `<Box />`) || (icon === "settings" && `<Settings />`) || (icon === "star" && `<Star />`) || (icon === "user" && `<User />`) || (icon === "send" && `<Send />`)}
 </IconButton>`}
 				/>
 			</TabsContent>

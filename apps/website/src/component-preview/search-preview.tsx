@@ -176,7 +176,6 @@ const renderSearchResults = () => {
 						placeholder="Search"
 						size={size}
 						hint={hint === "true" ? "Hint text to help the user with input" : ""}
-						rounded={rounded}
 						disabled={disabled === "true"}
 						onChange={(e) => handleSearchChange(e.target.value)}
 						value={searchValue}

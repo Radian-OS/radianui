@@ -122,7 +122,6 @@ export default function ColorPickerPreview() {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<ColorPicker
-						rounded={rounded}
 						hasError={hasError}
 						hint={hint ? "Hint text to help the user with input" : ""}
 						size={size}

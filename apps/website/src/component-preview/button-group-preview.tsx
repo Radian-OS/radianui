@@ -10,9 +10,9 @@ const ButtonGroupPreview = () => {
 	type sizes = "28" | "32" | "36" | "40" | "44" | "48"
 	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
 
-	const [variant, setVariant] = useState<variants>("strong")
+	const [variant, setVariant] = useState<variants>("outline")
 	const [size, setSize] = useState<sizes>("40")
-	const [color, setColor] = useState<colors>("primary")
+	const [color, setColor] = useState<colors>("neutral")
 
 	return (
 		<Tabs className="mt-3" defaultValue="preview" variant={"outline-ghost"} size={"md"}>

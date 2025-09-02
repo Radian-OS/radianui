@@ -9,13 +9,7 @@ import { Badge } from "./badge"
 import { Button } from "./button"
 import { Divider } from "./divider"
 import { Dropdown, DropdownContent, DropdownTrigger } from "./dropdown"
-import {
-	Input,
-	type InputProps,
-	//cvaInputVariants,
-	defaultInputRadius,
-	defaultInputSize,
-} from "./input"
+import { Input, type InputProps } from "./input"
 import { Label } from "./label"
 
 // Type definition for the SelectItem component props
@@ -131,7 +125,7 @@ export type SelectClassNames = {
 	input?: string /* The search input used inside the select */
 }
 
-export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" | "size" | "rounded" | "disabled" | "className"> & {
+export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" | "size" | "disabled" | "className"> & {
 	selectedValues?: string[]
 	variant?: "strong" | "outline" | "soft" | "ghost" | "neutral-soft" | "neutral-outline" | null
 	disableOpenStyle?: boolean
@@ -171,8 +165,7 @@ function Select({
 	// trail,
 	searchPlaceholder = "Search",
 	renderTrigger,
-	size = defaultInputSize,
-	rounded = defaultInputRadius,
+	size = "40",
 	defaultSelected = [],
 	minSelectionCount = 0,
 	showSelectedCheck = true,
@@ -287,7 +280,6 @@ function Select({
 											start={lead}
 											end={!open ? <ChevronDown size={20} className="text-fg-tertiary" /> : <ChevronUp size={20} className="text-fg-tertiary" />}
 											size={size}
-											rounded={rounded}
 											value={selectedLabels}
 											hint={hint}
 											hasError={hasError}
@@ -295,14 +287,14 @@ function Select({
 										/>
 									) : variants === "button" ? (
 										<Button
-											end={lead}
+											end={endIcon && (!open ? <ChevronDown size={16} className="text-fg-tertiary" /> : <ChevronUp size={16} className="text-fg-tertiary" />)}
 											variant="soft"
 											color="neutral"
 											size={["28", "32", "36", "40", "44", "48"].includes(String(size)) ? (size as "28" | "32" | "36" | "40" | "44" | "48") : "40"}
 											disabled={disabled}
 											className={className}>
 											<span
-												className={cn("text-fgflex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
+												className={cn("text-fg flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
 													"text-base": size === "44" || size === "48",
 												})}>
 												{selectedLabels.length == 0 && placeholder}
@@ -310,14 +302,13 @@ function Select({
 												{selectionMode === "single" && selectedLabels.length === 1 && " " + selectedLabels[0]}
 												{selectionMode === "multiple" && selectedLabels.length > 0 && " " + selectedLabels.join(", ")}
 											</span>
-											{endIcon && (!open ? <ChevronDown size={16} className="text-fg-tertiary" /> : <ChevronUp size={16} className="text-fg-tertiary" />)}
 										</Button>
 									) : (
 										<div
 											tabIndex={0}
 											className={`focus-within:border-primary focus-within:ring-primary/10 border-alpha flex cursor-pointer border focus-within:ring-2 ${
 												disabled ? "text-fg-disabled bg-fill1 cursor-not-allowed drop-shadow-none" : ""
-											} flex min-h-[35px] w-full flex-wrap items-center gap-2 rounded-${rounded} p-2 text-sm`}>
+											} flex min-h-[35px] w-full flex-wrap items-center gap-2 p-2 text-sm`}>
 											{internalSelectedValues.length === 0 ? (
 												<span className="text-fg-tertiary">{placeholder}</span>
 											) : (

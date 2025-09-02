@@ -18,7 +18,6 @@ function SearchInput({
 	hint = "",
 	hasError = false,
 	size = "40",
-	rounded = "md",
 	id,
 	renderSearchResults,
 	value,
@@ -46,17 +45,7 @@ function SearchInput({
 		<Popover open={showResults} align="start">
 			<PopoverTrigger asChild>
 				<div>
-					<Input
-						start={<Search size={20} className="stroke-fg-tertiary" />}
-						label={label}
-						hint={hint}
-						hasError={hasError}
-						size={size}
-						rounded={rounded}
-						id={id}
-						value={value}
-						{...props}
-					/>
+					<Input start={<Search size={20} className="stroke-fg-tertiary" />} label={label} hint={hint} hasError={hasError} size={size} id={id} value={value} {...props} />
 				</div>
 			</PopoverTrigger>
 			{suggestion && (

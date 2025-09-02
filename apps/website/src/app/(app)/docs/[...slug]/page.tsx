@@ -76,7 +76,7 @@ export default async function Page({ params }: DocPageProps) {
 
 	return (
 		<div className="mx-auto w-full flex-1 overflow-y-auto py-10 lg:max-w-[720px]">
-			<span className="text-primary text-sm font-medium capitalize">{category}</span>
+			<span className="text-primary-text text-sm font-medium capitalize">{category}</span>
 			<div className="flex flex-col">
 				<h1 className="heading-4 my-2">{doc.title}</h1>
 				<p className="text-fg-secondary mb-5">{doc.description}</p>

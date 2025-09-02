@@ -1,95 +1,9 @@
-import React, { useEffect, useRef, useState } from "react"
-import { CalendarDate, Time, getLocalTimeZone, parseDate, today } from "@internationalized/date"
+import React from "react"
+import { CalendarDate, getLocalTimeZone, parseDate } from "@internationalized/date"
 import { format } from "date-fns"
-import { Check, ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Clock } from "lucide-react"
 import { type ChevronProps, type DateRange, DayPicker, type Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
-
-/**
- * Convert different form of Date object to
- * native Date object
- * @param selected
- * @returns native Date object in original provided form
- */
-
-// Mock mouse click event
-export function mockMouseClick(): React.MouseEvent {
-	return new MouseEvent("click") as unknown as React.MouseEvent
-}
-
-export const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
-export type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
-
-type DateRangeShortcutItemProps = {
-	selectedValue: string | null
-	onClick: (e: React.MouseEvent<HTMLSpanElement>) => void
-	value: string
-	label: string
-	mode?: string
-}
-
-// DateRangeShortcutItem component definition
-function DateRangeShortcutItem({ selectedValue, onClick, label, value, mode }: DateRangeShortcutItemProps) {
-	return (
-		<span
-			className={`${mode === "single" || mode === "multiple" ? "cursor-not-allowed" : "hover:bg-fill2-alpha cursor-pointer"} group flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
-			data-value={value}
-			onClick={mode !== "single" && mode !== "multiple" ? onClick : undefined}>
-			{label}
-			{selectedValue === value ? (
-				mode !== "single" && mode !== "multiple" ? (
-					<Check className="stroke-fg-secondary" size={16} />
-				) : (
-					<span className="size-4" />
-				)
-			) : (
-				<span className="size-4" />
-			)}
-		</span>
-	)
-}
-
-// Type definition for DateRangeShortcutProps props
-type DateRangeShortcutProps = {
-	handleShortcutSelect?: (shortcut: DateRangeShortcutValues) => void
-	selectedValue?: string | null
-	mode?: string
-}
-
-// DateRangeShortcut component definition
-export function DateRangeShortcut({ selectedValue, handleShortcutSelect, mode }: DateRangeShortcutProps) {
-	const containerRef = useRef<HTMLDivElement>(null)
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent) {
-			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-				handleShortcutSelect?.("custom") // clear selection
-			}
-		}
-		document.addEventListener("mousedown", handleClickOutside)
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside)
-		}
-	}, [handleShortcutSelect])
-	return (
-		<div
-			ref={containerRef}
-			className={`border-border w-50 flex flex-col border-r px-1.5 py-1 ${mode === "single" || mode === "multiple" ? "bg-fill1 text-fg-disabled cursor-not-allowed" : "text-fg"}`}>
-			<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
-			{DATE_RANGE_SHORTCUT_VALUES.map((value) => (
-				<DateRangeShortcutItem
-					mode={mode}
-					key={value}
-					label={value.charAt(0).toUpperCase() + value.split("_").join(" ").slice(1)}
-					value={value}
-					onClick={function () {
-						handleShortcutSelect?.(value)
-					}}
-					selectedValue={selectedValue || null}
-				/>
-			))}
-		</div>
-	)
-}
 
 // Function to convert CalendarDate to native Date object
 export function convertToNativeDate(selected: CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate }): Date | Date[] | undefined | DateRange {
@@ -110,7 +24,7 @@ export function convertToNativeDate(selected: CalendarDate | CalendarDate[] | un
 	return undefined
 }
 
-// Define the calendar component
+// Function to convert native Date to CalendarDate
 function convertToInternationalizedDate(selected: Date | Date[] | undefined | DateRange): CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate } {
 	if (!selected) return undefined
 
@@ -138,6 +52,8 @@ export type CalendarSingleSelect = {
 	onSelect?: OnSelectHandler<CalendarDate | undefined>
 	onTimeSelected?: (selectedTime: string) => void
 	onSelectIndex?: (index: number) => void
+	className?: string
+	selectedTime?: string
 }
 
 // Type definition for CalendarMultipleSelect props
@@ -145,14 +61,17 @@ export type CalendarMultipleSelect = {
 	mode?: "multiple"
 	selected?: CalendarDate[]
 	onSelect?: OnSelectHandler<CalendarDate[] | undefined>
+	className?: string
 }
 
 export type CalendarRange = { from: CalendarDate; to?: CalendarDate }
+
 // Type definition for CalendarRangeSelect props
 export type CalendarRangeSelect = {
 	mode?: "range"
 	selected?: CalendarRange
 	onSelect?: OnSelectHandler<CalendarRange | undefined>
+	className?: string
 }
 
 // Main CalendarProps type combining different selection modes and additional props
@@ -162,113 +81,21 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		navigatorStyle?: "button" | "selector"
 		disabled?: boolean
 		time?: boolean
-		defaultDateRangeShortcutValue?: DateRangeShortcutValues
-		quickSelection?: boolean
 		footer?: React.ReactNode
 		onIndexChange?: (value: string | null) => void
 		numberOfMonths?: number
+		selectedTime?: string
+		onTimeSelected?: (selectedTime: string) => void
 	}
-const minTime = "00:00"
-const maxTime = "23:59"
-const interval = 15
-
-export function generateTimeOptions() {
-	const times: Time[] = []
-	const [minHour, minMinute] = minTime.split(":").map(Number)
-	const [maxHour, maxMinute] = maxTime.split(":").map(Number)
-
-	let currentHour = minHour
-	let currentMinute = minMinute
-
-	while (currentHour < maxHour || (currentHour === maxHour && currentMinute <= maxMinute)) {
-		const time = new Time(currentHour, currentMinute)
-		times.push(time)
-
-		currentMinute += interval
-		if (currentMinute >= 60) {
-			currentHour += Math.floor(currentMinute / 60)
-			currentMinute %= 60
-		}
-	}
-
-	return times
-}
-
-export const timeOptions = generateTimeOptions()
-
-export function formatTime(time: Time) {
-	let hour = time.hour
-	const minute = String(time.minute).padStart(2, "0")
-
-	const period = hour >= 12 ? "pm" : "am"
-	hour = hour % 12
-	hour = hour === 0 ? 12 : hour // 12 am/pm handling
-	return `${String(hour).padStart(2, "0")}:${minute} ${period}`
-}
-
-type TimeSelectorProps = {
-	time: boolean
-	timeOptions: Time[] // Updated to accept Time[]
-	selectedIndex: number | null
-	setSelectedIndex: (index: number | null) => void
-	formatTime: (time: Time) => string // Updated to accept Time
-	onTimeSelect?: (formattedTime: string) => void
-	mode?: string
-}
-export function TimeSelector({ time, timeOptions, selectedIndex, setSelectedIndex, formatTime, mode, onTimeSelect }: TimeSelectorProps) {
-	const containerRef = useRef<HTMLDivElement>(null)
-
-	// Close the time selector if clicked outside
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent) {
-			if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-				setSelectedIndex(-1) // Deselect time if clicked outside
-			}
-		}
-		document.addEventListener("mousedown", handleClickOutside)
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside)
-		}
-	}, [setSelectedIndex])
-
-	if (!time) return null
-
-	return (
-		<div
-			ref={containerRef}
-			className={`w-30 no-scrollbar flex h-72 flex-col overflow-y-scroll px-1.5 py-1 text-sm font-medium ${mode === "type" ? "bg-fill1 text-fg-disabled cursor-not-allowed" : "text-fg"}`}>
-			<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT TIME</p>
-			{timeOptions.map((time, index) => {
-				const formatted = formatTime(time)
-				const isSelected = selectedIndex === index
-
-				return (
-					<span
-						key={index}
-						className={`${mode === "type" ? "text-fg-disabled cursor-not-allowed" : "text-fghover:bg-fill2 cursor-pointer"} text-fggroup flex flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5`}
-						data-value={time}
-						onClick={() => {
-							setSelectedIndex(index)
-							onTimeSelect?.(formatted)
-						}}>
-						{formatted}
-						{isSelected && mode !== "type" ? <Check className="stroke-fg-secondary" size={16} /> : <span className="size-4" />}
-					</span>
-				)
-			})}
-		</div>
-	)
-}
 
 type GetMergedClassNamesParams = {
 	props: { disabled?: boolean; hideNavigation?: boolean }
 	navigatorStyle: string
 	dual: boolean
 	hideCaption?: boolean
-	classNames?: Record<string, string>
 }
 
-export function getMergedClassNames({ props, navigatorStyle, dual, hideCaption, classNames = {} }: GetMergedClassNamesParams): Record<string, string> {
+export function getMergedClassNames({ props, navigatorStyle, dual, hideCaption }: GetMergedClassNamesParams): Record<string, string> {
 	return {
 		root: cn({ "cursor-not-allowed": props.disabled }),
 		months: cn("relative flex flex-col bg-elevation-level1 w-full gap-5 p-0", {
@@ -287,7 +114,7 @@ export function getMergedClassNames({ props, navigatorStyle, dual, hideCaption, 
 		week: "w-full flex gap-1.5",
 		day: "size-8 p-0 shrink-0 group text-sm aria-selected:opacity-100",
 		day_button:
-			"text-center rounded-lg text-fg text-sm font-medium hover:bg-fill2-alpha cursor-pointer size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary group-data-selected:text-white hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-fg-tertiary group-data-selected:text-white group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-primary group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-fg group-data-selected:group-data-outside:text-white",
+			"text-center rounded-lg text-fg text-sm font-medium hover:bg-fill2-alpha cursor-pointer size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary group-data-selected:text-white hover:group-[.rdp-outside]:group-data-selected:bg-primary group-[.rdp-outside]:group-data-selected:text-white hover:group-[.range-middle]:group-[.rdp-outside]:group-data-selected:bg-primary-accent group-data-selected:text-white group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-primary group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-fg group-data-selected:group-data-outside:text-fg",
 		button_previous: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
 			"pointer-events-none": props.disabled,
 		}),
@@ -297,8 +124,111 @@ export function getMergedClassNames({ props, navigatorStyle, dual, hideCaption, 
 		range_start: "range-start",
 		range_middle: "range-middle",
 		range_end: "range-end",
-		...classNames,
 	}
+}
+
+// Time picker component
+function TimePicker({ selectedTime, onTimeSelected, disabled }: { selectedTime?: string; onTimeSelected?: (time: string) => void; disabled?: boolean }) {
+	const [hour, setHour] = React.useState(selectedTime ? selectedTime.split(":")[0] : "12")
+	const [minute, setMinute] = React.useState(selectedTime ? selectedTime.split(":")[1] : "00")
+	const [period, setPeriod] = React.useState(selectedTime && parseInt(selectedTime.split(":")[0]) >= 12 ? "PM" : "AM")
+
+	React.useEffect(() => {
+		if (selectedTime) {
+			const [h, m] = selectedTime.split(":")
+			const hourNum = parseInt(h)
+			setHour(hourNum > 12 ? (hourNum - 12).toString().padStart(2, "0") : hourNum === 0 ? "12" : h)
+			setMinute(m)
+			setPeriod(hourNum >= 12 ? "PM" : "AM")
+		}
+	}, [selectedTime])
+
+	const handleTimeChange = React.useCallback(
+		(newHour: string, newMinute: string, newPeriod: string) => {
+			let hour24 = parseInt(newHour)
+			if (newPeriod === "PM" && hour24 !== 12) {
+				hour24 += 12
+			} else if (newPeriod === "AM" && hour24 === 12) {
+				hour24 = 0
+			}
+			const timeString = `${hour24.toString().padStart(2, "0")}:${newMinute}`
+			onTimeSelected?.(timeString)
+		},
+		[onTimeSelected]
+	)
+
+	const handleHourChange = (newHour: string) => {
+		setHour(newHour)
+		handleTimeChange(newHour, minute, period)
+	}
+
+	const handleMinuteChange = (newMinute: string) => {
+		setMinute(newMinute)
+		handleTimeChange(hour, newMinute, period)
+	}
+
+	const handlePeriodChange = (newPeriod: string) => {
+		setPeriod(newPeriod)
+		handleTimeChange(hour, minute, newPeriod)
+	}
+
+	const hours = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, "0"))
+	const minutes = Array.from({ length: 60 }, (_, i) => i.toString().padStart(2, "0"))
+
+	return (
+		<div className="border-border bg-elevation-level1 flex min-w-[200px] flex-col gap-4 border-l p-4">
+			<div className="text-fg flex items-center gap-2 text-sm font-semibold">
+				<Clock size={16} />
+				Select Time
+			</div>
+
+			<div className="flex items-center gap-2">
+				<div className="flex flex-col gap-2">
+					<label className="text-fg-tertiary text-xs">Hour</label>
+					<select
+						value={hour}
+						onChange={(e) => handleHourChange(e.target.value)}
+						disabled={disabled}
+						className="border-border bg-bg text-fg focus:ring-primary focus:border-primary rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50">
+						{hours.map((h) => (
+							<option key={h} value={h}>
+								{h}
+							</option>
+						))}
+					</select>
+				</div>
+
+				<div className="flex flex-col gap-2">
+					<label className="text-fg-tertiary text-xs">Minute</label>
+					<select
+						value={minute}
+						onChange={(e) => handleMinuteChange(e.target.value)}
+						disabled={disabled}
+						className="border-border bg-bg text-fg focus:ring-primary focus:border-primary rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50">
+						{minutes
+							.filter((_, i) => i % 5 === 0)
+							.map((m) => (
+								<option key={m} value={m}>
+									{m}
+								</option>
+							))}
+					</select>
+				</div>
+
+				<div className="flex flex-col gap-2">
+					<label className="text-fg-tertiary text-xs">Period</label>
+					<select
+						value={period}
+						onChange={(e) => handlePeriodChange(e.target.value)}
+						disabled={disabled}
+						className="border-border bg-bg text-fg focus:ring-primary focus:border-primary rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50">
+						<option value="AM">AM</option>
+						<option value="PM">PM</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	)
 }
 
 // Calendar component definition
@@ -306,34 +236,30 @@ function Calendar({
 	selected,
 	onSelect,
 	mode = "single",
-	onSelect: customOnSelect,
-	classNames,
-	quickSelection = false,
 	components,
 	showOutsideDays = true,
 	navigatorStyle = "button",
 	time = false,
 	dual = false,
-	defaultDateRangeShortcutValue,
 	className,
 	footer,
-	onIndexChange,
 	numberOfMonths = 1,
+	selectedTime,
+	onTimeSelected,
 	...props
 }: CalendarProps) {
-	const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
-
 	const [internalSelected, setInternalSelected] = React.useState<Date | Date[] | DateRange | undefined>(convertToNativeDate(selected))
 	const isControlled = selected !== undefined
 	const currentSelected = isControlled ? convertToNativeDate(selected) : internalSelected
-	// let hideCaption: boolean = false
 
 	// Effect to update internal selected state when external selected changes
 	React.useEffect(
 		function () {
-			setInternalSelected(convertToNativeDate(selected))
+			if (isControlled) {
+				setInternalSelected(convertToNativeDate(selected))
+			}
 		},
-		[selected]
+		[selected, isControlled]
 	)
 
 	const mergedClassName = cn(`p-3 bg-elevation-level1 ${time ? " border-r" : ""}`, className)
@@ -343,16 +269,7 @@ function Calendar({
 		props,
 		navigatorStyle,
 		dual,
-		// hideCaption,
-		classNames,
 	})
-
-	// Custom components for the calendar
-	// const customComponents: Partial<CustomComponents> = {}
-	// if (navigatorStyle === "selector") {
-	// 	hideCaption = false
-	// 	customComponents["Nav"] = () => <SelectorNavigator localeCode={props.locale?.code as Intl.LocalesArgument} />
-	// }
 
 	// Merged components including custom ones
 	const mergedComponents = {
@@ -360,73 +277,28 @@ function Calendar({
 			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
 			return <ChevronRight size={16} className="stroke-fg" />
 		},
-		// ...customComponents,
 		...components,
 	}
 
 	// Handle selection of dates
 	function handleOnSelect(selected: Date | Date[] | undefined | DateRange, triggerDate: Date, modifiers: Modifiers, e: React.MouseEvent | React.KeyboardEvent) {
-		setInternalSelected(selected)
+		// Always update internal state for uncontrolled usage
+		if (!isControlled) {
+			setInternalSelected(selected)
+		}
 
-		const convertedSelected = convertToInternationalizedDate(selected)
-		const convertedTriggerDate = parseDate(format(triggerDate, "yyyy-MM-dd"))
-		customOnSelect?.(convertedSelected as CalendarDate & CalendarDate[] & CalendarRange, convertedTriggerDate, modifiers, e)
+		// Call the onSelect handler if provided
+		if (onSelect) {
+			const convertedSelected = convertToInternationalizedDate(selected)
+			const convertedTriggerDate = parseDate(format(triggerDate, "yyyy-MM-dd"))
+			onSelect(convertedSelected as CalendarDate & CalendarDate[] & CalendarRange, convertedTriggerDate, modifiers, e)
+		}
 	}
-
-	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>(defaultDateRangeShortcutValue || null)
-
-	function handleShortcutSelect(shortcut: DateRangeShortcutValues) {
-		const todayDate = today(getLocalTimeZone())
-		const rangeMap: Record<DateRangeShortcutValues, { from: CalendarDate; to: CalendarDate }> = {
-			today: { from: todayDate, to: today(getLocalTimeZone()) },
-			last_7_days: { from: todayDate.subtract({ weeks: 1 }), to: todayDate },
-			last_30_days: { from: todayDate.subtract({ months: 1 }), to: todayDate },
-			last_3_months: { from: todayDate.subtract({ months: 3 }), to: todayDate },
-			last_6_months: { from: todayDate.subtract({ months: 6 }), to: todayDate },
-			last_12_months: {
-				from: todayDate.subtract({ months: 12 }),
-				to: todayDate,
-			},
-			custom: { from: todayDate, to: todayDate },
-		}
-
-		if (shortcut !== "custom") {
-			const range = rangeMap[shortcut]
-			onSelectHandler(range, todayDate, {}, mockMouseClick())
-		}
-		setSelectedShortcut(shortcut)
-	}
-
-	function onSelectHandler(
-		selected: CalendarDate | CalendarDate[] | CalendarRange | undefined,
-		triggerDate: CalendarDate,
-		modifiers: Modifiers,
-		e: React.MouseEvent | React.KeyboardEvent
-	) {
-		if (!selected || (selected as CalendarDate[]).length == 0) {
-			setInternalSelected(undefined)
-			onSelect?.(undefined, triggerDate, modifiers, e)
-			return
-		}
-		const convertedSelected = convertToNativeDate(selected)
-
-		setInternalSelected(convertedSelected)
-		onSelect?.(selected as CalendarDate & CalendarDate[] & CalendarRange, triggerDate, modifiers, e)
-
-		if (e.currentTarget?.getAttribute("data-value") == null) setSelectedShortcut("custom")
-	}
-	// Effect hook to update the internal selected state based on the selected date
-	React.useEffect(function () {
-		if (defaultDateRangeShortcutValue) {
-			handleShortcutSelect(defaultDateRangeShortcutValue)
-		}
-	}, [])
 
 	if (mode === "single") {
 		return (
-			<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
+			<div className={`bg-elevation-level1 drop-shadow-xs w-fit overflow-hidden ${className ? className : "border-border rounded-xl border"}`}>
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-					{quickSelection && <DateRangeShortcut mode="single" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
 						classNames={mergedClassNames}
 						components={mergedComponents}
@@ -438,18 +310,7 @@ function Calendar({
 						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
-					{time && (
-						<TimeSelector
-							timeOptions={timeOptions}
-							selectedIndex={selectedIndex}
-							setSelectedIndex={setSelectedIndex}
-							formatTime={formatTime}
-							time={time}
-							onTimeSelect={(formatted) => {
-								onIndexChange?.(formatted)
-							}}
-						/>
-					)}
+					{time && <TimePicker selectedTime={selectedTime} onTimeSelected={onTimeSelected} disabled={props.disabled} />}
 				</div>
 				<div className="flex w-full justify-end">{footer && footer}</div>
 			</div>
@@ -458,9 +319,8 @@ function Calendar({
 
 	if (mode == "multiple") {
 		return (
-			<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
+			<div className={`bg-elevation-level1 drop-shadow-xs w-fit overflow-hidden ${className ? className : "border-border rounded-xl border"}`}>
 				<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-					{quickSelection && <DateRangeShortcut mode="multiple" handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 					<DayPicker
 						classNames={mergedClassNames}
 						components={mergedComponents}
@@ -472,18 +332,7 @@ function Calendar({
 						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
-					{time && (
-						<TimeSelector
-							timeOptions={timeOptions}
-							selectedIndex={selectedIndex}
-							setSelectedIndex={setSelectedIndex}
-							formatTime={formatTime}
-							time={time}
-							onTimeSelect={(formatted) => {
-								onIndexChange?.(formatted)
-							}}
-						/>
-					)}
+					{time && <TimePicker selectedTime={selectedTime} onTimeSelected={onTimeSelected} disabled={props.disabled} />}
 				</div>
 				<div className="flex w-full justify-end">{footer && footer}</div>
 			</div>
@@ -491,9 +340,8 @@ function Calendar({
 	}
 
 	return (
-		<div className="bg-elevation-level1 drop-shadow-xs border-border w-fit overflow-hidden rounded-xl border">
+		<div className={`bg-elevation-level1 drop-shadow-xs w-fit overflow-hidden ${className ? className : "border-border rounded-xl border"}`}>
 			<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-				{quickSelection && <DateRangeShortcut handleShortcutSelect={handleShortcutSelect} selectedValue={selectedShortcut} />}
 				<DayPicker
 					classNames={mergedClassNames}
 					components={mergedComponents}
@@ -505,79 +353,11 @@ function Calendar({
 					numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 					{...props}
 				/>
-				{time && (
-					<TimeSelector
-						timeOptions={timeOptions}
-						selectedIndex={selectedIndex}
-						setSelectedIndex={setSelectedIndex}
-						formatTime={formatTime}
-						time={time}
-						onTimeSelect={(formatted) => {
-							onIndexChange?.(formatted)
-						}}
-					/>
-				)}
+				{time && <TimePicker selectedTime={selectedTime} onTimeSelected={onTimeSelected} disabled={props.disabled} />}
 			</div>
 			<div className="flex w-full justify-end">{footer && footer}</div>
 		</div>
 	)
 }
-
-// export function SelectorNavigator({
-// 	localeCode = "en-US",
-// 	minYear = new Date().getFullYear() - 5,
-// 	maxYear = new Date().getFullYear() + 5,
-// }: {
-// 	localeCode?: Intl.LocalesArgument
-// 	minYear?: number
-// 	maxYear?: number
-// }) {
-// 	const { months, goToMonth } = useDayPicker()
-// 	const pickedYear = months[0].date.getFullYear()
-// 	const allMonths = Array.from({ length: 12 }, function (_, i) {
-// 		return {
-// 			name: new Intl.DateTimeFormat(localeCode, { month: "long" }).format(new Date(pickedYear, i)),
-// 			date: new Date(pickedYear, i),
-// 		}
-// 	})
-// 	const years = Array.from({ length: maxYear - minYear + 1 }, (_, index) => minYear + index)
-// 	const [year, setYear] = React.useState<string[]>([pickedYear.toString()])
-
-// 	return (
-// 		<div className="absolute top-0 flex h-fit w-full gap-1.5">
-// 			<Select
-// 				selectedValues={[months[0].date.getMonth().toString()]}
-// 				onSelectedChange={function (values) {
-// 					goToMonth(new Date(pickedYear, parseInt(values[0])))
-// 				}}
-// 				placeholder="Month"
-// 				classNames={{ content: "max-h-60 z-50" }}
-// 				minSelectionCount={1}
-// 				size="36">
-// 				{allMonths.map((month, i) => (
-// 					<SelectItem key={i} value={month.date.getMonth().toString()}>
-// 						{month.name}
-// 					</SelectItem>
-// 				))}
-// 			</Select>
-// 			<Select
-// 				placeholder="Year"
-// 				selectedValues={year}
-// 				onSelectedChange={function (years) {
-// 					setYear(years)
-// 					goToMonth(new Date(parseInt(years[0]), months[0].date.getMonth()))
-// 				}}
-// 				classNames={{ content: "max-h-60 z-50" }}
-// 				minSelectionCount={1}
-// 				size="36">
-// 				{years.map((year) => (
-// 					<SelectItem key={year} value={year.toString()}>
-// 						{year}
-// 					</SelectItem>
-// 				))}
-// 			</Select>
-// 		</div>
-// 	)
-// }
 
 export { Calendar }

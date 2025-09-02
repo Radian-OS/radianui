@@ -210,7 +210,6 @@ export default function Test() {
 								label="Product Category"
 								placeholder="--Choose a product--"
 								variants="input"
-								rounded="lg"
 								selectionMode="single"
 								selectedValues={selectedValues}
 								onSelectedChange={setSelectedValues}
@@ -248,7 +247,6 @@ export default function Test() {
 							<h3 className="text-fgborder-border border-b pb-2 text-lg font-medium">Customization</h3>
 							<div className="grid grid-cols-2 gap-5">
 								<ColorPicker
-									rounded="lg"
 									hasError={false}
 									size="36"
 									disabled={false}
@@ -270,7 +268,6 @@ export default function Test() {
 										setSelectedDate(value)
 										console.log("Selected date:", value)
 									}}
-									showTime={false}
 									label="Start Date"
 									placeholder="Pick a date"
 								/>

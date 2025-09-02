@@ -461,7 +461,6 @@ const FormPreview = () => {
 					label="Product Category"
 					placeholder="--Choose a product--"
 					variants="input"
-					rounded="lg"
 					selectionMode="single"
 					selectedValues={selectValues}
 					onSelectedChange={handleSelectChange}
@@ -518,7 +517,6 @@ const FormPreview = () => {
 							setErrors((prev) => ({ ...prev, date: undefined }))
 						}
 					}}
-					showTime={false}
 					label="Start Date"
 					placeholder="Pick a date"
 					hasError={!!errors.date}

@@ -1,4 +1,4 @@
-import { Check, CopyIcon, Terminal } from "lucide-react"
+import { Check, Clipboard, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
 import components from "@/app/api/components/components.json"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
@@ -46,7 +46,7 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
-					{copied ? <Check /> : <CopyIcon />}
+					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</Button>
 			</div>
 			{collapsible && (
@@ -55,7 +55,6 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 						language="tsx"
 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 						code={code}
-						copyButton={false}
 						lineNumbers={true}
 						className={cn("border-soft flex-1 rounded-[10px] border", className)}
 					/>
@@ -66,7 +65,6 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 					language="tsx"
 					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 					code={code}
-					copyButton={false}
 					lineNumbers={true}
 					className={cn("border-soft flex-1 rounded-[10px] border", className)}
 				/>

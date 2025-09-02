@@ -543,7 +543,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 							<Button
 								variant="outline"
 								color="neutral"
-								size={size === "0" ? undefined : size}
+								size={size}
 								disabled={disabled}
 								className={cn(
 									"disabled:bg-fill2 focus-visible:border-primary border-alpha focus-visible:border-r-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
@@ -565,7 +565,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					<Button
 						variant="soft"
 						color="neutral"
-						size={size === "0" ? undefined : size}
+						size={size}
 						disabled={disabled}
 						className={cn("disabled:bg-fill2 border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
 							"border-error": effectiveHasError && !disabled,

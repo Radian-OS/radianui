@@ -138,13 +138,12 @@ function FileUpload({
 		<>
 			{variant === "input" ? (
 				<Input
-					fileUploadSize={sizes}
-					size="0"
+					fileUpload={true}
+					size={sizes}
 					onChange={handleFileChange}
 					id="picture"
 					type="file"
 					label={label ? `${label}` : ""}
-					rounded={rounded}
 					disabled={disabled}
 					multiple={multiple}
 					hint={errors.length > 0 ? errors[0] : hint}

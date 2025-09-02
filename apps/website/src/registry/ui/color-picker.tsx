@@ -22,8 +22,7 @@ type HSVColor = {
 }
 
 type DragType = "saturation" | "hue" | "alpha" | null
-export type SizeOptions = "0" | "28" | "32" | "36" | "40" | "44" | "48"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 type ColorPickerProps = {
 	onColorChange?: (hsv: number[], rgb: number[], hex: string) => void
 	defaultColor?:
@@ -35,7 +34,6 @@ type ColorPickerProps = {
 				a?: number
 		  }
 	size?: SizeOptions
-	rounded?: RoundedOptions
 	label?: string
 	hint?: string
 	hasError?: boolean
@@ -64,7 +62,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	hint,
 	hasError,
 	size = defaultInputSize,
-	rounded = defaultInputRadius,
 	onColorChange,
 	defaultColor = "#007BFF",
 	inputFormat: externalInputFormat = "HEX",
@@ -884,7 +881,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				hint={hint}
 				hasError={hasError}
 				size={size}
-				rounded={rounded}
 				className={className}
 				start={
 					<PopoverTrigger disabled={disabled}>

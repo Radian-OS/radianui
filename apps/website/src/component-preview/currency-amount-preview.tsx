@@ -276,7 +276,6 @@ const CurrencyInputPreview = () => {
 					<div className="flex items-center justify-center">
 						<CurrencyInput
 							separator={separator === "true" ? true : false}
-							rounded={rounded}
 							size={size}
 							label={label === "true" ? "Currency Input" : ""}
 							currency={currency}

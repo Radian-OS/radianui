@@ -276,7 +276,6 @@ const SelectPreview = () => {
 						label={label ? "Choose your favourite framework" : undefined}
 						placeholder="Pick an option"
 						variants={variant}
-						rounded={rounded}
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						// trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
 						size={size}

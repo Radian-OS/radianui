@@ -45,18 +45,19 @@ Fancy Button 2
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "variant1" | "variant2")}>
+									<DropdownRadioItem value="variant1" onSelect={(e) => e.preventDefault()}>
+										Variant 1
 									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
+									<DropdownRadioItem value="variant2" onSelect={(e) => e.preventDefault()}>
+										Variant 2
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+
 						<DropdownSub>
 							<DropdownSubTrigger>size</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -82,15 +83,16 @@ Fancy Button 2
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+
 						<DropdownSub>
-							<DropdownSubTrigger>Variant</DropdownSubTrigger>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "variant1" | "variant2")}>
-									<DropdownRadioItem value="variant1" onSelect={(e) => e.preventDefault()}>
-										Variant 1
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
 									</DropdownRadioItem>
-									<DropdownRadioItem value="variant2" onSelect={(e) => e.preventDefault()}>
-										Variant 2
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -104,7 +106,7 @@ Fancy Button 2
 						<Button
 							size={size}
 							disabled={disabled === "true"}
-							className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+							className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
 							Fancy Button
 						</Button>
 					)}

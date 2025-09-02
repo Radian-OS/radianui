@@ -1,9 +1,10 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
-import { Settings } from "lucide-react"
+import { Link as LinkIcon, Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
+import Image from "next/image"
 import Link from "next/link"
 import IconButtonPreview from "@/component-preview/Icon-button-preview"
 import AccordionPreview from "@/component-preview/accordion-preview"
@@ -88,8 +89,8 @@ import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
-import NumberOfCalendarPreview from "@/registry/example/calendar/month-preview"
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
+import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -98,6 +99,8 @@ import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
+import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
+import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import FormExample1 from "@/registry/example/form/form-example1"
 import FormExample2 from "@/registry/example/form/form-example2"
@@ -187,6 +190,8 @@ const components: MDXComponents = {
 	DropdownPreview: () => <DropdownPreview />,
 	UserMenuDropdownExample: () => <UserMenuDropdownExample />,
 	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
+	DropdownWithDropdownCheckboxExample: () => <DropdownWithDropdownCheckbox />,
+	DropdownWithRadioExample: () => <DropdownWithRadioExample />,
 	ResizablePreview: () => <ResizablePreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
@@ -229,7 +234,7 @@ const components: MDXComponents = {
 	LinkButtonPreview: () => <LinkButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
-	CodeWitTabsPreview: () => <CodeWithTabs />,
+	CodeWithTabsPreview: () => <CodeWithTabs />,
 	FormPreview: () => <FormPreview />,
 	FormExample1: () => <FormExample1 />,
 	FormExample2: () => <FormExample2 />,
@@ -246,8 +251,8 @@ const components: MDXComponents = {
 	AlertCloseExamplePreview: () => <AlertCloseExamplePreview />,
 	DividerExamplePreview: () => <DividerExamplePreview />,
 	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
-	NumberOfCalendarPreview: () => <NumberOfCalendarPreview />,
 	FooterCalendarPreview: () => <FooterCalendarPreview />,
+	TimePickerCalendarPreview: () => <TimePickerCalendarPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -276,25 +281,45 @@ const components: MDXComponents = {
 			{children}
 		</h1>
 	),
-	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! mb-3 mt-10", className)} {...props}>
-			{children}
-		</h2>
-	),
-	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("mb-3 mt-6 text-lg font-medium leading-7", className)} {...props}>
-			{children}
-		</h3>
-	),
-	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-		<a
+	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => {
+		const text = typeof children === "string" ? children : ""
+		const id = text
+			.toLowerCase()
+			.replace(/\s+/g, "-")
+			.replace(/[^\w-]/g, "")
+		return (
+			<h2 className={cn("heading-5 font-semibold! group mb-3 mt-10 flex items-center", className)} {...props}>
+				<Link href={`#${id}`} className="flex items-center gap-2">
+					{children}
+					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
+				</Link>
+			</h2>
+		)
+	},
+	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => {
+		const text = typeof children === "string" ? children : ""
+		const id = text
+			.toLowerCase()
+			.replace(/\s+/g, "-")
+			.replace(/[^\w-]/g, "")
+		return (
+			<h3 className={cn("group mb-3 mt-6 flex items-center text-lg font-medium leading-7", className)} {...props}>
+				<Link href={`#${id}`} className="flex items-center gap-2">
+					{children}
+					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
+				</Link>
+			</h3>
+		)
+	},
+	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => {
+		;<a
 			aria-label="Link"
 			rel="noopener noreferrer"
 			target="_blank"
 			className={cn("text-primary hover:text-primary-hover font-medium underline underline-offset-4 transition-colors duration-200", className)}
 			{...props}
 		/>
-	),
+	},
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={cn("text-fg-secondary", className)} {...props}>
 			{children}
@@ -305,7 +330,7 @@ const components: MDXComponents = {
 			{children}
 		</strong>
 	),
-	hr: () => <Divider orientation={"horizontal"} margin={"0"} className="mt-10" />,
+	hr: () => <Divider orientation={"horizontal"} className="mt-10" />,
 
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("space-y-4 pb-6", className)}>{children}</ul>
@@ -314,6 +339,7 @@ const components: MDXComponents = {
 	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
 	},
+	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
 
 	VersionAlert: (props: Pick<AlertProps, "title" | "description" | "variant" | "color">) => {
 		return (
@@ -375,6 +401,16 @@ const components: MDXComponents = {
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
 			className={cn("bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10", className)}
+			{...props}
+		/>
+	),
+	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
+		<Image
+			className={cn("bg-fill2 border-soft my-4 rounded-2xl border-8 object-cover", className)}
+			src={src || ""}
+			width={Number(width)}
+			height={Number(height)}
+			alt={alt || ""}
 			{...props}
 		/>
 	),
