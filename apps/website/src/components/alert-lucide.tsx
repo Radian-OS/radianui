@@ -5,7 +5,7 @@ import { Alert } from "@/registry/ui/alert"
 const AlertLucide = () => {
 	return (
 		<Alert
-			variant="default"
+			variant="soft"
 			color="warning"
 			start={
 				<div className={"flex h-14 flex-col justify-start"}>
