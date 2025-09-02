@@ -6,7 +6,6 @@ import { type VariantProps, cva } from "class-variance-authority"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
-import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip"
 
 type ButtonProps = VariantProps<typeof buttonVariants> &
 	React.ComponentProps<"button"> & {
@@ -59,7 +58,6 @@ type IconButtonProps = VariantProps<typeof buttonVariants> &
 		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
 		loading?: boolean
 		asChild?: boolean
-		tooltip?: string
 		iconOnly?: boolean
 	}
 
@@ -447,41 +445,13 @@ function IconButton({
 	children,
 	disabled,
 	asChild = false,
-	tooltip,
-	// Extract these props to prevent them from reaching DOM
 	...props
 }: IconButtonProps) {
 	const combinedClass = cn(buttonVariants({ variant, size, iconOnly, color }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
-	if (asChild) {
-		return tooltip ? (
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Comp className={combinedClass} disabled={disabled} {...props}>
-						{children}
-					</Comp>
-				</TooltipTrigger>
-				<TooltipContent>{tooltip}</TooltipContent>
-			</Tooltip>
-		) : (
-			<Comp className={combinedClass} disabled={disabled} {...props}>
-				{children}
-			</Comp>
-		)
-	}
-
-	return tooltip ? (
-		<Tooltip>
-			<TooltipTrigger asChild>
-				<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
-					{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : children}
-				</Comp>
-			</TooltipTrigger>
-			<TooltipContent>{tooltip}</TooltipContent>
-		</Tooltip>
-	) : (
+	return (
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : children}
 		</Comp>

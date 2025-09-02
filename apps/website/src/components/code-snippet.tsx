@@ -1,5 +1,5 @@
 import React from "react"
-import { Check, CopyIcon, Terminal } from "lucide-react"
+import { Check, Clipboard, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
@@ -32,7 +32,7 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
-					{copied ? <Check size={16} /> : <CopyIcon size={16} />}
+					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</Button>
 			</div>
 			{collapsible && (
@@ -41,7 +41,6 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 						language="tsx"
 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 						code={code}
-						copyButton={false}
 						lineNumbers={showLineNumber}
 						className={cn("border-soft flex-1 rounded-[10px] border", className)}
 					/>
@@ -52,7 +51,6 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 					language="tsx"
 					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 					code={code}
-					copyButton={false}
 					lineNumbers={showLineNumber}
 					className={cn("border-soft flex-1 rounded-[10px] border", className)}
 				/>

@@ -19,7 +19,6 @@ const IconButtonPreview = () => {
 	const [loading, setLoading] = useState<booleanType>("false")
 	const [disabled, setDisabled] = useState<booleanType>("false")
 	const [color, setColor] = useState<colors>("primary")
-	const [tooltip, setTooltip] = useState<booleanType>("true")
 	const [icon, setIcon] = useState<IconType>("box")
 
 	return (
@@ -141,20 +140,6 @@ const IconButtonPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Tooltip</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={tooltip} onValueChange={(value) => setTooltip(value as booleanType)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
 							<DropdownSubTrigger>Icon</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value as IconType)}>
@@ -181,7 +166,7 @@ const IconButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
-					<IconButton tooltip={tooltip === "true" ? icon : ""} variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
+					<IconButton variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
 						{icon === "box" && <Box />}
 						{icon === "settings" && <Settings />}
 						{icon === "star" && <Star />}
@@ -201,7 +186,6 @@ const IconButtonPreview = () => {
   variant="${variant}" 
   color="${color}"
   disabled={${disabled === "true"}}
-  ${tooltip === "true" ? 'tooltip="box"' : ""}
 >
   ${(icon === "box" && `<Box />`) || (icon === "settings" && `<Settings />`) || (icon === "star" && `<Star />`) || (icon === "user" && `<User />`) || (icon === "send" && `<Send />`)}
 </IconButton>`}

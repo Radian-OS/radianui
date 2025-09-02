@@ -330,7 +330,19 @@ Continue with Facebook
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
-						{/* Size Selector */}
+						<DropdownSub>
+							<DropdownSubTrigger>variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as variant)}>
+									<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
+										Outline
+									</DropdownRadioItem>
+									<DropdownRadioItem value="strong" onSelect={(e) => e.preventDefault()}>
+										Strong
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>size</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -391,20 +403,6 @@ Continue with Facebook
 									</DropdownRadioItem>
 									<DropdownRadioItem value="github" onSelect={(e) => e.preventDefault()}>
 										GitHub
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>variant</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as variant)}>
-									<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
-										Outline
-									</DropdownRadioItem>
-									<DropdownRadioItem value="strong" onSelect={(e) => e.preventDefault()}>
-										Strong
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>

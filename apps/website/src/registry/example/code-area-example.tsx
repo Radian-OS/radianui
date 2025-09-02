@@ -23,10 +23,10 @@ export default function App() {
 	return (
 		<div className="mx-auto flex max-w-5xl flex-col items-center justify-center gap-3 py-12">
 			<CodeArea lineNumbers theme="one-dark-pro" code={codeExample} language="tsx" />
-			<CodeArea lineNumbers theme="github-dark-high-contrast" copyButton={false} code={codeExample} language="tsx" />
+			{/* <CodeArea lineNumbers theme="github-dark-high-contrast" copyButton={false} code={codeExample} language="tsx" /> */}
 			<CodeArea lineNumbers code="npm radianos@beta initttt" language="bash" />
 			<CodeArea code="npm radianos@beta initttt" language="shell" />
-			<CodeArea theme="github-light" language="tsx" copyButton={false} lineNumbers code={codeExample} />
+			{/* <CodeArea theme="github-light" language="tsx" copyButton={false} lineNumbers code={codeExample} /> */}
 		</div>
 	)
 }

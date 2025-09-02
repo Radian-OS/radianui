@@ -410,6 +410,19 @@ const SvgButtonPreview = () => {
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
+							<DropdownSubTrigger>Variant</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "outline" | "strong")}>
+									<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
+										Outline
+									</DropdownRadioItem>
+									<DropdownRadioItem value="strong" onSelect={(e) => e.preventDefault()}>
+										Strong
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
@@ -432,20 +445,6 @@ const SvgButtonPreview = () => {
 									</DropdownRadioItem>
 									<DropdownRadioItem value="playstore" onSelect={(e) => e.preventDefault()}>
 										Playstore
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Variant</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "outline" | "strong")}>
-									<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
-										Outline
-									</DropdownRadioItem>
-									<DropdownRadioItem value="strong" onSelect={(e) => e.preventDefault()}>
-										Strong
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>

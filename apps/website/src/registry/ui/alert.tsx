@@ -78,7 +78,7 @@ function Alert({ color = "primary", variant = "default", onClose, title, descrip
 	// Check if we're using the children pattern
 	const hasChildrenOnly = children && !title && !description
 
-	const closeButton = onClose && <X size={20} onClick={() => setShowAlert(false)} className={cn("text-fg-tertiary cursor-pointer")} />
+	const closeButton = onClose && <X size={20} onClick={() => setShowAlert(false)} className={cn("text-fg-tertiary flex-shrink-0 cursor-pointer")} />
 
 	return (
 		showAlert && (
