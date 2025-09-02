@@ -34,13 +34,13 @@ export function DropdownWithDropdownCheckbox() {
 							</Button>
 						</DropdownTrigger>
 						<DropdownContent>
-							<DropdownCheckboxItem checked={email} onCheckedChange={(checked) => setEmail(checked)}>
+							<DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={email} onCheckedChange={(checked) => setEmail(checked)}>
 								Email
 							</DropdownCheckboxItem>
-							<DropdownCheckboxItem checked={sms} onCheckedChange={(checked) => setSms(checked)}>
+							<DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={sms} onCheckedChange={(checked) => setSms(checked)}>
 								SMS
 							</DropdownCheckboxItem>
-							<DropdownCheckboxItem checked={push} onCheckedChange={(checked) => setPush(checked)}>
+							<DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={push} onCheckedChange={(checked) => setPush(checked)}>
 								Push Notifications
 							</DropdownCheckboxItem>
 						</DropdownContent>
@@ -76,13 +76,13 @@ export function CheckboxDropdownExample() {
         <Button variant="outline">Notifications</Button>
       </DropdownTrigger>
       <DropdownContent>
-        <DropdownCheckboxItem checked={email} onCheckedChange={(checked) => setEmail(!!checked)}>
+        <DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={email} onCheckedChange={(checked) => setEmail(!!checked)}>
           Email
         </DropdownCheckboxItem>
-        <DropdownCheckboxItem checked={sms} onCheckedChange={(checked) => setSms(!!checked)}>
+        <DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={sms} onCheckedChange={(checked) => setSms(!!checked)}>
           SMS
         </DropdownCheckboxItem>
-        <DropdownCheckboxItem checked={push} onCheckedChange={(checked) => setPush(!!checked)}>
+        <DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={push} onCheckedChange={(checked) => setPush(!!checked)}>
           Push Notifications
         </DropdownCheckboxItem>
       </DropdownContent>
