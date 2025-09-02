@@ -1,7 +1,7 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
-import { Link2, Settings } from "lucide-react"
+import { Link as LinkIcon, Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
@@ -291,7 +291,7 @@ const components: MDXComponents = {
 			<h2 className={cn("heading-5 font-semibold! group mb-3 mt-10 flex items-center", className)} {...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
-					<Link2 className="opacity-0 transition-opacity group-hover:opacity-100" />
+					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
 				</Link>
 			</h2>
 		)
@@ -306,7 +306,7 @@ const components: MDXComponents = {
 			<h3 className={cn("group mb-3 mt-6 flex items-center text-lg font-medium leading-7", className)} {...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
-					<Link2 className="opacity-0 transition-opacity group-hover:opacity-100" />
+					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
 				</Link>
 			</h3>
 		)
