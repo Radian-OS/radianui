@@ -2,7 +2,7 @@
 
 import React, { SVGProps } from "react"
 import type { JSX } from "react"
-import { Check, CopyIcon } from "lucide-react"
+import { Check, Clipboard } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
@@ -172,7 +172,7 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 					))}
 				</TabsList>
 				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={handleCopy}>
-					{copied ? <Check size={16} /> : <CopyIcon size={16} />}
+					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</Button>
 			</div>
 			{pkg.map((manager) => (
@@ -181,7 +181,6 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 						language="bash"
 						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 						code={commands[manager]}
-						copyButton={false}
 						lineNumbers={false}
 						className={cn("border-soft max-w-full rounded-[10px] border", className)}
 					/>

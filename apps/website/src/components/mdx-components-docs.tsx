@@ -4,6 +4,7 @@ import React, { HTMLAttributes, useMemo } from "react"
 import { Link2, Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
+import Image from "next/image"
 import Link from "next/link"
 import IconButtonPreview from "@/component-preview/Icon-button-preview"
 import AccordionPreview from "@/component-preview/accordion-preview"
@@ -338,6 +339,7 @@ const components: MDXComponents = {
 	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
 	},
+	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
 
 	VersionAlert: (props: Pick<AlertProps, "title" | "description" | "variant" | "color">) => {
 		return (
@@ -399,6 +401,16 @@ const components: MDXComponents = {
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
 			className={cn("bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10", className)}
+			{...props}
+		/>
+	),
+	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
+		<Image
+			className={cn("bg-fill2 border-soft my-4 rounded-2xl border-8 object-cover", className)}
+			src={src || ""}
+			width={Number(width)}
+			height={Number(height)}
+			alt={alt || ""}
 			{...props}
 		/>
 	),

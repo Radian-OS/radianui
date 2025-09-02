@@ -1,7 +1,5 @@
 "use client"
 
-import { useState } from "react"
-import { Check, Copy } from "lucide-react"
 import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
 
@@ -142,22 +140,13 @@ type CodeAreaProps = {
 		| "zsh"
 	className?: string
 	lineNumbers?: boolean
-	copyButton?: boolean
 	pkg?: string[]
 	tabs?: boolean
 }
 
 const DEFAULT_THEME = "github-dark-high-contrast"
 
-function CodeArea({ code, theme = DEFAULT_THEME, language, className, lineNumbers = false, copyButton = true }: CodeAreaProps) {
-	const [copied, setCopied] = useState(false)
-
-	function handleCopy() {
-		navigator.clipboard.writeText(code)
-		setCopied(true)
-		setTimeout(() => setCopied(false), 2000)
-	}
-
+function CodeArea({ code, theme = DEFAULT_THEME, language, className, lineNumbers = false }: CodeAreaProps) {
 	return (
 		<div className={cn("no-scrollbar relative box-border overflow-auto rounded-xl text-sm", className)}>
 			<ShikiHighlighter
@@ -169,15 +158,6 @@ function CodeArea({ code, theme = DEFAULT_THEME, language, className, lineNumber
 				showLanguage={false}>
 				{code.trim()}
 			</ShikiHighlighter>
-
-			{copyButton && (
-				<button
-					onClick={handleCopy}
-					className="bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border absolute right-3 top-3 z-50 flex size-8 items-center justify-center rounded-md p-1.5 font-medium focus-visible:outline-none"
-					aria-label="copy button">
-					{copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-				</button>
-			)}
 		</div>
 	)
 }

@@ -9,13 +9,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 const CodeAreaPreview = () => {
 	type themetype = "one-dark-pro" | "night-owl" | "github-dark-default" | "material-theme" | "github-dark" | "github-light" | "dracula"
 	type languageType = "tsx" | "javascript" | "html" | "python" | "bash" | "shell"
-	type copyType = "true" | "false"
 	type showLineNumbersType = "true" | "false"
 
 	const [showLineNumbers, setShowLineNumbers] = useState<showLineNumbersType>("false")
 	const [theme, setTheme] = useState<themetype>("github-dark-default")
 	const [language, setLanguage] = useState<languageType>("tsx")
-	const [copiable, setCopiable] = useState<copyType>("true")
 
 	const codeSnippets = {
 		tsx: `const Greeting: React.FC<{ name: string }> = ({ name }) => {
@@ -47,7 +45,6 @@ free -h`,
   language="${language}"
   theme="${theme}"
   lineNumbers={${showLineNumbers}}
-  copyButton={${copiable}}
   className="h-full w-full"
 />`
 	}
@@ -135,33 +132,12 @@ free -h`,
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Copy button</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={copiable} onValueChange={(value) => setCopiable(value as copyType)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border p-5">
-					<CodeArea
-						className="h-full w-full"
-						copyButton={copiable === "true"}
-						lineNumbers={showLineNumbers === "true"}
-						theme={theme}
-						language={language}
-						code={codeSnippets[language]}
-					/>
+					<CodeArea className="h-full w-full" lineNumbers={showLineNumbers === "true"} theme={theme} language={language} code={codeSnippets[language]} />
 				</div>
 			</TabsContent>
 			<TabsContent value="code">

@@ -52,7 +52,6 @@ const CodeWithTabsPreview = () => {
 					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 					code={code}
 					className="border-soft rounded-[10px] border"
-					copyButton={true}
 				/>
 			</TabsContent>
 		))}
@@ -88,13 +87,7 @@ export default CodeWithTabsPreview
 						</TabsList>
 						{Object.entries(commands).map(([pkgManager, code]) => (
 							<TabsContent value={pkgManager} key={pkgManager}>
-								<CodeArea
-									language="bash"
-									theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
-									code={code}
-									className="border-soft rounded-[10px] border"
-									copyButton={true}
-								/>
+								<CodeArea language="bash" theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} code={code} className="border-soft rounded-[10px] border" />
 							</TabsContent>
 						))}
 					</Tabs>
