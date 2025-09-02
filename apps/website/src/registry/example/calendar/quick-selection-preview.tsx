@@ -120,7 +120,7 @@ const QuickSelectionCalendarPreview = () => {
 				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
 					<div className="border-border bg-elevation-level1 flex overflow-hidden rounded-xl border">
 						<DateRangeShortcut selectedValue={selectedShortcut} onSelect={handleShortcutSelect} />
-						<Calendar className="border-none" mode="range" selected={selectedRange} onSelect={handleCalendarSelect} showOutsideDays />
+						<Calendar className="border-none" mode="range" selected={selectedRange} onSelect={handleCalendarSelect} />
 					</div>
 				</div>
 			</TabsContent>
@@ -130,7 +130,13 @@ const QuickSelectionCalendarPreview = () => {
 					title="calendar.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
+					code={`import { useEffect, useRef, useState } from "react"
+import { CalendarDate, getLocalTimeZone, today } from "@internationalized/date"
+import { Check } from "lucide-react"
+import { Calendar } from "@/registry/ui/calendar"
+
+
+const DATE_RANGE_SHORTCUT_VALUES = ["today", "last_7_days", "last_30_days", "last_3_months", "last_6_months", "last_12_months", "custom"] as const
 type DateRangeShortcutValues = (typeof DATE_RANGE_SHORTCUT_VALUES)[number]
 
 type CalendarRange = { from: CalendarDate; to?: CalendarDate }
@@ -231,7 +237,7 @@ const QuickSelectionExample = ()=> {
 	return (
 			<div className="border-border bg-elevation-level1 flex overflow-hidden rounded-xl border">
 				<DateRangeShortcut selectedValue={selectedShortcut} onSelect={handleShortcutSelect} />
-				<Calendar className="border-none" mode="range" selected={selectedRange} onSelect={handleCalendarSelect} showOutsideDays />
+				<Calendar className="border-none" mode="range" selected={selectedRange} onSelect={handleCalendarSelect} />
 			</div>
 	)
 }
