@@ -89,6 +89,7 @@ import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
+import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -250,6 +251,7 @@ const components: MDXComponents = {
 	DividerExamplePreview: () => <DividerExamplePreview />,
 	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
 	FooterCalendarPreview: () => <FooterCalendarPreview />,
+	TimePickerCalendarPreview: () => <TimePickerCalendarPreview />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

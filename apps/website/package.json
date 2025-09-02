@@ -75,6 +75,7 @@
 		"pg": "^8.14.1",
 		"posthog-js": "^1.234.6",
 		"posthog-node": "^4.11.1",
+		"radix-ui": "^1.4.3",
 		"react": "19.1.0",
 		"react-day-picker": "9.6.4",
 		"react-dom": "19.1.0",

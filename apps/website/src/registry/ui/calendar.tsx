@@ -1,7 +1,7 @@
 import React from "react"
 import { CalendarDate, getLocalTimeZone, parseDate } from "@internationalized/date"
 import { format } from "date-fns"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, Clock } from "lucide-react"
 import { type ChevronProps, type DateRange, DayPicker, type Modifiers } from "react-day-picker"
 import { cn } from "@/lib/utils"
 
@@ -24,7 +24,7 @@ export function convertToNativeDate(selected: CalendarDate | CalendarDate[] | un
 	return undefined
 }
 
-// Define the calendar component
+// Function to convert native Date to CalendarDate
 function convertToInternationalizedDate(selected: Date | Date[] | undefined | DateRange): CalendarDate | CalendarDate[] | undefined | { from: CalendarDate; to?: CalendarDate } {
 	if (!selected) return undefined
 
@@ -53,6 +53,7 @@ export type CalendarSingleSelect = {
 	onTimeSelected?: (selectedTime: string) => void
 	onSelectIndex?: (index: number) => void
 	className?: string
+	selectedTime?: string
 }
 
 // Type definition for CalendarMultipleSelect props
@@ -62,7 +63,9 @@ export type CalendarMultipleSelect = {
 	onSelect?: OnSelectHandler<CalendarDate[] | undefined>
 	className?: string
 }
+
 export type CalendarRange = { from: CalendarDate; to?: CalendarDate }
+
 // Type definition for CalendarRangeSelect props
 export type CalendarRangeSelect = {
 	mode?: "range"
@@ -81,6 +84,8 @@ export type CalendarProps = Omit<React.ComponentProps<typeof DayPicker>, "select
 		footer?: React.ReactNode
 		onIndexChange?: (value: string | null) => void
 		numberOfMonths?: number
+		selectedTime?: string
+		onTimeSelected?: (selectedTime: string) => void
 	}
 
 type GetMergedClassNamesParams = {
@@ -109,7 +114,7 @@ export function getMergedClassNames({ props, navigatorStyle, dual, hideCaption }
 		week: "w-full flex gap-1.5",
 		day: "size-8 p-0 shrink-0 group text-sm aria-selected:opacity-100",
 		day_button:
-			"text-center rounded-lg text-fg text-sm font-medium hover:bg-fill2-alpha cursor-pointer size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary group-data-selected:text-white hover:group-[.rdp-outside]:group-data-selected:bg-primary/10 group-[.rdp-outside]:group-data-selected:text-fg-tertiary group-data-selected:text-white group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-primary group-[.range-middle]:group-data-selected:bg-primary/10 group-[.range-middle]:group-data-selected:text-fg group-data-selected:group-data-outside:text-white",
+			"text-center rounded-lg text-fg text-sm font-medium hover:bg-fill2-alpha cursor-pointer size-8 p-0 hover:group-data-selected:bg-primary group-data-disabled:pointer-events-none group-data-selected:bg-primary group-data-selected:text-white hover:group-[.rdp-outside]:group-data-selected:bg-primary group-[.rdp-outside]:group-data-selected:text-white hover:group-[.range-middle]:group-[.rdp-outside]:group-data-selected:bg-primary-accent group-data-selected:text-white group-data-disabled:text-fg-tertiary group-data-outside:text-fg-tertiary group-data-today:border group-data-today:border-primary hover:group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-primary group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-fg group-data-selected:group-data-outside:text-fg",
 		button_previous: cn("border rounded-lg border-border drop-shadow-xs p-1.5 flex justify-center items-center size-7", {
 			"pointer-events-none": props.disabled,
 		}),
@@ -120,6 +125,110 @@ export function getMergedClassNames({ props, navigatorStyle, dual, hideCaption }
 		range_middle: "range-middle",
 		range_end: "range-end",
 	}
+}
+
+// Time picker component
+function TimePicker({ selectedTime, onTimeSelected, disabled }: { selectedTime?: string; onTimeSelected?: (time: string) => void; disabled?: boolean }) {
+	const [hour, setHour] = React.useState(selectedTime ? selectedTime.split(":")[0] : "12")
+	const [minute, setMinute] = React.useState(selectedTime ? selectedTime.split(":")[1] : "00")
+	const [period, setPeriod] = React.useState(selectedTime && parseInt(selectedTime.split(":")[0]) >= 12 ? "PM" : "AM")
+
+	React.useEffect(() => {
+		if (selectedTime) {
+			const [h, m] = selectedTime.split(":")
+			const hourNum = parseInt(h)
+			setHour(hourNum > 12 ? (hourNum - 12).toString().padStart(2, "0") : hourNum === 0 ? "12" : h)
+			setMinute(m)
+			setPeriod(hourNum >= 12 ? "PM" : "AM")
+		}
+	}, [selectedTime])
+
+	const handleTimeChange = React.useCallback(
+		(newHour: string, newMinute: string, newPeriod: string) => {
+			let hour24 = parseInt(newHour)
+			if (newPeriod === "PM" && hour24 !== 12) {
+				hour24 += 12
+			} else if (newPeriod === "AM" && hour24 === 12) {
+				hour24 = 0
+			}
+			const timeString = `${hour24.toString().padStart(2, "0")}:${newMinute}`
+			onTimeSelected?.(timeString)
+		},
+		[onTimeSelected]
+	)
+
+	const handleHourChange = (newHour: string) => {
+		setHour(newHour)
+		handleTimeChange(newHour, minute, period)
+	}
+
+	const handleMinuteChange = (newMinute: string) => {
+		setMinute(newMinute)
+		handleTimeChange(hour, newMinute, period)
+	}
+
+	const handlePeriodChange = (newPeriod: string) => {
+		setPeriod(newPeriod)
+		handleTimeChange(hour, minute, newPeriod)
+	}
+
+	const hours = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, "0"))
+	const minutes = Array.from({ length: 60 }, (_, i) => i.toString().padStart(2, "0"))
+
+	return (
+		<div className="border-border bg-elevation-level1 flex min-w-[200px] flex-col gap-4 border-l p-4">
+			<div className="text-fg flex items-center gap-2 text-sm font-semibold">
+				<Clock size={16} />
+				Select Time
+			</div>
+
+			<div className="flex items-center gap-2">
+				<div className="flex flex-col gap-2">
+					<label className="text-fg-tertiary text-xs">Hour</label>
+					<select
+						value={hour}
+						onChange={(e) => handleHourChange(e.target.value)}
+						disabled={disabled}
+						className="border-border bg-bg text-fg focus:ring-primary focus:border-primary rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50">
+						{hours.map((h) => (
+							<option key={h} value={h}>
+								{h}
+							</option>
+						))}
+					</select>
+				</div>
+
+				<div className="flex flex-col gap-2">
+					<label className="text-fg-tertiary text-xs">Minute</label>
+					<select
+						value={minute}
+						onChange={(e) => handleMinuteChange(e.target.value)}
+						disabled={disabled}
+						className="border-border bg-bg text-fg focus:ring-primary focus:border-primary rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50">
+						{minutes
+							.filter((_, i) => i % 5 === 0)
+							.map((m) => (
+								<option key={m} value={m}>
+									{m}
+								</option>
+							))}
+					</select>
+				</div>
+
+				<div className="flex flex-col gap-2">
+					<label className="text-fg-tertiary text-xs">Period</label>
+					<select
+						value={period}
+						onChange={(e) => handlePeriodChange(e.target.value)}
+						disabled={disabled}
+						className="border-border bg-bg text-fg focus:ring-primary focus:border-primary rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 disabled:cursor-not-allowed disabled:opacity-50">
+						<option value="AM">AM</option>
+						<option value="PM">PM</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	)
 }
 
 // Calendar component definition
@@ -135,6 +244,8 @@ function Calendar({
 	className,
 	footer,
 	numberOfMonths = 1,
+	selectedTime,
+	onTimeSelected,
 	...props
 }: CalendarProps) {
 	const [internalSelected, setInternalSelected] = React.useState<Date | Date[] | DateRange | undefined>(convertToNativeDate(selected))
@@ -144,9 +255,11 @@ function Calendar({
 	// Effect to update internal selected state when external selected changes
 	React.useEffect(
 		function () {
-			setInternalSelected(convertToNativeDate(selected))
+			if (isControlled) {
+				setInternalSelected(convertToNativeDate(selected))
+			}
 		},
-		[selected]
+		[selected, isControlled]
 	)
 
 	const mergedClassName = cn(`p-3 bg-elevation-level1 ${time ? " border-r" : ""}`, className)
@@ -169,11 +282,17 @@ function Calendar({
 
 	// Handle selection of dates
 	function handleOnSelect(selected: Date | Date[] | undefined | DateRange, triggerDate: Date, modifiers: Modifiers, e: React.MouseEvent | React.KeyboardEvent) {
-		setInternalSelected(selected)
+		// Always update internal state for uncontrolled usage
+		if (!isControlled) {
+			setInternalSelected(selected)
+		}
 
-		const convertedSelected = convertToInternationalizedDate(selected)
-		const convertedTriggerDate = parseDate(format(triggerDate, "yyyy-MM-dd"))
-		onSelect?.(convertedSelected as CalendarDate & CalendarDate[] & CalendarRange, convertedTriggerDate, modifiers, e)
+		// Call the onSelect handler if provided
+		if (onSelect) {
+			const convertedSelected = convertToInternationalizedDate(selected)
+			const convertedTriggerDate = parseDate(format(triggerDate, "yyyy-MM-dd"))
+			onSelect(convertedSelected as CalendarDate & CalendarDate[] & CalendarRange, convertedTriggerDate, modifiers, e)
+		}
 	}
 
 	if (mode === "single") {
@@ -191,6 +310,7 @@ function Calendar({
 						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
+					{time && <TimePicker selectedTime={selectedTime} onTimeSelected={onTimeSelected} disabled={props.disabled} />}
 				</div>
 				<div className="flex w-full justify-end">{footer && footer}</div>
 			</div>
@@ -212,6 +332,7 @@ function Calendar({
 						numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 						{...props}
 					/>
+					{time && <TimePicker selectedTime={selectedTime} onTimeSelected={onTimeSelected} disabled={props.disabled} />}
 				</div>
 				<div className="flex w-full justify-end">{footer && footer}</div>
 			</div>
@@ -232,6 +353,7 @@ function Calendar({
 					numberOfMonths={numberOfMonths ? numberOfMonths : dual ? 2 : 1}
 					{...props}
 				/>
+				{time && <TimePicker selectedTime={selectedTime} onTimeSelected={onTimeSelected} disabled={props.disabled} />}
 			</div>
 			<div className="flex w-full justify-end">{footer && footer}</div>
 		</div>

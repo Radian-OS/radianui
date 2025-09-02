@@ -68,7 +68,7 @@ const CalendarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] flex-col ${totalCalendar === 3 ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
-					<Calendar mode={mode} numberOfMonths={totalCalendar} showOutsideDays />
+					<Calendar mode={mode} numberOfMonths={totalCalendar} />
 				</div>
 			</TabsContent>
 
@@ -80,7 +80,6 @@ const CalendarPreview = () => {
 					code={`<Calendar
     mode="${mode}"
 	numberOfMonths={${totalCalendar}}
-	showOutsideDays
 />`}
 				/>
 			</TabsContent>

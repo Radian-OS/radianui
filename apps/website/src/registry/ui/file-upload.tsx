@@ -138,8 +138,8 @@ function FileUpload({
 		<>
 			{variant === "input" ? (
 				<Input
-					fileUploadSize={sizes}
-					size="0"
+					fileUpload={true}
+					size={sizes}
 					onChange={handleFileChange}
 					id="picture"
 					type="file"

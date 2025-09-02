@@ -22,7 +22,7 @@ type HSVColor = {
 }
 
 type DragType = "saturation" | "hue" | "alpha" | null
-export type SizeOptions = "0" | "28" | "32" | "36" | "40" | "44" | "48"
+export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 type ColorPickerProps = {
 	onColorChange?: (hsv: number[], rgb: number[], hex: string) => void
 	defaultColor?:

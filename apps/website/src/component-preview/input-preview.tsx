@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CircleUserRound, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -11,12 +11,21 @@ const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const InputPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
+	const [placeholder, setPlaceholder] = useState<boolean>(true)
 	const [disabled, setDisabled] = useState<boolean>(false)
-	const [trailIcon, setTrailIcon] = useState<boolean>(false)
-	const [leadIcon, setLeadIcon] = useState<boolean>(false)
 	const [hasError, setHasError] = useState<boolean>(false)
 	const [label, setLabel] = useState<boolean>(true)
 	const [hint, setHint] = useState<boolean>(false)
+	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("none")
+	const [end, setEnd] = useState<"none" | "star" | "info" | "alert" | "check">("none")
+
+	const icons = {
+		star: <Star size={20} />,
+		info: <Info size={20} />,
+		check: <CircleCheck size={20} />,
+		alert: <TriangleAlert size={20} />,
+		none: "",
+	}
 
 	const sizeHeightMapping: Record<number, string> = {
 		28: "h-4 w-4",
@@ -28,6 +37,8 @@ const InputPreview = () => {
 	}
 
 	const iconClass = sizeHeightMapping[size] ?? ""
+	const startSelectedIcon = icons[start as keyof typeof icons]
+	const endSelectedIcon = icons[end as keyof typeof icons]
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -48,18 +59,6 @@ const InputPreview = () => {
 					</DropdownTrigger>
 					<DropdownContent>
 						<DropdownSub>
-							<DropdownSubTrigger>Size</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
-									{sizes.map((size) => (
-										<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
-											{size}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
 							<DropdownSubTrigger>Label</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={String(label)} onValueChange={(value) => setLabel(value === "true")}>
@@ -73,48 +72,34 @@ const InputPreview = () => {
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
+							<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={String(placeholder)} onValueChange={(value) => setPlaceholder(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Size</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
+									{sizes.map((size) => (
+										<DropdownRadioItem value={size} key={size} onSelect={(e) => e.preventDefault()}>
+											{size}
+										</DropdownRadioItem>
+									))}
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={String(disabled)} onValueChange={(value) => setDisabled(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Trail</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(trailIcon)} onValueChange={(value) => setTrailIcon(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Lead</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(leadIcon)} onValueChange={(value) => setLeadIcon(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Hint</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 										True
 									</DropdownRadioItem>
@@ -137,6 +122,64 @@ const InputPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>Hint</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Start</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={start} onValueChange={(value) => setStart(value as typeof start)}>
+									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
+										None
+									</DropdownRadioItem>
+									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
+										Star
+									</DropdownRadioItem>
+									<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
+										Info
+									</DropdownRadioItem>
+									<DropdownRadioItem value="alert" onSelect={(e) => e.preventDefault()}>
+										Triangle Alert
+									</DropdownRadioItem>
+									<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
+										Check
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
+							<DropdownSubTrigger>End</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={end} onValueChange={(value) => setEnd(value as typeof end)}>
+									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
+										None
+									</DropdownRadioItem>
+									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
+										Star
+									</DropdownRadioItem>
+									<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
+										Info
+									</DropdownRadioItem>
+									<DropdownRadioItem value="alert" onSelect={(e) => e.preventDefault()}>
+										Triangle Alert
+									</DropdownRadioItem>
+									<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
+										Check
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -148,9 +191,9 @@ const InputPreview = () => {
 						size={size}
 						disabled={disabled}
 						label={label ? "Username" : undefined}
-						placeholder="Enter your username here"
-						start={leadIcon ? <CircleUserRound className={iconClass} /> : null}
-						end={trailIcon ? <CircleUserRound className={iconClass} /> : null}
+						placeholder={placeholder ? "Enter your username here" : ""}
+						start={startSelectedIcon}
+						end={endSelectedIcon}
 						hasError={hasError}
 						hint={hint ? "Hint text to help the user with input" : ""}
 					/>
@@ -166,12 +209,13 @@ const InputPreview = () => {
     size="${size}"
     disabled={${disabled}}
     label="${label ? "Username" : ""}"
-    placeholder="Enter your username here"
+    placeholder={${placeholder ? `"Enter your username here"` : `""`}}
     hasError={${hasError}}
 	${hint ? `hint="Hint text to help the user with input"` : ""}
-  	${leadIcon ? `start={<CircleUserRound className="${iconClass}" />}` : ""}
-  	${trailIcon ? `end={<CircleUserRound className="${iconClass}" />}` : ""}
-/>`}
+	${startSelectedIcon ? `start={<${start.charAt(0).toUpperCase() + start.slice(1)} className="${iconClass}" />}` : ""}
+	${endSelectedIcon ? `end={<${end.charAt(0).toUpperCase() + end.slice(1)} className="${iconClass}" />}` : ""}
+	/>
+`}
 				/>
 			</TabsContent>
 		</Tabs>
