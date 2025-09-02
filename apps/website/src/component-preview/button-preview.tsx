@@ -225,12 +225,40 @@ const ButtonPreview = () => {
 					title="button.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Button 
-  size="${size}" 
+					code={`<Button${
+						start !== "none"
+							? `\n  start={${
+									start === "star"
+										? `<Star className="${iconClass}" />`
+										: start === "info"
+											? `<Info className="${iconClass}" />`
+											: start === "alert"
+												? `<TriangleAlert className="${iconClass}" />`
+												: start === "check"
+													? `<CircleCheck className="${iconClass}" />`
+													: ""
+								}}`
+							: ""
+					}${
+						end !== "none"
+							? `\n  end={${
+									end === "star"
+										? `<Star className="${iconClass}" />`
+										: end === "info"
+											? `<Info className="${iconClass}" />`
+											: end === "alert"
+												? `<TriangleAlert className="${iconClass}" />`
+												: end === "check"
+													? `<CircleCheck className="${iconClass}" />`
+													: ""
+								}}`
+							: ""
+					}
+  size="${size}"
   loading={${loading === "true"}}
-  variant="${variant}" 
+  variant="${variant}"
   color="${color}"
-  disabled={${disabled === "true"}}${start === "alert" ? `\n  start={<Box className="${iconClass}" />}` : ""}${end === "alert" ? `\n  end={<Box className="${iconClass}" />}` : ""}>
+  disabled={${disabled === "true"}}>
   Button
 </Button>`}
 				/>

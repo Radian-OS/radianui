@@ -26,15 +26,14 @@ export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justif
 			warning: "ring-warning bg-warning-accent text-warning-text",
 		},
 		variant: {
-			default: "",
-			soft: "",
+			soft: "", // Add base styling here if needed
 			"soft-outline": "ring-1 ring-inset",
 			outline: "ring-1 ring-inset ring-border bg-transparent",
 		},
 	},
 	defaultVariants: {
 		color: "neutral",
-		variant: "default",
+		variant: "soft", // Change default to soft instead of default
 	},
 	compoundVariants: [
 		{
@@ -45,32 +44,32 @@ export const alertVariants = cva("w-full rounded-xl p-3 flex items-center justif
 		{
 			color: "primary",
 			variant: "soft",
-			className: "bg-primary-accent text-white",
+			className: "bg-primary-accent text-primary-text",
 		},
 		{
 			color: "info",
 			variant: "soft",
-			className: "bg-info-accent text-white",
+			className: "bg-info-accent text-info-text",
 		},
 		{
 			color: "success",
 			variant: "soft",
-			className: "bg-success-accent text-white",
+			className: "bg-success-accent text-success-text",
 		},
 		{
 			color: "warning",
 			variant: "soft",
-			className: "bg-warning-accent text-white",
+			className: "bg-warning-accent text-warning-text",
 		},
 		{
 			color: "error",
 			variant: "soft",
-			className: "bg-error-accent text-white",
+			className: "bg-error-accent text-error-text",
 		},
 	],
 })
 
-function Alert({ color = "primary", variant = "default", onClose, title, description, start, end, className, children, ...props }: AlertProps) {
+function Alert({ color = "primary", variant = "soft", onClose, title, description, start, end, className, children, ...props }: AlertProps) {
 	const [showAlert, setShowAlert] = useState(true)
 	const isNeutralOutline = variant === "outline"
 	const hasCustomTextColor = className?.includes("text-")
@@ -78,7 +77,7 @@ function Alert({ color = "primary", variant = "default", onClose, title, descrip
 	// Check if we're using the children pattern
 	const hasChildrenOnly = children && !title && !description
 
-	const closeButton = onClose && <X size={20} onClick={() => setShowAlert(false)} className={cn("text-fg-tertiary flex-shrink-0 cursor-pointer")} />
+	const closeButton = onClose && <X size={20} onClick={() => setShowAlert(false)} className={cn("text-fg-tertiary cursor-pointer")} />
 
 	return (
 		showAlert && (
