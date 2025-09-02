@@ -87,29 +87,6 @@ const IconButtonPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Icon</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value as IconType)}>
-									<DropdownRadioItem value="box" onSelect={(e) => e.preventDefault()}>
-										Box
-									</DropdownRadioItem>
-									<DropdownRadioItem value="settings" onSelect={(e) => e.preventDefault()}>
-										Settings
-									</DropdownRadioItem>
-									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
-										Star
-									</DropdownRadioItem>
-									<DropdownRadioItem value="user" onSelect={(e) => e.preventDefault()}>
-										User
-									</DropdownRadioItem>
-									<DropdownRadioItem value="send" onSelect={(e) => e.preventDefault()}>
-										Send
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
 							<DropdownSubTrigger>Color</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={color} onValueChange={(value) => setColor(value as colors)}>
@@ -172,6 +149,29 @@ const IconButtonPreview = () => {
 									</DropdownRadioItem>
 									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
 										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Icon</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={icon} onValueChange={(value) => setIcon(value as IconType)}>
+									<DropdownRadioItem value="box" onSelect={(e) => e.preventDefault()}>
+										Box
+									</DropdownRadioItem>
+									<DropdownRadioItem value="settings" onSelect={(e) => e.preventDefault()}>
+										Settings
+									</DropdownRadioItem>
+									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
+										Star
+									</DropdownRadioItem>
+									<DropdownRadioItem value="user" onSelect={(e) => e.preventDefault()}>
+										User
+									</DropdownRadioItem>
+									<DropdownRadioItem value="send" onSelect={(e) => e.preventDefault()}>
+										Send
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
