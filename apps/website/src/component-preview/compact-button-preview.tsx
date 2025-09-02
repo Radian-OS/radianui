@@ -73,34 +73,6 @@ color="neutral"
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Loading</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={loading} onValueChange={(value) => setLoading(value as isloadingType)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
 							<DropdownSubTrigger>Variant</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as "outline" | "ghost" | "white")}>
@@ -126,6 +98,34 @@ color="neutral"
 									</DropdownRadioItem>
 									<DropdownRadioItem value="24" onSelect={(e) => e.preventDefault()}>
 										24
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Loading</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={loading} onValueChange={(value) => setLoading(value as isloadingType)}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>

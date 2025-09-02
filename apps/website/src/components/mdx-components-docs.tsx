@@ -1,7 +1,7 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
-import { Settings } from "lucide-react"
+import { Link2, Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
@@ -281,25 +281,45 @@ const components: MDXComponents = {
 			{children}
 		</h1>
 	),
-	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className={cn("heading-5 font-semibold! mb-3 mt-10", className)} {...props}>
-			{children}
-		</h2>
-	),
-	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className={cn("mb-3 mt-6 text-lg font-medium leading-7", className)} {...props}>
-			{children}
-		</h3>
-	),
-	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-		<a
+	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => {
+		const text = typeof children === "string" ? children : ""
+		const id = text
+			.toLowerCase()
+			.replace(/\s+/g, "-")
+			.replace(/[^\w-]/g, "")
+		return (
+			<h2 className={cn("heading-5 font-semibold! group mb-3 mt-10 flex items-center", className)} {...props}>
+				<Link href={`#${id}`} className="flex items-center gap-2">
+					{children}
+					<Link2 className="opacity-0 transition-opacity group-hover:opacity-100" />
+				</Link>
+			</h2>
+		)
+	},
+	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => {
+		const text = typeof children === "string" ? children : ""
+		const id = text
+			.toLowerCase()
+			.replace(/\s+/g, "-")
+			.replace(/[^\w-]/g, "")
+		return (
+			<h3 className={cn("group mb-3 mt-6 flex items-center text-lg font-medium leading-7", className)} {...props}>
+				<Link href={`#${id}`} className="flex items-center gap-2">
+					{children}
+					<Link2 className="opacity-0 transition-opacity group-hover:opacity-100" />
+				</Link>
+			</h3>
+		)
+	},
+	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => {
+		;<a
 			aria-label="Link"
 			rel="noopener noreferrer"
 			target="_blank"
 			className={cn("text-primary hover:text-primary-hover font-medium underline underline-offset-4 transition-colors duration-200", className)}
 			{...props}
 		/>
-	),
+	},
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={cn("text-fg-secondary", className)} {...props}>
 			{children}
