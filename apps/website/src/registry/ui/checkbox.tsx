@@ -42,7 +42,7 @@ function Checkbox({ size = "md", icon = <Check />, children, className, ...props
 			className={cn("peer inline-flex w-fit items-center gap-2", "data-[disabled]:text-fg-tertiary data-[disabled]:cursor-not-allowed", className)}>
 			<CheckboxPrimitive.Root
 				className={cn(
-					"focus-visible:ring-primary flex items-center justify-center border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+					"focus-visible:ring-primary flex items-center justify-center border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
 					sizeClasses[size],
 					"data-[state=checked]:border-primary data-[state=checked]:bg-primary data-[state=checked]:text-white",
 					"data-[state=unchecked]:border-border data-[state=unchecked]:bg-background",
