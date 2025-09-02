@@ -135,8 +135,10 @@ import {
 import { Alert, AlertProps } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
 import { ComponentSource } from "./component-source"
+import FigmaCard from "./figma-card"
 import { FrameworkDocs } from "./framework-docs"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
@@ -276,6 +278,8 @@ const components: MDXComponents = {
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
+	AlertLucide: () => <AlertLucide />,
+	FigmaCard: () => <FigmaCard />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
 			{children}

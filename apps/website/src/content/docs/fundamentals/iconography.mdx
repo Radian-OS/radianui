@@ -1,6 +1,101 @@
 ---
 title: Iconography
-description: Iconography will be added soon
+description: Represent actions or concepts with simple graphics
 ---
 
-Content area here
+<br />
+
+Radian currently uses Lucide icon library by default. Lucide is an open-source icon library that provides 1000+ vector (svg) files for displaying icons and symbols in digital and non-digital projects.
+
+<br />
+
+<Image src="/doc/lucide.png" width="716" height="450" alt="lucide Cover Image" />
+
+## Benefits of Lucide Icon Pack
+
+<br />
+
+<ol className="list-decimal list-outside pl-6 marker:font-bold marker:text-inherit marker:align-baseline font-heading text-fg-secondary">
+	<li>
+		<strong>Lightweight:</strong> Icons are lightweight, highly optimized scalable vector graphics (SVG).
+	</li>
+        <br/>
+	<li>
+		<strong>Clean & consistent:</strong> Designed with a strict set of design rules for consistency in style.
+	</li>
+        <br/>
+    <li>
+    	<strong>Customizable:</strong> Customize the color, size, stroke width, and more.
+    </li>
+        <br/>
+    <li>
+    	<strong>Packages support:</strong> Lucide is available as a package for all major package managers.
+    </li>
+        <br/>
+    <li>
+    	<strong>Tree shakable:</strong>The icons are tree shakable, so you only import the icons you use.
+    </li>
+        <br/>
+    <li>
+    	<strong>Active community:</strong> Lucide has active community on GitHub and Discord.
+    </li>
+
+</ol>
+
+<br />
+
+## How to Use icons
+
+Using icons in Radian OS is simple and works seamlessly across modern frameworks like Next.js and Vite. Since Radian is powered by the Lucide icon pack, all
+icons are lightweight SVGs that can be imported and customized easily.
+
+<br />
+
+## Usage
+
+#### Next JS
+
+<br />
+
+<CodeSnippet
+					title="components/icon_example.tsx"
+					showLineNumber
+					code={`import { Home } from "lucide-react";
+
+export default function Page() {
+    return (
+      <div>
+        <Home size={32} strokeWidth={2} className="text-blue-500" />      
+        <p>Welcome home!</p>
+      </div>
+    );
+}                 `}
+/
+
+>
+
+<br />
+
+#### Vite
+
+<br />
+
+<CodeSnippet
+					title="components/icon_example.tsx"
+					showLineNumber
+					code={`import { Search } from "lucide-react";
+
+export default function App() {
+    return (
+        <button className="flex items-center gap-2">
+            <Search size={20} /> Search
+        </button>
+    );
+}                 `}
+/
+
+>
+
+<br />
+
+<AlertLucide />
