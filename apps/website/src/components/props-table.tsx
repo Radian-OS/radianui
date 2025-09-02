@@ -15,7 +15,7 @@ export type PropsData = {
 
 export const Table = ({ children, className, ...props }: HTMLAttributes<HTMLTableElement>) => (
 	<div className="overflow-x-auto">
-		<table className={cn("text-fg-secondary border-soft border-margin-0 w-full min-w-[650px] table-auto border-separate overflow-hidden rounded-lg border", className)} {...props}>
+		<table className={cn("text-fg-secondary border-soft w-full min-w-[650px] table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border", className)} {...props}>
 			{children}
 		</table>
 	</div>

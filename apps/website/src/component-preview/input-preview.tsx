@@ -197,6 +197,7 @@ const InputPreview = () => {
 						hasError={hasError}
 						hint={hint ? "Hint text to help the user with input" : ""}
 					/>
+					<Input className="w-20" />
 				</div>
 			</TabsContent>
 
