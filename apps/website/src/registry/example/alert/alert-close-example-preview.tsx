@@ -26,14 +26,7 @@ const AlertCloseExamplePreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					{isVisible && (
-						<Alert
-							title="Alert"
-							description="This is a standard notification message"
-							start={<Star className="flex-shrink-0" size={20} />}
-							color="primary"
-							variant="soft"
-							onClose={handleClose}
-						/>
+						<Alert title="Alert" description="This is a standard notification message" start={<Star size={20} />} color="primary" variant="soft" onClose={handleClose} />
 					)}
 				</div>
 			</TabsContent>
@@ -52,7 +45,7 @@ const AlertCloseExamplePreview = () => {
   return (
 	<div>
 		{isVisible && (
-			<Alert title="Alert" description="This is a standard notification message" start={<Star className="flex-shrink-0" size={20} />} color="primary" variant="soft" onClose={handleClose} />
+			<Alert title="Alert" description="This is a standard notification message" start={<Star size={20} />} color="primary" variant="soft" onClose={handleClose} />
 		)}
 	</div>
   );

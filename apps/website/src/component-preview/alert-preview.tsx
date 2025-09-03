@@ -20,7 +20,7 @@ const AlertPreview = () => {
 	type booleanType = "true" | "false"
 
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
-	const [variant, setVariant] = useState<"soft" | "soft-outline" | "outline">("soft")
+	const [variant, setVariant] = useState<"soft" | "soft-outline" | "outline" | "strong">("soft")
 	const [closable, setClosable] = useState<booleanType>("false")
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "button" | "link">("button")
@@ -28,10 +28,10 @@ const AlertPreview = () => {
 	const [description, setDescription] = useState<booleanType>("true")
 
 	const icons = {
-		star: <Star size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		info: <Info size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		check: <CircleCheck size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		alert: <TriangleAlert size={20} className={`flex-shrink-0 ${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		star: <Star size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		info: <Info size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		check: <CircleCheck size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
+		alert: <TriangleAlert size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
 		none: "",
 	}
 
@@ -85,7 +85,7 @@ const AlertPreview = () => {
 
 		if (iconComponent !== "none" && iconComponent !== "") {
 			// Updated to include flex-shrink-0 class
-			const iconClassName = color === "neutral" ? 'className="flex-shrink-0 text-fg-secondary"' : 'className="flex-shrink-0"'
+			const iconClassName = color === "neutral" ? 'className="text-fg-secondary"' : ""
 
 			code += `
   start={<${iconComponent} size={20} ${iconClassName} />}`
@@ -133,6 +133,9 @@ const AlertPreview = () => {
 										</DropdownRadioItem>
 										<DropdownRadioItem value="outline" onSelect={(e) => e.preventDefault()}>
 											Outline
+										</DropdownRadioItem>
+										<DropdownRadioItem value="strong" onSelect={(e) => e.preventDefault()}>
+											Strong
 										</DropdownRadioItem>
 									</DropdownRadioGroup>
 								</DropdownSubContent>

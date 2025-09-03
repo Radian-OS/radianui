@@ -9,21 +9,30 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 const AlertExamplePreview = () => {
 	const [position, setPosition] = useState<"top" | "bottom" | "center">("top")
 
+	const getAlertClassName = () => {
+		switch (position) {
+			case "top":
+				return "items-start"
+			case "bottom":
+				return "items-end"
+			case "center":
+				return "items-center"
+			default:
+				return "items-center"
+		}
+	}
+
 	const generateCode = () => {
-		let code = `<Alert
+		const alertClassName = getAlertClassName()
+
+		const code = `<Alert
   variant="soft"
   color="primary"
   title="Alert"
   description="This is a standard notification message"
-  start={
-    <div className={"flex h-full flex-col ${position === "top" ? "justify-start" : position === "bottom" ? "justify-end" : "justify-center"}"}>
-      <Star size={16} /> 
-    </div>
-}`
-		code += `
-  end={<Button color="primary">Action</Button>}`
-
-		code += `
+  className="${alertClassName}"
+  start={<Star size={16} />}
+  end={<Button color="primary">Action</Button>}
 />`
 
 		return code
@@ -73,11 +82,8 @@ const AlertExamplePreview = () => {
 						description="This is a standard notification message"
 						color="primary"
 						variant="soft"
-						start={
-							<div className={`flex h-full flex-col ${position === "top" ? "justify-start" : position === "bottom" ? "justify-end" : "justify-center"}`}>
-								<Star size={16} />
-							</div>
-						}
+						className={getAlertClassName()}
+						start={<Star size={16} />}
 						end={<Button color="primary">Action</Button>}
 					/>
 				</div>
