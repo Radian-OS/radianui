@@ -31,7 +31,7 @@ const AlertCloseExamplePreview = () => {
 							description="This is a standard notification message"
 							start={<Star className="flex-shrink-0" size={20} />}
 							color="primary"
-							variant="default"
+							variant="soft"
 							onClose={handleClose}
 						/>
 					)}
@@ -52,7 +52,7 @@ const AlertCloseExamplePreview = () => {
   return (
 	<div>
 		{isVisible && (
-			<Alert title="Alert" description="This is a standard notification message" start={<Star className="flex-shrink-0" size={20} />} color="primary" variant="default" onClose={handleClose} />
+			<Alert title="Alert" description="This is a standard notification message" start={<Star className="flex-shrink-0" size={20} />} color="primary" variant="soft" onClose={handleClose} />
 		)}
 	</div>
   );

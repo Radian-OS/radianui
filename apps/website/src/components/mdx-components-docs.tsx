@@ -135,8 +135,10 @@ import {
 import { Alert, AlertProps } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
 import { ComponentSource } from "./component-source"
+import FigmaCard from "./figma-card"
 import { FrameworkDocs } from "./framework-docs"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
@@ -276,6 +278,8 @@ const components: MDXComponents = {
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
+	AlertLucide: () => <AlertLucide />,
+	FigmaCard: () => <FigmaCard />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
 			{children}
@@ -288,7 +292,7 @@ const components: MDXComponents = {
 			.replace(/\s+/g, "-")
 			.replace(/[^\w-]/g, "")
 		return (
-			<h2 className={cn("heading-5 font-semibold! group mb-3 mt-10 flex items-center", className)} {...props}>
+			<h2 className={cn("heading-5 font-semibold! group mb-3 mt-10 flex scroll-mt-20 items-center", className)} {...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
 					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
@@ -303,7 +307,7 @@ const components: MDXComponents = {
 			.replace(/\s+/g, "-")
 			.replace(/[^\w-]/g, "")
 		return (
-			<h3 className={cn("group mb-3 mt-6 flex items-center text-lg font-medium leading-7", className)} {...props}>
+			<h3 className={cn("group mb-3 mt-6 flex scroll-mt-20 items-center text-lg font-medium leading-7", className)} {...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
 					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />

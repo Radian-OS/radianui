@@ -11,7 +11,7 @@ const AlertExamplePreview = () => {
 
 	const generateCode = () => {
 		let code = `<Alert
-  variant="default"
+  variant="soft"
   color="primary"
   title="Alert"
   description="This is a standard notification message"
@@ -72,7 +72,7 @@ const AlertExamplePreview = () => {
 						title="Alert"
 						description="This is a standard notification message"
 						color="primary"
-						variant="default"
+						variant="soft"
 						start={
 							<div className={`flex h-full flex-col ${position === "top" ? "justify-start" : position === "bottom" ? "justify-end" : "justify-center"}`}>
 								<Star size={16} />

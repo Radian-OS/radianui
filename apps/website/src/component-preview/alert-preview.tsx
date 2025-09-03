@@ -20,7 +20,7 @@ const AlertPreview = () => {
 	type booleanType = "true" | "false"
 
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
-	const [variant, setVariant] = useState<"default" | "soft-outline" | "outline">("default")
+	const [variant, setVariant] = useState<"soft" | "soft-outline" | "outline">("soft")
 	const [closable, setClosable] = useState<booleanType>("false")
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "button" | "link">("button")
@@ -125,7 +125,7 @@ const AlertPreview = () => {
 								<DropdownSubTrigger>Variant</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as typeof variant)}>
-										<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
+										<DropdownRadioItem value="soft" onSelect={(e) => e.preventDefault()}>
 											Soft
 										</DropdownRadioItem>
 										<DropdownRadioItem value="soft-outline" onSelect={(e) => e.preventDefault()}>

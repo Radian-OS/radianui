@@ -17,8 +17,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 const TooltipPreview = () => {
-	const [position, setPosition] = useState<"top" | "left" | "right" | "bottom">("top")
-	const [variant, setVariant] = useState<"start" | "end" | "center">("center")
+	const [side, setSide] = useState<"top" | "left" | "right" | "bottom">("top")
+	const [align, setAlign] = useState<"start" | "end" | "center">("center")
 	const [withArrow, setWithArrow] = useState<"true" | "false">("false")
 	const [key, setKey] = useState(0)
 
@@ -42,9 +42,9 @@ const TooltipPreview = () => {
 					<DropdownContent className="min-w-20">
 						<DropdownGroup>
 							<DropdownSub>
-								<DropdownSubTrigger>Position</DropdownSubTrigger>
+								<DropdownSubTrigger>Side</DropdownSubTrigger>
 								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={position} onValueChange={(value) => setPosition(value as typeof position)}>
+									<DropdownRadioGroup value={side} onValueChange={(value) => setSide(value as typeof side)}>
 										<DropdownRadioItem value="top" onSelect={(e) => e.preventDefault()}>
 											Top
 										</DropdownRadioItem>
@@ -64,7 +64,7 @@ const TooltipPreview = () => {
 							<DropdownSub>
 								<DropdownSubTrigger>Align</DropdownSubTrigger>
 								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as typeof variant)}>
+									<DropdownRadioGroup value={align} onValueChange={(value) => setAlign(value as typeof align)}>
 										<DropdownRadioItem value="start" onSelect={(e) => e.preventDefault()}>
 											Start
 										</DropdownRadioItem>
@@ -104,7 +104,7 @@ const TooltipPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="mx-auto max-h-[200px] max-w-3xl">
-						<Tooltip side={`${position}`} withArrow={withArrow === "true"} align={`${variant}`}>
+						<Tooltip side={`${side}`} withArrow={withArrow === "true"} align={`${align}`}>
 							<TooltipTrigger asChild>
 								<Button key={key} variant="outline">
 									Hover me
@@ -121,7 +121,7 @@ const TooltipPreview = () => {
 					title="tooltip.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Tooltip side="${position}" withArrow={${withArrow}} align="${variant}">
+					code={`<Tooltip side="${side}" withArrow={${withArrow}} align="${align}">
 	<TooltipTrigger asChild>
 		<Button key={key} variant="outline">Hover me</Button>
 	</TooltipTrigger>

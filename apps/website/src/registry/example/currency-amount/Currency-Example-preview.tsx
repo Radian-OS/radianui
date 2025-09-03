@@ -58,6 +58,7 @@ const CurrencyPreview = () => {
 						<div className="flex rounded-md">
 							<CurrencyInput
 								className="w-80 border-r-0 focus-within:border-r"
+								currency={`${currency}`}
 								size={size}
 								placeholder="0.00"
 								custom={true}
