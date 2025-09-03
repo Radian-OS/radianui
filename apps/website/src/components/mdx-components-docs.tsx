@@ -93,6 +93,7 @@ import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-sel
 import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
+import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
@@ -237,6 +238,7 @@ const components: MDXComponents = {
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
+	CodeWithCopyExample: () => <CodeWithCopyExample />,
 	FormPreview: () => <FormPreview />,
 	FormExample1: () => <FormExample1 />,
 	FormExample2: () => <FormExample2 />,
