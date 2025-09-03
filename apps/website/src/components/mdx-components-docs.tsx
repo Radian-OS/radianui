@@ -343,7 +343,7 @@ const components: MDXComponents = {
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("list-disc space-y-4 pb-6", className)}>{children}</ul>
 	},
-	ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("my-6 ml-6 list-decimal", className)} {...props} />,
+	ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("marker:text-fg my-6 ml-6 list-decimal marker:font-bold", className)} {...props} />,
 
 	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
