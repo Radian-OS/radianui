@@ -2,7 +2,7 @@
 
 import React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { type DropdownMenuContentProps, type DropdownMenuItemProps, type DropdownMenuSubContentProps } from "@radix-ui/react-dropdown-menu"
+import { type DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu"
 import { Slot } from "@radix-ui/react-slot"
 import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -10,12 +10,10 @@ import { cn } from "@/lib/utils"
 function Dropdown({ ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Root>) {
 	return <DropdownMenuPrimitive.Root modal={false} data-slot="dropdown-menu" {...props} />
 }
-Dropdown.displayName = "Dropdown"
 
 function DropdownTrigger({ className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
 	return <DropdownMenuPrimitive.Trigger data-slot="dropdown-menu-trigger" className={cn("outline-none", className)} {...props} />
 }
-DropdownTrigger.displayName = "DropdownTrigger"
 
 function DropdownContent({
 	className,
@@ -52,7 +50,7 @@ function DropdownItem({
 	start,
 	end,
 	...props
-}: DropdownMenuItemProps &
+}: React.ComponentProps<typeof DropdownMenuPrimitive.DropdownMenuItem> &
 	React.RefAttributes<HTMLDivElement> & {
 		inset?: boolean
 		shortcut?: string
@@ -72,15 +70,14 @@ function DropdownItem({
 		<DropdownMenuPrimitive.Item
 			data-slot="dropdown-menu-item"
 			className={cn(
-				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden",
-				"relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm",
+				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm",
 				"[&_svg]:text-fg-secondary transition-colors [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
 			)}
 			{...props}>
 			{start && <span>{start}</span>}
-			<span className="flex items-center gap-2 truncate">{children}</span>
+			{children}
 			{end && <span className="ml-auto">{end}</span>}
 		</DropdownMenuPrimitive.Item>
 	)
@@ -201,7 +198,7 @@ function DropdownSubTrigger({
 }
 DropdownSubTrigger.displayName = "DropdownSubTrigger"
 
-function DropdownSubContent({ children, className, ...props }: DropdownMenuSubContentProps & React.RefAttributes<HTMLDivElement>) {
+function DropdownSubContent({ className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>) {
 	return (
 		<DropdownMenuPrimitive.Portal>
 			<DropdownMenuPrimitive.SubContent
@@ -213,13 +210,15 @@ function DropdownSubContent({ children, className, ...props }: DropdownMenuSubCo
 				)}
 				sideOffset={10}
 				alignOffset={-7}
-				{...props}>
-				{children}
-			</DropdownMenuPrimitive.SubContent>
+				{...props}
+			/>
 		</DropdownMenuPrimitive.Portal>
 	)
 }
-DropdownSubContent.displayName = "DropdownSubContent"
+
+function DropdownShortcut({ ...props }: React.HTMLAttributes<HTMLSpanElement>) {
+	return <span data-slot="dropdown-menu-shortcut" className={cn("text-fg-secondary ml-auto text-xs tracking-widest")} {...props} />
+}
 
 function DropdownDivider() {
 	return <DropdownMenuPrimitive.Separator data-slot="dropdown-menu-separator" className={cn("bg-soft-alpha -mx-1 my-1 h-px")} />
@@ -238,4 +237,5 @@ export {
 	DropdownSubContent,
 	DropdownSubTrigger,
 	DropdownTrigger,
+	DropdownShortcut,
 }

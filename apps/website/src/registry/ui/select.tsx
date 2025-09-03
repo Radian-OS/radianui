@@ -288,7 +288,7 @@ function Select({
 									) : variants === "button" ? (
 										<Button
 											end={endIcon && (!open ? <ChevronDown size={16} className="text-fg-tertiary" /> : <ChevronUp size={16} className="text-fg-tertiary" />)}
-											variant="soft"
+											variant="outline"
 											color="neutral"
 											size={["28", "32", "36", "40", "44", "48"].includes(String(size)) ? (size as "28" | "32" | "36" | "40" | "44" | "48") : "40"}
 											disabled={disabled}
