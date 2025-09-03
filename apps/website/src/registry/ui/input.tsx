@@ -11,7 +11,7 @@ export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 const inputVariants = cva("flex h-10 w-full items-center justify-center gap-2 border drop-shadow-xs bg-bg cursor-text", {
 	variants: {
 		size: {
-			"28": "h-7 text-xs p-1.5 rounded-md",
+			"28": "h-7 text-[13px] p-1.5 rounded-md",
 			"32": "h-8 text-sm px-3 py-1.5 rounded-md",
 			"36": "h-9 text-sm px-2.5 py-2 rounded-lg",
 			"40": "h-10 text-sm px-3 py-2.5 rounded-lg",
@@ -26,7 +26,7 @@ const fileInputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "file:h-7 text-xs file:p-1.5 rounded-md",
+				"28": "file:h-7 text-[13px] file:p-1.5 rounded-md",
 				"32": "file:h-8 text-sm file:px-3 file:py-1.5 rounded-md",
 				"36": "file:h-9 text-sm file:px-2.5 file:py-2 rounded-lg",
 				"40": "file:h-10 text-sm file:px-3 file:py-2.5 rounded-lg",

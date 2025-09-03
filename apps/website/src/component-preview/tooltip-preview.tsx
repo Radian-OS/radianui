@@ -104,13 +104,15 @@ const TooltipPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="mx-auto max-h-[200px] max-w-3xl">
-						<Tooltip side={`${side}`} withArrow={withArrow === "true"} align={`${align}`}>
+						<Tooltip>
 							<TooltipTrigger asChild>
 								<Button key={key} variant="outline">
 									Hover me
 								</Button>
 							</TooltipTrigger>
-							<TooltipContent>I am a tooltip</TooltipContent>
+							<TooltipContent side={`${side}`} withArrow={withArrow === "true"} align={`${align}`}>
+								I am a tooltip
+							</TooltipContent>
 						</Tooltip>
 					</div>
 				</div>
@@ -121,14 +123,14 @@ const TooltipPreview = () => {
 					title="tooltip.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Tooltip side="${side}" withArrow={${withArrow}} align="${align}">
+					code={`<Tooltip>
 	<TooltipTrigger asChild>
 		<Button key={key} variant="outline">Hover me</Button>
 	</TooltipTrigger>
-	<TooltipContent>
+	<TooltipContent side="${side}" align="${align}" ${withArrow === "true" ? "withArrow" : ""}>
 		I am a tooltip
 	</TooltipContent>
-</Tooltip>`}
+</Tooltip>`.trim()}
 				/>
 			</TabsContent>
 		</Tabs>

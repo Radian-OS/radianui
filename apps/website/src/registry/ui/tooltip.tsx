@@ -4,29 +4,18 @@ import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 import { cn } from "@/lib/utils"
 
-type TooltipContext = Pick<React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>, "align" | "side"> & {
-	withArrow?: boolean
-}
-type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root> & TooltipContext
+type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root>
 
 type TooltipTriggerProps = React.ComponentProps<typeof TooltipPrimitive.Trigger>
 
-type TooltipContentProps = React.ComponentProps<typeof TooltipPrimitive.Content>
-
-const TooltipContext = React.createContext<TooltipContext | null>(null)
-
-function useTooltipContext() {
-	const context = React.useContext(TooltipContext)
-	if (!context) throw new Error("useTooltipContext must be used within <Tooltip />")
-	return context
+type TooltipContentProps = React.ComponentProps<typeof TooltipPrimitive.Content> & {
+	withArrow?: boolean
 }
 
-function Tooltip({ align = "center", side = "top", withArrow = false, children, ...props }: TooltipProps) {
+function Tooltip({ children, ...props }: TooltipProps) {
 	return (
 		<TooltipPrimitive.Provider delayDuration={0}>
-			<TooltipContext.Provider value={{ align, side, withArrow }}>
-				<TooltipPrimitive.Root {...props}>{children}</TooltipPrimitive.Root>
-			</TooltipContext.Provider>
+			<TooltipPrimitive.Root {...props}>{children}</TooltipPrimitive.Root>
 		</TooltipPrimitive.Provider>
 	)
 }
@@ -37,36 +26,24 @@ function TooltipTrigger(props: TooltipTriggerProps) {
 }
 TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
-function TooltipContent({ className, sideOffset = 6, children, ...props }: TooltipContentProps) {
-	const { align, side, withArrow } = useTooltipContext()
+function TooltipContent({ className, align = "center", side = "top", withArrow = false, sideOffset = 4, children, ...props }: TooltipContentProps) {
 	return (
 		<TooltipPrimitive.Content
 			align={align}
 			side={side}
 			sideOffset={sideOffset}
 			className={cn(
-				"outline-hidden animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 rounded-md bg-black px-2 py-1 text-center text-xs/tight text-white shadow-md dark:bg-white dark:text-black",
+				"animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 rounded-md bg-black px-2 py-1 text-center text-xs leading-5 text-white shadow-md dark:bg-white dark:text-black",
 				className
 			)}
 			{...props}>
 			{children}
 			{withArrow && (
-				<TooltipPrimitive.Arrow
-					data-align={align}
-					data-side={side}
-					offset={10}
-					className={cn(
-						"z-60 absolute top-[-2px] h-2 w-4 fill-black dark:fill-white",
-						"data-[align=center]:left-1/2 data-[align=center]:-translate-x-1/2",
-						"data-[align=start]:data-[side=right]:-translate-x-full",
-						"data-[align=start]:data-[side=top]:-translate-x-10",
-						"data-[align=start]:data-[side=left]:-translate-x-1.5",
-						"data-[align=start]:data-[side=bottom]:translate-x-5",
-						"data-[align=end]:data-[side=top]:translate-x-6",
-						"data-[align=end]:data-[side=left]:-translate-x-4",
-						"data-[align=end]:data-[side=bottom]:-translate-x-9"
-					)}
-				/>
+				<TooltipPrimitive.Arrow className="-translate-y-0.5" asChild>
+					<svg xmlns="http://www.w3.org/2000/svg" width={12} height={7} viewBox="0 0 12 7" fill="none" className="rotate-180">
+						<path d="M4.8 0.469182C5.46274 -0.156394 6.53726 -0.156394 7.2 0.469182L12 5L0 5L4.8 0.469182Z" className="fill-black dark:fill-white" />
+					</svg>
+				</TooltipPrimitive.Arrow>
 			)}
 		</TooltipPrimitive.Content>
 	)

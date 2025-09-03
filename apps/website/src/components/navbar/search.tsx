@@ -115,14 +115,13 @@ export function SearchDocs() {
 						className="not-md:hidden gap-1"
 						variant={"outline"}
 						color={"neutral"}
-						innerSpanClassName="text-fg-tertiary w-43 flex-1 px-1 text-start"
 						start={<Search className="text-fg-tertiary" />}
 						end={
 							<Badge className="text-fg-secondary" size="20" variant="outline" color="neutral">
 								⌘K
 							</Badge>
 						}>
-						Search
+						<span className="text-fg-tertiary w-43 flex-1 px-1 text-start">Search</span>
 					</Button>
 				</ModalTrigger>
 				<ModalContent className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
