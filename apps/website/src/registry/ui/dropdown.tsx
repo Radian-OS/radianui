@@ -70,15 +70,14 @@ function DropdownItem({
 		<DropdownMenuPrimitive.Item
 			data-slot="dropdown-menu-item"
 			className={cn(
-				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden",
-				"relative flex w-full cursor-pointer items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm",
+				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm",
 				"[&_svg]:text-fg-secondary transition-colors [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
 			)}
 			{...props}>
 			{start && <span>{start}</span>}
-			<span className="flex items-center gap-2 truncate">{children}</span>
+			{children}
 			{end && <span className="ml-auto">{end}</span>}
 		</DropdownMenuPrimitive.Item>
 	)
@@ -217,8 +216,8 @@ function DropdownSubContent({ className, ...props }: React.ComponentProps<typeof
 	)
 }
 
-function DropdownShortcut({}: React.HTMLAttributes<HTMLSpanElement>) {
-	return <span data-slot="dropdown-menu-shortcut" className={cn("text-fg-secondary ms-auto text-xs tracking-widest")} />
+function DropdownShortcut({ ...props }: React.HTMLAttributes<HTMLSpanElement>) {
+	return <span data-slot="dropdown-menu-shortcut" className={cn("text-fg-secondary ml-auto text-xs tracking-widest")} {...props} />
 }
 
 function DropdownDivider() {
