@@ -8,14 +8,17 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "sm" | "md" | "lg"
 type IconType = "check" | "x" | "heart" | "star"
+type LabelType = "show" | "hide"
 
 const DEFAULT_SIZE: Size = "md"
 const DEFAULT_ICON: IconType = "check"
+const DEFAULT_LABEL: LabelType = "show"
 
 export default function CheckboxPreview() {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 	const [disabled, setDisabled] = useState(false)
 	const [iconType, setIconType] = useState<IconType>(DEFAULT_ICON)
+	const [label, setLabel] = useState<LabelType>(DEFAULT_LABEL)
 
 	const iconMap = {
 		check: <Check />,
@@ -78,14 +81,27 @@ export default function CheckboxPreview() {
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
+							<DropdownSubTrigger>Label</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={label} onValueChange={(value) => setLabel(value as LabelType)}>
+									<DropdownRadioItem value="show" onSelect={(e) => e.preventDefault()}>
+										Show
+									</DropdownRadioItem>
+									<DropdownRadioItem value="hide" onSelect={(e) => e.preventDefault()}>
+										Hide
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
+						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={disabled.toString()} onValueChange={(value) => setDisabled(value === "true")}>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										false
-									</DropdownRadioItem>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										true
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -96,8 +112,8 @@ export default function CheckboxPreview() {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Checkbox {...(size !== DEFAULT_SIZE && { size: size })} {...(disabled && { disabled })} {...(iconType !== DEFAULT_ICON && { icon: iconMap[iconType] })}>
-						Accept terms and conditions
-					</Checkbox>
+						{label === "show" && "Accept terms and conditions"}
+					</Checkbox>{" "}
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -105,9 +121,13 @@ export default function CheckboxPreview() {
 					title="checkbox.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Checkbox${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${disabled ? " disabled" : ""}${iconType !== DEFAULT_ICON ? ` icon={<${iconType.charAt(0).toUpperCase() + iconType.slice(1)} />}` : ""}>
+					code={
+						label === "show"
+							? `<Checkbox${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${disabled ? " disabled" : ""}${iconType !== DEFAULT_ICON ? ` icon={<${iconType.charAt(0).toUpperCase() + iconType.slice(1)} />}` : ""}>
   Accept terms and conditions
-</Checkbox>`}
+</Checkbox>`
+							: `<Checkbox${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${disabled ? " disabled" : ""}${iconType !== DEFAULT_ICON ? ` icon={<${iconType.charAt(0).toUpperCase() + iconType.slice(1)} />}` : ""} />`
+					}
 				/>
 			</TabsContent>
 		</Tabs>
