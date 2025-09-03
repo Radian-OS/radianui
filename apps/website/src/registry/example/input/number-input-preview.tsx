@@ -213,7 +213,7 @@ export default CounterInput
 								<IconButton
 									size={size}
 									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-									variant="soft"
+									variant="ghost"
 									color="neutral"
 									onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}>
 									<Minus className="text-fg-disabled size-5" />
@@ -229,7 +229,7 @@ export default CounterInput
 								<IconButton
 									size={size}
 									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-									variant="soft"
+									variant="ghost"
 									color="neutral"
 									onClick={() => setAmount((v) => String(Number(v || "0") + 1))}>
 									<Plus className="text-fg-disabled size-5" />
