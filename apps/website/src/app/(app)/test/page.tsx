@@ -4,6 +4,8 @@ import { useState } from "react"
 import { CalendarDate, Time } from "@internationalized/date"
 import { Value } from "react-phone-number-input"
 import * as RPNInput from "react-phone-number-input"
+import { Avatar } from "@/registry/ui/avatar"
+import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import ColorPicker from "@/registry/ui/color-picker"
@@ -16,6 +18,16 @@ import { PhoneNumber } from "@/registry/ui/phone-number"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 import SearchInput from "@/registry/ui/search"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
+import {
+	Select as Select2,
+	SelectContent as SelectContent2,
+	SelectDivider,
+	SelectGroup as SelectGroup2,
+	SelectItem as SelectItem2,
+	SelectLabel,
+	SelectTrigger as SelectTrigger2,
+	SelectValue as SelectValue2,
+} from "@/registry/ui/select2"
 import Slider from "@/registry/ui/slider"
 import { Switch } from "@/registry/ui/switch"
 import { TextArea } from "@/registry/ui/text-area"
@@ -126,6 +138,128 @@ export default function Test() {
 		<div className="items-center justify-items-center py-4">
 			<div className="flex gap-4">
 				<div className="border-border rounded-radius-xl flex w-[708px] flex-col gap-8 border p-6">
+					<Select2 defaultValue="3" indicatorPosition="right">
+						<SelectTrigger2 className="w-[200px]">
+							<SelectValue2 placeholder="Select framework" />
+						</SelectTrigger2>
+						<SelectContent2>
+							<SelectItem2 value="1">
+								<span className="flex items-center gap-2">
+									<span className="size-1.5 rounded-full bg-violet-500"></span>
+									<span>In Progress</span>
+								</span>
+							</SelectItem2>
+							<SelectItem2 value="2">
+								<span className="flex items-center gap-2">
+									<span className="size-1.5 rounded-full bg-green-500"></span>
+									<span>Completed</span>
+								</span>
+							</SelectItem2>
+							<SelectItem2 value="3">
+								<span className="flex items-center gap-2">
+									<span className="bg-primary size-1.5 rounded-full"></span>
+									<span>Pending</span>
+								</span>
+							</SelectItem2>
+							<SelectItem2 value="4">
+								<span className="flex items-center gap-2">
+									<span className="size-1.5 rounded-full bg-yellow-500"></span>
+									<span>Cancelled</span>
+								</span>
+							</SelectItem2>
+							<SelectItem2 value="5">
+								<span className="flex items-center gap-2">
+									<span className="bg-destructive size-1.5 rounded-full"></span>
+									<span>Rejected</span>
+								</span>
+							</SelectItem2>
+						</SelectContent2>
+					</Select2>
+					<Select2 defaultValue="1" indicatorPosition="right">
+						<SelectTrigger2 className="w-[200px]">
+							<span className="inline-flex items-center space-x-2">
+								Status: <SelectValue2 />
+							</span>
+						</SelectTrigger2>
+						<SelectContent2>
+							<SelectItem2 value="1">
+								<Badge color="info">In Progress</Badge>
+							</SelectItem2>
+							<SelectItem2 value="2">
+								<Badge color="success">Completed</Badge>
+							</SelectItem2>
+							<SelectItem2 value="3">
+								<Badge color="neutral">Pending</Badge>
+							</SelectItem2>
+							<SelectItem2 value="4">
+								<Badge color="warning">Cancelled</Badge>
+							</SelectItem2>
+							<SelectItem2 value="5">
+								<Badge color="error">Rejected</Badge>
+							</SelectItem2>
+						</SelectContent2>
+					</Select2>
+					<Select2 indicatorPosition="right">
+						<SelectTrigger2 className="w-[240px]">
+							<SelectValue2 placeholder="Select a framework" />
+						</SelectTrigger2>
+						<SelectContent2 className="max-h-96">
+							<SelectGroup2>
+								<SelectLabel>Backend Frameworks</SelectLabel>
+								<SelectItem2 value="node-js">Node.js (Express)</SelectItem2>
+								<SelectItem2 value="django">Django (Python)</SelectItem2>
+								<SelectItem2 value="rails">Rails (Ruby)</SelectItem2>
+								<SelectItem2 disabled value="laravel">
+									Laravel (PHP)
+								</SelectItem2>
+								<SelectItem2 value="spring">Spring Boot (Java)</SelectItem2>
+							</SelectGroup2>
+							<SelectDivider />
+							<SelectGroup2>
+								<SelectLabel>Mobile Frameworks</SelectLabel>
+								<SelectItem2 value="react-native">React Native</SelectItem2>
+								<SelectItem2 value="flutter">Flutter</SelectItem2>
+								<SelectItem2 value="swiftui">SwiftUI</SelectItem2>
+								<SelectItem2 value="kotlin-compose">Kotlin Compose</SelectItem2>
+								<SelectItem2 value="xamarin">Xamarin</SelectItem2>
+							</SelectGroup2>
+						</SelectContent2>
+					</Select2>
+					<Select2 indicatorPosition="right">
+						<SelectTrigger2 className="w-[200px]">
+							<SelectValue2 placeholder="Select a user" />
+						</SelectTrigger2>
+						<SelectContent2>
+							<SelectGroup2>
+								<SelectLabel className="text-muted-foreground py-1 ps-2 text-xs font-normal">Select a user</SelectLabel>
+								<SelectItem2 value="1">
+									<span className="flex items-center gap-2">
+										<Avatar size="24" src="https://randomuser.me/api/portraits/men/1.jpg" />
+										<span>Alan Bold</span>
+									</span>
+								</SelectItem2>
+								<SelectItem2 value="2">
+									<span className="flex items-center gap-2">
+										<Avatar size="24" src="https://randomuser.me/api/portraits/men/2.jpg" />
+										<span>Ethan James</span>
+									</span>
+								</SelectItem2>
+								<SelectItem2 value="3">
+									<span className="flex items-center gap-2">
+										<Avatar size="24" src="https://randomuser.me/api/portraits/men/3.jpg" />
+										<span>Nina Clark</span>
+									</span>
+								</SelectItem2>
+								<SelectItem2 value="4">
+									<span className="flex items-center gap-2">
+										<Avatar size="24" src="https://randomuser.me/api/portraits/men/4.jpg" />
+										<span>Sean Otto</span>
+									</span>
+								</SelectItem2>
+							</SelectGroup2>
+						</SelectContent2>
+					</Select2>
+
 					<div>
 						<h1 className="text-fgtext-[20px] font-semibold">Multi Line Form</h1>
 						<p className="text-fg-tertiary text-[14px]">This is a sample subtitle for your form</p>

@@ -101,12 +101,7 @@ function Input({ label, disabled, hint, custom = false, hasError = false, type =
 						size && {
 							"text-xs placeholder:text-xs": size === "28",
 							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
-							"text-fgplaceholder:text-base": ["44", "48"].includes(size),
-						},
-						size && {
-							"text-xs placeholder:text-xs": size === "28",
-							"text-sm placeholder:text-sm": ["32", "36", "40"].includes(size),
-							"text-fgplaceholder:text-base": ["44", "48"].includes(size),
+							"text-base placeholder:text-base": ["44", "48"].includes(size),
 						}
 					)}
 					type={type}
