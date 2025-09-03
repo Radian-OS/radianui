@@ -343,7 +343,7 @@ const components: MDXComponents = {
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("list-disc space-y-4 pb-6", className)}>{children}</ul>
 	},
-	ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("marker:text-fg my-6 ml-6 list-decimal marker:font-bold", className)} {...props} />,
+	ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("marker:text-fg my-6 ml-6 list-decimal space-y-4 marker:font-bold", className)} {...props} />,
 
 	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
@@ -415,7 +415,7 @@ const components: MDXComponents = {
 	),
 	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
 		<Image
-			className={cn("bg-fill2 border-soft my-4 rounded-2xl border-8 object-cover", className)}
+			className={cn("bg-fill2 border-soft mb-6 mt-4 rounded-2xl border-8 object-cover", className)}
 			src={src || ""}
 			width={Number(width)}
 			height={Number(height)}
