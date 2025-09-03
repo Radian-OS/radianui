@@ -47,13 +47,15 @@ const TooltipExample = () => {
 				</label>
 			</div>
 
-			<Tooltip side={selectedVariant} withArrow={showArrow} align={selectedAlign}>
+			<Tooltip>
 				<TooltipTrigger asChild>
 					<Button className="w-max" variant="outline">
 						Hover
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent>Hoverbjbjbjb</TooltipContent>
+				<TooltipContent side={selectedVariant} withArrow={showArrow} align={selectedAlign}>
+					Hoverbjbjbjb
+				</TooltipContent>
 			</Tooltip>
 		</div>
 	)
