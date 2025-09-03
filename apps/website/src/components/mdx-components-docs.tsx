@@ -88,6 +88,7 @@ import BannerExamplePreview3 from "@/registry/example/banner/banner-example-prev
 import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
+import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
 import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
@@ -255,6 +256,7 @@ const components: MDXComponents = {
 	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
 	FooterCalendarPreview: () => <FooterCalendarPreview />,
 	TimePickerCalendarPreview: () => <TimePickerCalendarPreview />,
+	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
