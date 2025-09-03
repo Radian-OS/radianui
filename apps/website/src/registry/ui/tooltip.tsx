@@ -7,96 +7,65 @@ import { cn } from "@/lib/utils"
 type TooltipContext = Pick<React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>, "align" | "side"> & {
 	withArrow?: boolean
 }
+type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root> & TooltipContext
+
+type TooltipTriggerProps = React.ComponentProps<typeof TooltipPrimitive.Trigger>
+
+type TooltipContentProps = React.ComponentProps<typeof TooltipPrimitive.Content>
 
 const TooltipContext = React.createContext<TooltipContext | null>(null)
 
-const useTooltipContext = () => {
+function useTooltipContext() {
 	const context = React.useContext(TooltipContext)
 	if (!context) throw new Error("useTooltipContext must be used within <Tooltip />")
 	return context
 }
 
-const TooltipWrapper = ({ children }: { children: React.ReactNode }) => <TooltipPrimitive.Provider>{children}</TooltipPrimitive.Provider>
-
-type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root> & TooltipContext
-
-const Tooltip = ({ align = "center", side = "top", withArrow = false, children, ...props }: TooltipProps) => {
+function Tooltip({ align = "center", side = "top", withArrow = false, children, ...props }: TooltipProps) {
 	return (
-		<TooltipWrapper>
+		<TooltipPrimitive.Provider delayDuration={0}>
 			<TooltipContext.Provider value={{ align, side, withArrow }}>
 				<TooltipPrimitive.Root {...props}>{children}</TooltipPrimitive.Root>
 			</TooltipContext.Provider>
-		</TooltipWrapper>
+		</TooltipPrimitive.Provider>
 	)
 }
 Tooltip.displayName = TooltipPrimitive.Root.displayName
 
-const TooltipTrigger = TooltipPrimitive.Trigger
+function TooltipTrigger(props: TooltipTriggerProps) {
+	return <TooltipPrimitive.Trigger {...props} />
+}
 TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
-type TooltipContentProps = React.ComponentProps<typeof TooltipPrimitive.Content>
-const TooltipContent = ({ className, sideOffset = 6, children, ...props }: TooltipContentProps) => {
+function TooltipContent({ className, sideOffset = 6, children, ...props }: TooltipContentProps) {
 	const { align, side, withArrow } = useTooltipContext()
-
 	return (
 		<TooltipPrimitive.Content
 			align={align}
 			side={side}
 			sideOffset={sideOffset}
 			className={cn(
-				"relative",
-				"bg-black px-2 py-1 text-center text-xs text-white dark:bg-white dark:text-black",
-				// Base animations
-				"animate-in fade-in-20 zoom-in-95",
-				// Side-specific slide animations
-				side === "top" ? "slide-in-from-bottom-2" : side === "bottom" ? "slide-in-from-top-2" : side === "left" ? "slide-in-from-right-2" : "slide-in-from-left-2", // right side
-
-				// Open state animations
-				"data-[state=open]:animate-in data-[state=open]:fade-in-20 data-[state=open]:zoom-in-95",
-				side === "top"
-					? "data-[state=open]:slide-in-from-bottom-2"
-					: side === "bottom"
-						? "data-[state=open]:slide-in-from-top-2"
-						: side === "left"
-							? "data-[state=open]:slide-in-from-right-2"
-							: "data-[state=open]:slide-in-from-left-2", // right side
-
-				// Closed state animations
-				"data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
-				side === "top"
-					? "data-[state=closed]:slide-out-to-bottom-2"
-					: side === "bottom"
-						? "data-[state=closed]:slide-out-to-top-2"
-						: side === "left"
-							? "data-[state=closed]:slide-out-to-right-2"
-							: "data-[state=closed]:slide-out-to-left-2", // right side
-
-				// Timing control
-				"data-[state=open]:duration-300",
-				"data-[state=closed]:duration-400",
-
-				// Transform origin
-				"origin-[var(--radix-tooltip-content-transform-origin)]",
-
-				// Base styles
-				"outline-hidden z-50 rounded-md shadow-md",
+				"outline-hidden animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 relative z-50 rounded-md bg-black px-2 py-1 text-center text-xs/tight text-white shadow-md dark:bg-white dark:text-black",
 				className
 			)}
 			{...props}>
 			{children}
 			{withArrow && (
 				<TooltipPrimitive.Arrow
+					data-align={align}
+					data-side={side}
 					offset={10}
-					className={cn("z-60 absolute top-[-2px] h-2 w-4 fill-black dark:fill-white", {
-						"left-1/2 -translate-x-1/2": align === "center",
-						"-translate-x-full": align === "start" && "right",
-						"translate-x-6": align === "end" && side === "top",
-						"-translate-x-10": align === "start" && side === "top",
-						"-translate-x-4": align === "end" && side === "left",
-						"-translate-x-1.2": align === "start" && side === "left",
-						"translate-x-5": align === "start" && side === "bottom",
-						"-translate-x-9": align === "end" && side === "bottom",
-					})}
+					className={cn(
+						"z-60 absolute top-[-2px] h-2 w-4 fill-black dark:fill-white",
+						"data-[align=center]:left-1/2 data-[align=center]:-translate-x-1/2",
+						"data-[align=start]:data-[side=right]:-translate-x-full",
+						"data-[align=start]:data-[side=top]:-translate-x-10",
+						"data-[align=start]:data-[side=left]:-translate-x-1.5",
+						"data-[align=start]:data-[side=bottom]:translate-x-5",
+						"data-[align=end]:data-[side=top]:translate-x-6",
+						"data-[align=end]:data-[side=left]:-translate-x-4",
+						"data-[align=end]:data-[side=bottom]:-translate-x-9"
+					)}
 				/>
 			)}
 		</TooltipPrimitive.Content>

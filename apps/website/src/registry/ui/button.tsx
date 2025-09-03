@@ -16,7 +16,6 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 		end?: React.ReactNode
 		loading?: boolean
 		asChild?: boolean
-		innerSpanClassName?: string
 	}
 
 type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
@@ -265,7 +264,6 @@ function Button({
 	variant = "strong",
 	size = "36",
 	color = "primary",
-	innerSpanClassName,
 	className,
 	children,
 	disabled,
@@ -297,7 +295,7 @@ function Button({
 		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
 			{start}
 			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
-			<span className={cn(innerSpanClassName, "px-0.5")}>{children}</span>
+			{children}
 			{end}
 		</Comp>
 	)

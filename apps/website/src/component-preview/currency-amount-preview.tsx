@@ -19,15 +19,12 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const CurrencyInputPreview = () => {
-	type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-	const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 
 	const [separator, setSeparator] = useState<string>("true")
 	const [currency, setCurrency] = useState("usd")
 	const [locale, setLocale] = useState("en-US")
 	const [disabled, setDisabled] = useState("false")
-	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [hasError, setHasError] = useState<"true" | "false">("false")
 	const [label, setLabel] = useState<"true" | "false">("true")
@@ -110,19 +107,6 @@ const CurrencyInputPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-										{roundedOptions.map((roundedOption) => (
-											<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
-												{roundedOption}
-											</DropdownRadioItem>
-										))}
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
 								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value)}>
@@ -167,41 +151,6 @@ const CurrencyInputPreview = () => {
 
 						<DropdownGroup title="Currency">
 							<DropdownSub>
-								<DropdownSubTrigger>Currency</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup value={currency} onValueChange={(value) => setCurrency(value)}>
-										<DropdownRadioItem value="usd" onSelect={(e) => e.preventDefault()}>
-											USD
-										</DropdownRadioItem>
-										<DropdownRadioItem value="eur" onSelect={(e) => e.preventDefault()}>
-											EUR
-										</DropdownRadioItem>
-										<DropdownRadioItem value="gbp" onSelect={(e) => e.preventDefault()}>
-											GBP
-										</DropdownRadioItem>
-										<DropdownRadioItem value="jpy" onSelect={(e) => e.preventDefault()}>
-											JPY
-										</DropdownRadioItem>
-										<DropdownRadioItem value="inr" onSelect={(e) => e.preventDefault()}>
-											INR
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Separator</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup value={separator} onValueChange={(value) => setSeparator(value)}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-							<DropdownSub>
 								<DropdownSubTrigger>Locale</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownRadioGroup value={locale} onValueChange={(value) => setLocale(value)}>
@@ -223,6 +172,21 @@ const CurrencyInputPreview = () => {
 									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Separator</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownRadioGroup value={separator} onValueChange={(value) => setSeparator(value)}>
+										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+											True
+										</DropdownRadioItem>
+										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+											False
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
 							<DropdownSub>
 								<DropdownSubTrigger>Decimals</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -245,6 +209,7 @@ const CurrencyInputPreview = () => {
 									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
 							<DropdownSub>
 								<DropdownSubTrigger>Max value</DropdownSubTrigger>
 								<DropdownSubContent>
@@ -263,6 +228,29 @@ const CurrencyInputPreview = () => {
 										</DropdownRadioItem>
 										<DropdownRadioItem value="100000" onSelect={(e) => e.preventDefault()}>
 											100,000
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							<DropdownSub>
+								<DropdownSubTrigger>Currency</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownRadioGroup value={currency} onValueChange={(value) => setCurrency(value)}>
+										<DropdownRadioItem value="usd" onSelect={(e) => e.preventDefault()}>
+											USD
+										</DropdownRadioItem>
+										<DropdownRadioItem value="eur" onSelect={(e) => e.preventDefault()}>
+											EUR
+										</DropdownRadioItem>
+										<DropdownRadioItem value="gbp" onSelect={(e) => e.preventDefault()}>
+											GBP
+										</DropdownRadioItem>
+										<DropdownRadioItem value="jpy" onSelect={(e) => e.preventDefault()}>
+											JPY
+										</DropdownRadioItem>
+										<DropdownRadioItem value="inr" onSelect={(e) => e.preventDefault()}>
+											INR
 										</DropdownRadioItem>
 									</DropdownRadioGroup>
 								</DropdownSubContent>
@@ -297,7 +285,7 @@ const CurrencyInputPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`<CurrencyInput
-  rounded="${rounded}"
+  separator={${separator === "true"}}
   size="${size}"
   label="${label === "true" ? "Currency Input" : ""}"
   currency="${currency}"

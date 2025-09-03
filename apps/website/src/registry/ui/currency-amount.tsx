@@ -53,8 +53,12 @@ function CurrencyInput({
 
 	// strip symbol from formatted value
 	const formatCurrency = (value: number): string => {
-		const formatted = formatter.format(value)
-		return formatted.replace(currencySymbol, "").trim()
+		const parts = formatter.formatToParts(value)
+		return parts
+			.filter((p) => p.type !== "currency")
+			.map((p) => p.value)
+			.join("")
+			.trim()
 	}
 
 	const peekNumber = (value: string): number | null => {
@@ -173,7 +177,7 @@ function CurrencyInput({
 
 	const currencyLead = (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-			<span className={cn("text-fg-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currencySymbol}</span>
+			<span className={cn("text-fg-tertiary text-sm uppercase", { "text-fg-disabled cursor-not-allowed": props.disabled })}>{currencySymbol}</span>
 		</div>
 	)
 
@@ -183,7 +187,7 @@ function CurrencyInput({
 		</div>
 	) : (
 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-			<span className={cn("text-fg-tertiary text-sm uppercase", { "cursor-not-allowed": props.disabled })}>{currency}</span>
+			<span className={cn("text-fg-tertiary text-sm uppercase", { "text-fg-disabled cursor-not-allowed": props.disabled })}>{currency}</span>
 		</div>
 	)
 

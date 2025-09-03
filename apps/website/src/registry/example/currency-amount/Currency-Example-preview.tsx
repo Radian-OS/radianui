@@ -58,6 +58,7 @@ const CurrencyPreview = () => {
 						<div className="flex rounded-md">
 							<CurrencyInput
 								className="w-80 border-r-0 focus-within:border-r"
+								currency={`${currency}`}
 								size={size}
 								placeholder="0.00"
 								custom={true}
@@ -71,7 +72,7 @@ const CurrencyPreview = () => {
 								disableOpenStyle={true}
 								size={size}
 								minSelectionCount={1}
-								className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+								className="border-alpha focus-visible:border-primary -ms-0 w-20 rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
 								<SelectItem value="usd">USD</SelectItem>
 								<SelectItem value="eur">EUR</SelectItem>
 								<SelectItem value="gbp">GBP</SelectItem>
@@ -96,14 +97,16 @@ const CurrencyPreview = () => {
       type="text"
     />
     
-    <Select
-      selectedValues={["${currency}"]}
-      onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
-      size="${size}"
-      className="-ms-0 w-fit">
-      <SelectItem value="usd">USD</SelectItem>
-      <SelectItem value="eur">EUR</SelectItem>
-      <SelectItem value="gbp">GBP</SelectItem>
+   <Select
+    selectedValues={[currency]}
+    onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
+	disableOpenStyle={true}
+	size={size}
+	minSelectionCount={1}
+	className="border-alpha focus-visible:border-primary -ms-0 w-20 rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+    <SelectItem value="usd">USD</SelectItem>
+     <SelectItem value="eur">EUR</SelectItem>
+     <SelectItem value="gbp">GBP</SelectItem>
     </Select>
   </div>
 </div>`}
