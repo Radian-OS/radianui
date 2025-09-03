@@ -57,7 +57,7 @@ const RingAvatarPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
+				<div className="flex h-[420px] items-center justify-center gap-4 overflow-auto rounded-xl border px-10">
 					<div className={`border-3 rounded-full border-${color}`}>
 						<div className="border-3 border-transparent">
 							<Avatar size="64" src="https://randomuser.me/api/portraits/men/1.jpg" name="Test" />

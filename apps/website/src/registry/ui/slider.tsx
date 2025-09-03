@@ -160,7 +160,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 						</SliderPrimitive.Track>
 						{currentValue?.map((value, index) =>
 							showTooltip ? (
-								<Tooltip key={index} withArrow>
+								<Tooltip key={index}>
 									<TooltipTrigger asChild>
 										<SliderPrimitive.Thumb
 											className={cn(
@@ -169,7 +169,7 @@ function Slider({ className, label, withInput = false, showSteppers = false, mar
 											)}
 										/>
 									</TooltipTrigger>
-									<TooltipContent>{value.toString()}</TooltipContent>
+									<TooltipContent withArrow>{value.toString()}</TooltipContent>
 								</Tooltip>
 							) : (
 								<SliderPrimitive.Thumb
