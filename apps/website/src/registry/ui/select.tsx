@@ -314,13 +314,7 @@ function Select({
 											) : (
 												internalSelectedValues.map((value) => (
 													<span key={value} className="flex items-center">
-														{disabled ? (
-															<Badge>{value}</Badge>
-														) : (
-															<Badge closable onClick={() => removeValue(value)}>
-																{value}
-															</Badge>
-														)}
+														{disabled ? <Badge>{value}</Badge> : <Badge onClick={() => removeValue(value)}>{value}</Badge>}
 													</span>
 												))
 											)}
