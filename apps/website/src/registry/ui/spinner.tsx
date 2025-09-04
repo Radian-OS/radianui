@@ -1,5 +1,3 @@
-import { JSX } from "react"
-
 export type SpinnerVariants = "default" | "simple" | "activity" | "wave"
 
 type SpinnerProps = React.SVGProps<SVGSVGElement> & {
@@ -177,7 +175,7 @@ function WaveSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spinner
 	)
 }
 
-function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps): JSX.Element {
+function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps) {
 	const commonProps = {
 		size,
 		color,

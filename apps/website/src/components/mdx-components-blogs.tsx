@@ -1,14 +1,23 @@
 "use client"
 
 import { HTMLAttributes, useMemo } from "react"
-import { Box } from "lucide-react"
+// import { Box, Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/dist/client"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
 import CodeSnippet from "@/components/code-snippet"
 import PackageManagerTabs, { PackageManagerTabsProps } from "@/components/package-manager-tabs"
 import { cn } from "@/lib/utils"
-import { Alert } from "@/registry/ui/alert"
+
+// import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
+
+// interface MDXAlertProps {
+// 	title?: string
+// 	description?: string
+// 	color?: AlertProps["color"]
+// 	variant?: AlertProps["variant"]
+// 	className?: string
+// }
 
 type MdxBlogProps = {
 	code: string
@@ -31,14 +40,22 @@ const BlogComponents: MDXComponents = {
 	Image: ({ src, alt, className, ...props }: { src: string; alt?: string; className?: string } & Omit<React.ComponentProps<typeof Image>, "src" | "alt" | "className">) => (
 		<Image src={src} alt={alt || ""} className={cn("max-w-200 max-h-100 my-5 h-full w-full rounded-lg object-cover", className)} height={500} width={500} {...props} />
 	),
-	Alert: ({ children, className }: HTMLAttributes<HTMLDivElement>) => (
-		<Alert start={<Box className="size-5" />} color="neutral" variant="soft-outline" className={cn("text-fg-secondary my-5 text-sm", className)}>
-			{children}
-		</Alert>
-	),
-	MessageBox: ({ title, message }: { title?: string; message?: string }) => (
-		<Alert className="my-5" color="warning" variant="soft" start={<Box className="size-5" />} title={title} description={message} />
-	),
+	// Alert: ({ children, className }: HTMLAttributes<HTMLDivElement>) => (
+	// 	<Alert color="neutral" variant="soft-outline" className={cn("text-fg-secondary my-5 text-sm", className)}>
+	// 		<AlertContent>{children}</AlertContent>
+	// 	</Alert>
+	// ),
+	// MessageBox: ({ title, description, color = "warning", variant = "soft", className }: MDXAlertProps) => (
+	// 	<Alert color={color} variant={variant} className={cn("my-5", className)}>
+	// 		<AlertIcon>
+	// 			<Settings className="size-5" />
+	// 		</AlertIcon>
+	// 		<AlertContent>
+	// 			{title && <AlertTitle>{title}</AlertTitle>}
+	// 			{description && <AlertDescription>{description}</AlertDescription>}
+	// 		</AlertContent>
+	// 	</Alert>
+	// ),
 	PackageManagerTabs: ({ commands, className, withIcon = true }: PackageManagerTabsProps) => (
 		<div className="my-5">
 			<PackageManagerTabs commands={commands} className={className} withIcon={withIcon} />

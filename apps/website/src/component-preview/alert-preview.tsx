@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Alert } from "@/registry/ui/alert"
-import { Button, IconButton, LinkButton } from "@/registry/ui/button"
+import { Alert, AlertActions, AlertClose, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -32,7 +32,7 @@ const AlertPreview = () => {
 		info: <Info size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
 		check: <CircleCheck size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
 		alert: <TriangleAlert size={20} className={`${color === "neutral" ? "text-fg-secondary" : ""}`} />,
-		none: "",
+		none: null,
 	}
 
 	const getAlertContent = (type: string) => {
@@ -69,35 +69,47 @@ const AlertPreview = () => {
 	const selectedIcon = icons[start as keyof typeof icons]
 
 	const generateCode = () => {
-		let code = `<Alert
-  variant="${variant}"
-  color="${color}"
-  ${title === "true" ? `title="${alertContent.title}"` : ""}
-  ${description === "true" ? `description="${alertContent.message}"` : ""}`
+		let code = `<Alert color="${color}" variant="${variant}">\n`
 
-		const iconComponent = {
-			star: "Star",
-			info: "Info",
-			check: "CircleCheck",
-			alert: "TriangleAlert",
-			none: "",
-		}[start]
+		if (selectedIcon) {
+			const iconComponent = {
+				star: "Star",
+				info: "Info",
+				check: "CircleCheck",
+				alert: "TriangleAlert",
+				none: null,
+			}[start]
 
-		if (iconComponent !== "none" && iconComponent !== "") {
-			// Updated to include flex-shrink-0 class
-			const iconClassName = color === "neutral" ? 'className="text-fg-secondary"' : ""
-
-			code += `
-  start={<${iconComponent} size={20} ${iconClassName} />}`
+			const iconClassName = color === "neutral" ? ' className="text-fg-secondary"' : ""
+			code += `  <AlertIcon>\n    <${iconComponent} size={20}${iconClassName} />\n  </AlertIcon>\n`
 		}
 
-		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
+		code += `  <AlertContent>\n`
 
-		code += `
-  end={<Button color='${btnColor}'>Action</Button>}`
+		if (title === "true") {
+			code += `    <AlertTitle>${alertContent.title}</AlertTitle>\n`
+		}
 
-		code += `
-/>`
+		if (description === "true") {
+			code += `    <AlertDescription>\n      ${alertContent.message}\n    </AlertDescription>\n`
+		}
+
+		code += `  </AlertContent>\n`
+
+		if (end !== "none") {
+			code += `  <AlertActions>\n`
+			if (end === "button") {
+				const buttonVariant = variant === "strong" ? "soft" : "strong"
+				code += `    <Button variant="${buttonVariant}" color="${color}">Action</Button>\n`
+			}
+			code += `  </AlertActions>\n`
+		}
+
+		if (closable === "true") {
+			code += `  <AlertClose onClick={() => {}} />\n`
+		}
+
+		code += `</Alert>`
 
 		return code
 	}
@@ -253,22 +265,21 @@ const AlertPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Alert
-						title={title === "true" ? `${alertContent.title}` : ""}
-						description={description === "true" ? `${alertContent.message}` : ""}
-						color={color}
-						variant={variant}
-						start={selectedIcon}
-						end={
-							end === "button" ? (
-								<Button color={color}>Action</Button>
-							) : end === "link" ? (
-								<LinkButton target="_blank" href="/docs/components/alert" size="14" color={color}>
-									Button Label
-								</LinkButton>
-							) : undefined
-						}
-					/>
+					<Alert color={color} variant={variant}>
+						{selectedIcon && <AlertIcon>{selectedIcon}</AlertIcon>}
+						<AlertContent>
+							{title === "true" && <AlertTitle>{alertContent.title}</AlertTitle>}
+							{description === "true" && <AlertDescription>{alertContent.message}</AlertDescription>}
+						</AlertContent>
+						{end !== "none" && (
+							<AlertActions>
+								<Button variant={variant === "strong" ? "soft" : "strong"} color={color}>
+									Action
+								</Button>
+							</AlertActions>
+						)}
+						{closable === "true" && <AlertClose onClick={() => {}} />}
+					</Alert>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">

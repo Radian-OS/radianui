@@ -270,7 +270,6 @@ function Button({
 	start,
 	end,
 	asChild = false,
-	// Extract iconOnly from props to prevent it from reaching DOM
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	iconOnly: _iconOnly,
 	...props
@@ -371,21 +370,21 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 
 		return (
 			<Comp className={combinedClass} disabled={disabled} {...props}>
-				{loading ? <Spinner variant="simple" size={Number(size)} /> : children}
+				{children}
 			</Comp>
 		)
 	}
 
 	return (
 		<Comp className={combinedClass} disabled={disabled} {...props}>
-			{loading ? <Spinner variant="simple" size={16} /> : children}
+			{loading ? <Spinner variant="simple" size={Number(size)} /> : children}
 		</Comp>
 	)
 }
 CompactButton.displayName = "CompactButton"
 
 const linkButtonVariants = cva(
-	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit hover:underline [&>svg]:size-5",
+	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit [&>svg]:size-5",
 	{
 		variants: {
 			color: {
@@ -400,15 +399,20 @@ const linkButtonVariants = cva(
 				"14": "text-sm focus-visible:rounded-sm",
 				"16": "text-base  focus-visible:rounded-md",
 			},
+			loading: {
+				true: "",
+				false: "hover:underline",
+			},
 		},
 		defaultVariants: {
 			color: "primary",
+			loading: false,
 		},
 	}
 )
 
 function LinkButton({ size = "14", href, color = "primary", start, end, className, children, disabled, target, rel, loading, ...props }: LinkButtonProps) {
-	const combinedClass = cn(linkButtonVariants({ color, size }), disabled && "opacity-50 pointer-events-none", className)
+	const combinedClass = cn(linkButtonVariants({ color, size, loading: loading || false }), disabled && "opacity-50 pointer-events-none", className)
 
 	if (disabled) {
 		return (
@@ -421,10 +425,16 @@ function LinkButton({ size = "14", href, color = "primary", start, end, classNam
 		)
 	}
 
-	return (
-		<Link href={href} className={combinedClass} target={target} rel={rel} {...props}>
+	return loading ? (
+		<span className={combinedClass} rel={rel} {...props}>
 			{start}
 			{loading ? <Spinner variant="simple" size={size === "14" ? 14 : 16} /> : null}
+			{children}
+			{end}
+		</span>
+	) : (
+		<Link href={href} className={combinedClass} target={target} rel={rel} {...props}>
+			{start}
 			{children}
 			{end}
 		</Link>

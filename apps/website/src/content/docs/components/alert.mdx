@@ -46,12 +46,18 @@ links:
 
 <CodeSnippet
 	title="/components/ui/alert.tsx"
-	code={`<Alert
-      color="info"
-      variant="bordered"
-      title="Information"
-      message="This is an informational alert with an icon."
-    />`}
+	code={`<Alert>
+<AlertIcon><Settings/></AlertIcon>
+<AlertTitle>
+ Settings Updated
+</AlertTitle>
+<AlertDescription>
+ Your settings have been successfully updated.
+</AlertDescription>
+<AlertAction>
+ <Button variant="strong" color="primary">Action</Button>
+</AlertAction>
+</Alert>`}
 />
 
 ---
@@ -82,40 +88,81 @@ links:
 			{
 				name: "variant",
 				defaultValue: "default",
-				values: ["default", "soft-outline", "outline"],
+				values: ["default", "soft-outline", "outline", "strong"],
 				required: false,
 				description: "Defines the visual style of the accordion",
 			},
+		]}
+	/>
+	<PropsTable
+		title="AlertIcon"
+		data={[
 			{
-				name: "title",
-				values: ["string"],
+				name: "-",
+				defaultValue: "-",
+				values: ["-"],
 				required: false,
-				description: "The title of the alert, displayed prominently",
+				description: "Pass an icon as children to display in the alert",
 			},
+		]}
+	/>
+	<PropsTable
+		title="AlertTitle"
+		data={[
 			{
-				name: "message",
-				values: ["string"],
+				name: "-",
+				defaultValue: "-",
+				values: ["-"],
 				required: false,
-				description: "The message content of the alert",
+				description: "Write the title of the alert",
 			},
+		]}
+	/>
+	<PropsTable
+		title="AlertDescription"
+		data={[
 			{
-				name: "start",
-				values: ["ReactNode"],
+				name: "-",
+				defaultValue: "-",
+				values: ["-"],
 				required: false,
-				description: "An optional icon to display alongside the alert",
+				description: "Write the description of the alert",
 			},
+		]}
+	/>
+	<PropsTable
+		title="AlertContent"
+		data={[
 			{
-				name: "end",
-				values: ["ReactNode"],
+				name: "-",
+				defaultValue: "-",
+				values: ["-"],
 				required: false,
-				description: "An optional element to display at the end of the alert",
+				description: "Content wrapper area of the alert to include title, description, and actions",
 			},
+		]}
+	/>
+	<PropsTable
+		title="AlertActions"
+		data={[
 			{
-				name: "closable",
-				defaultValue: "false",
-				values: ["boolean"],
+				name: "-",
+				defaultValue: "-",
+				values: ["-"],
 				required: false,
-				description: "If true, the alert can be closed by the user",
+				description: "Show an end content to the alert container",
+			},
+		]}
+	/>
+	<PropsTable
+		title="AlertClose"
+		data={[
+			{
+				name: "",
+				defaultValue: "-",
+				values: ["-"],
+				required: false,
+				description: "Can pass a children prop to replace the default close icon",
 			},
 		]}
 	/>

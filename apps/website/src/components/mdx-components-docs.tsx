@@ -134,10 +134,10 @@ import {
 	AccordionTrigger,
 	AccordionTriggerProps,
 } from "@/registry/ui/accordion"
-import { Alert, AlertProps } from "@/registry/ui/alert"
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import AlertLucide from "../components/alert-lucide"
+// import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
 import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma-card"
@@ -149,6 +149,12 @@ import SocialLinkCards from "./social-link-cards"
 type MdxProps = {
 	code: string
 }
+// type VersionAlertProps = {
+// 	title?: string
+// 	description?: string
+// 	variant?: AlertProps["variant"]
+// 	color?: AlertProps["color"]
+// }
 
 const components: MDXComponents = {
 	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
@@ -282,7 +288,7 @@ const components: MDXComponents = {
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
-	AlertLucide: () => <AlertLucide />,
+	// AlertLucide: () => <AlertLucide />,
 	FigmaCard: () => <FigmaCard />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
@@ -350,20 +356,24 @@ const components: MDXComponents = {
 	},
 	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
 
-	VersionAlert: (props: Pick<AlertProps, "title" | "description" | "variant" | "color">) => {
+	Alert: (props: AlertProps) => {
+		return <Alert variant="soft" color="primary" {...props} />
+	},
+	AlertIcon: () => {
 		return (
-			<Alert variant={props.variant} color={props.color}>
-				<div className="flex w-full gap-3">
-					<span className="flex flex-shrink-0 items-start">
-						<Settings className="size-5" />
-					</span>
-					<div className="flex flex-1 flex-col">
-						<p className="text-sm font-semibold">{props.title}</p>
-						<p className="text-sm">{props.description}</p>
-					</div>
-				</div>
-			</Alert>
+			<AlertIcon>
+				<Settings className="size-5" />
+			</AlertIcon>
 		)
+	},
+	AlertContent: (props: React.ComponentProps<typeof AlertContent>) => {
+		return <AlertContent {...props} />
+	},
+	AlertTitle: (props: React.ComponentProps<typeof AlertTitle>) => {
+		return <AlertTitle {...props} />
+	},
+	AlertDescription: (props: React.ComponentProps<typeof AlertDescription>) => {
+		return <AlertDescription {...props} />
 	},
 
 	Accordion: (props: AccordionProps) => {
