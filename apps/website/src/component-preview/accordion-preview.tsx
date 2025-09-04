@@ -27,15 +27,19 @@ const items = [
 type Size = "sm" | "lg"
 type Variant = "open" | "box" | "table"
 type Expand = "single" | "multiple"
+type Indicator = "chevron" | "plus-minus"
 
 const DEFAULT_SIZE: Size = "sm"
 const DEFAULT_VARIANT: Variant = "box"
-const DEFAULT_Expand: Expand = "single"
+const DEFAULT_EXPAND: Expand = "single"
+const DEFAULT_INDICATOR: Indicator = "chevron"
 
 export default function AccordionPreview() {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
 	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
-	const [expand, setExpand] = useState<Expand>(DEFAULT_Expand)
+	const [expand, setExpand] = useState<Expand>(DEFAULT_EXPAND)
+	const [indicator, setIndicator] = useState<Indicator>(DEFAULT_INDICATOR)
+	const [collapsible, setCollapsible] = useState<boolean>(true)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -103,6 +107,38 @@ export default function AccordionPreview() {
 									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
+
+							{/* Dropdown for 'Indicator' */}
+							<DropdownSub>
+								<DropdownSubTrigger>Indicator</DropdownSubTrigger>
+								<DropdownSubContent>
+									<DropdownRadioGroup value={indicator} onValueChange={(value) => setIndicator(value as Indicator)}>
+										<DropdownRadioItem value="chevron" onSelect={(e) => e.preventDefault()}>
+											Chevron
+										</DropdownRadioItem>
+										<DropdownRadioItem value="plus-minus" onSelect={(e) => e.preventDefault()}>
+											Plus-Minus
+										</DropdownRadioItem>
+									</DropdownRadioGroup>
+								</DropdownSubContent>
+							</DropdownSub>
+
+							{/* Dropdown for 'Collapsible' - only show when expand is single */}
+							{expand === "single" && (
+								<DropdownSub>
+									<DropdownSubTrigger>Collapsible</DropdownSubTrigger>
+									<DropdownSubContent>
+										<DropdownRadioGroup value={collapsible.toString()} onValueChange={(value) => setCollapsible(value === "true")}>
+											<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+												True
+											</DropdownRadioItem>
+											<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+												False
+											</DropdownRadioItem>
+										</DropdownRadioGroup>
+									</DropdownSubContent>
+								</DropdownSub>
+							)}
 						</DropdownContent>
 					</Dropdown>
 				</div>
@@ -110,10 +146,7 @@ export default function AccordionPreview() {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Accordion
-						{...(variant !== DEFAULT_VARIANT && { variant: variant })}
-						{...(expand !== DEFAULT_Expand && { expand: expand })}
-						{...(size !== DEFAULT_SIZE && { size: size })}>
+					<Accordion variant={variant} size={size} indicator={indicator} type={expand} {...(expand === "single" && { collapsible: collapsible })}>
 						{items.map((item) => (
 							<AccordionItem key={item.value} value={item.value}>
 								<AccordionTrigger>{item.trigger}</AccordionTrigger>
@@ -129,32 +162,38 @@ export default function AccordionPreview() {
 					title="accordion-preview.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`const items = [
+					code={`import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+
+const items = [
   {
-    value: "value 1",
+    value: "value-1",
     trigger: "What is Radian?",
-    content: \`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.\`,
+    content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam fuga nobis dolorem ipsam numquam. Dolorum reiciendis vero veniam repellendus! Eos sint sequi commodi voluptates voluptatum magni illum consequatur quae doloribus.",
   },
   {
-    value: "value 2",
+    value: "value-2", 
     trigger: "How can Radian speed up my development process?",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.",
   },
   {
-    value: "value 3",
+    value: "value-3",
     trigger: "Is Radian suitable for developers of all skill levels?",
     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, facere.",
   },
 ]
 
-<Accordion${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${expand !== DEFAULT_Expand ? ` expand="${expand}"` : ""}>
-  {items.map((item) => (
-    <AccordionItem key={item.value} value={item.value}>
-      <AccordionTrigger>{item.trigger}</AccordionTrigger>
-      <AccordionContent>{item.content}</AccordionContent>
-    </AccordionItem>
-  ))}
-</Accordion>`}
+export function AccordionExample() {
+  return (
+    <Accordion${variant !== DEFAULT_VARIANT ? ` variant="${variant}"` : ""}${expand !== DEFAULT_EXPAND ? ` type="${expand}"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${indicator !== DEFAULT_INDICATOR ? ` indicator="${indicator}"` : ""}${expand === "single" && !collapsible ? ` collapsible={false}` : ""}>
+      {items.map((item) => (
+        <AccordionItem key={item.value} value={item.value}>
+          <AccordionTrigger>{item.trigger}</AccordionTrigger>
+          <AccordionContent>{item.content}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  )
+}`}
 				/>
 			</TabsContent>
 		</Tabs>

@@ -483,7 +483,7 @@ function DatePicker({
 						value={inputValue}
 						placeholder="Select a date"
 						end={
-							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
+							<Popover open={open} onOpenChange={setOpen}>
 								<PopoverTrigger disabled={disabled}>
 									<CalendarIcon
 										className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
@@ -493,7 +493,7 @@ function DatePicker({
 									/>
 								</PopoverTrigger>
 
-								<PopoverContent className={cn("bg-bg drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+								<PopoverContent align="end" sideOffset={14} className={cn("bg-bg drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
 									{mode === "single" && (
 										<Calendar
 											onIndexChange={(value) => {
