@@ -3,13 +3,15 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar } from "@/registry/ui/avatar"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Side = "top" | "bottom" | "left" | "right"
 type Align = "center" | "end" | "start"
+
+const DEFAULT_SIDE: Side = "bottom"
+const DEFAULT_ALIGN: Align = "center"
 
 const profile = {
 	name: "Aurthur Dominic",
@@ -18,8 +20,8 @@ const profile = {
 }
 
 const PopoverPreview = () => {
-	const [side, setSide] = useState<Side>("bottom")
-	const [align, setAlign] = useState<Align>("start")
+	const [side, setSide] = useState<Side>(DEFAULT_SIDE)
+	const [align, setAlign] = useState<Align>(DEFAULT_ALIGN)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -82,16 +84,15 @@ const PopoverPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Popover side={side} align={align}>
+					<Popover>
 						<PopoverTrigger asChild>
 							<Button color="neutral" variant={"outline"}>
 								{profile.name}
 							</Button>
 						</PopoverTrigger>
-						<PopoverContent className="flex w-fit flex-col gap-3">
+						<PopoverContent side={side} align={align} className="flex w-fit flex-col gap-3">
 							<div className="flex flex-col gap-2">
 								<div className="text-sm font-medium">Contact Details</div>
-								<Divider className="-mx-4 w-[calc(100%)+0.125rem]" />
 							</div>
 							<div className="flex items-center gap-3">
 								<Avatar name="Aurther Dominic" src={profile.avatar} />
@@ -110,7 +111,34 @@ const PopoverPreview = () => {
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeSnippet title="popover.tsx" showLineNumber className="h-[420px]" code={``} />
+				<CodeSnippet
+					title="popover.tsx"
+					showLineNumber
+					className="h-[420px]"
+					code={`<Popover>
+	<PopoverTrigger asChild>
+		<Button color="neutral" variant={"outline"}>
+			{profile.name}
+		</Button>
+	</PopoverTrigger>
+	<PopoverContent ${side !== DEFAULT_SIDE ? ` side="${side}"` : ""} ${align !== DEFAULT_ALIGN ? ` align="${align}"` : ""} className="flex w-fit flex-col gap-3">
+		<div className="flex flex-col gap-2">
+			<div className="text-sm font-medium">Contact Details</div>
+		</div>
+		<div className="flex items-center gap-3">
+			<Avatar name="Aurther Dominic" src={profile.avatar} />
+			<div className="flex flex-col text-sm">
+				<div className="font-medium">{profile.name}</div>
+				<div className="text-fg-secondary">{profile.email}</div>
+			</div>
+		</div>
+		<div className="flex gap-3">
+			<Button variant="outline">Send Message</Button>
+			<Button>Contact</Button>
+		</div>
+	</PopoverContent>	
+</Popover>`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)

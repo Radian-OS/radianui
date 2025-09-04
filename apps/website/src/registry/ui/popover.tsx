@@ -4,35 +4,23 @@ import * as React from "react"
 import * as PopoverPrimitive from "@radix-ui/react-popover"
 import { cn } from "@/lib/utils"
 
-type PopoverContext = Pick<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side" | "sideOffset">
+type PopoverProps = React.ComponentProps<typeof PopoverPrimitive.Root>
 
-type PopoverProps = React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Root> &
-	Pick<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side" | "sideOffset">
+type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content>
 
-type PopoverContentProps = Omit<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, "align" | "side">
+type PopoverTriggerProps = React.ComponentProps<typeof PopoverPrimitive.Trigger>
 
-const PopoverContext = React.createContext<PopoverContext | null>(null)
-
-function usePopoverContext() {
-	const context = React.use(PopoverContext)
-	if (!context) throw new Error("usePopoverContext must be used within <Popover/>")
-	return context
-}
-
-function Popover({ align = "start", side = "bottom", sideOffset = 4, children, ...props }: PopoverProps) {
-	const ctxValues = React.useMemo(() => ({ align, side, sideOffset }), [align, side, sideOffset])
-	return (
-		<PopoverPrimitive.Root {...props}>
-			<PopoverContext.Provider value={ctxValues}>{children}</PopoverContext.Provider>
-		</PopoverPrimitive.Root>
-	)
+function Popover({ children, ...props }: PopoverProps) {
+	return <PopoverPrimitive.Root {...props}>{children}</PopoverPrimitive.Root>
 }
 Popover.displayName = PopoverPrimitive.Root.displayName
 
-const PopoverTrigger = PopoverPrimitive.Trigger
+function PopoverTrigger({ ...props }: PopoverTriggerProps) {
+	return <PopoverPrimitive.Trigger {...props} />
+}
+PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
 
-function PopoverContent({ className, ...props }: PopoverContentProps) {
-	const { align, side, sideOffset } = usePopoverContext()
+function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, className, ...props }: PopoverContentProps) {
 	return (
 		<PopoverPrimitive.Portal>
 			<PopoverPrimitive.Content
