@@ -83,7 +83,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 					))}
 				</ul>
 
-				<Accordion size="sm" variant="open" collapsible>
+				<Accordion type="single" size="sm" variant="open" collapsible>
 					{navigationItems.map((section) => (
 						<AccordionItem className="border-none" value={section.title} key={section.title}>
 							<section>

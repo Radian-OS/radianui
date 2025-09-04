@@ -50,7 +50,7 @@ function AccordionWithIconExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<Accordion variant="open" defaultValue={"2"}>
+					<Accordion type="single" collapsible variant="open" defaultValue={"2"}>
 						{contents.map((item) => (
 							<AccordionItem value={item.id.toString()} key={item.id}>
 								<AccordionTrigger>
@@ -127,7 +127,7 @@ export function AccordionWithIcon() {
 
 export function AccordionWithIcon() {
 	return (
-		<Accordion variant="open">
+		<Accordion collapsible type="single" variant="open">
 			{contents.map((item) => (
 				<AccordionItem value={item.id.toString()} key={item.id}>
 					<AccordionTrigger>
