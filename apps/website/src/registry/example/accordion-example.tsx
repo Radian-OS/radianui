@@ -5,7 +5,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const AccordionExample = () => {
 	return (
 		<div className="flex flex-col gap-5">
-			<Accordion>
+			<Accordion type="single" collapsible>
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>
@@ -25,7 +25,7 @@ const AccordionExample = () => {
 				</AccordionItem>
 			</Accordion>
 
-			<Accordion size="lg">
+			<Accordion type="single" size="lg" collapsible>
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>
@@ -45,7 +45,7 @@ const AccordionExample = () => {
 				</AccordionItem>
 			</Accordion>
 
-			<Accordion size="sm" variant="open">
+			<Accordion type="single" size="sm" variant="open" collapsible>
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>
@@ -65,7 +65,7 @@ const AccordionExample = () => {
 				</AccordionItem>
 			</Accordion>
 
-			<Accordion size="sm" variant="table">
+			<Accordion type="multiple" size="sm" variant="table">
 				<AccordionItem value="value 1">
 					<AccordionTrigger>What is Radian?</AccordionTrigger>
 					<AccordionContent>

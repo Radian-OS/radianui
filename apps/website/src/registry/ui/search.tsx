@@ -42,7 +42,7 @@ function SearchInput({
 	)
 
 	return (
-		<Popover open={showResults} align="start">
+		<Popover open={showResults}>
 			<PopoverTrigger asChild>
 				<div>
 					<Input start={<Search size={20} className="stroke-fg-tertiary" />} label={label} hint={hint} hasError={hasError} size={size} id={id} value={value} {...props} />
@@ -50,6 +50,7 @@ function SearchInput({
 			</PopoverTrigger>
 			{suggestion && (
 				<PopoverContent
+					align="start"
 					onOpenAutoFocus={function (e) {
 						e.preventDefault()
 					}}
