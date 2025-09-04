@@ -137,7 +137,7 @@ import {
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import AlertLucide from "../components/alert-lucide"
+// import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
 import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma-card"
@@ -288,7 +288,7 @@ const components: MDXComponents = {
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
-	AlertLucide: () => <AlertLucide />,
+	// AlertLucide: () => <AlertLucide />,
 	FigmaCard: () => <FigmaCard />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
@@ -349,7 +349,7 @@ const components: MDXComponents = {
 	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <ul className={cn("list-disc space-y-4 pb-6", className)}>{children}</ul>
 	},
-	ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("marker:text-fg my-6 ml-6 list-decimal marker:font-bold", className)} {...props} />,
+	ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("marker:text-fg my-6 ml-6 list-decimal space-y-4 marker:font-bold", className)} {...props} />,
 
 	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
@@ -425,7 +425,7 @@ const components: MDXComponents = {
 	),
 	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
 		<Image
-			className={cn("bg-fill2 border-soft my-4 rounded-2xl border-8 object-cover", className)}
+			className={cn("bg-fill2 border-soft mb-6 mt-4 rounded-2xl border-8 object-cover", className)}
 			src={src || ""}
 			width={Number(width)}
 			height={Number(height)}
