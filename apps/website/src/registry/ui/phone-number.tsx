@@ -495,13 +495,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		const { code, name, callingCode } = countryData
 
 		return (
-			<SelectItem
-				key={code}
-				value={code} // ISO code as value
-				// Pass search keywords to the SelectItem for enhanced search
-				keywords={countryData.searchKeywords}
-				endContent={`+${callingCode}`}
-				startContent={<Flag country={code} />}>
+			<SelectItem key={code} value={code} keywords={countryData.searchKeywords} endContent={`+${callingCode}`} startContent={<Flag country={code} />}>
 				<span>{name}</span>
 			</SelectItem>
 		)

@@ -134,7 +134,7 @@ import {
 	AccordionTrigger,
 	AccordionTriggerProps,
 } from "@/registry/ui/accordion"
-import { Alert, AlertProps } from "@/registry/ui/alert"
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import AlertLucide from "../components/alert-lucide"
@@ -149,6 +149,12 @@ import SocialLinkCards from "./social-link-cards"
 type MdxProps = {
 	code: string
 }
+// type VersionAlertProps = {
+// 	title?: string
+// 	description?: string
+// 	variant?: AlertProps["variant"]
+// 	color?: AlertProps["color"]
+// }
 
 const components: MDXComponents = {
 	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
@@ -350,20 +356,24 @@ const components: MDXComponents = {
 	},
 	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
 
-	VersionAlert: (props: Pick<AlertProps, "title" | "description" | "variant" | "color">) => {
+	Alert: (props: AlertProps) => {
+		return <Alert variant="soft" color="primary" {...props} />
+	},
+	AlertIcon: () => {
 		return (
-			<Alert variant={props.variant} color={props.color}>
-				<div className="flex w-full gap-3">
-					<span className="flex flex-shrink-0 items-start">
-						<Settings className="size-5" />
-					</span>
-					<div className="flex flex-1 flex-col">
-						<p className="text-sm font-semibold">{props.title}</p>
-						<p className="text-sm">{props.description}</p>
-					</div>
-				</div>
-			</Alert>
+			<AlertIcon>
+				<Settings className="size-5" />
+			</AlertIcon>
 		)
+	},
+	AlertContent: (props: React.ComponentProps<typeof AlertContent>) => {
+		return <AlertContent {...props} />
+	},
+	AlertTitle: (props: React.ComponentProps<typeof AlertTitle>) => {
+		return <AlertTitle {...props} />
+	},
+	AlertDescription: (props: React.ComponentProps<typeof AlertDescription>) => {
+		return <AlertDescription {...props} />
 	},
 
 	Accordion: (props: AccordionProps) => {

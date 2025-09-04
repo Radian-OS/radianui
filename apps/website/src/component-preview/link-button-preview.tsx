@@ -14,6 +14,7 @@ const LinkButtonPreview = () => {
 	const [color, setColor] = useState<colors>("primary")
 	const [start, setStart] = useState<"true" | "false">("false")
 	const [end, setEnd] = useState<"true" | "false">("false")
+	const [loading, setLoading] = useState<"true" | "false">("false")
 
 	const code = (() => {
 		return `<LinkButton
@@ -22,6 +23,7 @@ target="_blank"
 size="${size}"
 disabled={${disabled === "true"}}
 color="${color}"
+loading={${loading === "true"}}
 ${start === "true" ? "start={<ChevronLeft />}" : ""}
 ${end === "true" ? "end={<ChevronRight />}" : ""}
 >
@@ -85,6 +87,7 @@ ${end === "true" ? "end={<ChevronRight />}" : ""}
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+
 						<DropdownSub>
 							<DropdownSubTrigger>Start</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -124,6 +127,20 @@ ${end === "true" ? "end={<ChevronRight />}" : ""}
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
+
+						<DropdownSub>
+							<DropdownSubTrigger>Loading</DropdownSubTrigger>
+							<DropdownSubContent>
+								<DropdownRadioGroup value={loading} onValueChange={(value) => setLoading(value as "true" | "false")}>
+									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
+										True
+									</DropdownRadioItem>
+									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
+										False
+									</DropdownRadioItem>
+								</DropdownRadioGroup>
+							</DropdownSubContent>
+						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -134,6 +151,7 @@ ${end === "true" ? "end={<ChevronRight />}" : ""}
 						end={end === "true" ? <ChevronRight /> : undefined}
 						href="/docs/components/button"
 						target="_blank"
+						loading={loading === "true"}
 						size={size}
 						disabled={disabled === "true"}
 						color={color}>
