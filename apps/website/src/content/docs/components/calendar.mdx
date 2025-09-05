@@ -9,10 +9,6 @@ links:
       href: https://daypicker.dev/
       icon: react-day-picker.webp
 
-    - label: "@internationalized/date"
-      href: https://www.npmjs.com/package/@internationalized/date
-      icon: npm.svg
-
     - label: date-fns
       href: https://www.npmjs.com/package/date-fns
       icon: npm.svg
@@ -42,22 +38,15 @@ links:
         <Step>Install the following dependencies:</Step>
     	<PackageManagerTabs
     		commands={{
-    			pnpm: "pnpm add culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
-    			npm: "npm install culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
-    			yarn: "yarn add culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
-    			bun: "bun add culori @radix-ui/react-slot @radix-ui/react-label @radix-ui/react-popover cmdk @radix-ui/react-dropdown-menu",
+    			pnpm: "pnpm add react-day-picker date-fns",
+    			npm: "npm install react-day-picker date-fns",
+    			yarn: "yarn add react-day-picker date-fns",
+    			bun: "bun add react-day-picker date-fns",
     		}}
     	/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="calendar">
-    		<TabsList>
-    			<TabsTrigger value="calendar">Calendar</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="calendar">
-    			<ComponentSource name="calendar" title="components/ui/calendar.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
+    	<ComponentSource name="calendar" title="components/ui/calendar.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -91,6 +80,14 @@ links:
 ### Time Picker Calendar
 
 <TimePickerCalendarPreview />
+
+### Calender with Year and Month Selector
+
+<CalendarWithYearMonthSelectorExample />
+
+### Multiple Months Range Calendar
+
+<MultipleMonthsCalendarExample />
 
 ### Calendar Footer
 

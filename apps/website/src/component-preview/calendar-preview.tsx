@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 export type DatePickerModes = "single" | "multiple" | "range"
 
 const CalendarPreview = () => {
-	const [mode, setMode] = useState<DatePickerModes>("range")
+	const [mode, setMode] = useState<DatePickerModes>("single")
 	const [totalCalendar, setTotalCalendar] = useState<number>(1)
 
 	return (

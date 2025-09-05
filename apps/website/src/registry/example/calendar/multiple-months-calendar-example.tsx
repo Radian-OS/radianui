@@ -1,10 +1,9 @@
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const FooterCalendarPreview = () => {
+export default function MultipleMonthsCalendarExample() {
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
@@ -20,16 +19,7 @@ const FooterCalendarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
-					<Calendar
-						mode={"single"}
-						classNames={{ month: "pb-2" }}
-						footer={
-							<div className="border-border flex justify-end gap-2 border-t pb-0 pt-3">
-								<Button variant="outline">Cancel</Button>
-								<Button>Apply</Button>
-							</div>
-						}
-					/>
+					<Calendar mode="range" numberOfMonths={2} />
 				</div>
 			</TabsContent>
 
@@ -45,20 +35,9 @@ import * as React from "react"
 
 import { Calendar } from "@/components/ui/calendar"
 
-export default function CalendarFooter() {
+export default function MultipleMonthsCalendarExample() {
 	return (
-		<Calendar
-			mode={"single"}
-			classNames={{
-				months: "pb-2",
-			}}
-			footer={
-				<div className="border-border flex justify-end gap-2 border-t pb-0 pt-3">
-					<Button variant="outline">Cancel</Button>
-					<Button>Apply</Button>
-				</div>
-			}
-		/>	
+        <Calendar mode="range" numberOfMonths={2} />
 	)
 }`}
 				/>
@@ -66,5 +45,3 @@ export default function CalendarFooter() {
 		</Tabs>
 	)
 }
-
-export default FooterCalendarPreview
