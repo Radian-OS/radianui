@@ -87,8 +87,8 @@ links:
 			},
 			{
 				name: "variant",
-				defaultValue: "default",
-				values: ["default", "soft-outline", "outline", "strong"],
+				defaultValue: "soft",
+				values: ["soft-outline", "outline", "strong"],
 				required: false,
 				description: "Defines the visual style of the accordion",
 			},
@@ -151,18 +151,6 @@ links:
 				values: ["-"],
 				required: false,
 				description: "Show an end content to the alert container",
-			},
-		]}
-	/>
-	<PropsTable
-		title="AlertClose"
-		data={[
-			{
-				name: "",
-				defaultValue: "-",
-				values: ["-"],
-				required: false,
-				description: "Can pass a children prop to replace the default close icon",
 			},
 		]}
 	/>

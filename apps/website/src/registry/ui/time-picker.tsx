@@ -1,9 +1,9 @@
 import React from "react"
 import { Time } from "@internationalized/date"
 import { cn } from "@/lib/utils"
-import { Select, SelectItem, type SelectProps } from "./select"
+import { Select, SelectItem } from "./select"
 
-export type TimePickerProps = Pick<SelectProps, "className" | "classNames" | "defaultSelected" | "label" | "placeholder" | "size" | "renderTrigger" | "disabled"> & {
+export type TimePickerProps = {
 	interval?: number
 	value?: Time | null
 	onValueChange?: (time: Time | null) => void
@@ -45,7 +45,6 @@ function TimePicker({
 	defaultValue,
 	value = null,
 	allowEmptySelection = true,
-	classNames,
 	lead,
 	...props
 }: TimePickerProps) {
@@ -123,8 +122,8 @@ function TimePicker({
 			}}
 			lead={lead}
 			variants="input"
-			className="w-full"
-			classNames={{ content: cn("h-80"), ...classNames }}
+			// className="w-full"
+			classNames={{ content: cn("h-80") }}
 			minSelectionCount={allowEmptySelection ? 0 : 1}
 			{...props}>
 			{timeOptions.map((time, index) => {

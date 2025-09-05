@@ -109,12 +109,7 @@ export default function ColorPickerExample() {
 								defaultColor="#461EFA"
 								className="w-62 rounded-r-none border-r-0 focus-within:border-r"
 							/>
-							<Select
-								selectedValues={[inputFormat]}
-								onSelectedChange={(values) => handleFormatChange(values[0] as ColorFormatOptions)}
-								disableOpenStyle={true}
-								size={size}
-								className="-ms-0 w-fit">
+							<Select selectedValues={[inputFormat]} onSelectedChange={(values) => handleFormatChange(values[0] as ColorFormatOptions)} disableOpenStyle={true}>
 								<SelectItem value="HEX">HEX</SelectItem>
 								<SelectItem value="HSL">HSL</SelectItem>
 								<SelectItem value="OKLCH">OKLCH</SelectItem>

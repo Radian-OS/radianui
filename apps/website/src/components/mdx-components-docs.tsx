@@ -39,7 +39,7 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
-import FormPreview from "@/component-preview/form-preview"
+// import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -91,6 +91,8 @@ import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
 import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
+import CalendarWithYearMonthSelectorExample from "@/registry/example/calendar/calendar-year-month-selector-example"
+import MultipleMonthsCalendarExample from "@/registry/example/calendar/multiple-months-calendar-example"
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
@@ -220,6 +222,8 @@ const components: MDXComponents = {
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,
+	CalendarWithYearMonthSelectorExample: () => <CalendarWithYearMonthSelectorExample />,
+	MultipleMonthsCalendarExample: () => <MultipleMonthsCalendarExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
 	PasswordInputPreview2: () => <PasswordInputPreview2 />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
@@ -250,7 +254,7 @@ const components: MDXComponents = {
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	FormPreview: () => <FormPreview />,
+	// FormPreview: () => <FormPreview />,
 	FormExample1: () => <FormExample1 />,
 	FormExample2: () => <FormExample2 />,
 	FormExample3: () => <FormExample3 />,

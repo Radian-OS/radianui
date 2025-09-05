@@ -134,16 +134,7 @@ const TimePickerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<TimePicker
-						label={label ? "Time Picker" : undefined}
-						size={size as SizeOptions}
-						lead={leadIcon ? <Clock className={iconClass} /> : null}
-						disabled={disabled}
-						is24Hour={is24Hour}
-						interval={interval}
-						placeholder="Select time"
-						classNames={{ base: "w-[320px] flex" }}
-					/>
+					<TimePicker lead={leadIcon ? <Clock className={iconClass} /> : null} is24Hour={is24Hour} interval={interval} />
 				</div>
 			</TabsContent>
 

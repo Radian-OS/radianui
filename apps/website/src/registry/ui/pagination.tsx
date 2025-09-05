@@ -103,12 +103,11 @@ const Pagination: React.FC<PaginationProps> = function ({
 							setHiddenPages(hiddenPagesBefore)
 						}}>
 						<Select
-							placeholder="..."
-							size="32"
 							endIcon={false}
 							selectedValues={[]}
 							onSelectedChange={handleSelectChange}
-							className="border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+							// className="border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+						>
 							{hiddenPages.map((page) => (
 								<SelectItem className="w-20" key={page} value={page.toString()}>
 									{page}
@@ -146,12 +145,11 @@ const Pagination: React.FC<PaginationProps> = function ({
 							setHiddenPages(hiddenPagesAfter)
 						}}>
 						<Select
-							placeholder="..."
 							selectedValues={[]}
-							size="32"
 							endIcon={false}
 							onSelectedChange={handleSelectChange}
-							className="border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+							// className="border-alpha focus-visible:border-primary -ms-0 w-fit border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
+						>
 							{hiddenPages.map((page) => (
 								<SelectItem className="w-20" key={page} value={page.toString()}>
 									{page}
@@ -270,7 +268,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 					<div className="flex items-center justify-center gap-6">
 						<span className="text-sm">Row per page</span>
 						<div>
-							<Select selectedValues={[rowsPerPage.toString()]} onSelectedChange={handleRowsPerPageChange} className="h-8 w-max">
+							<Select selectedValues={[rowsPerPage.toString()]} onSelectedChange={handleRowsPerPageChange}>
 								{Array.from({ length: Math.ceil(totalPage / 5) }, (_, i) => {
 									const value = (i + 1) * 5
 									return (
@@ -287,7 +285,7 @@ const Pagination: React.FC<PaginationProps> = function ({
 					<div className="flex items-center justify-center gap-6">
 						<span className="text-sm">Go to</span>
 						<div>
-							<Select selectedValues={[currentPage.toString()]} onSelectedChange={(values) => handlePageChange(parseInt(values[0], 10))} className="h-8 w-max">
+							<Select selectedValues={[currentPage.toString()]} onSelectedChange={(values) => handlePageChange(parseInt(values[0], 10))}>
 								{[...Array(totalPages)].map((_, index) => {
 									const value = index + 1 // Calculate the value dynamically
 

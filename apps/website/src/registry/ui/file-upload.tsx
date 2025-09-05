@@ -137,18 +137,7 @@ function FileUpload({
 	return (
 		<>
 			{variant === "input" ? (
-				<Input
-					fileUpload={true}
-					size={sizes}
-					onChange={handleFileChange}
-					id="picture"
-					type="file"
-					label={label ? `${label}` : ""}
-					disabled={disabled}
-					multiple={multiple}
-					hint={errors.length > 0 ? errors[0] : hint}
-					hasError={errors.length > 0 || hasError}
-				/>
+				<Input size={sizes} onChange={handleFileChange} id="picture" type="file" disabled={disabled} multiple={multiple} />
 			) : (
 				<div className={cn("flex w-80 flex-col gap-1.5", className)}>
 					{label && <Label htmlFor="picture">{label}</Label>}

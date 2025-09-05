@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ArrowRight, EyeIcon, Mail, Settings, SquareTerminal } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -92,16 +92,7 @@ const EmailPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Input
-						size={size}
-						type="email"
-						className="w-80"
-						label={"Email"}
-						placeholder="designer@radianos.com"
-						start={trailIcon === "Mail" ? <Mail className={iconClass} /> : trailIcon === "Arrow" ? <ArrowRight className={iconClass} /> : ""}
-						hasError={hasError}
-						hint={hasError ? "Hint text to help the user with input" : " "}
-					/>
+					<Input size={size} type="email" className="w-80" placeholder="designer@radianos.com" />
 				</div>
 			</TabsContent>
 

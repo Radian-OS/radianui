@@ -33,8 +33,8 @@ const SignIn = () => {
 
 						<div className="space-y-5">
 							<form className="space-y-4">
-								<Input label="Email" type="email" />
-								<Password label="Password" />
+								<Input type="email" />
+								<Password />
 								<div className="flex items-center space-x-2">
 									<Checkbox />
 									<label htmlFor="terms" className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">

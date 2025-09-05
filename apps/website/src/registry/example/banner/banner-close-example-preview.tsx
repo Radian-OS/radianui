@@ -1,60 +1,82 @@
+"use client"
+
 import { useState } from "react"
-import { EyeIcon, SquareTerminal, Star } from "lucide-react"
+import { EyeIcon, SquareTerminal, Star, X } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Banner } from "@/registry/ui/banner"
+import { Banner, BannerAction, BannerDescription, BannerTitle } from "@/registry/ui/banner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerCloseExamplePreview = () => {
 	const [isVisible, setIsVisible] = useState(true)
 
-	const handleClose = (): void => {
+	const handleClose = () => {
 		setIsVisible(false)
 	}
 
-	if (!isVisible) return null
 	return (
-		<Tabs className="" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="" defaultValue="preview" variant="outline-ghost" size="md">
 			<TabsList>
-				<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsTrigger onClick={() => setIsVisible(true)} value="preview" icon={<EyeIcon />}>
 					Preview
 				</TabsTrigger>
-				<TabsTrigger value="code" icon={<SquareTerminal />}>
+				<TabsTrigger onClick={() => setIsVisible(true)} value="code" icon={<SquareTerminal />}>
 					Code
 				</TabsTrigger>
 			</TabsList>
+
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border">
-					{isVisible && <Banner title="Banner Title Here" description="Banner description goes here" start={<Star size={20} />} variant="outline" onClose={handleClose}></Banner>}
+					{isVisible && (
+						<Banner variant="outline">
+							<BannerTitle>
+								<Star size={20} />
+							</BannerTitle>
+
+							<BannerTitle>Banner Title Here</BannerTitle>
+							<BannerDescription>Banner description goes here</BannerDescription>
+							<BannerAction onClick={handleClose}>
+								<X className="cursor-pointer" size={16} />
+							</BannerAction>
+						</Banner>
+					)}
 				</div>
 			</TabsContent>
+
 			<TabsContent value="code">
 				<CodeSnippet
-					title="banner-example-preview1.tsx"
+					title="banner-close-example.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`export default function BannerOncloseExample() { 
-	const [isVisible, setIsVisible] = useState(true)
+					code={`import { useState } from "react"
+import { Star, X } from "lucide-react"
+import { Banner, BannerAction, BannerDescription, BannerTitle } from "@/registry/ui/banner"
 
-	const handleClose = (): void => {
-		setIsVisible(false)
-	}
+export default function BannerOnCloseExample() {
+  const [isVisible, setIsVisible] = useState(true)
+
+  const handleClose = () => setIsVisible(false)
 
   return (
-	<div>
-		{isVisible && (
-			<Banner 
-				title="Banner Title Here" 
-				description="Banner description goes here" 
-				start={<Star size={20} />} 
-				variant="outline" 
-				onClose={handleClose}> 
-			</Banner>}
-		)}
-	</div>
-  )`}
+    <div className="p-4">
+      {isVisible && (
+       <Banner variant="outline">
+        <BannerTitle>
+         <Star size={20} />
+	    </BannerTitle>
+        <BannerTitle>Banner Title Here</BannerTitle>
+        <BannerDescription>Banner description goes here</BannerDescription>
+        <BannerAction onClick={handleClose}>
+          <X className="cursor-pointer" size={16} />
+        </BannerAction>
+        </Banner>
+    )}
+    </div>
+  )
+}`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
+
 export default BannerCloseExamplePreview

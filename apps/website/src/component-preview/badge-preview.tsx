@@ -9,9 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 const BadgePreview = () => {
 	const [variant, setVariant] = useState<"default" | "strong" | "outline" | "soft">("soft")
 	const [color, setColor] = useState<"primary" | "neutral" | "info" | "success" | "error" | "warning">("primary")
-	const [closable, setClosable] = useState<"true" | "false">("false")
 	const [size, setSize] = useState<"24" | "20" | "28">("24")
-	const [key, setKey] = useState(0)
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
@@ -92,26 +90,12 @@ const BadgePreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>OnClose</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={closable} onValueChange={(value) => setClosable(value as "true" | "false")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Badge color={color} key={key} onClose={closable === "true" ? () => setKey((k) => k + 1) : undefined} variant={variant} size={size}>
+					<Badge color={color} variant={variant} size={size}>
 						Badge Example
 					</Badge>
 				</div>
@@ -124,7 +108,6 @@ const BadgePreview = () => {
 					code={`<Badge 
  size="${size}" 
  variant="${variant}" 
- onClose={() => console.log("Badge closed")}
  color="${color}"
  >
  Badge Example

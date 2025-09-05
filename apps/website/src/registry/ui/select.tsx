@@ -9,7 +9,7 @@ import { Badge } from "./badge"
 import { Button } from "./button"
 import { Divider } from "./divider"
 import { Dropdown, DropdownContent, DropdownTrigger } from "./dropdown"
-import { Input, type InputProps } from "./input"
+import { Input } from "./input"
 import { Label } from "./label"
 
 // Type definition for the SelectItem component props
@@ -125,7 +125,7 @@ export type SelectClassNames = {
 	input?: string /* The search input used inside the select */
 }
 
-export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" | "size" | "disabled" | "className"> & {
+export type SelectProps = {
 	selectedValues?: string[]
 	variant?: "strong" | "outline" | "soft" | "ghost" | "neutral-soft" | "neutral-outline" | null
 	disableOpenStyle?: boolean
@@ -149,34 +149,31 @@ export type SelectProps = Pick<InputProps, "label" | "placeholder" | "children" 
 	// New props for external open state control
 	open?: boolean
 	onOpenChange?: (open: boolean) => void
+	label?: string
+	children?: React.ReactNode
+	disabled?: boolean
 }
 
 // Select component for rendering a dropdown with selection options
 function Select({
-	children,
 	label,
+	children,
+	disabled,
 	// disableOpenStyle = false,
-	placeholder,
 	selectedValues,
 	onSelectedChange,
 	isSearchable = false,
 	selectionMode = "single",
-	lead,
 	// trail,
 	searchPlaceholder = "Search",
 	renderTrigger,
-	size = "40",
 	defaultSelected = [],
 	minSelectionCount = 0,
 	showSelectedCheck = true,
-	disabled = false,
-	className,
 	classNames,
 	customValue,
 	variants = "button",
 	endIcon = true,
-	hint,
-	hasError = false,
 	// New props for external open state control
 	open: externalOpen,
 	onOpenChange,
@@ -275,29 +272,15 @@ function Select({
 							) : (
 								<div>
 									{variants === "input" ? (
-										<Input
-											placeholder={placeholder}
-											start={lead}
-											end={!open ? <ChevronDown size={20} className="text-fg-tertiary" /> : <ChevronUp size={20} className="text-fg-tertiary" />}
-											size={size}
-											value={selectedLabels}
-											hint={hint}
-											hasError={hasError}
-											disabled={disabled}
-										/>
+										<Input value={selectedLabels} disabled={disabled} />
 									) : variants === "button" ? (
 										<Button
 											end={endIcon && (!open ? <ChevronDown size={16} className="text-fg-tertiary" /> : <ChevronUp size={16} className="text-fg-tertiary" />)}
 											variant="outline"
 											color="neutral"
-											size={["28", "32", "36", "40", "44", "48"].includes(String(size)) ? (size as "28" | "32" | "36" | "40" | "44" | "48") : "40"}
-											disabled={disabled}
-											className={className}>
-											<span
-												className={cn("text-fg flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {
-													"text-base": size === "44" || size === "48",
-												})}>
-												{selectedLabels.length == 0 && placeholder}
+											disabled={disabled}>
+											<span className={cn("text-fg flex-1 shrink-0 items-center gap-2 truncate text-start font-medium", {})}>
+												{selectedLabels.length == 0}
 												{customValue && `${customValue}`}
 												{selectionMode === "single" && selectedLabels.length === 1 && " " + selectedLabels[0]}
 												{selectionMode === "multiple" && selectedLabels.length > 0 && " " + selectedLabels.join(", ")}
@@ -310,17 +293,11 @@ function Select({
 												disabled ? "text-fg-disabled bg-fill1 cursor-not-allowed drop-shadow-none" : ""
 											} flex min-h-[35px] w-full flex-wrap items-center gap-2 p-2 text-sm`}>
 											{internalSelectedValues.length === 0 ? (
-												<span className="text-fg-tertiary">{placeholder}</span>
+												<></>
 											) : (
 												internalSelectedValues.map((value) => (
 													<span key={value} className="flex items-center">
-														{disabled ? (
-															<Badge>{value}</Badge>
-														) : (
-															<Badge closable onClick={() => removeValue(value)}>
-																{value}
-															</Badge>
-														)}
+														{disabled ? <Badge>{value}</Badge> : <Badge onClick={() => removeValue(value)}>{value}</Badge>}
 													</span>
 												))
 											)}

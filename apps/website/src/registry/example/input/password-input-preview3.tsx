@@ -274,11 +274,7 @@ export default PasswordInputPreview
 							onChange={(e) => setPassword(e.target.value)}
 							placeholder={placeholder === "true" ? "Enter your password" : ""}
 							className="w-80"
-							label={label === "true" ? "Password" : ""}
 							disabled={disabled === "true"}
-							size={size}
-							hasError={error === "true"}
-							hint={hint ? "Hint text to help the user with input" : ""}
 							visibility={trail}
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}

@@ -183,41 +183,11 @@ const FormExample1 = () => {
 						</div>
 
 						{/* Full Name */}
-						<Input
-							name="fullname"
-							id="fullname"
-							label="Full Name *"
-							className="w-full"
-							value={formData.fullname}
-							onChange={handleChange}
-							placeholder="Enter full name"
-							hasError={!!errors.fullname}
-							hint={errors.fullname}
-						/>
+						<Input name="fullname" id="fullname" className="w-full" value={formData.fullname} onChange={handleChange} placeholder="Enter full name" />
 
-						<Input
-							name="email"
-							id="email"
-							label="Email Address *"
-							className="w-full"
-							value={formData.email}
-							onChange={handleChange}
-							placeholder="Enter email address"
-							hasError={!!errors.email}
-							hint={errors.email}
-						/>
+						<Input name="email" id="email" className="w-full" value={formData.email} onChange={handleChange} placeholder="Enter email address" />
 
-						<Input
-							name="username"
-							id="username"
-							label="Username *"
-							className="w-full"
-							value={formData.username}
-							onChange={handleChange}
-							placeholder="Enter username"
-							hasError={!!errors.username}
-							hint={errors.username}
-						/>
+						<Input name="username" id="username" className="w-full" value={formData.username} onChange={handleChange} placeholder="Enter username" />
 
 						{/* Phone Number (Optional) */}
 						<PhoneNumber
@@ -234,29 +204,9 @@ const FormExample1 = () => {
 							hint={errors.phoneno}
 						/>
 
-						<Password
-							name="password"
-							id="password"
-							label="Password"
-							className="w-full"
-							placeholder="Enter password"
-							hasError={!!errors.password}
-							hint={errors.password}
-							onChange={handleChange}
-							value={formData.password}
-						/>
+						<Password name="password" id="password" className="w-full" placeholder="Enter password" onChange={handleChange} value={formData.password} />
 
-						<Password
-							name="confirmPassword"
-							id="confirmPassword"
-							label="Confirm Password"
-							className="w-full"
-							placeholder="Enter password"
-							hasError={!!errors.confirmPassword}
-							hint={errors.confirmPassword}
-							onChange={handleChange}
-							value={formData.confirmPassword}
-						/>
+						<Password name="confirmPassword" id="confirmPassword" className="w-full" placeholder="Enter password" onChange={handleChange} value={formData.confirmPassword} />
 
 						<Checkbox>Accept Terms & Conditions</Checkbox>
 
