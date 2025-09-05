@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Avatar } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button, IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card"
@@ -105,7 +105,10 @@ const HovercardPreview = () => {
 						</HoverCardTrigger>
 						<HoverCardContent className="flex w-fit flex-col gap-3">
 							<div className="flex items-center gap-3">
-								<Avatar name="Aurther Dominic" src={profile.avatar} />
+								<Avatar>
+									<AvatarImage src={profile.avatar} />
+									<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
+								</Avatar>
 								<div className="flex flex-col text-sm">
 									<div className="font-medium">{profile.name}</div>
 									<div className="text-fg-secondary">{profile.email}</div>
