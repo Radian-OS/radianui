@@ -11,6 +11,7 @@ export type DatePickerModes = "single" | "multiple" | "range"
 const CalendarPreview = () => {
 	const [mode, setMode] = useState<DatePickerModes>("single")
 	const [totalCalendar, setTotalCalendar] = useState<number>(1)
+	const [selectedSingle, setSelectedSingle] = useState<Date | undefined>(undefined)
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -68,7 +69,9 @@ const CalendarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] flex-col ${totalCalendar === 3 ? "" : "items-center"} justify-center overflow-auto rounded-xl border px-10`}>
-					<Calendar mode={mode} numberOfMonths={totalCalendar} />
+					{mode === "single" && <Calendar mode="single" selected={selectedSingle} onSelect={setSelectedSingle} numberOfMonths={totalCalendar} />}
+					{mode === "multiple" && <Calendar mode="multiple" numberOfMonths={totalCalendar} />}
+					{mode === "range" && <Calendar mode="range" numberOfMonths={totalCalendar} />}
 				</div>
 			</TabsContent>
 

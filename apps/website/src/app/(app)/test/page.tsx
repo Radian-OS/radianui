@@ -10,7 +10,6 @@ import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import ColorPicker from "@/registry/ui/color-picker"
 import { CurrencyInput } from "@/registry/ui/currency-amount"
-import DatePicker from "@/registry/ui/date-picker"
 import FileUpload, { FileWithPreview } from "@/registry/ui/file-upload"
 import { Input } from "@/registry/ui/input"
 import { Password } from "@/registry/ui/password"
@@ -49,7 +48,6 @@ export default function Test() {
 	const [colorValues, setColorValues] = useState<{ hsv: number[]; rgb: number[] }>({ hsv: [], rgb: [] })
 	const [sliderValue, setSliderValue] = useState([25])
 	const [time, setTime] = useState<Time | null>(new Time(14, 30)) // 2:30 PM
-	const [selectedDate, setSelectedDate] = useState<CalendarDate | undefined>(undefined)
 	const [switchValue, setSwitchValue] = useState<boolean>(false)
 	const [radioValue, setRadioValue] = useState<string>("1")
 	const [errors, setErrors] = useState({
@@ -117,7 +115,6 @@ export default function Test() {
 			colorValues,
 			sliderValue,
 			time,
-			selectedDate,
 			switchValue,
 			radioValue,
 		})
@@ -395,7 +392,7 @@ export default function Test() {
 								<div>
 									<FileUpload label="Upload Documents" accept="*" value={uploadedFiles} onChange={(files) => setUploadedFiles(files)} />
 								</div>
-								<DatePicker
+								{/* <DatePicker
 									mode="single"
 									selected={selectedDate}
 									onSelect={(value: CalendarDate | undefined) => {
@@ -404,7 +401,7 @@ export default function Test() {
 									}}
 									label="Start Date"
 									placeholder="Pick a date"
-								/>
+								/> */}
 							</div>
 						</div>
 						{/* Additional Information Section */}
