@@ -3,19 +3,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { type ChevronProps, DayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
-	navigatorStyle?: "button" | "selector"
-}
+export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
-function Calendar({ showOutsideDays = true, navigatorStyle = "button", className, classNames, ...props }: CalendarProps) {
+function Calendar({ showOutsideDays = true, className, classNames, ...props }: CalendarProps) {
 	return (
 		<DayPicker
 			classNames={{
 				root: "w-fit h-fit",
-				months: cn("relative flex flex-col gap-5 p-0", {
-					"flex-row pt-10": navigatorStyle === "selector",
-					"sm:flex-row": navigatorStyle !== "selector",
-				}),
+				months: "relative flex flex-col gap-5 p-0 sm:flex-row",
 				month_caption: cn("mx-10 flex items-center justify-center z-20 p-0 text-sm font-semibold h-7"),
 				nav: "absolute top-0 flex w-full justify-between z-10 p-0",
 				month: "flex flex-col gap-3 w-full",

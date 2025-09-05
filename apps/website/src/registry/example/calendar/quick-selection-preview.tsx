@@ -50,7 +50,7 @@ const QuickSelectionCalendarPreview = () => {
 								<span
 									key={value}
 									onClick={() => handleSelect(range, value)}
-									className="hover:bg-fill2-alpha group flex cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5">
+									className="hover:bg-fill2-alpha group flex cursor-pointer select-none flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5">
 									{label}
 									{selectedShortcut === value ? <Check className="stroke-fg-secondary" size={16} /> : <span className="size-4" />}
 								</span>
@@ -101,7 +101,7 @@ export default function QuickSelectionExample() {
 						<span
 							key={value}
 							onClick={() => handleSelect(range, value)}
-							className="hover:bg-fill2-alpha group flex cursor-pointer flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5">
+							className="hover:bg-fill2-alpha group flex cursor-pointer select-none flex-nowrap items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm font-normal leading-5">
 							{label}
 							{selectedShortcut === value ? <Check className="stroke-fg-secondary" size={16} /> : <span className="size-4" />}
 						</span>
