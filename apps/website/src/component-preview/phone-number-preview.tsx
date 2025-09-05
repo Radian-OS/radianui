@@ -325,7 +325,6 @@ const PhoneNumberPreview = () => {
 							value={phone}
 							disabled={disabled === "true"}
 							international={international === "true"}
-							size={size}
 							onChange={handlePhoneChange}
 							country={getCountryValue()}
 							onCountryChange={handleCountryChange}

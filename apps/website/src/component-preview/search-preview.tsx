@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
@@ -19,40 +19,40 @@ const SearchPreview = () => {
 	const [disabled, setDisabled] = useState<booleanType>("false")
 	const [label, setLabel] = useState<booleanType>("true")
 	const [suggestion, setSuggestion] = useState<booleanType>("false")
-	const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([])
-	const [searchValue, setSearchValue] = useState("")
+	// const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([])
+	// const [searchValue, setSearchValue] = useState("")
 	const [hint, setHint] = useState<booleanType>("false")
 
-	useEffect(() => {
-		const fetchResults = async () => {
-			try {
-				const results = await fetch("https://dummyjson.com/products/search?q=" + searchValue)
-				const data = await results.json()
-				if (data.products.length > 0) setSearchResults(data.products)
-			} catch (err) {
-				console.log(err)
-			}
-		}
-		fetchResults()
-	}, [searchValue])
+	// useEffect(() => {
+	// 	const fetchResults = async () => {
+	// 		try {
+	// 			const results = await fetch("https://dummyjson.com/products/search?q=" + searchValue)
+	// 			const data = await results.json()
+	// 			if (data.products.length > 0) setSearchResults(data.products)
+	// 		} catch (err) {
+	// 			console.log(err)
+	// 		}
+	// 	}
+	// 	fetchResults()
+	// }, [searchValue])
 
-	const handleSearchChange = (value: string) => {
-		setSearchValue(value)
-	}
+	// const handleSearchChange = (value: string) => {
+	// 	setSearchValue(value)
+	// }
 
-	const renderSearchResults = () => {
-		if (searchResults.length == 0) return <div className="px-[12px] py-[10px]">Not Found</div>
+	// const renderSearchResults = () => {
+	// 	if (searchResults.length == 0) return <div className="px-[12px] py-[10px]">Not Found</div>
 
-		const items = searchResults.map((result) => (
-			<div
-				key={result.id}
-				className="hover:bg-border outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] text-sm font-normal [&_svg]:shrink-0">
-				<p>{result.title}</p>
-			</div>
-		))
+	// 	const items = searchResults.map((result) => (
+	// 		<div
+	// 			key={result.id}
+	// 			className="hover:bg-border outline-hidden relative flex cursor-pointer select-none items-center gap-2 rounded-sm px-[0.625rem] py-[0.375rem] text-sm font-normal [&_svg]:shrink-0">
+	// 			<p>{result.title}</p>
+	// 		</div>
+	// 	))
 
-		return <div className="px-[8px] py-[6px]">{items}</div>
-	}
+	// 	return <div className="px-[8px] py-[6px]">{items}</div>
+	// }
 	const codeString = `const [searchResults, setSearchResults] = useState<{ id: string; title: string }[]>([]);
 const [searchValue, setSearchValue] = useState("");
 
@@ -171,19 +171,7 @@ const renderSearchResults = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<SearchInput
-						label={label === "true" ? "Search" : undefined}
-						placeholder="Search"
-						size={size}
-						hint={hint === "true" ? "Hint text to help the user with input" : ""}
-						disabled={disabled === "true"}
-						onChange={(e) => handleSearchChange(e.target.value)}
-						value={searchValue}
-						id="search-input"
-						suggestion={suggestion === "true"}
-						renderSearchResults={renderSearchResults}
-						className="w-80"
-					/>
+					<SearchInput />
 				</div>
 			</TabsContent>
 

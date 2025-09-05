@@ -168,16 +168,7 @@ const PasswordInputPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="flex flex-col items-center gap-4">
 						<div className="flex flex-col items-center gap-5">
-							<Password
-								label={label === "true" ? "Password" : ""}
-								disabled={disabled === "true"}
-								size={size}
-								hasError={error === "true"}
-								hint={hint ? "Hint text to help the user with input" : ""}
-								placeholder={placeholder === "true" ? "Enter your password" : ""}
-								className="w-80"
-								visibility={trail}
-							/>
+							<Password disabled={disabled === "true"} visibility={trail} />
 						</div>
 					</div>
 				</div>

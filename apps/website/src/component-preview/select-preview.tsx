@@ -274,11 +274,9 @@ const SelectPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Select
 						label={label ? "Choose your favourite framework" : undefined}
-						placeholder="Pick an option"
 						variants={variant}
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						// trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
-						size={size}
 						disabled={disabled}
 						isSearchable={searchable}
 						selectionMode={selectionMode as "single" | "multiple"}
@@ -286,8 +284,7 @@ const SelectPreview = () => {
 						selectedValues={selectedValues}
 						onSelectedChange={setSelectedValues}
 						hasError={hasError}
-						hint={hint ? "Hint text to help the user with input" : ""}
-						className="w-80">
+						hint={hint ? "Hint text to help the user with input" : ""}>
 						<SelectGroup label="Backend Frameworks">
 							<SelectItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="node-js">
 								Node.js (Express)

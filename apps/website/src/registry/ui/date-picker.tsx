@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useRef, useState } from "react"
 import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
 import { ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
 import { cva } from "class-variance-authority"
-import { format } from "date-fns"
+// import { format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { type ChevronProps, DayPicker, type Modifiers } from "react-day-picker"
+import { type ChevronProps, DayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { Calendar, type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
+import { type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
 import { Input, type SizeOptions } from "./input"
 import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 
@@ -341,8 +341,6 @@ export type DatePickerProps = Omit<CalendarProps, "mode"> & {
 
 // DatePicker component definition
 function DatePicker({
-	selected,
-	mode = "single",
 	onSelect,
 	disabled,
 	label,
@@ -350,15 +348,14 @@ function DatePicker({
 	hasError = false,
 	triggerClassName,
 	showDateRangeShortcut = false,
-	placeholder,
 	onSelectTime,
 	size = "40",
 	typeable = false,
 	...props
 }: DatePickerProps) {
-	const [internalSelected, setInternalSelected] = React.useState<CalendarDate | CalendarDate[] | CalendarRange | undefined>(selected || undefined)
-	const isControlled = selected !== undefined
-	const currentSelected = isControlled ? selected : internalSelected
+	// const [internalSelected, setInternalSelected] = React.useState<CalendarDate | CalendarDate[] | CalendarRange | undefined>(selected || undefined)
+	// const isControlled = selected !== undefined
+	// const currentSelected = isControlled ? selected : internalSelected
 
 	// Add state for typeable date time
 	const [typeableDateTime, setTypeableDateTime] = useState<ZonedDateTime | null>(null)
@@ -386,71 +383,71 @@ function DatePicker({
 	 */
 
 	// Function to handle the selection of the date
-	function onSelectHandler(
-		selected: CalendarDate | CalendarDate[] | CalendarRange | undefined,
-		triggerDate: CalendarDate,
-		modifiers: Modifiers,
-		e: React.MouseEvent | React.KeyboardEvent
-	) {
-		if (!selected || (selected as CalendarDate[]).length == 0) {
-			setInternalSelected(undefined)
-			onSelect?.(undefined, triggerDate, modifiers, e)
-			return
-		}
+	// function onSelectHandler(
+	// 	selected: CalendarDate | CalendarDate[] | CalendarRange | undefined,
+	// 	triggerDate: CalendarDate,
+	// 	modifiers: Modifiers,
+	// 	e: React.MouseEvent | React.KeyboardEvent
+	// ) {
+	// 	if (!selected || (selected as CalendarDate[]).length == 0) {
+	// 		setInternalSelected(undefined)
+	// 		onSelect?.(undefined, triggerDate, modifiers, e)
+	// 		return
+	// 	}
 
-		setInternalSelected(selected)
-		onSelect?.(selected as CalendarDate & CalendarDate[] & CalendarRange, triggerDate, modifiers, e)
+	// 	setInternalSelected(selected)
+	// 	onSelect?.(selected as CalendarDate & CalendarDate[] & CalendarRange, triggerDate, modifiers, e)
 
-		if (e.currentTarget?.getAttribute("data-value") == null) {
-		}
-	}
+	// 	if (e.currentTarget?.getAttribute("data-value") == null) {
+	// 	}
+	// }
 
 	// Type guard for CalendarRange
-	function isCalendarRange(value: CalendarDate | CalendarDate[] | CalendarRange): value is CalendarRange {
-		return typeof value === "object" && value !== null && "from" in value && value.from instanceof CalendarDate && ("to" in value ? value.to instanceof CalendarDate : true)
-	}
+	// function isCalendarRange(value: CalendarDate | CalendarDate[] | CalendarRange): value is CalendarRange {
+	// 	return typeof value === "object" && value !== null && "from" in value && value.from instanceof CalendarDate && ("to" in value ? value.to instanceof CalendarDate : true)
+	// }
 
-	const getDisplayText = () => {
-		if (!currentSelected) return placeholder
+	// const getDisplayText = () => {
+	// 	if (!currentSelected) return placeholder
 
-		if (mode === "single" && currentSelected instanceof CalendarDate) {
-			return format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")
-		}
+	// 	if (mode === "single" && currentSelected instanceof CalendarDate) {
+	// 		return format(currentSelected.toDate(getLocalTimeZone()), "MMM dd, yyyy")
+	// 	}
 
-		if (mode === "multiple" && Array.isArray(currentSelected)) {
-			return currentSelected.map((date) => format(date.toDate(getLocalTimeZone()), "MMM dd")).join(", ")
-		}
+	// 	if (mode === "multiple" && Array.isArray(currentSelected)) {
+	// 		return currentSelected.map((date) => format(date.toDate(getLocalTimeZone()), "MMM dd")).join(", ")
+	// 	}
 
-		if (mode === "range" && isCalendarRange(currentSelected)) {
-			return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`
-		}
+	// 	if (mode === "range" && isCalendarRange(currentSelected)) {
+	// 		return `${format(currentSelected.from.toDate(getLocalTimeZone()), "MMM dd")} - ${format(currentSelected.to!.toDate(getLocalTimeZone()), "MMM dd")}`
+	// 	}
 
-		return placeholder
-	}
-	const displayText = getDisplayText()
+	// 	return placeholder
+	// }
+	// const displayText = getDisplayText()
 
-	const [inputValue, setInputValue] = useState(displayText || "")
+	// const [inputValue, setInputValue] = useState(displayText || "")
 
-	const sizeHeightMapping = {
-		0: "",
-		28: "h-4 w-4",
-		32: "h-5 w-5",
-		36: "h-5 w-5",
-		40: "h-5 w-5",
-		44: "h-6 w-6",
-		48: "h-6 w-6",
-	}
+	// const sizeHeightMapping = {
+	// 	0: "",
+	// 	28: "h-4 w-4",
+	// 	32: "h-5 w-5",
+	// 	36: "h-5 w-5",
+	// 	40: "h-5 w-5",
+	// 	44: "h-6 w-6",
+	// 	48: "h-6 w-6",
+	// }
 
-	const [open, setOpen] = useState<boolean>(false)
-	const [timeDisplay, setTimeDisplay] = useState<string>("")
+	// const [open, setOpen] = useState<boolean>(false)
+	// const [timeDisplay, setTimeDisplay] = useState<string>("")
 
-	useEffect(() => {
-		if (!displayText && !timeDisplay) return // Skip setting input if both are empty
+	// useEffect(() => {
+	// 	if (!displayText && !timeDisplay) return // Skip setting input if both are empty
 
-		const datePart = displayText
-		const combined = timeDisplay ? `${datePart}, ${timeDisplay}` : datePart
-		setInputValue(combined || "")
-	}, [displayText, timeDisplay])
+	// 	const datePart = displayText
+	// 	const combined = timeDisplay ? `${datePart}, ${timeDisplay}` : datePart
+	// 	setInputValue(combined || "")
+	// }, [displayText, timeDisplay])
 
 	return (
 		<div>
@@ -473,69 +470,66 @@ function DatePicker({
 				<>
 					<Input
 						size={size}
-						onClick={() => !disabled && setOpen(true)}
-						label={label}
+						// onClick={() => !disabled && setOpen(true)}
 						disabled={disabled}
-						hasError={hasError}
-						hint={hint ? `${hint}` : ""}
 						className={cn(triggerClassName)}
 						readOnly
-						value={inputValue}
+						// value={inputValue}
 						placeholder="Select a date"
-						end={
-							<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
-								<PopoverTrigger disabled={disabled}>
-									<CalendarIcon
-										className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
-											"text-fg-tertiary": !disabled,
-											"text-fg-disabled cursor-not-allowed": disabled,
-										})}
-									/>
-								</PopoverTrigger>
+						// end={
+						// 	<Popover align="end" open={open} onOpenChange={setOpen} sideOffset={14}>
+						// 		<PopoverTrigger disabled={disabled}>
+						// 			<CalendarIcon
+						// 				className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
+						// 					"text-fg-tertiary": !disabled,
+						// 					"text-fg-disabled cursor-not-allowed": disabled,
+						// 				})}
+						// 			/>
+						// 		</PopoverTrigger>
 
-								<PopoverContent className={cn("bg-bg drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
-									{mode === "single" && (
-										<Calendar
-											onIndexChange={(value) => {
-												if (value !== null) {
-													setTimeDisplay?.(value)
-												}
-											}}
-											mode="single"
-											selected={currentSelected as CalendarDate}
-											onSelect={onSelectHandler}
-											{...props}
-										/>
-									)}
-									{mode === "multiple" && (
-										<Calendar
-											mode="multiple"
-											onIndexChange={(value) => {
-												if (value !== null) {
-													setTimeDisplay?.(value)
-												}
-											}}
-											selected={currentSelected as CalendarDate[]}
-											onSelect={onSelectHandler}
-											{...props}
-										/>
-									)}
-									{mode === "range" && (
-										<Calendar
-											mode="range"
-											onIndexChange={(value) => {
-												if (value !== null) {
-													setTimeDisplay?.(value)
-												}
-											}}
-											selected={currentSelected as CalendarRange}
-											onSelect={onSelectHandler}
-											{...props}
-										/>
-									)}
-								</PopoverContent>
-							</Popover>
-						}
+						// 		<PopoverContent className={cn("bg-bg drop-shadow-xs flex w-fit flex-col gap-3 rounded-xl border-none p-0 shadow-none")}>
+						// 			{mode === "single" && (
+						// 				<Calendar
+						// 					onIndexChange={(value) => {
+						// 						if (value !== null) {
+						// 							setTimeDisplay?.(value)
+						// 						}
+						// 					}}
+						// 					mode="single"
+						// 					selected={currentSelected as CalendarDate}
+						// 					onSelect={onSelectHandler}
+						// 					{...props}
+						// 				/>
+						// 			)}
+						// 			{mode === "multiple" && (
+						// 				<Calendar
+						// 					mode="multiple"
+						// 					onIndexChange={(value) => {
+						// 						if (value !== null) {
+						// 							setTimeDisplay?.(value)
+						// 						}
+						// 					}}
+						// 					selected={currentSelected as CalendarDate[]}
+						// 					onSelect={onSelectHandler}
+						// 					{...props}
+						// 				/>
+						// 			)}
+						// 			{mode === "range" && (
+						// 				<Calendar
+						// 					mode="range"
+						// 					onIndexChange={(value) => {
+						// 						if (value !== null) {
+						// 							setTimeDisplay?.(value)
+						// 						}
+						// 					}}
+						// 					selected={currentSelected as CalendarRange}
+						// 					onSelect={onSelectHandler}
+						// 					{...props}
+						// 				/>
+						// 			)}
+						// 		</PopoverContent>
+						// 	</Popover>
+						// }
 					/>
 				</>
 			)}

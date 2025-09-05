@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CreditCard, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -142,19 +142,16 @@ const CreditCardPreview = () => {
 								disabled={disabled}
 								size={size}
 								placeholder="Card Number"
-								start={<CreditCard className={iconClass} />}
-								hasError={hasError}
 								className={`-ms rounded-b-none border-b-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-b"}`}
 							/>
 							<div className="flex">
 								<Input
 									disabled={disabled}
 									size={size}
-									hasError={hasError}
 									placeholder="MM / YY"
 									className={`rounded-r-none rounded-t-none border-r-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-r"}`}
 								/>
-								<Input disabled={disabled} size={size} hasError={hasError} placeholder="CVC" className="rounded-l-none rounded-t-none" />
+								<Input disabled={disabled} size={size} placeholder="CVC" className="rounded-l-none rounded-t-none" />
 							</div>
 						</div>
 						{(hint || hasError) && (

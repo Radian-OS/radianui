@@ -4,7 +4,6 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { CurrencyInput } from "@/registry/ui/currency-amount"
 import {
 	Dropdown,
 	DropdownContent,
@@ -262,20 +261,20 @@ const CurrencyInputPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
 					<div className="flex items-center justify-center">
-						<CurrencyInput
+						{/* <CurrencyInput
 							separator={separator === "true" ? true : false}
-							size={size}
-							label={label === "true" ? "Currency Input" : ""}
+							// size={size}
+							// label={label === "true" ? "Currency Input" : ""}
 							currency={currency}
 							locale={locale}
-							hint={hint ? "Hint text to help the user with input" : ""}
-							placeholder={placeholder === "true" ? "Enter amount" : ""}
-							disabled={disabled === "true"}
-							className="w-80"
-							hasError={hasError === "true"}
+							// hint={hint ? "Hint text to help the user with input" : ""}
+							// placeholder={placeholder === "true" ? "Enter amount" : ""}
+							// disabled={disabled === "true"}
+							// className="w-80"
+							// hasError={hasError === "true"}
 							decimals={parseInt(decimals)}
 							maxValue={maxValue ? parseInt(maxValue) : undefined}
-						/>
+						/> */}
 					</div>
 				</div>
 			</TabsContent>

@@ -222,7 +222,6 @@ export default CounterInput
 									className="w-61 rounded-l-none border-l-0 border-r-0 text-center focus-within:border-l focus-within:border-r"
 									size={size}
 									inputMode="numeric"
-									custom={true}
 									onChange={handleChange}
 									value={amount}
 								/>
@@ -242,31 +241,31 @@ export default CounterInput
 							value={amount}
 							onChange={handleChange}
 							size={size}
-							start={
-								<Minus
-									onClick={(e) => {
-										e.stopPropagation()
-										setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
-									}}
-									className="size-5 cursor-pointer"
-									onMouseDown={(e) => e.preventDefault()}
-								/>
-							}
-							end={
-								<Plus
-									className="size-5 cursor-pointer"
-									onClick={(e) => {
-										e.stopPropagation()
-										setAmount((v) => String(Number(v || "0") + 1))
-									}}
-									onMouseDown={(e) => e.preventDefault()}
-								/>
-							}
+							// start={
+							// 	<Minus
+							// 		onClick={(e) => {
+							// 			e.stopPropagation()
+							// 			setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
+							// 		}}
+							// 		className="size-5 cursor-pointer"
+							// 		onMouseDown={(e) => e.preventDefault()}
+							// 	/>
+							// }
+							// end={
+							// 	<Plus
+							// 		className="size-5 cursor-pointer"
+							// 		onClick={(e) => {
+							// 			e.stopPropagation()
+							// 			setAmount((v) => String(Number(v || "0") + 1))
+							// 		}}
+							// 		onMouseDown={(e) => e.preventDefault()}
+							// 	/>
+							// }
 							className="w-80 text-center"
-							label="Amount"
+							// label="Amount"
 						/>
 					)}
-					{example === "basic" && <Input onChange={handleChange} className="w-80" placeholder="Enter Amount Here" size={size} value={amount} label="Amount" inputMode="numeric" />}
+					{example === "basic" && <Input onChange={handleChange} className="w-80" placeholder="Enter Amount Here" size={size} value={amount} inputMode="numeric" />}
 				</div>
 			</TabsContent>
 

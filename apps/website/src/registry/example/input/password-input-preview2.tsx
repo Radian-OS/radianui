@@ -177,16 +177,7 @@ const PasswordInputPreview2 = () => {
 						<Link href="#" className="text-primary-text right-0.75 absolute text-sm font-medium">
 							Forgot Password ?
 						</Link>
-						<Password
-							label={label === "true" ? "Password" : ""}
-							disabled={disabled === "true"}
-							size={size}
-							hasError={error === "true"}
-							hint={hint ? "Hint text to help the user with input" : ""}
-							className="w-80"
-							visibility={trail}
-							placeholder={placeholder === "true" ? "Enter your password" : ""}
-						/>
+						<Password disabled={disabled === "true"} className="w-80" visibility={trail} placeholder={placeholder === "true" ? "Enter your password" : ""} />
 					</div>
 				</div>
 			</TabsContent>

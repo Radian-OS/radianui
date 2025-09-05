@@ -5,12 +5,12 @@ import { type Value, getCountries, getCountryCallingCode, isValidPhoneNumber } f
 import flags from "react-phone-number-input/flags"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
-import { Input, type InputProps } from "./input"
+import { Input } from "./input"
 import { Label } from "./label"
 import { Select, SelectGroup, SelectItem } from "./select"
 
 type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
-	size?: InputProps["size"]
+	// size?: InputProps["size"]
 	showTrigger?: boolean
 	countryDropdown?: boolean
 	className?: string
@@ -35,23 +35,20 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	onChange,
 	country,
 	onCountryChange,
-	size = "36",
+	// size = "36",
 	showTrigger = true,
 	countryDropdown = true,
 	disabled = false,
-	className,
 	onlyCountries,
 	preferredCountries,
 	excludeCountries,
 	label,
 	hint,
 	hasError = false,
-	lead,
-	trail,
 	international = false,
 	countryCallingCodeEditable = international,
 	validateOnChange = false,
-	showValidationIcon = false,
+	// showValidationIcon = false,
 	onValidationChange,
 	autoSelectFirstCountry = false, // Conservative default
 	...rpnInputProps
@@ -420,75 +417,71 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 	)
 
 	// Custom input component that applies className only to the actual Input
-	const InputWithClass = useMemo(() => {
-		const Comp = (props: InputProps) => {
-			// Determine validation trail icon
-			let validationTrail = trail
-			if (showValidationIcon && isValid !== null) {
-				validationTrail = (
-					<div className="flex items-center gap-1">
-						{isValid ? <span className="text-success text-sm">✓</span> : <span className="text-error text-sm">✗</span>}
-						{trail}
-					</div>
-				)
-			}
-
-			// Add onKeyDown handler to prevent "+" when international is false
-			const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-				if (!international && (e.key === "+" || e.key === "Plus")) {
-					e.preventDefault()
-				}
-				props.onKeyDown?.(e)
-			}
-
-			// Add onPaste handler to filter out "+" when international is false
-			const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-				if (!international) {
-					const pasteData = e.clipboardData.getData("text")
-					if (pasteData.includes("+")) {
-						e.preventDefault()
-						// Filter out + from pasted content
-						const filteredData = pasteData.replace(/\+/g, "")
-						if (filteredData) {
-							const target = e.target as HTMLInputElement
-							const start = target.selectionStart || 0
-							const end = target.selectionEnd || 0
-							const currentValue = target.value
-							const newValue = currentValue.slice(0, start) + filteredData + currentValue.slice(end)
-
-							// Trigger the change event with filtered data
-							const syntheticEvent = {
-								target: { ...target, value: newValue },
-							} as React.ChangeEvent<HTMLInputElement>
-							props.onChange?.(syntheticEvent)
-						}
-					}
-				}
-				if (!e.defaultPrevented) {
-					props.onPaste?.(e)
-				}
-			}
-
-			return (
-				<Input
-					{...props}
-					data-slot="phone-input"
-					aria-label={label || "Phone number"}
-					aria-invalid={hasError || (validateOnChange && isValid === false)}
-					size={size}
-					disabled={disabled}
-					start={lead}
-					end={validationTrail}
-					hasError={hasError || (validateOnChange && isValid === false)}
-					className={cn(showTrigger && "rounded-l-none", className, props.className)}
-					onKeyDown={handleKeyDown}
-					onPaste={handlePaste}
-				/>
-			)
-		}
-		Comp.displayName = "PhoneNumber.InputWithClass"
-		return Comp
-	}, [className, size, showTrigger, disabled, hasError, lead, trail, label, showValidationIcon, isValid, validateOnChange, international])
+	// const InputWithClass = useMemo(() => {
+	// const Comp = (props: InputProps) => {
+	// 	// Determine validation trail icon
+	// 	let validationTrail = trail
+	// 	if (showValidationIcon && isValid !== null) {
+	// 		validationTrail = (
+	// 			<div className="flex items-center gap-1">
+	// 				{isValid ? <span className="text-success text-sm">✓</span> : <span className="text-error text-sm">✗</span>}
+	// 				{trail}
+	// 			</div>
+	// 		)
+	// 	}
+	// 	// Add onKeyDown handler to prevent "+" when international is false
+	// 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+	// 		if (!international && (e.key === "+" || e.key === "Plus")) {
+	// 			e.preventDefault()
+	// 		}
+	// 		props.onKeyDown?.(e)
+	// 	}
+	// 	// Add onPaste handler to filter out "+" when international is false
+	// 	const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+	// 		if (!international) {
+	// 			const pasteData = e.clipboardData.getData("text")
+	// 			if (pasteData.includes("+")) {
+	// 				e.preventDefault()
+	// 				// Filter out + from pasted content
+	// 				const filteredData = pasteData.replace(/\+/g, "")
+	// 				if (filteredData) {
+	// 					const target = e.target as HTMLInputElement
+	// 					const start = target.selectionStart || 0
+	// 					const end = target.selectionEnd || 0
+	// 					const currentValue = target.value
+	// 					const newValue = currentValue.slice(0, start) + filteredData + currentValue.slice(end)
+	// 					// Trigger the change event with filtered data
+	// 					const syntheticEvent = {
+	// 						target: { ...target, value: newValue },
+	// 					} as React.ChangeEvent<HTMLInputElement>
+	// 					props.onChange?.(syntheticEvent)
+	// 				}
+	// 			}
+	// 		}
+	// 		if (!e.defaultPrevented) {
+	// 			props.onPaste?.(e)
+	// 		}
+	// 	}
+	// 	return (
+	// 		<Input
+	// 			{...props}
+	// 			data-slot="phone-input"
+	// 			aria-label={label || "Phone number"}
+	// 			aria-invalid={hasError || (validateOnChange && isValid === false)}
+	// 			size={size}
+	// 			disabled={disabled}
+	// 			start={lead}
+	// 			end={validationTrail}
+	// 			hasError={hasError || (validateOnChange && isValid === false)}
+	// 			className={cn(showTrigger && "rounded-l-none", className, props.className)}
+	// 			onKeyDown={handleKeyDown}
+	// 			onPaste={handlePaste}
+	// 		/>
+	// 	)
+	// }
+	// Comp.displayName = "PhoneNumber.InputWithClass"
+	// return Comp
+	// }, [className, showTrigger, disabled, hasError, lead, trail, label, showValidationIcon, isValid, validateOnChange, international])
 
 	// Enhanced country item renderer with better search support
 	const renderCountryItem = useCallback((countryData: { code: RPNInput.Country; name: string; callingCode: string; searchKeywords: string[] }) => {
@@ -537,7 +530,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 							<Button
 								variant="outline"
 								color="neutral"
-								size={size}
+								// size={size}
 								disabled={disabled}
 								className={cn(
 									"disabled:bg-fill2 focus-visible:border-primary border-alpha focus-visible:border-r-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
@@ -559,7 +552,6 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					<Button
 						variant="soft"
 						color="neutral"
-						size={size}
 						disabled={disabled}
 						className={cn("disabled:bg-fill2 border-alpha flex flex-shrink-0 cursor-default items-center justify-center gap-1 rounded-r-none border border-r-0 px-2", {
 							"border-error": effectiveHasError && !disabled,
@@ -580,7 +572,7 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					onCountryChange={handleCountryChangeWrapper}
 					flagComponent={() => null}
 					countrySelectComponent={() => null}
-					inputComponent={InputWithClass}
+					// inputComponent={InputWithClass}
 					placeholder="Enter phone number"
 					disabled={disabled}
 					countries={countries} // This restricts the library's internal country detection
