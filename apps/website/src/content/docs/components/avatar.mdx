@@ -46,25 +46,29 @@ links:
 
 <CodeSnippet title="/components/ui/avatar.tsx" code={`<Avatar src="https://randomuser.me/api/portraits/men/2.jpg" name="Dinesh Chugtai" />`} />
 
-## Avatar Group
-
-<AvatargroupPreview />
-
 ---
 
 ## Examples
 
-### Verified Avatar
+### Avatar Fallback
 
-<VerifiedAvatarPreview />
+<AvatarFallbackPreview />
 
-### Indicator Avatar
+### Avatar Status
 
-<IndicatorAvatarPreview />
+<AvatarStatusPreview />
+
+### Custom Avatar Status
+
+<CustomAvatarStatusPreview />
 
 ### Ring Avatar
 
 <RingAvatarPreview />
+
+### Avatar Group
+
+<AvatargroupPreview />
 
 ---
 
@@ -105,24 +109,6 @@ links:
 				values: ["verified", "offline", "online", "plus"],
 				required: false,
 				description: "Sets the status of the avatar",
-			},
-		]}
-	/>
-	<PropsTable
-		title="AvatarGroup"
-		data={[
-			{
-				name: "maxItems",
-				values: ["number"],
-				required: false,
-				description: "Sets the maximum number of avatars to display",
-			},
-			{
-				name: "size",
-				defaultValue: "40",
-				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
-				required: false,
-				description: "Sets the size of the avatars in the group",
 			},
 		]}
 	/>

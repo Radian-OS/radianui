@@ -12,7 +12,7 @@ import User from "@public/icons/user-circle.svg"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
-import { Avatar } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Divider } from "@/registry/ui/divider"
 
 function B({ className }: { className?: string }) {
@@ -82,7 +82,10 @@ function B({ className }: { className?: string }) {
 				</div>
 			</div>
 			<div className="flex gap-3 px-3 py-2">
-				<Avatar src="/icons/Avatar-2.webp" size="32" name="JM" />
+				<Avatar size="32">
+					<AvatarImage src="/icons/Avatar-2.webp" />
+					<AvatarFallback>JM</AvatarFallback>
+				</Avatar>
 				<div className="flex flex-col">
 					<p className="text-fg text-sm font-medium">James Mitchell</p>
 					<p className="text-fg-secondary text-xs">james@radianos.com</p>

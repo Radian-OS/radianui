@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, SquareTerminal, X } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Avatar } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -72,7 +72,10 @@ export default BadgeCloseExample
 			name: "Avatar",
 			component: (
 				<Badge variant="strong" color="info" size="24">
-					<Avatar src="/avatar.webp" name="Roman Shrestha" size="16" />
+					<Avatar size="16">
+						<AvatarImage src="/avatar.webp" />
+						<AvatarFallback>RS</AvatarFallback>
+					</Avatar>
 					Roman Shrestha
 				</Badge>
 			),
