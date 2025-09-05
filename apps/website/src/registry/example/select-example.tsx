@@ -11,13 +11,11 @@ const SelectExample = () => {
 		<div className="mb-2 flex flex-col gap-3">
 			<Select
 				label="Label here"
-				placeholder="Select a framework"
 				selectedValues={selectedValues}
 				onSelectedChange={setSelectedValues}
 				isSearchable={true}
 				searchPlaceholder="Search framework"
-				selectionMode="single"
-				className="w-[12rem]">
+				selectionMode="single">
 				<SelectItem value="angular">Angular</SelectItem>
 				<SelectItem value="astro">Astro</SelectItem>
 				<SelectItem value="backbone">Backbone.js</SelectItem>
@@ -32,14 +30,12 @@ const SelectExample = () => {
 				<SelectItem value="qwik">Qwik</SelectItem>
 			</Select>
 			<Select
-				placeholder="Select a framework"
 				selectedValues={selectedValues2}
 				onSelectedChange={setSelectedValues2}
 				isSearchable={true}
 				searchPlaceholder="Search framework"
 				selectionMode="multiple"
-				minSelectionCount={2}
-				className="w-[15rem]">
+				minSelectionCount={2}>
 				<SelectItem value="astro">Astro</SelectItem>
 				<SelectItem value="backbone">Backbone.js</SelectItem>
 				<SelectItem value="ember">Ember.js</SelectItem>
@@ -53,7 +49,7 @@ const SelectExample = () => {
 				<SelectItem value="vue">Vue.js</SelectItem>
 				<SelectItem value="qwik">Qwik</SelectItem>
 			</Select>
-			<Select placeholder="Test" minSelectionCount={1} className="w-[10rem]">
+			<Select minSelectionCount={1}>
 				<SelectGroup label="Language 1">
 					<SelectItem value="typescript">TypeScript</SelectItem>
 					<SelectItem value="vue">Vue.js</SelectItem>

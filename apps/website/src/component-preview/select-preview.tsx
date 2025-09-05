@@ -14,16 +14,7 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
-import {
-	Select as Select2,
-	SelectContent as SelectContent2,
-	SelectDivider,
-	SelectGroup as SelectGroup2,
-	SelectItem as SelectItem2,
-	SelectLabel,
-	SelectTrigger as SelectTrigger2,
-	SelectValue as SelectValue2,
-} from "@/registry/ui/select2"
+import { Select as Select2, SelectContent as SelectContent2, SelectDivider, SelectGroup as SelectGroup2, SelectItem as SelectItem2, SelectLabel } from "@/registry/ui/select2"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -317,9 +308,6 @@ const SelectPreview = () => {
 						</SelectGroup>
 					</Select>
 					<Select2 indicatorPosition="right">
-						<SelectTrigger2 className="w-[240px]">
-							<SelectValue2 placeholder="Select a framework" />
-						</SelectTrigger2>
 						<SelectContent2 className="max-h-96">
 							<SelectGroup2>
 								<SelectLabel>Backend Frameworks</SelectLabel>
