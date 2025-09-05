@@ -1,59 +1,28 @@
 "use client"
 
 import { useState } from "react"
-import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Banner } from "@/registry/ui/banner"
+import { Banner, BannerAction, BannerDescription, BannerTitle } from "@/registry/ui/banner"
 import { IconButton, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BannerPreview = () => {
-	type booleanType = "true" | "false"
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"strong" | "outline" | "soft">("strong")
-	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
-	const [end, setEnd] = useState<"none" | "link">("link")
-	const [title, setTitle] = useState<booleanType>("true")
-	const [description, setDescription] = useState<booleanType>("true")
-
-	const icons = {
-		star: <Star size={20} />,
-		info: <Info size={20} />,
-		check: <CircleCheck size={20} />,
-		alert: <TriangleAlert size={20} />,
-		none: "",
-	}
-
-	const selectedIcon = icons[start as keyof typeof icons]
 
 	const generateCode = () => {
-		let code = `<Banner
-  variant="${variant}"
-  color="${color}"
-  ${title === "true" ? `title="Banner Title Here"` : ""}
-  ${description === "true" ? `description="Enter your banner message here"` : ""}`
-
-		const iconComponent = {
-			star: "Star",
-			info: "Info",
-			check: "CircleCheck",
-			alert: "TriangleAlert",
-			none: "",
-		}[start]
-
-		if (iconComponent !== "none" && iconComponent !== "") {
-			code += `
-  start={<${iconComponent} ${color === "neutral" ? 'className="text-fg-secondary"' : ""}/>}`
-		}
-
-		const btnColor = color === "neutral" ? "primary" : color === "error" ? "error" : color
-
-		code += `
-  end={<Button color='${btnColor}'>Action</Button>}`
-
-		code += `
->
+		const code = `<Banner color='${color}' variant='${variant}'>
+ <BannerTitle>
+  Banner Title Here
+ </BannerTitle>
+ <BannerDescription>
+  Enter your banner message here
+ </BannerDescription>
+ <BannerAction>
+  <Button variant="soft">Button label</Button>
+ </BannerAction>
 </Banner>`
 
 		return code
@@ -119,93 +88,20 @@ const BannerPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Title</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={title} onValueChange={(value) => setTitle(value as booleanType)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Description</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={description} onValueChange={(value) => setDescription(value as booleanType)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Start</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={start} onValueChange={(value) => setStart(value as typeof start)}>
-									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
-										None
-									</DropdownRadioItem>
-									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
-										Star
-									</DropdownRadioItem>
-									<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
-										Info
-									</DropdownRadioItem>
-									<DropdownRadioItem value="alert" onSelect={(e) => e.preventDefault()}>
-										Triangle Alert
-									</DropdownRadioItem>
-									<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
-										Check
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>End</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={end} onValueChange={(value) => setEnd(value as typeof end)}>
-									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
-										None
-									</DropdownRadioItem>
-									<DropdownRadioItem value="link" onSelect={(e) => e.preventDefault()}>
-										Link
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-start overflow-auto rounded-xl border">
-					<Banner
-						title={title === "true" ? "Banner Title Here" : ""}
-						description={description === "true" ? "Enter your banner message here" : ""}
-						start={<div className={`${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : `text-${color}`}`}>{selectedIcon}</div>}
-						end={
-							end === "link" ? (
-								<LinkButton
-									target="_blank"
-									href="/docs/components/alert"
-									size="14"
-									className={`${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : `text-fg`}`}>
-									Button Label
-								</LinkButton>
-							) : undefined
-						}
-						color={color}
-						variant={variant}
-						className="w-full"></Banner>
+					<Banner color={color} variant={variant}>
+						<BannerTitle>Banner Title Here</BannerTitle>
+						<BannerDescription>Enter your banner message here</BannerDescription>
+						<BannerAction>
+							<LinkButton className="text-inverse-white" href="#">
+								Button label
+							</LinkButton>
+						</BannerAction>
+					</Banner>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">

@@ -28,12 +28,13 @@ function SearchInput({ renderSearchResults, showSearchResults, defaultShowSearch
 	// )
 
 	return (
-		<Popover open={showResults} align="start">
+		<Popover open={showResults}>
 			<PopoverTrigger asChild>
 				<div>{/* <Input size={size} id={id} value={value} {...props} /> */}</div>
 			</PopoverTrigger>
 			{suggestion && (
 				<PopoverContent
+					align="start"
 					onOpenAutoFocus={function (e) {
 						e.preventDefault()
 					}}

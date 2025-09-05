@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
-import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Variants
@@ -94,15 +93,5 @@ function AlertActions({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 }
 AlertActions.displayName = "AlertActions"
 
-function AlertClose({ className, children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-	return (
-		<button className={cn("text-fg-tertiary hover:text-fg-secondary cursor-pointer transition-colors", "rounded-sm opacity-70 hover:opacity-100", className)} {...props}>
-			{children || <X size={20} />}
-			<span className="sr-only">Close</span>
-		</button>
-	)
-}
-AlertClose.displayName = "AlertClose"
-
-export { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertActions, AlertClose, alertVariants }
+export { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertActions, alertVariants }
 export type { AlertProps }

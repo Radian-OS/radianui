@@ -869,7 +869,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	}, [hue, saturation, value, alpha, inputFormat, isUserTyping])
 
 	return (
-		<Popover sideOffset={14}>
+		<Popover>
 			{/* Color Preview */}
 			<Input
 				size={size}
@@ -897,7 +897,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 				onBlur={handleInputBlur}
 				onKeyPress={handleInputKeyPress}
 			/>
-			<PopoverContent alignOffset={-11} className="p-0">
+			<PopoverContent alignOffset={-11} className="p-0" sideOffset={14}>
 				<div className="flex w-full flex-col gap-2 p-2">
 					{/* Color Picker Area */}
 					<div className="flex flex-col gap-3">

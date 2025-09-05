@@ -42,7 +42,7 @@ function B({ className }: { className?: string }) {
 				<div className="flex flex-col gap-0.5 px-3 py-1">
 					<span className="text-fg-disabled leading-4.5 px-2 py-1 text-xs font-medium">USER PANEL</span>
 					<Item id="dashboard" prefix={<Cube className="text-fg-secondary" />} text="Dashboard" active={activeItem === "dashboard"} onClick={() => setActiveItem("dashboard")} />
-					<Accordion collapsible defaultValue="components" variant="open">
+					<Accordion type="single" collapsible defaultValue="components" variant="open">
 						<AccordionItem value="components">
 							<AccordionTrigger className={cn("hover:bg-fill1 flex h-10 cursor-default gap-3 rounded-md px-2 text-sm")}>
 								<Search className="text-fg-secondary" /> <span className="flex-1">Components</span>

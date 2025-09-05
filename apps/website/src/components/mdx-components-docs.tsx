@@ -90,6 +90,8 @@ import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
 import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
+import CalendarWithYearMonthSelectorExample from "@/registry/example/calendar/calendar-year-month-selector-example"
+import MultipleMonthsCalendarExample from "@/registry/example/calendar/multiple-months-calendar-example"
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
@@ -216,6 +218,8 @@ const components: MDXComponents = {
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	CalendarPreview: () => <CalendarPreview />,
+	CalendarWithYearMonthSelectorExample: () => <CalendarWithYearMonthSelectorExample />,
+	MultipleMonthsCalendarExample: () => <MultipleMonthsCalendarExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
 	PasswordInputPreview2: () => <PasswordInputPreview2 />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,

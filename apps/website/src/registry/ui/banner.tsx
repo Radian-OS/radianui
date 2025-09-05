@@ -1,20 +1,14 @@
 "use client"
 
-import { type HTMLAttributes, type ReactNode, useState } from "react"
+import { type HTMLAttributes, type ReactNode } from "react"
+import { createContext } from "react"
 import { type VariantProps, cva } from "class-variance-authority"
-import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { CompactButton } from "./button"
 
 type BannerProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof bannerVariants> & {
 		children?: ReactNode
 		className?: string
-		start?: ReactNode
-		end?: ReactNode
-		title?: string
-		description?: string
-		onClose?: () => void
 	}
 
 const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative text-sm w-full", {
@@ -33,36 +27,32 @@ const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative 
 			neutral: " bg-elevation-level1 border-alpha text-fg-inverse",
 		},
 	},
-	defaultVariants: {
-		variant: "strong",
-		color: "primary",
-	},
 	compoundVariants: [
 		// Strong variant + colors
 		{
 			variant: "strong",
 			color: "primary",
-			className: "bg-primary",
+			className: "bg-primary text-white",
 		},
 		{
 			variant: "strong",
 			color: "info",
-			className: "bg-info",
+			className: "bg-info text-white",
 		},
 		{
 			variant: "strong",
 			color: "success",
-			className: "bg-success",
+			className: "bg-success text-white",
 		},
 		{
 			variant: "strong",
 			color: "error",
-			className: "bg-error",
+			className: "bg-error text-white",
 		},
 		{
 			variant: "strong",
 			color: "warning",
-			className: "bg-warning",
+			className: "bg-warning text-white",
 		},
 		{
 			variant: "strong",
@@ -132,38 +122,46 @@ const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative 
 			className: "bg-fill2 text-black-inverse",
 		},
 	],
+	defaultVariants: {
+		variant: "strong",
+		color: "primary",
+	},
 })
-function Banner({ children, color = "neutral", variant = "strong", onClose, start, end, title, description, className = "", ...props }: BannerProps) {
-	const [showBanner, setShowBanner] = useState(true)
 
-	const closeButton = onClose && (
-		<CompactButton
-			size="20"
-			disabled={false}
-			color="neutral"
-			variant="ghost"
-			onClick={() => setShowBanner(false)}
-			className={`absolute right-4 cursor-pointer focus-visible:ring-2 focus-visible:ring-offset-4 ${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>
-			<X />
-		</CompactButton>
-	)
+type BannerContextType = {
+	onClose?: () => void
+}
 
+const BannerContext = createContext<BannerContextType | undefined>(undefined)
+
+function Banner({ color, variant, className, children }: BannerProps) {
 	return (
-		showBanner && (
-			<div {...props} className={cn(bannerVariants({ color, variant }), className)}>
-				{start && start}
-				{title && <h4 className={`font-medium ${variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>{title}</h4>}
-				{description && (
-					<p
-						className={`font-normal ${variant === "outline" ? "text-fg-secondary" : variant === "soft" ? "text-fg" : variant === "strong" ? (color === "neutral" ? "text-white-inverse" : "text-white") : ""}`}>
-						{description}
-					</p>
-				)}
+		<BannerContext.Provider value={{}}>
+			<div role="banner" className={cn(bannerVariants({ color, variant }), className)}>
 				{children}
-				{end && end}
-				{closeButton}
 			</div>
-		)
+		</BannerContext.Provider>
 	)
 }
-export { Banner }
+Banner.displayName = "Banner"
+
+function BannerTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+	return <h5 className={cn("text-sm font-medium", className)} {...props}></h5>
+}
+BannerTitle.displayName = "BannerTitle"
+
+function BannerDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+	return <p className={cn("text-sm", className)} {...props}></p>
+}
+BannerDescription.displayName = "BannerDescription"
+
+function BannerAction({ className, children, ...props }: React.HTMLAttributes<HTMLButtonElement>) {
+	return (
+		<span className={cn("absolute right-2 top-1/2 -translate-y-1/2", className)} {...props}>
+			{children}
+		</span>
+	)
+}
+BannerAction.displayName = "BannerAction"
+
+export { Banner, BannerTitle, BannerDescription, BannerAction, bannerVariants }

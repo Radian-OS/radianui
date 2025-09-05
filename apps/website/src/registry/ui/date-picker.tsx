@@ -1,386 +1,360 @@
-import React, { useCallback, useEffect, useRef, useState } from "react"
-import { CalendarDate, Time, getLocalTimeZone, today } from "@internationalized/date"
-import { ZonedDateTime, parseZonedDateTime } from "@internationalized/date"
-import { cva } from "class-variance-authority"
+import React from "react"
 // import { format } from "date-fns"
-import { Calendar as CalendarIcon } from "lucide-react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-import { type ChevronProps, DayPicker } from "react-day-picker"
 import { cn } from "@/lib/utils"
-import { type CalendarProps, type CalendarRange, getMergedClassNames } from "./calendar"
-import { Input, type SizeOptions } from "./input"
-import { Popover, PopoverContent, PopoverTrigger } from "./popover"
+import { Input } from "./input"
 
-const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg cursor-text", {
-	variants: {
-		size: {
-			"0": "h-fit",
-			"28": "h-7 text-xs p-1.5 rounded-md",
-			"32": "h-8 text-sm px-3 py-1.5 rounded-md",
-			"36": "h-9 text-sm px-2.5 py-2 rounded-lg",
-			"40": "h-10 text-sm px-3 py-2.5 rounded-lg",
-			"44": "h-11 text-fgpy-2.5 px-3.5 rounded-[10px]",
-			"48": "h-12 text-fgpy-3 px-3.5 rounded-[10px]",
-		},
-	},
-})
+// const dateInputStyles = cva("flex h-10 items-center justify-between gap-2 border drop-shadow-xs bg-bg cursor-text", {
+// 	variants: {
+// 		size: {
+// 			"0": "h-fit",
+// 			"28": "h-7 text-xs p-1.5 rounded-md",
+// 			"32": "h-8 text-sm px-3 py-1.5 rounded-md",
+// 			"36": "h-9 text-sm px-2.5 py-2 rounded-lg",
+// 			"40": "h-10 text-sm px-3 py-2.5 rounded-lg",
+// 			"44": "h-11 text-fgpy-2.5 px-3.5 rounded-[10px]",
+// 			"48": "h-12 text-fgpy-3 px-3.5 rounded-[10px]",
+// 		},
+// 	},
+// })
 
-export type TimePickerProps = {
-	interval?: number
-	value?: Time | null
-	onValueChange?: (time: Time | null) => void
-	is24Hour?: boolean
-	minTime?: string
-	maxTime?: string
-	defaultValue?: Time
-	allowEmptySelection?: boolean
-	lead?: React.ReactNode
-}
+// export type TimePickerProps = {
+// 	interval?: number
+// 	value?: Time | null
+// 	onValueChange?: (time: Time | null) => void
+// 	is24Hour?: boolean
+// 	minTime?: string
+// 	maxTime?: string
+// 	defaultValue?: Time
+// 	allowEmptySelection?: boolean
+// 	lead?: React.ReactNode
+// }
 
-type TimeZone = Record<string, string>
-const timeZones: TimeZone = {}
-// Populate the timeZones object with the supported timezones
-Intl.supportedValuesOf("timeZone").map(function (zone) {
-	timeZones[zone] = zone
-		.split("/")
-		.map((part) => part.replace(/_/g, " ").replace(/(^|\s)\S/g, (t) => t.toUpperCase()))
-		.join("/")
-})
+// type TimeZone = Record<string, string>
+// const timeZones: TimeZone = {}
+// // Populate the timeZones object with the supported timezones
+// Intl.supportedValuesOf("timeZone").map(function (zone) {
+// 	timeZones[zone] = zone
+// 		.split("/")
+// 		.map((part) => part.replace(/_/g, " ").replace(/(^|\s)\S/g, (t) => t.toUpperCase()))
+// 		.join("/")
+// })
 
-export type DatePickerModes = "single" | "multiple" | "range" | "time"
+// export type DatePickerModes = "single" | "multiple" | "range" | "time"
 
-// Custom Segmented Date Input Types and Component
-interface DateSegment {
-	type: "month" | "day" | "year" | "hour" | "minute" | "ampm" | "literal"
-	value: string
-	placeholder: string
-	maxLength: number
-	editable: boolean
-}
+// // Custom Segmented Date Input Types and Component
+// interface DateSegment {
+// 	type: "month" | "day" | "year" | "hour" | "minute" | "ampm" | "literal"
+// 	value: string
+// 	placeholder: string
+// 	maxLength: number
+// 	editable: boolean
+// }
 
-interface SegmentedDateInputProps {
-	value?: ZonedDateTime | null
-	onChange?: (dateTime: ZonedDateTime | null) => void
-	showTime?: boolean
-	disabled?: boolean
-	className?: string
-	size?: SizeOptions
-}
+// interface SegmentedDateInputProps {
+// 	value?: ZonedDateTime | null
+// 	onChange?: (dateTime: ZonedDateTime | null) => void
+// 	showTime?: boolean
+// 	disabled?: boolean
+// 	className?: string
+// 	size?: SizeOptions
+// }
 
-function SegmentedDateInput({ value, onChange, showTime = false, disabled = false, className = "", size = "32" }: SegmentedDateInputProps) {
-	const [focusedIndex, setFocusedIndex] = useState<number>(-1)
-	const [segments, setSegments] = useState<DateSegment[]>([])
-	const inputRefs = useRef<(HTMLInputElement | null)[]>([])
+// function SegmentedDateInput({ value, onChange, showTime = false, disabled = false, className = "", size = "32" }: SegmentedDateInputProps) {
+// 	const [focusedIndex, setFocusedIndex] = useState<number>(-1)
+// 	const [segments, setSegments] = useState<DateSegment[]>([])
+// 	const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
-	// Initialize segments based on showTime
-	const initializeSegments = useCallback(() => {
-		const baseSegments: DateSegment[] = [
-			{ type: "month", value: "", placeholder: "mm ", maxLength: 2, editable: true },
-			{ type: "literal", value: "/", placeholder: "/", maxLength: 1, editable: false },
-			{ type: "day", value: "", placeholder: "dd", maxLength: 2, editable: true },
-			{ type: "literal", value: "/", placeholder: "/", maxLength: 1, editable: false },
-			{ type: "year", value: "", placeholder: "yyyy", maxLength: 4, editable: true },
-		]
+// 	// Initialize segments based on showTime
+// 	const initializeSegments = useCallback(() => {
+// 		const baseSegments: DateSegment[] = [
+// 			{ type: "month", value: "", placeholder: "mm ", maxLength: 2, editable: true },
+// 			{ type: "literal", value: "/", placeholder: "/", maxLength: 1, editable: false },
+// 			{ type: "day", value: "", placeholder: "dd", maxLength: 2, editable: true },
+// 			{ type: "literal", value: "/", placeholder: "/", maxLength: 1, editable: false },
+// 			{ type: "year", value: "", placeholder: "yyyy", maxLength: 4, editable: true },
+// 		]
 
-		if (showTime) {
-			baseSegments.push(
-				{ type: "literal", value: " ", placeholder: " ", maxLength: 1, editable: false },
-				{ type: "hour", value: "", placeholder: "hh", maxLength: 2, editable: true },
-				{ type: "literal", value: ":", placeholder: ":", maxLength: 1, editable: false },
-				{ type: "minute", value: "", placeholder: "mm ", maxLength: 2, editable: true },
-				{ type: "literal", value: " ", placeholder: " ", maxLength: 1, editable: false },
-				{ type: "ampm", value: "", placeholder: "AM", maxLength: 2, editable: true }
-			)
-		}
+// 		if (showTime) {
+// 			baseSegments.push(
+// 				{ type: "literal", value: " ", placeholder: " ", maxLength: 1, editable: false },
+// 				{ type: "hour", value: "", placeholder: "hh", maxLength: 2, editable: true },
+// 				{ type: "literal", value: ":", placeholder: ":", maxLength: 1, editable: false },
+// 				{ type: "minute", value: "", placeholder: "mm ", maxLength: 2, editable: true },
+// 				{ type: "literal", value: " ", placeholder: " ", maxLength: 1, editable: false },
+// 				{ type: "ampm", value: "", placeholder: "AM", maxLength: 2, editable: true }
+// 			)
+// 		}
 
-		setSegments(baseSegments)
-	}, [showTime])
+// 		setSegments(baseSegments)
+// 	}, [showTime])
 
-	// Update segments from ZonedDateTime value
-	const updateSegmentsFromValue = useCallback((dateTime: ZonedDateTime | null) => {
-		setSegments((prev) =>
-			prev.map((segment) => {
-				if (!dateTime) {
-					return { ...segment, value: segment.editable ? "" : segment.placeholder }
-				}
+// 	// Update segments from ZonedDateTime value
+// 	const updateSegmentsFromValue = useCallback((dateTime: ZonedDateTime | null) => {
+// 		setSegments((prev) =>
+// 			prev.map((segment) => {
+// 				if (!dateTime) {
+// 					return { ...segment, value: segment.editable ? "" : segment.placeholder }
+// 				}
 
-				switch (segment.type) {
-					case "month":
-						return { ...segment, value: String(dateTime.month).padStart(2, "0") }
-					case "day":
-						return { ...segment, value: String(dateTime.day).padStart(2, "0") }
-					case "year":
-						return { ...segment, value: String(dateTime.year) }
-					case "hour":
-						const displayHour = dateTime.hour % 12 || 12
-						return { ...segment, value: String(displayHour).padStart(2, "0") }
-					case "minute":
-						return { ...segment, value: String(dateTime.minute).padStart(2, "0") }
-					case "ampm":
-						return { ...segment, value: dateTime.hour >= 12 ? "PM" : "AM" }
-					default:
-						return segment
-				}
-			})
-		)
-	}, [])
+// 				switch (segment.type) {
+// 					case "month":
+// 						return { ...segment, value: String(dateTime.month).padStart(2, "0") }
+// 					case "day":
+// 						return { ...segment, value: String(dateTime.day).padStart(2, "0") }
+// 					case "year":
+// 						return { ...segment, value: String(dateTime.year) }
+// 					case "hour":
+// 						const displayHour = dateTime.hour % 12 || 12
+// 						return { ...segment, value: String(displayHour).padStart(2, "0") }
+// 					case "minute":
+// 						return { ...segment, value: String(dateTime.minute).padStart(2, "0") }
+// 					case "ampm":
+// 						return { ...segment, value: dateTime.hour >= 12 ? "PM" : "AM" }
+// 					default:
+// 						return segment
+// 				}
+// 			})
+// 		)
+// 	}, [])
 
-	// Initialize segments on mount
-	useEffect(() => {
-		initializeSegments()
-	}, [initializeSegments])
+// 	// Initialize segments on mount
+// 	useEffect(() => {
+// 		initializeSegments()
+// 	}, [initializeSegments])
 
-	// Update segments when value prop changes
-	useEffect(() => {
-		if (segments.length > 0) {
-			updateSegmentsFromValue(value ?? null)
-		}
-	}, [value, segments.length, updateSegmentsFromValue])
+// 	// Update segments when value prop changes
+// 	useEffect(() => {
+// 		if (segments.length > 0) {
+// 			updateSegmentsFromValue(value ?? null)
+// 		}
+// 	}, [value, segments.length, updateSegmentsFromValue])
 
-	const handleSegmentChange = (index: number, newValue: string) => {
-		const segment = segments[index]
-		if (!segment.editable) return
+// 	const handleSegmentChange = (index: number, newValue: string) => {
+// 		const segment = segments[index]
+// 		if (!segment.editable) return
 
-		// Validate input based on segment type
-		let validatedValue = newValue
+// 		// Validate input based on segment type
+// 		let validatedValue = newValue
 
-		switch (segment.type) {
-			case "month":
-				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
-				if (parseInt(validatedValue) > 12 && validatedValue.length === 2) validatedValue = "12"
-				break
-			case "day":
-				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
-				if (parseInt(validatedValue) > 31 && validatedValue.length === 2) validatedValue = "31"
-				break
-			case "year":
-				validatedValue = newValue.replace(/\D/g, "").slice(0, 4)
-				break
-			case "hour":
-				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
-				const hourNum = parseInt(validatedValue)
-				if (hourNum > 12 && validatedValue.length === 2) validatedValue = "12"
-				if (hourNum === 0 && validatedValue.length === 2) validatedValue = "01"
-				break
-			case "minute":
-				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
-				if (parseInt(validatedValue) > 59 && validatedValue.length === 2) validatedValue = "59"
-				break
-			case "ampm":
-				const upper = newValue.toUpperCase()
-				if (upper.startsWith("A")) validatedValue = "AM"
-				else if (upper.startsWith("P")) validatedValue = "PM"
-				else validatedValue = upper.slice(0, 2).replace(/[^AP]/g, "")
-				break
-		}
+// 		switch (segment.type) {
+// 			case "month":
+// 				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+// 				if (parseInt(validatedValue) > 12 && validatedValue.length === 2) validatedValue = "12"
+// 				break
+// 			case "day":
+// 				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+// 				if (parseInt(validatedValue) > 31 && validatedValue.length === 2) validatedValue = "31"
+// 				break
+// 			case "year":
+// 				validatedValue = newValue.replace(/\D/g, "").slice(0, 4)
+// 				break
+// 			case "hour":
+// 				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+// 				const hourNum = parseInt(validatedValue)
+// 				if (hourNum > 12 && validatedValue.length === 2) validatedValue = "12"
+// 				if (hourNum === 0 && validatedValue.length === 2) validatedValue = "01"
+// 				break
+// 			case "minute":
+// 				validatedValue = newValue.replace(/\D/g, "").slice(0, 2)
+// 				if (parseInt(validatedValue) > 59 && validatedValue.length === 2) validatedValue = "59"
+// 				break
+// 			case "ampm":
+// 				const upper = newValue.toUpperCase()
+// 				if (upper.startsWith("A")) validatedValue = "AM"
+// 				else if (upper.startsWith("P")) validatedValue = "PM"
+// 				else validatedValue = upper.slice(0, 2).replace(/[^AP]/g, "")
+// 				break
+// 		}
 
-		const newSegments = [...segments]
-		newSegments[index] = { ...segment, value: validatedValue }
-		setSegments(newSegments)
+// 		const newSegments = [...segments]
+// 		newSegments[index] = { ...segment, value: validatedValue }
+// 		setSegments(newSegments)
 
-		// Try to parse and notify parent
-		setTimeout(() => {
-			const updatedSegments = [...segments]
-			updatedSegments[index] = { ...segment, value: validatedValue }
+// 		// Try to parse and notify parent
+// 		setTimeout(() => {
+// 			const updatedSegments = [...segments]
+// 			updatedSegments[index] = { ...segment, value: validatedValue }
 
-			const monthSegment = updatedSegments.find((s) => s.type === "month")
-			const daySegment = updatedSegments.find((s) => s.type === "day")
-			const yearSegment = updatedSegments.find((s) => s.type === "year")
+// 			const monthSegment = updatedSegments.find((s) => s.type === "month")
+// 			const daySegment = updatedSegments.find((s) => s.type === "day")
+// 			const yearSegment = updatedSegments.find((s) => s.type === "year")
 
-			const month = monthSegment?.value
-			const day = daySegment?.value
-			const year = yearSegment?.value
+// 			const month = monthSegment?.value
+// 			const day = daySegment?.value
+// 			const year = yearSegment?.value
 
-			if (month && day && year && month.length >= 1 && day.length >= 1 && year.length === 4) {
-				let hour = 0
-				let minute = 0
+// 			if (month && day && year && month.length >= 1 && day.length >= 1 && year.length === 4) {
+// 				let hour = 0
+// 				let minute = 0
 
-				if (showTime) {
-					const hourSegment = updatedSegments.find((s) => s.type === "hour")?.value
-					const minuteSegment = updatedSegments.find((s) => s.type === "minute")?.value
-					const ampm = updatedSegments.find((s) => s.type === "ampm")?.value
+// 				if (showTime) {
+// 					const hourSegment = updatedSegments.find((s) => s.type === "hour")?.value
+// 					const minuteSegment = updatedSegments.find((s) => s.type === "minute")?.value
+// 					const ampm = updatedSegments.find((s) => s.type === "ampm")?.value
 
-					if (hourSegment && minuteSegment && ampm && hourSegment.length >= 1 && minuteSegment.length >= 1) {
-						hour = parseInt(hourSegment, 10)
-						minute = parseInt(minuteSegment, 10)
+// 					if (hourSegment && minuteSegment && ampm && hourSegment.length >= 1 && minuteSegment.length >= 1) {
+// 						hour = parseInt(hourSegment, 10)
+// 						minute = parseInt(minuteSegment, 10)
 
-						if (ampm === "AM" && hour === 12) hour = 0
-						if (ampm === "PM" && hour !== 12) hour += 12
-					} else if (showTime) {
-						onChange?.(null)
-						return
-					}
-				}
+// 						if (ampm === "AM" && hour === 12) hour = 0
+// 						if (ampm === "PM" && hour !== 12) hour += 12
+// 					} else if (showTime) {
+// 						onChange?.(null)
+// 						return
+// 					}
+// 				}
 
-				const isoString = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}[America/Los_Angeles]`
-				const parsedDateTime = parseZonedDateTime(isoString)
-				onChange?.(parsedDateTime)
-			} else if (!month && !day && !year) {
-				onChange?.(null)
-			}
-		}, 0)
+// 				const isoString = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}[America/Los_Angeles]`
+// 				const parsedDateTime = parseZonedDateTime(isoString)
+// 				onChange?.(parsedDateTime)
+// 			} else if (!month && !day && !year) {
+// 				onChange?.(null)
+// 			}
+// 		}, 0)
 
-		// Auto-advance to next editable segment
-		if (validatedValue.length === segment.maxLength) {
-			const nextEditableIndex = segments.findIndex((s, i) => i > index && s.editable)
-			if (nextEditableIndex !== -1) {
-				setTimeout(() => {
-					inputRefs.current[nextEditableIndex]?.focus()
-				}, 0)
-			}
-		}
-	}
+// 		// Auto-advance to next editable segment
+// 		if (validatedValue.length === segment.maxLength) {
+// 			const nextEditableIndex = segments.findIndex((s, i) => i > index && s.editable)
+// 			if (nextEditableIndex !== -1) {
+// 				setTimeout(() => {
+// 					inputRefs.current[nextEditableIndex]?.focus()
+// 				}, 0)
+// 			}
+// 		}
+// 	}
 
-	const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
-		const segment = segments[index]
+// 	const handleKeyDown = (index: number, e: React.KeyboardEvent) => {
+// 		const segment = segments[index]
 
-		if (e.key === "ArrowRight" || (e.key === "Tab" && !e.shiftKey)) {
-			const nextIndex = segments.findIndex((s, i) => i > index && s.editable)
-			if (nextIndex !== -1) {
-				e.preventDefault()
-				inputRefs.current[nextIndex]?.focus()
-			}
-		} else if (e.key === "ArrowLeft" || (e.key === "Tab" && e.shiftKey)) {
-			const prevSegments = segments.slice(0, index).reverse()
-			const prevIndex = prevSegments.findIndex((s) => s.editable)
-			if (prevIndex !== -1) {
-				const actualIndex = index - prevIndex - 1
-				e.preventDefault()
-				inputRefs.current[actualIndex]?.focus()
-			}
-		} else if (e.key === "Backspace" && segment.value === "") {
-			const prevSegments = segments.slice(0, index).reverse()
-			const prevIndex = prevSegments.findIndex((s) => s.editable)
-			if (prevIndex !== -1) {
-				const actualIndex = index - prevIndex - 1
-				inputRefs.current[actualIndex]?.focus()
-			}
-		}
-	}
+// 		if (e.key === "ArrowRight" || (e.key === "Tab" && !e.shiftKey)) {
+// 			const nextIndex = segments.findIndex((s, i) => i > index && s.editable)
+// 			if (nextIndex !== -1) {
+// 				e.preventDefault()
+// 				inputRefs.current[nextIndex]?.focus()
+// 			}
+// 		} else if (e.key === "ArrowLeft" || (e.key === "Tab" && e.shiftKey)) {
+// 			const prevSegments = segments.slice(0, index).reverse()
+// 			const prevIndex = prevSegments.findIndex((s) => s.editable)
+// 			if (prevIndex !== -1) {
+// 				const actualIndex = index - prevIndex - 1
+// 				e.preventDefault()
+// 				inputRefs.current[actualIndex]?.focus()
+// 			}
+// 		} else if (e.key === "Backspace" && segment.value === "") {
+// 			const prevSegments = segments.slice(0, index).reverse()
+// 			const prevIndex = prevSegments.findIndex((s) => s.editable)
+// 			if (prevIndex !== -1) {
+// 				const actualIndex = index - prevIndex - 1
+// 				inputRefs.current[actualIndex]?.focus()
+// 			}
+// 		}
+// 	}
 
-	const sizeClassMap = {
-		0: "h-fit",
-		28: "h-7 text-xs ",
-		32: "h-8 text-sm",
-		36: "h-9 text-sm",
-		40: "h-10 text-sm",
-		44: "h-11 text-base",
-		48: "h-12 text-base",
-	}
+// 	const sizeClassMap = {
+// 		0: "h-fit",
+// 		28: "h-7 text-xs ",
+// 		32: "h-8 text-sm",
+// 		36: "h-9 text-sm",
+// 		40: "h-10 text-sm",
+// 		44: "h-11 text-base",
+// 		48: "h-12 text-base",
+// 	}
 
-	return (
-		<div className={`flex items-center ${sizeClassMap[size]} ${className}`}>
-			{segments.map((segment, index) => {
-				if (!segment.editable) {
-					return (
-						<span key={index} className="text-fg-tertiary mx-1 select-none">
-							{segment.placeholder}
-						</span>
-					)
-				}
+// 	return (
+// 		<div className={`flex items-center ${sizeClassMap[size]} ${className}`}>
+// 			{segments.map((segment, index) => {
+// 				if (!segment.editable) {
+// 					return (
+// 						<span key={index} className="text-fg-tertiary mx-1 select-none">
+// 							{segment.placeholder}
+// 						</span>
+// 					)
+// 				}
 
-				return (
-					<input
-						key={index}
-						ref={(el) => {
-							inputRefs.current[index] = el
-						}}
-						type="text"
-						value={segment.value}
-						onChange={(e) => handleSegmentChange(index, e.target.value)}
-						onKeyDown={(e) => handleKeyDown(index, e)}
-						onFocus={() => setFocusedIndex(index)}
-						onBlur={() => setFocusedIndex(-1)}
-						disabled={disabled}
-						placeholder={segment.placeholder}
-						className={cn(
-							"inline-block rounded-sm border-none bg-transparent text-center outline-none",
-							"data-[focused]:bg-fill3",
-							"placeholder:text-fg-tertiary",
-							"focus:outline-hidden focus:caret-transparent",
-							{
-								"bg-fill3": focusedIndex === index,
-								"text-fg-disabled placeholder-text-disabled cursor-not-allowed": disabled,
-							}
-						)}
-						style={{
-							width: `${Math.max(segment.placeholder.length * 0.8, 1.5)}em`,
-							minWidth: "1.2em",
-						}}
-					/>
-				)
-			})}
-		</div>
-	)
-}
+// 				return (
+// 					<input
+// 						key={index}
+// 						ref={(el) => {
+// 							inputRefs.current[index] = el
+// 						}}
+// 						type="text"
+// 						value={segment.value}
+// 						onChange={(e) => handleSegmentChange(index, e.target.value)}
+// 						onKeyDown={(e) => handleKeyDown(index, e)}
+// 						onFocus={() => setFocusedIndex(index)}
+// 						onBlur={() => setFocusedIndex(-1)}
+// 						disabled={disabled}
+// 						placeholder={segment.placeholder}
+// 						className={cn(
+// 							"inline-block rounded-sm border-none bg-transparent text-center outline-none",
+// 							"data-[focused]:bg-fill3",
+// 							"placeholder:text-fg-tertiary",
+// 							"focus:outline-hidden focus:caret-transparent",
+// 							{
+// 								"bg-fill3": focusedIndex === index,
+// 								"text-fg-disabled placeholder-text-disabled cursor-not-allowed": disabled,
+// 							}
+// 						)}
+// 						style={{
+// 							width: `${Math.max(segment.placeholder.length * 0.8, 1.5)}em`,
+// 							minWidth: "1.2em",
+// 						}}
+// 					/>
+// 				)
+// 			})}
+// 		</div>
+// 	)
+// }
 
-// Type definition for DatePickerProps props
-export type DatePickerProps = Omit<CalendarProps, "mode"> & {
+// // Type definition for DatePickerProps props
+export type DatePickerProps = {
 	triggerClassName?: string
 	showDateRangeShortcut?: boolean
 	placeholder?: string
-	timePickerProps?: Partial<TimePickerProps>
 	timeZoneProps?: {
 		allowedTimezones?: string[]
 	}
 	hint?: string
-	time?: Time
-	onSelectTime?: (time: Time | null) => void
 	selectedTimezone?: string
 	onSelectTimezone?: (timezone: string | null) => void
-	size?: SizeOptions
-	mode?: DatePickerModes
+
 	label?: string
 	hasError?: boolean
 	disabled?: boolean
 	typeable?: boolean
 	disables?: boolean
-	onChange?: (dateTime: ZonedDateTime | null) => void
-	value?: ZonedDateTime | null
 }
 
 // DatePicker component definition
-function DatePicker({
-	onSelect,
-	disabled,
-	label,
-	hint,
-	hasError = false,
-	triggerClassName,
-	showDateRangeShortcut = false,
-	onSelectTime,
-	size = "40",
-	typeable = false,
-	...props
-}: DatePickerProps) {
+function DatePicker({ disabled, triggerClassName, typeable = false }: DatePickerProps) {
 	// const [internalSelected, setInternalSelected] = React.useState<CalendarDate | CalendarDate[] | CalendarRange | undefined>(selected || undefined)
 	// const isControlled = selected !== undefined
 	// const currentSelected = isControlled ? selected : internalSelected
 
-	// Add state for typeable date time
-	const [typeableDateTime, setTypeableDateTime] = useState<ZonedDateTime | null>(null)
+	// 	// Add state for typeable date time
+	// 	const [typeableDateTime, setTypeableDateTime] = useState<ZonedDateTime | null>(null)
 
-	function mockMouseClick(): React.MouseEvent {
-		return new MouseEvent("click") as unknown as React.MouseEvent
-	}
-	// Handle typeable date time changes
-	const handleTypeableChange = (dateTime: ZonedDateTime | null) => {
-		setTypeableDateTime(dateTime)
+	// 	function mockMouseClick(): React.MouseEvent {
+	// 		return new MouseEvent("click") as unknown as React.MouseEvent
+	// 	}
+	// 	// Handle typeable date time changes
+	// 	const handleTypeableChange = (dateTime: ZonedDateTime | null) => {
+	// 		setTypeableDateTime(dateTime)
 
-		// Convert ZonedDateTime to CalendarDate for consistency with existing onSelect
-		if (dateTime) {
-			const calendarDate = new CalendarDate(dateTime.year, dateTime.month, dateTime.day)
-			onSelect?.(calendarDate as CalendarDate & CalendarDate[] & CalendarRange, calendarDate, {}, mockMouseClick())
-		} else {
-			onSelect?.(undefined, today(getLocalTimeZone()), {}, mockMouseClick())
-		}
-	}
+	// 		// Convert ZonedDateTime to CalendarDate for consistency with existing onSelect
+	// 		if (dateTime) {
+	// 			const calendarDate = new CalendarDate(dateTime.year, dateTime.month, dateTime.day)
+	// 			onSelect?.(calendarDate as CalendarDate & CalendarDate[] & CalendarRange, calendarDate, {}, mockMouseClick())
+	// 		} else {
+	// 			onSelect?.(undefined, today(getLocalTimeZone()), {}, mockMouseClick())
+	// 		}
+	// 	}
 
-	/**
-	 * This function manipulates the selected date according
-	 * to the range shortcut value passed
-	 * @param shortcut - Value of the shortcut type
-	 */
+	// 	/**
+	// 	 * This function manipulates the selected date according
+	// 	 * to the range shortcut value passed
+	// 	 * @param shortcut - Value of the shortcut type
+	// 	 */
 
 	// Function to handle the selection of the date
 	// function onSelectHandler(
@@ -453,7 +427,7 @@ function DatePicker({
 		<div>
 			{typeable ? (
 				<>
-					<TypeableDatePicker
+					{/* <TypeableDatePicker
 						size={size}
 						label={label}
 						disables={disabled}
@@ -464,12 +438,12 @@ function DatePicker({
 						value={props.value || typeableDateTime}
 						onSelectTime={onSelectTime}
 						{...props}
-					/>
+					/> */}
 				</>
 			) : (
 				<>
 					<Input
-						size={size}
+						// size={size}
 						// onClick={() => !disabled && setOpen(true)}
 						disabled={disabled}
 						className={cn(triggerClassName)}
@@ -537,171 +511,171 @@ function DatePicker({
 	)
 }
 
-export default DatePicker
+// export default DatePicker
 
-function TypeableDatePicker({
-	size,
-	label,
-	disables,
-	hasError,
-	components,
-	navigatorStyle = "button",
-	dual = false,
-	className,
-	footer,
-	onSelectTime,
-	hint,
-	time,
-	onChange,
-	value,
-	...props
-}: DatePickerProps & {
-	onChange?: (dateTime: ZonedDateTime | null) => void
-	value?: ZonedDateTime | null
-}) {
-	const mergedClassName = cn(`p-3 bg-elevation-level1`, className)
-	const hideCaption: boolean = false
+// function TypeableDatePicker({
+// 	size,
+// 	label,
+// 	disables,
+// 	hasError,
+// 	components,
+// 	navigatorStyle = "button",
+// 	dual = false,
+// 	className,
+// 	footer,
+// 	onSelectTime,
+// 	hint,
+// 	time,
+// 	onChange,
+// 	value,
+// 	...props
+// }: DatePickerProps & {
+// 	onChange?: (dateTime: ZonedDateTime | null) => void
+// 	value?: ZonedDateTime | null
+// }) {
+// 	const mergedClassName = cn(`p-3 bg-elevation-level1`, className)
+// 	const hideCaption: boolean = false
 
-	// Use controlled/uncontrolled pattern
-	const [internalDateTime, setInternalDateTime] = useState<ZonedDateTime | null>(null)
-	const isControlled = value !== undefined
-	const dateTime = isControlled ? value : internalDateTime
+// 	// Use controlled/uncontrolled pattern
+// 	const [internalDateTime, setInternalDateTime] = useState<ZonedDateTime | null>(null)
+// 	const isControlled = value !== undefined
+// 	const dateTime = isControlled ? value : internalDateTime
 
-	// Initialize dateTime from props if provided
-	useEffect(() => {
-		if (!isControlled && !internalDateTime) {
-			// Try to create initial dateTime from props
-			const today = new Date()
-			const initialHour = time?.hour || 0
-			const initialMinute = time?.minute || 0
+// 	// Initialize dateTime from props if provided
+// 	useEffect(() => {
+// 		if (!isControlled && !internalDateTime) {
+// 			// Try to create initial dateTime from props
+// 			const today = new Date()
+// 			const initialHour = time?.hour || 0
+// 			const initialMinute = time?.minute || 0
 
-			const isoString =
-				`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}` +
-				`T${String(initialHour).padStart(2, "0")}:${String(initialMinute).padStart(2, "0")}` +
-				`[America/Los_Angeles]`
+// 			const isoString =
+// 				`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}` +
+// 				`T${String(initialHour).padStart(2, "0")}:${String(initialMinute).padStart(2, "0")}` +
+// 				`[America/Los_Angeles]`
 
-			try {
-				const initialDateTime = parseZonedDateTime(isoString)
-				setInternalDateTime(initialDateTime)
-			} catch (error) {
-				console.error("Failed to parse initial dateTime", error)
-			}
-		}
-	}, [time, isControlled, internalDateTime])
+// 			try {
+// 				const initialDateTime = parseZonedDateTime(isoString)
+// 				setInternalDateTime(initialDateTime)
+// 			} catch (error) {
+// 				console.error("Failed to parse initial dateTime", error)
+// 			}
+// 		}
+// 	}, [time, isControlled, internalDateTime])
 
-	// Merged class names for styling
-	const mergedClassNames = getMergedClassNames({
-		props,
-		navigatorStyle,
-		dual,
-		hideCaption,
-	})
+// 	// Merged class names for styling
+// 	const mergedClassNames = getMergedClassNames({
+// 		props,
+// 		navigatorStyle,
+// 		dual,
+// 		hideCaption,
+// 	})
 
-	// Merged components including custom ones
-	const mergedComponents = {
-		Chevron: (props: ChevronProps) => {
-			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
-			return <ChevronRight size={16} className="stroke-fg" />
-		},
-		...components,
-	}
+// 	// Merged components including custom ones
+// 	const mergedComponents = {
+// 		Chevron: (props: ChevronProps) => {
+// 			if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
+// 			return <ChevronRight size={16} className="stroke-fg" />
+// 		},
+// 		...components,
+// 	}
 
-	// Modified to call onChange callback
-	const handleDateTimeChange = (newDateTime: ZonedDateTime | null) => {
-		if (!isControlled) {
-			setInternalDateTime(newDateTime)
-		}
-		onChange?.(newDateTime) // Notify parent of changes
+// 	// Modified to call onChange callback
+// 	const handleDateTimeChange = (newDateTime: ZonedDateTime | null) => {
+// 		if (!isControlled) {
+// 			setInternalDateTime(newDateTime)
+// 		}
+// 		onChange?.(newDateTime) // Notify parent of changes
 
-		// Also call onSelectTime if time changes
-		if (newDateTime && onSelectTime) {
-			const newTime = new Time(newDateTime.hour, newDateTime.minute)
-			onSelectTime(newTime)
-		}
-	}
+// 		// Also call onSelectTime if time changes
+// 		if (newDateTime && onSelectTime) {
+// 			const newTime = new Time(newDateTime.hour, newDateTime.minute)
+// 			onSelectTime(newTime)
+// 		}
+// 	}
 
-	const sizeHeightMapping = {
-		0: "",
-		28: "h-4 w-4",
-		32: "h-5 w-5",
-		36: "h-5 w-5",
-		40: "h-5 w-5",
-		44: "h-6 w-6",
-		48: "h-6 w-6",
-	}
+// 	const sizeHeightMapping = {
+// 		0: "",
+// 		28: "h-4 w-4",
+// 		32: "h-5 w-5",
+// 		36: "h-5 w-5",
+// 		40: "h-5 w-5",
+// 		44: "h-6 w-6",
+// 		48: "h-6 w-6",
+// 	}
 
-	return (
-		<Popover>
-			<PopoverTrigger disabled={disables} asChild>
-				<div className="flex flex-col items-start gap-1.5">
-					{label && (
-						<p className={cn({ "text-fg-disabled cursor-not-allowed text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70": disables })}>{label}</p>
-					)}
-					<div
-						className={cn("w-[320px]", dateInputStyles({ size }), {
-							"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
-							"focus-within:border-primary focus-within:ring-primary/10 border-alpha focus-within:ring-2": !hasError && !disables,
-							"text-fg-disables bg-fill1 cursor-not-allowed drop-shadow-none": disables,
-						})}>
-						<SegmentedDateInput value={dateTime} onChange={handleDateTimeChange} disabled={disables} size={size} />
-						<CalendarIcon
-							className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
-								"text-fg-tertiary": !disables,
-								"text-fg-disabled cursor-not-allowed": disables,
-							})}
-						/>
-					</div>
-					{hint && (
-						<p className={`flex items-start text-xs font-normal peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${hasError ? "text-error" : "text-fg-tertiary"}`}>
-							{hint}
-						</p>
-					)}
-				</div>
-			</PopoverTrigger>
+// 	return (
+// 		<Popover>
+// 			<PopoverTrigger disabled={disables} asChild>
+// 				<div className="flex flex-col items-start gap-1.5">
+// 					{label && (
+// 						<p className={cn({ "text-fg-disabled cursor-not-allowed text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70": disables })}>{label}</p>
+// 					)}
+// 					<div
+// 						className={cn("w-[320px]", dateInputStyles({ size }), {
+// 							"border-error focus-within:ring-error/10 focus-within:ring-2": hasError && !disables,
+// 							"focus-within:border-primary focus-within:ring-primary/10 border-alpha focus-within:ring-2": !hasError && !disables,
+// 							"text-fg-disables bg-fill1 cursor-not-allowed drop-shadow-none": disables,
+// 						})}>
+// 						<SegmentedDateInput value={dateTime} onChange={handleDateTimeChange} disabled={disables} size={size} />
+// 						<CalendarIcon
+// 							className={cn(sizeHeightMapping[size || 36], "stroke-fg-tertiary cursor-pointer", {
+// 								"text-fg-tertiary": !disables,
+// 								"text-fg-disabled cursor-not-allowed": disables,
+// 							})}
+// 						/>
+// 					</div>
+// 					{hint && (
+// 						<p className={`flex items-start text-xs font-normal peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${hasError ? "text-error" : "text-fg-tertiary"}`}>
+// 							{hint}
+// 						</p>
+// 					)}
+// 				</div>
+// 			</PopoverTrigger>
 
-			<PopoverContent className="w-auto border-none p-0">
-				<div className="bg-elevation-level1 border-border drop-shadow-xs w-fit overflow-hidden rounded-xl border">
-					<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
-						<DayPicker
-							mode="single"
-							numberOfMonths={dual ? 2 : 1}
-							selected={dateTime ? new Date(dateTime.year, dateTime.month - 1, dateTime.day) : undefined}
-							month={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
-							onSelect={(selectedDate) => {
-								if (selectedDate) {
-									const currentTime = dateTime
-										? {
-												hour: dateTime.hour,
-												minute: dateTime.minute,
-											}
-										: { hour: 0, minute: 0 }
+// 			<PopoverContent className="w-auto border-none p-0">
+// 				<div className="bg-elevation-level1 border-border drop-shadow-xs w-fit overflow-hidden rounded-xl border">
+// 					<div className={`flex ${footer ? "border-b" : ""} overflow-hidden`}>
+// 						<DayPicker
+// 							mode="single"
+// 							numberOfMonths={dual ? 2 : 1}
+// 							selected={dateTime ? new Date(dateTime.year, dateTime.month - 1, dateTime.day) : undefined}
+// 							month={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
+// 							onSelect={(selectedDate) => {
+// 								if (selectedDate) {
+// 									const currentTime = dateTime
+// 										? {
+// 												hour: dateTime.hour,
+// 												minute: dateTime.minute,
+// 											}
+// 										: { hour: 0, minute: 0 }
 
-									const year = selectedDate.getFullYear()
-									const month = selectedDate.getMonth() + 1
-									const maxDay = new Date(year, month, 0).getDate()
-									const day = Math.min(selectedDate.getDate(), maxDay)
+// 									const year = selectedDate.getFullYear()
+// 									const month = selectedDate.getMonth() + 1
+// 									const maxDay = new Date(year, month, 0).getDate()
+// 									const day = Math.min(selectedDate.getDate(), maxDay)
 
-									const newDateTime = parseZonedDateTime(
-										`${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
-											`T${String(currentTime.hour).padStart(2, "0")}:${String(currentTime.minute).padStart(2, "0")}` +
-											`[America/Los_Angeles]`
-									)
+// 									const newDateTime = parseZonedDateTime(
+// 										`${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}` +
+// 											`T${String(currentTime.hour).padStart(2, "0")}:${String(currentTime.minute).padStart(2, "0")}` +
+// 											`[America/Los_Angeles]`
+// 									)
 
-									handleDateTimeChange(newDateTime)
-								}
-							}}
-							className={mergedClassName}
-							showOutsideDays
-							defaultMonth={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
-							components={mergedComponents}
-							classNames={mergedClassNames}
-						/>
-					</div>
-					<div className="flex w-full justify-end">{footer && footer}</div>
-				</div>
-			</PopoverContent>
-		</Popover>
-	)
-}
+// 									handleDateTimeChange(newDateTime)
+// 								}
+// 							}}
+// 							className={mergedClassName}
+// 							showOutsideDays
+// 							defaultMonth={dateTime ? new Date(dateTime.year, dateTime.month - 1, 1) : new Date()}
+// 							components={mergedComponents}
+// 							classNames={mergedClassNames}
+// 						/>
+// 					</div>
+// 					<div className="flex w-full justify-end">{footer && footer}</div>
+// 				</div>
+// 			</PopoverContent>
+// 		</Popover>
+// 	)
+// }
 
 export { DatePicker }
