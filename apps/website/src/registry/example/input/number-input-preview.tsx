@@ -3,19 +3,14 @@ import { EyeIcon, Minus, Plus, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Input, InputAddon, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type LabelOptions = "true" | "false"
-export type DisabledOptions = "true" | "false"
-export type ErrorOptions = "true" | "false"
-export type trailOptions = "show" | "hide" | "onFocus"
 
 const NumberInputPreview = () => {
 	const [size, setSize] = useState<SizeOptions>("36")
-	const [example, setExample] = useState<"custom" | "default" | "basic">("default")
+	const [example, setExample] = useState<"inputWrapper" | "inputGroup" | "basic">("inputGroup")
 	const [amount, setAmount] = useState("")
 
 	// Reset amount when example changes
@@ -35,16 +30,14 @@ const NumberInputPreview = () => {
 	}
 
 	const code = `"use client"
-import { Button } from '@/registry/ui/button'
-import { Input } from '@/registry/ui/input'
-import { Label } from '@/registry/ui/label'
+import { Input${example === "inputGroup" ? ", InputGroup, InputAddon" : example === "inputWrapper" ? ", InputWrapper" : ""} } from '@/registry/ui/input'
 import { Minus, Plus } from 'lucide-react'
 import React, { useState } from 'react'
     
 interface HandleChangeEvent {
-target: {
-value: string
-}
+	target: {
+		value: string
+	}
 }
     
 const CounterInput = () => {
@@ -58,85 +51,55 @@ setAmount(onlyDigits)
 }
 return (
 ${
-	example === "custom" &&
-	`<div className="flex flex-col gap-1.5">
-  <Label>Amount</Label>
-  <div className="flex rounded-md">
-    <Button
-      
-      size={size}
-      className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-      variant="neutral-soft"
-      onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}
-    >
-      <Minus className="text-fg-disabled size-5" />
-    </Button>
-    <Input
-      className="w-61 rounded-l-none border-l-0 border-r-0 focus-within:border-l focus-within:border-r"
-      size={size}
-      placeholder="Enter Number Here"
-      inputMode="numeric"
-      custom={true}
-      onChange={handleChange}
-      value={amount}
-    />
-    <Button
-      
-      size={size}
-      className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-      variant="neutral-soft"
-      onClick={() => setAmount((v) => String(Number(v || "0") + 1))}
-    >
-      <Plus className="text-fg-disabled size-5" />
-    </Button>
-  </div>
-</div>
+	example === "inputWrapper"
+		? `<InputWrapper size="${size}" className="w-80">
+		<Minus
+			onClick={(e) => {
+				e.stopPropagation()
+				setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
+			}}
+			className="cursor-pointer"
+			onMouseDown={(e) => e.preventDefault()}
+		/>
+		<Input onChange={handleChange} value={amount} type="numeric" />
+		<Plus
+			onClick={(e) => {
+				e.stopPropagation()
+				setAmount((v) => String(Number(v || "0") + 1))
+			}}
+			className="cursor-pointer"
+			onMouseDown={(e) => e.preventDefault()}
+		/>
+	</InputWrapper>
 `
-}
-${
-	example === "default" &&
-	`<Input
-value={amount}
-onChange={handleChange}
-lead={
-<Plus
-className="size-5 cursor-pointer"
-onClick={(e) => {
-e.stopPropagation();
-setAmount((v) => String(Number(v || "0") + 1));
-}}
-onMouseDown={(e) => e.preventDefault()}
-/>
-}
-trail={
-<Minus
-onClick={(e) => {
-e.stopPropagation();
-setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"));
-}}
-className="size-5 cursor-pointer"
-onMouseDown={(e) => e.preventDefault()}
-/>
-}
-className="w-80"
-label="Amount"
-/>
+		: example === "inputGroup"
+			? `<InputGroup className="w-80">
+	<InputAddon size="${size}">
+		<Minus
+			onClick={(e) => {
+				e.stopPropagation()
+				setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
+			}}
+			className="cursor-pointer"
+			onMouseDown={(e) => e.preventDefault()}
+		/>
+	</InputAddon>
+	<Input onChange={handleChange} value={amount} size="${size}" type="numeric" />
+	<InputAddon size="${size}">
+		<Plus
+			className="cursor-pointer"
+			onClick={(e) => {
+				e.stopPropagation()
+				setAmount((v) => String(Number(v || "0") + 1))
+			}}
+			onMouseDown={(e) => e.preventDefault()}
+		/>
+	</InputAddon>
+</InputGroup>
 `
+			: `<Input onChange={handleChange} className="w-80" placeholder="Enter Amount Here" size="${size}" value={amount} type="numeric" />`
 }
-
-${
-	example === "basic" &&
-	`<Input
-onChange={handleChange}
-className="w-80"
-size="${size}"
-value={${amount}}
-label="Amount"
-placeholder="Enter Number Here"
-inputMode="numeric"
-/>`
-}
-}
+)}
 
 export default CounterInput
 	`
@@ -187,12 +150,12 @@ export default CounterInput
 						<DropdownSub>
 							<DropdownSubTrigger>Example</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={example} onValueChange={(value) => setExample(value as "custom" | "default" | "basic")}>
-									<DropdownRadioItem value="custom" onSelect={(e) => e.preventDefault()}>
-										Custom
+								<DropdownRadioGroup value={example} onValueChange={(value) => setExample(value as "inputWrapper" | "inputGroup" | "basic")}>
+									<DropdownRadioItem value="inputWrapper" onSelect={(e) => e.preventDefault()}>
+										InputWrapper
 									</DropdownRadioItem>
-									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
-										Default
+									<DropdownRadioItem value="inputGroup" onSelect={(e) => e.preventDefault()}>
+										InputGroup
 									</DropdownRadioItem>
 									<DropdownRadioItem value="basic" onSelect={(e) => e.preventDefault()}>
 										Basic
@@ -206,66 +169,53 @@ export default CounterInput
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					{example === "custom" && (
-						<div className="flex flex-col gap-1.5">
-							<Label>Amount</Label>
-							<div className="flex rounded-md">
-								<IconButton
-									size={size}
-									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-r-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-									variant="ghost"
-									color="neutral"
-									onClick={() => setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))}>
-									<Minus className="text-fg-disabled size-5" />
-								</IconButton>
-								<Input
-									className="w-61 rounded-l-none border-l-0 border-r-0 text-center focus-within:border-l focus-within:border-r"
-									size={size}
-									inputMode="numeric"
-									onChange={handleChange}
-									value={amount}
+					{example === "inputWrapper" && (
+						<InputWrapper size={size} className="w-80">
+							<Minus
+								onClick={(e) => {
+									e.stopPropagation()
+									setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
+								}}
+								className="cursor-pointer"
+								onMouseDown={(e) => e.preventDefault()}
+							/>
+							<Input onChange={handleChange} value={amount} type="numeric" />
+							<Plus
+								onClick={(e) => {
+									e.stopPropagation()
+									setAmount((v) => String(Number(v || "0") + 1))
+								}}
+								className="cursor-pointer"
+								onMouseDown={(e) => e.preventDefault()}
+							/>
+						</InputWrapper>
+					)}
+					{example === "inputGroup" && (
+						<InputGroup className="w-80">
+							<InputAddon size={size}>
+								<Minus
+									onClick={(e) => {
+										e.stopPropagation()
+										setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
+									}}
+									className="cursor-pointer"
+									onMouseDown={(e) => e.preventDefault()}
 								/>
-								<IconButton
-									size={size}
-									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0"
-									variant="ghost"
-									color="neutral"
-									onClick={() => setAmount((v) => String(Number(v || "0") + 1))}>
-									<Plus className="text-fg-disabled size-5" />
-								</IconButton>
-							</div>
-						</div>
+							</InputAddon>
+							<Input onChange={handleChange} value={amount} size={size} type="numeric" />
+							<InputAddon size={size}>
+								<Plus
+									className="cursor-pointer"
+									onClick={(e) => {
+										e.stopPropagation()
+										setAmount((v) => String(Number(v || "0") + 1))
+									}}
+									onMouseDown={(e) => e.preventDefault()}
+								/>
+							</InputAddon>
+						</InputGroup>
 					)}
-					{example === "default" && (
-						<Input
-							value={amount}
-							onChange={handleChange}
-							size={size}
-							// start={
-							// 	<Minus
-							// 		onClick={(e) => {
-							// 			e.stopPropagation()
-							// 			setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
-							// 		}}
-							// 		className="size-5 cursor-pointer"
-							// 		onMouseDown={(e) => e.preventDefault()}
-							// 	/>
-							// }
-							// end={
-							// 	<Plus
-							// 		className="size-5 cursor-pointer"
-							// 		onClick={(e) => {
-							// 			e.stopPropagation()
-							// 			setAmount((v) => String(Number(v || "0") + 1))
-							// 		}}
-							// 		onMouseDown={(e) => e.preventDefault()}
-							// 	/>
-							// }
-							className="w-80 text-center"
-							// label="Amount"
-						/>
-					)}
-					{example === "basic" && <Input onChange={handleChange} className="w-80" placeholder="Enter Amount Here" size={size} value={amount} inputMode="numeric" />}
+					{example === "basic" && <Input onChange={handleChange} className="w-80" placeholder="Enter Amount Here" size={size} value={amount} type="numeric" />}
 				</div>
 			</TabsContent>
 

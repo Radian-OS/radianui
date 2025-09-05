@@ -101,10 +101,10 @@ const InputPreview = () => {
 					className="h-[420px]"
 					code={`<Input 
     size="${size}"
+	className="w-80"
     disabled={${disabled}}
     placeholder={${placeholder ? `"Enter your username here"` : `""`}}
     aria-invalid={${hasError}}
-
 	/>
 `}
 				/>

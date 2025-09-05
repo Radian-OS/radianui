@@ -2,8 +2,6 @@ import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-
 const inputVariants = cva(
 	`
 	flex w-full bg-bg border border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary 
@@ -38,10 +36,10 @@ const inputAddonVariants = cva(
 			size: {
 				"28": "h-7 text-xs p-1.5 rounded-md [&_svg:not([class*=size-])]:size-3.5",
 				"32": "h-8 text-sm px-3 py-1.5 rounded-md [&_svg:not([class*=size-])]:size-3.5",
-				"36": "h-9 text-sm px-2.5 py-2 rounded-lg [&_svg:not([class*=size-])]:size-3.5",
-				"40": "h-10 text-sm px-3 py-2.5 rounded-lg [&_svg:not([class*=size-])]:size-3.5",
-				"44": "h-11 text-base py-2.5 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-3.5",
-				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-3.5",
+				"36": "h-9 text-sm px-2.5 py-2 rounded-lg [&_svg:not([class*=size-])]:size-4",
+				"40": "h-10 text-sm px-3 py-2.5 rounded-lg [&_svg:not([class*=size-])]:size-4",
+				"44": "h-11 text-base py-2.5 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-4.5",
+				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-4.5",
 			},
 			mode: {
 				default: "",
@@ -82,7 +80,7 @@ const inputGroupVariants = cva(
 const inputWrapperVariants = cva(
 	`
 	flex items-center gap-1.5
-	has-[:focus-visible]:ring-primary
+	has-[:focus-visible]:ring-primary-accent
 	has-[:focus-visible]:border-primary
 	has-[:focus-visible]:outline-none 
 	has-[:focus-visible]:ring-2
@@ -119,8 +117,8 @@ const inputWrapperVariants = cva(
 				"32": "gap-1.5 [&_svg:not([class*=size-])]:size-3.5",
 				"36": "gap-1.5 [&_svg:not([class*=size-])]:size-4",
 				"40": "gap-2 [&_svg:not([class*=size-])]:size-4",
-				"44": "gap-2 [&_svg:not([class*=size-])]:size-4",
-				"48": "gap-2 [&_svg:not([class*=size-])]:size-4",
+				"44": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
+				"48": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
 			},
 		},
 		defaultVariants: {

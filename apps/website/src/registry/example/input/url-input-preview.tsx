@@ -3,13 +3,12 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
 // type domainOption = ".com" | ".org" | ".net"
-type typeOptions = "trail" | "lead" | "default"
+type typeOptions = "end" | "start" | "default"
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const UrlPreview = () => {
@@ -53,10 +52,10 @@ const UrlPreview = () => {
 									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
 										Default
 									</DropdownRadioItem>
-									<DropdownRadioItem value="lead" onSelect={(e) => e.preventDefault()}>
+									<DropdownRadioItem value="start" onSelect={(e) => e.preventDefault()}>
 										Start
 									</DropdownRadioItem>
-									<DropdownRadioItem value="trail" onSelect={(e) => e.preventDefault()}>
+									<DropdownRadioItem value="end" onSelect={(e) => e.preventDefault()}>
 										End
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
@@ -69,25 +68,12 @@ const UrlPreview = () => {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="flex flex-col gap-1.5">
-						<Label>Url</Label>
 						<div className="flex">
-							<Input className={` ${types === "trail" ? "w-58 rounded-r-none border-r-0 focus-within:border-r" : "w-80"} `} size={size} placeholder="radianos.com" type="url" />
-
-							{/* {types === "trail" ? (
-								<Select
-									minSelectionCount={1}
-									selectedValues={[domain]}
-									onSelectedChange={(values) => setDomain(values[0] as domainOption)}
-									disableOpenStyle={true}
-									size={size}
-									className="border-alpha focus-visible:border-primary -ms-0 w-fit rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
-									<SelectItem value=".com">.com</SelectItem>
-									<SelectItem value=".org">.org</SelectItem>
-									<SelectItem value=".net">.net</SelectItem>
-								</Select>
-							) : (
-								""
-							)} */}
+							<InputGroup className="w-80">
+								{types === "start" ? <InputAddon size={size}>https://</InputAddon> : null}
+								<Input size={size} placeholder="radianos.com" type="url" />
+								{types === "end" ? <InputAddon size={size}>.com</InputAddon> : null}
+							</InputGroup>
 						</div>
 					</div>
 				</div>
@@ -98,45 +84,11 @@ const UrlPreview = () => {
 					title="url-input-preview.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={
-						types === "trail"
-							? `<div className="flex gap-1.5 flex-col">
-    <Label>Url</Label>
-    <div className="flex rounded-md shadow-xs">
-        <Input
-			className="w-80 border-r-0 focus-within:border-r"
-            size="${size}"
-            placeholder="radianos"
-            type="url"
-            start="https://"
-
-        />
-
-        <Select
-            selectedValues={[domain]}
-            onSelectedChange={(values) => setDomain(values[0] as domainOption)}
-            size="${size}"
-            className="-ms-0 w-fit">
-            <SelectItem value=".com">.com</SelectItem>
-            <SelectItem value=".org">.org</SelectItem>
-            <SelectItem value=".net">.net</SelectItem>
-        </Select>
-
-    </div>
-</div>`
-							: types === "lead"
-								? `<Input
-    size="36"
-    placeholder="radianos.com"
-    type="url"
-    start="https://"
-/>`
-								: `<Input
-    size="36"
-    placeholder="radianos.com"
-    type="url"
-/>`
-					}
+					code={`<InputGroup className="w-80">
+	${types === "start" ? `<InputAddon size={${size}}>https://</InputAddon>` : ""}
+	<Input size={${size}} placeholder="radianos.com" type="url" />
+	${types === "end" ? `<InputAddon size={${size}}>.com</InputAddon> ` : ""}
+</InputGroup>`}
 				/>
 			</TabsContent>
 		</Tabs>
