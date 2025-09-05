@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 function Divider({ className, orientation = "horizontal", decorative = true, ...props }: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
 	return (
 		<SeparatorPrimitive.Root
-			data-slot="separator"
+			data-slot="divider"
 			decorative={decorative}
 			orientation={orientation}
 			className={cn(
