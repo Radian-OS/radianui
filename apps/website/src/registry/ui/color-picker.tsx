@@ -5,7 +5,7 @@ import { oklch, rgb } from "culori"
 import { Pipette } from "lucide-react"
 import { ButtonGroup } from "./button"
 import { Input } from "./input"
-import { Popover, PopoverContent, PopoverTrigger } from "./popover"
+import { Popover, PopoverContent } from "./popover"
 import { Select, SelectItem } from "./select"
 
 // Type definitions
@@ -57,10 +57,6 @@ export const defaultInputSize = "36"
 export const defaultInputRadius = "lg"
 
 const ColorPicker: React.FC<ColorPickerProps> = ({
-	label,
-	disabled,
-	hint,
-	hasError,
 	size = defaultInputSize,
 	onColorChange,
 	defaultColor = "#007BFF",
@@ -876,30 +872,26 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		<Popover>
 			{/* Color Preview */}
 			<Input
-				label={label}
-				disabled={disabled}
-				hint={hint}
-				hasError={hasError}
 				size={size}
 				className={className}
-				start={
-					<PopoverTrigger disabled={disabled}>
-						<div
-							className="relative h-5 w-5 cursor-pointer overflow-hidden rounded-sm"
-							style={{
-								backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='checkerboard' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3e%3crect fill='%23cccccc' x='0' width='10' height='10' y='0'/%3e%3crect fill='%23cccccc' x='10' width='10' height='10' y='10'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23checkerboard)' /%3e%3c/svg%3e")`,
-								backgroundSize: "20px 20px", // Smaller pattern for better visibility at 20px size
-							}}>
-							{/* Color overlay that respects alpha */}
-							<div
-								className="absolute inset-0 h-full w-full"
-								style={{
-									backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
-								}}
-							/>
-						</div>
-					</PopoverTrigger>
-				}
+				// start={
+				// 	<PopoverTrigger disabled={disabled}>
+				// 		<div
+				// 			className="relative h-5 w-5 cursor-pointer overflow-hidden rounded-sm"
+				// 			style={{
+				// 				backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='checkerboard' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3e%3crect fill='%23cccccc' x='0' width='10' height='10' y='0'/%3e%3crect fill='%23cccccc' x='10' width='10' height='10' y='10'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23checkerboard)' /%3e%3c/svg%3e")`,
+				// 				backgroundSize: "20px 20px", // Smaller pattern for better visibility at 20px size
+				// 			}}>
+				// 			{/* Color overlay that respects alpha */}
+				// 			<div
+				// 				className="absolute inset-0 h-full w-full"
+				// 				style={{
+				// 					backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
+				// 				}}
+				// 			/>
+				// 		</div>
+				// 	</PopoverTrigger>
+				// }
 				value={inputValue}
 				onChange={handleInputChange}
 				onBlur={handleInputBlur}
@@ -1006,7 +998,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					<div className="flex w-full items-center gap-3">
 						{/* Format Selectors */}
 						<div className="flex items-center gap-4 p-2 pl-0">
-							<Select size="32" selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
+							<Select selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
 								<SelectItem value="HSV">HSB</SelectItem>
 								<SelectItem value="HSL">HSL</SelectItem>
 								<SelectItem value="RGB">RGB</SelectItem>
@@ -1015,7 +1007,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						</div>
 
 						<div className="hidden">
-							<Select size="32" selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
+							<Select selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
 								<SelectItem value="HEX">HEX</SelectItem>
 								<SelectItem value="HSL">HSL</SelectItem>
 								<SelectItem value="OKLCH">OKLCH</SelectItem>

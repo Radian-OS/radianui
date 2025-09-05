@@ -2,7 +2,6 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-import { CurrencyInput } from "@/registry/ui/currency-amount"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectItem } from "@/registry/ui/select"
@@ -56,23 +55,12 @@ const CurrencyPreview = () => {
 					<div className="flex flex-col gap-1.5">
 						<Label>Currency Input</Label>
 						<div className="flex rounded-md">
-							<CurrencyInput
-								className="w-80 border-r-0 focus-within:border-r"
-								currency={`${currency}`}
-								size={size}
-								placeholder="0.00"
-								custom={true}
-								end={null}
-								// currency={currency}
-								// hint={hasError ? "Hint text to help the user with input" : undefined}
-							/>
-							<Select
-								selectedValues={[currency]}
-								onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)}
-								disableOpenStyle={true}
-								size={size}
-								minSelectionCount={1}
-								className="border-alpha focus-visible:border-primary -ms-0 w-20 rounded-l-none border text-center focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0">
+							{/* <CurrencyInput
+							// currency={currency}
+							// hint={hasError ? "Hint text to help the user with input" : undefined}
+							/> */}
+							<Select selectedValues={[currency]} onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)} disableOpenStyle={true} minSelectionCount={1}>
+								{" "}
 								<SelectItem value="usd">USD</SelectItem>
 								<SelectItem value="eur">EUR</SelectItem>
 								<SelectItem value="gbp">GBP</SelectItem>

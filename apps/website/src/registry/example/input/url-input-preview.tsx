@@ -5,16 +5,14 @@ import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
-import { Select, SelectItem } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-type domainOption = ".com" | ".org" | ".net"
+// type domainOption = ".com" | ".org" | ".net"
 type typeOptions = "trail" | "lead" | "default"
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const UrlPreview = () => {
-	const [domain, setDomain] = useState<domainOption>(".com")
 	const [types, setType] = useState<typeOptions>("default")
 	const [size, setSize] = useState<SizeOptions>("36")
 
@@ -73,15 +71,9 @@ const UrlPreview = () => {
 					<div className="flex flex-col gap-1.5">
 						<Label>Url</Label>
 						<div className="flex">
-							<Input
-								className={` ${types === "trail" ? "w-58 rounded-r-none border-r-0 focus-within:border-r" : "w-80"} `}
-								size={size}
-								placeholder="radianos.com"
-								type="url"
-								start={types === "lead" ? "https://" : ""}
-							/>
+							<Input className={` ${types === "trail" ? "w-58 rounded-r-none border-r-0 focus-within:border-r" : "w-80"} `} size={size} placeholder="radianos.com" type="url" />
 
-							{types === "trail" ? (
+							{/* {types === "trail" ? (
 								<Select
 									minSelectionCount={1}
 									selectedValues={[domain]}
@@ -95,7 +87,7 @@ const UrlPreview = () => {
 								</Select>
 							) : (
 								""
-							)}
+							)} */}
 						</div>
 					</div>
 				</div>

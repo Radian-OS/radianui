@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react"
-import { CircleUser, EyeIcon, Mail, MessageCircle, SquareTerminal, User } from "lucide-react"
+import { CircleUser, EyeIcon, SquareTerminal } from "lucide-react"
 import { z } from "zod"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
@@ -162,47 +162,13 @@ const FormExample2 = () => {
 						</div>
 
 						{/* Full Name */}
-						<Input
-							name="fullname"
-							id="fullname"
-							start={<User />}
-							label="Full Name *"
-							className="w-full"
-							value={formData.fullname}
-							onChange={handleChange}
-							placeholder="Enter your full name"
-							hasError={!!errors.fullname}
-							hint={errors.fullname}
-						/>
+						<Input name="fullname" id="fullname" className="w-full" value={formData.fullname} onChange={handleChange} placeholder="Enter your full name" />
 
 						{/* Email */}
-						<Input
-							name="email"
-							id="email"
-							type="email"
-							start={<Mail />}
-							label="Email Address *"
-							className="w-full"
-							value={formData.email}
-							onChange={handleChange}
-							placeholder="Enter your email address"
-							hasError={!!errors.email}
-							hint={errors.email}
-						/>
+						<Input name="email" id="email" type="email" className="w-full" value={formData.email} onChange={handleChange} placeholder="Enter your email address" />
 
 						{/* Subject */}
-						<Input
-							name="subject"
-							id="subject"
-							label="Subject *"
-							start={<MessageCircle />}
-							className="w-full"
-							value={formData.subject}
-							onChange={handleChange}
-							placeholder="What is this regarding?"
-							hasError={!!errors.subject}
-							hint={errors.subject}
-						/>
+						<Input name="subject" id="subject" className="w-full" value={formData.subject} onChange={handleChange} placeholder="What is this regarding?" />
 
 						{/* Message */}
 						<TextArea

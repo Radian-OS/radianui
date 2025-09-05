@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { Mail } from "lucide-react"
 import { useEmailSubscribe } from "@/hooks/use-email-subscribe"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
@@ -21,16 +20,7 @@ export default function EmailSection() {
 					</div>
 					<form className="flex flex-col gap-2 text-start" onSubmit={handleSubscribe}>
 						<div className="flex w-full flex-col gap-3 sm:w-fit sm:flex-row">
-							<Input
-								className="w-full sm:w-80"
-								size="40"
-								placeholder="Enter your email"
-								start={<Mail className="stroke-stroke" />}
-								value={email}
-								type="email"
-								onChange={(e) => setEmail(e.target.value)}
-								required
-							/>
+							<Input className="w-full sm:w-80" size="40" placeholder="Enter your email" value={email} type="email" onChange={(e) => setEmail(e.target.value)} required />
 							<Button size="40" loading={isPending} disabled={isPending} type="submit" className="w-full sm:w-fit">
 								{!isPending ? "Subscribe" : "Subscribing"}
 							</Button>

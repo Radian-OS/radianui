@@ -14,16 +14,7 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
-import {
-	Select as Select2,
-	SelectContent as SelectContent2,
-	SelectDivider,
-	SelectGroup as SelectGroup2,
-	SelectItem as SelectItem2,
-	SelectLabel,
-	SelectTrigger as SelectTrigger2,
-	SelectValue as SelectValue2,
-} from "@/registry/ui/select2"
+import { Select as Select2, SelectContent as SelectContent2, SelectDivider, SelectGroup as SelectGroup2, SelectItem as SelectItem2, SelectLabel } from "@/registry/ui/select2"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -284,11 +275,9 @@ const SelectPreview = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Select
 						label={label ? "Choose your favourite framework" : undefined}
-						placeholder="Pick an option"
 						variants={variant}
 						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
 						// trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
-						size={size}
 						disabled={disabled}
 						isSearchable={searchable}
 						selectionMode={selectionMode as "single" | "multiple"}
@@ -296,8 +285,7 @@ const SelectPreview = () => {
 						selectedValues={selectedValues}
 						onSelectedChange={setSelectedValues}
 						hasError={hasError}
-						hint={hint ? "Hint text to help the user with input" : ""}
-						className="w-80">
+						hint={hint ? "Hint text to help the user with input" : ""}>
 						<SelectGroup label="Backend Frameworks">
 							<SelectItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="node-js">
 								Node.js (Express)
@@ -320,9 +308,6 @@ const SelectPreview = () => {
 						</SelectGroup>
 					</Select>
 					<Select2 indicatorPosition="right">
-						<SelectTrigger2 className="w-[240px]">
-							<SelectValue2 placeholder="Select a framework" />
-						</SelectTrigger2>
 						<SelectContent2 className="max-h-96">
 							<SelectGroup2>
 								<SelectLabel>Backend Frameworks</SelectLabel>

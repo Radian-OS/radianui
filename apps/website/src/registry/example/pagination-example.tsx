@@ -22,28 +22,28 @@ const PaginationExample = () => {
 	return (
 		<div className="flex flex-col gap-10 py-10">
 			<div className="flex flex-wrap gap-4">
-				<Select label="Control" placeholder="Control" selectedValues={control} onSelectedChange={setControl} className="w-max">
+				<Select label="Control" selectedValues={control} onSelectedChange={setControl}>
 					<SelectItem value="icon">Icon</SelectItem>
 					<SelectItem value="text">Text</SelectItem>
 					<SelectItem value="both">Icon & Text</SelectItem>
 				</Select>
 
-				<Select label="Enable GoTo" placeholder="Goto page" className="w-max" selectedValues={goTo} onSelectedChange={setGoTo}>
+				<Select label="Enable GoTo" selectedValues={goTo} onSelectedChange={setGoTo}>
 					<SelectItem value="true">True</SelectItem>
 					<SelectItem value="false">False</SelectItem>
 				</Select>
 
-				<Select label="Button Variant" placeholder="Button Variant" selectedValues={buttonVariant} onSelectedChange={setButtonVariant} className="w-max">
+				<Select label="Button Variant" selectedValues={buttonVariant} onSelectedChange={setButtonVariant}>
 					<SelectItem value="strong">strong</SelectItem>
 					<SelectItem value="outline">outline</SelectItem>
 				</Select>
 
-				<Select label="Total Page" placeholder="Total Page" selectedValues={customRow} onSelectedChange={setCustomRow} className="w-max">
+				<Select label="Total Page" selectedValues={customRow} onSelectedChange={setCustomRow}>
 					<SelectItem value="true">True</SelectItem>
 					<SelectItem value="false">False</SelectItem>
 				</Select>
 
-				<Select label="Enable Row per page" placeholder="Enable Row per page" selectedValues={rowPerPage} onSelectedChange={setRowsPerPage} className="w-max">
+				<Select label="Enable Row per page" selectedValues={rowPerPage} onSelectedChange={setRowsPerPage}>
 					<SelectItem value="true">True</SelectItem>
 					<SelectItem value="false">False</SelectItem>
 				</Select>

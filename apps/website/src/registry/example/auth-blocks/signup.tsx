@@ -33,9 +33,9 @@ const SignUp = () => {
 						<div className="space-y-5">
 							<div className="space-y-4">
 								<form className="space-y-4">
-									<Input label="Full Name" />
-									<Input label="Email" type="email" />
-									<Password label="Password" />
+									<Input />
+									<Input type="email" />
+									<Password />
 								</form>
 							</div>
 							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
