@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react"
-import { CalendarDate } from "@internationalized/date"
+// import { CalendarDate } from "@internationalized/date"
 import {
 	Banknote,
 	BookKey,
@@ -111,7 +111,7 @@ const FormPreview = () => {
 	const [errors, setErrors] = useState<FieldErrors>({})
 	const [selectedValue, setSelectedValue] = useState<string[]>(["username"])
 	const [displayField, setDisplayField] = useState<FieldType>("username")
-	const [selectedDate, setSelectedDate] = useState<CalendarDate | undefined>(undefined)
+	// const [selectedDate, setSelectedDate] = useState<CalendarDate | undefined>(undefined)
 	const [uploadedFiles, setUploadedFiles] = useState<FileWithPreview[]>([])
 	const [sliderValue, setSliderValue] = useState([25])
 
@@ -508,19 +508,19 @@ const FormPreview = () => {
 			),
 			date: () => (
 				<DatePicker
-					mode="single"
-					selected={selectedDate}
-					onSelect={(value: CalendarDate | undefined) => {
-						setSelectedDate(value)
-						setFormData((prev) => ({ ...prev, date: value ? value.toString() : "" }))
-						if (value) {
-							setErrors((prev) => ({ ...prev, date: undefined }))
-						}
-					}}
-					label="Start Date"
-					placeholder="Pick a date"
-					hasError={!!errors.date}
-					hint={errors.date}
+				// mode="single"
+				// selected={selectedDate}
+				// onSelect={(value: CalendarDate | undefined) => {
+				// 	setSelectedDate(value)
+				// 	setFormData((prev) => ({ ...prev, date: value ? value.toString() : "" }))
+				// 	if (value) {
+				// 		setErrors((prev) => ({ ...prev, date: undefined }))
+				// 	}
+				// }}
+				// label="Start Date"
+				// placeholder="Pick a date"
+				// hasError={!!errors.date}
+				// hint={errors.date}
 				/>
 			),
 			file: () => <FileUpload label="Upload Documents" maxFiles={1} accept="*" value={uploadedFiles} onChange={handleFileChange} hasError={!!errors.file} hint={errors.file} />,
@@ -579,7 +579,7 @@ const FormPreview = () => {
 			handleCurrencyChange,
 			uploadedFiles,
 			handleFileChange,
-			selectedDate,
+			// selectedDate,
 			handleTextAreaChange,
 		]
 	)

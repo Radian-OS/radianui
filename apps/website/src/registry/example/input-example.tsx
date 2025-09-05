@@ -4,7 +4,7 @@ import React from "react"
 import { BellOff, BellRing } from "lucide-react"
 import { Calendar } from "../ui/calendar"
 import { CurrencyInput } from "../ui/currency-amount"
-import DatePicker from "../ui/date-picker"
+// import DatePicker from "../ui/date-picker"
 // import { Divider } from "../ui/divider"
 import FileUpload from "../ui/file-upload"
 import { Input, type SizeOptions } from "../ui/input"
@@ -145,9 +145,9 @@ const InputExample = () => {
 			<Calendar mode={"range"} />
 
 			<div className="flex flex-col gap-3">
-				<DatePicker placeholder="Default datepicker" navigatorStyle="selector" />
+				{/* <DatePicker placeholder="Default datepicker" navigatorStyle="selector" />
 				<DatePicker triggerClassName="w-[10rem]" navigatorStyle="selector" mode="single" placeholder="Single Date" />
-				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" dual={true} showDateRangeShortcut={true} />
+				<DatePicker placeholder="Range with 2 months" triggerClassName="w-[15rem]" mode="range" dual={true} showDateRangeShortcut={true} /> */}
 			</div>
 			<FileUpload
 			// value={file}

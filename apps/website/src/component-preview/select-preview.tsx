@@ -14,6 +14,16 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
+import {
+	Select as Select2,
+	SelectContent as SelectContent2,
+	SelectDivider,
+	SelectGroup as SelectGroup2,
+	SelectItem as SelectItem2,
+	SelectLabel,
+	SelectTrigger as SelectTrigger2,
+	SelectValue as SelectValue2,
+} from "@/registry/ui/select2"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -309,6 +319,32 @@ const SelectPreview = () => {
 							<SelectItem value="xamarin">Xamarin</SelectItem>
 						</SelectGroup>
 					</Select>
+					<Select2 indicatorPosition="right">
+						<SelectTrigger2 className="w-[240px]">
+							<SelectValue2 placeholder="Select a framework" />
+						</SelectTrigger2>
+						<SelectContent2 className="max-h-96">
+							<SelectGroup2>
+								<SelectLabel>Backend Frameworks</SelectLabel>
+								<SelectItem2 value="node-js">Node.js (Express)</SelectItem2>
+								<SelectItem2 value="django">Django (Python)</SelectItem2>
+								<SelectItem2 value="rails">Rails (Ruby)</SelectItem2>
+								<SelectItem2 disabled value="laravel">
+									Laravel (PHP)
+								</SelectItem2>
+								<SelectItem2 value="spring">Spring Boot (Java)</SelectItem2>
+							</SelectGroup2>
+							<SelectDivider />
+							<SelectGroup2>
+								<SelectLabel>Mobile Frameworks</SelectLabel>
+								<SelectItem2 value="react-native">React Native</SelectItem2>
+								<SelectItem2 value="flutter">Flutter</SelectItem2>
+								<SelectItem2 value="swiftui">SwiftUI</SelectItem2>
+								<SelectItem2 value="kotlin-compose">Kotlin Compose</SelectItem2>
+								<SelectItem2 value="xamarin">Xamarin</SelectItem2>
+							</SelectGroup2>
+						</SelectContent2>
+					</Select2>
 				</div>
 			</TabsContent>
 
