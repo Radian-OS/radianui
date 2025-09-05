@@ -106,7 +106,7 @@ const FormExample3 = () => {
 		cvv: "",
 		promoCode: "",
 	})
-	const [errors, setErrors] = useState<FieldErrors>({})
+	// const [errors, setErrors] = useState<FieldErrors>({})
 	const [sameAsShipping, setSameAsShipping] = useState(false)
 
 	// Field validation handlers using lookup object instead of if-else
@@ -182,8 +182,8 @@ const FormExample3 = () => {
 			// Validate the field if it has a validator
 			const fieldName = name as keyof typeof fieldValidators
 			if (fieldValidators[fieldName]) {
-				const error = fieldValidators[fieldName](value)
-				setErrors((prev) => ({ ...prev, [fieldName]: error }))
+				// const error = fieldValidators[fieldName](value)
+				// setErrors((prev) => ({ ...prev, [fieldName]: error }))
 			}
 		},
 		[fieldValidators]
@@ -204,13 +204,13 @@ const FormExample3 = () => {
 			}))
 
 			// Clear billing errors when copying from shipping
-			setErrors((prev) => ({
-				...prev,
-				billingStreetAddress: undefined,
-				billingCity: undefined,
-				billingState: undefined,
-				billingZipCode: undefined,
-			}))
+			// setErrors((prev) => ({
+			// 	...prev,
+			// 	billingStreetAddress: undefined,
+			// 	billingCity: undefined,
+			// 	billingState: undefined,
+			// 	billingZipCode: undefined,
+			// }))
 		}
 	}, [])
 
@@ -239,7 +239,7 @@ const FormExample3 = () => {
 				}
 			})
 
-			setErrors(newErrors)
+			// setErrors(newErrors)
 
 			if (!hasErrors) {
 				// All validation passed - show success toast with all data
@@ -289,27 +289,9 @@ const FormExample3 = () => {
 							</h3>
 
 							<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-								<Input
-									name="fullname"
-									label="Full Name *"
-									className="w-full"
-									value={formData.fullname}
-									onChange={handleChange}
-									placeholder="Enter full name"
-									hasError={!!errors.fullname}
-									hint={errors.fullname}
-								/>
+								<Input name="fullname" className="w-full" value={formData.fullname} onChange={handleChange} placeholder="Enter full name" />
 
-								<Input
-									name="email"
-									label="Email Address *"
-									className="w-full"
-									value={formData.email}
-									onChange={handleChange}
-									placeholder="Enter email address"
-									hasError={!!errors.email}
-									hint={errors.email}
-								/>
+								<Input name="email" className="w-full" value={formData.email} onChange={handleChange} placeholder="Enter email address" />
 							</div>
 						</div>
 
@@ -323,50 +305,14 @@ const FormExample3 = () => {
 							</h3>
 
 							<div className="grid grid-cols-1 gap-4">
-								<Input
-									name="streetAddress"
-									label="Street Address *"
-									className="w-full"
-									value={formData.streetAddress}
-									onChange={handleChange}
-									placeholder="New Road"
-									hasError={!!errors.streetAddress}
-									hint={errors.streetAddress}
-								/>
+								<Input name="streetAddress" value={formData.streetAddress} onChange={handleChange} placeholder="New Road" />
 
 								<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-									<Input
-										name="city"
-										label="City *"
-										className="w-full"
-										value={formData.city}
-										onChange={handleChange}
-										placeholder="Kathmandu"
-										hasError={!!errors.city}
-										hint={errors.city}
-									/>
+									<Input name="city" className="w-full" value={formData.city} onChange={handleChange} placeholder="Kathmandu" />
 
-									<Input
-										name="state"
-										label="State *"
-										className="w-full"
-										value={formData.state}
-										onChange={handleChange}
-										placeholder="KTM"
-										hasError={!!errors.state}
-										hint={errors.state}
-									/>
+									<Input name="state" className="w-full" value={formData.state} onChange={handleChange} placeholder="KTM" />
 
-									<Input
-										name="zipCode"
-										label="ZIP Code *"
-										className="w-full"
-										value={formData.zipCode}
-										onChange={handleChange}
-										placeholder="44600"
-										hasError={!!errors.zipCode}
-										hint={errors.zipCode}
-									/>
+									<Input name="zipCode" className="w-full" value={formData.zipCode} onChange={handleChange} placeholder="44600" />
 								</div>
 							</div>
 						</div>
@@ -389,50 +335,14 @@ const FormExample3 = () => {
 
 							{!sameAsShipping && (
 								<div className="grid grid-cols-1 gap-4">
-									<Input
-										name="billingStreetAddress"
-										label="Street Address *"
-										className="w-full"
-										value={formData.billingStreetAddress}
-										onChange={handleChange}
-										placeholder="New Road"
-										hasError={!!errors.billingStreetAddress}
-										hint={errors.billingStreetAddress}
-									/>
+									<Input name="billingStreetAddress" className="w-full" value={formData.billingStreetAddress} onChange={handleChange} placeholder="New Road" />
 
 									<div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-										<Input
-											name="billingCity"
-											label="City *"
-											className="w-full"
-											value={formData.billingCity}
-											onChange={handleChange}
-											placeholder="Kathmandu"
-											hasError={!!errors.billingCity}
-											hint={errors.billingCity}
-										/>
+										<Input name="billingCity" className="w-full" value={formData.billingCity} onChange={handleChange} placeholder="Kathmandu" />
 
-										<Input
-											name="billingState"
-											label="State *"
-											className="w-full"
-											value={formData.billingState}
-											onChange={handleChange}
-											placeholder="KTM"
-											hasError={!!errors.billingState}
-											hint={errors.billingState}
-										/>
+										<Input name="billingState" className="w-full" value={formData.billingState} onChange={handleChange} placeholder="KTM" />
 
-										<Input
-											name="billingZipCode"
-											label="ZIP Code *"
-											className="w-full"
-											value={formData.billingZipCode}
-											onChange={handleChange}
-											placeholder="44600"
-											hasError={!!errors.billingZipCode}
-											hint={errors.billingZipCode}
-										/>
+										<Input name="billingZipCode" className="w-full" value={formData.billingZipCode} onChange={handleChange} placeholder="44600" />
 									</div>
 								</div>
 							)}
@@ -448,30 +358,12 @@ const FormExample3 = () => {
 							</h3>
 
 							<div className="grid grid-cols-1 gap-4">
-								<Input
-									name="cardNumber"
-									label="Card Number *"
-									className="w-full"
-									value={formData.cardNumber}
-									onChange={handleChange}
-									placeholder="1234 5678 9012 3456"
-									hasError={!!errors.cardNumber}
-									hint={errors.cardNumber}
-								/>
+								<Input name="cardNumber" className="w-full" value={formData.cardNumber} onChange={handleChange} placeholder="1234 5678 9012 3456" />
 
 								<div className="grid grid-cols-2 gap-4">
-									<Input
-										name="expirationDate"
-										label="Expiration Date *"
-										className="w-full"
-										value={formData.expirationDate}
-										onChange={handleChange}
-										placeholder="MM/YY"
-										hasError={!!errors.expirationDate}
-										hint={errors.expirationDate}
-									/>
+									<Input name="expirationDate" className="w-full" value={formData.expirationDate} onChange={handleChange} placeholder="MM/YY" />
 
-									<Input name="cvv" label="CVV *" className="w-full" value={formData.cvv} onChange={handleChange} placeholder="123" hasError={!!errors.cvv} hint={errors.cvv} />
+									<Input name="cvv" className="w-full" value={formData.cvv} onChange={handleChange} placeholder="123" />
 								</div>
 							</div>
 						</div>
@@ -485,15 +377,7 @@ const FormExample3 = () => {
 								Promo Code <span className="text-sm font-normal text-gray-500">(optional)</span>
 							</h3>
 
-							<Input
-								name="promoCode"
-								className="w-full"
-								value={formData.promoCode}
-								onChange={handleChange}
-								placeholder="Enter promo code"
-								hasError={!!errors.promoCode}
-								hint={errors.promoCode}
-							/>
+							<Input name="promoCode" className="w-full" value={formData.promoCode} onChange={handleChange} placeholder="Enter promo code" />
 						</div>
 
 						{/* Submit Button */}
