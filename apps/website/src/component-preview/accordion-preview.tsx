@@ -4,7 +4,6 @@ import CodeSnippet from "@/components/code-snippet"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Input } from "@/registry/ui/inputs"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const items = [
@@ -155,7 +154,6 @@ export default function AccordionPreview() {
 							</AccordionItem>
 						))}
 					</Accordion>
-					<Input aria-invalid />
 				</div>
 			</TabsContent>
 
