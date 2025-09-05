@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Alert, AlertActions, AlertClose, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import { Alert, AlertActions, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Dropdown,
@@ -21,7 +21,6 @@ const AlertPreview = () => {
 
 	const [color, setColor] = useState<"primary" | "neutral" | "success" | "warning" | "error" | "info">("primary")
 	const [variant, setVariant] = useState<"soft" | "soft-outline" | "outline" | "strong">("soft")
-	const [closable, setClosable] = useState<booleanType>("false")
 	const [start, setStart] = useState<"none" | "star" | "info" | "alert" | "check">("star")
 	const [end, setEnd] = useState<"none" | "button" | "link">("button")
 	const [title, setTitle] = useState<booleanType>("true")
@@ -103,10 +102,6 @@ const AlertPreview = () => {
 				code += `    <Button variant="${buttonVariant}" color="${color}">Action</Button>\n`
 			}
 			code += `  </AlertActions>\n`
-		}
-
-		if (closable === "true") {
-			code += `  <AlertClose onClick={() => {}} />\n`
 		}
 
 		code += `</Alert>`
@@ -246,19 +241,6 @@ const AlertPreview = () => {
 									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
-							<DropdownSub>
-								<DropdownSubTrigger>Closable</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup value={closable} onValueChange={(value) => setClosable(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
 						</DropdownGroup>
 					</DropdownContent>
 				</Dropdown>
@@ -278,7 +260,6 @@ const AlertPreview = () => {
 								</Button>
 							</AlertActions>
 						)}
-						{closable === "true" && <AlertClose onClick={() => {}} />}
 					</Alert>
 				</div>
 			</TabsContent>

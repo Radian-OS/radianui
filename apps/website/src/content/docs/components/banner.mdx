@@ -46,8 +46,16 @@ links:
 
 <CodeSnippet
 	title="/components/ui/banner.tsx"
-	code={`<Banner variant="primary" closable>
-        Your changes have been saved successfully!
+	code={`<Banner color='primary' variant='strong'>
+ <BannerTitle>
+  Banner Title Here
+ </BannerTitle>
+ <BannerDescription>
+  Enter your banner message here
+ </BannerDescription>
+ <BannerAction>
+  <Button variant="soft">Button label</Button>
+ </BannerAction>
 </Banner>`}
 />
 
@@ -81,17 +89,53 @@ links:
 		data={[
 			{
 				name: "variant",
-				values: ["gray", "primary", "outline", "destructive"],
+				values: ["strong", "outline", "soft"],
 				required: false,
 				description: "Sets the variant of the banner",
-				defaultValue: "gray",
+				defaultValue: "strong",
 			},
 			{
-				name: "closable",
-				defaultValue: "false",
-				values: ["boolean"],
+				name: "color",
+				defaultValue: "primary",
+				values: ["primary", "neutral", "success", "warning", "error", "info"],
 				required: false,
-				description: "If true, the banner can be closed by the user",
+				description: "Sets the color of the banner",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BannerTitle"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "Title of the banner",
+				defaultValue: "-",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BannerDescription"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "Description of the banner",
+				defaultValue: "-",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BannerAction"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "End content of the banner",
+				defaultValue: "-",
 			},
 		]}
 	/>
