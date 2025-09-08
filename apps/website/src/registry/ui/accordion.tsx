@@ -6,6 +6,26 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { ChevronDownIcon, Plus } from "lucide-react"
 import { cn as classNames } from "@/lib/utils"
 
+// Defining the types for the accordion
+export type AccordionContextType = {
+	size?: VariantProps<typeof accordionVariants>["size"]
+	variant?: VariantProps<typeof accordionVariants>["variant"]
+	indicator?: VariantProps<typeof accordionTriggerVariants>["indicator"]
+}
+
+export type AccordionProps = React.ComponentProps<typeof AccordionPrimitive.Root> &
+	VariantProps<typeof accordionVariants> & {
+		indicator?: VariantProps<typeof accordionTriggerVariants>["indicator"]
+	}
+
+export type AccordionItemProps = React.ComponentProps<typeof AccordionPrimitive.Item>
+
+export type AccordionTriggerProps = React.ComponentProps<typeof AccordionPrimitive.Trigger>
+
+export type AccordionContentProps = React.ComponentProps<typeof AccordionPrimitive.Content>
+
+const AccordionContext = React.createContext<AccordionContextType | null>(null)
+
 // Defining the different variants for the accordion
 const accordionVariants = cva("w-full", {
 	variants: {
@@ -153,26 +173,6 @@ const accordionContentInnerVariants = cva("pt-0", {
 		size: "sm",
 	},
 })
-
-// Defining the types for the accordion
-export type AccordionContextType = {
-	size?: VariantProps<typeof accordionVariants>["size"]
-	variant?: VariantProps<typeof accordionVariants>["variant"]
-	indicator?: VariantProps<typeof accordionTriggerVariants>["indicator"]
-}
-
-export type AccordionProps = React.ComponentProps<typeof AccordionPrimitive.Root> &
-	VariantProps<typeof accordionVariants> & {
-		indicator?: VariantProps<typeof accordionTriggerVariants>["indicator"]
-	}
-
-export type AccordionItemProps = React.ComponentProps<typeof AccordionPrimitive.Item>
-
-export type AccordionTriggerProps = React.ComponentProps<typeof AccordionPrimitive.Trigger>
-
-export type AccordionContentProps = React.ComponentProps<typeof AccordionPrimitive.Content>
-
-const AccordionContext = React.createContext<AccordionContextType | null>(null)
 
 // Defining the hook for the accordion
 function useAccordion() {

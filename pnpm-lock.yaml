@@ -74,8 +74,8 @@ importers:
         specifier: ^1.3.1
         version: 1.3.1
       '@internationalized/date':
-        specifier: ^3.7.0
-        version: 3.7.0
+        specifier: ^3.9.0
+        version: 3.9.0
       '@neondatabase/serverless':
         specifier: ^1.0.0
         version: 1.0.0
@@ -1920,8 +1920,8 @@ packages:
       '@types/node':
         optional: true
 
-  '@internationalized/date@3.7.0':
-    resolution: {integrity: sha512-VJ5WS3fcVx0bejE/YHfbDKR/yawZgKqn/if+oEeLqNwBtPzVB06olkfcnojTmEMX+gTpH+FlQ69SHNitJ8/erQ==}
+  '@internationalized/date@3.9.0':
+    resolution: {integrity: sha512-yaN3brAnHRD+4KyyOsJyk49XUvj2wtbNACSqg0bz3u8t2VuzhC8Q5dfRnrSxjnnbDb+ienBnkn1TzQfE154vyg==}
 
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
@@ -9880,7 +9880,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.14.0
 
-  '@internationalized/date@3.7.0':
+  '@internationalized/date@3.9.0':
     dependencies:
       '@swc/helpers': 0.5.15
 

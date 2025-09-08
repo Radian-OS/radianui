@@ -2,6 +2,7 @@ import React from "react"
 import { EyeIcon, Minus, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Checkbox } from "@/registry/ui/checkbox"
+import { Label } from "@/registry/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function IndeterminateCheckboxExample() {
@@ -20,7 +21,10 @@ export default function IndeterminateCheckboxExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<Checkbox icon={<Minus />}>Indeterminate Checkbox</Checkbox>
+					<div className="flex items-center space-x-2">
+						<Checkbox id="indeterminate" icon={<Minus />} />
+						<Label htmlFor="indeterminate">Indeterminate Checkbox</Label>
+					</div>
 				</div>
 			</TabsContent>
 			{/* Code Tab */}

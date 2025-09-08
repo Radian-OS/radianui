@@ -57,13 +57,13 @@ links:
 
 ### Code
 
-<CodeSnippet title="/components/ui/hover-card.tsx" code={` <HoverCard withArrow>
+<CodeSnippet title="/components/ui/hover-card.tsx" code={` <HoverCard>
 
     	<HoverCardTrigger asChild>
     		<button className="px-2 py-1 border rounded">Hover me</button>
     	</HoverCardTrigger>
 
-    	<HoverCardContent>
+    	<HoverCardContent withArrow >
     		<p className="text-sm">Hello! I am a tooltip-like card.</p>
     	</HoverCardContent>
 
@@ -74,54 +74,16 @@ links:
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable
-		title="HoverCard"
-		data={[
-			{
-				name: "side",
-				values: ["top", "right", "bottom", "left"],
-				defaultValue: "bottom",
-				required: false,
-				description: "Defines the side on which the hover card appears relative to the target element",
-			},
-			{
-				name: "align",
-				values: ["start", "center", "end"],
-				defaultValue: "center",
-				required: false,
-				description: "Defines the alignment of the hover card relative to the target element",
-			},
-			{
+<PropsTable
+	title="HoverCardContent"
+	data={[
+		{
 				name: "withArrow",
 				values: ["boolean"],
 				defaultValue: "false",
 				required: false,
 				description: "If true, the hover card will display an arrow pointing to the target element",
 			},
-		]}
-	/>
-	<PropsTable
-		title="HoverCardTrigger"
-		data={[
-			{
-				name: "asChild",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "If true, the trigger will render as a child element, allowing for custom styling and behavior",
-			},
-		]}
-	/>
-
-<PropsTable
-	title="HoverCardContent"
-	data={[
-		{
-			name: "-",
-			values: ["-"],
-			description: "This component does not have any specific props, it inherits from the base HoverCard component",
-			required: false,
-		},
 	]}
 	externalReference="https://www.npmjs.com/package/@radix-ui/react-hover-card"
 />
