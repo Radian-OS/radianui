@@ -99,11 +99,11 @@ const HovercardPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<HoverCard side={side} align={align} withArrow={withArrow}>
+					<HoverCard>
 						<HoverCardTrigger asChild>
-							<Button variant={"ghost"}>Hover Me</Button>
+							<Button variant={"outline"}>Hover Me</Button>
 						</HoverCardTrigger>
-						<HoverCardContent className="flex w-fit flex-col gap-3">
+						<HoverCardContent side={side} align={align} withArrow={withArrow} className="flex w-fit flex-col gap-3">
 							<div className="flex items-center gap-3">
 								<Avatar>
 									<AvatarImage src={profile.avatar} />
