@@ -6,8 +6,24 @@ import { type DropdownMenuContentProps } from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-function Dropdown({ ...props }: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Root>) {
-	return <DropdownMenuPrimitive.Root modal={false} data-slot="dropdown-menu" {...props} />
+const DropdownContext = React.createContext<{
+	indicatorPosition: "left" | "right"
+	indicator: React.ReactNode
+}>({ indicatorPosition: "left", indicator: null })
+
+function Dropdown({
+	indicatorPosition = "right",
+	indicator,
+	...props
+}: React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Root> & {
+	indicatorPosition?: "left" | "right"
+	indicator?: React.ReactNode
+}) {
+	return (
+		<DropdownContext.Provider value={{ indicatorPosition, indicator }}>
+			<DropdownMenuPrimitive.Root modal={false} data-slot="dropdown-menu" {...props} />
+		</DropdownContext.Provider>
+	)
 }
 
 function DropdownTrigger({ className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>) {
@@ -62,20 +78,28 @@ function DropdownItem({
 }
 
 function DropdownCheckboxItem({ children, className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) {
+	const { indicatorPosition, indicator } = React.useContext(DropdownContext)
+
 	return (
 		<DropdownMenuPrimitive.CheckboxItem
 			data-slot="dropdown-menu-checkbox-item"
 			className={cn(
 				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary outline-hidden flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
 				className
 			)}
 			{...props}>
 			{children}
-			<span className="ml-auto flex size-5 items-center justify-center">
-				<DropdownMenuPrimitive.ItemIndicator>
-					<Check size={20} />
-				</DropdownMenuPrimitive.ItemIndicator>
-			</span>
+
+			{indicator && React.isValidElement(indicator) ? (
+				indicator
+			) : (
+				<span className={cn("absolute flex size-5 items-center justify-center", indicatorPosition === "left" ? "start-2" : "end-2")}>
+					<DropdownMenuPrimitive.ItemIndicator>
+						<Check size={20} />
+					</DropdownMenuPrimitive.ItemIndicator>
+				</span>
+			)}
 		</DropdownMenuPrimitive.CheckboxItem>
 	)
 }
@@ -85,20 +109,28 @@ function DropdownRadioGroup({ ...props }: React.ComponentProps<typeof DropdownMe
 }
 
 function DropdownRadioItem({ children, className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) {
+	const { indicatorPosition, indicator } = React.useContext(DropdownContext)
+
 	return (
 		<DropdownMenuPrimitive.RadioItem
 			data-slot="dropdown-menu-radio-item"
 			className={cn(
 				"focus:bg-fill2-alpha [&_svg]:text-fg-secondary outline-hidden flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm data-[disabled]:pointer-events-none data-[disabled]:opacity-50 [&_svg:not([class*='size-'])]:size-5 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
 				className
 			)}
 			{...props}>
 			{children}
-			<span className="ml-auto flex size-5 items-center justify-center">
-				<DropdownMenuPrimitive.ItemIndicator>
-					<Check size={20} />
-				</DropdownMenuPrimitive.ItemIndicator>
-			</span>
+
+			{indicator && React.isValidElement(indicator) ? (
+				indicator
+			) : (
+				<span className={cn("absolute flex size-5 items-center justify-center", indicatorPosition === "left" ? "start-2" : "end-2")}>
+					<DropdownMenuPrimitive.ItemIndicator>
+						<Check size={20} />
+					</DropdownMenuPrimitive.ItemIndicator>
+				</span>
+			)}
 		</DropdownMenuPrimitive.RadioItem>
 	)
 }
@@ -142,7 +174,6 @@ function DropdownSubTrigger({
 		</DropdownMenuPrimitive.SubTrigger>
 	)
 }
-DropdownSubTrigger.displayName = "DropdownSubTrigger"
 
 function DropdownSubContent({ className, ...props }: React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>) {
 	return (
