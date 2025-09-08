@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 import { Password } from "@/registry/ui/password"
 
 const SignIn = () => {
@@ -36,10 +37,8 @@ const SignIn = () => {
 								<Input type="email" />
 								<Password />
 								<div className="flex items-center space-x-2">
-									<Checkbox />
-									<label htmlFor="terms" className="text-sm font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-										Keep me signed in
-									</label>
+									<Checkbox id="terms" />
+									<Label htmlFor="terms">Keep me signed in</Label>
 								</div>
 							</form>
 

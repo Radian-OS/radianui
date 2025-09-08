@@ -6,6 +6,7 @@ import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { showToast } from "@/registry/ui/toast"
 
@@ -327,9 +328,8 @@ const FormExample3 = () => {
 									Billing Address
 								</h3>
 								<div className="flex items-center space-x-2">
-									<Checkbox checked={sameAsShipping} onCheckedChange={handleCheckboxChange}>
-										Same as shipping address
-									</Checkbox>
+									<Checkbox checked={sameAsShipping} onCheckedChange={handleCheckboxChange} />
+									<Label htmlFor="sameAsShipping">Same as shipping address</Label>
 								</div>
 							</div>
 

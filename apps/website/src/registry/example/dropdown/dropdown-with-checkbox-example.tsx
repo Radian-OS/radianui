@@ -3,6 +3,7 @@ import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Label } from "@/registry/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const DropdownWithCheckboxExample = () => {
@@ -30,16 +31,20 @@ const DropdownWithCheckboxExample = () => {
 						</DropdownTrigger>
 						<DropdownContent align="center" className="w-80 space-y-0.5">
 							<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-								<Checkbox className="[&_svg]:text-white">Checkbox A</Checkbox>
+								<Checkbox className="[&_svg]:text-white" id="checkbox-a" />
+								<Label htmlFor="checkbox-a">Checkbox A</Label>
 							</DropdownItem>
 							<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-								<Checkbox className="[&_svg]:text-white">Checkbox B</Checkbox>
+								<Checkbox id="checkbox-b" className="[&_svg]:text-white" />
+								<Label htmlFor="checkbox-b">Checkbox B</Label>
 							</DropdownItem>
 							<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-								<Checkbox className="[&_svg]:text-white">Checkbox C</Checkbox>
+								<Checkbox id="checkbox-c" className="[&_svg]:text-white" />
+								<Label htmlFor="checkbox-c">Checkbox C</Label>
 							</DropdownItem>
 							<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-								<Checkbox className="[&_svg]:text-white">Checkbox D</Checkbox>
+								<Checkbox id="checkbox-d" className="[&_svg]:text-white" />
+								<Label htmlFor="checkbox-d">Checkbox D</Label>
 							</DropdownItem>
 						</DropdownContent>
 					</Dropdown>
@@ -59,16 +64,20 @@ const DropdownWithCheckboxExample = () => {
 	</DropdownTrigger>
 	<DropdownContent align="center" className="w-80 space-y-0.5">
 		<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-			<Checkbox className="[&_svg]:text-white">Checkbox A</Checkbox>
+			<Checkbox id="checkbox-a" className="[&_svg]:text-white" />
+			<Label htmlFor="checkbox-a">Checkbox A</Label>
 		</DropdownItem>
 		<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-			<Checkbox className="[&_svg]:text-white">Checkbox B</Checkbox>
+			<Checkbox id="checkbox-b" className="[&_svg]:text-white" />
+			<Label htmlFor="checkbox-b">Checkbox B</Label>
 		</DropdownItem>
 		<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-			<Checkbox className="[&_svg]:text-white">Checkbox C</Checkbox>
+			<Checkbox id="checkbox-c" className="[&_svg]:text-white" />
+			<Label htmlFor="checkbox-c">Checkbox C</Label>
 		</DropdownItem>
 		<DropdownItem className="px-2 py-1.5" onClick={(e) => e.preventDefault()}>
-			<Checkbox className="[&_svg]:text-white">Checkbox D</Checkbox>
+			<Checkbox id="checkbox-d" className="[&_svg]:text-white" />
+			<Label htmlFor="checkbox-d">Checkbox D</Label>
 		</DropdownItem>
 	</DropdownContent>
 </Dropdown>`}

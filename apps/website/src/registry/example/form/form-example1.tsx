@@ -7,6 +7,7 @@ import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 import { Password } from "@/registry/ui/password"
 import { PhoneNumber } from "@/registry/ui/phone-number"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -208,7 +209,10 @@ const FormExample1 = () => {
 
 						<Password name="confirmPassword" id="confirmPassword" className="w-full" placeholder="Enter password" onChange={handleChange} value={formData.confirmPassword} />
 
-						<Checkbox>Accept Terms & Conditions</Checkbox>
+						<div className="flex items-center space-x-2">
+							<Checkbox id="terms" />
+							<Label htmlFor="terms">Accept Terms & Conditions</Label>
+						</div>
 
 						<Button type="submit" className="w-full">
 							Submit All Fields

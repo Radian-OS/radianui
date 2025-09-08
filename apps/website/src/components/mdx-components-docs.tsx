@@ -27,7 +27,6 @@ import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
 import CalendarPreview from "@/component-preview/calendar-preview"
-import CheckboxgroupPreview from "@/component-preview/checkbox-group-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
@@ -96,7 +95,6 @@ import MultipleMonthsCalendarExample from "@/registry/example/calendar/multiple-
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
-import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
@@ -178,9 +176,7 @@ const components: MDXComponents = {
 	BreadCrumbPreview: () => <BreadCrumbPreview />,
 	BannerPreview: () => <BannerPreview />,
 	CheckboxPreview: () => <CheckboxPreview />,
-	CheckboxgroupPreview: () => <CheckboxgroupPreview />,
 	IndeterminateCheckboxExample: () => <IndeterminateCheckboxExample />,
-	SelectMemberCheckboxgroupExample: () => <SelectMamberCheckboxgroupExample />,
 	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
