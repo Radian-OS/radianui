@@ -117,17 +117,21 @@ links:
 		title="Breadcrumb"
 		data={[
 			{
-				name: "separator",
-				defaultValue: "default",
-				values: ["slash", "default"],
+				name: "className",
+				values: ["string"],
 				required: false,
-				description: "Defines the visual style of the breadcrumb separator",
+				description: "Additional CSS classes to apply to the breadcrumb navigation",
 			},
+		]}
+	/>
+	<PropsTable
+		title="BreadcrumbList"
+		data={[
 			{
-				name: "maxItems",
-				values: ["number"],
-				required: true,
-				description: "Sets the maximum number of items to display in the breadcrumb",
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the breadcrumb list",
 			},
 		]}
 	/>
@@ -135,11 +139,67 @@ links:
 		title="BreadcrumbItem"
 		data={[
 			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the breadcrumb item",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BreadcrumbLink"
+		data={[
+			{
 				name: "asChild",
 				values: ["boolean"],
-				required: true,
-				description: "Anchor or Link tag expected as children",
-				defaultValue: "true",
+				required: false,
+				description: "Render as a child component (e.g., Next.js Link)",
+				defaultValue: "false",
+			},
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the breadcrumb link",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BreadcrumbPage"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the current page breadcrumb",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BreadcrumbSeparator"
+		data={[
+			{
+				name: "children",
+				values: ["React.ReactNode"],
+				required: false,
+				description: "Custom separator icon or element (defaults to slash)",
+			},
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the separator",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BreadcrumbEllipsis"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the ellipsis",
 			},
 		]}
 	/>
