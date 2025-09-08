@@ -4,10 +4,6 @@ description: Display tabular data with sorting and pagination
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/table.tsx
-  externalReference:
-    - label: Tanstack Table
-      href: https://tanstack.com/table/latest/docs/introduction
-      icon: tanstack.png
 ---
 
 <TablePreview />
@@ -45,21 +41,9 @@ links:
     	<Tabs defaultValue="table">
     		<TabsList>
     			<TabsTrigger value="table">Table</TabsTrigger>
-    			<TabsTrigger value="checkbox">Checkbox</TabsTrigger>
-    			<TabsTrigger value="button">Button</TabsTrigger>
-    			<TabsTrigger value="spinner">Spinner</TabsTrigger>
     		</TabsList>
     		<TabsContent value="table">
     			<ComponentSource name="table" title="components/ui/table.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="checkbox">
-    			<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="button">
-    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="spinner">
-    			<ComponentSource name="spinner" title="components/ui/spinner.tsx" collapsible />
     		</TabsContent>
     	</Tabs>
 
@@ -73,68 +57,43 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/table" code={`import {MainTable} from "@/components/ui/table"`} />
+<CodeSnippet
+	title="/components/ui/table"
+	code={`import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'`}
+/>
 
 ### Code
 
-<CodeSnippet title="Usage" code={`<MainTable />`} />
+<CodeSnippet
+	title="Usage"
+	code={`<Table>
+	<TableCaption>User Table</TableCaption>
+	<TableHeader>
+		<TableRow>
+			<TableHead>Name</TableHead>
+		</TableRow>
+	</TableHeader>
+	<TableBody>
+		<TableRow>
+			<TableCell>Radian</TableCell>
+		</TableRow>
+	</TableBody>
+</Table>`}
+/>
 
 ---
 
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable
-		title="Table"
-		data={[
-			{
-				name: "checkBox",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls checkBox in table",
-			},
-			{
-				name: "verticalLine",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls the vertical line in table",
-			},
-			{
-				name: "stripedTable",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls the striped design in table",
-			},
-			{
-				name: "resizable",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls the resizable in table",
-			},
-			{
-				name: "dragAndDrop",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls the drag and drop in table",
-			},
-			{
-				name: "sticky",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls the sticky header in table",
-			},
-			{
-				name: "enableSorting",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls the sorting in table",
-			},
-			{
-				name: "dense",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Controls the dense in table",
-			},
-		]}
-	/>
+	<PropsTable title="Table" data={[]} />
 </PropsTableWrapper>
