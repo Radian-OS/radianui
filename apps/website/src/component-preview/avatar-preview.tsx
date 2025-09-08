@@ -1,25 +1,19 @@
 import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Avatar } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Size = "16" | "20" | "24" | "32" | "36" | "40" | "48" | "64" | "80"
 type Radius = "circle" | "square"
-type Status = "online" | "offline" | "none"
-type Variant = "fallback" | "initial" | "image"
 
 const DEFAULT_SIZE: Size = "36"
 const DEFAULT_RADIUS: Radius = "circle"
-const DEFAULT_STATUS: Status = "none"
-const DEFAULT_VARIANT: Variant = "image"
 
 const AvatarPreview = () => {
 	const [size, setSize] = useState<Size>(DEFAULT_SIZE)
-	const [variant, setVariant] = useState<Variant>(DEFAULT_VARIANT)
-	const [status, setStatus] = useState<Status>(DEFAULT_STATUS)
 	const [radius, setRadius] = useState<Radius>(DEFAULT_RADIUS)
 
 	return (
@@ -44,50 +38,11 @@ const AvatarPreview = () => {
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as Size)}>
-									<DropdownRadioItem value="16" onSelect={(e) => e.preventDefault()}>
-										16
-									</DropdownRadioItem>
-									<DropdownRadioItem value="20" onSelect={(e) => e.preventDefault()}>
-										20
-									</DropdownRadioItem>
-									<DropdownRadioItem value="24" onSelect={(e) => e.preventDefault()}>
-										24
-									</DropdownRadioItem>
-									<DropdownRadioItem value="32" onSelect={(e) => e.preventDefault()}>
-										32
-									</DropdownRadioItem>
-									<DropdownRadioItem value="36" onSelect={(e) => e.preventDefault()}>
-										36
-									</DropdownRadioItem>
-									<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
-										40
-									</DropdownRadioItem>
-									<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
-										48
-									</DropdownRadioItem>
-									<DropdownRadioItem value="64" onSelect={(e) => e.preventDefault()}>
-										64
-									</DropdownRadioItem>
-									<DropdownRadioItem value="80" onSelect={(e) => e.preventDefault()}>
-										80
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Variant</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as Variant)}>
-									<DropdownRadioItem value="fallback" onSelect={(e) => e.preventDefault()}>
-										Fallback
-									</DropdownRadioItem>
-									<DropdownRadioItem value="initial" onSelect={(e) => e.preventDefault()}>
-										Initial
-									</DropdownRadioItem>
-									<DropdownRadioItem value="image" onSelect={(e) => e.preventDefault()}>
-										Image
-									</DropdownRadioItem>
+									{[16, 20, 24, 32, 36, 40, 48, 64, 80].map((size) => (
+										<DropdownRadioItem key={size} value={size.toString()} onSelect={(e) => e.preventDefault()}>
+											{size}
+										</DropdownRadioItem>
+									))}
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -105,47 +60,21 @@ const AvatarPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						{/* Dropdown for 'status' */}
-						<DropdownSub>
-							<DropdownSubTrigger>Status</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={status} onValueChange={(value) => setStatus(value as Status)}>
-									<DropdownRadioItem value="online" onSelect={(e) => e.preventDefault()}>
-										Online
-									</DropdownRadioItem>
-									<DropdownRadioItem value="offline" onSelect={(e) => e.preventDefault()}>
-										Offline
-									</DropdownRadioItem>
-									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
-										None
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Avatar
-						{...(variant === "image" && { src: "https://randomuser.me/api/portraits/men/1.jpg" })}
-						{...(variant === "initial" && { name: "John Doe" })}
-						{...(size !== DEFAULT_SIZE && { size: size })}
-						{...(radius !== DEFAULT_RADIUS && { radius: radius })}
-						{...(status !== DEFAULT_STATUS && { status: status })}
-					/>
+					<Avatar size={size} rounded={radius}>
+						<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
+						<AvatarFallback>JD</AvatarFallback>
+					</Avatar>
 				</div>
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeSnippet
-					title="avatar.tsx"
-					showLineNumber
-					className="h-[420px]"
-					code={`<Avatar ${variant === "image" ? `src="https://randomuser.me/api/portraits/men/1.jpg"` : ""}${variant === "initial" ? `name="John Doe"` : ""}${size !== DEFAULT_SIZE ? ` size="${size}"` : ""}${radius !== DEFAULT_RADIUS ? ` radius="${radius}"` : ""}${status !== DEFAULT_STATUS ? ` status="${status}"` : ""} />`}
-				/>
+				<CodeSnippet title="avatar.tsx" showLineNumber className="h-[420px]" code={``} />
 			</TabsContent>
 		</Tabs>
 	)

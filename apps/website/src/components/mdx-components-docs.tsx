@@ -77,9 +77,10 @@ import CollaborationPointerExample from "@/registry/example/animated/collaborati
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
-import IndicatorAvatarPreview from "@/registry/example/avatar/indicator-avatar-preview"
+import AvatarFallbackPreview from "@/registry/example/avatar/avatar-fallback-preview"
+import AvatarStatusPreview from "@/registry/example/avatar/avatar-status-preview"
+import CustomAvatarStatusPreview from "@/registry/example/avatar/custom-avatar-status-preview"
 import RingAvatarPreview from "@/registry/example/avatar/ring-avatar-preview"
-import VerifiedAvatarPreview from "@/registry/example/avatar/verified-avatar-preview"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
@@ -170,6 +171,9 @@ const components: MDXComponents = {
 	AlertPreview: () => <AlertPreview />,
 	AvatarPreview: () => <AvatarPreview />,
 	AvatargroupPreview: () => <AvatargroupPreview />,
+	AvatarFallbackPreview: () => <AvatarFallbackPreview />,
+	AvatarStatusPreview: () => <AvatarStatusPreview />,
+	CustomAvatarStatusPreview: () => <CustomAvatarStatusPreview />,
 	BadgePreview: () => <BadgePreview />,
 	BreadCrumbPreview: () => <BreadCrumbPreview />,
 	BannerPreview: () => <BannerPreview />,
@@ -255,8 +259,6 @@ const components: MDXComponents = {
 	FormExample2: () => <FormExample2 />,
 	FormExample3: () => <FormExample3 />,
 	AlertExamplePreview: () => <AlertExamplePreview />,
-	VerifiedAvatarPreview: () => <VerifiedAvatarPreview />,
-	IndicatorAvatarPreview: () => <IndicatorAvatarPreview />,
 	RingAvatarPreview: () => <RingAvatarPreview />,
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
 	BreadcrumbExample2: () => <BreadcrumbExample2 />,

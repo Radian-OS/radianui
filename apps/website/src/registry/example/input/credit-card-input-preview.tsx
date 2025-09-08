@@ -7,33 +7,14 @@ import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type domainOption = ".com" | ".org" | ".net"
-export type typeOptions = "trail" | "lead" | "default"
 const sizes = ["28", "32", "36", "40", "44", "48"]
-const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 
 const CreditCardPreview = () => {
-	const [rounded, setRounded] = useState<RoundedOptions>("lg")
-
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 
 	const [label, setLabel] = useState<boolean>(true)
-	const [hint, setHint] = useState<boolean>(false)
-	const [hasError, setHasError] = useState<boolean>(false)
-
-	const sizeHeightMapping: Record<number, string> = {
-		28: "h-4 w-4",
-		32: "h-5 w-5",
-		36: "h-5 w-5",
-		40: "h-5 w-5",
-		44: "h-6 w-6",
-		48: "h-6 w-6",
-	}
-
-	const iconClass = sizeHeightMapping[size] ?? ""
 
 	return (
 		<Tabs className="mt-3" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -66,18 +47,6 @@ const CreditCardPreview = () => {
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
-							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-									{roundedOptions.map((roundedOption) => (
-										<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
-											{roundedOption}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={String(disabled)} onValueChange={(value) => setDisabled(value === "true")}>
@@ -103,32 +72,6 @@ const CreditCardPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Hint</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Error</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(hasError)} onValueChange={(value) => setHasError(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -138,25 +81,12 @@ const CreditCardPreview = () => {
 					<div className="flex flex-col gap-1.5">
 						{label && <Label>Credit Card</Label>}
 						<div className="w-80">
-							<Input
-								disabled={disabled}
-								size={size}
-								placeholder="Card Number"
-								className={`-ms rounded-b-none border-b-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-b"}`}
-							/>
+							<Input disabled={disabled} size={size} placeholder="Card Number" className={`-ms rounded-b-none border-b-0 focus-within:z-30 focus-within:border-b`} />
 							<div className="flex">
-								<Input
-									disabled={disabled}
-									size={size}
-									placeholder="MM / YY"
-									className={`rounded-r-none rounded-t-none border-r-0 focus-within:z-30 ${hasError ? "" : "focus-within:border-r"}`}
-								/>
+								<Input disabled={disabled} size={size} placeholder="MM / YY" className={`rounded-r-none rounded-t-none border-r-0 focus-within:z-30 focus-within:border-r`} />
 								<Input disabled={disabled} size={size} placeholder="CVC" className="rounded-l-none rounded-t-none" />
 							</div>
 						</div>
-						{(hint || hasError) && (
-							<Label className={`${hasError ? "text-error" : "text-fg-tertiary"} flex items-start text-xs font-normal`}>Hint text to help the user with input</Label>
-						)}
 					</div>
 				</div>
 			</TabsContent>
@@ -172,7 +102,6 @@ const CreditCardPreview = () => {
 		<Input
 			size={${size}}
 			placeholder="Card Number"
-			trail={<CreditCard className="${iconClass}" />}
 			className="-ms rounded-b-none border-b-0 focus-within:z-30 focus-within:border-b"
 		/>
 		<div className="flex">
@@ -180,7 +109,6 @@ const CreditCardPreview = () => {
 			<Input size={${size}} placeholder="CVC" className="rounded-l-none rounded-t-none" />
 		</div>
 	</div>
-	${hint ? `<Label className="flex items-start text-xs font-normal text-fg-tertiary">Hint text to help the user with input</Label>` : ""}
 </div>`}
 				/>
 			</TabsContent>

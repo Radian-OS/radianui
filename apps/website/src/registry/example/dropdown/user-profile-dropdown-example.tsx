@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, FolderCog, Ghost, LogOut, Settings, SquareTerminal, UserCog } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Avatar } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Dropdown, DropdownContent, DropdownDivider, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Switch } from "@/registry/ui/switch"
@@ -28,11 +28,17 @@ const UserMenuDropdownExample = () => {
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown>
 						<DropdownTrigger asChild className="cursor-pointer">
-							<Avatar src="https://randomuser.me/api/portraits/men/1.jpg" size="40" />
+							<Avatar size="40">
+								<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
+								<AvatarFallback>WM</AvatarFallback>
+							</Avatar>
 						</DropdownTrigger>
 						<DropdownContent align="center" className="[&_svg]:text-fg-secondary w-80 space-y-0.5">
 							<div className="flex w-full items-center gap-3 p-2">
-								<Avatar src="https://randomuser.me/api/portraits/men/1.jpg" size="36" />
+								<Avatar size="36">
+									<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
+									<AvatarFallback>WM</AvatarFallback>
+								</Avatar>
 								<div className="flex-1">
 									<p className="text-sm-p font-medium">Wames Magar</p>
 									<p className="body-13 text-fg-tertiary font-normal">wames@radian.com</p>

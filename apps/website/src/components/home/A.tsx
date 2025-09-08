@@ -15,7 +15,7 @@ import Share from "@public/icons/share-07.svg"
 import User from "@public/icons/user-circle.svg"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { Avatar } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Divider } from "@/registry/ui/divider"
 
 function A({ className }: { className?: string }) {
@@ -69,7 +69,10 @@ function A({ className }: { className?: string }) {
 								onClick={() => setActiveSidebarIcon("settings-left")}
 							/>
 						</div>
-						<Avatar src="/icons/Avatar-2.webp" size="40" name="JM" />
+						<Avatar size="40">
+							<AvatarImage src="/icons/Avatar-2.webp" />
+							<AvatarFallback>JM</AvatarFallback>
+						</Avatar>
 					</div>
 				</div>
 			</div>

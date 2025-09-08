@@ -2,7 +2,7 @@ import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
 import { EmailSubscribe } from "@/components/email-subscribe"
-import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
+// import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
 
@@ -50,7 +50,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 								<span className="heading-6">{blog.title}</span>
 							</div>
 							<div className="flex gap-2 pb-5 pt-3">
-								<AvatarGroup>{blog.author ? blog.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup>
+								{/* <AvatarGroup>{blog.author ? blog.author.map((item) => <Avatar key={item.name} name={item.name} src={item.avatar} />) : []}</AvatarGroup> */}
 								<span className="text-fg-secondary">{blog.formattedDate}</span>
 							</div>
 							<p className="text-fg-secondary max-w-121 text-sm lg:text-start">{blog.description}</p>

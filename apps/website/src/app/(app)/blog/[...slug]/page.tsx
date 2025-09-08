@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { MdxBlog } from "@/components/mdx-components-blogs"
-import { Avatar } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
 
@@ -51,7 +51,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
 				{blog.author?.map((author, index) =>
 					author.username && author.avatar ? (
 						<Link target="_blank" href={author.link || "#"} key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
-							<Avatar size="24" name={author.name} src={author.avatar} />
+							<Avatar size="24">
+								<AvatarImage src={author.avatar} />
+								<AvatarFallback>{author.name.charAt(0).toUpperCase()}</AvatarFallback>
+							</Avatar>
 							<span className="flex flex-col">
 								<span className="text-sm font-medium">{author.name}</span>
 								<span className="text-fg-secondary text-xs">{author.username}</span>
