@@ -92,10 +92,18 @@ const EmailPreview = () => {
 					title="email-input-preview.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<InputWrapper size={${size}} className="w-80" aria-invalid={${hasError}}>
-	${startIcon === "Arrow" ? "<ArrowRight />" : startIcon === "Mail" ? " <Mail /> " : ""}
-	<Input type="email" placeholder="designer@radianos.com" />
-</InputWrapper>`}
+					code={`import { Input } from "@/components/ui/input"
+
+export default function EmailInputExample() {
+  return (    						
+	<InputWrapper size={${size}} className="w-80" aria-invalid={${hasError}}>
+		${startIcon === "Arrow" ? "<ArrowRight />" : startIcon === "Mail" ? " <Mail /> " : ""}
+		<Input type="email" placeholder="designer@radianos.com" />
+	</InputWrapper>
+  );
+}
+						
+`}
 				/>
 			</TabsContent>
 		</Tabs>
