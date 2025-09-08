@@ -85,11 +85,6 @@ links:
 		title="Input"
 		data={[
 			{
-				name: "label",
-				description: "Label for the input field",
-				values: ["string"],
-			},
-			{
 				name: "placeholder",
 				description: "Placeholder text for the input field",
 				values: ["string"],
@@ -102,38 +97,17 @@ links:
 
             },
             {
-                name:"rounded",
-                description: "Sets the border radius of the input field",
-                defaultValue: "lg",
-                values: ["xs","sm", "md", "lg", "xl", "2xl"],
-            },
-            {
                 name:"disabled",
                 description: "If true, the input field is disabled",
                 defaultValue: "false",
                 values: ["boolean"],
             },
             {
-                name:"hasError",
+                name:"aria-invalid",
                 description: "If true, the input field will show an error state",
                 defaultValue: "false",
                 values: ["boolean"],
             },
-            {
-                name:"hint",
-                description: "Hint text displayed below the input field",
-                values: ["string"],
-            },
-            {
-                name:"lead",
-                description: "Lead Icon displayed in start of input field",
-                values: ["ReactNode"],
-            },
-            {
-                name:"trail",
-                description: "Trail Icon displayed at the end of input field",
-                values: ["ReactNode"],
-            }
     	]}
     />
 

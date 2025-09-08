@@ -5,6 +5,11 @@ import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
+export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
+	VariantProps<typeof badgeVariants> & {
+		asChild?: boolean
+	}
+
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-1", {
 	variants: {
 		variant: {
@@ -62,10 +67,6 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{ variant: "soft", color: "neutral", className: "bg-fill2 text-fg-secondary border border-soft-alpha" },
 	],
 })
-
-export interface BadgeProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color">, VariantProps<typeof badgeVariants> {
-	asChild?: boolean
-}
 
 function Badge({ className, variant, size, color, asChild = false, children, ...props }: BadgeProps) {
 	const Comp = asChild ? Slot : "span"

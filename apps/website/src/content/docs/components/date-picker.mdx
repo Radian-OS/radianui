@@ -9,10 +9,6 @@ links:
       href: https://daypicker.dev/
       icon: react-day-picker.webp
 
-    - label: "@internationalized/date"
-      href: https://www.npmjs.com/package/@internationalized/date
-      icon: npm.svg
-
     - label: date-fns
       href: https://www.npmjs.com/package/date-fns
       icon: npm.svg
@@ -20,127 +16,18 @@ links:
 
 <DatePickerPreview />
 
-## Installation
-
-<Tabs defaultValue="cli">
-	<TabsList>
-		<TabsTrigger value="cli">CLI</TabsTrigger>
-		<TabsTrigger value="manual">Manual</TabsTrigger>
-	</TabsList>
-	<TabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add date-picker",
-				npm: "npx @radianos/radianbeta add date-picker",
-				yarn: "yarn @radianos/radianbeta add date-picker",
-				bun: "bunx @radianos/radianbeta add date-picker",
-			}}
-		/>
-	</TabsContent>
-	<TabsContent value="manual" className="p-0">
-	<Steps>
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="date-picker" title="components/ui/date-picker.tsx" collapsible />
-
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
-    </TabsContent>
-
-</Tabs>
-
-## Usage
-
-### Imports
-
-<CodeSnippet title="/components/ui/date-picker" code={`import { DatePicker } from "@/components/ui/date-picker"`} />
-
-### Code
-
-<CodeSnippet
-	title="/components/ui/date-picker"
-	code={`<DatePicker
-    mode="range"
-    placeholder="Select Date"
-    size="36"
-    rounded="lg"
-/>`}
-/>
-
 ---
 
-## Props
+## Examples
 
-<PropsTableWrapper>
-	<PropsTable
-		title="DatePicker"
-		data={[
-			{
-				name: "label",
-				values: ["string"],
-				required: false,
-				description: "The label for the date picker",
-			},
-			{
-				name: "size",
-				values: ["28", "32", "36", "40", "44", "48"],
-				defaultValue: "36",
-				required: false,
-				description: "The size of the date picker",
-			},
-			{
-				name: "disabled",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "Whether the date picker is disabled",
-			},
-			{
-				name: "hint",
-				values: ["string"],
-				required: false,
-				description: "A hint or additional information for the date picker",
-			},
-			{
-				name: "hasError",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "Indicates if the date picker has an error state",
-			},
-			{
-				name: "typeable",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "Allows the user to type in a date",
-			},
-			{
-				name: "mode",
-				values: ["single", "multiple", "range"],
-				defaultValue: "single",
-				required: false,
-				description: "The selection mode of the date picker",
-			},
-			{
-				name: "dual",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "Whether the date picker is in dual mode",
-			},
-			{
-				name: "showTime",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "Whether the date picker includes time selection",
-			},
-			{
-				name: "footer",
-				values: ["ReactNode"],
-				required: false,
-				description: "Custom footer content for the date picker",
-			},
-		]}
-	/>
-</PropsTableWrapper>
+### Date Range Picker
+
+<DatePickerPresetsExample />
+
+### Date Picker With Time
+
+<DatePickerWithTimeExample />
+
+## API Reference
+
+This component is made from composition of `<Popover />` and `<Calendar />` components. For more details on how the calendar works, check out the [React Day Picker](https://daypicker.dev/api) documentation.
