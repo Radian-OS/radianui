@@ -50,21 +50,67 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/pagination" code={`import Pagination from "@/components/ui/pagination"`} />
+<CodeSnippet title="/components/ui/pagination" code={`import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from "@/components/ui/pagination"`} />
 
 ### Code
 
 <CodeSnippet
 	title="/components/ui/pagination"
-	code={`<Pagination
-		currentPage={2}
-		totalPage={20}
-		rowPerPage={true}
-		goToPage={true}
-		enableCustomRows={true}
-		customRows={5}
-		navButton="both"
-/>`}
+	code={`<Pagination>
+<PaginationContent>
+   <PaginationItem>
+	<IconButton color="neutral" variant="ghost" asChild disabled>
+      <Link href="#">
+       <ChevronFirst className="rtl:rotate-180" />
+      </Link>
+     </IconButton>
+   </PaginationItem>						
+	<PaginationItem>
+      <IconButton color="neutral" variant="ghost" asChild disabled>
+       <Link href="#">
+        <ChevronLeft className="rtl:rotate-180" />
+       </Link>
+      </IconButton>
+     </PaginationItem>					
+	
+	<PaginationItem>
+      <IconButton color="neutral" variant="ghost" asChild>
+       <Link href="#">1</Link>
+       </IconButton>
+       </PaginationItem>
+       
+	   <PaginationItem>
+       <IconButton color="neutral" variant="outline" asChild>
+       <Link href="#">2</Link>
+       </IconButton>
+       </PaginationItem>
+     
+	 <PaginationItem>
+     <IconButton color="neutral" variant="ghost" asChild>
+     <Link href="#">3</Link>
+     </IconButton>
+     </PaginationItem>
+						
+	 <PaginationItem>
+    <PaginationEllipsis />
+	</PaginationItem>
+	<PaginationItem>
+		<IconButton color="neutral" variant="ghost" asChild>
+			<Link href="#">
+				<ChevronRight className="rtl:rotate-180" />
+			</Link>
+		</IconButton>
+	</PaginationItem>
+		
+	<PaginationItem>
+			<IconButton color="neutral" variant="ghost" asChild>
+				<Link href="#">
+					<ChevronLast className="rtl:rotate-180" />
+				</Link>
+			</IconButton>
+		</PaginationItem>
+	</PaginationContent>
+</Pagination>`}
 />
 
 ---
@@ -76,24 +122,44 @@ links:
 		title="Pagination"
 		data={[
 			{
-				name: "currentPage",
-				description: "Displays current page or index",
-				values: ["number"],
-				
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the pagination navigation",
 			},
+		]}
+	/>
+	<PropsTable
+		title="PaginationContent"
+		data={[
 			{
-				name: "totalPage",
-				description: "Displays total number of pages",
-				values: ["number"],
-    		},
-			{
-				name:"navButton",
-				description: "Displays the type of media in pagination",
-				values:["icon","text","both"],
-				defaultValue:"icon"
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the pagination content list",
 			},
-			
-    	]}
-    />
-
+		]}
+	/>
+	<PropsTable
+		title="PaginationItem"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the pagination item",
+			},
+		]}
+	/>
+	<PropsTable
+		title="PaginationEllipsis"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes to apply to the ellipsis indicator",
+			},
+		]}
+	/>
 </PropsTableWrapper>

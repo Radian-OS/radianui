@@ -27,7 +27,7 @@ export function DropdownWithDropdownCheckbox() {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Dropdown>
+					<Dropdown indicatorPosition="left">
 						<DropdownTrigger asChild>
 							<Button variant="outline" color="neutral">
 								Notifications
@@ -71,7 +71,7 @@ export function CheckboxDropdownExample() {
   const [push, setPush] = useState(true)
 
   return (
-    <Dropdown>
+    <Dropdown indicatorPosition="left">
       <DropdownTrigger asChild>
         <Button variant="outline">Notifications</Button>
       </DropdownTrigger>
