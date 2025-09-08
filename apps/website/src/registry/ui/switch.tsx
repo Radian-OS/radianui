@@ -34,14 +34,14 @@ const thumbStyles = cva("block rounded-full bg-white transition-transform data-[
 	},
 })
 
-function Switch({ className, size = "20", children, ...props }: Props) {
+function Switch({ className, size = "20", ...props }: Props) {
 	return (
-		<label className="flex items-center gap-2">
-			<SwitchPrimitive.Root data-slot="switch" className={cn(rootStyles({ size }), className)} {...props}>
-				<SwitchPrimitive.Thumb data-slot="switch-thumb" className={cn(thumbStyles({ size }))} />
-			</SwitchPrimitive.Root>
-			{children && <span className="select-none text-sm peer-disabled:cursor-not-allowed peer-disabled:opacity-50">{children}</span>}
-		</label>
+		// <label className="flex items-center gap-2">
+		<SwitchPrimitive.Root data-slot="switch" className={cn(rootStyles({ size }), className)} {...props}>
+			<SwitchPrimitive.Thumb data-slot="switch-thumb" className={cn(thumbStyles({ size }))} />
+		</SwitchPrimitive.Root>
+		// {children && <span className="select-none text-sm peer-disabled:cursor-not-allowed peer-disabled:opacity-50">{children}</span>}
+		// </label>
 	)
 }
 

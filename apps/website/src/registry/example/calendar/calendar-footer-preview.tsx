@@ -20,18 +20,15 @@ const FooterCalendarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
-					<Calendar
-						mode={"single"}
-						classNames={{ month: "pb-2" }}
-						footer={
-							<div className="border-border flex justify-end gap-2 border-t pb-0 pt-3">
-								<Button variant="outline" color="neutral">
-									Cancel
-								</Button>
-								<Button>Apply</Button>
-							</div>
-						}
-					/>
+					<div className="border-alpha bg-fill2 rounded-xl border">
+						<Calendar mode="single" className="border-0 bg-transparent pb-2" />
+						<div className="border-border flex justify-end gap-2 border-t px-2 py-3">
+							<Button variant="outline" color="neutral">
+								Cancel
+							</Button>
+							<Button>Apply</Button>
+						</div>
+					</div>
 				</div>
 			</TabsContent>
 
@@ -49,18 +46,15 @@ import { Calendar } from "@/components/ui/calendar"
 
 export default function CalendarFooter() {
 	return (
-		<Calendar
-			mode={"single"}
-			classNames={{
-				months: "pb-2",
-			}}
-			footer={
-				<div className="border-border flex justify-end gap-2 border-t pb-0 pt-3">
-					<Button variant="outline" color="neutral">Cancel</Button>
-					<Button>Apply</Button>
-				</div>
-			}
-		/>	
+		<div className="border-alpha bg-fill2 rounded-xl border">
+			<Calendar mode="single" className="border-0 bg-transparent pb-2" />
+			<div className="border-border flex justify-end gap-2 border-t px-2 py-3">
+				<Button variant="outline" color="neutral">
+					Cancel
+				</Button>
+				<Button>Apply</Button>
+			</div>
+		</div>
 	)
 }`}
 				/>

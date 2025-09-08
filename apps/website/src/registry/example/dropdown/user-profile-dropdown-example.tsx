@@ -58,13 +58,16 @@ const UserMenuDropdownExample = () => {
 								</Badge>
 							</div>
 							<DropdownDivider />
-							<DropdownItem className="px-2 py-1.5" start={<Settings />}>
+							<DropdownItem className="px-2 py-1.5">
+								<Settings />
 								Settings
 							</DropdownItem>
-							<DropdownItem className="px-2 py-1.5" start={<UserCog />}>
+							<DropdownItem className="px-2 py-1.5">
+								<UserCog />
 								Manage Account
 							</DropdownItem>
-							<DropdownItem className="px-2 py-1.5" start={<FolderCog />}>
+							<DropdownItem className="px-2 py-1.5">
+								<FolderCog />
 								Automations
 							</DropdownItem>
 							<DropdownItem
@@ -72,13 +75,14 @@ const UserMenuDropdownExample = () => {
 									setIncognito((prev) => !prev)
 									e.preventDefault()
 								}}
-								start={<Ghost />}
-								end={<Switch id="incognito" checked={incognito} />}
 								className="px-2 py-1.5">
+								<Ghost />
 								Go Incognito
+								<Switch className="ml-auto" id="incognito" checked={incognito} />
 							</DropdownItem>
 							<DropdownDivider />
-							<DropdownItem className="px-2 py-1.5" start={<LogOut />}>
+							<DropdownItem className="px-2 py-1.5">
+								<LogOut />
 								Logout
 							</DropdownItem>
 						</DropdownContent>
@@ -128,13 +132,16 @@ export default function UserMenuDropdown() {
 					<Badge variant="soft" color="primary">Manage</Badge>
 				</div>
 				<DropdownDivider />
-				<DropdownItem className="px-2 py-1.5" start={<Settings />}>
+				<DropdownItem className="px-2 py-1.5">
+					<Settings />
 					Settings
 				</DropdownItem>
-				<DropdownItem className="px-2 py-1.5" start={<UserCog />}>
+				<DropdownItem className="px-2 py-1.5">
+					<UserCog />
 					Manage Account
 				</DropdownItem>
-				<DropdownItem className="px-2 py-1.5" start={<FolderCog />}>
+				<DropdownItem className="px-2 py-1.5">
+					<FolderCog />
 					Automations
 				</DropdownItem>
 				<DropdownItem
@@ -142,14 +149,14 @@ export default function UserMenuDropdown() {
 						setIncognito((prev) => !prev)
 						e.preventDefault()
 					}}
-					start={<Ghost />}
-					end={<Switch id="incognito" checked={incognito} />}
-					className="px-2 py-1.5"
-				>
+					className="px-2 py-1.5">
+					<Ghost />
 					Go Incognito
+					<Switch className="ml-auto" id="incognito" checked={incognito} />
 				</DropdownItem>
 				<DropdownDivider />
-				<DropdownItem className="px-2 py-1.5" start={<LogOut />}>
+				<DropdownItem className="px-2 py-1.5">
+					<LogOut />
 					Logout
 				</DropdownItem>
 			</DropdownContent>
