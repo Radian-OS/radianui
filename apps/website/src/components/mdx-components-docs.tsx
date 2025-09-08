@@ -27,7 +27,6 @@ import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
 import CalendarPreview from "@/component-preview/calendar-preview"
-import CheckboxgroupPreview from "@/component-preview/checkbox-group-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
@@ -96,12 +95,13 @@ import MultipleMonthsCalendarExample from "@/registry/example/calendar/multiple-
 import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
 import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
-import SelectMamberCheckboxgroupExample from "@/registry/example/checkbox/select-member-checkboxgroup"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
+import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
 import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
@@ -178,9 +178,7 @@ const components: MDXComponents = {
 	BreadCrumbPreview: () => <BreadCrumbPreview />,
 	BannerPreview: () => <BannerPreview />,
 	CheckboxPreview: () => <CheckboxPreview />,
-	CheckboxgroupPreview: () => <CheckboxgroupPreview />,
 	IndeterminateCheckboxExample: () => <IndeterminateCheckboxExample />,
-	SelectMemberCheckboxgroupExample: () => <SelectMamberCheckboxgroupExample />,
 	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
@@ -221,6 +219,8 @@ const components: MDXComponents = {
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
+	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
+	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
 	CalendarPreview: () => <CalendarPreview />,
 	CalendarWithYearMonthSelectorExample: () => <CalendarWithYearMonthSelectorExample />,
 	MultipleMonthsCalendarExample: () => <MultipleMonthsCalendarExample />,
@@ -331,15 +331,15 @@ const components: MDXComponents = {
 			</h3>
 		)
 	},
-	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => {
-		;<a
+	a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
+		<a
 			aria-label="Link"
 			rel="noopener noreferrer"
 			target="_blank"
 			className={cn("text-primary hover:text-primary-hover font-medium underline underline-offset-4 transition-colors duration-200", className)}
 			{...props}
 		/>
-	},
+	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={cn("text-fg-secondary", className)} {...props}>
 			{children}
@@ -361,6 +361,8 @@ const components: MDXComponents = {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
 	},
 	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
+
+	code: ({ className, ...props }): React.ComponentProps<"code"> => <code className={cn("bg-fill4 break-words rounded-md p-1 font-mono outline-none", className)} {...props} />,
 
 	Alert: (props: AlertProps) => {
 		return <Alert variant="soft" color="primary" {...props} />

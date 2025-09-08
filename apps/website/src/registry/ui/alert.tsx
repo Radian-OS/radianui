@@ -4,6 +4,7 @@ import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
+type AlertProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant"> & VariantProps<typeof alertVariants>
 // Variants
 const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-2", {
 	variants: {
@@ -60,8 +61,6 @@ const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-cente
 		variant: "soft",
 	},
 })
-
-interface AlertProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant">, VariantProps<typeof alertVariants> {}
 
 function Alert({ className, color, variant, ...props }: AlertProps) {
 	return <div role="alert" className={cn(alertVariants({ color, variant }), className)} {...props} />
