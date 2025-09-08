@@ -25,7 +25,9 @@ const FooterCalendarPreview = () => {
 						classNames={{ month: "pb-2" }}
 						footer={
 							<div className="border-border flex justify-end gap-2 border-t pb-0 pt-3">
-								<Button variant="outline">Cancel</Button>
+								<Button variant="outline" color="neutral">
+									Cancel
+								</Button>
 								<Button>Apply</Button>
 							</div>
 						}
@@ -54,7 +56,7 @@ export default function CalendarFooter() {
 			}}
 			footer={
 				<div className="border-border flex justify-end gap-2 border-t pb-0 pt-3">
-					<Button variant="outline">Cancel</Button>
+					<Button variant="outline" color="neutral">Cancel</Button>
 					<Button>Apply</Button>
 				</div>
 			}
