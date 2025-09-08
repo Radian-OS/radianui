@@ -1,123 +1,51 @@
-"use client"
-
-import React, { useEffect, useState } from "react"
-import { ChevronRight, Ellipsis } from "lucide-react"
+import * as React from "react"
+import { ChevronRight, MoreHorizontal } from "lucide-react"
+import { Slot as SlotPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
-import { Badge } from "./badge"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "./dropdown"
 
-type BaseProps = React.HTMLAttributes<HTMLElement> & {
-	className?: string
-	children?: React.ReactNode
+function Breadcrumb({
+	...props
+}: React.ComponentProps<"nav"> & {
+	separator?: React.ReactNode
+}) {
+	return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />
 }
 
-type BreadcrumbProps = BaseProps & {
-	separator?: "default" | "slash"
-	maxItems?: number
+function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
+	return <ol data-slot="breadcrumb-list" className={cn("text-fg-secondary flex flex-wrap items-center gap-1.5 break-words text-sm", className)} {...props} />
 }
 
-type BreadcrumbItemProps = BaseProps & {
+function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
+	return <li data-slot="breadcrumb-item" className={cn("inline-flex items-center gap-1.5", className)} {...props} />
+}
+
+function BreadcrumbLink({
+	asChild,
+	className,
+	...props
+}: React.ComponentProps<"a"> & {
 	asChild?: boolean
-	isCurrent?: boolean
-	showSeparator?: boolean
-	separator?: "default" | "slash"
+}) {
+	const Comp = asChild ? SlotPrimitive.Slot : "a"
+
+	return <Comp data-slot="breadcrumb-link" className={cn("hover:text-fg transition-colors", className)} {...props} />
 }
 
-function Breadcrumb({ children, className = "", separator = "default", maxItems: maxItemsProp = 5, ...props }: BreadcrumbProps) {
-	const [maxItems, setMaxItems] = useState(maxItemsProp)
-
-	useEffect(() => {
-		const handleResize = () => {
-			setMaxItems(window.innerWidth <= 640 ? 2 : window.innerWidth <= 768 ? 3 : window.innerWidth <= 1024 ? 4 : maxItemsProp)
-		}
-
-		handleResize()
-		window.addEventListener("resize", handleResize)
-		return () => window.removeEventListener("resize", handleResize)
-	}, [maxItemsProp])
-
-	const childArray = React.Children.toArray(children)
-	const shouldShowEllipsis = childArray.length > maxItems
-	const visibleItems = shouldShowEllipsis ? [childArray[0], ...childArray.slice(-maxItems + 1)] : childArray
-	const invisibleItems = shouldShowEllipsis ? childArray.slice(1, -maxItems + 1) : []
-
-	return (
-		<nav className={cn("flex items-center", className)} {...props}>
-			<ol className="flex items-center justify-center gap-1.5">
-				{visibleItems.map((child, index, array) => {
-					if (!React.isValidElement<BreadcrumbItemProps>(child)) return child
-
-					const isLast = index === array.length - 1
-					const showEllipsis = shouldShowEllipsis && index === 0
-
-					return (
-						<React.Fragment key={child.key ?? index}>
-							{React.cloneElement(child, {
-								...child.props,
-								showSeparator: !isLast || showEllipsis,
-								separator,
-							})}
-							{showEllipsis && (
-								<>
-									<BreadcrumbItem className="cursor-default hover:no-underline">
-										<Dropdown>
-											<DropdownTrigger asChild>
-												<Badge color="neutral" className="cursor-pointer" size="20">
-													<Ellipsis size={16} />
-												</Badge>
-											</DropdownTrigger>
-											<DropdownContent>
-												<DropdownGroup>
-													{invisibleItems.map((hiddenChild, hiddenIndex) =>
-														React.isValidElement<BreadcrumbItemProps>(hiddenChild) ? (
-															<DropdownItem key={hiddenChild.key ?? hiddenIndex}>{hiddenChild.props.children}</DropdownItem>
-														) : null
-													)}
-												</DropdownGroup>
-											</DropdownContent>
-										</Dropdown>
-									</BreadcrumbItem>
-									{separator === "slash" ? <span className="text-fg-tertiary text-sm">/</span> : <ChevronRight size={14} className="stroke-fg-tertiary" />}
-								</>
-							)}
-						</React.Fragment>
-					)
-				})}
-			</ol>
-		</nav>
-	)
-}
-Breadcrumb.displayName = "Breadcrumb"
-
-function BreadcrumbItem({ children, asChild = false, isCurrent = false, className = "", showSeparator = false, separator = "default", ...props }: BreadcrumbItemProps) {
-	const baseStyles = cn(
-		"flex items-center gap-1 text-sm font-medium transition-colors",
-		isCurrent ? "font-medium" : "text-fg-secondary",
-		"hover:underline",
-		"[&>svg]:h-full [&>svg]:max-h-5 [&>svg]:w-auto",
-		className
-	)
-
-	return (
-		<>
-			<li className="flex items-center justify-center" {...props}>
-				{asChild ? (
-					React.isValidElement(children) ? (
-						React.cloneElement(children as React.ReactElement<HTMLAnchorElement>, {
-							className: cn(baseStyles, (children as React.ReactElement<HTMLAnchorElement>).props?.className),
-						})
-					) : (
-						children
-					)
-				) : (
-					<span className={baseStyles}>{children}</span>
-				)}
-			</li>
-			{showSeparator && (separator === "slash" ? <span className="text-fg-tertiary text-sm">/</span> : <ChevronRight size={14} className="stroke-fg-tertiary" />)}
-		</>
-	)
+function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
+	return <span data-slot="breadcrumb-page" role="link" aria-disabled="true" aria-current="page" className={cn("text-fg font-normal", className)} {...props} />
 }
 
-BreadcrumbItem.displayName = "BreadcrumbItem"
+const BreadcrumbSeparator = ({ children, className, ...props }: React.ComponentProps<"li">) => (
+	<li data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)} {...props}>
+		{children ?? <ChevronRight className="rtl:rotate-180" />}
+	</li>
+)
 
-export { Breadcrumb, BreadcrumbItem }
+const BreadcrumbEllipsis = ({ className, ...props }: React.ComponentProps<"span">) => (
+	<span data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
+		<MoreHorizontal className="h-4 w-4" />
+		<span className="sr-only">More</span>
+	</span>
+)
+
+export { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator }

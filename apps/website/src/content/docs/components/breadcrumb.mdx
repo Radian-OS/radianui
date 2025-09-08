@@ -62,23 +62,35 @@ links:
 
 ### Code
 
-<CodeSnippet title="/components/ui/breadcrumb.tsx" code={`<Breadcrumb separator="slash">
-
-        <BreadcrumbItem asChild>
-          <Link href="/">Home</Link>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem asChild>
-          <Link href="/products">Products</Link>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem asChild>
-          <Link href="/products/electronics">Electronics</Link>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem isCurrent>Headphones</BreadcrumbItem>
-
-</Breadcrumb>`} />
+<CodeSnippet
+	title="/components/ui/breadcrumb.tsx"
+	code={`<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink asChild>
+        <Link href="/">Home</Link>
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    
+    <BreadcrumbItem>
+      <BreadcrumbEllipsis />
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    
+    <BreadcrumbItem>
+      <BreadcrumbLink asChild>
+        <Link href="/docs/components">Components</Link>
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    
+    <BreadcrumbItem>
+      <BreadcrumbPage>CLI</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>`}
+/>
 
 ---
 

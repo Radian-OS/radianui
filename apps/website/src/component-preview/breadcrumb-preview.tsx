@@ -2,14 +2,15 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import Link from "next/link"
 import CodeSnippet from "@/components/code-snippet"
-import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BreadCrumbPreview = () => {
-	const [separator, setSeparatorType] = useState<"default" | "slash">("default")
+	const [separator, setSeparatorType] = useState<"slash" | "chevron">("slash")
 	const [maxItems, setMaxItems] = useState<"2" | "3" | "4" | "5">("5")
+
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
 			<div className="flex items-center justify-between">
@@ -31,12 +32,12 @@ const BreadCrumbPreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>Separator</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={separator} onValueChange={(value) => setSeparatorType(value as "default" | "slash")}>
-									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
-										Default
-									</DropdownRadioItem>
+								<DropdownRadioGroup value={separator} onValueChange={(value) => setSeparatorType(value as "slash" | "chevron")}>
 									<DropdownRadioItem value="slash" onSelect={(e) => e.preventDefault()}>
 										Slash
+									</DropdownRadioItem>
+									<DropdownRadioItem value="chevron" onSelect={(e) => e.preventDefault()}>
+										Chevron
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -58,7 +59,6 @@ const BreadCrumbPreview = () => {
 									<DropdownRadioItem value="5" onSelect={(e) => e.preventDefault()}>
 										5
 									</DropdownRadioItem>
-									{/* <DropdownRadioItem value="6" onSelect={(e) => e.preventDefault()}>6</DropdownRadioItem> */}
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
@@ -68,22 +68,31 @@ const BreadCrumbPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Breadcrumb separator={separator} maxItems={parseInt(maxItems)}>
-						<BreadcrumbItem asChild>
-							<Link href="/">Home</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem>
-							<Link href="/docs/installation/next">Installation</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem>
-							<Link href="/docs/components">Components</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem>
-							<Link href="/docs/animations/animated-list">Animations</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem>
-							<Link href="/docs/getting-started/cli">CLI</Link>
-						</BreadcrumbItem>
+					<Breadcrumb>
+						<BreadcrumbList>
+							<BreadcrumbItem>
+								<BreadcrumbLink asChild>
+									<Link href="/">Home</Link>
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+
+							<BreadcrumbItem>
+								<BreadcrumbEllipsis />
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+
+							<BreadcrumbItem>
+								<BreadcrumbLink asChild>
+									<Link href="/docs/components">Components</Link>
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+
+							<BreadcrumbItem>
+								<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+							</BreadcrumbItem>
+						</BreadcrumbList>
 					</Breadcrumb>
 				</div>
 			</TabsContent>
@@ -92,32 +101,36 @@ const BreadCrumbPreview = () => {
 					title="breadcrumb.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Breadcrumb separator="${separator}" maxItems={${maxItems}} >
-
-<BreadcrumbItem asChild >
- <Link href="/" >Home</Link>
-</BreadcrumbItem>
-
-<BreadcrumbItem asChild >
- <Link href="/docs/installation/next" >Installation</Link>
-</BreadcrumbItem>
-
-<BreadcrumbItem asChild >
- <Link href="/docs/components" >Components</Link>
-</BreadcrumbItem>
-
-<BreadcrumbItem asChild >
- <Link href="/docs/animations/animated-list" >Animations</Link>
-</BreadcrumbItem>
-
-<BreadcrumbItem asChild >
- <Link href="/docs/getting-started/cli" >CLI</Link>
-</BreadcrumbItem>
-
+					code={`<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink asChild>
+        <Link href="/">Home</Link>
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator${separator === "chevron" ? '>\n      <ChevronRight size={14} className="stroke-fg-tertiary" />\n    </BreadcrumbSeparator>' : " />"}
+    
+    <BreadcrumbItem>
+      <BreadcrumbEllipsis />
+    </BreadcrumbItem>
+    <BreadcrumbSeparator${separator === "chevron" ? '>\n      <ChevronRight size={14} className="stroke-fg-tertiary" />\n    </BreadcrumbSeparator>' : " />"}
+    
+    <BreadcrumbItem>
+      <BreadcrumbLink asChild>
+        <Link href="/docs/components">Components</Link>
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator${separator === "chevron" ? '>\n      <ChevronRight size={14} className="stroke-fg-tertiary" />\n    </BreadcrumbSeparator>' : " />"}
+    
+    <BreadcrumbItem>
+      <BreadcrumbPage>CLI</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
 </Breadcrumb>`}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
+
 export default BreadCrumbPreview

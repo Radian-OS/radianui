@@ -1,7 +1,6 @@
-import { Component, EyeIcon, Home, SquareTerminal, Upload } from "lucide-react"
-import Link from "next/link"
+import { EyeIcon, Home, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Breadcrumb, BreadcrumbItem } from "@/registry/ui/breadcrumb"
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const BreadCrumbExample1 = () => {
@@ -20,29 +19,22 @@ const BreadCrumbExample1 = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Breadcrumb separator="default">
-						<BreadcrumbItem asChild>
-							<Link href="/">
-								<Home size={16} /> Home
-							</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem asChild>
-							<Link href="/docs/installation/next">
-								<Upload size={16} /> Installation
-							</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem asChild>
-							<Link href="/docs/components">
-								<Component size={16} />
-								Components
-							</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem>
-							<Link href="/docs/animations/animated-list">Animations</Link>
-						</BreadcrumbItem>
-						<BreadcrumbItem>
-							<Link href="/docs/getting-started/cli">CLI</Link>
-						</BreadcrumbItem>
+					<Breadcrumb>
+						<BreadcrumbList>
+							<BreadcrumbItem>
+								<BreadcrumbLink href="/">
+									<Home className="size-4" />
+								</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								<BreadcrumbLink href="/">Components</BreadcrumbLink>
+							</BreadcrumbItem>
+							<BreadcrumbSeparator />
+							<BreadcrumbItem>
+								<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+							</BreadcrumbItem>
+						</BreadcrumbList>
 					</Breadcrumb>
 				</div>
 			</TabsContent>
@@ -51,29 +43,29 @@ const BreadCrumbExample1 = () => {
 					title="breadcrumb.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Breadcrumb separator="default" >
+					code={` <Breadcrumb>
+      <BreadcrumbList>
 
-<BreadcrumbItem asChild >
- <Link href="/" ><Home size={16} /> Home</Link>
-</BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">
+            <Home className="size-4" />
+          </BreadcrumbLink>
+        </BreadcrumbItem>
 
-<BreadcrumbItem asChild >
- <Link href="/docs/installation/next" ><Upload size={16} /> Installation</Link>
-</BreadcrumbItem>
+        <BreadcrumbSeparator />
 
-<BreadcrumbItem asChild >
- <Link href="/docs/components" ><Component size={16} /> Components</Link>
-</BreadcrumbItem>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/">Components</BreadcrumbLink>
+        </BreadcrumbItem>
 
-<BreadcrumbItem >
- <Link href="/docs/animations/animated-list" >Animations</Link>
-</BreadcrumbItem>
+        <BreadcrumbSeparator />
 
-<BreadcrumbItem >
- <Link href="/docs/getting-started/cli" >CLI</Link>
-</BreadcrumbItem>
-
-</Breadcrumb>`}
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+		
+      </BreadcrumbList>
+    </Breadcrumb>`}
 				/>
 			</TabsContent>
 		</Tabs>
