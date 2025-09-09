@@ -5,8 +5,8 @@ import { Search } from "lucide-react"
 import { navigationItems } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
+import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
-import { Modal, ModalContent, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import SearchCommand from "../search-command"
 
 export function SearchDocs() {
@@ -109,8 +109,8 @@ export function SearchDocs() {
 			</Drawer>
 
 			{/* Desktop Search */}
-			<Modal open={isOpen} onOpenChange={setIsOpen} closeIcon="hidden">
-				<ModalTrigger asChild>
+			<Dialog open={isOpen} onOpenChange={setIsOpen}>
+				<DialogTrigger asChild>
 					<Button
 						className="not-md:hidden gap-1"
 						variant={"outline"}
@@ -123,12 +123,12 @@ export function SearchDocs() {
 						}>
 						<span className="text-fg-tertiary w-43 flex-1 px-1 text-start">Search</span>
 					</Button>
-				</ModalTrigger>
-				<ModalContent className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
-					<ModalTitle className="hidden">Command Search</ModalTitle>
+				</DialogTrigger>
+				<DialogContent closeButton="hidden" className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
+					<DialogTitle className="hidden">Command Search</DialogTitle>
 					<SearchCommand {...searchCommandProps} />
-				</ModalContent>
-			</Modal>
+				</DialogContent>
+			</Dialog>
 		</>
 	)
 }

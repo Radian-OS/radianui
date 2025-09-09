@@ -97,11 +97,11 @@ const UserMenuDropdownExample = () => {
 					className="h-[420px]"
 					code={`
 import { useState } from "react"
-import { Avatar } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownDivider, DropdownItem } from "@/registry/ui/dropdown"
-import { Switch } from "@/registry/ui/switch"
-import { Button } from "@/registry/ui/button"
+import { Avatar } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { Dropdown, DropdownTrigger, DropdownContent, DropdownDivider, DropdownItem } from "@/components/ui/dropdown"
+import { Switch } from "@/components/ui/switch"
+import { Button } from "@/components/ui/button"
 import { Settings, UserCog, FolderCog, Ghost, LogOut } from "lucide-react"
 
 export default function UserMenuDropdown() {

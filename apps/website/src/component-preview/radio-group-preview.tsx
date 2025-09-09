@@ -3,6 +3,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -53,11 +54,25 @@ const RadiogroupPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<RadioGroup {...(size !== DEFAULT_SIZE && { size: size })} defaultValue="1" label="Notify me about...">
-						<RadioGroupItem value="1">All new messages</RadioGroupItem>
-						<RadioGroupItem value="2">Direct messages and mentions</RadioGroupItem>
-						<RadioGroupItem value="3">Nothing</RadioGroupItem>
-					</RadioGroup>
+					<div className="flex flex-col gap-3">
+						<Label className="text-base">Notify me about...</Label>
+						<RadioGroup {...(size !== DEFAULT_SIZE && { size: size })} defaultValue="1">
+							<div className="flex items-center gap-2">
+								<RadioGroupItem id="1" value="1" />
+								<Label htmlFor="1">All new messages</Label>
+							</div>
+
+							<div className="flex items-center gap-2">
+								<RadioGroupItem id="2" value="2" />
+								<Label htmlFor="2">Direct messages and mentions</Label>
+							</div>
+
+							<div className="flex items-center gap-2">
+								<RadioGroupItem id="3" value="3" />
+								<Label htmlFor="3">Nothing</Label>
+							</div>
+						</RadioGroup>
+					</div>
 				</div>
 			</TabsContent>
 
@@ -67,9 +82,14 @@ const RadiogroupPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`<RadioGroup ${size !== DEFAULT_SIZE ? `size="${size}"` : ``} defaultValue="1" label="Notify me about...">
-	<RadioGroupItem value="1">All new messages</RadioGroupItem>
-	<RadioGroupItem value="2">Direct messages and mentions</RadioGroupItem>
-	<RadioGroupItem value="3">Nothing</RadioGroupItem>
+	<RadioGroupItem id="1" value="1"/>
+	<Label htmlFor="1">All new messages</Label>
+
+	<RadioGroupItem id="2" value="2"/>
+	<Label htmlFor="2">Direct messages and mentions</Label>
+
+	<RadioGroupItem id="3" value="3"/>
+	<Label htmlFor="3">Nothing</Label>
 </RadioGroup>`}
 				/>
 			</TabsContent>

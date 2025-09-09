@@ -2,18 +2,16 @@ import { useState } from "react"
 import { CircleAlert, EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
+import { Dialog, DialogBody, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Modal, ModalBody, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-type CloseIconVisibility = "hidden" | "hover" | "visible"
 type Backdrop = "overlay" | "blur" | "transparent"
-type WithSeparator = "true" | "false"
+type CloseButton = "hidden" | "visible" | "hover"
 
 const PopoverPreview = () => {
-	const [closeIcon, setCloseIcon] = useState<CloseIconVisibility>("hidden")
 	const [backdrop, setBackdrop] = useState<Backdrop>("overlay")
-	const [withSeparator, setWithSeparator] = useState<WithSeparator>("false")
+	const [closeButton, setCloseButton] = useState<CloseButton>("visible")
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -34,22 +32,6 @@ const PopoverPreview = () => {
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Close icon</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={closeIcon} onValueChange={(value) => setCloseIcon(value as CloseIconVisibility)}>
-									<DropdownRadioItem value="hidden" onSelect={(e) => e.preventDefault()}>
-										Hidden
-									</DropdownRadioItem>
-									<DropdownRadioItem value="visible" onSelect={(e) => e.preventDefault()}>
-										Visible
-									</DropdownRadioItem>
-									<DropdownRadioItem value="hover" onSelect={(e) => e.preventDefault()}>
-										Hover
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
 							<DropdownSubTrigger>Backdrop</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={backdrop} onValueChange={(value) => setBackdrop(value as Backdrop)}>
@@ -66,14 +48,17 @@ const PopoverPreview = () => {
 							</DropdownSubContent>
 						</DropdownSub>
 						<DropdownSub>
-							<DropdownSubTrigger>With separator</DropdownSubTrigger>
+							<DropdownSubTrigger>Close Button</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={withSeparator} onValueChange={(value) => setWithSeparator(value as WithSeparator)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
+								<DropdownRadioGroup value={closeButton} onValueChange={(value) => setCloseButton(value as CloseButton)}>
+									<DropdownRadioItem value="visible" onSelect={(e) => e.preventDefault()}>
+										Visible
 									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
+									<DropdownRadioItem value="hover" onSelect={(e) => e.preventDefault()}>
+										Hover
+									</DropdownRadioItem>
+									<DropdownRadioItem value="hidden" onSelect={(e) => e.preventDefault()}>
+										Hidden
 									</DropdownRadioItem>
 								</DropdownRadioGroup>
 							</DropdownSubContent>
@@ -84,35 +69,35 @@ const PopoverPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<Modal backdrop={backdrop} closeIcon={closeIcon} withSeparator={withSeparator === "true" ? true : false}>
-						<ModalTrigger asChild>
-							<Button>Modal</Button>
-						</ModalTrigger>
-						<ModalContent>
-							<ModalHeader>
+					<Dialog>
+						<DialogTrigger asChild>
+							<Button>Dialog</Button>
+						</DialogTrigger>
+						<DialogContent backdrop={backdrop} closeButton={closeButton}>
+							<DialogHeader>
 								<div className="flex gap-3">
-									<div className="flex items-center justify-center rounded-sm border p-2">
+									<div className="flex items-center justify-center rounded-md border p-2">
 										<CircleAlert className="text-fg2 size-6" />
 									</div>
 									<div>
-										<ModalTitle>This is sample header</ModalTitle>
-										<ModalDescription>Are you sure you want to change the content?</ModalDescription>
+										<DialogTitle>This is sample header</DialogTitle>
+										<DialogDescription>Are you sure you want to change the content?</DialogDescription>
 									</div>
 								</div>
-							</ModalHeader>
-							<ModalBody>
+							</DialogHeader>
+							<DialogBody>
 								<div className="bg-elevation-negative h-40 rounded-lg" />
-							</ModalBody>
-							<ModalFooter>
-								<ModalClose asChild>
+							</DialogBody>
+							<DialogFooter>
+								<DialogClose asChild>
 									<Button color="neutral" variant="outline">
 										Cancel
 									</Button>
-								</ModalClose>
+								</DialogClose>
 								<Button variant={"strong"}>Continue</Button>
-							</ModalFooter>
-						</ModalContent>
-					</Modal>
+							</DialogFooter>
+						</DialogContent>
+					</Dialog>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -120,33 +105,33 @@ const PopoverPreview = () => {
 					title="modal.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Modal backdrop="${backdrop}" closeIcon="${closeIcon}" ${withSeparator === "true" ? "withSeparator" : ""}>
-	<ModalTrigger asChild>
-		<Button>Modal</Button>
-	</ModalTrigger>
-	<ModalContent>
-		<ModalHeader>
+					code={`<Dialog>
+	<DialogTrigger asChild>
+		<Button>Dialog</Button>
+	</DialogTrigger>
+	<DialogContent backdrop="${backdrop}">
+		<DialogHeader>
 			<div className="flex gap-3">
 				<div className="flex items-center justify-center rounded-sm border p-2">
 					<CircleAlert className="text-fg2 size-6" />
 				</div>
 				<div>
-					<ModalTitle>This is sample header</ModalTitle>
-					<ModalDescription>Are you sure you want to change the content?</ModalDescription>
+					<DialogTitle>This is sample header</DialogTitle>
+					<DialogDescription>Are you sure you want to change the content?</DialogDescription>
 				</div>
 			</div>
-		</ModalHeader>
-		<ModalBody>
+		</DialogHeader>
+		<DialogBody>
 			<div className="bg-elevation-negative h-40 rounded-lg" />
-		</ModalBody>
-		<ModalFooter>
-			<ModalClose asChild>
+		</DialogBody>
+		<DialogFooter>
+			<DialogClose asChild>
 				<Button color="neutral" variant="outline">Cancel</Button>
-			</ModalClose>
+			</DialogClose>
 			<Button variant={"strong"}>Continue</Button>
-		</ModalFooter>
-	</ModalContent>
-</Modal>`}
+		</DialogFooter>
+	</DialogContent>
+</Dialog>`}
 				/>
 			</TabsContent>
 		</Tabs>

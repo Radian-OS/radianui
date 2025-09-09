@@ -4,12 +4,12 @@ import { EyeIcon, SquareTerminal } from "lucide-react"
 import Image from "next/image"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
-import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export default function GithubIntegrationModalExample() {
+export default function GithubIntegrationDialogExample() {
 	return (
 		<Tabs defaultValue="preview" variant="outline-ghost">
 			<div className="flex items-center justify-between">
@@ -25,19 +25,19 @@ export default function GithubIntegrationModalExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<Modal closeIcon="hover">
-						<ModalTrigger asChild>
+					<Dialog>
+						<DialogTrigger asChild>
 							<Button>Integrate Now</Button>
-						</ModalTrigger>
-						<ModalContent>
+						</DialogTrigger>
+						<DialogContent closeButton="hover">
 							<div className="flex items-center justify-center gap-2 pt-6">
 								<Image className="border-3 rounded-2xl p-0.5" src={"/radian.webp"} alt="radian" height={60} width={60} />
 								<Image className="border-3 rounded-2xl p-0.5" src={"/github.webp"} alt="github" height={60} width={60} />
 							</div>
-							<ModalHeader className="text-center">
-								<ModalTitle>Connect RadianOS to Github</ModalTitle>
-								<ModalDescription>Streamline your API requests by using Github SDK’s and automate all your tickets</ModalDescription>
-							</ModalHeader>
+							<DialogHeader className="text-center">
+								<DialogTitle>Connect RadianOS to Github</DialogTitle>
+								<DialogDescription>Streamline your API requests by using Github SDK’s and automate all your tickets</DialogDescription>
+							</DialogHeader>
 							<div className="flex flex-col gap-4">
 								<div className="flex flex-col gap-2">
 									<Label htmlFor="name">Account Name</Label>
@@ -52,18 +52,18 @@ export default function GithubIntegrationModalExample() {
 									<Input type="text" id="url" placeholder="e.g https://example@workspace.com" />
 								</div>
 							</div>
-							<ModalFooter className="justify-start">
-								<ModalClose asChild>
+							<DialogFooter className="justify-start">
+								<DialogClose asChild>
 									<Button variant="outline" color="neutral" className="w-1/2">
 										Cancel
 									</Button>
-								</ModalClose>
+								</DialogClose>
 								<Button variant={"strong"} className="w-1/2">
 									Next
 								</Button>
-							</ModalFooter>
-						</ModalContent>
-					</Modal>
+							</DialogFooter>
+						</DialogContent>
+					</Dialog>
 				</div>
 			</TabsContent>
 			{/* Code Tab */}
@@ -72,11 +72,11 @@ export default function GithubIntegrationModalExample() {
 					title="github-integration-modal.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Modal closeIcon="hover">
-    <ModalTrigger asChild>
+					code={`<Dialog closeIcon="hover">
+    <DialogTrigger asChild>
         <Button>Integrate Now</Button>
-    </ModalTrigger>
-    <ModalContent>
+    </DialogTrigger>
+    <DialogContent>
         <div className="flex items-center justify-center gap-2 pt-6">
             <Image
                 className="rounded-2xl border-3 p-0.5"
@@ -93,10 +93,10 @@ export default function GithubIntegrationModalExample() {
                 width={60}
             />
         </div>
-        <ModalHeader className="text-center">
-            <ModalTitle>Connect RadianOS to Github</ModalTitle>
-            <ModalDescription>Streamline your API requests by using Github SDK’s and automate all your tickets</ModalDescription>
-        </ModalHeader>
+        <DialogHeader className="text-center">
+            <DialogTitle>Connect RadianOS to Github</DialogTitle>
+            <DialogDescription>Streamline your API requests by using Github SDK’s and automate all your tickets</DialogDescription>
+        </DialogHeader>
         <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-2">
                 <Label htmlFor="name">Account Name</Label>
@@ -111,18 +111,18 @@ export default function GithubIntegrationModalExample() {
                 <Input type="text" id="url" placeholder="e.g https://example@workspace.com"/>
             </div>
         </div>
-        <ModalFooter className="justify-start">
-            <ModalClose asChild>
+        <DialogFooter className="justify-start">
+            <DialogClose asChild>
                 <Button variant="outline" color="neutral" className="w-1/2">
                     Cancel
                 </Button>
-            </ModalClose>
+            </DialogClose>
             <Button variant={"strong"} className="w-1/2">
                 Next
             </Button>
-        </ModalFooter>
-    </ModalContent>
-</Modal>`}
+        </DialogFooter>
+    </DialogContent>
+</Dialog>`}
 				/>
 			</TabsContent>
 		</Tabs>
