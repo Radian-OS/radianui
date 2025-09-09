@@ -183,6 +183,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Date Picker UI component illustration",
 			},
 			{
+				title: "Dialog",
+				description: "2 Components",
+				url: "/docs/components/dialog",
+				thumbnail: "/thumbnails/modal.webp",
+				thumbnailDark: `/thumbnails/modal-dark.webp`,
+				alt: "Dialog UI component illustration",
+			},
+			{
 				title: "Divider",
 				description: "3 Components",
 				url: "/docs/components/divider",
@@ -254,14 +262,7 @@ export const navigationItems: NavigationSection[] = [
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Label text",
 			},
-			{
-				title: "Modal",
-				description: "2 Components",
-				url: "/docs/components/modal",
-				thumbnail: "/thumbnails/modal.webp",
-				thumbnailDark: `/thumbnails/modal-dark.webp`,
-				alt: "Modal UI component illustration",
-			},
+
 			{
 				title: "Pagination",
 				description: "3 Components",

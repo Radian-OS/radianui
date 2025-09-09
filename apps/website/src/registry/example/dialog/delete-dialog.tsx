@@ -3,10 +3,10 @@
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
-import { Modal, ModalClose, ModalContent, ModalDescription, ModalFooter, ModalHeader, ModalTitle, ModalTrigger } from "@/registry/ui/modal"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export default function DeleteModalExample() {
+export default function DeleteDialogExample() {
 	return (
 		<Tabs defaultValue="preview" variant="outline-ghost">
 			<div className="flex items-center justify-between">
@@ -22,29 +22,29 @@ export default function DeleteModalExample() {
 			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
-					<Modal>
-						<ModalTrigger asChild>
+					<Dialog>
+						<DialogTrigger asChild>
 							<Button variant={"strong"} color={"error"}>
 								Delete
 							</Button>
-						</ModalTrigger>
-						<ModalContent>
-							<ModalHeader>
-								<ModalTitle>Delete Container</ModalTitle>
-								<ModalDescription>Are you sure you want to delete this container? This cannot be undone</ModalDescription>
-							</ModalHeader>
-							<ModalFooter>
-								<ModalClose asChild>
+						</DialogTrigger>
+						<DialogContent>
+							<DialogHeader>
+								<DialogTitle>Delete Container</DialogTitle>
+								<DialogDescription>Are you sure you want to delete this container? This cannot be undone</DialogDescription>
+							</DialogHeader>
+							<DialogFooter>
+								<DialogClose asChild>
 									<Button color="neutral" variant="outline">
 										Cancel
 									</Button>
-								</ModalClose>
+								</DialogClose>
 								<Button variant={"strong"} color={"error"}>
 									Delete
 								</Button>
-							</ModalFooter>
-						</ModalContent>
-					</Modal>
+							</DialogFooter>
+						</DialogContent>
+					</Dialog>
 				</div>
 			</TabsContent>
 			{/* Code Tab */}
@@ -53,23 +53,23 @@ export default function DeleteModalExample() {
 					title="delete-modal.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Modal>
-	<ModalTrigger asChild>
+					code={`<Dialog>
+	<DialogTrigger asChild>
 		<Button variant={"strong"}  color={"error"}>Delete</Button>
-	</ModalTrigger>
-	<ModalContent>
-		<ModalHeader>
-			<ModalTitle>Delete Container</ModalTitle>
-			<ModalDescription>Are you sure you want to delete this container? This cannot be undone</ModalDescription>
-		</ModalHeader>
-		<ModalFooter>
-			<ModalClose asChild>
+	</DialogTrigger>
+	<DialogContent>
+		<DialogHeader>
+			<DialogTitle>Delete Container</DialogTitle>
+			<DialogDescription>Are you sure you want to delete this container? This cannot be undone</DialogDescription>
+		</DialogHeader>
+		<DialogFooter>
+			<DialogClose asChild>
 				<Button variant="outline">Cancel</Button>
-			</ModalClose>
+			</DialogClose>
 			<Button variant={"strong"}  color={"error"}>Delete</Button>
-		</ModalFooter>
-	</ModalContent>
-</Modal>`}
+		</DialogFooter>
+	</DialogContent>
+</Dialog>`}
 				/>
 			</TabsContent>
 		</Tabs>

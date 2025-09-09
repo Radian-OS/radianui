@@ -1,5 +1,5 @@
 ---
-title: Modal
+title: Dialog
 description: Focus user attention with overlaid interactive dialogs
 links:
   github:
@@ -9,7 +9,7 @@ links:
       href: https://www.radix-ui.com/primitives/docs/components/dialog
 ---
 
-<ModalPreview />
+<DialogPreview />
 
 ## Installation
 
@@ -43,7 +43,7 @@ links:
     	<Step>Copy and paste the following code into your project.</Step>
     	<Tabs defaultValue="modal">
     		<TabsList>
-    			<TabsTrigger value="modal">Modal</TabsTrigger>
+    			<TabsTrigger value="modal">Dialog</TabsTrigger>
     			<TabsTrigger value="button">Button</TabsTrigger>
     			<TabsTrigger value="spinner">Spinner</TabsTrigger>
     			<TabsTrigger value="divider">Divider</TabsTrigger>
@@ -75,42 +75,42 @@ links:
 <CodeSnippet
 	title="/components/ui/modal"
 	code={`import { 
-		Modal, 
-		ModalClose, 
-		ModalContent, 
-		ModalDescription, 
-		ModalFooter, 
-		ModalHeader, 
-		ModalTitle, 
-		ModalTrigger 
+		Dialog, 
+		DialogClose, 
+		DialogContent, 
+		DialogDescription, 
+		DialogFooter, 
+		DialogHeader, 
+		DialogTitle, 
+		DialogTrigger 
     } from "@/components/ui/modal";`}
 />
 
 ### Code
 
-<CodeSnippet title="/components/ui/modal" code={`<Modal>
+<CodeSnippet title="/components/ui/modal" code={`<Dialog>
 
-      <ModalTrigger asChild>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded">Open Modal</button>
-      </ModalTrigger>
+      <DialogTrigger asChild>
+        <button className="px-4 py-2 bg-blue-500 text-white rounded">Open Dialog</button>
+      </DialogTrigger>
 
-      <ModalContent>
-        <ModalHeader>
-          <ModalTitle>My Modal</ModalTitle>
-          <ModalClose />
-        </ModalHeader>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>My Dialog</DialogTitle>
+          <DialogClose />
+        </DialogHeader>
 
-        <ModalBody>
+        <DialogBody>
           <p>This is a simple modal body content.</p>
-        </ModalBody>
+        </DialogBody>
 
-        <ModalFooter>
+        <DialogFooter>
           <button className="px-3 py-1 bg-gray-200 rounded">Cancel</button>
           <button className="px-3 py-1 bg-blue-500 text-white rounded">Confirm</button>
-        </ModalFooter>
-      </ModalContent>
+        </DialogFooter>
+      </DialogContent>
 
-</Modal>`} />
+</Dialog>`} />
 
 ---
 
@@ -118,11 +118,11 @@ links:
 
 ### Delete
 
-<DeleteModalExample />
+<DeleteDialogExample />
 
 ### Github Integration
 
-<GithubIntegrationModalExample />
+<GithubIntegrationDialogExample />
 
 ---
 
@@ -130,7 +130,7 @@ links:
 
 <PropsTableWrapper>
 	<PropsTable
-		title="Modal"
+		title="Dialog"
 		data={[
 			{
 				name: "closeIcon",
@@ -147,7 +147,7 @@ links:
 		]}
 	/>
 	<PropsTable
-		title="ModalTrigger"
+		title="DialogTrigger"
 		data={[
 			{
 				name: "asChild",
@@ -158,7 +158,7 @@ links:
 		]}
 	/>
 	<PropsTable
-		title="ModalContent"
+		title="DialogContent"
 		data={[
 			{
 				name: "-",
@@ -169,7 +169,7 @@ links:
 		]}
 	/>
 	<PropsTable
-		title="ModalHeader"
+		title="DialogHeader"
 		data={[
 			{
 				name: "-",
@@ -180,7 +180,7 @@ links:
 		]}
 	/>
 	<PropsTable
-		title="ModalBody"
+		title="DialogBody"
 		data={[
 			{
 				name: "-",
@@ -191,7 +191,7 @@ links:
 		]}
 	/>
 	<PropsTable
-		title="ModalFooter"
+		title="DialogFooter"
 		data={[
 			{
 				name: "-",
@@ -202,7 +202,7 @@ links:
 		]}
 	/>
 	<PropsTable
-		title="ModalClose"
+		title="DialogClose"
 		data={[
 			{
 				name: "asChild",
