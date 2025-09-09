@@ -122,6 +122,11 @@ import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-e
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
+import RangeSlider from "@/registry/example/slider/range-slider"
+import SliderWithInput from "@/registry/example/slider/slider-with-input"
+import SliderWithMarks from "@/registry/example/slider/slider-with-marks"
+import SliderWithStepper from "@/registry/example/slider/slider-with-stepper"
+import SliderWithTooltip from "@/registry/example/slider/slider-with-tooltip"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
@@ -270,6 +275,11 @@ const components: MDXComponents = {
 	FooterCalendarPreview: () => <FooterCalendarPreview />,
 	TimePickerCalendarPreview: () => <TimePickerCalendarPreview />,
 	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
+	SliderWithStepper: () => <SliderWithStepper />,
+	RangeSlider: () => <RangeSlider />,
+	SliderWithMarks: () => <SliderWithMarks />,
+	SliderWithInput: () => <SliderWithInput />,
+	SliderWithTooltip: () => <SliderWithTooltip />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
