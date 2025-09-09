@@ -80,6 +80,7 @@
 		"react": "19.1.0",
 		"react-day-picker": "9.6.4",
 		"react-dom": "19.1.0",
+		"react-hook-form": "^7.62.0",
 		"react-phone-number-input": "^3.4.12",
 		"react-resizable-panels": "^2.1.7",
 		"react-shiki": "^0.7.2",
