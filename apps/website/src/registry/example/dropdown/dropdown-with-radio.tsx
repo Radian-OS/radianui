@@ -25,7 +25,7 @@ export default function DropdownWithRadioExample() {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Dropdown>
+					<Dropdown indicatorPosition="left">
 						<DropdownTrigger asChild>
 							<Button variant="outline" color="neutral">
 								Theme
@@ -63,7 +63,7 @@ export function RadioDropdownExample() {
   const [theme, setTheme] = useState("system")
 
   return (
-    <Dropdown>
+    <Dropdown indicatorPosition="left">
       <DropdownTrigger asChild>
         <Button variant="outline" color="neutral">Theme</Button>
       </DropdownTrigger>
