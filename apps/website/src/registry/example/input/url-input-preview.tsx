@@ -84,11 +84,19 @@ const UrlPreview = () => {
 					title="url-input-preview.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<InputGroup className="w-80">
-	${types === "start" ? `<InputAddon size={${size}}>https://</InputAddon>` : ""}
-	<Input size={${size}} placeholder="radianos.com" type="url" />
-	${types === "end" ? `<InputAddon size={${size}}>.com</InputAddon> ` : ""}
-</InputGroup>`}
+					code={`import { Input } from "@/components/ui/input"
+
+export default function UrlInputExample() {
+  return (    						
+	<InputGroup className="w-80">
+		${types === "start" ? `<InputAddon size={${size}}>https://</InputAddon>` : ""}
+		<Input size={${size}} placeholder="radianos.com" type="url" />
+		${types === "end" ? `<InputAddon size={${size}}>.com</InputAddon> ` : ""}
+	</InputGroup>
+  );
+}
+						
+`}
 				/>
 			</TabsContent>
 		</Tabs>

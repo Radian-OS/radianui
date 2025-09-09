@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUp, Search, X } from "lucide-react"
 import Link from "next/link"
 import { NavigationItem } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
-import { ModalClose } from "@/registry/ui/modal"
+import { DialogClose } from "@/registry/ui/dialog"
 
 type Props = {
 	searchTerm: string
@@ -60,7 +60,7 @@ export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems
 										const globalIndex = filteredItems.slice(0, sectionIndex).reduce((acc, sec) => acc + sec.items.length, 0) + itemIndex
 
 										return (
-											<ModalClose asChild key={item.title}>
+											<DialogClose asChild key={item.title}>
 												<Link href={item.url}>
 													<li
 														ref={(el) => {
@@ -71,7 +71,7 @@ export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems
 														{item.title}
 													</li>
 												</Link>
-											</ModalClose>
+											</DialogClose>
 										)
 									})}
 								</ul>

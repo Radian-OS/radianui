@@ -38,13 +38,12 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
-// import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
-import ModalPreview from "@/component-preview/modal-preview"
+import DialogPreview from "@/component-preview/modal-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
@@ -102,6 +101,8 @@ import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
+import DeleteDialogExample from "@/registry/example/dialog/delete-dialog"
+import GithubIntegrationDialogExample from "@/registry/example/dialog/github-integration-dialog"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
 import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
@@ -117,8 +118,6 @@ import PasswordInputPreview from "@/registry/example/input/password-input-previe
 import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import UrlPreview from "@/registry/example/input/url-input-preview"
-import DeleteModalExample from "@/registry/example/modal/delete-modal"
-import GithubIntegrationModalExample from "@/registry/example/modal/github-integration-modal"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
@@ -182,9 +181,9 @@ const components: MDXComponents = {
 	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
-	ModalPreview: () => <ModalPreview />,
-	DeleteModalExample: () => <DeleteModalExample />,
-	GithubIntegrationModalExample: () => <GithubIntegrationModalExample />,
+	DialogPreview: () => <DialogPreview />,
+	DeleteDialogExample: () => <DeleteDialogExample />,
+	GithubIntegrationDialogExample: () => <GithubIntegrationDialogExample />,
 	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	ToastPreview: () => <ToastPreview />,

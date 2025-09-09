@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 type PopoverProps = React.ComponentProps<typeof PopoverPrimitive.Root>
 
-type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content>
+type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content> & { withArrow?: boolean }
 
 type PopoverTriggerProps = React.ComponentProps<typeof PopoverPrimitive.Trigger>
 
@@ -20,7 +20,7 @@ function PopoverTrigger({ ...props }: PopoverTriggerProps) {
 }
 PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
 
-function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, className, ...props }: PopoverContentProps) {
+function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, className, withArrow = false, children, ...props }: PopoverContentProps) {
 	return (
 		<PopoverPrimitive.Portal>
 			<PopoverPrimitive.Content
@@ -29,14 +29,17 @@ function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, cla
 				side={side}
 				sideOffset={sideOffset}
 				className={cn(
-					"text-fg1 bg-elevation-level1 outline-hidden z-50 w-72 rounded-md border p-4 shadow-md",
+					"text-fg bg-elevation-level1 outline-hidden z-50 w-72 rounded-md border p-4 shadow-md",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out",
 					"data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
 					"data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+					"data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className
 				)}
-				{...props}
-			/>
+				{...props}>
+				{children}
+				{withArrow && <PopoverPrimitive.Arrow width={10} className="fill-border" />}
+			</PopoverPrimitive.Content>
 		</PopoverPrimitive.Portal>
 	)
 }
