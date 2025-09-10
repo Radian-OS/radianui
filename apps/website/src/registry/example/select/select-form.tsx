@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import { useForm } from "react-hook-form"
-import { z } from "zod/v3"
+import { z } from "zod"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
