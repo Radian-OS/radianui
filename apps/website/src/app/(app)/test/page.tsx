@@ -158,80 +158,6 @@
 // 							</SelectItem2>
 // 						</SelectContent2>
 // 					</Select2>
-// 					<Select2 defaultValue="1" indicatorPosition="right">
-// 						<SelectContent2>
-// 							<SelectItem2 value="1">
-// 								<Badge color="info">In Progress</Badge>
-// 							</SelectItem2>
-// 							<SelectItem2 value="2">
-// 								<Badge color="success">Completed</Badge>
-// 							</SelectItem2>
-// 							<SelectItem2 value="3">
-// 								<Badge color="neutral">Pending</Badge>
-// 							</SelectItem2>
-// 							<SelectItem2 value="4">
-// 								<Badge color="warning">Cancelled</Badge>
-// 							</SelectItem2>
-// 							<SelectItem2 value="5">
-// 								<Badge color="error">Rejected</Badge>
-// 							</SelectItem2>
-// 						</SelectContent2>
-// 					</Select2>
-// 					<Select2 indicatorPosition="right">
-// 						<SelectContent2 className="max-h-96">
-// 							<SelectGroup2>
-// 								<SelectLabel>Backend Frameworks</SelectLabel>
-// 								<SelectItem2 value="node-js">Node.js (Express)</SelectItem2>
-// 								<SelectItem2 value="django">Django (Python)</SelectItem2>
-// 								<SelectItem2 value="rails">Rails (Ruby)</SelectItem2>
-// 								<SelectItem2 disabled value="laravel">
-// 									Laravel (PHP)
-// 								</SelectItem2>
-// 								<SelectItem2 value="spring">Spring Boot (Java)</SelectItem2>
-// 							</SelectGroup2>
-// 							<SelectDivider />
-// 							<SelectGroup2>
-// 								<SelectLabel>Mobile Frameworks</SelectLabel>
-// 								<SelectItem2 value="react-native">React Native</SelectItem2>
-// 								<SelectItem2 value="flutter">Flutter</SelectItem2>
-// 								<SelectItem2 value="swiftui">SwiftUI</SelectItem2>
-// 								<SelectItem2 value="kotlin-compose">Kotlin Compose</SelectItem2>
-// 								<SelectItem2 value="xamarin">Xamarin</SelectItem2>
-// 							</SelectGroup2>
-// 						</SelectContent2>
-// 					</Select2>
-// 					<Select2 indicatorPosition="right">
-// 						<SelectContent2>
-// 							<SelectGroup2>
-// 								<SelectLabel className="text-muted-foreground py-1 ps-2 text-xs font-normal">Select a user</SelectLabel>
-// 								<SelectItem2 value="1">
-// 									<span className="flex items-center gap-2">
-// 										<Avatar size="24" src="https://randomuser.me/api/portraits/men/1.jpg" />
-// 										<span>Alan Bold</span>
-// 									</span>
-// 								</SelectItem2>
-// 								<SelectItem2 value="2">
-// 									<span className="flex items-center gap-2">
-// 										<Avatar size="24" src="https://randomuser.me/api/portraits/men/2.jpg" />
-// 										<span>Ethan James</span>
-// 									</span>
-// 								</SelectItem2>
-// 								<SelectItem2 value="3">
-// 									<span className="flex items-center gap-2">
-// 										<Avatar size="24" src="https://randomuser.me/api/portraits/men/3.jpg" />
-// 										<span>Nina Clark</span>
-// 									</span>
-// 								</SelectItem2>
-// 								<SelectItem2 value="4">
-// 									<span className="flex items-center gap-2">
-// 										<Avatar size="24" src="https://randomuser.me/api/portraits/men/4.jpg" />
-// 										<span>Sean Otto</span>
-// 									</span>
-// 								</SelectItem2>
-// 							</SelectGroup2>
-// 						</SelectContent2>
-// 					</Select2>
-
 // 					<div>
 // 						<h1 className="text-fgtext-[20px] font-semibold">Multi Line Form</h1>
 // 						<p className="text-fg-tertiary text-[14px]">This is a sample subtitle for your form</p>
@@ -269,26 +195,6 @@
 // 								<SearchInput />
 // 								{/* <CurrencyInput /> */}
 // 							</div>
-// 							<Select
-// 								label="Product Category"
-// 								variants="input"
-// 								selectionMode="single"
-// 								selectedValues={selectedValues}
-// 								onSelectedChange={setSelectedValues}
-// 								hasError={!!errors.product}
-// 								hint={errors.product}>
-// 								<SelectGroup>
-// 									<SelectItem value="company-profile">Company Profile</SelectItem>
-// 									<SelectItem value="view-profile">View Profile</SelectItem>
-// 									<SelectItem value="keyboard-shortcuts">Keyboard Shortcuts</SelectItem>
-// 									<SelectItem value="team">Team</SelectItem>
-// 									<SelectItem value="invite-colleagues">Invite Colleagues</SelectItem>
-// 									<SelectItem value="change-logs">Change Logs</SelectItem>
-// 									<SelectItem value="slack-community">Slack Community</SelectItem>
-// 									<SelectItem value="support">Support</SelectItem>
-// 									<SelectItem value="api">API</SelectItem>
-// 								</SelectGroup>
-// 							</Select>
 // 						</div>
 // 						{/* Preferences Section */}
 // 						<div className="space-y-5">

@@ -1,13 +1,12 @@
 ---
 title: Select
-description: Display a collapsible list of options and allows a user to select one or more of them
+description: Display a collapsible list of options and allows a user to select
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/select.tsx
   externalReference:
-    - label: cmdk
-      href: https://www.npmjs.com/package/cmdk
-      icon: npm.svg
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/select
 ---
 
 <SelectPreview />
@@ -34,10 +33,10 @@ links:
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm add cmdk",
-				npm: "npm install cmdk",
-				yarn: "yarn add cmdk",
-				bun: "bun add cmdk",
+				pnpm: "pnpm add @radix-ui/react-select",
+				npm: "npm install @radix-ui/react-select",
+				yarn: "yarn add @radix-ui/react-select",
+				bun: "bun add @radix-ui/react-select",
 			}}
 		/>
 
@@ -54,17 +53,39 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/select" code={`import { Select, SelectGroup, SelectItem } from "@/components/ui/select"`} />
+<CodeSnippet title="/components/ui/select" code={`import { Select, SelectTrigger, SelectContent, SelectValue, SelectItem } from "@/components/ui/select"`} />
 
 ### Code
 
 <CodeSnippet
 	title="/components/ui/select"
-	code={`<Select>
-    <SelectItem value="male">Male</SelectItem>
-    <SelectItem value="female">Female</SelectItem>
+	code={`
+<Select>
+	<SelectTrigger>
+		<SelectValue/>
+	</SelectTrigger>
+	<SelectContent>
+		<SelectItem value="male">Male</SelectItem>
+		<SelectItem value="female">Female</SelectItem>
+	</SelectContent>
 </Select>`}
 />
+
+---
+
+## Examples
+
+### Select With Badge
+
+<SelectWithBadge />
+
+### Select With Avatar
+
+<SelectWithAvatar />
+
+### Form
+
+<SelectForm />
 
 ---
 
@@ -101,19 +122,7 @@ links:
                 description: "If true, the select field is disabled",
                 defaultValue: "false",
                 values: ["boolean"],
-            },
-            {
-                name:"hint",
-                description: "Hint text displayed below the select field",
-                values: ["string"],
-            },
-            {
-                name:"isSearchable",
-                description:"If true can search for items",
-                values:["boolean"],
-                defaultValue:"false"
             }
-
 ]}
 />
 
