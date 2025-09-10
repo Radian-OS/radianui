@@ -38,6 +38,7 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
+import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -258,7 +259,7 @@ const components: MDXComponents = {
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	// FormPreview: () => <FormPreview />,
+	FormPreview: () => <FormPreview />,
 	FormExample1: () => <FormExample1 />,
 	FormExample2: () => <FormExample2 />,
 	FormExample3: () => <FormExample3 />,

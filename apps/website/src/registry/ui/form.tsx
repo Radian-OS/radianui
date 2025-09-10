@@ -68,7 +68,7 @@ function FormItem({ className, ...props }: React.HTMLAttributes<HTMLDivElement>)
 function FormLabel({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {
 	const { formItemId } = useFormField()
 
-	return <Label data-slot="form-label" className={cn("text-foreground font-medium", className)} htmlFor={formItemId} {...props} />
+	return <Label data-slot="form-label" className={cn("text-fg font-medium", className)} htmlFor={formItemId} {...props} />
 }
 
 function FormControl({ ...props }: React.ComponentProps<typeof Slot>) {
@@ -86,7 +86,7 @@ function FormDescription({ className, ...props }: React.HTMLAttributes<HTMLParag
 		return null // Hide the description when there's an error
 	}
 
-	return <div data-slot="form-description" id={formDescriptionId} className={cn("text-muted-foreground -mt-0.5 text-xs", className)} {...props} />
+	return <div data-slot="form-description" id={formDescriptionId} className={cn("text-fg-secondary -mt-0.5 text-xs", className)} {...props} />
 }
 
 function FormMessage({ className, children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
@@ -98,7 +98,7 @@ function FormMessage({ className, children, ...props }: React.HTMLAttributes<HTM
 	}
 
 	return (
-		<div data-slot="form-message" id={formMessageId} className={cn("text-destructive -mt-0.5 text-xs font-normal", className)} {...props}>
+		<div data-slot="form-message" id={formMessageId} className={cn("text-error-text -mt-0.5 text-xs font-normal", className)} {...props}>
 			{body}
 		</div>
 	)
