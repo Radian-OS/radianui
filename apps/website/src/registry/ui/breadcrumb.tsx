@@ -36,16 +36,20 @@ function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
 }
 
 function BreadcrumbSeparator({ children, className, ...props }: React.ComponentProps<"li">) {
-	;<li data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)} {...props}>
-		{children ?? <ChevronRight className="rtl:rotate-180" />}
-	</li>
+	return (
+		<li data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)} {...props}>
+			{children ?? <ChevronRight className="rtl:rotate-180" />}
+		</li>
+	)
 }
 
 function BreadcrumbEllipsis({ className, ...props }: React.ComponentProps<"span">) {
-	;<span data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
-		<MoreHorizontal className="h-4 w-4" />
-		<span className="sr-only">More</span>
-	</span>
+	return (
+		<span data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
+			<MoreHorizontal className="h-4 w-4" />
+			<span className="sr-only">More</span>
+		</span>
+	)
 }
 
 export { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator }

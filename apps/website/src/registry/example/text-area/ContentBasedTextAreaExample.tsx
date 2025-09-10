@@ -19,7 +19,7 @@ export default function ContentBasedTextAreaExample() {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<TextArea placeholder="Type your message" className="field-sizing-content w-112 max-h-60" resizable={false} />
+					<TextArea placeholder="Type your message" className="field-sizing-content w-100 max-h-60" resizable={false} />
 				</div>
 			</TabsContent>
 

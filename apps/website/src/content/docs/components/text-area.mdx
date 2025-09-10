@@ -27,30 +27,8 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
-		<Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-label",
-				npm: "npm install @radix-ui/react-label",
-				yarn: "yarn add @radix-ui/react-label",
-				bun: "bun add @radix-ui/react-label",
-			}}
-		/>
-
     	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="text-area">
-    		<TabsList>
-    			<TabsTrigger value="text-area">Text Area</TabsTrigger>
-    			<TabsTrigger value="label">Label</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="text-area">
-    			<ComponentSource name="text-area" title="components/ui/text-area.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="label">
-    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
-
+    	<ComponentSource name="text-area" title="components/ui/text-area.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -62,19 +40,11 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/registry/ui/text-area" code={`import { TextArea } from "@/registry/ui/text-area"`} />
+<CodeSnippet title="/registry/ui/text-area" code={`import { TextArea } from "@/components/ui/text-area"`} />
 
 ### Code
 
-<CodeSnippet title="Usage" code={`<TextArea label="Message" placeholder="Enter your message" />`} />
-
----
-
-## Examples
-
-### Content size based text area
-
-<ContentBasedTextAreaExample />
+<CodeSnippet title="Usage" code={`<TextArea placeholder="Enter your message" />`} />
 
 ---
 
@@ -84,12 +54,6 @@ links:
 	<PropsTable
 		title="TextArea"
 		data={[
-			{
-				name: "label",
-				values: ["string"],
-				required: false,
-				description: "Label text displayed above the textarea",
-			},
 			{
 				name: "resizable",
 				values: ["boolean"],
@@ -103,39 +67,6 @@ links:
 				required: false,
 				description: "Sets the border radius of the textarea",
 				defaultValue: "rounded",
-			},
-			{
-				name: "hasError",
-				values: ["boolean"],
-				required: false,
-				description: "Applies error styling to the textarea",
-				defaultValue: "false",
-			},
-			{
-				name: "hint",
-				values: ["string"],
-				required: false,
-				description: "Helper text displayed below the textarea",
-			},
-			{
-				name: "rows",
-				values: ["number"],
-				required: false,
-				description: "Number of visible text lines for the textarea",
-				defaultValue: "4",
-			},
-			{
-				name: "disabled",
-				values: ["boolean"],
-				required: false,
-				description: "Disables the textarea",
-				defaultValue: "false",
-			},
-			{
-				name: "placeholder",
-				values: ["string"],
-				required: false,
-				description: "Placeholder text shown when textarea is empty",
 			},
 		]}
 	/>

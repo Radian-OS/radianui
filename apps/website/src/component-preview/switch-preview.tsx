@@ -5,6 +5,7 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Label } from "@/registry/ui/label"
 import { Switch } from "@/registry/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -63,9 +64,10 @@ const SwitchPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Switch size={size} disabled={disabled === "true"}>
-						Switch Label
-					</Switch>
+					<div className="flex items-center space-x-2">
+						<Switch size={size} disabled={disabled === "true"} id="enable-notifications" />
+						<Label htmlFor="enable-notifications">Enable Notifications</Label>
+					</div>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
@@ -73,9 +75,23 @@ const SwitchPreview = () => {
 					title="switch.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Switch size={${size}} disabled={${disabled === "true"}} >
-Switch Label
-</Switch>`}
+					code={`
+"use client"
+
+import { useState } from "react"
+import { Switch } from "@/components/ui/switch"
+
+const SwitchPreview = () => {
+	return (
+		<div className="flex items-center space-x-2">
+			<Switch size="${size}" disabled="${disabled ? "true" : "false"}" />
+			<Label>Enable Notifications</Label>
+		</div>
+	)
+}
+
+export default SwitchPreview
+`}
 				/>
 			</TabsContent>
 		</Tabs>

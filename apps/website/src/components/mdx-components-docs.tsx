@@ -109,9 +109,6 @@ import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-wi
 import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
-import FormExample1 from "@/registry/example/form/form-example1"
-import FormExample2 from "@/registry/example/form/form-example2"
-import FormExample3 from "@/registry/example/form/form-example3"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
@@ -260,9 +257,6 @@ const components: MDXComponents = {
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
 	FormPreview: () => <FormPreview />,
-	FormExample1: () => <FormExample1 />,
-	FormExample2: () => <FormExample2 />,
-	FormExample3: () => <FormExample3 />,
 	AlertExamplePreview: () => <AlertExamplePreview />,
 	RingAvatarPreview: () => <RingAvatarPreview />,
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
