@@ -5,7 +5,7 @@ import { EyeIcon, SquareTerminal } from "lucide-react"
 import { DropdownNavProps, DropdownProps } from "react-day-picker"
 import CodeSnippet from "@/components/code-snippet"
 import { Calendar } from "@/registry/ui/calendar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select2"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function CalendarWithYearMonthSelectorExample() {

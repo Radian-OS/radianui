@@ -5,7 +5,7 @@ import { IconButton } from "@/registry/ui/button"
 import ColorPicker from "@/registry/ui/color-picker"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
-import { Select, SelectItem } from "@/registry/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -109,12 +109,17 @@ export default function ColorPickerExample() {
 								defaultColor="#461EFA"
 								className="w-62 rounded-r-none border-r-0 focus-within:border-r"
 							/>
-							<Select selectedValues={[inputFormat]} onSelectedChange={(values) => handleFormatChange(values[0] as ColorFormatOptions)} disableOpenStyle={true}>
-								<SelectItem value="HEX">HEX</SelectItem>
-								<SelectItem value="HSL">HSL</SelectItem>
-								<SelectItem value="OKLCH">OKLCH</SelectItem>
-								<SelectItem value="HSB">HSB</SelectItem>
-								<SelectItem value="RGBA">RGBA</SelectItem>
+							<Select value={inputFormat} onValueChange={(value) => handleFormatChange(value as ColorFormatOptions)}>
+								<SelectTrigger>
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="HEX">HEX</SelectItem>
+									<SelectItem value="HSL">HSL</SelectItem>
+									<SelectItem value="OKLCH">OKLCH</SelectItem>
+									<SelectItem value="HSB">HSB</SelectItem>
+									<SelectItem value="RGBA">RGBA</SelectItem>
+								</SelectContent>
 							</Select>
 						</div>
 					</div>

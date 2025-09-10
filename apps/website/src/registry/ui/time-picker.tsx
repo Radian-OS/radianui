@@ -1,7 +1,6 @@
 import React from "react"
 import { Time } from "@internationalized/date"
-import { cn } from "@/lib/utils"
-import { Select, SelectItem } from "./select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
 
 export type TimePickerProps = {
 	interval?: number
@@ -11,8 +10,6 @@ export type TimePickerProps = {
 	minTime?: string
 	maxTime?: string
 	defaultValue?: Time
-	allowEmptySelection?: boolean
-	lead?: React.ReactNode
 }
 
 /**
@@ -36,18 +33,7 @@ function deserializeTime(timeString: string) {
 	return new Time(hour, minute)
 }
 
-function TimePicker({
-	interval = 15,
-	onValueChange,
-	is24Hour = false,
-	minTime = "00:00",
-	maxTime = "23:59",
-	defaultValue,
-	value = null,
-	allowEmptySelection = true,
-	lead,
-	...props
-}: TimePickerProps) {
+function TimePicker({ interval = 15, onValueChange, is24Hour = false, minTime = "00:00", maxTime = "23:59", defaultValue, value = null, ...props }: TimePickerProps) {
 	const isControlled = value !== null
 
 	/* Store the time as a serialized string ("HH:mm") to simplify comparisons and render */
@@ -115,25 +101,20 @@ function TimePicker({
 	}
 
 	return (
-		<Select
-			selectedValues={[currentValue]}
-			onSelectedChange={function (values) {
-				handleChange(values[0])
-			}}
-			lead={lead}
-			variants="input"
-			// className="w-full"
-			classNames={{ content: cn("h-80") }}
-			minSelectionCount={allowEmptySelection ? 0 : 1}
-			{...props}>
-			{timeOptions.map((time, index) => {
-				const formatted = formatTime(time)
-				return (
-					<SelectItem key={index} value={serializeTime(time)}>
-						{formatted}
-					</SelectItem>
-				)
-			})}
+		<Select value={currentValue} onValueChange={handleChange} {...props}>
+			<SelectTrigger>
+				<SelectValue />
+			</SelectTrigger>
+			<SelectContent>
+				{timeOptions.map((time, index) => {
+					const formatted = formatTime(time)
+					return (
+						<SelectItem key={index} value={serializeTime(time)}>
+							{formatted}
+						</SelectItem>
+					)
+				})}
+			</SelectContent>
 		</Select>
 	)
 }

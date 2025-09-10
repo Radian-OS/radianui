@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Clock, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -18,19 +18,6 @@ const TimePickerPreview = () => {
 	const [interval, setInterval] = useState<number>(15)
 
 	const intervalOptions = ["15", "30", "60"]
-
-	const [leadIcon, setLeadIcon] = useState<boolean>(false)
-
-	const sizeHeightMapping: Record<number, string> = {
-		28: "h-4 w-4",
-		32: "h-5 w-5",
-		36: "h-5 w-5",
-		40: "h-5 w-5",
-		44: "h-6 w-6",
-		48: "h-6 w-6",
-	}
-
-	const iconClass = sizeHeightMapping[size] ?? ""
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -115,26 +102,12 @@ const TimePickerPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Lead</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(leadIcon)} onValueChange={(value) => setLeadIcon(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<TimePicker lead={leadIcon ? <Clock className={iconClass} /> : null} is24Hour={is24Hour} interval={interval} />
+					<TimePicker is24Hour={is24Hour} interval={interval} />
 				</div>
 			</TabsContent>
 

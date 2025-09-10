@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Box, CircleUserRound, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import {
@@ -13,8 +13,7 @@ import {
 	DropdownSubTrigger,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
-import { Select, SelectGroup, SelectItem } from "@/registry/ui/select"
-import { Select as Select2, SelectContent as SelectContent2, SelectDivider, SelectGroup as SelectGroup2, SelectItem as SelectItem2, SelectLabel } from "@/registry/ui/select2"
+import { Select, SelectContent, SelectDivider, SelectGroup, SelectItem, SelectLabel } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -32,8 +31,6 @@ const SelectPreview = () => {
 	const [label, setLabel] = useState(true)
 	const [disabled, setDisabled] = useState(false)
 	const [variant, setVariant] = useState<VariantOptions>("input")
-
-	const [selectedValues, setSelectedValues] = useState<string[]>([])
 
 	// const [trailIcon, setTrailIcon] = useState<boolean>(false)
 	const [leadIcon, setLeadIcon] = useState<boolean>(false)
@@ -273,63 +270,29 @@ const SelectPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Select
-						label={label ? "Choose your favourite framework" : undefined}
-						variants={variant}
-						lead={leadIcon ? <CircleUserRound className={iconClass} /> : null}
-						// trail={trailIcon ? <CircleUserRound className={iconClass} /> : null}
-						disabled={disabled}
-						isSearchable={searchable}
-						selectionMode={selectionMode as "single" | "multiple"}
-						// minSelectionCount={minSelectionCount}
-						selectedValues={selectedValues}
-						onSelectedChange={setSelectedValues}
-						hasError={hasError}
-						hint={hint ? "Hint text to help the user with input" : ""}>
-						<SelectGroup label="Backend Frameworks">
-							<SelectItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="node-js">
-								Node.js (Express)
-							</SelectItem>
-							<SelectItem startContent={startContent ? <Box className={iconClass} /> : null} endContent={endContent ? <Box className={iconClass} /> : null} value="django">
-								Django (Python)
-							</SelectItem>
-							<SelectItem value="rails">Rails (Ruby)</SelectItem>
-							<SelectItem disabled value="laravel">
-								Laravel (PHP)
-							</SelectItem>
-							<SelectItem value="spring">Spring Boot (Java)</SelectItem>
-						</SelectGroup>
-						<SelectGroup label="Mobile Frameworks">
-							<SelectItem value="react-native">React Native</SelectItem>
-							<SelectItem value="flutter">Flutter</SelectItem>
-							<SelectItem value="swiftui">SwiftUI</SelectItem>
-							<SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
-							<SelectItem value="xamarin">Xamarin</SelectItem>
-						</SelectGroup>
-					</Select>
-					<Select2 indicatorPosition="right">
-						<SelectContent2 className="max-h-96">
-							<SelectGroup2>
+					<Select indicatorPosition="right">
+						<SelectContent className="max-h-96">
+							<SelectGroup>
 								<SelectLabel>Backend Frameworks</SelectLabel>
-								<SelectItem2 value="node-js">Node.js (Express)</SelectItem2>
-								<SelectItem2 value="django">Django (Python)</SelectItem2>
-								<SelectItem2 value="rails">Rails (Ruby)</SelectItem2>
-								<SelectItem2 disabled value="laravel">
+								<SelectItem value="node-js">Node.js (Express)</SelectItem>
+								<SelectItem value="django">Django (Python)</SelectItem>
+								<SelectItem value="rails">Rails (Ruby)</SelectItem>
+								<SelectItem disabled value="laravel">
 									Laravel (PHP)
-								</SelectItem2>
-								<SelectItem2 value="spring">Spring Boot (Java)</SelectItem2>
-							</SelectGroup2>
+								</SelectItem>
+								<SelectItem value="spring">Spring Boot (Java)</SelectItem>
+							</SelectGroup>
 							<SelectDivider />
-							<SelectGroup2>
+							<SelectGroup>
 								<SelectLabel>Mobile Frameworks</SelectLabel>
-								<SelectItem2 value="react-native">React Native</SelectItem2>
-								<SelectItem2 value="flutter">Flutter</SelectItem2>
-								<SelectItem2 value="swiftui">SwiftUI</SelectItem2>
-								<SelectItem2 value="kotlin-compose">Kotlin Compose</SelectItem2>
-								<SelectItem2 value="xamarin">Xamarin</SelectItem2>
-							</SelectGroup2>
-						</SelectContent2>
-					</Select2>
+								<SelectItem value="react-native">React Native</SelectItem>
+								<SelectItem value="flutter">Flutter</SelectItem>
+								<SelectItem value="swiftui">SwiftUI</SelectItem>
+								<SelectItem value="kotlin-compose">Kotlin Compose</SelectItem>
+								<SelectItem value="xamarin">Xamarin</SelectItem>
+							</SelectGroup>
+						</SelectContent>
+					</Select>
 				</div>
 			</TabsContent>
 
