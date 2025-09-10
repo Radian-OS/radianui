@@ -119,6 +119,9 @@ import UrlPreview from "@/registry/example/input/url-input-preview"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
+import SelectForm from "@/registry/example/select/select-form"
+import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
+import SelectWithBadge from "@/registry/example/select/select-with-badge"
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
 import RangeSlider from "@/registry/example/slider/range-slider"
 import SliderWithInput from "@/registry/example/slider/slider-with-input"
@@ -243,6 +246,9 @@ const components: MDXComponents = {
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
 	SelectPreview: () => <SelectPreview />,
+	SelectWithBadge: () => <SelectWithBadge />,
+	SelectWithAvatar: () => <SelectWithAvatar />,
+	SelectForm: () => <SelectForm />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,

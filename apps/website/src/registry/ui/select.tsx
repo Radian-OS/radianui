@@ -43,7 +43,7 @@ function SelectValue({ ...props }: React.ComponentProps<typeof SelectPrimitive.V
 // Define size variants for SelectTrigger
 const selectTriggerVariants = cva(
 	`
-    flex bg-background w-full items-center justify-between outline-none border border-alpha shadow-xs shadow-black/5 transition-shadow 
+    flex bg-background w-full items-center outline-none border border-alpha shadow-xs shadow-black/5 transition-shadow 
     text-fg data-placeholder:text-fg-tertiary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-primary/40
     focus-visible:ring-offset-primary disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 
     aria-invalid:border-error/60 aria-invalid:ring-error/10 dark:aria-invalid:border-error dark:aria-invalid:ring-error/20
@@ -53,8 +53,8 @@ const selectTriggerVariants = cva(
 		variants: {
 			size: {
 				sm: "h-7 px-2.5 text-xs gap-1 rounded-md",
-				md: "h-9 px-2.5 text-sm leading-(--text-sm--line-height) gap-1 rounded-md",
-				lg: "h-11 px-4 text-sm gap-1.5 rounded-md",
+				md: "h-9 px-2.5 text-sm leading-(--text-sm--line-height) gap-2 rounded-md",
+				lg: "h-11 px-4 text-sm gap-2 rounded-md",
 			},
 		},
 		defaultVariants: {
@@ -70,7 +70,7 @@ function SelectTrigger({ className, children, size, ...props }: SelectTriggerPro
 		<SelectPrimitive.Trigger data-slot="select-trigger" className={cn(selectTriggerVariants({ size }), className)} {...props}>
 			{children}
 			<SelectPrimitive.Icon asChild>
-				<ChevronDown className="-me-0.5 size-5 opacity-60" />
+				<ChevronDown className="-me-0.5 ml-auto size-5 opacity-60" />
 			</SelectPrimitive.Icon>
 		</SelectPrimitive.Trigger>
 	)
@@ -126,7 +126,7 @@ function SelectItem({ className, children, ...props }: React.ComponentProps<type
 		<SelectPrimitive.Item
 			data-slot="select-item"
 			className={cn(
-				"outline-hidden text-fg hover:bg-fill2 focus:bg-fill2 data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-default cursor-pointer select-none items-center rounded-sm py-1.5 text-sm",
+				"outline-hidden text-fg hover:bg-fill2 focus:bg-fill2 data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 text-sm",
 				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
 				className
 			)}
