@@ -7,3 +7,214 @@ links:
 ---
 
 <FormPreview />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add form",
+				npm: "npx @radianos/radianbeta add form",
+				yarn: "yarn @radianos/radianbeta add form",
+				bun: "bunx @radianos/radianbeta add form",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<Tabs defaultValue="form">
+    		<TabsList>
+    			<TabsTrigger value="form">Form</TabsTrigger>
+    		</TabsList>
+    		<TabsContent value="form">
+    			<ComponentSource name="form" title="components/ui/form.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet
+	title="/components/ui/form.tsx"
+	code={`import {
+Form, 
+FormControl, 
+FormDescription, 
+FormField, 
+FormItem, 
+FormLabel, 
+FormMessage
+} from '@/components/ui/form'`}
+/>
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/form.tsx"
+	code={`<Form>
+	<FormField
+		render={({ field }) => (
+			<FormItem>
+				<FormLabel>Email</FormLabel>
+				<FormControl>
+					<Input placeholder="Email address" {...field} />
+				</FormControl>
+				<FormDescription>Enter your email</FormDescription>
+				<FormMessage />
+			</FormItem>
+		)} 
+	/>
+</Form>`}
+/>
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Form"
+		data={[
+			{
+				name: "children",
+				values: ["React.ReactNode"],
+				required: true,
+				description: "Form content wrapped by the FormProvider context.",
+			},
+		]}
+	/>
+	<PropsTable
+		title="FormField"
+		data={[
+			{
+				name: "name",
+				values: ["FieldPath<TFieldValues>"],
+				required: true,
+				description: "The name of the field in the form schema.",
+			},
+			{
+				name: "control",
+				values: ["Control<TFieldValues>"],
+				required: true,
+				description: "Control object from react-hook-form's useForm hook.",
+			},
+			{
+				name: "render",
+				values: ["({ field, fieldState, formState }) => React.ReactElement"],
+				required: true,
+				description: "Render function that receives field props and state.",
+			},
+			{
+				name: "defaultValue",
+				values: ["any"],
+				required: false,
+				description: "Default value for the field.",
+			},
+			{
+				name: "rules",
+				values: ["RegisterOptions"],
+				required: false,
+				description: "Validation rules for the field.",
+			},
+		]}
+	/>
+	<PropsTable
+		title="FormItem"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes for the form item container.",
+			},
+			{
+				name: "children",
+				values: ["React.ReactNode"],
+				required: true,
+				description: "Form item content including label, control, description, and message.",
+			},
+		]}
+	/>
+	<PropsTable
+		title="FormLabel"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes for the form label.",
+			},
+			{
+				name: "children",
+				values: ["React.ReactNode"],
+				required: true,
+				description: "Label text or content.",
+			},
+		]}
+	/>
+	<PropsTable
+		title="FormControl"
+		data={[
+			{
+				name: "children",
+				values: ["React.ReactElement"],
+				required: true,
+				description: "Single child element that will receive form control props.",
+			},
+			{
+				name: "asChild",
+				values: ["boolean"],
+				required: false,
+				description: "When true, merges props with the child element instead of wrapping it.",
+			},
+		]}
+	/>
+	<PropsTable
+		title="FormDescription"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes for the form description.",
+			},
+			{
+				name: "children",
+				values: ["React.ReactNode"],
+				required: true,
+				description: "Description text or content. Hidden when field has an error.",
+			},
+		]}
+	/>
+	<PropsTable
+		title="FormMessage"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				required: false,
+				description: "Additional CSS classes for the form message.",
+			},
+			{
+				name: "children",
+				values: ["React.ReactNode"],
+				required: false,
+				description: "Custom message content. Displays error message if present, otherwise shows children.",
+			},
+		]}
+	/>
+</PropsTableWrapper>
