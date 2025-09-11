@@ -8,17 +8,17 @@ export function ShimmerSkeleton() {
 	return (
 		<div className="inline-flex h-72 w-96 flex-col items-start justify-start gap-4 rounded-xl border p-5">
 			<div className="inline-flex items-center justify-start gap-3">
-				<Skeleton animation="shimmer" className="h-10 w-10 rounded-full" />
+				<Skeleton className="h-10 w-10 rounded-full" />
 				<div className="inline-flex w-28 flex-col items-start justify-start gap-2">
-					<Skeleton animation="shimmer" className="h-3 self-stretch rounded-lg" />
-					<Skeleton animation="shimmer" className="h-3 w-16 rounded-lg" />
+					<Skeleton className="h-3 self-stretch rounded-lg" />
+					<Skeleton className="h-3 w-16 rounded-lg" />
 				</div>
 			</div>
 			<div className="flex flex-col items-start justify-start gap-1.5 self-stretch">
-				<Skeleton animation="shimmer" className="h-3 self-stretch rounded-full" />
-				<Skeleton animation="shimmer" className="h-3 w-24 rounded-full" />
+				<Skeleton className="h-3 self-stretch rounded-full" />
+				<Skeleton className="h-3 w-24 rounded-full" />
 			</div>
-			<Skeleton animation="shimmer" className="flex-1 self-stretch rounded-lg" />
+			<Skeleton className="flex-1 self-stretch rounded-lg" />
 		</div>
 	)
 }
