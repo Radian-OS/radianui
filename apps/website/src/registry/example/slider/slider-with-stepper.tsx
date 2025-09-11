@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { EyeIcon, Minus, Plus, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Slider, SliderThumb } from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -9,13 +9,15 @@ export default function SliderWithStepper() {
 	const [value, setValue] = useState(50)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10" variant="outline-ghost">
+		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -23,15 +25,15 @@ export default function SliderWithStepper() {
 			<TabsContent value="preview">
 				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="w-100 flex gap-2">
-						<Button iconOnly className="size-8" variant="outline" onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
+						<IconButton className="size-8" variant="outline" onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
 							<Minus size={16} />
-						</Button>
+						</IconButton>
 						<Slider value={[value]} onValueChange={([value]) => setValue(value)}>
 							<SliderThumb />
 						</Slider>
-						<Button iconOnly className="size-8" variant="outline" onClick={() => setValue((prev) => Math.min(prev + 10, 100))}>
+						<IconButton className="size-8" variant="outline" onClick={() => setValue((prev) => Math.min(prev + 10, 100))}>
 							<Plus size={16} />
-						</Button>
+						</IconButton>
 					</div>
 				</div>
 			</TabsContent>
@@ -52,13 +54,13 @@ export default function SliderWithStepper() {
 
 	return (
         <div className="w-100 flex gap-2">
-            <Button iconOnly className="size-8" variant="outline" onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
+            <IconButton  className="size-8" variant="outline" onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
                 <Minus size={16} />
-            </Button>
+            </IconButton>
             <Slider value={[value]} onValueChange={([value]) => setValue(value)} />
-            <Button iconOnly className="size-8" variant="outline" onClick={() => setValue((prev) => Math.min(prev + 10, 100))}>
+            <IconButton  className="size-8" variant="outline" onClick={() => setValue((prev) => Math.min(prev + 10, 100))}>
                 <Plus size={16} />
-            </Button>
+            </IconButton>
         </div>
 	)
 }

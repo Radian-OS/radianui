@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Check, Clipboard, EyeIcon, SquareTerminal, Terminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -31,13 +31,15 @@ export default function CodeWithCopyExample() {
 	const { copied, copy } = useCopyPaste(code)
 
 	return (
-		<Tabs className="mt-3" defaultValue="preview" variant="outline-ghost">
-			<div className="flex items-center">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+		<Tabs defaultValue="preview">
+			<div className="flex items-center justify-between">
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -50,9 +52,9 @@ export default function CodeWithCopyExample() {
 								<Terminal className="size-4" />
 							</span>
 							<span className="text-fg-secondary flex-1 text-sm">Code area with copy button</span>
-							<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
+							<IconButton variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={copy}>
 								{copied ? <Check size={20} /> : <Clipboard size={20} />}
-							</Button>
+							</IconButton>
 						</div>
 						<CodeArea language="tsx" theme="github-dark-high-contrast" code={code} className={cn("border-soft flex-1 rounded-[10px] border")} />
 					</div>
@@ -103,9 +105,9 @@ export default function CodeWithCopyExample() {
 					<Terminal className="size-4" />
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">Code area with copy button</span>
-				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
+				<IconButton variant="ghost" color="neutral" size={"28"}  aria-label="Copy command" onClick={copy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
-				</Button>
+				</IconButton>
 			</div>
 			<CodeArea language="tsx" theme="github-dark-high-contrast" code={code} className={cn("border-soft flex-1 rounded-[10px] border")} />
 		</div>

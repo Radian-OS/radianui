@@ -9,7 +9,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type Side = "top" | "bottom" | "left" | "right"
 type Align = "center" | "end" | "start"
-type Arrow = "true" | "false"
 
 const profile = {
 	name: "Aurthur Dominic",
@@ -20,18 +19,17 @@ const profile = {
 const HovercardPreview = () => {
 	const [side, setSide] = useState<Side>("bottom")
 	const [align, setAlign] = useState<Align>("center")
-	const [arrow, setArrow] = useState<Arrow>("false")
-
-	const withArrow = arrow === "true"
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -79,20 +77,6 @@ const HovercardPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>With arrow</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={arrow} onValueChange={(value) => setArrow(value as Arrow)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -103,7 +87,7 @@ const HovercardPreview = () => {
 						<HoverCardTrigger asChild>
 							<Button variant={"outline"}>Hover Me</Button>
 						</HoverCardTrigger>
-						<HoverCardContent side={side} align={align} withArrow={withArrow} className="flex w-fit flex-col gap-3">
+						<HoverCardContent side={side} align={align} className="flex w-fit flex-col gap-3">
 							<div className="flex items-center gap-3">
 								<Avatar>
 									<AvatarImage src={profile.avatar} />

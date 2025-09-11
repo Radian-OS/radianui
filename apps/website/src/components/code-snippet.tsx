@@ -31,7 +31,7 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 					<Terminal className="size-4" />
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
-				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
+				<Button variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={copy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</Button>
 			</div>

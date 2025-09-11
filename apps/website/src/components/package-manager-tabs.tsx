@@ -5,7 +5,7 @@ import type { JSX } from "react"
 import { Check, Clipboard } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -161,9 +161,9 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 	}
 
 	return (
-		<Tabs value={activeTab} onValueChange={handleTabChange} variant="outline-ghost" size="md" className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+		<Tabs value={activeTab} onValueChange={handleTabChange} className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
 			<div className="flex items-center justify-between pr-1">
-				<TabsList className="bg-transparent">
+				<TabsList className="bg-transparent" variant="outline-ghost" size="md">
 					{pkg.map((manager) => (
 						<TabsTrigger key={manager} value={manager} className={withIcon ? "gap-1" : ""}>
 							{withIcon && iconMap[manager]}
@@ -171,9 +171,9 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 						</TabsTrigger>
 					))}
 				</TabsList>
-				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={handleCopy}>
+				<IconButton variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={handleCopy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
-				</Button>
+				</IconButton>
 			</div>
 			{pkg.map((manager) => (
 				<TabsContent key={manager} value={manager}>

@@ -15,13 +15,15 @@ const AlertCloseExamplePreview = () => {
 	}
 
 	return (
-		<Tabs defaultValue="preview" variant="outline-ghost" size="md">
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger onClick={handlePreviewTabClick} value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger onClick={handlePreviewTabClick} value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger onClick={handlePreviewTabClick} value="code" icon={<SquareTerminal />}>
+					<TabsTrigger onClick={handlePreviewTabClick} value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>

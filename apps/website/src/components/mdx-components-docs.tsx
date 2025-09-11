@@ -8,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import IconButtonPreview from "@/component-preview/Icon-button-preview"
 import AccordionPreview from "@/component-preview/accordion-preview"
+import AlertDialogPreview from "@/component-preview/alert-dialog-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
 import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
@@ -33,6 +34,7 @@ import ColorPickerPreview from "@/component-preview/color-picker-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import CurrencyAmountPreview from "@/component-preview/currency-amount-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
+import DialogPreview from "@/component-preview/dialog-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
@@ -44,7 +46,7 @@ import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
-import DialogPreview from "@/component-preview/modal-preview"
+import OTPPreview from "@/component-preview/otp-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
@@ -175,6 +177,7 @@ const components: MDXComponents = {
 	AccordionPreview: () => <AccordionPreview />,
 	AccordionWithIconExample: () => <AccordionWithIconExample />,
 	AlertPreview: () => <AlertPreview />,
+	AlertDialogPreview: () => <AlertDialogPreview />,
 	AvatarPreview: () => <AvatarPreview />,
 	AvatargroupPreview: () => <AvatargroupPreview />,
 	AvatarFallbackPreview: () => <AvatarFallbackPreview />,
@@ -204,6 +207,7 @@ const components: MDXComponents = {
 	DisplayColor: () => <DisplayColor />,
 	HovercardPreview: () => <HovercardPreview />,
 	InputOtpPreview: () => <InputOtpPreview />,
+	OTPPreview: () => <OTPPreview />,
 	TabsPreview: () => <TabsPreview />,
 	IconCounterTabsExample: () => <IconCounterTabsExample />,
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
@@ -409,10 +413,10 @@ const components: MDXComponents = {
 		return <AccordionContent {...props} />
 	},
 	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
-		return <Tabs {...props} variant="default" size="md" />
+		return <Tabs {...props} />
 	},
 	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
-		return <TabsList width="full" {...props} />
+		return <TabsList width="full" variant="default" size="md" {...props} />
 	},
 	TabsTrigger: (props: React.ComponentProps<typeof TabsTrigger>) => {
 		return <TabsTrigger {...props} />

@@ -62,13 +62,15 @@ const TablePreview = () => {
 	const [counter, setCounter] = React.useState<"true" | "false">(DEFAULT_COUNTER)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -106,7 +108,7 @@ const TablePreview = () => {
 						<DropdownSub>
 							<DropdownSubTrigger>width</DropdownSubTrigger>
 							<DropdownSubContent>
-								<DropdownRadioGroup value={width} onValueChange={(value) => setWidth(value as TabsListWidth)}>
+								<DropdownRadioGroup value={width!} onValueChange={(value) => setWidth(value as TabsListWidth)}>
 									{widths.map((v) => (
 										<DropdownRadioItem key={v} value={v} onSelect={(e) => e.preventDefault()}>
 											{v}
@@ -169,8 +171,8 @@ const TablePreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Tabs size={size} variant={variant} defaultValue={data[0].value} orientation={orientation} activationMode={activationMode}>
-						<TabsList width={width}>
+					<Tabs defaultValue={data[0].value} orientation={orientation} activationMode={activationMode}>
+						<TabsList width={width} variant={variant} size={size}>
 							{data.map((dataItem) => (
 								<TabsTrigger
 									key={dataItem.value}

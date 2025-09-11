@@ -1,6 +1,7 @@
 import React from "react"
 import { Archive, CheckCircle, EyeIcon, Loader2, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
+import { Badge } from "@/registry/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const data = [
@@ -23,17 +24,21 @@ const data = [
 		trigger: "Archived",
 		icon: <Archive />,
 		content: "You have archived 10 items.",
-		counter: 10,
+		counter: 9,
 	},
 ]
 
 function IconCounterTabs() {
 	return (
-		<Tabs defaultValue={data[0].trigger.toLowerCase()} variant={"open"}>
-			<TabsList>
+		<Tabs defaultValue={data[0].trigger.toLowerCase()}>
+			<TabsList variant="open" size="md">
 				{data.map((item) => (
-					<TabsTrigger key={item.id} value={item.trigger.toLowerCase()} icon={item.icon} counter={item.counter}>
+					<TabsTrigger key={item.id} value={item.trigger.toLowerCase()}>
+						{item.icon}
 						{item.trigger}
+						<Badge className="rounded-full font-normal" variant={"strong"} color={"error"} size={"20"}>
+							{item.counter}
+						</Badge>
 					</TabsTrigger>
 				))}
 			</TabsList>
@@ -48,13 +53,15 @@ function IconCounterTabs() {
 
 function IconCounterTabsExample() {
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} className="mb-10">
+		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>

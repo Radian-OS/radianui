@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ChevronLeft, ChevronRight, EyeIcon, Settings, SquareTerminal } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton, LinkButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -24,21 +24,21 @@ size="${size}"
 disabled={${disabled === "true"}}
 color="${color}"
 loading={${loading === "true"}}
-${start === "true" ? "start={<ChevronLeft />}" : ""}
-${end === "true" ? "end={<ChevronRight />}" : ""}
 >
  Button Label
 </LinkButton>`
 	})()
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -146,15 +146,7 @@ ${end === "true" ? "end={<ChevronRight />}" : ""}
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-2 overflow-auto rounded-xl border">
-					<LinkButton
-						start={start === "true" ? <ChevronLeft /> : undefined}
-						end={end === "true" ? <ChevronRight /> : undefined}
-						href="/docs/components/button"
-						target="_blank"
-						loading={loading === "true"}
-						size={size}
-						disabled={disabled === "true"}
-						color={color}>
+					<LinkButton href="/docs/components/button" target="_blank" loading={loading === "true"} size={size} disabled={disabled === "true"} color={color}>
 						Button Label
 					</LinkButton>
 				</div>

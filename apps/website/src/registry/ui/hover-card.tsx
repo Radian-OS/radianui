@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 type HoverCardProps = React.ComponentProps<typeof HoverCardPrimitive.Root>
 type HoverCardTriggerProps = React.ComponentProps<typeof HoverCardPrimitive.Trigger>
-type HoverCardContentProps = React.ComponentProps<typeof HoverCardPrimitive.Content> & { withArrow?: boolean }
+type HoverCardContentProps = React.ComponentProps<typeof HoverCardPrimitive.Content>
 
 function HoverCard({ children, ...props }: HoverCardProps) {
 	return (
@@ -23,7 +23,7 @@ function HoverCardTrigger({ ...props }: HoverCardTriggerProps) {
 }
 HoverCardTrigger.displayName = HoverCardPrimitive.Trigger.displayName
 
-function HoverCardContent({ className, withArrow = false, sideOffset = 6, children, ...props }: HoverCardContentProps) {
+function HoverCardContent({ className, sideOffset = 6, children, ...props }: HoverCardContentProps) {
 	return (
 		<HoverCardPrimitive.Content
 			data-slot="hover-card-content"
@@ -34,7 +34,6 @@ function HoverCardContent({ className, withArrow = false, sideOffset = 6, childr
 			sideOffset={sideOffset}
 			{...props}>
 			{children}
-			{withArrow && <HoverCardPrimitive.Arrow width={10} className="fill-border z-50" />}
 		</HoverCardPrimitive.Content>
 	)
 }

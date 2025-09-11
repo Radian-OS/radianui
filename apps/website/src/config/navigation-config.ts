@@ -87,6 +87,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Alert UI component illustration",
 			},
 			{
+				title: "Alert Dialog",
+				description: "1 Component",
+				url: "/docs/components/alert-dialog",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Alert Dialog UI component illustration",
+			},
+			{
 				title: "Accordion",
 				description: "3 Components",
 				url: "/docs/components/accordion",

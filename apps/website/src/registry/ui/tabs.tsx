@@ -2,27 +2,34 @@
 
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
-import { type TabsListProps } from "@radix-ui/react-tabs"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { Badge } from "./badge"
 
 export type TabsVariant = VariantProps<typeof tabsListStyles>["variant"]
 export type TabsSize = VariantProps<typeof tabsListStyles>["size"]
-export type TabsListWidth = "fit" | "full"
-export type TabsContextType = {
+export type TabsListWidth = VariantProps<typeof tabsListStyles>["width"]
+export type TabsListContextType = {
 	variant?: TabsVariant
 	size?: TabsSize
+	width?: TabsListWidth
 }
+export type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root>
+export type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> & TabsListContextType
+export type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger>
+export type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Content>
 
 const tabsListStyles = cva(
-	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center w-max data-[orientation=vertical]:flex-col min-w-max max-w-full overflow-x-scroll no-scrollbar",
+	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center  data-[orientation=vertical]:flex-col  overflow-x-scroll no-scrollbar",
 	{
 		variants: {
 			size: {
 				sm: "data-[orientation=horizontal]:h-7",
 				md: "data-[orientation=horizontal]:h-9",
 				lg: "data-[orientation=horizontal]:h-11",
+			},
+			width: {
+				fit: "w-max min-w-max max-w-full",
+				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
 			},
 			variant: {
 				default: "bg-fill2",
@@ -35,6 +42,7 @@ const tabsListStyles = cva(
 		defaultVariants: {
 			size: "md",
 			variant: "default",
+			width: "fit",
 		},
 		compoundVariants: [
 			{
@@ -72,13 +80,13 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fgw-max data-[orientation=vertical]:w-full disabled:text-fg-disabled disabled:cursor-not-allowed box-border",
+	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fgw-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary disabled:text-fg-disabled disabled:cursor-not-allowed box-border",
 	{
 		variants: {
 			size: {
-				sm: "text-xs",
-				md: "text-sm",
-				lg: "text-sm",
+				sm: "text-xs [&>svg]:size-4",
+				md: "text-sm [&>svg]:size-5",
+				lg: "text-sm [&>svg]:size-5",
 			},
 			variant: {
 				default:
@@ -176,72 +184,40 @@ const tabsTriggerStyles = cva(
 	}
 )
 
-const tabTriggerIconStyles = cva("[&>svg]:text-fg-tertiary", {
-	variants: {
-		size: {
-			sm: "[&>svg]:size-4",
-			md: "[&>svg]:size-5",
-			lg: "[&>svg]:size-5",
-		},
-	},
-})
+const TabsListContext = React.createContext<TabsListContextType | null>(null)
 
-const TabsContext = React.createContext<TabsContextType | null>(null)
-
-function useTabs() {
-	const context = React.use(TabsContext)
+function useTabsList() {
+	const context = React.use(TabsListContext)
 	if (!context) {
 		throw new Error("useTabsContext must be used within a Context Provider")
 	}
 	return context
 }
 
-function Tabs({ variant = "default", size = "md", className, defaultValue, children, ...props }: React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & TabsContextType) {
-	const ctxValues = React.useMemo(() => ({ variant, size }), [variant, size])
-	return (
-		<TabsContext.Provider value={ctxValues}>
-			<TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3 data-[orientation=vertical]:flex-row", className)} defaultValue={defaultValue} {...props}>
-				{children}
-			</TabsPrimitive.Root>
-		</TabsContext.Provider>
-	)
+function Tabs({ className, ...props }: TabsProps) {
+	return <TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3 data-[orientation=vertical]:flex-row", className)} {...props} />
 }
 Tabs.displayName = TabsPrimitive.Root.displayName
 
-function TabsList({ className, width = "fit", children, ...props }: TabsListProps & React.RefAttributes<HTMLDivElement> & { width?: TabsListWidth }) {
-	const { size, variant } = useTabs()
+function TabsList({ className, width = "fit", children, size = "md", variant = "default", ...props }: TabsListProps) {
+	const ctxValues = React.useMemo(() => ({ variant, size, width }), [variant, size, width])
 	return (
-		<TabsPrimitive.List
-			className={cn(
-				tabsListStyles({ size, variant }),
-				{ "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1": width == "full" },
-				className
-			)}
-			{...props}>
-			{children}
-		</TabsPrimitive.List>
+		<TabsListContext.Provider value={ctxValues}>
+			<TabsPrimitive.List className={cn(tabsListStyles({ size, variant, width }), className)} {...props}>
+				{children}
+			</TabsPrimitive.List>
+		</TabsListContext.Provider>
 	)
 }
 TabsList.displayName = TabsPrimitive.List.displayName
 
-type PrimitiveTriggerExtended = React.ComponentPropsWithRef<typeof TabsPrimitive.Trigger> & {
-	counter?: number
-	icon?: React.ReactNode
-}
-function TabsTrigger({ className, icon, counter, children, ...props }: PrimitiveTriggerExtended) {
-	const { size, variant } = useTabs()
-
-	return (
-		<TabsPrimitive.Trigger className={cn(tabsTriggerStyles({ variant, size }), className)} {...props}>
-			{icon && <span className={cn(tabTriggerIconStyles({ size }))}>{icon}</span>}
-			<span className="flex items-center justify-center gap-1.5 px-0.5">{children}</span>
-			{counter !== undefined && <Badge className={cn("h-5 rounded-full", { "h-4": size === "sm" })}>{counter}</Badge>}
-		</TabsPrimitive.Trigger>
-	)
+function TabsTrigger({ className, ...props }: TabsTriggerProps) {
+	const { size, variant } = useTabsList()
+	return <TabsPrimitive.Trigger className={cn(tabsTriggerStyles({ variant, size }), className)} {...props} />
 }
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
-function TabsContent({ className, ...props }: React.ComponentPropsWithRef<typeof TabsPrimitive.Content>) {
+function TabsContent({ className, ...props }: TabsContentProps) {
 	return <TabsPrimitive.Content className={cn("flex-1 outline-none data-[state=inactive]:hidden", className)} {...props} />
 }
 

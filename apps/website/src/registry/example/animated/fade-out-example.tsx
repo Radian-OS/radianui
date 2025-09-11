@@ -9,13 +9,15 @@ export default function FadeOutExample() {
 	const [show, setShow] = useState(true)
 
 	return (
-		<Tabs variant={"outline-ghost"} defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-start">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>

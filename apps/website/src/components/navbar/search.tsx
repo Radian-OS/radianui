@@ -111,17 +111,12 @@ export function SearchDocs() {
 			{/* Desktop Search */}
 			<Dialog open={isOpen} onOpenChange={setIsOpen}>
 				<DialogTrigger asChild>
-					<Button
-						className="not-md:hidden gap-1"
-						variant={"outline"}
-						color={"neutral"}
-						start={<Search className="text-fg-tertiary" />}
-						end={
-							<Badge className="text-fg-secondary" size="20" variant="outline" color="neutral">
-								⌘K
-							</Badge>
-						}>
+					<Button className="not-md:hidden gap-1" variant={"outline"} color={"neutral"}>
+						<Search className="text-fg-tertiary" />
 						<span className="text-fg-tertiary w-43 flex-1 px-1 text-start">Search</span>
+						<Badge className="text-fg-secondary" size="20" variant="outline" color="neutral">
+							⌘K
+						</Badge>
 					</Button>
 				</DialogTrigger>
 				<DialogContent closeButton="hidden" className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">

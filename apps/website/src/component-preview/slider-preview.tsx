@@ -5,15 +5,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SliderPreview = () => {
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
-			<TabsList>
-				<TabsTrigger value="preview" icon={<EyeIcon />}>
-					Preview
-				</TabsTrigger>
-				<TabsTrigger value="code" icon={<SquareTerminal />}>
-					Code
-				</TabsTrigger>
-			</TabsList>
+		<Tabs defaultValue="preview">
+			<div className="flex items-center justify-between">
+				<TabsList variant={"outline-ghost"} size={"md"}>
+					<TabsTrigger value="preview">
+						<EyeIcon />
+						Preview
+					</TabsTrigger>
+					<TabsTrigger value="code">
+						<SquareTerminal />
+						Code
+					</TabsTrigger>
+				</TabsList>
+			</div>
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border p-10">
