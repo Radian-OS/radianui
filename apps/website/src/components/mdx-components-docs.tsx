@@ -118,6 +118,7 @@ import PasswordInputPreview3 from "@/registry/example/input/password-input-previ
 import UrlPreview from "@/registry/example/input/url-input-preview"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
+import ResizableExample from "@/registry/example/resizable-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import SelectForm from "@/registry/example/select/select-form"
 import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
@@ -297,6 +298,7 @@ const components: MDXComponents = {
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
+	ResizableExample: () => <ResizableExample />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
 	),
