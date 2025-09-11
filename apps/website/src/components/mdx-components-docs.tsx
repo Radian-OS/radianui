@@ -121,7 +121,6 @@ import UrlPreview from "@/registry/example/input/url-input-preview"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import ResizableExample from "@/registry/example/resizable-example"
-import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import SelectForm from "@/registry/example/select/select-form"
 import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
 import SelectWithBadge from "@/registry/example/select/select-with-badge"
@@ -244,7 +243,6 @@ const components: MDXComponents = {
 	SearchPreview: () => <SearchPreview />,
 	SkeletonPreview: () => <SkeletonPreview />,
 	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
-	SearchInputExample: () => <SearchInputExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	FileUploadPreview: () => <FileUploadPreview />,
 	NumberInputPreview: () => <NumberInputPreview />,

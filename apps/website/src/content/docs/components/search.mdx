@@ -69,81 +69,8 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/search" code={`import {Search} from "@/components/ui/search"`} />
+<CodeSnippet title="/components/ui/search" code={`import { Search } from "@/components/ui/search"`} />
 
 ### Code
 
 <CodeSnippet title="/components/ui/search" code={`<Search />`} />
-
----
-
-## Example
-
-### Search input with search results
-
-<SearchInputExample />
-
----
-
-## Props
-
-<PropsTableWrapper>
-	<PropsTable
-		title="Search"
-		data={[
-			{
-				name: "showSearchResults",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Manually control the visibility of the search results popover.",
-				required: false,
-			},
-			{
-				name: "defaultShowSearchResults",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Sets the initial visibility of the search results popover.",
-				required: false,
-			},
-			{
-				name: "suggestion",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Enables rendering of the suggestion popover when true.",
-				required: false,
-			},
-			{
-				name: "label",
-				values: ["string"],
-				description: "Label displayed above the input field.",
-				required: false,
-			},
-			{
-				name: "hint",
-				values: ["string"],
-				description: "Helper text displayed below the input.",
-				required: false,
-			},
-			{
-				name: "hasError",
-				values: ["boolean"],
-				description: "Displays the input in an error state.",
-				required: false,
-			},
-			{
-				name: "size",
-				values: ["28", "32", "36", "40", "44", "48"],
-				defaultValue: "36",
-				description: "Controls the height of the input field.",
-				required: false,
-			},
-			{
-				name: "rounded",
-				values: ["none", "sm", "md", "lg", "xl", "2xl", "full"],
-				defaultValue: "md",
-				description: "Controls the border radius of the input.",
-				required: false,
-			},
-		]}
-	/>
-</PropsTableWrapper>
