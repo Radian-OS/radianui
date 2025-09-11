@@ -6,7 +6,7 @@ import { Pipette } from "lucide-react"
 import { ButtonGroup } from "./button"
 import { Input } from "./input"
 import { Popover, PopoverContent } from "./popover"
-import { Select, SelectItem } from "./select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
 
 // Type definitions
 type RGBColor = {
@@ -268,24 +268,19 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	}, [])
 
 	// Handler for Display Format Select component
-	function setDisplayFormatValues(values: string[]): void {
-		if (values.length > 0) {
-			const value = values[0] as "HSL" | "RGB" | "HEX" | "HSV"
-			setDisplayFormat(value)
-		}
+	function setDisplayFormatValues(value: string): void {
+		setDisplayFormat(value as "HSL" | "RGB" | "HEX" | "HSV")
 	}
 
 	// Handler for Input Format Select component
-	function setInputFormatValues(values: string[]): void {
-		if (values.length > 0) {
-			const value = values[0] as "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA"
-			setInputFormat(value)
-			// Update input value to match new format
-			updateInputValue(value)
-			// Notify parent component if callback exists
-			if (onInputFormatChange) {
-				onInputFormatChange(value)
-			}
+	function setInputFormatValues(_value: string): void {
+		const value = _value as "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA"
+		setInputFormat(value)
+		// Update input value to match new format
+		updateInputValue(value)
+		// Notify parent component if callback exists
+		if (onInputFormatChange) {
+			onInputFormatChange(value)
 		}
 	}
 
@@ -998,21 +993,31 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 					<div className="flex w-full items-center gap-3">
 						{/* Format Selectors */}
 						<div className="flex items-center gap-4 p-2 pl-0">
-							<Select selectedValues={[displayFormat]} onSelectedChange={setDisplayFormatValues}>
-								<SelectItem value="HSV">HSB</SelectItem>
-								<SelectItem value="HSL">HSL</SelectItem>
-								<SelectItem value="RGB">RGB</SelectItem>
-								<SelectItem value="HEX">HEX</SelectItem>
+							<Select value={displayFormat} onValueChange={setDisplayFormatValues}>
+								<SelectTrigger>
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="HSV">HSB</SelectItem>
+									<SelectItem value="HSL">HSL</SelectItem>
+									<SelectItem value="RGB">RGB</SelectItem>
+									<SelectItem value="HEX">HEX</SelectItem>
+								</SelectContent>
 							</Select>
 						</div>
 
 						<div className="hidden">
-							<Select selectedValues={[inputFormat]} onSelectedChange={setInputFormatValues}>
-								<SelectItem value="HEX">HEX</SelectItem>
-								<SelectItem value="HSL">HSL</SelectItem>
-								<SelectItem value="OKLCH">OKLCH</SelectItem>
-								<SelectItem value="HSB">HSB</SelectItem>
-								<SelectItem value="RGBA">RGBA</SelectItem>
+							<Select value={inputFormat} onValueChange={setInputFormatValues}>
+								<SelectTrigger>
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="HEX">HEX</SelectItem>
+									<SelectItem value="HSL">HSL</SelectItem>
+									<SelectItem value="OKLCH">OKLCH</SelectItem>
+									<SelectItem value="HSB">HSB</SelectItem>
+									<SelectItem value="RGBA">RGBA</SelectItem>
+								</SelectContent>
 							</Select>
 						</div>
 

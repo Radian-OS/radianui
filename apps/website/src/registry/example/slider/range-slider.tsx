@@ -3,52 +3,43 @@ import CodeSnippet from "@/components/code-snippet"
 import { Slider, SliderThumb } from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const SliderPreview = () => {
+export default function RangeSlider() {
 	return (
-		<Tabs defaultValue="preview">
+		<Tabs defaultValue="preview" className="mb-10" variant="outline-ghost">
 			<div className="flex items-center justify-between">
-				<TabsList variant={"outline-ghost"} size={"md"}>
-					<TabsTrigger value="preview">
-						<EyeIcon />
+				<TabsList>
+					<TabsTrigger value="preview" icon={<EyeIcon />}>
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code">
-						<SquareTerminal />
+					<TabsTrigger value="code" icon={<SquareTerminal />}>
 						Code
 					</TabsTrigger>
 				</TabsList>
 			</div>
-
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border p-10">
-					<Slider className="w-[320px]">
+				<div className="h-105 flex items-center justify-center overflow-auto rounded-xl border px-10">
+					<Slider className="w-[420px]" defaultValue={[20, 60]}>
+						<SliderThumb />
 						<SliderThumb />
 					</Slider>
 				</div>
 			</TabsContent>
-
 			<TabsContent value="code">
 				<CodeSnippet
-					title="slider.tsx"
+					title="range-slider.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
-import { Slider, SliderThumb } from "@/components/ui/slider"
+import { Slider } from "@/components/ui/slider"
 
-const SliderPreview = () => {
+export default function RangeSlider() {
 	return (
-		<Slider className="w-[320px]">
-			<SliderThumb />
-		</Slider>
+        <Slider defaultValue={[20, 60]} />
 	)
 }
-
-export default SliderPreview
 `}
 				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
-
-export default SliderPreview

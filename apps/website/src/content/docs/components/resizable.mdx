@@ -58,7 +58,36 @@ links:
 
 ### Code
 
-<CodeSnippet title="/components/ui/resizable" code={`import {ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"`} />
+<CodeSnippet
+	title="/components/ui/resizable"
+	code={`<ResizablePanelGroup direction="horizontal">
+		<ResizablePanel defaultSize={50} className="border-r">
+			<ResizablePanelGroup direction="vertical">
+				<ResizablePanel defaultSize={25}>
+						<span className="font-semibold">One</span>
+				</ResizablePanel>
+				<ResizableHandle />
+			</ResizablePanelGroup>
+		</ResizablePanel>
+		<ResizableHandle />
+		<ResizablePanel defaultSize={50}>
+			<ResizablePanelGroup direction="vertical">
+				<ResizableHandle />
+				<ResizablePanel defaultSize={75}>
+						<span className="font-semibold">Four</span>
+				</ResizablePanel>
+			</ResizablePanelGroup>
+		</ResizablePanel>
+</ResizablePanelGroup>`}
+/>
+
+---
+
+## Examples
+
+### Handle
+
+<ResizableExample />
 
 ---
 

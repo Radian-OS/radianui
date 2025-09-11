@@ -86,11 +86,11 @@ export default function DatePickerWithTimeExample() {
 import { useId, useState } from "react"
 import { format, setHours, setMinutes, setSeconds } from "date-fns"
 import { Calendar as CalendarIcon, ClockIcon } from "lucide-react"
-import { Button } from "@/registry/ui/button"
-import { Calendar } from "@/registry/ui/calendar"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Button } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 export default function DatePickerWithTimeExample() {
 	const today = new Date()

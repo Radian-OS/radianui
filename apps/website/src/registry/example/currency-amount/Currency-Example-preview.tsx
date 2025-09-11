@@ -4,7 +4,7 @@ import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
-import { Select, SelectItem } from "@/registry/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
@@ -61,11 +61,15 @@ const CurrencyPreview = () => {
 							// currency={currency}
 							// hint={hasError ? "Hint text to help the user with input" : undefined}
 							/> */}
-							<Select selectedValues={[currency]} onSelectedChange={(values) => setCurrency(values[0] as CurrencyOption)} disableOpenStyle={true} minSelectionCount={1}>
-								{" "}
-								<SelectItem value="usd">USD</SelectItem>
-								<SelectItem value="eur">EUR</SelectItem>
-								<SelectItem value="gbp">GBP</SelectItem>
+							<Select value={currency} onValueChange={(value) => setCurrency(value as CurrencyOption)}>
+								<SelectTrigger>
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectItem value="usd">USD</SelectItem>
+									<SelectItem value="eur">EUR</SelectItem>
+									<SelectItem value="gbp">GBP</SelectItem>
+								</SelectContent>
 							</Select>
 						</div>
 					</div>

@@ -40,6 +40,7 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
+import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -110,9 +111,6 @@ import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-wi
 import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
-import FormExample1 from "@/registry/example/form/form-example1"
-import FormExample2 from "@/registry/example/form/form-example2"
-import FormExample3 from "@/registry/example/form/form-example3"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
@@ -122,8 +120,17 @@ import PasswordInputPreview3 from "@/registry/example/input/password-input-previ
 import UrlPreview from "@/registry/example/input/url-input-preview"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
+import ResizableExample from "@/registry/example/resizable-example"
 import SearchInputExample from "@/registry/example/search-input/search-input-example"
+import SelectForm from "@/registry/example/select/select-form"
+import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
+import SelectWithBadge from "@/registry/example/select/select-with-badge"
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
+import RangeSlider from "@/registry/example/slider/range-slider"
+import SliderWithInput from "@/registry/example/slider/slider-with-input"
+import SliderWithMarks from "@/registry/example/slider/slider-with-marks"
+import SliderWithStepper from "@/registry/example/slider/slider-with-stepper"
+import SliderWithTooltip from "@/registry/example/slider/slider-with-tooltip"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
@@ -244,6 +251,9 @@ const components: MDXComponents = {
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
 	SelectPreview: () => <SelectPreview />,
+	SelectWithBadge: () => <SelectWithBadge />,
+	SelectWithAvatar: () => <SelectWithAvatar />,
+	SelectForm: () => <SelectForm />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
@@ -257,10 +267,7 @@ const components: MDXComponents = {
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	// FormPreview: () => <FormPreview />,
-	FormExample1: () => <FormExample1 />,
-	FormExample2: () => <FormExample2 />,
-	FormExample3: () => <FormExample3 />,
+	FormPreview: () => <FormPreview />,
 	AlertExamplePreview: () => <AlertExamplePreview />,
 	RingAvatarPreview: () => <RingAvatarPreview />,
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
@@ -274,6 +281,11 @@ const components: MDXComponents = {
 	FooterCalendarPreview: () => <FooterCalendarPreview />,
 	TimePickerCalendarPreview: () => <TimePickerCalendarPreview />,
 	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
+	SliderWithStepper: () => <SliderWithStepper />,
+	RangeSlider: () => <RangeSlider />,
+	SliderWithMarks: () => <SliderWithMarks />,
+	SliderWithInput: () => <SliderWithInput />,
+	SliderWithTooltip: () => <SliderWithTooltip />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -290,6 +302,7 @@ const components: MDXComponents = {
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
+	ResizableExample: () => <ResizableExample />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
 	),

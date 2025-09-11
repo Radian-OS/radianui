@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { EyeIcon, RotateCw, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Fade } from "@/registry/animated/fade"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function BlurFadeExample() {
@@ -11,9 +11,9 @@ export default function BlurFadeExample() {
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-start">
 				<div className="flex gap-1">
-					<Button variant="outline" color="neutral" iconOnly onClick={() => setCounter((prev) => prev + 1)}>
+					<IconButton variant="outline" color="neutral" onClick={() => setCounter((prev) => prev + 1)}>
 						<RotateCw />
-					</Button>
+					</IconButton>
 					<TabsList variant="outline-ghost" size="md">
 						<TabsTrigger value="preview">
 							<EyeIcon />

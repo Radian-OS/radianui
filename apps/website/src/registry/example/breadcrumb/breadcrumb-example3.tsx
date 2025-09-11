@@ -38,8 +38,9 @@ const BreadCrumbExample3 = () => {
 							<BreadcrumbItem>
 								<Dropdown>
 									<DropdownTrigger asChild>
-										<Button color="neutral" variant="outline" end={<ChevronDown className="size-5" />}>
+										<Button color="neutral" variant="outline">
 											Installation
+											<ChevronDown className="size-5" />
 										</Button>
 									</DropdownTrigger>
 									<DropdownContent>
@@ -75,8 +76,9 @@ const BreadCrumbExample3 = () => {
     <BreadcrumbItem>
       <Dropdown>
         <DropdownTrigger asChild>
-          <Button color="neutral" variant="outline" end={<ChevronDown className="size-5" />}>
+          <Button color="neutral" variant="outline">
             Installation
+			<ChevronDown className="size-5" />
           </Button>
         </DropdownTrigger>
         <DropdownContent>

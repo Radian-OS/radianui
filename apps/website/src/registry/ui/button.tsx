@@ -12,8 +12,6 @@ type ButtonProps = VariantProps<typeof buttonVariants> &
 		className?: string
 		children: React.ReactNode
 		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
-		start?: React.ReactNode
-		end?: React.ReactNode
 		loading?: boolean
 		asChild?: boolean
 	}
@@ -46,8 +44,6 @@ type LinkButtonProps = {
 	disabled?: boolean
 	target?: string
 	rel?: string
-	start?: React.ReactNode
-	end?: React.ReactNode
 }
 
 type IconButtonProps = VariantProps<typeof buttonVariants> &
@@ -57,11 +53,10 @@ type IconButtonProps = VariantProps<typeof buttonVariants> &
 		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
 		loading?: boolean
 		asChild?: boolean
-		iconOnly?: boolean
 	}
 
 export const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border  focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {
 			variant: {
@@ -82,11 +77,6 @@ export const buttonVariants = cva(
 				true: "",
 				false: "",
 			},
-
-			iconOnly: {
-				true: "",
-				false: "",
-			},
 			color: {
 				primary: "",
 				info: "",
@@ -99,33 +89,19 @@ export const buttonVariants = cva(
 		defaultVariants: {
 			variant: "strong",
 			size: "36",
-			iconOnly: false,
 			color: "primary",
 			loading: false,
 		},
 		compoundVariants: [
-			// Size variants
-			{ iconOnly: false, size: "28", className: "gap-0.5 h-7 px-2 py-1.5" },
-			{ iconOnly: false, size: "32", className: "gap-0.5 h-8 px-2 py-1.5" },
-			{ iconOnly: false, size: "36", className: "gap-1 h-9 px-2.5 py-2" },
-			{ iconOnly: false, size: "40", className: "gap-1 h-10 px-3 py-2.5" },
-			{ iconOnly: false, size: "44", className: "gap-1 h-11 px-3 py-2.5" },
-			{ iconOnly: false, size: "48", className: "gap-1 h-12 px-3.5 py-3" },
+			// Default size styles (for buttons with text)
+			{ size: "28", className: "gap-0.5 h-7 px-2 py-1.5" },
+			{ size: "32", className: "gap-0.5 h-8 px-2 py-1.5" },
+			{ size: "36", className: "gap-1 h-9 px-2.5 py-2" },
+			{ size: "40", className: "gap-1 h-10 px-3 py-2.5" },
+			{ size: "44", className: "gap-1 h-11 px-3 py-2.5" },
+			{ size: "48", className: "gap-1 h-12 px-3.5 py-3" },
 
-			{ iconOnly: true, size: "28", className: "p-1.5 size-7 gap-1" },
-			{ iconOnly: true, size: "32", className: "p-1.75 size-8 gap-1" },
-			{ iconOnly: true, size: "36", className: "p-2 size-9 gap-1" },
-			{ iconOnly: true, size: "40", className: "p-2.5 size-10 gap-1" },
-			{ iconOnly: true, size: "44", className: "p-3 size-11 gap-1" },
-			{ iconOnly: true, size: "48", className: "p-3 size-12 gap-1" },
-
-			{ iconOnly: true, variant: "outline", size: "28", className: "p-1.25 size-7 gap-1" },
-			{ iconOnly: true, variant: "outline", size: "32", className: "p-1.5 size-8 gap-1" },
-			{ iconOnly: true, variant: "outline", size: "36", className: "p-1.75 size-9 gap-1" },
-			{ iconOnly: true, variant: "outline", size: "40", className: "p-2.25 size-10 gap-1" },
-			{ iconOnly: true, variant: "outline", size: "44", className: "p-2.75 size-11 gap-1" },
-			{ iconOnly: true, variant: "outline", size: "48", className: "p-2.75 size-12 gap-1" },
-
+			// Strong variant + colors
 			{
 				variant: "strong",
 				color: "primary",
@@ -219,7 +195,7 @@ export const buttonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 overflow-hidden font-medium text-fg-secondary border border-border  hover:bg-fill1-alpha focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-fill2-alpha",
+					"bg-elevation-level1 overflow-hidden font-medium text-fg-secondary border border-border hover:bg-fill1-alpha focus-visible:ring-border relative before:absolute before:inset-0 hover:before:bg-fill2-alpha",
 			},
 
 			// Ghost variant + colors
@@ -253,49 +229,35 @@ export const buttonVariants = cva(
 				color: "neutral",
 				className: "bg-transparent text-fg-secondary font-medium hover:bg-fill2 focus-visible:outline-none focus-visible:ring-border",
 			},
-
-			// Neutral variants
 		],
 	}
 )
 
-function Button({
-	loading = false,
-	variant = "strong",
-	size = "36",
-	color = "primary",
-	className,
-	children,
-	disabled,
-	start,
-	end,
-	asChild = false,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	iconOnly: _iconOnly,
-	...props
-}: ButtonProps) {
-	const combinedClass = cn(buttonVariants({ variant, size, color, iconOnly: false }), disabled && "opacity-50", className)
+function Button({ loading = false, variant = "strong", size = "36", color = "primary", className, children, disabled, asChild = false, ...props }: ButtonProps) {
+	const combinedClass = cn(buttonVariants({ variant, size, color }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
+	// Remove any invalid DOM props before spreading
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const { iconOnly, ...validProps } = props as React.ComponentProps<"button"> & { iconOnly?: boolean }
+
 	if (asChild) {
-		if (start || end || loading) {
-			console.warn("Button: start, end, and loading props are not supported when using asChild")
+		if (loading) {
+			console.warn("Button: loading prop is not supported when using asChild")
 		}
 
 		return (
-			<Comp className={combinedClass} disabled={disabled} {...props}>
+			<Comp className={combinedClass} disabled={disabled} {...validProps}>
 				{children}
 			</Comp>
 		)
 	}
 
 	return (
-		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
-			{start}
-			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : null}
+		<Comp type="button" className={combinedClass} disabled={disabled} {...validProps}>
+			{loading && <Spinner variant="simple" size={size ? Number(size) : undefined} />}
 			{children}
-			{end}
 		</Comp>
 	)
 }
@@ -335,7 +297,7 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	const combinedClass = cn(
 		"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 		sizeStyles,
-		buttonVariants({ variant, size: "36", iconOnly: false, color })
+		buttonVariants({ variant, size: "36", color })
 			.split(" ")
 			.filter(
 				(cls) =>
@@ -363,18 +325,6 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 
 	const Comp = asChild ? Slot : "button"
 
-	if (asChild) {
-		if (loading) {
-			throw new Error("CompactButton: loading prop is not supported when using asChild")
-		}
-
-		return (
-			<Comp className={combinedClass} disabled={disabled} {...props}>
-				{children}
-			</Comp>
-		)
-	}
-
 	return (
 		<Comp className={combinedClass} disabled={disabled} {...props}>
 			{loading ? <Spinner variant="simple" size={Number(size)} /> : children}
@@ -397,7 +347,7 @@ const linkButtonVariants = cva(
 			},
 			size: {
 				"14": "text-sm focus-visible:rounded-sm",
-				"16": "text-base  focus-visible:rounded-md",
+				"16": "text-base focus-visible:rounded-md",
 			},
 			loading: {
 				true: "",
@@ -411,56 +361,58 @@ const linkButtonVariants = cva(
 	}
 )
 
-function LinkButton({ size = "14", href, color = "primary", start, end, className, children, disabled, target, rel, loading, ...props }: LinkButtonProps) {
+function LinkButton({ size = "14", href, color = "primary", className, children, disabled, target, rel, loading, ...props }: LinkButtonProps) {
 	const combinedClass = cn(linkButtonVariants({ color, size, loading: loading || false }), disabled && "opacity-50 pointer-events-none", className)
 
 	if (disabled) {
 		return (
 			<span className={combinedClass} {...props}>
-				{start}
 				{loading ? <Spinner variant="simple" size={size === "14" ? 14 : 16} /> : null}
 				{children}
-				{end}
 			</span>
 		)
 	}
 
 	return loading ? (
 		<span className={combinedClass} rel={rel} {...props}>
-			{start}
 			{loading ? <Spinner variant="simple" size={size === "14" ? 14 : 16} /> : null}
 			{children}
-			{end}
 		</span>
 	) : (
 		<Link href={href} className={combinedClass} target={target} rel={rel} {...props}>
-			{start}
 			{children}
-			{end}
 		</Link>
 	)
 }
 
 LinkButton.displayName = "LinkButton"
 
-function IconButton({
-	loading = false,
-	variant = "strong",
-	size = "36",
-	iconOnly = true,
-	color = "primary",
-	className,
-	children,
-	disabled,
-	asChild = false,
-	...props
-}: IconButtonProps) {
-	const combinedClass = cn(buttonVariants({ variant, size, iconOnly, color }), disabled && "opacity-50", className)
+function IconButton({ loading = false, variant = "strong", size = "36", color = "primary", className, children, disabled, asChild = false, ...props }: IconButtonProps) {
+	// For icon buttons, we override the padding to make them square
+	const iconButtonClass = cn(
+		buttonVariants({ variant, size, color, loading }),
+		// Override default padding with icon-specific padding
+		size === "28" && "p-1.5 size-7",
+		size === "32" && "p-1.75 size-8",
+		size === "36" && "p-2 size-9",
+		size === "40" && "p-2.5 size-10",
+		size === "44" && "p-3 size-11",
+		size === "48" && "p-3 size-12",
+		// Adjust padding for outline variant
+		variant === "outline" && size === "28" && "p-1.25",
+		variant === "outline" && size === "32" && "p-1.5",
+		variant === "outline" && size === "36" && "p-1.75",
+		variant === "outline" && size === "40" && "p-2.25",
+		variant === "outline" && size === "44" && "p-2.75",
+		variant === "outline" && size === "48" && "p-2.75",
+		disabled && "opacity-50",
+		className
+	)
 
 	const Comp = asChild ? Slot : "button"
 
 	return (
-		<Comp type="button" className={combinedClass} disabled={disabled} {...props}>
+		<Comp type="button" className={iconButtonClass} disabled={disabled} {...props}>
 			{loading ? <Spinner variant="simple" size={size ? Number(size) : undefined} /> : children}
 		</Comp>
 	)

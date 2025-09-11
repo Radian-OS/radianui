@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
-import { ChevronDown, ChevronUp, PhoneIcon } from "lucide-react"
+import { PhoneIcon } from "lucide-react"
 import * as RPNInput from "react-phone-number-input"
 import { type Value, getCountries, getCountryCallingCode, isValidPhoneNumber } from "react-phone-number-input"
 import flags from "react-phone-number-input/flags"
@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import { Input } from "./input"
 import { Label } from "./label"
-import { Select, SelectGroup, SelectItem } from "./select"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "./select"
 
 type PhoneNumberPrimitiveProps = Omit<RPNInput.Props<typeof Input>, "inputComponent" | "displayName"> & {
 	// size?: InputProps["size"]
@@ -385,9 +385,9 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 
 	// When user selects country from dropdown - allow manual selection even when countryCallingCodeEditable is false
 	const handleCountrySelection = useCallback(
-		(selectedValues: string[]) => {
+		(value: string) => {
 			if (disabled) return
-			const selectedCode = selectedValues[0] as RPNInput.Country
+			const selectedCode = value as RPNInput.Country
 			if (countries.includes(selectedCode)) {
 				// Track the manually selected country
 				setLastManuallySelectedCountry(selectedCode)
@@ -488,15 +488,12 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 		const { code, name, callingCode } = countryData
 
 		return (
-			<SelectItem key={code} value={code} keywords={countryData.searchKeywords} endContent={`+${callingCode}`} startContent={<Flag country={code} />}>
+			<SelectItem key={code} value={code}>
+				<Flag country={code} />
 				<span>{name}</span>
+				<span className="ml-auto">{`+${callingCode}`}</span>
 			</SelectItem>
 		)
-	}, [])
-
-	// Generate dynamic search placeholder based on search capabilities
-	const getSearchPlaceholder = useCallback(() => {
-		return "Search by Country or Code"
 	}, [])
 
 	// Custom handler for open/close - allow dropdown to open regardless of countryCallingCodeEditable
@@ -520,32 +517,16 @@ const PhoneNumber: React.FC<PhoneNumberPrimitiveProps> = ({
 					<Select
 						open={selectOpen}
 						onOpenChange={handleSelectOpenChange}
-						selectedValues={getDisplayCountry() ? [getDisplayCountry()!] : []} // Use display country for UI
-						onSelectedChange={handleCountrySelection}
-						selectionMode="single"
-						isSearchable={true} // Always allow search
-						searchPlaceholder={getSearchPlaceholder()}
-						disabled={disabled}
-						renderTrigger={() => (
-							<Button
-								variant="outline"
-								color="neutral"
-								// size={size}
-								disabled={disabled}
-								className={cn(
-									"disabled:bg-fill2 focus-visible:border-primary border-alpha focus-visible:border-r-1 rounded-r-none border border-r-0 px-2 outline-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0",
-									{ "border-error": effectiveHasError && !disabled }
-								)}>
-								<span className="flex flex-shrink-0 items-center justify-center gap-1">
-									<Flag country={getDisplayCountry()} />
-									{international && <span className="text-fg-tertiary">{getDisplayCountry() ? `+${countryCodeMap.get(getDisplayCountry()!)}` : null}</span>}
-									{/* Always show chevron since dropdown is always functional */}
-									{selectOpen ? <ChevronUp className="text-fg-disabled size-4" /> : <ChevronDown className="text-fg-disabled size-4" />}
-								</span>
-							</Button>
-						)}>
-						{preferredCountriesList.length > 0 && <SelectGroup label="Preferred">{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
-						{regularCountriesList.length > 0 && <SelectGroup label="All Countries">{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
+						value={getDisplayCountry() ? getDisplayCountry() : undefined} // Use display country for UI
+						onValueChange={handleCountrySelection}
+						disabled={disabled}>
+						<SelectTrigger>
+							<SelectValue />
+						</SelectTrigger>
+						<SelectContent>
+							{preferredCountriesList.length > 0 && <SelectGroup>{preferredCountriesList.map(renderCountryItem)}</SelectGroup>}
+							{regularCountriesList.length > 0 && <SelectGroup>{regularCountriesList.map(renderCountryItem)}</SelectGroup>}
+						</SelectContent>
 					</Select>
 				)}
 				{showTrigger && !countryDropdown && (

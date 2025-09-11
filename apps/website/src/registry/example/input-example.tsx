@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { BellOff, BellRing } from "lucide-react"
 import { Calendar } from "../ui/calendar"
 // import { CurrencyInput } from "../ui/currency-amount"
 // import DatePicker from "../ui/date-picker"
@@ -13,7 +12,6 @@ import { Password } from "../ui/password"
 import { ProgressBar } from "../ui/progress-bar"
 import SearchInput from "../ui/search"
 // import { Select, SelectItem } from "../ui/select"
-import Slider from "../ui/slider"
 import { TextArea } from "../ui/text-area"
 
 // import TimePicker from "../ui/time-picker"
@@ -30,7 +28,6 @@ const InputExample = () => {
 	const [input, setInput] = React.useState<string>("")
 
 	const [progress, setProgress] = React.useState<number>(50)
-	const [sliderValue, setSliderValue] = React.useState<number[]>([10, 40])
 
 	React.useEffect(() => {
 		const timer = setTimeout(() => setProgress(50), 400)
@@ -142,7 +139,7 @@ const InputExample = () => {
 			<ProgressBar value={progress} />
 
 			<div className="my-4 flex w-full flex-col gap-4">
-				<Slider label="Test label" start={<BellOff size={20} />} end={<BellRing size={20} />} />
+				{/* <Slider label="Test label" start={<BellOff size={20} />} end={<BellRing size={20} />} />
 
 				<Slider value={sliderValue} onValueChange={setSliderValue} />
 
@@ -150,11 +147,11 @@ const InputExample = () => {
 
 				<Slider defaultValue={[550, 1000]} min={500} max={1200} />
 
-				<Slider showSteppers={true} />
+				<Slider showSteppers={true} /> */}
 
 				{/* <Slider showSteppers={true} step={20} /> */}
 
-				<Slider
+				{/* <Slider
 					step={20}
 					marks={[
 						{ value: 0, label: "0%" },
@@ -164,7 +161,7 @@ const InputExample = () => {
 						{ value: 80, label: "80%" },
 						{ value: 100, label: "100%" },
 					]}
-				/>
+				/> */}
 
 				{/* <Slider
 					defaultValue={[20, 60]}
@@ -178,10 +175,10 @@ const InputExample = () => {
 						{ value: 100, label: "100%" },
 					]}
 				/> */}
-				<Slider className="my-2" disabled={true} defaultValue={[50]} label="Disabled slider" />
+				{/* <Slider className="my-2" disabled={true} defaultValue={[50]} label="Disabled slider" /> */}
 
 				<div className="flex h-64 gap-5">
-					<Slider orientation="vertical" />
+					{/* <Slider orientation="vertical" />
 					<Slider start={<BellOff size={20} />} end={<BellRing size={20} />} orientation="vertical" />
 
 					<Slider
@@ -196,7 +193,7 @@ const InputExample = () => {
 							{ value: 80, label: "80%" },
 							{ value: 100, label: "100%" },
 						]}
-					/>
+					/> */}
 				</div>
 			</div>
 		</div>

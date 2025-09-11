@@ -1,20 +1,5 @@
 import React, { useState } from "react"
-import {
-	ChevronDown,
-	ChevronUp,
-	Clock,
-	CreditCard,
-	EyeIcon,
-	Headset,
-	LogOut,
-	MessageCircleMore,
-	Settings,
-	SquareTerminal,
-	UserPlus,
-	UserRound,
-	Users,
-	UsersRound,
-} from "lucide-react"
+import { Clock, CreditCard, EyeIcon, Headset, LogOut, MessageCircleMore, Settings, SquareTerminal, UserPlus, UserRound, Users, UsersRound } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
 import {
@@ -97,7 +82,7 @@ export default function DropdownPreview() {
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
 					<Dropdown open={open} onOpenChange={setOpen}>
 						<DropdownTrigger asChild>
-							<Button color="neutral" variant="outline" end={open ? <ChevronUp /> : <ChevronDown />}>
+							<Button color="neutral" variant="outline">
 								Dropdown
 							</Button>
 						</DropdownTrigger>
@@ -209,7 +194,7 @@ export default function DropdownPreview() {
 	return (
 		<Dropdown open={open} onOpenChange={setOpen}>
 			<DropdownTrigger asChild>
-				<Button color="neutral" variant="outline" end={open ? <ChevronUp /> : <ChevronDown />}>
+				<Button color="neutral" variant="outline">
 					Dropdown
 				</Button>
 			</DropdownTrigger>

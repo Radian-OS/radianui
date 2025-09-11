@@ -5,7 +5,7 @@ import type { JSX } from "react"
 import { Check, Clipboard } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -171,9 +171,9 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 						</TabsTrigger>
 					))}
 				</TabsList>
-				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={handleCopy}>
+				<IconButton variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={handleCopy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
-				</Button>
+				</IconButton>
 			</div>
 			{pkg.map((manager) => (
 				<TabsContent key={manager} value={manager}>
