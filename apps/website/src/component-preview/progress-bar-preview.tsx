@@ -90,7 +90,7 @@ const ProgressBarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<ProgressBar label={label ? "Progress Bar" : undefined} hint={hint ? "Progress Bar" : undefined} valueLabel={valueLabel} value={Number(progress)} />
+					<ProgressBar className="w-80" label={label ? "Loading...." : undefined} hint={hint ? "Progress Bar" : undefined} valueLabel={valueLabel} value={Number(progress)} />
 				</div>
 			</TabsContent>
 
@@ -99,12 +99,20 @@ const ProgressBarPreview = () => {
 					title="progress-bar.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<ProgressBar 
-	value={${Number(progress)}}
-	label="${label ? "ProgressBar" : undefined}"
-	valueLabel={${valueLabel}}
-	${hint ? `hint="Progress Bar"` : ""}
-/>
+					code={`import { ProgressBar } from "@/components/ui/progress-bar"
+
+
+export default function ProgressBarExample() {
+  return (    						
+		<ProgressBar 
+			className="w-80" 
+			value={${Number(progress)}}
+			label="${label ? "Loading...." : undefined}"
+			valueLabel={${valueLabel}}
+			${hint ? `hint="Progress Bar"` : ""}
+		/>
+  );
+}
 					`}
 				/>
 			</TabsContent>
