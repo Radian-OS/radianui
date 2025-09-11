@@ -105,13 +105,15 @@ export default CounterInput
 	`
 
 	return (
-		<Tabs className="mt-3" defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs className="mt-3" defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>

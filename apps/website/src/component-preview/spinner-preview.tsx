@@ -13,13 +13,15 @@ const SpinnerPreview = () => {
 	const [size, setSize] = useState<number>(36)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>

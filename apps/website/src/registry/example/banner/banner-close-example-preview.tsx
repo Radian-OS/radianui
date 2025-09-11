@@ -14,12 +14,14 @@ const BannerCloseExamplePreview = () => {
 	}
 
 	return (
-		<Tabs className="" defaultValue="preview" variant="outline-ghost" size="md">
-			<TabsList>
-				<TabsTrigger onClick={() => setIsVisible(true)} value="preview" icon={<EyeIcon />}>
+		<Tabs className="" defaultValue="preview">
+			<TabsList variant="outline-ghost" size="md">
+				<TabsTrigger onClick={() => setIsVisible(true)} value="preview">
+					<EyeIcon />
 					Preview
 				</TabsTrigger>
-				<TabsTrigger onClick={() => setIsVisible(true)} value="code" icon={<SquareTerminal />}>
+				<TabsTrigger onClick={() => setIsVisible(true)} value="code">
+					<SquareTerminal />
 					Code
 				</TabsTrigger>
 			</TabsList>

@@ -55,18 +55,19 @@ const TimePickerCalendarPreview = () => {
 	]
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
 			</div>
-
 			<TabsContent value="preview">
 				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
 					<div className="bg-elevation-level1 overflow-hidden rounded-lg border p-2">

@@ -6,7 +6,7 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-type Backdrop = VariantProps<typeof backdropVariants>["backdrop"]
+type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
 
 type DialogProps = DialogPrimitive.DialogProps
 
@@ -25,7 +25,7 @@ type DialogTitleProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Ti
 
 type DialogDescriptionProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 
-const backdropVariants = cva("z-50 fixed inset-0", {
+const dialogOverlayVariants = cva("data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50", {
 	variants: {
 		backdrop: {
 			overlay: "bg-black/50",
@@ -47,28 +47,18 @@ const DialogPortal = DialogPrimitive.Portal
 const DialogClose = DialogPrimitive.Close
 
 function DialogOverlay({ className, backdrop = "overlay", ...props }: DialogOverlayProps) {
-	return (
-		<DialogPrimitive.Overlay
-			data-slot="modal-overlay"
-			className={cn(
-				backdropVariants({ backdrop }),
-				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-				className
-			)}
-			{...props}
-		/>
-	)
+	return <DialogPrimitive.Overlay data-slot="modal-overlay" className={cn(dialogOverlayVariants({ backdrop }), className)} {...props} />
 }
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
-function DialogContent({ className, children, backdrop = "overlay", closeButton = "visible", ...props }: DialogContentProps) {
+function DialogContent({ className, children, backdrop, closeButton = "visible", ...props }: DialogContentProps) {
 	return (
 		<DialogPortal>
 			<DialogOverlay backdrop={backdrop} />
 			<DialogPrimitive.Content
 				data-slot="modal-content"
 				className={cn(
-					"bg-bg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-border-alpa group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					"bg-bg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-alpha group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
 					className
 				)}
 				{...props}>
@@ -93,7 +83,7 @@ function DialogContent({ className, children, backdrop = "overlay", closeButton 
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
 function DialogHeader({ className, ...props }: DialogHeaderProps) {
-	return <div className={cn("flex flex-col gap-1 text-left", className)} {...props} />
+	return <div className={cn("flex flex-col space-y-1 text-center sm:text-left", className)} {...props} />
 }
 DialogHeader.displayName = "DialogHeader"
 

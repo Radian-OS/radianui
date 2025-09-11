@@ -8,17 +8,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 export default function BlurFadeExample() {
 	const [counter, setCounter] = useState(0)
 	return (
-		<Tabs variant={"outline-ghost"} defaultValue="preview" className="mb-10">
+		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-start">
 				<div className="flex gap-1">
 					<Button variant="outline" color="neutral" iconOnly onClick={() => setCounter((prev) => prev + 1)}>
 						<RotateCw />
 					</Button>
-					<TabsList>
-						<TabsTrigger value="preview" icon={<EyeIcon />}>
+					<TabsList variant="outline-ghost" size="md">
+						<TabsTrigger value="preview">
+							<EyeIcon />
 							Preview
 						</TabsTrigger>
-						<TabsTrigger value="code" icon={<SquareTerminal />}>
+						<TabsTrigger value="code">
+							<SquareTerminal />
 							Code
 						</TabsTrigger>
 					</TabsList>

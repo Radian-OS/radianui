@@ -95,17 +95,17 @@ export default BadgeCloseExample
 					<h6 className="heading-6 mb-3 font-semibold">{example.name}</h6>
 					<Tabs
 						defaultValue="preview"
-						variant="outline-ghost"
-						size="md"
 						onValueChange={(val) => {
 							// Reset badges whenever switching back to preview
 							if (val === "preview") setFrameworks(initialFrameworks)
 						}}>
-						<TabsList>
-							<TabsTrigger value="preview" icon={<EyeIcon />}>
+						<TabsList variant="outline-ghost" size="md">
+							<TabsTrigger value="preview">
+								<EyeIcon />
 								Preview
 							</TabsTrigger>
-							<TabsTrigger value="code" icon={<SquareTerminal />}>
+							<TabsTrigger value="code">
+								<SquareTerminal />
 								Code
 							</TabsTrigger>
 						</TabsList>

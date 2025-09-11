@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 
 type PopoverProps = React.ComponentProps<typeof PopoverPrimitive.Root>
 
-type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content> & { withArrow?: boolean }
+type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content>
 
 type PopoverTriggerProps = React.ComponentProps<typeof PopoverPrimitive.Trigger>
 
@@ -20,7 +20,7 @@ function PopoverTrigger({ ...props }: PopoverTriggerProps) {
 }
 PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
 
-function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, className, withArrow = false, children, ...props }: PopoverContentProps) {
+function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, className, children, ...props }: PopoverContentProps) {
 	return (
 		<PopoverPrimitive.Portal>
 			<PopoverPrimitive.Content
@@ -38,7 +38,6 @@ function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, cla
 				)}
 				{...props}>
 				{children}
-				{withArrow && <PopoverPrimitive.Arrow width={10} className="fill-border" />}
 			</PopoverPrimitive.Content>
 		</PopoverPrimitive.Portal>
 	)
