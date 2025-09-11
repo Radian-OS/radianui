@@ -4,7 +4,7 @@ import { X } from "lucide-react"
 import Link from "next/link"
 import { Toaster as Sonner, toast } from "sonner"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
+import { IconButton } from "./button"
 
 type ButtonType = {
 	label: string
@@ -168,8 +168,7 @@ export function showToast({
 						{customContent}
 						{/* Optional close button for custom content */}
 						{shouldShowCloseButton && (
-							<Button
-								iconOnly
+							<IconButton
 								onClick={(e) => {
 									e.stopPropagation() // Prevent triggering closeOnClick
 									toast.dismiss(toastId)
@@ -177,7 +176,7 @@ export function showToast({
 								className="absolute right-2 top-2 z-10 cursor-pointer rounded-full"
 								aria-label="Close toast">
 								<X className="size-4" />
-							</Button>
+							</IconButton>
 						)}
 					</div>
 				)

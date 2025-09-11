@@ -5,7 +5,7 @@ import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useCallback
 import { cva } from "class-variance-authority"
 import { FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTextIcon, HeadphonesIcon, Upload, VideoIcon, XIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "./button"
+import { Button, IconButton } from "./button"
 import { Input } from "./input"
 import { Label } from "./label"
 
@@ -157,9 +157,9 @@ function FileUpload({
 						})}>
 						<input id="picture" {...getInputProps()} className="sr-only" aria-label="Upload image file" />
 						<div className="flex flex-col items-center justify-center gap-4 px-4 py-3 text-center">
-							<Button disabled={disabled} variant="outline" color="neutral" size="36" iconOnly>
+							<IconButton disabled={disabled} variant="outline" color="neutral" size="36">
 								<Upload className="text-fg-secondary size-6" />
-							</Button>
+							</IconButton>
 							<div className="flex flex-col gap-2">
 								<p className="text-fgtext-sm font-semibold leading-5">{title}</p>
 								<p className="text-fg-tertiary text-xs font-normal leading-4">

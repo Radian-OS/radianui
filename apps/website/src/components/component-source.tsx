@@ -4,7 +4,7 @@ import components from "@/app/api/components/components.json"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 
 type ComponentSourceProps = {
@@ -45,9 +45,9 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 					<Terminal className="size-4" />
 				</span>
 				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
-				<Button variant="ghost" color="neutral" size={"28"} iconOnly aria-label="Copy command" onClick={copy}>
+				<IconButton variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={copy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
-				</Button>
+				</IconButton>
 			</div>
 			{collapsible && (
 				<CodeCollapsibleWrapper>

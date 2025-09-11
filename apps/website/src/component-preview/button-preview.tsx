@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CircleCheck, EyeIcon, Info, Settings, SquareTerminal, Star, TriangleAlert } from "lucide-react"
+import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button, IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
@@ -13,39 +13,12 @@ const ButtonPreview = () => {
 	type disabledType = "true" | "false"
 	// Colors type; neutral is removed.
 	type colors = "primary" | "info" | "success" | "error" | "warning" | "neutral"
-	type iconType = "star" | "info" | "alert" | "check" | "none"
 
 	const [variant, setVariant] = useState<variants>("strong")
 	const [size, setSize] = useState<sizes>("36")
 	const [loading, setLoading] = useState<isloadingType>("false")
 	const [disabled, setDisabled] = useState<disabledType>("false")
 	const [color, setColor] = useState<colors>("primary")
-	const [start, setstart] = useState<iconType>("none")
-	const [end, setend] = useState<iconType>("none")
-
-	const getstartTrialClass = () => {
-		if (size === "36" || size === "32" || size === "40") {
-			return "size-5"
-		}
-		if (size === "28") {
-			return "size-4"
-		}
-		if (size === "44" || size === "48") {
-			return "size-6"
-		}
-		return ""
-	}
-
-	const iconClass = getstartTrialClass()
-	const icons = {
-		star: <Star />,
-		info: <Info />,
-		check: <CircleCheck />,
-		alert: <TriangleAlert />,
-		none: "",
-	}
-	const startSelectedIcon = icons[start as keyof typeof icons]
-	const endSelectedIcon = icons[end as keyof typeof icons]
 
 	return (
 		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
@@ -138,52 +111,6 @@ const ButtonPreview = () => {
 						</DropdownSub>
 
 						<DropdownSub>
-							<DropdownSubTrigger>Start</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={start} onValueChange={(value) => setstart(value as iconType)}>
-									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
-										None
-									</DropdownRadioItem>
-									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
-										Star
-									</DropdownRadioItem>
-									<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
-										Info
-									</DropdownRadioItem>
-									<DropdownRadioItem value="alert" onSelect={(e) => e.preventDefault()}>
-										Alert
-									</DropdownRadioItem>
-									<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
-										Check
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>End</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={end} onValueChange={(value) => setend(value as iconType)}>
-									<DropdownRadioItem value="none" onSelect={(e) => e.preventDefault()}>
-										None
-									</DropdownRadioItem>
-									<DropdownRadioItem value="star" onSelect={(e) => e.preventDefault()}>
-										Star
-									</DropdownRadioItem>
-									<DropdownRadioItem value="info" onSelect={(e) => e.preventDefault()}>
-										Info
-									</DropdownRadioItem>
-									<DropdownRadioItem value="alert" onSelect={(e) => e.preventDefault()}>
-										Alert
-									</DropdownRadioItem>
-									<DropdownRadioItem value="check" onSelect={(e) => e.preventDefault()}>
-										Check
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as disabledType)}>
@@ -215,7 +142,7 @@ const ButtonPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center gap-3 overflow-auto rounded-xl border">
-					<Button start={startSelectedIcon} end={endSelectedIcon} variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
+					<Button variant={variant} size={size} loading={loading === "true"} color={color} disabled={disabled === "true"}>
 						Button
 					</Button>
 				</div>
@@ -225,35 +152,7 @@ const ButtonPreview = () => {
 					title="button.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Button${
-						start !== "none"
-							? `\n  start={${
-									start === "star"
-										? `<Star className="${iconClass}" />`
-										: start === "info"
-											? `<Info className="${iconClass}" />`
-											: start === "alert"
-												? `<TriangleAlert className="${iconClass}" />`
-												: start === "check"
-													? `<CircleCheck className="${iconClass}" />`
-													: ""
-								}}`
-							: ""
-					}${
-						end !== "none"
-							? `\n  end={${
-									end === "star"
-										? `<Star className="${iconClass}" />`
-										: end === "info"
-											? `<Info className="${iconClass}" />`
-											: end === "alert"
-												? `<TriangleAlert className="${iconClass}" />`
-												: end === "check"
-													? `<CircleCheck className="${iconClass}" />`
-													: ""
-								}}`
-							: ""
-					}
+					code={`<Button
   size="${size}"
   loading={${loading === "true"}}
   variant="${variant}"

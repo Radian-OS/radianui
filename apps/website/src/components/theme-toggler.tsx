@@ -22,9 +22,9 @@ export function DesktopThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<Button variant="outline" color="neutral" iconOnly disabled>
+			<IconButton variant="outline" color="neutral" disabled>
 				<Loader2 className="size-5 animate-spin" />
-			</Button>
+			</IconButton>
 		)
 	}
 
@@ -49,9 +49,9 @@ export function TabletMobileThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<Button variant="outline" color="neutral" iconOnly disabled>
+			<IconButton variant="outline" color="neutral" disabled>
 				<Loader2 className="size-5 animate-spin" />
-			</Button>
+			</IconButton>
 		)
 	}
 

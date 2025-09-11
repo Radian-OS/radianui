@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { navLinks } from "@/components/navbar/nav-links"
 import { navigationItems } from "@/config/navigation-config"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
-import { Button } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"
@@ -61,9 +61,9 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 						<FigmaPreviewButton />
 						<EarlyAccessButton />
 					</div>
-					<Button iconOnly color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
+					<IconButton color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
 						<X className="size-5" />
-					</Button>
+					</IconButton>
 				</div>
 			</div>
 
