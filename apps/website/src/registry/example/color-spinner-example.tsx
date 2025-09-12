@@ -1,8 +1,7 @@
-import React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
+import { Spinner } from "@/registry/ui/spinner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import { Spinner } from "../ui/spinner"
 
 export default function ColorSpinnerExample() {
 	return (
@@ -19,15 +18,26 @@ export default function ColorSpinnerExample() {
 					</TabsTrigger>
 				</TabsList>
 			</div>
-			{/* Preview Tab */}
 			<TabsContent value="preview">
 				<div className="relative flex h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border px-10">
-					<Spinner color="var(--color-primary)" />
+					<Spinner variant="activity" color="var(--color-primary)" />
 				</div>
 			</TabsContent>
-			{/* Code Tab */}
 			<TabsContent value="code">
-				<CodeSnippet title="color-spinner-example.tsx" showLineNumber className="h-105" code={`<Spinner color="var(--color-primary)" />`} />
+				<CodeSnippet
+					title="color-spinner-example.tsx"
+					showLineNumber
+					className="h-105"
+					code={`
+import { Spinner } from "@/components/ui/spinner"
+
+export default function ColorSpinnerExample() {
+	return (
+		<Spinner variant="activity" color="var(--color-primary)" />
+	)
+}
+`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)
