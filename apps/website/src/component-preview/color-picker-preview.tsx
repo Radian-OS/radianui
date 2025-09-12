@@ -2,7 +2,6 @@ import { useState } from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
-// import { CodeArea } from "@/registry/ui/code-area"
 import ColorPicker from "@/registry/ui/color-picker"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -90,12 +89,18 @@ export default function ColorPickerPreview() {
 					title="color-picker.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<ColorPicker
-	hasError={${hasError}}
-	size="${size}"
-	disabled={${disabled}}
-	defaultColor="#461EFA"
+					code={`import { ColorPicker } from "@/components/ui/color-picker"
+
+export default function ColorPickerExample() {
+  return (    						
+	<ColorPicker
+		hasError={${hasError}}
+		size="${size}"
+		disabled={${disabled}}
+		defaultColor="#461EFA"
 />
+  );
+}
 `}
 				/>
 			</TabsContent>
