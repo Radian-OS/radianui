@@ -114,7 +114,6 @@ import CreditCardPreview from "@/registry/example/input/credit-card-input-previe
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
-import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import UrlPreview from "@/registry/example/input/url-input-preview"
 import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-password-field/otp-size"
@@ -234,7 +233,6 @@ const components: MDXComponents = {
 	CalendarWithYearMonthSelectorExample: () => <CalendarWithYearMonthSelectorExample />,
 	MultipleMonthsCalendarExample: () => <MultipleMonthsCalendarExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
-	PasswordInputPreview2: () => <PasswordInputPreview2 />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
