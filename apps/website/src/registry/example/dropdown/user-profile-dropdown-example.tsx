@@ -1,4 +1,4 @@
-import { useState } from "react"
+import * as React from "react"
 import { EyeIcon, FolderCog, Ghost, LogOut, Settings, SquareTerminal, UserCog } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
@@ -8,7 +8,7 @@ import { Switch } from "@/registry/ui/switch"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const UserMenuDropdownExample = () => {
-	const [incognito, setIncognito] = useState(false)
+	const [incognito, setIncognito] = React.useState(false)
 
 	return (
 		<Tabs defaultValue="preview">
@@ -98,7 +98,10 @@ const UserMenuDropdownExample = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`
-import { useState } from "react"
+"use client"
+
+import * as React from "react"
+
 import { Avatar } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Dropdown, DropdownTrigger, DropdownContent, DropdownDivider, DropdownItem } from "@/components/ui/dropdown"
@@ -107,7 +110,7 @@ import { Button } from "@/components/ui/button"
 import { Settings, UserCog, FolderCog, Ghost, LogOut } from "lucide-react"
 
 export default function UserMenuDropdown() {
-	const [incognito, setIncognito] = useState(false)
+	const [incognito, setIncognito] = React.useState(false)
 
 	return (
 		<Dropdown>

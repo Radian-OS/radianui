@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import { DropdownNavProps, DropdownProps } from "react-day-picker"
 import CodeSnippet from "@/components/code-snippet"
@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function CalendarWithYearMonthSelectorExample() {
-	const [date, setDate] = useState<Date | undefined>(new Date())
+	const [date, setDate] = React.useState<Date | undefined>(new Date())
 
 	const handleCalendarChange = (value: string | number, onChange: React.ChangeEventHandler<HTMLSelectElement>) => {
 		onChange({
@@ -33,9 +33,9 @@ export default function CalendarWithYearMonthSelectorExample() {
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Calendar
-						mode={"single"}
+						mode="single"
 						selected={date}
 						onSelect={setDate}
 						captionLayout="dropdown"
@@ -76,19 +76,19 @@ export default function CalendarWithYearMonthSelectorExample() {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="calendar.tsx"
+					title="calendar-year-month-selector.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
-'use client'
+"use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { DropdownNavProps, DropdownProps } from "react-day-picker"
 import { Calendar } from "@/components/ui/calendar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function CalendarWithYearMonthSelector() {
-	const [date, setDate] = useState<Date | undefined>(new Date())
+	const [date, setDate] = React.useState<Date | undefined>(new Date())
 
 	const handleCalendarChange = (value: string | number, onChange: React.ChangeEventHandler<HTMLSelectElement>) => {
 		onChange({
@@ -98,7 +98,7 @@ export default function CalendarWithYearMonthSelector() {
 
 	return (
 		<Calendar
-			mode={"single"}
+			mode="single"
 			selected={date}
 			onSelect={setDate}
 			captionLayout="dropdown"

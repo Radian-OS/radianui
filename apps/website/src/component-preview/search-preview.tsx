@@ -81,6 +81,7 @@ export default function SearchInput() {
 "use client"
 
 import * as React from "react"
+
 import { Input } from "@/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
