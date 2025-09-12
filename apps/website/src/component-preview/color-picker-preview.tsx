@@ -8,18 +8,13 @@ import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, Dropd
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 export type ColorFormatOptions = "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA"
-const roundedOptions = ["xs", "sm", "md", "lg", "xl", "2xl"]
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 export default function ColorPickerPreview() {
-	const [rounded, setRounded] = useState<RoundedOptions>("lg")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<boolean>(false)
 	const [hasError, setHasError] = useState<boolean>(false)
-	const [label, setLabel] = useState<boolean>(true)
-	const [hint, setHint] = useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview">
@@ -42,18 +37,6 @@ export default function ColorPickerPreview() {
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Rounded</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={rounded} onValueChange={(value) => setRounded(value as RoundedOptions)}>
-									{roundedOptions.map((roundedOption) => (
-										<DropdownRadioItem value={roundedOption} key={roundedOption} onSelect={(e) => e.preventDefault()}>
-											{roundedOption}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
@@ -65,36 +48,11 @@ export default function ColorPickerPreview() {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Label</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(label)} onValueChange={(value) => setLabel(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
+
 						<DropdownSub>
 							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={String(disabled)} onValueChange={(value) => setDisabled(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Hint</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
 									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
 										True
 									</DropdownRadioItem>
@@ -123,15 +81,7 @@ export default function ColorPickerPreview() {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<ColorPicker
-						hasError={hasError}
-						hint={hint ? "Hint text to help the user with input" : ""}
-						size={size}
-						className="w-74"
-						disabled={disabled}
-						label={label ? "Select Color" : undefined}
-						defaultColor="#461EFA"
-					/>
+					<ColorPicker hasError={hasError} size={size} className="w-fit" disabled={disabled} defaultColor="#461EFA" />
 				</div>
 			</TabsContent>
 
@@ -141,12 +91,9 @@ export default function ColorPickerPreview() {
 					showLineNumber
 					className="h-[420px]"
 					code={`<ColorPicker
-	rounded="${rounded}"
 	hasError={${hasError}}
 	size="${size}"
 	disabled={${disabled}}
-    label="${label ? "Select Color" : ""}"
-	${hint ? `hint="Hint text to help the user with input"` : ""}
 	defaultColor="#461EFA"
 />
 `}

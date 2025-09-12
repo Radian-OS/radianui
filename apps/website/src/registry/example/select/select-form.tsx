@@ -1,6 +1,6 @@
 "use client"
 
-import { zodResolver } from "@hookform/resolvers/zod"
+// import { zodResolver } from "@hookform/resolvers/zod"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
@@ -19,7 +19,7 @@ type FormValues = z.infer<typeof FormSchema>
 
 export default function SelectForm() {
 	const form = useForm<FormValues>({
-		resolver: zodResolver(FormSchema),
+		// resolver: zodResolver(FormSchema),
 		defaultValues: {
 			role: "",
 		},

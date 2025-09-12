@@ -3,9 +3,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import { oklch, rgb } from "culori"
 import { Pipette } from "lucide-react"
-import { ButtonGroup } from "./button"
-import { Input } from "./input"
-import { Popover, PopoverContent } from "./popover"
+import { cn } from "@/lib/utils"
+import { Input, InputGroup, InputWrapper } from "./input"
+import { Popover, PopoverContent, PopoverTrigger } from "./popover"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
 
 // Type definitions
@@ -63,6 +63,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 	inputFormat: externalInputFormat = "HEX",
 	onInputFormatChange,
 	className,
+	disabled = false,
+	hasError = false,
 }) => {
 	// Initialize color values from defaultColor
 	useEffect(() => {
@@ -863,35 +865,43 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 		}
 	}, [hue, saturation, value, alpha, inputFormat, isUserTyping])
 
+	type DisplayValues = {
+		hsv: { h: string; s: string; v: string; a: string }
+		rgb: { r: string; g: string; b: string; a: string }
+		hsl: { h: string; s: string; l: string; a: string }
+	}
+
+	const formats = {
+		HSV: ["h", "s", "v", "a"],
+		RGB: ["r", "g", "b", "a"],
+		HSL: ["h", "s", "l", "a"],
+	} as const
+
+	type FormatKey = keyof typeof formats
+
 	return (
 		<Popover>
 			{/* Color Preview */}
-			<Input
-				size={size}
-				className={className}
-				// start={
-				// 	<PopoverTrigger disabled={disabled}>
-				// 		<div
-				// 			className="relative h-5 w-5 cursor-pointer overflow-hidden rounded-sm"
-				// 			style={{
-				// 				backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='checkerboard' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3e%3crect fill='%23cccccc' x='0' width='10' height='10' y='0'/%3e%3crect fill='%23cccccc' x='10' width='10' height='10' y='10'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23checkerboard)' /%3e%3c/svg%3e")`,
-				// 				backgroundSize: "20px 20px", // Smaller pattern for better visibility at 20px size
-				// 			}}>
-				// 			{/* Color overlay that respects alpha */}
-				// 			<div
-				// 				className="absolute inset-0 h-full w-full"
-				// 				style={{
-				// 					backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
-				// 				}}
-				// 			/>
-				// 		</div>
-				// 	</PopoverTrigger>
-				// }
-				value={inputValue}
-				onChange={handleInputChange}
-				onBlur={handleInputBlur}
-				onKeyPress={handleInputKeyPress}
-			/>
+			<InputWrapper size={size} className={className} disabled={disabled} aria-invalid={hasError}>
+				<PopoverTrigger disabled={disabled}>
+					<div
+						className="relative h-5 w-5 cursor-pointer overflow-hidden rounded-[2px]"
+						style={{
+							backgroundImage: `url("data:image/svg+xml,%3csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3e%3cdefs%3e%3cpattern id='checkerboard' x='0' y='0' width='20' height='20' patternUnits='userSpaceOnUse'%3e%3crect fill='%23cccccc' x='0' width='10' height='10' y='0'/%3e%3crect fill='%23cccccc' x='10' width='10' height='10' y='10'/%3e%3c/pattern%3e%3c/defs%3e%3crect width='100%25' height='100%25' fill='url(%23checkerboard)' /%3e%3c/svg%3e")`,
+							backgroundSize: "20px 20px", // Smaller pattern for better visibility at 20px size
+						}}>
+						{/* Color overlay that respects alpha */}
+						<div
+							className="absolute inset-0 h-full w-full"
+							style={{
+								backgroundColor: `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, ${alpha / 100})`,
+							}}
+						/>
+					</div>
+				</PopoverTrigger>
+				<Input value={inputValue} disabled={disabled} onChange={handleInputChange} onBlur={handleInputBlur} onKeyPress={handleInputKeyPress} />
+			</InputWrapper>
+
 			<PopoverContent alignOffset={-11} className="p-0" sideOffset={14}>
 				<div className="flex w-full flex-col gap-2 p-2">
 					{/* Color Picker Area */}
@@ -990,9 +1000,9 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 						</div>
 					</div>
 
-					<div className="flex w-full items-center gap-3">
+					<div className="flex w-full items-center gap-1">
 						{/* Format Selectors */}
-						<div className="flex items-center gap-4 p-2 pl-0">
+						<div className="flex items-center p-2 pl-0">
 							<Select value={displayFormat} onValueChange={setDisplayFormatValues}>
 								<SelectTrigger>
 									<SelectValue />
@@ -1103,89 +1113,26 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
 									}}
 								/>
 							)}
-							{displayFormat === "HSV" && (
-								<ButtonGroup variant="outline" color="neutral" size="32">
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsv.h}
-										onChange={(e) => handleDisplayValueChange("hsv", "h", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsv", "h")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsv.s}
-										onChange={(e) => handleDisplayValueChange("hsv", "s", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsv", "s")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsv.v}
-										onChange={(e) => handleDisplayValueChange("hsv", "v", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsv", "v")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsv.a}
-										onChange={(e) => handleDisplayValueChange("hsv", "a", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsv", "a")}
-									/>
-								</ButtonGroup>
-							)}
-							{displayFormat === "RGB" && (
-								<ButtonGroup variant="outline" color="neutral" size="32">
-									<Input
-										className="w-10 text-center"
-										value={displayValues.rgb.r}
-										onChange={(e) => handleDisplayValueChange("rgb", "r", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("rgb", "r")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.rgb.g}
-										onChange={(e) => handleDisplayValueChange("rgb", "g", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("rgb", "g")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.rgb.b}
-										onChange={(e) => handleDisplayValueChange("rgb", "b", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("rgb", "b")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.rgb.a}
-										onChange={(e) => handleDisplayValueChange("rgb", "a", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("rgb", "a")}
-									/>
-								</ButtonGroup>
-							)}
-							{displayFormat === "HSL" && (
-								<ButtonGroup variant="outline" color="neutral" size="32">
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsl.h}
-										onChange={(e) => handleDisplayValueChange("hsl", "h", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsl", "h")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsl.s}
-										onChange={(e) => handleDisplayValueChange("hsl", "s", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsl", "s")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsl.l}
-										onChange={(e) => handleDisplayValueChange("hsl", "l", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsl", "l")}
-									/>
-									<Input
-										className="w-10 text-center"
-										value={displayValues.hsl.a}
-										onChange={(e) => handleDisplayValueChange("hsl", "a", e.target.value)}
-										onBlur={() => handleDisplayValueBlur("hsl", "a")}
-									/>
-								</ButtonGroup>
+
+							{(displayFormat as FormatKey) in formats && (
+								<InputGroup>
+									{formats[displayFormat as FormatKey].map((key, index, arr) => (
+										<Input
+											key={key}
+											className={cn(
+												"w-full",
+												index === 0
+													? "rounded-r-none" // first input, remove right radius
+													: index === arr.length - 1
+														? "rounded-l-none" // last input, remove left radius
+														: "rounded-none" // middle inputs, no rounding at all
+											)}
+											value={displayValues[displayFormat.toLowerCase() as keyof DisplayValues][key as keyof DisplayValues[keyof DisplayValues]]}
+											onChange={(e) => handleDisplayValueChange(displayFormat.toLowerCase() as keyof DisplayValues, key as string, e.target.value)}
+											onBlur={() => handleDisplayValueBlur(displayFormat.toLowerCase() as keyof DisplayValues, key as string)}
+										/>
+									))}
+								</InputGroup>
 							)}
 						</div>
 					</div>

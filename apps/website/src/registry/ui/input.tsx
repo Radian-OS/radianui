@@ -120,9 +120,14 @@ const inputWrapperVariants = cva(
 				"44": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
 				"48": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
 			},
+			disabled: {
+				true: "cursor-not-allowed opacity-60 bg-fill1 has-[:focus-visible]:ring-0 has-[:focus-visible]:border-alpha [&_svg]:text-fg-tertiary",
+				false: "",
+			},
 		},
 		defaultVariants: {
 			size: "36",
+			disabled: false,
 		},
 	}
 )
@@ -139,8 +144,8 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div"> & Varia
 	return <div data-slot="input-group" className={cn(inputGroupVariants(), className)} {...props} />
 }
 
-function InputWrapper({ className, size, ...props }: React.ComponentProps<"div"> & VariantProps<typeof inputWrapperVariants>) {
-	return <div data-slot="input-wrapper" className={cn(inputVariants({ size }), inputWrapperVariants({ size }), className)} {...props} />
+function InputWrapper({ className, size, disabled, ...props }: React.ComponentProps<"div"> & VariantProps<typeof inputWrapperVariants>) {
+	return <div data-slot="input-wrapper" className={cn(inputVariants({ size }), inputWrapperVariants({ size, disabled }), className)} {...props} />
 }
 
 export { Input, InputAddon, InputGroup, InputWrapper, inputVariants, inputAddonVariants }
