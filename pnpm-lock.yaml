@@ -118,6 +118,9 @@ importers:
       '@radix-ui/react-label':
         specifier: ^2.1.2
         version: 2.1.2(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-one-time-password-field':
+        specifier: ^0.1.8
+        version: 0.1.8(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-popover':
         specifier: ^1.1.6
         version: 1.1.6(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -256,6 +259,9 @@ importers:
       react-hook-form:
         specifier: ^7.62.0
         version: 7.62.0(react@19.1.0)
+      react-international-phone:
+        specifier: ^4.6.0
+        version: 4.6.0(react@19.1.0)
       react-phone-number-input:
         specifier: ^3.4.12
         version: 3.4.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -7127,6 +7133,11 @@ packages:
   react-hook-form@7.62.0:
     resolution: {integrity: sha512-7KWFejc98xqG/F4bAxpL41NB3o1nnvQO1RWZT3TqRZYL8RryQETGfEdVnJN2fy1crCiBLLjkRBVK05j24FxJGA==}
     engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: 19.1.0
+
+  react-international-phone@4.6.0:
+    resolution: {integrity: sha512-lzj5fLfACRKeaitggFIHWl6LM69aO2uivJbEVyVBjAe0+kkvZjToduqnK2/dm9Zu+l8XfVjd+Fn1ZAyG/t8XAg==}
     peerDependencies:
       react: 19.1.0
 
@@ -15634,6 +15645,10 @@ snapshots:
       scheduler: 0.26.0
 
   react-hook-form@7.62.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+
+  react-international-phone@4.6.0(react@19.1.0):
     dependencies:
       react: 19.1.0
 

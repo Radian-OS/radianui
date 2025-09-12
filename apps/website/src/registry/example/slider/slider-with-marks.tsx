@@ -40,7 +40,7 @@ export default function SliderWithMarks() {
 			</TabsContent>
 			<TabsContent value="code">
 				<CodeSnippet
-					title="range-slider.tsx"
+					title="slider-with-marks.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`

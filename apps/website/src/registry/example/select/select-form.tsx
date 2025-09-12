@@ -13,7 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 const FormSchema = z.object({
 	role: z.string().min(1, { error: "Please select a role" }),
 })
-console.log(FormSchema)
 
 type FormValues = z.infer<typeof FormSchema>
 
@@ -86,9 +85,9 @@ export default function SelectForm() {
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 const FormSchema = z.object({
 	role: z.string().min(1, { message: "Please select a role" }),

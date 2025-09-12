@@ -1,15 +1,13 @@
-import React, { useState } from "react"
-import { Clock, CreditCard, EyeIcon, Headset, LogOut, MessageCircleMore, Settings, SquareTerminal, UserPlus, UserRound, Users, UsersRound } from "lucide-react"
+import * as React from "react"
+import { Clock, CreditCard, EyeIcon, Headset, LogOut, MessageCircleMore, Settings, SquareTerminal, UserPlus, UserRound, Users } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownDivider,
 	DropdownItem,
 	DropdownLabel,
-	DropdownRadioGroup,
-	DropdownRadioItem,
 	DropdownShortcut,
 	DropdownSub,
 	DropdownSubContent,
@@ -18,65 +16,21 @@ import {
 } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const alignOptions = ["start", "center", "end"] as const
-type AlignOptions = (typeof alignOptions)[number]
-
-const placementOptions = ["top", "bottom", "left", "right"] as const
-type PlacementOptions = (typeof placementOptions)[number]
-
 export default function DropdownPreview() {
-	const [open, setOpen] = useState<boolean>(false)
-	const [align, setAlign] = useState<AlignOptions>("start")
-	const [placement, setPlacement] = useState<PlacementOptions>("bottom")
+	const [open, setOpen] = React.useState<boolean>(false)
 
 	return (
 		<Tabs defaultValue="preview">
-			<div className="flex items-center justify-between">
-				<TabsList variant="outline-ghost" size="md">
-					<TabsTrigger value="preview">
-						<EyeIcon />
-						Preview
-					</TabsTrigger>
-					<TabsTrigger value="code">
-						<SquareTerminal />
-						Code
-					</TabsTrigger>
-				</TabsList>
-				<Dropdown>
-					<DropdownTrigger asChild>
-						<IconButton variant="outline" color="neutral" size="36">
-							<Settings />
-						</IconButton>
-					</DropdownTrigger>
-					<DropdownContent className="min-w-20">
-						<DropdownSub>
-							<DropdownSubTrigger>Placement</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={placement} onValueChange={(value) => setPlacement(value as PlacementOptions)}>
-									{placementOptions.map((placementOption) => (
-										<DropdownRadioItem value={placementOption} key={placementOption} onSelect={(e) => e.preventDefault()}>
-											{placementOption.charAt(0).toUpperCase() + placementOption.slice(1)}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Align</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={align} onValueChange={(value) => setAlign(value as AlignOptions)}>
-									{alignOptions.map((alignOption) => (
-										<DropdownRadioItem value={alignOption} key={alignOption} onSelect={(e) => e.preventDefault()}>
-											{alignOption.charAt(0).toUpperCase() + alignOption.slice(1)}
-										</DropdownRadioItem>
-									))}
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-					</DropdownContent>
-				</Dropdown>
-			</div>
+			<TabsList variant="outline-ghost" size="md">
+				<TabsTrigger value="preview">
+					<EyeIcon />
+					Preview
+				</TabsTrigger>
+				<TabsTrigger value="code">
+					<SquareTerminal />
+					Code
+				</TabsTrigger>
+			</TabsList>
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
@@ -86,7 +40,7 @@ export default function DropdownPreview() {
 								Dropdown
 							</Button>
 						</DropdownTrigger>
-						<DropdownContent align={align} placement={placement} className="w-80">
+						<DropdownContent className="w-80">
 							<DropdownLabel>My Account</DropdownLabel>
 							<DropdownItem>
 								<UserRound />
@@ -116,7 +70,7 @@ export default function DropdownPreview() {
 								</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownItem>
-										<UsersRound />
+										<Users />
 										Invite All
 									</DropdownItem>
 									<DropdownItem>
@@ -152,44 +106,39 @@ export default function DropdownPreview() {
 					showLineNumber
 					className="h-[420px]"
 					code={`
-import React, { useState } from "react"
+"use client"
+
+import * as React  from "react"
+
 import {
 	ChevronDown,
 	ChevronUp,
 	Clock,
 	CreditCard,
-	EyeIcon,
 	Headset,
 	LogOut,
 	MessageCircleMore,
 	Settings,
-	SquareTerminal,
 	UserPlus,
 	UserRound,
-	Users,
-	UsersRound,
+	Users
 } from "lucide-react"
-import CodeSnippet from "@/components/code-snippet"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/components/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownDivider,
 	DropdownItem,
 	DropdownLabel,
-	DropdownRadioGroup,
-	DropdownRadioItem,
 	DropdownShortcut,
 	DropdownSub,
 	DropdownSubContent,
 	DropdownSubTrigger,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-
+} from "@/components/ui/dropdown"
 
 export default function DropdownPreview() {
-	const [open, setOpen] = useState<boolean>(false)
+	const [open, setOpen] = React.useState<boolean>(false)
 
 	return (
 		<Dropdown open={open} onOpenChange={setOpen}>
@@ -198,7 +147,7 @@ export default function DropdownPreview() {
 					Dropdown
 				</Button>
 			</DropdownTrigger>
-			<DropdownContent align=${align} placement=${placement} className="w-80">
+			<DropdownContent className="w-80">
 				<DropdownLabel>My Account</DropdownLabel>
 				<DropdownItem>
 					<UserRound />

@@ -21,7 +21,7 @@ const FooterCalendarPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="border-alpha bg-fill2 rounded-xl border">
 						<Calendar mode="single" className="border-0 bg-transparent pb-2" />
 						<div className="border-border flex justify-end gap-2 border-t px-2 py-3">
@@ -36,14 +36,10 @@ const FooterCalendarPreview = () => {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="calendar.tsx"
+					title="calendar-footer.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
-"use client"
-
-import * as React from "react"
-
 import { Calendar } from "@/components/ui/calendar"
 
 export default function CalendarFooter() {

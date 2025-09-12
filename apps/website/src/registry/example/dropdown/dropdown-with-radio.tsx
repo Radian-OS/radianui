@@ -46,13 +46,14 @@ export default function DropdownWithRadioExample() {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="user-menu-dropdown.tsx"
+					title="dropdown-radio.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
+
 import {
   Dropdown,
   DropdownTrigger,
@@ -61,8 +62,8 @@ import {
 } from "@/components/ui/dropdown"
 import { Button } from "@/components/ui/button"
 
-export function RadioDropdownExample() {
-  const [theme, setTheme] = useState("system")
+export default function RadioDropdownExample() {
+  const [theme, setTheme] = React.useState("system")
 
   return (
     <Dropdown indicatorPosition="left">

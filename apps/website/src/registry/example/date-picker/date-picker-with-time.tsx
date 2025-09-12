@@ -1,6 +1,6 @@
 "use client"
 
-import { useId, useState } from "react"
+import * as React from "react"
 import { format, setHours, setMinutes, setSeconds } from "date-fns"
 import { Calendar as CalendarIcon, ClockIcon, EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
@@ -13,12 +13,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function DatePickerWithTimeExample() {
 	const today = new Date()
-	const id = useId()
+	const id = React.useId()
 
-	const [date, setDate] = useState<Date | undefined>(today)
-	const [time, setTime] = useState<Date | undefined>(today)
+	const [date, setDate] = React.useState<Date | undefined>(today)
+	const [time, setTime] = React.useState<Date | undefined>(today)
 
-	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+	const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
 
 	const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const [h, m, s] = e.target.value.split(":").map(Number)
@@ -77,13 +77,13 @@ export default function DatePickerWithTimeExample() {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="date-picker.tsx"
+					title="date-picker-time.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
 "use client"
 
-import { useId, useState } from "react"
+import * as React from "react"
 import { format, setHours, setMinutes, setSeconds } from "date-fns"
 import { Calendar as CalendarIcon, ClockIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -94,12 +94,11 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 
 export default function DatePickerWithTimeExample() {
 	const today = new Date()
-	const id = useId()
+	const id = React.useId()
 
-	const [date, setDate] = useState<Date | undefined>(today)
-	const [time, setTime] = useState<Date | undefined>(today)
-
-	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+	const [date, setDate] = React.useState<Date | undefined>(today)
+	const [time, setTime] = React.useState<Date | undefined>(today)
+	const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
 
 	const handleTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const [h, m, s] = e.target.value.split(":").map(Number)
