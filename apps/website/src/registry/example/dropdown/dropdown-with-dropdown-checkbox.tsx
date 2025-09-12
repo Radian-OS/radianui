@@ -1,16 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownCheckboxItem, DropdownContent, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-export function DropdownWithDropdownCheckbox() {
-	const [email, setEmail] = useState(true)
-	const [sms, setSms] = useState(false)
-	const [push, setPush] = useState(true)
+export default function DropdownWithDropdownCheckbox() {
+	const [email, setEmail] = React.useState(true)
+	const [sms, setSms] = React.useState(false)
+	const [push, setPush] = React.useState(true)
 
 	return (
 		<Tabs defaultValue="preview">
@@ -52,13 +52,14 @@ export function DropdownWithDropdownCheckbox() {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="user-menu-dropdown.tsx"
+					title="dropdown-checkbox.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
+
 import {
   Dropdown,
   DropdownTrigger,
@@ -67,10 +68,10 @@ import {
 } from "@/components/ui/dropdown"
 import { Button } from "@/components/ui/button"
 
-export function CheckboxDropdownExample() {
-  const [email, setEmail] = useState(true)
-  const [sms, setSms] = useState(false)
-  const [push, setPush] = useState(true)
+export default function CheckboxDropdownExample() {
+  const [email, setEmail] = React.useState(true)
+  const [sms, setSms] = React.useState(false)
+  const [push, setPush] = React.useState(true)
 
   return (
     <Dropdown indicatorPosition="left">

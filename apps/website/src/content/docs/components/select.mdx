@@ -93,37 +93,35 @@ links:
 
 <PropsTableWrapper>
 <PropsTable
- title="Select"
- data={[
-    {
-        name:"label",
-        values:["string"],
-        description:"Shows label for select"
-    },
-    {
-				name: "placeholder",
-				description: "Placeholder text for the select field",
-				values: ["string"],
-			},
-             {
-                name:"size",
-                description: "Sets the size of the select field",
-                defaultValue: "36",
-                values: ["28", "32", "36", "40","44","48"],
-            },
-             {
-                name:"rounded",
-                description: "Sets the border radius of the select field",
-                defaultValue: "lg",
-                values: ["xs","sm", "md", "lg", "xl", "2xl"],
-            },
-              {
-                name:"disabled",
-                description: "If true, the select field is disabled",
-                defaultValue: "false",
-                values: ["boolean"],
-            }
-]}
+	title="Select"
+	data={[
+		{
+			name: "indicatorPosition",
+			required: false,
+			defaultValue: "right",
+			values: ["left", "right"],
+			description: "Where to show the indicator.",
+		},
+		{
+			name: "indicator",
+			required: false,
+			defaultValue: "null",
+			values: ["ReactNode"],
+			description: "Replace the default indicator with custom indicator",
+		},
+	]}
+/>
+
+<PropsTable
+	title="SelectTrigger"
+	data={[
+		{
+			name: "size",
+			description: "Sets the size of the select field",
+			defaultValue: "md",
+			values: ["sm", "md", "lg"],
+		},
+	]}
 />
 
 <PropsTable
@@ -135,27 +133,7 @@ links:
 			description: "Shows label for select",
 		},
 	]}
-/>
-
-<PropsTable
-	title="SelectContent"
-	data={[
-		{
-			name: "startContent",
-			values: ["ReactNode"],
-			description: "Add an icon or start content",
-		},
-		{
-			name: "endContent",
-			values: ["ReactNode"],
-			description: "Add an icon or end content",
-		},
-		{
-			name: "value",
-			values: ["string"],
-			description: "Value for selecting items.",
-		},
-	]}
+	externalReference="https://www.radix-ui.com/primitives/docs/components/select"
 />
 
 </PropsTableWrapper>

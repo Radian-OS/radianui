@@ -107,7 +107,7 @@ import DeleteDialogExample from "@/registry/example/dialog/delete-dialog"
 import GithubIntegrationDialogExample from "@/registry/example/dialog/github-integration-dialog"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
-import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
+import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
@@ -121,7 +121,6 @@ import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-passwor
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import ResizableExample from "@/registry/example/resizable-example"
-import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import SelectForm from "@/registry/example/select/select-form"
 import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
 import SelectWithBadge from "@/registry/example/select/select-with-badge"
@@ -244,7 +243,6 @@ const components: MDXComponents = {
 	SearchPreview: () => <SearchPreview />,
 	SkeletonPreview: () => <SkeletonPreview />,
 	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
-	SearchInputExample: () => <SearchInputExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	FileUploadPreview: () => <FileUploadPreview />,
 	NumberInputPreview: () => <NumberInputPreview />,

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import * as React from "react"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Slider, SliderThumb } from "@/registry/ui/slider"
@@ -6,8 +6,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 export default function SlideWithTooltip() {
-	const [value, setValue] = useState(50)
-	const [open, setOpen] = useState(false)
+	const [value, setValue] = React.useState(50)
+	const [open, setOpen] = React.useState(false)
 
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
@@ -49,14 +49,14 @@ export default function SlideWithTooltip() {
 					showLineNumber
 					className="h-[420px]"
 					code={`
-import { useState } from "react"
+import * as React from "react"
 import { Input } from "@/components/ui/input"
 import { Slider, SliderThumb } from "@/components/ui/slider"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
 export default function SlideWithTooltip() {
-	const [value, setValue] = useState(50)
-    const [open, setOpen] = useState(false)
+	const [value, setValue] = React.useState(50)
+	const [open, setOpen] = React.useState(false)
 
 	return (
         <Slider

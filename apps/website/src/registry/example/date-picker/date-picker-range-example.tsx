@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon, EyeIcon, SquareTerminal } from "lucide-react"
 import { DateRange } from "react-day-picker"
@@ -17,9 +17,9 @@ export default function DatePickerPresetsExample() {
 		to: addDays(today, 5),
 	}
 
-	const [date, setDate] = useState<DateRange | undefined>(defaultDate)
+	const [date, setDate] = React.useState<DateRange | undefined>(defaultDate)
 
-	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+	const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
 
 	const handleApply = () => {
 		if (date) {
@@ -87,13 +87,13 @@ export default function DatePickerPresetsExample() {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="date-picker.tsx"
+					title="date-range-picker.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
@@ -108,9 +108,9 @@ export default function DatePickerRange() {
 		to: addDays(today, 5),
 	}
 
-	const [date, setDate] = useState<DateRange | undefined>(defaultDate)
+	const [date, setDate] = React.useState<DateRange | undefined>(defaultDate)
 
-	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
+	const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
 
 	const handleApply = () => {
 		if (date) {

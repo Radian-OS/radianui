@@ -85,8 +85,20 @@ links:
 			{
 				name: "position",
 				values: ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"],
-				defaultValues: ["bottom-center"],
+				defaultValue: ["bottom-right"],
 				description: "Sets the position of toast",
+			},
+			{
+				name: "visibleToasts",
+				values: ["number"],
+				defaultValue: ["3"],
+				description: "Sets the number of visible toasts",
+			},
+			{
+				name: "expand",
+				values: ["boolean"],
+				defaultValue: ["false"],
+				description: "Sets the number of expanded toasts",
 			},
 		]}
 	/>
