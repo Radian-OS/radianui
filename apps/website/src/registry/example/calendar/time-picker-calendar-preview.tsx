@@ -55,20 +55,21 @@ const TimePickerCalendarPreview = () => {
 	]
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
 			</div>
-
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="bg-elevation-level1 overflow-hidden rounded-lg border p-2">
 						<div className="flex max-sm:flex-col">
 							<Calendar
@@ -114,10 +115,11 @@ const TimePickerCalendarPreview = () => {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="calendar.tsx"
+					title="calendar-time-picker.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`import * as React from "react"
+					code={`
+import * as React from "react"
 import { format } from "date-fns"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"

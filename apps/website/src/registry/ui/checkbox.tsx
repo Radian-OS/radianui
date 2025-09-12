@@ -44,5 +44,6 @@ function Checkbox({ className, size, icon, ...props }: CheckboxProps) {
 		</CheckboxPrimitive.Root>
 	)
 }
+Checkbox.displayName = CheckboxPrimitive.Root.displayName
 
 export { Checkbox }

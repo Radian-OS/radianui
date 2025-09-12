@@ -11,7 +11,7 @@ export const EmailSubscribe = () => {
 	return (
 		<div className="z-30 flex flex-col gap-3">
 			<form className="flex gap-3" onSubmit={handleSubscribe}>
-				<Input size="40" className="sm:min-w-70.25" type="email" required placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
+				<Input size="40" className="sm:min-w-70.25 w-72" type="email" required placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
 				<Button
 					size="40"
 					loading={isPending}

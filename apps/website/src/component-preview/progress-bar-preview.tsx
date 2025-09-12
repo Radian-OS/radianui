@@ -16,13 +16,15 @@ const ProgressBarPreview = () => {
 	const [valueLabel, setValueLabel] = useState<boolean>(true)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -90,7 +92,7 @@ const ProgressBarPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<ProgressBar label={label ? "Progress Bar" : undefined} hint={hint ? "Progress Bar" : undefined} valueLabel={valueLabel} value={Number(progress)} />
+					<ProgressBar className="w-80" label={label ? "Loading...." : undefined} hint={hint ? "Progress Bar" : undefined} valueLabel={valueLabel} value={Number(progress)} />
 				</div>
 			</TabsContent>
 
@@ -99,12 +101,20 @@ const ProgressBarPreview = () => {
 					title="progress-bar.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<ProgressBar 
-	value={${Number(progress)}}
-	label="${label ? "ProgressBar" : undefined}"
-	valueLabel={${valueLabel}}
-	${hint ? `hint="Progress Bar"` : ""}
-/>
+					code={`import { ProgressBar } from "@/components/ui/progress-bar"
+
+
+export default function ProgressBarExample() {
+  return (    						
+		<ProgressBar 
+			className="w-80" 
+			value={${Number(progress)}}
+			label="${label ? "Loading...." : undefined}"
+			valueLabel={${valueLabel}}
+			${hint ? `hint="Progress Bar"` : ""}
+		/>
+  );
+}
 					`}
 				/>
 			</TabsContent>

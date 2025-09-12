@@ -1,7 +1,7 @@
 "use client"
 
 import { AlertCircle, EyeIcon, SquareTerminal } from "lucide-react"
-import { useForm } from "react-hook-form"
+import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import CodeSnippet from "@/components/code-snippet"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
@@ -37,13 +37,15 @@ export default function FormPreview() {
 	}
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -63,7 +65,7 @@ export default function FormPreview() {
 										message: "Please enter a valid email address",
 									},
 								}}
-								render={({ field }) => (
+								render={({ field }: { field: FieldValues }) => (
 									<FormItem>
 										<FormLabel>Email</FormLabel>
 										<FormControl>

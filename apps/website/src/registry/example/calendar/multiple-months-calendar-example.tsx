@@ -5,39 +5,37 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function MultipleMonthsCalendarExample() {
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
-					<Calendar mode="range" numberOfMonths={2} />
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+					<Calendar mode="range" numberOfMonths={2} showOutsideDays={false} />
 				</div>
 			</TabsContent>
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="calendar.tsx"
+					title="multiple-calendar.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
-"use client"
-
-import * as React from "react"
-
 import { Calendar } from "@/components/ui/calendar"
 
 export default function MultipleMonthsCalendarExample() {
 	return (
-        <Calendar mode="range" numberOfMonths={2} />
+        <Calendar mode="range" numberOfMonths={2} showOutsideDays={false} />
 	)
 }`}
 				/>

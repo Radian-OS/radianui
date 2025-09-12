@@ -87,6 +87,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Alert UI component illustration",
 			},
 			{
+				title: "Alert Dialog",
+				description: "1 Component",
+				url: "/docs/components/alert-dialog",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Alert Dialog UI component illustration",
+			},
+			{
 				title: "Accordion",
 				description: "3 Components",
 				url: "/docs/components/accordion",
@@ -223,12 +231,12 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Input UI component illustration",
 			},
 			{
-				title: "Input OTP",
+				title: "One Time Password Field",
 				description: "2 Components",
-				url: "/docs/components/input-otp",
+				url: "/docs/components/one-time-password-field",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
-				alt: "Input OTP UI component illustration",
+				alt: "One Time Password Field UI component illustration",
 			},
 			{
 				title: "File Upload",

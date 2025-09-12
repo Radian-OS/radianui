@@ -1,4 +1,4 @@
-import { useState } from "react"
+import * as React from "react"
 import { EyeIcon, Minus, Plus, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
@@ -6,16 +6,18 @@ import { Slider, SliderThumb } from "@/registry/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function SliderWithStepper() {
-	const [value, setValue] = useState(50)
+	const [value, setValue] = React.useState(50)
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10" variant="outline-ghost">
+		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -41,14 +43,14 @@ export default function SliderWithStepper() {
 					showLineNumber
 					className="h-[420px]"
 					code={`
-import { useState } from "react"
+import * as React from "react"
 import { Minus, Plus } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 
 export default function SliderWithStepper() {
-	const [value, setValue] = useState(50)
+	const [value, setValue] = React.useState(50)
 
 	return (
         <div className="w-100 flex gap-2">

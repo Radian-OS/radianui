@@ -64,21 +64,23 @@ export default CodeWithTabsPreview
 	}
 
 	return (
-		<Tabs className="mt-3" defaultValue="preview" variant="outline-ghost">
-			<div className="flex items-center">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+		<Tabs defaultValue="preview">
+			<div className="flex items-center justify-between">
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] w-full flex-col items-center justify-center overflow-auto rounded-xl border p-5">
-					<Tabs defaultValue="pnpm" className="bg-fill2 w-full gap-2 overflow-hidden rounded-xl p-1.5" variant="outline-ghost">
-						<TabsList className="bg-transparent">
+					<Tabs defaultValue="pnpm" className="bg-fill2 w-full gap-2 overflow-hidden rounded-xl p-1.5">
+						<TabsList className="bg-transparent" variant="outline-ghost">
 							{Object.keys(commands).map((pkgManager) => (
 								<TabsTrigger key={pkgManager} value={pkgManager}>
 									{pkgManager}

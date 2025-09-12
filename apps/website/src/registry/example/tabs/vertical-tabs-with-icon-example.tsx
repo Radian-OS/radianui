@@ -33,9 +33,10 @@ const data = [
 function VerticaTabsWithIcon() {
 	return (
 		<Tabs defaultValue={data[0].trigger.toLowerCase()} orientation="vertical">
-			<TabsList>
+			<TabsList size="md">
 				{data.map((item) => (
-					<TabsTrigger className="justify-start" key={item.id} value={item.trigger.toLowerCase()} icon={item.icon}>
+					<TabsTrigger className="justify-start" key={item.id} value={item.trigger.toLowerCase()}>
+						{item.icon}
 						{item.trigger}
 					</TabsTrigger>
 				))}
@@ -53,11 +54,13 @@ function VerticaTabsWithIconExample() {
 	return (
 		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import * as React from "react"
 import { subDays, subMonths } from "date-fns"
 import { Check, EyeIcon, SquareTerminal } from "lucide-react"
 import { DateRange } from "react-day-picker"
@@ -20,8 +20,8 @@ const SHORTCUTS = [
 type ShortcutValue = (typeof SHORTCUTS)[number]["value"]
 
 const QuickSelectionCalendarPreview = () => {
-	const [selectedRange, setSelectedRange] = useState<DateRange | undefined>()
-	const [selectedShortcut, setSelectedShortcut] = useState<ShortcutValue | null>("custom")
+	const [selectedRange, setSelectedRange] = React.useState<DateRange | undefined>()
+	const [selectedShortcut, setSelectedShortcut] = React.useState<ShortcutValue | null>("custom")
 
 	const handleSelect = (range: DateRange | undefined, shortcut: ShortcutValue) => {
 		setSelectedRange(range)
@@ -29,20 +29,22 @@ const QuickSelectionCalendarPreview = () => {
 	}
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
 			</div>
 
 			<TabsContent value="preview">
-				<div className={`flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10`}>
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<div className="border-border bg-elevation-level1 flex overflow-hidden rounded-xl border">
 						<div className="border-border w-50 text-fg flex flex-col border-r px-1.5 py-1">
 							<p className="text-fg-tertiary h-8 rounded-sm px-2 py-2.5 text-xs font-medium">SELECT DATE</p>
@@ -63,10 +65,11 @@ const QuickSelectionCalendarPreview = () => {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="calendar.tsx"
+					title="calendar-with-presets.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`import { useState } from "react"
+					code={`
+import * as React from "react"
 import { subDays, subMonths } from "date-fns"
 import { Check } from "lucide-react"
 import { Calendar } from "@/components/ui/calendar"
@@ -84,9 +87,9 @@ const SHORTCUTS = [
 
 type ShortcutValue = (typeof SHORTCUTS)[number]["value"]
 
-export default function QuickSelectionExample() {
-	const [selectedRange, setSelectedRange] = useState<CalendarRange | undefined>()
-	const [selectedShortcut, setSelectedShortcut] = useState<string | null>("custom")
+export default function CalendarWithPresets() {
+	const [selectedRange, setSelectedRange] = React.useState<CalendarRange | undefined>()
+	const [selectedShortcut, setSelectedShortcut] = React.useState<string | null>("custom")
 
 	const handleSelect = (range: DateRange | undefined, shortcut: DateRangeShortcutValues) => {
 		setSelectedRange(range)

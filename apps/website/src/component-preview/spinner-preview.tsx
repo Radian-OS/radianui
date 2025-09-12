@@ -5,21 +5,22 @@ import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Spinner, SpinnerVariants } from "@/registry/ui/spinner"
+import { Spinner } from "@/registry/ui/spinner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const SpinnerPreview = () => {
-	const [variant, setVariant] = useState<SpinnerVariants>("default")
+export default function SpinnerPreview() {
 	const [size, setSize] = useState<number>(36)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -30,25 +31,6 @@ const SpinnerPreview = () => {
 						</IconButton>
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
-						<DropdownSub>
-							<DropdownSubTrigger>Variant</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={variant} onValueChange={(value) => setVariant(value as SpinnerVariants)}>
-									<DropdownRadioItem value="default" onSelect={(e) => e.preventDefault()}>
-										default
-									</DropdownRadioItem>
-									<DropdownRadioItem value="simple" onSelect={(e) => e.preventDefault()}>
-										simple
-									</DropdownRadioItem>
-									<DropdownRadioItem value="activity" onSelect={(e) => e.preventDefault()}>
-										activity
-									</DropdownRadioItem>
-									<DropdownRadioItem value="wave" onSelect={(e) => e.preventDefault()}>
-										wave
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
@@ -76,14 +58,37 @@ const SpinnerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
-					<Spinner variant={variant} size={size} />
+					<div className="flex gap-6">
+						<Spinner variant="activity" size={size} />
+						<Spinner variant="default" size={size} />
+						<Spinner variant="simple" size={size} />
+						<Spinner variant="wave" size={size} />
+					</div>
 				</div>
 			</TabsContent>
 			<TabsContent value="code">
-				<CodeSnippet title="spinner.tsx" showLineNumber className="h-[420px]" code={`<Spinner variant='${variant}' size={${size}} />`} />
+				<CodeSnippet
+					title="spinner.tsx"
+					showLineNumber
+					className="h-[420px]"
+					code={`
+"use client"
+
+import { Spinner } from "@/components/ui/spinner"
+
+export default function SpinnerPreview() {
+	return (
+		<div className="flex gap-6">
+			<Spinner variant="activity" size="${size}" />
+			<Spinner variant="default" size="${size}" />
+			<Spinner variant="simple" size="${size}" />
+			<Spinner variant="wave" size="${size}" />
+		</div>
+	)
+}
+`}
+				/>
 			</TabsContent>
 		</Tabs>
 	)
 }
-
-export default SpinnerPreview

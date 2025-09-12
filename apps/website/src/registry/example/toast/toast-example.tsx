@@ -93,7 +93,7 @@ const ToastExample = () => {
 						</DropdownContent>
 					</Dropdown>
 				</div>
-				<TabsList>
+				<TabsList variant="outline-ghost" size="md">
 					<TabsTrigger value="preview">Preview</TabsTrigger>
 					<TabsTrigger value="code">Code</TabsTrigger>
 				</TabsList>

@@ -6,13 +6,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function SelectWithBadge() {
 	return (
-		<Tabs defaultValue="preview" className="mb-10" variant="outline-ghost">
+		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -65,12 +67,12 @@ export default function SelectWithBadge() {
 			</TabsContent>
 			<TabsContent value="code">
 				<CodeSnippet
-					title="select-with-badge.tsx"
+					title="select-with-avatar.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
-import { Avatar, AvatarImage } from "@/registry/ui/avatar"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 export default function SelectWithBadge() {
 	return (

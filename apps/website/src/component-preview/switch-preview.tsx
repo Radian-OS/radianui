@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
 import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
@@ -11,18 +11,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const SwitchPreview = () => {
 	type sizeProps = "20" | "24"
-	type disabledType = "true" | "false"
-	const [size, setSize] = useState<sizeProps>("20")
-	const [disabled, setDisabled] = useState<disabledType>("false")
+	const [size, setSize] = React.useState<sizeProps>("20")
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -46,26 +46,13 @@ const SwitchPreview = () => {
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-						<DropdownSub>
-							<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as disabledType)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border">
 					<div className="flex items-center space-x-2">
-						<Switch size={size} disabled={disabled === "true"} id="enable-notifications" />
+						<Switch size={size} id="enable-notifications" />
 						<Label htmlFor="enable-notifications">Enable Notifications</Label>
 					</div>
 				</div>
@@ -78,13 +65,12 @@ const SwitchPreview = () => {
 					code={`
 "use client"
 
-import { useState } from "react"
 import { Switch } from "@/components/ui/switch"
 
 const SwitchPreview = () => {
 	return (
 		<div className="flex items-center space-x-2">
-			<Switch size="${size}" disabled="${disabled ? "true" : "false"}" />
+			<Switch size="${size}" />
 			<Label>Enable Notifications</Label>
 		</div>
 	)

@@ -22,22 +22,20 @@ const ToastPreview = () => {
 	const [state, setState] = useState<"neutral" | "primary" | "info" | "success" | "error" | "warning">("neutral")
 	const [stackable, setStackable] = useState<"true" | "false">("true")
 	const [closable, setClosable] = useState<"true" | "false">("true")
-	const [visibleToasts, setVisibleToasts] = useState<"3" | "4" | "5" | "6">("3")
 	const [placement, setPlacement] = useState<"horizontal" | "vertical">("horizontal")
-	const [icon, setIcon] = useState<"true" | "false">("true")
-	const [title, setTitle] = useState<"true" | "false">("true")
-	const [desc, setDesc] = useState<"true" | "false">("true")
 	const [actionButton, setActionButton] = useState<"true" | "false">("true")
 	const [key, setKey] = useState(0)
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -138,69 +136,12 @@ const ToastPreview = () => {
 							</DropdownSub>
 
 							<DropdownSub>
-								<DropdownSubTrigger>End Content</DropdownSubTrigger>
+								<DropdownSubTrigger>End</DropdownSubTrigger>
 								<DropdownSubContent>
 									<DropdownRadioGroup
 										value={actionButton}
 										onValueChange={(value) => {
 											setActionButton(value as typeof actionButton)
-											setKey((k) => k + 1)
-										}}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Icon</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup
-										value={icon}
-										onValueChange={(value) => {
-											setIcon(value as typeof icon)
-											setKey((k) => k + 1)
-										}}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Title</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup
-										value={title}
-										onValueChange={(value) => {
-											setTitle(value as typeof title)
-											setKey((k) => k + 1)
-										}}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Description</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup
-										value={desc}
-										onValueChange={(value) => {
-											setDesc(value as typeof desc)
 											setKey((k) => k + 1)
 										}}>
 										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
@@ -250,31 +191,6 @@ const ToastPreview = () => {
 									</DropdownRadioGroup>
 								</DropdownSubContent>
 							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Visible toast</DropdownSubTrigger>
-								<DropdownSubContent>
-									<DropdownRadioGroup
-										value={visibleToasts}
-										onValueChange={(value) => {
-											setVisibleToasts(value as typeof visibleToasts)
-											setKey((k) => k + 1)
-										}}>
-										<DropdownRadioItem value="3" onSelect={(e) => e.preventDefault()}>
-											3
-										</DropdownRadioItem>
-										<DropdownRadioItem value="4" onSelect={(e) => e.preventDefault()}>
-											4
-										</DropdownRadioItem>
-										<DropdownRadioItem value="5" onSelect={(e) => e.preventDefault()}>
-											5
-										</DropdownRadioItem>
-										<DropdownRadioItem value="6" onSelect={(e) => e.preventDefault()}>
-											6
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
 						</DropdownGroup>
 					</DropdownContent>
 				</Dropdown>
@@ -282,20 +198,20 @@ const ToastPreview = () => {
 
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Toaster position={`${position}`} visibleToasts={Number(visibleToasts)} expand={stackable !== "true"} />
+					<Toaster position={`${position}`} visibleToasts={3} expand={stackable !== "true"} />
 					<Button
 						key={key}
 						variant="strong"
 						color="neutral"
 						onClick={() =>
 							showToast({
-								icon: icon === "true" ? <Box className="size-5" /> : undefined,
+								icon: <Box className="size-5" />,
 								variant,
 								color: state,
 								placement,
-								title: title === "true" ? "Toast Title" : "",
+								title: "Toast Title",
 								closable: closable === "true",
-								description: desc === "true" ? "Toast description message." : "",
+								description: "Toast description message.",
 								buttons:
 									actionButton === "true"
 										? [
@@ -315,18 +231,18 @@ const ToastPreview = () => {
 					title="toast.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`<Toaster position="${position}" visibleToasts={${visibleToasts}} expand={${stackable}} />
+					code={`<Toaster position="${position}" visibleToasts={3} expand={${stackable}} />
 <Button
 	variant="outline"
 	onClick={() =>
 		showToast({
-			${icon === "true" ? "icon:<Box className='size-5'/>," : ""}
+			icon:<Box className='size-5'/>,
 			variant:'${variant}',
 			color:'${state}',
 			placement:'${placement}',
-			${title === "true" ? "title:'Toast Title'," : ""}
+			title:'Toast Title',
 			${closable === "true" ? "closable," : "closable:false"}
-			${desc === "true" ? "description:'Toast description message.'," : ""}
+			description:'Toast description message.',
 			${
 				actionButton === "true"
 					? `buttons:[

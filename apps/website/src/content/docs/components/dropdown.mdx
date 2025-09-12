@@ -6,7 +6,7 @@ links:
     href: https://github.com/Radian-os
   externalReference:
     - label: Radix
-      href: https://www.radix-ui.com/primitives/docs/components/dropdown
+      href: https://www.radix-ui.com/primitives/docs/components/dropdown-menu
 ---
 
 <DropdownPreview />
@@ -84,7 +84,7 @@ links:
 
 <UserMenuDropdownExample />
 
-### Dropdown With Dropdown Checkbox
+### Dropdown With Checkbox
 
 <DropdownWithDropdownCheckboxExample />
 
@@ -101,10 +101,18 @@ links:
 		title="Dropdown"
 		data={[
 			{
-				name: "-",
-				required: "false",
-				description: "Wrapper component for the dropdown.",
-				values: ["-"],
+				name: "indicatorPosition",
+				required: false,
+				defaultValue: "right",
+				values: ["left", "right"],
+				description: "Where to show the indicator.",
+			},
+			{
+				name: "indicator",
+				required: false,
+				defaultValue: "null",
+				values: ["ReactNode"],
+				description: "Replace the default indicator with custom indicator",
 			},
 		]}
 	/>
@@ -113,7 +121,7 @@ links:
 		data={[
 			{
 				name: "asChild",
-				required: true,
+				required: false,
 				defaultValue: "true",
 				description: "Use this prop to render the trigger as a child component.",
 				values: ["boolean"],
@@ -148,24 +156,6 @@ links:
 				description: "If true, the item will be inset.",
 				values: ["boolean"],
 				defaultValue: "false",
-			},
-			{
-				name: "shortcut",
-				required: false,
-				description: "The shortcut key for the item.",
-				values: ["string"],
-			},
-			{
-				name: "icon",
-				required: false,
-				description: "The icon to be displayed next to the item.",
-				values: ["ReactNode"],
-			},
-			{
-				name: "value",
-				required: false,
-				description: "The value of the item, used for identification.",
-				values: ["string"],
 			},
 		]}
 		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"

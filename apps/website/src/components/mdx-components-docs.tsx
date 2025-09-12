@@ -8,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import IconButtonPreview from "@/component-preview/Icon-button-preview"
 import AccordionPreview from "@/component-preview/accordion-preview"
+import AlertDialogPreview from "@/component-preview/alert-dialog-preview"
 import AlertPreview from "@/component-preview/alert-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
 import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
@@ -33,6 +34,7 @@ import ColorPickerPreview from "@/component-preview/color-picker-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import CurrencyAmountPreview from "@/component-preview/currency-amount-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
+import DialogPreview from "@/component-preview/dialog-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
@@ -40,11 +42,10 @@ import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
 import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
-import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
-import DialogPreview from "@/component-preview/modal-preview"
+import OneTimePasswordFieldPreview from "@/component-preview/one-time-password-field-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
@@ -106,7 +107,7 @@ import DeleteDialogExample from "@/registry/example/dialog/delete-dialog"
 import GithubIntegrationDialogExample from "@/registry/example/dialog/github-integration-dialog"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
-import { DropdownWithDropdownCheckbox } from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
+import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
@@ -115,10 +116,10 @@ import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import UrlPreview from "@/registry/example/input/url-input-preview"
+import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-password-field/otp-size"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import ResizableExample from "@/registry/example/resizable-example"
-import SearchInputExample from "@/registry/example/search-input/search-input-example"
 import SelectForm from "@/registry/example/select/select-form"
 import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
 import SelectWithBadge from "@/registry/example/select/select-with-badge"
@@ -174,6 +175,7 @@ const components: MDXComponents = {
 	AccordionPreview: () => <AccordionPreview />,
 	AccordionWithIconExample: () => <AccordionWithIconExample />,
 	AlertPreview: () => <AlertPreview />,
+	AlertDialogPreview: () => <AlertDialogPreview />,
 	AvatarPreview: () => <AvatarPreview />,
 	AvatargroupPreview: () => <AvatargroupPreview />,
 	AvatarFallbackPreview: () => <AvatarFallbackPreview />,
@@ -202,7 +204,8 @@ const components: MDXComponents = {
 	DisabledRadiogroupExample: () => <DisabledRadiogroupExample />,
 	DisplayColor: () => <DisplayColor />,
 	HovercardPreview: () => <HovercardPreview />,
-	InputOtpPreview: () => <InputOtpPreview />,
+	OneTimePasswordFieldPreview: () => <OneTimePasswordFieldPreview />,
+	OneTimePasswordFieldSizeExample: () => <OneTimePasswordFieldSizeExample />,
 	TabsPreview: () => <TabsPreview />,
 	IconCounterTabsExample: () => <IconCounterTabsExample />,
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
@@ -238,7 +241,6 @@ const components: MDXComponents = {
 	SearchPreview: () => <SearchPreview />,
 	SkeletonPreview: () => <SkeletonPreview />,
 	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
-	SearchInputExample: () => <SearchInputExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	FileUploadPreview: () => <FileUploadPreview />,
 	NumberInputPreview: () => <NumberInputPreview />,
@@ -407,10 +409,10 @@ const components: MDXComponents = {
 		return <AccordionContent {...props} />
 	},
 	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
-		return <Tabs {...props} variant="default" size="md" />
+		return <Tabs {...props} />
 	},
 	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
-		return <TabsList width="full" {...props} />
+		return <TabsList width="full" variant="default" size="md" {...props} />
 	},
 	TabsTrigger: (props: React.ComponentProps<typeof TabsTrigger>) => {
 		return <TabsTrigger {...props} />

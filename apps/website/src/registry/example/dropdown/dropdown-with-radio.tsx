@@ -11,13 +11,15 @@ export default function DropdownWithRadioExample() {
 	const [theme, setTheme] = useState("system")
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"}>
+		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -44,13 +46,14 @@ export default function DropdownWithRadioExample() {
 
 			<TabsContent value="code">
 				<CodeSnippet
-					title="user-menu-dropdown.tsx"
+					title="dropdown-radio.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`
 "use client"
 
-import { useState } from "react"
+import * as React from "react"
+
 import {
   Dropdown,
   DropdownTrigger,
@@ -59,8 +62,8 @@ import {
 } from "@/components/ui/dropdown"
 import { Button } from "@/components/ui/button"
 
-export function RadioDropdownExample() {
-  const [theme, setTheme] = useState("system")
+export default function RadioDropdownExample() {
+  const [theme, setTheme] = React.useState("system")
 
   return (
     <Dropdown indicatorPosition="left">

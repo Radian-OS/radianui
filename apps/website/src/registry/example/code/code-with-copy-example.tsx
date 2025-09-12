@@ -31,13 +31,15 @@ export default function CodeWithCopyExample() {
 	const { copied, copy } = useCopyPaste(code)
 
 	return (
-		<Tabs className="mt-3" defaultValue="preview" variant="outline-ghost">
-			<div className="flex items-center">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+		<Tabs defaultValue="preview">
+			<div className="flex items-center justify-between">
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>

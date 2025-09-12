@@ -7,13 +7,15 @@ export default function SliderWithMarks() {
 	const marks = [0, 25, 50, 75, 100]
 
 	return (
-		<Tabs defaultValue="preview" className="mb-10" variant="outline-ghost">
+		<Tabs defaultValue="preview" className="mb-10">
 			<div className="flex items-center justify-between">
-				<TabsList>
-					<TabsTrigger value="preview" icon={<EyeIcon />}>
+				<TabsList variant="outline-ghost" size="md">
+					<TabsTrigger value="preview">
+						<EyeIcon />
 						Preview
 					</TabsTrigger>
-					<TabsTrigger value="code" icon={<SquareTerminal />}>
+					<TabsTrigger value="code">
+						<SquareTerminal />
 						Code
 					</TabsTrigger>
 				</TabsList>
@@ -38,7 +40,7 @@ export default function SliderWithMarks() {
 			</TabsContent>
 			<TabsContent value="code">
 				<CodeSnippet
-					title="range-slider.tsx"
+					title="slider-with-marks.tsx"
 					showLineNumber
 					className="h-[420px]"
 					code={`

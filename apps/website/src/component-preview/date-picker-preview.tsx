@@ -18,12 +18,14 @@ export default function DatePickerDemo() {
 	}
 
 	return (
-		<Tabs defaultValue="preview" variant={"outline-ghost"} size={"md"}>
-			<TabsList>
-				<TabsTrigger value="preview" icon={<EyeIcon />}>
+		<Tabs defaultValue="preview">
+			<TabsList variant="outline-ghost" size="md">
+				<TabsTrigger value="preview">
+					<EyeIcon />
 					Preview
 				</TabsTrigger>
-				<TabsTrigger value="code" icon={<SquareTerminal />}>
+				<TabsTrigger value="code">
+					<SquareTerminal />
 					Code
 				</TabsTrigger>
 			</TabsList>
@@ -68,9 +70,9 @@ export default function DatePickerDemo() {
 import * as React from "react"
 import { format } from "date-fns"
 import { Calendar as CalendarIcon, X } from "lucide-react"
-import { Button, IconButton } from "@/registry/ui/button"
-import { Calendar } from "@/registry/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Button, IconButton } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 
 export default function DatePickerDemo() {
 	const [date, setDate] = React.useState<Date>()
