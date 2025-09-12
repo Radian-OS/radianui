@@ -7,14 +7,17 @@ import { VariantProps, cva } from "class-variance-authority"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-// Create a Context for `indicatorPosition` and `indicator` control
+/**
+ * This file is adapted from [reui] (MIT License).
+ * Source: https://github.com/keenthemes/reui/blob/main/registry/default/ui/select.tsx
+ */
+
 const SelectContext = React.createContext<{
 	indicatorPosition: "left" | "right"
 	indicatorVisibility: boolean
 	indicator: ReactNode
 }>({ indicatorPosition: "left", indicator: null, indicatorVisibility: true })
 
-// Root Component
 const Select = ({
 	indicatorPosition = "right",
 	indicatorVisibility = true,
@@ -40,7 +43,6 @@ function SelectValue({ ...props }: React.ComponentProps<typeof SelectPrimitive.V
 	return <SelectPrimitive.Value data-slot="select-value" {...props} />
 }
 
-// Define size variants for SelectTrigger
 const selectTriggerVariants = cva(
 	`
     flex bg-background w-full items-center outline-none border border-alpha shadow-xs shadow-black/5 transition-shadow 
