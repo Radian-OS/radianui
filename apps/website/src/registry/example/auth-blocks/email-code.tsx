@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
-import { InputOtp } from "@/registry/ui/input-otp"
+import { Label } from "@/registry/ui/label"
+import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/one-time-password-field"
 
 const EmailCode = () => {
 	const handleSubmitClick = () => {
@@ -25,11 +26,18 @@ const EmailCode = () => {
 							</div>
 						</div>
 						<div className="space-y-5">
-							<InputOtp label="Confirmation Code" length={6} size="44" className="w-[320px]" placeholder="Confirmation Code" />
-							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
-								Verify
-							</Button>
+							<div className="flex flex-col gap-1.5"></div>
+							<Label htmlFor="one-time-password">Enter Verification Code</Label>
+							<OTPField size="44" placeholder="000000" className="w-[320px]">
+								{Array.from({ length: 6 }).map((_, index) => (
+									<OTPInput key={index} index={index} />
+								))}
+								<OTPHiddenInput />
+							</OTPField>
 						</div>
+						<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
+							Verify
+						</Button>
 					</div>
 				</div>
 			</div>

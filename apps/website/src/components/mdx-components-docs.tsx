@@ -42,11 +42,10 @@ import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
 import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
-import InputOtpPreview from "@/component-preview/input-otp-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
-import OTPPreview from "@/component-preview/otp-preview"
+import OneTimePasswordFieldPreview from "@/component-preview/one-time-password-field-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
@@ -118,6 +117,7 @@ import PasswordInputPreview from "@/registry/example/input/password-input-previe
 import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import UrlPreview from "@/registry/example/input/url-input-preview"
+import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-password-field/otp-size"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import ResizableExample from "@/registry/example/resizable-example"
@@ -206,8 +206,8 @@ const components: MDXComponents = {
 	DisabledRadiogroupExample: () => <DisabledRadiogroupExample />,
 	DisplayColor: () => <DisplayColor />,
 	HovercardPreview: () => <HovercardPreview />,
-	InputOtpPreview: () => <InputOtpPreview />,
-	OTPPreview: () => <OTPPreview />,
+	OneTimePasswordFieldPreview: () => <OneTimePasswordFieldPreview />,
+	OneTimePasswordFieldSizeExample: () => <OneTimePasswordFieldSizeExample />,
 	TabsPreview: () => <TabsPreview />,
 	IconCounterTabsExample: () => <IconCounterTabsExample />,
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,

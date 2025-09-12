@@ -7,9 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const PASSWORD_LENGTH = 6
 
-const OTPPreview = () => {
-	const [value, setValue] = React.useState("")
-
+const OneTimePasswordFieldPreview = () => {
 	return (
 		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
@@ -26,10 +24,10 @@ const OTPPreview = () => {
 			</div>
 
 			<TabsContent value="preview">
-				<div className="flex h-[300px] items-center justify-center overflow-auto rounded-xl border p-10">
+				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border p-10">
 					<div className="flex flex-col gap-2">
-						<Label htmlFor="one-time-password">One-Time-Password</Label>
-						<OTPField disabled value={value} size="36" onValueChange={setValue} placeholder="4567890" autoComplete="one-time-code">
+						<Label htmlFor="one-time-password">Enter Verification Code</Label>
+						<OTPField autoFocus id="one-time-password">
 							{Array.from({ length: PASSWORD_LENGTH }).map((_, i) => (
 								<OTPInput key={i} />
 							))}
@@ -43,7 +41,7 @@ const OTPPreview = () => {
 				<CodeSnippet
 					title="one-time-password-field.tsx"
 					showLineNumber
-					className="h-[300px]"
+					className="h-[420px]"
 					code={`import * as React from "react"
 import { unstable_OneTimePasswordField as OneTimePasswordField } from "radix-ui"
 
@@ -66,4 +64,4 @@ export default function OneTimePasswordFieldDemo() {
 	)
 }
 
-export default OTPPreview
+export default OneTimePasswordFieldPreview
