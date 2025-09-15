@@ -1,6 +1,87 @@
 ---
 title: Colors
-description: Let users take action and make choices in a single click
+description: Minimal and effective color for your entire Ul
 ---
 
-<DisplayColor />
+## Radian Colors
+
+Colors in Radian design system is built on minimal yet effective colors that is flexible enough to build an entire product on. The color system provides variables for all of the most common use cases while building an interface.
+
+<br />
+Colors are organized based on usage like text, border, background, & primary colors to ensure using color is easier for most people.
+
+### Background
+
+<ColorTableThemeToggle />
+
+<ColorTable
+	data={[
+		{
+			token: "bg-base",
+			light: "#FFFFFF",
+			dark: "#090A0B",
+			usage: "Base Background",
+		},
+		{
+			token: "bg-fill1",
+			light: "#F9F9FA",
+			dark: "#0E0E11",
+			usage: "Use to give soft gray color for backgrounds ",
+		},
+		{
+			token: "bg-fill2",
+			light: "#F4F4F6",
+			dark: "#131316",
+			usage: "Use [ bg-fill2 ] if gray background section needs more visibility",
+		},
+		{
+			token: "bg-fill3",
+			light: "#E9E9EC",
+			dark: "#1C1D21",
+			usage: "Slightly darker than [ bg-fill2 ]",
+		},
+		{
+			token: "bg-fill4",
+			light: "#DEDEE3",
+			dark: "#26272C",
+			usage: "Slightly darker than [ bg-fill3 ]",
+		},
+	]}
+/>
+
+### Text
+
+<ColorTable
+	data={[
+		{
+			token: "text",
+			light: "#1C1D21",
+			dark: "#FFFFFF",
+			usage: "Use for Headers and Title Text",
+		},
+		{
+			token: "text-secondary",
+			light: "#545463",
+			dark: "#9191A1",
+			usage: "Use for Descriptions or paragraph ",
+		},
+		{
+			token: "text-tertiary",
+			light: "#868698",
+			dark: "#717184",
+			usage: "Similar to text secondary, but slighly dimmer",
+		},
+		{
+			token: "text-disabled",
+			light: "#C8C8D0",
+			dark: "#545463",
+			usage: "Used when ui elements are disabled",
+		},
+		{
+			token: "text-inverse",
+			light: "#FFFFFF",
+			dark: "#1C1D21",
+			usage: "Used on darker colored background",
+		},
+	]}
+/>
