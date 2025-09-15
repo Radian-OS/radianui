@@ -32,7 +32,6 @@ import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
-import CurrencyAmountPreview from "@/component-preview/currency-amount-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DialogPreview from "@/component-preview/dialog-preview"
 import DividerPreview from "@/component-preview/divider-preview"
@@ -100,7 +99,9 @@ import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
-import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
+import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/large-currency-example-preview"
+import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import DeleteDialogExample from "@/registry/example/dialog/delete-dialog"
@@ -236,8 +237,9 @@ const components: MDXComponents = {
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
-	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
-	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
+	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
+	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
+	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
 	SearchPreview: () => <SearchPreview />,
 	SkeletonPreview: () => <SkeletonPreview />,
 	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,

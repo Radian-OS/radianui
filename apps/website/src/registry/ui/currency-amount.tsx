@@ -1,216 +1,56 @@
-type CurrencyInputProps = {
-	currency?: string
-	locale?: string
-	decimals?: number
-	decimalSeparator?: string
-	groupSeparator?: string
-	separator?: boolean
-	maxValue?: number
-	minValue?: number
-	onValueChange?: (value: number | null, name?: string) => void
-}
+import React, { forwardRef } from "react"
+import { type VariantProps, cva } from "class-variance-authority"
+import CurrencyInput from "react-currency-input-field"
+import { cn } from "@/lib/utils"
 
-function CurrencyInput(
+const currencyInputVariants = cva(
+	`
+  flex w-full bg-bg border border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary
+  focus-visible:ring-primary-focus focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2
+  disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill1
+  [&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed
+  file:h-full [&[type=file]]:py-0 file:border-solid file:border-alpha file:bg-transparent
+  file:font-medium file:not-italic file:text-fg file:p-0 file:border-0 file:border-e
+  aria-invalid:border-error aria-invalid:ring-error-focus
+  `,
 	{
-		// currency = "usd",
-		// locale = "en-US",
-		// decimalSeparator,
-		// groupSeparator,
-		// separator = true,
-		// maxValue,
-		// minValue,
-		// onValueChange,
-	}: CurrencyInputProps
-) {
-	// const [rawValue, setRawValue] = useState<string>((props as string) || "")
-	// const [currencySymbol, setCurrencySymbol] = useState<string>("")
-	// const inputRef = useRef<HTMLInputElement>(null)
-	// const allowDecimals = decimals > 0
-	// const decimalsLimit = Math.max(0, decimals)
-	// const [detectedDecimalSep, detectedGroupSep] = useDetectSeparators(locale)
-	// const effectiveDecimalSep = decimalSeparator || detectedDecimalSep
-	// const effectiveGroupSep = groupSeparator || detectedGroupSep
-	// const formatter = useMemo(
-	// 	() =>
-	// 		new Intl.NumberFormat(locale, {
-	// 			style: "currency",
-	// 			currency: currency.toUpperCase(),
-	// 			minimumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-	// 			maximumFractionDigits: allowDecimals ? Math.min(decimalsLimit, 20) : 0,
-	// 			useGrouping: separator,
-	// 		}),
-	// 	[locale, currency, allowDecimals, decimalsLimit, separator]
-	// )
-	// strip symbol from formatted value
-	// const formatCurrency = (value: number): string => {
-	// 	const parts = formatter.formatToParts(value)
-	// 	return parts
-	// 		.filter((p) => p.type !== "currency")
-	// 		.map((p) => p.value)
-	// 		.join("")
-	// 		.trim()
-	// }
-	// const peekNumber = (value: string): number | null => {
-	// 	if (!value || value === "-" || value === effectiveDecimalSep) return null
-	// 	let clean = value.replace(new RegExp(`\\${effectiveGroupSep}`, "g"), "")
-	// 	if (effectiveDecimalSep !== ".") {
-	// 		clean = clean.replace(new RegExp(`\\${effectiveDecimalSep}`, "g"), ".")
-	// 	}
-	// 	clean = clean.replace(/[^\d.-]/g, "")
-	// 	const parts = clean.split(".")
-	// 	if (parts.length > 2) clean = `${parts[0]}.${parts.slice(1).join("")}`
-	// 	const num = parseFloat(clean)
-	// 	return isNaN(num) ? null : num
-	// }
-	// const parseValue = (value: string): number | null => {
-	// 	const num = peekNumber(value)
-	// 	if (num == null) return null
-	// 	if (maxValue !== undefined && num > maxValue) return maxValue
-	// 	if (minValue !== undefined && num < minValue) return minValue
-	// 	return num
-	// }
-	// const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-	// 	if (e.ctrlKey || e.metaKey) return
-	// 	const allowedNav = ["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab", "Enter"]
-	// 	if (allowedNav.includes(e.key)) return
-	// 	const isDigit = /\d/.test(e.key)
-	// 	const isDecimal = allowDecimals && e.key === effectiveDecimalSep
-	// 	if (!isDigit && !isDecimal) {
-	// 		e.preventDefault()
-	// 		return
-	// 	}
-	// 	const input = inputRef.current!
-	// 	const { value, selectionStart = 0, selectionEnd = 0 } = input
-	// 	const nextRaw = value.slice(0, selectionStart!) + e.key + value.slice(selectionEnd!)
-	// 	const peek = peekNumber(nextRaw)
-	// 	if (peek !== null && maxValue !== undefined && peek > maxValue) {
-	// 		e.preventDefault()
-	// 	}
-	// }
-	// const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-	// 	let newValue = e.target.value
-	// 	if (!allowDecimals) {
-	// 		newValue = newValue.replace(/[^\d-]/g, "")
-	// 	} else {
-	// 		const parts = newValue.split(effectiveDecimalSep)
-	// 		if (parts.length > 2) newValue = `${parts[0]}${effectiveDecimalSep}${parts.slice(1).join("")}`
-	// 		if (parts[1]?.length > decimalsLimit) {
-	// 			parts[1] = parts[1].slice(0, decimalsLimit)
-	// 			newValue = parts.join(effectiveDecimalSep)
-	// 		}
-	// 	}
-	// 	const isTypingFraction = allowDecimals && (newValue.endsWith(effectiveDecimalSep) || new RegExp(`\\${effectiveDecimalSep}\\d*$`).test(newValue))
-	// 	let displayValue: string
-	// 	if (!isTypingFraction && separator) {
-	// 		const num = peekNumber(newValue)
-	// 		if (num != null) {
-	// 			const parts = formatter.formatToParts(num)
-	// 			const intAndGroup = parts
-	// 				.filter((p) => p.type === "integer" || p.type === "group")
-	// 				.map((p) => p.value)
-	// 				.join("")
-	// 			const frac = newValue.includes(effectiveDecimalSep) ? effectiveDecimalSep + newValue.split(effectiveDecimalSep)[1] : ""
-	// 			displayValue = intAndGroup + frac
-	// 		} else {
-	// 			displayValue = newValue
-	// 		}
-	// 	} else {
-	// 		displayValue = newValue
-	// 	}
-	// 	setRawValue(displayValue)
-	// 	// props.onChange?.({
-	// 	// 	...e,
-	// 	// 	target: { ...e.target, value: displayValue },
-	// 	// } as React.ChangeEvent<HTMLInputElement>)
-	// }
-	// const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
-	// 	if (!inputRef.current) return
-	// 	if (!rawValue) {
-	// 		setRawValue("")
-	// 		inputRef.current.value = ""
-	// 		onValueChange?.(null, props.name)
-	// 		props.onBlur?.(e)
-	// 		return
-	// 	}
-	// const num = parseValue(rawValue)
-	// if (num == null) {
-	// 	setRawValue("")
-	// 	inputRef.current.value = ""
-	// 	onValueChange?.(null, props.name)
-	// } else {
-	// 	// strip symbol from final value
-	// 	const out = separator ? formatCurrency(num) : num.toFixed(allowDecimals ? decimalsLimit : 0)
-	// 	inputRef.current.value = out
-	// 	setRawValue(out)
-	// 	onValueChange?.(num, props.name)
-	// }
-	// props.onBlur?.(e)
+		variants: {
+			size: {
+				"28": "h-7 text-xs p-1.5 rounded-md file:pe-1.5 file:me-1.5",
+				"32": "h-8 text-sm px-3 py-1.5 rounded-md file:pe-3 file:me-3",
+				"36": "h-9 text-sm px-2.5 py-2 rounded-lg file:pe-2.5 file:me-2.5",
+				"40": "h-10 text-sm px-3 py-2.5 rounded-lg file:pe-3 file:me-3",
+				"44": "h-11 text-base py-2.5 px-3.5 rounded-[10px] file:pe-3.5 file:me-3.5",
+				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] file:pe-3.5 file:me-3.5",
+			},
+		},
+		defaultVariants: {
+			size: "36",
+		},
+	}
+)
+
+export interface CurrencyInputProps extends Omit<React.ComponentProps<typeof CurrencyInput>, "className" | "size"> {
+	className?: string
+	size?: VariantProps<typeof currencyInputVariants>["size"]
 }
 
-// const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
-// 	if (inputRef.current) inputRef.current.value = rawValue
-// 	props.onFocus?.(e)
-// }
+const CurrencyInputField = forwardRef<HTMLInputElement, CurrencyInputProps>(({ className, size, ...props }, ref) => {
+	// Ensure size is a string matching the allowed variant values
+	const normalizedSize = typeof size === "number" ? (String(size) as VariantProps<typeof currencyInputVariants>["size"]) : size
 
-// const preventFocus = (e: React.MouseEvent) => {
-// 	e.preventDefault()
-// 	e.stopPropagation()
-// }
+	return (
+		<CurrencyInput
+			ref={ref}
+			className={cn(currencyInputVariants({ size: normalizedSize }), className)}
+			allowDecimals={true}
+			decimalsLimit={2}
+			allowNegativeValue={false}
+			{...props}
+		/>
+	)
+})
 
-// 	const currencyLead = (
-// 		<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-// 			{/* <span className={cn("text-fg-tertiary text-sm uppercase", { "text-fg-disabled cursor-not-allowed": props.disabled })}>{currencySymbol}</span> */}
-// 		</div>
-// 	)
+CurrencyInputField.displayName = "CurrencyInputField"
 
-// 	// const wrappedTrail = props.end ? (
-// 	// 	<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto">
-// 	// 		{props.end}
-// 	// 	</div>
-// 	// ) : (
-// 	// 	<div onMouseDown={preventFocus} onClick={preventFocus} className="pointer-events-auto flex items-center justify-center">
-// 	// 		<span className={cn("text-fg-tertiary text-sm uppercase", { "text-fg-disabled cursor-not-allowed": props.disabled })}>{currency}</span>
-// 	// 	</div>
-// 	// )
-
-// 	// useEffect(() => {
-// 	// 	setRawValue((props.value as string) || "")
-// 	// 	try {
-// 	// 		// Always use en-US for symbol detection to get standard symbols
-// 	// 		const parts = new Intl.NumberFormat("en-US", {
-// 	// 			style: "currency",
-// 	// 			currency: currency.toUpperCase(),
-// 	// 		}).formatToParts(0)
-// 	// 		const symbol = parts.find((p) => p.type === "currency")?.value || ""
-// 	// 		setCurrencySymbol(symbol)
-// 	// 	} catch {
-// 	// 		setCurrencySymbol(currency.toUpperCase())
-// 	// 	}
-// 	// }, [currency, locale])
-
-// 	return (
-// 		<Input
-// 			value={rawValue}
-// 			ref={inputRef}
-// 			onKeyDown={handleKeyDown}
-// 			onChange={handleChange}
-// 			onBlur={handleBlur}
-// 			onFocus={handleFocus}
-// 			{...props}
-// 		/>
-// 	)
-// }
-
-// function useDetectSeparators(locale: string): [string, string] {
-// 	const [decimalSep, setDecimalSep] = useState<string>(".")
-// 	const [groupSep, setGroupSep] = useState<string>(",")
-// 	useEffect(() => {
-// 		const parts = new Intl.NumberFormat(locale).formatToParts(1234.5)
-// 		setDecimalSep(parts.find((p) => p.type === "decimal")?.value || ".")
-// 		setGroupSep(parts.find((p) => p.type === "group")?.value || ",")
-// 	}, [locale])
-// 	return [decimalSep, groupSep]
-// }
-
-export { CurrencyInput }
-export type { CurrencyInputProps }
+export { CurrencyInputField, currencyInputVariants }
