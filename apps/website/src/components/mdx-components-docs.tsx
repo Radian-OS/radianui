@@ -111,6 +111,7 @@ import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-wi
 import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
+import FileUploadExample from "@/registry/example/file-upload/file-upload-example"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
@@ -284,6 +285,7 @@ const components: MDXComponents = {
 	SliderWithMarks: () => <SliderWithMarks />,
 	SliderWithInput: () => <SliderWithInput />,
 	SliderWithTooltip: () => <SliderWithTooltip />,
+	FileUploadExample: () => <FileUploadExample />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

@@ -159,14 +159,6 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Code Area UI component illustration",
 			},
 			{
-				title: "Color Picker",
-				description: "3 Components",
-				url: "/docs/components/color-picker",
-				thumbnail: "/thumbnails/coming-soon.webp",
-				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
-				alt: "Color Picker UI component illustration",
-			},
-			{
 				title: "Currency Amount",
 				description: "3 Components",
 				url: "/docs/components/currency-amount",
