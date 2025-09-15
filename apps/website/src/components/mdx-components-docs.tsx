@@ -66,6 +66,7 @@ import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
 import Installation from "@/components/installation"
+import TypographyPlayground from "@/components/typography/typography-playground"
 import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
@@ -245,6 +246,7 @@ const components: MDXComponents = {
 	LabelPreview: () => <LabelPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
+	TypographyPlayground: () => <TypographyPlayground />,
 	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
