@@ -36,7 +36,7 @@ export interface CurrencyInputProps extends Omit<React.ComponentProps<typeof Cur
 }
 
 const CurrencyInputField = forwardRef<HTMLInputElement, CurrencyInputProps>(({ className, size, ...props }, ref) => {
-	// Ensure size is a string matching the allowed variant values
+	//Ensure size is a string matching the allowed variant values
 	const normalizedSize = typeof size === "number" ? (String(size) as VariantProps<typeof currencyInputVariants>["size"]) : size
 
 	return (
