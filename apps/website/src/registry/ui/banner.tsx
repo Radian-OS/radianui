@@ -5,11 +5,15 @@ import { createContext } from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-type BannerProps = HTMLAttributes<HTMLDivElement> &
+export type BannerProps = HTMLAttributes<HTMLDivElement> &
 	VariantProps<typeof bannerVariants> & {
 		children?: ReactNode
 		className?: string
 	}
+
+export type BannerTitleProps = HTMLAttributes<HTMLHeadingElement>
+export type BannerDescriptionProps = HTMLAttributes<HTMLParagraphElement>
+export type BannerActionProps = HTMLAttributes<HTMLButtonElement>
 
 const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative text-sm w-full", {
 	variants: {
@@ -145,17 +149,17 @@ function Banner({ color, variant, className, children }: BannerProps) {
 }
 Banner.displayName = "Banner"
 
-function BannerTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+function BannerTitle({ className, ...props }: BannerTitleProps) {
 	return <h5 className={cn("text-sm font-medium", className)} {...props}></h5>
 }
 BannerTitle.displayName = "BannerTitle"
 
-function BannerDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+function BannerDescription({ className, ...props }: BannerDescriptionProps) {
 	return <p className={cn("text-sm", className)} {...props}></p>
 }
 BannerDescription.displayName = "BannerDescription"
 
-function BannerAction({ className, children, ...props }: React.HTMLAttributes<HTMLButtonElement>) {
+function BannerAction({ className, children, ...props }: BannerActionProps) {
 	return (
 		<span className={cn("absolute right-2 top-1/2 -translate-y-1/2", className)} {...props}>
 			{children}

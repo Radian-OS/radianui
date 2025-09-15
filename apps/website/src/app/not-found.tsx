@@ -1,5 +1,4 @@
 import Link from "next/link"
-import InternationalPhoneWithHookExample from "@/registry/example/phone/international-phone-hook-example"
 import { Button } from "@/registry/ui/button"
 
 export default function NotFound() {
@@ -9,7 +8,6 @@ export default function NotFound() {
 				<div className="flex flex-col items-center justify-center gap-3">
 					<h1 className="heading-1 animate-bounce">404</h1>
 					<p className="text-fg-secondary">Looks like you have lost. Click the button below to go to homepage.</p>
-					<InternationalPhoneWithHookExample />
 				</div>
 				<Link href="/">
 					<Button variant={"strong"} className="hover:bg-primary/90">

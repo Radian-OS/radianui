@@ -4,8 +4,13 @@ import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-type AlertProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant"> & VariantProps<typeof alertVariants>
-// Variants
+export type AlertProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant"> & VariantProps<typeof alertVariants>
+export type AlertTitleProps = React.HTMLAttributes<HTMLHeadingElement>
+export type AlertDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
+export type AlertContentProps = React.HTMLAttributes<HTMLDivElement>
+export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
+export type AlertActionsProps = React.HTMLAttributes<HTMLDivElement>
+
 const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-2", {
 	variants: {
 		color: {
@@ -67,30 +72,29 @@ function Alert({ className, color, variant, ...props }: AlertProps) {
 }
 Alert.displayName = "Alert"
 
-function AlertTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {
+function AlertTitle({ className, ...props }: AlertTitleProps) {
 	return <h5 className={cn("text-sm font-medium", className)} {...props} />
 }
 AlertTitle.displayName = "AlertTitle"
 
-function AlertDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {
+function AlertDescription({ className, ...props }: AlertDescriptionProps) {
 	return <div className={cn("text-sm", className)} {...props} />
 }
 AlertDescription.displayName = "AlertDescription"
 
-function AlertContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function AlertContent({ className, ...props }: AlertContentProps) {
 	return <div className={cn("flex flex-grow flex-col gap-1", className)} {...props} />
 }
 AlertContent.displayName = "AlertContent"
 
-function AlertIcon({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function AlertIcon({ className, ...props }: AlertIconProps) {
 	return <div className={cn("flex-shrink-0", className)} {...props} />
 }
 AlertIcon.displayName = "AlertIcon"
 
-function AlertActions({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
+function AlertActions({ className, ...props }: AlertActionsProps) {
 	return <div className={cn("flex-shrink-0", className)} {...props} />
 }
 AlertActions.displayName = "AlertActions"
 
 export { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertActions, alertVariants }
-export type { AlertProps }
