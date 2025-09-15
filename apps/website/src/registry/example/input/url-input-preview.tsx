@@ -4,16 +4,18 @@ import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-// type domainOption = ".com" | ".org" | ".net"
+type domainOption = ".com" | ".org" | ".net"
 type typeOptions = "end" | "start" | "default"
 const sizes = ["28", "32", "36", "40", "44", "48"]
 
 const UrlPreview = () => {
 	const [types, setType] = useState<typeOptions>("default")
 	const [size, setSize] = useState<SizeOptions>("36")
+	const [domain, setDomain] = useState<domainOption>(".com")
 
 	return (
 		<Tabs className="mt-3" defaultValue="preview">
@@ -73,8 +75,19 @@ const UrlPreview = () => {
 						<div className="flex">
 							<InputGroup className="w-80">
 								{types === "start" ? <InputAddon size={size}>https://</InputAddon> : null}
-								<Input size={size} placeholder="radianos.com" type="url" />
-								{types === "end" ? <InputAddon size={size}>.com</InputAddon> : null}
+								<Input size={size} className={`${types === "end" ? "w-fit rounded-r-none border-r-0 focus-within:border-r" : ""}`} placeholder="radianos.com" type="url" />
+								{types === "end" ? (
+									<Select value={domain} onValueChange={(values) => setDomain(values as domainOption)}>
+										<SelectTrigger className="w-fit rounded-l-none">
+											<SelectValue />
+										</SelectTrigger>
+										<SelectContent>
+											<SelectItem value=".com">.com</SelectItem>
+											<SelectItem value=".org">.org</SelectItem>
+											<SelectItem value=".net">.net</SelectItem>
+										</SelectContent>
+									</Select>
+								) : null}
 							</InputGroup>
 						</div>
 					</div>
@@ -86,14 +99,44 @@ const UrlPreview = () => {
 					title="url-input-preview.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`import { Input } from "@/components/ui/input"
+					code={`import { Input,InputGroup } from "@/components/ui/input"
+${
+	types === "end"
+		? `import { Select, SelectContent, SelectItem, SelectTrigger,SelectValue } from "@/components/ui/select"
+import { useState } from "react"
 
+type domainOption = ".com" | ".org" | ".net"
+	`
+		: ""
+}
 export default function UrlInputExample() {
+${
+	types === "end"
+		? `	
+  const [domain, setDomain] = useState<domainOption>(".com")
+	`
+		: ""
+}
   return (    						
 	<InputGroup className="w-80">
 		${types === "start" ? `<InputAddon size={${size}}>https://</InputAddon>` : ""}
 		<Input size={${size}} placeholder="radianos.com" type="url" />
-		${types === "end" ? `<InputAddon size={${size}}>.com</InputAddon> ` : ""}
+		${
+			types === "end"
+				? `	
+		<Select value={domain} onValueChange={(values) => setDomain(values as domainOption)}>
+			<SelectTrigger className="w-fit rounded-l-none">
+				<SelectValue />
+			</SelectTrigger>
+			<SelectContent>
+				<SelectItem value=".com">.com</SelectItem>
+				<SelectItem value=".org">.org</SelectItem>
+				<SelectItem value=".net">.net</SelectItem>
+			</SelectContent>
+		</Select>
+									`
+				: ""
+		}
 	</InputGroup>
   );
 }
