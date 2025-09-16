@@ -10,6 +10,7 @@ export type TimePickerProps = {
 	minTime?: string
 	maxTime?: string
 	defaultValue?: Time
+	className?: string
 }
 
 /**
@@ -33,7 +34,7 @@ function deserializeTime(timeString: string) {
 	return new Time(hour, minute)
 }
 
-function TimePicker({ interval = 15, onValueChange, is24Hour = false, minTime = "00:00", maxTime = "23:59", defaultValue, value = null, ...props }: TimePickerProps) {
+function TimePicker({ interval = 15, onValueChange, className, is24Hour = false, minTime = "00:00", maxTime = "23:59", defaultValue, value = null, ...props }: TimePickerProps) {
 	const isControlled = value !== null
 
 	/* Store the time as a serialized string ("HH:mm") to simplify comparisons and render */
@@ -102,7 +103,7 @@ function TimePicker({ interval = 15, onValueChange, is24Hour = false, minTime = 
 
 	return (
 		<Select value={currentValue} onValueChange={handleChange} {...props}>
-			<SelectTrigger>
+			<SelectTrigger className={className}>
 				<SelectValue />
 			</SelectTrigger>
 			<SelectContent>

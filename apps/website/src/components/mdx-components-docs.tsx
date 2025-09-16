@@ -1,7 +1,7 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
-import { Link as LinkIcon, Settings } from "lucide-react"
+import { Link as LinkIcon, Moon, Settings, Sun } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import { MDXComponents } from "mdx/types"
 import Image from "next/image"
@@ -65,9 +65,9 @@ import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
-import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
 import TypographyPlayground from "@/components/typography/typography-playground"
+import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
 import AlertCloseExamplePreview from "@/registry/example/alert/alert-close-example-preview"
@@ -151,6 +151,7 @@ import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 // import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
+import { ColorData, ColorTable } from "./color-table"
 import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma-card"
 import { FrameworkDocs } from "./framework-docs"
@@ -172,6 +173,27 @@ const components: MDXComponents = {
 	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
 		<PropsTable title={title} data={data} externalReference={externalReference} />
 	),
+	ColorTable: ({ data }: { data: ColorData[] }) => {
+		const { isDark } = useTheme()
+		return <ColorTable data={data} isDark={isDark} />
+	},
+	ColorTableThemeToggle: () => {
+		const { isDark, toggleTheme } = useTheme()
+
+		return (
+			<div className="flex w-full justify-end">
+				<div onClick={toggleTheme} className="bg-fill2 relative mb-2 flex h-8 cursor-pointer items-center rounded-md p-1 transition-all duration-300" style={{ width: "88px" }}>
+					<div className={`bg-elevation-level2 absolute h-6 w-10 rounded-md shadow-sm transition-all duration-300 ease-out ${isDark ? "translate-x-10" : "translate-x-0"}`} />
+					<div className="relative z-10 flex h-6 w-10 items-center justify-center">
+						<Sun size={14} className="text-fg-secondary" />
+					</div>
+					<div className="relative z-10 flex h-6 w-10 items-center justify-center">
+						<Moon size={14} className="text-fg-secondary" />
+					</div>
+				</div>
+			</div>
+		)
+	},
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
@@ -205,7 +227,6 @@ const components: MDXComponents = {
 	RadiogroupPreview: () => <RadiogroupPreview />,
 	ARMRadiogroupExample: () => <ARMRadiogroupExample />,
 	DisabledRadiogroupExample: () => <DisabledRadiogroupExample />,
-	DisplayColor: () => <DisplayColor />,
 	HovercardPreview: () => <HovercardPreview />,
 	OneTimePasswordFieldPreview: () => <OneTimePasswordFieldPreview />,
 	OneTimePasswordFieldSizeExample: () => <OneTimePasswordFieldSizeExample />,
