@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./website.css";
@@ -293,22 +293,6 @@
 	@apply font-body text-[0.8125rem] leading-[1.125rem];
 }
 
-@utility font-geist {
-	font-family: "Geist", system-ui, sans-serif;
-}
-@utility font-inter {
-	font-family: "Inter", system-ui, sans-serif;
-}
-@utility font-manrope {
-	font-family: "Manrope", system-ui, sans-serif;
-}
-@utility font-open-sans {
-	font-family: "Open Sans", system-ui, sans-serif;
-}
-@utility font-roboto {
-	font-family: "Roboto", system-ui, sans-serif;
-}
-
 /* Hides scrollbar in multiple browsers*/
 @utility no-scrollbar {
 	-ms-overflow-style: none;
@@ -319,5 +303,19 @@
 	&::-webkit-scrollbar {
 		display: none;
 		/* Chrome, Safari and Opera */
+	}
+}
+
+@layer utilities {
+	/* Chrome & other browser puts a background color on autofill inputs,
+	 this removes it */
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: inherit;
+		transition: background-color 5000s ease-in-out 0s;
+		box-shadow: inset 0 0 20px 20px transparent;
 	}
 }
