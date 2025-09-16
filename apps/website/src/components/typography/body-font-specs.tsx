@@ -31,7 +31,7 @@ const fontSpecs = {
 const BodyFontSpecs = () => {
 	return (
 		<Tabs defaultValue="desktop">
-			<div className="flex items-center justify-start">
+			<div className="flex items-center justify-start overflow-x-auto">
 				<TabsList size="md">
 					{Object.keys(fontSpecs).map((device) => (
 						<TabsTrigger key={device} value={device}>
@@ -44,9 +44,9 @@ const BodyFontSpecs = () => {
 			{Object.entries(fontSpecs).map(([device, headings]) => (
 				<TabsContent key={device} value={device}>
 					<div className="bg-fill2 rounded-2xl p-2">
-						<div className="bg-bg flex flex-col gap-3 rounded-2xl border p-8">
-							{headings.map(({ name, size, lineHeight }) => (
-								<div key={name} className={`flex flex-col gap-2 ${name !== "Body 12" ? "border-b pb-4" : ""}`}>
+						<div className="bg-bg flex flex-col gap-3 rounded-2xl border p-4 sm:p-8">
+							{headings.map(({ name, size, lineHeight }, index) => (
+								<div key={name} className={`flex flex-col gap-2 ${index !== headings.length - 1 ? "border-b pb-4" : ""}`}>
 									<span
 										style={{
 											fontSize: `${size}px`,
@@ -54,7 +54,7 @@ const BodyFontSpecs = () => {
 										}}>
 										{name}
 									</span>
-									<section className="flex items-center justify-start gap-2">
+									<section className="flex flex-wrap items-center justify-start gap-2">
 										<Badge color="neutral" variant="outline">
 											Font Size: {size}px
 										</Badge>

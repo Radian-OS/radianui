@@ -24,7 +24,7 @@ const TypographyPlaground = () => {
 
 	return (
 		<Tabs defaultValue="desktop">
-			<div className="flex items-center justify-between">
+			<div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
 				<Dropdown>
 					<DropdownTrigger asChild>
 						<Button variant="outline" color="neutral" size="36" autoFocus={false}>
@@ -41,7 +41,7 @@ const TypographyPlaground = () => {
 						</DropdownRadioGroup>
 					</DropdownContent>
 				</Dropdown>
-				<TabsList size="md">
+				<TabsList className="whitespace-nowrap sm:whitespace-normal" size="md">
 					<TabsTrigger value="desktop">Desktop</TabsTrigger>
 					<TabsTrigger value="tablet">Tablet</TabsTrigger>
 					<TabsTrigger value="mobile">Mobile</TabsTrigger>
