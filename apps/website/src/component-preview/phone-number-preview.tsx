@@ -1,111 +1,59 @@
-import React, { useState } from "react"
-import { EyeIcon, Settings, SquareTerminal } from "lucide-react"
-import type { Country, Value } from "react-phone-number-input"
+import React from "react"
+import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
-import { IconButton } from "@/registry/ui/button"
-import {
-	Dropdown,
-	DropdownCheckboxItem,
-	DropdownContent,
-	DropdownGroup,
-	DropdownRadioGroup,
-	DropdownRadioItem,
-	DropdownSub,
-	DropdownSubContent,
-	DropdownSubTrigger,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import { PhoneNumber } from "@/registry/ui/phone-number"
+import InternationalPhoneWithHookExample from "@/registry/example/phone/international-phone-hook-example"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+const code = `"use client"
+
+import React, { useState } from "react"
+import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
+import { Input, InputWrapper } from "@/components/ui/input"
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+
+export default function InternationalPhoneWithHookExample() {
+	const [internalValue, setInternalValue] = useState<string>("")
+
+	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
+		defaultCountry: "np",
+		value: internalValue,
+		countries: defaultCountries,
+		onChange: (data) => {
+			setInternalValue(data.phone)
+		},
+	})
+
+	return (
+		<InputWrapper className="w-full max-w-[420px] ps-0">
+			<Select value={country.iso2} onValueChange={(code) => setCountry(code as CountryIso2)}>
+				<SelectTrigger className="w-fit rounded-none border-y-0 border-e border-s-0 focus-visible:ring-0">
+					<SelectValue aria-label={country.name}>
+						<FlagImage iso2={country.iso2} className="size-4" />
+					</SelectValue>
+				</SelectTrigger>
+				<SelectContent className="max-h-80 w-80">
+					<SelectGroup>
+						{defaultCountries.map((c) => {
+							const parsed: { name: string; dialCode: string; iso2: string } = parseCountry(c)
+							return (
+								<SelectItem key={parsed.iso2} value={parsed.iso2} className="justify-between gap-2">
+									<span className="inline-flex flex-1 items-center gap-2">
+										<FlagImage iso2={parsed.iso2} className="size-5" />
+										<span className="truncate">{parsed.name} (+{parsed.dialCode})</span>
+									</span>
+								</SelectItem>
+							)
+						})}
+					</SelectGroup>
+				</SelectContent>
+			</Select>
+			<Input ref={inputRef} type="tel" placeholder={"Enter your phone number"} value={inputValue} onChange={handlePhoneValueChange} className="flex-1" />
+		</InputWrapper>
+	)
+}
+`
+
 const PhoneNumberPreview = () => {
-	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-	type CountryOptions = "none" | "US" | "CA" | "CN" | "IN" | "DE" | "GB"
-
-	const [size, setSize] = useState<SizeOptions>("36")
-	const [disabled, setDisabled] = useState<"true" | "false">("false")
-	const [phone, setPhone] = useState<Value | undefined>()
-	const [country, setCountry] = useState<CountryOptions>("none")
-	const [showTrigger, setShowTrigger] = useState<"true" | "false">("true")
-	const [hint, setHint] = useState<"true" | "false">("false")
-	const [hasError, setHasError] = useState<"true" | "false">("false")
-	const [label, setLabel] = useState<"true" | "false">("true")
-	const [international, setInternational] = useState<"true" | "false">("true")
-	const [countryDropdown, setCountryDropdown] = useState<"true" | "false">("true")
-
-	// Multiselect states for countries
-	const [selectedOnlyCountries, setSelectedOnlyCountries] = useState<string[]>([])
-	const [selectedPreferredCountries, setSelectedPreferredCountries] = useState<string[]>([])
-	const [selectedExcludeCountries, setSelectedExcludeCountries] = useState<string[]>([])
-
-	const countryOptions = [
-		{ value: "none", label: "None (No Default)" },
-		{ value: "US", label: "United States" },
-		{ value: "CA", label: "Canada" },
-		{ value: "CN", label: "China" },
-		{ value: "IN", label: "India" },
-		{ value: "DE", label: "Germany" },
-		{ value: "GB", label: "United Kingdom" },
-	]
-
-	// Available countries for multiselect
-	const availableCountries = [
-		{ code: "US", name: "United States" },
-		{ code: "CA", name: "Canada" },
-		{ code: "MX", name: "Mexico" },
-		{ code: "GB", name: "United Kingdom" },
-		{ code: "DE", name: "Germany" },
-		{ code: "FR", name: "France" },
-		{ code: "IT", name: "Italy" },
-		{ code: "ES", name: "Spain" },
-		{ code: "IN", name: "India" },
-		{ code: "CN", name: "China" },
-		{ code: "JP", name: "Japan" },
-		{ code: "KR", name: "South Korea" },
-		{ code: "SG", name: "Singapore" },
-		{ code: "AU", name: "Australia" },
-		{ code: "BR", name: "Brazil" },
-		{ code: "RU", name: "Russia" },
-		{ code: "KP", name: "North Korea" },
-		{ code: "IR", name: "Iran" },
-		{ code: "SY", name: "Syria" },
-		{ code: "NR", name: "Nauru" },
-		{ code: "TV", name: "Tuvalu" },
-		{ code: "SM", name: "San Marino" },
-	]
-
-	const getOnlyCountries = () => {
-		return selectedOnlyCountries.length > 0 ? selectedOnlyCountries : undefined
-	}
-
-	const getPreferredCountries = () => {
-		return selectedPreferredCountries.length > 0 ? selectedPreferredCountries : undefined
-	}
-
-	const getExcludeCountries = () => {
-		return selectedExcludeCountries.length > 0 ? selectedExcludeCountries : undefined
-	}
-
-	const handlePhoneChange = (value: Value | undefined) => {
-		setPhone(value)
-	}
-
-	const handleCountryChange = (country: Country) => {
-		setCountry(country as CountryOptions)
-	}
-
-	// Helper for code snippet: include country only if not "none"
-	const getCountryCode = () => {
-		if (country === "none") return ""
-		return `
-        country="${country}"`
-	}
-
-	// Get the actual country value to pass to PhoneNumber component
-	const getCountryValue = (): Country | undefined => {
-		return country === "none" ? undefined : (country as Country)
-	}
-
 	return (
 		<Tabs defaultValue="preview">
 			<div className="flex items-center justify-between">
@@ -119,269 +67,15 @@ const PhoneNumberPreview = () => {
 						Code
 					</TabsTrigger>
 				</TabsList>
-				<Dropdown>
-					<DropdownTrigger asChild>
-						<IconButton variant="outline" color="neutral" size="36">
-							<Settings />
-						</IconButton>
-					</DropdownTrigger>
-					<DropdownContent className="min-w-20">
-						<DropdownGroup title="Input">
-							<DropdownSub>
-								<DropdownSubTrigger>Size</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
-										<DropdownRadioItem value="28" onSelect={(e) => e.preventDefault()}>
-											28
-										</DropdownRadioItem>
-										<DropdownRadioItem value="32" onSelect={(e) => e.preventDefault()}>
-											32
-										</DropdownRadioItem>
-										<DropdownRadioItem value="36" onSelect={(e) => e.preventDefault()}>
-											36
-										</DropdownRadioItem>
-										<DropdownRadioItem value="40" onSelect={(e) => e.preventDefault()}>
-											40
-										</DropdownRadioItem>
-										<DropdownRadioItem value="44" onSelect={(e) => e.preventDefault()}>
-											44
-										</DropdownRadioItem>
-										<DropdownRadioItem value="48" onSelect={(e) => e.preventDefault()}>
-											48
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Disabled</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={disabled} onValueChange={(value) => setDisabled(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Hint</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={hint} onValueChange={(value) => setHint(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>hasError</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={hasError} onValueChange={(value) => setHasError(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Label</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={label} onValueChange={(value) => setLabel(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownGroup>
-
-						<DropdownGroup title="Phone Number">
-							<DropdownSub>
-								<DropdownSubTrigger>Show Trigger</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={showTrigger} onValueChange={(value) => setShowTrigger(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Country</DropdownSubTrigger>
-								<DropdownSubContent className="max-h-96 min-w-48 overflow-y-auto">
-									<DropdownRadioGroup value={country} onValueChange={(value) => setCountry(value as CountryOptions)}>
-										{countryOptions.map((option) => (
-											<DropdownRadioItem key={option.value} value={option.value} onSelect={(e) => e.preventDefault()}>
-												{option.label}
-											</DropdownRadioItem>
-										))}
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Country Dropdown</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={countryDropdown} onValueChange={(value) => setCountryDropdown(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Only Countries {selectedOnlyCountries.length > 0 && `(${selectedOnlyCountries.length})`}</DropdownSubTrigger>
-								<DropdownSubContent>
-									{availableCountries.map((country) => (
-										<DropdownCheckboxItem
-											key={country.code}
-											onSelect={(e) => e.preventDefault()}
-											checked={selectedOnlyCountries.includes(country.code)}
-											onCheckedChange={(checked) => setSelectedOnlyCountries((prev) => (checked ? [...prev, country.code] : prev.filter((code) => code !== country.code)))}>
-											{country.name}
-										</DropdownCheckboxItem>
-									))}
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Preferred Countries {selectedPreferredCountries.length > 0 && `(${selectedPreferredCountries.length})`}</DropdownSubTrigger>
-								<DropdownSubContent>
-									{availableCountries.map((country) => (
-										<DropdownCheckboxItem
-											key={country.code}
-											checked={selectedPreferredCountries.includes(country.code)}
-											onSelect={(e) => e.preventDefault()}
-											onCheckedChange={(checked) => setSelectedPreferredCountries((prev) => (checked ? [...prev, country.code] : prev.filter((code) => code !== country.code)))}>
-											{country.name}
-										</DropdownCheckboxItem>
-									))}
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>Exclude Countries {selectedExcludeCountries.length > 0 && `(${selectedExcludeCountries.length})`}</DropdownSubTrigger>
-								<DropdownSubContent>
-									{availableCountries.map((country) => (
-										<DropdownCheckboxItem
-											key={country.code}
-											onSelect={(e) => e.preventDefault()}
-											checked={selectedExcludeCountries.includes(country.code)}
-											onCheckedChange={(checked) => setSelectedExcludeCountries((prev) => (checked ? [...prev, country.code] : prev.filter((code) => code !== country.code)))}>
-											{country.name}
-										</DropdownCheckboxItem>
-									))}
-								</DropdownSubContent>
-							</DropdownSub>
-
-							<DropdownSub>
-								<DropdownSubTrigger>International</DropdownSubTrigger>
-								<DropdownSubContent className="min-w-24">
-									<DropdownRadioGroup value={international} onValueChange={(value) => setInternational(value as "true" | "false")}>
-										<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-											True
-										</DropdownRadioItem>
-										<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-											False
-										</DropdownRadioItem>
-									</DropdownRadioGroup>
-								</DropdownSubContent>
-							</DropdownSub>
-						</DropdownGroup>
-					</DropdownContent>
-				</Dropdown>
 			</div>
-
 			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center rounded-xl border p-10">
-					<div className="flex flex-col gap-1.5">
-						<PhoneNumber
-							countryDropdown={countryDropdown === "true"}
-							hasError={hasError === "true"}
-							hint={hint === "true" ? "Hint text to help the user with input" : ""}
-							label={label === "true" ? "Phone Number" : ""}
-							showTrigger={showTrigger === "true"}
-							value={phone}
-							disabled={disabled === "true"}
-							international={international === "true"}
-							onChange={handlePhoneChange}
-							country={getCountryValue()}
-							onCountryChange={handleCountryChange}
-							onlyCountries={getOnlyCountries()}
-							preferredCountries={getPreferredCountries()}
-							excludeCountries={getExcludeCountries()}
-							className={showTrigger === "false" ? "w-80" : "w-62"}
-						/>
-					</div>
+				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
+					<InternationalPhoneWithHookExample />
 				</div>
 			</TabsContent>
 
 			<TabsContent value="code">
-				<CodeSnippet
-					title="phone-number.tsx"
-					showLineNumber
-					className="h-[420px]"
-					code={`import React, { useState } from "react"
-import { PhoneNumber } from "@/registry/ui/phone-number"
-import type { Country, Value } from "react-phone-number-input"
-
-const PhoneNumberExample = () => {
-  const [phone, setPhone] = useState<Value | undefined>()
-  const [country, setCountry] = useState<Country | undefined>(${country === "none" ? "undefined" : `"${country}"`})
-
-  const handlePhoneChange = (value: Value | undefined) => {
-    setPhone(value)
-  }
-
-  const handleCountryChange = (country: Country) => {
-    setCountry(country)
-  }
-
-  return (
-    <div className="flex gap-1.5 flex-col">
-      <PhoneNumber
-	    countryDropdown={${countryDropdown === "true"}}
-        hasError={${hasError === "true"}}
-        hint="${hint === "true" ? "Hint text to help the user with input" : ""}"
-        value={phone}
-        label="${label === "true" ? "Phone Number" : ""}"
-        onChange={handlePhoneChange}${getCountryCode()}
-        onCountryChange={handleCountryChange}
-        size="${size}"
-        showTrigger={${showTrigger === "true"}}
-        ${disabled === "true" ? `disabled={true}` : ""}
-        international={${international === "true"}}
-        ${showTrigger === "false" ? `className="w-80"` : `className="w-62"`}
-      />
-    </div>
-  )
-}
-
-export default PhoneNumberExample`}
-				/>
+				<CodeSnippet title="phone-number.tsx" showLineNumber className="h-[420px]" code={code} />
 			</TabsContent>
 		</Tabs>
 	)

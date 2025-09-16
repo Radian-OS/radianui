@@ -3,10 +3,21 @@ title: Currency Amount
 description: Display currency amount
 links:
   github:
-    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/currency.tsx
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/currency-amount.tsx
+  externalReference:
+    - label: React Currency Input Field
+      href: https://www.npmjs.com/package/react-currency-input-field
 ---
 
-<CurrencyAmountPreview />
+<LargeCurrencyExamplePreview />
+
+### Basic Usage
+
+<BasicCurrencyAmountPreview />
+
+### Small Size
+
+<SmallCurrencyInputPreview />
 
 ## Installation
 
@@ -27,16 +38,6 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
-		<Step>Install the following dependencies:</Step>
-    	<PackageManagerTabs
-    		commands={{
-    			pnpm: "pnpm add @radix-ui/react-label",
-    			npm: "npm install @radix-ui/react-label",
-    			yarn: "yarn add @radix-ui/react-label",
-    			bun: "bun add @radix-ui/react-label",
-    		}}
-    	/>
-
     	<Step>Copy and paste the following code into your project.</Step>
     	<Tabs defaultValue="currency-amount">
     		<TabsList>
@@ -47,12 +48,6 @@ links:
     		<TabsContent value="currency-amount">
     			<ComponentSource name="currency-amount" title="components/ui/currency-amount.tsx" collapsible />
     		</TabsContent>
-    		<TabsContent value="input">
-    			<ComponentSource name="input" title="components/ui/input.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="label">
-    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
-    		</TabsContent>
     	</Tabs>
 
     	<Step>Update the import paths as per your project structure.</Step>
@@ -61,23 +56,9 @@ links:
 
 </Tabs>
 
-## Usage
-
-### Imports
-
-<CodeSnippet title="/registry/ui/currency-amount" code={`import { CurrencyInput } from "@/registry/ui/currency-amount"`} />
-
-### Code
-
-<CodeSnippet title="/registry/ui/currency-amount" code={`<CurrencyInput currency="usd" />`} />
-
----
-
-## Example
-
-### Currency With input Example
-
-<CurrencyExamplePreview />
+<br />
+The currency-amount is built on top of `react-currency-input-field`. You can pass all the props supported by library to the component. For more details, refer to the [official
+documentation](https://www.npmjs.com/package/react-currency-input-field).
 
 ---
 
@@ -85,81 +66,13 @@ links:
 
 <PropsTableWrapper>
 	<PropsTable
-		title="CurrencyInput"
+		title="CurrencyInputFeild"
 		data={[
 			{
-				name: "label",
+				name: "className",
 				values: ["string"],
-				required: false,
-				description: "The label for the currency input",
-			},
-			{
-				name: "size",
-				values: ["28", "32", "36", "40", "44", "48"],
-				defaultValue: "36",
-				required: false,
-				description: "The size of the currency input",
-			},
-			{
-				name: "rounded",
-				values: ["xs", "sm", "md", "lg", "xl", "2xl"],
-				defaultValue: "lg",
-				required: false,
-				description: "The border radius of the currency input",
-			},
-			{
-				name: "disabled",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "Whether the currency input is disabled",
-			},
-			{
-				name: "hint",
-				values: ["string"],
-				required: false,
-				description: "A hint or additional information for the currency input",
-			},
-			{
-				name: "hasError",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "Indicates if the currency input has an error state",
-			},
-			{
-				name: "currency",
-				values: ["string"],
-				defaultValue: "USD",
-				required: false,
-				description: "The currency code for the input, e.g., 'USD', 'EUR', 'JPY'",
-			},
-			{
-				name: "locale",
-				defaultValue: "en-US",
-				values: ["string"],
-				required: false,
-				description: "The locale for the currency input",
-			},
-			{
-				name: "separator",
-				values: ["boolean"],
-				defaultValue: "true",
-				required: false,
-				description: "The separator for the currency input, e.g., ',', '.'",
-			},
-			{
-				name: "decimalPlaces",
-				values: ["number"],
-				defaultValue: "2",
-				required: false,
-				description: "The number of decimal places to display in the currency input",
-			},
-			{
-				name: "maxValue",
-				values: ["number"],
-				required: false,
-				description: "The maximum value for the currency input",
+				defaultValue: "-",
+				description: "Custom class name",
 			},
 		]}
 	/>

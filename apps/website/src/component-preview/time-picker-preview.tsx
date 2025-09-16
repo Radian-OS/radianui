@@ -109,7 +109,7 @@ const TimePickerPreview = () => {
 			</div>
 			<TabsContent value="preview">
 				<div className="flex h-[420px] items-center justify-center overflow-auto rounded-xl border px-10">
-					<TimePicker is24Hour={is24Hour} interval={interval} />
+					<TimePicker className="w-80" is24Hour={is24Hour} interval={interval} />
 				</div>
 			</TabsContent>
 

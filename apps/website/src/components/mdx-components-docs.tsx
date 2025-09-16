@@ -1,7 +1,7 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
-import { Link as LinkIcon, Settings } from "lucide-react"
+import { Link as LinkIcon, Moon, Settings, Sun } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import Image from "next/image"
 import Link from "next/link"
@@ -31,7 +31,6 @@ import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
-import CurrencyAmountPreview from "@/component-preview/currency-amount-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DialogPreview from "@/component-preview/dialog-preview"
 import DividerPreview from "@/component-preview/divider-preview"
@@ -65,8 +64,11 @@ import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
 import TooltipPreview from "@/component-preview/tooltip-preview"
-import DisplayColor from "@/components/display-color"
 import Installation from "@/components/installation"
+import BodyFontSpecs from "@/components/typography/body-font-specs"
+import HeadingFontSpecs from "@/components/typography/heading-font-specs"
+import TypographyPlayground from "@/components/typography/typography-playground"
+import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
 import AlertCloseExamplePreview from "@/registry/example/alert/alert-close-example-preview"
@@ -99,7 +101,9 @@ import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import ColorSpinnerExample from "@/registry/example/color-spinner-example"
-import CurrencyExamplePreview from "@/registry/example/currency-amount/Currency-Example-preview"
+import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
+import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/large-currency-example-preview"
+import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import DeleteDialogExample from "@/registry/example/dialog/delete-dialog"
@@ -149,6 +153,7 @@ import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 // import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
+import { ColorData, ColorTable } from "./color-table"
 import { ComponentPreview } from "./component-preview"
 import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma-card"
@@ -166,6 +171,27 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
 		<PropsTable title={title} data={data} externalReference={externalReference} />
 	),
+	ColorTable: ({ data }: { data: ColorData[] }) => {
+		const { isDark } = useTheme()
+		return <ColorTable data={data} isDark={isDark} />
+	},
+	ColorTableThemeToggle: () => {
+		const { isDark, toggleTheme } = useTheme()
+
+		return (
+			<div className="flex w-full justify-end">
+				<div onClick={toggleTheme} className="bg-fill2 relative mb-2 flex h-8 cursor-pointer items-center rounded-md p-1 transition-all duration-300" style={{ width: "88px" }}>
+					<div className={`bg-elevation-level2 absolute h-6 w-10 rounded-md shadow-sm transition-all duration-300 ease-out ${isDark ? "translate-x-10" : "translate-x-0"}`} />
+					<div className="relative z-10 flex h-6 w-10 items-center justify-center">
+						<Sun size={14} className="text-fg-secondary" />
+					</div>
+					<div className="relative z-10 flex h-6 w-10 items-center justify-center">
+						<Moon size={14} className="text-fg-secondary" />
+					</div>
+				</div>
+			</div>
+		)
+	},
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
@@ -199,7 +225,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	RadiogroupPreview: () => <RadiogroupPreview />,
 	ARMRadiogroupExample: () => <ARMRadiogroupExample />,
 	DisabledRadiogroupExample: () => <DisabledRadiogroupExample />,
-	DisplayColor: () => <DisplayColor />,
 	HovercardPreview: () => <HovercardPreview />,
 	OneTimePasswordFieldPreview: () => <OneTimePasswordFieldPreview />,
 	OneTimePasswordFieldSizeExample: () => <OneTimePasswordFieldSizeExample />,
@@ -219,6 +244,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	LabelPreview: () => <LabelPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
+	TypographyPlayground: () => <TypographyPlayground />,
 	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
@@ -233,8 +259,9 @@ const components = (examples: typeof Examples | undefined) => ({
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
-	CurrencyAmountPreview: () => <CurrencyAmountPreview />,
-	CurrencyExamplePreview: () => <CurrencyExamplePreview />,
+	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
+	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
+	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
 	SearchPreview: () => <SearchPreview />,
 	SkeletonPreview: () => <SkeletonPreview />,
 	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
@@ -280,6 +307,8 @@ const components = (examples: typeof Examples | undefined) => ({
 	SliderWithInput: () => <SliderWithInput />,
 	SliderWithTooltip: () => <SliderWithTooltip />,
 	FileUploadExample: () => <FileUploadExample />,
+	HeadingFontSpecs: () => <HeadingFontSpecs />,
+	BodyFontSpecs: () => <BodyFontSpecs />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
