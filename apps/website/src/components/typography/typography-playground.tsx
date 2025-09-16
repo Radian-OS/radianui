@@ -188,7 +188,7 @@ const TypographyPlaground = () => {
 
 			{/* Mobile */}
 			<TabsContent value="mobile">
-				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8`}>
+				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${fonts[selectedFont]}`}>
 					<div className="flex flex-col gap-3 border-b pb-4">
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
