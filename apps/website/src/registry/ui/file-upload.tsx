@@ -2,226 +2,6 @@
 
 import type React from "react"
 import { type ChangeEvent, type DragEvent, type InputHTMLAttributes, useCallback, useRef, useState } from "react"
-import { cva } from "class-variance-authority"
-import { FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTextIcon, HeadphonesIcon, Upload, VideoIcon, XIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
-import { Button, IconButton } from "./button"
-import { Input } from "./input"
-import { Label } from "./label"
-
-export type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-export type RoundedOptions = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
-
-const getFileIcon = (file: { file: File | { type: string; name: string; preview?: string } }) => {
-	const fileType = file.file instanceof File ? file.file.type : file.file.type
-	const fileName = file.file instanceof File ? file.file.name : file.file.name
-	const isNativeFile = file.file instanceof File
-	let src = ""
-	if (isNativeFile) {
-		src = URL.createObjectURL(file.file as File) // safe
-	} else {
-		src = "preview" in file.file && file.file.preview ? file.file.preview : ""
-	}
-	if (fileType.includes("pdf") || fileName.endsWith(".pdf") || fileType.includes("word") || fileName.endsWith(".doc") || fileName.endsWith(".docx")) {
-		return <FileTextIcon className="size-4 opacity-60" />
-	} else if (fileType.includes("zip") || fileType.includes("archive") || fileName.endsWith(".zip") || fileName.endsWith(".rar")) {
-		return <FileArchiveIcon className="size-4 opacity-60" />
-	} else if (fileType.includes("excel") || fileName.endsWith(".xls") || fileName.endsWith(".xlsx")) {
-		return <FileSpreadsheetIcon className="size-4 opacity-60" />
-	} else if (fileType.includes("video/")) {
-		return <VideoIcon className="size-4 opacity-60" />
-	} else if (fileType.includes("audio/")) {
-		return <HeadphonesIcon className="size-4 opacity-60" />
-	} else if (fileType.startsWith("image/")) {
-		// Only use preview if it exists (not a native File)
-		return <img src={src} alt={file.file.name} className="size-10 rounded-[inherit] object-cover" />
-	}
-	return <FileIcon className="size-4 opacity-60" />
-}
-
-type FileUploadProps = Omit<React.HTMLProps<HTMLInputElement>, "value" | "onChange" | "headers"> & {
-	label?: string
-	title?: string
-	description?: string
-	rounded?: RoundedOptions
-	disabled?: boolean
-	hasError?: boolean
-	hint?: string
-	maxSize?: number
-	containerClassName?: string
-	variant?: string
-	className?: string
-	accept?: string
-	error?: boolean
-	multiple?: boolean
-	maxFiles?: number
-	sizes?: SizeOptions
-	value?: FileWithPreview[] // External file list
-	onChange?: (files: FileWithPreview[]) => void // Callback when files change
-}
-const DEFAULT_MAX_SIZE = 5 * 1024 * 1024 // 5 MB in bytes
-
-function FileUpload({
-	maxSize = DEFAULT_MAX_SIZE,
-	variant = "input",
-	rounded = "lg",
-	label,
-	className,
-	accept = "image/*",
-	error,
-	disabled,
-	multiple = true,
-	sizes = "36",
-	hint,
-	maxFiles = 4,
-	hasError = false,
-	title = "Drag and drop files to upload",
-	description = "JPG, PNG, GIF or other image files",
-	value,
-	onChange,
-}: FileUploadProps) {
-	// Convert external value to initialFiles format
-	const initialFiles = value
-		? value.map((fileWithPreview) => {
-				if (fileWithPreview.file instanceof File) {
-					return {
-						id: fileWithPreview.id,
-						name: fileWithPreview.file.name,
-						size: fileWithPreview.file.size,
-						type: fileWithPreview.file.type,
-						url: fileWithPreview.preview || URL.createObjectURL(fileWithPreview.file),
-					}
-				} else {
-					return fileWithPreview.file as FileMetadata
-				}
-			})
-		: []
-
-	const maxSizeValue = maxSize * 1024 * 1024
-
-	const [{ files, isDragging, errors }, { handleDragEnter, handleFileChange, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps }] =
-		useFileUpload({
-			accept,
-			maxSize: maxSizeValue,
-			multiple: maxFiles > 1 ? multiple : false,
-			maxFiles,
-			initialFiles,
-			onFilesChange: onChange,
-		})
-
-	const cvaFileUploadVariants = {
-		rounded: {
-			xs: "rounded-xs",
-			sm: "rounded-sm",
-			md: "rounded-md",
-			lg: "rounded-lg",
-			xl: "rounded-xl",
-			"2xl": "rounded-2xl",
-		},
-	}
-
-	const defaultFileUploadRadius = "lg"
-
-	const fileUploadVariants = cva(
-		"border-alpha bg-fill1 max-h-50 relative flex h-55 w-full cursor-pointer flex-col items-center justify-center border border-dashed p-3 transition-colors",
-		{
-			variants: {
-				...cvaFileUploadVariants,
-			},
-			defaultVariants: {
-				rounded: defaultFileUploadRadius,
-			},
-		}
-	)
-
-	return (
-		<>
-			{variant === "input" ? (
-				<Input size={sizes} onChange={handleFileChange} id="picture" type="file" disabled={disabled} multiple={multiple} />
-			) : (
-				<div className={cn("flex w-80 flex-col gap-1.5", className)}>
-					{label && <Label htmlFor="picture">{label}</Label>}
-					{/* Drop area */}
-					<div
-						onDragEnter={handleDragEnter}
-						onDragLeave={handleDragLeave}
-						onDragOver={handleDragOver}
-						onDrop={handleDrop}
-						data-dragging={isDragging || undefined}
-						data-files={files.length > 0 || undefined}
-						className={cn(fileUploadVariants({ rounded }), {
-							"border-primary bg-primary/5": isDragging,
-							"border-error bg-error/5": error,
-							"bg-elevation-negative cursor-not-allowed": disabled,
-							"hover:border-primary hover:bg-primary/5": !disabled,
-						})}>
-						<input id="picture" {...getInputProps()} className="sr-only" aria-label="Upload image file" />
-						<div className="flex flex-col items-center justify-center gap-4 px-4 py-3 text-center">
-							<IconButton disabled={disabled} variant="outline" color="neutral" size="36">
-								<Upload className="text-fg-secondary size-6" />
-							</IconButton>
-							<div className="flex flex-col gap-2">
-								<p className="text-fgtext-sm font-semibold leading-5">{title}</p>
-								<p className="text-fg-tertiary text-xs font-normal leading-4">
-									{description} (max. {maxSize} MB){" "}
-								</p>
-							</div>
-							<Button
-								variant="outline"
-								disabled={disabled}
-								size="32"
-								className={`text-fg-secondary text-sm font-medium ${disabled ? "cursor-not-allowed" : ""}`}
-								onClick={() => {
-									if (!disabled) {
-										openFileDialog()
-									}
-								}}>
-								Browse Files
-							</Button>
-						</div>
-					</div>
-
-					{/* Show hint only if there are no errors, or show error in hint style */}
-					{(hint || errors.length > 0) && (
-						<Label className={`flex items-start text-xs font-normal ${errors.length > 0 || hasError ? "text-error" : "text-fg-tertiary"}`}>
-							{errors.length > 0 ? errors[0] : hint}
-						</Label>
-					)}
-
-					{/* File list */}
-					{files.length > 0 && (
-						<div className="space-y-2">
-							{files.map((file) => (
-								<div key={file.id} className="bg-background flex items-center justify-between gap-2 rounded-lg border p-2 pe-3">
-									<div className="flex items-center gap-3 overflow-hidden">
-										<div className="flex aspect-square size-10 shrink-0 items-center justify-center overflow-hidden rounded-sm border">{getFileIcon(file)}</div>
-										<div className="flex min-w-0 flex-col gap-0.5">
-											<p className="truncate text-[13px] font-medium">{file.file.name}</p>
-											<p className="text-muted-foreground text-xs">{formatBytes(file.file.size)}</p>
-										</div>
-									</div>
-
-									<XIcon className="text-fg-tertiary size-4 shrink-0 cursor-pointer" onClick={() => removeFile(file.id)} aria-hidden="true" />
-								</div>
-							))}
-
-							{/* Remove all files button */}
-							{files.length > 0 && (
-								<div className={cn(className)}>
-									<Button size="28" variant="outline" color="neutral" onClick={clearFiles}>
-										Remove all files
-									</Button>
-								</div>
-							)}
-						</div>
-					)}
-				</div>
-			)}
-		</>
-	)
-}
-
-export default FileUpload
 
 export type FileMetadata = {
 	name: string
@@ -245,6 +25,7 @@ export type FileUploadOptions = {
 	initialFiles?: FileMetadata[]
 	onFilesChange?: (files: FileWithPreview[]) => void // Callback when files change
 	onFilesAdded?: (addedFiles: FileWithPreview[]) => void // Callback when new files are added
+	onError?: (errors: string[]) => void
 }
 
 export type FileUploadState = {
@@ -270,7 +51,16 @@ export type FileUploadActions = {
 }
 
 export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState, FileUploadActions] => {
-	const { maxFiles = Infinity, maxSize = Infinity, accept = "*", multiple = false, initialFiles = [], onFilesChange, onFilesAdded } = options
+	const {
+		maxFiles = Number.POSITIVE_INFINITY,
+		maxSize = Number.POSITIVE_INFINITY,
+		accept = "*",
+		multiple = false,
+		initialFiles = [],
+		onFilesChange,
+		onFilesAdded,
+		onError,
+	} = options
 
 	const [state, setState] = useState<FileUploadState>({
 		files: initialFiles.map((file) => ({
@@ -339,11 +129,11 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
 	const clearFiles = useCallback(() => {
 		setState((prev) => {
 			// Clean up object URLs
-			prev.files.forEach((file) => {
+			for (const file of prev.files) {
 				if (file.preview && file.file instanceof File && file.file.type.startsWith("image/")) {
 					URL.revokeObjectURL(file.preview)
 				}
-			})
+			}
 
 			if (inputRef.current) {
 				inputRef.current.value = ""
@@ -376,15 +166,16 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
 			}
 
 			// Check if adding these files would exceed maxFiles (only in multiple mode)
-			if (multiple && maxFiles !== Infinity && state.files.length + newFilesArray.length > maxFiles) {
+			if (multiple && maxFiles !== Number.POSITIVE_INFINITY && state.files.length + newFilesArray.length > maxFiles) {
 				errors.push(`You can only upload a maximum of ${maxFiles} files.`)
+				onError?.(errors)
 				setState((prev) => ({ ...prev, errors }))
 				return
 			}
 
 			const validFiles: FileWithPreview[] = []
 
-			newFilesArray.forEach((file) => {
+			for (const file of newFilesArray) {
 				// Only check for duplicates if multiple files are allowed
 				if (multiple) {
 					const isDuplicate = state.files.some((existingFile) => existingFile.file.name === file.name && existingFile.file.size === file.size)
@@ -398,7 +189,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
 				// Check file size
 				if (file.size > maxSize) {
 					errors.push(multiple ? `Some files exceed the maximum size of ${formatBytes(maxSize)}.` : `File exceeds the maximum size of ${formatBytes(maxSize)}.`)
-					return
+					continue
 				}
 
 				const error = validateFile(file)
@@ -411,7 +202,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
 						preview: createPreview(file),
 					})
 				}
-			})
+			}
 
 			// Only update state if we have valid files to add
 			if (validFiles.length > 0) {
@@ -428,6 +219,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
 					}
 				})
 			} else if (errors.length > 0) {
+				onError?.(errors)
 				setState((prev) => ({
 					...prev,
 					errors,
@@ -439,7 +231,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
 				inputRef.current.value = ""
 			}
 		},
-		[state.files.length, maxFiles, multiple, maxSize, validateFile, createPreview, generateUniqueId, clearFiles, onFilesChange, onFilesAdded]
+		[state.files, maxFiles, multiple, maxSize, validateFile, createPreview, generateUniqueId, clearFiles, onFilesChange, onFilesAdded]
 	)
 
 	const removeFile = useCallback(
@@ -573,7 +365,5 @@ export const formatBytes = (bytes: number, decimals = 2): string => {
 
 	const i = Math.floor(Math.log(bytes) / Math.log(k))
 
-	return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + sizes[i]
+	return Number.parseFloat((bytes / k ** i).toFixed(dm)) + sizes[i]
 }
-
-export { FileUpload }

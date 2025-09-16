@@ -3,7 +3,6 @@
 import React, { HTMLAttributes, useMemo } from "react"
 import { Link as LinkIcon, Settings } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
-import { MDXComponents } from "mdx/types"
 import Image from "next/image"
 import Link from "next/link"
 import IconButtonPreview from "@/component-preview/Icon-button-preview"
@@ -110,11 +109,12 @@ import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-wi
 import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
+import Examples from "@/registry/example/example.json"
+import FileUploadExample from "@/registry/example/file-upload/file-upload-example"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
-import PasswordInputPreview2 from "@/registry/example/input/password-input-preview2"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import UrlPreview from "@/registry/example/input/url-input-preview"
 import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-password-field/otp-size"
@@ -149,6 +149,7 @@ import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 // import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
+import { ComponentPreview } from "./component-preview"
 import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma-card"
 import { FrameworkDocs } from "./framework-docs"
@@ -158,15 +159,10 @@ import SocialLinkCards from "./social-link-cards"
 
 type MdxProps = {
 	code: string
+	examples: typeof Examples
 }
-// type VersionAlertProps = {
-// 	title?: string
-// 	description?: string
-// 	variant?: AlertProps["variant"]
-// 	color?: AlertProps["color"]
-// }
 
-const components: MDXComponents = {
+const components = (examples: typeof Examples | undefined) => ({
 	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
 		<PropsTable title={title} data={data} externalReference={externalReference} />
 	),
@@ -234,7 +230,6 @@ const components: MDXComponents = {
 	CalendarWithYearMonthSelectorExample: () => <CalendarWithYearMonthSelectorExample />,
 	MultipleMonthsCalendarExample: () => <MultipleMonthsCalendarExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
-	PasswordInputPreview2: () => <PasswordInputPreview2 />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
 	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
@@ -284,6 +279,7 @@ const components: MDXComponents = {
 	SliderWithMarks: () => <SliderWithMarks />,
 	SliderWithInput: () => <SliderWithInput />,
 	SliderWithTooltip: () => <SliderWithTooltip />,
+	FileUploadExample: () => <FileUploadExample />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -307,6 +303,11 @@ const components: MDXComponents = {
 	CodeSnippet: ({ code, title, showLineNumbers, collapsible }: { code: string; title: string; showLineNumbers: boolean; collapsible?: boolean }) => (
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
+	ComponentPreview: ({ path }: { path: string }) => {
+		const code = examples?.[0].files.find((file) => file.name === path)?.content || ""
+
+		return <ComponentPreview path={path} code={code} />
+	},
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
 	// AlertLucide: () => <AlertLucide />,
 	FigmaCard: () => <FigmaCard />,
@@ -376,7 +377,7 @@ const components: MDXComponents = {
 	},
 	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
 
-	code: ({ className, ...props }): React.ComponentProps<"code"> => <code className={cn("bg-fill4 break-words rounded-md p-1 font-mono outline-none", className)} {...props} />,
+	code: ({ className, ...props }: React.ComponentProps<"code">) => <code className={cn("bg-fill4 break-words rounded-md p-1 font-mono outline-none", className)} {...props} />,
 
 	Alert: (props: AlertProps) => {
 		return <Alert variant="soft" color="primary" {...props} />
@@ -455,7 +456,7 @@ const components: MDXComponents = {
 			{...props}
 		/>
 	),
-}
+})
 
 /**
  * @returns A React component that renders an error message
@@ -471,7 +472,7 @@ function ErrorComponent() {
  * @returns A React component that renders the MDX content
  */
 
-export function Mdx({ code }: MdxProps) {
+export function Mdx({ code, examples }: MdxProps) {
 	const Component = useMemo(() => {
 		if (!code) return () => null
 		try {
@@ -482,5 +483,5 @@ export function Mdx({ code }: MdxProps) {
 		}
 	}, [code])
 
-	return <Component components={components} />
+	return <Component components={components(examples)} />
 }

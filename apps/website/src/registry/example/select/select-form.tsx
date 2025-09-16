@@ -1,17 +1,24 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import { EyeIcon, SquareTerminal } from "lucide-react"
 import { useForm } from "react-hook-form"
+import * as z from "zod"
 import CodeSnippet from "@/components/code-snippet"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-type FormValues = { role: string }
+const FormSchema = z.object({
+	role: z.string().min(1, { error: "Please select a role" }),
+})
+
+type FormValues = z.infer<typeof FormSchema>
 
 export default function SelectForm() {
 	const form = useForm<FormValues>({
+		resolver: zodResolver(FormSchema),
 		defaultValues: {
 			role: "",
 		},

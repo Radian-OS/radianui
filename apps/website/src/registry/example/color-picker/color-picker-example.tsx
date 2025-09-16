@@ -60,35 +60,43 @@ export default function ColorPickerExample() {
 					title="color-picker-example.tsx"
 					showLineNumber
 					className="h-[420px]"
-					code={`export type ColorFormatOptions = "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA"
+					code={`import ColorPicker from "@/components/ui/color-picker"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+						
+export type ColorFormatOptions = "HEX" | "HSL" | "OKLCH" | "HSB" | "RGBA"
 
-const [inputFormat, setInputFormat] = useState<ColorFormatOptions>("HEX")
-const handleFormatChange = (newFormat: ColorFormatOptions) => {
-	setInputFormat(newFormat)
+export default function ColorPickerConvertExample() {
+
+	const [inputFormat, setInputFormat] = useState<ColorFormatOptions>("HEX")
+	const handleFormatChange = (newFormat: ColorFormatOptions) => {
+		setInputFormat(newFormat)
+	}
+    return (    						
+			<div className="flex flex-col gap-1.5">
+				<div className="flex rounded-md">
+					<ColorPicker
+						size="36"
+						inputFormat={inputFormat}
+						onInputFormatChange={handleFormatChange}
+						defaultColor="#461EFA"
+						className="w-fit rounded-r-none border-r-0 focus-within:border-r"
+					/>
+					<Select value={inputFormat} onValueChange={(value) => handleFormatChange(value as ColorFormatOptions)}>
+						<SelectTrigger className="w-fit rounded-l-none">
+							<SelectValue />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectItem value="HEX">HEX</SelectItem>
+							<SelectItem value="HSL">HSL</SelectItem>
+							<SelectItem value="OKLCH">OKLCH</SelectItem>
+							<SelectItem value="HSB">HSB</SelectItem>
+							<SelectItem value="RGBA">RGBA</SelectItem>
+						</SelectContent>
+					</Select>
+				</div>
+			</div>
+  );
 }
-
-<div className="flex flex-col gap-1.5">
-	<div className="flex rounded-md">
-		<ColorPicker
-			inputFormat={inputFormat}
-			onInputFormatChange={handleFormatChange}
-			className="w-62 rounded-r-none border-r-0 focus-within:border-r"
-			defaultColor="#461EFA"
-		/>
-		<Select value={inputFormat} onValueChange={(value) => handleFormatChange(value as ColorFormatOptions)}>
-			<SelectTrigger className="w-fit rounded-l-none">
-				<SelectValue />
-			</SelectTrigger>
-			<SelectContent>
-				<SelectItem value="HEX">HEX</SelectItem>
-				<SelectItem value="HSL">HSL</SelectItem>
-				<SelectItem value="OKLCH">OKLCH</SelectItem>
-				<SelectItem value="HSB">HSB</SelectItem>
-				<SelectItem value="RGBA">RGBA</SelectItem>
-			</SelectContent>
-		</Select>
-	</div>
-</div>
 `}
 				/>
 			</TabsContent>

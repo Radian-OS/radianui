@@ -74,26 +74,24 @@ ${
 `
 		: example === "inputGroup"
 			? `<InputGroup className="w-80">
-	<InputAddon size="${size}">
-		<Minus
+	<InputAddon size="${size}"
 			onClick={(e) => {
 				e.stopPropagation()
 				setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
 			}}
 			className="cursor-pointer"
-			onMouseDown={(e) => e.preventDefault()}
-		/>
+			onMouseDown={(e) => e.preventDefault()}>
+		<Minus/>
 	</InputAddon>
 	<Input onChange={handleChange} value={amount} size="${size}" type="numeric" />
-	<InputAddon size="${size}">
-		<Plus
+	<InputAddon size="${size}"
 			className="cursor-pointer"
 			onClick={(e) => {
 				e.stopPropagation()
 				setAmount((v) => String(Number(v || "0") + 1))
 			}}
-			onMouseDown={(e) => e.preventDefault()}
-		/>
+			onMouseDown={(e) => e.preventDefault()}>
+		<Plus/>
 	</InputAddon>
 </InputGroup>
 `
@@ -178,8 +176,8 @@ export default CounterInput
 									e.stopPropagation()
 									setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
 								}}
-								className="cursor-pointer"
 								onMouseDown={(e) => e.preventDefault()}
+								className="cursor-pointer"
 							/>
 							<Input onChange={handleChange} value={amount} type="numeric" />
 							<Plus
@@ -194,26 +192,26 @@ export default CounterInput
 					)}
 					{example === "inputGroup" && (
 						<InputGroup className="w-80">
-							<InputAddon size={size}>
-								<Minus
-									onClick={(e) => {
-										e.stopPropagation()
-										setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
-									}}
-									className="cursor-pointer"
-									onMouseDown={(e) => e.preventDefault()}
-								/>
+							<InputAddon
+								size={size}
+								onClick={(e) => {
+									e.stopPropagation()
+									setAmount((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
+								}}
+								className="cursor-pointer"
+								onMouseDown={(e) => e.preventDefault()}>
+								<Minus />
 							</InputAddon>
 							<Input onChange={handleChange} value={amount} size={size} type="numeric" />
-							<InputAddon size={size}>
-								<Plus
-									className="cursor-pointer"
-									onClick={(e) => {
-										e.stopPropagation()
-										setAmount((v) => String(Number(v || "0") + 1))
-									}}
-									onMouseDown={(e) => e.preventDefault()}
-								/>
+							<InputAddon
+								size={size}
+								className="cursor-pointer"
+								onClick={(e) => {
+									e.stopPropagation()
+									setAmount((v) => String(Number(v || "0") + 1))
+								}}
+								onMouseDown={(e) => e.preventDefault()}>
+								<Plus />
 							</InputAddon>
 						</InputGroup>
 					)}

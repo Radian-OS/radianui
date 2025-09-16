@@ -20,19 +20,11 @@ const passwordSchema = z
 
 const PasswordInputPreview = () => {
 	type SizeOptions = "28" | "32" | "36" | "40" | "44" | "48"
-	type LabelOptions = "true" | "false"
 	type DisabledOptions = "true" | "false"
-	type ErrorOptions = "true" | "false"
-	type trailOptions = "show" | "hide" | "onFocus"
 
 	const [password, setPassword] = useState("")
 	const [size, setSize] = useState<SizeOptions>("36")
 	const [disabled, setDisabled] = useState<DisabledOptions>("false")
-	const [label, setLabel] = useState<LabelOptions>("true")
-	const [error, setError] = useState<ErrorOptions>("false")
-	const [trail, settrail] = useState<trailOptions>("onFocus")
-	const [hint, setHint] = useState<boolean>(false)
-	const [placeholder, setPlaceholder] = useState<"true" | "false">("true")
 
 	// Validate the password using Zod
 	const validation = useMemo(() => passwordSchema.safeParse(password), [password])
@@ -97,13 +89,9 @@ return (
 <div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 <div className="flex flex-col gap-4 w-full">
 <Password
-${label === "true" ? 'label="Password"' : ""}
-${disabled === "true" ? "disabled={true}" : ""}
-${size !== "36" ? `size="${size}"` : ""}
-visibility='${trail}'
-${hint === true ? `hint="Hint text to help the user with input"` : ""}
-${error === "true" ? "hasError={true}" : ""}
-${placeholder === "true" ? `placeholder="Enter your password"` : ""}	
+disabled={${disabled === "true"}}
+size=${size}
+placeholder="Enter your password"
 value={password}
 onChange={(e) => setPassword(e.target.value)}
 />
@@ -153,34 +141,6 @@ export default PasswordInputPreview
 					</DropdownTrigger>
 					<DropdownContent className="min-w-20">
 						<DropdownSub>
-							<DropdownSubTrigger>Label</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={label} onValueChange={(value) => setLabel(value as LabelOptions)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Placeholder</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={placeholder} onValueChange={(value) => setPlaceholder(value as "true" | "false")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
 							<DropdownSubTrigger>Size</DropdownSubTrigger>
 							<DropdownSubContent>
 								<DropdownRadioGroup value={size} onValueChange={(value) => setSize(value as SizeOptions)}>
@@ -219,51 +179,6 @@ export default PasswordInputPreview
 								</DropdownRadioGroup>
 							</DropdownSubContent>
 						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Error</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={error} onValueChange={(value) => setError(value as ErrorOptions)}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Hint</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={String(hint)} onValueChange={(value) => setHint(value === "true")}>
-									<DropdownRadioItem value="true" onSelect={(e) => e.preventDefault()}>
-										True
-									</DropdownRadioItem>
-									<DropdownRadioItem value="false" onSelect={(e) => e.preventDefault()}>
-										False
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
-
-						<DropdownSub>
-							<DropdownSubTrigger>Visibility</DropdownSubTrigger>
-							<DropdownSubContent>
-								<DropdownRadioGroup value={trail} onValueChange={(value) => settrail(value as trailOptions)}>
-									<DropdownRadioItem value="show" onSelect={(e) => e.preventDefault()}>
-										show
-									</DropdownRadioItem>
-									<DropdownRadioItem value="hide" onSelect={(e) => e.preventDefault()}>
-										hide
-									</DropdownRadioItem>
-									<DropdownRadioItem value="onFocus" onSelect={(e) => e.preventDefault()}>
-										onFocus
-									</DropdownRadioItem>
-								</DropdownRadioGroup>
-							</DropdownSubContent>
-						</DropdownSub>
 					</DropdownContent>
 				</Dropdown>
 			</div>
@@ -274,10 +189,11 @@ export default PasswordInputPreview
 						<Password
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
-							placeholder={placeholder === "true" ? "Enter your password" : ""}
+							placeholder="Enter your password"
 							className="w-80"
 							disabled={disabled === "true"}
-							visibility={trail}
+							toggleVisibility="focus"
+							size={size}
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}
 						<div className="body-13 flex w-full flex-col gap-2">
