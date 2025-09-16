@@ -20,9 +20,6 @@ export default function CalendarPreview() {
 			<TabsContent value="preview">
 				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
 					<Calendar mode="single" />
-					{/* <div className="my-daypicker">
-						<Calendar mode="single" />
-					</div> */}
 				</div>
 			</TabsContent>
 

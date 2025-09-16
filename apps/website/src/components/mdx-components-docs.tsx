@@ -151,7 +151,8 @@ import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 // import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
-import { ColorData, ColorTable } from "./color-table"
+import ColorPlayground from "./color/color-playground"
+import { ColorData, ColorTable } from "./color/color-table"
 import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma-card"
 import { FrameworkDocs } from "./framework-docs"
@@ -194,6 +195,7 @@ const components: MDXComponents = {
 			</div>
 		)
 	},
+	ColorPlayground: () => <ColorPlayground />,
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
