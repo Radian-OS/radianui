@@ -158,7 +158,6 @@ import { ColorData, ColorTable } from "./color/color-table"
 import { ComponentPreview } from "./component-preview"
 import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma-card"
-import { FrameworkDocs } from "./framework-docs"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
 import SocialLinkCards from "./social-link-cards"
@@ -469,7 +468,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	),
 	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-6")} {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
-	FrameworkDocs: ({ className, ...props }: React.ComponentProps<typeof FrameworkDocs>) => <FrameworkDocs className={cn(className)} {...props} />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,
 	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
 		<Link
