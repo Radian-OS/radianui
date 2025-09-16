@@ -71,7 +71,6 @@ import TypographyPlayground from "@/components/typography/typography-playground"
 import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
 import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
-import AlertCloseExamplePreview from "@/registry/example/alert/alert-close-example-preview"
 import AlertExamplePreview from "@/registry/example/alert/alert-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
 import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
@@ -296,7 +295,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	BreadcrumbExample3: () => <BreadcrumbExample3 />,
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
-	AlertCloseExamplePreview: () => <AlertCloseExamplePreview />,
 	DividerExamplePreview: () => <DividerExamplePreview />,
 	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
 	FooterCalendarPreview: () => <FooterCalendarPreview />,
