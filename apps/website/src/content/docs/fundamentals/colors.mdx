@@ -17,7 +17,7 @@ Colors are organized based on usage like text, border, background, & primary col
 <ColorTable
 	data={[
 		{
-			token: "bg-base",
+			token: "bg-bg",
 			light: "#FFFFFF",
 			dark: "#090A0B",
 			usage: "Base Background",
@@ -54,31 +54,31 @@ Colors are organized based on usage like text, border, background, & primary col
 <ColorTable
 	data={[
 		{
-			token: "text",
+			token: "text-fg",
 			light: "#1C1D21",
 			dark: "#FFFFFF",
 			usage: "Use for Headers and Title Text",
 		},
 		{
-			token: "text-secondary",
+			token: "text-fg-secondary",
 			light: "#545463",
 			dark: "#9191A1",
 			usage: "Use for Descriptions or paragraph ",
 		},
 		{
-			token: "text-tertiary",
+			token: "text-fg-tertiary",
 			light: "#868698",
 			dark: "#717184",
 			usage: "Similar to text secondary, but slighly dimmer",
 		},
 		{
-			token: "text-disabled",
+			token: "text-fg-disabled",
 			light: "#C8C8D0",
 			dark: "#545463",
 			usage: "Used when ui elements are disabled",
 		},
 		{
-			token: "text-inverse",
+			token: "text-fg-inverse",
 			light: "#FFFFFF",
 			dark: "#1C1D21",
 			usage: "Used on darker colored background",
@@ -91,7 +91,7 @@ Colors are organized based on usage like text, border, background, & primary col
 <ColorTable
 	data={[
 		{
-			token: "border",
+			token: "border-border",
 			light: "#DEDEE3",
 			dark: "#26272C",
 			usage: "Solid, accessible border used to define & separate UI elements",
@@ -140,12 +140,6 @@ Colors are organized based on usage like text, border, background, & primary col
 			usage: "Used to highlight pastel background elements",
 		},
 		{
-			token: "border",
-			light: "#B8A8FA",
-			dark: "#492EB8",
-			usage: "Border color for primary elements",
-		},
-		{
 			token: "hover",
 			light: "#7655F6",
 			dark: "#7655F6",
@@ -165,25 +159,13 @@ Colors are organized based on usage like text, border, background, & primary col
 <ColorTable
 	data={[
 		{
-			token: "static-white",
-			light: "#FFFFFF",
-			dark: "#FFFFFF",
-			usage: "Constant white color for both dark and light mode",
-		},
-		{
-			token: "inverse-white",
+			token: "white-inverse",
 			light: "##FFFFFF",
 			dark: "#090A0B",
 			usage: "White color, will turn to black for dark mode",
 		},
 		{
-			token: "static-black",
-			light: "#090A0B",
-			dark: "#090A0B",
-			usage: "Constant black color for both dark and light mode",
-		},
-		{
-			token: "inverse-black",
+			token: "black-inverse",
 			light: "#090A0B",
 			dark: "#FFFFFFF",
 			usage: "Black color, will turn white in dark moide",
@@ -270,12 +252,6 @@ Colors are organized based on usage like text, border, background, & primary col
 			usage: "Used to highlight pastel background elements",
 		},
 		{
-			token: "border",
-			light: "#52E081",
-			dark: "#218341",
-			usage: "Border color for success elements",
-		},
-		{
 			token: "hover",
 			light: "#2EB85C",
 			dark: "#2EB85C",
@@ -311,12 +287,6 @@ Colors are organized based on usage like text, border, background, & primary col
 			light: "#FDD8D8",
 			dark: "#521414",
 			usage: "Used to highlight pastel background elements",
-		},
-		{
-			token: "border",
-			light: "#FF9999",
-			dark: "#D92626",
-			usage: "Border color for error elements",
 		},
 		{
 			token: "hover",
@@ -356,12 +326,6 @@ Colors are organized based on usage like text, border, background, & primary col
 			usage: "Used to highlight pastel background elements",
 		},
 		{
-			token: "border",
-			light: "#FFCF70",
-			dark: "#936710",
-			usage: "Border color for warning elements",
-		},
-		{
 			token: "hover",
 			light: "#FB3",
 			dark: "#FB3",
@@ -399,12 +363,6 @@ Colors are organized based on usage like text, border, background, & primary col
 			usage: "Used to highlight pastel background elements",
 		},
 		{
-			token: "border",
-			light: "#9ECCFA",
-			dark: "#255C93",
-			usage: "Border color for info elements",
-		},
-		{
 			token: "hover",
 			light: "#255C93",
 			dark: "#9ECCFA",
@@ -422,3 +380,26 @@ Colors are organized based on usage like text, border, background, & primary col
 ## Test Colors
 
 <ColorPlayground />
+
+## Customizing your colors
+
+1. **Explore Color Primitives:** Radian already offers 15+ base color ranges to choose from.
+
+<Image src="/doc/colorprimitive.png" width="704" height="450" alt="Color Primitives" />
+2. **Map Your Tokens(Design):** Create a smaller, more manageable set of design tokens that map to specific use cases.
+
+<Image src="/doc/mapcolor.png" width="704" height="450" alt="Map Color" />
+3. **Map Your Colors(Development):** Map the colors from your Figma file to Global CSS file. Convert to OKLCH color format for best performance on all devices.
+
+<CodeSnippet
+	title="css/global.css"
+	lang="css"
+	showLineNumber
+	code={`@import "tailwindcss";
+
+@theme {
+--color-health: #121063;
+--color-crypto: #3ab7b1;
+--color-corporate: #78dcca;
+} `}
+/>

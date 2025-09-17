@@ -8,7 +8,7 @@ import InviteCard from "./invite-card"
 import ReportCard from "./report-card"
 
 const ColorPlayground = () => {
-	const [color, setColor] = useState("purple")
+	const [color, setColor] = useState("primary")
 
 	return (
 		<div className="flex flex-col gap-4">
