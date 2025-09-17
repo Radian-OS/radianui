@@ -49,14 +49,11 @@ import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
 import SearchPreview from "@/component-preview/search-preview"
-import SelectPreview from "@/component-preview/select-preview"
 import SkeletonPreview from "@/component-preview/skeleton-preview"
-import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
 import SvgButtonPreview from "@/component-preview/svg-button-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
-import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
@@ -112,15 +109,7 @@ import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-passwor
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import ResizableExample from "@/registry/example/resizable-example"
-import SelectForm from "@/registry/example/select/select-form"
-import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
-import SelectWithBadge from "@/registry/example/select/select-with-badge"
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
-import RangeSlider from "@/registry/example/slider/range-slider"
-import SliderWithInput from "@/registry/example/slider/slider-with-input"
-import SliderWithMarks from "@/registry/example/slider/slider-with-marks"
-import SliderWithStepper from "@/registry/example/slider/slider-with-stepper"
-import SliderWithTooltip from "@/registry/example/slider/slider-with-tooltip"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
@@ -208,7 +197,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
 	PopoverPreview: () => <PopoverPreview />,
-	TablePreview: () => <TablePreview />,
 	DrawerPreview: () => <DrawerPreview />,
 	RadiogroupPreview: () => <RadiogroupPreview />,
 	ARMRadiogroupExample: () => <ARMRadiogroupExample />,
@@ -239,7 +227,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
-	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
 	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
 	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
@@ -250,10 +237,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
-	SelectPreview: () => <SelectPreview />,
-	SelectWithBadge: () => <SelectWithBadge />,
-	SelectWithAvatar: () => <SelectWithAvatar />,
-	SelectForm: () => <SelectForm />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
@@ -277,11 +260,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	DividerExamplePreview: () => <DividerExamplePreview />,
 	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
-	SliderWithStepper: () => <SliderWithStepper />,
-	RangeSlider: () => <RangeSlider />,
-	SliderWithMarks: () => <SliderWithMarks />,
-	SliderWithInput: () => <SliderWithInput />,
-	SliderWithTooltip: () => <SliderWithTooltip />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	AlertLucide: () => <AlertLucide />,
