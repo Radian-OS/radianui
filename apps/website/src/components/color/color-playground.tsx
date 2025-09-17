@@ -12,11 +12,11 @@ const ColorPlayground = () => {
 					<span className={`border-border inline-block h-4 w-4 rounded-sm border bg-${color}`}></span> <SelectValue />
 				</SelectTrigger>
 				<SelectContent>
-					<SelectItem value="primary">Primary</SelectItem>
-					<SelectItem value="success">Success</SelectItem>
-					<SelectItem value="error">Error</SelectItem>
-					<SelectItem value="warning">Warning</SelectItem>
-					<SelectItem value="info">Info</SelectItem>
+					<SelectItem value="primary">Violet Blue</SelectItem>
+					<SelectItem value="success">Emerald</SelectItem>
+					<SelectItem value="error">Red</SelectItem>
+					<SelectItem value="warning">Amber</SelectItem>
+					<SelectItem value="info">Light Blue</SelectItem>
 				</SelectContent>
 			</Select>
 			<div className={`bg-elevation-negative flex gap-4 color-${color} border-soft rounded-2xl border p-3`}>

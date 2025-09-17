@@ -1,7 +1,7 @@
 import React from "react"
 import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 
-function AvatarFallbackPreview() {
+export default function AvatarFallbackPreview() {
 	return (
 		<div className="flex gap-6">
 			<Avatar>
@@ -31,5 +31,3 @@ function AvatarFallbackPreview() {
 		</div>
 	)
 }
-
-export default AvatarFallbackPreview

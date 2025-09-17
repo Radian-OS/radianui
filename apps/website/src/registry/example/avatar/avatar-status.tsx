@@ -1,7 +1,7 @@
 import React from "react"
 import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from "@/registry/ui/avatar"
 
-function AvatarStatusPreview() {
+export default function AvatarStatusPreview() {
 	return (
 		<div className="flex gap-6">
 			<Avatar size="64">
@@ -65,5 +65,3 @@ function AvatarStatusPreview() {
 		</div>
 	)
 }
-
-export default AvatarStatusPreview
