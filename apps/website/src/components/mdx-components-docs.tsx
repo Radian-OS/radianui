@@ -6,9 +6,6 @@ import { getMDXComponent } from "mdx-bundler/client"
 import Image from "next/image"
 import Link from "next/link"
 import IconButtonPreview from "@/component-preview/Icon-button-preview"
-import AccordionPreview from "@/component-preview/accordion-preview"
-import AlertDialogPreview from "@/component-preview/alert-dialog-preview"
-import AlertPreview from "@/component-preview/alert-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
 import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
 import ChangingTextPreview from "@/component-preview/animations/changing-text-preview"
@@ -19,8 +16,6 @@ import InfiniteScrollPreview from "@/component-preview/animations/infinite-scrol
 import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
-import AvatarPreview from "@/component-preview/avatar-preview"
-import AvatargroupPreview from "@/component-preview/avatargroup-preview"
 import BadgePreview from "@/component-preview/badge-preview"
 import BannerPreview from "@/component-preview/banner-preview"
 import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
@@ -32,23 +27,17 @@ import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
-import DialogPreview from "@/component-preview/dialog-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import FileUploadPreview from "@/component-preview/file-upload-preview"
 import FormPreview from "@/component-preview/form-preview"
-import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputPreview from "@/component-preview/input-preview"
-import LabelPreview from "@/component-preview/label-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
-import OneTimePasswordFieldPreview from "@/component-preview/one-time-password-field-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
-import PopoverPreview from "@/component-preview/popover-preview"
 import ProgressBarPreview from "@/component-preview/progress-bar-preview"
-import RadiogroupPreview from "@/component-preview/radio-group-preview"
 import ResizablePreview from "@/component-preview/resizable-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SelectPreview from "@/component-preview/select-preview"
@@ -70,7 +59,6 @@ import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
 import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
-import AccordionWithIconExample from "@/registry/example/accordion/accordion-example-preview"
 import AlertCloseExamplePreview from "@/registry/example/alert/alert-close-example-preview"
 import AlertExamplePreview from "@/registry/example/alert/alert-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
@@ -78,10 +66,6 @@ import CollaborationPointerExample from "@/registry/example/animated/collaborati
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
-import AvatarFallbackPreview from "@/registry/example/avatar/avatar-fallback-preview"
-import AvatarStatusPreview from "@/registry/example/avatar/avatar-status-preview"
-import CustomAvatarStatusPreview from "@/registry/example/avatar/custom-avatar-status-preview"
-import RingAvatarPreview from "@/registry/example/avatar/ring-avatar-preview"
 import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
 import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
@@ -106,8 +90,6 @@ import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/larg
 import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
-import DeleteDialogExample from "@/registry/example/dialog/delete-dialog"
-import GithubIntegrationDialogExample from "@/registry/example/dialog/github-integration-dialog"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
 import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
@@ -121,9 +103,6 @@ import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import UrlPreview from "@/registry/example/input/url-input-preview"
-import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-password-field/otp-size"
-import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
-import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
 import ResizableExample from "@/registry/example/resizable-example"
 import SelectForm from "@/registry/example/select/select-form"
 import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
@@ -195,15 +174,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	AccordionPreview: () => <AccordionPreview />,
-	AccordionWithIconExample: () => <AccordionWithIconExample />,
-	AlertPreview: () => <AlertPreview />,
-	AlertDialogPreview: () => <AlertDialogPreview />,
-	AvatarPreview: () => <AvatarPreview />,
-	AvatargroupPreview: () => <AvatargroupPreview />,
-	AvatarFallbackPreview: () => <AvatarFallbackPreview />,
-	AvatarStatusPreview: () => <AvatarStatusPreview />,
-	CustomAvatarStatusPreview: () => <CustomAvatarStatusPreview />,
 	BadgePreview: () => <BadgePreview />,
 	BreadCrumbPreview: () => <BreadCrumbPreview />,
 	BannerPreview: () => <BannerPreview />,
@@ -212,22 +182,12 @@ const components = (examples: typeof Examples | undefined) => ({
 	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
-	DialogPreview: () => <DialogPreview />,
-	DeleteDialogExample: () => <DeleteDialogExample />,
-	GithubIntegrationDialogExample: () => <GithubIntegrationDialogExample />,
 	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
-	PopoverPreview: () => <PopoverPreview />,
 	TablePreview: () => <TablePreview />,
 	DrawerPreview: () => <DrawerPreview />,
-	RadiogroupPreview: () => <RadiogroupPreview />,
-	ARMRadiogroupExample: () => <ARMRadiogroupExample />,
-	DisabledRadiogroupExample: () => <DisabledRadiogroupExample />,
-	HovercardPreview: () => <HovercardPreview />,
-	OneTimePasswordFieldPreview: () => <OneTimePasswordFieldPreview />,
-	OneTimePasswordFieldSizeExample: () => <OneTimePasswordFieldSizeExample />,
 	TabsPreview: () => <TabsPreview />,
 	IconCounterTabsExample: () => <IconCounterTabsExample />,
 	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
@@ -241,7 +201,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
-	LabelPreview: () => <LabelPreview />,
 	UrlPreview: () => <UrlPreview />,
 	EmailPreview: () => <EmailPreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
@@ -289,7 +248,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
 	FormPreview: () => <FormPreview />,
 	AlertExamplePreview: () => <AlertExamplePreview />,
-	RingAvatarPreview: () => <RingAvatarPreview />,
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
 	BreadcrumbExample2: () => <BreadcrumbExample2 />,
 	BreadcrumbExample3: () => <BreadcrumbExample3 />,
@@ -332,11 +290,13 @@ const components = (examples: typeof Examples | undefined) => ({
 	CodeSnippet: ({ code, title, showLineNumbers, collapsible }: { code: string; title: string; showLineNumbers: boolean; collapsible?: boolean }) => (
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
-	ComponentPreview: ({ path }: { path: string }) => {
+
+	ComponentPreview: ({ path, height, align }: { path: string; height: number; align: "center" | "start" | "end" }) => {
 		const code = examples?.[0].files.find((file) => file.name === path)?.content || ""
 
-		return <ComponentPreview path={path} code={code} />
+		return <ComponentPreview path={path} code={code} height={height} align={align} />
 	},
+
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
 	// AlertLucide: () => <AlertLucide />,
 	FigmaCard: () => <FigmaCard />,

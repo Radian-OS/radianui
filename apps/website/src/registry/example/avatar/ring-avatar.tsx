@@ -1,7 +1,7 @@
 import React from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
-function RingAvatarPreview() {
+export default function RingAvatarPreview() {
 	return (
 		<div className="flex gap-6">
 			<Avatar size="64" className="p-0.75 border-3 border-primary">
@@ -27,5 +27,3 @@ function RingAvatarPreview() {
 		</div>
 	)
 }
-
-export default RingAvatarPreview

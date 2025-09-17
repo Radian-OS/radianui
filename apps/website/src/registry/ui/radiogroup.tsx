@@ -15,7 +15,11 @@ type RadioGroupItemProps = React.ComponentProps<typeof RadioGroupPrimitive.Item>
 type RadioGroupProps = React.ComponentProps<typeof RadioGroupPrimitive.Root> & RadioGroupContextType
 
 const radioItemVariants = cva(
-	"outline-hidden border-alpha data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-fg-tertiary focus-visible:ring-primary focus-visible:ring-offset-bg peer flex aspect-square items-center justify-center rounded-full border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed data-[state=checked]:border-none",
+	cn(
+		"outline-hidden border-alpha data-[state=checked]:bg-primary data-[state=checked]:disabled:bg-fg-tertiary focus-visible:ring-primary focus-visible:ring-offset-bg peer flex aspect-square items-center justify-center rounded-full border transition-all duration-200 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed data-[state=checked]:border-none",
+		"aria-invalid:border-error-text aria-invalid:ring-error/10 dark:aria-invalid:border-error-text dark:aria-invalid:ring-error-text/20",
+		"[[data-invalid=true]_&]:border-error-text [[data-invalid=true]_&]:ring-error/10  dark:[[data-invalid=true]_&]:border-error-text dark:[[data-invalid=true]_&]:ring-error-text/20"
+	),
 	{
 		variants: {
 			size: {

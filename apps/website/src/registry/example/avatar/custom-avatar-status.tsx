@@ -2,7 +2,7 @@ import React from "react"
 import { Bell, Plus } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator } from "@/registry/ui/avatar"
 
-function CustomAvatarStatusPreview() {
+export default function CustomAvatarStatusPreview() {
 	return (
 		<div className="flex gap-6">
 			<Avatar size="64">
@@ -38,5 +38,3 @@ function CustomAvatarStatusPreview() {
 		</div>
 	)
 }
-
-export default CustomAvatarStatusPreview
