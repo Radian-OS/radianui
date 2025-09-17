@@ -37,7 +37,6 @@ import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import FileUploadPreview from "@/component-preview/file-upload-preview"
 import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -113,7 +112,7 @@ import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-w
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import Examples from "@/registry/example/example.json"
-import FileUploadExample from "@/registry/example/file-upload/file-upload-example"
+import FileUploadPreview from "@/registry/example/file-upload/file-upload-preview"
 import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
 import EmailPreview from "@/registry/example/input/email-input-preview"
 import NumberInputPreview from "@/registry/example/input/number-input-preview"
@@ -305,7 +304,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SliderWithMarks: () => <SliderWithMarks />,
 	SliderWithInput: () => <SliderWithInput />,
 	SliderWithTooltip: () => <SliderWithTooltip />,
-	FileUploadExample: () => <FileUploadExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	AlertLucide: () => <AlertLucide />,
