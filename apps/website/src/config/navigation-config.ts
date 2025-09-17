@@ -69,7 +69,7 @@ export const navigationItems: NavigationSection[] = [
 				description: "8 Types",
 				thumbnail: "/thumbnails/color-theme.webp",
 				thumbnailDark: "/thumbnails/color-theme-dark.webp",
-				url: "/docs/fundamentals/default-theme",
+				url: "/docs/fundamentals/theme",
 				alt: "Color theme swatches illustration",
 			},
 		],
@@ -217,7 +217,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Input",
 				description: "15 Components",
-				url: "/docs/components/inputs",
+				url: "/docs/components/input",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Input UI component illustration",

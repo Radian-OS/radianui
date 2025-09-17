@@ -7,6 +7,7 @@ import { notFound } from "next/navigation"
 import { Mdx } from "@/components/mdx-components-docs"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { websiteMetadata } from "@/config/website-metadata-config"
+import { ThemeProvider } from "@/contexts/theme-context"
 import Examples from "@/registry/example/example.json"
 import { Badge } from "@/registry/ui/badge"
 
@@ -114,8 +115,10 @@ export default async function Page({ params }: DocPageProps) {
 					</section>
 				)}
 			</div>
+			<ThemeProvider>
+				<Mdx code={doc.body.code} examples={Examples.filter((example) => example.name === componentName)} />
+			</ThemeProvider>
 
-			<Mdx code={doc.body.code} examples={Examples.filter((example) => example.name === componentName)} />
 			<PreviousNextButtons currentPath={currentPath} className="mt-10" />
 		</div>
 	)

@@ -46,8 +46,12 @@ export default function DatePickerWithTimeExample() {
 					<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 						<PopoverTrigger asChild>
 							<Button type="button" variant="outline" className="text-fg w-[250px] justify-start gap-2" color="neutral">
-								<CalendarIcon className="text-fg-tertiary size-4" />
-								{date ? `${format(date, "LLL dd, y")} ${time && `- ${format(time, "hh:mm a")}`}` : <span>Pick a date and time</span>}
+								{date ? (
+									`${format(date, "LLL dd, y")} ${time && `- ${format(time, "hh:mm a")}`}`
+								) : (
+									<span className="text-fg-tertiary text-sm font-normal">Pick a date and time</span>
+								)}
+								<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 							</Button>
 						</PopoverTrigger>
 						<PopoverContent className="w-auto p-0" align="start" side="top">
