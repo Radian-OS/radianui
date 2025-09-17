@@ -122,7 +122,7 @@ function ComponentPreviewCode() {
 
 export function ComponentPreview({ path, code }: ComponentPreviewProps) {
 	return (
-		<div className="mb-8 pt-4">
+		<div className="mb-8">
 			<ComponentPreviewProvider path={path} code={code}>
 				<Tabs defaultValue="preview" className="w-full">
 					<div className="flex items-center justify-between">

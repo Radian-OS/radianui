@@ -1,10 +1,11 @@
 import * as React from "react"
-import { format } from "date-fns"
+import { format, parse } from "date-fns"
 import { ScrollArea } from "@/components/scroll-area"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 
-const TimePickerCalendarPreview = () => {
+function TimePickerCalendarPreview() {
 	const today = new Date()
 	const [date, setDate] = React.useState<Date>(today)
 	const [time, setTime] = React.useState<string | null>(null)
@@ -52,37 +53,39 @@ const TimePickerCalendarPreview = () => {
 	]
 
 	return (
-		<div className="bg-elevation-level1 overflow-hidden rounded-lg border p-2">
-			<div className="flex max-sm:flex-col">
-				<Calendar
-					mode="single"
-					selected={date}
-					onSelect={(newDate) => {
-						if (newDate) {
-							setDate(newDate)
-							setTime(null)
-						}
-					}}
-					disabled={[{ before: today }]}
-					className="border-0 p-2 sm:pe-5"
-				/>
-				<div className="relative w-full max-sm:h-48 sm:w-40">
-					<div className="absolute inset-0 py-4 max-sm:border-t">
-						<ScrollArea className="h-full sm:border-s">
-							<div className="space-y-3">
-								<div className="flex h-5 shrink-0 items-center px-5">
-									<p className="text-sm font-medium">{format(date, "EEEE, d")}</p>
-								</div>
-								<div className="grid gap-1.5 px-5 max-sm:grid-cols-2">
-									{timeSlots.map(({ time: timeSlot, available }) => (
-										<Button key={timeSlot} variant={time === timeSlot ? "strong" : "outline"} size="32" className="w-full" onClick={() => setTime(timeSlot)} disabled={!available}>
-											{timeSlot}
-										</Button>
-									))}
-								</div>
+		<div className="bg-elevation-level1 flex overflow-hidden rounded-lg border">
+			<Calendar
+				mode="single"
+				selected={date}
+				onSelect={(newDate) => {
+					if (newDate) {
+						setDate(newDate)
+						setTime(null)
+					}
+				}}
+				className="rounded-none border-0 border-r"
+			/>
+			<div className="sm:w-30 relative w-full max-sm:h-48">
+				<div className="absolute inset-0 px-1.5 py-1">
+					<ScrollArea className="h-full">
+						<div className="space-y-0.5">
+							<p className="text-fg-tertiary p-2 text-xs font-medium">SELECT TIME</p>
+							<div className="grid gap-1.5 max-sm:grid-cols-2">
+								{timeSlots.map(({ time: timeSlot, available }) => (
+									<Button
+										key={timeSlot}
+										variant="ghost"
+										color="neutral"
+										size="32"
+										className={cn("text-fg w-full justify-start px-2 py-1.5", { "bg-fill3-alpha hover:bg-fill3-alpha": time === timeSlot })}
+										onClick={() => setTime(timeSlot)}
+										disabled={!available}>
+										{format(parse(timeSlot, "HH:mm", new Date()), "h:mm a")}
+									</Button>
+								))}
 							</div>
-						</ScrollArea>
-					</div>
+						</div>
+					</ScrollArea>
 				</div>
 			</div>
 		</div>
