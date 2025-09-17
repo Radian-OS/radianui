@@ -83,29 +83,31 @@ const TablePreview = () => {
 	]
 
 	return (
-		<Table>
-			<TableCaption>A list of user details.</TableCaption>
-			<TableHeader>
-				<TableRow>
-					<TableHead>Name</TableHead>
-					<TableHead>Email</TableHead>
-					<TableHead>Status</TableHead>
-				</TableRow>
-			</TableHeader>
-			<TableBody>
-				{datas.map((data) => (
-					<TableRow key={data.name}>
-						<TableCell>{data.name}</TableCell>
-						<TableCell>{data.email}</TableCell>
-						<TableCell>
-							<Badge size="20" className={cn(data.status === "Inactive" && "bg-elevation-level1 text-fg-secondary", data.status === "Active" && "bg-white text-black")}>
-								{data.status}
-							</Badge>
-						</TableCell>
+		<div>
+			<Table>
+				<TableCaption>A list of user details.</TableCaption>
+				<TableHeader>
+					<TableRow>
+						<TableHead>Name</TableHead>
+						<TableHead>Email</TableHead>
+						<TableHead>Status</TableHead>
 					</TableRow>
-				))}
-			</TableBody>
-		</Table>
+				</TableHeader>
+				<TableBody>
+					{datas.map((data) => (
+						<TableRow key={data.name}>
+							<TableCell>{data.name}</TableCell>
+							<TableCell>{data.email}</TableCell>
+							<TableCell>
+								<Badge size="20" className={cn(data.status === "Inactive" && "bg-elevation-level1 text-fg-secondary", data.status === "Active" && "bg-white text-black")}>
+									{data.status}
+								</Badge>
+							</TableCell>
+						</TableRow>
+					))}
+				</TableBody>
+			</Table>
+		</div>
 	)
 }
 
