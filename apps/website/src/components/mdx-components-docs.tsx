@@ -26,7 +26,6 @@ import BannerPreview from "@/component-preview/banner-preview"
 import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
-import CalendarPreview from "@/component-preview/calendar-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
@@ -89,11 +88,6 @@ import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
-import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
-import CalendarWithYearMonthSelectorExample from "@/registry/example/calendar/calendar-year-month-selector-example"
-import MultipleMonthsCalendarExample from "@/registry/example/calendar/multiple-months-calendar-example"
-import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
-import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -243,9 +237,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	DatePickerPreview: () => <DatePickerPreview />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
-	CalendarPreview: () => <CalendarPreview />,
-	CalendarWithYearMonthSelectorExample: () => <CalendarWithYearMonthSelectorExample />,
-	MultipleMonthsCalendarExample: () => <MultipleMonthsCalendarExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
 	SliderPreview: () => <SliderPreview />,
@@ -285,9 +276,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	DividerExamplePreview: () => <DividerExamplePreview />,
-	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
-	FooterCalendarPreview: () => <FooterCalendarPreview />,
-	TimePickerCalendarPreview: () => <TimePickerCalendarPreview />,
 	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
 	SliderWithStepper: () => <SliderWithStepper />,
 	RangeSlider: () => <RangeSlider />,
