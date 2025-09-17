@@ -253,6 +253,9 @@ importers:
       react:
         specifier: 19.1.0
         version: 19.1.0
+      react-before-after-slider-component:
+        specifier: ^1.1.8
+        version: 1.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react-currency-input-field:
         specifier: ^3.10.0
         version: 3.10.0(react@19.1.0)
@@ -7124,6 +7127,12 @@ packages:
         optional: true
       '@types/react-dom':
         optional: true
+
+  react-before-after-slider-component@1.1.8:
+    resolution: {integrity: sha512-KcY231f68+7bF0Zkfat55jvgNSSCB5TkBtm1HhLeb336jtQ0hYKkdq6VwrleNrfeVdUD2v+E7DzgNJYc6dsY3Q==}
+    peerDependencies:
+      react: 19.1.0
+      react-dom: 19.1.0
 
   react-currency-input-field@3.10.0:
     resolution: {integrity: sha512-GRmZogHh1e1LrmgXg/fKHSuRLYUnj/c/AumfvfuDMA0UX1mDR6u2NR0fzDemRdq4tNHNLucJeJ2OKCr3ehqyDA==}
@@ -15642,6 +15651,11 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.0.12
       '@types/react-dom': 19.0.4(@types/react@19.0.12)
+
+  react-before-after-slider-component@1.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   react-currency-input-field@3.10.0(react@19.1.0):
     dependencies:

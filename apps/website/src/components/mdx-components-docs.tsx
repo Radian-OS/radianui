@@ -160,6 +160,8 @@ import FigmaCard from "./figma-card"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
 import SocialLinkCards from "./social-link-cards"
+import CustomThemePlayground from "./theme/custom-theme-playground"
+import DarkModePlayground from "./theme/dark-mode-playground"
 
 type MdxProps = {
 	code: string
@@ -308,6 +310,8 @@ const components = (examples: typeof Examples | undefined) => ({
 	FileUploadExample: () => <FileUploadExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
+	DarkModePlayground: () => <DarkModePlayground />,
+	CustomThemePlayground: () => <CustomThemePlayground />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

@@ -69,7 +69,7 @@ export const navigationItems: NavigationSection[] = [
 				description: "8 Types",
 				thumbnail: "/thumbnails/color-theme.webp",
 				thumbnailDark: "/thumbnails/color-theme-dark.webp",
-				url: "/docs/fundamentals/default-theme",
+				url: "/docs/fundamentals/theme",
 				alt: "Color theme swatches illustration",
 			},
 		],
