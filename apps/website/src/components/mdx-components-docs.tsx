@@ -26,7 +26,6 @@ import BannerPreview from "@/component-preview/banner-preview"
 import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
-import CalendarPreview from "@/component-preview/calendar-preview"
 import CheckboxPreview from "@/component-preview/checkbox-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import ColorPickerPreview from "@/component-preview/color-picker-preview"
@@ -37,7 +36,6 @@ import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import FileUploadPreview from "@/component-preview/file-upload-preview"
 import FormPreview from "@/component-preview/form-preview"
 import HovercardPreview from "@/component-preview/hover-card-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -49,16 +47,12 @@ import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import PopoverPreview from "@/component-preview/popover-preview"
 import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import RadiogroupPreview from "@/component-preview/radio-group-preview"
-import ResizablePreview from "@/component-preview/resizable-preview"
 import SearchPreview from "@/component-preview/search-preview"
-import SelectPreview from "@/component-preview/select-preview"
 import SkeletonPreview from "@/component-preview/skeleton-preview"
-import SliderPreview from "@/component-preview/slider-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
 import SvgButtonPreview from "@/component-preview/svg-button-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
-import TablePreview from "@/component-preview/table-preview"
 import TabsPreview from "@/component-preview/tabs-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
@@ -90,11 +84,6 @@ import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example
 import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
 import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
-import FooterCalendarPreview from "@/registry/example/calendar/calendar-footer-preview"
-import CalendarWithYearMonthSelectorExample from "@/registry/example/calendar/calendar-year-month-selector-example"
-import MultipleMonthsCalendarExample from "@/registry/example/calendar/multiple-months-calendar-example"
-import QuickSelectionCalendarPreview from "@/registry/example/calendar/quick-selection-preview"
-import TimePickerCalendarPreview from "@/registry/example/calendar/time-picker-calendar-preview"
 import IndeterminateCheckboxExample from "@/registry/example/checkbox/indeterminate-checkbox"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -113,26 +102,14 @@ import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-w
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import Examples from "@/registry/example/example.json"
-import FileUploadExample from "@/registry/example/file-upload/file-upload-example"
-import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
-import EmailPreview from "@/registry/example/input/email-input-preview"
-import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
-import UrlPreview from "@/registry/example/input/url-input-preview"
 import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-password-field/otp-size"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
-import ResizableExample from "@/registry/example/resizable-example"
-import SelectForm from "@/registry/example/select/select-form"
-import SelectWithAvatar from "@/registry/example/select/select-with-avatar"
-import SelectWithBadge from "@/registry/example/select/select-with-badge"
+import ResizableExample from "@/registry/example/resizable/resizable-example"
+import ResizablePreview from "@/registry/example/resizable/resizable-preview"
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
-import RangeSlider from "@/registry/example/slider/range-slider"
-import SliderWithInput from "@/registry/example/slider/slider-with-input"
-import SliderWithMarks from "@/registry/example/slider/slider-with-marks"
-import SliderWithStepper from "@/registry/example/slider/slider-with-stepper"
-import SliderWithTooltip from "@/registry/example/slider/slider-with-tooltip"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
@@ -150,13 +127,13 @@ import {
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-// import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
 import ColorPlayground from "./color/color-playground"
 import { ColorData, ColorTable } from "./color/color-table"
 import { ComponentPreview } from "./component-preview"
 import { ComponentSource } from "./component-source"
-import FigmaCard from "./figma-card"
+import FigmaCard from "./figma/figma-card"
+import AlertLucide from "./icons/alert-lucide"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
 import SocialLinkCards from "./social-link-cards"
@@ -222,7 +199,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
 	PopoverPreview: () => <PopoverPreview />,
-	TablePreview: () => <TablePreview />,
 	DrawerPreview: () => <DrawerPreview />,
 	RadiogroupPreview: () => <RadiogroupPreview />,
 	ARMRadiogroupExample: () => <ARMRadiogroupExample />,
@@ -244,22 +220,15 @@ const components = (examples: typeof Examples | undefined) => ({
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
 	LabelPreview: () => <LabelPreview />,
-	UrlPreview: () => <UrlPreview />,
-	EmailPreview: () => <EmailPreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
-	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPreview: () => <DatePickerPreview />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
-	CalendarPreview: () => <CalendarPreview />,
-	CalendarWithYearMonthSelectorExample: () => <CalendarWithYearMonthSelectorExample />,
-	MultipleMonthsCalendarExample: () => <MultipleMonthsCalendarExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
-	SliderPreview: () => <SliderPreview />,
 	SwitchPreview: () => <SwitchPreview />,
 	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
 	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
@@ -268,14 +237,8 @@ const components = (examples: typeof Examples | undefined) => ({
 	SkeletonPreview: () => <SkeletonPreview />,
 	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
-	FileUploadPreview: () => <FileUploadPreview />,
-	NumberInputPreview: () => <NumberInputPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
-	SelectPreview: () => <SelectPreview />,
-	SelectWithBadge: () => <SelectWithBadge />,
-	SelectWithAvatar: () => <SelectWithAvatar />,
-	SelectForm: () => <SelectForm />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	ColorPickerPreview: () => <ColorPickerPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
@@ -298,20 +261,12 @@ const components = (examples: typeof Examples | undefined) => ({
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	DividerExamplePreview: () => <DividerExamplePreview />,
-	QuickSelectionCalendarPreview: () => <QuickSelectionCalendarPreview />,
-	FooterCalendarPreview: () => <FooterCalendarPreview />,
-	TimePickerCalendarPreview: () => <TimePickerCalendarPreview />,
 	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
-	SliderWithStepper: () => <SliderWithStepper />,
-	RangeSlider: () => <RangeSlider />,
-	SliderWithMarks: () => <SliderWithMarks />,
-	SliderWithInput: () => <SliderWithInput />,
-	SliderWithTooltip: () => <SliderWithTooltip />,
-	FileUploadExample: () => <FileUploadExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,
 	CustomThemePlayground: () => <CustomThemePlayground />,
+	AlertLucide: () => <AlertLucide />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

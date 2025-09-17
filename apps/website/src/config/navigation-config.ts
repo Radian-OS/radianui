@@ -217,7 +217,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Input",
 				description: "15 Components",
-				url: "/docs/components/inputs",
+				url: "/docs/components/input",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Input UI component illustration",

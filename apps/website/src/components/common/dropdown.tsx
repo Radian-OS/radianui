@@ -25,41 +25,41 @@ const Dropdown = () => {
 			<Divider className="my-1" orientation="horizontal" />
 			<div className="p-1">
 				<p className="text-fg-tertiary p-2 text-[12px] font-medium"> GENERAL</p>
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<CircleUserRound size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">View Profile</p>
 				</span>
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<Keyboard size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">Keyboard shortcuts</p>
 				</span>
 			</div>
 			<Divider className="my-1" orientation="horizontal" />
 			<div className="p-1">
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<BookOpen size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">Change logs</p>
 				</span>
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<Slack size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">Slack Community</p>
 				</span>
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<BadgeHelp size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">Support</p>
 				</span>
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<Box size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">API</p>
 				</span>
 			</div>
 			<Divider className="my-1" orientation="horizontal" />
 			<div className="p-1">
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<Settings size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">Settings</p>
 				</span>
-				<span className="flex gap-2 p-2">
+				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
 					<LogOutIcon size={20} strokeWidth={1.5} className="text-fg-secondary" />
 					<p className="text-fg text-sm font-normal">Log out</p>
 				</span>
