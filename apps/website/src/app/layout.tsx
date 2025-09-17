@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
+import { Toaster } from "@/registry/ui/toast"
 
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
@@ -54,6 +55,7 @@ export default async function RootLayout({
 				<PostHogProvider>
 					<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
 						{children}
+						<Toaster />
 					</ThemeProvider>
 				</PostHogProvider>
 			</body>

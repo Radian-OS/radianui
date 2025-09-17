@@ -17,7 +17,7 @@ const SHORTCUTS = [
 
 type ShortcutValue = (typeof SHORTCUTS)[number]["value"]
 
-const QuickSelectionCalendarPreview = () => {
+function QuickSelectionCalendarPreview() {
 	const [selectedRange, setSelectedRange] = React.useState<DateRange | undefined>()
 	const [selectedShortcut, setSelectedShortcut] = React.useState<ShortcutValue | null>("custom")
 
