@@ -183,6 +183,32 @@ const TypographyPlaground = () => {
 							</li>
 						</ul>
 					</div>
+					<div className="flex flex-col gap-3">
+						<Badge variant="soft" color="primary" size="24">
+							Heading 6
+						</Badge>
+						<span className={`heading-6`}>Frequently asked questions</span>
+						<Accordion type="single" collapsible className="w-full">
+							<AccordionItem value="item-1">
+								<AccordionTrigger>Why was the Map Duty introduced?</AccordionTrigger>
+								<AccordionContent>
+									The regent needed fast revenue and saw maps as an essential tool every ship relied on. Taxing them seemed like an easy and fair source of income.
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem value="item-2">
+								<AccordionTrigger>What problems did the tax create?</AccordionTrigger>
+								<AccordionContent>
+									The regent needed fast revenue and saw maps as an essential tool every ship relied on. Taxing them seemed like an easy and fair source of income.
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem value="item-3">
+								<AccordionTrigger>How was the issue resolved?</AccordionTrigger>
+								<AccordionContent>
+									The regent needed fast revenue and saw maps as an essential tool every ship relied on. Taxing them seemed like an easy and fair source of income.
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
+					</div>
 				</div>
 			</TabsContent>
 
@@ -238,6 +264,32 @@ const TypographyPlaground = () => {
 								<span className="text-fg font-medium">Open-ocean atlases</span>: 20 silver for extensive charts that include currents.
 							</li>
 						</ul>
+					</div>
+					<div className="flex flex-col gap-3">
+						<Badge variant="soft" color="primary" size="24">
+							Heading 6
+						</Badge>
+						<span className={`heading-6`}>Frequently asked questions</span>
+						<Accordion type="single" collapsible className="w-full">
+							<AccordionItem value="item-1">
+								<AccordionTrigger>Why was the Map Duty introduced?</AccordionTrigger>
+								<AccordionContent>
+									The regent needed fast revenue and saw maps as an essential tool every ship relied on. Taxing them seemed like an easy and fair source of income.
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem value="item-2">
+								<AccordionTrigger>What problems did the tax create?</AccordionTrigger>
+								<AccordionContent>
+									The regent needed fast revenue and saw maps as an essential tool every ship relied on. Taxing them seemed like an easy and fair source of income.
+								</AccordionContent>
+							</AccordionItem>
+							<AccordionItem value="item-3">
+								<AccordionTrigger>How was the issue resolved?</AccordionTrigger>
+								<AccordionContent>
+									The regent needed fast revenue and saw maps as an essential tool every ship relied on. Taxing them seemed like an easy and fair source of income.
+								</AccordionContent>
+							</AccordionItem>
+						</Accordion>
 					</div>
 				</div>
 			</TabsContent>
