@@ -150,13 +150,13 @@ import {
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-// import AlertLucide from "../components/alert-lucide"
 import CodeSnippet from "./code-snippet"
 import ColorPlayground from "./color/color-playground"
 import { ColorData, ColorTable } from "./color/color-table"
 import { ComponentPreview } from "./component-preview"
 import { ComponentSource } from "./component-source"
-import FigmaCard from "./figma-card"
+import FigmaCard from "./figma/figma-card"
+import AlertLucide from "./icons/alert-lucide"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
 import SocialLinkCards from "./social-link-cards"
@@ -308,6 +308,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	FileUploadExample: () => <FileUploadExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
+	AlertLucide: () => <AlertLucide />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

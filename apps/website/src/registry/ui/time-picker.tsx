@@ -104,7 +104,7 @@ function TimePicker({ interval = 15, onValueChange, className, is24Hour = false,
 	return (
 		<Select value={currentValue} onValueChange={handleChange} {...props}>
 			<SelectTrigger className={className}>
-				<SelectValue />
+				<SelectValue placeholder="Select time" />
 			</SelectTrigger>
 			<SelectContent>
 				{timeOptions.map((time, index) => {
