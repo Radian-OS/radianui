@@ -112,13 +112,8 @@ import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-w
 import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
 import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import Examples from "@/registry/example/example.json"
-import FileUploadPreview from "@/registry/example/file-upload/file-upload-preview"
-import CreditCardPreview from "@/registry/example/input/credit-card-input-preview"
-import EmailPreview from "@/registry/example/input/email-input-preview"
-import NumberInputPreview from "@/registry/example/input/number-input-preview"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
-import UrlPreview from "@/registry/example/input/url-input-preview"
 import OneTimePasswordFieldSizeExample from "@/registry/example/one-time-password-field/otp-size"
 import ARMRadiogroupExample from "@/registry/example/radiogroup/arm-radiogroup-example"
 import DisabledRadiogroupExample from "@/registry/example/radiogroup/disabled-radiogroup-example"
@@ -241,10 +236,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	InputPreview: () => <InputPreview />,
 	LabelPreview: () => <LabelPreview />,
-	UrlPreview: () => <UrlPreview />,
-	EmailPreview: () => <EmailPreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
-	CreditCardPreview: () => <CreditCardPreview />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
@@ -265,8 +257,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SkeletonPreview: () => <SkeletonPreview />,
 	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
-	FileUploadPreview: () => <FileUploadPreview />,
-	NumberInputPreview: () => <NumberInputPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
 	SelectPreview: () => <SelectPreview />,
