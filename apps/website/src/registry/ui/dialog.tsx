@@ -25,7 +25,7 @@ type DialogTitleProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Ti
 
 type DialogDescriptionProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 
-const dialogOverlayVariants = cva("data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50", {
+const dialogOverlayVariants = cva("data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[999]", {
 	variants: {
 		backdrop: {
 			overlay: "bg-black/50",
@@ -58,7 +58,7 @@ function DialogContent({ className, children, backdrop, closeButton = "visible",
 			<DialogPrimitive.Content
 				data-slot="modal-content"
 				className={cn(
-					"bg-bg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-alpha group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
+					"bg-bg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-alpha group fixed left-1/2 top-1/2 z-[999] flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-lg border p-5 shadow-lg duration-200",
 					className
 				)}
 				{...props}>
