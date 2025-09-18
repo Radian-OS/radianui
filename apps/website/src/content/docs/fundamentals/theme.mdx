@@ -15,7 +15,7 @@ a lot easier.
 
 1. **Dark mode in Figma:** Easily switch dark mode via going to the ‘Appearance’ panel → ‘Themes’ and select ‘Dark mode’.
 
-<Image src="/doc/theme-figma.png" width="704" height="450" alt=" Dark Theme Figma" />
+<Image src="/doc/theme-figma.png" alt="Theme Figma" width={800} height={600} />
 
 2. **Dark mode in Development:** Radian supports dark mode by default, you can acces those colors in global CSS.
 
@@ -191,15 +191,350 @@ code={`@theme {
 
 1. **New Theme Mode:** Add a new theme mode in the theme variable file.
 
-<Image src="/doc/new-theme-mode.png" width="704" height="450" alt="New Theme Mode" />
+<Image src="/doc/new-theme-card.png" alt="Theme Figma" width={800} height={600} />
 
-1. **Tweak colors:** Change the theme colors according to your liking
+2. **Tweak colors:** Change the theme colors according to your liking
 
-<Image src="/doc/tweak-color.png" width="704" height="450" alt="Tweak Colors" />
+<Image src="/doc/theme-change-card.png" alt="Theme Figma" width={800} height={600} />
 
-3. **Change Mode in Design:** Change the appearance to the new ‘Sepia’ Theme
+3. **Change Mode in Design:** Change the appearance to the new ‘Sepial’ Theme
 
-<Image src="/doc/change-mode.png" width="704" height="450" alt="Change Mode" />
+<Image src="/doc/change-mode-card.png" alt="Theme Figma" width={800} height={600} />
+
+## Adding a Theme Toggle
+
+<Tabs defaultValue="next">
+	<TabsList variant="open" >
+		<TabsTrigger value="next">Next Js</TabsTrigger>
+		<TabsTrigger value="vite">Vite</TabsTrigger>
+	</TabsList>
+	<TabsContent value="next" className="p-0">
+    <br/>
+    Start by installing `next-themes`:
+    <br/>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add next-themes",
+				npm: "npm install next-themes",
+				yarn: "yarn add next-themes",
+				bun: "bun add next-themes",
+			}}
+		/>
+### Create a theme provider
+<CodeSnippet
+code={`"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}`}
+title="components/theme-provider.tsx"
+/>
+
+### Wrap your root layout
+
+Add the `ThemeProvider` to your root layout and add the `suppressHydrationWarning` prop to the html tag.
+
+<br />
+<CodeSnippet
+code={`import { ThemeProvider } from "@/components/theme-provider"
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
+  )
+}`}
+title="app/layout.tsx"
+/>
+
+### Add a Theme Toggler
+
+<CodeSnippet
+code={`"use client"
+
+import { useEffect, useState } from "react"
+import { Loader2, MoonIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Button, IconButton } from "@/components/ui/button"
+
+export function DesktopThemeToggler() {
+	// This component is only rendered on the client, so we can use useEffect to set the mounted state
+	// and avoid server-side rendering issues with the theme provider
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+
+    const toggleTheme = () => {
+    	setTheme(resolvedTheme === "light" ? "dark" : "light")
+    }
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
+    	</IconButton>
+    )
+
+}
+
+export function TabletMobileThemeToggler() {
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+	const toggleTheme = () => {
+		setTheme(resolvedTheme === "light" ? "dark" : "light")
+	}
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<Button variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? (
+    			<>
+    				<MoonIcon className="size-5" />
+    				<span>Dark mode</span>
+    			</>
+    		) : (
+    			<>
+    				<SunIcon className="size-5" />
+    				<span>Light mode</span>
+    			</>
+    		)}
+    	</Button>
+    )
+
+}
+`}
+collapsible
+/>
+
+    </TabsContent>
+    <TabsContent value="vite" className="p-0">
+
+### Create a theme provider
+
+    <CodeSnippet
+    collapsible
+    code={`import { createContext, useContext, useEffect, useState } from "react"
+
+type Theme = "dark" | "light" | "system"
+
+type ThemeProviderProps = {
+children: React.ReactNode
+defaultTheme?: Theme
+storageKey?: string
+}
+
+type ThemeProviderState = {
+theme: Theme
+setTheme: (theme: Theme) => void
+}
+
+const initialState: ThemeProviderState = {
+theme: "system",
+setTheme: () => null,
+}
+
+const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+
+export function ThemeProvider({
+  children,
+  defaultTheme = "system",
+  storageKey = "vite-ui-theme",
+  ...props
+}: ThemeProviderProps) {
+  const [theme, setTheme] = useState<Theme>(
+    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
+  )
+
+useEffect(() => {
+const root = window.document.documentElement
+
+    root.classList.remove("light", "dark")
+
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light"
+
+      root.classList.add(systemTheme)
+      return
+    }
+
+    root.classList.add(theme)
+
+}, [theme])
+
+const value = {
+theme,
+setTheme: (theme: Theme) => {
+localStorage.setItem(storageKey, theme)
+setTheme(theme)
+},
+}
+
+return (
+
+<ThemeProviderContext.Provider {...props} value={value}>
+	{children}
+</ThemeProviderContext.Provider>
+) }
+
+export const useTheme = () => {
+  const context = useContext(ThemeProviderContext)
+
+if (context === undefined)
+throw new Error("useTheme must be used within a ThemeProvider")
+
+return context
+}`}
+title="components/theme-provider.tsx"
+/>
+
+### Wrap your root layout
+
+Add the `ThemeProvider` to your root layout.
+
+<br/>
+<CodeSnippet
+code={`import { ThemeProvider } from "@/components/theme-provider"
+
+function App() {
+return (
+
+<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+	{children}
+</ThemeProvider>
+) }
+
+export default App`}
+title="App.tsx"
+/>
+
+### Add a theme Toggler
+
+<CodeSnippet
+code={`import { useEffect, useState } from "react"
+import { Loader2, MoonIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Button, IconButton } from "@/components/ui/button"
+
+export function DesktopThemeToggler() {
+	// This component is only rendered on the client, so we can use useEffect to set the mounted state
+	// and avoid server-side rendering issues with the theme provider
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+
+    const toggleTheme = () => {
+    	setTheme(resolvedTheme === "light" ? "dark" : "light")
+    }
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
+    	</IconButton>
+    )
+
+}
+
+export function TabletMobileThemeToggler() {
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+	const toggleTheme = () => {
+		setTheme(resolvedTheme === "light" ? "dark" : "light")
+	}
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<Button variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? (
+    			<>
+    				<MoonIcon className="size-5" />
+    				<span>Dark mode</span>
+    			</>
+    		) : (
+    			<>
+    				<SunIcon className="size-5" />
+    				<span>Light mode</span>
+    			</>
+    		)}
+    	</Button>
+    )
+
+}
+`}
+collapsible
+/>
+
+</TabsContent>
+
+</Tabs>
 
 ## Custom Theme Samples
 
@@ -211,3 +546,6 @@ Elevation helps create a sense of depth in interfaces by showing how elements ar
 
 <br />
 Radian solves this by using a dedicated set of elevation colors designed for dark mode to make sure visual depth is maintained.
+<br />
+
+<Image src="/doc/theme-elevation.png" alt="Theme Figma" width={800} height={600} />

@@ -241,7 +241,7 @@ export const navigationItems: NavigationSection[] = [
 			{
 				title: "Form",
 				description: "12 Components",
-				url: "/docs/components/forms",
+				url: "/docs/components/form",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Form UI component illustration",

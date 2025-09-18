@@ -8,10 +8,10 @@ import ReportCard from "./report-card"
 
 const CommonCard = () => {
 	return (
-		<>
+		<div className="flex flex-col gap-4 rounded-2xl border p-3 sm:flex-row">
 			<div className="flex flex-col gap-4">
 				<CardFirst />
-				<Calendar mode="range" />
+				<Calendar className="self-center" mode="range" />
 				<Dropdown />
 			</div>
 			<div className="flex w-full flex-col gap-4">
@@ -19,7 +19,7 @@ const CommonCard = () => {
 				<InviteCard />
 				<CookieCard />
 			</div>
-		</>
+		</div>
 	)
 }
 

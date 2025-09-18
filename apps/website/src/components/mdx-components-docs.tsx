@@ -29,7 +29,6 @@ import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import FormPreview from "@/component-preview/form-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
@@ -80,8 +79,6 @@ import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dr
 import Examples from "@/registry/example/example.json"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
-import ResizableExample from "@/registry/example/resizable/resizable-example"
-import ResizablePreview from "@/registry/example/resizable/resizable-preview"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import ToastExample from "@/registry/example/toast/toast-example"
 import {
@@ -127,15 +124,13 @@ const components = (examples: typeof Examples | undefined) => ({
 		const { isDark, toggleTheme } = useTheme()
 
 		return (
-			<div className="flex w-full justify-end">
-				<div onClick={toggleTheme} className="bg-fill2 relative mb-2 flex h-8 cursor-pointer items-center rounded-md p-1 transition-all duration-300" style={{ width: "88px" }}>
-					<div className={`bg-elevation-level2 absolute h-6 w-10 rounded-md shadow-sm transition-all duration-300 ease-out ${isDark ? "translate-x-10" : "translate-x-0"}`} />
-					<div className="relative z-10 flex h-6 w-10 items-center justify-center">
-						<Sun size={14} className="text-fg-secondary" />
-					</div>
-					<div className="relative z-10 flex h-6 w-10 items-center justify-center">
-						<Moon size={14} className="text-fg-secondary" />
-					</div>
+			<div onClick={toggleTheme} className="bg-fill2 relative mb-2 flex h-8 cursor-pointer items-center rounded-md p-1 transition-all duration-300" style={{ width: "88px" }}>
+				<div className={`bg-elevation-level2 absolute h-6 w-10 rounded-md shadow-sm transition-all duration-300 ease-out ${isDark ? "translate-x-10" : "translate-x-0"}`} />
+				<div className="relative z-10 flex h-6 w-10 items-center justify-center">
+					<Sun size={14} className="text-fg-secondary" />
+				</div>
+				<div className="relative z-10 flex h-6 w-10 items-center justify-center">
+					<Moon size={14} className="text-fg-secondary" />
 				</div>
 			</div>
 		)
@@ -159,7 +154,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
 	DropdownWithDropdownCheckboxExample: () => <DropdownWithDropdownCheckbox />,
 	DropdownWithRadioExample: () => <DropdownWithRadioExample />,
-	ResizablePreview: () => <ResizablePreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
@@ -194,7 +188,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	FormPreview: () => <FormPreview />,
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
 	BreadcrumbExample2: () => <BreadcrumbExample2 />,
 	BreadcrumbExample3: () => <BreadcrumbExample3 />,
@@ -223,7 +216,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
-	ResizableExample: () => <ResizableExample />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
 	),
@@ -376,12 +368,14 @@ const components = (examples: typeof Examples | undefined) => ({
 	),
 	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
 		<Image
+			unoptimized
 			className={cn("bg-fill2 border-soft mb-6 mt-4 rounded-2xl border-8 object-cover", className)}
 			src={src || ""}
 			width={Number(width)}
 			height={Number(height)}
 			alt={alt || ""}
 			{...props}
+			quality={85}
 		/>
 	),
 })

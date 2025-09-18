@@ -3,7 +3,7 @@
 @import "tw-animate-css";
 @import "./website.css";
 
-@custom-variant dark (&:is(.dark *, [data-theme="dark"] *));
+@custom-variant dark (&:is(.dark *));
 
 @theme {
 	/* primary */

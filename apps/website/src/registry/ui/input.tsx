@@ -15,12 +15,12 @@ const inputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 text-xs p-1.5 rounded-md file:pe-1.5 file:me-1.5",
-				"32": "h-8 text-sm px-3 py-1.5 rounded-md file:pe-3 file:me-3",
-				"36": "h-9 text-sm px-2.5 py-2 rounded-lg file:pe-2.5 file:me-2.5",
-				"40": "h-10 text-sm px-3 py-2.5 rounded-lg file:pe-3 file:me-3",
-				"44": "h-11 text-base py-2.5 px-3.5 rounded-[10px] file:pe-3.5 file:me-3.5",
-				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] file:pe-3.5 file:me-3.5",
+				"28": "h-7 text-[13px] p-1.5 rounded-md file:pe-1.5 file:me-1.5",
+				"32": "h-8 text-sm py-1.5 px-2 rounded-md file:pe-3 file:me-3",
+				"36": "h-9 text-sm p-2 rounded-lg file:pe-2.5 file:me-2.5",
+				"40": "h-10 text-sm px-2 py-2.5 rounded-lg file:pe-3 file:me-3",
+				"44": "h-11 text-base py-2.5 px-2 rounded-[10px] file:pe-3.5 file:me-3.5",
+				"48": "h-12 text-base py-3 px-2 rounded-[10px] file:pe-3.5 file:me-3.5",
 			},
 		},
 		defaultVariants: {
@@ -34,16 +34,16 @@ const inputAddonVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 text-xs p-1.5 rounded-md [&_svg:not([class*=size-])]:size-3.5",
-				"32": "h-8 text-sm px-3 py-1.5 rounded-md [&_svg:not([class*=size-])]:size-3.5",
-				"36": "h-9 text-sm px-2.5 py-2 rounded-lg [&_svg:not([class*=size-])]:size-4",
-				"40": "h-10 text-sm px-3 py-2.5 rounded-lg [&_svg:not([class*=size-])]:size-4",
-				"44": "h-11 text-base py-2.5 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-4.5",
-				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-4.5",
+				"28": "h-7 text-[13px] py-1.5 px-2 rounded-md [&_svg:not([class*=size-])]:size-4",
+				"32": "h-8 text-sm p-2 rounded-md [&_svg:not([class*=size-])]:size-4.5",
+				"36": "h-9 text-sm px-2.5 py-2 rounded-lg [&_svg:not([class*=size-])]:size-5",
+				"40": "h-10 text-sm px-3 py-2.5 rounded-lg [&_svg:not([class*=size-])]:size-5",
+				"44": "h-11 text-base py-2.5 px-3 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
+				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
 			},
 			mode: {
 				default: "",
-				icon: "px-0 justify-center",
+				icon: "justify-center",
 			},
 		},
 		defaultVariants: {
@@ -86,6 +86,7 @@ const inputWrapperVariants = cva(
 	has-[:focus-visible]:ring-2
 
 	[&_[data-slot=datefield]]:grow 
+	[&_[data-slot=input]]:rounded-none
 	[&_[data-slot=input]]:data-focus-within:ring-transparent  
 	[&_[data-slot=input]]:data-focus-within:ring-0 
 	[&_[data-slot=input]]:data-focus-within:border-0 
@@ -113,12 +114,12 @@ const inputWrapperVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "gap-1.25 [&_svg:not([class*=size-])]:size-3.5",
-				"32": "gap-1.5 [&_svg:not([class*=size-])]:size-3.5",
-				"36": "gap-1.5 [&_svg:not([class*=size-])]:size-4",
-				"40": "gap-2 [&_svg:not([class*=size-])]:size-4",
-				"44": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
-				"48": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
+				"28": "gap-1.5 [&_svg:not([class*=size-])]:size-4",
+				"32": "gap-2 [&_svg:not([class*=size-])]:size-4.5",
+				"36": "gap-2 [&_svg:not([class*=size-])]:size-5",
+				"40": "gap-2 [&_svg:not([class*=size-])]:size-5",
+				"44": "gap-2 [&_svg:not([class*=size-])]:size-5",
+				"48": "gap-2 [&_svg:not([class*=size-])]:size-5",
 			},
 			disabled: {
 				true: "cursor-not-allowed opacity-60 bg-fill1 has-[:focus-visible]:ring-0 has-[:focus-visible]:border-alpha [&_svg]:text-fg-tertiary",
