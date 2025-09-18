@@ -398,6 +398,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	),
 	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
 		<Image
+			unoptimized
 			className={cn("bg-fill2 border-soft mb-6 mt-4 rounded-2xl border-8 object-cover", className)}
 			src={src || ""}
 			width={Number(width)}
