@@ -80,7 +80,7 @@ const tabsListStyles = cva(
 )
 
 const tabsTriggerStyles = cva(
-	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fgw-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary disabled:text-fg-disabled disabled:cursor-not-allowed box-border",
+	"inline-flex items-center justify-center gap-1.5 focus-visible:ring focus-visible:ring-offset-1 whitespace-nowrap font-medium outline-none text-fg-secondary data-[state=active]:text-fgw-max data-[orientation=vertical]:w-full [&>svg]:text-fg-tertiary [&>svg]:shrink-0 disabled:text-fg-disabled disabled:[&>svg]:text-fg-disabled disabled:cursor-not-allowed box-border",
 	{
 		variants: {
 			size: {
@@ -195,7 +195,7 @@ function useTabsList() {
 }
 
 function Tabs({ className, ...props }: TabsProps) {
-	return <TabsPrimitive.Root className={cn("no-scrollbar flex w-full flex-col gap-3 data-[orientation=vertical]:flex-row", className)} {...props} />
+	return <TabsPrimitive.Root className={cn("no-scrollbar flex flex-col gap-3 data-[orientation=vertical]:flex-row", className)} {...props} />
 }
 Tabs.displayName = TabsPrimitive.Root.displayName
 

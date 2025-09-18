@@ -8,9 +8,7 @@ type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root>
 
 type TooltipTriggerProps = React.ComponentProps<typeof TooltipPrimitive.Trigger>
 
-type TooltipContentProps = React.ComponentProps<typeof TooltipPrimitive.Content> & {
-	withArrow?: boolean
-}
+type TooltipContentProps = React.ComponentProps<typeof TooltipPrimitive.Content>
 
 function Tooltip({ children, ...props }: TooltipProps) {
 	return (
@@ -26,7 +24,7 @@ function TooltipTrigger(props: TooltipTriggerProps) {
 }
 TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
-function TooltipContent({ className, align = "center", side = "top", withArrow = false, sideOffset = 4, children, ...props }: TooltipContentProps) {
+function TooltipContent({ className, align = "center", side = "top", sideOffset = 4, children, ...props }: TooltipContentProps) {
 	return (
 		<TooltipPrimitive.Content
 			align={align}
@@ -38,13 +36,6 @@ function TooltipContent({ className, align = "center", side = "top", withArrow =
 			)}
 			{...props}>
 			{children}
-			{withArrow && (
-				<TooltipPrimitive.Arrow className="-translate-y-0.5" asChild>
-					<svg xmlns="http://www.w3.org/2000/svg" width={12} height={7} viewBox="0 0 12 7" fill="none" className="rotate-180">
-						<path d="M4.8 0.469182C5.46274 -0.156394 6.53726 -0.156394 7.2 0.469182L12 5L0 5L4.8 0.469182Z" className="fill-black dark:fill-white" />
-					</svg>
-				</TooltipPrimitive.Arrow>
-			)}
 		</TooltipPrimitive.Content>
 	)
 }
