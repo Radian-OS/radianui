@@ -12,7 +12,7 @@ const CommonCard = () => {
 			{/* Left column */}
 			<div className="flex w-full flex-col gap-4 md:w-1/2">
 				<CardFirst />
-				<Calendar className="w-fit sm:w-full" mode="range" />
+				<Calendar mode="range" />
 				<Dropdown />
 			</div>
 
