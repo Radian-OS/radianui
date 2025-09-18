@@ -14,14 +14,14 @@ const CookieCard = () => {
 					<p className="text-fg text-base font-medium">Strictly Necessary</p>
 					<p className="text-fg-secondary text-sm font-normal">These cookies are necessary for website functionality.</p>
 				</span>
-				<Switch size="24" />
+				<Switch defaultChecked size="24" />
 			</span>
 			<span className="flex items-center justify-between">
 				<span>
 					<p className="text-fg text-base font-medium">Functional Cookies</p>
 					<p className="text-fg-secondary text-sm font-normal">These cookies enable personalized features on the site.</p>
 				</span>
-				<Switch size="24" />
+				<Switch defaultChecked size="24" />
 			</span>
 			<Button className="w-full" variant="outline" color="primary">
 				Save preferences
