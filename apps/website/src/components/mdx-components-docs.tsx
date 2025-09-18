@@ -29,7 +29,6 @@ import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import FormPreview from "@/component-preview/form-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
@@ -84,8 +83,6 @@ import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dr
 import Examples from "@/registry/example/example.json"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
-import ResizableExample from "@/registry/example/resizable/resizable-example"
-import ResizablePreview from "@/registry/example/resizable/resizable-preview"
 import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
 import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
 import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
@@ -173,7 +170,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
 	DropdownWithDropdownCheckboxExample: () => <DropdownWithDropdownCheckbox />,
 	DropdownWithRadioExample: () => <DropdownWithRadioExample />,
-	ResizablePreview: () => <ResizablePreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
@@ -210,7 +206,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	FormPreview: () => <FormPreview />,
 	AlertExamplePreview: () => <AlertExamplePreview />,
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
 	BreadcrumbExample2: () => <BreadcrumbExample2 />,
@@ -245,7 +240,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
-	ResizableExample: () => <ResizableExample />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
 	),
