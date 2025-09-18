@@ -19,7 +19,7 @@ const ColorPlayground = () => {
 					<SelectItem value="info">Light Blue</SelectItem>
 				</SelectContent>
 			</Select>
-			<div className={`bg-elevation-negative flex gap-4 color-${color} border-soft rounded-2xl border p-3`}>
+			<div className={`bg-elevation-negative flex flex-col items-center gap-4 sm:flex-row sm:items-start color-${color} border-soft rounded-2xl border p-3`}>
 				<CommonCard />
 			</div>
 		</div>
