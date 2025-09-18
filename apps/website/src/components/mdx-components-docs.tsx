@@ -114,8 +114,13 @@ import AlertLucide from "./icons/alert-lucide"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
 import { PropsData, PropsTable } from "./props-table"
 import SocialLinkCards from "./social-link-cards"
+import ChangeModeCard from "./theme/change-mode-card"
 import CustomThemePlayground from "./theme/custom-theme-playground"
+import DarkModeCard from "./theme/dark-mode-card"
 import DarkModePlayground from "./theme/dark-mode-playground"
+import NewThemeCard from "./theme/new-theme-card"
+import ThemeChangeCard from "./theme/theme-change-card"
+import ThemeElevationCard from "./theme/theme-elevation-card"
 
 type MdxProps = {
 	code: string
@@ -221,6 +226,11 @@ const components = (examples: typeof Examples | undefined) => ({
 	DarkModePlayground: () => <DarkModePlayground />,
 	CustomThemePlayground: () => <CustomThemePlayground />,
 	AlertLucide: () => <AlertLucide />,
+	DarkModeCard: () => <DarkModeCard />,
+	ThemeElevationCard: () => <ThemeElevationCard />,
+	NewThemeCard: () => <NewThemeCard />,
+	ThemeChangeCard: () => <ThemeChangeCard />,
+	ChangeModeCard: () => <ChangeModeCard />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,
@@ -396,6 +406,7 @@ const components = (examples: typeof Examples | undefined) => ({
 			height={Number(height)}
 			alt={alt || ""}
 			{...props}
+			quality={85}
 		/>
 	),
 })

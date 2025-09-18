@@ -15,7 +15,7 @@ a lot easier.
 
 1. **Dark mode in Figma:** Easily switch dark mode via going to the ‘Appearance’ panel → ‘Themes’ and select ‘Dark mode’.
 
-<Image src="/doc/theme-figma.png" width="704" height="450" alt=" Dark Theme Figma" />
+<DarkModeCard />
 
 2. **Dark mode in Development:** Radian supports dark mode by default, you can acces those colors in global CSS.
 
@@ -191,15 +191,184 @@ code={`@theme {
 
 1. **New Theme Mode:** Add a new theme mode in the theme variable file.
 
-<Image src="/doc/new-theme-mode.png" width="704" height="450" alt="New Theme Mode" />
+<NewThemeCard />
 
 1. **Tweak colors:** Change the theme colors according to your liking
 
-<Image src="/doc/tweak-color.png" width="704" height="450" alt="Tweak Colors" />
+<ThemeChangeCard />
 
 3. **Change Mode in Design:** Change the appearance to the new ‘Sepial’ Theme
 
-<Image src="/doc/change-mode.png" width="704" height="450" alt="Change Mode" />
+<ChangeModeCard />
+
+## Adding a Theme Toggle
+
+<Tabs  variant="open" defaultValue="next">
+	<TabsList>
+		<TabsTrigger value="next">Next Js</TabsTrigger>
+		<TabsTrigger value="vite">Vite</TabsTrigger>
+	</TabsList>
+	<TabsContent value="next" className="p-0">
+    <br/>
+    Start by installing `next-themes`:
+    <br/>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add next-themes",
+				npm: "npm install next-themes",
+				yarn: "yarn add next-themes",
+				bun: "bun add next-themes",
+			}}
+		/>
+### Create a theme provider
+<CodeSnippet
+code={`"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider } from "next-themes"
+
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}`}
+title="components/theme-provider.tsx"
+/>
+
+### Wrap your root layout
+
+Add the `ThemeProvider` to your root layout and add the `suppressHydrationWarning` prop to the html tag.
+
+<br />
+<CodeSnippet
+code={`import { ThemeProvider } from "@/components/theme-provider"
+
+export default function RootLayout({ children }: RootLayoutProps) {
+  return (
+    <>
+      <html lang="en" suppressHydrationWarning>
+        <head />
+        <body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </>
+  )
+}`}
+title="app/layout.tsx"
+/>
+
+### Add a Theme Toggler
+
+<CodeSnippet
+code={`"use client"
+
+import { useEffect, useState } from "react"
+import { Loader2, MoonIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Button, IconButton } from "@/registry/ui/button"
+
+export function DesktopThemeToggler() {
+	// This component is only rendered on the client, so we can use useEffect to set the mounted state
+	// and avoid server-side rendering issues with the theme provider
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+
+    const toggleTheme = () => {
+    	setTheme(resolvedTheme === "light" ? "dark" : "light")
+    }
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
+    	</IconButton>
+    )
+
+}
+
+export function TabletMobileThemeToggler() {
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+	const toggleTheme = () => {
+		setTheme(resolvedTheme === "light" ? "dark" : "light")
+	}
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<Button variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? (
+    			<>
+    				<MoonIcon className="size-5" />
+    				<span>Dark mode</span>
+    			</>
+    		) : (
+    			<>
+    				<SunIcon className="size-5" />
+    				<span>Light mode</span>
+    			</>
+    		)}
+    	</Button>
+    )
+
+}
+`}
+collapsible
+/>
+
+    </TabsContent>
+    <TabsContent value="vite" className="p-0">
+    <Steps>
+        <Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add @radix-ui/react-accordion",
+    			npm: "npm install @radix-ui/react-accordion",
+    			yarn: "yarn add @radix-ui/react-accordion",
+    			bun: "bun add @radix-ui/react-accordion",
+    		}}
+    	/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="accordion" title="components/ui/accordion.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
 
 ## Custom Theme Samples
 
@@ -211,5 +380,5 @@ Elevation helps create a sense of depth in interfaces by showing how elements ar
 
 <br />
 Radian solves this by using a dedicated set of elevation colors designed for dark mode to make sure visual depth is maintained.
-
-<Image src="/doc/change-mode.png" width="704" height="450" alt="Change Mode" />
+<br />
+<ThemeElevationCard />
