@@ -6,7 +6,7 @@ import { Divider } from "@/registry/ui/divider"
 
 const Dropdown = () => {
 	return (
-		<div className="bg-elevation-level1 border-soft rounded-[10px] border">
+		<div className="bg-elevation-level1 border-soft w-full rounded-[10px] border">
 			<div className="p-1">
 				<div className="flex items-center gap-3 p-2">
 					<Avatar size="36" rounded="circle">

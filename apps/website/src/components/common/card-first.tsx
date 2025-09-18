@@ -5,8 +5,8 @@ import { Button } from "@/registry/ui/button"
 
 const CardFirst = () => {
 	return (
-		<div className="bg-bg border-border relative overflow-hidden rounded-xl border">
-			<div className="from-primary-text to-primary-accent h-[80px] bg-gradient-to-r"></div>
+		<div className="bg-bg border-border relative w-full overflow-hidden rounded-xl border">
+			<div className="from-primary-text to-primary-accent h-[80px] w-full bg-gradient-to-r"></div>
 			<div className="absolute top-14 flex w-full items-end justify-between px-5">
 				<Avatar className="border-bg border-4" size="64" rounded="circle">
 					<AvatarFallback>NM</AvatarFallback>
