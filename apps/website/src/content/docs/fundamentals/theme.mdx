@@ -203,8 +203,8 @@ code={`@theme {
 
 ## Adding a Theme Toggle
 
-<Tabs  variant="open" defaultValue="next">
-	<TabsList>
+<Tabs defaultValue="next">
+	<TabsList variant="open" >
 		<TabsTrigger value="next">Next Js</TabsTrigger>
 		<TabsTrigger value="vite">Vite</TabsTrigger>
 	</TabsList>
@@ -274,7 +274,7 @@ code={`"use client"
 import { useEffect, useState } from "react"
 import { Loader2, MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "next-themes"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button, IconButton } from "@/components/ui/button"
 
 export function DesktopThemeToggler() {
 	// This component is only rendered on the client, so we can use useEffect to set the mounted state
@@ -350,23 +350,189 @@ collapsible
 
     </TabsContent>
     <TabsContent value="vite" className="p-0">
-    <Steps>
-        <Step>Install the following dependencies:</Step>
-    	<PackageManagerTabs
-    		commands={{
-    			pnpm: "pnpm add @radix-ui/react-accordion",
-    			npm: "npm install @radix-ui/react-accordion",
-    			yarn: "yarn add @radix-ui/react-accordion",
-    			bun: "bun add @radix-ui/react-accordion",
-    		}}
-    	/>
 
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="accordion" title="components/ui/accordion.tsx" collapsible />
+### Create a theme provider
 
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
-    </TabsContent>
+    <CodeSnippet
+    collapsible
+    code={`import { createContext, useContext, useEffect, useState } from "react"
+
+type Theme = "dark" | "light" | "system"
+
+type ThemeProviderProps = {
+children: React.ReactNode
+defaultTheme?: Theme
+storageKey?: string
+}
+
+type ThemeProviderState = {
+theme: Theme
+setTheme: (theme: Theme) => void
+}
+
+const initialState: ThemeProviderState = {
+theme: "system",
+setTheme: () => null,
+}
+
+const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+
+export function ThemeProvider({
+  children,
+  defaultTheme = "system",
+  storageKey = "vite-ui-theme",
+  ...props
+}: ThemeProviderProps) {
+  const [theme, setTheme] = useState<Theme>(
+    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
+  )
+
+useEffect(() => {
+const root = window.document.documentElement
+
+    root.classList.remove("light", "dark")
+
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light"
+
+      root.classList.add(systemTheme)
+      return
+    }
+
+    root.classList.add(theme)
+
+}, [theme])
+
+const value = {
+theme,
+setTheme: (theme: Theme) => {
+localStorage.setItem(storageKey, theme)
+setTheme(theme)
+},
+}
+
+return (
+
+<ThemeProviderContext.Provider {...props} value={value}>
+	{children}
+</ThemeProviderContext.Provider>
+) }
+
+export const useTheme = () => {
+  const context = useContext(ThemeProviderContext)
+
+if (context === undefined)
+throw new Error("useTheme must be used within a ThemeProvider")
+
+return context
+}`}
+title="components/theme-provider.tsx"
+/>
+
+### Wrap your root layout
+
+Add the `ThemeProvider` to your root layout.
+
+<br/>
+<CodeSnippet
+code={`import { ThemeProvider } from "@/components/theme-provider"
+
+function App() {
+return (
+
+<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+	{children}
+</ThemeProvider>
+) }
+
+export default App`}
+title="App.tsx"
+/>
+
+### Add a theme Toggler
+
+<CodeSnippet
+code={`import { useEffect, useState } from "react"
+import { Loader2, MoonIcon, SunIcon } from "lucide-react"
+import { useTheme } from "next-themes"
+import { Button, IconButton } from "@/components/ui/button"
+
+export function DesktopThemeToggler() {
+	// This component is only rendered on the client, so we can use useEffect to set the mounted state
+	// and avoid server-side rendering issues with the theme provider
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+
+    const toggleTheme = () => {
+    	setTheme(resolvedTheme === "light" ? "dark" : "light")
+    }
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
+    	</IconButton>
+    )
+
+}
+
+export function TabletMobileThemeToggler() {
+	const [mounted, setMounted] = useState(false)
+	const { resolvedTheme, setTheme } = useTheme()
+	const toggleTheme = () => {
+		setTheme(resolvedTheme === "light" ? "dark" : "light")
+	}
+
+    // useEffect only runs on the client, so now we can safely show the UI
+    useEffect(() => {
+    	setMounted(true)
+    }, [])
+
+    if (!mounted) {
+    	return (
+    		<IconButton variant="outline" color="neutral" disabled>
+    			<Loader2 className="size-5 animate-spin" />
+    		</IconButton>
+    	)
+    }
+
+    return (
+    	<Button variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
+    		{resolvedTheme === "light" ? (
+    			<>
+    				<MoonIcon className="size-5" />
+    				<span>Dark mode</span>
+    			</>
+    		) : (
+    			<>
+    				<SunIcon className="size-5" />
+    				<span>Light mode</span>
+    			</>
+    		)}
+    	</Button>
+    )
+
+}
+`}
+collapsible
+/>
+
+</TabsContent>
 
 </Tabs>
 
