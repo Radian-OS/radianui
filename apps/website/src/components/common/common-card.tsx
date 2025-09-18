@@ -8,16 +8,13 @@ import ReportCard from "./report-card"
 
 const CommonCard = () => {
 	return (
-		<div className="flex flex-wrap gap-6 sm:flex-nowrap">
-			{/* Left column */}
-			<div className="flex w-full flex-col gap-4 md:w-1/2">
+		<div className="flex flex-col gap-4 rounded-2xl border p-3 sm:flex-row">
+			<div className="flex flex-col gap-4">
 				<CardFirst />
-				<Calendar className="w-fit sm:w-full" mode="range" />
+				<Calendar className="self-center" mode="range" />
 				<Dropdown />
 			</div>
-
-			{/* Right column */}
-			<div className="flex w-full flex-col gap-4 md:w-1/2">
+			<div className="flex w-full flex-col gap-4">
 				<ReportCard />
 				<InviteCard />
 				<CookieCard />
