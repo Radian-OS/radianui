@@ -1,7 +1,6 @@
 "use client"
 
 import { type HTMLAttributes, type ReactNode } from "react"
-import { createContext } from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
@@ -132,19 +131,13 @@ const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative 
 	},
 })
 
-type BannerContextType = {
-	onClose?: () => void
-}
-
-const BannerContext = createContext<BannerContextType | undefined>(undefined)
-
 function Banner({ color, variant, className, children }: BannerProps) {
 	return (
-		<BannerContext.Provider value={{}}>
-			<div role="banner" className={cn(bannerVariants({ color, variant }), className)}>
-				{children}
-			</div>
-		</BannerContext.Provider>
+		// <BannerContext.Provider value={{}}>
+		<div role="banner" className={cn(bannerVariants({ color, variant }), className)}>
+			{children}
+		</div>
+		// {/* </BannerContext.Provider> */}
 	)
 }
 Banner.displayName = "Banner"

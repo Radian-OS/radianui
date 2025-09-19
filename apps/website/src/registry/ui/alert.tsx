@@ -2,16 +2,22 @@
 
 import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
+import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export type AlertProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant"> & VariantProps<typeof alertVariants>
+export type AlertProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant"> &
+	VariantProps<typeof alertVariants> & {
+		close?: boolean
+		onClose?: () => void
+	}
+
 export type AlertTitleProps = React.HTMLAttributes<HTMLHeadingElement>
 export type AlertDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
 export type AlertContentProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
-export type AlertActionsProps = React.HTMLAttributes<HTMLDivElement>
+export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
-const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-center gap-2", {
+const alertVariants = cva("flex items-start w-full gap-2 rounded-xl p-3", {
 	variants: {
 		color: {
 			neutral: "",
@@ -67,34 +73,48 @@ const alertVariants = cva("w-full rounded-xl p-3 flex items-center justify-cente
 	},
 })
 
-function Alert({ className, color, variant, ...props }: AlertProps) {
-	return <div role="alert" className={cn(alertVariants({ color, variant }), className)} {...props} />
+function Alert({ className, color, variant, close = false, onClose, children, ...props }: AlertProps) {
+	return (
+		<div data-slot="alert" role="alert" className={cn(alertVariants({ color, variant }), className)} {...props}>
+			{children}
+			{close && (
+				<button
+					type="button"
+					onClick={onClose}
+					aria-label="Dismiss"
+					data-slot="alert-close"
+					className="group flex size-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5">
+					<X className="size-4 opacity-60 group-hover:opacity-100" />
+				</button>
+			)}
+		</div>
+	)
 }
 Alert.displayName = "Alert"
 
 function AlertTitle({ className, ...props }: AlertTitleProps) {
-	return <h5 className={cn("text-sm font-medium", className)} {...props} />
+	return <div data-slot="alert-title" className={cn("text-sm font-medium tracking-tight", className)} {...props} />
 }
 AlertTitle.displayName = "AlertTitle"
 
 function AlertDescription({ className, ...props }: AlertDescriptionProps) {
-	return <div className={cn("text-sm", className)} {...props} />
+	return <div data-slot="alert-description" className={cn("text-sm [&_p]:mb-2 [&_p]:leading-relaxed", className)} {...props} />
 }
 AlertDescription.displayName = "AlertDescription"
 
 function AlertContent({ className, ...props }: AlertContentProps) {
-	return <div className={cn("flex flex-grow flex-col gap-1", className)} {...props} />
+	return <div data-slot="alert-content" className={cn("flex-1 space-y-1 [&_[data-slot=alert-title]]:font-semibold", className)} {...props} />
 }
 AlertContent.displayName = "AlertContent"
 
 function AlertIcon({ className, ...props }: AlertIconProps) {
-	return <div className={cn("flex-shrink-0", className)} {...props} />
+	return <div data-slot="alert-icon" className={cn("shrink-0", className)} {...props} />
 }
 AlertIcon.displayName = "AlertIcon"
 
-function AlertActions({ className, ...props }: AlertActionsProps) {
-	return <div className={cn("flex-shrink-0", className)} {...props} />
+function AlertToolbar({ className, ...props }: AlertToolbarProps) {
+	return <div data-slot="alert-toolbar" className={cn("flex-shrink-0", className)} {...props} />
 }
-AlertActions.displayName = "AlertActions"
+AlertToolbar.displayName = "AlertToolbar"
 
-export { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertActions, alertVariants }
+export { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar, alertVariants }

@@ -40,29 +40,39 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/alert.tsx" code={`import { Alert, AlertActions, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/components/ui/alert"`} />
+<CodeSnippet title="/components/ui/alert.tsx" code={`import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle,AlertToolbar } from "@/components/ui/alert"`} />
 
 ### Code
 
 <CodeSnippet
 	title="/components/ui/alert.tsx"
 	code={`<Alert>
-<AlertIcon><Settings/></AlertIcon>
-<AlertTitle>
- Settings Updated
-</AlertTitle>
-<AlertDescription>
- Your settings have been successfully updated.
-</AlertDescription>
-<AlertAction>
- <Button variant="strong" color="primary">Action</Button>
-</AlertAction>
+ <AlertIcon>
+  <Bell size={16} />
+ </AlertIcon>
+ 
+ <AlertContent>
+  <AlertTitle>Alert Title</AlertTitle>
+ <AlertDescription>This is alert description.</AlertDescription>
+ </AlertContent>
+			
+ <AlertToolbar>
+  <LinkButton href="/">Action</LinkButton>
+ </AlertToolbar>
 </Alert>`}
 />
 
 ---
 
 ## Examples
+
+### Variants
+
+<ComponentPreview height="480" path="alert/alert-variants-example" />
+
+### Colors
+
+<ComponentPreview height="500" path="alert/alert-colors-example" />
 
 ### Close Icon
 
@@ -76,7 +86,7 @@ links:
 		data={[
 			{
 				name: "color",
-				defaultValue: "neutral",
+				defaultValue: "primary",
 				values: ["neutral", "primary", "info", "success", "warning", "error"],
 				required: false,
 				description: "Sets the color scheme of the alert",
@@ -84,9 +94,23 @@ links:
 			{
 				name: "variant",
 				defaultValue: "soft",
-				values: ["soft-outline", "outline", "strong"],
+				values: ["soft", "soft-outline", "outline", "strong"],
 				required: false,
-				description: "Defines the visual style of the accordion",
+				description: "Defines the visual style of the alert",
+			},
+			{
+				name: "close",
+				defaultValue: "false",
+				values: ["boolean"],
+				required: false,
+				description: "Shows a close button to dismiss the alert",
+			},
+			{
+				name: "onClose",
+				defaultValue: "-",
+				values: ["() => void"],
+				required: false,
+				description: "Callback function called when the alert is dismissed",
 			},
 		]}
 	/>
@@ -94,11 +118,11 @@ links:
 		title="AlertIcon"
 		data={[
 			{
-				name: "-",
+				name: "children",
 				defaultValue: "-",
-				values: ["-"],
+				values: ["ReactNode"],
 				required: false,
-				description: "Pass an icon as children to display in the alert",
+				description: "Pass an icon component as children to display in the alert",
 			},
 		]}
 	/>
@@ -106,11 +130,11 @@ links:
 		title="AlertTitle"
 		data={[
 			{
-				name: "-",
+				name: "children",
 				defaultValue: "-",
-				values: ["-"],
+				values: ["ReactNode"],
 				required: false,
-				description: "Write the title of the alert",
+				description: "The title text content of the alert",
 			},
 		]}
 	/>
@@ -118,11 +142,11 @@ links:
 		title="AlertDescription"
 		data={[
 			{
-				name: "-",
+				name: "children",
 				defaultValue: "-",
-				values: ["-"],
+				values: ["ReactNode"],
 				required: false,
-				description: "Write the description of the alert",
+				description: "The description/body content of the alert",
 			},
 		]}
 	/>
@@ -130,23 +154,23 @@ links:
 		title="AlertContent"
 		data={[
 			{
-				name: "-",
+				name: "children",
 				defaultValue: "-",
-				values: ["-"],
+				values: ["ReactNode"],
 				required: false,
-				description: "Content wrapper area of the alert to include title, description, and actions",
+				description: "Content wrapper area that typically contains AlertTitle and AlertDescription",
 			},
 		]}
 	/>
 	<PropsTable
-		title="AlertActions"
+		title="AlertToolbar"
 		data={[
 			{
-				name: "-",
+				name: "children",
 				defaultValue: "-",
-				values: ["-"],
+				values: ["ReactNode"],
 				required: false,
-				description: "Show an end content to the alert container",
+				description: "Custom actions or buttons to display on the right side of the alert",
 			},
 		]}
 	/>
