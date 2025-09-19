@@ -6,8 +6,8 @@ import { Check, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export type DropdownContextType = {
-	indicatorPosition: "left" | "right"
-	indicator: React.ReactNode
+	indicatorPosition?: "left" | "right"
+	indicator?: React.ReactNode
 }
 
 export type DropdownProps = React.ComponentProps<typeof DropdownMenuPrimitive.Root> & DropdownContextType
@@ -56,7 +56,7 @@ function useDropdown() {
 
 function Dropdown({ indicatorPosition = "right", indicator, ...props }: DropdownProps) {
 	return (
-		<DropdownContext.Provider value={{ indicatorPosition, indicator }}>
+		<DropdownContext.Provider value={{ indicatorPosition: indicatorPosition ?? "right", indicator }}>
 			<DropdownMenuPrimitive.Root modal={false} data-slot="dropdown-menu" {...props} />
 		</DropdownContext.Provider>
 	)
