@@ -313,7 +313,7 @@
     "files": [
       {
         "name": "label.tsx",
-        "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as LabelPrimitive from \"@radix-ui/react-label\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Label({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {\n\treturn <LabelPrimitive.Root className={cn(\"peer-disabled:text-fg-tertiary text-sm font-medium peer-disabled:cursor-not-allowed\", className)} {...props} />\n}\nLabel.displayName = LabelPrimitive.Root.displayName\n\nexport { Label }\n",
+        "content": "\"use client\"\n\nimport * as React from \"react\"\nimport * as LabelPrimitive from \"@radix-ui/react-label\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Label({ className, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {\n\treturn <LabelPrimitive.Root className={cn(\"peer-disabled:text-fg-tertiary text-fg text-sm font-medium peer-disabled:cursor-not-allowed\", className)} {...props} />\n}\nLabel.displayName = LabelPrimitive.Root.displayName\n\nexport { Label }\n",
         "type": "ui"
       }
     ],
@@ -377,7 +377,7 @@
     "files": [
       {
         "name": "progress-bar.tsx",
-        "content": "import React from \"react\"\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\"\nimport { cn } from \"@/lib/utils\"\n\n// Defines the ProgressBar functional component\nfunction ProgressBar({\n\tvalue,\n\tclassName,\n\tindicatorClassName,\n\t...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root> & {\n\tindicatorClassName?: string\n}) {\n\treturn (\n\t\t<ProgressPrimitive.Root className={cn(\"bg-fill3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full\", className)} {...props}>\n\t\t\t<ProgressPrimitive.Indicator\n\t\t\t\tclassName={cn(\"bg-primary h-full w-full transition-transform duration-[660ms] [transition-timing-function:cubic-bezier(0,0,1,1)]\", indicatorClassName)}\n\t\t\t\tstyle={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n\t\t\t/>\n\t\t</ProgressPrimitive.Root>\n\t)\n}\n\nexport { ProgressBar }\n",
+        "content": "import React from \"react\"\nimport * as ProgressPrimitive from \"@radix-ui/react-progress\"\nimport { cn } from \"@/lib/utils\"\n\nfunction Progress({\n\tvalue,\n\tclassName,\n\tindicatorClassName,\n\t...props\n}: React.ComponentProps<typeof ProgressPrimitive.Root> & {\n\tindicatorClassName?: string\n}) {\n\treturn (\n\t\t<ProgressPrimitive.Root className={cn(\"bg-fill3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full\", className)} {...props}>\n\t\t\t<ProgressPrimitive.Indicator\n\t\t\t\tclassName={cn(\"bg-primary h-full w-full transition-transform duration-[660ms] [transition-timing-function:cubic-bezier(0,0,1,1)]\", indicatorClassName)}\n\t\t\t\tstyle={{ transform: `translateX(-${100 - (value || 0)}%)` }}\n\t\t\t/>\n\t\t</ProgressPrimitive.Root>\n\t)\n}\n\nexport { Progress }\n",
         "type": "ui"
       }
     ],
