@@ -40,23 +40,25 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/alert.tsx" code={`import { Alert, AlertActions, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/components/ui/alert"`} />
+<CodeSnippet title="/components/ui/alert.tsx" code={`import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle,AlertToolbar } from "@/components/ui/alert"`} />
 
 ### Code
 
 <CodeSnippet
 	title="/components/ui/alert.tsx"
 	code={`<Alert>
-<AlertIcon><Settings/></AlertIcon>
-<AlertTitle>
- Settings Updated
-</AlertTitle>
-<AlertDescription>
- Your settings have been successfully updated.
-</AlertDescription>
-<AlertAction>
- <Button variant="strong" color="primary">Action</Button>
-</AlertAction>
+ <AlertIcon>
+  <Bell size={16} />
+ </AlertIcon>
+ 
+ <AlertContent>
+  <AlertTitle>Alert Title</AlertTitle>
+ <AlertDescription>This is alert description.</AlertDescription>
+ </AlertContent>
+			
+ <AlertToolbar>
+  <LinkButton href="/">Action</LinkButton>
+ </AlertToolbar>
 </Alert>`}
 />
 
