@@ -22,7 +22,6 @@ import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
-import ColorPickerPreview from "@/component-preview/color-picker-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
@@ -33,7 +32,6 @@ import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
-import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
@@ -64,7 +62,6 @@ import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example
 import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
-import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
 import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
 import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/large-currency-example-preview"
 import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
@@ -171,13 +168,10 @@ const components = (examples: typeof Examples | undefined) => ({
 	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
 	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
 	SearchPreview: () => <SearchPreview />,
-	ProgressBarPreview: () => <ProgressBarPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
-	ColorPickerPreview: () => <ColorPickerPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
-	ColorPickerExample: () => <ColorPickerExample />,
 	ToastExample: () => <ToastExample />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
 	CompactButtonPreview: () => <CompactButtonPreview />,
