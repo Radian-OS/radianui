@@ -6,7 +6,7 @@ links:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/skeleton.tsx
 ---
 
-<SkeletonPreview />
+<ComponentPreview path="skeleton/skeleton-preview" />
 
 ## Installation
 
@@ -58,14 +58,6 @@ links:
 
 ---
 
-## Examples
-
-### Shimmer Skeleton
-
-<ShimmerSkeletonExample />
-
----
-
 ## Props
 
 <PropsTableWrapper>
@@ -74,10 +66,9 @@ title="Skeleton"
 data={
 [
     {
-        name:"animation",
-        values:["pulse","shimmer"],
-        defaultValue:"pulse",
-        description:"Type of animation to be shown in skeleton"
+        name:"className",
+        values:["string"],
+        description:"Class name to be applied to the skeleton"
     }
 ]
 }

@@ -35,23 +35,19 @@ import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import ProgressBarPreview from "@/component-preview/progress-bar-preview"
 import SearchPreview from "@/component-preview/search-preview"
-import SkeletonPreview from "@/component-preview/skeleton-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
 import SvgButtonPreview from "@/component-preview/svg-button-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
-import TabsPreview from "@/component-preview/tabs-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
 import ToastPreview from "@/component-preview/toast-preview"
-import TooltipPreview from "@/component-preview/tooltip-preview"
 import Installation from "@/components/installation"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
 import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
-import AlertExamplePreview from "@/registry/example/alert/alert-example-preview"
 import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
 import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
@@ -83,9 +79,6 @@ import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dr
 import Examples from "@/registry/example/example.json"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
-import ShimmerSkeletonExample from "@/registry/example/skeleton/shimmer-skeleton-example"
-import IconCounterTabsExample from "@/registry/example/tabs/icon-counter-tabs-example"
-import VerticaTabsWithIconExample from "@/registry/example/tabs/vertical-tabs-with-icon-example"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import ToastExample from "@/registry/example/toast/toast-example"
 import {
@@ -152,14 +145,10 @@ const components = (examples: typeof Examples | undefined) => ({
 	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
-	TooltipPreview: () => <TooltipPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
 	DrawerPreview: () => <DrawerPreview />,
-	TabsPreview: () => <TabsPreview />,
-	IconCounterTabsExample: () => <IconCounterTabsExample />,
-	VerticalTabsWithIconExample: () => <VerticaTabsWithIconExample />,
 	DropdownPreview: () => <DropdownPreview />,
 	UserMenuDropdownExample: () => <UserMenuDropdownExample />,
 	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
@@ -183,8 +172,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
 	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
 	SearchPreview: () => <SearchPreview />,
-	SkeletonPreview: () => <SkeletonPreview />,
-	ShimmerSkeletonExample: () => <ShimmerSkeletonExample />,
 	ProgressBarPreview: () => <ProgressBarPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
 	TimePickerPreview: () => <TimePickerPreview />,
@@ -201,7 +188,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	AlertExamplePreview: () => <AlertExamplePreview />,
 	BreadcrumbExample1: () => <BreadcrumbExample1 />,
 	BreadcrumbExample2: () => <BreadcrumbExample2 />,
 	BreadcrumbExample3: () => <BreadcrumbExample3 />,
