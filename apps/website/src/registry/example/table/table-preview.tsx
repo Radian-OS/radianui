@@ -83,7 +83,7 @@ const TablePreview = () => {
 	]
 
 	return (
-		<div className="flex h-[419px] w-full flex-col items-center justify-start overflow-auto px-10 py-10">
+		<div className="flex h-[330px] w-full flex-col items-center justify-start overflow-auto">
 			<Table>
 				<TableCaption>A list of user details.</TableCaption>
 				<TableHeader>
