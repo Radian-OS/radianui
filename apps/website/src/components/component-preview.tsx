@@ -69,7 +69,7 @@ function ComponentPreviewDemo() {
 	}, [path])
 
 	return (
-		<div className={`relative flex h-[${height}px] items-${align} justify-center overflow-auto rounded-xl border p-10`}>
+		<div className={`relative flex h-full items-${align} justify-center overflow-auto rounded-xl border p-10`} style={{ minHeight: `${height}px` }}>
 			{loading ? (
 				<div className="text-fg-tertiary flex size-full items-center justify-center gap-2">
 					<Spinner size={20} variant="activity" />
@@ -92,7 +92,11 @@ function ComponentPreviewDemo() {
 
 function ComponentPreviewCode() {
 	const { code, path, height } = useComponentPreview()
-	return <CodeSnippet title={`${path.split("/").pop() || "code"}.tsx`} code={code} className={`h-[${height}px]`} showLineNumber />
+	return (
+		<div style={{ height: `${height}px` }}>
+			<CodeSnippet title={`${path.split("/").pop() || "code"}.tsx`} code={code} className="h-full" showLineNumber />
+		</div>
+	)
 }
 
 export function ComponentPreview({ path, code, height, align }: ComponentPreviewProps) {
