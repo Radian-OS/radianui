@@ -65,7 +65,6 @@ import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-but
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import ColorPickerExample from "@/registry/example/color-picker/color-picker-example"
-import ColorSpinnerExample from "@/registry/example/color-spinner-example"
 import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
 import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/large-currency-example-preview"
 import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
@@ -180,7 +179,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SpinnerPreview: () => <SpinnerPreview />,
 	ColorPickerExample: () => <ColorPickerExample />,
 	ToastExample: () => <ToastExample />,
-	ColorSpinnerExample: () => <ColorSpinnerExample />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
 	CompactButtonPreview: () => <CompactButtonPreview />,
 	LinkButtonPreview: () => <LinkButtonPreview />,
