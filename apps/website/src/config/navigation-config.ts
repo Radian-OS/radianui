@@ -296,9 +296,9 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Popover UI component illustration",
 			},
 			{
-				title: "Progress Bar",
+				title: "Progress",
 				description: "1 Component",
-				url: "/docs/components/progress-bar",
+				url: "/docs/components/progress",
 				thumbnail: "/thumbnails/progress-bar.webp",
 				thumbnailDark: `/thumbnails/progress-bar-dark.webp`,
 				alt: "Progress Bar UI component illustration",

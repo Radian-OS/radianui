@@ -26,7 +26,6 @@ import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
-import DropdownPreview from "@/component-preview/dropdown-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
@@ -68,10 +67,6 @@ import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
-import DropdownWithCheckboxExample from "@/registry/example/dropdown/dropdown-with-checkbox-example"
-import DropdownWithDropdownCheckbox from "@/registry/example/dropdown/dropdown-with-dropdown-checkbox"
-import DropdownWithRadioExample from "@/registry/example/dropdown/dropdown-with-radio"
-import UserMenuDropdownExample from "@/registry/example/dropdown/user-profile-dropdown-example"
 import Examples from "@/registry/example/example.json"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
@@ -145,11 +140,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	ToastPreview: () => <ToastPreview />,
 	PaginationPreview: () => <PaginationPreview />,
 	DrawerPreview: () => <DrawerPreview />,
-	DropdownPreview: () => <DropdownPreview />,
-	UserMenuDropdownExample: () => <UserMenuDropdownExample />,
-	DropdownWithCheckboxExample: () => <DropdownWithCheckboxExample />,
-	DropdownWithDropdownCheckboxExample: () => <DropdownWithDropdownCheckbox />,
-	DropdownWithRadioExample: () => <DropdownWithRadioExample />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
