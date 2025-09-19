@@ -2,10 +2,18 @@ import BeforeAfterSlider from "react-before-after-slider-component"
 import "react-before-after-slider-component/dist/build.css"
 
 const DarkModePlayground = () => {
-	const iconStyles = { background: "white", border: "1px solid var(--color-primary)", backgroundImage: "url(/doc/chevrons-left-right.png)" }
+	const iconStyles = {
+		background: "white",
+		border: "1px solid var(--color-border)",
+		height: "28px",
+		width: "28px",
+		backgroundImage: "url(/doc/chevrons-left-right.png)",
+		backgroundRepeat: "no-repeat",
+		backgroundPosition: "center",
+	}
 	return (
 		<div className="flex items-center justify-center rounded-2xl border p-2">
-			<section className="relative flex w-full items-center justify-center rounded-2xl">
+			<section className="relative flex w-full items-center justify-center overflow-auto rounded-2xl">
 				<BeforeAfterSlider
 					delimiterIconStyles={iconStyles}
 					delimiterColor="transparent"

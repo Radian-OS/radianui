@@ -24,21 +24,21 @@ function TableFooter({ className, ...props }: React.HTMLAttributes<HTMLTableSect
 }
 
 function TableRow({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) {
-	return <tr data-slot="table-row" className={cn("[&:has(td):hover]:bg-elevation-level2 data-[state=selected]:bg-fg-secondary border-b transition-colors", className)} {...props} />
+	return <tr data-slot="table-row" className={cn("[&:has(td):hover]:bg-fill2 data-[state=selected]:bg-primary-accent border-b transition-colors", className)} {...props} />
 }
 
 function TableHead({ className, ...props }: React.ThHTMLAttributes<HTMLTableCellElement>) {
 	return (
 		<th
 			data-slot="table-head"
-			className={cn("text-fg-secondary h-10 px-2 text-left align-middle font-normal rtl:text-right [&:has([role=checkbox])]:pe-0", className)}
+			className={cn("text-fg-secondary bg-fill2 h-10 px-3 py-2.5 text-left align-middle text-sm font-medium rtl:text-right [&:has([role=checkbox])]:pe-0", className)}
 			{...props}
 		/>
 	)
 }
 
 function TableCell({ className, ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
-	return <td data-slot="table-cell" className={cn("px-2 py-4 align-middle [&:has([role=checkbox])]:pe-0", className)} {...props} />
+	return <td data-slot="table-cell" className={cn("p-3 align-middle [&:has([role=checkbox])]:pe-0", className)} {...props} />
 }
 
 function TableCaption({ className, ...props }: React.HTMLAttributes<HTMLTableCaptionElement>) {
