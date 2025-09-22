@@ -2,11 +2,11 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/one-time-password-field"
-import { showToast } from "@/registry/ui/toast"
 
 const FormSchema = z.object({
 	pin: z.string().min(6, {
@@ -23,10 +23,8 @@ export default function InputOTPForm() {
 	})
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
-		showToast({
-			title: "You submitted the following values",
+		toast("You submitted the following values:", {
 			description: JSON.stringify(data, null, 2),
-			closable: false,
 		})
 	}
 

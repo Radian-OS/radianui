@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
+import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
-import { Toaster } from "@/registry/ui/toast"
 
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,

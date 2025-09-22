@@ -3,11 +3,12 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CheckCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
+import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { showToast } from "@/registry/ui/toast"
 
 export default function CheckboxForm() {
 	const FormSchema = z.object({
@@ -22,13 +23,19 @@ export default function CheckboxForm() {
 	})
 
 	function onSubmit() {
-		showToast({
-			icon: <CheckCircle />,
-			variant: "strong",
-			color: "success",
-			title: "Your form has successfully submitted",
-			closable: true,
-		})
+		toast.custom(
+			(t) => (
+				<Alert variant="strong" color="success" onClose={() => toast.dismiss(t)}>
+					<AlertIcon>
+						<CheckCircle />
+					</AlertIcon>
+					<AlertTitle>Your form has successfully submitted</AlertTitle>
+				</Alert>
+			),
+			{
+				duration: 5000,
+			}
+		)
 	}
 
 	return (

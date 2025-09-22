@@ -3,12 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { CheckCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import { z } from "zod"
+import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
-import { showToast } from "@/registry/ui/toast"
 
 const options = [
 	{ id: "m3", label: "M3" },
@@ -33,13 +34,19 @@ export default function RadioGroupForm() {
 
 	function onSubmit(values: z.infer<typeof FormSchema>) {
 		const selected = options.find((o) => o.id === values.chip)?.id
-		showToast({
-			icon: <CheckCircle />,
-			variant: "strong",
-			color: "success",
-			title: `Selected Option: ${selected}`,
-			closable: true,
-		})
+		toast.custom(
+			(t) => (
+				<Alert variant="strong" color="success" onClose={() => toast.dismiss(t)}>
+					<AlertIcon>
+						<CheckCircle />
+					</AlertIcon>
+					<AlertTitle>Selected Option: {selected}</AlertTitle>
+				</Alert>
+			),
+			{
+				duration: 5000,
+			}
+		)
 	}
 
 	return (
