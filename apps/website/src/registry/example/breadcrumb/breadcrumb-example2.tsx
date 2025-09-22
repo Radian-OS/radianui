@@ -5,7 +5,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 
 function BreadCrumbExample2() {
 	return (
-		<div>
+		<div className="flex items-center justify-center">
 			<Breadcrumb className="bg-elevation-level1 rounded-md border px-3 py-2">
 				<BreadcrumbList>
 					<BreadcrumbItem>

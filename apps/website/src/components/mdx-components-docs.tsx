@@ -22,7 +22,6 @@ import ButtonPreview from "@/component-preview/button-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
-import DividerPreview from "@/component-preview/divider-preview"
 import DrawerPreview from "@/component-preview/drawer-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import InputPreview from "@/component-preview/input-preview"
@@ -60,7 +59,6 @@ import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/larg
 import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
-import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import Examples from "@/registry/example/example.json"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
@@ -125,7 +123,6 @@ const components = (examples: typeof Examples | undefined) => ({
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
 	BannerPreview: () => <BannerPreview />,
-	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
@@ -163,7 +160,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
-	DividerExamplePreview: () => <DividerExamplePreview />,
 	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
