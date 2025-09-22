@@ -2,8 +2,7 @@ import React from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
 import { cn } from "@/lib/utils"
 
-// Defines the ProgressBar functional component
-function ProgressBar({
+function Progress({
 	value,
 	className,
 	indicatorClassName,
@@ -21,4 +20,4 @@ function ProgressBar({
 	)
 }
 
-export { ProgressBar }
+export { Progress }

@@ -7,7 +7,7 @@ import CodeSnippet from "@/components/code-snippet"
 import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Password } from "@/registry/ui/password"
-import { ProgressBar } from "@/registry/ui/progress-bar"
+import { Progress } from "@/registry/ui/progress-bar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 // Define the Zod schema for password validation
@@ -51,7 +51,7 @@ const PasswordInputPreview = () => {
 
 import { useState, useMemo } from "react"
 import { Password } from "@/registry/ui/password"
-import ProgressBar from "@/registry/ui/progress-bar"
+import Progress from "@/registry/ui/progress-bar"
 import { CircleCheck } from "lucide-react"
 import { z } from "zod"
 
@@ -96,7 +96,7 @@ value={password}
 onChange={(e) => setPassword(e.target.value)}
 />
 {/* Make sure the progress bar has a specified height and visible styling */}
-<ProgressBar
+<Progress
 value={progress}
 />
 <div className="w-full body-13 gap-2 flex flex-col">
@@ -197,7 +197,7 @@ export default PasswordInputPreview
 						/>
 						{/* Make sure the progress bar has a specified height and visible styling */}
 						<div className="body-13 flex w-full flex-col gap-2">
-							<ProgressBar value={progress} />
+							<Progress value={progress} />
 							<p className="text-sm font-semibold">Your Password must contain</p>
 							{["At least 8 characters", "At least one number", "At least one lowercase letter", "At least one uppercase letter"].map((label) => (
 								<p key={label} className="text-fg-tertiary flex items-center gap-2">

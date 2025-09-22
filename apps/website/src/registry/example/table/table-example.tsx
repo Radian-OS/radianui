@@ -11,7 +11,7 @@ import { Checkbox } from "@/registry/ui/checkbox"
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
 import { Pagination, PaginationContent, PaginationItem } from "@/registry/ui/pagination"
-import { ProgressBar } from "@/registry/ui/progress-bar"
+import { Progress } from "@/registry/ui/progress-bar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
 
@@ -395,7 +395,7 @@ const columns: ColumnDef<UserData>[] = [
 			const progress = row.getValue("progress") as number
 			return (
 				<div className="flex items-center justify-center gap-1">
-					<ProgressBar className="w-40" value={progress} />
+					<Progress className="w-40" value={progress} />
 					<p className="text-fg-secondary text-sm font-normal">{progress}%</p>
 				</div>
 			)

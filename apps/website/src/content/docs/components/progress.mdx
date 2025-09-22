@@ -64,11 +64,19 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/progress-bar" code={`import {ProgressBar} from "@/components/ui/progress-bar"`} />
+<CodeSnippet title="/components/ui/progress-bar" code={`import {Progress} from "@/components/ui/progress"`} />
 
 ### Code
 
-<CodeSnippet title="/components/ui/progress-bar" code={`<ProgressBar label="Loading..." value={50} valueLabel />`} />
+<CodeSnippet title="/components/ui/progress-bar" code={`<Progress label="Loading..." value={50} valueLabel />`} />
+
+---
+
+## Examples
+
+### Basic Progress Bar
+
+<ComponentPreview path="progress/progress-example" />
 
 ---
 
@@ -76,14 +84,8 @@ links:
 
 <PropsTableWrapper>
 	<PropsTable
-		title="ProgressBar"
+		title="Progress"
 		data={[
-			{
-				name: "label",
-				values: ["string"],
-				required: false,
-				description: "Adds label for the component",
-			},
 			{
 				name: "className",
 				values: ["string"],
@@ -91,21 +93,10 @@ links:
 				description: "Styling for the component",
 			},
 			{
-				name: "valueLabel",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Shows numeric for the component",
-			},
-			{
 				name: "value",
 				values: ["number"],
 				required: true,
 				description: "Shows the value of the progress bar",
-			},
-			{
-				name: "hint",
-				values: ["string"],
-				description: "Shows the hint message below th progress bar",
 			},
 		]}
 	/>
