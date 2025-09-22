@@ -156,7 +156,7 @@ const CustomThemePlayground = () => {
 		<div className="flex flex-col gap-4 rounded-2xl">
 			<Select value={theme} onValueChange={(value: "light" | "dark") => setTheme(value)}>
 				<SelectTrigger className="w-fit">
-					<SwatchBook className="mr-2 h-4 w-4" />
+					<SwatchBook />
 					<SelectValue placeholder="Theme" />
 				</SelectTrigger>
 				<SelectContent>

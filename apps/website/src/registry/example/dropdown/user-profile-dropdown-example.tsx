@@ -1,132 +1,34 @@
 import * as React from "react"
-import { EyeIcon, FolderCog, Ghost, LogOut, Settings, SquareTerminal, UserCog } from "lucide-react"
-import CodeSnippet from "@/components/code-snippet"
+import { FolderCog, Ghost, LogOut, Settings, UserCog } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Dropdown, DropdownContent, DropdownDivider, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Switch } from "@/registry/ui/switch"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const UserMenuDropdownExample = () => {
 	const [incognito, setIncognito] = React.useState(false)
 
 	return (
-		<Tabs defaultValue="preview">
-			<div className="flex items-center justify-between">
-				<TabsList variant="outline-ghost" size="md">
-					<TabsTrigger value="preview">
-						<EyeIcon />
-						Preview
-					</TabsTrigger>
-					<TabsTrigger value="code">
-						<SquareTerminal />
-						Code
-					</TabsTrigger>
-				</TabsList>
-				<Dropdown></Dropdown>
-			</div>
-
-			<TabsContent value="preview">
-				<div className="flex h-[420px] flex-col items-center justify-center overflow-auto rounded-xl border px-10">
-					<Dropdown>
-						<DropdownTrigger asChild className="cursor-pointer">
-							<Avatar size="40">
-								<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
-								<AvatarFallback>WM</AvatarFallback>
-							</Avatar>
-						</DropdownTrigger>
-						<DropdownContent align="center" className="[&_svg]:text-fg-secondary w-80 space-y-0.5">
-							<div className="flex w-full items-center gap-3 p-2">
-								<Avatar size="36">
-									<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
-									<AvatarFallback>WM</AvatarFallback>
-								</Avatar>
-								<div className="flex-1">
-									<p className="text-sm-p font-medium">Wames Magar</p>
-									<p className="body-13 text-fg-tertiary font-normal">wames@radian.com</p>
-								</div>
-								<Badge variant="strong" color="primary" size="24">
-									PRO
-								</Badge>
-							</div>
-							<DropdownDivider />
-							<div className="flex w-full items-center gap-3 p-2">
-								<div className="flex-1">
-									<p className="text-sm-p font-medium">Account Storage</p>
-									<p className="body-13 text-fg-tertiary font-normal">Your account has 2GB storage</p>
-								</div>
-								<Badge variant="soft" color="primary">
-									Manage
-								</Badge>
-							</div>
-							<DropdownDivider />
-							<DropdownItem className="px-2 py-1.5">
-								<Settings />
-								Settings
-							</DropdownItem>
-							<DropdownItem className="px-2 py-1.5">
-								<UserCog />
-								Manage Account
-							</DropdownItem>
-							<DropdownItem className="px-2 py-1.5">
-								<FolderCog />
-								Automations
-							</DropdownItem>
-							<DropdownItem
-								onSelect={(e) => {
-									setIncognito((prev) => !prev)
-									e.preventDefault()
-								}}
-								className="px-2 py-1.5">
-								<Ghost />
-								Go Incognito
-								<Switch className="ml-auto" id="incognito" checked={incognito} />
-							</DropdownItem>
-							<DropdownDivider />
-							<DropdownItem className="px-2 py-1.5">
-								<LogOut />
-								Logout
-							</DropdownItem>
-						</DropdownContent>
-					</Dropdown>
-				</div>
-			</TabsContent>
-
-			<TabsContent value="code">
-				<CodeSnippet
-					title="user-menu-dropdown.tsx"
-					showLineNumber
-					className="h-[420px]"
-					code={`
-"use client"
-
-import * as React from "react"
-
-import { Avatar } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { Dropdown, DropdownTrigger, DropdownContent, DropdownDivider, DropdownItem } from "@/components/ui/dropdown"
-import { Switch } from "@/components/ui/switch"
-import { Button } from "@/components/ui/button"
-import { Settings, UserCog, FolderCog, Ghost, LogOut } from "lucide-react"
-
-export default function UserMenuDropdown() {
-	const [incognito, setIncognito] = React.useState(false)
-
-	return (
 		<Dropdown>
-			<DropdownTrigger asChild>
-				<Button variant="outline" color="neutral">
-					My Profile
-				</Button>
+			<DropdownTrigger asChild className="cursor-pointer">
+				<Avatar size="40">
+					<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
+					<AvatarFallback>WM</AvatarFallback>
+				</Avatar>
 			</DropdownTrigger>
-			<DropdownContent align="center" className="w-80 space-y-0.5">
-				<div className="flex w-full gap-3 p-2">
-					<Avatar src="https://randomuser.me/api/portraits/men/1.jpg" size="36" />
+			<DropdownContent align="center" className="[&_svg]:text-fg-secondary w-80 space-y-0.5">
+				<div className="flex w-full items-center gap-3 p-2">
+					<Avatar size="36">
+						<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
+						<AvatarFallback>WM</AvatarFallback>
+					</Avatar>
 					<div className="flex-1">
 						<p className="text-sm-p font-medium">Wames Magar</p>
 						<p className="body-13 text-fg-tertiary font-normal">wames@radian.com</p>
 					</div>
-					<Badge variant="strong" color="primary">PRO</Badge>
+					<Badge variant="strong" color="primary" size="24">
+						PRO
+					</Badge>
 				</div>
 				<DropdownDivider />
 				<div className="flex w-full items-center gap-3 p-2">
@@ -134,7 +36,9 @@ export default function UserMenuDropdown() {
 						<p className="text-sm-p font-medium">Account Storage</p>
 						<p className="body-13 text-fg-tertiary font-normal">Your account has 2GB storage</p>
 					</div>
-					<Badge variant="soft" color="primary">Manage</Badge>
+					<Badge variant="soft" color="primary">
+						Manage
+					</Badge>
 				</div>
 				<DropdownDivider />
 				<DropdownItem className="px-2 py-1.5">
@@ -166,12 +70,6 @@ export default function UserMenuDropdown() {
 				</DropdownItem>
 			</DropdownContent>
 		</Dropdown>
-	)
-}
-`}
-				/>
-			</TabsContent>
-		</Tabs>
 	)
 }
 
