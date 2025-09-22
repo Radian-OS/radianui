@@ -6,7 +6,6 @@ const AlertVariantsExample = () => {
 	const handleClose = (variant: string) => {
 		console.log(`Closing ${variant} alert`)
 	}
-
 	return (
 		<div className="flex w-full flex-col items-center justify-center gap-4">
 			<Alert variant="strong" close onClose={() => handleClose("strong")}>

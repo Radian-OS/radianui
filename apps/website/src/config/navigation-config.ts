@@ -159,6 +159,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Code Area UI component illustration",
 			},
 			{
+				title: "Collapsible",
+				description: "1 Component",
+				url: "/docs/components/collapsible",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Collapsible UI component illustration",
+			},
+			{
 				title: "Currency Amount",
 				description: "3 Components",
 				url: "/docs/components/currency-amount",
