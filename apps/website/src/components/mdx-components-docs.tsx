@@ -22,7 +22,6 @@ import ButtonPreview from "@/component-preview/button-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
-import DrawerPreview from "@/component-preview/drawer-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
@@ -127,7 +126,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	ToastPreview: () => <ToastPreview />,
-	DrawerPreview: () => <DrawerPreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,

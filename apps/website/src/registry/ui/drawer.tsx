@@ -11,7 +11,7 @@ type DirectionType = "top" | "bottom" | "right" | "left"
 
 export type DrawerContextType = {
 	backdrop: BackdropType
-	type: DrawerType
+	variant: DrawerType
 	handle: boolean
 	direction: DirectionType
 }
@@ -19,7 +19,7 @@ export type DrawerContextType = {
 type DrawerWrapperProps = VariantProps<typeof drawerVariants> &
 	React.ComponentProps<typeof DrawerPrimitives.Root> & {
 		backdrop?: BackdropType
-		type?: DrawerType
+		variant?: DrawerType
 		handle?: boolean
 		className?: string
 	}
@@ -117,16 +117,16 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-[999]! bg-border! r
 	},
 })
 
-function getContentClass(type: DrawerType, direction: DirectionType) {
+function getContentClass(variant: DrawerType, direction: DirectionType) {
 	const baseClasses = "bg-bg flex flex-col gap-5 overflow-hidden"
 
 	// Handle float type
-	if (type === "float") {
+	if (variant === "float") {
 		return cn(baseClasses, "rounded-xl shadow-lg outline outline-border")
 	}
 
 	// Handle rounded type
-	if (type === "rounded") {
+	if (variant === "rounded") {
 		switch (direction) {
 			case "top":
 				return cn(baseClasses, "outline outline-border rounded-b-xl")
@@ -171,8 +171,8 @@ function useDrawer() {
 	return context
 }
 
-function Drawer({ direction = "right", type = "default", children, backdrop = "overlay", handle = false, ...props }: DrawerWrapperProps) {
-	const ctxValues = React.useMemo(() => ({ direction, type, backdrop, handle }), [direction, type, backdrop, handle])
+function Drawer({ direction = "right", variant = "default", children, backdrop = "overlay", handle = false, ...props }: DrawerWrapperProps) {
+	const ctxValues = React.useMemo(() => ({ direction, variant, backdrop, handle }), [direction, variant, backdrop, handle])
 
 	return (
 		<DrawerContext value={ctxValues}>
@@ -192,13 +192,13 @@ function DrawerTrigger({ asChild, children, ...props }: React.ComponentPropsWith
 }
 
 function DrawerContent({ children, className, ...props }: React.ComponentPropsWithRef<typeof DrawerPrimitives.Content>) {
-	const { backdrop, direction, handle, type } = useDrawer()
+	const { backdrop, direction, handle, variant } = useDrawer()
 
 	return (
 		<DrawerPrimitives.Portal>
 			<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
 			<DrawerPrimitives.Content
-				className={cn(drawerVariants({ direction, variant: type }), getPaddingClass(handle, direction), getContentClass(type, direction), className)}
+				className={cn(drawerVariants({ direction, variant: variant }), getPaddingClass(handle, direction), getContentClass(variant, direction), className)}
 				{...props}>
 				{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 				{children}
