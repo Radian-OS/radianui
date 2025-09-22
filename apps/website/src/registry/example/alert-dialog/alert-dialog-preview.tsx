@@ -11,7 +11,7 @@ import {
 } from "@/registry/ui/alert-dialog"
 import { Button } from "@/registry/ui/button"
 
-const AlertDialogPreview = () => {
+export default function AlertDialogPreview() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
@@ -36,5 +36,3 @@ const AlertDialogPreview = () => {
 		</AlertDialog>
 	)
 }
-
-export default AlertDialogPreview

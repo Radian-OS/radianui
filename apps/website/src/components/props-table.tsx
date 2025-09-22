@@ -80,7 +80,7 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 					</TableRow>
 				</TableHeader>
 				<TableBody className="[&>tr:nth-child(odd)]:bg-fill1 [&>tr:nth-child(even)]:bg-bg">
-					{data.map((prop) => (
+					{data?.map((prop) => (
 						<TableRow key={prop.name}>
 							<TableCell className="w-[200px]">
 								<span className="flex items-center gap-2 whitespace-nowrap">

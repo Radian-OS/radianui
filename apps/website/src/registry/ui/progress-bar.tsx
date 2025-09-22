@@ -13,7 +13,7 @@ function Progress({
 	return (
 		<ProgressPrimitive.Root className={cn("bg-fill3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full", className)} {...props}>
 			<ProgressPrimitive.Indicator
-				className={cn("bg-primary h-full w-full transition-transform duration-[660ms] [transition-timing-function:cubic-bezier(0,0,1,1)]", indicatorClassName)}
+				className={cn("bg-primary duration-660 h-full w-full transition-transform [transition-timing-function:cubic-bezier(0,0,1,1)]", indicatorClassName)}
 				style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
 			/>
 		</ProgressPrimitive.Root>

@@ -5,8 +5,95 @@ links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/alert-dialog.tsx
   externalReference:
-    - label: Radix
+    - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/alert-dialog
 ---
 
 <ComponentPreview path="alert-dialog/alert-dialog-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add alert-dialog",
+				npm: "npx @radianos/radianbeta add alert-dialog",
+				yarn: "yarn @radianos/radianbeta add alert-dialog",
+				bun: "bunx @radianos/radianbeta add alert-dialog",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="alert-dialog" title="components/ui/alert-dialog.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet
+	title="/components/ui/alert-dialog.tsx"
+	code={`import { AlertDialog,
+	  AlertDialogTrigger,
+	  AlertDialogHeader,
+	  AlertDialogTitle,
+	  AlertDialogContent,
+	  AlertDialogPortal,
+	  AlertDialogOverlay,
+	  AlertDialogDescription,
+	  AlertDialogFooter,
+	  AlertDialogAction,
+	  AlertDialogCancel } from "@/components/ui/alert-dialog"`}
+/>
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/alert-dialog.tsx"
+	code={`<AlertDialog>
+    <AlertDialogTrigger>Open</AlertDialogTrigger>
+    <AlertDialogContent>
+        <AlertDialogTitle>Alert Dialog</AlertDialogTitle>
+        <AlertDialogDescription>This is alert dialog description.</AlertDialogDescription>
+    </AlertDialogContent>
+</AlertDialog>`}
+/>
+
+---
+
+## Examples
+
+### Delete
+
+<ComponentPreview path="alert-dialog/delete-alert-dialog" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="AlertDialog"
+		data={[
+			{
+				name: "backdrop",
+				values: ["overlay", "blur", "transparent"],
+				defaultValue: "overlay",
+				description: "Show the backdrop state",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#api-reference"
+	/>
+</PropsTableWrapper>
