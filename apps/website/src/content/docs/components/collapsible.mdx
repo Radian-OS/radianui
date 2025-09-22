@@ -1,0 +1,75 @@
+---
+title: Collapsible
+description: Component that allows you to collapse and expand content
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/collapsible.tsx
+  externalReference:
+    - label: Radix  UI
+      href: https://www.radix-ui.com/primitives/docs/components/collapsible
+---
+
+<ComponentPreview path="collapsible/collapsible-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add collapsible",
+				npm: "npx @radianos/radianbeta add collapsible",
+				yarn: "yarn @radianos/radianbeta add collapsible",
+				bun: "bunx @radianos/radianbeta add collapsible",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+		<Steps>
+			<Step>Install the following dependencies:</Step>
+			<PackageManagerTabs
+				commands={{
+					pnpm: "pnpm add @radix-ui/react-collapsible",
+					npm: "npm install @radix-ui/react-collapsible",
+					yarn: "yarn add @radix-ui/react-collapsible",
+					bun: "bun add @radix-ui/react-collapsible",
+				}}
+			/>
+			<Step>Copy and paste the following code into your project.</Step>
+			<ComponentSource name="collapsible" title="components/ui/collapsible.tsx" collapsible />
+			<Step>Update the import paths as per your project structure.</Step>
+		</Steps>
+	</TabsContent>
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/collapsible" code={`import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"`} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/collapsible"
+	code={`<Collapsible>
+	    <CollapsibleTrigger>
+		    <Button>Toggle</Button>
+	    </CollapsibleTrigger>
+	    <CollapsibleContent>
+		    <p>Content</p>
+	    </CollapsibleContent>
+</Collapsible>`}
+/>
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable title="Collapsible" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible" data={[]} />
+</PropsTableWrapper>
