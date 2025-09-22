@@ -6,7 +6,7 @@ export default function AlertPreview() {
 	return (
 		<Alert>
 			<AlertIcon>
-				<Bell size={16} />
+				<Bell size={20} />
 			</AlertIcon>
 			<AlertContent>
 				<AlertTitle>This is simple alert</AlertTitle>

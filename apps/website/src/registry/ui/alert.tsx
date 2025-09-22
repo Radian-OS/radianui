@@ -108,7 +108,7 @@ function AlertContent({ className, ...props }: AlertContentProps) {
 AlertContent.displayName = "AlertContent"
 
 function AlertIcon({ className, ...props }: AlertIconProps) {
-	return <div data-slot="alert-icon" className={cn("relative top-1 shrink-0", className)} {...props} />
+	return <div data-slot="alert-icon" className={cn("shrink-0", className)} {...props} />
 }
 AlertIcon.displayName = "AlertIcon"
 

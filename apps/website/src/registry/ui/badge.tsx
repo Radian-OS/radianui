@@ -18,9 +18,9 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			soft: "",
 		},
 		size: {
-			"20": "h-5 px-1.5 text-xs rounded-md",
-			"24": "h-6 px-2 text-xs rounded-md",
-			"28": "h-7 px-2 text-sm rounded-md",
+			"20": "h-5 px-1.5 text-xs rounded-md [&>svg]:size-3.5!",
+			"24": "h-6 px-2 text-xs rounded-md [&>svg]:size-3.5!",
+			"28": "h-7 px-2 text-sm rounded-md [&>svg]:size-4!",
 		},
 		color: {
 			primary: "",
