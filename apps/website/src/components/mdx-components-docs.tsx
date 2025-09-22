@@ -16,20 +16,15 @@ import InfiniteScrollPreview from "@/component-preview/animations/infinite-scrol
 import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
-import BadgePreview from "@/component-preview/badge-preview"
 import BannerPreview from "@/component-preview/banner-preview"
-import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
-import DividerPreview from "@/component-preview/divider-preview"
-import DrawerPreview from "@/component-preview/drawer-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
-import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
@@ -50,14 +45,11 @@ import CollaborationPointerExample from "@/registry/example/animated/collaborati
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
-import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
+import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
 import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
-import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
-import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
-import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -66,7 +58,6 @@ import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/larg
 import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
-import DividerExamplePreview from "@/registry/example/divider/divider-example-preview"
 import Examples from "@/registry/example/example.json"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
@@ -130,16 +121,11 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	BadgePreview: () => <BadgePreview />,
-	BreadCrumbPreview: () => <BreadCrumbPreview />,
 	BannerPreview: () => <BannerPreview />,
-	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	ToastPreview: () => <ToastPreview />,
-	PaginationPreview: () => <PaginationPreview />,
-	DrawerPreview: () => <DrawerPreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
@@ -170,12 +156,8 @@ const components = (examples: typeof Examples | undefined) => ({
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	BreadcrumbExample1: () => <BreadcrumbExample1 />,
-	BreadcrumbExample2: () => <BreadcrumbExample2 />,
-	BreadcrumbExample3: () => <BreadcrumbExample3 />,
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
-	DividerExamplePreview: () => <DividerExamplePreview />,
 	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
@@ -206,7 +188,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	),
 
 	ComponentPreview: ({ path, height, align }: { path: string; height: number; align: "center" | "start" | "end" }) => {
-		const code = examples?.[0].files.find((file) => file.name === path)?.content || ""
+		const code = examples?.[0]?.files.find((file) => file.name === path)?.content || ""
 
 		return <ComponentPreview path={path} code={code} height={height} align={align} />
 	},

@@ -15,7 +15,11 @@ function DismissibleAlert() {
 					</AlertIcon>
 					<AlertContent>
 						<AlertTitle>Dismissible Alert</AlertTitle>
-						<AlertDescription>This alert can be closed by clicking the X button</AlertDescription>
+						<AlertDescription>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, dolore. Distinctio similique consequatur ipsa. Ex corporis ullam, alias ut voluptates vel est ipsum,
+							delectus, deleniti libero quia architecto earum. Maxime sed praesentium vitae iste est expedita minus veritatis, blanditiis odit consequatur corporis accusantium
+							labore voluptatem sint quibusdam iusto magni itaque.
+						</AlertDescription>
 					</AlertContent>
 				</Alert>
 			)}
