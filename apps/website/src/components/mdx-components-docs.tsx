@@ -16,7 +16,6 @@ import InfiniteScrollPreview from "@/component-preview/animations/infinite-scrol
 import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
-import BadgePreview from "@/component-preview/badge-preview"
 import BannerPreview from "@/component-preview/banner-preview"
 import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
@@ -50,7 +49,7 @@ import CollaborationPointerExample from "@/registry/example/animated/collaborati
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
-import BadgeExamplePreview from "@/registry/example/badge/badge-example-preview"
+import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
 import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-example-preview"
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
@@ -130,7 +129,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	BadgePreview: () => <BadgePreview />,
 	BreadCrumbPreview: () => <BreadCrumbPreview />,
 	BannerPreview: () => <BannerPreview />,
 	DividerPreview: () => <DividerPreview />,

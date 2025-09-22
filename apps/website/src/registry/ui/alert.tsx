@@ -61,11 +61,11 @@ const alertVariants = cva("flex items-start w-full gap-2 rounded-xl p-3", {
 
 		// Outline
 		{ color: "neutral", variant: "outline", className: "ring-border bg-transparent text-foreground" },
-		{ color: "primary", variant: "outline", className: "ring-primary bg-transparent text-primary" },
-		{ color: "info", variant: "outline", className: "ring-info bg-transparent text-info" },
-		{ color: "success", variant: "outline", className: "ring-success bg-transparent text-success" },
-		{ color: "error", variant: "outline", className: "ring-error bg-transparent text-error" },
-		{ color: "warning", variant: "outline", className: "ring-warning bg-transparent text-warning" },
+		{ color: "primary", variant: "outline", className: "ring-primary bg-transparent text-primary-text" },
+		{ color: "info", variant: "outline", className: "ring-info bg-transparent text-info-text" },
+		{ color: "success", variant: "outline", className: "ring-success bg-transparent text-success-text" },
+		{ color: "error", variant: "outline", className: "ring-error bg-transparent text-error-text" },
+		{ color: "warning", variant: "outline", className: "ring-warning bg-transparent text-warning-text" },
 	],
 	defaultVariants: {
 		color: "primary",

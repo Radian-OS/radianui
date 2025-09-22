@@ -13,7 +13,6 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-1", {
 	variants: {
 		variant: {
-			default: "border border-soft-alpha text-fg-secondary bg-elevation-level1",
 			strong: "",
 			outline: "",
 			soft: "",
