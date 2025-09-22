@@ -17,7 +17,6 @@ import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import BannerPreview from "@/component-preview/banner-preview"
-import BreadCrumbPreview from "@/component-preview/breadcrumb-preview"
 import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
@@ -28,7 +27,6 @@ import DrawerPreview from "@/component-preview/drawer-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
-import PaginationPreview from "@/component-preview/pagination-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
@@ -54,9 +52,6 @@ import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-ex
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
-import BreadcrumbExample1 from "@/registry/example/breadcrumb/breadcrumb-example1"
-import BreadcrumbExample2 from "@/registry/example/breadcrumb/breadcrumb-example2"
-import BreadcrumbExample3 from "@/registry/example/breadcrumb/breadcrumb-example3"
 import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
@@ -129,14 +124,12 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	BreadCrumbPreview: () => <BreadCrumbPreview />,
 	BannerPreview: () => <BannerPreview />,
 	DividerPreview: () => <DividerPreview />,
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	ToastPreview: () => <ToastPreview />,
-	PaginationPreview: () => <PaginationPreview />,
 	DrawerPreview: () => <DrawerPreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
@@ -168,9 +161,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	BreadcrumbExample1: () => <BreadcrumbExample1 />,
-	BreadcrumbExample2: () => <BreadcrumbExample2 />,
-	BreadcrumbExample3: () => <BreadcrumbExample3 />,
 	IconButtonPreview: () => <IconButtonPreview />,
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	DividerExamplePreview: () => <DividerExamplePreview />,
@@ -204,7 +194,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	),
 
 	ComponentPreview: ({ path, height, align }: { path: string; height: number; align: "center" | "start" | "end" }) => {
-		const code = examples?.[0].files.find((file) => file.name === path)?.content || ""
+		const code = examples?.[0]?.files.find((file) => file.name === path)?.content || ""
 
 		return <ComponentPreview path={path} code={code} height={height} align={align} />
 	},
