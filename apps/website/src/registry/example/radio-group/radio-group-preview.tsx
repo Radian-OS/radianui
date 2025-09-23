@@ -4,7 +4,7 @@ import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
 export default function RadioGroupPreview() {
 	return (
 		<div className="flex flex-col gap-3">
-			<Label className="text-base">Notify me about...</Label>
+			<Label className="font-medium">Notify me about...</Label>
 			<RadioGroup defaultValue="all-new-messages">
 				<div className="flex items-center gap-2">
 					<RadioGroupItem id="1" value="all-new-messages" />
