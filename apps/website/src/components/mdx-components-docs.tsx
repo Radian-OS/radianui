@@ -31,7 +31,6 @@ import SpinnerPreview from "@/component-preview/spinner-preview"
 import SvgButtonPreview from "@/component-preview/svg-button-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
-import TimePickerPreview from "@/component-preview/time-picker-preview"
 import Installation from "@/components/installation"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
@@ -140,7 +139,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
 	SearchPreview: () => <SearchPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
-	TimePickerPreview: () => <TimePickerPreview />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
 	FancyButtonPreview: () => <FancyButtonPreview />,

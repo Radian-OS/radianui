@@ -400,14 +400,6 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Text Area UI component illustration",
 			},
 			{
-				title: "Time Picker",
-				description: "2 Components",
-				url: "/docs/components/time-picker",
-				thumbnail: "/thumbnails/coming-soon.webp",
-				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
-				alt: "Time Picker UI component illustration",
-			},
-			{
 				title: "Toast",
 				description: "8 Components",
 				url: "/docs/components/toast",
