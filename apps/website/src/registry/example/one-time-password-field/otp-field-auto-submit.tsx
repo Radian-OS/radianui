@@ -20,9 +20,9 @@ export default function OTPFieldAutoSubmit() {
 		defaultValues: { pin: "" },
 	})
 
-	function onSubmit(data: z.infer<typeof FormSchema>) {
-		toast("You submitted the following values:", {
-			description: JSON.stringify(data, null, 2),
+	function onSubmit(values: z.infer<typeof FormSchema>) {
+		toast("You submitted the following values", {
+			description: JSON.stringify(values, null, 2),
 		})
 	}
 

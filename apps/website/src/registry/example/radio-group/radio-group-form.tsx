@@ -57,7 +57,7 @@ export default function RadioGroupForm() {
 					name="chip"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel className="text-sm font-medium">Select Your ARM Chip</FormLabel>
+							<FormLabel className="font-medium">Select Your ARM Chip</FormLabel>
 							<FormControl>
 								<RadioGroup value={field.value} onValueChange={field.onChange} className="gap-4">
 									{options.map((opt) => (
