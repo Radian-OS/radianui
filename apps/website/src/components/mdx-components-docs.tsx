@@ -21,7 +21,6 @@ import ButtonGroupPreview from "@/component-preview/button-group-preview"
 import ButtonPreview from "@/component-preview/button-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
-import DatePickerPreview from "@/component-preview/date-picker-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
@@ -129,7 +128,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
-	DatePickerPreview: () => <DatePickerPreview />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,

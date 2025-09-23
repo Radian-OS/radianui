@@ -53,7 +53,7 @@ function TimePickerCalendarPreview() {
 	]
 
 	return (
-		<div className="bg-elevation-level1 flex overflow-hidden rounded-lg border">
+		<div className="bg-elevation-level1 flex overflow-hidden rounded-xl border">
 			<Calendar
 				mode="single"
 				selected={date}
