@@ -2,7 +2,7 @@ import React from "react"
 import { Button } from "@/registry/ui/button"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 
-export default function DeleteDialog() {
+export default function DialogDestructive() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>

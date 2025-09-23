@@ -21,7 +21,7 @@ export default function CustomAvatarStatusPreview() {
 					</svg>
 				</AvatarIndicator>
 			</Avatar>
-			<Avatar size="64" rounded="square">
+			<Avatar size="64">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/88.jpg" />
 				<AvatarFallback className="text-warning bg-warning/10">AJ</AvatarFallback>
 				<AvatarIndicator className="-bottom-0.5 -right-0.5">

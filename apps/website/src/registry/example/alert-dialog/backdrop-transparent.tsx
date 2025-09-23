@@ -11,7 +11,7 @@ import {
 } from "@/registry/ui/alert-dialog"
 import { Button } from "@/registry/ui/button"
 
-export default function AlertDialogPreview() {
+export default function BackdropTransparent() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
@@ -19,7 +19,7 @@ export default function AlertDialogPreview() {
 					Show Dialog
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent>
+			<AlertDialogContent backdrop="transparent">
 				<AlertDialogHeader>
 					<AlertDialogTitle>Are you sure?</AlertDialogTitle>
 					<AlertDialogDescription>Take a moment to review the details provided to ensure you understand the implications.</AlertDialogDescription>
