@@ -29,6 +29,7 @@ function DefaultSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spin
 		</svg>
 	)
 }
+DefaultSpinner.displayName = "DefaultSpinner"
 
 function SimpleSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
 	return (
@@ -55,6 +56,7 @@ function SimpleSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spinn
 		</svg>
 	)
 }
+SimpleSpinner.displayName = "SimpleSpinner"
 
 function ActivitySpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
 	return (
@@ -108,6 +110,7 @@ function ActivitySpinner({ size, color, "aria-label": ariaLabel, ...props }: Spi
 		</svg>
 	)
 }
+ActivitySpinner.displayName = "ActivitySpinner"
 
 function WaveSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
 	return (
@@ -176,6 +179,7 @@ function WaveSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spinner
 		</svg>
 	)
 }
+WaveSpinner.displayName = "WaveSpinner"
 
 function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps) {
 	const commonProps = {

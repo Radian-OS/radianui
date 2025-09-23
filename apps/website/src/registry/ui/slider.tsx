@@ -12,12 +12,14 @@ type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
 	}
 }
 
+type SliderThumbProps = React.ComponentProps<typeof SliderPrimitive.Thumb>
+
 function Slider({ className, min = 0, max = 100, classNames, children, ...props }: SliderProps) {
 	return (
 		<SliderPrimitive.Root
 			data-slot="slider"
 			className={cn(
-				"data-disabled:opacity-80 relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
+				"data-disabled:opacity-50 relative flex w-full touch-none select-none items-center data-[orientation=vertical]:h-full data-[orientation=vertical]:w-fit data-[orientation=vertical]:flex-col",
 				classNames?.sliderRoot,
 				className
 			)}
@@ -41,12 +43,12 @@ function Slider({ className, min = 0, max = 100, classNames, children, ...props 
 	)
 }
 
-function SliderThumb({ className, ...props }: React.ComponentProps<typeof SliderPrimitive.Thumb>) {
+function SliderThumb({ className, ...props }: SliderThumbProps) {
 	return (
 		<SliderPrimitive.Thumb
 			data-slot="slider-thumb"
 			className={cn(
-				"border-primary bg-bg drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block h-5 w-5 cursor-pointer rounded-full border-2 transition-colors",
+				"border-primary bg-bg drop-shadow-xs focus-visible:outline-hidden data-disabled:cursor-not-allowed block size-4 cursor-pointer rounded-full border-2 transition-colors",
 				className
 			)}
 			{...props}
