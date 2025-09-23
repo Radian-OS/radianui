@@ -23,7 +23,6 @@ import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
@@ -126,7 +125,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
-	InputPreview: () => <InputPreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
