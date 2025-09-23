@@ -3,10 +3,10 @@ import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 
-const DrawerHandleExample = () => {
+const DrawerPositionExample = () => {
 	return (
 		<div className="flex items-center justify-center gap-6">
-			<Drawer variant="default" direction="left" handle={true} backdrop="overlay">
+			<Drawer variant="default" direction="left" handle={false} backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="soft" color="neutral">
 						<ChevronLeft size={20} /> Left
@@ -39,7 +39,7 @@ const DrawerHandleExample = () => {
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
-			<Drawer variant="default" direction="right" handle={true} backdrop="overlay">
+			<Drawer variant="default" direction="right" handle={false} backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="soft" color="neutral">
 						Right <ChevronRight size={20} />
@@ -72,7 +72,7 @@ const DrawerHandleExample = () => {
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
-			<Drawer variant="default" direction="top" handle={true} backdrop="overlay">
+			<Drawer variant="default" direction="top" handle={false} backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="soft" color="neutral">
 						Top <ChevronUp size={20} />
@@ -103,7 +103,7 @@ const DrawerHandleExample = () => {
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
-			<Drawer variant="default" direction="bottom" handle={true} backdrop="overlay">
+			<Drawer variant="default" direction="bottom" handle={false} backdrop="overlay">
 				<DrawerTrigger>
 					<Button variant="soft" color="neutral">
 						Bottom <ChevronDown size={20} />
@@ -138,4 +138,4 @@ const DrawerHandleExample = () => {
 	)
 }
 
-export default DrawerHandleExample
+export default DrawerPositionExample
