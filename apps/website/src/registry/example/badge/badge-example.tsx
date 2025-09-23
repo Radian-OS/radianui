@@ -3,7 +3,7 @@ import { Badge } from "@/registry/ui/badge"
 
 function BadgeExamplePreview() {
 	return (
-		<div className="flex items-center justify-center gap-2">
+		<div className="flex flex-col items-center justify-center gap-2 sm:flex-row">
 			<Badge>Primary</Badge>
 			<Badge color="info">Info</Badge>
 			<Badge color="success">Success</Badge>

@@ -263,7 +263,7 @@ function Button({ loading = false, variant = "strong", size = "36", color = "pri
 }
 Button.displayName = "Button"
 
-function ButtonGroup({ className, children, variant = "outline", size = "36", color = "primary", ...props }: ButtonGroupProps) {
+function ButtonGroup({ className, children, variant = "outline", size = "36", color = "neutral", ...props }: ButtonGroupProps) {
 	const modifiedChildren = React.Children.map(children, (child, index) => {
 		if (React.isValidElement(child)) {
 			const isFirst = index === 0
@@ -294,31 +294,28 @@ ButtonGroup.displayName = "ButtonGroup"
 function CompactButton({ loading = false, variant = "strong", size = "24", color = "primary", className, children, disabled, asChild = false, ...props }: CompactButtonProps) {
 	const sizeStyles = size === "20" ? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" : "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md"
 
+	// Get the full button variant classes
+	const fullVariantClasses = buttonVariants({ variant, size: "36", color })
+
+	// Remove only the sizing/spacing classes that we're overriding
+	const filteredClasses = fullVariantClasses
+		.split(" ")
+		.filter(
+			(cls) =>
+				!cls.includes("rounded") &&
+				!cls.includes("h-") &&
+				!cls.includes("w-") &&
+				!cls.includes("px-") &&
+				!cls.includes("py-") &&
+				!cls.includes("gap-") &&
+				!cls.includes("[&>svg]:size-")
+		)
+		.join(" ")
+
 	const combinedClass = cn(
 		"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 		sizeStyles,
-		buttonVariants({ variant, size: "36", color })
-			.split(" ")
-			.filter(
-				(cls) =>
-					!cls.includes("rounded") &&
-					!cls.includes("h-") &&
-					!cls.includes("w-") &&
-					!cls.includes("px-") &&
-					!cls.includes("gap-") &&
-					!cls.includes("[&>svg]") &&
-					!(
-						cls.includes("text-") &&
-						!cls.includes("text-fg-") &&
-						!cls.includes("text-primary") &&
-						!cls.includes("text-info") &&
-						!cls.includes("text-success") &&
-						!cls.includes("text-error") &&
-						!cls.includes("text-warning") &&
-						!cls.includes("text-static-")
-					)
-			)
-			.join(" "),
+		filteredClasses,
 		disabled && "opacity-50",
 		className
 	)
@@ -331,7 +328,6 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 		</Comp>
 	)
 }
-CompactButton.displayName = "CompactButton"
 
 const linkButtonVariants = cva(
 	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit [&>svg]:size-5",

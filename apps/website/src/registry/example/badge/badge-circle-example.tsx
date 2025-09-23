@@ -1,10 +1,10 @@
 import React from "react"
 import { Badge } from "@/registry/ui/badge"
 
-const BadgeCircleExample = () => {
+function BadgeCircleExample() {
 	return (
 		<div className="flex flex-col items-center gap-4">
-			<div className="flex items-center gap-4">
+			<div className="flex flex-col items-center gap-4 sm:flex-row">
 				<Badge className="rounded-full" variant="soft" color="primary">
 					Primary
 				</Badge>
@@ -24,7 +24,7 @@ const BadgeCircleExample = () => {
 					Neutral
 				</Badge>
 			</div>
-			<div className="flex items-center gap-4">
+			<div className="flex flex-col items-center gap-4 sm:flex-row">
 				<Badge className="rounded-full" variant="strong" color="primary">
 					Primary
 				</Badge>
@@ -44,7 +44,7 @@ const BadgeCircleExample = () => {
 					Neutral
 				</Badge>
 			</div>
-			<div className="flex items-center gap-4">
+			<div className="flex flex-col items-center gap-4 sm:flex-row">
 				<Badge className="rounded-full" variant="outline" color="primary">
 					Primary
 				</Badge>
