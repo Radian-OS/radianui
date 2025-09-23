@@ -1,4 +1,3 @@
-import { Trash2 } from "lucide-react"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -10,30 +9,28 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/registry/ui/alert-dialog"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
-export default function DeleteAlertDialog() {
+export default function BackdropBlur() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<IconButton color="error">
-					<Trash2 />
-				</IconButton>
+				<Button variant="outline" color="neutral">
+					Show Dialog
+				</Button>
 			</AlertDialogTrigger>
 			<AlertDialogContent backdrop="blur">
 				<AlertDialogHeader>
-					<AlertDialogTitle>Confirm Your Action</AlertDialogTitle>
-					<AlertDialogDescription>Once confirmed, this action cannot be reversed. It will delete your account and remove all associated data.</AlertDialogDescription>
+					<AlertDialogTitle>Are you sure?</AlertDialogTitle>
+					<AlertDialogDescription>Take a moment to review the details provided to ensure you understand the implications.</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel asChild>
-						<Button variant="outline" color="neutral">
-							Go Back
-						</Button>
+						<Button variant="outline">Cancel</Button>
 					</AlertDialogCancel>
 					<AlertDialogAction asChild>
-						<Button variant="strong" color="error">
-							Delete Account
+						<Button variant="strong" color="primary">
+							Continue
 						</Button>
 					</AlertDialogAction>
 				</AlertDialogFooter>

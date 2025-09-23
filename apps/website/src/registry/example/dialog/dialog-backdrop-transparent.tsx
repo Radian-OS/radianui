@@ -2,13 +2,13 @@ import { CircleAlert } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Dialog, DialogBody, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 
-export default function DialogPreview() {
+export default function DialogBackdropTransparent() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
 				<Button>Open Dialog</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent backdrop="transparent">
 				<DialogHeader>
 					<div className="flex gap-3">
 						<div className="flex items-center justify-center rounded-md border p-2">
