@@ -18,7 +18,6 @@ import TypingTextPreview from "@/component-preview/animations/typing-text-previe
 import BannerPreview from "@/component-preview/banner-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
-import DatePickerPreview from "@/component-preview/date-picker-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
@@ -122,7 +121,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
-	DatePickerPreview: () => <DatePickerPreview />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
