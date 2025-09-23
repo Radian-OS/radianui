@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 const inputVariants = cva(
 	`
-	flex w-full bg-bg border border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary 
+	flex w-full items-center bg-bg border border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary 
 	focus-visible:ring-primary-focus  focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2   
 	disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill1
 	[&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed
