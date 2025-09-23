@@ -30,11 +30,16 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			warning: "",
 			neutral: "bg-elevation-level1 border-alpha",
 		},
+		dot: {
+			true: "",
+			false: "",
+		},
 	},
 	defaultVariants: {
 		variant: "soft",
 		size: "24",
 		color: "primary",
+		dot: false,
 	},
 	compoundVariants: [
 		// strong
@@ -48,7 +53,6 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			color: "neutral",
 			className: "bg-black-inverse border border-alpha text-white-inverse font-medium",
 		},
-
 		// outline
 		{ variant: "outline", color: "primary", className: "text-primary-text border border-primary bg-transparent" },
 		{ variant: "outline", color: "info", className: "text-info-text border border-info bg-transparent" },
@@ -56,7 +60,6 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{ variant: "outline", color: "error", className: "text-error-text border border-error bg-transparent" },
 		{ variant: "outline", color: "warning", className: "text-warning-text border border-warning bg-transparent" },
 		{ variant: "outline", color: "neutral", className: "text-fg-secondary border bg-transparent" },
-
 		// soft
 		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text border border-soft-alpha" },
 		{ variant: "soft", color: "info", className: "bg-info-accent text-info-text border border-soft-alpha" },
@@ -67,16 +70,38 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 	],
 })
 
-function Badge({ className, variant, size, color, asChild = false, children, ...props }: BadgeProps) {
-	const Comp = asChild ? Slot : "span"
+function Badge({ className, variant, size, color, asChild = false, children, dot, ...props }: BadgeProps) {
+	// Get dot size based on badge size
+	const getDotSize = (size: string | undefined) => {
+		switch (size) {
+			case "20":
+				return "size-1.5"
+			case "24":
+				return "size-2"
+			case "28":
+				return "size-2"
+			default:
+				return "size-2"
+		}
+	}
+
+	if (asChild) {
+		// When asChild is true, we can't add the dot since Slot expects single child
+		// User should handle dot styling in their custom element
+		return (
+			<Slot className={cn(badgeVariants({ variant, size, color, dot }), className)} {...props}>
+				{children}
+			</Slot>
+		)
+	}
 
 	return (
-		<Comp className={cn(badgeVariants({ variant, size, color }), className)} {...props}>
+		<span className={cn(badgeVariants({ variant, size, color, dot }), className)} {...props}>
+			{dot && <span className={cn("rounded-full bg-current", getDotSize(size!))} />}
 			{children}
-		</Comp>
+		</span>
 	)
 }
 
 Badge.displayName = "Badge"
-
 export { Badge, badgeVariants }
