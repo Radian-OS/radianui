@@ -8,13 +8,13 @@ export default function SliderWithStepper() {
 
 	return (
 		<div className="w-100 flex gap-2">
-			<IconButton className="size-8" variant="outline" onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
+			<IconButton size="28" variant="outline" color="neutral" onClick={() => setValue((prev) => Math.max(prev - 10, 0))}>
 				<Minus size={16} />
 			</IconButton>
 			<Slider value={[value]} onValueChange={([value]) => setValue(value)}>
 				<SliderThumb />
 			</Slider>
-			<IconButton className="size-8" variant="outline" onClick={() => setValue((prev) => Math.min(prev + 10, 100))}>
+			<IconButton size="28" variant="outline" color="neutral" onClick={() => setValue((prev) => Math.min(prev + 10, 100))}>
 				<Plus size={16} />
 			</IconButton>
 		</div>

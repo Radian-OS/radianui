@@ -64,7 +64,7 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/button.tsx" code={`import { Button, ButtonGroup, CompactButton } from "@/components/ui/button"`} />
+<CodeSnippet title="/components/ui/button.tsx" code={`import { Button, ButtonGroup, CompactButton, LinkButton } from "@/components/ui/button"`} />
 
 ### Code
 
@@ -92,6 +92,18 @@ links:
 
 <ComponentPreview path="button/button-group-example" />
 
+### Button Group Code
+
+<CodeSnippet
+	title="/components/ui/button.tsx"
+	code={`<ButtonGroup>
+ <Button>First</Button>
+ <Button>Second</Button>
+ <Button>Third</Button>
+ <Button>Fourth</Button>
+</ButtonGroup>`}
+/>
+
 ### Split Button
 
 <ComponentPreview path="button/button-split-example" />
@@ -104,6 +116,15 @@ links:
 
 <ComponentPreview path="button/button-icon-only-example" />
 
+### Icon Button Code
+
+<CodeSnippet
+	title="/components/ui/button.tsx"
+	code={`	<IconButton>
+<User />
+</IconButton>`}
+/>
+
 ### Size
 
 <ComponentPreview path="button/button-size-example" />
@@ -115,6 +136,15 @@ links:
 ### Compact Button
 
 <ComponentPreview path="button/compact-button-example" />
+
+### Compact Button Code
+
+<CodeSnippet
+	title="/components/ui/button.tsx"
+	code={`<CompactButton color="primary" variant="outline">
+ <X />
+</CompactButton>`}
+/>
 
 ### Loading Button
 
@@ -193,14 +223,14 @@ links:
 		data={[
 			{
 				name: "variant",
-				defaultValue: "strong",
+				defaultValue: "outline",
 				values: ["strong", "soft", "outline", "ghost"],
 				required: false,
 				description: "Defines the visual style of the button",
 			},
 			{
 				name:"color",
-				defaultValue: "primary",
+				defaultValue: "neutral",
 				values: ["primary", "info", "success", "warning", "error", "neutral"],
 				required: false,
 				description: "Sets the color scheme of the button",
@@ -246,6 +276,39 @@ links:
     		required: false,
     		description: "Disables interaction with the button when set to true"
     	},
+    ]}
+    />
+    <PropsTable
+    title="LinkButton"
+    data={[
+    	{
+            name: "size",
+            defaultValue: "14",
+            values: ["14", "16"],
+            required: false,
+            description: "Sets the size of the button",
+        },
+    	{
+    		name:"disabled",
+    		defaultValue: "false",
+    		values: ["boolean"],
+    		required: false,
+    		description: "Disables interaction with the button when set to true"
+    	},
+    	 {
+            name: "variant",
+            defaultValue: "strong",
+            values: ["strong", "soft", "outline", "ghost"],
+            required: false,
+            description: "Defines the visual style of the button",
+        },
+        {
+            name:"color",
+            defaultValue: "primary",
+            values: ["primary", "info", "success", "warning", "error", "neutral"],
+            required: false,
+            description: "Sets the color scheme of the button",
+        },
     ]}
     />
 

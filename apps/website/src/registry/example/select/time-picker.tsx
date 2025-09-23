@@ -1,6 +1,6 @@
 import React from "react"
 import { Time } from "@internationalized/date"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
 export type TimePickerProps = {
 	interval?: number
@@ -120,4 +120,8 @@ function TimePicker({ interval = 15, onValueChange, className, is24Hour = false,
 	)
 }
 
-export default TimePicker
+const TimePickerExample = () => {
+	return <TimePicker className="w-80" is24Hour={true} interval={30} />
+}
+
+export default TimePickerExample
