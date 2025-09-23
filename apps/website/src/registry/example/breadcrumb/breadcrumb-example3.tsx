@@ -5,7 +5,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbS
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 
-const BreadcrumbExample3 = () => {
+function BreadcrumbExample3() {
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Breadcrumb>

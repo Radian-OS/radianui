@@ -9,14 +9,13 @@ links:
       href: https://sonner.emilkowal.ski/
 ---
 
-<ToastPreview />
+<ComponentPreview path="toast/toast-preview" />
 
 ## Installation
 
 <Tabs defaultValue="cli">
 	<TabsList>
 		<TabsTrigger value="cli">CLI</TabsTrigger>
-		<TabsTrigger value="manual">Manual</TabsTrigger>
 	</TabsList>
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
@@ -28,39 +27,6 @@ links:
 			}}
 		/>
 	</TabsContent>
-	<TabsContent value="manual" className="p-0">
-	<Steps>
-	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add sonner @radix-ui/react-slot",
-				npm: "npm install sonner @radix-ui/react-slot",
-				yarn: "yarn add sonner @radix-ui/react-slot",
-				bun: "bun add sonner @radix-ui/react-slot",
-			}}
-		/>
-
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="toast">
-    		<TabsList>
-    			<TabsTrigger value="toast">Toast</TabsTrigger>
-    			<TabsTrigger value="button">Button</TabsTrigger>
-    			<TabsTrigger value="spinner">Spinner</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="toast">
-    			<ComponentSource name="toast" title="components/ui/toast.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="button">
-    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="spinner">
-    			<ComponentSource name="spinner" title="components/ui/spinner.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
-
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
-    </TabsContent>
 
 </Tabs>
 
@@ -76,24 +42,20 @@ links:
 
 ---
 
+## Examples
+
+### Toast Color
+
+<ComponentPreview path="toast/toast-color" />
+
+---
+
 ## Props
 
 <PropsTableWrapper>
 	<PropsTable
 		title="Toaster"
 		data={[
-			{
-				name: "position",
-				values: ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"],
-				defaultValue: ["bottom-right"],
-				description: "Sets the position of toast",
-			},
-			{
-				name: "visibleToasts",
-				values: ["number"],
-				defaultValue: ["3"],
-				description: "Sets the number of visible toasts",
-			},
 			{
 				name: "expand",
 				values: ["boolean"],

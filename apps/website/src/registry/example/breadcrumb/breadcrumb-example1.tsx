@@ -2,7 +2,7 @@ import React from "react"
 import { Home } from "lucide-react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
 
-const BreadCrumbExample1 = () => {
+function BreadCrumbExample1() {
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Breadcrumb>

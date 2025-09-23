@@ -61,15 +61,37 @@ links:
 
 ---
 
-## Strong
+## Examples
+
+### Strong
 
 <ComponentPreview path="badge/badge-strong-example" />
 
-## Outline
+### Outline
 
 <ComponentPreview path="badge/badge-outline-example" />
 
-## Size
+### With Icon
+
+<ComponentPreview path="badge/badge-icon-example" />
+
+### Circle
+
+<ComponentPreview path="badge/badge-circle-example" />
+
+### With Cross
+
+<ComponentPreview path="badge/badge-cross-example" />
+
+### With Dot
+
+<ComponentPreview path="badge/badge-dot-example" />
+
+### As Child
+
+<ComponentPreview path="badge/badge-aschild-example" />
+
+### Size
 
 <ComponentPreview path="badge/badge-size-example" />
 
@@ -100,6 +122,13 @@ links:
 				defaultValue: "primary",
 				values: ["primary", "info", "success", "warning", "danger"],
 				description: "Sets the color scheme of the badge",
+				required: false,
+			},
+			{
+				name: "dot",
+				defaultValue: "false",
+				values: ["boolean"],
+				description: "Renders a dot inside a badge",
 				required: false,
 			},
 		]}

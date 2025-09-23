@@ -33,11 +33,11 @@ function Calendar({ showOutsideDays = true, className, classNames, ...props }: C
 			}}
 			components={{
 				Chevron: (props: ChevronProps) => {
-					if (props.orientation === "left") return <ChevronLeft size={16} className="stroke-fg" />
-					return <ChevronRight size={16} className="stroke-fg" />
+					if (props.orientation === "left") return <ChevronLeft size={16} className="text-fg-tertiary" />
+					return <ChevronRight size={16} className="text-fg-tertiary" />
 				},
 			}}
-			className={cn("bg-elevation-level1 border-alpha rounded-xl border p-3", className)}
+			className={cn("bg-elevation-level1 border-border rounded-xl border p-3", className)}
 			showOutsideDays={showOutsideDays}
 			{...props}
 		/>

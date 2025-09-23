@@ -73,7 +73,7 @@ function DropdownContent({ className, ...props }: DropdownContentProps) {
 				data-slot="dropdown-menu-content"
 				align="start"
 				className={cn(
-					"no-scrollbar border-border bg-elevation-level2 drop-shadow-xs z-50 min-w-[var(--radix-dropdown-menu-trigger-width)] overflow-x-visible overflow-y-scroll rounded-lg border p-1",
+					"no-scrollbar border-border bg-elevation-level2 drop-shadow-xs z-50 flex min-w-[var(--radix-dropdown-menu-trigger-width)] flex-col gap-0.5 overflow-x-visible overflow-y-scroll rounded-lg border p-1",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className
 				)}
@@ -89,7 +89,7 @@ function DropdownItem({ className, inset, ...props }: DropdownItemProps) {
 		<DropdownMenuPrimitive.Item
 			data-slot="dropdown-menu-item"
 			className={cn(
-				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm",
+				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
 				"[&_svg]:text-fg-secondary transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
@@ -164,7 +164,7 @@ function DropdownGroup({ children, title, className, ...props }: DropdownGroupPr
 			className={cn("z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0", className)}
 			data-radix-dropdown-menu-group
 			{...props}>
-			{title && <label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center px-2 py-2.5 font-medium uppercase">{title}</label>}
+			{title && <label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center gap-2.5 p-2 font-medium uppercase">{title}</label>}
 			{children}
 		</DropdownMenuPrimitive.Group>
 	)
