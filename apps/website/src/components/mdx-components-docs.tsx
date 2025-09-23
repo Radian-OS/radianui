@@ -23,7 +23,6 @@ import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import DatePickerPreview from "@/component-preview/date-picker-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import InputPreview from "@/component-preview/input-preview"
 import LinkButtonPreview from "@/component-preview/link-button-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
@@ -33,7 +32,6 @@ import SvgButtonPreview from "@/component-preview/svg-button-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
 import TimePickerPreview from "@/component-preview/time-picker-preview"
-import ToastPreview from "@/component-preview/toast-preview"
 import Installation from "@/components/installation"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
@@ -62,7 +60,6 @@ import Examples from "@/registry/example/example.json"
 import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
 import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
 import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
-import ToastExample from "@/registry/example/toast/toast-example"
 import {
 	Accordion,
 	AccordionContent,
@@ -125,11 +122,9 @@ const components = (examples: typeof Examples | undefined) => ({
 	ButtonPreview: () => <ButtonPreview />,
 	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
-	ToastPreview: () => <ToastPreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
-	InputPreview: () => <InputPreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
@@ -148,7 +143,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	TimePickerPreview: () => <TimePickerPreview />,
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
-	ToastExample: () => <ToastExample />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
 	CompactButtonPreview: () => <CompactButtonPreview />,
 	LinkButtonPreview: () => <LinkButtonPreview />,
