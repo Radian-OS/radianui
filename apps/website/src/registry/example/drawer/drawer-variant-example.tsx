@@ -2,7 +2,7 @@ import React from "react"
 import { Button } from "@/registry/ui/button"
 import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 
-const DrawerVariantExample = () => {
+function DrawerVariantExample() {
 	return (
 		<div className="flex items-center justify-center gap-6">
 			<Drawer variant="rounded" direction="right" backdrop="overlay">

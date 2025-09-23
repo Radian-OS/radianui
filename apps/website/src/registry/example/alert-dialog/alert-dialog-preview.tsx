@@ -15,7 +15,9 @@ export default function AlertDialogPreview() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button variant="outline">Show Dialog</Button>
+				<Button variant="outline" color="neutral">
+					Show Dialog
+				</Button>
 			</AlertDialogTrigger>
 			<AlertDialogContent>
 				<AlertDialogHeader>

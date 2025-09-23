@@ -8,7 +8,7 @@ const profile = {
 	email: "dominic@radianos.com",
 }
 
-const PopoverPreview = () => {
+export default function PopoverPreview() {
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
@@ -38,5 +38,3 @@ const PopoverPreview = () => {
 		</Popover>
 	)
 }
-
-export default PopoverPreview

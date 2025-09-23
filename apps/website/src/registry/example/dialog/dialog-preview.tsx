@@ -6,7 +6,7 @@ export default function DialogPreview() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button>Dialog</Button>
+				<Button>Open Dialog</Button>
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>

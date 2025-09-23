@@ -5,7 +5,6 @@ import { Link as LinkIcon, Moon, Settings, Sun } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import Image from "next/image"
 import Link from "next/link"
-import IconButtonPreview from "@/component-preview/Icon-button-preview"
 import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
 import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
 import ChangingTextPreview from "@/component-preview/animations/changing-text-preview"
@@ -17,13 +16,9 @@ import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import BannerPreview from "@/component-preview/banner-preview"
-import ButtonGroupPreview from "@/component-preview/button-group-preview"
-import ButtonPreview from "@/component-preview/button-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import CompactButtonPreview from "@/component-preview/compact-button-preview"
-import DatePickerPreview from "@/component-preview/date-picker-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import LinkButtonPreview from "@/component-preview/link-button-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
@@ -47,7 +42,6 @@ import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-ex
 import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
 import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
 import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
-import TooltipIconButtonExample from "@/registry/example/button/tooltip-icon-button-example"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
@@ -118,8 +112,6 @@ const components = (examples: typeof Examples | undefined) => ({
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
 	BannerPreview: () => <BannerPreview />,
-	ButtonPreview: () => <ButtonPreview />,
-	ButtonGroupPreview: () => <ButtonGroupPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	Installation: () => <Installation />,
 	SocialButtonPreview: () => <SocialButtonPreview />,
@@ -128,7 +120,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	BannerExamplePreview1: () => <BannerExamplePreview1 />,
 	BannerExamplePreview2: () => <BannerExamplePreview2 />,
 	BannerExamplePreview3: () => <BannerExamplePreview3 />,
-	DatePickerPreview: () => <DatePickerPreview />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
@@ -143,14 +134,12 @@ const components = (examples: typeof Examples | undefined) => ({
 	SpinnerPreview: () => <SpinnerPreview />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
 	CompactButtonPreview: () => <CompactButtonPreview />,
-	LinkButtonPreview: () => <LinkButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	SvgButtonPreview: () => <SvgButtonPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-	IconButtonPreview: () => <IconButtonPreview />,
+
 	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
-	TooltipIconButtonExample: () => <TooltipIconButtonExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,
