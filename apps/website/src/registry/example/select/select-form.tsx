@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
@@ -22,7 +23,9 @@ export default function SelectForm() {
 	})
 
 	function onSubmit(values: FormValues) {
-		console.log("Form submitted:", values)
+		toast("You submitted the following values:", {
+			description: JSON.stringify(values, null, 2),
+		})
 	}
 
 	return (
