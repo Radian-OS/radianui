@@ -15,12 +15,12 @@ const inputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 text-[13px] py-1.5 px-2 rounded-md file:pe-1.5 file:me-1.5",
-				"32": "h-8 text-sm py-1.5 px-2 rounded-md file:pe-3 file:me-3",
-				"36": "h-9 text-sm py-2 px-2.5 rounded-lg file:pe-2.5 file:me-2.5",
-				"40": "h-10 text-sm px-3 py-2.5 rounded-lg file:pe-3 file:me-3",
-				"44": "h-11 text-base py-2.5 px-3 rounded-[10px] file:pe-3.5 file:me-3.5",
-				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] file:pe-3.5 file:me-3.5",
+				"28": "h-7 text-[13px] px-2 rounded-md file:pe-1.5 file:me-1.5",
+				"32": "h-8 text-sm px-2 rounded-md file:pe-3 file:me-3",
+				"36": "h-9 text-sm px-2.5 rounded-lg file:pe-2.5 file:me-2.5",
+				"40": "h-10 text-sm px-3 rounded-lg file:pe-3 file:me-3",
+				"44": "h-11 text-base px-3 rounded-[10px] file:pe-3.5 file:me-3.5",
+				"48": "h-12 text-base px-3.5 rounded-[10px] file:pe-3.5 file:me-3.5",
 			},
 		},
 		defaultVariants: {
@@ -34,12 +34,12 @@ const inputAddonVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 text-[13px] py-1.5 px-2 rounded-md [&_svg:not([class*=size-])]:size-4",
-				"32": "h-8 text-sm px-2 py-1.5 rounded-md [&_svg:not([class*=size-])]:size-4.5",
-				"36": "h-9 text-sm px-2.5 py-2 rounded-lg [&_svg:not([class*=size-])]:size-5",
-				"40": "h-10 text-sm px-3 py-2.5 rounded-lg [&_svg:not([class*=size-])]:size-5",
-				"44": "h-11 text-base py-2.5 px-3 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
-				"48": "h-12 text-base py-3 px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
+				"28": "h-7 text-[13px]  px-2 rounded-md [&_svg:not([class*=size-])]:size-4",
+				"32": "h-8 text-sm px-2  rounded-md [&_svg:not([class*=size-])]:size-4.5",
+				"36": "h-9 text-sm px-2.5 rounded-lg [&_svg:not([class*=size-])]:size-5",
+				"40": "h-10 text-sm px-3 rounded-lg [&_svg:not([class*=size-])]:size-5",
+				"44": "h-11 text-base px-3 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
+				"48": "h-12 text-base px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
 			},
 			mode: {
 				default: "",
