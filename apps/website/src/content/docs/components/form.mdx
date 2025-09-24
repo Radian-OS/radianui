@@ -10,6 +10,10 @@ links:
 
 ## Installation
 
+`zod` and `react-hook-form` are implemented for validation.
+
+<br />
+
 <Tabs defaultValue="cli">
 	<TabsList>
 		<TabsTrigger value="cli">CLI</TabsTrigger>
@@ -29,15 +33,7 @@ links:
 	<Steps>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="form">
-    		<TabsList>
-    			<TabsTrigger value="form">Form</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="form">
-    			<ComponentSource name="form" title="components/ui/form.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
-
+    		<ComponentSource name="form" title="components/ui/form.tsx" collapsible />
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </TabsContent>
@@ -80,6 +76,25 @@ FormMessage
 	/>
 </Form>`}
 />
+
+---
+
+## Examples
+
+### Sign up form
+
+<ComponentPreview path="form/sign-up-form" />
+
+### Sign in form
+
+<ComponentPreview path="form/sign-in-form" />
+
+### More examples
+
+- [Checkbox](/docs/components/checkbox#form)
+- [One Time Password Field](/docs/components/one-time-password-field#form)
+- [Radio Group](/docs/components/radio-group#form)
+- [Select](/docs/components/select#form)
 
 ---
 
