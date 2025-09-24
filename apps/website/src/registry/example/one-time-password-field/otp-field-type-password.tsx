@@ -3,7 +3,7 @@ import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/one-time-passw
 
 export default function OTPFieldTypePassword() {
 	return (
-		<div className="flex flex-col justify-center space-y-2">
+		<div className="flex flex-col justify-center space-y-1.5">
 			<Label htmlFor="one-time-password">One Time Password</Label>
 			<OTPField type="password">
 				{Array.from({ length: 6 }).map((_, index) => (

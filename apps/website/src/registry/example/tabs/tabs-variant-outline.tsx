@@ -14,8 +14,8 @@ const data = [
 		id: 2,
 		trigger: "In Progress",
 		icon: <Loader2 />,
-		count: 6,
-		content: "You have 6 tasks in progress.",
+		count: 4,
+		content: "You have 4 tasks in progress.",
 	},
 	{
 		id: 3,
@@ -25,10 +25,10 @@ const data = [
 	},
 ]
 
-export default function GhostTabs() {
+export default function TabsVariantOutline() {
 	return (
 		<Tabs defaultValue={data[0].trigger.toLowerCase()}>
-			<TabsList variant={"ghost"}>
+			<TabsList variant={"outline"}>
 				{data.map((item) => (
 					<TabsTrigger key={item.id} value={item.trigger.toLowerCase()}>
 						{item.icon}

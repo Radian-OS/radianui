@@ -10,7 +10,7 @@ import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/one-time-passw
 
 const FormSchema = z.object({
 	pin: z.string().min(6, {
-		message: "Your one-time password must be 6 characters.",
+		message: "Your OTP must be 6 characters.",
 	}),
 })
 
@@ -30,7 +30,7 @@ export default function InputOTPForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-100 space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
 				<FormField
 					control={form.control}
 					name="pin"
@@ -45,7 +45,7 @@ export default function InputOTPForm() {
 									<OTPHiddenInput />
 								</OTPField>
 							</FormControl>
-							<FormDescription>Please enter the one-time password sent to your phone.</FormDescription>
+							<FormDescription>Please enter the OTP sent to your phone.</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}

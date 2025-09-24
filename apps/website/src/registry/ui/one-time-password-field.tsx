@@ -15,7 +15,7 @@ type OTPHiddenInputProps = React.ComponentPropsWithoutRef<typeof RadixOTP.Hidden
 
 const otpInputVariants = cva(
 	cn(
-		"group-has-disabled:cursor-not-allowed placeholder:text-fg-tertiary inline-flex text-center appearance-none items-center justify-center rounded-lg bg-bg p-0 leading-none text-fg outline-none shadow-2xs font-semibold outline-hidden border border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover ",
+		"group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary inline-flex text-center appearance-none items-center justify-center rounded-lg bg-bg p-0 leading-none text-fg outline-none shadow-2xs font-semibold outline-hidden border border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover ",
 		"group-aria-invalid:border-error/60 group-aria-invalid:ring-error/10 dark:group-aria-invalid:border-error dark:group-aria-invalid:ring-error/20 group-aria-invalid:focus-visible:ring-error-focus group-aria-invalid:focus-visible:border-error-hover",
 		"[[data-invalid=true]_&]:border-error/60 [[data-invalid=true]_&]:ring-error/10  dark:[[data-invalid=true]_&]:border-error dark:[[data-invalid=true]_&]:ring-error/20 [[data-invalid=true]_&]:focus-visible:ring-error-focus [[data-invalid=true]_&]:focus-visible:border-error-hover"
 	),
@@ -48,7 +48,7 @@ function OTPField({ className, children, ...props }: OTPFieldProps & OTPContextT
 	const { size = "40" } = props as OTPContextType
 	const ctx = React.useMemo(() => ({ size }), [size])
 	return (
-		<RadixOTP.Root data-slot="otp-root" className={cn("has-disabled:cursor-not-allowed has-disabled:opacity-50 group peer flex flex-nowrap gap-1.5", className)} {...props}>
+		<RadixOTP.Root data-slot="otp-root" className={cn("has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5", className)} {...props}>
 			<OTPContext.Provider value={ctx}>{children}</OTPContext.Provider>
 		</RadixOTP.Root>
 	)

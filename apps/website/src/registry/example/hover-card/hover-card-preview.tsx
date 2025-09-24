@@ -4,7 +4,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hov
 
 const profile = {
 	name: "Aurthur Dominic",
-	avatar: "https://randomuser.me/api/portraits/men/80.jpg",
+	avatar: "https://randomuser.me/api/portraits/men/88.jpg",
 	email: "dominic@radianos.com",
 }
 
@@ -12,7 +12,9 @@ export default function HoverCardPreview() {
 	return (
 		<HoverCard>
 			<HoverCardTrigger asChild>
-				<Button variant={"outline"}>Hover Me</Button>
+				<Button variant={"outline"} color="neutral">
+					Hover Me
+				</Button>
 			</HoverCardTrigger>
 			<HoverCardContent className="flex w-fit flex-col gap-3">
 				<div className="flex items-center gap-3">

@@ -8,7 +8,8 @@ const data = [
 		id: 1,
 		trigger: "Completed",
 		icon: <CheckCircle />,
-		content: "You have no completed tasks.",
+		count: 8,
+		content: "You have completed 8 tasks.",
 	},
 	{
 		id: 2,
@@ -21,23 +22,22 @@ const data = [
 		id: 3,
 		trigger: "Archived",
 		icon: <Archive />,
-		content: "You have no archived items.",
+		count: 3,
+		content: "You have archived 3 items.",
 	},
 ]
 
-export default function OutlineTabs() {
+export default function TabsWithBadge() {
 	return (
 		<Tabs defaultValue={data[0].trigger.toLowerCase()}>
-			<TabsList variant={"outline"}>
+			<TabsList>
 				{data.map((item) => (
 					<TabsTrigger key={item.id} value={item.trigger.toLowerCase()}>
 						{item.icon}
 						{item.trigger}
-						{item.count && (
-							<Badge color="error" size="20" variant="strong" className="rounded-full">
-								{item.count}
-							</Badge>
-						)}
+						<Badge color="error" size="20" variant="strong" className="rounded-full">
+							{item.count}
+						</Badge>
 					</TabsTrigger>
 				))}
 			</TabsList>

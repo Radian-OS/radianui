@@ -5,20 +5,20 @@ import { VariantProps, cva } from "class-variance-authority"
 import { AlertDialog as AlertDialogPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
-type Backdrop = VariantProps<typeof alertDialogOverlayVariants>["backdrop"]
-type AlertDialogProps = React.ComponentProps<typeof AlertDialogPrimitive.Root>
-type AlertDialogTriggerProps = React.ComponentProps<typeof AlertDialogPrimitive.Trigger>
-type AlertDialogPortalProps = React.ComponentProps<typeof AlertDialogPrimitive.Portal>
-type AlertDialogOverlayProps = React.ComponentProps<typeof AlertDialogPrimitive.Overlay> & { backdrop?: Backdrop }
-type AlertDialogContentProps = React.ComponentProps<typeof AlertDialogPrimitive.Content> & { backdrop?: Backdrop }
-type AlertDialogHeaderProps = React.HTMLAttributes<HTMLDivElement>
-type AlertDialogFooterProps = React.HTMLAttributes<HTMLDivElement>
-type AlertDialogTitleProps = React.ComponentProps<typeof AlertDialogPrimitive.Title>
-type AlertDialogDescriptionProps = React.ComponentProps<typeof AlertDialogPrimitive.Description>
-type AlertDialogActionProps = React.ComponentProps<typeof AlertDialogPrimitive.Action>
-type AlertDialogCancelProps = React.ComponentProps<typeof AlertDialogPrimitive.Cancel>
+export type Backdrop = VariantProps<typeof alertDialogOverlayVariants>["backdrop"]
+export type AlertDialogProps = React.ComponentProps<typeof AlertDialogPrimitive.Root>
+export type AlertDialogTriggerProps = React.ComponentProps<typeof AlertDialogPrimitive.Trigger>
+export type AlertDialogPortalProps = React.ComponentProps<typeof AlertDialogPrimitive.Portal>
+export type AlertDialogOverlayProps = React.ComponentProps<typeof AlertDialogPrimitive.Overlay> & { backdrop?: Backdrop }
+export type AlertDialogContentProps = React.ComponentProps<typeof AlertDialogPrimitive.Content> & { backdrop?: Backdrop }
+export type AlertDialogHeaderProps = React.HTMLAttributes<HTMLDivElement>
+export type AlertDialogFooterProps = React.HTMLAttributes<HTMLDivElement>
+export type AlertDialogTitleProps = React.ComponentProps<typeof AlertDialogPrimitive.Title>
+export type AlertDialogDescriptionProps = React.ComponentProps<typeof AlertDialogPrimitive.Description>
+export type AlertDialogActionProps = React.ComponentProps<typeof AlertDialogPrimitive.Action>
+export type AlertDialogCancelProps = React.ComponentProps<typeof AlertDialogPrimitive.Cancel>
 
-const alertDialogOverlayVariants = cva(
+export const alertDialogOverlayVariants = cva(
 	"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-[999]",
 	{
 		variants: {
