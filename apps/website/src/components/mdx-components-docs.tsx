@@ -17,7 +17,6 @@ import TextRevealPreview from "@/component-preview/animations/text-reveal-previe
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
@@ -115,7 +114,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
 	SearchPreview: () => <SearchPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
-	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,

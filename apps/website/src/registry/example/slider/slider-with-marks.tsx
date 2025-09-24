@@ -5,7 +5,7 @@ export default function SliderWithMarks() {
 
 	return (
 		<div className="relative w-[320px]">
-			<Slider defaultValue={[50]}>
+			<Slider defaultValue={[50]} step={25}>
 				<SliderThumb />
 			</Slider>
 
