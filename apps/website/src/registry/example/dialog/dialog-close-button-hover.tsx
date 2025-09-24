@@ -11,10 +11,10 @@ export default function DialogCloseButtonHover() {
 			<DialogContent closeButton="hover">
 				<DialogHeader>
 					<div className="flex gap-3">
-						<div className="flex items-center justify-center rounded-md border p-2">
+						<div className="border-soft-alpha flex size-fit items-center justify-start rounded-lg border p-2">
 							<CircleAlert className="text-fg2 size-6" />
 						</div>
-						<div>
+						<div className="flex flex-col gap-1">
 							<DialogTitle>This is sample header</DialogTitle>
 							<DialogDescription>Are you sure you want to change the content?</DialogDescription>
 						</div>

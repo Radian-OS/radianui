@@ -1,11 +1,11 @@
-import { MoveDown, MoveLeft, MoveRight, MoveUp } from "lucide-react"
+import { AlignCenter, AlignLeft, AlignRight } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card"
 
 const profile = {
 	name: "Aurthur Dominic",
-	avatar: "https://randomuser.me/api/portraits/men/80.jpg",
+	avatar: "https://randomuser.me/api/portraits/men/88.jpg",
 	email: "dominic@radianos.com",
 }
 
@@ -33,56 +33,44 @@ function ProfileCard() {
 	)
 }
 
-export default function PopoverSide() {
+export default function HoverCardAlign() {
 	return (
 		<div className="flex items-center justify-center gap-6">
-			<Popover>
-				<PopoverTrigger asChild>
+			<HoverCard>
+				<HoverCardTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<MoveLeft />
+						<AlignLeft />
 						Left
 					</Button>
-				</PopoverTrigger>
-				<PopoverContent side="left" className="w-fit">
+				</HoverCardTrigger>
+				<HoverCardContent align="start" className="w-fit">
 					<ProfileCard />
-				</PopoverContent>
-			</Popover>
+				</HoverCardContent>
+			</HoverCard>
 
-			<Popover>
-				<PopoverTrigger asChild>
+			<HoverCard>
+				<HoverCardTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<MoveUp />
-						Top
+						<AlignCenter />
+						Center
 					</Button>
-				</PopoverTrigger>
-				<PopoverContent side="top" className="w-fit">
+				</HoverCardTrigger>
+				<HoverCardContent align="center" className="w-fit">
 					<ProfileCard />
-				</PopoverContent>
-			</Popover>
+				</HoverCardContent>
+			</HoverCard>
 
-			<Popover>
-				<PopoverTrigger asChild>
+			<HoverCard>
+				<HoverCardTrigger asChild>
 					<Button size={"32"} color="neutral" variant="outline">
-						<MoveRight />
-						Right
+						<AlignRight />
+						End
 					</Button>
-				</PopoverTrigger>
-				<PopoverContent side="right" className="w-fit">
+				</HoverCardTrigger>
+				<HoverCardContent align="end" className="w-fit">
 					<ProfileCard />
-				</PopoverContent>
-			</Popover>
-
-			<Popover>
-				<PopoverTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
-						<MoveDown />
-						Bottom
-					</Button>
-				</PopoverTrigger>
-				<PopoverContent side="bottom" className="w-fit">
-					<ProfileCard />
-				</PopoverContent>
-			</Popover>
+				</HoverCardContent>
+			</HoverCard>
 		</div>
 	)
 }

@@ -8,14 +8,14 @@ const data = [
 		id: 1,
 		trigger: "Completed",
 		icon: <CheckCircle />,
-		count: 8,
-		content: "You have 8 completed tasks.",
+		content: "You have no completed tasks.",
 	},
 	{
 		id: 2,
 		trigger: "In Progress",
 		icon: <Loader2 />,
-		content: "You have no tasks in progress.",
+		count: 6,
+		content: "You have 6 tasks in progress.",
 	},
 	{
 		id: 3,
@@ -25,10 +25,10 @@ const data = [
 	},
 ]
 
-export default function OpenTabs() {
+export default function TabsVariantGhost() {
 	return (
 		<Tabs defaultValue={data[0].trigger.toLowerCase()}>
-			<TabsList variant={"open"}>
+			<TabsList variant={"ghost"}>
 				{data.map((item) => (
 					<TabsTrigger key={item.id} value={item.trigger.toLowerCase()}>
 						{item.icon}
