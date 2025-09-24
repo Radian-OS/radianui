@@ -3,7 +3,7 @@ import { MoveDown, MoveLeft, MoveRight, MoveUp } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
-export default function SideTooltip() {
+export default function TooltipSide() {
 	return (
 		<div className="flex items-center justify-center gap-6">
 			<Tooltip>

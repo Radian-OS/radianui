@@ -84,53 +84,53 @@ links:
 
 ## Examples
 
-### Icon
+### With Icon
 
-<ComponentPreview path="tabs/icon-tabs" />
+<ComponentPreview path="tabs/tabs-with-icon" />
 
-### Badge
+### With Badge
 
-<ComponentPreview path="tabs/badge-tabs" />
+<ComponentPreview path="tabs/tabs-with-badge" />
 
-### Outline
+### Variant - Outline
 
-<ComponentPreview path="tabs/outline-tabs" />
+<ComponentPreview path="tabs/tabs-variant-outline" />
 
-### Open
+### Variant - Open
 
-<ComponentPreview path="tabs/open-tabs" />
+<ComponentPreview path="tabs/tabs-variant-open" />
 
-### Ghost
+### Variant - Ghost
 
-<ComponentPreview path="tabs/ghost-tabs" />
+<ComponentPreview path="tabs/tabs-variant-ghost" />
 
-### Outline Ghost
+### Variant - Outline Ghost
 
-<ComponentPreview path="tabs/outline-ghost-tabs" />
+<ComponentPreview path="tabs/tabs-variant-outline-ghost" />
 
-### Vertical
+### Orientation - Vertical
 
-<ComponentPreview path="tabs/vertical-tabs" />
+<ComponentPreview path="tabs/tabs-vertical" />
 
 ### Size - Small
 
-<ComponentPreview path="tabs/size-small-tabs" />
+<ComponentPreview path="tabs/tabs-size-small" />
 
 ### Size - Medium
 
-<ComponentPreview path="tabs/size-medium-tabs" />
+<ComponentPreview path="tabs/tabs-size-medium" />
 
 ### Size - Large
 
-<ComponentPreview path="tabs/size-large-tabs" />
+<ComponentPreview path="tabs/tabs-size-large" />
 
-### Full Width
+### Width - Full
 
-<ComponentPreview path="tabs/full-width-tabs" />
+<ComponentPreview path="tabs/tabs-width-full" />
 
 ### Disabled
 
-<ComponentPreview path="tabs/disabled-tabs" />
+<ComponentPreview path="tabs/tabs-disabled" />
 
 ---
 
@@ -138,7 +138,7 @@ links:
 
 <PropsTableWrapper>
 	<PropsTable
-		title="Tabs"
+		title="TabsList"
 		data={[
 			{
 				name: "variant",
@@ -155,11 +155,11 @@ links:
 				defaultValue: "md",
 			},
 			{
-				name: "defaultValue",
-				values: ["string"],
+				name: "width",
+				values: ["fit", "full"],
 				required: false,
-				description: "The default active tab value",
-				defaultValue: "undefined",
+				description: "Controls the width behavior of the tabs list",
+				defaultValue: "fit",
 			},
 			{
 				name: "orientation",
@@ -169,58 +169,7 @@ links:
 				defaultValue: "horizontal",
 			},
 		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs"
 	/>
-	<PropsTable
-		title="TabsList"
-		data={[
-			{
-				name: "width",
-				values: ["fit", "full"],
-				required: false,
-				description: "Controls the width behavior of the tabs list",
-				defaultValue: "fit",
-			},
-		]}
-	/>
-	<PropsTable
-		title="TabsTrigger"
-		data={[
-			{
-				name: "value",
-				values: ["string"],
-				required: true,
-				description: "The unique value for the tab trigger",
-			},
-			{
-				name: "icon",
-				values: ["ReactNode"],
-				required: false,
-				description: "Icon to display in the tab trigger",
-			},
-			{
-				name: "counter",
-				values: ["number"],
-				required: false,
-				description: "Badge counter to display in the tab trigger",
-			},
-			{
-				name: "disabled",
-				values: ["boolean"],
-				required: false,
-				description: "Disables the tab trigger",
-				defaultValue: "false",
-			},
-		]}
-	/>
-	<PropsTable
-		title="TabsContent"
-		data={[
-			{
-				name: "value",
-				values: ["string"],
-				required: true,
-				description: "The value that matches the corresponding TabsTrigger",
-			},
-		]}
-	/>
+
 </PropsTableWrapper>

@@ -5,16 +5,16 @@ import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-type AvatarProps = React.ComponentProps<typeof AvatarPrimitive.Root> & {
+export type AvatarProps = React.ComponentProps<typeof AvatarPrimitive.Root> & {
 	size?: NonNullable<VariantProps<typeof avatarVariants>["size"]>
 	rounded?: NonNullable<VariantProps<typeof avatarVariants>["rounded"]>
 }
-type AvatarImageProps = React.ComponentProps<typeof AvatarPrimitive.Image>
-type AvatarFallbackProps = React.ComponentProps<typeof AvatarPrimitive.Fallback>
-type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement>
-type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof avatarStatusVariants>
+export type AvatarImageProps = React.ComponentProps<typeof AvatarPrimitive.Image>
+export type AvatarFallbackProps = React.ComponentProps<typeof AvatarPrimitive.Fallback>
+export type AvatarIndicatorProps = React.HTMLAttributes<HTMLDivElement>
+export type AvatarStatusProps = React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof avatarStatusVariants>
 
-type AvatarContextValue = {
+export type AvatarContextValue = {
 	size: NonNullable<VariantProps<typeof avatarVariants>["size"]>
 }
 

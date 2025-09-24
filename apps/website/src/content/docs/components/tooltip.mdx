@@ -73,61 +73,33 @@ links:
 
 ## Examples
 
+### Theme - Light
+
+<ComponentPreview path="tooltip/tooltip-theme-light" />
+
 ### Side
 
-<ComponentPreview path="tooltip/side-tooltip" />
+<ComponentPreview path="tooltip/tooltip-side" />
 
 ### Align
 
-<ComponentPreview path="tooltip/align-tooltip" />
+<ComponentPreview path="tooltip/tooltip-align" />
 
 ## Props
 
 <PropsTableWrapper>
 	<PropsTable
-		title="Tooltip"
-		data={[
-			{
-				name: "side",
-				defaultValue: "top",
-				values: ["top", "left", "right", "bottom"],
-				description: "Position relative to the container",
-			},
-			{
-				name: "align",
-				defaultValue: "center",
-				values: ["center", "start", "end"],
-				description: "Alignment to the container",
-			},
-			{
-				name: "withArrow",
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "Toggles to show arrow or not",
-			},
-		]}
-	/>
-	<PropsTable
-		title="TooltipTrigger"
-		data={[
-			{
-				name: "asChild",
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "Implements asChild functionality",
-			},
-		]}
-	/>
-	<PropsTable
 		title="TooltipContent"
 		data={[
 			{
-				name: "-",
-				defaultValue: "-",
-				values: ["-"],
-				description: "No props used as Wrapper",
+				name: "theme",
+				defaultValue: "default",
+				values: ["light", "default"],
+				description: "Theme of the tooltip",
 			},
-		]}
-		externalReference="https://www.npmjs.com/package/@radix-ui/react-tooltip"
-	/>
+
+    	]}
+    	externalReference="https://www.npmjs.com/package/@radix-ui/react-tooltip"
+    />
+
 </PropsTableWrapper>

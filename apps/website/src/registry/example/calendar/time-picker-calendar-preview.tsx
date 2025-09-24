@@ -77,7 +77,7 @@ function TimePickerCalendarPreview() {
 										variant="ghost"
 										color="neutral"
 										size="32"
-										className={cn("text-fg w-full justify-start px-2 py-1.5", { "bg-fill3-alpha hover:bg-fill3-alpha": time === timeSlot })}
+										className={cn("text-fg hover:bg-fill2-alpha w-full justify-start px-2 py-1.5", { "bg-fill3-alpha hover:bg-fill3-alpha": time === timeSlot })}
 										onClick={() => setTime(timeSlot)}
 										disabled={!available}>
 										{format(parse(timeSlot, "HH:mm", new Date()), "h:mm a")}

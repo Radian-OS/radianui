@@ -43,7 +43,7 @@ export default function PopoverSide() {
 						Left
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent side="left">
+				<PopoverContent side="left" className="w-fit">
 					<ProfileCard />
 				</PopoverContent>
 			</Popover>
@@ -55,7 +55,7 @@ export default function PopoverSide() {
 						Top
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent side="top">
+				<PopoverContent side="top" className="w-fit">
 					<ProfileCard />
 				</PopoverContent>
 			</Popover>
@@ -67,7 +67,7 @@ export default function PopoverSide() {
 						Right
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent side="right">
+				<PopoverContent side="right" className="w-fit">
 					<ProfileCard />
 				</PopoverContent>
 			</Popover>
@@ -79,7 +79,7 @@ export default function PopoverSide() {
 						Bottom
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent side="bottom">
+				<PopoverContent side="bottom" className="w-fit">
 					<ProfileCard />
 				</PopoverContent>
 			</Popover>

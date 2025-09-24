@@ -25,7 +25,7 @@ const data = [
 	},
 ]
 
-export default function OutlineGhostTabs() {
+export default function TabsVariantOutlineGhost() {
 	return (
 		<Tabs defaultValue={data[0].trigger.toLowerCase()}>
 			<TabsList variant={"outline-ghost"}>
