@@ -53,13 +53,16 @@ const selectTriggerVariants = cva(
 	{
 		variants: {
 			size: {
-				sm: "h-7 px-2.5 text-xs gap-1 rounded-md",
-				md: "h-9 px-2.5 text-sm py-2 leading-(--text-sm--line-height) gap-2 rounded-md",
-				lg: "h-11 px-4 text-sm gap-2 rounded-md",
+				"28": "gap-0.5 h-7 px-2 py-1.5 text-[13px] rounded-md",
+				"32": "gap-0.5 h-8 px-2 py-1.5 text-sm rounded-md",
+				"36": "gap-1 h-9 px-2.5 py-2 text-sm rounded-lg",
+				"40": "gap-1 h-10 px-3 py-2.5 text-sm rounded-lg",
+				"44": "gap-1 h-11 px-3 py-2.5 text-base rounded-lg",
+				"48": "gap-1 h-12 px-3.5 py-3 text-base rounded-lg",
 			},
 		},
 		defaultVariants: {
-			size: "md",
+			size: "36",
 		},
 	}
 )
@@ -149,7 +152,7 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
 		<SelectPrimitive.Item
 			data-slot="select-item"
 			className={cn(
-				"outline-hidden text-fg hover:bg-fill2 focus:bg-fill2 data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 text-sm",
+				"outline-hidden text-fg focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 text-sm",
 				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
 				className
 			)}
