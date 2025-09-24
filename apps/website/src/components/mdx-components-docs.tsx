@@ -23,7 +23,6 @@ import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
-import SwitchPreview from "@/component-preview/switch-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
 import Installation from "@/components/installation"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
@@ -123,7 +122,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
 	PasswordInputPreview3: () => <PasswordInputPreview3 />,
-	SwitchPreview: () => <SwitchPreview />,
 	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
 	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
 	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
