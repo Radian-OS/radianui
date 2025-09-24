@@ -46,16 +46,14 @@ links:
 
 <CodeSnippet
 	title="/components/ui/banner.tsx"
-	code={`<Banner color='primary' variant='strong'>
- <BannerTitle>
-  Banner Title Here
- </BannerTitle>
- <BannerDescription>
-  Enter your banner message here
- </BannerDescription>
- <BannerAction>
-  <Button variant="soft">Button label</Button>
- </BannerAction>
+	code={`<Banner variant="strong" color="primary" onClose={() => setBannerVisible(false)}>
+<BannerContent>
+ <BannerIcon>
+  <Sparkles />
+ </BannerIcon>
+ <BannerTitle>New Feature!</BannerTitle>
+ <BannerDescription>Check it out</BannerDescription>
+ </BannerContent>
 </Banner>`}
 />
 
