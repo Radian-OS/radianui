@@ -1,164 +1,114 @@
 "use client"
 
-import { type HTMLAttributes, type ReactNode } from "react"
+import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
+import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export type BannerProps = HTMLAttributes<HTMLDivElement> &
+export type BannerProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant"> &
 	VariantProps<typeof bannerVariants> & {
-		children?: ReactNode
-		className?: string
+		onClose?: () => void
 	}
 
-export type BannerTitleProps = HTMLAttributes<HTMLHeadingElement>
-export type BannerDescriptionProps = HTMLAttributes<HTMLParagraphElement>
-export type BannerActionProps = HTMLAttributes<HTMLButtonElement>
+export type BannerTitleProps = React.HTMLAttributes<HTMLHeadingElement>
+export type BannerDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
+export type BannerContentProps = React.HTMLAttributes<HTMLDivElement>
+export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
+export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
-const bannerVariants = cva("p-2 flex items-center justify-center gap-2 relative text-sm w-full", {
+const bannerVariants = cva("flex items-center justify-center w-full gap-2 p-2 text-sm relative", {
 	variants: {
-		variant: {
-			strong: "",
-			outline: "border-b border-border",
-			soft: "",
-		},
 		color: {
+			neutral: "",
 			primary: "",
 			info: "",
 			success: "",
 			error: "",
 			warning: "",
-			neutral: " bg-elevation-level1 border-alpha text-fg-inverse",
+		},
+		variant: {
+			strong: "",
+			soft: "",
+			"soft-outline": "ring-1 ring-inset",
+			outline: "ring-1 ring-inset ring-border bg-transparent",
 		},
 	},
 	compoundVariants: [
-		// Strong variant + colors
-		{
-			variant: "strong",
-			color: "primary",
-			className: "bg-primary text-white",
-		},
-		{
-			variant: "strong",
-			color: "info",
-			className: "bg-info text-white",
-		},
-		{
-			variant: "strong",
-			color: "success",
-			className: "bg-success text-white",
-		},
-		{
-			variant: "strong",
-			color: "error",
-			className: "bg-error text-white",
-		},
-		{
-			variant: "strong",
-			color: "warning",
-			className: "bg-warning text-white",
-		},
-		{
-			variant: "strong",
-			color: "neutral",
-			className: "bg-black-inverse",
-		},
-		// Outline variant + colors
-		{
-			variant: "outline",
-			color: "primary",
-			className: "bg-transparent",
-		},
-		{
-			variant: "outline",
-			color: "info",
-			className: "bg-transparent",
-		},
-		{
-			variant: "outline",
-			color: "success",
-			className: "bg-transparent",
-		},
-		{
-			variant: "outline",
-			color: "error",
-			className: "bg-transparent",
-		},
-		{
-			variant: "outline",
-			color: "warning",
-			className: "bg-transparent",
-		},
-		{
-			variant: "outline",
-			color: "neutral",
-			className: "bg-transparent text-black-inverse",
-		},
-		// Soft variant + colors
-		{
-			variant: "soft",
-			color: "primary",
-			className: "bg-primary-accent",
-		},
-		{
-			variant: "soft",
-			color: "info",
-			className: "bg-info-accent",
-		},
-		{
-			variant: "soft",
-			color: "success",
-			className: "bg-success-accent",
-		},
-		{
-			variant: "soft",
-			color: "error",
-			className: "bg-error-accent",
-		},
-		{
-			variant: "soft",
-			color: "warning",
-			className: "bg-warning-accent",
-		},
-		{
-			variant: "soft",
-			color: "neutral",
-			className: "bg-fill2 text-black-inverse",
-		},
+		// Soft
+		{ color: "neutral", variant: "soft", className: "bg-fill2" },
+		{ color: "primary", variant: "soft", className: "bg-primary-accent text-primary-text" },
+		{ color: "info", variant: "soft", className: "bg-info-accent text-info-text" },
+		{ color: "success", variant: "soft", className: "bg-success-accent text-success-text" },
+		{ color: "error", variant: "soft", className: "bg-error-accent text-error-text" },
+		{ color: "warning", variant: "soft", className: "bg-warning-accent text-warning-text" },
+
+		// Strong
+		{ color: "neutral", variant: "strong", className: "bg-black-inverse text-white-inverse" },
+		{ color: "primary", variant: "strong", className: "bg-primary text-white" },
+		{ color: "info", variant: "strong", className: "bg-info text-white" },
+		{ color: "warning", variant: "strong", className: "bg-warning text-white" },
+		{ color: "error", variant: "strong", className: "bg-error text-white" },
+		{ color: "success", variant: "strong", className: "bg-success text-white" },
+
+		// Soft-outline
+		{ color: "neutral", variant: "soft-outline", className: "outline-border bg-fill2" },
+		{ color: "primary", variant: "soft-outline", className: "bg-primary-accent text-primary-text outline-primary-accent" },
+		{ color: "info", variant: "soft-outline", className: "bg-info-accent text-info-text outline-info-accent" },
+		{ color: "success", variant: "soft-outline", className: "bg-success-accent text-success-text outline-success-accent" },
+		{ color: "error", variant: "soft-outline", className: "bg-error-accent text-error-text outline-error-accent" },
+		{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text outline-warning-accent" },
+
+		// Outline
+		{ color: "neutral", variant: "outline", className: "ring-border bg-transparent text-foreground" },
+		{ color: "primary", variant: "outline", className: "ring-primary bg-transparent text-primary-text" },
+		{ color: "info", variant: "outline", className: "ring-info bg-transparent text-info-text" },
+		{ color: "success", variant: "outline", className: "ring-success bg-transparent text-success-text" },
+		{ color: "error", variant: "outline", className: "ring-error bg-transparent text-error-text" },
+		{ color: "warning", variant: "outline", className: "ring-warning bg-transparent text-warning-text" },
 	],
 	defaultVariants: {
-		variant: "strong",
 		color: "primary",
+		variant: "soft",
 	},
 })
 
-function Banner({ color, variant, className, children }: BannerProps) {
+function Banner({ className, color, variant, onClose, children, ...props }: BannerProps) {
 	return (
-		// <BannerContext.Provider value={{}}>
-		<div role="banner" className={cn(bannerVariants({ color, variant }), className)}>
+		<div data-slot="banner" role="banner" className={cn(bannerVariants({ color, variant }), className)} {...props}>
 			{children}
+			{onClose && (
+				<button
+					type="button"
+					onClick={onClose}
+					aria-label="Dismiss"
+					data-slot="banner-close"
+					className="group absolute right-2 top-1/2 flex size-6 shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5">
+					<X className="size-4 opacity-60 group-hover:opacity-100" />
+				</button>
+			)}
 		</div>
-		// {/* </BannerContext.Provider> */}
 	)
 }
 Banner.displayName = "Banner"
 
 function BannerTitle({ className, ...props }: BannerTitleProps) {
-	return <h5 className={cn("text-sm font-medium", className)} {...props}></h5>
+	return <div data-slot="banner-title" className={cn("text-sm font-medium tracking-tight", className)} {...props} />
 }
 BannerTitle.displayName = "BannerTitle"
 
 function BannerDescription({ className, ...props }: BannerDescriptionProps) {
-	return <p className={cn("text-sm", className)} {...props}></p>
+	return <div data-slot="banner-description" className={cn("text-sm", className)} {...props} />
 }
 BannerDescription.displayName = "BannerDescription"
 
-function BannerAction({ className, children, ...props }: BannerActionProps) {
-	return (
-		<span className={cn("absolute right-2 top-1/2 -translate-y-1/2", className)} {...props}>
-			{children}
-		</span>
-	)
+function BannerContent({ className, ...props }: BannerContentProps) {
+	return <div data-slot="banner-content" className={cn("flex flex-1 items-center justify-center gap-2 [&_[data-slot=banner-title]]:font-semibold", className)} {...props} />
 }
-BannerAction.displayName = "BannerAction"
+BannerContent.displayName = "BannerContent"
 
-export { Banner, BannerTitle, BannerDescription, BannerAction, bannerVariants }
+function BannerIcon({ className, ...props }: BannerIconProps) {
+	return <div data-slot="banner-icon" className={cn("flex shrink-0 items-center justify-center", className)} {...props} />
+}
+BannerIcon.displayName = "BannerIcon"
+
+export { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle, bannerVariants }
