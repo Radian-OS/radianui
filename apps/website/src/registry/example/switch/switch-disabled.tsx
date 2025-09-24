@@ -6,8 +6,8 @@ import { Switch } from "@/registry/ui/switch"
 export default function SwitchPreview() {
 	return (
 		<div className="flex items-center space-x-2">
-			<Switch id="enable-notifications" disabled />
-			<Label htmlFor="enable-notifications">Enable Notifications</Label>
+			<Switch id="enable-notifications-disabled" disabled />
+			<Label htmlFor="enable-notifications-disabled">Enable Notifications</Label>
 		</div>
 	)
 }
