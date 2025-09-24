@@ -4,7 +4,7 @@ import { Label } from "@/registry/ui/label"
 
 const EmailPreview = () => {
 	return (
-		<div className="flex w-80 flex-col gap-4">
+		<div className="flex flex-col gap-4 md:w-80">
 			{/* Default Email Input */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Default Email Input</Label>
@@ -14,7 +14,7 @@ const EmailPreview = () => {
 			{/* Input Group */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Input Group</Label>
-				<InputGroup className="w-80">
+				<InputGroup className="md:w-80">
 					<InputAddon>
 						<Mail />
 					</InputAddon>
@@ -25,7 +25,7 @@ const EmailPreview = () => {
 			{/* Input Wrapper */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Input Wrapper</Label>
-				<InputWrapper className="w-80">
+				<InputWrapper className="md:w-80">
 					<Mail />
 					<Input type="email" placeholder="designer@radianos.com" />
 				</InputWrapper>

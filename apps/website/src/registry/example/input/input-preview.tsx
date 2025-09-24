@@ -5,7 +5,7 @@ const InputPreview = () => {
 	return (
 		<div className="flex flex-col gap-1.5">
 			<Label>Username</Label>
-			<Input className="w-80" placeholder="Enter your username here" />
+			<Input className="md:w-80" placeholder="Enter your username here" />
 		</div>
 	)
 }

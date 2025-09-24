@@ -7,25 +7,25 @@ import { formatBytes, useFileUpload } from "@/registry/ui/file-upload"
 // Create some dummy initial files
 const initialFiles = [
 	{
-		name: "document.pdf",
+		name: "radiandocument.pdf",
 		size: 528737,
 		type: "application/pdf",
-		url: "https://example.com/document.pdf",
-		id: "document.pdf-1744638436563-8u5xuls",
+		url: "https://example.com/radiandocument.pdf",
+		id: "radiandocument.pdf-1744638436563",
 	},
 	{
-		name: "intro.zip",
+		name: "document.zip",
 		size: 252873,
 		type: "application/zip",
-		url: "https://example.com/intro.zip",
-		id: "intro.zip-1744638436563-8u5xuls",
+		url: "https://example.com/document.zip",
+		id: "document.zip-1744638436563",
 	},
 	{
-		name: "conclusion.xlsx",
+		name: "radian.xlsx",
 		size: 352873,
 		type: "application/xlsx",
-		url: "https://example.com/conclusion.xlsx",
-		id: "conclusion.xlsx-1744638436563-8u5xuls",
+		url: "https://example.com/radian.xlsx",
+		id: "radian.xlsx-1744638436563",
 	},
 ]
 

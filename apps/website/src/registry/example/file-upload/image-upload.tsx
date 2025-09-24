@@ -1,8 +1,9 @@
 "use client"
 
-import { AlertCircleIcon, ImageIcon, UploadIcon, X } from "lucide-react"
+import { useState } from "react"
+import { AlertCircleIcon, ImageIcon, Loader2, UploadIcon, X } from "lucide-react"
 import { Button, IconButton } from "@/registry/ui/button"
-import { useFileUpload } from "@/registry/ui/file-upload"
+import { FileMetadata, useFileUpload } from "@/registry/ui/file-upload"
 
 const initialFiles = [
 	{
@@ -35,6 +36,61 @@ const initialFiles = [
 	},
 ]
 
+interface ImagePreviewProps {
+	file: {
+		id: string
+		preview?: string
+		file: File | FileMetadata
+	}
+	onRemove: (id: string) => void
+}
+
+function ImagePreview({ file, onRemove }: ImagePreviewProps) {
+	const [isLoading, setIsLoading] = useState(true)
+	const [hasError, setHasError] = useState(false)
+
+	const handleImageLoad = () => {
+		setIsLoading(false)
+	}
+
+	const handleImageError = () => {
+		setIsLoading(false)
+		setHasError(true)
+	}
+
+	return (
+		<div className="bg-primary-focus relative size-32 rounded-md">
+			{/* Loading state - maintains full dimensions */}
+			{isLoading && (
+				<div className="absolute inset-0 flex items-center justify-center rounded-[inherit]">
+					<Loader2 className="size-6 animate-spin opacity-60" />
+				</div>
+			)}
+
+			{/* Error state */}
+			{hasError && (
+				<div className="absolute inset-0 flex items-center justify-center rounded-[inherit]">
+					<ImageIcon className="size-6 opacity-40" />
+				</div>
+			)}
+
+			{/* Image */}
+			<img
+				src={file.preview}
+				alt={file.file.name}
+				className={`size-full rounded-[inherit] object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
+				onLoad={handleImageLoad}
+				onError={handleImageError}
+			/>
+
+			{/* Remove button */}
+			<IconButton variant="strong" color="neutral" onClick={() => onRemove(file.id)} className="size-6.5 absolute -right-2 -top-2 rounded-full" aria-label="Remove image">
+				<X />
+			</IconButton>
+		</div>
+	)
+}
+
 export default function ImageUpload() {
 	const maxSizeMB = 5
 	const maxSize = maxSizeMB * 1024 * 1024 // 5MB default
@@ -64,7 +120,7 @@ export default function ImageUpload() {
 					<div className="flex w-full flex-col gap-3">
 						<div className="flex items-center justify-between gap-2">
 							<h3 className="truncate text-sm font-medium">Uploaded Files ({files.length})</h3>
-							<Button variant="outline" size="36" onClick={openFileDialog} disabled={files.length >= maxFiles}>
+							<Button variant="outline" size="32" onClick={openFileDialog} disabled={files.length >= maxFiles}>
 								<UploadIcon className="-ms-0.5 size-3.5 opacity-60" aria-hidden="true" />
 								Add more
 							</Button>
@@ -72,22 +128,12 @@ export default function ImageUpload() {
 
 						<div className="grid grid-cols-2 gap-4 md:grid-cols-4">
 							{files.map((file) => (
-								<div key={file.id} className="bg-primary-accent relative aspect-square rounded-md">
-									<img src={file.preview} alt={file.file.name} className="size-full rounded-[inherit] object-cover" />
-									<IconButton
-										variant="strong"
-										color="neutral"
-										onClick={() => removeFile(file.id)}
-										className="size-6.5 absolute -right-2 -top-2 rounded-full"
-										aria-label="Remove image">
-										<X />
-									</IconButton>
-								</div>
+								<ImagePreview key={file.id} file={file} onRemove={removeFile} />
 							))}
 						</div>
 					</div>
 				) : (
-					<div className="flex flex-col items-center justify-center px-4 py-3 text-center">
+					<div className="md:w-100 flex flex-col items-center justify-center px-4 py-3 text-center">
 						<div className="bg-background mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 							<ImageIcon className="size-4 opacity-60" />
 						</div>
