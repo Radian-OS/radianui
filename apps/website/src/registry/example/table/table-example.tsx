@@ -523,7 +523,7 @@ export default function Component() {
 						onValueChange={(value) => {
 							table.setPageSize(Number(value))
 						}}>
-						<SelectTrigger size="sm" id={id} className="w-fit whitespace-nowrap">
+						<SelectTrigger size="32" id={id} className="w-fit whitespace-nowrap">
 							<SelectValue placeholder="Select number of results" />
 						</SelectTrigger>
 						<SelectContent className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
