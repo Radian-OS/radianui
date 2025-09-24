@@ -15,13 +15,10 @@ import InfiniteScrollPreview from "@/component-preview/animations/infinite-scrol
 import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
-import BannerPreview from "@/component-preview/banner-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
-import CompactButtonPreview from "@/component-preview/compact-button-preview"
 import FancyButtonPreview from "@/component-preview/fancy-button-preview"
 import PhoneNumberPreview from "@/component-preview/phone-number-preview"
 import SearchPreview from "@/component-preview/search-preview"
-import SocialButtonPreview from "@/component-preview/social-button-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
 import SwitchPreview from "@/component-preview/switch-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
@@ -37,10 +34,6 @@ import DragConstraintsExample from "@/registry/example/animated/drag-constraints
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
-import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-example-preview"
-import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
-import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
-import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
@@ -110,15 +103,10 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	BannerPreview: () => <BannerPreview />,
 	CodeAreaPreview: () => <CodeAreaPreview />,
 	Installation: () => <Installation />,
-	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
-	BannerExamplePreview1: () => <BannerExamplePreview1 />,
-	BannerExamplePreview2: () => <BannerExamplePreview2 />,
-	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
 	PasswordInputPreview: () => <PasswordInputPreview />,
@@ -132,12 +120,10 @@ const components = (examples: typeof Examples | undefined) => ({
 	PhoneNumberPreview: () => <PhoneNumberPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
 	FancyButtonPreview: () => <FancyButtonPreview />,
-	CompactButtonPreview: () => <CompactButtonPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
 
-	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,

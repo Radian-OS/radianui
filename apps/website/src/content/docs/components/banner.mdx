@@ -6,7 +6,7 @@ links:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/banner.tsx
 ---
 
-<BannerPreview />
+<ComponentPreview path="banner/banner-example-preview" />
 
 ## Installation
 
@@ -63,25 +63,15 @@ links:
 
 ## Examples
 
-### Close Icon Banner
+### Banner Variants
 
-<BannerCloseExamplePreview />
+<ComponentPreview path="banner/banner-variants-example" />
 
-### Strong Variant Banner
+### Banner Color
 
-<BannerExamplePreview1 />
+<ComponentPreview path="banner/banner-color-example" />
 
-### Soft Variant Banner
-
-<BannerExamplePreview2 />
-
-### Outline Variant Banner
-
-<BannerExamplePreview3 />
-
----
-
-## Props
+### Props
 
 <PropsTableWrapper>
 	<PropsTable
@@ -89,10 +79,10 @@ links:
 		data={[
 			{
 				name: "variant",
-				values: ["strong", "outline", "soft"],
+				values: ["strong", "outline", "soft", "soft-outline"],
 				required: false,
 				description: "Sets the variant of the banner",
-				defaultValue: "strong",
+				defaultValue: "soft",
 			},
 			{
 				name: "color",
@@ -100,6 +90,37 @@ links:
 				values: ["primary", "neutral", "success", "warning", "error", "info"],
 				required: false,
 				description: "Sets the color of the banner",
+			},
+			{
+				name: "onClose",
+				values: ["() => void"],
+				required: false,
+				description: "Callback function when banner is closed. If provided, close button will be rendered",
+				defaultValue: "undefined",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BannerContent"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "Container for banner content with central alignment",
+				defaultValue: "-",
+			},
+		]}
+	/>
+	<PropsTable
+		title="BannerIcon"
+		data={[
+			{
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "Icon container for the banner",
+				defaultValue: "-",
 			},
 		]}
 	/>
@@ -123,18 +144,6 @@ links:
 				values: ["-"],
 				required: false,
 				description: "Description of the banner",
-				defaultValue: "-",
-			},
-		]}
-	/>
-	<PropsTable
-		title="BannerAction"
-		data={[
-			{
-				name: "-",
-				values: ["-"],
-				required: false,
-				description: "End content of the banner",
 				defaultValue: "-",
 			},
 		]}

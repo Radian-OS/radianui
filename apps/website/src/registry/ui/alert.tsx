@@ -83,7 +83,7 @@ function Alert({ className, color, variant, close = false, onClose, children, ..
 					onClick={onClose}
 					aria-label="Dismiss"
 					data-slot="alert-close"
-					className="group flex size-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5">
+					className="group flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5">
 					<X className="size-4 opacity-60 group-hover:opacity-100" />
 				</button>
 			)}
