@@ -6,7 +6,7 @@ import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
-export default function InternationalPhoneWithHookExample() {
+function InternationalPhoneWithHookExample() {
 	const [internalValue, setInternalValue] = useState<string>("")
 	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
 		defaultCountry: "np",
@@ -60,3 +60,5 @@ export default function InternationalPhoneWithHookExample() {
 		</div>
 	)
 }
+
+export default InternationalPhoneWithHookExample
