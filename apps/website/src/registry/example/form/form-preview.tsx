@@ -1,21 +1,27 @@
 "use client"
 
+import { zodResolver } from "@hookform/resolvers/zod"
 import { AlertCircle } from "lucide-react"
 import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "sonner"
+import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 
 interface FormData {
 	email: string
 }
 
+const FormSchema = z.object({
+	email: z.string().check(z.email("Please enter a valid email address.")),
+})
+
 export default function FormPreview() {
-	const form = useForm<FormData>({
+	const form = useForm<z.infer<typeof FormSchema>>({
+		resolver: zodResolver(FormSchema),
 		defaultValues: { email: "" },
-		mode: "onChange",
 	})
 
 	const onSubmit = (data: FormData) => {
@@ -53,7 +59,7 @@ export default function FormPreview() {
 							<FormControl>
 								<Input placeholder="Email address" {...field} />
 							</FormControl>
-							<FormDescription>Enter your email</FormDescription>
+							{/* <FormDescription>Enter your email</FormDescription> */}
 							<FormMessage />
 						</FormItem>
 					)}
