@@ -20,20 +20,6 @@ const initialFiles = [
 		url: "https://picsum.photos/1000/800?random=2",
 		id: "image-02-123456789",
 	},
-	{
-		name: "image-03.jpg",
-		size: 1528737,
-		type: "image/jpeg",
-		url: "https://picsum.photos/1000/800?random=3",
-		id: "image-03-123456789",
-	},
-	{
-		name: "image-04.jpg",
-		size: 1528737,
-		type: "image/jpeg",
-		url: "https://picsum.photos/1000/800?random=4",
-		id: "image-04-123456789",
-	},
 ]
 
 interface ImagePreviewProps {
@@ -139,7 +125,7 @@ export default function ImageUpload() {
 						</div>
 						<p className="mb-1.5 text-sm font-medium">Drop your images here</p>
 						<p className="text-muted-foreground text-xs">SVG, PNG, JPG or GIF (max. {maxSizeMB}MB)</p>
-						<Button variant="outline" className="mt-4" onClick={openFileDialog}>
+						<Button variant="outline" color="neutral" className="mt-4" onClick={openFileDialog}>
 							<UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
 							Select images
 						</Button>

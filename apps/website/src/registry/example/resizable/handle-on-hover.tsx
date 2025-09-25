@@ -7,7 +7,7 @@ const HandleOnHover = () => {
 				<ResizablePanel defaultSize={50}>
 					<ResizablePanelGroup direction="horizontal">
 						<ResizablePanel defaultSize={20}>
-							<div className="flex h-full items-center justify-center border-b p-6">
+							<div className="flex h-full items-center justify-center p-6">
 								<span className="font-semibold">Sidebar</span>
 							</div>
 						</ResizablePanel>
@@ -19,7 +19,7 @@ const HandleOnHover = () => {
 						</ResizablePanel>
 						<ResizableHandle withHandle className="[&>div]:opacity-0 [&>div]:transition-opacity [&>div]:duration-200 hover:[&>div]:opacity-100" />
 						<ResizablePanel defaultSize={25}>
-							<div className="flex h-full items-center justify-center border-b p-6">
+							<div className="flex h-full items-center justify-center p-6">
 								<span className="font-semibold">Toolbar</span>
 							</div>
 						</ResizablePanel>

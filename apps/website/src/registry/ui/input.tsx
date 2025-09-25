@@ -34,16 +34,16 @@ const inputAddonVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "h-7 text-[13px]  px-2 rounded-md [&_svg:not([class*=size-])]:size-4",
-				"32": "h-8 text-sm px-2  rounded-md [&_svg:not([class*=size-])]:size-4.5",
-				"36": "h-9 text-sm px-2.5 rounded-lg [&_svg:not([class*=size-])]:size-5",
-				"40": "h-10 text-sm px-3 rounded-lg [&_svg:not([class*=size-])]:size-5",
-				"44": "h-11 text-base px-3 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
-				"48": "h-12 text-base px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
+				"28": "h-7 min-w-7 text-[13px]  px-2 rounded-md [&_svg:not([class*=size-])]:size-4",
+				"32": "h-8 min-w-8 text-sm px-2  rounded-md [&_svg:not([class*=size-])]:size-4.5",
+				"36": "h-9 min-w-9 text-sm px-2.5 rounded-lg [&_svg:not([class*=size-])]:size-5",
+				"40": "h-10 min-w-10 text-sm px-3 rounded-lg [&_svg:not([class*=size-])]:size-5",
+				"44": "h-11 min-w-11 text-base px-3 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
+				"48": "h-12 min-w-12 text-base px-3.5 rounded-[10px] [&_svg:not([class*=size-])]:size-5",
 			},
 			mode: {
 				default: "",
-				icon: "justify-center",
+				icon: "px-0 justify-center",
 			},
 		},
 		defaultVariants: {
@@ -137,8 +137,8 @@ function Input({ className, type, size, ...props }: Omit<React.ComponentProps<"i
 	return <input data-slot="input" type={type} className={cn(inputVariants({ size }), className)} {...props} />
 }
 
-function InputAddon({ className, size, ...props }: React.ComponentProps<"div"> & VariantProps<typeof inputAddonVariants>) {
-	return <div data-slot="input-addon" className={cn(inputAddonVariants({ size }), className)} {...props} />
+function InputAddon({ className, size, mode, ...props }: React.ComponentProps<"div"> & VariantProps<typeof inputAddonVariants>) {
+	return <div data-slot="input-addon" className={cn(inputAddonVariants({ size, mode }), className)} {...props} />
 }
 
 function InputGroup({ className, ...props }: React.ComponentProps<"div"> & VariantProps<typeof inputGroupVariants>) {
