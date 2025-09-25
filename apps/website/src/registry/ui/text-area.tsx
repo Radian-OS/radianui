@@ -1,9 +1,14 @@
-import React from "react"
-import { cva } from "class-variance-authority"
+import { ChangeEvent, useState } from "react"
+import { VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
+export type TextAreaProps = React.ComponentProps<"textarea"> &
+	VariantProps<typeof textareaStyles> & {
+		resizable?: boolean
+	}
+
 const textareaStyles = cva(
-	"text-sm placeholder:text-sm text-fg-1 min-h-12 w-full border border-alpha bg-bg px-3 py-2 font-normal drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error/20 aria-invalid:border-error dark:aria-invalid:ring-error/40 focus:outline-hidden focus:ring-2 focus:ring-primary-hover/10 disabled:border-border disabled:bg-fill1 disabled:text-fg-disabled disabled:cursor-not-allowed",
+	"text-sm placeholder:text-sm text-fg w-full border border-alpha bg-bg px-2.5 py-2 font-normal drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error/20 aria-invalid:border-error dark:aria-invalid:ring-error/20 focus:outline-hidden focus:ring-2 focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled disabled:cursor-not-allowed disabled:resize-none",
 	{
 		variants: {
 			rounded: {
@@ -17,15 +22,12 @@ const textareaStyles = cva(
 	}
 )
 
-function TextArea({
-	className,
-	rounded = "rounded",
-	resizable = true,
-	...props
-}: React.ComponentProps<"textarea"> & {
-	resizable?: boolean
-	rounded?: "rounded" | "square"
-}) {
+type UseCharacterLimitOptions = {
+	maxLength: number
+	initialValue?: string
+}
+
+function TextArea({ className, rounded = "rounded", resizable = true, ...props }: TextAreaProps) {
 	return (
 		<textarea
 			data-slot="textarea"
@@ -40,5 +42,29 @@ function TextArea({
 		/>
 	)
 }
+TextArea.display = "TextArea"
 
-export { TextArea }
+function useCharacterLimit({ maxLength, initialValue = "" }: UseCharacterLimitOptions) {
+	const [value, setValue] = useState(initialValue)
+
+	const characterCount = value.length
+	const remainingCharacters = maxLength - characterCount
+
+	const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+		const input = e.target.value
+		if (input.length <= maxLength) {
+			setValue(input)
+		}
+	}
+
+	return {
+		value,
+		setValue,
+		characterCount,
+		remainingCharacters,
+		maxLength,
+		handleChange,
+	}
+}
+
+export { TextArea, useCharacterLimit }

@@ -15,17 +15,6 @@ import InfiniteScrollPreview from "@/component-preview/animations/infinite-scrol
 import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
-import BannerPreview from "@/component-preview/banner-preview"
-import CodeAreaPreview from "@/component-preview/code-area-preview"
-import CompactButtonPreview from "@/component-preview/compact-button-preview"
-import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import PhoneNumberPreview from "@/component-preview/phone-number-preview"
-import SearchPreview from "@/component-preview/search-preview"
-import SocialButtonPreview from "@/component-preview/social-button-preview"
-import SpinnerPreview from "@/component-preview/spinner-preview"
-import SvgButtonPreview from "@/component-preview/svg-button-preview"
-import SwitchPreview from "@/component-preview/switch-preview"
-import TextAreaPreview from "@/component-preview/text-area-preview"
 import Installation from "@/components/installation"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
@@ -38,21 +27,10 @@ import DragConstraintsExample from "@/registry/example/animated/drag-constraints
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
-import BannerCloseExamplePreview from "@/registry/example/banner/banner-close-example-preview"
-import BannerExamplePreview1 from "@/registry/example/banner/banner-example-preview1"
-import BannerExamplePreview2 from "@/registry/example/banner/banner-example-preview2"
-import BannerExamplePreview3 from "@/registry/example/banner/banner-example-preview3"
-import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
-import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
-import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
-import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/large-currency-example-preview"
-import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import Examples from "@/registry/example/example.json"
-import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
-import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
-import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
+import ProgressPreview from "@/registry/example/progress/progress-preview"
 import {
 	Accordion,
 	AccordionContent,
@@ -111,35 +89,11 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	BannerPreview: () => <BannerPreview />,
-	CodeAreaPreview: () => <CodeAreaPreview />,
 	Installation: () => <Installation />,
-	SocialButtonPreview: () => <SocialButtonPreview />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
-	BannerExamplePreview1: () => <BannerExamplePreview1 />,
-	BannerExamplePreview2: () => <BannerExamplePreview2 />,
-	BannerExamplePreview3: () => <BannerExamplePreview3 />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
-	PasswordInputPreview: () => <PasswordInputPreview />,
-	PasswordInputPreview3: () => <PasswordInputPreview3 />,
-	SwitchPreview: () => <SwitchPreview />,
-	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
-	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
-	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
-	SearchPreview: () => <SearchPreview />,
-	TextAreaPreview: () => <TextAreaPreview />,
-	PhoneNumberPreview: () => <PhoneNumberPreview />,
-	SpinnerPreview: () => <SpinnerPreview />,
-	FancyButtonPreview: () => <FancyButtonPreview />,
-	CompactButtonPreview: () => <CompactButtonPreview />,
-	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
-	SvgButtonPreview: () => <SvgButtonPreview />,
-	CodeWithTabsPreview: () => <CodeWithTabs />,
-	CodeWithCopyExample: () => <CodeWithCopyExample />,
-
-	BannerCloseExamplePreview: () => <BannerCloseExamplePreview />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,
@@ -161,6 +115,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	TextRevealPreview: () => <TextRevealPreview />,
 	BlurFadeExample: () => <BlurFadeExample />,
 	FadeOutExample: () => <FadeOutExample />,
+	ProgressPreview: () => <ProgressPreview />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
 	),

@@ -6,7 +6,7 @@ const DisabledInput = () => {
 	return (
 		<div className="flex flex-col gap-1.5">
 			<Label>Disabled Input</Label>
-			<Input className="w-80" disabled placeholder="Disabled Input" />
+			<Input className="md:w-80" disabled placeholder="Disabled Input" />
 		</div>
 	)
 }

@@ -54,7 +54,7 @@ interface PasswordProps extends Omit<React.ComponentProps<"input">, "size" | "ty
 	ref?: React.Ref<HTMLInputElement>
 }
 
-const Password: React.FC<PasswordProps> = ({ toggleVisibility = "always", className, size = "36", placeholder = "Enter password", ref, onFocus, onBlur, ...props }) => {
+const Password: React.FC<PasswordProps> = ({ toggleVisibility = "focus", className, size = "36", placeholder = "Enter password", ref, onFocus, onBlur, ...props }) => {
 	const [isVisible, setIsVisible] = useState(false)
 	const [isFocused, setIsFocused] = useState(false)
 
@@ -119,7 +119,7 @@ const Password: React.FC<PasswordProps> = ({ toggleVisibility = "always", classN
 					className={cn(passwordToggleVariants({ size }))}
 					aria-label={isVisible ? "Hide password" : "Show password"}
 					tabIndex={-1}>
-					{isVisible ? <EyeOff /> : <Eye />}
+					{isVisible ? <EyeOff className="cursor-pointer" /> : <Eye className="cursor-pointer" />}
 				</button>
 			)}
 		</div>

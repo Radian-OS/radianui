@@ -15,7 +15,7 @@ export default function SlideWithInput() {
 				size="32"
 				value={value}
 				onChange={(e) => {
-					if (!e.target.value) setValue(0)
+					if (!e.target.value) return
 					else setValue(parseInt(e.target.value))
 				}}
 				onBlur={() => setValue((prev) => Math.min(prev, 100))}

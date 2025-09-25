@@ -10,24 +10,6 @@ function ButtonGroupExample() {
 				<Button>Third</Button>
 				<Button>Fourth</Button>
 			</ButtonGroup>
-			<ButtonGroup color="error" variant="ghost">
-				<Button>First</Button>
-				<Button>Second</Button>
-				<Button>Third</Button>
-				<Button>Fourth</Button>
-			</ButtonGroup>
-			<ButtonGroup color="info" variant="strong">
-				<Button>First</Button>
-				<Button>Second</Button>
-				<Button>Third</Button>
-				<Button>Fourth</Button>
-			</ButtonGroup>
-			<ButtonGroup color="success" variant="soft">
-				<Button>First</Button>
-				<Button>Second</Button>
-				<Button>Third</Button>
-				<Button>Fourth</Button>
-			</ButtonGroup>
 		</div>
 	)
 }

@@ -4,7 +4,7 @@ import { LinkButton } from "@/registry/ui/button"
 
 export default function AlertPreview() {
 	return (
-		<Alert>
+		<Alert close>
 			<AlertIcon>
 				<Bell size={20} />
 			</AlertIcon>

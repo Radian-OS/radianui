@@ -77,16 +77,7 @@ function Alert({ className, color, variant, close = false, onClose, children, ..
 	return (
 		<div data-slot="alert" role="alert" className={cn(alertVariants({ color, variant }), className)} {...props}>
 			{children}
-			{close && (
-				<button
-					type="button"
-					onClick={onClose}
-					aria-label="Dismiss"
-					data-slot="alert-close"
-					className="group flex size-6 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5">
-					<X className="size-4 opacity-60 group-hover:opacity-100" />
-				</button>
-			)}
+			{close && <X onClick={onClose} data-slot="alert-close" aria-label="Dismiss" className="size-5 cursor-pointer opacity-60" />}
 		</div>
 	)
 }
@@ -113,7 +104,7 @@ function AlertIcon({ className, ...props }: AlertIconProps) {
 AlertIcon.displayName = "AlertIcon"
 
 function AlertToolbar({ className, ...props }: AlertToolbarProps) {
-	return <div data-slot="alert-toolbar" className={cn("flex-shrink-0", className)} {...props} />
+	return <div data-slot="alert-toolbar" className={cn("flex flex-shrink-0 items-center", className)} {...props} />
 }
 AlertToolbar.displayName = "AlertToolbar"
 

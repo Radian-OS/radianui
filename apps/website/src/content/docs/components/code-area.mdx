@@ -10,7 +10,7 @@ links:
       icon: shiki.svg
 ---
 
-<CodeAreaPreview />
+<ComponentPreview path="code-area/code-area-preview" />
 
 ## Installation
 
@@ -65,11 +65,22 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/CodeArea" code={`import { CodeArea } from "@/components/ui/CodeArea"`} />
+<CodeSnippet title="/components/ui/code-area" code={`import { CodeArea } from "@/components/ui/code-area"`} />
 
 ### Code
 
-<CodeSnippet title="/components/ui/CodeArea" code={`console.log("Hello, World!")`} />
+<CodeSnippet
+	title="/components/ui/code-area"
+	code={`
+<CodeArea 
+  code={'const Greeting: React.FC<{ name: string }> = ({ name }) => {\n  return <h1>Hello, {name}!</h1>;\n};'}
+  language="tsx"
+  theme="github-dark-default"
+  lineNumbers={false}
+  className="h-full w-full"
+/>
+`}
+/>
 
 ---
 
@@ -77,11 +88,11 @@ links:
 
 ### Code Area with Tabs
 
-<CodeWithTabsPreview />
+<ComponentPreview path="code-area/code-with-tabs-preview" />
 
 ### Code Area with Copy Button
 
-<CodeWithCopyExample />
+<ComponentPreview path="code-area/code-with-copy-example" />
 
 ---
 
