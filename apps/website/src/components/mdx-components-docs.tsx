@@ -15,7 +15,6 @@ import InfiniteScrollPreview from "@/component-preview/animations/infinite-scrol
 import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
-import CodeAreaPreview from "@/component-preview/code-area-preview"
 import SearchPreview from "@/component-preview/search-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
 import TextAreaPreview from "@/component-preview/text-area-preview"
@@ -31,8 +30,6 @@ import DragConstraintsExample from "@/registry/example/animated/drag-constraints
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
-import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
-import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import Examples from "@/registry/example/example.json"
@@ -95,7 +92,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),
-	CodeAreaPreview: () => <CodeAreaPreview />,
 	Installation: () => <Installation />,
 	BadgeExamplePreview: () => <BadgeExamplePreview />,
 	TypographyPlayground: () => <TypographyPlayground />,
@@ -105,8 +101,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	TextAreaPreview: () => <TextAreaPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
-	CodeWithTabsPreview: () => <CodeWithTabs />,
-	CodeWithCopyExample: () => <CodeWithCopyExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,
