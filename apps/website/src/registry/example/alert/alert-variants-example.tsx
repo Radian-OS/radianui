@@ -28,15 +28,13 @@ const AlertVariantsExample = () => {
 				<AlertTitle>Alert Soft-Outline Variant</AlertTitle>
 			</Alert>
 
-			<Alert color="error" variant="outline" close>
+			<Alert variant="outline" close>
 				<AlertIcon>
 					<Clock />
 				</AlertIcon>
 				<AlertTitle>Alert Outline Variant</AlertTitle>
 				<AlertToolbar>
-					<LinkButton color="error" href="#upgrade">
-						Upgrade
-					</LinkButton>
+					<LinkButton href="#upgrade">Upgrade</LinkButton>
 				</AlertToolbar>
 			</Alert>
 		</div>
