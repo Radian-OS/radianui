@@ -18,7 +18,7 @@ export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const alertVariants = cva(
-	"flex items-stretch w-full gap-2 p-3 rounded-lg [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-description]]:text-sm  [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.5 [&_[data-slot=alert-close]]:mt-0.5",
+	"flex items-stretch w-full gap-2 p-3 rounded-lg [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm  [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
 	{
 		variants: {
 			color: {
@@ -81,7 +81,7 @@ function Alert({ className, color = "primary", variant = "soft", close = false, 
 		<div data-slot="alert" role="alert" className={cn(alertVariants({ color, variant }), className)} {...props}>
 			{children}
 			{close && (
-				<button onClick={onClose} aria-label="Dismiss" data-slot="alert-close" className={cn("group size-5 shrink-0 cursor-pointer")}>
+				<button onClick={onClose} aria-label="Dismiss" data-slot="alert-close" className={cn("group flex size-5 shrink-0 cursor-pointer items-center justify-center")}>
 					<X className="size-4 opacity-60 group-hover:opacity-100" />
 				</button>
 			)}
