@@ -11,7 +11,7 @@ import { Checkbox } from "@/registry/ui/checkbox"
 import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
 import { Pagination, PaginationContent, PaginationItem } from "@/registry/ui/pagination"
-import { Progress } from "@/registry/ui/progress-bar"
+import { Progress } from "@/registry/ui/progress"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
 

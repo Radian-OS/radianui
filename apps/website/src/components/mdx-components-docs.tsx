@@ -34,6 +34,7 @@ import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import Examples from "@/registry/example/example.json"
+import ProgressPreview from "@/registry/example/progress/progress-preview"
 import {
 	Accordion,
 	AccordionContent,
@@ -98,6 +99,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	TypographyPlayground: () => <TypographyPlayground />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
+	ProgressPreview: () => <ProgressPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,

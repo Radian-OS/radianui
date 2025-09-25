@@ -1,5 +1,5 @@
 import { Label } from "@/registry/ui/label"
-import { Progress } from "@/registry/ui/progress-bar"
+import { Progress } from "@/registry/ui/progress"
 
 const ProgressExample = () => {
 	return (
