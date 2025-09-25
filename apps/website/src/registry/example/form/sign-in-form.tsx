@@ -13,16 +13,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/registry/ui/input"
 import { Password } from "@/registry/ui/password"
 
-interface FormData {
-	email: string
-	password: string
-	keepSignedIn: boolean
-}
-
 const FormSchema = z.object({
 	email: z.email("Please enter a valid email address"),
 	password: z.string().min(1, "Password is required"),
-	keepSignedIn: z.boolean().default(false),
+	keepSignedIn: z.boolean(),
 })
 
 export default function SignIn() {
@@ -35,7 +29,7 @@ export default function SignIn() {
 		},
 	})
 
-	const onSubmit = (data: FormData) => {
+	const onSubmit = (data: z.infer<typeof FormSchema>) => {
 		console.log(data)
 		toast.custom(() => (
 			<Alert variant="soft" color="primary">
