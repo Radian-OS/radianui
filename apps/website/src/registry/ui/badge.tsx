@@ -71,20 +71,6 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 })
 
 function Badge({ className, variant, size, color, asChild = false, children, dot, ...props }: BadgeProps) {
-	// Get dot size based on badge size
-	const getDotSize = (size: string | undefined) => {
-		switch (size) {
-			case "20":
-				return "size-1.5"
-			case "24":
-				return "size-2"
-			case "28":
-				return "size-2"
-			default:
-				return "size-2"
-		}
-	}
-
 	if (asChild) {
 		// When asChild is true, we can't add the dot since Slot expects single child
 		// User should handle dot styling in their custom element
@@ -97,7 +83,7 @@ function Badge({ className, variant, size, color, asChild = false, children, dot
 
 	return (
 		<span className={cn(badgeVariants({ variant, size, color, dot }), className)} {...props}>
-			{dot && <span className={cn("rounded-full bg-current", getDotSize(size!))} />}
+			{dot && <span className={cn("size-1.5 rounded-full bg-current")} />}
 			{children}
 		</span>
 	)

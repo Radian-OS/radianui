@@ -11,61 +11,73 @@ const AlertColorsExample = () => {
 		<div className="flex w-full flex-col items-center justify-center gap-4">
 			<Alert color="primary" variant="strong" close onClose={() => handleClose("primary")}>
 				<AlertIcon>
-					<BellIcon size={20} />
+					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Strong Primary</AlertTitle>
-					<AlertDescription>This is Strong Primary Alert</AlertDescription>
+					<AlertDescription>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 
 			<Alert color="info" variant="strong" close onClose={() => handleClose("info")}>
 				<AlertIcon>
-					<BellIcon size={20} />
+					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Strong Info</AlertTitle>
-					<AlertDescription>This is Strong Info Alert</AlertDescription>
+					<AlertDescription>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 
 			<Alert color="success" variant="strong" close onClose={() => handleClose("success")}>
 				<AlertIcon>
-					<BellIcon size={20} />
+					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Strong Success</AlertTitle>
-					<AlertDescription>This is Strong Success Alert</AlertDescription>
+					<AlertDescription>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 
 			<Alert color="error" variant="strong" close onClose={() => handleClose("error")}>
 				<AlertIcon>
-					<BellIcon size={20} />
+					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Strong Error</AlertTitle>
-					<AlertDescription>This is Strong Error Alert</AlertDescription>
+					<AlertDescription>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 
 			<Alert color="warning" variant="strong" close onClose={() => handleClose("warning")}>
 				<AlertIcon>
-					<BellIcon size={20} />
+					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Strong Warning</AlertTitle>
-					<AlertDescription>This is Strong Warning Alert</AlertDescription>
+					<AlertDescription>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 
 			<Alert color="neutral" variant="strong" close onClose={() => handleClose("neutral")}>
 				<AlertIcon>
-					<BellIcon size={20} />
+					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Strong Neutral</AlertTitle>
-					<AlertDescription>This is Strong Neutral Alert</AlertDescription>
+					<AlertDescription>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 		</div>
