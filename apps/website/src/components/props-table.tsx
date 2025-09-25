@@ -57,7 +57,7 @@ export const DescriptionTooltip = ({ description }: { description: string }) => 
 			<TooltipTrigger asChild>
 				<Info className="text-primary size-4" />
 			</TooltipTrigger>
-			<TooltipContent>{description}</TooltipContent>
+			<TooltipContent className="text-wrap">{description}</TooltipContent>
 		</Tooltip>
 	)
 }
