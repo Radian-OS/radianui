@@ -3,7 +3,7 @@ import { CircleCheck } from "lucide-react"
 import { z } from "zod"
 import { Label } from "@/registry/ui/label"
 import { Password } from "@/registry/ui/password"
-import { Progress } from "@/registry/ui/progress-bar"
+import { Progress } from "@/registry/ui/progress"
 
 function PasswordVlidationExample() {
 	const passwordSchema = z
