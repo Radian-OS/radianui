@@ -16,9 +16,7 @@ import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
-import SearchPreview from "@/component-preview/search-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
-import TextAreaPreview from "@/component-preview/text-area-preview"
 import Installation from "@/components/installation"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
@@ -36,7 +34,6 @@ import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import Examples from "@/registry/example/example.json"
-import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import {
 	Accordion,
 	AccordionContent,
@@ -101,10 +98,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	TypographyPlayground: () => <TypographyPlayground />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
-	SearchPreview: () => <SearchPreview />,
-	TextAreaPreview: () => <TextAreaPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
-	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
