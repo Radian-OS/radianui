@@ -1,19 +1,19 @@
 import { Bell } from "lucide-react"
-import { Alert, AlertContent, AlertIcon, AlertTitle, AlertToolbar } from "@/registry/ui/alert"
+import { Alert, AlertIcon, AlertTitle, AlertToolbar } from "@/registry/ui/alert"
 import { LinkButton } from "@/registry/ui/button"
 
 export default function AlertPreview() {
 	return (
-		<Alert close>
-			<AlertIcon>
-				<Bell size={20} />
-			</AlertIcon>
-			<AlertContent>
+		<div className="flex w-full flex-col items-center gap-6 lg:max-w-[75%]">
+			<Alert close>
+				<AlertIcon>
+					<Bell />
+				</AlertIcon>
 				<AlertTitle>This is simple alert</AlertTitle>
-			</AlertContent>
-			<AlertToolbar>
-				<LinkButton href="/">Action</LinkButton>
-			</AlertToolbar>
-		</Alert>
+				<AlertToolbar>
+					<LinkButton href="/">Action</LinkButton>
+				</AlertToolbar>
+			</Alert>
+		</div>
 	)
 }

@@ -77,6 +77,10 @@ links:
 
 <ComponentPreview path="tooltip/tooltip-theme-light" />
 
+### With Arrow
+
+<ComponentPreview path="tooltip/tooltip-with-arrow" />
+
 ### Side
 
 <ComponentPreview path="tooltip/tooltip-side" />
@@ -84,6 +88,14 @@ links:
 ### Align
 
 <ComponentPreview path="tooltip/tooltip-align" />
+
+### With Title
+
+<ComponentPreview path="tooltip/tooltip-with-title" />
+
+### With Image
+
+<ComponentPreview path="tooltip/tooltip-with-image" />
 
 ## Props
 
@@ -97,7 +109,12 @@ links:
 				values: ["light", "default"],
 				description: "Theme of the tooltip",
 			},
-
+			{
+				name: "withArrow",
+				values: ["boolean"],
+				defaultValue: "false",
+				description: "Either to display an arrow pointing to the target element or not",
+			}
     	]}
     	externalReference="https://www.npmjs.com/package/@radix-ui/react-tooltip"
     />
