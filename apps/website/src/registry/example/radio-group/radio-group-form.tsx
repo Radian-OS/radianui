@@ -56,10 +56,12 @@ export default function RadioGroupForm() {
 					control={form.control}
 					name="chip"
 					render={({ field }) => (
-						<FormItem>
-							<FormLabel className="font-medium">Select Your ARM Chip</FormLabel>
+						<FormItem className="gap-4">
+							<FormLabel asChild>
+								<Label>Select Your ARM Chip</Label>
+							</FormLabel>
 							<FormControl>
-								<RadioGroup value={field.value} onValueChange={field.onChange} className="gap-4">
+								<RadioGroup value={field.value} onValueChange={field.onChange}>
 									{options.map((opt) => (
 										<div className="flex items-center gap-2" key={opt.id}>
 											<RadioGroupItem value={opt.id} id={opt.id} disabled={opt.disabled} />

@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
 export default function AvatarSize() {
 	return (
-		<div className="flex items-center justify-center gap-2">
+		<div className="flex items-center justify-center gap-6">
 			<Avatar size="16">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 				<AvatarFallback>CH</AvatarFallback>

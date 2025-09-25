@@ -5,7 +5,7 @@ export default function AvatarStatusPreview() {
 	return (
 		<div className="flex gap-6">
 			{/* Status Online */}
-			<Avatar size="64">
+			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/2.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="bottom-1.5 right-1.5">
@@ -14,7 +14,7 @@ export default function AvatarStatusPreview() {
 			</Avatar>
 
 			{/* Status Offline */}
-			<Avatar size="64">
+			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/8.jpg" />
 				<AvatarFallback className="text-error bg-error/10">AJ</AvatarFallback>
 				<AvatarIndicator className="bottom-1.5 right-1.5">
@@ -23,7 +23,7 @@ export default function AvatarStatusPreview() {
 			</Avatar>
 
 			{/* Status Busy */}
-			<Avatar size="64">
+			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/4.jpg" />
 				<AvatarFallback className="bg-fill4 overflow-hidden">
 					<svg width="100" height="100" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,7 +47,7 @@ export default function AvatarStatusPreview() {
 			</Avatar>
 
 			{/* Status Away */}
-			<Avatar size="64">
+			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/18.jpg" />
 				<AvatarFallback className="bg-fill4 overflow-hidden">
 					<svg width="100" height="100" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">

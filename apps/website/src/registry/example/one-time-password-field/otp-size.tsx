@@ -50,8 +50,8 @@ export default function OTPFieldSize() {
 				</OTPField>
 			</div>
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Size - 56</Label>
-				<OTPField size="56">
+				<Label htmlFor="one-time-password">Size - 48</Label>
+				<OTPField size="48">
 					{Array.from({ length: 6 }).map((_, index) => (
 						<OTPInput key={index} index={index} />
 					))}

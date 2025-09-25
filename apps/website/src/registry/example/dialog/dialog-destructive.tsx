@@ -21,7 +21,7 @@ export default function DialogDestructive() {
 							Cancel
 						</Button>
 					</DialogClose>
-					<Button variant={"strong"} color={"error"}>
+					<Button variant="strong" color="error">
 						Delete
 					</Button>
 				</DialogFooter>
