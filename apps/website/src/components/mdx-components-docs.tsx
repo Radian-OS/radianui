@@ -33,9 +33,6 @@ import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-
 import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
-import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
-import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/large-currency-example-preview"
-import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import Examples from "@/registry/example/example.json"
@@ -104,16 +101,12 @@ const components = (examples: typeof Examples | undefined) => ({
 	TypographyPlayground: () => <TypographyPlayground />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
-	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
-	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
-	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
 	SearchPreview: () => <SearchPreview />,
 	TextAreaPreview: () => <TextAreaPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
 	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,
