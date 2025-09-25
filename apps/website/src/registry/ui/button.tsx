@@ -162,7 +162,7 @@ export const buttonVariants = cva(
 			{
 				variant: "soft",
 				color: "neutral",
-				className: "bg-fill2 font-medium text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:outline-none focus-visible:ring-border",
+				className: "bg-fill2 font-medium text-fg-secondary hover:bg-fill3 focus-visible:bg-bg focus-visible:outline-none focus-visible:ring-border",
 			},
 
 			// Outline variant + colors
@@ -194,8 +194,7 @@ export const buttonVariants = cva(
 			{
 				variant: "outline",
 				color: "neutral",
-				className:
-					"bg-elevation-level1 font-medium text-fg-secondary border border-border hover:bg-fill1-alpha focus-visible:ring-border relative before:absolute before:inset-0 before:pointer-events-none hover:before:bg-fill2-alpha",
+				className: "bg-elevation-level1 font-medium text-fg-secondary border border-border hover:bg-fill2 focus-visible:ring-border  dark:hover:bg-fill3",
 			},
 
 			// Ghost variant + colors
