@@ -10,7 +10,7 @@ function DismissibleAlert() {
 	return (
 		<>
 			{isVisible && (
-				<Alert close onClose={() => handleClose()} color="neutral" variant="soft" className="w-full">
+				<Alert close onClose={() => handleClose()} color="success" variant="outline" className="w-full">
 					<AlertIcon>
 						<Star />
 					</AlertIcon>
@@ -23,10 +23,10 @@ function DismissibleAlert() {
 								labore voluptatem sint quibusdam iusto magni itaque.
 							</p>
 							<div className="space-x-3.5">
-								<LinkButton color="neutral" href="#close-icon">
+								<LinkButton color="success" href="#close-icon">
 									Upgrade
 								</LinkButton>
-								<LinkButton color="neutral" href="#close-icon">
+								<LinkButton color="success" href="#close-icon">
 									Dismiss
 								</LinkButton>
 							</div>
