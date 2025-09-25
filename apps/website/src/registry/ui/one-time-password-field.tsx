@@ -22,12 +22,12 @@ const otpInputVariants = cva(
 	{
 		variants: {
 			size: {
-				"28": "size-7 text-xs",
+				"28": "size-7 text-[13px]",
 				"32": "size-8 text-sm",
 				"36": "size-9 text-sm",
 				"40": "size-10 text-sm",
-				"44": "size-11 text-sm",
-				"56": "size-14 text-3xl",
+				"44": "size-11 text-base",
+				"48": "size-12 text-base",
 			},
 		},
 		defaultVariants: {

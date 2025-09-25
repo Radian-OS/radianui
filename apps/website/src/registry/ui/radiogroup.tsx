@@ -46,7 +46,7 @@ function RadioGroup({ className, size = "md", children, ...props }: RadioGroupPr
 	const ctxValues = React.useMemo(() => ({ size }), [size])
 	return (
 		<RadioGroupContext.Provider value={ctxValues}>
-			<RadioGroupPrimitive.Root className={cn("grid gap-3", className)} data-slot="radio-group" {...props}>
+			<RadioGroupPrimitive.Root className={cn("grid gap-4", className)} data-slot="radio-group" {...props}>
 				{children}
 			</RadioGroupPrimitive.Root>
 		</RadioGroupContext.Provider>
