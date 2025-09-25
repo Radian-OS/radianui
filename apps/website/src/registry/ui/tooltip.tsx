@@ -55,7 +55,7 @@ function TooltipContent({ align = "center", side = "top", sideOffset = 4, theme 
 				<TooltipPrimitive.Arrow
 					data-slot="tooltip-arrow"
 					data-theme={theme}
-					className="data-[theme=light]:fill-border -my-px data-[theme=default]:fill-black data-[theme=default]:dark:fill-white"
+					className="data-[theme=light]:fill-elevation-level1 -my-px data-[theme=default]:fill-black data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)] data-[theme=default]:dark:fill-white"
 				/>
 			)}
 		</TooltipPrimitive.Content>
