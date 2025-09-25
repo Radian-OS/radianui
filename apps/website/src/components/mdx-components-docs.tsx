@@ -16,10 +16,7 @@ import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import CodeAreaPreview from "@/component-preview/code-area-preview"
-import FancyButtonPreview from "@/component-preview/fancy-button-preview"
-import SearchPreview from "@/component-preview/search-preview"
 import SpinnerPreview from "@/component-preview/spinner-preview"
-import TextAreaPreview from "@/component-preview/text-area-preview"
 import Installation from "@/components/installation"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
@@ -34,15 +31,9 @@ import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-
 import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
 import CodeWithCopyExample from "@/registry/example/code/code-with-copy-example"
 import CodeWithTabs from "@/registry/example/code/code-with-tabs-preview"
-import BasicCurrencyAmountPreview from "@/registry/example/currency-amount/basic-currency-input-preview"
-import LargeCurrencyExamplePreview from "@/registry/example/currency-amount/large-currency-example-preview"
-import SmallCurrencyInputPreview from "@/registry/example/currency-amount/small-currency-input.preview"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import Examples from "@/registry/example/example.json"
-import PasswordInputPreview from "@/registry/example/input/password-input-preview1"
-import PasswordInputPreview3 from "@/registry/example/input/password-input-preview3"
-import ContentBasedTextAreaExample from "@/registry/example/text-area/ContentBasedTextAreaExample"
 import {
 	Accordion,
 	AccordionContent,
@@ -107,19 +98,9 @@ const components = (examples: typeof Examples | undefined) => ({
 	TypographyPlayground: () => <TypographyPlayground />,
 	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
 	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
-	PasswordInputPreview: () => <PasswordInputPreview />,
-	PasswordInputPreview3: () => <PasswordInputPreview3 />,
-	BasicCurrencyAmountPreview: () => <BasicCurrencyAmountPreview />,
-	LargeCurrencyExamplePreview: () => <LargeCurrencyExamplePreview />,
-	SmallCurrencyInputPreview: () => <SmallCurrencyInputPreview />,
-	SearchPreview: () => <SearchPreview />,
-	TextAreaPreview: () => <TextAreaPreview />,
 	SpinnerPreview: () => <SpinnerPreview />,
-	FancyButtonPreview: () => <FancyButtonPreview />,
-	ContentBasedTextAreaExample: () => <ContentBasedTextAreaExample />,
 	CodeWithTabsPreview: () => <CodeWithTabs />,
 	CodeWithCopyExample: () => <CodeWithCopyExample />,
-
 	HeadingFontSpecs: () => <HeadingFontSpecs />,
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,
