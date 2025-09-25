@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils"
+
 export type SpinnerVariants = "default" | "simple" | "activity" | "wave"
 
 type SpinnerProps = React.SVGProps<SVGSVGElement> & {
@@ -6,7 +8,7 @@ type SpinnerProps = React.SVGProps<SVGSVGElement> & {
 	variant?: SpinnerVariants
 }
 
-function DefaultSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
+function DefaultSpinner({ size, color, "aria-label": ariaLabel, className, ...props }: SpinnerProps) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -18,8 +20,8 @@ function DefaultSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spin
 			aria-label={ariaLabel || "Loading"}
 			aria-live="polite"
 			focusable="false"
-			{...props}
-			className="animate-spin">
+			className={cn("animate-spin", className)}
+			{...props}>
 			<path
 				d="M11.75 21.5C13.7562 21.5 15.7109 20.8649 17.334 19.6857C18.957 18.5064 20.1651 16.8437 20.785 14.9357C21.405 13.0276 21.405 10.9724 20.785 9.06434C20.1651 7.15633 18.957 5.49355 17.334 4.31434"
 				stroke={color || "currentColor"}
@@ -31,7 +33,7 @@ function DefaultSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spin
 }
 DefaultSpinner.displayName = "DefaultSpinner"
 
-function SimpleSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
+function SimpleSpinner({ size, color, "aria-label": ariaLabel, className, ...props }: SpinnerProps) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +41,7 @@ function SimpleSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spinn
 			height={size}
 			viewBox="0 0 24 24"
 			fill="none"
-			className="animate-spin"
+			className={cn("animate-spin", className)}
 			role="status"
 			aria-label={ariaLabel || "Loading"}
 			aria-live="polite"
