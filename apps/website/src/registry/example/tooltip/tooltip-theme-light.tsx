@@ -7,10 +7,10 @@ export default function TooltipThemeLight() {
 		<Tooltip>
 			<TooltipTrigger asChild>
 				<Button color="neutral" variant="outline">
-					Hover me
+					Light Tooltip
 				</Button>
 			</TooltipTrigger>
-			<TooltipContent theme="light">I am a tooltip description.</TooltipContent>
+			<TooltipContent theme="light">I am a light tooltip description.</TooltipContent>
 		</Tooltip>
 	)
 }

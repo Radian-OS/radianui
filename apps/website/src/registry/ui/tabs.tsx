@@ -94,7 +94,7 @@ const tabsTriggerStyles = cva(
 				outline: "data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill2",
-				"outline-ghost": "data-[state=active]:bg-bg border border-transparent data-[state=active]:border-soft-alpha data-[state=active]:drop-shadow-xs",
+				"outline-ghost": "data-[state=active]:bg-bg border border-transparent data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [

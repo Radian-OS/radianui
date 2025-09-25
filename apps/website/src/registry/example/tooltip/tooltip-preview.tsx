@@ -7,10 +7,10 @@ export default function TooltipPreview() {
 		<Tooltip>
 			<TooltipTrigger asChild>
 				<Button color="neutral" variant="outline">
-					Hover me
+					Default Tooltip
 				</Button>
 			</TooltipTrigger>
-			<TooltipContent>I am a tooltip description.</TooltipContent>
+			<TooltipContent>I am a default tooltip description.</TooltipContent>
 		</Tooltip>
 	)
 }
