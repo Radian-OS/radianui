@@ -10,10 +10,10 @@ function BannerExamplePreview() {
 		<div className="absolute top-0 h-full w-full">
 			{bannerVisible && (
 				<Banner variant="strong" color="primary" onClose={() => setBannerVisible(false)}>
+					<BannerIcon>
+						<Sparkles />
+					</BannerIcon>
 					<BannerContent>
-						<BannerIcon>
-							<Sparkles />
-						</BannerIcon>
 						<BannerTitle>New Feature!</BannerTitle>
 						<BannerDescription>Check it out</BannerDescription>
 					</BannerContent>

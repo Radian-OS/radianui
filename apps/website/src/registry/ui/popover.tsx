@@ -11,12 +11,16 @@ type PopoverContentProps = React.ComponentProps<typeof PopoverPrimitive.Content>
 type PopoverTriggerProps = React.ComponentProps<typeof PopoverPrimitive.Trigger>
 
 function Popover({ children, ...props }: PopoverProps) {
-	return <PopoverPrimitive.Root {...props}>{children}</PopoverPrimitive.Root>
+	return (
+		<PopoverPrimitive.Root data-slot="popover" {...props}>
+			{children}
+		</PopoverPrimitive.Root>
+	)
 }
 Popover.displayName = PopoverPrimitive.Root.displayName
 
 function PopoverTrigger({ ...props }: PopoverTriggerProps) {
-	return <PopoverPrimitive.Trigger {...props} />
+	return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
 }
 PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
 

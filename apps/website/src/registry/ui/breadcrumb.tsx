@@ -19,6 +19,8 @@ function Breadcrumb({ ...props }: BreadcrumbType) {
 	return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />
 }
 
+Breadcrumb.displayName = "Breadcrumb"
+
 function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
 	return <ol data-slot="breadcrumb-list" className={cn("text-fg-secondary flex flex-wrap items-center gap-1.5 break-words text-sm", className)} {...props} />
 }
@@ -26,16 +28,19 @@ function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
 function BreadcrumbItem({ className, ...props }: BreadcrumbItemType) {
 	return <li data-slot="breadcrumb-item" className={cn("inline-flex items-center gap-1.5", className)} {...props} />
 }
+BreadcrumbItem.displayName = "BreadcrumbItem"
 
 function BreadcrumbLink({ asChild, className, ...props }: BreadcrumbLinkType) {
 	const Comp = asChild ? SlotPrimitive.Slot : "a"
 
 	return <Comp data-slot="breadcrumb-link" className={cn("hover:text-fg transition-colors", className)} {...props} />
 }
+BreadcrumbLink.displayName = "BreadcrumbLink"
 
 function BreadcrumbPage({ className, ...props }: BreadcrumbPageType) {
 	return <span data-slot="breadcrumb-page" role="link" aria-disabled="true" aria-current="page" className={cn("text-fg font-normal", className)} {...props} />
 }
+BreadcrumbPage.displayName = "BreadcrumbPage"
 
 function BreadcrumbSeparator({ children, className, ...props }: BreadcrumbSeparatorType) {
 	return (
@@ -44,6 +49,7 @@ function BreadcrumbSeparator({ children, className, ...props }: BreadcrumbSepara
 		</li>
 	)
 }
+BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 
 function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisType) {
 	return (
@@ -53,5 +59,6 @@ function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisType) {
 		</span>
 	)
 }
+BreadcrumbEllipsis.displayName = "BreadcrumbEllipsis"
 
 export { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator }

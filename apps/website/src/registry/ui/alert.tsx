@@ -89,9 +89,13 @@ function Alert({ className, color = "primary", variant = "soft", close = false, 
 	)
 }
 
+Alert.displayName = "Alert"
+
 function AlertTitle({ className, ...props }: AlertTitleProps) {
 	return <div data-slot="alert-title" className={cn("grow tracking-tight", className)} {...props} />
 }
+
+AlertTitle.displayName = "AlertTitle"
 
 function AlertIcon({ children, className, ...props }: AlertIconProps) {
 	return (
@@ -100,6 +104,7 @@ function AlertIcon({ children, className, ...props }: AlertIconProps) {
 		</div>
 	)
 }
+AlertIcon.displayName = "AlertIcon"
 
 function AlertToolbar({ children, className, ...props }: AlertToolbarProps) {
 	return (
@@ -108,19 +113,25 @@ function AlertToolbar({ children, className, ...props }: AlertToolbarProps) {
 		</div>
 	)
 }
+AlertToolbar.displayName = "AlertToolbar"
 
 function AlertDescription({ className, ...props }: AlertDescriptionProps) {
 	return <div data-slot="alert-description" className={cn("text-sm [&_p]:mb-2 [&_p]:leading-relaxed", className)} {...props} />
 }
+AlertDescription.displayName = "AlertDescription"
 
 function AlertContent({ className, ...props }: AlertContentProps) {
 	return (
 		<div
 			data-slot="alert-content"
-			className={cn("space-y-2 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:font-medium", className)}
+			className={cn(
+				"flex flex-col justify-center gap-1 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:font-medium",
+				className
+			)}
 			{...props}
 		/>
 	)
 }
+AlertContent.displayName = "AlertContent"
 
 export { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar, alertVariants }

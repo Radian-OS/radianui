@@ -1,14 +1,23 @@
 import React from "react"
+import { Archive, Pencil, Trash2 } from "lucide-react"
 import { Button, ButtonGroup } from "@/registry/ui/button"
 
 function ButtonGroupExample() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-4">
 			<ButtonGroup>
-				<Button>First</Button>
-				<Button>Second</Button>
-				<Button>Third</Button>
-				<Button>Fourth</Button>
+				<Button>
+					<Archive />
+					Archive
+				</Button>
+				<Button>
+					<Pencil />
+					Edit
+				</Button>
+				<Button>
+					<Trash2 />
+					Delete
+				</Button>
 			</ButtonGroup>
 		</div>
 	)

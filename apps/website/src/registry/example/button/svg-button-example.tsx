@@ -3,7 +3,7 @@ import { Button } from "@/registry/ui/button"
 
 function SvgButtonExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-6">
+		<div className="flex flex-col items-center justify-center gap-4">
 			<div className="flex items-center justify-center gap-4">
 				<Button className="[&>svg]:size-24" variant="outline" color="neutral">
 					<svg className="text-fg" width="93" height="24" viewBox="0 0 93 24" fill="none" xmlns="http://www.w3.org/2000/svg">

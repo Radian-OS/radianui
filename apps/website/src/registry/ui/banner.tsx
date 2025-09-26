@@ -16,7 +16,7 @@ export type BannerContentProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
-const bannerVariants = cva("flex items-center justify-center w-full gap-2 p-2 text-sm relative", {
+const bannerVariants = cva("flex items-center justify-center w-full gap-3 py-2 px-4", {
 	variants: {
 		color: {
 			neutral: "",
@@ -30,7 +30,7 @@ const bannerVariants = cva("flex items-center justify-center w-full gap-2 p-2 te
 			strong: "",
 			soft: "",
 			"soft-outline": "ring-1 ring-inset",
-			outline: "ring-1 ring-inset ring-border bg-transparent",
+			outline: "border border-soft [&_[data-slot=banner-close]]:text-fg [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
 		},
 	},
 	compoundVariants: [
@@ -59,12 +59,12 @@ const bannerVariants = cva("flex items-center justify-center w-full gap-2 p-2 te
 		{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text outline-warning-accent" },
 
 		// Outline
-		{ color: "neutral", variant: "outline", className: "ring-border bg-transparent text-foreground" },
-		{ color: "primary", variant: "outline", className: "ring-primary bg-transparent text-primary-text" },
-		{ color: "info", variant: "outline", className: "ring-info bg-transparent text-info-text" },
-		{ color: "success", variant: "outline", className: "ring-success bg-transparent text-success-text" },
-		{ color: "error", variant: "outline", className: "ring-error bg-transparent text-error-text" },
-		{ color: "warning", variant: "outline", className: "ring-warning bg-transparent text-warning-text" },
+		{ color: "neutral", variant: "outline", className: "bg-transparent text-foreground " },
+		{ color: "primary", variant: "outline", className: "bg-transparent text-primary-text" },
+		{ color: "info", variant: "outline", className: "bg-transparent text-info-text" },
+		{ color: "success", variant: "outline", className: "bg-transparent text-success-text" },
+		{ color: "error", variant: "outline", className: "bg-transparent text-error-text" },
+		{ color: "warning", variant: "outline", className: "bg-transparent text-warning-text" },
 	],
 	defaultVariants: {
 		color: "primary",
@@ -77,12 +77,7 @@ function Banner({ className, color, variant, onClose, children, ...props }: Bann
 		<div data-slot="banner" role="banner" className={cn(bannerVariants({ color, variant }), className)} {...props}>
 			{children}
 			{onClose && (
-				<button
-					type="button"
-					onClick={onClose}
-					aria-label="Dismiss"
-					data-slot="banner-close"
-					className="group absolute right-2 top-1/2 flex size-6 shrink-0 -translate-y-1/2 cursor-pointer items-center justify-center rounded-md transition-colors hover:bg-black/5 dark:hover:bg-white/5">
+				<button onClick={onClose} aria-label="Dismiss" data-slot="banner-close" className={cn("group flex size-5 shrink-0 cursor-pointer items-center justify-center")}>
 					<X className="size-4 opacity-60 group-hover:opacity-100" />
 				</button>
 			)}
@@ -102,7 +97,16 @@ function BannerDescription({ className, ...props }: BannerDescriptionProps) {
 BannerDescription.displayName = "BannerDescription"
 
 function BannerContent({ className, ...props }: BannerContentProps) {
-	return <div data-slot="banner-content" className={cn("flex flex-1 items-center justify-center gap-2 [&_[data-slot=banner-title]]:font-semibold", className)} {...props} />
+	return (
+		<div
+			data-slot="banner-content"
+			className={cn(
+				"flex flex-1 flex-col items-start justify-start gap-0.5 [&_[data-slot=banner-description]]:text-sm [&_[data-slot=banner-title]]:text-sm [&_[data-slot=banner-title]]:font-semibold",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 BannerContent.displayName = "BannerContent"
 

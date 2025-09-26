@@ -14,7 +14,7 @@ const AlertColorsExample = () => {
 					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
-					<AlertTitle>Strong Primary</AlertTitle>
+					<AlertTitle>Primary</AlertTitle>
 					<AlertDescription>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
 					</AlertDescription>
@@ -26,7 +26,7 @@ const AlertColorsExample = () => {
 					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
-					<AlertTitle>Strong Info</AlertTitle>
+					<AlertTitle>Info</AlertTitle>
 					<AlertDescription>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
 					</AlertDescription>
@@ -38,7 +38,7 @@ const AlertColorsExample = () => {
 					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
-					<AlertTitle>Strong Success</AlertTitle>
+					<AlertTitle>Success</AlertTitle>
 					<AlertDescription>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
 					</AlertDescription>
@@ -50,7 +50,7 @@ const AlertColorsExample = () => {
 					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
-					<AlertTitle>Strong Error</AlertTitle>
+					<AlertTitle>Error</AlertTitle>
 					<AlertDescription>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
 					</AlertDescription>
@@ -62,7 +62,7 @@ const AlertColorsExample = () => {
 					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
-					<AlertTitle>Strong Warning</AlertTitle>
+					<AlertTitle>Warning</AlertTitle>
 					<AlertDescription>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
 					</AlertDescription>
@@ -74,7 +74,7 @@ const AlertColorsExample = () => {
 					<BellIcon />
 				</AlertIcon>
 				<AlertContent>
-					<AlertTitle>Strong Neutral</AlertTitle>
+					<AlertTitle>Neutral</AlertTitle>
 					<AlertDescription>
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis maiores mollitia repellendus libero, soluta laborum doloribus doloremque nemo laboriosam voluptas,
 					</AlertDescription>

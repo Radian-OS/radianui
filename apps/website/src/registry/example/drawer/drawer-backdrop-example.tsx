@@ -7,7 +7,7 @@ function DrawerBackdropExample() {
 		<div className="flex items-center justify-center gap-6">
 			<Drawer variant="default" direction="right" backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Overlay
 					</Button>
 				</DrawerTrigger>
@@ -40,8 +40,41 @@ function DrawerBackdropExample() {
 			</Drawer>
 			<Drawer variant="default" direction="right" backdrop="blur">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Blur
+					</Button>
+				</DrawerTrigger>
+				<DrawerContent>
+					<DrawerHeader>
+						<DrawerTitle>This is a drawer header</DrawerTitle>
+						<DrawerDescription>This is a drawer description message.</DrawerDescription>
+					</DrawerHeader>
+					<DrawerBody>
+						<div className="w-90">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Est itaque reprehenderit laudantium, excepturi maiores dolore temporibus veniam eos corporis culpa
+							consequatur quidem officiis dolorem ea magnam, doloribus repudiandae, atque vel? Sapiente id nemo saepe nulla commodi ex voluptatum maiores, ab temporibus officia et
+							odio. Dicta corrupti vel, nesciunt adipisci eum quibusdam voluptates suscipit consectetur repellendus omnis quam obcaecati laboriosam? Facere. Saepe non aliquid
+							laboriosam aut earum aperiam enim omnis minima illo dicta nihil dolor voluptatibus ab maxime, dolores autem obcaecati repellendus maiores aspernatur ipsam! Quibusdam
+							dolore voluptatibus doloribus et recusandae? Nostrum ut similique quos aut deleniti! Voluptatibus minima deleniti autem molestiae necessitatibus eius consequuntur
+							iusto veniam nisi. Magnam consectetur facere quasi reprehenderit laboriosam quisquam maxime natus, tempore numquam maiores architecto. Hic optio aperiam cumque
+							repellat porro aut numquam ad, mollitia voluptas eos perspiciatis reiciendis iure perferendis quibusdam error, exercitationem, debitis reprehenderit blanditiis
+							cupiditate odio provident magni. In vero laborum iusto.
+						</div>
+					</DrawerBody>
+					<DrawerFooter>
+						<DrawerClose>
+							<Button variant="outline" color="neutral">
+								Close Drawer
+							</Button>
+						</DrawerClose>
+						<Button>Submit Action</Button>
+					</DrawerFooter>
+				</DrawerContent>
+			</Drawer>
+			<Drawer variant="default" direction="right" backdrop="none">
+				<DrawerTrigger>
+					<Button variant="outline" color="neutral">
+						None
 					</Button>
 				</DrawerTrigger>
 				<DrawerContent>

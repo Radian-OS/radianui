@@ -6,65 +6,77 @@ import { LinkButton } from "@/registry/ui/button"
 function BannerColorExample() {
 	return (
 		<div className="flex w-full flex-col items-center justify-center gap-4">
-			<Banner color="error" onClose={() => console.log("object")}>
+			<Banner color="error" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton color="error" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
-			<Banner color="info" onClose={() => console.log("object")}>
+			<Banner color="info" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton color="info" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
-			<Banner color="neutral" onClose={() => console.log("object")}>
+			<Banner color="neutral" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton color="neutral" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
-			<Banner color="primary" onClose={() => console.log("object")}>
+			<Banner color="primary" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton color="primary" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
-			<Banner color="success" onClose={() => console.log("object")}>
+			<Banner color="success" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton color="success" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
-			<Banner color="warning" onClose={() => console.log("object")}>
+			<Banner color="warning" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton color="warning" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
 		</div>
 	)

@@ -3,7 +3,7 @@ import { Button } from "@/registry/ui/button"
 
 function ButtonExampleDisabled() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+		<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
 			<Button disabled>Strong</Button>
 			<Button variant="soft" disabled>
 				Soft
