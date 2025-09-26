@@ -1,0 +1,87 @@
+---
+title: Command
+description: Fast, composable, unstyled command menu for React.
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/command.tsx
+  externalReference:
+    - label: cmdk
+      href: https://cmdk.paco.me/
+---
+
+<ComponentPreview path="command/command-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add command",
+				npm: "npx @radianos/radianbeta add command",
+				yarn: "yarn @radianos/radianbeta add command",
+				bun: "bunx @radianos/radianbeta add command",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+		<Steps>
+			<Step>Install the following dependencies:</Step>
+			<PackageManagerTabs
+				commands={{
+					pnpm: "pnpm add cmdk",
+					npm: "npm install cmdk",
+					yarn: "yarn add cmdk",
+					bun: "bun add cmdk",
+				}}
+			/>
+			<Step>Copy and paste the following code into your project.</Step>
+			<ComponentSource name="command" title="components/ui/command.tsx" collapsible />
+			<Step>Update the import paths as per your project structure.</Step>
+		</Steps>
+	</TabsContent>
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet
+	title="/components/ui/command"
+	code={`import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/components/ui/command"`}
+/>
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/command"
+	code={`<Command>
+    <CommandInput placeholder="Type a command or search..." />
+    <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+            <CommandItem>Calendar</CommandItem>
+            <CommandItem>Search Emoji</CommandItem>
+            <CommandItem>Calculator</CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+            <CommandItem>Profile</CommandItem>
+            <CommandItem>Billing</CommandItem>
+            <CommandItem>Settings</CommandItem>
+        </CommandGroup>
+    </CommandList>
+</Command>`}
+/>
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable title="Collapsible" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible" data={[]} />
+</PropsTableWrapper>

@@ -42,7 +42,7 @@ export default function PriceRange() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-md space-y-6">
 				<FormField
 					control={form.control}
 					name="range"
@@ -51,19 +51,13 @@ export default function PriceRange() {
 							<FormLabel>Price Range</FormLabel>
 
 							<FormControl>
-								<Slider
-									min={MIN_PRICE}
-									max={MAX_PRICE}
-									value={field.value}
-									onValueChange={(values) => field.onChange(values)}
-									className="w-[420px]"
-									defaultValue={[MIN_PRICE, MAX_PRICE]}>
+								<Slider min={MIN_PRICE} max={MAX_PRICE} value={field.value} onValueChange={(values) => field.onChange(values)} defaultValue={[MIN_PRICE, MAX_PRICE]}>
 									<SliderThumb />
 									<SliderThumb />
 								</Slider>
 							</FormControl>
 
-							<div className="mt-4 flex items-center gap-5">
+							<div className="mt-4 flex w-full items-center gap-5">
 								<div className="flex flex-col gap-1.5">
 									<Label htmlFor="min-price-input">Min Price</Label>
 
