@@ -26,7 +26,9 @@ export default function BackdropBlur() {
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel asChild>
-						<Button variant="outline">Cancel</Button>
+						<Button variant="outline" color="neutral">
+							Cancel
+						</Button>
 					</AlertDialogCancel>
 					<AlertDialogAction asChild>
 						<Button variant="strong" color="primary">

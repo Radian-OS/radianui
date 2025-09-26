@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator } from "@/registry
 export default function CustomAvatarStatusPreview() {
 	return (
 		<div className="flex gap-6">
-			<Avatar size="64">
+			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/29.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="bottom-0 right-0">
@@ -21,14 +21,14 @@ export default function CustomAvatarStatusPreview() {
 					</svg>
 				</AvatarIndicator>
 			</Avatar>
-			<Avatar size="64">
+			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/88.jpg" />
 				<AvatarFallback className="text-warning bg-warning/10">AJ</AvatarFallback>
 				<AvatarIndicator className="-bottom-0.5 -right-0.5">
 					<Plus size={20} className="bg-primary text-white-inverse border-bg rounded-full border-2 p-0.5" />
 				</AvatarIndicator>
 			</Avatar>
-			<Avatar size="64">
+			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/85.jpg" />
 				<AvatarFallback className="text-warning bg-warning/10">AJ</AvatarFallback>
 				<AvatarIndicator className="-bottom-0.5 -right-0.5">

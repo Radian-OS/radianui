@@ -7,11 +7,6 @@ import { VariantProps, cva } from "class-variance-authority"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-/**
- * This file is adapted from [reui] (MIT License).
- * Source: https://github.com/keenthemes/reui/blob/main/registry/default/ui/select.tsx
- */
-
 export type SelectContextType = {
 	indicatorPosition?: "left" | "right"
 	indicatorVisibility?: boolean

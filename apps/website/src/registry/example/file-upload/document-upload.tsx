@@ -4,31 +4,6 @@ import { AlertCircleIcon, FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTe
 import { Button, IconButton } from "@/registry/ui/button"
 import { formatBytes, useFileUpload } from "@/registry/ui/file-upload"
 
-// Create some dummy initial files
-const initialFiles = [
-	{
-		name: "radiandocument.pdf",
-		size: 528737,
-		type: "application/pdf",
-		url: "https://example.com/radiandocument.pdf",
-		id: "radiandocument.pdf-1744638436563",
-	},
-	{
-		name: "document.zip",
-		size: 252873,
-		type: "application/zip",
-		url: "https://example.com/document.zip",
-		id: "document.zip-1744638436563",
-	},
-	{
-		name: "radian.xlsx",
-		size: 352873,
-		type: "application/xlsx",
-		url: "https://example.com/radian.xlsx",
-		id: "radian.xlsx-1744638436563",
-	},
-]
-
 const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 	const fileType = file.file instanceof File ? file.file.type : file.file.type
 	const fileName = file.file instanceof File ? file.file.name : file.file.name
@@ -57,11 +32,10 @@ export default function DocumentUpload() {
 		multiple: true,
 		maxFiles,
 		maxSize,
-		initialFiles,
 	})
 
 	return (
-		<div className="w-100 flex flex-col gap-2">
+		<div className="w-90 flex flex-col gap-2">
 			{/* Drop area */}
 			<div
 				role="button"

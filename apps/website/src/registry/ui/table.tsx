@@ -34,19 +34,19 @@ function TableRow({ className, ...props }: React.HTMLAttributes<HTMLTableRowElem
 }
 TableRow.displayName = "TableRow"
 
-function TableHead({ className, ...props }: React.ThHTMLAttributes<HTMLTableCellElement>) {
+function TableHead({ className, ...props }: React.ComponentProps<"th">) {
 	return (
 		<th
 			data-slot="table-head"
-			className={cn("text-fg-secondary bg-fill2 h-10 px-3 py-2.5 text-left align-middle text-sm font-medium rtl:text-right [&:has([role=checkbox])]:pe-0", className)}
+			className={cn("text-fg-secondary bg-fill2 px-3 py-2.5 text-left align-middle font-medium has-[role=checkbox]:w-px [&:has([role=checkbox])]:pr-0", className)}
 			{...props}
 		/>
 	)
 }
 TableHead.displayName = "TableHead"
 
-function TableCell({ className, ...props }: React.TdHTMLAttributes<HTMLTableCellElement>) {
-	return <td data-slot="table-cell" className={cn("p-3 align-middle [&:has([role=checkbox])]:pe-0", className)} {...props} />
+function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+	return <td data-slot="table-cell" className={cn("p-3 align-middle [&:has([role=checkbox])]:pr-0", className)} {...props} />
 }
 TableCell.displayName = "TableCell"
 

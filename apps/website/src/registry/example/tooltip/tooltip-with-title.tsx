@@ -6,7 +6,7 @@ export default function TooltipWithTitle() {
 		<Tooltip>
 			<TooltipTrigger asChild>
 				<Button color="neutral" variant="outline">
-					With Image
+					With Title
 				</Button>
 			</TooltipTrigger>
 			<TooltipContent theme="light" className="py-2">
