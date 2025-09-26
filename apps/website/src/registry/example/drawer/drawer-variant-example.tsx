@@ -7,7 +7,7 @@ function DrawerVariantExample() {
 		<div className="flex items-center justify-center gap-6">
 			<Drawer variant="rounded" direction="right" backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Rounded
 					</Button>
 				</DrawerTrigger>
@@ -40,7 +40,7 @@ function DrawerVariantExample() {
 			</Drawer>
 			<Drawer variant="float" direction="right" backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Float
 					</Button>
 				</DrawerTrigger>
@@ -73,7 +73,7 @@ function DrawerVariantExample() {
 			</Drawer>
 			<Drawer variant="default" direction="right" backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Default
 					</Button>
 				</DrawerTrigger>

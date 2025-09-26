@@ -6,45 +6,49 @@ import { LinkButton } from "@/registry/ui/button"
 function BannerVariantsExample() {
 	return (
 		<div className="flex w-full flex-col items-center justify-center gap-4">
-			<Banner variant="outline" onClose={() => console.log("object")}>
+			<Banner variant="outline" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton color="neutral" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
-			<Banner variant="soft" onClose={() => console.log("object")}>
+			<Banner variant="soft" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton href="#">Button Label</LinkButton>
 			</Banner>
-			<Banner variant="soft-outline" onClose={() => console.log("object")}>
+			<Banner variant="soft-outline" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton href="#">Button Label</LinkButton>
 			</Banner>
-			<Banner variant="strong" onClose={() => console.log("object")}>
+			<Banner variant="strong" onClose={() => null}>
+				<BannerIcon>
+					<CubeIcon className="size-5" />
+				</BannerIcon>
 				<BannerContent>
-					<BannerIcon>
-						<CubeIcon className="size-5" />
-					</BannerIcon>
 					<BannerTitle>Banner Title Here</BannerTitle>
 					<BannerDescription>Enter Your banner message here</BannerDescription>
-					<LinkButton href="#">Button Label</LinkButton>
 				</BannerContent>
+				<LinkButton className="text-white" href="#">
+					Button Label
+				</LinkButton>
 			</Banner>
 		</div>
 	)

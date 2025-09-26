@@ -8,7 +8,7 @@ function DrawerPositionExample() {
 		<div className="flex items-center justify-center gap-6">
 			<Drawer variant="default" direction="left" handle={false} backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						<ChevronLeft size={20} /> Left
 					</Button>
 				</DrawerTrigger>
@@ -41,7 +41,7 @@ function DrawerPositionExample() {
 			</Drawer>
 			<Drawer variant="default" direction="right" handle={false} backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Right <ChevronRight size={20} />
 					</Button>
 				</DrawerTrigger>
@@ -74,7 +74,7 @@ function DrawerPositionExample() {
 			</Drawer>
 			<Drawer variant="default" direction="top" handle={false} backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Top <ChevronUp size={20} />
 					</Button>
 				</DrawerTrigger>
@@ -105,7 +105,7 @@ function DrawerPositionExample() {
 			</Drawer>
 			<Drawer variant="default" direction="bottom" handle={false} backdrop="overlay">
 				<DrawerTrigger>
-					<Button variant="soft" color="neutral">
+					<Button variant="outline" color="neutral">
 						Bottom <ChevronDown size={20} />
 					</Button>
 				</DrawerTrigger>

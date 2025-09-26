@@ -5,7 +5,7 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
 
-type BackdropType = "overlay" | "blur" | null
+type BackdropType = "overlay" | "blur" | "none"
 type DrawerType = "float" | "default" | "rounded"
 type DirectionType = "top" | "bottom" | "right" | "left"
 
@@ -96,6 +96,7 @@ const backdropVariants = cva("z-[999] fixed", {
 		backdrop: {
 			overlay: "inset-0 bg-black/50",
 			blur: "backdrop-blur-sm inset-0",
+			none: "backdrop-blur-none inset-0",
 		},
 	},
 	defaultVariants: {
