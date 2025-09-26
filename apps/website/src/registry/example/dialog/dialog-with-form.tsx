@@ -8,7 +8,9 @@ export default function DialogWithForm() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button>Integrate Now</Button>
+				<Button variant="outline" color="neutral">
+					Integrate Now
+				</Button>
 			</DialogTrigger>
 			<DialogContent closeButton="hover">
 				<div className="flex items-center justify-center gap-2 pt-6">

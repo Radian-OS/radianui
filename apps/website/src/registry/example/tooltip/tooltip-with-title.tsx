@@ -11,11 +11,8 @@ export default function TooltipWithTitle() {
 			</TooltipTrigger>
 			<TooltipContent theme="light" className="py-2">
 				<div className="flex flex-col gap-1">
-					<p className="font-medium">Tooltip with title</p>
-					<p className="text-xs">
-						Tooltips are flexible and accessible components that support dynamic placement, rich content, and a robust API. Use them as lightweight help or a compact menu by
-						setting the trigger prop to click.
-					</p>
+					<p className="text-fg font-medium">Whats new in Radian v1.5.0</p>
+					<p className="text-xs">Discover the innovative our latest update introduces cutting-edge model that enhances your experience with advanced capabilities.</p>
 				</div>
 			</TooltipContent>
 		</Tooltip>

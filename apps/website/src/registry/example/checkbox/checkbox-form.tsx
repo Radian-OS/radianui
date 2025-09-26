@@ -45,7 +45,7 @@ export default function CheckboxForm() {
 					control={form.control}
 					name="acceptTerms"
 					render={({ field }) => (
-						<FormItem className="gap-4">
+						<FormItem>
 							<div className="flex items-center gap-2">
 								<FormControl>
 									<Checkbox checked={field.value} onCheckedChange={field.onChange} />

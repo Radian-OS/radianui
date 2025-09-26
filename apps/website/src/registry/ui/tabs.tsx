@@ -94,7 +94,7 @@ const tabsTriggerStyles = cva(
 				outline: "data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill2",
-				"outline-ghost": "data-[state=active]:bg-bg border border-transparent data-[state=active]:drop-shadow-xs",
+				"outline-ghost": "data-[state=active]:bg-bg border border-transparent data-[state=active]:border-soft data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [
@@ -195,7 +195,7 @@ function useTabsList() {
 }
 
 function Tabs({ className, ...props }: TabsProps) {
-	return <TabsPrimitive.Root className={cn("no-scrollbar flex flex-col gap-3 data-[orientation=vertical]:flex-row", className)} {...props} />
+	return <TabsPrimitive.Root data-slot="tabs" className={cn("no-scrollbar flex flex-col gap-3 data-[orientation=vertical]:flex-row", className)} {...props} />
 }
 Tabs.displayName = TabsPrimitive.Root.displayName
 
@@ -203,7 +203,7 @@ function TabsList({ className, width = "fit", children, size = "md", variant = "
 	const ctxValues = React.useMemo(() => ({ variant, size, width }), [variant, size, width])
 	return (
 		<TabsListContext.Provider value={ctxValues}>
-			<TabsPrimitive.List className={cn(tabsListStyles({ size, variant, width }), className)} {...props}>
+			<TabsPrimitive.List data-slot="tabs-list" className={cn(tabsListStyles({ size, variant, width }), className)} {...props}>
 				{children}
 			</TabsPrimitive.List>
 		</TabsListContext.Provider>
@@ -213,12 +213,12 @@ TabsList.displayName = TabsPrimitive.List.displayName
 
 function TabsTrigger({ className, ...props }: TabsTriggerProps) {
 	const { size, variant } = useTabsList()
-	return <TabsPrimitive.Trigger className={cn(tabsTriggerStyles({ variant, size }), className)} {...props} />
+	return <TabsPrimitive.Trigger data-slot="tabs-trigger" className={cn(tabsTriggerStyles({ variant, size }), className)} {...props} />
 }
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 function TabsContent({ className, ...props }: TabsContentProps) {
-	return <TabsPrimitive.Content className={cn("flex-1 outline-none data-[state=inactive]:hidden", className)} {...props} />
+	return <TabsPrimitive.Content data-slot="tabs-content" className={cn("flex-1 outline-none data-[state=inactive]:hidden", className)} {...props} />
 }
 
 TabsContent.displayName = TabsPrimitive.Content.displayName

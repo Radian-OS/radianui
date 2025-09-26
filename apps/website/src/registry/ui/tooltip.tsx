@@ -29,14 +29,16 @@ const tooltipContentVariants = cva(
 function Tooltip({ children, ...props }: TooltipProps) {
 	return (
 		<TooltipPrimitive.Provider delayDuration={0}>
-			<TooltipPrimitive.Root {...props}>{children}</TooltipPrimitive.Root>
+			<TooltipPrimitive.Root data-slot="tooltip" {...props}>
+				{children}
+			</TooltipPrimitive.Root>
 		</TooltipPrimitive.Provider>
 	)
 }
 Tooltip.displayName = TooltipPrimitive.Root.displayName
 
 function TooltipTrigger(props: TooltipTriggerProps) {
-	return <TooltipPrimitive.Trigger {...props} />
+	return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
 }
 TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
@@ -55,7 +57,9 @@ function TooltipContent({ align = "center", side = "top", sideOffset = 4, theme 
 				<TooltipPrimitive.Arrow
 					data-slot="tooltip-arrow"
 					data-theme={theme}
-					className="data-[theme=light]:fill-elevation-level1 -my-px data-[theme=default]:fill-black data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)] data-[theme=default]:dark:fill-white"
+					width={12}
+					height={7}
+					className="data-[theme=light]:fill-elevation-level1 -mt-0.5 rounded-md data-[theme=default]:fill-black data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)] data-[theme=default]:dark:fill-white"
 				/>
 			)}
 		</TooltipPrimitive.Content>

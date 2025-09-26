@@ -6,7 +6,9 @@ export default function DialogBackdropBlur() {
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
-				<Button>Open Dialog</Button>
+				<Button variant="outline" color="neutral">
+					Open Dialog
+				</Button>
 			</DialogTrigger>
 			<DialogContent backdrop="blur">
 				<DialogHeader>

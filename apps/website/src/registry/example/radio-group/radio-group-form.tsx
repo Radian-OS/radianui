@@ -56,7 +56,7 @@ export default function RadioGroupForm() {
 					control={form.control}
 					name="chip"
 					render={({ field }) => (
-						<FormItem className="gap-4">
+						<FormItem>
 							<FormLabel asChild>
 								<Label>Select Your ARM Chip</Label>
 							</FormLabel>
