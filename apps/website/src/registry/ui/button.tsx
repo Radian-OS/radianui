@@ -130,7 +130,7 @@ export const buttonVariants = cva(
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "bg-black-inverse font-medium text-white-inverse hover:bg-fg focus-visible:ring-black-inverse focus-visible:outline-none",
+				className: "bg-black-inverse font-medium text-white-inverse hover:bg-fg-secondary focus-visible:ring-black-inverse focus-visible:outline-none",
 			},
 
 			// Soft variant + colors
