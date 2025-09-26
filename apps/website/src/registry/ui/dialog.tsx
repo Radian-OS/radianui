@@ -39,7 +39,11 @@ const dialogOverlayVariants = cva("data-[state=open]:animate-in data-[state=clos
 })
 
 function Dialog({ children, ...props }: DialogProps) {
-	return <DialogPrimitive.Root {...props}>{children}</DialogPrimitive.Root>
+	return (
+		<DialogPrimitive.Root data-slot="dialog" {...props}>
+			{children}
+		</DialogPrimitive.Root>
+	)
 }
 
 const DialogTrigger = DialogPrimitive.Trigger
@@ -47,7 +51,7 @@ const DialogPortal = DialogPrimitive.Portal
 const DialogClose = DialogPrimitive.Close
 
 function DialogOverlay({ className, backdrop = "overlay", ...props }: DialogOverlayProps) {
-	return <DialogPrimitive.Overlay data-slot="modal-overlay" className={cn(dialogOverlayVariants({ backdrop }), className)} {...props} />
+	return <DialogPrimitive.Overlay data-slot="dialog-overlay" className={cn(dialogOverlayVariants({ backdrop }), className)} {...props} />
 }
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
@@ -56,7 +60,7 @@ function DialogContent({ className, children, backdrop, closeButton = "visible",
 		<DialogPortal>
 			<DialogOverlay backdrop={backdrop} />
 			<DialogPrimitive.Content
-				data-slot="modal-content"
+				data-slot="dialog-content"
 				className={cn(
 					"bg-bg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-alpha group fixed left-1/2 top-1/2 z-[999] flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-2xl border p-4 shadow-lg duration-200",
 					className
@@ -83,27 +87,27 @@ function DialogContent({ className, children, backdrop, closeButton = "visible",
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
 function DialogHeader({ className, ...props }: DialogHeaderProps) {
-	return <div className={cn("flex flex-col space-y-1 text-center sm:text-left", className)} {...props} />
+	return <div data-slot="dialog-header" className={cn("flex flex-col space-y-1 text-center sm:text-left", className)} {...props} />
 }
 DialogHeader.displayName = "DialogHeader"
 
 function DialogBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div data-slot="modal-body" className={cn("", className)} {...props} />
+	return <div data-slot="dialog-body" className={cn("", className)} {...props} />
 }
 DialogBody.displayName = "DialogBody"
 
 function DialogFooter({ className, ...props }: DialogFooterProps) {
-	return <div className={cn("flex justify-end gap-2", className)} {...props} />
+	return <div data-slot="dialog-footer" className={cn("flex justify-end gap-2", className)} {...props} />
 }
 DialogFooter.displayName = "DialogFooter"
 
 function DialogTitle({ className, ...props }: DialogTitleProps) {
-	return <DialogPrimitive.Title data-slot="modal-title" className={cn("text-lg font-semibold", className)} {...props} />
+	return <DialogPrimitive.Title data-slot="dialog-title" className={cn("text-lg font-semibold", className)} {...props} />
 }
 DialogTitle.displayName = DialogPrimitive.Title.displayName
 
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="modal-description" className={cn("text-fg-secondary text-sm/5 leading-tight", className)} {...props} />
+	return <DialogPrimitive.Description data-slot="dialog-description" className={cn("text-fg-secondary text-sm/5 leading-tight", className)} {...props} />
 }
 DialogDescription.displayName = DialogPrimitive.Description.displayName
 

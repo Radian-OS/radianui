@@ -11,7 +11,7 @@ export default function TooltipWithTitle() {
 			</TooltipTrigger>
 			<TooltipContent theme="light" className="py-2">
 				<div className="flex flex-col gap-1">
-					<p className="font-medium">Tooltip with title</p>
+					<p className="text-fg font-medium">Tooltip with title</p>
 					<p className="text-xs">
 						Tooltips are flexible and accessible components that support dynamic placement, rich content, and a robust API. Use them as lightweight help or a compact menu by
 						setting the trigger prop to click.
