@@ -47,6 +47,7 @@ const NumberInputPreview = () => {
 				<Label>Input Group</Label>
 				<InputGroup className="md:w-80">
 					<InputAddon
+						mode="icon"
 						onClick={(e) => {
 							e.stopPropagation()
 							setAmount1((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
@@ -57,6 +58,7 @@ const NumberInputPreview = () => {
 					</InputAddon>
 					<Input onChange={handleChange1} placeholder="Enter Amount Here" value={amount1} type="numeric" />
 					<InputAddon
+						mode="icon"
 						className="cursor-pointer"
 						onClick={(e) => {
 							e.stopPropagation()

@@ -15,7 +15,7 @@ const EmailPreview = () => {
 			<div className="flex flex-col gap-1.5">
 				<Label>Input Group</Label>
 				<InputGroup className="md:w-80">
-					<InputAddon>
+					<InputAddon mode="icon">
 						<Mail />
 					</InputAddon>
 					<Input type="email" placeholder="designer@radianos.com" />

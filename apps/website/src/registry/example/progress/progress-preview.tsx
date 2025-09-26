@@ -57,12 +57,28 @@ const ProgressPreview = () => {
 					showLineNumber
 					className="h-[420px]"
 					code={`import { Progress } from "@/components/ui/progress" 
+import { useEffect, useState } from "react"
 
 const ProgressPreview = () => {
+	const [progress, setProgress] = useState(0)
+
+	useEffect(() => {
+	const interval = setInterval(() => {
+		setProgress((prev) => {
+			if (prev >= 70) {
+				clearInterval(interval)
+				return 70
+			}
+			return prev + 1
+		})
+	}, 500)
+	return () => clearInterval(interval)
+	}, [])
+	
 	return (
 		<div className="flex flex-col gap-1.5">
 			<Label>Progress</Label>
-			<Progress className="w-80" value={70} />
+			<Progress className="w-80" value={progress} />
 		</div>
  )
 }

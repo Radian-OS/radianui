@@ -4,7 +4,7 @@ import { CompactButton } from "@/registry/ui/button"
 
 function CompactButtonExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-6">
+		<div className="flex flex-col items-center justify-center gap-4">
 			<div className="flex items-center justify-center gap-4">
 				<CompactButton color="primary" variant="strong">
 					<CircleAlert />

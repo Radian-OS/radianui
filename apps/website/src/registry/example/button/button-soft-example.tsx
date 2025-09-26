@@ -3,7 +3,7 @@ import { Button } from "@/registry/ui/button"
 
 function ButtonSoftExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
+		<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
 			<Button variant="soft" color="primary">
 				Primary
 			</Button>

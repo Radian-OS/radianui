@@ -33,7 +33,7 @@ const data: Item[] = [
 		email: "frank.wilson@example.com",
 		status: "Inactive",
 		balance: 50,
-		note: "Frank’s account has been inactive for a while, though he retains a small remaining balance. In the past, he used our services regularly, but over time his engagement declined. We have not received recent feedback from him, making it unclear why he reduced activity.",
+		note: "Frank account has been inactive for a while, though he retains a small remaining balance. In the past, he used our services regularly, but over time his engagement declined. We have not received recent feedback from him, making it unclear why he reduced activity.",
 	},
 	{
 		id: "itm-007",
@@ -65,7 +65,7 @@ const data: Item[] = [
 		email: "jack.thompson@example.com",
 		status: "Inactive",
 		balance: 0,
-		note: "Jack’s account is currently inactive with no remaining balance. He used the platform actively during his first year but later became less engaged.",
+		note: "Jack account is currently inactive with no remaining balance. He used the platform actively during his first year but later became less engaged.",
 	},
 ]
 
@@ -77,11 +77,12 @@ const columns: ColumnDef<Item>[] = [
 			return row.getCanExpand() ? (
 				<IconButton
 					{...{
-						className: "size-7 shadow-none text-muted-foreground",
+						className: "size-7 shadow-none text-fg-secondary",
 						onClick: row.getToggleExpandedHandler(),
 						"aria-expanded": row.getIsExpanded(),
 						"aria-label": row.getIsExpanded() ? `Collapse details for ${row.original.name}` : `Expand details for ${row.original.name}`,
 						variant: "ghost",
+						color: "neutral",
 					}}>
 					{row.getIsExpanded() ? <ChevronUpIcon className="opacity-60" size={16} aria-hidden="true" /> : <ChevronDownIcon className="opacity-60" size={16} aria-hidden="true" />}
 				</IconButton>
@@ -172,7 +173,7 @@ export default function ExpandTable() {
 								{row.getIsExpanded() && (
 									<TableRow>
 										<TableCell colSpan={row.getVisibleCells().length}>
-											<div className="text-primary/80 flex items-start py-2">
+											<div className="text-fg flex items-start py-2">
 												<span className="me-3 mt-0.5 flex w-7 shrink-0 justify-center" aria-hidden="true">
 													<InfoIcon className="opacity-60" size={16} />
 												</span>
