@@ -7,7 +7,7 @@ const ToastColor = () => {
 	return (
 		<div className="flex items-center justify-center gap-4">
 			<Button
-				variant="strong"
+				variant="soft"
 				color="primary"
 				onClick={() =>
 					toast.custom((t) => (
@@ -34,10 +34,10 @@ const ToastColor = () => {
 
 			<Button
 				variant="strong"
-				color="success"
+				color="primary"
 				onClick={() =>
 					toast.custom((t) => (
-						<div className="bg-success flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
+						<div className="bg-primary flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
 							<Box size={20} className="text-white" />
 							<div className="text-white">
 								<p className="text-sm font-medium">Toast Title</p>
@@ -59,8 +59,8 @@ const ToastColor = () => {
 			</Button>
 
 			<Button
-				variant="strong"
-				color="error"
+				variant="outline"
+				color="primary"
 				onClick={() =>
 					toast.custom((t) => (
 						<div className="bg-black-inverse text-fg-inverse flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
