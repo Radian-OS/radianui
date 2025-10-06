@@ -70,7 +70,7 @@ export default function ComboboxMultiselect() {
 								{backendFrameworks.map((framework) => (
 									<CommandItem key={framework.value} value={framework.value} onSelect={() => toggleSelection(framework.value)}>
 										<span className="truncate">{framework.label}</span>
-										{selectedValues.includes(framework.value) && <Check />}
+										{selectedValues.includes(framework.value) && <Check className="ml-auto" />}
 									</CommandItem>
 								))}
 							</CommandGroup>
