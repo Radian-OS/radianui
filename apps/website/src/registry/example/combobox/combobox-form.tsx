@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { useForm } from "react-hook-form"
@@ -30,6 +31,8 @@ const FormSchema = z.object({
 })
 
 export default function ComboboxForm() {
+	const [open, setOpen] = React.useState(false)
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		mode: "onSubmit",
@@ -50,7 +53,7 @@ export default function ComboboxForm() {
 					render={({ field }) => (
 						<FormItem className="flex flex-col">
 							<FormLabel>Language</FormLabel>
-							<Popover>
+							<Popover open={open} onOpenChange={setOpen}>
 								<PopoverTrigger asChild>
 									<FormControl>
 										<Button
@@ -66,7 +69,7 @@ export default function ComboboxForm() {
 									</FormControl>
 								</PopoverTrigger>
 								<PopoverContent className="w-[200px] p-0">
-									<Command>
+									<Command className="border-0">
 										<CommandInput placeholder="Search language..." className="h-9" />
 										<CommandList>
 											<CommandEmpty>No language found.</CommandEmpty>
@@ -80,6 +83,7 @@ export default function ComboboxForm() {
 																shouldValidate: true,
 																shouldDirty: true,
 															})
+															setOpen(false)
 														}}>
 														{language.label}
 														<Check className={cn("ml-auto", language.value === field.value ? "opacity-100" : "opacity-0")} />
