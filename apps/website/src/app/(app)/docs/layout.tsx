@@ -12,12 +12,12 @@ interface Props {
 }
 
 const DocsLayout = ({ children }: Props) => {
-	const { position } = useToast()
+	const { position, isExpandable } = useToast()
 	const { theme = "system" } = useTheme()
 
 	return (
 		<div className="max-w-368 mx-auto flex w-full px-4 md:px-5">
-			<Toaster position={position} theme={theme as ToasterProps["theme"]} />
+			<Toaster expand={isExpandable} position={position} theme={theme as ToasterProps["theme"]} />
 
 			{/* Left Sidebar */}
 			<Sidebar />

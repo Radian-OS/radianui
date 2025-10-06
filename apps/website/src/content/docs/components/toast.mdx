@@ -14,16 +14,13 @@ links:
 ## Installation
 
 <Tabs defaultValue="cli">
-	<TabsList>
-		<TabsTrigger value="cli">CLI</TabsTrigger>
-	</TabsList>
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add toast",
-				npm: "npx @radianos/radianbeta add toast",
-				yarn: "yarn @radianos/radianbeta add toast",
-				bun: "bunx @radianos/radianbeta add toast",
+				pnpm: "pnpm i sonner",
+				npm: "npm i sonner",
+				yarn: "yarn i sonner",
+				bun: "bunx i sonner",
 			}}
 		/>
 	</TabsContent>
@@ -56,6 +53,10 @@ links:
 
 <ComponentPreview path="toast/toast-position" />
 
+### Toast Expand
+
+<ComponentPreview path="toast/toast-expand" />
+
 ---
 
 ## Props
@@ -70,6 +71,14 @@ links:
 				defaultValue: ["false"],
 				description: "Sets the number of expanded toasts",
 			},
+			{
+				name: "visibleToasts",
+				values: ["number"],
+				defaultValue: ["3"],
+				description: "Sets the number of visible toasts",
+			},
 		]}
-	/>
+		externalReference="https://sonner.emilkowal.ski/getting-started"
+    />
+
 </PropsTableWrapper>
