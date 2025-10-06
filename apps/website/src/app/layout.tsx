@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { websiteMetadata } from "@/config/website-metadata-config"
+import { ToastProvider } from "@/contexts/toast-context"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
@@ -53,10 +53,11 @@ export default async function RootLayout({
 			</head>
 			<body className={cn("relative min-h-svh", "antialiased")}>
 				<PostHogProvider>
-					<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-						{children}
-						<Toaster />
-					</ThemeProvider>
+					<ToastProvider>
+						<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+							{children}
+						</ThemeProvider>
+					</ToastProvider>
 				</PostHogProvider>
 			</body>
 		</html>
