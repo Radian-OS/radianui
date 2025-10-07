@@ -105,7 +105,7 @@ const inputWrapperVariants = cva(
 	[&_[data-slot=input]]:disabled:cursor-not-allowed
 	[&_[data-slot=input]]:disabled:opacity-50    
 
-	[&_svg]:text-fg-secondary 
+	[&_svg]:text-fg-tertiary 
 	[&_svg]:shrink-0
 
 	has-[[aria-invalid=true]]:border-error
