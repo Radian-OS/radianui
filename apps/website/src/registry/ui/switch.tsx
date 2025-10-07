@@ -117,7 +117,7 @@ const switchIndicatorVariants = cva(
 	}
 )
 
-const useSwitch = () => {
+function useSwitch() {
 	const context = React.useContext(SwitchContext)
 	if (!context) {
 		throw new Error("SwitchIndicator must be used within a Switch component")
