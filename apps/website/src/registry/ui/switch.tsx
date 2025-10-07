@@ -5,20 +5,18 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { Switch as SwitchPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
-// Define a context for `permanent` state
-const SwitchContext = React.createContext<{ permanent: boolean }>({
+export type SwitchContextType = { permanent?: boolean }
+
+export type SwitchWrapperProps = React.HTMLAttributes<HTMLDivElement> & SwitchContextType
+
+export type SwitchProps = React.ComponentProps<typeof SwitchPrimitive.Root> & VariantProps<typeof switchVariants> & { thumbClassName?: string }
+
+export type SwitchIndicatorProps = React.HTMLAttributes<HTMLSpanElement> & VariantProps<typeof switchIndicatorVariants>
+
+const SwitchContext = React.createContext<SwitchContextType>({
 	permanent: false,
 })
 
-const useSwitchContext = () => {
-	const context = React.useContext(SwitchContext)
-	if (!context) {
-		throw new Error("SwitchIndicator must be used within a Switch component")
-	}
-	return context
-}
-
-// Define classes for variants
 const switchVariants = cva(
 	`
     relative peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors 
@@ -119,9 +117,17 @@ const switchIndicatorVariants = cva(
 	}
 )
 
-function SwitchWrapper({ className, children, permanent = false, ...props }: React.HTMLAttributes<HTMLDivElement> & { permanent?: boolean }) {
+const useSwitch = () => {
+	const context = React.useContext(SwitchContext)
+	if (!context) {
+		throw new Error("SwitchIndicator must be used within a Switch component")
+	}
+	return context
+}
+
+function SwitchWrapper({ className, children, permanent = false, ...props }: SwitchWrapperProps) {
 	return (
-		<SwitchContext.Provider value={{ permanent }}>
+		<SwitchContext.Provider value={{ permanent: permanent ?? false }}>
 			<div data-slot="switch-wrapper" className={cn("relative inline-flex items-center", className)} {...props}>
 				{children}
 			</div>
@@ -129,14 +135,8 @@ function SwitchWrapper({ className, children, permanent = false, ...props }: Rea
 	)
 }
 
-function Switch({
-	className,
-	thumbClassName = "",
-	shape,
-	size,
-	...props
-}: React.ComponentProps<typeof SwitchPrimitive.Root> & VariantProps<typeof switchVariants> & { thumbClassName?: string }) {
-	const context = useSwitchContext()
+function Switch({ className, thumbClassName = "", shape, size, ...props }: SwitchProps) {
+	const context = useSwitch()
 	const permanent = context?.permanent ?? false
 
 	return (
@@ -146,55 +146,11 @@ function Switch({
 	)
 }
 
-function SwitchIndicator({ className, state, ...props }: React.HTMLAttributes<HTMLSpanElement> & VariantProps<typeof switchIndicatorVariants>) {
-	const context = useSwitchContext()
+function SwitchIndicator({ className, state, ...props }: SwitchIndicatorProps) {
+	const context = useSwitch()
 	const permanent = context?.permanent ?? false
 
 	return <span data-slot="switch-indicator" className={cn(switchIndicatorVariants({ state, permanent }), className)} {...props} />
 }
 
 export { Switch, SwitchIndicator, SwitchWrapper }
-
-// import React from "react"
-// import * as SwitchPrimitive from "@radix-ui/react-switch"
-// import { VariantProps, cva } from "class-variance-authority"
-// import { cn } from "@/lib/utils"
-
-// export type SwitchProps = React.ComponentProps<typeof SwitchPrimitive.Root> & VariantProps<typeof rootStyles>
-
-// const rootStyles = cva(
-// 	"bg-fill3 data-[state=checked]:bg-primary peer inline-flex shrink-0 items-center rounded-full transition-all disabled:cursor-not-allowed disabled:opacity-50 data-[state=unchecked]:focus-visible:ring-border data-[state=checked]:focus-visible:ring-primary focus-visible:ring-2 focus-visible:ring-offset-2 outline-none cursor-pointer",
-// 	{
-// 		variants: {
-// 			size: {
-// 				"20": "w-8.5 h-5",
-// 				"24": "w-10.5 h-6",
-// 			},
-// 		},
-// 		defaultVariants: {
-// 			size: "24",
-// 		},
-// 	}
-// )
-
-// const thumbStyles = cva("block rounded-full bg-white transition-transform data-[state=unchecked]:translate-x-[3px]", {
-// 	variants: {
-// 		size: {
-// 			"20": "size-3.5 data-[state=checked]:translate-x-4",
-// 			"24": "size-4.5 data-[state=checked]:translate-x-5",
-// 		},
-// 	},
-// 	defaultVariants: {
-// 		size: "24",
-// 	},
-// })
-
-// function Switch({ className, size = "24", ...props }: SwitchProps) {
-// 	return (
-// 		<SwitchPrimitive.Root data-slot="switch" className={cn(rootStyles({ size }), className)} {...props}>
-// 			<SwitchPrimitive.Thumb data-slot="switch-thumb" className={thumbStyles({ size })} />
-// 		</SwitchPrimitive.Root>
-// 	)
-// }
-
-// export { Switch }
