@@ -11,19 +11,21 @@ const ToastPlacement = () => {
 				color="neutral"
 				onClick={() =>
 					toast.custom((t) => (
-						<div className="bg-success flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
+						<div className="bg-success flex items-center justify-between gap-2 rounded-lg px-3 py-2.5">
 							<Box size={20} className="text-white" />
-							<div className="text-white">
-								<p className="text-sm font-medium">Toast Title</p>
-								<p className="text-sm font-normal">Toast description message.</p>
-							</div>
 							<div className="flex gap-3">
-								<LinkButton className="text-white" href="#">
-									Learn More
-								</LinkButton>
-								<LinkButton className="text-white" href="#">
-									Upgrade
-								</LinkButton>
+								<div className="text-white">
+									<p className="text-sm font-medium">Toast Title</p>
+									<p className="text-sm font-normal sm:whitespace-nowrap">Toast description message.</p>
+								</div>
+								<div className="flex gap-3">
+									<LinkButton className="!font-medium text-white" href="#">
+										Learn More
+									</LinkButton>
+									<LinkButton className="!font-medium text-white" href="#">
+										Upgrade
+									</LinkButton>
+								</div>
 							</div>
 							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer text-white" />
 						</div>
@@ -37,18 +39,18 @@ const ToastPlacement = () => {
 				color="neutral"
 				onClick={() =>
 					toast.custom((t) => (
-						<div className="bg-success flex w-[259px] items-start justify-between gap-2 rounded-lg px-3 py-2.5">
+						<div className="bg-success flex items-start justify-between gap-2 rounded-lg px-3 py-2.5">
 							<Box size={20} className="text-white" />
-							<div>
+							<div className="flex flex-col gap-1.5">
 								<div className="text-white">
 									<p className="text-sm font-medium">Toast Title</p>
 									<p className="text-sm font-normal">Toast description message.</p>
 								</div>
 								<div className="flex gap-3">
-									<LinkButton className="text-white" href="#">
+									<LinkButton className="!font-medium text-white" href="#">
 										Learn More
 									</LinkButton>
-									<LinkButton className="text-white" href="#">
+									<LinkButton className="!font-medium text-white" href="#">
 										Upgrade
 									</LinkButton>
 								</div>

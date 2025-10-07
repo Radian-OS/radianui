@@ -36,8 +36,8 @@ export default function SearchInput() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<div>
-					<InputWrapper className="w-80">
+				<div className="w-full max-w-80">
+					<InputWrapper className="w-full">
 						<Search className="size-5" />
 						<Input placeholder="Search fruits..." value={query} onChange={handleChange} />
 					</InputWrapper>
@@ -45,7 +45,7 @@ export default function SearchInput() {
 			</PopoverTrigger>
 
 			{filtered.length > 0 && (
-				<PopoverContent onOpenAutoFocus={(e) => e.preventDefault()} className="max-h-100 w-80 overflow-y-auto p-1">
+				<PopoverContent onOpenAutoFocus={(e) => e.preventDefault()} className="max-h-100 min-w-[var(--radix-popper-anchor-width)] overflow-y-auto p-1">
 					<ul>
 						{filtered.map((item) => (
 							<li key={item} className="hover:bg-fill2-alpha cursor-pointer px-2 py-1.5 text-sm" onClick={() => handleSelect(item)}>

@@ -23,9 +23,6 @@ const ToastExpand = () => {
 				<Button variant="outline" className="flex-1 sm:w-[140px]" onClick={() => showToast(true)}>
 					Expand
 				</Button>
-				<Button variant="outline" className="flex-1 sm:w-[140px]" onClick={() => showToast(false)}>
-					Stack
-				</Button>
 			</div>
 		</div>
 	)
