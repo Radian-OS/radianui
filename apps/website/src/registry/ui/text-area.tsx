@@ -7,7 +7,7 @@ export type TextAreaProps = React.ComponentProps<"textarea"> &
 		resizable?: boolean
 	}
 
-type UseCharacterLimitOptions = {
+export type UseCharacterLimitOptions = {
 	maxLength: number
 	initialValue?: string
 }

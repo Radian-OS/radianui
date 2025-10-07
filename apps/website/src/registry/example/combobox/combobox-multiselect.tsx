@@ -36,8 +36,8 @@ export default function ComboboxMultiselect() {
 		<div className="w-[300px]">
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
-					<Button variant="outline" role="combobox" aria-expanded={open} className="hover:bg-bg relative h-auto w-full justify-start p-1" color="neutral">
-						<div className="flex flex-wrap items-center gap-1 pe-2.5">
+					<Button variant="outline" role="combobox" aria-expanded={open} className="hover:bg-bg relative h-auto min-h-9 w-full justify-start p-1 pe-5" color="neutral">
+						<div className="flex flex-wrap items-center gap-1">
 							{selectedValues.length > 0 ? (
 								selectedValues.map((val) => {
 									const framework = backendFrameworks.find((f) => f.value === val)
@@ -58,7 +58,7 @@ export default function ComboboxMultiselect() {
 								<span className="px-2.5">Select backend frameworks</span>
 							)}
 						</div>
-						<ChevronDown className="absolute end-3 top-2" />
+						<ChevronDown className="absolute end-1.5 top-2" />
 					</Button>
 				</PopoverTrigger>
 				<PopoverContent className="w-(--radix-popper-anchor-width) p-0">

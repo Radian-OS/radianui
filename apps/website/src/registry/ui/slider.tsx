@@ -4,7 +4,7 @@ import React from "react"
 import * as SliderPrimitive from "@radix-ui/react-slider"
 import { cn } from "@/lib/utils"
 
-type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
+export type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
 	classNames?: {
 		sliderRoot?: string
 		sliderTrack?: string
@@ -12,7 +12,7 @@ type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
 	}
 }
 
-type SliderThumbProps = React.ComponentProps<typeof SliderPrimitive.Thumb>
+export type SliderThumbProps = React.ComponentProps<typeof SliderPrimitive.Thumb>
 
 function Slider({ className, min = 0, max = 100, classNames, children, ...props }: SliderProps) {
 	return (
