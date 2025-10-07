@@ -11,7 +11,7 @@ const ToastPlacement = () => {
 				color="neutral"
 				onClick={() =>
 					toast.custom((t) => (
-						<div className="bg-success flex items-center justify-between gap-2 rounded-lg px-3 py-2.5">
+						<div className="bg-primary flex items-center justify-between gap-2 rounded-lg px-3 py-2.5">
 							<Box size={20} className="text-white" />
 							<div className="flex gap-3">
 								<div className="text-white">
@@ -39,7 +39,7 @@ const ToastPlacement = () => {
 				color="neutral"
 				onClick={() =>
 					toast.custom((t) => (
-						<div className="bg-success flex items-start justify-between gap-2 rounded-lg px-3 py-2.5">
+						<div className="bg-primary flex items-start justify-between gap-2 rounded-lg px-3 py-2.5">
 							<Box size={20} className="text-white" />
 							<div className="flex flex-col gap-1.5">
 								<div className="text-white">
