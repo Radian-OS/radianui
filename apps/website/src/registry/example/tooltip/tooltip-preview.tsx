@@ -10,7 +10,9 @@ export default function TooltipPreview() {
 					Default Tooltip
 				</Button>
 			</TooltipTrigger>
-			<TooltipContent>I am a default tooltip description.</TooltipContent>
+			<TooltipContent>
+				<p>I am a default tooltip description.</p>
+			</TooltipContent>
 		</Tooltip>
 	)
 }
