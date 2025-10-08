@@ -1,7 +1,7 @@
 "use client"
 
 import React, { HTMLAttributes, useMemo } from "react"
-import { Link as LinkIcon, Moon, Settings, Sun } from "lucide-react"
+import { Link as LinkIcon, Moon, Sun } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import Image from "next/image"
 import Link from "next/link"
@@ -16,6 +16,7 @@ import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import Installation from "@/components/installation"
+import { PropsTable } from "@/components/props-table"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
@@ -52,7 +53,6 @@ import { ComponentSource } from "./component-source"
 import FigmaCard from "./figma/figma-card"
 import AlertLucide from "./icons/alert-lucide"
 import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
-import { PropsData, PropsTable } from "./props-table"
 import SocialLinkCards from "./social-link-cards"
 import CustomThemePlayground from "./theme/custom-theme-playground"
 import DarkModePlayground from "./theme/dark-mode-playground"
@@ -63,9 +63,7 @@ type MdxProps = {
 }
 
 const components = (examples: typeof Examples | undefined) => ({
-	PropsTable: ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => (
-		<PropsTable title={title} data={data} externalReference={externalReference} />
-	),
+	PropsTable: (props: React.ComponentProps<typeof PropsTable>) => <PropsTable title={props.title} data={props.data} externalReference={props.externalReference} />,
 	ColorTable: ({ data }: { data: ColorData[] }) => {
 		const { isDark } = useTheme()
 		return <ColorTable data={data} isDark={isDark} />
@@ -201,14 +199,10 @@ const components = (examples: typeof Examples | undefined) => ({
 	code: ({ className, ...props }: React.ComponentProps<"code">) => <code className={cn("bg-fill4 break-words rounded-md p-1 font-mono outline-none", className)} {...props} />,
 
 	Alert: (props: AlertProps) => {
-		return <Alert variant="soft" color="primary" {...props} />
+		return <Alert variant="soft" color="warning" {...props} />
 	},
-	AlertIcon: () => {
-		return (
-			<AlertIcon>
-				<Settings className="size-5" />
-			</AlertIcon>
-		)
+	AlertIcon: ({ children }: { children: React.ReactNode }) => {
+		return <AlertIcon>{children}</AlertIcon>
 	},
 	AlertContent: (props: React.ComponentProps<typeof AlertContent>) => {
 		return <AlertContent {...props} />

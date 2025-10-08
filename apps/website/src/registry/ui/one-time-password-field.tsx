@@ -44,11 +44,15 @@ function useOTPContext() {
 	return context
 }
 
-function OTPField({ className, children, ...props }: OTPFieldProps & OTPContextType) {
+function OTPField({ className, children, validationType = "alphanumeric", ...props }: OTPFieldProps & OTPContextType) {
 	const { size = "40" } = props as OTPContextType
 	const ctx = React.useMemo(() => ({ size }), [size])
 	return (
-		<RadixOTP.Root data-slot="otp-field" className={cn("has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5", className)} {...props}>
+		<RadixOTP.Root
+			data-slot="otp-field"
+			validationType={validationType}
+			className={cn("has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5", className)}
+			{...props}>
 			<OTPContext.Provider value={ctx}>{children}</OTPContext.Provider>
 		</RadixOTP.Root>
 	)

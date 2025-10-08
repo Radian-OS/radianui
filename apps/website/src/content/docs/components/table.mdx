@@ -87,20 +87,24 @@ links:
 
 ## Data Table
 
-Every data table or data grid is unique. Each one has different behaviors, sorting and filtering logic, and data sources.
+We are using [TanStack Table](https://tanstack.com/table/latest) as the core logic layer and pair it with our [Table](/docs/components/table) component for the UI. This approach preserves flexibility while maintaining a consistent look and feel. The examples below showcase different ways to build data tables using [TanStack Table](https://tanstack.com/table/latest). Some examples also integrate [dnd-kit](/docs/components/draggable) to enable draggable and re-orderable rows or columns.
 
 <br />
-Because of that, it doesn’t make sense to wrap all of these variations into a single, reusable component — doing so would sacrifice the flexibility that headless UI libraries
-provide.
-<br />
-Instead, we use [TanStack Table](https://tanstack.com/table/latest) as the core logic layer and pair it with our [Table](/docs/components/table) component for the UI. This approach
-preserves flexibility while maintaining a consistent look and feel.
-<br />
-The examples below showcase different ways to build data tables using [TanStack Table](/docs/components/table). Some examples also integrate [dnd-kit](/docs/components/draggable)
-to enable draggable and re-orderable rows or columns.
-<br />
-**Note:** [TanStack Table](https://tanstack.com/table/latest) is a required dependency for all implementations. [dnd-kit](https://dndkit.com/) is only needed for examples that
-include drag-and-drop functionality.
+
+import { LucideInfo } from "lucide-react"
+
+<Alert variant="soft" color="warning">
+	<AlertIcon className="self-start">
+		<LucideInfo className="text-warning-text" size={20} />
+	</AlertIcon>
+	<AlertContent>
+		<AlertTitle className="font-semibold">Note</AlertTitle>
+		<AlertDescription className="[&_p]:text-warning-text">
+			[TanStack Table](https://tanstack.com/table/latest) is a required dependency for all implementations. [dnd-kit](https://dndkit.com/) is only needed for examples that include
+			drag-and-drop functionality.
+		</AlertDescription>
+	</AlertContent>
+</Alert>
 
 ### Basic Data Table
 
