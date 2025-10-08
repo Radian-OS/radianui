@@ -5,7 +5,7 @@ import { Button } from "@/registry/ui/button"
 
 export default function Page() {
 	return (
-		<div className="h-fit min-h-screen w-full overflow-x-hidden">
+		<div className="h-fit min-h-screen w-full overflow-x-hidden px-4 md:px-5">
 			<Background>
 				<div className="pt-30 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
@@ -30,9 +30,9 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className="max-w-340 bg-fill2/60 mt-27 relative mx-auto aspect-[2/1] rounded-xl px-4 backdrop-blur-2xl md:px-5">
+				<div className="max-w-340 bg-fill2/60 mt-27 border-soft relative mx-auto aspect-[2/1] rounded-xl border px-4 backdrop-blur-2xl md:px-5">
 					1
-					<svg className="-left-290 absolute bottom-full z-50 max-h-[532px]" viewBox="0 0 1461 532" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="-left-290 not-lg:hidden absolute bottom-full z-50 max-h-[532px]" viewBox="0 0 1461 532" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M1460.19 531L1284.28 210.94C1280.06 203.268 1272 198.5 1263.24 198.5L1088.88 198.5C1080.31 198.5 1072.39 193.926 1068.1 186.5L967.928 13C963.641 5.57438 955.718 1 947.144 1H0"
 							stroke="var(--color-soft)"
@@ -51,7 +51,7 @@ export default function Page() {
 							pathLength="1000"
 						/>
 					</svg>
-					<svg className="-left-305 absolute bottom-full z-50 max-h-[343px]" viewBox="0 0 1370 343" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="-left-305 not-lg:hidden absolute bottom-full z-50 max-h-[343px]" viewBox="0 0 1370 343" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M 1370 343 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
 							stroke="var(--color-soft)"
@@ -69,7 +69,7 @@ export default function Page() {
 							pathLength="1000"
 						/>
 					</svg>
-					<svg className="-right-290 absolute bottom-full z-50 max-h-[532px] scale-x-[-1]" viewBox="0 0 1461 532" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="-right-290 not-lg:hidden absolute bottom-full z-50 max-h-[532px] scale-x-[-1]" viewBox="0 0 1461 532" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M1460.19 531L1284.28 210.94C1280.06 203.268 1272 198.5 1263.24 198.5L1088.88 198.5C1080.31 198.5 1072.39 193.926 1068.1 186.5L967.928 13C963.641 5.57438 955.718 1 947.144 1H0"
 							stroke="var(--color-soft)"
@@ -88,7 +88,7 @@ export default function Page() {
 							pathLength="1000"
 						/>
 					</svg>
-					<svg className="-right-305 absolute bottom-full z-50 max-h-[343px] scale-x-[-1]" viewBox="0 0 1370 343" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="-right-305 not-lg:hidden absolute bottom-full z-50 max-h-[343px] scale-x-[-1]" viewBox="0 0 1370 343" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M 1370 343 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
 							stroke="var(--color-soft)"
