@@ -1,15 +1,12 @@
-import { ComponentProps } from "react"
+import * as React from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
 import { cn } from "@/lib/utils"
 
-function Progress({
-	value,
-	className,
-	indicatorClassName,
-	...props
-}: ComponentProps<typeof ProgressPrimitive.Root> & {
+export type ProgressProps = React.ComponentProps<typeof ProgressPrimitive.Root> & {
 	indicatorClassName?: string
-}) {
+}
+
+function Progress({ value, className, indicatorClassName, ...props }: ProgressProps) {
 	return (
 		<ProgressPrimitive.Root className={cn("bg-fill3 translate-z-0 relative h-2 w-full transform overflow-hidden rounded-full", className)} {...props}>
 			<ProgressPrimitive.Indicator
