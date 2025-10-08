@@ -27,8 +27,53 @@ export default function Background({ children }: { children?: React.ReactNode })
 					pathLength="1000"
 				/>
 			</svg>
-
 			<svg className="absolute left-0 top-[400px] z-50 max-h-[500px]" viewBox="0 0 600 500">
+				{/* Static track */}
+				<path
+					d="M 0 0 L 165 0 C 181 5 186 12 193 26 L 230 105 C 232 113 239 120 249 117 L 344 116 C 355 115 363 118 367 127 L 600 500"
+					fill="none"
+					strokeWidth="1"
+					stroke="var(--color-soft)"
+				/>
+
+				{/* Animated beam segment */}
+				<path
+					id="beamPath"
+					d="M 0 0 L 165 0 C 181 5 186 12 193 26 L 230 105 C 232 113 239 120 249 117 L 344 116 C 355 115 363 118 367 127 L 600 500"
+					fill="none"
+					stroke="var(--color-primary)"
+					strokeWidth="1"
+					strokeLinecap="round"
+					className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:1000]"
+					vectorEffect="non-scaling-stroke"
+					pathLength="1000"
+				/>
+			</svg>
+
+			<svg className="absolute right-0 top-[100px] z-50 max-h-[500px] scale-x-[-1]" viewBox="0 0 600 500">
+				{/* Static track */}
+				<path
+					d="M 0 0 L 165 0 C 181 5 186 12 193 26 L 285 197 C 288 201 291 202 296 202 L 449 200 C 457 201 465 208 469 218 L 600 500"
+					fill="none"
+					stroke="var(--color-soft)"
+					strokeWidth="1"
+					strokeLinecap="round"
+				/>
+
+				{/* Animated beam segment */}
+				<path
+					id="beamPath"
+					d="M 0 0 L 165 0 C 181 5 186 12 193 26 L 285 197 C 288 201 291 202 296 202 L 449 200 C 457 201 465 208 469 218 L 600 500"
+					fill="none"
+					stroke="var(--color-primary)"
+					strokeWidth="1"
+					strokeLinecap="round"
+					className="animate-[var(--animate-beam-flow)] [stroke-dasharray:50_1000] [stroke-dashoffset:1000]"
+					vectorEffect="non-scaling-stroke"
+					pathLength="1000"
+				/>
+			</svg>
+			<svg className="absolute right-0 top-[400px] z-50 max-h-[500px] scale-x-[-1]" viewBox="0 0 600 500">
 				{/* Static track */}
 				<path
 					d="M 0 0 L 165 0 C 181 5 186 12 193 26 L 230 105 C 232 113 239 120 249 117 L 344 116 C 355 115 363 118 367 127 L 600 500"
