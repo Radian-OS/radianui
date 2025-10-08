@@ -17,4 +17,6 @@ function Progress({ value, className, indicatorClassName, ...props }: ProgressPr
 	)
 }
 
+Progress.displayName = ProgressPrimitive.Root.displayName
+
 export { Progress }

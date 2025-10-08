@@ -19,9 +19,13 @@ function ResizablePanelGroup({ className, ...props }: ResizablePanelGroupProps) 
 	)
 }
 
+ResizablePanelGroup.displayName = "ResizablePanelGroup"
+
 function ResizablePanel({ ...props }: ResizablePanelProps) {
 	return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
 }
+
+ResizablePanel.displayName = "ResizablePanel"
 
 function ResizableHandle({ withHandle, className, ...props }: ResizableHandleProps) {
 	return (
@@ -40,5 +44,6 @@ function ResizableHandle({ withHandle, className, ...props }: ResizableHandlePro
 		</ResizablePrimitive.PanelResizeHandle>
 	)
 }
+ResizableHandle.displayName = "ResizableHandle"
 
 export { ResizablePanelGroup, ResizablePanel, ResizableHandle }

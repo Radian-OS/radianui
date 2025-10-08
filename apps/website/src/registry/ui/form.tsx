@@ -25,32 +25,21 @@ export type FormDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
 
 export type FormMessageProps = React.HTMLAttributes<HTMLParagraphElement>
 
-const Form = FormProvider
+const FormFieldContext = React.createContext<FormFieldContextValue | null>(null)
 
-const FormFieldContext = React.createContext<FormFieldContextValue>({} as FormFieldContextValue)
+const FormItemContext = React.createContext<FormItemContextValue | null>(null)
 
-const FormField = <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({
-	...props
-}: ControllerProps<TFieldValues, TName>) => {
-	return (
-		<FormFieldContext.Provider value={{ name: props.name }}>
-			<Controller {...props} />
-		</FormFieldContext.Provider>
-	)
-}
-
-const useFormField = () => {
+function useFormField() {
 	const fieldContext = React.useContext(FormFieldContext)
 	const itemContext = React.useContext(FormItemContext)
 	const { getFieldState, formState } = useFormContext()
-
-	const fieldState = getFieldState(fieldContext.name, formState)
 
 	if (!fieldContext) {
 		throw new Error("useFormField should be used within <FormField>")
 	}
 
-	const { id } = itemContext
+	const fieldState = getFieldState(fieldContext.name, formState)
+	const id = itemContext?.id ?? ""
 
 	return {
 		id,
@@ -62,7 +51,19 @@ const useFormField = () => {
 	}
 }
 
-const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue)
+const Form = FormProvider
+
+function FormField<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({
+	...props
+}: ControllerProps<TFieldValues, TName>) {
+	return (
+		<FormFieldContext.Provider value={{ name: props.name }}>
+			<Controller {...props} />
+		</FormFieldContext.Provider>
+	)
+}
+
+FormField.displayName = "FormField"
 
 function FormItem({ className, ...props }: FormItemProps) {
 	const id = React.useId()
@@ -75,11 +76,15 @@ function FormItem({ className, ...props }: FormItemProps) {
 	)
 }
 
+FormItem.displayName = "FormItem"
+
 function FormLabel({ className, ...props }: FormLabelProps) {
 	const { formItemId } = useFormField()
 
 	return <Label data-slot="form-label" className={cn("text-fg text-sm font-medium", className)} htmlFor={formItemId} {...props} />
 }
+
+FormLabel.displayName = "FormLabel"
 
 function FormControl({ ...props }: FormControlProps) {
 	const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
@@ -88,6 +93,8 @@ function FormControl({ ...props }: FormControlProps) {
 		<Slot data-slot="form-control" id={formItemId} aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`} aria-invalid={!!error} {...props} />
 	)
 }
+
+FormControl.displayName = "FormControl"
 
 function FormDescription({ className, ...props }: FormDescriptionProps) {
 	const { formDescriptionId, error } = useFormField()
@@ -98,6 +105,8 @@ function FormDescription({ className, ...props }: FormDescriptionProps) {
 
 	return <div data-slot="form-description" id={formDescriptionId} className={cn("text-fg-secondary text-xs font-normal", className)} {...props} />
 }
+
+FormDescription.displayName = "FormDescription"
 
 function FormMessage({ className, children, ...props }: FormMessageProps) {
 	const { error, formMessageId } = useFormField()
@@ -113,5 +122,7 @@ function FormMessage({ className, children, ...props }: FormMessageProps) {
 		</div>
 	)
 }
+
+FormMessage.displayName = "FormMessage"
 
 export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField }
