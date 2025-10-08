@@ -21,22 +21,22 @@
 
 	@keyframes beam-flow {
 		from {
-			stroke-dashoffset: 1000;
+			stroke-dashoffset: 0;
 		}
 		to {
-			stroke-dashoffset: 0;
+			stroke-dashoffset: 1000;
 		}
 	}
 
-	--animate-beam-flow2: beam-flow2 4s linear 1s infinite;
+	--animate-beam-flow2: beam-flow2 6s linear 1s infinite;
 
 	@keyframes beam-flow2 {
 		from {
-			stroke-dashoffset: 1000;
+			stroke-dashoffset: 0;
 			opacity: 1;
 		}
 		to {
-			stroke-dashoffset: 0;
+			stroke-dashoffset: 1000;
 			opacity: 1;
 		}
 	}
