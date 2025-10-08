@@ -64,7 +64,7 @@ const ToastColor = () => {
 				onClick={() =>
 					toast.custom((t) => (
 						<div className="bg-black-inverse text-fg-inverse flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
-							<Box size={20} className="text-error" />
+							<Box size={20} className="text-primary" />
 							<div className="text-fg-inverse">
 								<p className="text-sm font-medium">Toast Title</p>
 								<p className="text-sm font-normal">Toast description message.</p>

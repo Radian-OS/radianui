@@ -1,0 +1,99 @@
+---
+title: Sonner
+description: Display non-intrusive notifications or alerts
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/toast.tsx
+  externalReference:
+    - label: Sonner
+      href: https://sonner.emilkowal.ski/
+---
+
+<ComponentPreview path="sonner/sonner-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+    <TabsContent value="cli" className="p-0">
+        <PackageManagerTabs
+            commands={{
+                pnpm: "pnpm i sonner",
+                npm: "npm i sonner",
+                yarn: "yarn i sonner",
+                bun: "bunx i sonner",
+            }}
+        />
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/sonner" code={`import { toast } from "sonner"`} />
+
+### Code
+
+<CodeSnippet
+	title="Usage"
+	code={`<Button
+	    variant="outline"
+	    onClick={() =>
+	    	toast("Toast Title", {
+	    		description: "Toast Description Message",
+	    		action: {
+	    			label: "Upgrade",
+	    			onClick: () => console.log("Upgrade clicked!"),
+	    		},
+	    	})
+	    }>
+	    Show Toast
+</Button>`}
+/>
+
+---
+
+## Examples
+
+### Variant
+
+<ComponentPreview path="sonner/sonner-variant" />
+
+### Placement
+
+<ComponentPreview path="sonner/sonner-placement" />
+
+### Position
+
+<ComponentPreview path="sonner/sonner-position" />
+
+### Sonner Expand
+
+<ComponentPreview path="sonner/sonner-expand" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+    <PropsTable
+        title="Toaster"
+        data={[
+            {
+                name: "expand",
+                values: ["boolean"],
+                defaultValue: ["false"],
+                description: "Sets the number of expanded toasts",
+            },
+            {
+                name: "visibleToasts",
+                values: ["number"],
+                defaultValue: ["3"],
+                description: "Sets the number of visible toasts",
+            },
+        ]}
+        externalReference="https://sonner.emilkowal.ski/getting-started"
+    />
+
+</PropsTableWrapper>

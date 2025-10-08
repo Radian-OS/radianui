@@ -376,6 +376,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Slider UI component illustration",
 			},
 			{
+				title: "Sonner",
+				description: "8 Components",
+				url: "/docs/components/sonner",
+				thumbnail: "/thumbnails/sonner.webp",
+				thumbnailDark: `/thumbnails/sonner-dark.webp`,
+				alt: "Toast UI component illustration",
+			},
+			{
 				title: "Spinner",
 				description: "5 Components",
 				url: "/docs/components/spinner",
@@ -414,14 +422,6 @@ export const navigationItems: NavigationSection[] = [
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
 				alt: "Text Area UI component illustration",
-			},
-			{
-				title: "Toast",
-				description: "8 Components",
-				url: "/docs/components/toast",
-				thumbnail: "/thumbnails/sonner.webp",
-				thumbnailDark: `/thumbnails/sonner-dark.webp`,
-				alt: "Toast UI component illustration",
 			},
 			{
 				title: "Tooltip",
