@@ -30,7 +30,7 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className="max-w-328 bg-fill2/60 mt-27 mx-auto aspect-[2/1] rounded-xl px-4 backdrop-blur-2xl md:px-5">1</div>
+				<div className="max-w-340 bg-fill2/60 mt-27 mx-auto aspect-[2/1] rounded-xl px-4 backdrop-blur-2xl md:px-5">1</div>
 			</Background>
 		</div>
 	)
