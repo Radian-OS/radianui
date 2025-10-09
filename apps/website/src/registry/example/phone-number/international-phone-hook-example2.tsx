@@ -1,17 +1,33 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
-function InternationalPhoneWithHookExample() {
+export default function InternationalPhoneWithHookExample2({
+	onlyCountries = ["us", "np", "it", "gb"], // Pass array of ISO2 codes like ["us", "np", "it", "gb"]
+}: {
+	onlyCountries?: CountryIso2[]
+}) {
 	const [internalValue, setInternalValue] = useState<string>("")
+
+	// Filter countries based on onlyCountries prop
+	const filteredCountries = useMemo(() => {
+		if (!onlyCountries || onlyCountries.length === 0) {
+			return defaultCountries
+		}
+		return defaultCountries.filter((country) => {
+			const parsed = parseCountry(country)
+			return onlyCountries.includes(parsed.iso2 as CountryIso2)
+		})
+	}, [onlyCountries])
+
 	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
-		defaultCountry: "us",
+		defaultCountry: onlyCountries.length > 0 ? onlyCountries[0] : "us",
 		value: internalValue,
-		countries: defaultCountries,
+		countries: filteredCountries,
 		onChange: (data) => {
 			setInternalValue(data.phone)
 		},
@@ -33,7 +49,7 @@ function InternationalPhoneWithHookExample() {
 						</SelectTrigger>
 						<SelectContent className="max-h-80 w-full">
 							<SelectGroup>
-								{defaultCountries.map((c) => {
+								{filteredCountries.map((c) => {
 									const parsed = parseCountry(c)
 									return (
 										<SelectItem key={parsed.iso2} value={parsed.iso2} className="justify-between gap-2">
@@ -60,5 +76,3 @@ function InternationalPhoneWithHookExample() {
 		</div>
 	)
 }
-
-export default InternationalPhoneWithHookExample
