@@ -10,7 +10,7 @@ type PaginationItemProps = React.ComponentProps<"li">
 type PaginationEllipsisProps = React.ComponentProps<"span">
 
 function Pagination({ className, ...props }: PaginationProps) {
-	;<nav data-slot="pagination" role="navigation" aria-label="pagination" className={cn("mx-auto flex w-full justify-center", className)} {...props} />
+	return <nav data-slot="pagination" role="navigation" aria-label="pagination" className={cn("mx-auto flex w-full justify-center", className)} {...props} />
 }
 Pagination.displayName = "Pagination"
 
@@ -25,10 +25,12 @@ function PaginationItem({ className, ...props }: PaginationItemProps) {
 PaginationItem.displayName = "PaginationItem"
 
 function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
-	;<span data-slot="pagination-ellipsis" aria-hidden className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
-		<MoreHorizontal className="h-4 w-4" />
-		<span className="sr-only">More pages</span>
-	</span>
+	return (
+		<span data-slot="pagination-ellipsis" aria-hidden className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
+			<MoreHorizontal className="h-4 w-4" />
+			<span className="sr-only">More pages</span>
+		</span>
+	)
 }
 PaginationEllipsis.displayName = "PaginationEllipsis"
 
