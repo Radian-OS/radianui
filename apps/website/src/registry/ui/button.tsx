@@ -472,11 +472,11 @@ const linkButtonVariants = cva(
 	{
 		variants: {
 			color: {
-				primary: "text-primary font-medium focus-visible:ring-primary focus-visible:outline-none",
-				info: "text-info font-medium focus-visible:ring-info focus-visible:outline-none",
-				success: "text-success font-medium focus-visible:ring-success focus-visible:outline-none",
-				error: "text-error font-medium focus-visible:ring-error focus-visible:outline-none",
-				warning: "text-warning font-medium focus-visible:ring-warning focus-visible:outline-none",
+				primary: "text-primary-text font-medium focus-visible:ring-primary focus-visible:outline-none",
+				info: "text-info-text font-medium focus-visible:ring-info focus-visible:outline-none",
+				success: "text-success-text font-medium focus-visible:ring-success focus-visible:outline-none",
+				error: "text-error-text font-medium focus-visible:ring-error focus-visible:outline-none",
+				warning: "text-warning-text font-medium focus-visible:ring-warning focus-visible:outline-none",
 				neutral: "text-black-inverse font-medium focus-visible:ring-black-inverse focus-visible:outline-none",
 			},
 			size: {
