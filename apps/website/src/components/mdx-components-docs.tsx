@@ -15,8 +15,18 @@ import InfiniteScrollPreview from "@/component-preview/animations/infinite-scrol
 import PointerPreview from "@/component-preview/animations/pointer-preview"
 import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
 import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
+import CodeSnippet from "@/components/code-snippet"
+import ColorPlayground from "@/components/color/color-playground"
+import { ColorData, ColorTable } from "@/components/color/color-table"
+import { ComponentPreview } from "@/components/component-preview"
+import { ComponentSource } from "@/components/component-source"
+import FigmaCard from "@/components/figma/figma-card"
 import Installation from "@/components/installation"
+import PackageManagerTabs, { PackageManagerTabsProps } from "@/components/package-manager-tabs"
 import { PropsTable } from "@/components/props-table"
+import SocialLinkCards from "@/components/social-link-cards"
+import CustomThemePlayground from "@/components/theme/custom-theme-playground"
+import DarkModePlayground from "@/components/theme/dark-mode-playground"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
@@ -45,17 +55,6 @@ import {
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import CodeSnippet from "./code-snippet"
-import ColorPlayground from "./color/color-playground"
-import { ColorData, ColorTable } from "./color/color-table"
-import { ComponentPreview } from "./component-preview"
-import { ComponentSource } from "./component-source"
-import FigmaCard from "./figma/figma-card"
-import AlertLucide from "./icons/alert-lucide"
-import PackageManagerTabs, { PackageManagerTabsProps } from "./package-manager-tabs"
-import SocialLinkCards from "./social-link-cards"
-import CustomThemePlayground from "./theme/custom-theme-playground"
-import DarkModePlayground from "./theme/dark-mode-playground"
 
 type MdxProps = {
 	code: string
@@ -96,7 +95,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	BodyFontSpecs: () => <BodyFontSpecs />,
 	DarkModePlayground: () => <DarkModePlayground />,
 	CustomThemePlayground: () => <CustomThemePlayground />,
-	AlertLucide: () => <AlertLucide />,
 	// Animation components
 	TypingTextPreview: () => <TypingTextPreview />,
 	GradientTextPreview: () => <GradientTextPreview />,

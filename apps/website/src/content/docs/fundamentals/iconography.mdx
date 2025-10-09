@@ -67,4 +67,18 @@ export default function App() {
 
 <br />
 <br />
-<AlertLucide />
+
+import { Construction } from "lucide-react"
+
+    	<Alert variant="soft" color="warning">
+    		<AlertIcon className="self-start">
+    			<Construction className="text-warning-text" size={20} />
+    		</AlertIcon>
+    		<AlertContent>
+    			<AlertTitle className="font-semibold">Native Icon set</AlertTitle>
+    			<AlertDescription className="[&_p]:text-warning-text">
+    				Currently we are using Lucide icon library to provide a consistent set of icons. We are actively working on our own native icon set, which will be available in a future
+    				update.
+    			</AlertDescription>
+    		</AlertContent>
+    	</Alert>
