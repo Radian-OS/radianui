@@ -1,27 +1,33 @@
 "use client"
 
-import { ComponentProps } from "react"
+import * as React from "react"
 import { GripVerticalIcon } from "lucide-react"
 import * as ResizablePrimitive from "react-resizable-panels"
 import { cn } from "@/lib/utils"
 
-function ResizablePanelGroup({ className, ...props }: ComponentProps<typeof ResizablePrimitive.PanelGroup>) {
+export type ResizablePanelGroupProps = React.ComponentProps<typeof ResizablePrimitive.PanelGroup>
+
+export type ResizablePanelProps = React.ComponentProps<typeof ResizablePrimitive.Panel>
+
+export type ResizableHandleProps = React.ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
+	withHandle?: boolean
+}
+
+function ResizablePanelGroup({ className, ...props }: ResizablePanelGroupProps) {
 	return (
 		<ResizablePrimitive.PanelGroup data-slot="resizable-panel-group" className={cn("flex h-full w-full data-[panel-group-direction=vertical]:flex-col", className)} {...props} />
 	)
 }
 
-function ResizablePanel({ ...props }: ComponentProps<typeof ResizablePrimitive.Panel>) {
+ResizablePanelGroup.displayName = "ResizablePanelGroup"
+
+function ResizablePanel({ ...props }: ResizablePanelProps) {
 	return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
 }
 
-function ResizableHandle({
-	withHandle,
-	className,
-	...props
-}: ComponentProps<typeof ResizablePrimitive.PanelResizeHandle> & {
-	withHandle?: boolean
-}) {
+ResizablePanel.displayName = "ResizablePanel"
+
+function ResizableHandle({ withHandle, className, ...props }: ResizableHandleProps) {
 	return (
 		<ResizablePrimitive.PanelResizeHandle
 			data-slot="resizable-handle"
@@ -38,5 +44,6 @@ function ResizableHandle({
 		</ResizablePrimitive.PanelResizeHandle>
 	)
 }
+ResizableHandle.displayName = "ResizableHandle"
 
 export { ResizablePanelGroup, ResizablePanel, ResizableHandle }

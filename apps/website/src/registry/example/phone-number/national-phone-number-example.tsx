@@ -1,33 +1,29 @@
 "use client"
 
 import React, { useState } from "react"
-import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
+import { CountryIso2, FlagImage, defaultCountries, parseCountry } from "react-international-phone"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
-function InternationalPhoneWithHookExample() {
-	const [internalValue, setInternalValue] = useState<string>("")
-	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
-		defaultCountry: "us",
-		value: internalValue,
-		countries: defaultCountries,
-		onChange: (data) => {
-			setInternalValue(data.phone)
-		},
-	})
+function NationalPhoneWithHookExample() {
+	const [localPhone, setLocalPhone] = useState<string>("")
+	const [localCountry, setLocalCountry] = useState<CountryIso2>("np")
+
+	const selectedLocalCountry = parseCountry(defaultCountries.find((c) => parseCountry(c).iso2 === localCountry)!)
 
 	return (
-		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-1.5">
-			<Label>Enter Your Number</Label>
+		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-3">
+			<div className="flex w-full items-center justify-between">
+				<Label>Enter Your Number</Label>
+			</div>
 			<div className="flex w-full">
 				<InputGroup className="w-full">
-					<Select value={country.iso2} onValueChange={(code) => setCountry(code as CountryIso2)}>
+					<Select value={localCountry} onValueChange={(code) => setLocalCountry(code as CountryIso2)}>
 						<SelectTrigger className="w-fit rounded-r-none">
-							<SelectValue aria-label={country.name}>
+							<SelectValue aria-label={selectedLocalCountry.name}>
 								<div className="flex items-center gap-2">
-									<FlagImage iso2={country.iso2} className="size-4" />
-									<span className="text-sm">+{country.dialCode}</span>
+									<FlagImage iso2={selectedLocalCountry.iso2} className="size-4" />
 								</div>
 							</SelectValue>
 						</SelectTrigger>
@@ -39,7 +35,7 @@ function InternationalPhoneWithHookExample() {
 										<SelectItem key={parsed.iso2} value={parsed.iso2} className="justify-between gap-2">
 											<span className="inline-flex flex-1 items-center gap-2">
 												<FlagImage iso2={parsed.iso2} className="size-5" />
-												<span className="truncate">{`${parsed.name} (+${parsed.dialCode})`}</span>
+												<span className="truncate">{parsed.name}</span>
 											</span>
 										</SelectItem>
 									)
@@ -48,11 +44,10 @@ function InternationalPhoneWithHookExample() {
 						</SelectContent>
 					</Select>
 					<Input
-						ref={inputRef}
 						type="tel"
 						placeholder="Enter your phone number"
-						value={inputValue}
-						onChange={handlePhoneValueChange}
+						value={localPhone}
+						onChange={(e) => setLocalPhone(e.target.value)}
 						className="flex-1 rounded-l-none border-l-0 focus-within:border-l"
 					/>
 				</InputGroup>
@@ -61,4 +56,4 @@ function InternationalPhoneWithHookExample() {
 	)
 }
 
-export default InternationalPhoneWithHookExample
+export default NationalPhoneWithHookExample
