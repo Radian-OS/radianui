@@ -1,8 +1,15 @@
+"use client"
+
 import React, { useState } from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Eye, EyeOff } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { inputVariants } from "@/registry/ui/input"
+
+export type PasswordProps = Omit<React.ComponentProps<"input">, "size" | "type"> &
+	VariantProps<typeof inputVariants> & {
+		toggleVisibility?: "always" | "focus" | "never"
+	}
 
 const passwordToggleVariants = cva(
 	"absolute inset-y-0 end-0 flex items-center justify-center text-fg-secondary hover:text-fg disabled:hover:text-fg-secondary disabled:cursor-not-allowed disabled:opacity-60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-focus focus-visible:ring-offset-1 rounded-sm",
@@ -52,25 +59,20 @@ const passwordInputVariants = cva("", {
 	},
 })
 
-interface PasswordProps extends Omit<React.ComponentProps<"input">, "size" | "type">, VariantProps<typeof inputVariants> {
-	toggleVisibility?: "always" | "focus" | "never"
-	ref?: React.Ref<HTMLInputElement>
-}
-
-const Password: React.FC<PasswordProps> = ({ toggleVisibility = "focus", className, size = "36", ref, onFocus, onBlur, ...props }) => {
+function Password({ toggleVisibility = "focus", className, size = "36", onFocus, onBlur, ...props }: PasswordProps) {
 	const [isVisible, setIsVisible] = useState(false)
 	const [isFocused, setIsFocused] = useState(false)
 
-	const togglePasswordVisibility = () => {
+	function togglePasswordVisibility() {
 		setIsVisible(!isVisible)
 	}
 
-	const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+	function handleFocus(event: React.FocusEvent<HTMLInputElement>) {
 		setIsFocused(true)
 		onFocus?.(event)
 	}
 
-	const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+	function handleBlur(event: React.FocusEvent<HTMLInputElement>) {
 		const relatedTarget = event.relatedTarget as HTMLElement
 		const isToggleButton = relatedTarget?.getAttribute("aria-label")?.includes("password")
 		if (!isToggleButton) {
@@ -79,7 +81,7 @@ const Password: React.FC<PasswordProps> = ({ toggleVisibility = "focus", classNa
 		onBlur?.(event)
 	}
 
-	const handleToggleMouseDown = (event: React.MouseEvent) => {
+	function handleToggleMouseDown(event: React.MouseEvent) {
 		event.preventDefault()
 	}
 
@@ -89,7 +91,6 @@ const Password: React.FC<PasswordProps> = ({ toggleVisibility = "focus", classNa
 	return (
 		<div className="relative">
 			<input
-				ref={ref}
 				data-slot="input"
 				type={isVisible ? "text" : "password"}
 				className={cn(inputVariants({ size }), passwordInputVariants({ size, hasToggle }), className)}

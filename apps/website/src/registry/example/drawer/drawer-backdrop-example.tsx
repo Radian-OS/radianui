@@ -71,10 +71,10 @@ function DrawerBackdropExample() {
 					</DrawerFooter>
 				</DrawerContent>
 			</Drawer>
-			<Drawer variant="default" direction="right" backdrop="none">
+			<Drawer variant="default" direction="right" backdrop="transparent">
 				<DrawerTrigger>
 					<Button variant="outline" color="neutral">
-						None
+						Transparent
 					</Button>
 				</DrawerTrigger>
 				<DrawerContent>

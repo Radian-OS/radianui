@@ -7,41 +7,39 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
 
-export type ColorVariant = "primary" | "info" | "success" | "error" | "warning" | "neutral"
-export type ComponentVariant = "strong" | "soft" | "outline" | "ghost"
-
-type ButtonProps = VariantProps<typeof buttonVariants> &
-	React.ComponentProps<"button"> & {
-		className?: string
-		children: React.ReactNode
-		color?: ColorVariant
-		loading?: boolean
-		asChild?: boolean
-	}
-
-type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
+export type ButtonProps = React.ComponentProps<"button"> & {
+	variant?: VariantProps<typeof buttonVariants>["variant"]
+	size?: VariantProps<typeof buttonVariants>["size"]
+	className?: string
 	children: React.ReactNode
-	variant?: ButtonProps["variant"]
-	size?: ButtonProps["size"]
-	color?: ButtonProps["color"]
+	color?: VariantProps<typeof buttonVariants>["color"]
+	loading?: boolean
+	asChild?: boolean
 }
 
-type CompactButtonProps = {
+export type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
+	children: React.ReactNode
+	variant?: VariantProps<typeof buttonVariants>["variant"]
+	size?: VariantProps<typeof buttonVariants>["size"]
+	color?: VariantProps<typeof buttonVariants>["color"]
+}
+
+export type CompactButtonProps = {
 	loading?: boolean
-	variant?: ComponentVariant
-	size?: "20" | "24"
-	color?: ColorVariant
+	variant?: VariantProps<typeof compactButtonVariants>["variant"]
+	size?: VariantProps<typeof compactButtonVariants>["size"]
+	color?: VariantProps<typeof compactButtonVariants>["color"]
 	className?: string
 	children: React.ReactNode
 	disabled?: boolean
 	asChild?: boolean
 } & React.ComponentProps<"button">
 
-type LinkButtonProps = {
+export type LinkButtonProps = {
 	loading?: boolean
-	size?: "14" | "16"
+	size?: VariantProps<typeof linkButtonVariants>["size"]
 	href: string
-	color?: ColorVariant
+	color?: VariantProps<typeof linkButtonVariants>["color"]
 	className?: string
 	children: React.ReactNode
 	disabled?: boolean
@@ -49,14 +47,15 @@ type LinkButtonProps = {
 	rel?: string
 }
 
-type IconButtonProps = VariantProps<typeof buttonVariants> &
-	Omit<React.ComponentProps<"button">, "color"> & {
-		className?: string
-		children: React.ReactNode
-		color?: ColorVariant
-		loading?: boolean
-		asChild?: boolean
-	}
+export type IconButtonProps = Omit<React.ComponentProps<"button">, "color"> & {
+	className?: string
+	children: React.ReactNode
+	variant?: VariantProps<typeof buttonVariants>["variant"]
+	size?: VariantProps<typeof buttonVariants>["size"]
+	color?: VariantProps<typeof buttonVariants>["color"]
+	loading?: boolean
+	asChild?: boolean
+}
 
 export const buttonVariants = cva(
 	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
