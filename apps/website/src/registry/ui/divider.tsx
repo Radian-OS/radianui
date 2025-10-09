@@ -4,7 +4,9 @@ import * as React from "react"
 import * as SeparatorPrimitive from "@radix-ui/react-separator"
 import { cn } from "@/lib/utils"
 
-function Divider({ className, orientation = "horizontal", decorative = true, ...props }: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
+export type DividerProps = React.ComponentProps<typeof SeparatorPrimitive.Root>
+
+function Divider({ className, orientation = "horizontal", decorative = true, ...props }: DividerProps) {
 	return (
 		<SeparatorPrimitive.Root
 			data-slot="divider"

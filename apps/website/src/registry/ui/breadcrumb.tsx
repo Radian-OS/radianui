@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { ChevronRight, MoreHorizontal } from "lucide-react"
 import { Slot as SlotPrimitive } from "radix-ui"

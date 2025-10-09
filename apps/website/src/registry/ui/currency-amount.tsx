@@ -1,20 +1,19 @@
-import React, { forwardRef } from "react"
+"use client"
+
+import React from "react"
 import { type VariantProps } from "class-variance-authority"
 import CurrencyInput from "react-currency-input-field"
 import { cn } from "@/lib/utils"
 import { inputVariants } from "@/registry/ui/input"
 
-export type CurrencyInputProps = Omit<React.ComponentProps<typeof CurrencyInput>, "className" | "size"> & {
-	className?: string
+export type CurrencyInputProps = Omit<React.ComponentProps<typeof CurrencyInput>, "size"> & {
 	size?: VariantProps<typeof inputVariants>["size"]
 }
 
-const CurrencyInputField = forwardRef<HTMLInputElement, CurrencyInputProps>(({ className, size, ...props }, ref) => {
-	const normalizedSize = typeof size === "number" ? (String(size) as VariantProps<typeof inputVariants>["size"]) : size
-
-	return <CurrencyInput ref={ref} className={cn(inputVariants({ size: normalizedSize }), className)} allowDecimals={true} decimalsLimit={2} allowNegativeValue={false} {...props} />
-})
+function CurrencyInputField({ className, size, ...props }: CurrencyInputProps) {
+	return <CurrencyInput className={cn(inputVariants({ size }), className)} allowDecimals={true} decimalsLimit={2} allowNegativeValue={false} {...props} />
+}
 
 CurrencyInputField.displayName = "CurrencyInputField"
 
-export { CurrencyInputField, inputVariants }
+export { CurrencyInputField, inputVariants as currencyInputVariants }

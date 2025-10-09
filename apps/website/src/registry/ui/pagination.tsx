@@ -4,10 +4,10 @@ import * as React from "react"
 import { MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-type PaginationProps = React.ComponentProps<"nav">
-type PaginationContentProps = React.ComponentProps<"ul">
-type PaginationItemProps = React.ComponentProps<"li">
-type PaginationEllipsisProps = React.ComponentProps<"span">
+export type PaginationProps = React.ComponentProps<"nav">
+export type PaginationContentProps = React.ComponentProps<"ul">
+export type PaginationItemProps = React.ComponentProps<"li">
+export type PaginationEllipsisProps = React.ComponentProps<"span">
 
 function Pagination({ className, ...props }: PaginationProps) {
 	return <nav data-slot="pagination" role="navigation" aria-label="pagination" className={cn("mx-auto flex w-full justify-center", className)} {...props} />
