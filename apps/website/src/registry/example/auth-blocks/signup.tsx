@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
-import { Password } from "@/registry/ui/password"
 
 const SignUp = () => {
 	const handleSubmitClick = () => {
@@ -35,7 +34,7 @@ const SignUp = () => {
 								<form className="space-y-4">
 									<Input />
 									<Input type="email" />
-									<Password />
+									<Input type="password" />
 								</form>
 							</div>
 							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
