@@ -1,16 +1,28 @@
 "use client"
 
 import React, { useState } from "react"
+import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry } from "react-international-phone"
+import { cn } from "@/lib/utils"
+import { Button } from "@/registry/ui/button"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-function NationalPhoneWithHookExample() {
+export default function NationalPhone() {
 	const [localPhone, setLocalPhone] = useState<string>("")
-	const [localCountry, setLocalCountry] = useState<CountryIso2>("np")
+	const [localCountry, setLocalCountry] = useState<CountryIso2>("us")
+	const [open, setOpen] = useState(false)
 
 	const selectedLocalCountry = parseCountry(defaultCountries.find((c) => parseCountry(c).iso2 === localCountry)!)
+	const parsedCountries = defaultCountries.map(parseCountry)
+
+	const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		// Only allow numbers
+		const numericValue = e.target.value.replace(/\D/g, "")
+		setLocalPhone(numericValue)
+	}
 
 	return (
 		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-3">
@@ -19,35 +31,47 @@ function NationalPhoneWithHookExample() {
 			</div>
 			<div className="flex w-full">
 				<InputGroup className="w-full">
-					<Select value={localCountry} onValueChange={(code) => setLocalCountry(code as CountryIso2)}>
-						<SelectTrigger className="w-fit rounded-r-none">
-							<SelectValue aria-label={selectedLocalCountry.name}>
+					<Popover open={open} onOpenChange={setOpen}>
+						<PopoverTrigger asChild>
+							<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
 								<div className="flex items-center gap-2">
 									<FlagImage iso2={selectedLocalCountry.iso2} className="size-4" />
 								</div>
-							</SelectValue>
-						</SelectTrigger>
-						<SelectContent className="max-h-80 w-full">
-							<SelectGroup>
-								{defaultCountries.map((c) => {
-									const parsed = parseCountry(c)
-									return (
-										<SelectItem key={parsed.iso2} value={parsed.iso2} className="justify-between gap-2">
-											<span className="inline-flex flex-1 items-center gap-2">
-												<FlagImage iso2={parsed.iso2} className="size-5" />
-												<span className="truncate">{parsed.name}</span>
-											</span>
-										</SelectItem>
-									)
-								})}
-							</SelectGroup>
-						</SelectContent>
-					</Select>
+								<ChevronDown className="size-4 opacity-50" />
+							</Button>
+						</PopoverTrigger>
+						<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
+							<Command className="border-0">
+								<CommandInput placeholder="Search country..." />
+								<CommandList>
+									<CommandEmpty>No country found.</CommandEmpty>
+									<CommandGroup>
+										{parsedCountries.map((c) => (
+											<CommandItem
+												key={c.iso2}
+												value={c.name}
+												onSelect={() => {
+													setLocalCountry(c.iso2 as CountryIso2)
+													setOpen(false)
+												}}>
+												<div className="flex flex-1 items-center gap-2">
+													<FlagImage iso2={c.iso2} className="size-5" />
+													<span className="truncate">{c.name}</span>
+												</div>
+												<Check className={cn("ml-2", localCountry === c.iso2 ? "opacity-100" : "opacity-0")} />
+											</CommandItem>
+										))}
+									</CommandGroup>
+								</CommandList>
+							</Command>
+						</PopoverContent>
+					</Popover>
 					<Input
 						type="tel"
 						placeholder="Enter your phone number"
 						value={localPhone}
-						onChange={(e) => setLocalPhone(e.target.value)}
+						onChange={handlePhoneChange}
+						inputMode="numeric"
 						className="flex-1 rounded-l-none border-l-0 focus-within:border-l"
 					/>
 				</InputGroup>
@@ -55,5 +79,3 @@ function NationalPhoneWithHookExample() {
 		</div>
 	)
 }
-
-export default NationalPhoneWithHookExample

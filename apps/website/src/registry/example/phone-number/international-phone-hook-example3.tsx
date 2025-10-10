@@ -10,27 +10,26 @@ import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-export default function InternationalPhone({
-	onlyCountries = ["us", "np", "it", "gb"], // Pass array of ISO2 codes like ["us", "np", "it", "gb"]
-}: {
-	onlyCountries?: CountryIso2[]
-}) {
+export default function InternationalPhone({ excludeCountries = ["us", "np", "it", "gb"] }: { excludeCountries?: CountryIso2[] }) {
 	const [internalValue, setInternalValue] = useState<string>("")
 	const [open, setOpen] = useState(false)
 
-	// Filter countries based on onlyCountries prop
+	// Filter countries based on excludeCountries prop
 	const filteredCountries = useMemo(() => {
-		if (!onlyCountries || onlyCountries.length === 0) {
-			return defaultCountries
+		// If excludeCountries is provided, exclude them
+		if (excludeCountries && excludeCountries.length > 0) {
+			return defaultCountries.filter((country) => {
+				const parsed = parseCountry(country)
+				return !excludeCountries.includes(parsed.iso2 as CountryIso2)
+			})
 		}
-		return defaultCountries.filter((country) => {
-			const parsed = parseCountry(country)
-			return onlyCountries.includes(parsed.iso2 as CountryIso2)
-		})
-	}, [onlyCountries])
+
+		// If not provided, return all countries
+		return defaultCountries
+	}, [excludeCountries])
 
 	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
-		defaultCountry: onlyCountries.length > 0 ? onlyCountries[0] : "us",
+		defaultCountry: "ca",
 		value: internalValue,
 		countries: filteredCountries,
 		onChange: (data) => {
