@@ -1,17 +1,22 @@
 "use client"
 
 import React, { useMemo, useState } from "react"
+import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
+import { cn } from "@/lib/utils"
+import { Button } from "@/registry/ui/button"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-export default function InternationalPhoneWithHookExample2({
+export default function InternationalPhone({
 	onlyCountries = ["us", "np", "it", "gb"], // Pass array of ISO2 codes like ["us", "np", "it", "gb"]
 }: {
 	onlyCountries?: CountryIso2[]
 }) {
 	const [internalValue, setInternalValue] = useState<string>("")
+	const [open, setOpen] = useState(false)
 
 	// Filter countries based on onlyCountries prop
 	const filteredCountries = useMemo(() => {
@@ -33,36 +38,50 @@ export default function InternationalPhoneWithHookExample2({
 		},
 	})
 
+	const parsedCountries = filteredCountries.map(parseCountry)
+
 	return (
 		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-1.5">
 			<Label>Enter Your Number</Label>
 			<div className="flex w-full">
 				<InputGroup className="w-full">
-					<Select value={country.iso2} onValueChange={(code) => setCountry(code as CountryIso2)}>
-						<SelectTrigger className="w-fit rounded-r-none">
-							<SelectValue aria-label={country.name}>
+					<Popover open={open} onOpenChange={setOpen}>
+						<PopoverTrigger asChild>
+							<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
 								<div className="flex items-center gap-2">
 									<FlagImage iso2={country.iso2} className="size-4" />
 									<span className="text-sm">+{country.dialCode}</span>
 								</div>
-							</SelectValue>
-						</SelectTrigger>
-						<SelectContent className="max-h-80 w-full">
-							<SelectGroup>
-								{filteredCountries.map((c) => {
-									const parsed = parseCountry(c)
-									return (
-										<SelectItem key={parsed.iso2} value={parsed.iso2} className="justify-between gap-2">
-											<span className="inline-flex flex-1 items-center gap-2">
-												<FlagImage iso2={parsed.iso2} className="size-5" />
-												<span className="truncate">{`${parsed.name} (+${parsed.dialCode})`}</span>
-											</span>
-										</SelectItem>
-									)
-								})}
-							</SelectGroup>
-						</SelectContent>
-					</Select>
+								<ChevronDown className="size-4 opacity-50" />
+							</Button>
+						</PopoverTrigger>
+						<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
+							<Command className="border-0">
+								<CommandInput placeholder="Search country..." />
+								<CommandList>
+									<CommandEmpty>No country found.</CommandEmpty>
+									<CommandGroup>
+										{parsedCountries.map((c) => (
+											<CommandItem
+												key={c.iso2}
+												value={`${c.name} ${c.dialCode}`}
+												onSelect={() => {
+													setCountry(c.iso2 as CountryIso2)
+													setOpen(false)
+												}}>
+												<div className="flex flex-1 items-center gap-2">
+													<FlagImage iso2={c.iso2} className="size-5" />
+													<span className="truncate">{c.name}</span>
+													<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
+												</div>
+												<Check className={cn("ml-2", country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
+											</CommandItem>
+										))}
+									</CommandGroup>
+								</CommandList>
+							</Command>
+						</PopoverContent>
+					</Popover>
 					<Input
 						ref={inputRef}
 						type="tel"

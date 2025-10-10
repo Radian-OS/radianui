@@ -183,12 +183,12 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Collapsible UI component illustration",
 			},
 			{
-				title: "Currency Amount",
+				title: "Currency Input",
 				description: "3 Components",
-				url: "/docs/components/currency-amount",
+				url: "/docs/components/currency-input",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
-				alt: "Currency Amount UI component illustration",
+				alt: "Currency Input UI component illustration",
 			},
 			{
 				title: "Check Box",

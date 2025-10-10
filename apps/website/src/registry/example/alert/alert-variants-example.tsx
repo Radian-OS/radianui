@@ -12,6 +12,11 @@ const AlertVariantsExample = () => {
 				</AlertIcon>
 
 				<AlertTitle>Alert Strong Variant</AlertTitle>
+				<AlertToolbar>
+					<LinkButton className="text-white" href="#variants">
+						Upgrade
+					</LinkButton>
+				</AlertToolbar>
 			</Alert>
 
 			<Alert variant="soft" close>
@@ -19,6 +24,9 @@ const AlertVariantsExample = () => {
 					<BadgeInfo />
 				</AlertIcon>
 				<AlertTitle>Alert Soft Variant</AlertTitle>
+				<AlertToolbar>
+					<LinkButton href="#variants">Upgrade</LinkButton>
+				</AlertToolbar>
 			</Alert>
 
 			<Alert variant="soft-outline" close>
@@ -26,6 +34,9 @@ const AlertVariantsExample = () => {
 					<BadgeCheck />
 				</AlertIcon>
 				<AlertTitle>Alert Soft-Outline Variant</AlertTitle>
+				<AlertToolbar>
+					<LinkButton href="#variants">Upgrade</LinkButton>
+				</AlertToolbar>
 			</Alert>
 
 			<Alert variant="outline" close>
@@ -34,7 +45,7 @@ const AlertVariantsExample = () => {
 				</AlertIcon>
 				<AlertTitle>Alert Outline Variant</AlertTitle>
 				<AlertToolbar>
-					<LinkButton href="#upgrade">Upgrade</LinkButton>
+					<LinkButton href="#variants">Upgrade</LinkButton>
 				</AlertToolbar>
 			</Alert>
 		</div>
