@@ -7,38 +7,39 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
 
-type ButtonProps = VariantProps<typeof buttonVariants> &
-	React.ComponentProps<"button"> & {
-		className?: string
-		children: React.ReactNode
-		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
-		loading?: boolean
-		asChild?: boolean
-	}
-
-type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
+export type ButtonProps = React.ComponentProps<"button"> & {
+	variant?: VariantProps<typeof buttonVariants>["variant"]
+	size?: VariantProps<typeof buttonVariants>["size"]
+	className?: string
 	children: React.ReactNode
-	variant?: ButtonProps["variant"]
-	size?: ButtonProps["size"]
-	color?: ButtonProps["color"]
+	color?: VariantProps<typeof buttonVariants>["color"]
+	loading?: boolean
+	asChild?: boolean
 }
 
-type CompactButtonProps = {
+export type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
+	children: React.ReactNode
+	variant?: VariantProps<typeof buttonVariants>["variant"]
+	size?: VariantProps<typeof buttonVariants>["size"]
+	color?: VariantProps<typeof buttonVariants>["color"]
+}
+
+export type CompactButtonProps = {
 	loading?: boolean
-	variant?: "strong" | "soft" | "outline" | "ghost"
-	size?: "20" | "24"
-	color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
+	variant?: VariantProps<typeof compactButtonVariants>["variant"]
+	size?: VariantProps<typeof compactButtonVariants>["size"]
+	color?: VariantProps<typeof compactButtonVariants>["color"]
 	className?: string
 	children: React.ReactNode
 	disabled?: boolean
 	asChild?: boolean
 } & React.ComponentProps<"button">
 
-type LinkButtonProps = {
+export type LinkButtonProps = {
 	loading?: boolean
-	size?: "14" | "16"
+	size?: VariantProps<typeof linkButtonVariants>["size"]
 	href: string
-	color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
+	color?: VariantProps<typeof linkButtonVariants>["color"]
 	className?: string
 	children: React.ReactNode
 	disabled?: boolean
@@ -46,14 +47,15 @@ type LinkButtonProps = {
 	rel?: string
 }
 
-type IconButtonProps = VariantProps<typeof buttonVariants> &
-	Omit<React.ComponentProps<"button">, "color"> & {
-		className?: string
-		children: React.ReactNode
-		color?: "primary" | "info" | "success" | "error" | "warning" | "neutral"
-		loading?: boolean
-		asChild?: boolean
-	}
+export type IconButtonProps = Omit<React.ComponentProps<"button">, "color"> & {
+	className?: string
+	children: React.ReactNode
+	variant?: VariantProps<typeof buttonVariants>["variant"]
+	size?: VariantProps<typeof buttonVariants>["size"]
+	color?: VariantProps<typeof buttonVariants>["color"]
+	loading?: boolean
+	asChild?: boolean
+}
 
 export const buttonVariants = cva(
 	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
@@ -290,34 +292,168 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 }
 ButtonGroup.displayName = "ButtonGroup"
 
+export const compactButtonVariants = cva(
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
+	{
+		variants: {
+			variant: {
+				strong: "",
+				soft: "",
+				outline: "",
+				ghost: "",
+			},
+			size: {
+				"20": "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm",
+				"24": "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md",
+			},
+			color: {
+				primary: "",
+				info: "",
+				success: "",
+				error: "",
+				warning: "",
+				neutral: "",
+			},
+		},
+		defaultVariants: {
+			variant: "strong",
+			size: "24",
+			color: "primary",
+		},
+		compoundVariants: [
+			// Strong variant + colors
+			{
+				variant: "strong",
+				color: "primary",
+				className: "bg-primary font-medium text-white hover:bg-primary-hover focus-visible:ring-primary focus-visible:outline-none",
+			},
+			{
+				variant: "strong",
+				color: "info",
+				className: "bg-info font-medium text-white hover:bg-info-hover focus-visible:ring-info focus-visible:outline-none",
+			},
+			{
+				variant: "strong",
+				color: "success",
+				className: "bg-success font-medium text-white hover:bg-success-hover focus-visible:ring-success focus-visible:outline-none",
+			},
+			{
+				variant: "strong",
+				color: "error",
+				className: "bg-error font-medium text-white hover:bg-error-hover focus-visible:ring-error focus-visible:outline-none",
+			},
+			{
+				variant: "strong",
+				color: "warning",
+				className: "bg-warning font-medium text-white hover:bg-warning-hover focus-visible:ring-warning focus-visible:outline-none",
+			},
+			{
+				variant: "strong",
+				color: "neutral",
+				className: "bg-black-inverse font-medium text-white-inverse hover:bg-fg-secondary focus-visible:ring-black-inverse focus-visible:outline-none",
+			},
+
+			// Soft variant + colors
+			{
+				variant: "soft",
+				color: "primary",
+				className: "bg-primary-accent font-medium text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus focus-visible:outline-none",
+			},
+			{
+				variant: "soft",
+				color: "info",
+				className: "bg-info-accent font-medium text-info-text hover:bg-info-focus focus-visible:ring-info-focus focus-visible:outline-none",
+			},
+			{
+				variant: "soft",
+				color: "success",
+				className: "bg-success-accent font-medium text-success-text hover:bg-success-focus focus-visible:ring-success-focus focus-visible:outline-none",
+			},
+			{
+				variant: "soft",
+				color: "error",
+				className: "bg-error-accent font-medium text-error-text hover:bg-error-focus focus-visible:ring-error-focus focus-visible:outline-none",
+			},
+			{
+				variant: "soft",
+				color: "warning",
+				className: "bg-warning-accent font-medium text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus focus-visible:outline-none",
+			},
+			{
+				variant: "soft",
+				color: "neutral",
+				className: "bg-fill2 font-medium text-fg-secondary hover:bg-fill3 focus-visible:bg-bg focus-visible:outline-none focus-visible:ring-border",
+			},
+
+			// Outline variant + colors
+			{
+				variant: "outline",
+				color: "primary",
+				className: "bg-transparent font-medium border border-primary-hover text-primary-text hover:bg-primary-accent focus-visible:ring-primary-hover",
+			},
+			{
+				variant: "outline",
+				color: "info",
+				className: "bg-transparent font-medium border border-info-hover text-info-text hover:bg-info-accent focus-visible:ring-info-hover",
+			},
+			{
+				variant: "outline",
+				color: "success",
+				className: "bg-transparent font-medium border border-success-hover text-success-text hover:bg-success-accent focus-visible:ring-success-hover",
+			},
+			{
+				variant: "outline",
+				color: "error",
+				className: "bg-transparent font-medium border border-error-hover text-error-text hover:bg-error-accent focus-visible:ring-error-hover",
+			},
+			{
+				variant: "outline",
+				color: "warning",
+				className: "bg-transparent font-medium border border-warning-hover text-warning-text hover:bg-warning-accent focus-visible:ring-warning-hover",
+			},
+			{
+				variant: "outline",
+				color: "neutral",
+				className: "bg-elevation-level1 font-medium text-fg-secondary border border-border hover:bg-fill2 focus-visible:ring-border dark:hover:bg-fill3",
+			},
+
+			// Ghost variant + colors
+			{
+				variant: "ghost",
+				color: "primary",
+				className: "bg-transparent text-primary-text font-medium hover:bg-primary-focus focus-visible:outline-none focus-visible:ring-primary-focus",
+			},
+			{
+				variant: "ghost",
+				color: "info",
+				className: "bg-transparent text-info-text font-medium hover:bg-info-focus focus-visible:outline-none focus-visible:ring-info-focus",
+			},
+			{
+				variant: "ghost",
+				color: "success",
+				className: "bg-transparent text-success-text font-medium hover:bg-success-focus focus-visible:outline-none focus-visible:ring-success-focus",
+			},
+			{
+				variant: "ghost",
+				color: "error",
+				className: "bg-transparent text-error-text font-medium hover:bg-error-focus focus-visible:outline-none focus-visible:ring-error-focus",
+			},
+			{
+				variant: "ghost",
+				color: "warning",
+				className: "bg-transparent text-warning-text font-medium hover:bg-warning-focus focus-visible:outline-none focus-visible:ring-warning-focus",
+			},
+			{
+				variant: "ghost",
+				color: "neutral",
+				className: "bg-transparent text-fg-secondary font-medium hover:bg-fill2 focus-visible:outline-none focus-visible:ring-border",
+			},
+		],
+	}
+)
+
 function CompactButton({ loading = false, variant = "strong", size = "24", color = "primary", className, children, disabled, asChild = false, ...props }: CompactButtonProps) {
-	const sizeStyles = size === "20" ? "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm" : "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md"
-
-	// Get the full button variant classes
-	const fullVariantClasses = buttonVariants({ variant, size: "36", color })
-
-	// Remove only the sizing/spacing classes that we're overriding
-	const filteredClasses = fullVariantClasses
-		.split(" ")
-		.filter(
-			(cls) =>
-				!cls.includes("rounded") &&
-				!cls.includes("h-") &&
-				!cls.includes("w-") &&
-				!cls.includes("px-") &&
-				!cls.includes("py-") &&
-				!cls.includes("gap-") &&
-				!cls.includes("[&>svg]:size-")
-		)
-		.join(" ")
-
-	const combinedClass = cn(
-		"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
-		sizeStyles,
-		filteredClasses,
-		disabled && "opacity-50",
-		className
-	)
+	const combinedClass = cn(compactButtonVariants({ variant, size, color }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
@@ -328,16 +464,18 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 	)
 }
 
+CompactButton.displayName = "CompactButton"
+
 const linkButtonVariants = cva(
 	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit [&>svg]:size-5",
 	{
 		variants: {
 			color: {
-				primary: "text-primary font-medium focus-visible:ring-primary focus-visible:outline-none",
-				info: "text-info font-medium focus-visible:ring-info focus-visible:outline-none",
-				success: "text-success font-medium focus-visible:ring-success focus-visible:outline-none",
-				error: "text-error font-medium focus-visible:ring-error focus-visible:outline-none",
-				warning: "text-warning font-medium focus-visible:ring-warning focus-visible:outline-none",
+				primary: "text-primary-text font-medium focus-visible:ring-primary focus-visible:outline-none",
+				info: "text-info-text font-medium focus-visible:ring-info focus-visible:outline-none",
+				success: "text-success-text font-medium focus-visible:ring-success focus-visible:outline-none",
+				error: "text-error-text font-medium focus-visible:ring-error focus-visible:outline-none",
+				warning: "text-warning-text font-medium focus-visible:ring-warning focus-visible:outline-none",
 				neutral: "text-black-inverse font-medium focus-visible:ring-black-inverse focus-visible:outline-none",
 			},
 			size: {

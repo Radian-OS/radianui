@@ -5,55 +5,51 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { Drawer as DrawerPrimitives } from "vaul"
 import { cn } from "@/lib/utils"
 
-type BackdropType = "overlay" | "blur" | "none"
-type DrawerType = "float" | "default" | "rounded"
-type DirectionType = "top" | "bottom" | "right" | "left"
-
 export type DrawerContextType = {
-	backdrop: BackdropType
-	variant: DrawerType
+	backdrop: VariantProps<typeof backdropVariants>["backdrop"]
+	variant: VariantProps<typeof drawerVariants>["variant"]
 	handle: boolean
-	direction: DirectionType
+	direction: VariantProps<typeof drawerVariants>["direction"]
 }
 
-type DrawerWrapperProps = VariantProps<typeof drawerVariants> &
+export type DrawerWrapperProps = VariantProps<typeof drawerVariants> &
 	React.ComponentProps<typeof DrawerPrimitives.Root> & {
-		backdrop?: BackdropType
-		variant?: DrawerType
+		backdrop?: VariantProps<typeof backdropVariants>["backdrop"]
+		variant?: VariantProps<typeof drawerVariants>["variant"]
 		handle?: boolean
 		className?: string
 	}
 
-type DrawerHeaderProps = {
+export type DrawerHeaderProps = {
 	children: React.ReactNode
 	className?: string
 }
 
-type DrawerTitleProps = {
+export type DrawerTitleProps = {
 	children: React.ReactNode
 	className?: string
 }
 
-type DrawerDescriptionProps = {
+export type DrawerDescriptionProps = {
 	children: React.ReactNode
 	className?: string
 }
 
-type DrawerFooterProps = {
+export type DrawerFooterProps = {
 	children: React.ReactNode
 	className?: string
 }
 
-type DrawerCloseProps = {
+export type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed  z-[999] bg-bg", {
+const drawerVariants = cva("fixed z-[999] bg-bg flex flex-col gap-5 overflow-hidden", {
 	variants: {
 		variant: {
-			float: "",
+			float: "rounded-xl shadow-lg outline outline-border",
 			default: "outline outline-border",
-			rounded: "rounded-xl", // No outline for rounded type to avoid the border issue
+			rounded: "outline outline-border rounded-xl",
 		},
 		direction: {
 			top: "top-0 w-full h-fit left-0 max-h-full",
@@ -61,15 +57,21 @@ const drawerVariants = cva("fixed  z-[999] bg-bg", {
 			right: "top-0 right-0 h-full w-fit max-w-full",
 			left: "top-0 left-0 h-full w-fit max-w-full",
 		},
+		handle: {
+			true: "",
+			false: "p-5",
+		},
 	},
 	defaultVariants: {
 		direction: "right",
 		variant: "default",
+		handle: false,
 	},
 
 	compoundVariants: [
+		// Float variants (existing)
 		{
-			variant: "float", // to show gap on all sides
+			variant: "float",
 			direction: "top",
 			className: "top-2 left-2 w-[calc(100%-1rem)]",
 		},
@@ -88,6 +90,47 @@ const drawerVariants = cva("fixed  z-[999] bg-bg", {
 			direction: "right",
 			className: "top-2 right-2 h-[calc(100%-1rem)]",
 		},
+		// Padding variants with handle
+		{
+			handle: true,
+			direction: "top",
+			className: "pb-7.5 pt-5 pl-5 pr-5",
+		},
+		{
+			handle: true,
+			direction: "bottom",
+			className: "pt-7.5 pb-5 pl-5 pr-5",
+		},
+		{
+			handle: true,
+			direction: "left",
+			className: "pr-7.5 pt-5 pl-5 pb-5",
+		},
+		{
+			handle: true,
+			direction: "right",
+			className: "pl-7.5 pt-5 pb-5 pr-5",
+		},
+		{
+			variant: "rounded",
+			direction: "top",
+			className: " rounded-b-xl",
+		},
+		{
+			variant: "rounded",
+			direction: "bottom",
+			className: "rounded-t-xl",
+		},
+		{
+			variant: "rounded",
+			direction: "left",
+			className: " rounded-r-xl",
+		},
+		{
+			variant: "rounded",
+			direction: "right",
+			className: " rounded-l-xl",
+		},
 	],
 })
 
@@ -96,7 +139,7 @@ const backdropVariants = cva("z-[999] fixed", {
 		backdrop: {
 			overlay: "inset-0 bg-black/50",
 			blur: "backdrop-blur-sm inset-0",
-			none: "backdrop-blur-none inset-0",
+			transparent: "backdrop-blur-none inset-0",
 		},
 	},
 	defaultVariants: {
@@ -117,50 +160,6 @@ const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-[999]! bg-border! r
 		direction: "right",
 	},
 })
-
-function getContentClass(variant: DrawerType, direction: DirectionType) {
-	const baseClasses = "bg-bg flex flex-col gap-5 overflow-hidden"
-
-	// Handle float type
-	if (variant === "float") {
-		return cn(baseClasses, "rounded-xl shadow-lg outline outline-border")
-	}
-
-	// Handle rounded type
-	if (variant === "rounded") {
-		switch (direction) {
-			case "top":
-				return cn(baseClasses, "outline outline-border rounded-b-xl")
-			case "bottom":
-				return cn(baseClasses, "outline outline-border rounded-t-xl")
-			case "left":
-				return cn(baseClasses, "outline outline-border rounded-r-xl")
-			case "right":
-				return cn(baseClasses, "outline outline-border rounded-l-xl")
-			default:
-				return baseClasses
-		}
-	}
-
-	// Default type
-	return baseClasses
-}
-
-function getPaddingClass(handle: boolean, direction: DirectionType) {
-	if (handle) {
-		switch (direction) {
-			case "top":
-				return "pb-7.5 pt-5 pl-5 pr-5"
-			case "bottom":
-				return "pt-7.5 pb-5 pl-5 pr-5"
-			case "left":
-				return "pr-7.5 pt-5 pl-5 pb-5"
-			case "right":
-				return "pl-7.5 pt-5 pb-5 pr-5"
-		}
-	}
-	return "p-5"
-}
 
 const DrawerContext = React.createContext<DrawerContextType | null>(null)
 
@@ -198,9 +197,7 @@ function DrawerContent({ children, className, ...props }: React.ComponentPropsWi
 	return (
 		<DrawerPrimitives.Portal>
 			<DrawerPrimitives.Overlay className={cn(backdropVariants({ backdrop }))} />
-			<DrawerPrimitives.Content
-				className={cn(drawerVariants({ direction, variant: variant }), getPaddingClass(handle, direction), getContentClass(variant, direction), className)}
-				{...props}>
+			<DrawerPrimitives.Content className={cn(drawerVariants({ direction, variant, handle }), className)} {...props}>
 				{handle && <DrawerPrimitives.Handle className={cn(handleVariants({ direction }))} />}
 				{children}
 			</DrawerPrimitives.Content>

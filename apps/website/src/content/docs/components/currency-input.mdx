@@ -1,5 +1,5 @@
 ---
-title: Currency Amount
+title: Currency Input
 description: Display currency amount
 links:
   github:
@@ -9,7 +9,7 @@ links:
       href: https://www.npmjs.com/package/react-currency-input-field
 ---
 
-<ComponentPreview path="currency-amount/currency-input-example" />
+<ComponentPreview path="currency-input/currency-input-example" />
 
 ## Installation
 
@@ -21,24 +21,24 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add currency-amount",
-				npm: "npx @radianos/radianbeta add currency-amount",
-				yarn: "yarn @radianos/radianbeta add currency-amount",
-				bun: "bunx @radianos/radianbeta add currency-amount",
+				pnpm: "pnpm dlx @radianos/radianbeta add currency-input",
+				npm: "npx @radianos/radianbeta add currency-input",
+				yarn: "yarn @radianos/radianbeta add currency-input",
+				bun: "bunx @radianos/radianbeta add currency-input",
 			}}
 		/>
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
     	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="currency-amount">
+    	<Tabs defaultValue="currency-input">
     		<TabsList>
-    			<TabsTrigger value="currency-amount">Currency Amount</TabsTrigger>
+    			<TabsTrigger value="currency-input">Currency Input</TabsTrigger>
     			<TabsTrigger value="input">Input</TabsTrigger>
     			<TabsTrigger value="label">Label</TabsTrigger>
     		</TabsList>
-    		<TabsContent value="currency-amount">
-    			<ComponentSource name="currency-amount" title="components/ui/currency-amount.tsx" collapsible />
+    		<TabsContent value="currency-input">
+    			<ComponentSource name="currency-input" title="components/ui/currency-input.tsx" collapsible />
     		</TabsContent>
     	</Tabs>
 
@@ -52,18 +52,18 @@ links:
 
 ### With Prefix
 
-<ComponentPreview path="currency-amount/currency-prefix-example" />
+<ComponentPreview path="currency-input/currency-prefix-example" />
 
 ### No Decimal
 
-<ComponentPreview path="currency-amount/currency-nodecimal-example" />
+<ComponentPreview path="currency-input/currency-nodecimal-example" />
 
 ### Step
 
-<ComponentPreview path="currency-amount/currency-step-example" />
+<ComponentPreview path="currency-input/currency-step-example" />
 
 <br />
-The currency-amount is built on top of `react-currency-input-field`. You can pass all the props supported by library to the component. For more details, refer to the [official
+The currency-input is built on top of `react-currency-input-field`. You can pass all the props supported by library to the component. For more details, refer to the [official
 documentation](https://www.npmjs.com/package/react-currency-input-field).
 
 ---
@@ -72,7 +72,7 @@ documentation](https://www.npmjs.com/package/react-currency-input-field).
 
 <PropsTableWrapper>
 	<PropsTable
-		title="CurrencyInputFeild"
+		title="CurrencyInput"
 		data={[
 			{
 				name: "className",
