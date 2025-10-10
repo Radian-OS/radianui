@@ -1,7 +1,8 @@
 "use client"
 
+import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { CircleCheckBig } from "lucide-react"
+import { CircleCheckBig, EyeIcon, EyeOffIcon } from "lucide-react"
 import Link from "next/link"
 import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -9,8 +10,7 @@ import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
-import { Password } from "@/registry/ui/password"
+import { Input, InputWrapper } from "@/registry/ui/input"
 
 interface FormData {
 	name: string
@@ -28,6 +28,16 @@ const FormSchema = z.object({
 })
 
 export default function SignUp() {
+	const [showPassword, setShowPassword] = useState(false)
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword(!showPassword)
+	}
+
+	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
+
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -102,9 +112,15 @@ export default function SignUp() {
 									name="password"
 									render={({ field }: { field: FieldValues }) => (
 										<FormItem>
-											<FormLabel>Password</FormLabel>
+											<FormLabel htmlFor="sign-in-password">Password</FormLabel>
 											<FormControl>
-												<Password placeholder="Enter your password" {...field} />
+												<InputWrapper>
+													<Input id="sign-in-password" placeholder="Enter your password" type={showPassword ? "text" : "password"} {...field} />
+													<IconComponent
+														className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+														onMouseDown={togglePasswordVisibility}
+													/>
+												</InputWrapper>
 											</FormControl>
 											<FormMessage />
 										</FormItem>

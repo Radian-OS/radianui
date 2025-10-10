@@ -1,19 +1,31 @@
+"use client"
+
 import React, { useMemo, useState } from "react"
-import { CircleCheck } from "lucide-react"
+import { CircleCheck, EyeIcon, EyeOffIcon } from "lucide-react"
 import { z } from "zod"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
-import { Password } from "@/registry/ui/password"
 import { Progress } from "@/registry/ui/progress"
 
-function PasswordVlidationExample() {
-	const passwordSchema = z
-		.string()
-		.min(8, { message: "At least 8 characters" })
-		.regex(/\d/, { message: "At least one number" })
-		.regex(/[a-z]/, { message: "At least one lowercase letter" })
-		.regex(/[A-Z]/, { message: "At least one uppercase letter" })
+const passwordSchema = z
+	.string()
+	.min(8, { message: "At least 8 characters" })
+	.regex(/\d/, { message: "At least one number" })
+	.regex(/[a-z]/, { message: "At least one lowercase letter" })
+	.regex(/[A-Z]/, { message: "At least one uppercase letter" })
 
+function PasswordValidationExample() {
 	const [password, setPassword] = useState("")
+	const [showPassword, setShowPassword] = useState(false)
+	const [isFocused, setIsFocused] = useState(false)
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword(!showPassword)
+	}
+
+	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
 	const validation = useMemo(() => passwordSchema.safeParse(password), [password])
 
@@ -32,8 +44,19 @@ function PasswordVlidationExample() {
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-col gap-1.5">
-				<Label>Password</Label>
-				<Password value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" className="w-80" toggleVisibility="focus" />
+				<Label htmlFor="validation-password">Password</Label>
+				<InputWrapper className="w-80">
+					<Input
+						id="validation-password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						placeholder="Enter your password"
+						type={showPassword ? "text" : "password"}
+						onFocus={() => setIsFocused(true)}
+						onBlur={() => setIsFocused(false)}
+					/>
+					{isFocused && <IconComponent className="hover:text-fg cursor-pointer" onMouseDown={togglePasswordVisibility} />}
+				</InputWrapper>
 			</div>
 			<div className="body-13 flex w-full flex-col gap-2">
 				<Progress value={progress} />
@@ -49,4 +72,4 @@ function PasswordVlidationExample() {
 	)
 }
 
-export default PasswordVlidationExample
+export default PasswordValidationExample
