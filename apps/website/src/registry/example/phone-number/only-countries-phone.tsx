@@ -3,6 +3,7 @@
 import React, { useMemo, useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
+import { ScrollArea } from "@/components/scroll-area"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
@@ -10,15 +11,11 @@ import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-export default function InternationalPhone({
-	onlyCountries = ["us", "np", "it", "gb"], // Pass array of ISO2 codes like ["us", "np", "it", "gb"]
-}: {
-	onlyCountries?: CountryIso2[]
-}) {
+export default function InternationalPhone({ onlyCountries = ["us", "np", "it", "gb"] }: { onlyCountries?: CountryIso2[] }) {
 	const [internalValue, setInternalValue] = useState<string>("")
 	const [open, setOpen] = useState(false)
 
-	// Filter countries based on onlyCountries prop
+	// Filter countries to get full country data arrays
 	const filteredCountries = useMemo(() => {
 		if (!onlyCountries || onlyCountries.length === 0) {
 			return defaultCountries
@@ -38,8 +35,6 @@ export default function InternationalPhone({
 		},
 	})
 
-	const parsedCountries = filteredCountries.map(parseCountry)
-
 	return (
 		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-1.5">
 			<Label>Enter Your Number</Label>
@@ -55,32 +50,37 @@ export default function InternationalPhone({
 								<ChevronDown className="size-4 opacity-50" />
 							</Button>
 						</PopoverTrigger>
-						<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
-							<Command className="border-0">
-								<CommandInput placeholder="Search country..." />
-								<CommandList>
-									<CommandEmpty>No country found.</CommandEmpty>
-									<CommandGroup>
-										{parsedCountries.map((c) => (
-											<CommandItem
-												key={c.iso2}
-												value={`${c.name} ${c.dialCode}`}
-												onSelect={() => {
-													setCountry(c.iso2 as CountryIso2)
-													setOpen(false)
-												}}>
-												<div className="flex flex-1 items-center gap-2">
-													<FlagImage iso2={c.iso2} className="size-5" />
-													<span className="truncate">{c.name}</span>
-													<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
-												</div>
-												<Check className={cn("ml-2", country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
-											</CommandItem>
-										))}
-									</CommandGroup>
-								</CommandList>
-							</Command>
-						</PopoverContent>
+						<ScrollArea>
+							<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
+								<Command className="border-0">
+									<CommandInput placeholder="Search country..." />
+									<CommandList>
+										<CommandEmpty>No country found.</CommandEmpty>
+										<CommandGroup>
+											{filteredCountries.map((c) => {
+												const parsed = parseCountry(c)
+												return (
+													<CommandItem
+														key={parsed.iso2}
+														value={`${parsed.name} ${parsed.dialCode}`}
+														onSelect={() => {
+															setCountry(parsed.iso2 as CountryIso2)
+															setOpen(false)
+														}}>
+														<div className="flex flex-1 items-center gap-2">
+															<FlagImage iso2={parsed.iso2} className="size-5" />
+															<span className="truncate">{parsed.name}</span>
+															<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
+														</div>
+														<Check className={cn("ml-2", country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
+													</CommandItem>
+												)
+											})}
+										</CommandGroup>
+									</CommandList>
+								</Command>
+							</PopoverContent>
+						</ScrollArea>
 					</Popover>
 					<Input
 						ref={inputRef}

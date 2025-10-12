@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
+import { ScrollArea } from "@/components/scroll-area"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
@@ -35,37 +36,38 @@ function InternationalPhone() {
 							<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
 								<div className="flex items-center gap-2">
 									<FlagImage iso2={country.iso2} className="size-4" />
-									<span className="text-sm">+{country.dialCode}</span>
 								</div>
 								<ChevronDown className="size-4 opacity-50" />
 							</Button>
 						</PopoverTrigger>
-						<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
-							<Command className="border-0">
-								<CommandInput placeholder="Search country..." />
-								<CommandList>
-									<CommandEmpty>No country found.</CommandEmpty>
-									<CommandGroup>
-										{parsedCountries.map((c) => (
-											<CommandItem
-												key={c.iso2}
-												value={`${c.name} ${c.dialCode}`}
-												onSelect={() => {
-													setCountry(c.iso2 as CountryIso2)
-													setOpen(false)
-												}}>
-												<div className="flex flex-1 items-center gap-2">
-													<FlagImage iso2={c.iso2} className="size-5" />
-													<span className="truncate">{c.name}</span>
-													<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
-												</div>
-												<Check className={cn("ml-2", country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
-											</CommandItem>
-										))}
-									</CommandGroup>
-								</CommandList>
-							</Command>
-						</PopoverContent>
+						<ScrollArea>
+							<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
+								<Command className="border-0">
+									<CommandInput placeholder="Search country..." />
+									<CommandList>
+										<CommandEmpty>No country found.</CommandEmpty>
+										<CommandGroup>
+											{parsedCountries.map((c) => (
+												<CommandItem
+													key={c.iso2}
+													value={`${c.name} ${c.dialCode}`}
+													onSelect={() => {
+														setCountry(c.iso2 as CountryIso2)
+														setOpen(false)
+													}}>
+													<div className="flex flex-1 items-center gap-2">
+														<FlagImage iso2={c.iso2} className="size-5" />
+														<span className="truncate">{c.name}</span>
+														<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
+													</div>
+													<Check className={cn("ml-2", country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
+												</CommandItem>
+											))}
+										</CommandGroup>
+									</CommandList>
+								</Command>
+							</PopoverContent>
+						</ScrollArea>
 					</Popover>
 					<Input
 						ref={inputRef}

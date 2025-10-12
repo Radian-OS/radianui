@@ -5,10 +5,11 @@ import { FlagImage, defaultCountries, usePhoneInput } from "react-international-
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
-export default function PhoneNumberStatic() {
+export default function PhoneNumberNoFormatting() {
 	const [internalValue, setInternalValue] = useState<string>("")
 	const { inputValue, handlePhoneValueChange, inputRef, country } = usePhoneInput({
 		defaultCountry: "us",
+		disableFormatting: true,
 		disableDialCodeAndPrefix: true,
 		value: internalValue,
 		countries: defaultCountries,
