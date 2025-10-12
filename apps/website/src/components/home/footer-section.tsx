@@ -4,7 +4,7 @@ import { WebsiteLogo } from "../navbar/website-logo"
 
 const LINKS = [
 	{
-		title: "DOCUMENTATION",
+		title: "Documentation",
 		linkItems: [
 			{
 				href: "#",
@@ -29,7 +29,7 @@ const LINKS = [
 		],
 	},
 	{
-		title: "RESOURCES",
+		title: "Resources",
 		linkItems: [
 			{
 				href: "#",
@@ -50,7 +50,7 @@ const LINKS = [
 		],
 	},
 	{
-		title: "COMMUNITY",
+		title: "Community",
 		linkItems: [
 			{
 				href: "#",
@@ -70,7 +70,7 @@ const LINKS = [
 
 export default function FooterSection() {
 	return (
-		<div className="border-soft bg-bg w-full border-t">
+		<div className="bg-bg before:from-bg before:via-soft before:to-bg w-full before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r">
 			{/* For tablet and mobile */}
 			<div className="flex flex-col gap-5 px-5 pt-10 xl:hidden">
 				<WebsiteLogo />
@@ -100,7 +100,7 @@ export default function FooterSection() {
 				<div className="flex gap-20">
 					{LINKS.map((item) => (
 						<div className="flex flex-col gap-5" key={item.title}>
-							<p className="text-fg-tertiary text-sm font-medium">{item.title}</p>
+							<p className="text-fg-tertiary text-sm font-medium uppercase">{item.title}</p>
 							<div className="flex flex-col gap-4">
 								{item.linkItems.map((linkItem) => (
 									<Link key={linkItem.name} href={linkItem.href}>
@@ -116,6 +116,7 @@ export default function FooterSection() {
 			<div className="h-13">
 				<p className="text-fg-secondary text-center text-sm font-medium">© Copyright Radian OS 2025. All rights reserved.</p>
 			</div>
+			<div className="hidden h-10 xl:block" />
 		</div>
 	)
 }

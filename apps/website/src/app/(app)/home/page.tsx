@@ -1,5 +1,6 @@
 import { Box, Code, SearchCode } from "lucide-react"
 import Background from "@/components/effects/background"
+import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
 import FooterSection from "@/components/home/footer-section"
 import { Badge } from "@/registry/ui/badge"
@@ -114,6 +115,8 @@ export default function Page() {
 			<div className="h-60" />
 
 			<FAQSection />
+
+			<CTASection />
 
 			<FooterSection />
 		</div>
