@@ -5,7 +5,7 @@ import { Button } from "@/registry/ui/button"
 export default function VideoSection() {
 	return (
 		<div className="py-15 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
-			<div className="border-soft align-center pt-15 px-15 relative flex justify-center rounded-t-3xl xl:border-l xl:border-r xl:border-t">
+			<div className="border-soft align-center pt-15 xl:px-15 relative flex justify-center rounded-t-3xl px-5 xl:border-l xl:border-r xl:border-t">
 				<div className="flex flex-col items-center gap-6">
 					<div className="bg-bg absolute bottom-full h-fit translate-y-1/2 px-4">
 						<div className="border-soft px-7 xl:border-l xl:border-r">
