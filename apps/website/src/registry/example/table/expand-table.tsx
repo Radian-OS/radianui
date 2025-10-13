@@ -88,21 +88,19 @@ const columns: ColumnDef<Item>[] = [
 				</IconButton>
 			) : undefined
 		},
-		size: 40,
 	},
 	{
 		id: "select",
 		header: ({ table }) => (
 			<Checkbox
 				size="sm"
-				className="flex w-full items-center justify-start"
+				className="flex items-center justify-start"
 				checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
 				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
 				aria-label="Select all"
 			/>
 		),
 		cell: ({ row }) => <Checkbox size="sm" checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />,
-		size: 27,
 	},
 	{
 		header: "Name",
@@ -112,13 +110,11 @@ const columns: ColumnDef<Item>[] = [
 	{
 		header: "Email",
 		accessorKey: "email",
-		size: 200,
 	},
 	{
 		header: "Status",
 		accessorKey: "status",
 		cell: ({ row }) => <Badge className={cn(row.getValue("status") === "Inactive" && "bg-muted-foreground/60 text-primary-foreground")}>{row.getValue("status")}</Badge>,
-		size: 50,
 	},
 	{
 		header: () => <div className="text-right">Balance</div>,
@@ -144,55 +140,57 @@ export default function ExpandTable() {
 	})
 
 	return (
-		<div>
-			<Table className="table-fixed">
-				<TableHeader>
-					{table.getHeaderGroups().map((headerGroup) => (
-						<TableRow key={headerGroup.id} className="hover:bg-transparent">
-							{headerGroup.headers.map((header) => {
-								return (
-									<TableHead style={{ width: `${header.getSize()}px` }} key={header.id}>
-										{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-									</TableHead>
-								)
-							})}
-						</TableRow>
-					))}
-				</TableHeader>
-				<TableBody>
-					{table.getRowModel().rows?.length ? (
-						table.getRowModel().rows.map((row) => (
-							<Fragment key={row.id}>
-								<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
-									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id} className="whitespace-nowrap [&:has([aria-expanded])]:w-px [&:has([aria-expanded])]:py-0 [&:has([aria-expanded])]:pr-0">
-											{flexRender(cell.column.columnDef.cell, cell.getContext())}
-										</TableCell>
-									))}
-								</TableRow>
-								{row.getIsExpanded() && (
-									<TableRow>
-										<TableCell colSpan={row.getVisibleCells().length}>
-											<div className="text-fg flex items-start py-2">
-												<span className="me-3 mt-0.5 flex w-7 shrink-0 justify-center" aria-hidden="true">
-													<InfoIcon className="opacity-60" size={16} />
-												</span>
-												<p className="text-sm">{row.original.note}</p>
-											</div>
-										</TableCell>
+		<div className="w-full">
+			<div className="overflow-hidden rounded-md border">
+				<Table>
+					<TableHeader>
+						{table.getHeaderGroups().map((headerGroup) => (
+							<TableRow key={headerGroup.id} className="hover:bg-transparent">
+								{headerGroup.headers.map((header) => {
+									return (
+										<TableHead style={{ width: `${header.getSize()}px` }} key={header.id}>
+											{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+										</TableHead>
+									)
+								})}
+							</TableRow>
+						))}
+					</TableHeader>
+					<TableBody>
+						{table.getRowModel().rows?.length ? (
+							table.getRowModel().rows.map((row) => (
+								<Fragment key={row.id}>
+									<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+										{row.getVisibleCells().map((cell) => (
+											<TableCell key={cell.id} className="whitespace-nowrap [&:has([aria-expanded])]:w-px [&:has([aria-expanded])]:py-0 [&:has([aria-expanded])]:pr-0">
+												{flexRender(cell.column.columnDef.cell, cell.getContext())}
+											</TableCell>
+										))}
 									</TableRow>
-								)}
-							</Fragment>
-						))
-					) : (
-						<TableRow>
-							<TableCell colSpan={columns.length} className="h-24 text-center">
-								No results.
-							</TableCell>
-						</TableRow>
-					)}
-				</TableBody>
-			</Table>
+									{row.getIsExpanded() && (
+										<TableRow>
+											<TableCell colSpan={row.getVisibleCells().length}>
+												<div className="text-fg flex items-start py-2">
+													<span className="me-3 mt-0.5 flex w-7 shrink-0 justify-center" aria-hidden="true">
+														<InfoIcon className="opacity-60" size={16} />
+													</span>
+													<p className="text-sm">{row.original.note}</p>
+												</div>
+											</TableCell>
+										</TableRow>
+									)}
+								</Fragment>
+							))
+						) : (
+							<TableRow>
+								<TableCell colSpan={columns.length} className="h-24 text-center">
+									No results.
+								</TableCell>
+							</TableRow>
+						)}
+					</TableBody>
+				</Table>
+			</div>
 		</div>
 	)
 }
