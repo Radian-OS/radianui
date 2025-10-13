@@ -11,7 +11,16 @@ export type CurrencyInputProps = Omit<React.ComponentProps<typeof CurrencyInputF
 }
 
 function CurrencyInput({ className, size, ...props }: CurrencyInputProps) {
-	return <CurrencyInputField className={cn(inputVariants({ size }), className)} allowDecimals={true} decimalsLimit={2} allowNegativeValue={false} {...props} />
+	return (
+		<CurrencyInputField
+			data-slot="currency-input"
+			className={cn(inputVariants({ size }), className)}
+			allowDecimals={true}
+			decimalsLimit={2}
+			allowNegativeValue={false}
+			{...props}
+		/>
+	)
 }
 
 CurrencyInput.displayName = "CurrencyInput"

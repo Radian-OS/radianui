@@ -93,27 +93,28 @@ const inputWrapperVariants = cva(
 	has-[:focus-visible]:outline-none 
 	has-[:focus-visible]:ring-2
 
+	
 	[&_[data-slot=datefield]]:grow 
-	[&_[data-slot=input]]:rounded-none
-	[&_[data-slot=input]]:data-focus-within:ring-transparent  
-	[&_[data-slot=input]]:data-focus-within:ring-0 
-	[&_[data-slot=input]]:data-focus-within:border-0 
-	[&_[data-slot=input]]:flex 
-	[&_[data-slot=input]]:w-full 
-	[&_[data-slot=input]]:outline-none 
-	[&_[data-slot=input]]:transition-colors 
-	[&_[data-slot=input]]:text-fg
-	[&_[data-slot=input]]:placeholder:text-fg-tertiary 
-	[&_[data-slot=input]]:border-0 
-	[&_[data-slot=input]]:bg-transparent 
-	[&_[data-slot=input]]:p-0
-	[&_[data-slot=input]]:shadow-none 
-	[&_[data-slot=input]]:focus-visible:ring-0 
-	[&_[data-slot=input]]:h-auto 
-	[&_[data-slot=input]]:disabled:cursor-not-allowed
-	[&_[data-slot=input]]:disabled:opacity-50    
+	[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-none
+	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-transparent  
+	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-0
+	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:border-0
+	[&_:is([data-slot=input],[data-slot=currency-input])]:flex 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:w-full 
+    [&_:is([data-slot=input],[data-slot=currency-input])]:outline-none 
+    [&_:is([data-slot=input],[data-slot=currency-input])]:transition-colors 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:text-fg
+	[&_:is([data-slot=input],[data-slot=currency-input])]:placeholder:text-fg-tertiary 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:p-0
+	[&_:is([data-slot=input],[data-slot=currency-input])]:border-0 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:bg-transparent 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:shadow-none 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:focus-visible:ring-0 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:h-auto 
+	[&_:is([data-slot=input],[data-slot=currency-input])]:disabled:cursor-not-allowed
+	[&_:is([data-slot=input],[data-slot=currency-input])]:disabled:opacity-50
 
-	[&_svg]:text-fg-tertiary 
+	[&_svg]:text-fg-tertiary
 	[&_svg]:shrink-0
 
 	has-[[aria-invalid=true]]:border-error
