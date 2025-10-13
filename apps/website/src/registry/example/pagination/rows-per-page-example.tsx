@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react"
 import { ChevronFirstIcon, ChevronLastIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
+import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Label } from "@/registry/ui/label"
 import { Pagination, PaginationContent, PaginationItem } from "@/registry/ui/pagination"
@@ -22,13 +23,21 @@ const data: UserData[] = [
 	{ name: "Charlie Brown", email: "charlie@example.com", role: "Editor", status: "Inactive" },
 	{ name: "Diana Prince", email: "diana@example.com", role: "User", status: "Active" },
 	{ name: "Ethan Hunt", email: "ethan@example.com", role: "Admin", status: "Active" },
-	{ name: "Fiona Green", email: "fiona@example.com", role: "User", status: "Pending" },
+	{ name: "Fiona Green", email: "fiona@example.com", role: "User", status: "Inactive" },
 	{ name: "George Wilson", email: "george@example.com", role: "Editor", status: "Active" },
 	{ name: "Hannah Lee", email: "hannah@example.com", role: "User", status: "Inactive" },
 	{ name: "Ian Malcolm", email: "ian@example.com", role: "Admin", status: "Active" },
 	{ name: "Julia Roberts", email: "julia@example.com", role: "User", status: "Active" },
 	{ name: "Kevin Hart", email: "kevin@example.com", role: "Editor", status: "Active" },
-	{ name: "Laura Palmer", email: "laura@example.com", role: "User", status: "Pending" },
+	{ name: "Laura Palmer", email: "laura@example.com", role: "User", status: "Inactive" },
+	{ name: "Michael Scott", email: "michael@example.com", role: "Admin", status: "Active" },
+	{ name: "Nina Simone", email: "nina@example.com", role: "User", status: "Active" },
+	{ name: "Oliver Twist", email: "oliver@example.com", role: "Editor", status: "Inactive" },
+	{ name: "Patricia Moore", email: "patricia@example.com", role: "User", status: "Active" },
+	{ name: "Quinn Harper", email: "quinn@example.com", role: "User", status: "Inactive" },
+	{ name: "Rachel Green", email: "rachel@example.com", role: "Editor", status: "Active" },
+	{ name: "Samuel Jackson", email: "samuel@example.com", role: "Admin", status: "Active" },
+	{ name: "Tina Turner", email: "tina@example.com", role: "User", status: "Active" },
 ]
 
 export default function Component() {
@@ -45,7 +54,7 @@ export default function Component() {
 	const canNextPage = currentPage < totalPages - 1
 
 	return (
-		<div className="flex h-[335px] w-full flex-col gap-4 overflow-auto">
+		<div className="flex w-full flex-col gap-4 overflow-auto">
 			<div className="bg-background no-scrollbar overflow-y-scroll rounded-md border">
 				<Table>
 					<TableHeader>
@@ -63,7 +72,11 @@ export default function Component() {
 									<TableCell>{user.name}</TableCell>
 									<TableCell>{user.email}</TableCell>
 									<TableCell>{user.role}</TableCell>
-									<TableCell>{user.status}</TableCell>
+									<TableCell>
+										<Badge variant="soft" color={user.status === "Active" ? "success" : "error"}>
+											{user.status}
+										</Badge>
+									</TableCell>
 								</TableRow>
 							))
 						) : (
@@ -93,7 +106,7 @@ export default function Component() {
 							<SelectValue placeholder="Select number of results" />
 						</SelectTrigger>
 						<SelectContent className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
-							{[5, 10, 25, 50].map((pageSize) => (
+							{[5, 10, 15, 20].map((pageSize) => (
 								<SelectItem key={pageSize} value={pageSize.toString()}>
 									{pageSize}
 								</SelectItem>

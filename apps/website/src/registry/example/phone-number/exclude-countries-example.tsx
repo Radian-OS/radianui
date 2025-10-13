@@ -43,7 +43,7 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 	return (
 		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-1.5">
 			<Label>Enter Your Number</Label>
-			<div className="flex w-full">
+			<div className="flex w-full flex-col gap-1.5">
 				<InputGroup className="w-full">
 					<Popover open={open} onOpenChange={setOpen}>
 						<PopoverTrigger asChild>
@@ -90,6 +90,7 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 						className="flex-1 rounded-l-none border-l-0 focus-within:border-l"
 					/>
 				</InputGroup>
+				<p className="text-fg-secondary text-xs">Excluded Countries: USA, Nepal, Italy & United Kingdom</p>
 			</div>
 		</div>
 	)
