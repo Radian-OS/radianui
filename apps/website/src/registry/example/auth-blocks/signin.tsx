@@ -5,7 +5,6 @@ import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
-import { Password } from "@/registry/ui/password"
 
 const SignIn = () => {
 	const handleSubmitClick = () => {
@@ -35,7 +34,7 @@ const SignIn = () => {
 						<div className="space-y-5">
 							<form className="space-y-4">
 								<Input type="email" />
-								<Password />
+								<Input type="password" />
 								<div className="flex items-center space-x-2">
 									<Checkbox id="terms" />
 									<Label htmlFor="terms">Keep me signed in</Label>

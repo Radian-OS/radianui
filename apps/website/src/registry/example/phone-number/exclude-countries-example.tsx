@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
 import { ScrollArea } from "@/components/scroll-area"
@@ -11,20 +11,34 @@ import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-function InternationalPhone() {
+export default function InternationalPhone({ excludeCountries = ["us", "np", "it", "gb"] }: { excludeCountries?: CountryIso2[] }) {
 	const [internalValue, setInternalValue] = useState<string>("")
 	const [open, setOpen] = useState(false)
 
+	// Filter countries based on excludeCountries prop
+	const filteredCountries = useMemo(() => {
+		// If excludeCountries is provided, exclude them
+		if (excludeCountries && excludeCountries.length > 0) {
+			return defaultCountries.filter((country) => {
+				const parsed = parseCountry(country)
+				return !excludeCountries.includes(parsed.iso2 as CountryIso2)
+			})
+		}
+
+		// If not provided, return all countries
+		return defaultCountries
+	}, [excludeCountries])
+
 	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
-		defaultCountry: "np",
+		defaultCountry: "ca",
 		value: internalValue,
-		countries: defaultCountries,
+		countries: filteredCountries,
 		onChange: (data) => {
 			setInternalValue(data.phone)
 		},
 	})
 
-	const parsedCountries = defaultCountries.map(parseCountry)
+	const parsedCountries = filteredCountries.map(parseCountry)
 
 	return (
 		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-1.5">
@@ -80,5 +94,3 @@ function InternationalPhone() {
 		</div>
 	)
 }
-
-export default InternationalPhone

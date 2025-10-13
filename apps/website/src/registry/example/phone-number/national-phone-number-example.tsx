@@ -17,6 +17,7 @@ function InternationalPhone() {
 
 	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
 		defaultCountry: "np",
+		disableDialCodeAndPrefix: true,
 		value: internalValue,
 		countries: defaultCountries,
 		onChange: (data) => {
@@ -28,13 +29,15 @@ function InternationalPhone() {
 
 	return (
 		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-1.5">
-			<Label>Enter Your Number</Label>
+			<Label>Enter Your Number </Label>
 			<div className="flex w-full">
 				<InputGroup className="w-full">
 					<Popover open={open} onOpenChange={setOpen}>
 						<PopoverTrigger asChild>
 							<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
-								<FlagImage iso2={country.iso2} className="size-4" />
+								<div className="flex items-center gap-2">
+									<FlagImage iso2={country.iso2} className="size-4" />
+								</div>
 								<ChevronDown className="size-4 opacity-50" />
 							</Button>
 						</PopoverTrigger>

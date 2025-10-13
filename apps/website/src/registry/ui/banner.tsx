@@ -5,11 +5,10 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-export type BannerProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color" | "variant"> &
+export type BannerProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 	VariantProps<typeof bannerVariants> & {
 		onClose?: () => void
 	}
-
 export type BannerTitleProps = React.HTMLAttributes<HTMLHeadingElement>
 export type BannerDescriptionProps = React.HTMLAttributes<HTMLParagraphElement>
 export type BannerContentProps = React.HTMLAttributes<HTMLDivElement>

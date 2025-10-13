@@ -1,0 +1,118 @@
+---
+title: Currency Input
+description: Display currency amount
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/currency-amount.tsx
+  externalReference:
+    - label: React Currency Input Field
+      href: https://www.npmjs.com/package/react-currency-input-field
+---
+
+<ComponentPreview path="currency-input/currency-input-example" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx @radianos/radianbeta add currency-input",
+				npm: "npx @radianos/radianbeta add currency-input",
+				yarn: "yarn @radianos/radianbeta add currency-input",
+				bun: "bunx @radianos/radianbeta add currency-input",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add react-currency-input-field",
+				npm: "npm install react-currency-input-field",
+				yarn: "yarn add react-currency-input-field",
+				bun: "bun add react-currency-input-field",
+			}}
+		/>
+    	<Step>Copy and paste the following code into your project.</Step>
+		<ComponentSource name="drawer" title="components/ui/input.tsx" collapsible />
+    	<Step>Copy and paste the following code into your project.</Step>
+		<ComponentSource name="drawer" title="components/ui/currency-input.tsx" collapsible />
+		<Step>Update the import paths as per your project structure.</Step>
+
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Examples
+
+### With Prefix
+
+<ComponentPreview path="currency-input/currency-with-prefix" />
+
+### Separators
+
+<ComponentPreview path="currency-input/currency-separators-example" />
+
+### Decimal Separators
+
+<ComponentPreview path="currency-input/currency-decimal-separator" />
+
+### No Decimal
+
+<ComponentPreview path="currency-input/currency-nodecimal-example" />
+
+### Step
+
+<ComponentPreview path="currency-input/currency-step-example" />
+
+### Max Value
+
+<ComponentPreview path="currency-input/currency-max-value-example" />
+
+### Intl Locale Config
+
+<ComponentPreview path="currency-input/currency-locale-config" />
+
+### With Input Wrapper
+
+<ComponentPreview path="currency-input/currency-with-input-wrapper" />
+
+### With Input Group
+
+<ComponentPreview path="currency-input/currency-with-input-group" />
+
+### With Select
+
+<ComponentPreview path="currency-input/currency-with-select" />
+
+### Currency Select
+
+<ComponentPreview path="currency-input/currency-select-example" />
+
+<br />
+The currency-input is built on top of `react-currency-input-field`. You can pass all the props supported by library to the component. For more details, refer to the [official
+documentation](https://www.npmjs.com/package/react-currency-input-field).
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="CurrencyInput"
+		data={[
+			{
+				name: "className",
+				values: ["string"],
+				defaultValue: "-",
+				description: "Custom class name",
+			},
+		]}
+	/>
+</PropsTableWrapper>
