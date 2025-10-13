@@ -69,7 +69,7 @@ export const columns: ColumnDef<Payment>[] = [
 		header: ({ table }) => (
 			<Checkbox
 				size="sm"
-				className="flex w-full items-center justify-start"
+				className="flex items-center justify-center"
 				checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
 				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
 				aria-label="Select all"
@@ -77,7 +77,6 @@ export const columns: ColumnDef<Payment>[] = [
 		),
 		cell: ({ row }) => <Checkbox size="sm" checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />,
 		enableSorting: false,
-		size: 20,
 		enableHiding: false,
 	},
 	{
@@ -91,13 +90,11 @@ export const columns: ColumnDef<Payment>[] = [
 			)
 		},
 		cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-		size: 175,
 	},
 	{
 		accessorKey: "status",
 		header: "Status",
 		cell: ({ row }) => <div className="capitalize">{row.getValue("status")}</div>,
-		size: 100,
 	},
 
 	{
@@ -146,16 +143,12 @@ export default function BasicDataTable() {
 	return (
 		<div className="w-full">
 			<div className="overflow-hidden rounded-md border">
-				<Table className="table-fixed">
+				<Table>
 					<TableHeader>
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
-									return (
-										<TableHead style={{ width: `${header.getSize()}px` }} key={header.id}>
-											{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-										</TableHead>
-									)
+									return <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>
 								})}
 							</TableRow>
 						))}

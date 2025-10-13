@@ -88,7 +88,7 @@ const TablePreview = () => {
 				<TableCaption>A list of user details.</TableCaption>
 				<TableHeader>
 					<TableRow>
-						<TableHead>Name</TableHead>
+						<TableHead className="min-w-38">Name</TableHead>
 						<TableHead>Email</TableHead>
 						<TableHead>Status</TableHead>
 					</TableRow>
