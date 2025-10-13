@@ -3,6 +3,7 @@ import Background from "@/components/effects/background"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
 import FooterSection from "@/components/home/footer-section"
+import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -114,6 +115,8 @@ export default function Page() {
 			</Background>
 
 			<div className="h-60" />
+
+			<PlaygroundSection />
 
 			<VideoSection />
 
