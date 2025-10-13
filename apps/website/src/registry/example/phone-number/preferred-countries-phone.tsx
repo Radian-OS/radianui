@@ -45,7 +45,10 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 				<Popover open={open} onOpenChange={setOpen}>
 					<PopoverTrigger asChild>
 						<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
-							<FlagImage iso2={country.iso2} className="size-4" />
+							<div className="flex items-center gap-2">
+								<FlagImage iso2={country.iso2} className="size-4" />
+								<span className="text-sm">+{country.dialCode}</span>
+							</div>
 							<ChevronDown className="size-4 opacity-50" />
 						</Button>
 					</PopoverTrigger>
@@ -59,7 +62,7 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 									{/* Preferred Countries */}
 									{preferred.length > 0 && (
 										<>
-											<CommandGroup heading="Preferred" className="peer">
+											<CommandGroup heading="Preferred">
 												{preferred.map((c) => {
 													const parsed = parseCountry(c)
 													return (
@@ -80,7 +83,7 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 													)
 												})}
 											</CommandGroup>
-											<Divider className="my-1 peer-[&[hidden]]:hidden" />
+											<Divider className="my-1" />
 										</>
 									)}
 

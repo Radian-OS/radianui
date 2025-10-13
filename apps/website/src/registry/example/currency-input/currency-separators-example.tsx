@@ -13,14 +13,6 @@ export default function CurrencySeparatorsExample() {
 				<CurrencyInput id="cs-2" prefix="$" groupSeparator=";" className="md:w-80" placeholder="Enter Amount Here" />
 			</div>
 			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="cs-3">Separator (&apos;)</Label>
-				<CurrencyInput id="cs-3" prefix="$" groupSeparator="'" className="md:w-80" placeholder="Enter Amount Here" />
-			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="cs-4">Separator (`)</Label>
-				<CurrencyInput id="cs-4" prefix="$" groupSeparator="`" className="md:w-80" placeholder="Enter Amount Here" />
-			</div>
-			<div className="flex flex-col items-start justify-center gap-1.5">
 				<Label htmlFor="cs-5">Separator Disabled</Label>
 				<CurrencyInput id="cs-5" prefix="$" disableGroupSeparators className="md:w-80" placeholder="Enter Amount Here" />
 			</div>
