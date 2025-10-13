@@ -61,21 +61,45 @@ const inputAddonVariants = cva(
 	}
 )
 
+// const inputGroupVariants = cva(
+// 	`
+// 	flex items-stretch
+// 	[&_[data-slot=input]]:grow
+// 	[&_[data-slot=input-addon]:has(+[data-slot=input])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=input])]:border-e-0
+// 	[&_[data-slot=input-addon]:has(+[data-slot=datefield])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:border-e-0
+// 	[&_[data-slot=input]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=input]+[data-slot=input-addon]]:border-s-0
+// 	[&_[data-slot=input-addon]:has(+[data-slot=button])]:rounded-e-none
+// 	[&_[data-slot=input]+[data-slot=button]]:rounded-s-none
+// 	[&_[data-slot=button]+[data-slot=input]]:rounded-s-none
+// 	[&_[data-slot=input-addon]+[data-slot=input]]:rounded-s-none
+// 	[&_[data-slot=input-addon]+[data-slot=datefield]]:[&_[data-slot=input]]:rounded-s-none
+// 	[&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_[data-slot=input]]:rounded-e-none
+// 	[&_[data-slot=input]:has(+[data-slot=button])]:rounded-e-none
+// 	[&_[data-slot=input]:has(+[data-slot=input-addon])]:rounded-e-none
+// 	[&_[data-slot=datefield]]:grow
+// 	[&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0
+//   `,
+// 	{
+// 		variants: {},
+// 		defaultVariants: {},
+// 	}
+// )
+
 const inputGroupVariants = cva(
 	`
 	flex items-stretch
-	[&_[data-slot=input]]:grow
-	[&_[data-slot=input-addon]:has(+[data-slot=input])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=input])]:border-e-0
+	[&_:is([data-slot=input],[data-slot=currency-input])]:grow
+	[&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:rounded-e-none [&_[data-slot=input-addon]:has(+:is([data-slot=input],[data-slot=currency-input]))]:border-e-0
 	[&_[data-slot=input-addon]:has(+[data-slot=datefield])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:border-e-0 
-	[&_[data-slot=input]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=input]+[data-slot=input-addon]]:border-s-0
+	[&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:rounded-s-none [&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=input-addon]]:border-s-0
 	[&_[data-slot=input-addon]:has(+[data-slot=button])]:rounded-e-none
-	[&_[data-slot=input]+[data-slot=button]]:rounded-s-none
-	[&_[data-slot=button]+[data-slot=input]]:rounded-s-none
-	[&_[data-slot=input-addon]+[data-slot=input]]:rounded-s-none
-	[&_[data-slot=input-addon]+[data-slot=datefield]]:[&_[data-slot=input]]:rounded-s-none
-	[&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_[data-slot=input]]:rounded-e-none
-	[&_[data-slot=input]:has(+[data-slot=button])]:rounded-e-none
-	[&_[data-slot=input]:has(+[data-slot=input-addon])]:rounded-e-none
+	[&_:is([data-slot=input],[data-slot=currency-input])+[data-slot=button]]:rounded-s-none
+	[&_[data-slot=button]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
+	[&_[data-slot=input-addon]+:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
+	[&_[data-slot=input-addon]+[data-slot=datefield]]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-s-none
+	[&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-e-none
+	[&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=button])]:rounded-e-none
+	[&_:is([data-slot=input],[data-slot=currency-input]):has(+[data-slot=input-addon])]:rounded-e-none
 	[&_[data-slot=datefield]]:grow
 	[&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0
   `,
