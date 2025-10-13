@@ -6,7 +6,7 @@ function CurrencyStepExample() {
 	return (
 		<div className="flex flex-col gap-1.5">
 			<Label>Please enter a value: (Press up/down)</Label>
-			<CurrencyInput step={5} className="md:w-80" placeholder="Enter Amount Here" />
+			<CurrencyInput prefix="$" step={5} className="md:w-80" placeholder="Enter Amount Here" />
 		</div>
 	)
 }
