@@ -5,8 +5,8 @@ import { Label } from "@/registry/ui/label"
 function CurrencyStepExample() {
 	return (
 		<div className="flex flex-col gap-1.5">
-			<Label>Please enter a value: (Press up/down)</Label>
-			<CurrencyInput prefix="$" step={5} className="md:w-80" placeholder="Enter Amount Here" />
+			<Label htmlFor="step-eg">Please enter a value: (Press up/down)</Label>
+			<CurrencyInput id="step-eg" prefix="$" step={5} className="md:w-80" placeholder="Enter Amount Here" />
 		</div>
 	)
 }

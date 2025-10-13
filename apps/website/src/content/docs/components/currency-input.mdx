@@ -30,19 +30,20 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+	<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add react-currency-input-field",
+				npm: "npm install react-currency-input-field",
+				yarn: "yarn add react-currency-input-field",
+				bun: "bun add react-currency-input-field",
+			}}
+		/>
     	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="currency-input">
-    		<TabsList>
-    			<TabsTrigger value="currency-input">Currency Input</TabsTrigger>
-    			<TabsTrigger value="input">Input</TabsTrigger>
-    			<TabsTrigger value="label">Label</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="currency-input">
-    			<ComponentSource name="currency-input" title="components/ui/currency-input.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
+		<ComponentSource name="drawer" title="components/ui/input.tsx" collapsible />
+    	<Step>Copy and paste the following code into your project.</Step>
+		<ComponentSource name="drawer" title="components/ui/currency-input.tsx" collapsible />
+		<Step>Update the import paths as per your project structure.</Step>
 
-    	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </TabsContent>
 
@@ -61,6 +62,10 @@ links:
 ### Decimal Separators
 
 <ComponentPreview path="currency-input/currency-decimal-separator" />
+
+### Decimal Limit
+
+<ComponentPreview path="currency-input/currency-decimals-limit" />
 
 ### No Decimal
 
@@ -86,9 +91,13 @@ links:
 
 <ComponentPreview path="currency-input/currency-with-input-group" />
 
-### With Select
+### With Select and Prefix
 
-<ComponentPreview path="currency-input/currency-with-select" />
+<ComponentPreview path="currency-input/currency-select-with-prefix" />
+
+### With Select and Custom Prefix
+
+<ComponentPreview path="currency-input/currency-select-with-custom-prefix" />
 
 <br />
 The currency-input is built on top of `react-currency-input-field`. You can pass all the props supported by library to the component. For more details, refer to the [official

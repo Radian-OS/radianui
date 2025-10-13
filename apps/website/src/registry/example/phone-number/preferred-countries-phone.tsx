@@ -52,11 +52,11 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 							<ChevronDown className="size-4 opacity-50" />
 						</Button>
 					</PopoverTrigger>
-					<ScrollArea>
-						<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
-							<Command className="border-0">
-								<CommandInput placeholder="Search country..." />
-								<CommandList>
+					<PopoverContent className="p-0 md:w-80" align="start">
+						<Command className="border-0">
+							<CommandInput placeholder="Search country..." />
+							<CommandList>
+								<ScrollArea className="h-75">
 									<CommandEmpty>No country found.</CommandEmpty>
 
 									{/* Preferred Countries */}
@@ -109,10 +109,10 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 											)
 										})}
 									</CommandGroup>
-								</CommandList>
-							</Command>
-						</PopoverContent>
-					</ScrollArea>
+								</ScrollArea>
+							</CommandList>
+						</Command>
+					</PopoverContent>
 				</Popover>
 				<Input
 					id="preferred-countries-phone"
