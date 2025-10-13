@@ -38,11 +38,11 @@ function InternationalPhone() {
 								<ChevronDown className="size-4 opacity-50" />
 							</Button>
 						</PopoverTrigger>
-						<ScrollArea>
-							<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
-								<Command className="border-0">
-									<CommandInput placeholder="Search country..." />
-									<CommandList>
+						<PopoverContent className="w-[300px] p-0 sm:w-full" align="start">
+							<Command className="border-0">
+								<CommandInput placeholder="Search country..." />
+								<CommandList>
+									<ScrollArea className="h-[300px]">
 										<CommandEmpty>No country found.</CommandEmpty>
 										<CommandGroup>
 											{parsedCountries.map((c) => (
@@ -62,10 +62,10 @@ function InternationalPhone() {
 												</CommandItem>
 											))}
 										</CommandGroup>
-									</CommandList>
-								</Command>
-							</PopoverContent>
-						</ScrollArea>
+									</ScrollArea>
+								</CommandList>
+							</Command>
+						</PopoverContent>
 					</Popover>
 					<Input
 						ref={inputRef}
