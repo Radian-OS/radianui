@@ -8,10 +8,9 @@ function CurrencyPrefixExample() {
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-col gap-1.5">
 				<Label>US Dollars</Label>
-				<InputWrapper className="md:w-80">
+				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>$</span>
 					<CurrencyInput
-						prefix="$"
 						className="focus-visible:border-t-1 focus-visible:border-b-1 rounded-none border-l-0 border-r-0 px-0 focus-visible:ring-0 focus-visible:ring-transparent md:w-80"
 						placeholder="Enter Amount Here"
 					/>
@@ -20,10 +19,9 @@ function CurrencyPrefixExample() {
 			</div>
 			<div className="flex flex-col gap-1.5">
 				<Label>Euros</Label>
-				<InputWrapper className="md:w-80">
+				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>€</span>
 					<CurrencyInput
-						prefix="€"
 						className="focus-visible:border-t-1 focus-visible:border-b-1 rounded-none border-l-0 border-r-0 px-0 focus-visible:ring-0 focus-visible:ring-transparent md:w-80"
 						placeholder="Enter Amount Here"
 					/>
@@ -32,10 +30,9 @@ function CurrencyPrefixExample() {
 			</div>
 			<div className="flex flex-col gap-1.5">
 				<Label>Pounds</Label>
-				<InputWrapper className="md:w-80">
+				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>£</span>
 					<CurrencyInput
-						prefix="£"
 						className="focus-visible:border-t-1 focus-visible:border-b-1 rounded-none border-l-0 border-r-0 px-0 focus-visible:ring-0 focus-visible:ring-transparent md:w-80"
 						placeholder="Enter Amount Here"
 					/>
@@ -44,10 +41,9 @@ function CurrencyPrefixExample() {
 			</div>
 			<div className="flex flex-col gap-1.5">
 				<Label>Indian Rupees</Label>
-				<InputWrapper className="md:w-80">
+				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>₹</span>
 					<CurrencyInput
-						prefix="₹"
 						className="focus-visible:border-t-1 focus-visible:border-b-1 rounded-none border-l-0 border-r-0 px-0 focus-visible:ring-0 focus-visible:ring-transparent"
 						placeholder="Enter Amount Here"
 					/>

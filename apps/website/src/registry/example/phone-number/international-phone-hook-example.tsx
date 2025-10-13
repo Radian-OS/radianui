@@ -34,9 +34,7 @@ function InternationalPhone() {
 					<Popover open={open} onOpenChange={setOpen}>
 						<PopoverTrigger asChild>
 							<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
-								<div className="flex items-center gap-2">
-									<FlagImage iso2={country.iso2} className="size-4" />
-								</div>
+								<FlagImage iso2={country.iso2} className="size-4" />
 								<ChevronDown className="size-4 opacity-50" />
 							</Button>
 						</PopoverTrigger>
