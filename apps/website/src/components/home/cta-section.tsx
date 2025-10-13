@@ -17,7 +17,7 @@ export default function CTASection() {
 				<p className="text-fg-secondary text-lg font-normal">Copy, paste, and customize your next feature without starting from scratch.</p>
 			</div>
 			<div className="z-40 flex items-center gap-3">
-				<Button variant="outline" color="neutral">
+				<Button variant="outline" color="neutral" size="40">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 						<path
 							d="M9.72266 10.0001C9.72266 8.3893 11.0285 7.08344 12.6393 7.08344C14.2501 7.08344 15.556 8.3893 15.556 10.0001C15.556 11.6109 14.2501 12.9168 12.6393 12.9168C11.0285 12.9168 9.72266 11.6109 9.72266 10.0001Z"
@@ -33,7 +33,9 @@ export default function CTASection() {
 					</svg>
 					Start in Design Tool
 				</Button>
-				<Button className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+				<Button
+					className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]"
+					size="40">
 					Start in Code Editor
 				</Button>
 			</div>
