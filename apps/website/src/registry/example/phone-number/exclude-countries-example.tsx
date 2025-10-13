@@ -42,7 +42,7 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 
 	return (
 		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-1.5">
-			<Label>Enter Your Number</Label>
+			<Label htmlFor="exclude-countries">Enter Your Number</Label>
 			<div className="flex w-full">
 				<InputGroup className="w-full">
 					<Popover open={open} onOpenChange={setOpen}>
@@ -85,6 +85,7 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 						</ScrollArea>
 					</Popover>
 					<Input
+						id="exclude-countries"
 						ref={inputRef}
 						type="tel"
 						placeholder="Enter your phone number"
