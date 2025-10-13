@@ -21,11 +21,11 @@ export default function CurrencyWithSelect() {
 
 	return (
 		<div className="flex flex-col gap-1.5">
-			<Label>Select Currency</Label>
+			<Label htmlFor="c-s-c-p">Select Currency</Label>
 			<InputGroup className="md:w-80">
 				<InputWrapper className="rounded-r-none border-r-0 focus-within:border-r">
 					<span className="text-fg-tertiary">{currentCurrency.prefix}</span>
-					<CurrencyInput placeholder="Enter Amount Here" value={amount} onValueChange={(value) => setAmount(value ?? "")} />
+					<CurrencyInput id="c-s-c-p" placeholder="Enter Amount Here" value={amount} onValueChange={(value) => setAmount(value ?? "")} />
 				</InputWrapper>
 				<Select value={selectedCurrency} onValueChange={setSelectedCurrency}>
 					<SelectTrigger className="w-fit rounded-l-none">

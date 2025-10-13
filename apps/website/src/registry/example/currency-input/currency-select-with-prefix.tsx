@@ -23,10 +23,10 @@ export default function CurrencySelectExample() {
 
 	return (
 		<div className="flex flex-col gap-1.5">
-			<Label>Currency Select</Label>
+			<Label htmlFor="c-s-p">Currency Select</Label>
 			<div className="flex">
 				<InputGroup className="md:w-80">
-					<CurrencyInput prefix={currency} className="rounded-r-none border-r-0 focus-within:border-r md:w-fit" placeholder="Enter Amount Here" type="url" />
+					<CurrencyInput id="c-s-p" prefix={currency} className="rounded-r-none border-r-0 focus-within:border-r md:w-fit" placeholder="Enter Amount Here" type="url" />
 					<Select value={domain} onValueChange={handleCurrencyChange}>
 						<SelectTrigger className="w-fit rounded-l-none">
 							<SelectValue />
