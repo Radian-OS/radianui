@@ -36,18 +36,18 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className="bg-fill2/60 mt-27 border-soft relative mx-auto aspect-[2/1] max-h-[768px] rounded-xl border px-4 backdrop-blur-2xl md:px-5">
-					1
-					<svg className="-left-290 not-lg:hidden absolute bottom-full z-50 max-h-[532px]" viewBox="0 0 1461 532" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<div className="mt-27 relative mx-auto aspect-[2/1] max-h-[768px]">
+					<div className="bg-fill2 border-soft z-50 h-full rounded-xl border px-4 md:px-5">1</div>
+					{/* Upper left line */}
+					<svg className="not-lg:hidden full -left-290 absolute bottom-[70%] -z-10 max-h-[756px]" viewBox="0 0 1552 756" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
-							d="M1460.19 531L1284.28 210.94C1280.06 203.268 1272 198.5 1263.24 198.5L1088.88 198.5C1080.31 198.5 1072.39 193.926 1068.1 186.5L967.928 13C963.641 5.57438 955.718 1 947.144 1H0"
+							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
 							stroke="var(--color-soft)"
 						/>
 
-						{/* Animated beam segment */}
 						<path
 							id="beamPath"
-							d="M1460.19 531L1284.28 210.94C1280.06 203.268 1272 198.5 1263.24 198.5L1088.88 198.5C1080.31 198.5 1072.39 193.926 1068.1 186.5L967.928 13C963.641 5.57438 955.718 1 947.144 1H0"
+							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
 							fill="none"
 							stroke="var(--color-primary)"
 							strokeWidth="1"
@@ -57,15 +57,16 @@ export default function Page() {
 							pathLength="1000"
 						/>
 					</svg>
-					<svg className="-left-305 not-lg:hidden absolute bottom-full z-50 max-h-[343px]" viewBox="0 0 1370 343" fill="none" xmlns="http://www.w3.org/2000/svg">
+					{/* Lower left line */}
+					<svg className="not-lg:hidden -left-290 absolute bottom-[75%] -z-10" width="1331" height="402" viewBox="0 0 1331 402" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
-							d="M 1370 343 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
+							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
 							stroke="var(--color-soft)"
 							strokeWidth="1"
 						/>
 						<path
 							id="beamPath"
-							d="M 1370 343 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
+							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
 							fill="none"
 							stroke="var(--color-primary)"
 							strokeWidth="1"
@@ -75,16 +76,21 @@ export default function Page() {
 							pathLength="1000"
 						/>
 					</svg>
-					<svg className="-right-290 not-lg:hidden absolute bottom-full z-50 max-h-[532px] scale-x-[-1]" viewBox="0 0 1461 532" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+					{/* Upper right line */}
+					<svg
+						className="not-lg:hidden full -right-290 absolute bottom-[70%] -z-10 max-h-[756px] scale-x-[-1]"
+						viewBox="0 0 1552 756"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
 						<path
-							d="M1460.19 531L1284.28 210.94C1280.06 203.268 1272 198.5 1263.24 198.5L1088.88 198.5C1080.31 198.5 1072.39 193.926 1068.1 186.5L967.928 13C963.641 5.57438 955.718 1 947.144 1H0"
+							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
 							stroke="var(--color-soft)"
 						/>
 
-						{/* Animated beam segment */}
 						<path
 							id="beamPath"
-							d="M1460.19 531L1284.28 210.94C1280.06 203.268 1272 198.5 1263.24 198.5L1088.88 198.5C1080.31 198.5 1072.39 193.926 1068.1 186.5L967.928 13C963.641 5.57438 955.718 1 947.144 1H0"
+							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
 							fill="none"
 							stroke="var(--color-primary)"
 							strokeWidth="1"
@@ -94,15 +100,23 @@ export default function Page() {
 							pathLength="1000"
 						/>
 					</svg>
-					<svg className="-right-305 not-lg:hidden absolute bottom-full z-50 max-h-[343px] scale-x-[-1]" viewBox="0 0 1370 343" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+					{/* Lower right line */}
+					<svg
+						className="not-lg:hidden -right-290 absolute bottom-[75%] -z-10 scale-x-[-1]"
+						width="1331"
+						height="402"
+						viewBox="0 0 1331 402"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
 						<path
-							d="M 1370 343 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
+							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
 							stroke="var(--color-soft)"
 							strokeWidth="1"
 						/>
 						<path
 							id="beamPath"
-							d="M 1370 343 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
+							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
 							fill="none"
 							stroke="var(--color-primary)"
 							strokeWidth="1"
