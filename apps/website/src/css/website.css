@@ -40,6 +40,8 @@
 			opacity: 1;
 		}
 	}
+
+	--animate-beam-flow3: beam-flow2 3s linear infinite;
 }
 
 .dark {
