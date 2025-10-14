@@ -49,7 +49,7 @@ export default function FAQSection() {
 					<MessageCircleQuestionIcon className="text-primary-text" />
 					<span className="text-fg-secondary">FAQ&apos;s</span>
 				</Badge>
-				<svg className="not-xl:hidden absolute bottom-[50%] left-[60px] max-h-[775px]" fill="none" viewBox="0 0 1939 775" xmlns="http://www.w3.org/2000/svg">
+				<svg className="not-xl:hidden absolute bottom-[50%] left-[60px] z-0 max-h-[775px]" fill="none" viewBox="0 0 1939 775" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M 0 775 L 1691 775 C 1715 771 1722 763 1721 740 L 1721 540 C 1721 534 1720 529 1724 526 L 1926 325 C 1936 318 1939 309 1939 298 L 1939 0"
 						stroke="var(--color-border)"
@@ -68,7 +68,7 @@ export default function FAQSection() {
 					/>
 				</svg>
 
-				<svg className="not-xl:hidden absolute -left-[50px] top-[50%] max-h-[341px]" viewBox="-80 0 350 341" xmlns="http://www.w3.org/2000/svg">
+				<svg className="not-xl:hidden absolute -left-[50px] top-[50%] z-0 max-h-[341px]" viewBox="-80 0 350 341" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M 0 0 L -65 0 C -76 5 -81 15 -80 32 L -80 231 C -75 248 -64 258 -48 256 L 178 256 C 200 256 212 262 220 272 L 276 341"
 						stroke="var(--color-border)"

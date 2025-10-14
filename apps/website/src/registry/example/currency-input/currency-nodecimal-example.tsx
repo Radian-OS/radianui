@@ -5,8 +5,8 @@ import { Label } from "@/registry/ui/label"
 function CurrencyNoDecimalExample() {
 	return (
 		<div className="flex flex-col gap-1.5">
-			<Label>Please enter a value:</Label>
-			<CurrencyInput allowDecimals={false} prefix="€" className="md:w-80" placeholder="Enter Amount Here" />
+			<Label htmlFor="no-dl">Please enter a value:</Label>
+			<CurrencyInput id="no-dl" allowDecimals={false} prefix="€" className="md:w-80" placeholder="Enter Amount Here" />
 		</div>
 	)
 }

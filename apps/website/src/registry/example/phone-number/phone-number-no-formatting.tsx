@@ -19,14 +19,12 @@ export default function PhoneNumberNoFormatting() {
 	})
 
 	return (
-		<div className="flex w-full max-w-[420px] flex-col items-start justify-center gap-3">
-			<div className="flex flex-col gap-1.5">
-				<Label>Enter your Number</Label>
-				<InputWrapper className="md:w-80">
-					<FlagImage iso2={country.iso2} className="size-4" />
-					<Input type="tel" onChange={handlePhoneValueChange} placeholder="Enter Your Number" value={inputValue} ref={inputRef} />
-				</InputWrapper>
-			</div>
+		<div className="flex flex-col justify-center gap-1.5">
+			<Label htmlFor="no">Enter Your Number</Label>
+			<InputWrapper className="md:w-80">
+				<FlagImage iso2={country.iso2} className="size-4" />
+				<Input id="no" type="tel" onChange={handlePhoneValueChange} placeholder="Enter Your Number" value={inputValue} ref={inputRef} />
+			</InputWrapper>
 		</div>
 	)
 }

@@ -7,34 +7,34 @@ export default function CurrencyWithInputGroup() {
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-col gap-1.5">
-				<Label>US Dollars</Label>
+				<Label htmlFor="ing-usd">US Dollars</Label>
 				<InputGroup className="md:w-80">
 					<InputAddon className="text-fg-tertiary">$</InputAddon>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="ing-usd" placeholder="Enter Amount Here" />
 					<InputAddon className="text-fg-tertiary">USD</InputAddon>
 				</InputGroup>
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label>Euros</Label>
+				<Label htmlFor="ing-eur">Euros</Label>
 				<InputGroup className="md:w-80">
 					<InputAddon className="text-fg-tertiary">€</InputAddon>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="ing-eur" placeholder="Enter Amount Here" />
 					<InputAddon className="text-fg-tertiary">EUR</InputAddon>
 				</InputGroup>
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label>Pounds</Label>
+				<Label htmlFor="ing-pou">Pounds</Label>
 				<InputGroup className="md:w-80">
 					<InputAddon className="text-fg-tertiary">£</InputAddon>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="ing-pou" placeholder="Enter Amount Here" />
 					<InputAddon className="text-fg-tertiary">GBP</InputAddon>
 				</InputGroup>
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label>Indian Rupees</Label>
+				<Label htmlFor="ing-inr">Indian Rupees</Label>
 				<InputGroup className="md:w-80">
 					<InputAddon className="text-fg-tertiary">₹</InputAddon>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="ing-inr" placeholder="Enter Amount Here" />
 					<InputAddon className="text-fg-tertiary">INR</InputAddon>
 				</InputGroup>
 			</div>

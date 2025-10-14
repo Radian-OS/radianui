@@ -7,34 +7,34 @@ export default function CurrencyWithInputWrapper() {
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex flex-col gap-1.5">
-				<Label>US Dollars</Label>
+				<Label htmlFor="inw-usd">US Dollars</Label>
 				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>$</span>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="inw-usd" placeholder="Enter Amount Here" />
 					<span>USD</span>
 				</InputWrapper>
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label>Euros</Label>
+				<Label htmlFor="inw-eu">Euros</Label>
 				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>€</span>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="inw-eu" placeholder="Enter Amount Here" />
 					<span>EUR</span>
 				</InputWrapper>
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label>Pounds</Label>
+				<Label htmlFor="inw-po">Pounds</Label>
 				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>£</span>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="inw-po" placeholder="Enter Amount Here" />
 					<span>GBP</span>
 				</InputWrapper>
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label>Indian Rupees</Label>
+				<Label htmlFor="inw-inr">Indian Rupees</Label>
 				<InputWrapper className="[&_span]:text-fg-tertiary md:w-80">
 					<span>₹</span>
-					<CurrencyInput placeholder="Enter Amount Here" />
+					<CurrencyInput id="inw-inr" placeholder="Enter Amount Here" />
 					<span>INR</span>
 				</InputWrapper>
 			</div>
