@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
-import { ScrollArea } from "@/components/scroll-area"
+// import { ScrollArea } from "@/components/scroll-area"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
@@ -55,27 +55,27 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 						<Command className="border-0">
 							<CommandInput placeholder="Search country..." />
 							<CommandList>
-								<ScrollArea className="h-75">
-									<CommandEmpty>No country found.</CommandEmpty>
-									<CommandGroup>
-										{parsedCountries.map((c) => (
-											<CommandItem
-												key={c.iso2}
-												value={`${c.name} ${c.dialCode}`}
-												onSelect={() => {
-													setCountry(c.iso2 as CountryIso2)
-													setOpen(false)
-												}}>
-												<div className="flex flex-1 items-center gap-2">
-													<FlagImage iso2={c.iso2} className="size-5" />
-													<span className="truncate">{c.name}</span>
-													<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
-												</div>
-												<Check className={cn("ml-2", country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
-											</CommandItem>
-										))}
-									</CommandGroup>
-								</ScrollArea>
+								{/* <ScrollArea className="h-75"> */}
+								<CommandEmpty>No country found.</CommandEmpty>
+								<CommandGroup>
+									{parsedCountries.map((c) => (
+										<CommandItem
+											key={c.iso2}
+											value={`${c.name} ${c.dialCode}`}
+											onSelect={() => {
+												setCountry(c.iso2 as CountryIso2)
+												setOpen(false)
+											}}>
+											<div className="flex flex-1 items-center gap-2">
+												<FlagImage iso2={c.iso2} className="size-5" />
+												<span className="truncate">{c.name}</span>
+												<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
+											</div>
+											<Check className={cn("ml-2", country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
+										</CommandItem>
+									))}
+								</CommandGroup>
+								{/* </ScrollArea> */}
 							</CommandList>
 						</Command>
 					</PopoverContent>

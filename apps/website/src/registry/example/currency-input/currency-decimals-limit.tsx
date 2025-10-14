@@ -9,10 +9,6 @@ export default function CurrencyDecimalsLimit() {
 				<CurrencyInput id="2-dl" className="md:w-80" placeholder="Enter Amount Here" decimalsLimit={2} />
 			</div>
 			<div className="flex flex-col gap-1.5">
-				<Label htmlFor="3-dl">Currency Input (3 Decimal Places)</Label>
-				<CurrencyInput id="3-dl" className="md:w-80" placeholder="Enter Amount Here" decimalsLimit={3} />
-			</div>
-			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="4-dl">Currency Input (4 Decimal Places)</Label>
 				<CurrencyInput id="4-dl" className="md:w-80" placeholder="Enter Amount Here" decimalsLimit={4} />
 			</div>
