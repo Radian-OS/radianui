@@ -58,23 +58,24 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 								<ScrollArea className="h-75">
 									{preferred.length > 0 && (
 										<>
-											<CommandGroup heading="Preferred">
+											<CommandGroup>
 												{preferred.map((c) => {
 													const parsed = parseCountry(c)
 													return (
 														<CommandItem
 															key={`preferred-${parsed.iso2}`}
-															className="flex flex-1 items-center gap-2 px-1"
+															className="px-1"
 															value={`${parsed.name} ${parsed.dialCode}`}
 															onSelect={() => {
 																setCountry(parsed.iso2 as CountryIso2)
 																setOpen(false)
 															}}>
-															<FlagImage iso2={parsed.iso2} className="size-5" />
-															<span className="truncate">{parsed.name}</span>
-															<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
-
-															<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
+															<div className="flex flex-1 items-center gap-2">
+																<FlagImage iso2={parsed.iso2} className="size-5" />
+																<span className="truncate">{parsed.name}</span>
+																<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
+																<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
+															</div>
 														</CommandItem>
 													)
 												})}
@@ -84,23 +85,24 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 									)}
 
 									{/* All Other Countries */}
-									<CommandGroup heading={preferred.length > 0 ? "All Countries" : undefined}>
+									<CommandGroup>
 										{others.map((c) => {
 											const parsed = parseCountry(c)
 											return (
 												<CommandItem
 													key={parsed.iso2}
-													className="flex flex-1 items-center gap-2 px-1"
+													className="px-1"
 													value={`${parsed.name} ${parsed.dialCode}`}
 													onSelect={() => {
 														setCountry(parsed.iso2 as CountryIso2)
 														setOpen(false)
 													}}>
-													<FlagImage iso2={parsed.iso2} className="size-5" />
-													<span className="truncate">{parsed.name}</span>
-													<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
-
-													<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
+													<div className="flex flex-1 items-center gap-2">
+														<FlagImage iso2={parsed.iso2} className="size-5" />
+														<span className="truncate">{parsed.name}</span>
+														<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
+														<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
+													</div>
 												</CommandItem>
 											)
 										})}

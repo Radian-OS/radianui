@@ -50,16 +50,18 @@ function InternationalPhone() {
 										{parsedCountries.map((c) => (
 											<CommandItem
 												key={c.iso2}
-												className="flex flex-1 items-center gap-2 px-1"
+												className="px-1"
 												value={`${c.name} ${c.dialCode}`}
 												onSelect={() => {
 													setCountry(c.iso2 as CountryIso2)
 													setOpen(false)
 												}}>
-												<FlagImage iso2={c.iso2} className="size-5" />
-												<span className="truncate">{c.name}</span>
-												<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
-												<Check className={cn(country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
+												<div className="flex flex-1 items-center gap-2">
+													<FlagImage iso2={c.iso2} className="size-5" />
+													<span className="truncate">{c.name}</span>
+													<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
+													<Check className={cn(country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
+												</div>
 											</CommandItem>
 										))}
 									</CommandGroup>
