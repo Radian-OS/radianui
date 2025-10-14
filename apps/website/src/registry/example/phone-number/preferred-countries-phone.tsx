@@ -3,7 +3,6 @@
 import React, { useMemo, useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
-// import { ScrollArea } from "@/components/scroll-area"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
@@ -11,6 +10,7 @@ import { Divider } from "@/registry/ui/divider"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 export default function InternationalPhone({ preferredCountries = ["us", "gb", "np"] }: { preferredCountries?: CountryIso2[] }) {
 	const [internalValue, setInternalValue] = useState<string>("")
@@ -55,57 +55,57 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 							<CommandList>
 								<CommandEmpty>No country found.</CommandEmpty>
 								{/* Preferred Countries */}
-								{/* <ScrollArea className="h-75"> */}
-								{preferred.length > 0 && (
-									<>
-										<CommandGroup heading="Preferred">
-											{preferred.map((c) => {
-												const parsed = parseCountry(c)
-												return (
-													<CommandItem
-														key={`preferred-${parsed.iso2}`}
-														value={`${parsed.name} ${parsed.dialCode}`}
-														onSelect={() => {
-															setCountry(parsed.iso2 as CountryIso2)
-															setOpen(false)
-														}}>
-														<div className="flex flex-1 items-center gap-2">
+								<ScrollArea className="h-75">
+									{preferred.length > 0 && (
+										<>
+											<CommandGroup heading="Preferred">
+												{preferred.map((c) => {
+													const parsed = parseCountry(c)
+													return (
+														<CommandItem
+															key={`preferred-${parsed.iso2}`}
+															className="flex flex-1 items-center gap-2 px-1"
+															value={`${parsed.name} ${parsed.dialCode}`}
+															onSelect={() => {
+																setCountry(parsed.iso2 as CountryIso2)
+																setOpen(false)
+															}}>
 															<FlagImage iso2={parsed.iso2} className="size-5" />
 															<span className="truncate">{parsed.name}</span>
 															<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
-														</div>
-														<Check className={cn("ml-2", country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
-													</CommandItem>
-												)
-											})}
-										</CommandGroup>
-										<Divider className="my-1" />
-									</>
-								)}
 
-								{/* All Other Countries */}
-								<CommandGroup heading={preferred.length > 0 ? "All Countries" : undefined}>
-									{others.map((c) => {
-										const parsed = parseCountry(c)
-										return (
-											<CommandItem
-												key={parsed.iso2}
-												value={`${parsed.name} ${parsed.dialCode}`}
-												onSelect={() => {
-													setCountry(parsed.iso2 as CountryIso2)
-													setOpen(false)
-												}}>
-												<div className="flex flex-1 items-center gap-2">
+															<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
+														</CommandItem>
+													)
+												})}
+											</CommandGroup>
+											<Divider className="my-1" />
+										</>
+									)}
+
+									{/* All Other Countries */}
+									<CommandGroup heading={preferred.length > 0 ? "All Countries" : undefined}>
+										{others.map((c) => {
+											const parsed = parseCountry(c)
+											return (
+												<CommandItem
+													key={parsed.iso2}
+													className="flex flex-1 items-center gap-2 px-1"
+													value={`${parsed.name} ${parsed.dialCode}`}
+													onSelect={() => {
+														setCountry(parsed.iso2 as CountryIso2)
+														setOpen(false)
+													}}>
 													<FlagImage iso2={parsed.iso2} className="size-5" />
 													<span className="truncate">{parsed.name}</span>
 													<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
-												</div>
-												<Check className={cn("ml-2", country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
-											</CommandItem>
-										)
-									})}
-								</CommandGroup>
-								{/* </ScrollArea> */}
+
+													<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
+												</CommandItem>
+											)
+										})}
+									</CommandGroup>
+								</ScrollArea>
 							</CommandList>
 						</Command>
 					</PopoverContent>
