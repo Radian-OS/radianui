@@ -104,7 +104,8 @@ links:
 		},
 		{
 			name: "type",
-			values: ["text", "email", "password", "number", "file", "etc."],
+			defaultValue: "text",
+			values: ["text", "email", "password", "number", "file", "..."],
 			required: false,
 			description: "Specifies the type of input control",
 		},
@@ -124,6 +125,7 @@ links:
 		},
 		{
 			name: "aria-invalid",
+			defaultValue: "true",
 			values: ["boolean"],
 			required: false,
 			description: "Applies error styling to the input when set to true",
