@@ -92,34 +92,96 @@ links:
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable
-		title="Input"
-		data={[
-			{
-				name: "placeholder",
-				description: "Placeholder text for the input field",
-				values: ["string"],
-			},
-            {
-                name:"size",
-                description: "Sets the size of the input field",
-                defaultValue: "36",
-                values: ["28", "32", "36", "40","44","48"],
+<PropsTable
+	title="Input"
+	data={[
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Controls the height and padding of the input field",
+		},
+		{
+			name: "type",
+			defaultValue: "text",
+			values: ["text", "email", "password", "number", "file", "..."],
+			required: false,
+			description: "Specifies the type of input control",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Disables the input field when set to true",
+		},
+		{
+			name: "readOnly",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Makes the input field read-only when set to true",
+		},
+		{
+			name: "aria-invalid",
+			defaultValue: "true",
+			values: ["boolean"],
+			required: false,
+			description: "Applies error styling to the input when set to true",
+		},
+	]}
+/>
 
-            },
-            {
-                name:"disabled",
-                description: "If true, the input field is disabled",
-                defaultValue: "false",
-                values: ["boolean"],
-            },
-            {
-                name:"aria-invalid",
-                description: "If true, the input field will show an error state",
-                defaultValue: "false",
-                values: ["boolean"],
-            },
-    	]}
-    />
+<PropsTable
+	title="InputGroup"
+	data={[
+		{
+			name: "children",
+			values: ["React.ReactNode"],
+			required: true,
+			description: "Child components that will be grouped together, typically Input, InputAddon, or Button components",
+		},
+	]}
+/>
 
+<PropsTable
+	title="InputAddon"
+	data={[
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Controls the height and padding of the addon element",
+		},
+		{
+			name: "mode",
+			defaultValue: "default",
+			values: ["default", "icon"],
+			required: false,
+			description: "Determines the styling mode - icon mode centers content and removes horizontal padding",
+		},
+	]}
+/>
+
+<PropsTable
+	title="InputWrapper"
+	data={[
+		{
+			name: "size",
+			defaultValue: "36",
+			values: ["28", "32", "36", "40", "44", "48"],
+			required: false,
+			description: "Controls the height and padding of the wrapper",
+		},
+		{
+			name: "disabled",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Applies disabled styling to the wrapper and its children when set to true",
+		},
+	]}
+/>
 </PropsTableWrapper>
