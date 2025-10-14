@@ -9,8 +9,8 @@ export default function CurrencySeparatorsExample() {
 				<CurrencyInput id="cs-1" prefix="$" groupSeparator="," className="md:w-80" placeholder="Enter Amount Here" />
 			</div>
 			<div className="flex flex-col items-start justify-center gap-1.5">
-				<Label htmlFor="cs-2">Separator (;)</Label>
-				<CurrencyInput id="cs-2" prefix="$" groupSeparator=";" className="md:w-80" placeholder="Enter Amount Here" />
+				<Label htmlFor="cs-2">Separator (.)</Label>
+				<CurrencyInput id="cs-2" prefix="$" groupSeparator="." decimalSeparator="," className="md:w-80" placeholder="Enter Amount Here" />
 			</div>
 			<div className="flex flex-col items-start justify-center gap-1.5">
 				<Label htmlFor="cs-5">Separator Disabled</Label>
