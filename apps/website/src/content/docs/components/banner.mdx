@@ -40,20 +40,26 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/banner.tsx" language="tsx" code={`import { Banner, BannerAction, BannerDescription, BannerTitle } from "@/components/ui/banner"`} />
+<CodeSnippet title="/components/ui/banner.tsx" language="tsx" code={`import { Banner,BannerContent, BannerIcon, BannerDescription, BannerTitle } from "@/components/ui/banner"`} />
 
 ### Code
 
 <CodeSnippet
 	title="/components/ui/banner.tsx"
 	code={`<Banner variant="strong" color="primary" onClose={() => setBannerVisible(false)}>
+
 <BannerContent>
- <BannerIcon>
-  <Sparkles />
- </BannerIcon>
- <BannerTitle>New Feature!</BannerTitle>
- <BannerDescription>Check it out</BannerDescription>
+
+<BannerIcon>
+	<Sparkles />
+</BannerIcon>
+
+<BannerTitle>New Feature!</BannerTitle>
+
+<BannerDescription>Check it out</BannerDescription>
+
  </BannerContent>
+ 
 </Banner>`}
 />
 
@@ -61,11 +67,11 @@ links:
 
 ## Examples
 
-### Banner Variants
+### Variants
 
 <ComponentPreview path="banner/banner-variants-example" />
 
-### Banner Color
+### Colors
 
 <ComponentPreview path="banner/banner-color-example" />
 
@@ -111,8 +117,7 @@ links:
 				name: "-",
 				values: ["-"],
 				required: false,
-				description: "Container for banner content with central alignment",
-				defaultValue: "-",
+				description: "-",
 			},
 		]}
 	/>
@@ -123,8 +128,7 @@ links:
 				name: "-",
 				values: ["-"],
 				required: false,
-				description: "Icon container for the banner",
-				defaultValue: "-",
+				description: "-",
 			},
 		]}
 	/>
@@ -135,8 +139,7 @@ links:
 				name: "-",
 				values: ["-"],
 				required: false,
-				description: "Title of the banner",
-				defaultValue: "-",
+				description: "-",
 			},
 		]}
 	/>
@@ -147,8 +150,7 @@ links:
 				name: "-",
 				values: ["-"],
 				required: false,
-				description: "Description of the banner",
-				defaultValue: "-",
+				description: "-",
 			},
 		]}
 	/>
