@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
 import { VariantProps, cva } from "class-variance-authority"
 import { Check, Minus } from "lucide-react"
-import { Checkbox as CheckboxPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &

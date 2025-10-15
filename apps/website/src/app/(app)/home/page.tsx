@@ -6,6 +6,7 @@ import FAQSection from "@/components/home/faq-section"
 import FooterSection from "@/components/home/footer-section"
 import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
+import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 
@@ -15,21 +16,26 @@ export default function Page() {
 			<Background>
 				<div className="pt-30 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
-						<Badge size="28">
-							<Box size={16} />
-							Under Development - Alpha Release
-						</Badge>
+						<div className="relative h-[28px] rounded-md">
+							<Badge size="28">
+								<Box size={16} />
+								Under Development - Alpha Release
+							</Badge>
+							<BorderBeam size={50} />
+						</div>
 						<h1 className="heading-1 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-center text-transparent">Build next gen of world class products and solutions</h1>
 						<p className="text-fg-secondary text-center text-lg font-normal">
 							Radian is a high-quality, flexible and open-source, design and development library built using React and Tailwind. Start your next product here
 						</p>
 					</div>
-					<div className="flex items-center justify-center gap-4">
-						<Button className="bg-elevation-negative hover:bg-elevation-negative/90" variant="outline" color="neutral">
+					<div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+						<Button size="36" className="w-full md:w-fit" variant="outline" color="neutral">
 							<SearchCode />
 							Browse Components
 						</Button>
-						<Button className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+						<Button
+							size="36"
+							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] md:w-fit">
 							<Code />
 							Copy Terminal Command
 						</Button>

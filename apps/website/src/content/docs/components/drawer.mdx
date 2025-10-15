@@ -22,10 +22,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add drawer",
-				npm: "npx @radianos/radianbeta add drawer",
-				yarn: "yarn @radianos/radianbeta add drawer",
-				bun: "bunx @radianos/radianbeta add drawer",
+				pnpm: "pnpm dlx radianui@latest add drawer",
+				npm: "npx radianui@latest add drawer",
+				yarn: "yarn radianui@latest add drawer",
+				bun: "bunx radianui@latest add drawer",
 			}}
 		/>
 	</TabsContent>
@@ -65,11 +65,38 @@ links:
 <CodeSnippet
 	language="tsx"
 	title="/components/ui/drawer.tsx"
-	code={`<Drawer handle={false} backdrop='overlay'>
-		<DrawerTrigger><Button>Open Trigger</Button></DrawerTrigger>
-		<DrawerContent>
-			<Button variant="outline" color="neutral" >Close Drawer</Button>
-		</DrawerContent>
+	code={`<Drawer variant="default" direction="left" handle={false} backdrop="overlay">
+ 
+  <DrawerTrigger>
+   <Button variant="outline" color="neutral">
+    <ChevronLeft size={20} /> Left
+   </Button>
+  </DrawerTrigger>
+
+  <DrawerContent>
+   
+   <DrawerHeader>
+     <DrawerTitle>This is a drawer header</DrawerTitle>
+     <DrawerDescription>This is a drawer description message.</DrawerDescription>
+   </DrawerHeader>
+   
+   <DrawerBody>
+    <p>This is the main content of the drawer.</p>
+   </DrawerBody>
+	
+	<DrawerFooter>
+	  
+	  <DrawerClose>
+         <Button variant="outline" color="neutral">
+           Close Drawer
+         </Button>
+	  </DrawerClose>
+      <Button>Submit Action</Button>
+
+    </DrawerFooter>
+
+  </DrawerContent>
+  
 </Drawer>`}
 />
 
@@ -100,7 +127,7 @@ links:
 		title="Drawer"
 		data={[
 			{
-				name: "type",
+				name: "variant",
 				defaultValue: "default",
 				values: ["default", "float", "rounded"],
 				description: "Controls the type of the drawer.",
@@ -157,9 +184,10 @@ links:
 		title="DrawerHeader"
 		data={[
 			{
-				name: "className",
-				description: "The content of the header.",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "-",
 			},
 		]}
 	/>
@@ -167,9 +195,10 @@ links:
 		title="DrawerTitle"
 		data={[
 			{
-				name: "className",
-				description: "The content of the Title.",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "-",
 			},
 		]}
 	/>
@@ -177,9 +206,10 @@ links:
 		title="DrawerDescription"
 		data={[
 			{
-				name: "className",
-				description: "The content of the Description.",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "-",
 			},
 		]}
 	/>
@@ -187,9 +217,10 @@ links:
 		title="DrawerBody"
 		data={[
 			{
-				name: "className",
-				description: "The content of the Body.",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "-",
 			},
 		]}
 	/>
@@ -197,9 +228,10 @@ links:
 		title="DrawerFooter"
 		data={[
 			{
-				name: "className",
-				description: "The content of the Footer.",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
+				required: false,
+				description: "-",
 			},
 		]}
 		externalReference="https://vaul.emilkowal.ski/getting-started"

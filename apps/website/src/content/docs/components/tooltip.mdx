@@ -5,7 +5,7 @@ links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/tooltip.tsx
   externalReference:
-    - label: Radix
+    - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/tooltip
 ---
 
@@ -21,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add tooltip",
-				npm: "npx @radianos/radianbeta add tooltip",
-				yarn: "yarn @radianos/radianbeta add tooltip",
-				bun: "bunx @radianos/radianbeta add tooltip",
+				pnpm: "pnpm dlx radianui@latest add tooltip",
+				npm: "npx radianui@latest add tooltip",
+				yarn: "yarn radianui@latest add tooltip",
+				bun: "bunx radianui@latest add tooltip",
 			}}
 		/>
 	</TabsContent>
@@ -53,19 +53,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/tooltip" code={`import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"`} />
+<CodeSnippet title="/components/ui/tooltip" code={`import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip"`} />
 
 ### Code
 
 <CodeSnippet
 	title="Usage"
 	code={`<Tooltip>
-		<TooltipTrigger>
-			Hover me
-		</TooltipTrigger>
-		<TooltipContent>
-			This is a tooltip!
-		</TooltipContent>
+		<TooltipTrigger>Hover Me</TooltipTrigger>
+		<TooltipContent>This is a tooltip.</TooltipContent>
 	</Tooltip>`}
 />
 
@@ -97,17 +93,25 @@ links:
 
 <ComponentPreview path="tooltip/tooltip-with-image" />
 
+---
+
 ## Props
 
 <PropsTableWrapper>
+	<PropsTable title="Tooltip" externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#root" />
+	<PropsTable
+		title="TooltipTrigger"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#trigger"
+	/>
 	<PropsTable
 		title="TooltipContent"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/tooltip#content"
 		data={[
 			{
 				name: "theme",
 				defaultValue: "default",
 				values: ["light", "default"],
-				description: "Theme of the tooltip",
+				description: "'default' inverts color for light/dark modes. 'light' matches both.",
 			},
 			{
 				name: "withArrow",
@@ -116,7 +120,6 @@ links:
 				description: "Either to display an arrow pointing to the target element or not",
 			}
     	]}
-    	externalReference="https://www.npmjs.com/package/@radix-ui/react-tooltip"
     />
 
 </PropsTableWrapper>

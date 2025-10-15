@@ -21,30 +21,30 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add hover-card",
-				npm: "npx @radianos/radianbeta add hover-card",
-				yarn: "yarn @radianos/radianbeta add hover-card",
-				bun: "bunx @radianos/radianbeta add hover-card",
+				pnpm: "pnpm dlx radianui@latest add hover-card",
+				npm: "npx radianui@latest add hover-card",
+				yarn: "yarn radianui@latest add hover-card",
+				bun: "bunx radianui@latest add hover-card",
 			}}
 		/>
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
-	<Steps>
-	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-hover-card",
-				npm: "npm install @radix-ui/react-hover-card",
-				yarn: "yarn add @radix-ui/react-hover-card",
-				bun: "bun add @radix-ui/react-hover-card",
-			}}
-		/>
+		<Steps>
+		    <Step>Install the following dependencies:</Step>
+			<PackageManagerTabs
+				commands={{
+					pnpm: "pnpm add @radix-ui/react-hover-card",
+					npm: "npm install @radix-ui/react-hover-card",
+					yarn: "yarn add @radix-ui/react-hover-card",
+					bun: "bun add @radix-ui/react-hover-card",
+				}}
+			/>
 
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="hover-card" title="components/ui/hover-card.tsx" collapsible />
+    		<Step>Copy and paste the following code into your project.</Step>
+    		<ComponentSource name="hover-card" title="components/ui/hover-card.tsx" collapsible />
 
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
+    		<Step>Update the import paths as per your project structure.</Step>
+    	</Steps>
     </TabsContent>
 
 </Tabs>
@@ -53,21 +53,19 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/hover-card.tsx" code={`import { HoverCard } from "@/components/ui/hover-card.tsx"`} />
+<CodeSnippet title="/components/ui/hover-card.tsx" code={`import { HoverCard, HoverCardTrigger, HoverCardContent } from "@/components/ui/hover-card.tsx"`} />
 
 ### Code
 
-<CodeSnippet title="/components/ui/hover-card.tsx" code={` <HoverCard>
-
-    	<HoverCardTrigger asChild>
-    		<button className="px-2 py-1 border rounded">Hover me</button>
-    	</HoverCardTrigger>
-
-    	<HoverCardContent withArrow >
-    		<p className="text-sm">Hello! I am a tooltip-like card.</p>
-    	</HoverCardContent>
-
-</HoverCard>`} />
+<CodeSnippet
+	title="/components/ui/hover-card.tsx"
+	code={` <HoverCard>
+    	<HoverCardTrigger>Hover Me</HoverCardTrigger>
+    	<HoverCardContent>
+			Hello! I am a tooltip-like card.
+		</HoverCardContent>
+</HoverCard>`}
+/>
 
 ---
 
@@ -81,21 +79,16 @@ links:
 
 <ComponentPreview path="hover-card/hover-card-align" />
 
+---
+
 ## Props
 
 <PropsTableWrapper>
+<PropsTable title="HoverCard" externalReference="https://www.radix-ui.com/primitives/docs/components/hover-card#root" />
+<PropsTable title="HoverCardTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/hover-card#trigger" />
 <PropsTable
 	title="HoverCardContent"
-	data={[
-		{
-				name: "withArrow",
-				values: ["boolean"],
-				defaultValue: "false",
-				required: false,
-				description: "If true, the hover card will display an arrow pointing to the target element",
-			},
-	]}
-	externalReference="https://www.npmjs.com/package/@radix-ui/react-hover-card"
+	externalReference="https://www.radix-ui.com/primitives/docs/components/hover-card#content"
 />
 
 </PropsTableWrapper>

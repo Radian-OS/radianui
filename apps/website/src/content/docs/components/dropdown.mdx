@@ -21,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add dropdown",
-				npm: "npx @radianos/radianbeta add dropdown",
-				yarn: "yarn @radianos/radianbeta add dropdown",
-				bun: "bunx @radianos/radianbeta add dropdown",
+				pnpm: "pnpm dlx radianui@latest add dropdown",
+				npm: "npx radianui@latest add dropdown",
+				yarn: "yarn radianui@latest add dropdown",
+				bun: "bunx radianui@latest add dropdown",
 			}}
 		/>
 	</TabsContent>
@@ -67,11 +67,15 @@ links:
     	</DropdownTrigger>
 
     	<DropdownContent>
+
     		<DropdownGroup title="Actions" selectionMode="single">
+
     		<DropdownItem value="new">New File</DropdownItem>
     		<DropdownItem value="open">Open File</DropdownItem>
     		<DropdownItem value="save">Save</DropdownItem>
+
     		</DropdownGroup>
+
     	</DropdownContent>
 
 </Dropdown>`} />
@@ -80,15 +84,15 @@ links:
 
 ## Examples
 
-### User Menu Dropdown
+### User Menu
 
 <ComponentPreview path="dropdown/user-profile-dropdown-example" />
 
-### Dropdown With Checkbox
+### With Checkbox
 
 <ComponentPreview path="dropdown/dropdown-with-dropdown-checkbox" />
 
-### Dropdown With Radio Group
+### With Radio Group
 
 <ComponentPreview path="dropdown/dropdown-with-radio" />
 

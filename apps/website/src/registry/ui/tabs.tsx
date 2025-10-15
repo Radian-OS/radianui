@@ -189,7 +189,7 @@ const TabsListContext = React.createContext<TabsListContextType | null>(null)
 function useTabsList() {
 	const context = React.use(TabsListContext)
 	if (!context) {
-		throw new Error("useTabsContext must be used within a Context Provider")
+		throw new Error("useTabsList must be used within a Context Provider")
 	}
 	return context
 }

@@ -22,10 +22,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add code-area",
-				npm: "npx @radianos/radianbeta add code-area",
-				yarn: "yarn @radianos/radianbeta add code-area",
-				bun: "bunx @radianos/radianbeta add code-area",
+				pnpm: "pnpm dlx radianui@latest add code-area",
+				npm: "npx radianui@latest add code-area",
+				yarn: "yarn radianui@latest add code-area",
+				bun: "bunx radianui@latest add code-area",
 			}}
 		/>
 	</TabsContent>
@@ -34,26 +34,15 @@ links:
 		<Step>Install the following dependencies:</Step>
     	<PackageManagerTabs
     		commands={{
-    			pnpm: "pnpm add react-shiki @radix-ui/react-slot",
-    			npm: "npm install react-shiki @radix-ui/react-slot",
-    			yarn: "yarn add react-shiki @radix-ui/react-slot",
-    			bun: "bun add react-shiki @radix-ui/react-slot",
+    			pnpm: "pnpm add react-shiki",
+    			npm: "npm install react-shiki",
+    			yarn: "yarn add react-shiki",
+    			bun: "bun add react-shiki",
     		}}
     	/>
 		
     	<Step>Copy and paste the following code into your project.</Step>
-		<Tabs defaultValue="code-area">
-    		<TabsList>
-    			<TabsTrigger value="code-area">Code Area</TabsTrigger>
-    			<TabsTrigger value="button">Button</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="code-area">
-    			<ComponentSource name="code-area" title="components/ui/code-area.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="button">
-    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
+		<ComponentSource name="code-area" title="components/ui/code-area.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -84,7 +73,7 @@ links:
 
 ---
 
-## Example
+## Examples
 
 ### Theme
 
@@ -94,11 +83,11 @@ links:
 
 <ComponentPreview path="code-area/code-language-example" />
 
-### Code Area with Tabs
+### With Tabs
 
 <ComponentPreview path="code-area/code-with-tabs-preview" />
 
-### Code Area with Copy Button
+### With Copy Button
 
 <ComponentPreview path="code-area/code-with-copy-example" />
 

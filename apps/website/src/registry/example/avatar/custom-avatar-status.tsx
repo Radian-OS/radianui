@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator } from "@/registry
 
 export default function CustomAvatarStatusPreview() {
 	return (
-		<div className="flex gap-6">
+		<div className="flex gap-4">
 			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/29.jpg" />
 				<AvatarFallback>CH</AvatarFallback>

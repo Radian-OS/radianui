@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
 export default function RingAvatarPreview() {
 	return (
-		<div className="flex gap-6">
+		<div className="flex flex-wrap items-center justify-center gap-4">
 			<Avatar size="64" className="border-primary border-2 p-0.5">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/29.jpg" />
 				<AvatarFallback>CH</AvatarFallback>

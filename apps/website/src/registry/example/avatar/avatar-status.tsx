@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } fr
 
 export default function AvatarStatusPreview() {
 	return (
-		<div className="flex gap-6">
+		<div className="flex gap-4">
 			{/* Status Online */}
 			<Avatar size="48">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/2.jpg" />

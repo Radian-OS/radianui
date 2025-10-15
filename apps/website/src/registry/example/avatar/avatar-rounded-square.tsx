@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } fr
 
 export default function AvatarRoundedSquare() {
 	return (
-		<div className="flex gap-5">
+		<div className="flex gap-4">
 			<Avatar size="48" rounded="square">
 				<AvatarImage src="https://randomuser.me/api/portraits/men/6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
