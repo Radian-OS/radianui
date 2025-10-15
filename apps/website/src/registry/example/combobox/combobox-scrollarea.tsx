@@ -54,8 +54,8 @@ export default function ComboboxWithScrollArea() {
 				</Button>
 			</PopoverTrigger>
 
-			<PopoverContent className="w-[200px] p-0">
-				<Command>
+			<PopoverContent className="w-(--radix-popper-anchor-width) bg-bg p-0">
+				<Command className="border-0">
 					<CommandInput placeholder="Search framework..." />
 					<CommandEmpty>No framework found.</CommandEmpty>
 

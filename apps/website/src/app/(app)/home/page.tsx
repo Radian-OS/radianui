@@ -59,10 +59,10 @@ export default function Page() {
 							strokeWidth="1"
 							strokeLinecap="round"
 							className="animate-[var(--animate-beam-flow)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-							vectorEffect="non-scaling-stroke"
 							pathLength="1000"
 						/>
 					</svg>
+
 					{/* Lower left line */}
 					<svg className="not-lg:hidden -left-290 absolute bottom-[75%] -z-10" width="1331" height="402" viewBox="0 0 1331 402" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
