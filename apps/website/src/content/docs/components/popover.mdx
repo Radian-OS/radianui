@@ -5,7 +5,7 @@ links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/popover.tsx
   externalReference:
-    - label: Radix
+    - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/popover
 ---
 
@@ -60,16 +60,11 @@ links:
 <CodeSnippet
 	title="/components/ui/popover"
 	code={`<Popover>
-
-        <PopoverTrigger asChild>
-          <Button variant="outline">Open Popover</Button>
-        </PopoverTrigger>
+        <PopoverTrigger>Open Popover</PopoverTrigger>
         <PopoverContent>
-          <p className="text-sm">This is a simple popover content.</p>
+          This is a simple popover content
         </PopoverContent>
-
     </Popover>`}
-
 />
 
 ---
@@ -91,51 +86,10 @@ links:
 <PropsTableWrapper>
 	<PropsTable
 		title="Popover"
-		data={[
-			{
-				name: "align",
-				values: ["center", "start", "end"],
-				defaultValue: "start",
-                description:"Sets Alignment respective to the trigger"
-
-    		},
-            {
-                name:"side",
-                values: ["top", "right", "bottom","left"],
-                defaultValue:"bottom",
-                description:"Sets Position respective to the trigger"
-            },
-            {
-                name:"sideOffset",
-                values: ["number"],
-                defaultValue:"4",
-                description:"Sets side offset respective to the trigger"
-            }
-    	]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/popover#root"
     />
 
-<PropsTable
-	title="PopoverTrigger"
-	data={[
-		{
-			name: "asChild",
-			values: ["boolean"],
-			defaultValue: "false",
-			description: "Adds as child functionality",
-		},
-	]}
-/>
-<PropsTable
-	title="PopoverContent"
-	data={[
-		{
-			name: "-",
-			values: ["-"],
-			defaultValue: "-",
-			description: "No specific Props, Used for Structure",
-		},
-	]}
-	externalReference="https://www.npmjs.com/package/@radix-ui/react-popover"
-/>
+    <PropsTable title="PopoverTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/popover#trigger" />
+    <PropsTable title="PopoverContent" externalReference="https://www.radix-ui.com/primitives/docs/components/popover#content" />
 
 </PropsTableWrapper>

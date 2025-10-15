@@ -4,6 +4,9 @@ description: Renders an accessible label associated with controls.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/label.tsx
+  externalReference:
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/label
 ---
 
 <ComponentPreview path="label/label-preview" />
@@ -54,7 +57,7 @@ links:
 
 ### Code
 
-<CodeSnippet title="components/ui/label.tsx" code={`<Label>Your text here</Label>`} />
+<CodeSnippet title="components/ui/label.tsx" code={`<Label htmlFor="email">Your email here</Label>`} />
 
 ---
 
@@ -63,9 +66,7 @@ links:
 <PropsTableWrapper>
 	<PropsTable
 		title="Label"
-		data={[
-			
-    	]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/label#root"
     />
 
 </PropsTableWrapper>

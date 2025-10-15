@@ -1,5 +1,5 @@
 import { Label } from "@/registry/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
+import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 export default function RadioGroupPreview() {
 	return (

@@ -30,6 +30,15 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+    	<Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add @radix-ui/react-alert-dialog",
+    			npm: "npm install @radix-ui/react-alert-dialog",
+    			yarn: "yarn add @radix-ui/react-alert-dialog",
+    			bun: "bun add @radix-ui/react-alert-dialog",
+    		}}
+    	/>
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="alert-dialog" title="components/ui/alert-dialog.tsx" collapsible />
 
@@ -45,17 +54,17 @@ links:
 
 <CodeSnippet
 	title="/components/ui/alert-dialog.tsx"
-	code={`import { AlertDialog,
-	  AlertDialogTrigger,
-	  AlertDialogHeader,
-	  AlertDialogTitle,
-	  AlertDialogContent,
-	  AlertDialogPortal,
-	  AlertDialogOverlay,
-	  AlertDialogDescription,
-	  AlertDialogFooter,
-	  AlertDialogAction,
-	  AlertDialogCancel } from "@/components/ui/alert-dialog"`}
+	code={`import { 
+		AlertDialog,
+	  	AlertDialogTrigger,
+	  	AlertDialogHeader,
+	  	AlertDialogTitle,
+	  	AlertDialogContent,
+	  	AlertDialogDescription,
+	  	AlertDialogFooter,
+	  	AlertDialogAction,
+	  	AlertDialogCancel
+} from "@/components/ui/alert-dialog"`}
 />
 
 ### Code
@@ -63,12 +72,18 @@ links:
 <CodeSnippet
 	title="/components/ui/alert-dialog.tsx"
 	code={`<AlertDialog>
-    <AlertDialogTrigger>Open</AlertDialogTrigger>
-    <AlertDialogContent>
-        <AlertDialogTitle>Alert Dialog</AlertDialogTitle>
-        <AlertDialogDescription>This is alert dialog description.</AlertDialogDescription>
-    </AlertDialogContent>
-</AlertDialog>`}
+		<AlertDialogTrigger>Show Dialog</AlertDialogTrigger>
+		<AlertDialogContent>
+			<AlertDialogHeader>
+				<AlertDialogTitle>Are you sure?</AlertDialogTitle>
+				<AlertDialogDescription>Take a moment to review the details provided to ensure you understand the implications.</AlertDialogDescription>
+			</AlertDialogHeader>
+			<AlertDialogFooter>
+				<AlertDialogCancel>Cancel</AlertDialogCancel>
+				<AlertDialogAction>Continue</AlertDialogAction>
+			</AlertDialogFooter>
+		</AlertDialogContent>
+	</AlertDialog>`}
 />
 
 ---
@@ -92,8 +107,10 @@ links:
 ## Props
 
 <PropsTableWrapper>
+	<PropsTable title="AlertDialog" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#root" />
+	<PropsTable title="AlertDialogTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#trigger" />
 	<PropsTable
-		title="AlertDialog"
+		title="AlertDialogContent"
 		data={[
 			{
 				name: "backdrop",
@@ -102,6 +119,12 @@ links:
 				description: "Show the backdrop state",
 			},
 		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#api-reference"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#content"
 	/>
+	<PropsTable title="AlertDialogHeader" data={[]} />
+	<PropsTable title="AlertDialogTitle" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#title" />
+	<PropsTable title="AlertDialogDescription" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#description" />
+	<PropsTable title="AlertDialogFooter" data={[]} />
+	<PropsTable title="AlertDialogAction" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#action" />
+	<PropsTable title="AlertDialogCancel" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#cancel" />
 </PropsTableWrapper>

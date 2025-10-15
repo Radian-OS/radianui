@@ -53,37 +53,41 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/accordion.tsx" code={`import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"`} />
+<CodeSnippet
+	title="/components/ui/accordion.tsx"
+	code={`import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"`}
+	showLineNumbers
+/>
 
 ### Code
 
-<CodeSnippet title="/components/ui/accordion.tsx" code={`<Accordion size="sm" variant="box" interaction="single" className="max-w-md mx-auto">
-
+<CodeSnippet
+	title="/components/ui/accordion.tsx"
+	code={`<Accordion type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>First Item</AccordionTrigger>
         <AccordionContent>
           <p>This is the content of the first accordion item.</p>
         </AccordionContent>
       </AccordionItem>
-
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Second Item</AccordionTrigger>
-        <AccordionContent>
-          <p>This is the content of the second accordion item.</p>
-        </AccordionContent>
-      </AccordionItem>
-
-</Accordion>`}/>
+</Accordion>`}
+	showLineNumbers
+/>
 
 ---
 
 ## Examples
 
-### Open
+### Variant - Open
 
 <ComponentPreview path="accordion/accordion-open" />
 
-### Table
+### Variant - Table
 
 <ComponentPreview path="accordion/accordion-table" />
 
@@ -95,15 +99,15 @@ links:
 
 <ComponentPreview path="accordion/accordion-large" />
 
-### Indicator
+### Indicator - Plus/Minus
 
 <ComponentPreview path="accordion/accordion-indicator" />
 
-### Icon
+### With Icon
 
 <ComponentPreview path="accordion/accordion-with-icon" />
 
-### Nested
+### Nested Accordion
 
 <ComponentPreview path="accordion/accordion-nested" />
 
@@ -112,7 +116,7 @@ links:
 ## Props
 
 <PropsTableWrapper>
-<PropsTable
+	<PropsTable
 	title="Accordion"
 	data={[
 		{
@@ -130,62 +134,25 @@ links:
 			description: "Defines the visual style of the accordion",
 		},
 		{
-			name: "interaction",
-			defaultValue: "single",
-			values: ["single", "multiple"],
+			name: "indicator",
+			defaultValue: "chevron",
+			values: ["chevron", "plus-minus"],
 			required: false,
-			description: 'Determines whether one or multiple accordion items can be open at the same time',
-		},
-		{
-			name: "disabled",
-			defaultValue: "false",
-			values: ["boolean"],
-			required: false,
-			description: "Disables interaction with the accordion when set to true",
-		},
+			description: "Defines the indicator to be displayed in the accordion trigger",
+		}
+		
 	]}
 	externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#root"
 />
 
-<PropsTable
-	title="AccordionItem"
-	data={[
-		{
-			name: "value",
-			values: ["string"],
-			description: "The unique value that identifies the accordion item",
-		},
-		{
-			name: "disabled",
-			defaultValue: "false",
-			values: ["boolean"],
-			required: false,
-			description: "Prevents the user from interacting with the accordion item when set to true",
-		},
-	]}
+    <PropsTable title="AccordionItem" externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#item" />
+
+    <PropsTable title="AccordionTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#trigger" />
+
+    <PropsTable
+    title="AccordionContent"
+    externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#content"
+
 />
 
-<PropsTable
-	title="AccordionTrigger"
-	data={[
-		{
-			name: "asChild",
-			defaultValue: "false",
-			values: ["boolean"],
-			description: "Changes the default rendered element to the one passed as a child, merging their props and behavior",
-		},
-	]}
-/>
-
-<PropsTable
-	title="AccordionContent"
-	data={[
-		{
-			name: "asChild",
-			defaultValue: "false",
-			values: ["boolean"],
-			description: "Changes the default rendered element to the one passed as a child, merging their props and behavior",
-		},
-	]}
-/>
 </PropsTableWrapper>

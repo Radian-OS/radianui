@@ -41,16 +41,18 @@ links:
 			/>
 			<Step>Copy and paste the following code into your project.</Step>
 			<ComponentSource name="collapsible" title="components/ui/collapsible.tsx" collapsible />
-			<Step>Update the import paths as per your project structure.</Step>
-		</Steps>
-	</TabsContent>
+
+    		<Step>Update the import paths as per your project structure.</Step>
+    	</Steps>
+    </TabsContent>
+
 </Tabs>
 
 ## Usage
 
 ### Imports
 
-<CodeSnippet title="/components/ui/collapsible" code={`import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"`} />
+<CodeSnippet title="/components/ui/collapsible" code={`import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible"`} />
 
 ### Code
 
@@ -58,10 +60,10 @@ links:
 	title="/components/ui/collapsible"
 	code={`<Collapsible>
 	    <CollapsibleTrigger>
-		    <Button>Toggle</Button>
+		    Can I use RadianOS in my project?
 	    </CollapsibleTrigger>
 	    <CollapsibleContent>
-		    <p>Content</p>
+		    Of course! RadianOS is a free and open-source design system and component library built with React and TypeScript. It provides a comprehensive set of accessible, customizable components for building beautiful user interfaces.
 	    </CollapsibleContent>
 </Collapsible>`}
 />
@@ -71,5 +73,7 @@ links:
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable title="Collapsible" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible" data={[]} />
+	<PropsTable title="Collapsible" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#root" />
+	<PropsTable title="CollapsibleTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#trigger" />
+	<PropsTable title="CollapsibleContent" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#content" />
 </PropsTableWrapper>

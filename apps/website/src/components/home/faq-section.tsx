@@ -49,20 +49,28 @@ export default function FAQSection() {
 					<MessageCircleQuestionIcon className="text-primary-text" />
 					<span className="text-fg-secondary">FAQ&apos;s</span>
 				</Badge>
-				<svg className="not-xl:hidden absolute bottom-[50%] left-[60px] z-0 max-h-[775px]" fill="none" viewBox="0 0 1939 775" xmlns="http://www.w3.org/2000/svg">
+				<svg className="not-xl:hidden absolute bottom-[50%] left-0 z-0" width="1593" height="775" fill="none" viewBox="0 0 1593 775" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<linearGradient id="beamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+							<stop offset="0%" stopColor="var(--color-bg)" stopOpacity="1" />
+							<stop offset="20%" stopColor="var(--color-soft)" stopOpacity="1" />
+							<stop offset="100%" stopColor="var(--color-soft)" stopOpacity="1" />
+						</linearGradient>
+					</defs>
+
 					<path
-						d="M 0 775 L 1691 775 C 1715 771 1722 763 1721 740 L 1721 540 C 1721 534 1720 529 1724 526 L 1926 325 C 1936 318 1939 309 1939 298 L 1939 0"
-						stroke="var(--color-border)"
-						strokeWidth="1"
+						d="M 0 775 L 1326 775 C 1355 768 1352 749 1351 721 L 1351 613 C 1351 608 1349 592 1360 585 L 1583 412 C 1594 399 1592 400 1592 374 L 1593 0"
+						stroke="url(#beamGradient)"
+						strokeWidth={1}
 					/>
 					<path
 						id="beamPath"
-						d="M 0 775 L 1691 775 C 1715 771 1722 763 1721 740 L 1721 540 C 1721 534 1720 529 1724 526 L 1926 325 C 1936 318 1939 309 1939 298 L 1939 0"
+						d="M 0 775 L 1326 775 C 1355 768 1352 749 1351 721 L 1351 613 C 1351 608 1349 592 1360 585 L 1583 412 C 1594 399 1592 400 1592 374 L 1593 0"
 						fill="none"
 						stroke="var(--color-primary)"
 						strokeWidth="1"
 						strokeLinecap="round"
-						className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
+						className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
 						vectorEffect="non-scaling-stroke"
 						pathLength="1000"
 					/>
@@ -71,7 +79,7 @@ export default function FAQSection() {
 				<svg className="not-xl:hidden absolute -left-[50px] top-[50%] z-0 max-h-[341px]" viewBox="-80 0 350 341" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M 0 0 L -65 0 C -76 5 -81 15 -80 32 L -80 231 C -75 248 -64 258 -48 256 L 178 256 C 200 256 212 262 220 272 L 276 341"
-						stroke="var(--color-border)"
+						stroke="var(--color-soft)"
 						strokeWidth="1"
 						fill="none"
 					/>

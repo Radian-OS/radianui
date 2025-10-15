@@ -30,6 +30,16 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+<Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-avatar",
+				npm: "npm install @radix-ui/react-avatar",
+				yarn: "yarn add @radix-ui/react-avatar",
+				bun: "bun add @radix-ui/react-avatar",
+			}}
+		/>
+
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="avatar" title="components/ui/avatar.tsx" collapsible />
 
@@ -43,11 +53,32 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/avatar.tsx" language="tsx" code={`import { Avatar } from "@/components/ui/avatar"`} />
+<CodeSnippet
+	title="/components/ui/avatar.tsx"
+	language="tsx"
+	code={`import { 
+Avatar,
+AvatarFallback,
+AvatarImage,
+AvatarIndicator,
+AvatarStatus,
+} from "@/components/ui/avatar"`}
+	showLineNumbers
+/>
 
 ### Code
 
-<CodeSnippet title="/components/ui/avatar.tsx" code={`<Avatar src="https://randomuser.me/api/portraits/men/2.jpg" name="Dinesh Chugtai" />`} />
+<CodeSnippet
+	title="/components/ui/avatar.tsx"
+	code={`<Avatar size="48" rounded="circle">
+	<AvatarImage src="https://radianos.com/logo.png" />
+	<AvatarFallback>RS</AvatarFallback>
+	<AvatarIndicator>
+		<AvatarStatus variant="online" />
+	</AvatarIndicator>
+</Avatar>`}
+	showLineNumbers
+/>
 
 ---
 
@@ -65,11 +96,11 @@ links:
 
 <ComponentPreview path="avatar/avatar-status" />
 
-### Custom Status
+### With Custom Status
 
 <ComponentPreview path="avatar/custom-avatar-status" />
 
-### Ring
+### With Ring
 
 <ComponentPreview path="avatar/ring-avatar" />
 
@@ -77,7 +108,7 @@ links:
 
 <ComponentPreview path="avatar/avatar-rounded-square" />
 
-### Group
+### Avatar Group
 
 <ComponentPreview path="avatar/avatar-group" />
 
@@ -104,6 +135,29 @@ links:
 				description: "Sets the shape of the avatar",
 			},
 		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#api-reference"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#root"
+	/>
+	<PropsTable title="AvatarImage" externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#image" />
+	<PropsTable title="AvatarFallback" externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#fallback" />
+	<PropsTable title="AvatarIndicator" />
+	<PropsTable
+		title="AvatarStatus"
+		data={[
+			{
+				name: "variant",
+				values: ["online", "offline", "busy", "away"],
+				defaultValue: "online",
+				required: false,
+				description: "Sets the color of the avatar status indicator",
+			},
+			{
+				name: "size",
+				values: ["16", "20", "24", "32", "40", "48", "56", "64", "80"],
+				defaultValue: "40",
+				required: false,
+				description: "Sets the size of the avatar status",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#status"
 	/>
 </PropsTableWrapper>

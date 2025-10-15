@@ -5,7 +5,7 @@ links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/radio-group.tsx
   externalReference:
-    - label: Radix
+    - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/radio-group
 ---
 
@@ -21,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx radianui@latest add radiogroup",
-				npm: "npx radianui@latest add radiogroup",
-				yarn: "yarn radianui@latest add radiogroup",
-				bun: "bunx radianui@latest add radiogroup",
+				pnpm: "pnpm dlx radianui@latest add radio-group",
+				npm: "npx radianui@latest add radio-group",
+				yarn: "yarn radianui@latest add radio-group",
+				bun: "bunx radianui@latest add radio-group",
 			}}
 		/>
 	</TabsContent>
@@ -41,7 +41,7 @@ links:
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="radiogroup" title="components/ui/radiogroup.tsx" collapsible />
+    	<ComponentSource name="radio-group" title="components/ui/radio-group.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -53,16 +53,16 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/radiogroup" code={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radiogroup"`} />
+<CodeSnippet title="/components/ui/radio-group" code={`import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`} />
 
 ### Code
 
 <CodeSnippet
-	title="/components/ui/radiogroup"
-	code={`<RadioGroup label="Choose a fruit" defaultValue="apple">
-        <RadioGroupItem value="apple">Apple</RadioGroupItem>
-        <RadioGroupItem value="banana">Banana</RadioGroupItem>
-        <RadioGroupItem value="orange">Orange</RadioGroupItem>
+	title="/components/ui/radio-group"
+	code={`<RadioGroup defaultValue="apple">
+        <RadioGroupItem value="apple"/>
+        <RadioGroupItem value="banana"/>
+        <RadioGroupItem value="orange"/>
 	</RadioGroup>`}
 />
 
@@ -94,29 +94,23 @@ links:
 				name: "size",
 				values: ["sm", "md", "lg"],
 				defaultValue: "md",
-				description: "Controls Size for Radio Group",
-				required: false,
-			},
-			{
-				name: "label",
-				values: ["string"],
-				description: "Text label displayed above the group of radio options.",
-				required: false,
-			},
-			{
-				name: "disabled",
-				defaultValue: "false",
-				values: ["boolean"],
-				description: "Disables all radio items inside the group.",
-				required: false,
-			},
-			{
-				name: "defaultValue",
-				values: ["string"],
-				description: "The value of the radio item that should be selected by default (uncontrolled).",
+				description: "Sets the size for all radio items in the group.",
 				required: false,
 			},
 		]}
-		externalReference="https://www.npmjs.com/package/@radix-ui/react-radio-group"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/radio-group#root"
+	/>
+	<PropsTable
+		title="RadioGroupItem"
+		data={[
+			{
+				name: "size",
+				values: ["sm", "md", "lg"],
+				defaultValue: "undefined",
+				description: "Sets the size for the radio item.",
+				required: false,
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/radio-group#item"
 	/>
 </PropsTableWrapper>

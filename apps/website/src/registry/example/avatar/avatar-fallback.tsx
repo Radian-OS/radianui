@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 
 export default function AvatarFallbackPreview() {
 	return (
-		<div className="flex gap-6">
+		<div className="flex gap-4">
 			<Avatar size="48">
 				<AvatarFallback>CH</AvatarFallback>
 			</Avatar>

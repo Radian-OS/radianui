@@ -9,7 +9,7 @@ import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Label } from "@/registry/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/registry/ui/radiogroup"
+import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 const options = [
 	{ id: "m3", label: "M3" },

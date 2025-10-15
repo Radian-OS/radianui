@@ -40,11 +40,21 @@ export default function ComponentsSection() {
 	return (
 		<div className="pb-25 flex w-full flex-col items-center gap-12 px-5 pt-20 xl:gap-20">
 			<div className="w-full max-w-[1230px]">
-				<div className="flex max-w-[880px] flex-col gap-6">
-					<Badge size="28" color="neutral">
+				<div className="relative flex max-w-[880px] flex-col gap-6">
+					<Badge size="28" color="neutral" className="z-20">
 						<Component className="text-primary" />
 						Base Components
 					</Badge>
+
+					<svg className="not-xl:hidden -left-26 absolute -top-36 z-10" width="996" height="931" viewBox="0 0 996 931" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							// d="M 1 613 V 175 C 1 166.163 8.1634 159 17 159 H 705 C 713.837 159 721 151.837 721 143 V 0 M 1 613 H 85.5 M 1 613 V 914 C 1 922.837 8.1634 930 17 930 H 85.5 M 996 0 V 114 C 996 120 995 122 990 124 H 722"
+							d="M 1 613 V 175 C 1 166.163 8.1634 159 17 159 H 705 C 713.837 159 721 151.837 721 143 V 0 M 1 613 H 85.5 M 1 613 V 914 C 1 922.837 8.1634 930 17 930 H 85.5 M 996 0 V 108 C 996 116 990 123 983 124 H 722"
+							stroke="var(--color-soft)"
+							strokeWidth={1}
+						/>
+					</svg>
+
 					<h2 className="heading-2 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
 						Accelerate your workflow with <span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">powerful components and blocks.</span>
 					</h2>
