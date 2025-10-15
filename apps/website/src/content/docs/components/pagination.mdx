@@ -51,58 +51,16 @@ links:
 <PaginationContent>
 
 <PaginationItem>
-	<IconButton color="neutral" variant="ghost" asChild disabled>
-		<Link href="#">
-			<ChevronFirst className="rtl:rotate-180" />
-		</Link>
-	</IconButton>
+	<Link href="#">First</Link>
 </PaginationItem>
 
-    <PaginationItem>
-      <IconButton color="neutral" variant="ghost" asChild disabled>
-       <Link href="#">
-        <ChevronLeft className="rtl:rotate-180" />
-       </Link>
-      </IconButton>
-     </PaginationItem>
+<PaginationItem>
+	<PaginationEllipsis />
+</PaginationItem>
 
-    <PaginationItem>
-      <IconButton color="neutral" variant="ghost" asChild>
-       <Link href="#">1</Link>
-       </IconButton>
-       </PaginationItem>
-
-       <PaginationItem>
-       <IconButton color="neutral" variant="outline" asChild>
-       <Link href="#">2</Link>
-       </IconButton>
-       </PaginationItem>
-
-     <PaginationItem>
-     <IconButton color="neutral" variant="ghost" asChild>
-     <Link href="#">3</Link>
-     </IconButton>
-     </PaginationItem>
-
-     <PaginationItem>
-    <PaginationEllipsis />
-    </PaginationItem>
-
-    <PaginationItem>
-    	<IconButton color="neutral" variant="ghost" asChild>
-    		<Link href="#">
-    			<ChevronRight className="rtl:rotate-180" />
-    		</Link>
-    	</IconButton>
-    </PaginationItem>
-
-    <PaginationItem>
-    		<IconButton color="neutral" variant="ghost" asChild>
-    			<Link href="#">
-    				<ChevronLast className="rtl:rotate-180" />
-    			</Link>
-    		</IconButton>
-    	</PaginationItem>
+<PaginationItem>
+	<Link href="#">Second</Link>
+</PaginationItem>
 
     </PaginationContent>
 
@@ -132,10 +90,10 @@ links:
 		title="Pagination"
 		data={[
 			{
-				name: "className",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
 				required: false,
-				description: "Additional CSS classes to apply to the pagination navigation",
+				description: "-",
 			},
 		]}
 	/>
@@ -143,10 +101,10 @@ links:
 		title="PaginationContent"
 		data={[
 			{
-				name: "className",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
 				required: false,
-				description: "Additional CSS classes to apply to the pagination content list",
+				description: "-",
 			},
 		]}
 	/>
@@ -154,10 +112,10 @@ links:
 		title="PaginationItem"
 		data={[
 			{
-				name: "className",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
 				required: false,
-				description: "Additional CSS classes to apply to the pagination item",
+				description: "-",
 			},
 		]}
 	/>
@@ -165,10 +123,10 @@ links:
 		title="PaginationEllipsis"
 		data={[
 			{
-				name: "className",
-				values: ["string"],
+				name: "-",
+				values: ["-"],
 				required: false,
-				description: "Additional CSS classes to apply to the ellipsis indicator",
+				description: "-",
 			},
 		]}
 	/>
