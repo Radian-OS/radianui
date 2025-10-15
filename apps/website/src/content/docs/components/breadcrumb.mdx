@@ -27,24 +27,19 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+	<Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add @radix-ui/react-slot",
+    			npm: "npm install @radix-ui/react-slot",
+    			yarn: "yarn add @radix-ui/react-slot",
+    			bun: "bun add @radix-ui/react-slot",
+    		}}
+    	/>
     	<Step>Copy and paste the following code into your project.</Step>
 
-    	<Tabs defaultValue="breadcrumb">
-    		<TabsList>
-    			<TabsTrigger value="breadcrumb">Breadcrumb</TabsTrigger>
-    			<TabsTrigger value="badge">Badge</TabsTrigger>
-    			<TabsTrigger value="dropdown">Dropdown</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="breadcrumb">
-    			<ComponentSource name="breadcrumb" title="components/ui/breadcrumb.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="badge">
-    			<ComponentSource name="badge" title="components/ui/badge.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="dropdown">
-    			<ComponentSource name="dropdown" title="components/ui/dropdown.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
+    <ComponentSource name="badge" title="components/ui/breadcrumb.tsx" collapsible />
+
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -99,19 +94,19 @@ links:
 
 ## Examples
 
-### Breadcrumb with Icons
+### With Icons
 
 <ComponentPreview path="breadcrumb/breadcrumb-example1" />
 
-### Breadcrumb with Box Design
+### With Box Design
 
 <ComponentPreview path="breadcrumb/breadcrumb-example2" />
 
-### Breadcrumb with Dropdown
+### With Dropdown
 
 <ComponentPreview path="breadcrumb/breadcrumb-example3" />
 
-### Breadcrumb with Slash
+### With Slash
 
 <ComponentPreview path="breadcrumb/breadcrumb-slash-example" />
 

@@ -27,16 +27,6 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
-	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-pagination",
-				npm: "npm install @radix-ui/react-pagination",
-				yarn: "yarn add @radix-ui/react-pagination",
-				bun: "bun add @radix-ui/react-pagination",
-			}}
-		/>
-
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="pagination" title="components/ui/pagination.tsx" collapsible />
 
@@ -57,69 +47,75 @@ links:
 <CodeSnippet
 	title="/components/ui/pagination"
 	code={`<Pagination>
+
 <PaginationContent>
-   <PaginationItem>
+
+<PaginationItem>
 	<IconButton color="neutral" variant="ghost" asChild disabled>
-      <Link href="#">
-       <ChevronFirst className="rtl:rotate-180" />
-      </Link>
-     </IconButton>
-   </PaginationItem>						
-	<PaginationItem>
+		<Link href="#">
+			<ChevronFirst className="rtl:rotate-180" />
+		</Link>
+	</IconButton>
+</PaginationItem>
+
+    <PaginationItem>
       <IconButton color="neutral" variant="ghost" asChild disabled>
        <Link href="#">
         <ChevronLeft className="rtl:rotate-180" />
        </Link>
       </IconButton>
-     </PaginationItem>					
-	
-	<PaginationItem>
+     </PaginationItem>
+
+    <PaginationItem>
       <IconButton color="neutral" variant="ghost" asChild>
        <Link href="#">1</Link>
        </IconButton>
        </PaginationItem>
-       
-	   <PaginationItem>
+
+       <PaginationItem>
        <IconButton color="neutral" variant="outline" asChild>
        <Link href="#">2</Link>
        </IconButton>
        </PaginationItem>
-     
-	 <PaginationItem>
+
+     <PaginationItem>
      <IconButton color="neutral" variant="ghost" asChild>
      <Link href="#">3</Link>
      </IconButton>
      </PaginationItem>
-						
-	 <PaginationItem>
+
+     <PaginationItem>
     <PaginationEllipsis />
-	</PaginationItem>
-	<PaginationItem>
-		<IconButton color="neutral" variant="ghost" asChild>
-			<Link href="#">
-				<ChevronRight className="rtl:rotate-180" />
-			</Link>
-		</IconButton>
-	</PaginationItem>
-		
-	<PaginationItem>
-			<IconButton color="neutral" variant="ghost" asChild>
-				<Link href="#">
-					<ChevronLast className="rtl:rotate-180" />
-				</Link>
-			</IconButton>
-		</PaginationItem>
-	</PaginationContent>
+    </PaginationItem>
+
+    <PaginationItem>
+    	<IconButton color="neutral" variant="ghost" asChild>
+    		<Link href="#">
+    			<ChevronRight className="rtl:rotate-180" />
+    		</Link>
+    	</IconButton>
+    </PaginationItem>
+
+    <PaginationItem>
+    		<IconButton color="neutral" variant="ghost" asChild>
+    			<Link href="#">
+    				<ChevronLast className="rtl:rotate-180" />
+    			</Link>
+    		</IconButton>
+    	</PaginationItem>
+
+    </PaginationContent>
+
 </Pagination>`}
 />
 
 ## Examples
 
-### Pagination with Text
+### With Text
 
 <ComponentPreview height="480" path="pagination/pagination-text-example" />
 
-### Pagination Card
+### As Card
 
 <ComponentPreview height="480" path="pagination/pagination-card-example" />
 
