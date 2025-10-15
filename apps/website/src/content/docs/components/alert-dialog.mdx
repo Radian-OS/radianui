@@ -30,6 +30,15 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+    	<Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add @radix-ui/react-alert-dialog",
+    			npm: "npm install @radix-ui/react-alert-dialog",
+    			yarn: "yarn add @radix-ui/react-alert-dialog",
+    			bun: "bun add @radix-ui/react-alert-dialog",
+    		}}
+    	/>
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="alert-dialog" title="components/ui/alert-dialog.tsx" collapsible />
 
