@@ -6,6 +6,7 @@ import FAQSection from "@/components/home/faq-section"
 import FooterSection from "@/components/home/footer-section"
 import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
+import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 
@@ -15,10 +16,13 @@ export default function Page() {
 			<Background>
 				<div className="pt-30 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
-						<Badge size="28">
-							<Box size={16} />
-							Under Development - Alpha Release
-						</Badge>
+						<div className="relative h-[28px] rounded-md">
+							<Badge size="28">
+								<Box size={16} />
+								Under Development - Alpha Release
+							</Badge>
+							<BorderBeam size={50} />
+						</div>
 						<h1 className="heading-1 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-center text-transparent">Build next gen of world class products and solutions</h1>
 						<p className="text-fg-secondary text-center text-lg font-normal">
 							Radian is a high-quality, flexible and open-source, design and development library built using React and Tailwind. Start your next product here

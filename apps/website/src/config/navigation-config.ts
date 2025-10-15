@@ -138,7 +138,7 @@ export const navigationItems: NavigationSection[] = [
 				title: "Button",
 				description: "12 Components",
 				url: "/docs/components/button",
-				thumbnail: "/thumbnails/button.webp",
+				thumbnail: "/thumbnails/button.svg",
 				thumbnailDark: `/thumbnails/button-dark.webp`,
 				alt: "Button UI component illustration",
 			},
