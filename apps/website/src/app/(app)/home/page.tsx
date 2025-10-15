@@ -24,12 +24,14 @@ export default function Page() {
 							Radian is a high-quality, flexible and open-source, design and development library built using React and Tailwind. Start your next product here
 						</p>
 					</div>
-					<div className="flex items-center justify-center gap-4">
-						<Button className="bg-elevation-negative hover:bg-elevation-negative/90" variant="outline" color="neutral">
+					<div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+						<Button size="36" className="w-full md:w-fit" variant="outline" color="neutral">
 							<SearchCode />
 							Browse Components
 						</Button>
-						<Button className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+						<Button
+							size="36"
+							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] md:w-fit">
 							<Code />
 							Copy Terminal Command
 						</Button>
