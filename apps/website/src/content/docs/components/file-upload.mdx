@@ -18,10 +18,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add file-upload",
-				npm: "npx @radianos/radianbeta add file-upload",
-				yarn: "yarn @radianos/radianbeta add file-upload",
-				bun: "bunx @radianos/radianbeta add file-upload",
+				pnpm: "pnpm dlx radianui@latest add file-upload",
+				npm: "npx radianui@latest add file-upload",
+				yarn: "yarn radianui@latest add file-upload",
+				bun: "bunx radianui@latest add file-upload",
 			}}
 		/>
 	</TabsContent>
@@ -73,20 +73,196 @@ links:
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable
-		title="/components/ui/file-upload.tsx"
-		data={[
-			{
-				name: "accept",
-				description: "The accepted file types for the file upload.",
-				values: ["string"],
-			},
-			{
-				name: "maxFiles",
-				description: "The maximum number of files that can be uploaded.",
-				values: ["number"],
-				defaultValue: "4",
-			},
-		]}
-	/>
+<PropsTable
+	title="useFileUpload Options"
+	data={[
+		{
+			name: "maxFiles",
+			defaultValue: "Infinity",
+			values: ["number"],
+			required: false,
+			description: "Maximum number of files that can be uploaded (only applies when multiple is true)",
+		},
+		{
+			name: "maxSize",
+			defaultValue: "Infinity",
+			values: ["number"],
+			required: false,
+			description: "Maximum file size in bytes",
+		},
+		{
+			name: "accept",
+			defaultValue: "*",
+			values: ["string"],
+			required: false,
+			description: "Accepted file types (e.g., 'image/*', '.pdf,.doc', 'image/png,image/jpeg')",
+		},
+		{
+			name: "multiple",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Allows multiple file selection when set to true",
+		},
+		{
+			name: "initialFiles",
+			defaultValue: "[]",
+			values: ["FileMetadata[]"],
+			required: false,
+			description: "Array of initial files to populate the upload state",
+		},
+		{
+			name: "onFilesChange",
+			values: ["(files: FileWithPreview[]) => void"],
+			required: false,
+			description: "Callback function triggered whenever the files array changes",
+		},
+		{
+			name: "onFilesAdded",
+			values: ["(addedFiles: FileWithPreview[]) => void"],
+			required: false,
+			description: "Callback function triggered when new files are successfully added",
+		},
+		{
+			name: "onError",
+			values: ["(errors: string[]) => void"],
+			required: false,
+			description: "Callback function triggered when validation errors occur",
+		},
+	]}
+/>
+
+<PropsTable
+	title="FileUploadState"
+	data={[
+		{
+			name: "files",
+			values: ["FileWithPreview[]"],
+			description: "Array of uploaded files with preview URLs",
+		},
+		{
+			name: "isDragging",
+			values: ["boolean"],
+			description: "Indicates whether files are currently being dragged over the drop zone",
+		},
+		{
+			name: "errors",
+			values: ["string[]"],
+			description: "Array of error messages from validation failures",
+		},
+	]}
+/>
+
+<PropsTable
+	title="FileUploadActions"
+	data={[
+		{
+			name: "addFiles",
+			values: ["(files: FileList | File[]) => void"],
+			description: "Manually adds files to the upload state with validation",
+		},
+		{
+			name: "removeFile",
+			values: ["(id: string) => void"],
+			description: "Removes a file from the upload state by its unique ID",
+		},
+		{
+			name: "clearFiles",
+			values: ["() => void"],
+			description: "Removes all files from the upload state and cleans up object URLs",
+		},
+		{
+			name: "clearErrors",
+			values: ["() => void"],
+			description: "Clears all validation errors from the state",
+		},
+		{
+			name: "handleDragEnter",
+			values: ["(e: DragEvent<HTMLElement>) => void"],
+			description: "Event handler for drag enter events on the drop zone",
+		},
+		{
+			name: "handleDragLeave",
+			values: ["(e: DragEvent<HTMLElement>) => void"],
+			description: "Event handler for drag leave events on the drop zone",
+		},
+		{
+			name: "handleDragOver",
+			values: ["(e: DragEvent<HTMLElement>) => void"],
+			description: "Event handler for drag over events on the drop zone",
+		},
+		{
+			name: "handleDrop",
+			values: ["(e: DragEvent<HTMLElement>) => void"],
+			description: "Event handler for drop events on the drop zone",
+		},
+		{
+			name: "handleFileChange",
+			values: ["(e: ChangeEvent<HTMLInputElement>) => void"],
+			description: "Event handler for file input change events",
+		},
+		{
+			name: "openFileDialog",
+			values: ["() => void"],
+			description: "Programmatically opens the file selection dialog",
+		},
+		{
+			name: "getInputProps",
+			values: ["(props?: InputHTMLAttributes<HTMLInputElement>) => InputHTMLAttributes<HTMLInputElement> & { ref: React.Ref<HTMLInputElement> }"],
+			description: "Returns props to spread on an input element, including the ref",
+		},
+	]}
+/>
+
+<PropsTable
+	title="FileMetadata"
+	data={[
+		{
+			name: "name",
+			values: ["string"],
+			description: "The name of the file",
+		},
+		{
+			name: "size",
+			values: ["number"],
+			description: "The size of the file in bytes",
+		},
+		{
+			name: "type",
+			values: ["string"],
+			description: "The MIME type of the file",
+		},
+		{
+			name: "url",
+			values: ["string"],
+			description: "The URL where the file can be accessed",
+		},
+		{
+			name: "id",
+			values: ["string"],
+			description: "Unique identifier for the file",
+		},
+	]}
+/>
+
+<PropsTable
+	title="FileWithPreview"
+	data={[
+		{
+			name: "file",
+			values: ["File | FileMetadata"],
+			description: "The file object, either a browser File or FileMetadata",
+		},
+		{
+			name: "id",
+			values: ["string"],
+			description: "Unique identifier for the file",
+		},
+		{
+			name: "preview",
+			values: ["string"],
+			description: "Optional preview URL for the file (object URL or remote URL)",
+		},
+	]}
+/>
 </PropsTableWrapper>

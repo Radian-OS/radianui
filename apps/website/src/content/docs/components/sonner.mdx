@@ -77,23 +77,208 @@ links:
 ## Props
 
 <PropsTableWrapper>
-    <PropsTable
-        title="Toaster"
-        data={[
-            {
-                name: "expand",
-                values: ["boolean"],
-                defaultValue: ["false"],
-                description: "Sets the number of expanded toasts",
-            },
-            {
-                name: "visibleToasts",
-                values: ["number"],
-                defaultValue: ["3"],
-                description: "Sets the number of visible toasts",
-            },
-        ]}
-        externalReference="https://sonner.emilkowal.ski/getting-started"
-    />
+<PropsTable
+	title="Toaster"
+	data={[
+		{
+			name: "theme",
+			defaultValue: "light",
+			values: ["light", "dark", "system"],
+			required: false,
+			description: "Controls the color scheme of all toasts",
+		},
+		{
+			name: "position",
+			defaultValue: "bottom-right",
+			values: ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"],
+			required: false,
+			description: "Determines where toasts appear on the screen",
+		},
+		{
+			name: "expand",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Expands toasts by default when set to true",
+		},
+		{
+			name: "visibleToasts",
+			defaultValue: "3",
+			values: ["number"],
+			required: false,
+			description: "Maximum number of toasts visible at once",
+		},
+		{
+			name: "closeButton",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Shows a close button on all toasts when set to true",
+		},
+		{
+			name: "duration",
+			defaultValue: "4000",
+			values: ["number"],
+			required: false,
+			description: "Default duration in milliseconds for all toasts",
+		},
+		{
+			name: "gap",
+			defaultValue: "14",
+			values: ["number"],
+			required: false,
+			description: "Gap in pixels between toasts",
+		},
+		{
+			name: "offset",
+			values: ["string | number"],
+			required: false,
+			description: "Offset from the edges of the screen",
+		},
+		{
+			name: "icons",
+			values: ["ToastIcons"],
+			required: false,
+			description: "Custom icons for success, error, warning, info, and loading states",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Custom class name for the toaster container",
+		},
+		{
+			name: "style",
+			values: ["React.CSSProperties"],
+			required: false,
+			description: "Custom inline styles for the toaster container",
+		},
+		{
+			name: "dir",
+			defaultValue: "auto",
+			values: ["auto", "ltr", "rtl"],
+			required: false,
+			description: "Direction of the text for internationalization",
+		},
+	]}
+    externalReference="https://sonner.emilkowal.ski/getting-started"
+/>
+
+<PropsTable
+	title="toast() Function"
+	data={[
+		{
+			name: "message",
+			values: ["string | React.ReactNode"],
+			required: true,
+			description: "The main content of the toast",
+		},
+		{
+			name: "description",
+			values: ["string | React.ReactNode"],
+			required: false,
+			description: "Additional description text below the message",
+		},
+		{
+			name: "duration",
+			defaultValue: "4000",
+			values: ["number"],
+			required: false,
+			description: "Duration in milliseconds before the toast auto-dismisses",
+		},
+		{
+			name: "position",
+			values: ["top-left", "top-center", "top-right", "bottom-left", "bottom-center", "bottom-right"],
+			required: false,
+			description: "Overrides the default position for this specific toast",
+		},
+		{
+			name: "action",
+			values: ["{ label: string; onClick: () => void }"],
+			required: false,
+			description: "Adds an action button to the toast",
+		},
+		{
+			name: "cancel",
+			values: ["{ label: string; onClick?: () => void }"],
+			required: false,
+			description: "Adds a cancel button to the toast",
+		},
+		{
+			name: "onDismiss",
+			values: ["(toast: Toast) => void"],
+			required: false,
+			description: "Callback function when the toast is dismissed",
+		},
+		{
+			name: "onAutoClose",
+			values: ["(toast: Toast) => void"],
+			required: false,
+			description: "Callback function when the toast auto-closes",
+		},
+		{
+			name: "id",
+			values: ["string | number"],
+			required: false,
+			description: "Custom ID for the toast (useful for updating or dismissing specific toasts)",
+		},
+		{
+			name: "dismissible",
+			defaultValue: "true",
+			values: ["boolean"],
+			required: false,
+			description: "Allows the toast to be dismissed by clicking on it",
+		},
+		{
+			name: "icon",
+			values: ["React.ReactNode"],
+			required: false,
+			description: "Custom icon to display in the toast",
+		},
+		{
+			name: "className",
+			values: ["string"],
+			required: false,
+			description: "Custom class name for the toast",
+		},
+		{
+			name: "style",
+			values: ["React.CSSProperties"],
+			required: false,
+			description: "Custom inline styles for the toast",
+		},
+		{
+			name: "closeButton",
+			values: ["boolean"],
+			required: false,
+			description: "Shows a close button on this specific toast",
+		},
+		{
+			name: "important",
+			defaultValue: "false",
+			values: ["boolean"],
+			required: false,
+			description: "Prevents the toast from being dismissed when hovering over it",
+		},
+	]}
+/>
+
+<PropsTable
+	title="toast.custom()"
+	data={[
+		{
+			name: "component",
+			values: ["React.ReactNode | ((id: string | number) => React.ReactNode)"],
+			required: true,
+			description: "Custom component to render as the toast",
+		},
+		{
+			name: "options",
+			values: ["ToastOptions"],
+			required: false,
+			description: "Additional toast options",
+		},
+	]}
+/>
 
 </PropsTableWrapper>
