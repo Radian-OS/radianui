@@ -21,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add tabs",
-				npm: "npx @radianos/radianbeta add tabs",
-				yarn: "yarn @radianos/radianbeta add tabs",
-				bun: "bunx @radianos/radianbeta add tabs",
+				pnpm: "pnpm dlx radianui@latest add tabs",
+				npm: "npx radianui@latest add tabs",
+				yarn: "yarn radianui@latest add tabs",
+				bun: "bunx radianui@latest add tabs",
 			}}
 		/>
 	</TabsContent>
@@ -33,26 +33,15 @@ links:
 		<Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm add @radix-ui/react-tabs @radix-ui/react-slot",
-				npm: "npm install @radix-ui/react-tabs @radix-ui/react-slot",
-				yarn: "yarn add @radix-ui/react-tabs @radix-ui/react-slot",
-				bun: "bun add @radix-ui/react-tabs @radix-ui/react-slot",
+				pnpm: "pnpm add @radix-ui/react-tabs",
+				npm: "npm install @radix-ui/react-tabs",
+				yarn: "yarn add @radix-ui/react-tabs",
+				bun: "bun add @radix-ui/react-tabs",
 			}}
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="tabs">
-    		<TabsList>
-    			<TabsTrigger value="tabs">Tabs</TabsTrigger>
-    			<TabsTrigger value="badge">Badge</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="tabs">
-    			<ComponentSource name="tabs" title="components/ui/tabs.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="badge">
-    			<ComponentSource name="badge" title="components/ui/badge.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
+    	<ComponentSource name="tabs" title="components/ui/tabs.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -69,8 +58,8 @@ links:
 ### Code
 
 <CodeSnippet
-	title="Usage"
-	code={`<Tabs defaultValue="account" className="w-[400px]">
+	title="/components/ui/tabs"
+	code={`<Tabs defaultValue="account">
 		<TabsList>
 			<TabsTrigger value="account">Account</TabsTrigger>
 			<TabsTrigger value="password">Password</TabsTrigger>
@@ -138,20 +127,24 @@ links:
 
 <PropsTableWrapper>
 	<PropsTable
+		title="Tabs"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#root"
+	/>
+	<PropsTable
 		title="TabsList"
 		data={[
 			{
 				name: "variant",
 				values: ["default", "open", "outline", "ghost", "outline-ghost"],
 				required: false,
-				description: "Sets the visual style of the tabs",
+				description: "Sets the visual style of the tabs list",
 				defaultValue: "default",
 			},
 			{
 				name: "size",
 				values: ["sm", "md", "lg"],
 				required: false,
-				description: "Sets the size of the tabs",
+				description: "Sets the size of the tabs list",
 				defaultValue: "md",
 			},
 			{
@@ -161,15 +154,16 @@ links:
 				description: "Controls the width behavior of the tabs list",
 				defaultValue: "fit",
 			},
-			{
-				name: "orientation",
-				values: ["horizontal", "vertical"],
-				required: false,
-				description: "Sets the orientation of the tabs",
-				defaultValue: "horizontal",
-			},
 		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#list"
+	/>
+	<TabsTrigger
+		title="TabsTrigger"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#trigger"
+	/>
+	<TabsContent
+		title="TabsContent"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/tabs#content"
 	/>
 
 </PropsTableWrapper>

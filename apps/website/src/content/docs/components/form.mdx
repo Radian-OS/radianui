@@ -26,10 +26,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add form",
-				npm: "npx @radianos/radianbeta add form",
-				yarn: "yarn @radianos/radianbeta add form",
-				bun: "bunx @radianos/radianbeta add form",
+				pnpm: "pnpm dlx radianui@latest add form",
+				npm: "npx radianui@latest add form",
+				yarn: "yarn radianui@latest add form",
+				bun: "bunx radianui@latest add form",
 			}}
 		/>
 	</TabsContent>
@@ -122,33 +122,18 @@ FormMessage
 		data={[
 			{
 				name: "name",
-				values: ["FieldPath<TFieldValues>"],
 				required: true,
 				description: "The name of the field in the form schema.",
 			},
 			{
 				name: "control",
-				values: ["Control<TFieldValues>"],
 				required: true,
 				description: "Control object from react-hook-form's useForm hook.",
 			},
 			{
 				name: "render",
-				values: ["({ field, fieldState, formState }) => React.ReactElement"],
 				required: true,
 				description: "Render function that receives field props and state.",
-			},
-			{
-				name: "defaultValue",
-				values: ["any"],
-				required: false,
-				description: "Default value for the field.",
-			},
-			{
-				name: "rules",
-				values: ["RegisterOptions"],
-				required: false,
-				description: "Validation rules for the field.",
 			},
 		]}
 	/>

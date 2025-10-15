@@ -3,9 +3,9 @@ title: Dialog
 description: Focus user attention with overlaid interactive dialogs
 links:
   github:
-    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/modal.tsx
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/dialog.tsx
   externalReference:
-    - label: Radix
+    - label: Radix UI
       href: https://www.radix-ui.com/primitives/docs/components/dialog
 ---
 
@@ -21,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add modal",
-				npm: "npx @radianos/radianbeta add modal",
-				yarn: "yarn @radianos/radianbeta add modal",
-				bun: "bunx @radianos/radianbeta add modal",
+				pnpm: "pnpm dlx radianui@latest add dialog",
+				npm: "npx radianui@latest add dialog",
+				yarn: "yarn radianui@latest add dialog",
+				bun: "bunx radianui@latest add dialog",
 			}}
 		/>
 	</TabsContent>
@@ -33,16 +33,16 @@ links:
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm add @radix-ui/react-dialog @radix-ui/react-slot",
-				npm: "npm install @radix-ui/react-dialog @radix-ui/react-slot",
-				yarn: "yarn add @radix-ui/react-dialog @radix-ui/react-slot",
-				bun: "bun add @radix-ui/react-dialog @radix-ui/react-slot",
+				pnpm: "pnpm add @radix-ui/react-dialog",
+				npm: "npm install @radix-ui/react-dialog",
+				yarn: "yarn add @radix-ui/react-dialog",
+				bun: "bun add @radix-ui/react-dialog",
 			}}
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
 
-    	<ComponentSource name="modal" title="components/ui/dialog.tsx" collapsible />
+    	<ComponentSource name="dialog" title="components/ui/dialog.tsx" collapsible />
 
 
     	<Step>Update the import paths as per your project structure.</Step>
@@ -55,44 +55,45 @@ links:
 ### Imports
 
 <CodeSnippet
-	title="/components/ui/modal"
+	title="/components/ui/dialog"
 	code={`import { 
 		Dialog, 
-		DialogClose, 
+		DialogTrigger, 
 		DialogContent, 
-		DialogDescription, 
-		DialogFooter, 
 		DialogHeader, 
 		DialogTitle, 
-		DialogTrigger 
-    } from "@/components/ui/modal";`}
+		DialogDescription, 
+		DialogBody, 
+		DialogFooter, 
+		DialogClose 
+    } from "@/components/ui/dialog";`}
 />
 
 ### Code
 
-<CodeSnippet title="/components/ui/modal" code={`<Dialog>
-
-      <DialogTrigger asChild>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded">Open Dialog</button>
-      </DialogTrigger>
-
+<CodeSnippet
+	title="/components/ui/dialog"
+	code={`<Dialog>
+      <DialogTrigger>Open Dialog</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>My Dialog</DialogTitle>
-          <DialogClose />
+    		<DialogTitle>My Dialog</DialogTitle>
+         	<DialogDescription>My Dialog Description</DialogDescription>
         </DialogHeader>
-
         <DialogBody>
-          <p>This is a simple modal body content.</p>
+          This is a simple dialog body content.
         </DialogBody>
-
         <DialogFooter>
-          <button className="px-3 py-1 bg-gray-200 rounded">Cancel</button>
-          <button className="px-3 py-1 bg-blue-500 text-white rounded">Confirm</button>
+          <DialogClose asChild>
+            <Button variant="outline" color="neutral">
+              Cancel
+            </Button>
+          </DialogClose>
+          <Button>Confirm</Button>
         </DialogFooter>
       </DialogContent>
-
-</Dialog>`} />
+</Dialog>`}
+/>
 
 ---
 
@@ -127,14 +128,16 @@ links:
 ## Props
 
 <PropsTableWrapper>
+	<PropsTable title="Dialog" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#root" />
+	<PropsTable title="DialogTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#trigger" />
 	<PropsTable
-		title="Dialog"
+		title="DialogContent"
 		data={[
 			{
-				name: "closeIcon",
+				name: "closeButton",
 				values: ["hidden", "visible", "hover"],
 				defaultValue: "hidden",
-				description: "Show the close icon state",
+				description: "Show the close button state",
 			},
 			{
 				name: "backdrop",
@@ -144,71 +147,10 @@ links:
 			},
 		]}
 	/>
-	<PropsTable
-		title="DialogTrigger"
-		data={[
-			{
-				name: "asChild",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Enable asChild functionality",
-			},
-		]}
-	/>
-	<PropsTable
-		title="DialogContent"
-		data={[
-			{
-				name: "-",
-				values: ["-"],
-				defaultValue: "-",
-				description: "No specific Props, Used for Structure",
-			},
-		]}
-	/>
-	<PropsTable
-		title="DialogHeader"
-		data={[
-			{
-				name: "-",
-				values: ["-"],
-				defaultValue: "-",
-				description: "No specific Props, Used for Structure",
-			},
-		]}
-	/>
-	<PropsTable
-		title="DialogBody"
-		data={[
-			{
-				name: "-",
-				values: ["-"],
-				defaultValue: "-",
-				description: "No specific Props, Used for Structure",
-			},
-		]}
-	/>
-	<PropsTable
-		title="DialogFooter"
-		data={[
-			{
-				name: "-",
-				values: ["-"],
-				defaultValue: "-",
-				description: "No specific Props, Used for Structure",
-			},
-		]}
-	/>
-	<PropsTable
-		title="DialogClose"
-		data={[
-			{
-				name: "asChild",
-				values: ["boolean"],
-				defaultValue: "false",
-				description: "Enable asChild functionality",
-			},
-		]}
-		externalReference="https://www.npmjs.com/package/@radix-ui/react-dialog"
-	/>
+	<PropsTable title="DialogHeader" />
+	<PropsTable title="DialogTitle" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#title" />
+	<PropsTable title="DialogDescription" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#description" />
+	<PropsTable title="DialogBody" />
+	<PropsTable title="DialogFooter" />
+	<PropsTable title="DialogClose" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#close" />
 </PropsTableWrapper>

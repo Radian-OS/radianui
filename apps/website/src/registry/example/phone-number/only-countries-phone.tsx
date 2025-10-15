@@ -45,7 +45,7 @@ export default function InternationalPhone({ onlyCountries = ["us", "np", "it", 
 							<ChevronDown className="size-4 opacity-50" />
 						</Button>
 					</PopoverTrigger>
-					<PopoverContent className="p-0 md:w-80" align="start">
+					<PopoverContent className="w-full p-0 md:w-80" align="start">
 						<Command className="border-0">
 							<CommandInput placeholder="Search country..." />
 							<CommandList>

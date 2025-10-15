@@ -4,6 +4,9 @@ description: Allow users to switch between check or unchecked state
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/checkbox.tsx
+  externalReference:
+    - label: Radix  UI
+      href: https://www.radix-ui.com/primitives/docs/components/checkbox
 ---
 
 <ComponentPreview path="checkbox/checkbox-preview" />
@@ -18,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add checkbox",
-				npm: "npx @radianos/radianbeta add checkbox",
-				yarn: "yarn @radianos/radianbeta add checkbox",
-				bun: "bunx @radianos/radianbeta add checkbox",
+				pnpm: "pnpm dlx radianui@latest add checkbox",
+				npm: "npx radianui@latest add checkbox",
+				yarn: "yarn radianui@latest add checkbox",
+				bun: "bunx radianui@latest add checkbox",
 			}}
 		/>
 	</TabsContent>
@@ -30,26 +33,15 @@ links:
 		<Step>Install the following dependencies:</Step>
     	<PackageManagerTabs
     		commands={{
-    			pnpm: "pnpm add @radix-ui/react-slot",
-    			npm: "npm install @radix-ui/react-slot",
-    			yarn: "yarn add @radix-ui/react-slot",
-    			bun: "bun add @radix-ui/react-slot",
+    			pnpm: "pnpm add @radix-ui/react-checkbox",
+    			npm: "npm install @radix-ui/react-checkbox",
+    			yarn: "yarn add @radix-ui/react-checkbox",
+    			bun: "bun add @radix-ui/react-checkbox",
     		}}
     	/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="checkbox">
-    		<TabsList>
-    			<TabsTrigger value="checkbox">Checkbox</TabsTrigger>
-    			<TabsTrigger value="button">Button</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="checkbox">
-    			<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="button">
-    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
+    	<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
@@ -61,16 +53,11 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/checkbox" code={`import { Checkbox, CheckboxGroup } from "@/components/ui/checkbox"`} />
+<CodeSnippet title="/components/ui/checkbox" code={`import { Checkbox } from "@/components/ui/checkbox"`} />
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/checkbox"
-	code={`<Checkbox defaultChecked value="newsletter">
-		Subscribe to newsletter
-</Checkbox>`}
-/>
+<CodeSnippet title="/components/ui/checkbox" code={`<Checkbox/>`} />
 
 ---
 
@@ -88,7 +75,7 @@ links:
 
 <ComponentPreview path="checkbox/checkbox-disabled" />
 
-### Indeterminate Checkbox
+### Indeterminate
 
 <ComponentPreview path="checkbox/indeterminate-checkbox" />
 
@@ -110,59 +97,15 @@ data={[
         description: "Defines the size of the checkbox",
     },
     {
-        name: "icon",
-        defaultValue: "<Check/>",
-        values: ["ReactNode"],
-        required: false,
-        description: "Icon to be displayed inside the checkbox when checked",
+    	name: "icon",
+    	defaultValue: "<Check/>",
+    	values: ["ReactNode"],
+    	required: false,
+    	description: "Icon to be displayed inside the checkbox when checked",
     },
-    {
-        name: "label",
-        defaultValue: "-",
-        values: ["string"],
-        required: false,
-        description: "Label for the checkbox",
-    },
-    {
-        name: "disabled",
-        defaultValue: "false",
-        values: ["boolean"],
-        required: false,
-        description: "If true, the checkbox will be disabled",
-    },
-]}
-/>
 
-<PropsTable
-	title="CheckboxGroup"
-	data={[
-		{
-			name: "size",
-			defaultValue: "md",
-			values: ["sm", "md", "lg"],
-			required: false,
-			description: "Defines the size of the checkbox",
-		},
-		{
-			name: "label",
-			values: ["string"],
-			required: false,
-			description: "Label to be displayed above the checkbox group",
-		},
-		{
-			name: "defaultValue",
-			values: ["string"],
-			required: false,
-			description: "Default value for the checkbox group",
-		},
-		{
-			name: "disabled",
-			defaultValue: "false",
-			values: ["boolean"],
-			required: false,
-			description: "If true, the checkbox group will be disabled",
-		},
-	]}
+]}
+externalReference="https://www.radix-ui.com/primitives/docs/components/checkbox#root"
 />
 
 </PropsTableWrapper>

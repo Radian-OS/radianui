@@ -3,13 +3,13 @@
 import React, { useMemo, useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
-import { ScrollArea } from "@/components/scroll-area"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 export default function InternationalPhone({ excludeCountries = ["us", "np", "it", "gb"] }: { excludeCountries?: CountryIso2[] }) {
 	const [internalValue, setInternalValue] = useState<string>("")
@@ -51,7 +51,7 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 							<ChevronDown className="size-4 opacity-50" />
 						</Button>
 					</PopoverTrigger>
-					<PopoverContent className="p-0 md:w-80" align="start">
+					<PopoverContent className="w-full p-0 md:w-80" align="start">
 						<Command className="border-0">
 							<CommandInput placeholder="Search country..." />
 							<CommandList>
@@ -61,17 +61,18 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 										{parsedCountries.map((c) => (
 											<CommandItem
 												key={c.iso2}
+												className="px-1"
 												value={`${c.name} ${c.dialCode}`}
 												onSelect={() => {
 													setCountry(c.iso2 as CountryIso2)
 													setOpen(false)
 												}}>
-												<div className="flex flex-1 items-center gap-2">
+												<div className="flex flex-1 items-center justify-center gap-2">
 													<FlagImage iso2={c.iso2} className="size-5" />
 													<span className="truncate">{c.name}</span>
 													<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
+													<Check className={cn(country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
 												</div>
-												<Check className={cn("ml-2", country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
 											</CommandItem>
 										))}
 									</CommandGroup>

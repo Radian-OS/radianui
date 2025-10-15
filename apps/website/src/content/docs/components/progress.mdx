@@ -21,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx @radianos/radianbeta add progress-bar",
-				npm: "npx @radianos/radianbeta add progress-bar",
-				yarn: "yarn @radianos/radianbeta add progress-bar",
-				bun: "bunx @radianos/radianbeta add progress-bar",
+				pnpm: "pnpm dlx radianui@latest add progress-bar",
+				npm: "npx radianui@latest add progress-bar",
+				yarn: "yarn radianui@latest add progress-bar",
+				bun: "bunx radianui@latest add progress-bar",
 			}}
 		/>
 	</TabsContent>
@@ -95,6 +95,12 @@ links:
 				values: ["string"],
 				required: false,
 				description: "Styling for the component",
+			},
+			{
+				name: "indicatorClassName",
+				values: ["string"],
+				required: false,
+				description: "Styling for the progress indicator",
 			},
 			{
 				name: "value",
