@@ -27,9 +27,9 @@ function InternationalPhone() {
 	const parsedCountries = defaultCountries.map(parseCountry)
 
 	return (
-		<div className="flex flex-col justify-center gap-1.5">
+		<div className="flex w-full max-w-80 flex-col justify-center gap-1.5">
 			<Label htmlFor="international-phone">Enter Your Number</Label>
-			<InputGroup className="md:w-80">
+			<InputGroup className="w-full">
 				<Popover open={open} onOpenChange={setOpen}>
 					<PopoverTrigger asChild>
 						<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
