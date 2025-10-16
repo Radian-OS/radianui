@@ -1,0 +1,78 @@
+---
+title: Scroll Area
+description: A scroll area component that allows a user to scroll through a list of items
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/scroll-area.tsx
+  externalReference:
+    - label: Radix UI
+      href: https://www.radix-ui.com/primitives/docs/components/scroll-area
+---
+
+<ComponentPreview path="scroll-area/scroll-area-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx radianui@latest add scroll-area",
+				npm: "npx radianui@latest add scroll-area",
+				yarn: "yarn radianui@latest add scroll-area",
+				bun: "bunx radianui@latest add scroll-area",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+		<Steps>
+			<Step>Install the following dependencies:</Step>
+			<PackageManagerTabs
+				commands={{
+					pnpm: "pnpm add @radix-ui/react-scroll-area",
+					npm: "npm install @radix-ui/react-scroll-area",
+					yarn: "yarn add @radix-ui/react-scroll-area",
+					bun: "bun add @radix-ui/react-scroll-area",
+				}}
+			/>
+			<Step>Copy and paste the following code into your project.</Step>
+			<ComponentSource name="scroll-area" title="components/ui/scroll-area.tsx" collapsible />
+
+    		<Step>Update the import paths as per your project structure.</Step>
+    	</Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/scroll-area" code={`import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"`} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/scroll-area"
+	code={`<ScrollArea className="h-80 w-80 rounded-lg border p-2">
+    Radian is an open-source React component library and UI design system built to accelerate
+    product development with beautiful defaults. Currently, available for Next.js, it's powered 
+    by Tailwind CSS and Radix Primitives, providing a solid foundation for modern web apps. 
+    Radian helps you design and iterate quickly, offering components that can serve as ready-to-use
+    building blocks for your final product or as customizable starters for unique projects. 
+    We've prioritized flexibility, ensuring common properties and behaviors are baked in—so you won't waste time rebuilding essentials.
+</ScrollArea>`}
+/>
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable title="ScrollArea" externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area/#root" />
+	<PropsTable title="ScrollBar" externalReference="https://www.radix-ui.com/primitives/docs/components/scroll-area/#scrollbar" />
+</PropsTableWrapper>
