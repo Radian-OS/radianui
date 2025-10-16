@@ -27,6 +27,15 @@ links:
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
 	<Steps>
+	   <Step>Install the following Dependencies</Step>
+	   <PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-switch",
+				npm: "npm i @radix-ui/react-switch",
+				yarn: "yarn  add @radix-ui/react-switch",
+				bun: "bunx add @radix-ui/react-switch",
+			}}
+		/>
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="switch" title="components/ui/switch.tsx" collapsible />
 
