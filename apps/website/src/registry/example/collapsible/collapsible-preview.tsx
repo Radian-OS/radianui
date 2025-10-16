@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"

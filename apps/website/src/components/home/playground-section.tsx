@@ -1,8 +1,44 @@
-import { SwatchBook } from "lucide-react"
+"use client"
+
+import { useState } from "react"
+import { Copy, LockKeyhole, Plus, Share, Squircle, SwatchBook } from "lucide-react"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
+import { Tabs, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import PlaygroundSignin from "./playground-signin"
+
+const COLOR_VALUES = {
+	violet: {
+		label: "Violet",
+		icon: <Squircle size={20} className="fill-primary-text stroke-primary-text" />,
+	},
+	red: {
+		label: "Red",
+		icon: <Squircle size={20} className="fill-error stroke-error" />,
+	},
+	yellow: {
+		label: "Yellow",
+		icon: <Squircle size={20} className="fill-warning stroke-warning" />,
+	},
+	green: {
+		label: "Green",
+		icon: <Squircle size={20} className="fill-success stroke-success" />,
+	},
+	blue: {
+		label: "Blue",
+		icon: <Squircle size={20} className="fill-info stroke-info" />,
+	},
+	grey: {
+		label: "Grey",
+		icon: <Squircle size={20} className="fill-fg-tertiary stroke-fg-tertiary" />,
+	},
+}
+
+type COLOR_VALUES_TYPE = keyof typeof COLOR_VALUES
 
 export default function PlaygroundSection() {
+	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet")
+
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
 			<div className="border-soft align-center pt-15 xl:px-15 relative flex justify-center rounded-t-3xl px-5 xl:border-l xl:border-r xl:border-t">
@@ -82,7 +118,44 @@ export default function PlaygroundSection() {
 				</svg>
 			</div>
 
-			<div className="border-soft bg-fill1 z-20 aspect-video w-full max-w-[1440px] rounded-xl border"></div>
+			<div className="border-soft bg-bg z-20 flex aspect-video w-full max-w-[1440px] flex-col gap-2.5 rounded-2xl border p-3">
+				<div className="flex items-center justify-between">
+					<div className="flex items-center gap-2 px-2">
+						<span className="bg-error size-2.5 rounded-full" />
+						<span className="bg-success size-2.5 rounded-full" />
+						<span className="bg-warning size-2.5 rounded-full" />
+					</div>
+					<div className="text-fg-tertiary flex items-center gap-1.5">
+						<LockKeyhole size={16} />
+						<span className="text-sm">radianos.com</span>
+					</div>
+					<div className="text-fg-tertiary flex items-center gap-3 px-3">
+						<Share size={16} />
+						<Plus size={16} />
+						<Copy size={16} />
+					</div>
+				</div>
+				<div className="border-soft bg-bg flex h-full w-full flex-col rounded-xl border">
+					<div className="border-soft border-b p-3">
+						<Tabs value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
+							<TabsList size="md" variant="default" defaultValue="violet">
+								{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
+									<TabsTrigger key={color} value={color}>
+										{COLOR_VALUES[color].icon}
+										<span className="not-md:hidden">{COLOR_VALUES[color].label}</span>
+									</TabsTrigger>
+								))}
+							</TabsList>
+						</Tabs>
+					</div>
+					<div className="flex flex-1">
+						<div className="border-soft flex-1 border-r">Code</div>
+						<div className={`color-${color} w-[480px]`}>
+							<PlaygroundSignin />
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 }

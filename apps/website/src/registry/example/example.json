@@ -941,6 +941,15 @@
     ]
   },
   {
+    "name": "scroll-area",
+    "files": [
+      {
+        "name": "scroll-area/scroll-area-preview",
+        "content": "import React from \"react\"\r\n\r\nexport default function ScrollAreaPreview() {\r\n\treturn <div>ScrollAreaPreview</div>\r\n}\r\n"
+      }
+    ]
+  },
+  {
     "name": "select",
     "files": [
       {
