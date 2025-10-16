@@ -43,7 +43,7 @@ const CONTENT: FAQItem[] = [
 
 export default function FAQSection() {
 	return (
-		<div className="py-15 to-fill1 flex w-full flex-col items-center gap-8 bg-gradient-to-b px-5 xl:py-36">
+		<div className="py-15 flex w-full flex-col items-center gap-8 px-5 xl:py-36">
 			<div className="max-w-360 relative w-full">
 				<Badge className="relative z-10" variant="soft" color="neutral" size="28">
 					<MessageCircleQuestionIcon className="text-primary-text" />
