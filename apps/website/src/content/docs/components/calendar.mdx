@@ -38,10 +38,10 @@ links:
         <Step>Install the following dependencies:</Step>
     	<PackageManagerTabs
     		commands={{
-    			pnpm: "pnpm add react-day-picker date-fns",
-    			npm: "npm install react-day-picker date-fns",
-    			yarn: "yarn add react-day-picker date-fns",
-    			bun: "bun add react-day-picker date-fns",
+    			pnpm: "pnpm add react-day-picker",
+    			npm: "npm install react-day-picker",
+    			yarn: "yarn add react-day-picker",
+    			bun: "bun add react-day-picker",
     		}}
     	/>
 
@@ -73,49 +73,32 @@ links:
 
 ## Examples
 
-### Calendar With Presets
+### With Presets
 
 <ComponentPreview path="calendar/quick-selection-preview" />
 
-### Time Picker Calendar
+### With Time Picker
 
 <ComponentPreview path="calendar/time-picker-calendar-preview" />
 
-### Calender with Year and Month Selector
+### With Year and Month Selector
 
 <ComponentPreview path="calendar/calendar-year-month-selector-example" />
 
-### Multiple Months Range Calendar
+### With Multiple Months Range
 
 <ComponentPreview path="calendar/multiple-months-calendar-example" />
 
-### Calendar Footer
+### With Footer
 
 <ComponentPreview path="calendar/calendar-footer-preview" />
+<br />
+The Calendar is built on top of `react-day-picker`. For more details, refer to the [official documentation](https://daypicker.dev/api).
 
 ---
 
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable
-		title="Calendar"
-		data={[
-			{
-				name: "mode",
-				defaultValue: "single",
-				values: ["single", "multiple", "range"],
-				required: false,
-				description: "Defines the selection mode of the calendar",
-			},
-			{
-				name: "numberOfMonths",
-				defaultValue: "1",
-				values: ["number"],
-				required: false,
-				description: "Set how many months to show at once",
-			},
-		]}
-		externalReference="https://daypicker.dev/api"
-	/>
+	<PropsTable title="Calendar" externalReference="https://daypicker.dev/api/type-aliases/DayPickerProps" />
 </PropsTableWrapper>

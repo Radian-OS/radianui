@@ -34,10 +34,35 @@ links:
 		/>
 	</TabsContent>
 	<TabsContent value="manual" className="p-0">
-	<Steps>
-
+		<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-slot react-hook-form",
+				npm: "npm install @radix-ui/react-slot react-hook-form",
+				yarn: "yarn add @radix-ui/react-slot react-hook-form",
+				bun: "bun add @radix-ui/react-slot react-hook-form",
+			}}
+		/>
     	<Step>Copy and paste the following code into your project.</Step>
+		
+		<Tabs defaultValue="form">
+
+    	    <TabsList>
+    			<TabsTrigger value="form">Form</TabsTrigger>
+    			<TabsTrigger value="label">Label</TabsTrigger>
+    		</TabsList>
+
+    		<TabsContent value="form">
     		<ComponentSource name="form" title="components/ui/form.tsx" collapsible />
+    		</TabsContent>
+
+    		<TabsContent value="label">
+    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
+    		</TabsContent>
+    	</Tabs>
+
+
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </TabsContent>

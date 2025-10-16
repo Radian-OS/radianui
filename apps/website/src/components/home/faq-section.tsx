@@ -51,7 +51,7 @@ export default function FAQSection() {
 				</Badge>
 				<svg className="not-xl:hidden absolute bottom-[50%] left-0 z-0" width="1593" height="775" fill="none" viewBox="0 0 1593 775" xmlns="http://www.w3.org/2000/svg">
 					<defs>
-						<linearGradient id="beamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+						<linearGradient id="faqPath" x1="0%" y1="0%" x2="0%" y2="100%">
 							<stop offset="0%" stopColor="var(--color-bg)" stopOpacity="1" />
 							<stop offset="20%" stopColor="var(--color-soft)" stopOpacity="1" />
 							<stop offset="100%" stopColor="var(--color-soft)" stopOpacity="1" />
@@ -60,7 +60,7 @@ export default function FAQSection() {
 
 					<path
 						d="M 0 775 L 1326 775 C 1355 768 1352 749 1351 721 L 1351 613 C 1351 608 1349 592 1360 585 L 1583 412 C 1594 399 1592 400 1592 374 L 1593 0"
-						stroke="url(#beamGradient)"
+						stroke="url(#faqPath)"
 						strokeWidth={1}
 					/>
 					<path

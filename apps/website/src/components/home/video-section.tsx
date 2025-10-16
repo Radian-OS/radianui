@@ -47,7 +47,7 @@ export default function VideoSection() {
 
 			<div className="border-soft bg-fill1 z-20 aspect-video w-full max-w-[1440px] rounded-xl border"></div>
 
-			<div className="flex w-full flex-col gap-3 md:w-fit md:flex-row">
+			<div className="z-20 flex w-full flex-col gap-3 md:w-fit md:flex-row">
 				<Button className="w-full" variant="outline" color="neutral" size="40">
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 						<path

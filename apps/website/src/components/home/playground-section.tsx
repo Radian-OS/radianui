@@ -9,7 +9,18 @@ export default function PlaygroundSection() {
 				<div className="border-bg absolute bottom-0 z-10 h-1/3 w-full border-b border-l border-r bg-transparent"></div>
 				<BorderBeam size={100} className="not-xl:hidden" />
 
-				<div className="not-xl:hidden -top-25 border-soft absolute h-20 w-[750px] rounded-t-3xl border-l border-r border-t"></div>
+				<svg className="-top-25 not-xl:hidden absolute" width="812" height="77" viewBox="0 0 812 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<defs>
+						<linearGradient id="playgroundPath" x1="0%" y1="0%" x2="100%" y2="0%">
+							<stop offset="0%" stopColor="var(--color-bg)" stopOpacity="1" />
+							<stop offset="10%" stopColor="var(--color-soft)" stopOpacity="1" />
+							<stop offset="50%" stopColor="var(--color-soft)" stopOpacity="1" />
+							<stop offset="90%" stopColor="var(--color-soft)" stopOpacity="1" />
+							<stop offset="100%" stopColor="var(--color-bg)" stopOpacity="1" />
+						</linearGradient>
+					</defs>
+					<path d="M811.5 76.5V25C811.5 11.7452 800.755 1 787.5 1H25C11.7452 1 1 11.7452 1 25V76.5" stroke="url(#playgroundPath)" />
+				</svg>
 
 				<div className="flex flex-col items-center gap-6">
 					<div className="bg-bg absolute bottom-full h-fit translate-y-1/2 px-4">

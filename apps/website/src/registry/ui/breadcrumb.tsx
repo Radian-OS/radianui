@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import * as SlotPrimitive from "@radix-ui/react-slot"
 import { ChevronRight, MoreHorizontal } from "lucide-react"
-import { Slot as SlotPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 export type BreadcrumbType = React.ComponentProps<"nav"> & {

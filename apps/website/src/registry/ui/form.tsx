@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { Label as LabelPrimitive } from "radix-ui"
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from "react-hook-form"
 import { cn } from "@/lib/utils"
-import { Label } from "./label"
+import { Label, LabelProps } from "@/registry/ui/label"
 
 export type FormFieldContextValue<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> = {
 	name: TName
@@ -17,7 +16,7 @@ export type FormItemContextValue = {
 
 export type FormItemProps = React.HTMLAttributes<HTMLDivElement>
 
-export type FormLabelProps = React.ComponentProps<typeof LabelPrimitive.Root>
+export type FormLabelProps = LabelProps
 
 export type FormControlProps = React.ComponentProps<typeof Slot>
 
