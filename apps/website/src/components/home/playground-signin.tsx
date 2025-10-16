@@ -8,12 +8,12 @@ import { Label } from "@/registry/ui/label"
 
 export default function PlaygroundSignin() {
 	return (
-		<div className="bg-bg bg-radial bg-size-[15px_15px] text-fg-disabled flex h-full w-full items-center justify-center bg-[radial-gradient(currentColor_1px,transparent_1px)]">
+		<div className="bg-bg bg-radial bg-size-[15px_15px] flex h-full w-full items-center justify-center bg-[radial-gradient(var(--color-fg-disabled)_1px,transparent_1px)]">
 			<div className="bg-elevation-level1 border-soft flex w-[384px] flex-col gap-8 rounded-2xl border px-6 py-8 shadow-md">
 				<div className="flex flex-col gap-6">
 					<Image src="/mstile-144x144.png" alt="Logo" width="48" height="48" />
 					<div className="flex flex-col gap-1.5">
-						<h5 className="heading-5">Sign In</h5>
+						<h5 className="heading-5 text-fg">Sign In</h5>
 						<p className="text-fg-secondary text-base font-normal">
 							Already have an account?{" "}
 							<Link className="text-primary-text" href="#">
