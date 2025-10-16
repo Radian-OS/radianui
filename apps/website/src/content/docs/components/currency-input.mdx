@@ -40,10 +40,25 @@ links:
 			}}
 		/>
     	<Step>Copy and paste the following code into your project.</Step>
-		<ComponentSource name="drawer" title="components/ui/input.tsx" collapsible />
-    	<Step>Copy and paste the following code into your project.</Step>
-		<ComponentSource name="drawer" title="components/ui/currency-input.tsx" collapsible />
-		<Step>Update the import paths as per your project structure.</Step>
+		
+		<Tabs defaultValue="input">
+
+    		<TabsList>
+    			<TabsTrigger value="input">Input</TabsTrigger>
+    			<TabsTrigger value="currency-input">Currency Input</TabsTrigger>
+    		</TabsList>
+
+    		<TabsContent value="input">
+    		<ComponentSource name="input" title="components/ui/input.tsx" collapsible />
+    		</TabsContent>
+
+    		<TabsContent value="currency-input">
+    		<ComponentSource name="currency-input" title="components/ui/currency-input.tsx" collapsible />
+    		</TabsContent>
+    		</Tabs>
+
+
+    	<Step>Update the import paths as per your project structure.</Step>
 
     </Steps>
     </TabsContent>
@@ -58,7 +73,7 @@ links:
 
 ### Code
 
-<CodeSnippet title="/components/ui/code-area" code={`<CurrencyInput placeholder="Enter Currency Amount" />`} />
+<CodeSnippet title="/components/ui/currency-input" code={`<CurrencyInput placeholder="Enter Currency Amount" />`} />
 
 ---
 

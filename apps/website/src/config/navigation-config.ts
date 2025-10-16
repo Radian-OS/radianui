@@ -344,6 +344,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Resizable UI component illustration",
 			},
 			{
+				title: "Scroll Area",
+				description: "1 Component",
+				url: "/docs/components/scroll-area",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Scroll Area UI component illustration",
+			},
+			{
 				title: "Select",
 				description: "6 Components",
 				url: "/docs/components/select",

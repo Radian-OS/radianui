@@ -11,7 +11,7 @@ function ScrollArea({ className, children, ...props }: React.ComponentProps<type
 				{children}
 			</ScrollAreaPrimitive.Viewport>
 			<ScrollBar />
-			<ScrollAreaPrimitive.Corner />
+			<ScrollAreaPrimitive.Corner data-slot="scroll-area-corner" />
 		</ScrollAreaPrimitive.Root>
 	)
 }
@@ -23,9 +23,9 @@ function ScrollBar({ className, orientation = "vertical", ...props }: React.Comp
 			data-slot="scroll-area-scrollbar"
 			orientation={orientation}
 			className={cn(
-				"flex touch-none select-none",
-				orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-px",
-				orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-px",
+				"flex touch-none select-none p-px",
+				orientation === "vertical" && "h-full w-2 border-l border-l-transparent",
+				orientation === "horizontal" && "h-2 flex-col border-t border-t-transparent",
 				className
 			)}
 			{...props}>

@@ -1,9 +1,9 @@
 import * as React from "react"
 import { format, parse } from "date-fns"
-import { ScrollArea } from "@/components/scroll-area"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
+import { ScrollArea } from "@/registry/ui/scroll-area"
 
 function TimePickerCalendarPreview() {
 	const today = new Date()
