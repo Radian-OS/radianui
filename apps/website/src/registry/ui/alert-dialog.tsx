@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
 import { VariantProps, cva } from "class-variance-authority"
-import { AlertDialog as AlertDialogPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 export type Backdrop = VariantProps<typeof alertDialogOverlayVariants>["backdrop"]

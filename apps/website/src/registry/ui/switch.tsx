@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
+import * as SwitchPrimitive from "@radix-ui/react-switch"
 import { type VariantProps, cva } from "class-variance-authority"
-import { Switch as SwitchPrimitive } from "radix-ui"
 import { cn } from "@/lib/utils"
 
 export type SwitchContextType = { permanent?: boolean }

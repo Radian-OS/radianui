@@ -2,14 +2,11 @@
 
 import { useEffect, useState } from "react"
 import { Component } from "lucide-react"
-import { navigationItems } from "@/config/navigation-config"
-import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
+import { HOMEPAGE_COMPONENTS_LIST } from "@/config/homepage-components-config"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
 import ComponentCard from "./component-card"
-
-const components = navigationItems.find((section) => section.title === "Components")!
 
 function useBreakpoint() {
 	const [width, setWidth] = useState<number>(typeof window !== "undefined" ? window.innerWidth : 0)
@@ -28,8 +25,8 @@ function useBreakpoint() {
 }
 
 export default function ComponentsSection() {
+	const router = useRouter()
 	const [mounted, setMounted] = useState(false)
-	const [open, setOpen] = useState(false)
 
 	useEffect(() => {
 		setMounted(true)
@@ -48,7 +45,6 @@ export default function ComponentsSection() {
 
 					<svg className="not-xl:hidden -left-26 absolute -top-36 z-10" width="996" height="931" viewBox="0 0 996 931" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
-							// d="M 1 613 V 175 C 1 166.163 8.1634 159 17 159 H 705 C 713.837 159 721 151.837 721 143 V 0 M 1 613 H 85.5 M 1 613 V 914 C 1 922.837 8.1634 930 17 930 H 85.5 M 996 0 V 114 C 996 120 995 122 990 124 H 722"
 							d="M 1 613 V 175 C 1 166.163 8.1634 159 17 159 H 705 C 713.837 159 721 151.837 721 143 V 0 M 1 613 H 85.5 M 1 613 V 914 C 1 922.837 8.1634 930 17 930 H 85.5 M 996 0 V 108 C 996 116 990 123 983 124 H 722"
 							stroke="var(--color-soft)"
 							strokeWidth={1}
@@ -62,84 +58,58 @@ export default function ComponentsSection() {
 				</div>
 			</div>
 
-			<Collapsible open={open} onOpenChange={setOpen} className="z-50 flex w-full flex-col items-center gap-20">
-				<div className="relative w-full max-w-[1230px]">
-					<div className="not-xl:hidden bg-bg absolute -top-[70px] right-10 z-30 px-2">
-						<span className="text-fg-tertiary text-xs">
-							Press{" "}
-							<Badge variant="outline" color="neutral" className="text-fg-tertiary">
-								CMD + K
-							</Badge>{" "}
-							To search for components
-						</span>
-					</div>
-
-					<svg className="not-xl:hidden -right-25 absolute bottom-[calc(93%)] z-20" xmlns="http://www.w3.org/2000/svg" width={999} height={98} viewBox="0 0 999 98" fill="none">
-						<defs>
-							<linearGradient id="lineGradient" x1="0" y1="0" x2="999" y2="0" gradientUnits="userSpaceOnUse">
-								<stop offset="0%" stopColor="color-mix(in srgb, var(--color-bg) 4%, transparent)" />
-								<stop offset="30%" stopColor="var(--color-soft)" />
-								<stop offset="100%" stopColor="var(--color-soft)" />
-							</linearGradient>
-						</defs>
-
-						<path
-							d="M 0 0 L 985 0 C 997 1 999 5 999 16 L 999 81 C 999 90 998 96 988 98 L 928 98"
-							stroke="url(#lineGradient)"
-							strokeWidth={1}
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-					</svg>
-
-					<div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
-						{mounted &&
-							components.items
-								.slice(0, breakingPoint)
-								.map((item, idx) => (
-									<ComponentCard
-										alt={item.alt!}
-										key={item.title + idx}
-										url={item.url}
-										title={item.title}
-										description={item.description!}
-										thumbnail={item.thumbnail!}
-										thumbnailDark={item.thumbnailDark!}
-									/>
-								))}
-
-						<CollapsibleContent asChild>
-							<div className="contents">
-								{components.items.slice(breakingPoint).map((item, idx) => (
-									<ComponentCard
-										alt={item.alt!}
-										key={item.title + idx}
-										url={item.url}
-										title={item.title}
-										description={item.description!}
-										thumbnail={item.thumbnail!}
-										thumbnailDark={item.thumbnailDark!}
-									/>
-								))}
-							</div>
-						</CollapsibleContent>
-					</div>
-
-					{/* Gradient overlay */}
-					<div
-						className={cn("from-bg/4 to-bg absolute bottom-0 h-[150px] w-full bg-gradient-to-b", {
-							hidden: open,
-						})}
-					/>
+			<div className="relative w-full max-w-[1230px]">
+				<div className="not-xl:hidden bg-bg absolute -top-[70px] right-10 z-30 px-2">
+					<span className="text-fg-tertiary text-xs">
+						Press{" "}
+						<Badge variant="outline" color="neutral" className="text-fg-tertiary">
+							CMD + K
+						</Badge>{" "}
+						To search for components
+					</span>
 				</div>
 
-				<CollapsibleTrigger asChild>
-					<Button variant="outline" color="neutral" className="z-50">
-						<Component />
-						{open ? "View less Components" : "View all Components"}
-					</Button>
-				</CollapsibleTrigger>
-			</Collapsible>
+				<svg className="not-xl:hidden -right-25 absolute bottom-[calc(93%)] z-20" xmlns="http://www.w3.org/2000/svg" width={999} height={98} viewBox="0 0 999 98" fill="none">
+					<defs>
+						<linearGradient id="lineGradient" x1="0" y1="0" x2="999" y2="0" gradientUnits="userSpaceOnUse">
+							<stop offset="0%" stopColor="color-mix(in srgb, var(--color-bg) 4%, transparent)" />
+							<stop offset="30%" stopColor="var(--color-soft)" />
+							<stop offset="100%" stopColor="var(--color-soft)" />
+						</linearGradient>
+					</defs>
+
+					<path
+						d="M 0 0 L 985 0 C 997 1 999 5 999 16 L 999 81 C 999 90 998 96 988 98 L 928 98"
+						stroke="url(#lineGradient)"
+						strokeWidth={1}
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					/>
+				</svg>
+
+				<div className="relative z-10 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
+					{mounted &&
+						HOMEPAGE_COMPONENTS_LIST.slice(0, breakingPoint).map((item, idx) => (
+							<ComponentCard
+								alt={item.alt!}
+								key={item.title + idx}
+								url={item.url}
+								title={item.title}
+								description={item.description!}
+								thumbnail={item.thumbnail!}
+								thumbnailDark={item.thumbnailDark!}
+							/>
+						))}
+				</div>
+
+				{/* Gradient overlay */}
+				<div className="from-bg/4 to-bg absolute bottom-0 z-30 h-[150px] w-full bg-gradient-to-b" />
+			</div>
+
+			<Button variant="outline" color="neutral" className="z-50" onClick={() => router.push("/components")}>
+				<Component />
+				View all Components
+			</Button>
 		</div>
 	)
 }

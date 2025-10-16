@@ -46,7 +46,7 @@ export default function ComboboxDemo() {
 					<ChevronsUpDown />
 				</Button>
 			</PopoverTrigger>
-			<PopoverContent className="w-(--radix-popper-anchor-width) p-0">
+			<PopoverContent className="w-(--radix-popper-anchor-width) bg-bg p-0">
 				<Command className="border-0">
 					<CommandInput placeholder="Search city..." />
 					<CommandList>

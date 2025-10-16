@@ -61,7 +61,7 @@ export default function ComboboxMultiselect() {
 						<ChevronDown className="absolute end-1.5 top-2" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-(--radix-popper-anchor-width) p-0">
+				<PopoverContent className="w-(--radix-popper-anchor-width) bg-bg p-0">
 					<Command className="border-0">
 						<CommandInput placeholder="Search framework..." />
 						<CommandList>

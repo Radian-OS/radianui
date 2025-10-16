@@ -5,7 +5,7 @@ export default function Background({ children }: { children?: React.ReactNode })
 	return (
 		<div className="relative w-full px-4 md:px-5">
 			{/* Half circle with primary color layer blur */}
-			<div className="bg-primary/60 absolute left-1/2 top-[600px] z-30 mx-auto aspect-square w-[200px] -translate-x-1/2 rounded-t-full blur-[600px] md:w-[300px] xl:w-[600px]"></div>
+			<div className="bg-primary/60 absolute left-1/2 top-[600px] z-30 mx-auto aspect-square w-[200px] -translate-x-1/2 rounded-t-full blur-[600px] md:w-[300px] xl:w-[550px]"></div>
 
 			{/* Neutral radial background overlay */}
 			<div className="bg-radial-[at_50%_100%] from-bg/12 to-bg absolute top-[380px] z-20 aspect-[2/1] max-h-[960px] w-full rounded-t-full to-75%" />

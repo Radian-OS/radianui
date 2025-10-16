@@ -81,7 +81,6 @@
 		"pg": "^8.14.1",
 		"posthog-js": "^1.234.6",
 		"posthog-node": "^4.11.1",
-		"radix-ui": "^1.4.3",
 		"react": "19.1.0",
 		"react-before-after-slider-component": "^1.1.8",
 		"react-currency-input-field": "^3.10.0",
