@@ -33,24 +33,17 @@ links:
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm add @radix-ui/react-progress @radix-ui/react-label",
-				npm: "npm install @radix-ui/react-progress @radix-ui/react-label",
-				yarn: "yarn add @radix-ui/react-progress @radix-ui/react-label",
-				bun: "bun add @radix-ui/react-progress @radix-ui/react-label",
+				pnpm: "pnpm add @radix-ui/react-progress",
+				npm: "npm install @radix-ui/react-progress",
+				yarn: "yarn add @radix-ui/react-progress",
+				bun: "bun add @radix-ui/react-progress",
 			}}
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
     	<Tabs defaultValue="progress">
-    		<TabsList>
-    			<TabsTrigger value="progress">Progress</TabsTrigger>
-    			<TabsTrigger value="label">Label</TabsTrigger>
-    		</TabsList>
     		<TabsContent value="progress">
     			<ComponentSource name="progress" title="components/ui/progress.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="label">
-    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
     		</TabsContent>
     	</Tabs>
 
@@ -68,7 +61,7 @@ links:
 
 ### Code
 
-<CodeSnippet title="/components/ui/progress-bar" code={`<Progress label="Loading..." value={50} valueLabel />`} />
+<CodeSnippet title="/components/ui/progress-bar" code={`<Progress value={50} />`} />
 
 ---
 

@@ -457,7 +457,7 @@ export default function Component() {
 	})
 
 	return (
-		<div className="flex h-[335px] w-full flex-col gap-4 overflow-auto">
+		<div className="flex w-full flex-col gap-4 overflow-auto">
 			<div className="bg-background no-scrollbar overflow-y-scroll rounded-md border">
 				<Table className="table-fixed">
 					<TableHeader>
