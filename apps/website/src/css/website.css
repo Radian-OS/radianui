@@ -194,3 +194,19 @@
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
 	--color-primary-text: oklch(0.7757 0.1162 292.43);
 }
+
+.rounded-rounded {
+	--radius-sm: 9999px;
+	--radius-md: 9999px;
+	--radius-lg: 9999px;
+	--radius-xl: 9999px;
+}
+
+.rounded-flat {
+	--radius-sm: 0;
+	--radius-md: 0;
+	--radius-lg: 0;
+	--radius-xl: 0;
+	--radius-2xl: 0;
+	--radius-3xl: 0;
+}
