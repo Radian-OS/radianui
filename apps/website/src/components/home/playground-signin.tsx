@@ -1,3 +1,4 @@
+import { useId } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
@@ -7,6 +8,10 @@ import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
 export default function PlaygroundSignin() {
+	const emailId = useId()
+	const passwordId = useId()
+	const checkboxId = useId()
+
 	return (
 		<div className="bg-bg bg-radial bg-size-[15px_15px] flex h-full w-full items-center justify-center bg-[radial-gradient(var(--color-fg-disabled)_1px,transparent_1px)] px-5 py-12 md:p-12">
 			<div className="bg-elevation-level1 border-soft flex w-full max-w-[384px] flex-col gap-8 rounded-2xl border px-6 py-8 shadow-md">
@@ -25,21 +30,21 @@ export default function PlaygroundSignin() {
 				<div className="flex flex-col gap-6">
 					<div className="flex flex-col gap-4">
 						<div className="flex flex-col gap-1.5">
-							<Label htmlFor="email" className="text-fg">
+							<Label htmlFor={emailId} className="text-fg">
 								Email
 							</Label>
-							<Input size="36" id="email" placeholder="example@radianos.com" />
+							<Input type="email" size="36" id={emailId} placeholder="example@radianos.com" />
 						</div>
 						<div className="flex flex-col gap-1.5">
-							<Label htmlFor="password" className="text-fg">
+							<Label htmlFor={passwordId} className="text-fg">
 								Password
 							</Label>
-							<Input size="36" type="password" id="password" placeholder="••••••••••••" />
+							<Input size="36" type="password" id={passwordId} placeholder="••••••••••••" />
 						</div>
 					</div>
 					<div className="flex w-full items-center justify-between text-sm font-normal">
 						<div className="flex items-center gap-2">
-							<Checkbox id="remember-me" /> <Label htmlFor="remember-me">Remember me</Label>
+							<Checkbox id={checkboxId} /> <Label htmlFor={checkboxId}>Remember me</Label>
 						</div>
 						<Link className="text-primary-text" href="#">
 							Forgot Password?
