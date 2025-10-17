@@ -35,17 +35,17 @@ const NumberInputPreview = () => {
 	}
 
 	return (
-		<div className="flex flex-col gap-4 md:w-80">
+		<div className="flex w-80 flex-col gap-4">
 			{/* Default Number Input */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Default Number Input</Label>
-				<Input onChange={handleChange} className="md:w-80" placeholder="Enter Amount Here" value={amount} type="numeric" />{" "}
+				<Input onChange={handleChange} className="w-full" placeholder="Enter Amount Here" value={amount} type="numeric" />{" "}
 			</div>
 
 			{/* Input Group */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Input Group</Label>
-				<InputGroup className="md:w-80">
+				<InputGroup className="w-full">
 					<InputAddon
 						mode="icon"
 						onClick={(e) => {
@@ -73,7 +73,7 @@ const NumberInputPreview = () => {
 			{/* Input Wrapper */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Input Wrapper</Label>
-				<InputWrapper className="md:w-80">
+				<InputWrapper className="w-full">
 					<Minus
 						onClick={(e) => {
 							e.stopPropagation()

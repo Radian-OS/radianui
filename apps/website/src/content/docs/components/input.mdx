@@ -41,11 +41,25 @@ links:
 
 ### Imports
 
-<CodeSnippet title="components/ui/input.tsx" code={`import { Input } from "@/components/ui/input"`} />
+<CodeSnippet title="components/ui/input.tsx" code={`import { Input, InputAddon, InputGroup, InputWrapper } from "@/components/ui/input"`} />
 
 ### Code
 
-<CodeSnippet title="components/ui/input.tsx" code={`<Input placeholder="Enter username" />`} />
+<CodeSnippet title="components/ui/input.tsx" code={`<Input placeholder="Enter username" />
+
+    <InputGroup>
+    	<InputAddon mode="icon">
+    		<Mail />
+    	</InputAddon>
+    	<Input type="email" placeholder="designer@radianos.com" />
+    </InputGroup>
+
+    <InputWrapper>
+    	<Mail />
+    	<Input type="email" placeholder="designer@radianos.com" />
+    </InputWrapper>
+
+`} />
 
 ---
 

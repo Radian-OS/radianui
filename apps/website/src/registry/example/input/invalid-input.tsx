@@ -4,9 +4,9 @@ import { Label } from "@/registry/ui/label"
 
 const InvalidInput = () => {
 	return (
-		<div className="flex flex-col gap-1.5">
+		<div className="flex w-80 flex-col gap-1.5">
 			<Label>Invalid Input</Label>
-			<Input className="md:w-80" aria-invalid placeholder="Invalid Input" />
+			<Input className="w-full" aria-invalid placeholder="Invalid Input" />
 			<div className="text-error-text text-xs font-normal">Please enter a valid detail</div>
 		</div>
 	)
