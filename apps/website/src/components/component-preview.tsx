@@ -69,7 +69,7 @@ function ComponentPreviewDemo() {
 	}, [path])
 
 	return (
-		<div className={`relative flex h-full items-${align} justify-center overflow-auto rounded-xl border p-10`} style={{ minHeight: `${height}px` }}>
+		<div className={`relative flex h-full items-${align} justify-center overflow-auto rounded-xl border px-4 py-10 md:px-6 lg:px-10`} style={{ minHeight: `${height}px` }}>
 			{loading ? (
 				<div className="text-fg-tertiary flex size-full items-center justify-center gap-2">
 					<Spinner size={20} variant="activity" />
