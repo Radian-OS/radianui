@@ -271,7 +271,7 @@ export default function PlaygroundSection() {
 						<Copy size={16} />
 					</div>
 				</div>
-				<Tabs className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
+				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
 					<div className="border-soft flex items-center justify-between border-b p-3">
 						<TabsList className="lg:hidden">
 							<TabsTrigger value="preview">Preview</TabsTrigger>

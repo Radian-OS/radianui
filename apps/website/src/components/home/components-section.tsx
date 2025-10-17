@@ -87,7 +87,7 @@ export default function ComponentsSection() {
 					/>
 				</svg>
 
-				<div className="relative z-10 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
+				<div className="relative z-10 grid w-full grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
 					{mounted &&
 						HOMEPAGE_COMPONENTS_LIST.slice(0, breakingPoint).map((item, idx) => (
 							<ComponentCard
