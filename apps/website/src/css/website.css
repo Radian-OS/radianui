@@ -102,7 +102,8 @@
 }
 
 /* 🌞 Light (default) */
-.color-success {
+.color-success,
+.color-green {
 	--color-primary: oklch(0.6334 0.171 148.65);
 	--color-primary-accent: oklch(0.9685 0.0336 157.66);
 	--color-primary-focus: oklch(0.9489 0.0556 156.34);
@@ -111,7 +112,8 @@
 }
 
 /* 🌙 Dark theme */
-.dark .color-success {
+.dark .color-success,
+.dark .color-green {
 	--color-primary: oklch(0.6334 0.171 148.65);
 	--color-primary-accent: oklch(0.271 0.0537 151.74);
 	--color-primary-focus: oklch(0.3887 0.0924 150.55);
@@ -119,7 +121,8 @@
 	--color-primary-text: oklch(0.871 0.1501 153.14);
 }
 
-.color-info {
+.color-info,
+.color-blue {
 	--color-primary: oklch(0.6092 0.2041 255.8);
 	--color-primary-accent: oklch(0.949 0.0213 245.85);
 	--color-primary-focus: oklch(0.9135 0.0358 249.52);
@@ -128,7 +131,8 @@
 }
 
 /* 🌙 Dark theme */
-.dark .color-info {
+.dark .color-info,
+.dark .color-blue {
 	--color-primary: oklch(0.6092 0.2041 255.8);
 	--color-primary-accent: oklch(0.2739 0.0462 248.76);
 	--color-primary-focus: oklch(0.3147 0.0668 250.78);
@@ -136,7 +140,8 @@
 	--color-primary-text: oklch(0.829 0.0811 248.83);
 }
 
-.color-warning {
+.color-warning,
+.color-yellow {
 	--color-primary: oklch(0.8016 0.1705 73.27);
 	--color-primary-accent: oklch(0.9622 0.0384 83.83);
 	--color-primary-focus: oklch(0.946 0.0574 85.03);
@@ -145,7 +150,8 @@
 }
 
 /* 🌙 Dark theme */
-.dark .color-warning {
+.dark .color-warning,
+.dark .color-yellow {
 	--color-primary: oklch(0.8016 0.1705 73.27);
 	--color-primary-accent: oklch(0.2663 0.0372 84.34);
 	--color-primary-focus: oklch(0.3744 0.0636 81.14);
@@ -153,7 +159,8 @@
 	--color-primary-text: oklch(0.8776 0.1255 82.88);
 }
 
-.color-error {
+.color-error,
+.color-red {
 	--color-primary: oklch(0.64 0.22 26.04);
 	--color-primary-accent: oklch(0.9465 0.0252 17.61);
 	--color-primary-focus: oklch(0.9133 0.0414 17.93);
@@ -162,7 +169,8 @@
 }
 
 /* 🌙 Dark theme */
-.dark .color-error {
+.dark .color-error,
+.dark .color-red {
 	--color-primary: oklch(0.64 0.22 26.04);
 	--color-primary-accent: oklch(0.2567 0.0648 22.77);
 	--color-primary-focus: oklch(0.2973 0.0922 24.71);
@@ -185,4 +193,20 @@
 	--color-primary-focus: oklch(0.2538 0.1064 285.61);
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
 	--color-primary-text: oklch(0.7757 0.1162 292.43);
+}
+
+.rounded-rounded {
+	--radius-sm: 9999px;
+	--radius-md: 9999px;
+	--radius-lg: 9999px;
+	--radius-xl: 9999px;
+}
+
+.rounded-flat {
+	--radius-sm: 0;
+	--radius-md: 0;
+	--radius-lg: 0;
+	--radius-xl: 0;
+	--radius-2xl: 0;
+	--radius-3xl: 0;
 }

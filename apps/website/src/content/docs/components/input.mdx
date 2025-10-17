@@ -41,11 +41,24 @@ links:
 
 ### Imports
 
-<CodeSnippet title="components/ui/input.tsx" code={`import { Input } from "@/components/ui/input"`} />
+<CodeSnippet title="components/ui/input.tsx" code={`import { Input, InputAddon, InputGroup, InputWrapper } from "@/components/ui/input"`} />
 
 ### Code
 
-<CodeSnippet title="components/ui/input.tsx" code={`<Input placeholder="Enter username" />`} />
+<CodeSnippet title="components/ui/input.tsx" code={`<Input placeholder="Enter username" />
+
+<InputGroup>
+	<InputAddon mode="icon">
+		<Mail />
+	</InputAddon>
+	<Input type="email" placeholder="designer@radianos.com" />
+</InputGroup>
+
+<InputWrapper>
+	<Mail />
+	<Input type="email" placeholder="designer@radianos.com" />
+</InputWrapper>
+`} />
 
 ---
 
@@ -101,48 +114,9 @@ links:
 			values: ["28", "32", "36", "40", "44", "48"],
 			required: false,
 			description: "Controls the height and padding of the input field",
-		},
-		{
-			name: "type",
-			defaultValue: "text",
-			values: ["text", "email", "password", "number", "file", "..."],
-			required: false,
-			description: "Specifies the type of input control",
-		},
-		{
-			name: "disabled",
-			defaultValue: "false",
-			values: ["boolean"],
-			required: false,
-			description: "Disables the input field when set to true",
-		},
-		{
-			name: "readOnly",
-			defaultValue: "false",
-			values: ["boolean"],
-			required: false,
-			description: "Makes the input field read-only when set to true",
-		},
-		{
-			name: "aria-invalid",
-			defaultValue: "true",
-			values: ["boolean"],
-			required: false,
-			description: "Applies error styling to the input when set to true",
-		},
+		}
 	]}
-/>
-
-<PropsTable
-	title="InputGroup"
-	data={[
-		{
-			name: "children",
-			values: ["React.ReactNode"],
-			required: true,
-			description: "Child components that will be grouped together, typically Input, InputAddon, or Button components",
-		},
-	]}
+	externalReference="https://react.dev/reference/react-dom/components/input#input"
 />
 
 <PropsTable

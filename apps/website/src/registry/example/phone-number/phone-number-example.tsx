@@ -18,9 +18,9 @@ export default function PhoneNumberExample() {
 	})
 
 	return (
-		<div className="flex flex-col justify-center gap-1.5">
+		<div className="flex w-full max-w-80 flex-col justify-center gap-1.5">
 			<Label htmlFor="phone-number">Enter your Number</Label>
-			<InputWrapper className="md:w-80">
+			<InputWrapper className="w-full">
 				<FlagImage iso2={country.iso2} className="size-4" />
 				<Input id="phone-number" type="tel" value={inputValue} onChange={handlePhoneValueChange} ref={inputRef} placeholder="Enter Your Number" />
 			</InputWrapper>

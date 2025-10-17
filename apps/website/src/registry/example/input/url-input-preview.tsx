@@ -9,18 +9,18 @@ const UrlPreview = () => {
 	const [domain, setDomain] = useState<domainOption>(".com")
 
 	return (
-		<div className="flex flex-col gap-4 md:w-80">
+		<div className="flex w-80 flex-col gap-4">
 			{/* Default Url Input */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Default Url Input</Label>
-				<Input type="url" placeholder="radianos.com" />
+				<Input type="url" className="w-full" placeholder="radianos.com" />
 			</div>
 
 			{/* Input Group */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Input Group</Label>
 				<div className="flex">
-					<InputGroup className="md:w-80">
+					<InputGroup className="w-full">
 						<Input className="rounded-r-none border-r-0 focus-within:border-r md:w-fit" placeholder="radianos.com" type="url" />
 						<Select value={domain} onValueChange={(values) => setDomain(values as domainOption)}>
 							<SelectTrigger className="w-fit rounded-l-none">
@@ -39,7 +39,7 @@ const UrlPreview = () => {
 			{/* Input Wrapper */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Input Wrapper</Label>
-				<InputWrapper className="md:w-80">
+				<InputWrapper className="w-full">
 					<p> https://</p>
 					<Input type="url" placeholder="designer@radianos.com" />
 				</InputWrapper>
