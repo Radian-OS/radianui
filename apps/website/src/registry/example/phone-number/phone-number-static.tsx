@@ -18,9 +18,9 @@ export default function PhoneNumberStatic() {
 	})
 
 	return (
-		<div className="flex flex-col justify-center gap-1.5">
+		<div className="flex w-full max-w-80 flex-col justify-center gap-1.5">
 			<Label htmlFor="static">Enter Your Number</Label>
-			<InputWrapper className="md:w-80">
+			<InputWrapper className="w-full">
 				<FlagImage iso2={country.iso2} className="size-4" />
 				<Input id="static" type="tel" onChange={handlePhoneValueChange} placeholder="Enter Your Number" value={inputValue} ref={inputRef} />
 			</InputWrapper>
