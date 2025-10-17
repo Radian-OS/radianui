@@ -186,6 +186,14 @@
 	--color-primary-text: oklch(0.4304 0.202 282.82);
 }
 
+.color-grey {
+	--color-primary: oklch(0.7 0.011 286.16);
+	--color-primary-accent: oklch(0.94 0.0271 295.05);
+	--color-primary-focus: oklch(0.9169 0.0383 295.46);
+	--color-primary-hover: oklch(0.8 0.011 286.16);
+	--color-primary-text: oklch(0.4515 0.0243 285.39);
+}
+
 /* 🌙 Dark theme */
 .dark .color-primary {
 	--color-primary: oklch(0.528 0.2539 282.58);
