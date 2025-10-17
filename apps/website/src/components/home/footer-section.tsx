@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import { Badge } from "@/registry/ui/badge"
 import { WebsiteLogo } from "../navbar/website-logo"
 
 const LINKS = [
@@ -7,15 +8,15 @@ const LINKS = [
 		title: "Documentation",
 		linkItems: [
 			{
-				href: "#",
+				href: "/docs/getting-started/introduction",
 				name: "Getting Started",
 			},
 			{
-				href: "#",
+				href: "/docs/fundamentals/colors",
 				name: "Fundamentals",
 			},
 			{
-				href: "#",
+				href: "/docs/components/accordion",
 				name: "Base Components",
 			},
 			{
@@ -23,7 +24,7 @@ const LINKS = [
 				name: "Animations",
 			},
 			{
-				href: "#",
+				href: process.env.NEXT_PUBLIC_BLOCKS_URL!,
 				name: "Explore Blocks",
 			},
 		],
@@ -34,6 +35,11 @@ const LINKS = [
 			{
 				href: "#",
 				name: "Change Logs",
+				badge: (
+					<Badge variant="soft" size="20">
+						New
+					</Badge>
+				),
 			},
 			{
 				href: "#",
@@ -46,6 +52,11 @@ const LINKS = [
 			{
 				href: "#",
 				name: "Radian Figma",
+				badge: (
+					<Badge variant="soft" size="20">
+						New
+					</Badge>
+				),
 			},
 		],
 	},
@@ -103,9 +114,10 @@ export default function FooterSection() {
 							<p className="text-fg-tertiary text-sm font-medium uppercase">{item.title}</p>
 							<div className="flex flex-col gap-4">
 								{item.linkItems.map((linkItem) => (
-									<Link key={linkItem.name} href={linkItem.href}>
-										{linkItem.name}
-									</Link>
+									<span key={linkItem.name} className="flex items-center gap-2">
+										<Link href={linkItem.href}>{linkItem.name}</Link>
+										{linkItem.badge && linkItem.badge}
+									</span>
 								))}
 							</div>
 						</div>

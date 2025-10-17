@@ -1,4 +1,5 @@
 import { Box, Code, SearchCode } from "lucide-react"
+import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
@@ -29,13 +30,15 @@ export default function Page() {
 						</p>
 					</div>
 					<div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
-						<Button size="36" className="w-full md:w-fit" variant="outline" color="neutral">
-							<SearchCode />
-							Browse Components
-						</Button>
+						<Link href="/docs/components/accordion" className="w-full sm:w-fit">
+							<Button size="36" className="w-full sm:w-fit" variant="outline" color="neutral">
+								<SearchCode />
+								Browse Components
+							</Button>
+						</Link>
 						<Button
 							size="36"
-							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] md:w-fit">
+							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] sm:w-fit">
 							<Code />
 							Copy Terminal Command
 						</Button>
