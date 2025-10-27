@@ -4,6 +4,7 @@ import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
+import FeaturesSection from "@/components/home/features-section"
 import FooterSection from "@/components/home/footer-section"
 import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
@@ -137,6 +138,8 @@ export default function Page() {
 					</svg>
 				</div>
 			</Background>
+
+			<FeaturesSection />
 
 			<ComponentsSection />
 
