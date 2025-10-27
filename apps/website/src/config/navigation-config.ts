@@ -5,6 +5,9 @@ export type NavigationItem = {
 	thumbnail?: string
 	thumbnailDark?: string
 	alt?: string
+	isNew?: boolean
+	isUpdated?: boolean
+	isComingSoon?: boolean
 }
 
 export type NavigationSection = {
@@ -437,43 +440,46 @@ export const navigationItems: NavigationSection[] = [
 		title: "Animations",
 		searchIcon: "/search-icons/search-components.svg",
 		items: [
-			{ url: "/docs/animations/typing-text", title: "Typing Text" },
+			// { url: "/docs/animations/typing-text", title: "Typing Text" },
+			// {
+			// 	url: "/docs/animations/gradient-text",
+			// 	title: "Gradient Text",
+			// },
+			// {
+			// 	url: "/docs/animations/draggable",
+			// 	title: "Draggable",
+			// },
 			{
-				url: "/docs/animations/gradient-text",
-				title: "Gradient Text",
-			},
-			{
-				url: "/docs/animations/draggable",
-				title: "Draggable",
-			},
-			{
-				url: "/docs/animations/fade",
+				url: "#",
 				title: "Fade",
+				isComingSoon: true,
 			},
 			{
-				url: "/docs/animations/infinite-scroll",
+				url: "#",
 				title: "Infinite Scroll",
+				isComingSoon: true,
 			},
 			{
-				url: "/docs/animations/pointer",
+				url: "#",
 				title: "Pointer",
+				isComingSoon: true,
 			},
-			{
-				url: "/docs/animations/border-beam",
-				title: "Border Beam",
-			},
-			{
-				url: "/docs/animations/changing-text",
-				title: "Changing Text",
-			},
-			{
-				url: "/docs/animations/animated-list",
-				title: "Animated List",
-			},
-			{
-				url: "/docs/animations/text-reveal",
-				title: "Text Reveal",
-			},
+			// {
+			// 	url: "/docs/animations/border-beam",
+			// 	title: "Border Beam",
+			// },
+			// {
+			// 	url: "/docs/animations/changing-text",
+			// 	title: "Changing Text",
+			// },
+			// {
+			// 	url: "/docs/animations/animated-list",
+			// 	title: "Animated List",
+			// },
+			// {
+			// 	url: "/docs/animations/text-reveal",
+			// 	title: "Text Reveal",
+			// },
 		].sort((a, b) => a.title.localeCompare(b.title)),
 	},
 ]

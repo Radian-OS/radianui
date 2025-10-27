@@ -1,4 +1,5 @@
 import { Layers } from "lucide-react"
+import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 
@@ -64,11 +65,13 @@ export default function VideoSection() {
 					</svg>
 					Figma Community File
 				</Button>
-				<Button
-					size="40"
-					className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
-					Explore UI Blocks
-				</Button>
+				<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!}>
+					<Button
+						size="40"
+						className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+						Explore UI Blocks
+					</Button>
+				</Link>
 			</div>
 		</div>
 	)

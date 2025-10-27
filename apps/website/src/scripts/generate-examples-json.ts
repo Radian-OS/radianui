@@ -53,7 +53,6 @@ async function generateExamplesJSON() {
 			if (stat.isDirectory()) {
 				const exampleItem = await processExampleFolder(componentFolder, component)
 				examplesData.push(exampleItem)
-				console.log(`Processed: ${component}`)
 			}
 		}
 
