@@ -16,3 +16,23 @@ Using a pre-defined set of styles reduces guesswork, typography is automatically
 ## Body Font Specs
 
 <BodyFontSpecs />
+
+## Changing Font Family
+
+By default, the design system uses the `Inter` font for body and `Inter Display` for headings. To change the font family globally, you can override the CSS variable **--body-font** and **--heading-font** in your global styles or theme configuration.
+
+<br />
+If you are using Next Js, you can also use the `next/font` package to load custom fonts.
+
+<br />
+<CodeSnippet
+	title="globals.css"
+	showLineNumber
+	code={`@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@layer base {
+	body {
+		--heading-font: "Inter Display", system-ui, sans-serif;
+		--body-font: "Inter", system-ui, sans-serif;
+    	}
+}`}
+/>
