@@ -124,7 +124,7 @@
 .color-info,
 .color-blue {
 	--color-primary: oklch(0.6092 0.2041 255.8);
-	--color-primary-accent: oklch(0.949 0.0213 245.85);
+	--color-primary-accent: oklch(8.09% 0.00566 196.18);
 	--color-primary-focus: oklch(0.9135 0.0358 249.52);
 	--color-primary-hover: oklch(0.6722 0.1615 251.56);
 	--color-primary-text: oklch(0.4663 0.1065 251.21);
@@ -204,10 +204,10 @@
 }
 
 .rounded-rounded {
-	--radius-sm: 9999px;
-	--radius-md: 9999px;
-	--radius-lg: 9999px;
-	--radius-xl: 9999px;
+	--radius-sm: 999px;
+	--radius-md: 999px;
+	--radius-lg: 999px;
+	--radius-xl: 999px;
 }
 
 .rounded-flat {
@@ -217,4 +217,11 @@
 	--radius-xl: 0;
 	--radius-2xl: 0;
 	--radius-3xl: 0;
+}
+
+.rounded-fun {
+	--radius-sm: 6px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-xl: 16px;
 }
