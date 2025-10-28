@@ -19,7 +19,7 @@ export type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger
 export type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Content>
 
 const tabsListStyles = cva(
-	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center  data-[orientation=vertical]:flex-col  overflow-x-scroll no-scrollbar",
+	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center  data-[orientation=vertical]:flex-col shrink-0 overflow-x-scroll no-scrollbar",
 	{
 		variants: {
 			size: {
