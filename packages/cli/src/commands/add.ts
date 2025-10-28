@@ -123,7 +123,6 @@ const checkComponentsAvailability = async (components: string[]): Promise<string
  * @param projectInfo - The project information (e.g., whether it has a `src` directory).
  */
 async function addComponentsToProject(resolvedComponents: RegistryComponents, options: AddOptions, projectInfo: ProjectInfo): Promise<void> {
-	const hasSrcDir = projectInfo.hasSrcDir
 
 	await installComponentDependencies(resolvedComponents, options)
 
