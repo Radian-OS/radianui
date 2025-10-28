@@ -1,4 +1,4 @@
-import { Box, Code, SearchCode } from "lucide-react"
+import { Box, Clipboard, Code, SearchCode } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
@@ -6,11 +6,14 @@ import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
 import FeaturesSection from "@/components/home/features-section"
 import FooterSection from "@/components/home/footer-section"
+import Signin from "@/components/home/pages/signin"
+import Signup from "@/components/home/pages/signup"
 import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export default function Page() {
 	return (
@@ -46,8 +49,33 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className="mt-27 relative mx-auto aspect-[2/1] max-h-[768px]">
-					<div className="bg-fill2 border-soft z-50 h-full rounded-xl border px-4 md:px-5">1</div>
+				<div className="mt-27 relative mx-auto h-[860px] max-w-[1400px]">
+					<div className="bg-bg border-soft z-50 h-full rounded-xl border p-3">
+						<Tabs defaultValue="signin" className="h-full">
+							<div className="flex justify-between">
+								<TabsList size="md" className="mx-auto shrink-0">
+									<TabsTrigger value="signin">Sign In</TabsTrigger>
+									<TabsTrigger value="signup">Sign Up</TabsTrigger>
+									<TabsTrigger value="verification">Verification</TabsTrigger>
+									<TabsTrigger value="Settings">Settings</TabsTrigger>
+									<TabsTrigger value="dashboard">Dashboard</TabsTrigger>
+									<TabsTrigger value="hero">Hero Section</TabsTrigger>
+									<TabsTrigger value="form">Form</TabsTrigger>
+									<TabsTrigger value="footer">Footer</TabsTrigger>
+								</TabsList>
+								<Button color="neutral" variant="ghost" size="36">
+									<Clipboard />
+								</Button>
+							</div>
+							<TabsContent value="signin" className="border-soft h-full w-full rounded-lg border">
+								<Signin />
+							</TabsContent>
+							<TabsContent value="signup" className="border-soft h-full w-full rounded-lg border">
+								<Signup />
+							</TabsContent>
+						</Tabs>
+					</div>
+
 					{/* Upper left line */}
 					<svg className="not-lg:hidden full -left-290 absolute bottom-[70%] -z-10 max-h-[756px]" viewBox="0 0 1552 756" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
