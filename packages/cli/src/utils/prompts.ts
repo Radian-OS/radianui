@@ -77,11 +77,11 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 				name: "brandColor",
 				message: "Which color would you like to use as your brand color?",
 				choices: [
-					{ title: "Amber (Default)", value: "amber" },
+					{ title: "Violet Blue (Default)", value: "violet-blue" },
+					{ title: "Amber", value: "amber" },
 					{ title: "Light Blue", value: "light-blue" },
 					{ title: "Emerald", value: "emerald" },
 					{ title: "Red", value: "red" },
-					{ title: "Violet Blue", value: "violet-blue" },
 				],
 				initial: 0,
 			})
@@ -140,42 +140,3 @@ export async function promptForComponents(options: AddOptions): Promise<string[]
 		throw new Error("Failed to fetch available components.")
 	}
 }
-
-type PromptForTheme = {
-	brandColor: Color
-	font: Font
-}
-
-// export const promptForTheme = async (skipPrompts = false): Promise<PromptForTheme> => {
-//   if (skipPrompts) {
-//     return { brandColor: 'emerald', font: 'inter' }
-//   }
-//   const { brandColor, font } = await prompts([
-//     {
-//       type: 'select',
-//       name: 'brandColor',
-//       message: 'Which color would you like to use as your brand color?',
-//       choices: [
-//         { title: 'Violet', value: 'violet' },
-//         { title: 'Emerald', value: 'emerald' },
-//         { title: 'Blue', value: 'blue' },
-//         { title: 'Amber', value: 'amber' },
-//         { title: 'Red', value: 'red' },
-//       ],
-//       initial: 0,
-//     },
-//     {
-//       type: 'select',
-//       name: 'font',
-//       message: 'Which font would you like to use for your project?',
-//       choices: [
-//         { title: 'Inter', value: 'inter' },
-//         { title: 'Roboto', value: 'roboto' },
-//         { title: 'Geist', value: 'geist' },
-//       ],
-//       initial: 0,
-//     },
-//   ])
-
-//   return { brandColor, font }
-// }
