@@ -13,8 +13,8 @@ export default function PlaygroundSignin() {
 	const checkboxId = useId()
 
 	return (
-		<div className="bg-bg bg-radial bg-size-[15px_15px] flex h-full w-full items-center justify-center bg-[radial-gradient(var(--color-fg-disabled)_1px,transparent_1px)] px-5 py-12 md:p-12">
-			<div className="bg-elevation-level1 border-soft flex w-full max-w-[384px] flex-col gap-8 rounded-2xl border px-6 py-8 shadow-md">
+		<div className="bg-bg bg-radial bg-size-[15px_15px] flex h-full w-full items-center justify-center bg-[radial-gradient(var(--color-fill4)_1px,transparent_1px)] px-5 py-12 md:p-12">
+			<div className="bg-bg border-soft flex w-full max-w-[384px] flex-col gap-8 rounded-2xl border px-6 py-8 shadow-md">
 				<div className="flex flex-col gap-6">
 					<Image src="/mstile-144x144.png" alt="Logo" width="48" height="48" />
 					<div className="flex flex-col gap-1.5">
