@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Box, Check, Clipboard, Code, SearchCode } from "lucide-react"
+import { Box, Check, Clipboard, Code, Menu, SearchCode } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
@@ -17,6 +17,7 @@ import VideoSection from "@/components/home/video-section"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 function useCopyPaste() {
@@ -121,7 +122,28 @@ export default function Page() {
 					<div className="bg-bg border-soft z-50 h-full rounded-xl border p-3">
 						<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
 							<div className="flex justify-between">
-								<TabsList size="md" className="mx-auto shrink-0">
+								<Drawer direction="left">
+									<DrawerTrigger className="md:hidden">
+										<Button variant="ghost" color="neutral">
+											<Menu />
+										</Button>
+									</DrawerTrigger>
+									<DrawerContent>
+										<DrawerHeader>
+											<DrawerTitle>Header</DrawerTitle>
+										</DrawerHeader>
+										<DrawerBody>
+											<TabsList variant="outline-ghost" size="md" className="!h-fit !flex-col md:hidden">
+												{PAGES.map((page, idx) => (
+													<TabsTrigger key={`${page.value}-${idx}`} value={page.value} className="w-full">
+														{page.label}
+													</TabsTrigger>
+												))}
+											</TabsList>
+										</DrawerBody>
+									</DrawerContent>
+								</Drawer>
+								<TabsList variant="outline-ghost" size="md" className="not-md:hidden mx-auto shrink-0">
 									{PAGES.map((page, idx) => (
 										<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
 											{page.label}
