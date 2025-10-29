@@ -1,17 +1,89 @@
-import { Box, Code, SearchCode } from "lucide-react"
+"use client"
+
+import { useState } from "react"
+import { Box, Check, Clipboard, Code, SearchCode } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
+import FeaturesSection from "@/components/home/features-section"
 import FooterSection from "@/components/home/footer-section"
+import Signin from "@/components/home/pages/signin"
+import Signup from "@/components/home/pages/signup"
+import Verification from "@/components/home/pages/verification"
 import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+
+function useCopyPaste() {
+	const [copied, setCopied] = useState(false)
+
+	const copy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, code: string) => {
+		e.preventDefault()
+		navigator.clipboard.writeText(code)
+		setCopied(true)
+
+		setTimeout(() => {
+			setCopied(false)
+		}, 1500)
+	}
+
+	return { copied, copy }
+}
+
+const PAGES = [
+	{
+		value: "signin",
+		label: "Sign In",
+		component: <Signin />,
+		command: "pnpm dlx @radianos/radianbeta add signin-09",
+	},
+	{
+		value: "signup",
+		label: "Sign Up",
+		component: <Signup />,
+		command: "pnpm dlx @radianos/radianbeta add signup-02",
+	},
+	{
+		value: "verification",
+		label: "Verification",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add verification-01",
+	},
+	{
+		value: "settings",
+		label: "Settings",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+	{
+		value: "dashboard",
+		label: "Dashboard",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+	{
+		value: "hero",
+		label: "Hero Section",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+	{
+		value: "form",
+		label: "Form",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+] as const
 
 export default function Page() {
+	const [activeTab, setActiveTab] = useState<(typeof PAGES)[number]["value"]>("signin")
+	const { copy, copied } = useCopyPaste()
+
 	return (
 		<div className="min-h-screen w-full overflow-x-hidden">
 			<Background>
@@ -45,8 +117,29 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className="mt-27 relative mx-auto aspect-[2/1] max-h-[768px]">
-					<div className="bg-fill2 border-soft z-50 h-full rounded-xl border px-4 md:px-5">1</div>
+				<div className="mt-27 relative mx-auto h-[860px] max-w-[1400px]">
+					<div className="bg-bg border-soft z-50 h-full rounded-xl border p-3">
+						<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
+							<div className="flex justify-between">
+								<TabsList size="md" className="mx-auto shrink-0">
+									{PAGES.map((page, idx) => (
+										<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
+											{page.label}
+										</TabsTrigger>
+									))}
+								</TabsList>
+								<Button onClick={(e) => copy(e, PAGES.find((p) => p.value === activeTab)!.command)} color="neutral" variant="ghost" size="36">
+									{copied ? <Check /> : <Clipboard />}
+								</Button>
+							</div>
+							{PAGES.map((page) => (
+								<TabsContent key={page.value} value={page.value} className="border-soft h-full w-full overflow-clip rounded-lg border">
+									{page.component}
+								</TabsContent>
+							))}
+						</Tabs>
+					</div>
+
 					{/* Upper left line */}
 					<svg className="not-lg:hidden full -left-290 absolute bottom-[70%] -z-10 max-h-[756px]" viewBox="0 0 1552 756" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
@@ -137,6 +230,8 @@ export default function Page() {
 					</svg>
 				</div>
 			</Background>
+
+			<FeaturesSection />
 
 			<ComponentsSection />
 

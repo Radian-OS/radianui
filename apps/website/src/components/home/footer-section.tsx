@@ -20,10 +20,6 @@ const LINKS = [
 				name: "Base Components",
 			},
 			{
-				href: "#",
-				name: "Animations",
-			},
-			{
 				href: process.env.NEXT_PUBLIC_BLOCKS_URL!,
 				name: "Explore Blocks",
 			},
@@ -33,7 +29,7 @@ const LINKS = [
 		title: "Resources",
 		linkItems: [
 			{
-				href: "#",
+				href: "/docs/getting-started/changelog",
 				name: "Change Logs",
 				badge: (
 					<Badge variant="soft" size="20">
@@ -42,11 +38,11 @@ const LINKS = [
 				),
 			},
 			{
-				href: "#",
+				href: "/blog",
 				name: "Release Notes",
 			},
 			{
-				href: "#",
+				href: "/blog",
 				name: "Blog Articles",
 			},
 			{
@@ -64,7 +60,7 @@ const LINKS = [
 		title: "Community",
 		linkItems: [
 			{
-				href: "#",
+				href: "https://github.com/Radian-os/radianos",
 				name: "Github",
 			},
 			{
