@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
@@ -22,6 +23,7 @@ const LINKS = [
 			{
 				href: process.env.NEXT_PUBLIC_BLOCKS_URL!,
 				name: "Explore Blocks",
+				badge: <ArrowUpRight className="text-fg-secondary size-5" />,
 			},
 		],
 	},

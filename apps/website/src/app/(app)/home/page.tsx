@@ -1,4 +1,7 @@
-import { Box, Clipboard, Code, SearchCode } from "lucide-react"
+"use client"
+
+import { useState } from "react"
+import { Box, Check, Clipboard, Code, Menu, SearchCode } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
@@ -8,14 +11,80 @@ import FeaturesSection from "@/components/home/features-section"
 import FooterSection from "@/components/home/footer-section"
 import Signin from "@/components/home/pages/signin"
 import Signup from "@/components/home/pages/signup"
+import Verification from "@/components/home/pages/verification"
 import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+function useCopyPaste() {
+	const [copied, setCopied] = useState(false)
+
+	const copy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, code: string) => {
+		e.preventDefault()
+		navigator.clipboard.writeText(code)
+		setCopied(true)
+
+		setTimeout(() => {
+			setCopied(false)
+		}, 1500)
+	}
+
+	return { copied, copy }
+}
+
+const PAGES = [
+	{
+		value: "signin",
+		label: "Sign In",
+		component: <Signin />,
+		command: "pnpm dlx @radianos/radianbeta add signin-09",
+	},
+	{
+		value: "signup",
+		label: "Sign Up",
+		component: <Signup />,
+		command: "pnpm dlx @radianos/radianbeta add signup-02",
+	},
+	{
+		value: "verification",
+		label: "Verification",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add verification-01",
+	},
+	{
+		value: "settings",
+		label: "Settings",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+	{
+		value: "dashboard",
+		label: "Dashboard",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+	{
+		value: "hero",
+		label: "Hero Section",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+	{
+		value: "form",
+		label: "Form",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add settings-01",
+	},
+] as const
+
 export default function Page() {
+	const [activeTab, setActiveTab] = useState<(typeof PAGES)[number]["value"]>("signin")
+	const { copy, copied } = useCopyPaste()
+
 	return (
 		<div className="min-h-screen w-full overflow-x-hidden">
 			<Background>
@@ -51,28 +120,45 @@ export default function Page() {
 
 				<div className="mt-27 relative mx-auto h-[860px] max-w-[1400px]">
 					<div className="bg-bg border-soft z-50 h-full rounded-xl border p-3">
-						<Tabs defaultValue="signin" className="h-full">
+						<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
 							<div className="flex justify-between">
-								<TabsList size="md" className="mx-auto shrink-0">
-									<TabsTrigger value="signin">Sign In</TabsTrigger>
-									<TabsTrigger value="signup">Sign Up</TabsTrigger>
-									<TabsTrigger value="verification">Verification</TabsTrigger>
-									<TabsTrigger value="Settings">Settings</TabsTrigger>
-									<TabsTrigger value="dashboard">Dashboard</TabsTrigger>
-									<TabsTrigger value="hero">Hero Section</TabsTrigger>
-									<TabsTrigger value="form">Form</TabsTrigger>
-									<TabsTrigger value="footer">Footer</TabsTrigger>
+								<Drawer direction="left">
+									<DrawerTrigger className="md:hidden">
+										<Button variant="ghost" color="neutral">
+											<Menu />
+										</Button>
+									</DrawerTrigger>
+									<DrawerContent>
+										<DrawerHeader>
+											<DrawerTitle>{undefined}</DrawerTitle>
+										</DrawerHeader>
+										<DrawerBody>
+											<TabsList variant="outline-ghost" size="md" className="!h-fit !flex-col md:hidden">
+												{PAGES.map((page, idx) => (
+													<TabsTrigger key={`${page.value}-${idx}`} value={page.value} className="w-full">
+														{page.label}
+													</TabsTrigger>
+												))}
+											</TabsList>
+										</DrawerBody>
+									</DrawerContent>
+								</Drawer>
+								<TabsList variant="outline-ghost" size="md" className="not-md:hidden mx-auto shrink-0">
+									{PAGES.map((page, idx) => (
+										<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
+											{page.label}
+										</TabsTrigger>
+									))}
 								</TabsList>
-								<Button color="neutral" variant="ghost" size="36">
-									<Clipboard />
+								<Button onClick={(e) => copy(e, PAGES.find((p) => p.value === activeTab)!.command)} color="neutral" variant="ghost" size="36">
+									{copied ? <Check /> : <Clipboard />}
 								</Button>
 							</div>
-							<TabsContent value="signin" className="border-soft h-full w-full rounded-lg border">
-								<Signin />
-							</TabsContent>
-							<TabsContent value="signup" className="border-soft h-full w-full rounded-lg border">
-								<Signup />
-							</TabsContent>
+							{PAGES.map((page) => (
+								<TabsContent key={page.value} value={page.value} className="border-soft h-full w-full overflow-clip rounded-lg border">
+									{page.component}
+								</TabsContent>
+							))}
 						</Tabs>
 					</div>
 

@@ -3,18 +3,20 @@
 	"label": "Emerald",
 	"cssVariables": {
 		"light": {
-			"primary": "oklch(0.6334 0.171 148.65)",
-			"primary-accent": "oklch(0.9685 0.0336 157.66)",
-			"primary-focus": "oklch(0.9489 0.0556 156.34)",
-			"primary-hover": "oklch(0.6901 0.1748 149.64)",
-			"primary-text": "oklch(0.5388 0.1339 149.74)"
+			"primary": "oklch(0.6523 0.2156 142.6)",
+			"primary-accent": "oklch(0.9662 0.0421 145.24)",
+			"primary-focus": "oklch(0.9454 0.0691 145)",
+			"primary-border": "oklch(0.7118 0.2291 142.69)",
+			"primary-hover": "oklch(0.7118 0.2291 142.69)",
+			"primary-text": "oklch(0.5552 0.1767 142.73)"
 		},
 		"dark": {
 			"primary": "oklch(0.6334 0.171 148.65)",
 			"primary-accent": "oklch(0.271 0.0537 151.74)",
 			"primary-focus": "oklch(0.3887 0.0924 150.55)",
+			"primary-border": "oklch(0.5388 0.1339 149.74)",
 			"primary-hover": "oklch(0.6901 0.1748 149.64)",
-			"primary-text": "oklch(0.871 0.1501 153.14)"
+			"primary-text": "oklch(0.7761 0.2117 148.55)"
 		}
 	}
 }

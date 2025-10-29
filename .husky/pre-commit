@@ -15,21 +15,21 @@ echo "$STAGED_FILES" | grep -q "^apps/website/" && {
     echo "📦 Changes detected in website directory"
     
     # Run linting checks on website files
-    echo ":mag: Running lint checks for website..."
+    echo "🔍 Running lint checks for website..."
     pnpm --filter website run lint || {
-        echo ":x: Lint checks failed. Please fix the issues before committing."
+        echo "🙁 Lint checks failed. Please fix the issues before committing."
         exit 1
     }
     
     # Run type checks for website
-    echo ":arrows_counterclockwise: Running type checks for website..."
+    echo "🔄️ Running type checks for website..."
     pnpm --filter website run typecheck || {
-        echo ":x: Type checks failed. Please fix the issues before committing."
+        echo "🙁 Type checks failed. Please fix the issues before committing."
         exit 1
     }
     
     # Run Prettier only on staged website files
-    echo ":art: Formatting code with Prettier for website..."
+    echo "🎨 Formatting code with Prettier for website..."
     pnpm --filter website run format:write || exit 1
     
     # If on main branch, generate component JSON for website
@@ -72,7 +72,7 @@ find apps -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | grep -v "
         if grep -q "\"lint\":" "$DIR/package.json" 2>/dev/null; then
             echo "🔍 Running lint checks for $APP_NAME..."
             pnpm --filter "$APP_NAME" run lint || {
-                echo ":x: Lint checks failed for $APP_NAME. Please fix the issues before committing."
+                echo "🙁 Lint checks failed for $APP_NAME. Please fix the issues before committing."
                 exit 1
             }
         else
@@ -81,9 +81,9 @@ find apps -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | grep -v "
         
         # Check if the app has typecheck script AND run it only if it exists
         if grep -q "\"typecheck\":" "$DIR/package.json" 2>/dev/null; then
-            echo "🔄 Running type checks for $APP_NAME..."
+            echo " Running type checks for $APP_NAME..."
             pnpm --filter "$APP_NAME" run typecheck || {
-                echo ":x: Type checks failed for $APP_NAME. Please fix the issues before committing."
+                echo "❌ Type checks failed for $APP_NAME. Please fix the issues before committing."
                 exit 1
             }
         else
@@ -92,4 +92,4 @@ find apps -maxdepth 1 -type d 2>/dev/null | grep -v "^apps/website$" | grep -v "
     }
 done
 
-echo ":white_check_mark: Pre-commit checks completed successfully!"
+echo "✅😀 Pre-commit checks completed successfully!"

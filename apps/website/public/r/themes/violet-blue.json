@@ -6,15 +6,17 @@
 			"primary": "oklch(0.528 0.2539 282.58)",
 			"primary-accent": "oklch(0.94 0.0271 295.05)",
 			"primary-focus": "oklch(0.9169 0.0383 295.46)",
+			"primary-border": "oklch(0.6784 0.1708 290.38)",
 			"primary-hover": "oklch(0.5768 0.2279 286.25)",
-			"primary-text": "oklch(0.4304 0.202 282.82)"
+			"primary-text": "oklch(0.528 0.2539 282.58)"
 		},
 		"dark": {
 			"primary": "oklch(0.528 0.2539 282.58)",
-			"primary-accent": "oklch(0.2294 0.0753 289.19)",
+			"primary-accent": "oklch(0.1977 0.0597 290.26)",
 			"primary-focus": "oklch(0.2538 0.1064 285.61)",
+			"primary-border": "oklch(0.528 0.2539 282.58)",
 			"primary-hover": "oklch(0.5768 0.2279 286.25)",
-			"primary-text": "oklch(0.7757 0.1162 292.43)"
+			"primary-text": "oklch(0.5768 0.2279 286.25)"
 		}
 	}
 }
