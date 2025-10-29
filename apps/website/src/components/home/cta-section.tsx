@@ -48,7 +48,7 @@ export default function CTASection() {
 
 			{/* Half circle flickering grid */}
 			<div className="not-lg:h-full absolute left-0 top-0 z-10 w-full overflow-hidden lg:aspect-[2/1] lg:rounded-t-full">
-				<FlickeringGrid className="max-h- absolute inset-0 z-10 max-h-[960px]" squareSize={4} gridGap={6} color="#6B7280" maxOpacity={0.4} flickerChance={0.1} />
+				<FlickeringGrid className="absolute inset-0 z-10 max-h-[960px]" squareSize={4} gridGap={6} color="#6B7280" maxOpacity={0.4} flickerChance={0.1} />
 			</div>
 		</div>
 	)

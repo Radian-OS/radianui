@@ -2,6 +2,8 @@
 
 import {
 	AppWindow,
+	ArrowDownRight,
+	ArrowUpRight,
 	Calendar as CalendarIcon,
 	ChartLine,
 	CircleGauge,
@@ -20,17 +22,66 @@ import {
 	SquareCheck,
 	SquareCode,
 	SwatchBook,
-	Table,
+	Table as TableIcon,
 	Tag,
 	Terminal,
 	TextCursorInput,
 	ToggleLeft,
 } from "lucide-react"
+import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
+import { CodeArea } from "@/registry/ui/code-area"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import { FlickeringGrid } from "../effects/flickering"
+
+const datas = [
+	{
+		company: "PLTR",
+		currency: "USD",
+		FY1_growth: 7.54,
+		daily_earning: 250.5,
+		EBITDA: "1.5B",
+		performance: "+35.14%",
+	},
+	{
+		company: "AMZN",
+		currency: "YEN",
+		FY1_growth: -4.11,
+		daily_earning: 95.0,
+		EBITDA: "-285.45M",
+		performance: "-14.14%",
+	},
+	{
+		company: "UBER",
+		currency: "JR",
+		FY1_growth: -14.41,
+		daily_earning: 275.25,
+		EBITDA: "-120M",
+		performance: "-2.14%",
+	},
+	{
+		company: "NFLX",
+		currency: "GE",
+		FY1_growth: 0.73,
+		daily_earning: 120.0,
+		EBITDA: "215M",
+		performance: "+9.8%",
+	},
+	{
+		company: "GOOGL",
+		currency: "CHF",
+		FY1_growth: 28.6,
+		daily_earning: 400.0,
+		EBITDA: "-120M",
+		performance: "+75.4%",
+	},
+]
 
 export default function FeaturesSection() {
+	const { resolvedTheme } = useTheme()
 	return (
 		<div className="flex flex-col items-center gap-20 pt-40">
 			<div className="flex flex-col items-center gap-8">
@@ -87,17 +138,113 @@ export default function FeaturesSection() {
 
 			<div className="border-border w-full max-w-[1440px] rounded-xl border">
 				<div className="border-border flex h-[584px] border-b">
-					<div className="flex-1/3 border-border border-r">
-						<div className="flex flex-col gap-4 pl-16 pt-16">
+					<div className="flex-1/3 border-border relative flex flex-col gap-12 border-r">
+						<div className="flex flex-col gap-4 px-16 pt-16">
 							<Terminal className="bg-primary-focus stroke-primary border-primary rounded-xs cursor-pointer border-2" />
 							<h6 className="heading-6">Copy-paste or install via command line</h6>
 							<p className="text-fg-secondary">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 						</div>
+
+						<div className="pl-[42.5px] pr-[93.5px]">
+							<div className="max-w-107.5 flex max-h-16 rounded-2xl border p-2">
+								<CodeArea
+									language="shell"
+									theme={resolvedTheme === "light" ? "github-light-high-contrast" : "github-dark-default"}
+									code={`npx radianui@latest add [component]`}
+									className="h-12 w-full border"
+								/>
+							</div>
+						</div>
+						<div className="absolute bottom-0 right-0">
+							<div className="bg-fill1 max-h-[200px] max-w-[300px] overflow-hidden rounded-xl rounded-b-none rounded-r-none border border-b-0 border-r-0">
+								<div className="text-fg-tertiary flex items-center justify-between px-4 py-3 text-xs">
+									<div className="gap-1.25 inline-flex items-center">
+										<span className="bg-fg-disabled size-2 rounded-full"></span>
+										<span className="bg-fg-disabled size-2 rounded-full"></span>
+										<span className="bg-fg-disabled size-2 rounded-full"></span>
+									</div>
+									<div className="self-center">radianos.js</div>
+									<div></div>
+								</div>
+								<CodeArea
+									language="tsx"
+									theme={resolvedTheme === "light" ? "github-light-high-contrast" : "github-dark-high-contrast"}
+									code={`import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+
+export default function Page() {
+	return (
+		<div className="min-h-screen w-full overflow-x-hidden">
+			<Background>
+				<div className="pt-30 flex flex-col items-center justify-center gap-12">
+					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
+						<div className="relative h-[28px] rounded-md">
+							<Badge size="28">
+								<Box size={16} />
+								Under Development - Alpha Release
+							</Badge>
+							<BorderBeam size={50} />`}
+								/>
+							</div>
+						</div>
 					</div>
-					<div className="flex-2/3 flex flex-col gap-4 pl-16 pt-16">
-						<ScanEye className="text-primary" size={28} />
-						<h6 className="heading-6">Accessible Components</h6>
-						<p className="text-fg-secondary max-w-116 w-full">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
+					<div className="flex-2/3 pr-15 relative flex flex-col gap-14 pl-16 pt-16">
+						<div className="flex flex-col gap-4">
+							<ScanEye className="text-primary" size={28} />
+							<h6 className="heading-6">Accessible Components</h6>
+							<p className="text-fg-secondary max-w-116 w-full">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
+						</div>
+
+						<div className="flex flex-col overflow-hidden">
+							<FlickeringGrid
+								shape="square"
+								className="inset-0 z-10 max-h-[48px] max-w-[188.8px] self-end"
+								squareSize={3.2}
+								gridGap={3}
+								color={resolvedTheme === "light" ? "#E5DFFB" : "#211452"}
+								maxOpacity={0.4}
+								flickerChance={0.1}
+							/>
+							<div className="overflow-hidden rounded-lg rounded-b-none border border-b-0">
+								<Table>
+									<TableCaption>A list of user details.</TableCaption>
+									<TableHeader>
+										<TableRow>
+											<TableHead>Company</TableHead>
+											<TableHead>CCY</TableHead>
+											<TableHead>FY1 growth</TableHead>
+											<TableHead>Daily Earning</TableHead>
+											<TableHead>EBITDA</TableHead>
+											<TableHead>Performance</TableHead>
+										</TableRow>
+									</TableHeader>
+									<TableBody>
+										{datas.map((data) => (
+											<TableRow key={data.company}>
+												<TableCell className="flex items-center">{data.company}</TableCell>
+												<TableCell>
+													<Badge size="20" color="neutral">
+														{data.currency}
+													</Badge>
+												</TableCell>
+												<TableCell className={cn("flex", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
+													{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
+													{data.FY1_growth}%
+												</TableCell>
+												<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
+												<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
+												<TableCell>
+													<Badge color="success" variant="outline">
+														{data.performance}
+													</Badge>
+												</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								</Table>
+							</div>
+						</div>
 					</div>
 				</div>
 
@@ -159,7 +306,7 @@ export default function FeaturesSection() {
 								Code
 							</Badge>
 							<Badge size="28" variant="outline" color="neutral">
-								<Table />
+								<TableIcon />
 								Table
 							</Badge>
 							<Badge size="28" variant="outline" color="neutral">
@@ -197,13 +344,64 @@ export default function FeaturesSection() {
 					</div>
 				</div>
 				<div className="border-border flex h-[584px] border-b">
-					<div className="flex-2/3 border-border flex flex-col gap-4 border-r pl-16 pt-16">
-						<LayoutDashboard className="text-primary" size={28} />
-						<h6 className="heading-6">Reusable UI Blocks</h6>
-						<p className="text-fg-secondary max-w-116 w-full">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
+					<div className="flex-2/3 border-border gap-22 flex flex-col border-r">
+						<div className="flex flex-col gap-4 pl-16 pt-16">
+							<LayoutDashboard className="text-primary" size={28} />
+							<h6 className="heading-6">Reusable UI Blocks</h6>
+							<p className="text-fg-secondary max-w-116 w-full">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
+						</div>
+						<div className="pl-25 flex items-center gap-[72px]">
+							<div className="max-h-54.25 max-w-50 gap-2.75 flex flex-col">
+								<div className="flex items-center gap-2 rounded-xl border px-3 py-2 text-sm">
+									<Badge className="rounded-lg">
+										<Component />
+									</Badge>
+									Blogs Section /03
+								</div>
+								<div className="flex items-center gap-2 rounded-xl border px-3 py-2 text-sm">
+									<Badge className="rounded-lg">
+										<Component />
+									</Badge>
+									Blogs Section /03
+								</div>
+								<div className="flex items-center gap-2 rounded-xl border px-3 py-2 text-sm">
+									<Badge className="rounded-lg">
+										<Component />
+									</Badge>
+									Blogs Section /03
+								</div>
+								<div className="flex items-center gap-2 rounded-xl border px-3 py-2 text-sm">
+									<Badge className="rounded-lg">
+										<Component />
+									</Badge>
+									Blogs Section /03
+								</div>
+							</div>
+							<div className="h-full rounded-xl rounded-b-none border border-b-0">
+								<div className="flex justify-center gap-2 border border-l-0 border-r-0 border-t-0 px-6 pb-4">
+									<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
+									<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
+								</div>
+								<div className="flex flex-col p-6">
+									<div className="flex flex-col gap-2">
+										<section className="bg-primary-hover h-0.5 w-4 rounded-lg" />
+										<p className="text-fg-secondary text-sm font-semibold">Blogs Section #03</p>
+									</div>
+									<div className="mt-1.5 flex flex-col gap-1.5">
+										<div className="h-0.75 bg-fg-tertiary w-32 rounded-lg" />
+										<div className="h-0.75 bg-fg-tertiary w-23.25 rounded-lg" />
+									</div>
+									<div className="mt-4 flex justify-center gap-2 overflow-hidden">
+										<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
+										<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
+									</div>
+								</div>
+							</div>
+						</div>
+						{/* <div></div> */}
 					</div>
 					<div className="flex-1/3">
-						<div className="pr-15.75 flex flex-col gap-4 pl-16 pt-16">
+						<div className="pr-15.75 relative flex flex-col gap-4 pl-16 pt-16">
 							<CircleGauge className="text-primary" size={28} />
 							<h6 className="heading-6">Performance First Design</h6>
 							<p className="text-fg-secondary">Built with lightweight code and minimal DOM to deliver fast-loading, snappy experiences.</p>
