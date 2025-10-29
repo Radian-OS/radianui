@@ -1,0 +1,10 @@
+{
+  "mode": "exit",
+  "tag": "alpha",
+  "initialVersions": {
+    "website": "0.0.1",
+    "radianui": "0.1.0",
+    "@radianos/typescript-config": "0.0.2"
+  },
+  "changesets": []
+}

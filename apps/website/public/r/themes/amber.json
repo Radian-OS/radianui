@@ -6,6 +6,7 @@
 			"primary": "oklch(0.8016 0.1705 73.27)",
 			"primary-accent": "oklch(0.9622 0.0384 83.83)",
 			"primary-focus": "oklch(0.946 0.0574 85.03)",
+			"primary-border": "oklch(0.7318 0.1522 75.09)",
 			"primary-hover": "oklch(0.8342 0.1594 79.51)",
 			"primary-text": "oklch(0.5461 0.1088 77.73)"
 		},
@@ -13,8 +14,9 @@
 			"primary": "oklch(0.8016 0.1705 73.27)",
 			"primary-accent": "oklch(0.2663 0.0372 84.34)",
 			"primary-focus": "oklch(0.3744 0.0636 81.14)",
+			"primary-border": "oklch(0.5461 0.1088 77.73)",
 			"primary-hover": "oklch(0.8342 0.1594 79.51)",
-			"primary-text": "oklch(0.8776 0.1255 82.88)"
+			"primary-text": "oklch(0.8342 0.1594 79.51)"
 		}
 	}
 }

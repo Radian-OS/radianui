@@ -1,0 +1,22 @@
+{
+    "name": "cyan",
+    "label": "Cyan",
+    "cssVariables": {
+        "light": {
+            "primary": "oklch(0.6549 0.1092 194.82)",
+            "primary-accent": "oklch(0.9719 0.041 196.5)",
+            "primary-focus": "oklch(0.9531 0.0564 196.24)",
+            "primary-border": "oklch(0.7375 0.1249 194.79)",
+            "primary-hover": "oklch(0.7375 0.1249 194.79)",
+            "primary-text": "oklch(0.5517 0.089 194.88)"
+        },
+        "dark": {
+            "primary": "oklch(0.6549 0.1092 194.82)",
+            "primary-accent": "oklch(0.2782 0.0364 195.27)",
+            "primary-focus": "oklch(0.4009 0.0605 195.01)",
+            "primary-border": "oklch(0.5517 0.089 194.88)",
+            "primary-hover": "oklch(0.7375 0.1249 194.79)",
+            "primary-text": "oklch(0.8293 0.1414 194.77)"
+        }
+    }
+}
