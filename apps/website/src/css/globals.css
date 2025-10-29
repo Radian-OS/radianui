@@ -199,9 +199,9 @@
 	--color-success: oklch(0.6334 0.171 148.65);
 	--color-success-accent: oklch(0.271 0.0537 151.74);
 	--color-success-focus: oklch(0.3887 0.0924 150.55);
-	--color-success-border: oklch(0.5552 0.1767 142.73);
+	--color-success-border: oklch(0.5388 0.1339 149.74);
 	--color-success-hover: oklch(0.6901 0.1748 149.64);
-	--color-success-text: oklch(0.871 0.1501 153.14);
+	--color-success-text: oklch(0.7761 0.2117 148.55);
 
 	/* error */
 	--color-error: oklch(0.64 0.22 26.04);
