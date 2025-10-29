@@ -130,7 +130,7 @@ export default function Page() {
 									</DrawerTrigger>
 									<DrawerContent>
 										<DrawerHeader>
-											<DrawerTitle>Header</DrawerTitle>
+											<DrawerTitle>{undefined}</DrawerTitle>
 										</DrawerHeader>
 										<DrawerBody>
 											<TabsList variant="outline-ghost" size="md" className="!h-fit !flex-col md:hidden">

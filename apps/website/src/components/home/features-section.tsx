@@ -48,32 +48,43 @@ export default function FeaturesSection() {
 					</svg>
 
 					{/* Left side line */}
-					{/* <svg className="-left-200 absolute top-1/2" width="698" height="798" viewBox="0 0 698 798" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="-left-180 -top-122 absolute" width="698" height="798" viewBox="0 0 698 798" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M245 609.5H205C191.745 609.5 181 598.755 181 585.5V475.441C181 469.076 178.471 462.971 173.971 458.471L8.52944 293.029C4.02856 288.529 1.5 282.424 1.5 276.059V0"
 							stroke="url(#paint0_linear_1_26452)"
 						/>
-						<rect x="125.5" y="410" width="5" height="5" rx="2.5" fill="#090A0B" />
-						<rect x="127" y="411.5" width="2" height="2" rx="1" fill="#26272C" />
+						<rect x="125.5" y="410" width="5" height="5" rx="2.5" fill="var(--color-soft)" />
+						<rect x="127" y="411.5" width="2" height="2" rx="1" fill="var(--color-soft)" />
 						<path d="M495 463L464.065 494.749C459.548 499.385 453.349 502 446.876 502H285C271.745 502 261 512.745 261 526V798" stroke="url(#paint1_linear_1_26452)" />
 						<path d="M261 606V526C261 512.745 271.745 502 285 502H417" stroke="url(#paint2_linear_1_26452)" />
 						<defs>
 							<linearGradient id="paint0_linear_1_26452" x1="197" y1="-158" x2="196.66" y2="689.5" gradientUnits="userSpaceOnUse">
-								<stop stop-color="#060637" stop-opacity="0" />
-								<stop offset="0.9" stop-color="#1C1D21" />
+								<stop stopColor="var(--color-soft)" stopOpacity="0" />
+								<stop offset="0.9" stopColor="var(--color-soft)" />
 							</linearGradient>
 							<linearGradient id="paint1_linear_1_26452" x1="277.326" y1="798" x2="474.726" y2="432.852" gradientUnits="userSpaceOnUse">
-								<stop stop-color="#060637" stop-opacity="0" />
-								<stop offset="0.15" stop-color="#1C1D21" />
-								<stop offset="0.85" stop-color="#1C1D21" />
-								<stop offset="1" stop-color="#060637" stop-opacity="0" />
+								<stop stopColor="var(--color-soft)" stopOpacity="0" />
+								<stop offset="0.15" stopColor="var(--color-soft)" />
+								<stop offset="0.85" stopColor="var(--color-soft)" />
+								<stop offset="1" stopColor="var(--color-soft)" stopOpacity="0" />
 							</linearGradient>
 							<linearGradient id="paint2_linear_1_26452" x1="243.437" y1="627.677" x2="431.51" y2="475.893" gradientUnits="userSpaceOnUse">
-								<stop stop-color="#623DF5" />
-								<stop offset="1" stop-color="#060637" stop-opacity="0" />
+								<stop offset="1" stopColor="var(--color-soft)" stopOpacity="0" />
 							</linearGradient>
 						</defs>
-					</svg> */}
+					</svg>
+
+					{/* Right side line */}
+					<svg className="-right-180 -top-122 absolute scale-x-[-1]" width="698" height="798" viewBox="0 0 698 798" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M245 609.5H205C191.745 609.5 181 598.755 181 585.5V475.441C181 469.076 178.471 462.971 173.971 458.471L8.52944 293.029C4.02856 288.529 1.5 282.424 1.5 276.059V0"
+							stroke="url(#paint0_linear_1_26452)"
+						/>
+						<rect x="125.5" y="410" width="5" height="5" rx="2.5" fill="var(--color-soft)" />
+						<rect x="127" y="411.5" width="2" height="2" rx="1" fill="var(--color-soft)" />
+						<path d="M495 463L464.065 494.749C459.548 499.385 453.349 502 446.876 502H285C271.745 502 261 512.745 261 526V798" stroke="url(#paint1_linear_1_26452)" />
+						<path d="M261 606V526C261 512.745 271.745 502 285 502H417" stroke="url(#paint2_linear_1_26452)" />
+					</svg>
 				</div>
 				<div className="flex w-full max-w-[730px] flex-col gap-6 text-center">
 					<h2 className="heading-2 text-center">
