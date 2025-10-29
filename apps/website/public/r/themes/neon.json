@@ -1,0 +1,22 @@
+{
+	"name": "neon",
+	"label": "Neon",
+	"cssVariables": {
+		"light": {
+			"primary": "oklch(0.7153 0.1873 128.9)",
+			"primary-accent": "oklch(0.9792 0.0554 122.76)",
+			"primary-focus": "oklch(0.9656 0.0946 123.33)",
+			"primary-border": "oklch(0.825 0.2175 129.2)",
+			"primary-hover": "oklch(0.825 0.2175 129.2)",
+			"primary-text": "oklch(0.5815 0.147 127.99)"
+		},
+		"dark": {
+			"primary": "oklch(0.7153 0.1873 128.9)",
+			"primary-accent": "oklch(0.2834 0.0521 124.56)",
+			"primary-focus": "oklch(0.4073 0.0901 126.4)",
+			"primary-border": "oklch(0.5815 0.147 127.99)",
+			"primary-hover": "oklch(0.825 0.2175 129.2)",
+			"primary-text": "oklch(0.825 0.2175 129.2)"
+		}
+	}
+}
