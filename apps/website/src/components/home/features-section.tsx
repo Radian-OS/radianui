@@ -42,7 +42,8 @@ export default function FeaturesSection() {
 					<svg className="absolute bottom-1/2 left-1/2 -translate-x-1/2" width="1095" height="350" viewBox="0 0 1095 350" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M0.433594 1.2504L70.1484 122C73.1494 127.198 78.6956 130.4 84.6976 130.4L177.71 130.4C184.379 130.4 190.417 134.346 193.095 140.454L280.203 339.097C282.882 345.205 288.886 349.15 295.555 349.15C444.741 349.15 649.277 349.15 798.467 349.15C805.147 349.15 811.159 345.193 813.831 339.071L900.956 139.479C903.629 133.358 909.674 129.4 916.353 129.4L1009.35 129.4C1015.35 129.4 1020.89 126.198 1023.89 121L1093.61 0.250397"
-							stroke="#1C1D21"
+							strokeWidth="1"
+							stroke="var(--color-soft)"
 						/>
 					</svg>
 
@@ -74,13 +75,14 @@ export default function FeaturesSection() {
 						</defs>
 					</svg> */}
 				</div>
-				<div className="flex w-full max-w-[708px] flex-col gap-6 text-center">
+				<div className="flex w-full max-w-[730px] flex-col gap-6 text-center">
 					<h2 className="heading-2 text-center">
-						A design system built for speed, <span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">scale and simplicity.</span>
+						<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">A design system built for speed,</span>
+						<br />
+						<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">scale and simplicity.</span>
 					</h2>
 					<p className="text-fg-secondary text-base font-normal">
-						From tons of figma Components & Multiple Responsive Ui blocks to production-ready React components, Radian gives you everything you need to design, build, and ship
-						faster.
+						Get from design file to production-ready web application. Radian gives you everything you need to design and build faster.
 					</p>
 				</div>
 			</div>
