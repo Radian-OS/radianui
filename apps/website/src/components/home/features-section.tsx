@@ -34,6 +34,7 @@ import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { CodeArea } from "@/registry/ui/code-area"
+import { Skeleton } from "@/registry/ui/skeleton"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
 import { FlickeringGrid } from "../effects/flickering"
 
@@ -196,9 +197,9 @@ export default function FeaturesSection() {
 							<div className="bg-fill1 max-h-[200px] max-w-[300px] overflow-hidden rounded-xl rounded-b-none rounded-r-none border border-b-0 border-r-0">
 								<div className="text-fg-tertiary flex items-center justify-between px-4 py-3 text-xs">
 									<div className="gap-1.25 inline-flex items-center">
-										<span className="bg-fg-disabled size-2 rounded-full"></span>
-										<span className="bg-fg-disabled size-2 rounded-full"></span>
-										<span className="bg-fg-disabled size-2 rounded-full"></span>
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
 									</div>
 									<div className="self-center">radianos.js</div>
 									<div></div>
@@ -417,33 +418,109 @@ export default function Page() {
 
 							<div className="max-w-100 size-full max-h-[384px] rounded-xl border">
 								<div className="flex items-center justify-center gap-2 border border-b border-l-0 border-r-0 border-t-0 px-6 pb-4">
-									<div className="w-43 h-23 bg-fill4-alpha rounded-lg rounded-t-none" />
-									<div className="w-43 h-23 bg-fill4-alpha rounded-lg rounded-t-none" />
+									<Skeleton className="w-43 h-23 bg-fill4-alpha rounded-lg rounded-t-none" />
+									<Skeleton className="w-43 h-23 bg-fill4-alpha rounded-lg rounded-t-none" />
 								</div>
 								<div className="p-6">
 									<div className="flex flex-col gap-1.5">
 										<div className="bg-primary-hover h-0.5 w-4 rounded-lg" />
 										<p className="text-fg-secondary text-sm font-semibold">Blogs Section #03</p>
-										<div className="bg-fg-tertiary h-0.75 w-32 rounded-lg" />
-										<div className="bg-fg-tertiary h-0.75 w-23.25 rounded-lg" />
+										<Skeleton className="h-0.75 bg-fg-disabled w-32 rounded-lg" />
+										<Skeleton className="h-0.75 w-23.25 bg-fg-disabled rounded-lg" />
 									</div>
 									<div className="flex gap-2.5 pt-4">
 										<div className="flex flex-col gap-2">
-											<div className="w-43 h-23 bg-fill4-alpha rounded-lg" />
+											<Skeleton className="w-43 h-23 bg-fill4-alpha rounded-lg" />
 										</div>
 										<div className="flex flex-col gap-2">
-											<div className="w-43 h-23 bg-fill4-alpha rounded-lg" />
+											<Skeleton className="w-43 h-23 bg-fill4-alpha rounded-lg" />
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="flex-1/3">
+					<div className="flex-1/3 relative flex flex-col gap-12 overflow-hidden">
 						<div className="pr-15.75 relative flex flex-col gap-4 pl-16 pt-16">
 							<CircleGauge className="text-primary" size={28} />
 							<h6 className="heading-6">Performance First Design</h6>
 							<p className="text-fg-secondary">Built with lightweight code and minimal DOM to deliver fast-loading, snappy experiences.</p>
+						</div>
+						<div className="gap-18 relative flex h-full items-center">
+							<div className="size-full max-h-[507px] max-w-[398px] overflow-hidden rounded-xl rounded-b-none rounded-l-none border border-b-0 border-l-0">
+								<div className="text-fg-tertiary bg-fill1 flex items-center justify-between rounded-xl rounded-b-none rounded-l-none border border-l-0 border-r-0 border-t-0 px-4 py-3 text-xs">
+									<div className="gap-1.25 inline-flex items-center">
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+									</div>
+									<div className="self-center">radianos.js</div>
+									<div></div>
+								</div>
+								<CodeArea
+									language="tsx"
+									theme={resolvedTheme === "light" ? "github-light-high-contrast" : "github-dark-high-contrast"}
+									code={`import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+
+export default function Page() {
+	return (
+		<div className="min-h-screen w-full overflow-x-hidden">
+			<Background>
+				<div className="pt-30 flex flex-col items-center justify-center gap-12">
+					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
+						<div className="relative h-[28px] rounded-md">
+							<Badge size="28">
+								<Box size={16} />
+								Under Development - Alpha Release
+							</Badge>
+							<BorderBeam size={50} />`}
+								/>
+							</div>
+							<div className="rounded-l-0 size-full max-h-[507px] max-w-[398px] translate-y-[100px] rounded-xl rounded-b-none rounded-r-none border border-b-0 border-r-0">
+								<div className="text-fg-tertiary bg-fill1 flex items-center justify-between rounded-xl rounded-b-none rounded-r-none border border-l-0 border-r-0 border-t-0 px-4 py-3 text-xs">
+									<div className="gap-1.25 inline-flex items-center">
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+									</div>
+									<div className="self-center">radianos.js</div>
+								</div>
+								<div className="bg-linear-to-b from-bg to-fill1 flex h-full w-full flex-col gap-1.5 pl-16 pt-16">
+									<div className="w-5.75 h-0.75 bg-primary rounded-lg" />
+									<h5 className="heading-6 text-fg-secondary max-w-[179px]">Enhance your productivity.</h5>
+									<Skeleton className="h-0.75 w-32 rounded-lg" />
+									<Skeleton className="h-0.75 w-23.25 rounded-lg" />
+								</div>
+							</div>
+							<svg className="right-7.5 absolute top-0" width={250} height={140} viewBox="0 0 198 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M194.5 57L194.5 46.5C194.5 28.8269 180.173 14.5 162.5 14.5L3 14.5" className="stroke-fg-disabled" strokeDasharray="6 4" />
+								<g filter="url(#filter0_d_851_5324)">
+									<rect x={84} width={28} height={28} rx={8} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} shapeRendering="crispEdges" />
+									<rect x={84.5} y={0.5} width={27} height={27} rx={7.5} className="stroke-fg-disabled" shapeRendering="crispEdges" />
+									<path
+										d="M92.6663 15.3333C92.5401 15.3337 92.4164 15.2983 92.3096 15.2313C92.2027 15.1642 92.1171 15.0682 92.0626 14.9544C92.0082 14.8406 91.9871 14.7137 92.0019 14.5884C92.0167 14.4631 92.0668 14.3446 92.1463 14.2466L98.7463 7.44661C98.7958 7.38947 98.8632 7.35085 98.9376 7.3371C99.0119 7.32335 99.0887 7.33529 99.1554 7.37095C99.2221 7.40661 99.2746 7.46388 99.3045 7.53335C99.3343 7.60283 99.3396 7.68038 99.3196 7.75328L98.0396 11.7666C98.0018 11.8676 97.9892 11.9763 98.0026 12.0833C98.0161 12.1903 98.0554 12.2924 98.117 12.3809C98.1786 12.4694 98.2608 12.5416 98.3564 12.5914C98.4521 12.6412 98.5584 12.667 98.6663 12.6666H103.333C103.459 12.6662 103.583 12.7016 103.69 12.7686C103.796 12.8357 103.882 12.9317 103.937 13.0455C103.991 13.1593 104.012 13.2862 103.997 13.4115C103.982 13.5368 103.932 13.6553 103.853 13.7533L97.2529 20.5533C97.2034 20.6104 97.1359 20.649 97.0616 20.6628C96.9873 20.6765 96.9104 20.6646 96.8438 20.6289C96.7771 20.5933 96.7245 20.536 96.6947 20.4665C96.6649 20.3971 96.6595 20.3195 96.6796 20.2466L97.9596 16.2333C97.9973 16.1323 98.01 16.0236 97.9965 15.9166C97.983 15.8096 97.9438 15.7075 97.8822 15.619C97.8206 15.5305 97.7384 15.4583 97.6427 15.4085C97.5471 15.3587 97.4408 15.3329 97.3329 15.3333H92.6663Z"
+										className="stroke-fg-secondary"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+									/>
+								</g>
+								<circle cx={3.5} cy={13.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+								<circle cx={194.5} cy={53.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+								<defs>
+									<filter id="filter0_d_851_5324" x={83} y={0} width={30} height={30} filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+										<feFlood floodOpacity={0} result="BackgroundImageFix" />
+										<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+										<feOffset dy={1} />
+										<feGaussianBlur stdDeviation={0.5} />
+										<feComposite in2="hardAlpha" operator="out" />
+										<feColorMatrix type="matrix" values="0 0 0 0 0.0980392 0 0 0 0 0.0941176 0 0 0 0 0.105882 0 0 0 0.04 0" />
+										<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_851_5324" />
+										<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_851_5324" result="shape" />
+									</filter>
+								</defs>
+							</svg>
 						</div>
 					</div>
 				</div>
