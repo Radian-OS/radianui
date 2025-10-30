@@ -8,7 +8,7 @@ function ButtonSplitExample() {
 		<div className="flex items-center justify-center gap-4">
 			<Dropdown>
 				<ButtonGroup>
-					<Button>Squash and Merge</Button>
+					<Button>Download File</Button>
 					<DropdownTrigger asChild>
 						<IconButton>
 							<ChevronDown />

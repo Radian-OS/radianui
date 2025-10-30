@@ -1,11 +1,14 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import {
 	AppWindow,
 	ArrowDownRight,
 	ArrowUpRight,
+	BadgeCheck,
 	Calendar as CalendarIcon,
 	ChartLine,
+	Check,
 	CircleGauge,
 	CircleUser,
 	ClipboardCheck,
@@ -34,6 +37,7 @@ import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { CodeArea } from "@/registry/ui/code-area"
+import { Progress } from "@/registry/ui/progress"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Spinner } from "@/registry/ui/spinner"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
@@ -84,6 +88,20 @@ const datas = [
 
 export default function FeaturesSection() {
 	const { resolvedTheme } = useTheme()
+	const [progress, setProgress] = useState(0)
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setProgress((prev) => {
+				if (prev >= 70) {
+					clearInterval(interval)
+					return 70
+				}
+				return prev + 1
+			})
+		}, 500)
+		return () => clearInterval(interval)
+	}, [])
 	return (
 		<div className="flex flex-col items-center gap-20 pt-40">
 			<div className="flex flex-col items-center gap-8">
@@ -554,7 +572,37 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
     }`}
 								/>
 							</div>
-							<div className="size-full rounded-xl border px-5 py-4"></div>
+							<div className="flex size-full flex-col gap-4 rounded-xl border px-5 py-4">
+								<section className="flex items-center justify-between">
+									<p className="inline-flex flex-col">
+										<span className="text-lg font-medium">Basic</span>
+										<span className="text-fg-secondary text-[13px]">$12</span>
+									</p>
+									<Badge variant="strong" color="primary">
+										<BadgeCheck />
+										Active
+									</Badge>
+								</section>
+								<ul className="text-fg-secondary flex flex-col gap-3 text-[13px]">
+									<li className="flex gap-2">
+										<Check size={16} />
+										500 tokens
+									</li>
+									<li className="flex gap-2">
+										<Check size={16} /> Rewrite Content
+									</li>
+									<li className="flex gap-2">
+										<Check size={16} /> Basic Themes
+									</li>
+									<li className="flex gap-2">
+										<Check size={16} /> Web Publish
+									</li>
+								</ul>
+								<div className="flex flex-col gap-2">
+									<Progress className="w-52.5 h-1.5" value={progress} />
+									<p className="text-fg-secondary text-[13px]">250 / 500 tokens</p>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div className="flex w-1/2 flex-col gap-4 pl-16 pt-16">

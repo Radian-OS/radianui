@@ -18,9 +18,9 @@ function LoadingButtonExample() {
 	const [loading, setLoading] = useState(false)
 	const [disabled, setDisabled] = useState(false)
 	return (
-		<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
 			<Button disabled={disabled} loading={loading}>
-				Loading
+				Sync Progress
 			</Button>
 			<IconButton disabled={disabled} loading={loading}>
 				<User />
