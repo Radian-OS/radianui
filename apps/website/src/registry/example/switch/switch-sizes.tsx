@@ -6,11 +6,21 @@ export default function SwitchSizes() {
 		<div className="flex gap-6">
 			<div className="flex items-center space-x-2">
 				<Switch id="size-sm" size="20" />
-				<Label htmlFor="size-sm">Size 20</Label>
+				<Label htmlFor="size-sm" className="text-fg-secondary">
+					Size 20
+				</Label>
 			</div>
 			<div className="flex items-center space-x-2">
 				<Switch id="size-md" size="24" />
-				<Label htmlFor="size-md">Size 24</Label>
+				<Label htmlFor="size-md" className="text-fg-secondary">
+					Size 24
+				</Label>
+			</div>
+			<div className="flex items-center space-x-2">
+				<Switch id="size-lg" size="32" />
+				<Label htmlFor="size-lg" className="text-fg-secondary">
+					Size 32
+				</Label>
 			</div>
 		</div>
 	)
