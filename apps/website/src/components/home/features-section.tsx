@@ -29,7 +29,6 @@ import {
 	ToggleLeft,
 } from "lucide-react"
 import { useTheme } from "next-themes"
-import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -169,7 +168,24 @@ export default function FeaturesSection() {
 								/>
 							</div>
 						</div>
-						<Image src="/homepage/features-section/Group.svg" width={100} className="bottom-6.5 absolute left-[20.75%] z-10" height={100} alt="name" />
+						<svg className="bottom-6.5 absolute left-[20.75%] z-10" width={100} height={254} viewBox="0 0 80 203" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M3.5 7V150.5C3.5 163.755 14.2452 174.5 27.5 174.5H56.5" stroke="url(#paint0_linear_851_12638)" strokeDasharray="2 2" />
+							<path d="M73 200H69C62.3726 200 58 194.627 57 188V170" className="stroke-fg-disabled" />
+							<path d="M73 150H69C62.3726 150 57 155.373 57 162V180" className="stroke-fg-disabled" />
+							<circle cx={76} cy={149.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<circle cx={76} cy={174.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<circle cx={76} cy={199.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<path d="M57.5 174.5H73" className="stroke-fg-disabled" />
+							<circle cx={3.5} cy={3.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<defs>
+								<linearGradient id="paint0_linear_851_12638" x1={-28} y1={26} x2={86} y2={186.5} gradientUnits="userSpaceOnUse">
+									<stop stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
+									<stop offset={0.466346} stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
+									<stop offset={0.87} stopColor={resolvedTheme === "light" ? "#623DF5" : "#7655F6"} />
+									<stop offset={0.88} stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
+								</linearGradient>
+							</defs>
+						</svg>
 						<div className="absolute bottom-0 right-0">
 							<div className="bg-fill1 max-h-[200px] max-w-[300px] overflow-hidden rounded-xl rounded-b-none rounded-r-none border border-b-0 border-r-0">
 								<div className="text-fg-tertiary flex items-center justify-between px-4 py-3 text-xs">
