@@ -29,6 +29,7 @@ import {
 	ToggleLeft,
 } from "lucide-react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -168,6 +169,7 @@ export default function FeaturesSection() {
 								/>
 							</div>
 						</div>
+						<Image src="/homepage/features-section/Group.svg" width={100} className="bottom-6.5 absolute left-[20.75%] z-10" height={100} alt="name" />
 						<div className="absolute bottom-0 right-0">
 							<div className="bg-fill1 max-h-[200px] max-w-[300px] overflow-hidden rounded-xl rounded-b-none rounded-r-none border border-b-0 border-r-0">
 								<div className="text-fg-tertiary flex items-center justify-between px-4 py-3 text-xs">
@@ -357,13 +359,13 @@ export default function Page() {
 					</div>
 				</div>
 				<div className="border-border flex h-[584px] border-b">
-					<div className="flex-2/3 border-border gap-22 flex flex-col border-r">
+					<div className="flex-2/3 border-border gap-22 flex flex-col overflow-hidden border-r">
 						<div className="flex flex-col gap-4 pl-16 pt-16">
 							<LayoutDashboard className="text-primary" size={28} />
 							<h6 className="heading-6">Reusable UI Blocks</h6>
 							<p className="text-fg-secondary max-w-116 w-full">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
 						</div>
-						<div className="pl-25 flex items-center gap-[72px]">
+						<div className="gap-18 relative flex items-center justify-center">
 							<div className="max-h-54.25 max-w-50 gap-2.75 flex flex-col">
 								<div className="flex items-center gap-2 rounded-xl border px-3 py-2 text-sm">
 									<Badge className="rounded-lg">
@@ -390,28 +392,30 @@ export default function Page() {
 									Blogs Section /03
 								</div>
 							</div>
-							<div className="h-full rounded-xl rounded-b-none border border-b-0">
-								<div className="flex justify-center gap-2 border border-l-0 border-r-0 border-t-0 px-6 pb-4">
-									<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
-									<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
+
+							<div className="max-w-100 size-full max-h-[384px] rounded-xl border">
+								<div className="flex items-center justify-center gap-2 border border-b border-l-0 border-r-0 border-t-0 px-6 pb-4">
+									<div className="w-43 h-23 bg-fill4-alpha rounded-lg rounded-t-none" />
+									<div className="w-43 h-23 bg-fill4-alpha rounded-lg rounded-t-none" />
 								</div>
-								<div className="flex flex-col p-6">
-									<div className="flex flex-col gap-2">
-										<section className="bg-primary-hover h-0.5 w-4 rounded-lg" />
+								<div className="p-6">
+									<div className="flex flex-col gap-1.5">
+										<div className="bg-primary-hover h-0.5 w-4 rounded-lg" />
 										<p className="text-fg-secondary text-sm font-semibold">Blogs Section #03</p>
+										<div className="bg-fg-tertiary h-0.75 w-32 rounded-lg" />
+										<div className="bg-fg-tertiary h-0.75 w-23.25 rounded-lg" />
 									</div>
-									<div className="mt-1.5 flex flex-col gap-1.5">
-										<div className="h-0.75 bg-fg-tertiary w-32 rounded-lg" />
-										<div className="h-0.75 bg-fg-tertiary w-23.25 rounded-lg" />
-									</div>
-									<div className="mt-4 flex justify-center gap-2 overflow-hidden">
-										<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
-										<div className="bg-fill4-alpha w-43 h-23 rounded-md rounded-t-none" />
+									<div className="flex gap-2.5 pt-4">
+										<div className="flex flex-col gap-2">
+											<div className="w-43 h-23 bg-fill4-alpha rounded-lg" />
+										</div>
+										<div className="flex flex-col gap-2">
+											<div className="w-43 h-23 bg-fill4-alpha rounded-lg" />
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						{/* <div></div> */}
 					</div>
 					<div className="flex-1/3">
 						<div className="pr-15.75 relative flex flex-col gap-4 pl-16 pt-16">
