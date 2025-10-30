@@ -27,8 +27,6 @@ export function transformImport(sourceFile: SourceFile, config: RawConfig): stri
 }
 
 function updateImportAliases(moduleSpecifier: string, config: RawConfig): string {
-	if (!moduleSpecifier.startsWith("@/")) return moduleSpecifier
-
 	if (moduleSpecifier.match(/^@\/registry\/ui/)) {
 		return moduleSpecifier.replace(/^@\/registry\/ui/, config.aliases.ui ?? `${config.aliases.components}/ui`)
 	}
@@ -49,5 +47,13 @@ function updateImportAliases(moduleSpecifier: string, config: RawConfig): string
 		return moduleSpecifier.replace(/^@\/registry\/hooks/, config.aliases.hooks)
 	}
 
-	return moduleSpecifier.replace(/^@\/app\/registry\/(.+)\/components/, config.aliases.components)
+	if (config.aliases.components && moduleSpecifier.match(/^.\/components/)) {
+		return moduleSpecifier.replace(/^.\/components/, config.aliases.components)
+	}
+
+	if (config.aliases.components && moduleSpecifier.match(/^@\/app\/registry\/(.+)\/components/)) {
+		return moduleSpecifier.replace(/^@\/app\/registry\/(.+)\/components/, config.aliases.components)
+	}
+
+	return moduleSpecifier
 }

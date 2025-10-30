@@ -74,7 +74,6 @@ export default function App() {
 
 ### Install TailwindCSS
 
-<br />
 <PackageManagerTabs
 	commands={{
 		npm: "npm install tailwindcss @tailwindcss/vite",
@@ -90,9 +89,9 @@ Replace everything in src/index.css with following
 
 ### Edit tsconfig.json file
 
-<br />
 The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the baseUrl and paths properties to the compilerOptions section of
 the tsconfig.json and tsconfig.app.json files:
+
 <br />
 <CodeSnippet
 	title="tsconfig.json"
@@ -118,7 +117,6 @@ the tsconfig.json and tsconfig.app.json files:
 
 ### Edit tsconfig.app.json file
 
-<br />
 <CodeSnippet
 	title="tsconfig.app.json"
 	showLineNumber
@@ -138,8 +136,8 @@ the tsconfig.json and tsconfig.app.json files:
 
 ### Update vite.config.ts
 
-<br />
 Add the following code to the vite.config.ts so your app can resolve paths without error:
+
 <br />
 <PackageManagerTabs
 	commands={{
@@ -171,8 +169,8 @@ alias: {
 
 ### Run the CLI
 
-<br/>
 Run the radian init command to setup your project:
+
 <br/>
 <PackageManagerTabs
 commands={{
@@ -200,8 +198,8 @@ Success! Project initialization completed. You may now add components.`}
 
 ### Add Components
 
-<br />
 You can now start adding components to your project.
+
 <br />
 <PackageManagerTabs
 	commands={{
@@ -218,7 +216,7 @@ The command above will add the `Button` component to your project. You can then 
 <CodeSnippet
 					title="app.tsx"
 					showLineNumber
-					code={`import {Button} from "@/components/ui/Button"
+					code={`import { Button } from "@/components/ui/Button"
 
 export default function App() {
   return (

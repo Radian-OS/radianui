@@ -12,6 +12,7 @@ export interface FlickeringGridProps {
 	height?: number
 	className?: string
 	maxOpacity?: number
+	shape?: "circle" | "square" | "mixed"
 }
 
 export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
@@ -23,6 +24,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 	height,
 	className,
 	maxOpacity = 0.3,
+	shape = "circle",
 }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -88,19 +90,26 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 					const opacity = squares[i * rows + j]
 					ctx.fillStyle = `${memoizedColor}${opacity})`
 
-					// Calculate circle center and radius
-					const centerX = (i * (squareSize + gridGap) + squareSize / 2) * dpr
-					const centerY = (j * (squareSize + gridGap) + squareSize / 2) * dpr
-					const radius = (squareSize / 2) * dpr
+					const x = i * (squareSize + gridGap) * dpr
+					const y = j * (squareSize + gridGap) * dpr
+					const size = squareSize * dpr
 
-					// Draw circle instead of rectangle
-					ctx.beginPath()
-					ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
-					ctx.fill()
+					const isCircle = shape === "circle" ? true : shape === "square" ? false : Math.random() < 0.5 // mixed
+
+					if (isCircle) {
+						const centerX = x + size / 2
+						const centerY = y + size / 2
+						const radius = size / 2
+						ctx.beginPath()
+						ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
+						ctx.fill()
+					} else {
+						ctx.fillRect(x, y, size, size)
+					}
 				}
 			}
 		},
-		[memoizedColor, squareSize, gridGap]
+		[memoizedColor, squareSize, gridGap, shape]
 	)
 
 	useEffect(() => {

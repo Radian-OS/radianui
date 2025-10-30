@@ -1,22 +1,22 @@
 {
-	"name": "purple",
-	"label": "Purple",
-	"cssVariables": {
-		"light": {
-			"primary": "oklch(0.5554 0.2522 292.8)",
-			"primary-accent": "oklch(0.9424 0.0277 301.75)",
-			"primary-focus": "oklch(0.92 0.0391 301.86)",
-			"primary-border": "oklch(0.6963 0.1724 298.93)",
-			"primary-hover": "oklch(0.6106 0.2219 295.95)",
-			"primary-text": "oklch(0.5554 0.2522 292.8)"
-		},
-		"dark": {
-			"primary": "oklch(0.5554 0.2522 292.8)",
-			"primary-accent": "oklch(0.2026 0.0599 297.11)",
-			"primary-focus": "oklch(0.2652 0.1063 295.14)",
-			"primary-border": "oklch(0.5554 0.2522 292.8)",
-			"primary-hover": "oklch(0.6106 0.2219 295.95)",
-			"primary-text": "oklch(0.6963 0.1724 298.93)"
-		}
-	}
+    "name": "purple",
+    "label": "Purple",
+    "cssVariables": {
+        "light": {
+            "primary": "oklch(0.5554 0.2522 292.8)",
+            "primary-accent": "oklch(0.9424 0.0277 301.75)",
+            "primary-focus": "oklch(0.92 0.0391 301.86)",
+            "primary-border": "oklch(0.6963 0.1724 298.93)",
+            "primary-hover": "oklch(0.6106 0.2219 295.95)",
+            "primary-text": "oklch(0.5554 0.2522 292.8)"
+        },
+        "dark": {
+            "primary": "oklch(0.5554 0.2522 292.8)",
+            "primary-accent": "oklch(0.2026 0.0599 297.11)",
+            "primary-focus": "oklch(0.2652 0.1063 295.14)",
+            "primary-border": "oklch(0.5554 0.2522 292.8)",
+            "primary-hover": "oklch(0.6106 0.2219 295.95)",
+            "primary-text": "oklch(0.6963 0.1724 298.93)"
+        }
+    }
 }
