@@ -30,13 +30,15 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-primary: oklch(0.528 0.2539 282.58);
 	--color-primary-accent: oklch(0.94 0.0271 295.05);
 	--color-primary-focus: oklch(0.9169 0.0383 295.46);
+	--color-primary-border: oklch(0.6784 0.1708 290.38);
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
-	--color-primary-text: oklch(0.4304 0.202 282.82);
+	--color-primary-text: oklch(0.528 0.2539 282.58);
 
 	/* success */
 	--color-success: oklch(0.6334 0.171 148.65);
 	--color-success-accent: oklch(0.9685 0.0336 157.66);
 	--color-success-focus: oklch(0.9489 0.0556 156.34);
+	--color-success-border: oklch(0.6901 0.1748 149.64);
 	--color-success-hover: oklch(0.6901 0.1748 149.64);
 	--color-success-text: oklch(0.5388 0.1339 149.74);
 
@@ -44,6 +46,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-error: oklch(0.64 0.22 26.04);
 	--color-error-accent: oklch(0.9465 0.0252 17.61);
 	--color-error-focus: oklch(0.9133 0.0414 17.93);
+	--color-error-border: oklch(0.719 0.1751 22.5);
 	--color-error-hover: oklch(0.6786 0.2095 24.66);
 	--color-error-text: oklch(0.5716 0.2125 27.27);
 
@@ -51,6 +54,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-warning: oklch(0.8016 0.1705 73.27);
 	--color-warning-accent: oklch(0.9622 0.0384 83.83);
 	--color-warning-focus: oklch(0.946 0.0574 85.03);
+	--color-warning-border: oklch(0.7318 0.1522 75.09);
 	--color-warning-hover: oklch(0.8342 0.1594 79.51);
 	--color-warning-text: oklch(0.5461 0.1088 77.73);
 
@@ -58,6 +62,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-info: oklch(0.6092 0.2041 255.8);
 	--color-info-accent: oklch(0.949 0.0213 245.85);
 	--color-info-focus: oklch(0.9135 0.0358 249.52);
+	--color-info-border: oklch(0.829 0.0811 248.83);
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
 	--color-info-text: oklch(0.4663 0.1065 251.21);
 
@@ -100,38 +105,43 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 .dark {
 	/* primary */
 	--color-primary: oklch(0.528 0.2539 282.58);
-	--color-primary-accent: oklch(0.2294 0.0753 289.19);
+	--color-primary-accent: oklch(0.1977 0.0597 290.26);
 	--color-primary-focus: oklch(0.2538 0.1064 285.61);
+	--color-primary-border: oklch(0.528 0.2539 282.58);
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
-	--color-primary-text: oklch(0.7757 0.1162 292.43);
+	--color-primary-text: oklch(0.5768 0.2279 286.25);
 
 	/* success */
 	--color-success: oklch(0.6334 0.171 148.65);
 	--color-success-accent: oklch(0.271 0.0537 151.74);
 	--color-success-focus: oklch(0.3887 0.0924 150.55);
+	--color-success-border: oklch(0.5388 0.1339 149.74);
 	--color-success-hover: oklch(0.6901 0.1748 149.64);
-	--color-success-text: oklch(0.871 0.1501 153.14);
+	--color-success-text: oklch(0.7761 0.2117 148.55);
 
 	/* error */
 	--color-error: oklch(0.64 0.22 26.04);
 	--color-error-accent: oklch(0.2567 0.0648 22.77);
 	--color-error-focus: oklch(0.2973 0.0922 24.71);
+	--color-error-border: oklch(0.4423 0.146 25.48);
 	--color-error-hover: oklch(0.6786 0.2095 24.66);
-	--color-error-text: oklch(0.7884 0.1226 20.19);
+	--color-error-text: oklch(0.719 0.1751 22.5);
 
 	/* warning */
 	--color-warning: oklch(0.8016 0.1705 73.27);
 	--color-warning-accent: oklch(0.2663 0.0372 84.34);
 	--color-warning-focus: oklch(0.3744 0.0636 81.14);
+	---color-warning-border: oklch(0.5461 0.1088 77.73);
 	--color-warning-hover: oklch(0.8342 0.1594 79.51);
-	--color-warning-text: oklch(0.8776 0.1255 82.88);
+	--color-warning-text: oklch(0.8342 0.1594 79.51);
 
 	/* information */
 	--color-info: oklch(0.6092 0.2041 255.8);
-	--color-info-accent: oklch(0.2739 0.0462 248.76);
+	--color-info-accent: oklch(0.2332 0.0364 248.15);
 	--color-info-focus: oklch(0.3147 0.0668 250.78);
+	--color-info-border: oklch(0.5067 0.1401 252.67);
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
-	--color-info-text: oklch(0.829 0.0811 248.83);
+	--color-info-text: oklch(0.7466 0.122 250.09);
 
 	/* background */
 	--color-bg: oklch(0.144 0.0028 247.09);
@@ -179,6 +189,24 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 		/* Font Families */
 		--heading-font: "Inter Display", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
+	}
+	/* Safari button fix - prevents shrinking on hover */
+	button,
+	[role="button"],
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"] {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		will-change: auto;
+	}
+
+	/* Specific fix for gradient buttons */
+	button[class*="bg-gradient"],
+	[role="button"][class*="bg-gradient"] {
+		will-change: background-image;
 	}
 }
 
@@ -307,20 +335,4 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 		/* Chrome, Safari and Opera */
 	}
 }
-
-@layer utilities {
-	/* Chrome & other browser puts a background color on autofill inputs,
-	 this removes it */
-	input:-webkit-autofill,
-	input:-webkit-autofill:hover,
-	input:-webkit-autofill:focus,
-	input:-webkit-autofill:active {
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: inherit;
-		transition: background-color 5000s ease-in-out 0s;
-		box-shadow: inset 0 0 20px 20px transparent;
-	}
-}
-
-
 `

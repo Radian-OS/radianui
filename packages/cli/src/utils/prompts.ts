@@ -14,23 +14,23 @@ export type PromptForNewProject = {
 }
 
 const COLORS = [
-	{ title: "Red", value: "red", hex: "#EF4444" },
+	{ title: "Red", value: "red", hex: "#F53D3D" },
 	{ title: "Orange", value: "orange", hex: "#F97316" },
-	{ title: "Amber", value: "amber", hex: "#F59E0B" },
-	{ title: "Yellow", value: "yellow", hex: "#EAB308" },
-	{ title: "Neon", value: "neon", hex: "#39FF14" },
-	{ title: "Green", value: "green", hex: "#22C55E" },
-	{ title: "Emerald", value: "emerald", hex: "#10B981" },
-	{ title: "Teal", value: "teal", hex: "#14B8A6" },
-	{ title: "Cyan", value: "cyan", hex: "#06B6D4" },
-	{ title: "Light Blue", value: "light-blue", hex: "#0EA5E9" },
-	{ title: "Blue", value: "blue", hex: "#3B82F6" },
-	{ title: "Violet Blue (Default)", value: "violet-blue", hex: "#6366F1" },
-	{ title: "Purple", value: "purple", hex: "#A855F7" },
-	{ title: "Dark Orchid", value: "dark-orchid", hex: "#9932CC" },
-	{ title: "Fuchsia", value: "fuchsia", hex: "#D946EF" },
-	{ title: "Magenta", value: "magenta", hex: "#FF00FF" },
-	{ title: "Rose", value: "rose", hex: "#F43F5E" },
+	{ title: "Amber", value: "amber", hex: "#FFAA00" },
+	{ title: "Yellow", value: "yellow", hex: "#DFBB0C" },
+	{ title: "Neon", value: "neon", hex: "#7EB80A" },
+	{ title: "Green", value: "green", hex: "#13AE13" },
+	{ title: "Emerald", value: "emerald", hex: "#1DA54A" },
+	{ title: "Teal", value: "teal", hex: "#12A580" },
+	{ title: "Cyan", value: "cyan", hex: "#12A5A5" },
+	{ title: "Light Blue", value: "light-blue", hex: "#067FF9" },
+	{ title: "Blue", value: "blue", hex: "#4755EB" },
+	{ title: "Violet Blue (Default)", value: "violet-blue", hex: "#623DF5" },
+	{ title: "Purple", value: "purple", hex: "#803DF5" },
+	{ title: "Dark Orchid", value: "dark-orchid", hex: "#BB33FF" },
+	{ title: "Fuchsia", value: "fuchsia", hex: "#EB47EB" },
+	{ title: "Magenta", value: "magenta", hex: "#E519A1" },
+	{ title: "Rose", value: "rose", hex: "#F53D7A" },
 ]
 
 export const promptForNewProject = async (options: InitOptions): Promise<PromptForNewProject> => {
@@ -101,7 +101,7 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 					title: chalk.hex(color.hex)(color.title),
 					value: color.value,
 				})),
-				initial: 0,
+				initial: 11,
 			})
 
 	// Get font
