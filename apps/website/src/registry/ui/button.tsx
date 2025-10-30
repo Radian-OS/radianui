@@ -72,8 +72,8 @@ export const buttonVariants = cva(
 				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-[10px]",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-[10px]",
 			},
 			loading: {
 				true: "",
@@ -528,8 +528,8 @@ export const iconButtonSizeVariants = cva("", {
 			"32": "[&>svg]:size-4.5 rounded-md size-8 p-1.75",
 			"36": "[&>svg]:size-5 rounded-lg size-9 p-2",
 			"40": "[&>svg]:size-5 rounded-lg size-10 p-2.5",
-			"44": "[&>svg]:size-5 rounded-lg size-11 p-3",
-			"48": "[&>svg]:size-6 rounded-lg size-12 p-3",
+			"44": "[&>svg]:size-5 rounded-[10px] size-11 p-3",
+			"48": "[&>svg]:size-6 rounded-[10px] size-12 p-3",
 		},
 		variant: {
 			outline: "",
@@ -559,6 +559,7 @@ function IconButton({ loading = false, variant = "strong", size = "36", color = 
 			variant: variant === "outline" ? "outline" : "default",
 		}),
 		disabled && "opacity-50",
+		"flex items-center justify-center",
 		className
 	)
 
@@ -570,6 +571,8 @@ function IconButton({ loading = false, variant = "strong", size = "36", color = 
 		</Comp>
 	)
 }
+
+IconButton.displayName = "IconButton"
 
 IconButton.displayName = "IconButton"
 

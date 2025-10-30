@@ -6,7 +6,7 @@ function ButtonIconOnlyExample() {
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
 			<IconButton color="neutral" variant="outline">
-				<Settings className="hover:animate-spin" />
+				<Settings />
 			</IconButton>
 			<IconButton variant="soft" color="error">
 				<Trash2 />
