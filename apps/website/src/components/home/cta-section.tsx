@@ -14,7 +14,7 @@ export default function CTASection() {
 				<h2 className="heading-2">
 					Build faster with <span className="text-primary-text">Radian</span>
 				</h2>
-				<p className="text-fg-secondary text-lg font-normal">Copy, paste, and customize your next feature without starting from scratch.</p>
+				<p className="text-fg-secondary text-center text-lg font-normal">Copy, paste, and customize your next feature without starting from scratch.</p>
 			</div>
 			<div className="z-40 flex items-center gap-3">
 				<Button variant="outline" color="neutral" size="40">
