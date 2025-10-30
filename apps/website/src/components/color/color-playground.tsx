@@ -1,29 +1,141 @@
-import React, { useState } from "react"
+"use client"
+
+import React, { useEffect, useMemo, useState } from "react"
+import { CheckIcon, CopyIcon } from "lucide-react"
 import CommonCard from "@/components/common/common-card"
+import { useCopyPaste } from "@/hooks/use-copy-paste"
+import { IconButton } from "@/registry/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
-const ColorPlayground = () => {
-	const [color, setColor] = useState("primary")
+const COLORS = [
+	{ title: "Red", value: "red" },
+	{ title: "Orange", value: "orange" },
+	{ title: "Amber", value: "amber" },
+	{ title: "Yellow", value: "yellow" },
+	{ title: "Neon", value: "neon" },
+	{ title: "Green", value: "green" },
+	{ title: "Emerald", value: "emerald" },
+	{ title: "Teal", value: "teal" },
+	{ title: "Cyan", value: "cyan" },
+	{ title: "Light Blue", value: "light-blue" },
+	{ title: "Blue", value: "blue" },
+	{ title: "Violet Blue (Default)", value: "violet-blue" },
+	{ title: "Purple", value: "purple" },
+	{ title: "Dark Orchid", value: "dark-orchid" },
+	{ title: "Fuchsia", value: "fuchsia" },
+	{ title: "Magenta", value: "magenta" },
+	{ title: "Rose", value: "rose" },
+] as const
+
+const CSS_VARIABLE_ORDER = ["primary", "primary-accent", "primary-focus", "primary-border", "primary-hover", "primary-text"] as const
+
+type Theme = {
+	name: string
+	label?: string
+	cssVariables?: {
+		light?: Record<string, string>
+		dark?: Record<string, string>
+	}
+}
+
+function buildCssBlock(vars: Record<string, string> | undefined): string {
+	const lines = CSS_VARIABLE_ORDER.map(function (key) {
+		return vars?.[key] ? `\t--color-${key}: ${vars[key]};` : null
+	})
+		.filter(Boolean)
+		.join("\n")
+	return `${lines}`
+}
+
+function computeCss(theme: Theme): string {
+	const lightBlock = buildCssBlock(theme.cssVariables?.light)
+	const darkBlock = buildCssBlock(theme.cssVariables?.dark)
+	return `/* Light theme */\n${lightBlock}\n\n/* Dark theme */\n${darkBlock}`
+}
+
+function useTheme(colorName: string) {
+	const [theme, setTheme] = useState<Theme | null>(null)
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState<string | null>(null)
+
+	useEffect(
+		function () {
+			const cache = new Map<string, Theme>()
+
+			async function fetchTheme() {
+				if (cache.has(colorName)) {
+					setTheme(cache.get(colorName)!)
+					return
+				}
+				setLoading(true)
+				setError(null)
+				try {
+					const res = await fetch(`/r/themes/${colorName}.json`, { cache: "force-cache" })
+					if (!res.ok) throw new Error(`Failed to load theme: ${res.statusText}`)
+					const data: Theme = await res.json()
+					cache.set(colorName, data)
+					setTheme(data)
+				} catch (err) {
+					setError(err instanceof Error ? err.message : "Unknown error")
+					console.error("Theme fetch error:", err)
+				} finally {
+					setLoading(false)
+				}
+			}
+
+			fetchTheme()
+		},
+		[colorName]
+	)
+
+	return { theme, loading, error }
+}
+
+export default function ColorPlayground() {
+	const [color, setColor] = useState("violet-blue")
+	const { theme, loading, error } = useTheme(color)
+
+	const css = useMemo(() => {
+		return theme ? computeCss(theme) : ""
+	}, [theme])
+
+	const { copied, copy } = useCopyPaste({
+		title: "Color theme CSS",
+		category: color,
+		code: css,
+		eventName: "snippet_copy",
+	})
+
+	function handleColorChange(value: string) {
+		setColor(value)
+	}
 
 	return (
-		<div className="flex flex-col gap-4">
-			<Select value={color} onValueChange={(values) => setColor(values as string)}>
-				<SelectTrigger className="w-fit">
-					<span className={`border-border inline-block h-4 w-4 rounded-sm border bg-${color}`}></span> <SelectValue />
-				</SelectTrigger>
-				<SelectContent>
-					<SelectItem value="primary">Violet Blue</SelectItem>
-					<SelectItem value="success">Emerald</SelectItem>
-					<SelectItem value="error">Red</SelectItem>
-					<SelectItem value="warning">Amber</SelectItem>
-					<SelectItem value="info">Light Blue</SelectItem>
-				</SelectContent>
-			</Select>
-			<div className={`color-${color} bg-elevation-negative border-soft rounded-2xl`}>
+		<div className={`flex flex-col gap-4 color-${color}`}>
+			<div className="flex items-center justify-between">
+				<Select value={color} onValueChange={handleColorChange}>
+					<SelectTrigger className="w-fit">
+						<span className="border-border bg-primary inline-block h-4 w-4 rounded-sm border" />
+						<SelectValue />
+					</SelectTrigger>
+					<SelectContent>
+						{COLORS.map((colorOption) => (
+							<SelectItem key={colorOption.value} value={colorOption.value}>
+								{colorOption.title}
+							</SelectItem>
+						))}
+					</SelectContent>
+				</Select>
+				<IconButton variant="outline" color="neutral" aria-label={copied ? "Copied" : "Copy Primary Color"} onClick={copy} disabled={loading || !css}>
+					{copied ? <CheckIcon /> : <CopyIcon />}
+				</IconButton>
+			</div>
+
+			{error && <div className="text-destructive text-sm">Failed to load theme: {error}</div>}
+
+			<div className="bg-elevation-negative border-soft rounded-2xl">
 				<CommonCard />
 			</div>
 		</div>
 	)
 }
-
-export default ColorPlayground

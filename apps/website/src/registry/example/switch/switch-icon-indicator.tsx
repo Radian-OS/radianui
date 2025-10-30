@@ -17,7 +17,7 @@ export default function Component() {
 				className="group-data-[state=checked]:text-fg-tertiary flex-1 cursor-pointer text-right text-sm font-medium"
 				aria-controls={id}
 				onClick={() => setChecked(false)}>
-				<MoonIcon size={16} aria-hidden="true" />
+				<MoonIcon size={20} aria-hidden="true" />
 			</span>
 			<Switch id={id} checked={checked} onCheckedChange={toggleSwitch} aria-labelledby={`${id}-off ${id}-on`} aria-label="Toggle between dark and light mode" />
 			<span
@@ -25,7 +25,7 @@ export default function Component() {
 				className="group-data-[state=unchecked]:text-fg-tertiary flex-1 cursor-pointer text-left text-sm font-medium"
 				aria-controls={id}
 				onClick={() => setChecked(true)}>
-				<SunIcon size={16} aria-hidden="true" />
+				<SunIcon size={20} aria-hidden="true" />
 			</span>
 		</div>
 	)

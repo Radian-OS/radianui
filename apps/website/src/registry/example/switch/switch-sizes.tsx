@@ -12,6 +12,10 @@ export default function SwitchSizes() {
 				<Switch id="size-md" size="24" />
 				<Label htmlFor="size-md">Size 24</Label>
 			</div>
+			<div className="flex items-center space-x-2">
+				<Switch id="size-lg" size="32" />
+				<Label htmlFor="size-lg">Size 32</Label>
+			</div>
 		</div>
 	)
 }
