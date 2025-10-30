@@ -8,7 +8,9 @@ export default function SquareSwitch() {
 	return (
 		<div className="flex items-center space-x-2">
 			<Switch id={id} shape="square" />
-			<Label htmlFor={id}>Turn on notifications</Label>
+			<Label htmlFor={id} className="text-fg-secondary">
+				Turn on notifications
+			</Label>
 		</div>
 	)
 }

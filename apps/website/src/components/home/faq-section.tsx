@@ -11,32 +11,32 @@ interface FAQItem {
 const CONTENT: FAQItem[] = [
 	{
 		title: "What is RadianOS?",
-		content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam consectetur quia reprehenderit esse delectus.",
+		content: "RadianOS is an UI component library for building modern, responsive user interfaces.",
 		icon: Orbit,
 	},
 	{
 		title: "Is RadianOS open-source?",
-		content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam consectetur quia reprehenderit esse delectus.",
+		content: "Yes, RadianOS is open source, allowing anyone to view, modify, and contribute to its code.",
 		icon: BookOpenText,
 	},
 	{
 		title: "Can I use it with React or Next.js?",
-		content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam consectetur quia reprehenderit esse delectus.",
+		content: "Yes, RadianOS is compatible with React and Next.js for building modern web interfaces.",
 		icon: Braces,
 	},
 	{
 		title: "Does RadianOS support theming and dark mode?",
-		content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam consectetur quia reprehenderit esse delectus.",
+		content: "Yes, RadianOS supports theming and includes built-in dark mode options.",
 		icon: Moon,
 	},
 	{
 		title: "How can I contribute?",
-		content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam consectetur quia reprehenderit esse delectus.",
+		content: "You can contribute to RadianOS by forking the repository, making your changes, and submitting a pull request. Review the contribution guidelines before starting.",
 		icon: Handshake,
 	},
 	{
 		title: "Is it production ready?",
-		content: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam consectetur quia reprehenderit esse delectus.",
+		content: "RadianOS is stable for most use cases but still under active development. Evaluate it in your environment before production deployment.",
 		icon: ShieldCheck,
 	},
 ]

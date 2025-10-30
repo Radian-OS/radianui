@@ -14,7 +14,7 @@ export default function CTASection() {
 				<h2 className="heading-2">
 					Build faster with <span className="text-primary-text">Radian</span>
 				</h2>
-				<p className="text-fg-secondary text-lg font-normal">Copy, paste, and customize your next feature without starting from scratch.</p>
+				<p className="text-fg-secondary text-center text-lg font-normal">Copy, paste, and customize your next feature without starting from scratch.</p>
 			</div>
 			<div className="z-40 flex items-center gap-3">
 				<Button variant="outline" color="neutral" size="40">
@@ -48,7 +48,7 @@ export default function CTASection() {
 
 			{/* Half circle flickering grid */}
 			<div className="not-lg:h-full absolute left-0 top-0 z-10 w-full overflow-hidden lg:aspect-[2/1] lg:rounded-t-full">
-				<FlickeringGrid className="max-h- absolute inset-0 z-10 max-h-[960px]" squareSize={4} gridGap={6} color="#6B7280" maxOpacity={0.4} flickerChance={0.1} />
+				<FlickeringGrid className="absolute inset-0 z-10 max-h-[960px]" squareSize={4} gridGap={6} color="#6B7280" maxOpacity={0.4} flickerChance={0.1} />
 			</div>
 		</div>
 	)
