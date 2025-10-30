@@ -2,9 +2,9 @@
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from "react-hook-form"
+import { Controller, type ControllerProps, type FieldPath, type FieldValues, FormProvider, useFormContext } from "react-hook-form"
 import { cn } from "@/lib/utils"
-import { Label, LabelProps } from "@/registry/ui/label"
+import { Label, type LabelProps } from "@/registry/ui/label"
 
 export type FormFieldContextValue<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> = {
 	name: TName
@@ -124,4 +124,4 @@ function FormMessage({ className, children, ...props }: FormMessageProps) {
 
 FormMessage.displayName = "FormMessage"
 
-export { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, useFormField }
+export { useFormField, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage }
