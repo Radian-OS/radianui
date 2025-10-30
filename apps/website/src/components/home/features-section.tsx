@@ -35,6 +35,7 @@ import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Skeleton } from "@/registry/ui/skeleton"
+import { Spinner } from "@/registry/ui/spinner"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
 import { FlickeringGrid } from "../effects/flickering"
 
@@ -525,10 +526,36 @@ export default function Page() {
 					</div>
 				</div>
 				<div className="border-border flex h-[584px] border-b-0">
-					<div className="border-border flex w-1/2 flex-col gap-4 border-r pl-16 pt-16">
-						<FolderGit className="text-primary" size={28} />
-						<h6 className="heading-6">Seamless Design-to-Code Sync</h6>
-						<p className="text-fg-secondary max-w-116 w-full">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
+					<div className="border-border gap-14.25 flex w-1/2 flex-col border-r pl-16 pt-16">
+						<div className="flex flex-col gap-4">
+							<FolderGit className="text-primary" size={28} />
+							<h6 className="heading-6">Seamless Design-to-Code Sync</h6>
+							<p className="text-fg-secondary max-w-116 w-full">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
+						</div>
+						<div className="flex size-full max-h-[262px] max-w-[594px] items-center justify-center gap-10">
+							<div className="rounded-xl border p-3">
+								<p className="flex items-center text-sm font-medium">
+									Building UI <Spinner variant="activity" size={16} />
+								</p>
+								<p className="text-fg-tertiary pb-1 text-xs">00:24s . 421 lines</p>
+								<CodeArea
+									className="w-58 h-26"
+									language="tsx"
+									theme={resolvedTheme === "dark" ? "github-dark-high-contrast" : "material-theme-lighter"}
+									code={`type BadgeSize = "20" | "24" | "28"
+
+type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
+    Omit<VariantProps<typeof badgeVariants>, "size"> & {
+        closable?: boolean
+        size?: BadgeSize
+        className?: string
+        color?: "primary" | "info" | "success" | "error" | "warning"
+        asChild?: boolean
+    }`}
+								/>
+							</div>
+							<div className="size-full rounded-xl border px-5 py-4"></div>
+						</div>
 					</div>
 					<div className="flex w-1/2 flex-col gap-4 pl-16 pt-16">
 						<SwatchBook className="text-primary" size={28} />
