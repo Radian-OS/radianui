@@ -101,7 +101,7 @@ export default function FeaturesSection() {
 						<path
 							d="M0.433594 1.2504L70.1484 122C73.1494 127.198 78.6956 130.4 84.6976 130.4L177.71 130.4C184.379 130.4 190.417 134.346 193.095 140.454L280.203 339.097C282.882 345.205 288.886 349.15 295.555 349.15C444.741 349.15 649.277 349.15 798.467 349.15C805.147 349.15 811.159 345.193 813.831 339.071L900.956 139.479C903.629 133.358 909.674 129.4 916.353 129.4L1009.35 129.4C1015.35 129.4 1020.89 126.198 1023.89 121L1093.61 0.250397"
 							strokeWidth="1"
-							stroke="var(--color-soft)"
+							stroke="var(--color-fg-disabled)"
 						/>
 					</svg>
 
@@ -179,17 +179,17 @@ export default function FeaturesSection() {
 							<path d="M3.5 7V150.5C3.5 163.755 14.2452 174.5 27.5 174.5H56.5" stroke="url(#paint0_linear_851_12638)" strokeDasharray="2 2" />
 							<path d="M73 200H69C62.3726 200 58 194.627 57 188V170" className="stroke-fg-disabled" />
 							<path d="M73 150H69C62.3726 150 57 155.373 57 162V180" className="stroke-fg-disabled" />
-							<circle cx={76} cy={149.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
-							<circle cx={76} cy={174.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
-							<circle cx={76} cy={199.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<circle cx={76} cy={149.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
+							<circle cx={76} cy={174.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
+							<circle cx={76} cy={199.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
 							<path d="M57.5 174.5H73" className="stroke-fg-disabled" />
-							<circle cx={3.5} cy={3.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<circle cx={3.5} cy={3.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
 							<defs>
 								<linearGradient id="paint0_linear_851_12638" x1={-28} y1={26} x2={86} y2={186.5} gradientUnits="userSpaceOnUse">
-									<stop stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
-									<stop offset={0.466346} stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
-									<stop offset={0.87} stopColor={resolvedTheme === "light" ? "#623DF5" : "#7655F6"} />
-									<stop offset={0.88} stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
+									<stop stopColor="var(--color-fg-disabled)" />
+									<stop offset={0.466346} stopColor="var(--color-fg-disabled)" />
+									<stop offset={0.87} stopColor="var(--color-primary)" />
+									<stop offset={0.88} stopColor="var(--color-fg-disabled)" />
 								</linearGradient>
 							</defs>
 						</svg>
@@ -497,7 +497,7 @@ export default function Page() {
 							<svg className="right-7.5 absolute top-0" width={250} height={140} viewBox="0 0 198 57" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M194.5 57L194.5 46.5C194.5 28.8269 180.173 14.5 162.5 14.5L3 14.5" className="stroke-fg-disabled" strokeDasharray="6 4" />
 								<g filter="url(#filter0_d_851_5324)">
-									<rect x={84} width={28} height={28} rx={8} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} shapeRendering="crispEdges" />
+									<rect x={84} width={28} height={28} rx={8} fill="var(--color-bg)" shapeRendering="crispEdges" />
 									<rect x={84.5} y={0.5} width={27} height={27} rx={7.5} className="stroke-fg-disabled" shapeRendering="crispEdges" />
 									<path
 										d="M92.6663 15.3333C92.5401 15.3337 92.4164 15.2983 92.3096 15.2313C92.2027 15.1642 92.1171 15.0682 92.0626 14.9544C92.0082 14.8406 91.9871 14.7137 92.0019 14.5884C92.0167 14.4631 92.0668 14.3446 92.1463 14.2466L98.7463 7.44661C98.7958 7.38947 98.8632 7.35085 98.9376 7.3371C99.0119 7.32335 99.0887 7.33529 99.1554 7.37095C99.2221 7.40661 99.2746 7.46388 99.3045 7.53335C99.3343 7.60283 99.3396 7.68038 99.3196 7.75328L98.0396 11.7666C98.0018 11.8676 97.9892 11.9763 98.0026 12.0833C98.0161 12.1903 98.0554 12.2924 98.117 12.3809C98.1786 12.4694 98.2608 12.5416 98.3564 12.5914C98.4521 12.6412 98.5584 12.667 98.6663 12.6666H103.333C103.459 12.6662 103.583 12.7016 103.69 12.7686C103.796 12.8357 103.882 12.9317 103.937 13.0455C103.991 13.1593 104.012 13.2862 103.997 13.4115C103.982 13.5368 103.932 13.6553 103.853 13.7533L97.2529 20.5533C97.2034 20.6104 97.1359 20.649 97.0616 20.6628C96.9873 20.6765 96.9104 20.6646 96.8438 20.6289C96.7771 20.5933 96.7245 20.536 96.6947 20.4665C96.6649 20.3971 96.6595 20.3195 96.6796 20.2466L97.9596 16.2333C97.9973 16.1323 98.01 16.0236 97.9965 15.9166C97.983 15.8096 97.9438 15.7075 97.8822 15.619C97.8206 15.5305 97.7384 15.4583 97.6427 15.4085C97.5471 15.3587 97.4408 15.3329 97.3329 15.3333H92.6663Z"
@@ -506,8 +506,8 @@ export default function Page() {
 										strokeLinejoin="round"
 									/>
 								</g>
-								<circle cx={3.5} cy={13.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
-								<circle cx={194.5} cy={53.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+								<circle cx={3.5} cy={13.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
+								<circle cx={194.5} cy={53.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
 								<defs>
 									<filter id="filter0_d_851_5324" x={83} y={0} width={30} height={30} filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 										<feFlood floodOpacity={0} result="BackgroundImageFix" />
