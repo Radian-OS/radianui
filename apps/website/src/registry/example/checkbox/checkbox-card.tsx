@@ -14,7 +14,7 @@ export default function CheckboxCard() {
 			<Checkbox id={id} checked={checked} onCheckedChange={(v) => setChecked(v === true)} aria-label="Allow edit access" />
 			<div className="flex flex-col gap-1">
 				<Label htmlFor={id}>Allow Edit Access</Label>
-				<span className="text-fg-tertiary text-sm">Enable public edit access all your docs.</span>
+				<span className="text-fg-tertiary text-normal text-sm">Enable public edit access all your docs.</span>
 			</div>
 		</Label>
 	)

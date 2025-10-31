@@ -58,7 +58,7 @@ export default function CheckboxForm() {
 					)}
 				/>
 				<div className="flex items-center justify-start gap-2">
-					<Button type="reset" size={"32"} variant="outline">
+					<Button type="reset" size={"32"} variant="outline" color="neutral">
 						Clear
 					</Button>
 					<Button type="submit" size={"32"}>
