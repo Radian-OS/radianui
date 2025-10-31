@@ -42,14 +42,14 @@ function TooltipTrigger(props: TooltipTriggerProps) {
 }
 TooltipTrigger.displayName = TooltipPrimitive.Trigger.displayName
 
-function TooltipContent({ align = "center", side = "top", sideOffset = 4, theme = "default", withArrow = false, children, className, ...props }: TooltipContentProps) {
+function TooltipContent({ align = "center", side = "top", sideOffset = 8, theme = "default", withArrow = false, children, className, ...props }: TooltipContentProps) {
 	return (
 		<TooltipPrimitive.Content
 			data-slot="tooltip-content"
 			data-theme={theme}
 			align={align}
 			side={side}
-			sideOffset={sideOffset}
+			sideOffset={withArrow ? sideOffset / 2 : sideOffset}
 			className={cn(tooltipContentVariants({ theme }), className)}
 			{...props}>
 			{children}

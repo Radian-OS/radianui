@@ -8,12 +8,12 @@ import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 
 export default function CheckboxForm() {
 	const FormSchema = z.object({
 		acceptTerms: z.boolean().refine((val) => val === true, {
-			message: "You must accept the terms and conditions.",
+			message: "You must check the box.",
 		}),
 	})
 
@@ -40,7 +40,8 @@ export default function CheckboxForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+				<span className="block font-medium">Billing address</span>
 				<FormField
 					control={form.control}
 					name="acceptTerms"
@@ -50,18 +51,19 @@ export default function CheckboxForm() {
 								<FormControl>
 									<Checkbox checked={field.value} onCheckedChange={field.onChange} />
 								</FormControl>
-								<FormLabel>I accept the terms and conditions</FormLabel>
+								<FormLabel className="text-fg-secondary">Same as the shipping address</FormLabel>
 							</div>
-							<FormDescription>You need to agree to proceed.</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
-				<div className="flex items-center justify-end gap-2.5">
-					<Button type="reset" variant="outline">
-						Reset
+				<div className="flex items-center justify-start gap-2">
+					<Button type="reset" size={"32"} variant="outline">
+						Clear
 					</Button>
-					<Button type="submit">Submit</Button>
+					<Button type="submit" size={"32"}>
+						Submit
+					</Button>
 				</div>
 			</form>
 		</Form>

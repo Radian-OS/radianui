@@ -1,10 +1,9 @@
 "use client"
 
 import React, { useEffect, useMemo, useState } from "react"
-import { CheckIcon, CopyIcon } from "lucide-react"
 import CommonCard from "@/components/common/common-card"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
-import { IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
 const COLORS = [
@@ -126,9 +125,9 @@ export default function ColorPlayground() {
 						))}
 					</SelectContent>
 				</Select>
-				<IconButton variant="outline" color="neutral" aria-label={copied ? "Copied" : "Copy Primary Color"} onClick={copy} disabled={loading || !css}>
-					{copied ? <CheckIcon /> : <CopyIcon />}
-				</IconButton>
+				<Button variant="outline" color="neutral" aria-label={copied ? "Copied" : "Copy Primary Color"} onClick={copy} disabled={loading || !css}>
+					{copied ? "Copied" : "Copy CSS"}
+				</Button>
 			</div>
 
 			{error && <div className="text-destructive text-sm">Failed to load theme: {error}</div>}

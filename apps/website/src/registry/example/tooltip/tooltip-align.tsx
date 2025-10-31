@@ -5,33 +5,33 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 export default function TooltipAlign() {
 	return (
-		<div className="flex items-center justify-center gap-6">
+		<div className="flex flex-col items-center justify-center gap-3">
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button color="neutral" variant="outline">
 						<AlignLeft />
 						Start
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent align="start">I am a tooltip description.</TooltipContent>
+				<TooltipContent align="start">Access the full documentation.</TooltipContent>
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button color="neutral" variant="outline">
 						<AlignCenter />
 						Center
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent align="center">I am a tooltip description.</TooltipContent>
+				<TooltipContent align="center">Access the full documentation.</TooltipContent>
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button color="neutral" variant="outline">
 						<AlignRight />
 						End
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent align="end">I am a tooltip description.</TooltipContent>
+				<TooltipContent align="end">Access the full documentation.</TooltipContent>
 			</Tooltip>
 		</div>
 	)

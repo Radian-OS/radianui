@@ -1,3 +1,4 @@
+import React from "react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 
 const contents = [
@@ -24,13 +25,13 @@ const contents = [
 	},
 ]
 
-export default function AccordionPreview() {
+export default function AccordionWithChevronLeft() {
 	return (
-		<Accordion type="single" className="w-full lg:w-[75%]" defaultValue="1" collapsible>
-			{contents.map((content) => (
-				<AccordionItem key={content.id} value={content.id.toString()}>
-					<AccordionTrigger>{content.trigger}</AccordionTrigger>
-					<AccordionContent>{content.content}</AccordionContent>
+		<Accordion type="single" className="w-full lg:w-[75%]" defaultValue="3" collapsible>
+			{contents.map((item) => (
+				<AccordionItem value={item.id.toString()} key={item.id}>
+					<AccordionTrigger className="justify-start gap-2.5 [&_svg]:-order-1">{item.trigger}</AccordionTrigger>
+					<AccordionContent className="ps-11.5">{item.content}</AccordionContent>
 				</AccordionItem>
 			))}
 		</Accordion>

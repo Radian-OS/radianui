@@ -5,42 +5,50 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 export default function TooltipSide() {
 	return (
-		<div className="flex items-center justify-center gap-6">
+		<div className="flex items-center justify-center gap-3">
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button color="neutral" variant="outline">
 						<ChevronLeft />
 						Left
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent side="left">I am a tooltip description on left.</TooltipContent>
+				<TooltipContent side="left" withArrow>
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button color="neutral" variant="outline">
 						<ChevronUp />
 						Top
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent side="top">I am a tooltip description on top.</TooltipContent>
+				<TooltipContent side="top" withArrow>
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
-						<ChevronRight />
-						Right
-					</Button>
-				</TooltipTrigger>
-				<TooltipContent side="right">I am a tooltip description on right.</TooltipContent>
-			</Tooltip>
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Button size={"32"} color="neutral" variant="outline">
+					<Button color="neutral" variant="outline">
 						<ChevronDown />
 						Bottom
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent side="bottom">I am a tooltip description on bottom.</TooltipContent>
+				<TooltipContent side="bottom" withArrow>
+					Access the full documentation.
+				</TooltipContent>
+			</Tooltip>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Button color="neutral" variant="outline">
+						<ChevronRight />
+						Right
+					</Button>
+				</TooltipTrigger>
+				<TooltipContent side="right" withArrow>
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 		</div>
 	)
