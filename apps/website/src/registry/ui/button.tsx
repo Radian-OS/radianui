@@ -96,12 +96,12 @@ export const buttonVariants = cva(
 		},
 		compoundVariants: [
 			// Default size styles (for buttons with text)
-			{ size: "28", className: "gap-0.5 h-7 px-2 py-1.5" },
-			{ size: "32", className: "gap-0.5 h-8 px-2 py-1.5" },
-			{ size: "36", className: "gap-1 h-9 px-2.5 py-2" },
-			{ size: "40", className: "gap-1 h-10 px-3 py-2.5" },
-			{ size: "44", className: "gap-1 h-11 px-3 py-2.5" },
-			{ size: "48", className: "gap-1 h-12 px-3.5 py-3" },
+			{ size: "28", className: "gap-1 h-7 px-2 py-1.5" },
+			{ size: "32", className: "gap-1.5 h-8 px-2 py-1.5" },
+			{ size: "36", className: "gap-2 h-9 px-2.5 py-2" },
+			{ size: "40", className: "gap-2 h-10 px-3 py-2.5" },
+			{ size: "44", className: "gap-2 h-11 px-3 py-2.5" },
+			{ size: "48", className: "gap-2 h-12 px-3.5 py-3" },
 
 			// Strong variant + colors
 			{

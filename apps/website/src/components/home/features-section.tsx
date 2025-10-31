@@ -99,7 +99,7 @@ export default function FeaturesSection() {
 				}
 				return prev + 1
 			})
-		}, 500)
+		}, 5)
 		return () => clearInterval(interval)
 	}, [])
 	return (
@@ -600,7 +600,7 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 								</ul>
 								<div className="flex flex-col gap-2">
 									<Progress className="w-52.5 h-1.5" value={progress} />
-									<p className="text-fg-secondary text-[13px]">250 / 500 tokens</p>
+									<p className="text-fg-secondary text-[13px]">{progress} / 500 tokens</p>
 								</div>
 							</div>
 						</div>
