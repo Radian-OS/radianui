@@ -16,7 +16,7 @@ function InternationalPhone() {
 	const [open, setOpen] = useState(false)
 
 	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
-		defaultCountry: "np",
+		defaultCountry: "us",
 		disableDialCodeAndPrefix: true,
 		value: internalValue,
 		countries: defaultCountries,
