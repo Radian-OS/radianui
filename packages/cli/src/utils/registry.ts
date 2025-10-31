@@ -6,8 +6,7 @@ import { pipeline } from "stream/promises"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 
-const WEBSITE_URL = "http://localhost:3001"
-// const WEBSITE_URL = "https://radianos.com"
+const WEBSITE_URL = "https://radianos.com"
 const BLOCKS_URL = "https://blocks.radianos.com"
 const REGISTRY_COMPONENT_URL = `${WEBSITE_URL}/api/components`
 const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
@@ -66,6 +65,11 @@ export const downloadAssets = async (assetsDirectory: string): Promise<void> => 
 	try {
 		const url = new URL(`/api/assets?assetsDirectory=${assetsDirectory}`, REGISTRY_BLOCK_URL).toString()
 		const response = await fetch(url)
+
+		// The block doesn't contain assets so no need to download them
+		if (response.status === 404) {
+			return
+		}
 
 		if (!response.ok) {
 			const errorMessage = `Failed to fetch assets from ${url}.\nStatus: ${response.status} - ${response.statusText}`
