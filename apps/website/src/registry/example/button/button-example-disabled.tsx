@@ -1,18 +1,20 @@
 import React from "react"
+import { FileX, RefreshCcw, UserPlus } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 
 function ButtonExampleDisabled() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-			<Button disabled>Strong</Button>
-			<Button variant="soft" disabled>
-				Soft
+		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+			<Button disabled>
+				<RefreshCcw /> Sync Progress
 			</Button>
-			<Button disabled variant="outline">
-				Outline
+			<Button color="error" variant="soft" disabled>
+				<FileX />
+				Delete File
 			</Button>
-			<Button disabled variant="ghost">
-				Ghost
+			<Button disabled variant="outline" color="neutral">
+				<UserPlus />
+				Invite Users
 			</Button>
 		</div>
 	)

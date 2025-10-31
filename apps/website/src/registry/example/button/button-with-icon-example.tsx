@@ -1,18 +1,15 @@
 import React from "react"
-import { Bell, Calendar, Trash2 } from "lucide-react"
+import { RefreshCcw, UserPlus } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 
 function ButtonWithIconExample() {
 	return (
-		<div className="flex items-center justify-center gap-4 sm:flex-row">
-			<Button className="w-full" variant="strong" color="error">
-				<Trash2 /> Delete
+		<div className="flex items-center justify-center gap-3 sm:flex-row">
+			<Button variant="outline" color="neutral">
+				<UserPlus /> Invite Users
 			</Button>
-			<Button color="neutral" variant="outline">
-				<Bell /> Outline
-			</Button>
-			<Button color="neutral" variant="ghost">
-				<Calendar /> Ghost
+			<Button color="primary" variant="strong">
+				<RefreshCcw /> Outline
 			</Button>
 		</div>
 	)

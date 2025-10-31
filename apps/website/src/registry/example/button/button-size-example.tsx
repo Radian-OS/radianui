@@ -1,48 +1,35 @@
-import { UserPen } from "lucide-react"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 function ButtonSizeExample() {
 	return (
-		<div className="flex flex-col items-center justify-center gap-4">
-			<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+		<div className="flex flex-col items-center justify-center gap-5">
+			<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+				<Button size="28">Size 28</Button>
+				<Button size="32">Size 32</Button>
+				<Button size="36">Size 36</Button>
+				<Button size="40">Size 40</Button>
+				<Button size="44">Size 44</Button>
+				<Button size="48">Size 48</Button>
+			</div>
+			<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
 				<Button variant="outline" color="neutral" size="28">
-					Button
+					Size 28
 				</Button>
 				<Button variant="outline" color="neutral" size="32">
-					Button
+					Size 32
 				</Button>
 				<Button variant="outline" color="neutral" size="36">
-					Button
+					Size 36
 				</Button>
 				<Button variant="outline" color="neutral" size="40">
-					Button
+					Size 40
 				</Button>
 				<Button variant="outline" color="neutral" size="44">
-					Button
+					Size 44
 				</Button>
 				<Button variant="outline" color="neutral" size="48">
-					Button
+					Size 48
 				</Button>
-			</div>
-			<div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-				<IconButton variant="outline" color="neutral" size="28">
-					<UserPen />
-				</IconButton>
-				<IconButton variant="outline" color="neutral" size="32">
-					<UserPen />
-				</IconButton>
-				<IconButton variant="outline" color="neutral" size="36">
-					<UserPen />
-				</IconButton>
-				<IconButton variant="outline" color="neutral" size="40">
-					<UserPen />
-				</IconButton>
-				<IconButton variant="outline" color="neutral" size="44">
-					<UserPen />
-				</IconButton>
-				<IconButton variant="outline" color="neutral" size="48">
-					<UserPen />
-				</IconButton>
 			</div>
 		</div>
 	)

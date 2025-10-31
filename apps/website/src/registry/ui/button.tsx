@@ -72,8 +72,8 @@ export const buttonVariants = cva(
 				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
-				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-[10px]",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-[10px]",
 			},
 			loading: {
 				true: "",
@@ -96,12 +96,12 @@ export const buttonVariants = cva(
 		},
 		compoundVariants: [
 			// Default size styles (for buttons with text)
-			{ size: "28", className: "gap-0.5 h-7 px-2 py-1.5" },
-			{ size: "32", className: "gap-0.5 h-8 px-2 py-1.5" },
-			{ size: "36", className: "gap-1 h-9 px-2.5 py-2" },
-			{ size: "40", className: "gap-1 h-10 px-3 py-2.5" },
-			{ size: "44", className: "gap-1 h-11 px-3 py-2.5" },
-			{ size: "48", className: "gap-1 h-12 px-3.5 py-3" },
+			{ size: "28", className: "gap-1 h-7 px-2 py-1.5" },
+			{ size: "32", className: "gap-1.5 h-8 px-2 py-1.5" },
+			{ size: "36", className: "gap-2 h-9 px-2.5 py-2" },
+			{ size: "40", className: "gap-2 h-10 px-3 py-2.5" },
+			{ size: "44", className: "gap-2 h-11 px-3 py-2.5" },
+			{ size: "48", className: "gap-2 h-12 px-3.5 py-3" },
 
 			// Strong variant + colors
 			{
@@ -293,7 +293,7 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 ButtonGroup.displayName = "ButtonGroup"
 
 export const compactButtonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit rounded-md",
 	{
 		variants: {
 			variant: {
@@ -303,8 +303,8 @@ export const compactButtonVariants = cva(
 				ghost: "",
 			},
 			size: {
-				"20": "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm",
-				"24": "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md",
+				"20": "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5",
+				"24": "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1",
 			},
 			color: {
 				primary: "",
@@ -528,8 +528,8 @@ export const iconButtonSizeVariants = cva("", {
 			"32": "[&>svg]:size-4.5 rounded-md size-8 p-1.75",
 			"36": "[&>svg]:size-5 rounded-lg size-9 p-2",
 			"40": "[&>svg]:size-5 rounded-lg size-10 p-2.5",
-			"44": "[&>svg]:size-5 rounded-lg size-11 p-3",
-			"48": "[&>svg]:size-6 rounded-lg size-12 p-3",
+			"44": "[&>svg]:size-5 rounded-[10px] size-11 p-3",
+			"48": "[&>svg]:size-6 rounded-[10px] size-12 p-3",
 		},
 		variant: {
 			outline: "",
@@ -559,6 +559,7 @@ function IconButton({ loading = false, variant = "strong", size = "36", color = 
 			variant: variant === "outline" ? "outline" : "default",
 		}),
 		disabled && "opacity-50",
+		"flex items-center justify-center",
 		className
 	)
 
@@ -570,6 +571,8 @@ function IconButton({ loading = false, variant = "strong", size = "36", color = 
 		</Comp>
 	)
 }
+
+IconButton.displayName = "IconButton"
 
 IconButton.displayName = "IconButton"
 

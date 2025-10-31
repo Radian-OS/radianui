@@ -1,11 +1,15 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import {
 	AppWindow,
 	ArrowDownRight,
 	ArrowUpRight,
+	BadgeCheck,
 	Calendar as CalendarIcon,
 	ChartLine,
+	Check,
+	ChevronDown,
 	CircleGauge,
 	CircleUser,
 	ClipboardCheck,
@@ -16,6 +20,7 @@ import {
 	MousePointerClick,
 	PanelRight,
 	ScanEye,
+	ShipWheel,
 	Siren,
 	SlidersHorizontal,
 	SquareArrowDown,
@@ -30,11 +35,14 @@ import {
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
 import { CodeArea } from "@/registry/ui/code-area"
+import { Progress } from "@/registry/ui/progress"
 import { Skeleton } from "@/registry/ui/skeleton"
+import { Spinner } from "@/registry/ui/spinner"
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
 import { FlickeringGrid } from "../effects/flickering"
 
@@ -83,6 +91,20 @@ const datas = [
 
 export default function FeaturesSection() {
 	const { resolvedTheme } = useTheme()
+	const [progress, setProgress] = useState(0)
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setProgress((prev) => {
+				if (prev >= 70) {
+					clearInterval(interval)
+					return 70
+				}
+				return prev + 1
+			})
+		}, 5)
+		return () => clearInterval(interval)
+	}, [])
 	return (
 		<div className="flex flex-col items-center gap-20 pt-40">
 			<div className="flex flex-col items-center gap-8">
@@ -101,7 +123,7 @@ export default function FeaturesSection() {
 						<path
 							d="M0.433594 1.2504L70.1484 122C73.1494 127.198 78.6956 130.4 84.6976 130.4L177.71 130.4C184.379 130.4 190.417 134.346 193.095 140.454L280.203 339.097C282.882 345.205 288.886 349.15 295.555 349.15C444.741 349.15 649.277 349.15 798.467 349.15C805.147 349.15 811.159 345.193 813.831 339.071L900.956 139.479C903.629 133.358 909.674 129.4 916.353 129.4L1009.35 129.4C1015.35 129.4 1020.89 126.198 1023.89 121L1093.61 0.250397"
 							strokeWidth="1"
-							stroke="var(--color-soft)"
+							stroke="var(--color-fg-disabled)"
 						/>
 					</svg>
 
@@ -179,17 +201,17 @@ export default function FeaturesSection() {
 							<path d="M3.5 7V150.5C3.5 163.755 14.2452 174.5 27.5 174.5H56.5" stroke="url(#paint0_linear_851_12638)" strokeDasharray="2 2" />
 							<path d="M73 200H69C62.3726 200 58 194.627 57 188V170" className="stroke-fg-disabled" />
 							<path d="M73 150H69C62.3726 150 57 155.373 57 162V180" className="stroke-fg-disabled" />
-							<circle cx={76} cy={149.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
-							<circle cx={76} cy={174.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
-							<circle cx={76} cy={199.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<circle cx={76} cy={149.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
+							<circle cx={76} cy={174.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
+							<circle cx={76} cy={199.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
 							<path d="M57.5 174.5H73" className="stroke-fg-disabled" />
-							<circle cx={3.5} cy={3.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+							<circle cx={3.5} cy={3.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
 							<defs>
 								<linearGradient id="paint0_linear_851_12638" x1={-28} y1={26} x2={86} y2={186.5} gradientUnits="userSpaceOnUse">
-									<stop stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
-									<stop offset={0.466346} stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
-									<stop offset={0.87} stopColor={resolvedTheme === "light" ? "#623DF5" : "#7655F6"} />
-									<stop offset={0.88} stopColor={resolvedTheme === "light" ? "#C8C8D0" : "#545463"} />
+									<stop stopColor="var(--color-fg-disabled)" />
+									<stop offset={0.466346} stopColor="var(--color-fg-disabled)" />
+									<stop offset={0.87} stopColor="var(--color-primary)" />
+									<stop offset={0.88} stopColor="var(--color-fg-disabled)" />
 								</linearGradient>
 							</defs>
 						</svg>
@@ -293,81 +315,99 @@ export default function Page() {
 							<h6 className="heading-6">Clean, Modular Components</h6>
 							<p className="text-fg-secondary">Radian’s building blocks are composable, easy to override, and perfect for scaling projects.</p>
 						</div>
-						<div className="flex flex-wrap items-center gap-3">
-							<Badge size="28" variant="outline" color="neutral">
-								<SquareArrowDown />
-								Accordion
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<PanelRight />
-								Drawers
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Tag />
-								Drawers
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<MousePointerClick />
-								Button
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Siren />
-								Alert
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<CircleUser />
-								Avatar
-							</Badge>
-							<Badge size="28">
-								<CalendarIcon />
-								Calendar
-							</Badge>
+						<section className="flex-flex-col relative items-center justify-center gap-3">
+							<div className="to-bg w-17.5 from-bg/5 absolute z-30 h-full bg-gradient-to-l" />
+							<div className="to-bg w-17.5 from-bg/5 absolute right-0 z-30 h-full bg-gradient-to-r" />
+							<InfiniteScroll className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<SquareArrowDown />
+										Accordion
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<PanelRight />
+										Drawers
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Tag />
+										Drawers
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<MousePointerClick />
+										Button
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Siren />
+										Alert
+									</Badge>
+								</div>
+							</InfiniteScroll>
+							<InfiniteScroll reverse className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<CircleUser />
+										Avatar
+									</Badge>
+									<Badge size="28">
+										<CalendarIcon />
+										Calendar
+									</Badge>
 
-							<Badge size="28" variant="outline" color="neutral">
-								<SlidersHorizontal />
-								Slider
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<SquareCheck />
-								Checkbox
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<AppWindow />
-								Dialogs
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Loader />
-								Loader
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<SquareCode />
-								Code
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<TableIcon />
-								Table
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<ChartLine />
-								Chart
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<ToggleLeft />
-								Switch
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<TextCursorInput />
-								Input Feilds
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Component />
-								Toaster
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Component />
-								Banner
-							</Badge>
-						</div>
+									<Badge size="28" variant="outline" color="neutral">
+										<SlidersHorizontal />
+										Slider
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<SquareCheck />
+										Checkbox
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<AppWindow />
+										Dialogs
+									</Badge>
+								</div>
+							</InfiniteScroll>
+							<InfiniteScroll className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<Loader />
+										Loader
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<SquareCode />
+										Code
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<TableIcon />
+										Table
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<ChartLine />
+										Chart
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<ToggleLeft />
+										Switch
+									</Badge>
+								</div>
+							</InfiniteScroll>
+							<InfiniteScroll reverse className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<TextCursorInput />
+										Input Feilds
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Component />
+										Toaster
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Component />
+										Banner
+									</Badge>
+								</div>
+							</InfiniteScroll>
+						</section>
 					</div>
 					<div className="flex-2/3 flex flex-col items-center justify-center gap-4 pl-16 pt-16">
 						<div className="border-alpha bg-elevation-level1 rounded-xl border">
@@ -497,7 +537,7 @@ export default function Page() {
 							<svg className="right-7.5 absolute top-0" width={250} height={140} viewBox="0 0 198 57" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path d="M194.5 57L194.5 46.5C194.5 28.8269 180.173 14.5 162.5 14.5L3 14.5" className="stroke-fg-disabled" strokeDasharray="6 4" />
 								<g filter="url(#filter0_d_851_5324)">
-									<rect x={84} width={28} height={28} rx={8} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} shapeRendering="crispEdges" />
+									<rect x={84} width={28} height={28} rx={8} fill="var(--color-bg)" shapeRendering="crispEdges" />
 									<rect x={84.5} y={0.5} width={27} height={27} rx={7.5} className="stroke-fg-disabled" shapeRendering="crispEdges" />
 									<path
 										d="M92.6663 15.3333C92.5401 15.3337 92.4164 15.2983 92.3096 15.2313C92.2027 15.1642 92.1171 15.0682 92.0626 14.9544C92.0082 14.8406 91.9871 14.7137 92.0019 14.5884C92.0167 14.4631 92.0668 14.3446 92.1463 14.2466L98.7463 7.44661C98.7958 7.38947 98.8632 7.35085 98.9376 7.3371C99.0119 7.32335 99.0887 7.33529 99.1554 7.37095C99.2221 7.40661 99.2746 7.46388 99.3045 7.53335C99.3343 7.60283 99.3396 7.68038 99.3196 7.75328L98.0396 11.7666C98.0018 11.8676 97.9892 11.9763 98.0026 12.0833C98.0161 12.1903 98.0554 12.2924 98.117 12.3809C98.1786 12.4694 98.2608 12.5416 98.3564 12.5914C98.4521 12.6412 98.5584 12.667 98.6663 12.6666H103.333C103.459 12.6662 103.583 12.7016 103.69 12.7686C103.796 12.8357 103.882 12.9317 103.937 13.0455C103.991 13.1593 104.012 13.2862 103.997 13.4115C103.982 13.5368 103.932 13.6553 103.853 13.7533L97.2529 20.5533C97.2034 20.6104 97.1359 20.649 97.0616 20.6628C96.9873 20.6765 96.9104 20.6646 96.8438 20.6289C96.7771 20.5933 96.7245 20.536 96.6947 20.4665C96.6649 20.3971 96.6595 20.3195 96.6796 20.2466L97.9596 16.2333C97.9973 16.1323 98.01 16.0236 97.9965 15.9166C97.983 15.8096 97.9438 15.7075 97.8822 15.619C97.8206 15.5305 97.7384 15.4583 97.6427 15.4085C97.5471 15.3587 97.4408 15.3329 97.3329 15.3333H92.6663Z"
@@ -506,8 +546,8 @@ export default function Page() {
 										strokeLinejoin="round"
 									/>
 								</g>
-								<circle cx={3.5} cy={13.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
-								<circle cx={194.5} cy={53.5} r={3} fill={resolvedTheme === "light" ? "#ffffff" : "#090a0b"} className="stroke-fg-disabled" />
+								<circle cx={3.5} cy={13.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
+								<circle cx={194.5} cy={53.5} r={3} fill="var(--color-bg)" className="stroke-fg-disabled" />
 								<defs>
 									<filter id="filter0_d_851_5324" x={83} y={0} width={30} height={30} filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 										<feFlood floodOpacity={0} result="BackgroundImageFix" />
@@ -525,15 +565,109 @@ export default function Page() {
 					</div>
 				</div>
 				<div className="border-border flex h-[584px] border-b-0">
-					<div className="border-border flex w-1/2 flex-col gap-4 border-r pl-16 pt-16">
-						<FolderGit className="text-primary" size={28} />
-						<h6 className="heading-6">Seamless Design-to-Code Sync</h6>
-						<p className="text-fg-secondary max-w-116 w-full">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
+					<div className="border-border gap-14.25 flex w-1/2 flex-col overflow-hidden border-r pl-16 pt-16">
+						<div className="flex flex-col gap-4">
+							<FolderGit className="text-primary" size={28} />
+							<h6 className="heading-6">Seamless Design-to-Code Sync</h6>
+							<p className="text-fg-secondary max-w-116 w-full">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
+						</div>
+						<div className="flex size-full max-h-[262px] max-w-[594px] items-center justify-center gap-10">
+							<div className="rounded-xl border p-3">
+								<p className="flex items-center text-sm font-medium">
+									Building UI <Spinner variant="activity" size={16} />
+								</p>
+								<p className="text-fg-tertiary pb-1 text-xs">00:24s . 421 lines</p>
+								<CodeArea
+									className="w-58 h-26"
+									language="tsx"
+									theme={resolvedTheme === "dark" ? "github-dark-high-contrast" : "material-theme-lighter"}
+									code={`type BadgeSize = "20" | "24" | "28"
+
+type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
+    Omit<VariantProps<typeof badgeVariants>, "size"> & {
+        closable?: boolean
+        size?: BadgeSize
+        className?: string
+        color?: "primary" | "info" | "success" | "error" | "warning"
+        asChild?: boolean
+    }`}
+								/>
+							</div>
+							<div className="flex size-full flex-col gap-4 rounded-xl border px-5 py-4">
+								<section className="flex items-center justify-between">
+									<p className="inline-flex flex-col">
+										<span className="text-lg font-medium">Basic</span>
+										<span className="text-fg-secondary text-[13px]">$12</span>
+									</p>
+									<Badge variant="strong" color="primary">
+										<BadgeCheck />
+										Active
+									</Badge>
+								</section>
+								<ul className="text-fg-secondary flex flex-col gap-3 text-[13px]">
+									<li className="flex gap-2">
+										<Check size={16} />
+										500 tokens
+									</li>
+									<li className="flex gap-2">
+										<Check size={16} /> Rewrite Content
+									</li>
+									<li className="flex gap-2">
+										<Check size={16} /> Basic Themes
+									</li>
+									<li className="flex gap-2">
+										<Check size={16} /> Web Publish
+									</li>
+								</ul>
+								<div className="flex flex-col gap-2">
+									<Progress className="w-52.5 h-1.5" value={progress} />
+									<p className="text-fg-secondary text-[13px]">{progress} / 500 tokens</p>
+								</div>
+							</div>
+						</div>
 					</div>
-					<div className="flex w-1/2 flex-col gap-4 pl-16 pt-16">
-						<SwatchBook className="text-primary" size={28} />
-						<h6 className="heading-6">Streamlined component library</h6>
-						<p className="text-fg-secondary max-w-116 w-full">Our vast collection of customizable components eliminates the need to reinvent the wheel.</p>
+					<div className="flex w-1/2 flex-col gap-12 overflow-hidden pl-16 pt-16">
+						<div className="flex flex-col gap-4">
+							<SwatchBook className="text-primary" size={28} />
+							<h6 className="heading-6">Streamlined component library</h6>
+							<p className="text-fg-secondary max-w-116 w-full">Our vast collection of customizable components eliminates the need to reinvent the wheel.</p>
+						</div>
+						<div className="flex items-center gap-14">
+							<div className="flex w-full max-w-[241px] flex-col gap-1">
+								<div className="flex w-full items-center justify-between rounded-lg border px-2.5 py-2">
+									<span className="text-fg-secondary text-sm">Sun Burst - Red</span>
+									<ChevronDown className="text-fg-tertiary" size={20} />
+								</div>
+								<div className="flex h-full max-h-[333px] flex-col gap-1 rounded-[10px] border px-1">
+									<div className="rounded-md px-2 py-1.5">Circle Clover - Purple</div>
+									<div className="rounded-md px-2 py-1.5">Knotted Links - Purple</div>
+									<div className="bg-primary-accent rounded-md px-2 py-1.5">Sun Burst - Red</div>
+									<div className="rounded-md px-2 py-1.5">Wave Globe - Green</div>
+									<div className="rounded-md px-2 py-1.5">Flow Cross - Blue</div>
+									<div className="rounded-md px-2 py-1.5">Octo Frame - Blue</div>
+									<div className="rounded-md px-2 py-1.5">Petal Grid - Green</div>
+									<div className="rounded-md px-2 py-1.5">Gradient - Purple</div>
+								</div>
+							</div>
+							<div className="relative size-full max-h-[322px] max-w-[512px] rounded-xl rounded-b-none rounded-r-none border border-r-0 p-1.5">
+								<div className="max-h-25 from-error-accent to-primary-focus size-full rounded-[10px] bg-gradient-to-r" />
+								<div className="top-15 border-6 border-elevation-level1 bg-error absolute left-6 flex size-20 items-center justify-center rounded-2xl">
+									<ShipWheel className="text-white" size={36} />
+								</div>
+								<div className="flex flex-col gap-2.5 px-5 pt-10">
+									<div className="flex flex-col gap-1.5">
+										<h5 className="heading-5">Hisoka Meureum</h5>
+										<p className="text-fg-secondary text-sm">Founder and CEO at Acme</p>
+									</div>
+									<div className="text-sm">4200 followers</div>
+									<div className="pt-1.5">
+										<Button className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+											Send Message
+										</Button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

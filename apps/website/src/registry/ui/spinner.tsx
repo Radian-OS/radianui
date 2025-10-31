@@ -11,21 +11,21 @@ type SpinnerProps = React.SVGProps<SVGSVGElement> & {
 function DefaultSpinner({ size, color, "aria-label": ariaLabel, className, ...props }: SpinnerProps) {
 	return (
 		<svg
-			xmlns="http://www.w3.org/2000/svg"
 			width={size}
 			height={size}
 			viewBox="0 0 24 24"
 			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
 			role="status"
 			aria-label={ariaLabel || "Loading"}
 			aria-live="polite"
 			focusable="false"
-			className={cn("animate-spin", className)}
+			className={cn("origin-center animate-spin", className)}
 			{...props}>
 			<path
-				d="M11.75 21.5C13.7562 21.5 15.7109 20.8649 17.334 19.6857C18.957 18.5064 20.1651 16.8437 20.785 14.9357C21.405 13.0276 21.405 10.9724 20.785 9.06434C20.1651 7.15633 18.957 5.49355 17.334 4.31434"
+				d="M21.5 12C21.5 9.9938 20.8649 8.03909 19.6857 6.41604C18.5064 4.79299 16.8437 3.58491 14.9357 2.96496C13.0276 2.34501 10.9724 2.34501 9.06434 2.96496C7.15633 3.58491 5.49355 4.79299 4.31434 6.41604"
 				stroke={color || "currentColor"}
-				strokeWidth={2}
+				strokeWidth="2"
 				strokeLinejoin="round"
 			/>
 		</svg>
@@ -36,22 +36,27 @@ DefaultSpinner.displayName = "DefaultSpinner"
 function SimpleSpinner({ size, color, "aria-label": ariaLabel, className, ...props }: SpinnerProps) {
 	return (
 		<svg
-			xmlns="http://www.w3.org/2000/svg"
 			width={size}
 			height={size}
 			viewBox="0 0 24 24"
 			fill="none"
-			className={cn("animate-spin", className)}
+			xmlns="http://www.w3.org/2000/svg"
+			className={cn("origin-center animate-spin", className)}
 			role="status"
 			aria-label={ariaLabel || "Loading"}
 			aria-live="polite"
 			focusable="false"
 			{...props}>
-			<circle opacity={0.16} cx={12} cy={12} r={9.5} stroke="currentColor" strokeWidth={3} />
 			<path
-				d="M3.52276 16.75C4.52586 18.4874 6.05324 19.8627 7.886 20.6787C9.71876 21.4947 11.7628 21.7095 13.7252 21.2924C15.6875 20.8753 17.4675 19.8476 18.8099 18.3567C20.1523 16.8658 20.9883 14.9882 21.198 12.993"
+				opacity="0.16"
+				d="M21.5 12C21.5 17.2467 17.2467 21.5 12 21.5C6.75329 21.5 2.5 17.2467 2.5 12C2.5 6.75329 6.75329 2.5 12 2.5C17.2467 2.5 21.5 6.75329 21.5 12Z"
 				stroke={color || "currentColor"}
-				strokeWidth={3}
+				strokeWidth="3"
+			/>
+			<path
+				d="M16.75 20.2272C18.4874 19.2241 19.8627 17.6968 20.6787 15.864C21.4947 14.0312 21.7095 11.9872 21.2924 10.0248C20.8753 8.06248 19.8476 6.28254 18.3567 4.94012C16.8658 3.59771 14.9882 2.76175 12.993 2.55204"
+				stroke={color || "currentColor"}
+				strokeWidth="3"
 				strokeLinecap="round"
 				strokeLinejoin="round"
 			/>
