@@ -35,6 +35,7 @@ import {
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
@@ -314,81 +315,99 @@ export default function Page() {
 							<h6 className="heading-6">Clean, Modular Components</h6>
 							<p className="text-fg-secondary">Radian’s building blocks are composable, easy to override, and perfect for scaling projects.</p>
 						</div>
-						<div className="flex flex-wrap items-center gap-3">
-							<Badge size="28" variant="outline" color="neutral">
-								<SquareArrowDown />
-								Accordion
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<PanelRight />
-								Drawers
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Tag />
-								Drawers
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<MousePointerClick />
-								Button
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Siren />
-								Alert
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<CircleUser />
-								Avatar
-							</Badge>
-							<Badge size="28">
-								<CalendarIcon />
-								Calendar
-							</Badge>
+						<section className="flex-flex-col relative items-center justify-center gap-3">
+							<div className="to-bg w-17.5 from-bg/5 absolute z-30 h-full bg-gradient-to-l" />
+							<div className="to-bg w-17.5 from-bg/5 absolute right-0 z-30 h-full bg-gradient-to-r" />
+							<InfiniteScroll className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<SquareArrowDown />
+										Accordion
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<PanelRight />
+										Drawers
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Tag />
+										Drawers
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<MousePointerClick />
+										Button
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Siren />
+										Alert
+									</Badge>
+								</div>
+							</InfiniteScroll>
+							<InfiniteScroll reverse className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<CircleUser />
+										Avatar
+									</Badge>
+									<Badge size="28">
+										<CalendarIcon />
+										Calendar
+									</Badge>
 
-							<Badge size="28" variant="outline" color="neutral">
-								<SlidersHorizontal />
-								Slider
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<SquareCheck />
-								Checkbox
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<AppWindow />
-								Dialogs
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Loader />
-								Loader
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<SquareCode />
-								Code
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<TableIcon />
-								Table
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<ChartLine />
-								Chart
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<ToggleLeft />
-								Switch
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<TextCursorInput />
-								Input Feilds
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Component />
-								Toaster
-							</Badge>
-							<Badge size="28" variant="outline" color="neutral">
-								<Component />
-								Banner
-							</Badge>
-						</div>
+									<Badge size="28" variant="outline" color="neutral">
+										<SlidersHorizontal />
+										Slider
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<SquareCheck />
+										Checkbox
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<AppWindow />
+										Dialogs
+									</Badge>
+								</div>
+							</InfiniteScroll>
+							<InfiniteScroll className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<Loader />
+										Loader
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<SquareCode />
+										Code
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<TableIcon />
+										Table
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<ChartLine />
+										Chart
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<ToggleLeft />
+										Switch
+									</Badge>
+								</div>
+							</InfiniteScroll>
+							<InfiniteScroll reverse className="w-fit">
+								<div className="flex flex-wrap items-center gap-3">
+									<Badge size="28" variant="outline" color="neutral">
+										<TextCursorInput />
+										Input Feilds
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Component />
+										Toaster
+									</Badge>
+									<Badge size="28" variant="outline" color="neutral">
+										<Component />
+										Banner
+									</Badge>
+								</div>
+							</InfiniteScroll>
+						</section>
 					</div>
 					<div className="flex-2/3 flex flex-col items-center justify-center gap-4 pl-16 pt-16">
 						<div className="border-alpha bg-elevation-level1 rounded-xl border">
