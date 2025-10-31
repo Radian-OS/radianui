@@ -9,6 +9,7 @@ import {
 	Calendar as CalendarIcon,
 	ChartLine,
 	Check,
+	ChevronDown,
 	CircleGauge,
 	CircleUser,
 	ClipboardCheck,
@@ -19,6 +20,7 @@ import {
 	MousePointerClick,
 	PanelRight,
 	ScanEye,
+	ShipWheel,
 	Siren,
 	SlidersHorizontal,
 	SquareArrowDown,
@@ -544,7 +546,7 @@ export default function Page() {
 					</div>
 				</div>
 				<div className="border-border flex h-[584px] border-b-0">
-					<div className="border-border gap-14.25 flex w-1/2 flex-col border-r pl-16 pt-16">
+					<div className="border-border gap-14.25 flex w-1/2 flex-col overflow-hidden border-r pl-16 pt-16">
 						<div className="flex flex-col gap-4">
 							<FolderGit className="text-primary" size={28} />
 							<h6 className="heading-6">Seamless Design-to-Code Sync</h6>
@@ -605,10 +607,48 @@ type BadgeProps = React.HTMLAttributes<HTMLDivElement> &
 							</div>
 						</div>
 					</div>
-					<div className="flex w-1/2 flex-col gap-4 pl-16 pt-16">
-						<SwatchBook className="text-primary" size={28} />
-						<h6 className="heading-6">Streamlined component library</h6>
-						<p className="text-fg-secondary max-w-116 w-full">Our vast collection of customizable components eliminates the need to reinvent the wheel.</p>
+					<div className="flex w-1/2 flex-col gap-12 overflow-hidden pl-16 pt-16">
+						<div className="flex flex-col gap-4">
+							<SwatchBook className="text-primary" size={28} />
+							<h6 className="heading-6">Streamlined component library</h6>
+							<p className="text-fg-secondary max-w-116 w-full">Our vast collection of customizable components eliminates the need to reinvent the wheel.</p>
+						</div>
+						<div className="flex items-center gap-14">
+							<div className="flex w-full max-w-[241px] flex-col gap-1">
+								<div className="flex w-full items-center justify-between rounded-lg border px-2.5 py-2">
+									<span className="text-fg-secondary text-sm">Sun Burst - Red</span>
+									<ChevronDown className="text-fg-tertiary" size={20} />
+								</div>
+								<div className="flex h-full max-h-[333px] flex-col gap-1 rounded-[10px] border px-1">
+									<div className="rounded-md px-2 py-1.5">Circle Clover - Purple</div>
+									<div className="rounded-md px-2 py-1.5">Knotted Links - Purple</div>
+									<div className="bg-primary-accent rounded-md px-2 py-1.5">Sun Burst - Red</div>
+									<div className="rounded-md px-2 py-1.5">Wave Globe - Green</div>
+									<div className="rounded-md px-2 py-1.5">Flow Cross - Blue</div>
+									<div className="rounded-md px-2 py-1.5">Octo Frame - Blue</div>
+									<div className="rounded-md px-2 py-1.5">Petal Grid - Green</div>
+									<div className="rounded-md px-2 py-1.5">Gradient - Purple</div>
+								</div>
+							</div>
+							<div className="relative size-full max-h-[322px] max-w-[512px] rounded-xl rounded-b-none rounded-r-none border border-r-0 p-1.5">
+								<div className="max-h-25 from-error-accent to-primary-focus size-full rounded-[10px] bg-gradient-to-r" />
+								<div className="top-15 border-6 border-elevation-level1 bg-error absolute left-6 flex size-20 items-center justify-center rounded-2xl">
+									<ShipWheel className="text-white" size={36} />
+								</div>
+								<div className="flex flex-col gap-2.5 px-5 pt-10">
+									<div className="flex flex-col gap-1.5">
+										<h5 className="heading-5">Hisoka Meureum</h5>
+										<p className="text-fg-secondary text-sm">Founder and CEO at Acme</p>
+									</div>
+									<div className="text-sm">4200 followers</div>
+									<div className="pt-1.5">
+										<Button className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+											Send Message
+										</Button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

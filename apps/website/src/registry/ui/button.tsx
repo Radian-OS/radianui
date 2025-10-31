@@ -293,7 +293,7 @@ function ButtonGroup({ className, children, variant = "outline", size = "36", co
 ButtonGroup.displayName = "ButtonGroup"
 
 export const compactButtonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-bg-bg disabled:pointer-events-none hover:cursor-pointer w-fit rounded-md",
 	{
 		variants: {
 			variant: {
@@ -303,8 +303,8 @@ export const compactButtonVariants = cva(
 				ghost: "",
 			},
 			size: {
-				"20": "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5 rounded-sm",
-				"24": "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1 rounded-md",
+				"20": "[&>svg]:!w-4 [&>svg]:!h-4 h-5 w-5 p-0.5",
+				"24": "[&>svg]:!w-4 [&>svg]:!h-4 h-6 w-6 p-1",
 			},
 			color: {
 				primary: "",
