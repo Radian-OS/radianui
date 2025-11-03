@@ -36,11 +36,11 @@ const ButtonExampleInput = () => {
 				<PopoverTrigger asChild>
 					<div className="relative w-[250px]">
 						<Button id="date" type="button" variant="outline" color="neutral">
+							<CalendarIcon />
 							{date ? (
 								format(date, "PPP")
 							) : (
 								<>
-									<CalendarIcon />
 									<span>Pick Date Range</span>
 								</>
 							)}
