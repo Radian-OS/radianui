@@ -2,24 +2,30 @@
 
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
-import { geist, inter, manrope, openSans, roboto } from "@/lib/fetch-fonts"
+import { dmSans, figtree, geist, ibmPlexSans, inter, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const TypographyPlaground = () => {
-	// font registry
-	const fonts: Record<string, string> = {
-		Inter: inter.className,
-		"Inter Display": `${inter.className} tracking-tight`,
-		Roboto: roboto.className,
-		"Open Sans": openSans.className,
-		Manrope: manrope.className,
-		Geist: geist.className,
-	}
+const FONTS: Record<string, string> = {
+	Inter: inter.className,
+	"Inter Display": `${inter.className} tracking-tight`,
+	Roboto: roboto.className,
+	"Open Sans": openSans.className,
+	Manrope: manrope.className,
+	Geist: geist.className,
+	Rubik: rubik.className,
+	"DM Sans": dmSans.className,
+	Lato: lato.className,
+	Raleway: raleway.className,
+	"Work Sans": workSans.className,
+	"IBM Plex Sans": ibmPlexSans.className,
+	Figtree: figtree.className,
+}
 
+export default function TypographyPlayground() {
 	const [selectedFont, setSelectedFont] = useState<string>("Inter Display")
 
 	return (
@@ -33,7 +39,7 @@ const TypographyPlaground = () => {
 					</DropdownTrigger>
 					<DropdownContent>
 						<DropdownRadioGroup value={selectedFont} onValueChange={(value) => setSelectedFont(value)}>
-							{Object.keys(fonts).map((fontName) => (
+							{Object.keys(FONTS).map((fontName) => (
 								<DropdownRadioItem key={fontName} value={fontName}>
 									{fontName}
 								</DropdownRadioItem>
@@ -50,7 +56,7 @@ const TypographyPlaground = () => {
 
 			{/* Desktop */}
 			<TabsContent value="desktop">
-				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${fonts[selectedFont]}`}>
+				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${FONTS[selectedFont]}`}>
 					<div className="flex flex-col gap-3 border-b pb-4">
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
@@ -88,7 +94,7 @@ const TypographyPlaground = () => {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 6
 						</Badge>
-						<span className={`heading-6 ${fonts[selectedFont]}`}>The Admiralty Levy: A New Era of Navigation Fees</span>
+						<span className={`heading-6 ${FONTS[selectedFont]}`}>The Admiralty Levy: A New Era of Navigation Fees</span>
 						<ul className="list-disc px-6 text-[1rem]">
 							<li className="text-fg-secondary">
 								<span className="text-fg font-medium">Harbor plans</span>: 2 silver per copy for detailed maps of local docks and facilities.
@@ -132,7 +138,7 @@ const TypographyPlaground = () => {
 
 			{/* Tablet */}
 			<TabsContent value="tablet">
-				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${fonts[selectedFont]}`}>
+				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${FONTS[selectedFont]}`}>
 					<div className="flex flex-col gap-3 border-b pb-4">
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
@@ -214,7 +220,7 @@ const TypographyPlaground = () => {
 
 			{/* Mobile */}
 			<TabsContent value="mobile">
-				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${fonts[selectedFont]}`}>
+				<div className={`flex flex-col gap-10 rounded-xl border px-6 py-8 ${FONTS[selectedFont]}`}>
 					<div className="flex flex-col gap-3 border-b pb-4">
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
@@ -296,5 +302,3 @@ const TypographyPlaground = () => {
 		</Tabs>
 	)
 }
-
-export default TypographyPlaground

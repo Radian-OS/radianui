@@ -33,6 +33,23 @@ const COLORS = [
 	{ title: "Rose", value: "rose", hex: "#F53D7A" },
 ]
 
+const FONTS = [
+	{ title: "Inter - Inter Display (Default)", value: "inter" },
+	{ title: "Roboto", value: "roboto" },
+	{ title: "Geist", value: "geist" },
+	{ title: "DM Sans", value: "dm-sans" },
+	{ title: "Open Sans", value: "open-sans" },
+	{ title: "Rubik", value: "rubik" },
+	{ title: "Lato", value: "lato" },
+	{ title: "Manrope", value: "manrope" },
+	{ title: "Raleway", value: "raleway" },
+	{ title: "Work Sans", value: "work-sans" },
+	{ title: "IBM Plex Sans", value: "ibm-plex-sans" },
+	{ title: "Figtree", value: "figtree" },
+]
+
+const DEFAULT_FONT = "inter"
+
 export const promptForNewProject = async (options: InitOptions): Promise<PromptForNewProject> => {
 	if (options.defaultConfigurations) {
 		return {
@@ -111,11 +128,16 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 				type: "select",
 				name: "font",
 				message: "Which font would you like to use for your project?",
-				choices: [
-					{ title: "Inter - Inter Display (Default)", value: "inter" },
-					{ title: "Roboto", value: "roboto" },
-					{ title: "Geist", value: "geist" },
-				],
+				choices: (() => {
+					const defaultFont = FONTS.find((font) => font.value === DEFAULT_FONT)
+					const otherFonts = FONTS.filter((font) => font.value !== DEFAULT_FONT)
+					const sortedOtherFonts = otherFonts.sort((a, b) => a.title.localeCompare(b.title))
+					const sortedFonts = defaultFont ? [defaultFont, ...sortedOtherFonts] : sortedOtherFonts
+					return sortedFonts.map((font) => ({
+						title: font.title,
+						value: font.value,
+					}))
+				})(),
 				initial: 0,
 			})
 
