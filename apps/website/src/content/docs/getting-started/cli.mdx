@@ -25,31 +25,38 @@ You will be asked a few questions to configure components.json:
 <CodeSnippet
 	title="Terminal"
 	showLineNumber
-	code={`√ What would you like to name your project? ... my-app
+	code={`√ No package.json found at C:\\Users\\RadianOS\\Projects. Create a new project? ... yes
+√ What would you like to name your project? ... my-app
+√ Which framework do you want to use? » Next.js
 √ Would you like to use /src directory? ... yes
-√ Creating a new Next.js project. This might take some time.
-√ Write configuration to components.json. Proceed? ... yes
-√ Writing components.json file
-√ Setting up project configuration
-√ Installing the required dependencies
+√ Which color would you like to use as your brand color? » Dark Orchid
+√ Which font would you like to use for your project? » Inter - Inter Display (Default)
+✔ Creating a new Next.js project. This might take some time.
+✔ Writing components.json file
+✔ Setting up project configuration
+✔ Installing dependencies
+✔ Updating global CSS variables
 
-Success! Project initialization completed. You may now add components.`}
+Success! Project initialization completed. You may now add components.
+`}
 />
 
 ## options
 
 <CodeSnippet
 	title="Terminal"
-	code={`Usage: radianos init [options] [components...]
+	code={`Usage: radianui [options] [command]
 
-initialize your project and install dependencies
-
-Arguments:
-components the components to add or a url to the component.
+Add components to your project
 
 Options:
--y, --yes skip confirmation prompt. (default: false)
--h, --help display help for command`}
+-v, --version display the version number
+-h, --help display help for command
+
+Commands:
+init [options] [project-name] initializes your project with required dependencies
+add [options] [components...] Add components to ui folder inside the components folder in your project
+help [command] display help for command`}
 />
 
 ## add

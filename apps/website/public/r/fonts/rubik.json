@@ -1,0 +1,9 @@
+{
+    "name": "rubik",
+    "label": "Rubik",
+    "importURL": "https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,100..900;1,100..900&display=swap",
+    "cssVariables": {
+        "heading-font": "Rubik",
+        "body-font": "Rubik"
+    }
+}
