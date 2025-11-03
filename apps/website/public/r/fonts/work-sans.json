@@ -1,0 +1,9 @@
+{
+    "name": "work-sans",
+    "label": "Work Sans",
+    "importURL": "https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap",
+    "cssVariables": {
+        "heading-font": "Work Sans",
+        "body-font": "Work Sans"
+    }
+}
