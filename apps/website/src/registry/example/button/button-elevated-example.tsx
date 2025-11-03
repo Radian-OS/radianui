@@ -8,7 +8,7 @@ const ButtonElevatedExample = () => {
 				Elevated Button
 			</Button>
 			<Button
-				className="active:bg-elevation-level1 w-full shadow-[0_-2px_0_0_var(--color-border)_inset,0_1px_1px_0_rgba(25,24,27,0.04)] active:shadow-none"
+				className="active:bg-elevation-level1 w-full shadow-[0_-1px_0_0_var(--color-border)_inset,0_1px_1px_0_rgba(25,24,27,0.04)] active:shadow-[0_0px_0_0_var(--color-border)_inset,0_1px_1px_0_rgba(25,24,27,0.04)]"
 				color="neutral"
 				variant="outline">
 				Elevated Neutral
