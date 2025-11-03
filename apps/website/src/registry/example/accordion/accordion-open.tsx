@@ -11,19 +11,17 @@ const contents = [
 	{
 		id: 2,
 		trigger: "What components are available in Radian OS?",
-		content:
-			"Radian OS offers a variety of UI components including Accordions, Alerts, Avatars, Badges, Banners, Buttons, Calendars, Checkboxes, Dropdowns, Inputs, Modals, Pagination, Progress Bars, Radio Buttons, Sliders, Switches, Tables, Tabs, Tooltips, and more.",
+		content: "Radian OS offers a variety of Ul components including Accordions, Alerts, Avatars, Badges, Banners, Buttons, Calendars, Checkboxes, Dropdowns and more.",
 	},
 	{
 		id: 3,
 		trigger: "What application components does Radian OS provide?",
-		content:
-			"Radian OS includes application components such as User Authentication, Navigation Bars, Application Settings, Onboarding flows, Profile sections, and more, facilitating the development of comprehensive web applications.",
+		content: "Application components such as User Authentication, Navigation Bars, Application Settings, and many more.",
 	},
 	{
 		id: 4,
 		trigger: "How can I stay updated with Radian OS developments?",
-		content: "You can subscribe to Radian OS updates to receive the latest information, tips, and exclusive offers directly from the development team.",
+		content: "You can subscribe to Radian OS newsletter to receive the latest information, tips, and exclusive offers.",
 	},
 ]
 

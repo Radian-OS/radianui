@@ -50,7 +50,7 @@ const accordionItemVariants = cva("overflow-hidden", {
 		variant: {
 			box: "border-stroke border shadow-2xs rounded-lg last:mb-0",
 			table: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
-			open: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
+			open: "border-b last:border-b-0",
 		},
 		size: {
 			sm: "",
@@ -75,7 +75,7 @@ const accordionItemVariants = cva("overflow-hidden", {
 	},
 })
 
-const accordionTriggerVariants = cva("bg-bg text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all", {
+const accordionTriggerVariants = cva("text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all", {
 	variants: {
 		variant: {
 			box: "",
@@ -227,8 +227,8 @@ function AccordionContent({ children, className, ...props }: AccordionContentPro
 	const { size, variant } = useAccordion()
 
 	return (
-		<AccordionPrimitive.Content data-slot="accordion-content" className={classNames(accordionContentVariants(), className)} {...props}>
-			<div className={classNames(accordionContentInnerVariants({ variant, size }))}>{children}</div>
+		<AccordionPrimitive.Content data-slot="accordion-content" className={classNames(accordionContentVariants())} {...props}>
+			<div className={classNames(accordionContentInnerVariants({ variant, size }), className)}>{children}</div>
 		</AccordionPrimitive.Content>
 	)
 }

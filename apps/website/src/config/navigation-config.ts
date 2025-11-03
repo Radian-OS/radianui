@@ -44,7 +44,7 @@ export const navigationItems: NavigationSection[] = [
 		description: "Universal settings for building a strong foundation for a digital product",
 		items: [
 			{
-				title: "Color styles",
+				title: "Colors",
 				description: "156 colors, 70 color tokens",
 				thumbnail: "/thumbnails/color-styles.webp",
 				thumbnailDark: "/thumbnails/color-styles-dark.webp",
