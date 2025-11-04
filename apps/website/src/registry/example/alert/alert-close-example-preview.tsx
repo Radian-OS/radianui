@@ -5,26 +5,36 @@ import { LinkButton } from "@/registry/ui/button"
 
 function DismissibleAlert() {
 	const [isVisible, setIsVisible] = useState(true)
-	const handleClose = () => setIsVisible(false)
+
+	const handleClose = () => {
+		setIsVisible(false)
+
+		// Bring the alert back after 3 seconds
+		setTimeout(() => {
+			setIsVisible(true)
+		}, 1500)
+	}
 
 	return (
 		<div className="max-w-132.5">
-			{isVisible && (
-				<Alert close onClose={() => handleClose()} color="primary" variant="outline">
-					<AlertIcon>
-						<CircleCheckBig size={20} />
-					</AlertIcon>
-					<AlertContent>
-						<AlertTitle>Payment Recieved</AlertTitle>
-						<AlertDescription>Your payment of $79.99 to Stipe has been successfully processed on card ending in XXXX XXXX XXX 4242.</AlertDescription>
-						<section className="flex items-center gap-2 pt-2">
-							<LinkButton href="#on-close-functionality">Statement</LinkButton>
-							<span className="bg-fill4 size-1 rounded-full"></span>
-							<LinkButton href="#on-close-functionality">Transaction</LinkButton>
-						</section>
-					</AlertContent>
-				</Alert>
-			)}
+			<div className={`transition-all duration-300 ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}>
+				{isVisible && (
+					<Alert close onClose={handleClose} color="primary" variant="outline">
+						<AlertIcon>
+							<CircleCheckBig size={20} />
+						</AlertIcon>
+						<AlertContent>
+							<AlertTitle>Payment Received</AlertTitle>
+							<AlertDescription>Your payment of $79.99 to Stripe has been successfully processed on card ending in XXXX XXXX XXX 4242.</AlertDescription>
+							<section className="flex items-center gap-2 pt-2">
+								<LinkButton href="#on-close-functionality">Statement</LinkButton>
+								<span className="bg-fill4 size-1 rounded-full"></span>
+								<LinkButton href="#on-close-functionality">Transaction</LinkButton>
+							</section>
+						</AlertContent>
+					</Alert>
+				)}
+			</div>
 		</div>
 	)
 }
