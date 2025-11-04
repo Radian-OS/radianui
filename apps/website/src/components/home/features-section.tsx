@@ -106,7 +106,7 @@ export default function FeaturesSection() {
 		return () => clearInterval(interval)
 	}, [])
 	return (
-		<div className="flex flex-col items-center gap-20 pt-40">
+		<div className="flex flex-col items-center gap-20 pb-40 pt-40">
 			<div className="flex flex-col items-center gap-8">
 				<div className="relative">
 					<Badge className="relative z-10" variant="soft" color="neutral" size="28">

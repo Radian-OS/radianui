@@ -10,6 +10,7 @@ import FAQSection from "@/components/home/faq-section"
 // import FeaturesSection from "@/components/home/features-section"
 import FeaturesSectionNew from "@/components/home/features-section-new"
 import FooterSection from "@/components/home/footer-section"
+import InvertedSection from "@/components/home/inverted-section"
 import Signin from "@/components/home/pages/signin"
 import Signup from "@/components/home/pages/signup"
 import Verification from "@/components/home/pages/verification"
@@ -256,6 +257,8 @@ export default function Page() {
 
 			{/* <FeaturesSection /> */}
 			<FeaturesSectionNew />
+
+			<InvertedSection />
 
 			<ComponentsSection />
 
