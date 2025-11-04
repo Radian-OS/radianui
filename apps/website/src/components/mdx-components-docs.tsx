@@ -37,7 +37,7 @@ import CollaborationPointerExample from "@/registry/example/animated/collaborati
 import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
 import FadeOutExample from "@/registry/example/animated/fade-out-example"
 import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
-import BadgeExamplePreview from "@/registry/example/badge/badge-strong-example"
+import BadgeExamplePreview from "@/registry/example/badge/badge-color-example"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
 import Examples from "@/registry/example/example.json"

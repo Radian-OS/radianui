@@ -1,12 +1,12 @@
 import React from "react"
 import { Badge } from "@/registry/ui/badge"
 
-const BadgeStrongVariant = () => {
+const BadgeColorExample = () => {
 	return (
-		<div className="flex flex-col items-center justify-center gap-2 sm:flex-row">
+		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
 			<Badge variant="strong">Primary</Badge>
-			<Badge color="info" variant="strong">
-				Info
+			<Badge color="neutral" variant="strong">
+				Neutral
 			</Badge>
 			<Badge color="success" variant="strong">
 				Success
@@ -17,11 +17,11 @@ const BadgeStrongVariant = () => {
 			<Badge color="warning" variant="strong">
 				Warning
 			</Badge>
-			<Badge color="neutral" variant="strong">
-				Neutral
+			<Badge color="info" variant="strong">
+				Info
 			</Badge>
 		</div>
 	)
 }
 
-export default BadgeStrongVariant
+export default BadgeColorExample

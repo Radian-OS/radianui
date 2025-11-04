@@ -43,11 +43,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 	},
 	compoundVariants: [
 		// strong
-		{ variant: "strong", color: "primary", className: "bg-primary text-white font-semibold" },
-		{ variant: "strong", color: "info", className: "bg-info text-white font-semibold" },
-		{ variant: "strong", color: "success", className: "bg-success text-white font-semibold" },
-		{ variant: "strong", color: "error", className: "bg-error text-white font-semibold" },
-		{ variant: "strong", color: "warning", className: "bg-warning text-white font-semibold" },
+		{ variant: "strong", color: "primary", className: "bg-primary text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "info", className: "bg-info text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "success", className: "bg-success text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "error", className: "bg-error text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "warning", className: "bg-warning text-white font-semibold border border-alpha" },
 		{
 			variant: "strong",
 			color: "neutral",
@@ -61,12 +61,12 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{ variant: "outline", color: "warning", className: "text-warning-text border border-warning bg-transparent" },
 		{ variant: "outline", color: "neutral", className: "text-fg-secondary border bg-transparent" },
 		// soft
-		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text border border-soft-alpha" },
-		{ variant: "soft", color: "info", className: "bg-info-accent text-info-text border border-soft-alpha" },
-		{ variant: "soft", color: "success", className: "bg-success-accent text-success-text border border-soft-alpha" },
-		{ variant: "soft", color: "error", className: "bg-error-accent text-error-text border border-soft-alpha" },
-		{ variant: "soft", color: "warning", className: "bg-warning-accent text-warning-text border border-soft-alpha" },
-		{ variant: "soft", color: "neutral", className: "bg-fill2 text-fg-secondary border border-soft-alpha" },
+		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text" },
+		{ variant: "soft", color: "info", className: "bg-info-accent text-info-text" },
+		{ variant: "soft", color: "success", className: "bg-success-accent text-success-text" },
+		{ variant: "soft", color: "error", className: "bg-error-accent text-error-text" },
+		{ variant: "soft", color: "warning", className: "bg-warning-accent text-warning-text" },
+		{ variant: "soft", color: "neutral", className: "bg-fill2 text-fg-secondary" },
 	],
 })
 
