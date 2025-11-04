@@ -1,7 +1,7 @@
 import { SourceFile, SyntaxKind } from "ts-morph"
 import { ProjectInfo } from "@/utils/getProjectInfo"
 
-const directiveRegex = /^["']use client["']$/
+const directiveRegex = /^["']use client["'];?$/
 
 export const transformRsc = ({ sourceFile, projectInfo }: { sourceFile: SourceFile; projectInfo: ProjectInfo }): string => {
 	if (projectInfo.isRSC) {
