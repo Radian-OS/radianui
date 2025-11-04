@@ -330,7 +330,7 @@ export default function Page() {
 									</Badge>
 									<Badge size="28" variant="outline" color="neutral">
 										<Tag />
-										Drawers
+										Badge
 									</Badge>
 									<Badge size="28" variant="outline" color="neutral">
 										<MousePointerClick />

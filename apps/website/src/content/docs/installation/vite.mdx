@@ -25,14 +25,16 @@ You will be asked a few questions to configure `components.json`:
 <CodeSnippet
 					title="components.json"
 					showLineNumber
-					code={`✔ No package.json found at /home/ashmitbastola/Desktop/Personal/vite. Create a new project? … yes
-✔ What would you like to name your project? … my-app
-✔ Which framework do you want to use? › Vite
-✔ Creating vite project...
+					code={`√ No package.json found at C:\\Users\\Lenovo\\Projects. Create a new project? ... yes
+√ What would you like to name your project? ... vite-project
+√ Which framework do you want to use? » Vite
+√ Which color would you like to use as your brand color? » Cyan
+√ Which font would you like to use for your project? » Geist
+✔ Creating a new Vite project. This might take some time.
 ✔ Writing components.json file
-⠋ Setting up project configuration✅ Vite project setup completed
 ✔ Setting up project configuration
 ✔ Installing dependencies
+✔ Updating global CSS variables
 
 Success! Project initialization completed. You may now add components.
 `}
@@ -96,22 +98,23 @@ the tsconfig.json and tsconfig.app.json files:
 <CodeSnippet
 	title="tsconfig.json"
 	showLineNumber
-	code={`{
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  }
+	code={`
+{
+		"files": [],
+		"references": [
+			{
+			"path": "./tsconfig.app.json"
+			},
+			{
+			"path": "./tsconfig.node.json"
+			}
+		],
+		"compilerOptions": {
+			"baseUrl": ".",
+			"paths": {
+				"@/*": ["./src/*"]
+			}
+		}
 }`}
 />
 
@@ -120,17 +123,18 @@ the tsconfig.json and tsconfig.app.json files:
 <CodeSnippet
 	title="tsconfig.app.json"
 	showLineNumber
-	code={`{
-  "compilerOptions": {
-    // ...
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
-    // ...
-  }
+	code={`
+{
+		"compilerOptions": {
+			// ...
+			"baseUrl": ".",
+			"paths": {
+				"@/*": [
+					"./src/*"
+				]
+			}
+			// ...
+		}
 }`}
 />
 
@@ -149,9 +153,10 @@ Add the following code to the vite.config.ts so your app can resolve paths witho
 />
 <br/>
  <CodeSnippet
-					title="vite.config.ts"
-					showLineNumber
-					code={`import path from "path"
+	title="vite.config.ts"
+	showLineNumber
+	code={
+`import path from "path"
 import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
