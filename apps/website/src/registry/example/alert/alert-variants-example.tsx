@@ -1,52 +1,47 @@
 import React from "react"
-import { BadgeCheck, BadgeInfo, BellIcon, Clock } from "lucide-react"
-import { Alert, AlertIcon, AlertTitle, AlertToolbar } from "@/registry/ui/alert"
-import { LinkButton } from "@/registry/ui/button"
+import { Box } from "lucide-react"
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 
 const AlertVariantsExample = () => {
 	return (
-		<div className="flex w-full flex-col items-center justify-center gap-4">
-			<Alert variant="strong" close={true}>
+		<div className="max-w-132.5 flex w-full flex-col items-center justify-center gap-3">
+			<Alert variant="outline">
 				<AlertIcon>
-					<BellIcon />
+					<Box size={20} />
 				</AlertIcon>
-
-				<AlertTitle>Alert Strong Variant</AlertTitle>
-				<AlertToolbar>
-					<LinkButton className="text-white" href="#variants">
-						Upgrade
-					</LinkButton>
-				</AlertToolbar>
+				<AlertContent>
+					<AlertTitle>Outline alert</AlertTitle>
+					<AlertDescription>This is a variation of alert</AlertDescription>
+				</AlertContent>
 			</Alert>
 
-			<Alert variant="soft" close>
+			<Alert variant="soft">
 				<AlertIcon>
-					<BadgeInfo />
+					<Box size={20} />
 				</AlertIcon>
-				<AlertTitle>Alert Soft Variant</AlertTitle>
-				<AlertToolbar>
-					<LinkButton href="#variants">Upgrade</LinkButton>
-				</AlertToolbar>
+				<AlertContent>
+					<AlertTitle>Soft alert</AlertTitle>
+					<AlertDescription>This is a variation of alert</AlertDescription>
+				</AlertContent>
 			</Alert>
 
-			<Alert variant="soft-outline" close>
+			<Alert variant="soft-outline">
 				<AlertIcon>
-					<BadgeCheck />
+					<Box size={20} />
 				</AlertIcon>
-				<AlertTitle>Alert Soft-Outline Variant</AlertTitle>
-				<AlertToolbar>
-					<LinkButton href="#variants">Upgrade</LinkButton>
-				</AlertToolbar>
+				<AlertContent>
+					<AlertTitle>Soft outline alert</AlertTitle>
+					<AlertDescription>This is a variation of alert</AlertDescription>
+				</AlertContent>
 			</Alert>
-
-			<Alert variant="outline" close>
+			<Alert variant="strong">
 				<AlertIcon>
-					<Clock />
+					<Box size={20} />
 				</AlertIcon>
-				<AlertTitle>Alert Outline Variant</AlertTitle>
-				<AlertToolbar>
-					<LinkButton href="#variants">Upgrade</LinkButton>
-				</AlertToolbar>
+				<AlertContent>
+					<AlertTitle>Soft alert</AlertTitle>
+					<AlertDescription>This is a variation of alert</AlertDescription>
+				</AlertContent>
 			</Alert>
 		</div>
 	)
