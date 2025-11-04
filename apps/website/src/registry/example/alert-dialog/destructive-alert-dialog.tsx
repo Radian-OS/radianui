@@ -10,30 +10,31 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger,
 } from "@/registry/ui/alert-dialog"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 export default function DestructiveAlertDialog() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<IconButton color="error">
+				<Button color="error">
 					<Trash2 />
-				</IconButton>
+					Delete Record
+				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent>
+			<AlertDialogContent className="max-w-100">
 				<AlertDialogHeader>
-					<AlertDialogTitle>Confirm Your Action</AlertDialogTitle>
-					<AlertDialogDescription>Once confirmed, this action cannot be reversed. It will delete your account and remove all associated data.</AlertDialogDescription>
+					<AlertDialogTitle>Delete Account</AlertDialogTitle>
+					<AlertDialogDescription>Are you sure you want to delete the record?</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel asChild>
 						<Button variant="outline" color="neutral">
-							Go Back
+							Cancel
 						</Button>
 					</AlertDialogCancel>
 					<AlertDialogAction asChild>
 						<Button variant="strong" color="error">
-							Delete Account
+							Delete
 						</Button>
 					</AlertDialogAction>
 				</AlertDialogFooter>

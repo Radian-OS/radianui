@@ -1,3 +1,4 @@
+import { Trash2 } from "lucide-react"
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -10,29 +11,32 @@ import {
 	AlertDialogTrigger,
 } from "@/registry/ui/alert-dialog"
 import { Button } from "@/registry/ui/button"
+import { Divider } from "@/registry/ui/divider"
 
-export default function AlertDialogPreview() {
+export default function DestructiveDialogWithDivider() {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<Button variant="outline" color="neutral">
-					Show Dialog
+				<Button color="error">
+					<Trash2 />
+					Delete Record
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent className="max-w-100">
-				<AlertDialogHeader>
-					<AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
-					<AlertDialogDescription>You have unsaved changes in the page. Do you want to save or discard it?</AlertDialogDescription>
+			<AlertDialogContent className="max-w-100 gap-0 p-0">
+				<AlertDialogHeader className="px-6 py-5">
+					<AlertDialogTitle>Delete Account</AlertDialogTitle>
+					<AlertDialogDescription>Are you sure you want to delete the record?</AlertDialogDescription>
 				</AlertDialogHeader>
-				<AlertDialogFooter>
+				<Divider className="bg-soft-alpha" />
+				<AlertDialogFooter className="px-6 py-5">
 					<AlertDialogCancel asChild>
 						<Button variant="outline" color="neutral">
-							Discard
+							Cancel
 						</Button>
 					</AlertDialogCancel>
 					<AlertDialogAction asChild>
-						<Button variant="strong" color="primary">
-							Save Changes
+						<Button variant="strong" color="error">
+							Delete
 						</Button>
 					</AlertDialogAction>
 				</AlertDialogFooter>
