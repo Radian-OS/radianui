@@ -1,7 +1,7 @@
 import React from "react"
 import { BadgeAlert } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 
 function BadgeRoundedExample() {
 	return (
@@ -13,7 +13,7 @@ function BadgeRoundedExample() {
 				22
 			</Badge>
 			<Badge variant="outline" color="neutral" className="rounded-full">
-				<span className="bg-primary size-1.5 rounded-full" />
+				<BadgeDot className="bg-primary-border" />
 				New Customer
 			</Badge>
 			<Badge variant="strong" color="error" className="rounded-full">

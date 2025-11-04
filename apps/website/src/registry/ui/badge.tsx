@@ -10,6 +10,8 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 		asChild?: boolean
 	}
 
+export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
+
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-1", {
 	variants: {
 		variant: {
@@ -30,16 +32,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			warning: "",
 			neutral: "bg-elevation-level1 border-alpha",
 		},
-		dot: {
-			true: "",
-			false: "",
-		},
 	},
 	defaultVariants: {
 		variant: "soft",
 		size: "24",
 		color: "primary",
-		dot: false,
 	},
 	compoundVariants: [
 		// strong
@@ -70,24 +67,25 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 	],
 })
 
-function Badge({ className, variant, size, color, asChild = false, children, dot, ...props }: BadgeProps) {
+function Badge({ className, variant, size, color, asChild = false, children, ...props }: BadgeProps) {
 	if (asChild) {
-		// When asChild is true, we can't add the dot since Slot expects single child
-		// User should handle dot styling in their custom element
 		return (
-			<Slot className={cn(badgeVariants({ variant, size, color, dot }), className)} {...props}>
+			<Slot className={cn(badgeVariants({ variant, size, color }), className)} {...props}>
 				{children}
 			</Slot>
 		)
 	}
 
 	return (
-		<span className={cn(badgeVariants({ variant, size, color, dot }), className)} {...props}>
-			{dot && <span className={cn("size-1.5 rounded-full bg-current")} />}
+		<span className={cn(badgeVariants({ variant, size, color }), className)} {...props}>
 			{children}
 		</span>
 	)
 }
 
 Badge.displayName = "Badge"
-export { Badge, badgeVariants }
+
+function BadgeDot({ className, ...props }: BadgeDotProps) {
+	return <span data-slot="badge-dot" className={cn("size-1.5 rounded-full bg-[currentColor]", className)} {...props} />
+}
+export { Badge, BadgeDot, badgeVariants }
