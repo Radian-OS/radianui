@@ -6,7 +6,7 @@ import { LinkButton } from "@/registry/ui/button"
 const AlertErrorExamples = () => {
 	return (
 		<div className="max-w-135 flex w-full flex-col items-center justify-center gap-3">
-			<Alert color="error" variant="soft-outline">
+			<Alert color="error" variant="soft-outline" close>
 				<AlertIcon>
 					<OctagonAlert size={20} />
 				</AlertIcon>

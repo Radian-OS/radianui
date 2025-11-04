@@ -39,7 +39,7 @@ const AlertVariantsExample = () => {
 					<Box size={20} />
 				</AlertIcon>
 				<AlertContent>
-					<AlertTitle>Soft alert</AlertTitle>
+					<AlertTitle>Strong alert</AlertTitle>
 					<AlertDescription>This is a variation of alert</AlertDescription>
 				</AlertContent>
 			</Alert>

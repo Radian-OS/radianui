@@ -18,7 +18,7 @@ const AlertSuccessExamples = () => {
 					<Button color="success">Done</Button>
 				</AlertToolbar>
 			</Alert>
-			<Alert color="success" variant="outline">
+			<Alert color="success" variant="outline" close>
 				<AlertIcon>
 					<CircleCheck size={20} />
 				</AlertIcon>

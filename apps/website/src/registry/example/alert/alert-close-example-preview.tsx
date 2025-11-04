@@ -27,9 +27,9 @@ function DismissibleAlert() {
 							<AlertTitle>Payment Received</AlertTitle>
 							<AlertDescription>Your payment of $79.99 to Stripe has been successfully processed on card ending in XXXX XXXX XXX 4242.</AlertDescription>
 							<section className="flex items-center gap-2 pt-2">
-								<LinkButton href="#on-close-functionality">Statement</LinkButton>
+								<LinkButton href="#on-close-functionality">View Statement</LinkButton>
 								<span className="bg-fill4 size-1 rounded-full"></span>
-								<LinkButton href="#on-close-functionality">Transaction</LinkButton>
+								<LinkButton href="#on-close-functionality">Dismiss</LinkButton>
 							</section>
 						</AlertContent>
 					</Alert>

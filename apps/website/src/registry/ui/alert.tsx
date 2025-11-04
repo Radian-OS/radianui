@@ -55,11 +55,11 @@ const alertVariants = cva(
 
 			// Soft-outline variants
 			{ color: "neutral", variant: "soft-outline", className: "border-border bg-fill2" },
-			{ color: "primary", variant: "soft-outline", className: "bg-primary-accent text-primary-text border-primary-accent" },
-			{ color: "info", variant: "soft-outline", className: "bg-info-accent text-info-text border-info-accent" },
-			{ color: "success", variant: "soft-outline", className: "bg-success-accent text-success-text border-success-accent" },
-			{ color: "error", variant: "soft-outline", className: "bg-error-accent text-error-text border-error-accent" },
-			{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text border-warning-accent" },
+			{ color: "primary", variant: "soft-outline", className: "bg-primary-accent text-primary-text border-primary" },
+			{ color: "info", variant: "soft-outline", className: "bg-info-accent text-info-text border-info" },
+			{ color: "success", variant: "soft-outline", className: "bg-success-accent text-success-text border-success" },
+			{ color: "error", variant: "soft-outline", className: "bg-error-accent text-error-text border-error" },
+			{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text border-warning" },
 
 			// Outline variants
 			{ color: "neutral", variant: "outline", className: "bg-transparent text-foreground " },
