@@ -30,7 +30,7 @@ export default function AccordionWithSubHeader() {
 						</span>
 					</span>
 				</AccordionTrigger>
-				<AccordionContent className="ps-11.5 space-y-3">
+				<AccordionContent className="ps-11.5 space-y-3 pb-4">
 					<div className="flex items-center gap-2">
 						<Switch size="20" id="email_notification" checked={email} onCheckedChange={setEmail} aria-label="Email notifications" />
 						<Label htmlFor="email_notification" className="text-fg">
@@ -62,7 +62,7 @@ export default function AccordionWithSubHeader() {
 						</span>
 					</span>
 				</AccordionTrigger>
-				<AccordionContent className="ps-11.5">
+				<AccordionContent className="ps-11.5 pb-4">
 					<RadioGroup size={"sm"} value={appearance} onValueChange={(value) => setAppearance(value as Appearance)} className="flex gap-4">
 						{/* System Option */}
 						<Label htmlFor="system" className="flex cursor-pointer flex-col justify-center gap-2">
@@ -110,7 +110,7 @@ export default function AccordionWithSubHeader() {
 						</span>
 					</span>
 				</AccordionTrigger>
-				<AccordionContent className="ps-11.5">
+				<AccordionContent className="ps-11.5 pb-4">
 					<div className="max-w-57.5 w-full">
 						<Select value={language} onValueChange={(value) => setLanguage(value as Language)}>
 							<SelectTrigger>

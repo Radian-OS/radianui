@@ -55,15 +55,15 @@ export default function AccordionNested() {
 				<AccordionContent>
 					<Accordion type="multiple" variant={"open"} className="*:border-0 *:border-t">
 						<AccordionItem value="nested-1" key="nested-1" className="bg-fill1">
-							<AccordionTrigger className="justify-start gap-2.5 px-4 [&_svg]:-order-1">Can I add my own components?</AccordionTrigger>
-							<AccordionContent className="!ps-11.5 !pb-3 !pe-4">
+							<AccordionTrigger className="justify-start gap-2.5 px-3 [&_svg]:-order-1">Can I add my own components?</AccordionTrigger>
+							<AccordionContent className="!ps-10.5 !pb-3 !pe-3">
 								A flexible theming system built with design tokens enables easy switching between light, dark, and custom themes while also maintaining consistent component
 								styling.
 							</AccordionContent>
 						</AccordionItem>
 						<AccordionItem value="nested-2" key="nested-2" className="bg-fill1">
-							<AccordionTrigger className="justify-start gap-2.5 px-4 [&_svg]:-order-1">How does layout scaling work?</AccordionTrigger>
-							<AccordionContent className="!ps-11.5 !pb-3 !pe-4">
+							<AccordionTrigger className="justify-start gap-2.5 px-3 [&_svg]:-order-1">How does layout scaling work?</AccordionTrigger>
+							<AccordionContent className="!ps-10.5 !pb-3 !pe-3">
 								Radian OS applies responsive grid variables, adjusting columns and spacing automatically for each device mode.
 							</AccordionContent>
 						</AccordionItem>
