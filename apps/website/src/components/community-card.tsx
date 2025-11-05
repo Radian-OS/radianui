@@ -164,7 +164,7 @@ export default function CommunityCard() {
 					</Button>
 
 					<IconButton asChild variant={"outline"} color={"neutral"}>
-						<Link href="https://x.com/RadianOS" target="_blank">
+						<Link href="https://x.com/radian_os" target="_blank">
 							<XIcon />
 						</Link>
 					</IconButton>

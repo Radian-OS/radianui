@@ -41,7 +41,7 @@ export default function AccordionWithIcon() {
 							<span>{item.trigger}</span>
 						</span>
 					</AccordionTrigger>
-					<AccordionContent className="ps-8">{item.content}</AccordionContent>
+					<AccordionContent className="ps-11">{item.content}</AccordionContent>
 				</AccordionItem>
 			))}
 		</Accordion>

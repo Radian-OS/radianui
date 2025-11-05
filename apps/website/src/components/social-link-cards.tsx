@@ -23,7 +23,7 @@ const socialLinks = [
 				/>
 			</svg>
 		),
-		href: "https://x.com/RadianOS",
+		href: "https://x.com/radian_os",
 		description: "Follow us on X",
 	},
 ]
