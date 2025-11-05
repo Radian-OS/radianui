@@ -10,8 +10,8 @@ const BannerPrimaryExamples = () => {
 				<BannerIcon>
 					<Info size={20} />
 				</BannerIcon>
-				<BannerTitle className="truncate sm:whitespace-nowrap">You have 1 day remaining in your Trail Period</BannerTitle>
-				<BannerDescription className="truncate">Have questions or need help ? </BannerDescription>
+				<BannerTitle>You have 1 day remaining in your Trail Period</BannerTitle>
+				<BannerDescription>Have questions or need help ? </BannerDescription>
 				<div className="pl-1">
 					<Button className="text-fg-secondary bg-white hover:bg-white" color="neutral" size="28">
 						Talk to Sales

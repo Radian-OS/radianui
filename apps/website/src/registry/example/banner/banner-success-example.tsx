@@ -24,7 +24,7 @@ const BannerSuccessExample = () => {
 		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
 			{bannerVisible1 && (
 				<Banner onClose={handleClose1} color="success" variant="strong">
-					<div className="flex grow items-center justify-center gap-2">
+					<div className="flex grow items-center justify-center gap-2 px-1">
 						<BannerTitle>Your account was created.</BannerTitle>
 						<BannerDescription>You’ll get an email confirmation shortly</BannerDescription>
 					</div>
@@ -35,8 +35,8 @@ const BannerSuccessExample = () => {
 					<BannerIcon>
 						<Sparkles size={20} />
 					</BannerIcon>
-					<BannerDescription className="whitespace-normal sm:whitespace-nowrap">Get full advantage of Radian with better performance.</BannerDescription>
-					<BannerTitle className="truncate">Get the Desktop app Now!</BannerTitle>
+					<BannerDescription>Get full advantage of Radian with better performance.</BannerDescription>
+					<BannerTitle>Get the Desktop app Now!</BannerTitle>
 					<div className="flex items-center justify-center gap-3 pr-1">
 						<Button size="28" color="success" variant="outline">
 							Download

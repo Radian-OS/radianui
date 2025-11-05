@@ -20,7 +20,7 @@ function BannerExamplePreview() {
 				<Banner color="primary" variant="outline" onClose={handleClose}>
 					<div className="flex grow items-center justify-center gap-2">
 						<BannerIcon>
-							<Info size={20} />
+							<Info />
 						</BannerIcon>
 						<BannerTitle>New Version Available</BannerTitle>
 						<BannerDescription>App Security Patch</BannerDescription>
