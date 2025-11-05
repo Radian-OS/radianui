@@ -42,6 +42,19 @@
 	}
 
 	--animate-beam-flow3: beam-flow2 3s linear infinite;
+
+	@keyframes beam-flow4 {
+		from {
+			stroke-dashoffset: 1000;
+			opacity: 1;
+		}
+		to {
+			stroke-dashoffset: 0;
+			opacity: 1;
+		}
+	}
+
+	--animate-beam-flow4: beam-flow4 4s linear infinite;
 }
 
 .dark {
@@ -109,27 +122,7 @@
 } */
 
 .div-hover {
-	background-image: radial-gradient(circle at var(--x) var(--y), color-mix(in oklch, var(--color-bg) 4%, transparent) 0%, transparent 100%);
-}
-
-/* Noise overlay to break up banding */
-.div-hover::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAHElEQVQoU2NkYGD4z0AEYBxVSFUBRgYGBgYGABkAAKp5AQBq3xMPAAAAAElFTkSuQmCC");
-	background-repeat: repeat;
-	background-size: 100px 100px;
-	opacity: 0.12;
-	pointer-events: none;
-}
-
-.inverted-shape {
-	/* clip-path: path("M 0 0 L 0,0 L 500,0 L 550,50 L 800,50 L 850,0 Z"); */
-	/* clip-path: polygon(0 0, 100% 0, 100% 50px, 0 50px); */
-	/* clip-path: polygon(0 0, 40% 0, 45% 50px, 80% 50px, 85% 0, 100% 0, 100% 100%, 100% 0, 0 0); */
-	clip-path: polygon(0% 0%, 35% 0%, 39% 6%, 62% 6%, 66% 0%, 100% 0%, 100% 100%, 0% 100%);
-	/* clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 65% 70%, 60% 100%, 40% 100%, 35% 70%, 0% 70%); */
+	background-image: radial-gradient(circle at var(--x) var(--y), color-mix(in oklch, #fff 4%, transparent) 0%, transparent 100%);
 }
 
 .color-red {
