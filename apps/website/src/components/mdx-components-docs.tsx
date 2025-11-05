@@ -26,6 +26,7 @@ import PackageManagerTabs, { PackageManagerTabsProps } from "@/components/packag
 import { PropsTable } from "@/components/props-table"
 import SocialLinkCards from "@/components/social-link-cards"
 import CustomThemePlayground from "@/components/theme/custom-theme-playground"
+import DarkModeFramework from "@/components/theme/dark-mode-framework"
 import DarkModePlayground from "@/components/theme/dark-mode-playground"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
@@ -83,6 +84,7 @@ const components = (examples: typeof Examples | undefined) => ({
 		)
 	},
 	ColorPlayground: () => <ColorPlayground />,
+	DarkModeFramework: () => <DarkModeFramework />,
 	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
 		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
 	),

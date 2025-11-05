@@ -8,6 +8,7 @@ export type NavigationItem = {
 	isNew?: boolean
 	isUpdated?: boolean
 	isComingSoon?: boolean
+	subItems?: NavigationItem[]
 }
 
 export type NavigationSection = {
@@ -74,6 +75,10 @@ export const navigationItems: NavigationSection[] = [
 				thumbnailDark: "/thumbnails/color-theme-dark.webp",
 				url: "/docs/fundamentals/theme",
 				alt: "Color theme swatches illustration",
+				subItems: [
+					{ url: "/docs/fundamentals/theme/nextjs", title: "Next.js" },
+					{ url: "/docs/fundamentals/theme/vite", title: "Vite" },
+				],
 			},
 		],
 	},

@@ -165,7 +165,7 @@ const accordionContentInnerVariants = cva("pt-0", {
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "px-4 py-4",
+			class: "px-4 pb-4",
 		},
 	],
 	defaultVariants: {

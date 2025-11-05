@@ -16,8 +16,6 @@ async function main() {
 
 	displayGradientString(`RadianOS v${packageJson.version}`)
 
-	console.log("process.env.WEBSITE_URL", process.env.WEBSITE_URL)
-
 	program.addCommand(init)
 
 	program.addCommand(add)
