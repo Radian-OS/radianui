@@ -74,14 +74,14 @@ export default function InvertedSection() {
 					/>
 				</g>
 				<defs>
-					<filter id="filter0_f_1156_17761" x="0" y="7.62939e-06" width="3271.04" height="2544.25" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+					<filter id="filter0_f_1156_17761" x="0" y="7.62939e-06" width="3271.04" height="2544.25" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 						<feFlood floodOpacity="0" result="BackgroundImageFix" />
 						<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
 						<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1156_17761" />
 					</filter>
 					<linearGradient id="paint0_linear_1156_17761" x1="3039.15" y1="289.291" x2="231.885" y2="2254.96" gradientUnits="userSpaceOnUse">
-						<stop stop-color="#545463" />
-						<stop offset="1" stop-color="#868698" />
+						<stop stopColor="#545463" />
+						<stop offset="1" stopColor="#868698" />
 					</linearGradient>
 				</defs>
 			</svg>
@@ -97,16 +97,16 @@ export default function InvertedSection() {
 			</div>
 			<div className="relative">
 				<div className="absolute inset-x-0 -top-11 mt-[calc(-3/16*1rem)] flex items-end">
-					<div className="mr-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto bg-gray-950"></div>
+					<div className="bg-black-inverse mr-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto dark:bg-[#131316]"></div>
 					<div className="mx-auto flex w-full justify-between px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
-						<svg viewBox="0 0 56 48" aria-hidden="true" className="-ml-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible fill-gray-950">
+						<svg viewBox="0 0 56 48" aria-hidden="true" className="fill-black-inverse -ml-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible dark:fill-[#131316]">
 							<path d="M 2.686 3 H -4 V 48 H 56 V 47 H 53.314 A 8 8 0 0 1 47.657 44.657 L 8.343 5.343 A 8 8 0 0 0 2.686 3 Z"></path>
 						</svg>
-						<svg viewBox="0 0 56 48" aria-hidden="true" className="-mr-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible fill-gray-950">
+						<svg viewBox="0 0 56 48" aria-hidden="true" className="fill-black-inverse -mr-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible dark:fill-[#131316]">
 							<path d="M 53.314 3 H 60 V 48 H 0 V 47 H 2.686 A 8 8 0 0 0 8.343 44.657 L 47.657 5.343 A 8 8 0 0 1 53.314 3 Z"></path>
 						</svg>
 					</div>
-					<div className="ml-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto bg-gray-950"></div>
+					<div className="bg-black-inverse ml-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto dark:bg-[#131316]"></div>
 				</div>
 
 				<div className="bg-black-inverse inverted-shape pb-35 relative flex w-full flex-col items-center gap-20 px-5 pt-40 dark:bg-[#131316]">
