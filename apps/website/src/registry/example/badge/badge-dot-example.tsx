@@ -1,15 +1,18 @@
-import { Badge } from "@/registry/ui/badge"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 
 function BadgeDotExample() {
 	return (
 		<div className="flex items-center justify-center gap-3">
-			<Badge dot variant="strong">
+			<Badge variant="strong">
+				<BadgeDot />
 				Update
 			</Badge>
-			<Badge dot variant="soft">
+			<Badge variant="soft">
+				<BadgeDot className="bg-primary-border" />
 				Update
 			</Badge>
-			<Badge dot variant="outline">
+			<Badge variant="outline">
+				<BadgeDot className="bg-primary-border" />
 				Update
 			</Badge>
 		</div>

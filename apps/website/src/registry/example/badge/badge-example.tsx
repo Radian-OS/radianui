@@ -1,7 +1,7 @@
 import React from "react"
 import { Bookmark, Plus, X } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 
 function BadgeExamplePreview() {
 	return (
@@ -10,7 +10,7 @@ function BadgeExamplePreview() {
 				New
 			</Badge>
 			<Badge color="neutral" variant="outline" size="24">
-				<span className="bg-fg-disabled size-1.5 rounded-full" />
+				<BadgeDot className="bg-fg-disabled" />
 				Neutral
 			</Badge>
 			<Badge color="error" variant="strong">
