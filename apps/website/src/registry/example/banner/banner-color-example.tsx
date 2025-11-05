@@ -1,82 +1,51 @@
 import React from "react"
-import { CubeIcon } from "@radix-ui/react-icons"
-import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
-import { LinkButton } from "@/registry/ui/button"
+import { AlarmClock, Bug, Feather, Megaphone, Sparkles, Trophy } from "lucide-react"
+import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
 
 function BannerColorExample() {
 	return (
-		<div className="flex w-full flex-col items-center justify-center gap-4">
-			<Banner color="error" onClose={() => null}>
+		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
+			<Banner>
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Sparkles size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton color="error" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Primary</BannerTitle>
+				<BannerDescription>Information news about product</BannerDescription>
 			</Banner>
-			<Banner color="info" onClose={() => null}>
+			<Banner color="neutral">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Megaphone size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton color="info" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Neutral</BannerTitle>
+				<BannerDescription>Information news about product</BannerDescription>
 			</Banner>
-			<Banner color="neutral" onClose={() => null}>
+			<Banner color="success">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Trophy size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton color="neutral" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Success</BannerTitle>
+				<BannerDescription>User achievement or success message</BannerDescription>
 			</Banner>
-			<Banner color="primary" onClose={() => null}>
+			<Banner color="error">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Bug size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton color="primary" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Error</BannerTitle>
+				<BannerDescription>Alert user of a problem or error</BannerDescription>
 			</Banner>
-			<Banner color="success" onClose={() => null}>
+			<Banner color="warning">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<AlarmClock size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton color="success" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Warning</BannerTitle>
+				<BannerDescription>Notify user of potential problem that may occur</BannerDescription>
 			</Banner>
-			<Banner color="warning" onClose={() => null}>
+			<Banner color="info">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Feather size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton color="warning" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Info</BannerTitle>
+				<BannerDescription>Information news about product</BannerDescription>
 			</Banner>
 		</div>
 	)
