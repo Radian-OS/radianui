@@ -46,7 +46,7 @@ BreadcrumbPage.displayName = "BreadcrumbPage"
 
 function BreadcrumbSeparator({ children, className, ...props }: BreadcrumbSeparatorType) {
 	return (
-		<li data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)} {...props}>
+		<li data-slot="breadcrumb-separator" role="presentation" aria-hidden="true" className={cn("text-fg-tertiary [&>svg]:size-4", className)} {...props}>
 			{children ?? <ChevronRight className="rtl:rotate-180" />}
 		</li>
 	)
@@ -55,8 +55,8 @@ BreadcrumbSeparator.displayName = "BreadcrumbSeparator"
 
 function BreadcrumbEllipsis({ className, ...props }: BreadcrumbEllipsisType) {
 	return (
-		<span data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" className={cn("flex h-9 w-9 items-center justify-center", className)} {...props}>
-			<MoreHorizontal className="h-4 w-4" />
+		<span data-slot="breadcrumb-ellipsis" role="presentation" aria-hidden="true" className={cn("flex size-9 items-center justify-center", className)} {...props}>
+			<MoreHorizontal className="size-4" />
 			<span className="sr-only">More</span>
 		</span>
 	)
