@@ -1,0 +1,23 @@
+import React from "react"
+import { Brain } from "lucide-react"
+import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
+import { LinkButton } from "@/registry/ui/button"
+
+const BannerFloatingExample = () => {
+	return (
+		<div className="max-w-160 flex w-full items-center justify-center">
+			<Banner color="primary" variant="outline" className="border-border border-t-1 border-r-1 border-l-1 rounded-lg shadow-[0_4px_8px_0_var(--color-fill4)]">
+				<BannerIcon>
+					<Brain size={20} />
+				</BannerIcon>
+				<BannerTitle>Floating Banner</BannerTitle>
+				<BannerDescription>I am an example of a Floating Banner</BannerDescription>
+				<div className="pl-1">
+					<LinkButton href="#floating-banner">Click Me</LinkButton>
+				</div>
+			</Banner>
+		</div>
+	)
+}
+
+export default BannerFloatingExample

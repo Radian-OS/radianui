@@ -114,15 +114,19 @@
 	}
 }
 
-/* .bg-noise {
-	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAJElEQVQYV2NggID/QzYyMDD8B8QMDAwMDA8M8gkWgqGwAgCcbAQMI8yZBAAAAABJRU5ErkJggg==");
-	background-repeat: repeat;
-	background-size: 200px 200px;
-	mix-blend-mode: overlay;
-} */
-
 .div-hover {
 	background-image: radial-gradient(circle at var(--x) var(--y), color-mix(in oklch, #fff 4%, transparent) 0%, transparent 100%);
+}
+
+.div-hover::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: url("/homepage/noise.png");
+	background-repeat: repeat;
+	opacity: 0.03;
+	pointer-events: none;
+	mix-blend-mode: overlay;
 }
 
 .color-red {

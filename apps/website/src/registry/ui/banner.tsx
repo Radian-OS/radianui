@@ -15,7 +15,7 @@ export type BannerContentProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerIconProps = React.HTMLAttributes<HTMLDivElement>
 export type BannerToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
-const bannerVariants = cva("flex items-center justify-center w-full gap-3 py-2 px-4", {
+const bannerVariants = cva("flex items-center justify-center w-full gap-2 p-2 overflow-hidden", {
 	variants: {
 		color: {
 			neutral: "",
@@ -26,10 +26,10 @@ const bannerVariants = cva("flex items-center justify-center w-full gap-3 py-2 p
 			warning: "",
 		},
 		variant: {
-			strong: "",
-			soft: "",
-			"soft-outline": "ring-1 ring-inset",
-			outline: "border border-soft [&_[data-slot=banner-close]]:text-fg [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
+			strong: "[&_[data-slot=banner-close]]:text-white",
+			soft: "[&_[data-slot=banner-close]]:text-[current] [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg",
+			outline:
+				"border border-soft border-l-0 border-t-0 border-r-0 [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",
 		},
 	},
 	compoundVariants: [
@@ -48,14 +48,6 @@ const bannerVariants = cva("flex items-center justify-center w-full gap-3 py-2 p
 		{ color: "warning", variant: "strong", className: "bg-warning text-white" },
 		{ color: "error", variant: "strong", className: "bg-error text-white" },
 		{ color: "success", variant: "strong", className: "bg-success text-white" },
-
-		// Soft-outline
-		{ color: "neutral", variant: "soft-outline", className: "outline-border bg-fill2" },
-		{ color: "primary", variant: "soft-outline", className: "bg-primary-accent text-primary-text outline-primary-accent" },
-		{ color: "info", variant: "soft-outline", className: "bg-info-accent text-info-text outline-info-accent" },
-		{ color: "success", variant: "soft-outline", className: "bg-success-accent text-success-text outline-success-accent" },
-		{ color: "error", variant: "soft-outline", className: "bg-error-accent text-error-text outline-error-accent" },
-		{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text outline-warning-accent" },
 
 		// Outline
 		{ color: "neutral", variant: "outline", className: "bg-transparent text-foreground " },
@@ -77,7 +69,7 @@ function Banner({ className, color, variant, onClose, children, ...props }: Bann
 			{children}
 			{onClose && (
 				<button onClick={onClose} aria-label="Dismiss" data-slot="banner-close" className={cn("group flex size-5 shrink-0 cursor-pointer items-center justify-center")}>
-					<X className="size-4 opacity-60 group-hover:opacity-100" />
+					<X className="size-5 group-hover:opacity-60" />
 				</button>
 			)}
 		</div>
@@ -86,12 +78,12 @@ function Banner({ className, color, variant, onClose, children, ...props }: Bann
 Banner.displayName = "Banner"
 
 function BannerTitle({ className, ...props }: BannerTitleProps) {
-	return <div data-slot="banner-title" className={cn("text-sm font-medium tracking-tight", className)} {...props} />
+	return <div data-slot="banner-title" className={cn("truncate text-sm font-medium tracking-tight", className)} {...props} />
 }
 BannerTitle.displayName = "BannerTitle"
 
 function BannerDescription({ className, ...props }: BannerDescriptionProps) {
-	return <div data-slot="banner-description" className={cn("text-sm", className)} {...props} />
+	return <div data-slot="banner-description" className={cn("truncate text-sm", className)} {...props} />
 }
 BannerDescription.displayName = "BannerDescription"
 
