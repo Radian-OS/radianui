@@ -1,14 +1,13 @@
-import React from "react"
 import { Home } from "lucide-react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
 
-function BreadCrumbExample1() {
+function BreadCrumbWithIcons() {
 	return (
 		<div className="flex items-center justify-center gap-2">
 			<Breadcrumb>
 				<BreadcrumbList>
 					<BreadcrumbItem>
-						<BreadcrumbLink href="/">
+						<BreadcrumbLink href="/" className="text-fg-tertiary">
 							<Home className="size-4" />
 						</BreadcrumbLink>
 					</BreadcrumbItem>
@@ -30,4 +29,4 @@ function BreadCrumbExample1() {
 	)
 }
 
-export default BreadCrumbExample1
+export default BreadCrumbWithIcons

@@ -64,28 +64,6 @@ const DATA = [
 export default function InvertedSection() {
 	return (
 		<div className="gap-15 relative flex w-full flex-col overflow-clip">
-			{/* Elliptical shaped gradient for bg */}
-			<svg className="absolute -top-1/2 left-1/2 z-20 -translate-x-1/2" width="3272" height="2545" viewBox="0 0 3272 2545" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<g opacity="0.34" filter="url(#filter0_f_1156_17761)">
-					<path
-						d="M1350.4 864.929C964.236 1135.32 648.845 1427.27 450.934 1680.09C351.878 1806.63 283.167 1922.21 249.23 2019.49C215.055 2117.45 217.866 2191.36 252.363 2240.62C286.861 2289.89 355.348 2317.81 459.088 2319.2C562.107 2320.58 694.218 2295.54 847.004 2245.74C1152.27 2146.23 1534.48 1949.72 1920.64 1679.32C2306.8 1408.93 2622.19 1116.98 2820.11 864.16C2919.16 737.622 2987.87 622.042 3021.81 524.763C3055.98 426.803 3053.17 352.898 3018.67 303.631C2984.18 254.364 2915.69 226.445 2811.95 225.054C2708.93 223.674 2576.82 248.709 2424.04 298.513C2118.77 398.02 1736.56 594.537 1350.4 864.929Z"
-						stroke="url(#paint0_linear_1156_17761)"
-						strokeWidth="50"
-					/>
-				</g>
-				<defs>
-					<filter id="filter0_f_1156_17761" x="0" y="7.62939e-06" width="3271.04" height="2544.25" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-						<feFlood floodOpacity="0" result="BackgroundImageFix" />
-						<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
-						<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1156_17761" />
-					</filter>
-					<linearGradient id="paint0_linear_1156_17761" x1="3039.15" y1="289.291" x2="231.885" y2="2254.96" gradientUnits="userSpaceOnUse">
-						<stop stop-color="#545463" />
-						<stop offset="1" stop-color="#868698" />
-					</linearGradient>
-				</defs>
-			</svg>
-
 			<div className="relative flex w-full justify-center">
 				<Image src="/RadianLogo.svg" className="z-10" width={64} height={64} alt="Logo" />
 				<svg className="not-md:hidden absolute top-1/2" width="699" height="121" viewBox="0 0 699 121" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,19 +75,41 @@ export default function InvertedSection() {
 			</div>
 			<div className="relative">
 				<div className="absolute inset-x-0 -top-11 mt-[calc(-3/16*1rem)] flex items-end">
-					<div className="mr-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto bg-gray-950"></div>
+					<div className="bg-black-inverse mr-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto dark:bg-[#131316]"></div>
 					<div className="mx-auto flex w-full justify-between px-6 sm:max-w-[40rem] md:max-w-[48rem] md:px-8 lg:max-w-[64rem] xl:max-w-[80rem]">
-						<svg viewBox="0 0 56 48" aria-hidden="true" className="-ml-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible fill-gray-950">
+						<svg viewBox="0 0 56 48" aria-hidden="true" className="fill-black-inverse -ml-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible dark:fill-[#131316]">
 							<path d="M 2.686 3 H -4 V 48 H 56 V 47 H 53.314 A 8 8 0 0 1 47.657 44.657 L 8.343 5.343 A 8 8 0 0 0 2.686 3 Z"></path>
 						</svg>
-						<svg viewBox="0 0 56 48" aria-hidden="true" className="-mr-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible fill-gray-950">
+						<svg viewBox="0 0 56 48" aria-hidden="true" className="fill-black-inverse -mr-1.5 mb-[calc(-1/16*1rem)] w-14 flex-none overflow-visible dark:fill-[#131316]">
 							<path d="M 53.314 3 H 60 V 48 H 0 V 47 H 2.686 A 8 8 0 0 0 8.343 44.657 L 47.657 5.343 A 8 8 0 0 1 53.314 3 Z"></path>
 						</svg>
 					</div>
-					<div className="ml-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto bg-gray-950"></div>
+					<div className="bg-black-inverse ml-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto dark:bg-[#131316]"></div>
 				</div>
 
-				<div className="bg-black-inverse inverted-shape pb-35 relative flex w-full flex-col items-center gap-20 px-5 pt-40 dark:bg-[#131316]">
+				<div className="bg-black-inverse inverted-shape pb-35 relative flex w-full flex-col items-center gap-20 overflow-clip px-5 pt-40 dark:bg-[#131316]">
+					{/* Elliptical shaped gradient for bg */}
+					<svg className="absolute -top-1/2 left-1/2 z-20 -translate-x-1/2" width="3272" height="2545" viewBox="0 0 3272 2545" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<g opacity="0.34" filter="url(#filter0_f_1156_17761)">
+							<path
+								d="M1350.4 864.929C964.236 1135.32 648.845 1427.27 450.934 1680.09C351.878 1806.63 283.167 1922.21 249.23 2019.49C215.055 2117.45 217.866 2191.36 252.363 2240.62C286.861 2289.89 355.348 2317.81 459.088 2319.2C562.107 2320.58 694.218 2295.54 847.004 2245.74C1152.27 2146.23 1534.48 1949.72 1920.64 1679.32C2306.8 1408.93 2622.19 1116.98 2820.11 864.16C2919.16 737.622 2987.87 622.042 3021.81 524.763C3055.98 426.803 3053.17 352.898 3018.67 303.631C2984.18 254.364 2915.69 226.445 2811.95 225.054C2708.93 223.674 2576.82 248.709 2424.04 298.513C2118.77 398.02 1736.56 594.537 1350.4 864.929Z"
+								stroke="url(#paint0_linear_1156_17761)"
+								strokeWidth="50"
+							/>
+						</g>
+						<defs>
+							<filter id="filter0_f_1156_17761" x="0" y="7.62939e-06" width="3271.04" height="2544.25" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+								<feFlood floodOpacity="0" result="BackgroundImageFix" />
+								<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+								<feGaussianBlur stdDeviation="100" result="effect1_foregroundBlur_1156_17761" />
+							</filter>
+							<linearGradient id="paint0_linear_1156_17761" x1="3039.15" y1="289.291" x2="231.885" y2="2254.96" gradientUnits="userSpaceOnUse">
+								<stop stopColor="#545463" />
+								<stop offset="1" stopColor="#868698" />
+							</linearGradient>
+						</defs>
+					</svg>
+
 					<div className="flex w-full max-w-[977px] flex-col items-center justify-center gap-8">
 						<div className="relative flex items-center">
 							<Badge size="28" variant="outline" color="neutral" className="border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
