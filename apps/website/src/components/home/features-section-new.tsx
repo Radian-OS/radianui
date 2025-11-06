@@ -127,7 +127,7 @@ const FeaturesSectionNew = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex h-full w-full max-w-[1400px] flex-col gap-6 rounded-xl lg:flex-row">
+			<div className="flex h-full w-full max-w-[1400px] flex-col gap-6 rounded-xl px-5 lg:flex-row">
 				<div className="lg:flex-2/3 pt-15 border-soft flex flex-col gap-12 overflow-hidden rounded-xl border">
 					<div className="flex items-center justify-between pl-12">
 						<div className="flex flex-col gap-4">
