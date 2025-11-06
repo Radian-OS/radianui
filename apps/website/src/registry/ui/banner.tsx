@@ -78,12 +78,12 @@ function Banner({ className, color, variant, onClose, children, ...props }: Bann
 Banner.displayName = "Banner"
 
 function BannerTitle({ className, ...props }: BannerTitleProps) {
-	return <div data-slot="banner-title" className={cn("truncate text-sm font-medium tracking-tight", className)} {...props} />
+	return <div data-slot="banner-title" className={cn("text-sm font-medium tracking-tight", className)} {...props} />
 }
 BannerTitle.displayName = "BannerTitle"
 
 function BannerDescription({ className, ...props }: BannerDescriptionProps) {
-	return <div data-slot="banner-description" className={cn("truncate text-sm", className)} {...props} />
+	return <div data-slot="banner-description" className={cn("text-sm", className)} {...props} />
 }
 BannerDescription.displayName = "BannerDescription"
 

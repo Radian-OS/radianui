@@ -1,11 +1,60 @@
 import React from "react"
-import { Component, ScanEye } from "lucide-react"
+import { ArrowDownRight, ArrowUpRight, Component, ScanEye, SquareTerminal } from "lucide-react"
 import { useTheme } from "next-themes"
+// import ShikiHighlighter from "react-shiki"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
-import { FlickeringGrid } from "../effects/flickering"
+import { CodeArea } from "@/registry/ui/code-area"
+import { Skeleton } from "@/registry/ui/skeleton"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+
+// import { FlickeringGrid } from "../effects/flickering"
 
 const FeaturesSectionNew = () => {
 	const { resolvedTheme } = useTheme()
+	const datas = [
+		{
+			company: "PLTR",
+			currency: "USD",
+			FY1_growth: 7.54,
+			daily_earning: 250.5,
+			EBITDA: "1.5B",
+			performance: "+35.14%",
+		},
+		{
+			company: "AMZN",
+			currency: "YEN",
+			FY1_growth: -4.11,
+			daily_earning: 95.0,
+			EBITDA: "-285.45M",
+			performance: "-14.14%",
+		},
+		{
+			company: "UBER",
+			currency: "JR",
+			FY1_growth: -14.41,
+			daily_earning: 275.25,
+			EBITDA: "-120M",
+			performance: "-2.14%",
+		},
+		{
+			company: "NFLX",
+			currency: "GE",
+			FY1_growth: 0.73,
+			daily_earning: 120.0,
+			EBITDA: "215M",
+			performance: "+9.8%",
+		},
+		{
+			company: "GOOGL",
+			currency: "CHF",
+			FY1_growth: 28.6,
+			daily_earning: 400.0,
+			EBITDA: "-120M",
+			performance: "+75.4%",
+		},
+	]
+
 	return (
 		<div className="flex flex-col items-center gap-20 pb-40 pt-40">
 			<div className="flex flex-col items-center gap-8">
@@ -78,17 +127,17 @@ const FeaturesSectionNew = () => {
 					</p>
 				</div>
 			</div>
-			<div className="border-soft flex h-full max-h-[600px] w-full max-w-[1400px] rounded-xl border">
-				<div className="flex-2/3 pt-15 bg flex flex-col gap-12 pl-12">
-					<div className="flex items-center justify-between">
-						<div className="flex w-1/2 flex-col gap-4">
+			<div className="flex h-full w-full max-w-[1400px] flex-col gap-6 rounded-xl lg:flex-row">
+				<div className="lg:flex-2/3 pt-15 border-soft flex flex-col gap-12 overflow-hidden rounded-xl border">
+					<div className="flex items-center justify-between pl-12">
+						<div className="flex flex-col gap-4">
 							<span className="pb-2">
 								<ScanEye size={28} className="stroke-primary-hover" />
 							</span>
 							<h6 className="heading-6">High Quality Base Components</h6>
-							<p className="text-fg-secondary text-sm">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
+							<p className="text-fg-secondary w-full max-w-[420px] text-sm">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
 						</div>
-						<div className="flex h-full w-1/2 items-end justify-center px-12">
+						{/* <div className="flex h-full w-1/2 items-end justify-center px-12">
 							<div>
 								<FlickeringGrid
 									shape="square"
@@ -100,11 +149,108 @@ const FeaturesSectionNew = () => {
 									flickerChance={0.1}
 								/>
 							</div>
+						</div> */}
+					</div>
+					<div className="pl-0 pr-0 md:pl-12 lg:px-12">
+						<div className="bg-fill1 rounded-b-none! w-full pt-5 md:rounded-l-2xl md:pl-5 lg:rounded-t-2xl lg:px-5">
+							<div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
+								<Table>
+									<TableHeader>
+										<TableRow>
+											<TableHead>Company</TableHead>
+											<TableHead>CCY</TableHead>
+											<TableHead>FY1 growth</TableHead>
+											<TableHead>Daily Earning</TableHead>
+											<TableHead>EBITDA</TableHead>
+											<TableHead>Performance</TableHead>
+										</TableRow>
+									</TableHeader>
+									<TableBody>
+										{datas.map((data) => (
+											<TableRow key={data.company}>
+												<TableCell className="flex items-center">{data.company}</TableCell>
+												<TableCell>
+													<Badge size="20" color="neutral">
+														{data.currency}
+													</Badge>
+												</TableCell>
+												<TableCell className={cn("flex", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
+													{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
+													{data.FY1_growth}%
+												</TableCell>
+												<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
+												<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
+												<TableCell>
+													<Badge color="success" variant="outline">
+														{data.performance}
+													</Badge>
+												</TableCell>
+											</TableRow>
+										))}
+									</TableBody>
+								</Table>
+							</div>
 						</div>
 					</div>
-					<div>table</div>
 				</div>
-				<div className="flex-1/3">2</div>
+				<div className="lg:flex-1/3 border-soft flex flex-col gap-12 rounded-xl border">
+					<div className="pt-15 flex flex-col gap-4 px-12">
+						<span className="pb-2">
+							<SquareTerminal size={28} className="stroke-primary-hover" />
+						</span>
+						<h6 className="heading-6">Copy-paste or Install via CLI</h6>
+						<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
+					</div>
+					<div className="gap-12.25 flex flex-col">
+						<div className="pr-11.5 pl-12">
+							<div className="w-104 border-soft flex items-center justify-center rounded-xl border p-1.5">
+								<div className="bg-elevation-level1 border-soft pr-13.25 text-fg-secondary w-full rounded-[10px] border py-3 pl-3 font-mono text-sm">
+									<span className="text-primary-text">npx</span> <span className="text-info-text">radianui</span> <span className="text-success-text">add</span>{" "}
+									<span className="text-warning-text">[component]</span>
+								</div>
+							</div>
+						</div>
+
+						<div className="pl-13.5">
+							<div className="max-w-101 border-soft w-full rounded-t-xl border border-b-0">
+								<div className="border-soft flex rounded-t-xl border border-l-0 border-r-0 border-t-0 px-4 py-3">
+									<div className="gap-1.25 flex items-center">
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+									</div>
+									<div className="text-fg-tertiary flex grow items-center justify-center text-xs">radianos js</div>
+								</div>
+								<div>
+									<CodeArea
+										className="h-[155px]"
+										code={`import { Button, Card, Heading, Text } from '@radianos/ui';
+function MyDashboard() {
+  return (
+    <Card>
+      <Heading as="h2">Welcome to Radian</Heading>
+      <Text>
+        Build beautiful interfaces with Radian.
+      </Text>
+      <Button
+        variant="primary"
+        onClick={() => console.log('Button clicked!')}
+      >
+        Get Started
+      </Button>
+    </Card>
+  );
+}
+
+export default MyDashboard;`}
+										theme={resolvedTheme === "light" ? "github-light-high-contrast" : "github-dark-high-contrast"}
+										language="tsx"
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	)
