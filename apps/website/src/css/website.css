@@ -122,7 +122,7 @@
 	content: "";
 	position: absolute;
 	inset: 0;
-	background-image: url("/homepage/noise.png");
+	/* background-image: url("/homepage/noise.png"); */
 	background-repeat: repeat;
 	opacity: 0.03;
 	pointer-events: none;
@@ -440,27 +440,4 @@
 	--color-primary-focus: oklch(0.9169 0.0383 295.46);
 	--color-primary-hover: oklch(0.8 0.011 286.16);
 	--color-primary-text: oklch(0.4515 0.0243 285.39);
-}
-
-.rounded-rounded {
-	--radius-sm: 999px;
-	--radius-md: 999px;
-	--radius-lg: 999px;
-	--radius-xl: 999px;
-}
-
-.rounded-flat {
-	--radius-sm: 0;
-	--radius-md: 0;
-	--radius-lg: 0;
-	--radius-xl: 0;
-	--radius-2xl: 0;
-	--radius-3xl: 0;
-}
-
-.rounded-fun {
-	--radius-sm: 6px;
-	--radius-md: 8px;
-	--radius-lg: 12px;
-	--radius-xl: 16px;
 }
