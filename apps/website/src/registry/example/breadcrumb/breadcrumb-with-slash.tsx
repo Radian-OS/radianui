@@ -5,13 +5,13 @@ function BreadcrumbWithSlash() {
 		<Breadcrumb>
 			<BreadcrumbList>
 				<BreadcrumbItem>
-					<BreadcrumbLink href="#breadcrumb-with-slash">Home</BreadcrumbLink>
+					<BreadcrumbLink href="/">Home</BreadcrumbLink>
 				</BreadcrumbItem>
 
 				<BreadcrumbSeparator>/</BreadcrumbSeparator>
 
 				<BreadcrumbItem>
-					<BreadcrumbLink href="#breadcrumb-with-slash">Components</BreadcrumbLink>
+					<BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
 				</BreadcrumbItem>
 
 				<BreadcrumbSeparator>/</BreadcrumbSeparator>

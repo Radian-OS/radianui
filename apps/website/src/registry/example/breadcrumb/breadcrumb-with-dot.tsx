@@ -5,7 +5,7 @@ export default function BreadcrumbWithDot() {
 		<Breadcrumb>
 			<BreadcrumbList className="gap-0.5">
 				<BreadcrumbItem>
-					<BreadcrumbLink href="#breadcrumb-with-slash">Home</BreadcrumbLink>
+					<BreadcrumbLink href="/">Home</BreadcrumbLink>
 				</BreadcrumbItem>
 
 				<BreadcrumbSeparator>
@@ -13,7 +13,7 @@ export default function BreadcrumbWithDot() {
 				</BreadcrumbSeparator>
 
 				<BreadcrumbItem>
-					<BreadcrumbLink href="#breadcrumb-with-slash">Components</BreadcrumbLink>
+					<BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
 				</BreadcrumbItem>
 
 				<BreadcrumbSeparator>
