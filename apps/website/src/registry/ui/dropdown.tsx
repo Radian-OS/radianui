@@ -57,7 +57,7 @@ function useDropdown() {
 function Dropdown({ indicatorPosition = "right", indicator, ...props }: DropdownProps) {
 	return (
 		<DropdownContext.Provider value={{ indicatorPosition: indicatorPosition ?? "right", indicator }}>
-			<DropdownMenuPrimitive.Root modal={false} data-slot="dropdown-menu" {...props} />
+			<DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />
 		</DropdownContext.Provider>
 	)
 }
