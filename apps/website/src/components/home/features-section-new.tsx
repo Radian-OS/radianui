@@ -131,7 +131,8 @@ const FeaturesSectionNew = () => {
 			</div>
 			<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
 				<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
-					<div className="lg:flex-2/3 pt-15 border-soft flex flex-col gap-12 overflow-hidden rounded-xl border">
+					<div className="lg:flex-2/3 pt-15 border-soft relative flex flex-col gap-12 overflow-hidden rounded-xl border">
+						<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
 						<div className="flex items-center justify-between px-7 sm:pl-12">
 							<div className="flex flex-col gap-4">
 								<span className="pb-2">
@@ -185,7 +186,8 @@ const FeaturesSectionNew = () => {
 							</div>
 						</div>
 					</div>
-					<div className="lg:flex-1/3 border-soft flex flex-col gap-12 overflow-hidden rounded-xl border">
+					<div className="lg:flex-1/3 border-soft relative flex flex-col gap-12 overflow-hidden rounded-xl border">
+						<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
 						<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 							<span className="pb-2">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
@@ -300,7 +302,8 @@ export default MyDashboard;`}
 							</div>
 						</div>
 					</div>
-					<div className="border-soft flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
+					<div className="border-soft relative flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
+						<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
 						<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 							<span className="pb-2">
 								<SwatchBook size={28} className="stroke-primary-hover" />
@@ -346,8 +349,8 @@ export default MyDashboard;`}
 						</div>
 					</div>
 				</div>
-				<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
-					<div className="border-soft pt-15 flex flex-col gap-12 rounded-xl border lg:w-[510px]">
+				<div className="relative flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="border-soft pt-15 relative flex flex-col gap-12 rounded-xl border lg:w-[510px]">
 						<div className="flex flex-col gap-4 px-7 sm:px-8 lg:px-12">
 							<span className="pb-2">
 								<LayoutDashboard size={28} className="stroke-primary-hover" />
@@ -355,8 +358,11 @@ export default MyDashboard;`}
 							<h6 className="heading-6 font-medium">Reusable UI Blocks</h6>
 							<p className="text-fg-secondary text-sm">Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use</p>
 						</div>
+						<div className="h-30 from-bg/5 to-bg w-15 absolute top-[220px] z-10 bg-gradient-to-l" />
+						<div className="h-30 from-bg/5 to-bg w-15 absolute right-0 top-[220px] z-10 bg-gradient-to-r" />
+
 						<InfiniteScroll>
-							<div className="flex items-center justify-center gap-2">
+							<div className="relative flex items-center justify-center gap-2">
 								<div className="py-1.75 border-soft w-45 flex h-9 items-center rounded-lg border px-2.5">
 									<div className="bg-primary-border border-soft-alpha flex size-[21.6px] items-center justify-center rounded-[7.2px] border">
 										<Grid className="text-white" size={14.4} />
@@ -389,11 +395,12 @@ export default MyDashboard;`}
 								</div>
 							</div>
 						</InfiniteScroll>
+
 						<div className="flex items-center justify-center">
 							<Skeleton className="bg-fill2 h-[359px] w-[423px] rounded-xl rounded-b-none" />
 						</div>
 					</div>
-					<div className="border-soft pt-15 flex min-h-[488px] w-full flex-col gap-12 overflow-hidden rounded-xl border">
+					<div className="border-soft pt-15 relative flex min-h-[488px] w-full flex-col gap-12 overflow-hidden rounded-xl border">
 						<div className="flex flex-col gap-4 px-7 sm:px-8 lg:pl-12">
 							<span className="pb-2">
 								<CircleGauge size={28} className="stroke-primary-hover" />
@@ -405,6 +412,7 @@ export default MyDashboard;`}
 							<Skeleton className="bg-fill2 min-h-[359px] w-1/3 min-w-[140px] rounded-xl rounded-b-none" />
 							<Skeleton className="bg-fill2 min-h-[359px] w-2/3 min-w-[421px] rounded-xl rounded-b-none" />
 						</div>
+						<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
 					</div>
 				</div>
 			</div>
