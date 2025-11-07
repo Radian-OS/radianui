@@ -122,11 +122,12 @@
 	content: "";
 	position: absolute;
 	inset: 0;
-	/* background-image: url("/homepage/noise.png"); */
+	background-image: url("/homepage/noise.png");
 	background-repeat: repeat;
-	opacity: 0.03;
+	opacity: 0.08;
 	pointer-events: none;
-	mix-blend-mode: overlay;
+	/* mix-blend-mode: overlay; */
+	mix-blend-mode: soft-light;
 }
 
 .color-red {
