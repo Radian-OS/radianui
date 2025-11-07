@@ -29,41 +29,77 @@ const FONTS: Record<string, string> = {
 }
 
 const COLOR_VALUES = {
-	violet: {
-		label: "Violet",
-		icon: <Squircle size={20} className="fill-primary-text stroke-primary-text" />,
-	},
-	red: {
-		label: "Red",
-		icon: <Squircle size={20} className="fill-error stroke-error" />,
-	},
-	yellow: {
-		label: "Yellow",
-		icon: <Squircle size={20} className="fill-warning stroke-warning" />,
-	},
-	green: {
-		label: "Green",
-		icon: <Squircle size={20} className="fill-success stroke-success" />,
+	amber: {
+		label: "Amber",
+		icon: <Squircle size={16} className="color-amber fill-primary stroke-primary" />,
 	},
 	blue: {
 		label: "Blue",
-		icon: <Squircle size={20} className="fill-info stroke-info" />,
-	},
-	emerald: {
-		label: "Emerald",
-		icon: <Squircle size={20} className="fill-fg-tertiary stroke-fg-tertiary" />,
-	},
-	teal: {
-		label: "Teal",
-		icon: <Squircle size={20} className="fill-fg-tertiary stroke-fg-tertiary" />,
+		icon: <Squircle size={16} className="fill-info stroke-info" />,
 	},
 	cyan: {
 		label: "Cyan",
-		icon: <Squircle size={20} className="fill-fg-tertiary stroke-fg-tertiary" />,
+		icon: <Squircle size={16} className="color-cyan fill-primary stroke-primary" />,
+	},
+	"dark-orchid": {
+		label: "Dark Orchid",
+		icon: <Squircle size={16} className="color-dark-orchid fill-primary stroke-primary" />,
+	},
+	emerald: {
+		label: "Emerald",
+		icon: <Squircle size={16} className="color-emerald fill-primary stroke-primary" />,
+	},
+	fuchsia: {
+		label: "Fuchsia",
+		icon: <Squircle size={16} className="color-fuchsia fill-primary stroke-primary" />,
+	},
+	green: {
+		label: "Green",
+		icon: <Squircle size={16} className="fill-success stroke-success" />,
+	},
+	"light-blue": {
+		label: "Light Blue",
+		icon: <Squircle size={16} className="color-light-blue fill-primary stroke-primary" />,
+	},
+	magenta: {
+		label: "Magenta",
+		icon: <Squircle size={16} className="color-magenta fill-primary stroke-primary" />,
+	},
+	neon: {
+		label: "Neon",
+		icon: <Squircle size={16} className="color-neon fill-primary stroke-primary" />,
+	},
+	orange: {
+		label: "Orange",
+		icon: <Squircle size={16} className="color-orange fill-primary stroke-primary" />,
 	},
 	purple: {
 		label: "Purple",
-		icon: <Squircle size={20} className="fill-fg-tertiary stroke-fg-tertiary" />,
+		icon: <Squircle size={16} className="color-purple fill-primary stroke-primary" />,
+	},
+	red: {
+		label: "Red",
+		icon: <Squircle size={16} className="fill-error stroke-error" />,
+	},
+	rose: {
+		label: "Rose",
+		icon: <Squircle size={16} className="color-rose fill-primary stroke-primary" />,
+	},
+	teal: {
+		label: "Teal",
+		icon: <Squircle size={16} className="color-teal fill-primary stroke-primary" />,
+	},
+	violet: {
+		label: "Violet",
+		icon: <Squircle size={16} className="fill-primary-text stroke-primary-text" />,
+	},
+	"violet-blue": {
+		label: "Violet Blue",
+		icon: <Squircle size={16} className="color-violet-blue fill-primary stroke-primary" />,
+	},
+	yellow: {
+		label: "Yellow",
+		icon: <Squircle size={16} className="fill-warning stroke-warning" />,
 	},
 }
 
@@ -176,6 +212,96 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 			`
 			break
 		}
+		case "amber": {
+			colorValues = `--color-primary: oklch(0.8016 0.1705 73.27);
+	--color-primary-accent: oklch(0.9622 0.0384 83.83);
+	--color-primary-focus: oklch(0.946 0.0574 85.03);
+	--color-primary-border: oklch(0.7318 0.1522 75.09);
+	--color-primary-hover: oklch(0.8342 0.1594 79.51);
+	--color-primary-text: oklch(0.5461 0.1088 77.73);
+			`
+			break
+		}
+		case "fuchsia": {
+			colorValues = `--color-primary: oklch(0.6901 0.2628 327.97);
+	--color-primary-accent: oklch(0.9505 0.0442 325.92);
+	--color-primary-focus: oklch(0.923 0.0701 326.13);
+	--color-primary-border: oklch(0.7768 0.2026 327.31);
+	--color-primary-hover: oklch(0.7228 0.2325 327.65);
+	--color-primary-text: oklch(0.5839 0.2494 328.2);
+			`
+			break
+		}
+		case "dark-orchid": {
+			colorValues = `--color-primary: oklch(0.623 0.2799 310.69);
+	--color-primary-accent: oklch(0.9431 0.039 314.14);
+	--color-primary-focus: oklch(0.9219 0.054454 314.5407);
+	--color-primary-border: oklch(0.7475 0.1859 313.32);
+	--color-primary-hover: oklch(0.6625 0.2518 311.98);
+	--color-primary-text: oklch(0.5468 0.2503 310.33);
+			`
+			break
+		}
+		case "light-blue": {
+			colorValues = `--color-primary: oklch(0.6092 0.2041 255.8);
+	--color-primary-accent: oklch(0.949 0.0213 245.85);
+	--color-primary-focus: oklch(0.9135 0.0358 249.52);
+	--color-primary-border: oklch(0.6722 0.1615 251.56);
+	--color-primary-hover: oklch(0.6722 0.1615 251.56);
+	--color-primary-text: oklch(0.4663 0.1065 251.21);
+			`
+			break
+		}
+		case "magenta": {
+			colorValues = `--color-primary: oklch(0.6175 0.2503 347.29);
+	--color-primary-accent: oklch(0.951 0.0283 336.42);
+	--color-primary-focus: oklch(0.9221 0.0463 338.25);
+	--color-primary-border: oklch(0.7455 0.1847 341.92);
+	--color-primary-hover: oklch(0.6725 0.2452 344.84);
+	--color-primary-text: oklch(0.5565 0.2156 345.71);
+			`
+			break
+		}
+		case "neon": {
+			colorValues = `--color-primary: oklch(0.7153 0.1873 128.9);
+	--color-primary-accent: oklch(0.9792 0.0554 122.76);
+	--color-primary-focus: oklch(0.9656 0.0946 123.33);
+	--color-primary-border: oklch(0.825 0.2175 129.2);
+	--color-primary-hover: oklch(0.825 0.2175 129.2);
+	--color-primary-text: oklch(0.5815 0.147 127.99);
+			`
+			break
+		}
+		case "orange": {
+			colorValues = `--color-primary: oklch(0.6211 0.1686 43.12);
+	--color-primary-accent: oklch(0.9602 0.0221 49.93);
+	--color-primary-focus: oklch(0.9372 0.035253 49.2368);
+	--color-primary-border: oklch(0.6842 0.185 43.27);
+	--color-primary-hover: oklch(0.6842 0.185 43.27);
+	--color-primary-text: oklch(0.5381 0.1375 43.87);
+			`
+			break
+		}
+		case "rose": {
+			colorValues = `--color-primary: oklch(0.6515 0.221 6.33);
+	--color-primary-accent: oklch(0.9489 0.0236 354.28);
+	--color-primary-focus: oklch(0.9188 0.0392 355.78);
+	--color-primary-border: oklch(0.7471 0.1505 0.03);
+	--color-primary-hover: oklch(0.6861 0.1948 3.2);
+	--color-primary-text: oklch(0.546 0.1982 8.02);
+			`
+			break
+		}
+		case "violet-blue": {
+			colorValues = `--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-accent: oklch(0.94 0.0271 295.05);
+	--color-primary-focus: oklch(0.9169 0.0383 295.46);
+	--color-primary-border: oklch(0.6784 0.1708 290.38);
+	--color-primary-hover: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.528 0.2539 282.58);
+			`
+			break
+		}
 	}
 
 	return `@theme {
@@ -195,51 +321,33 @@ export default function PlaygroundSection() {
 	const [selectedFont, setSelectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
 
 	const CODE = `
-export default function PlaygroundSignin() {
+export default function Signin() {
 	return (
-	{/* ... */}
+	<div className="flex flex-col gap-4">
+		{/* ... */}
 
-	<div className="flex flex-col gap-1.5">
-		<Label htmlFor="email">Email</Label>
-		<Input size="36" id="email" placeholder="example@radianos.com" className="${radiusMap[rounded]}"/>
-	</div>
+		<div className="flex flex-col gap-1.5">
+			<Label htmlFor="email">Email</Label>
+			<Input size="36" id="email" className="${radiusMap[rounded]}" />
+		</div>
 
-	<div className="flex flex-col gap-1.5">
-		<Label htmlFor="password">Password</Label>
-		<Input size="36" type="password" id="password" placeholder="••••••••••••" className="${radiusMap[rounded]}"/>
-	</div>
+		<div className="flex flex-col gap-1.5">
+			<Label htmlFor="password">Password</Label>
+			<Input size="36" type="password" id="password" className="${radiusMap[rounded]}" />
+		</div>
 
-	{/* ... */}
+		<div className="flex items-center gap-2">
+			<Checkbox id="remember-me" className="${radiusMap[rounded]}" />
+			<Label htmlFor="remember-me">Remember me</Label>
+		</div>
 
-	<div className="flex items-center gap-2">
-		<Checkbox id="remember-me" className="${radiusMap[rounded]}"/> <Label htmlFor="remember-me">Remember me</Label>
-	</div>
+		{/* ... */}
 
-	{/* ... */}
-
-	<Button size="36" className="w-full ${radiusMap[rounded]}">
-		Log In
-	</Button>
-
-	<div className="flex items-center gap-1.5">
-		<Divider className="flex-1" />
-		<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">Or continue with</span>
-		<Divider className="flex-1" />
-	</div>
-
-	<div className="flex gap-3">
-		<Button variant="outline" color="neutral" className="text-fg-secondary w-full ${radiusMap[rounded]}">
-			{/* ... */}
-			Google
+		<Button size="36" className="w-full ${radiusMap[rounded]}">
+			Log In
 		</Button>
-		<Button variant="outline" color="neutral" className="text-fg-secondary w-full ${radiusMap[rounded]}">
-			{/* ... */}
-			Github
-		</Button>
-	</div>
 
-	{/* ... */}
-
+		{/* ... */}
 	</div>
 	)
 }
@@ -401,13 +509,16 @@ export default function PlaygroundSignin() {
 
 						<div className="not-md:hidden flex items-center gap-3">
 							<Select value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
-								<SelectTrigger size="36" className="text-fg-secondary w-32 font-medium">
+								<SelectTrigger size="36" className="text-fg-secondary w-38 font-medium">
 									<SelectValue />
 								</SelectTrigger>
 								<SelectContent>
 									{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
 										<SelectItem value={color} key={color}>
-											{COLOR_VALUES[color].label}
+											<div className="flex items-center gap-1.5">
+												{COLOR_VALUES[color].icon}
+												{COLOR_VALUES[color].label}
+											</div>
 										</SelectItem>
 									))}
 								</SelectContent>
