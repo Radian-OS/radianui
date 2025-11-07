@@ -1,6 +1,7 @@
 "use client"
 
 import { useId, useState } from "react"
+import Image from "next/image"
 import { Button, LinkButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
@@ -9,7 +10,6 @@ import { Label } from "@/registry/ui/label"
 import { Spinner } from "@/registry/ui/spinner"
 import { GithubIcon } from "./github-icon"
 import { GoogleIcon } from "./google-icon"
-import Logo from "./playground-logo"
 
 export const radiusMap: Record<string, string> = {
 	default: "",
@@ -45,9 +45,7 @@ export default function PlaygroundSignin({ rounded }: { rounded: "default" | "ro
 		<div className="bg-elevation-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
 				<div className="flex flex-1 flex-col gap-8">
-					<div>
-						<Logo />
-					</div>
+					<Image src="/mstile-144x144.png" alt="Logo" width="48" height="48" />
 					<div className="flex flex-col gap-2">
 						<h1 className="heading-5">Sign In</h1>
 						<p className="text-fg-secondary text-sm">Welcome! Sign in to continue</p>

@@ -2,7 +2,7 @@ import React from "react"
 
 export default function PlaygroundLogo({ width = 32, height = 32, ...props }: React.ComponentProps<"svg">) {
 	return (
-		<svg width={width} height={height} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+		<svg width={width} height={height} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...props}>
 			<g clipPath="url(#clip0_11867_1118)">
 				<path
 					d="M35.2 0H12.8C5.73075 0 0 5.73075 0 12.8V35.2C0 42.2692 5.73075 48 12.8 48H35.2C42.2692 48 48 42.2692 48 35.2V12.8C48 5.73075 42.2692 0 35.2 0Z"
