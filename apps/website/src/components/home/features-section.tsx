@@ -397,7 +397,7 @@ export default MyDashboard;`}
 						</InfiniteScroll>
 
 						<div className="flex items-center justify-center">
-							<Skeleton className="bg-fill2 h-[359px] w-[423px] rounded-xl rounded-b-none" />
+							<Skeleton className="bg-fill2 h-[359px] w-full max-w-[321px] rounded-xl rounded-b-none px-9 sm:max-w-[423px] sm:px-0" />
 						</div>
 					</div>
 					<div className="border-soft pt-15 relative flex min-h-[488px] w-full flex-col gap-12 overflow-hidden rounded-xl border">
