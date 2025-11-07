@@ -132,6 +132,8 @@ export const executeInit = async (options: InitOptions) => {
 		// Setup necessary configuration files & install dependencies only
 		// if there is already an existing project
 		logger.warn(`${txt.bold("Note:")} This will replace your global CSS file and add Radian OS styles and colors to your project`)
+		
+
 		await setupProjectConfig(options.cwd, projectInfo.framework.name, projectInfo.hasSrcDir)
 	}
 

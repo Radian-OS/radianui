@@ -7,6 +7,7 @@ import { InitOptions } from "@/commands/init"
 import { COLORS, FONTS } from "@/utils/constants"
 import { FrameworkName } from "@/utils/frameworks"
 import { Color, Font, getRegistryComponents } from "@/utils/registry"
+import { txt } from "./colors"
 
 export type PromptForNewProject = {
 	projectName: string
@@ -55,7 +56,7 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 					const directoryExists = await fs.pathExists(targetPath)
 
 					if (directoryExists) {
-						return `A directory named "${name}" already exists. Please choose a different name.`
+						return `A directory named ${txt.info(name)} already exists. Please choose a different name.`
 					}
 
 					return true
