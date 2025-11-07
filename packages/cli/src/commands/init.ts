@@ -5,6 +5,7 @@ import prompts from "prompts"
 import z from "zod"
 import { preFlightInit } from "@/preflights/preFlightInit"
 import { txt } from "@/utils/colors"
+import { COLORS, FONTS } from "@/utils/constants"
 import { FrameworkName } from "@/utils/frameworks"
 import { getTailwindCssFilePath } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
@@ -27,8 +28,8 @@ export const initOptionsSchema = z.object({
 	vite: z.boolean().optional(),
 	projectName: z.string().optional(),
 	useSrc: z.boolean().optional(),
-	color: z.enum(["amber", "blue", "emerald", "red", "violet"]).optional(),
-	font: z.enum(["inter", "roboto", "geist"]).optional(),
+	color: z.enum(COLORS.map((color) => color.value)).optional(),
+	font: z.enum(FONTS.map((font) => font.value)).optional(),
 })
 
 export type InitOptions = z.infer<typeof initOptionsSchema>
@@ -52,7 +53,7 @@ export const init = new Command()
 			// Check if both frameworks are passed
 			if (options.next && options.vite) {
 				logger.break()
-				logger.error("You cannot use both --next and --vite options together. Please pass only one option.")
+				logger.error("You cannot pass both --next and --vite options together. Please pass only one option.")
 				logger.break()
 				process.exit(1)
 			}
