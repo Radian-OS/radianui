@@ -152,17 +152,8 @@ async function addComponentsToProject(resolvedComponents: RegistryComponents, op
 					continue
 				}
 
-				// const { overwrite } = await prompts({
-				// 	type: "confirm",
-				// 	name: "overwrite",
-				// 	message: `Component ${txt.info(file.name)} already exists. Would you like to overwrite?`,
-				// 	initial: false,
-				// })
-
-				// if (!overwrite) {
 				filesSkipped.push(filepath)
 				continue
-				// }
 			}
 
 			await createFile(filepath, projectInfo, file, config)
@@ -216,40 +207,13 @@ async function addComponentsToProject(resolvedComponents: RegistryComponents, op
 	}
 
 	if (filesSkipped.length) {
-		spinner(`Skipped ${filesSkipped.length} ${filesSkipped.length === 1 ? "file" : "files"}: (use --overwrite flag to overwrite)`, {
+		spinner(`Skipped ${filesSkipped.length} ${filesSkipped.length === 1 ? "file" : "files"}: (files might be identical,use --overwrite flag to overwrite)`, {
 			silent: options.silent,
 		})?.info()
 		for (const file of filesSkipped) {
 			logger.log(`  - ${file}`)
 		}
 	}
-
-	// if (!options.silent) {
-	// 	if (filesCreated.length > 0) {
-	// 		logger.break()
-	// 		logger.info(`ℹ️ Created ${filesCreated.length} file(s):`)
-	// 		filesCreated.forEach((file) => logger.log(`  - ${file}`))
-	// 	}
-	// 	if (filesUpdated.length > 0) {
-	// 		logger.break()
-	// 		logger.info(`ℹ️ Updated ${filesUpdated.length} file(s):`)
-	// 		filesUpdated.forEach((file) => logger.log(`  - ${file}`))
-	// 	}
-	// 	if (filesSkipped.length > 0) {
-	// 		logger.break()
-	// 		logger.info(`ℹ️ Skipped ${filesSkipped.length} file(s):  (files might be identical, use --overwrite to overwrite)`)
-	// 		filesSkipped.forEach((file) => logger.log(`  - ${file}`))
-	// 	}
-
-	// 	if (filesSkipped.length) {
-	// 		spinner(`Skipped ${filesSkipped.length} ${filesUpdated.length === 1 ? "file" : "files"}: (files might be identical,use --overwrite to overwrite)`, {
-	// 			silent: options.silent,
-	// 		})?.info()
-	// 		for (const file of filesSkipped) {
-	// 			logger.log(`  - ${file}`)
-	// 		}
-	// 	}
-	// }
 }
 
 const createFile = async (filePath: string, projectInfo: ProjectInfo, file: RegistryComponentFile, config: RawConfig) => {
