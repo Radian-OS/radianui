@@ -1,9 +1,11 @@
 import React from "react"
-import { ArrowDownRight, ArrowUpRight, Component, ScanEye, SquareTerminal } from "lucide-react"
+import { ArrowDownRight, ArrowUpRight, ChevronDown, CircleGauge, Component, FolderGit, Grid, LayoutDashboard, ScanEye, ShipWheel, SquareTerminal, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
 // import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
+import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
@@ -127,104 +129,94 @@ const FeaturesSectionNew = () => {
 					</p>
 				</div>
 			</div>
-			<div className="flex h-full w-full max-w-[1400px] flex-col gap-6 rounded-xl px-5 lg:flex-row">
-				<div className="lg:flex-2/3 pt-15 border-soft flex flex-col gap-12 overflow-hidden rounded-xl border">
-					<div className="flex items-center justify-between pl-12">
-						<div className="flex flex-col gap-4">
-							<span className="pb-2">
-								<ScanEye size={28} className="stroke-primary-hover" />
-							</span>
-							<h6 className="heading-6">High Quality Base Components</h6>
-							<p className="text-fg-secondary w-full max-w-[420px] text-sm">From keyboard navigation to structural semantics, everything follows modern accessibility standards.</p>
-						</div>
-						{/* <div className="flex h-full w-1/2 items-end justify-center px-12">
-							<div>
-								<FlickeringGrid
-									shape="square"
-									className="inset-0 z-10 max-h-[48px] max-w-[188.8px] self-end"
-									squareSize={3.2}
-									gridGap={3}
-									color={resolvedTheme === "light" ? "#E5DFFB" : "#211452"}
-									maxOpacity={0.4}
-									flickerChance={0.1}
-								/>
+			<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
+				<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="lg:flex-2/3 pt-15 border-soft flex flex-col gap-12 overflow-hidden rounded-xl border">
+						<div className="flex items-center justify-between px-7 sm:pl-12">
+							<div className="flex flex-col gap-4">
+								<span className="pb-2">
+									<ScanEye size={28} className="stroke-primary-hover" />
+								</span>
+								<h6 className="heading-6 font-medium">High Quality Base Components</h6>
+								<p className="text-fg-secondary w-full max-w-[420px] text-sm">
+									From keyboard navigation to structural semantics, everything follows modern accessibility standards.
+								</p>
 							</div>
-						</div> */}
-					</div>
-					<div className="pl-0 pr-0 md:pl-12 lg:px-12">
-						<div className="bg-fill1 rounded-b-none! w-full pt-5 md:rounded-l-2xl md:pl-5 lg:rounded-t-2xl lg:px-5">
-							<div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
-								<Table>
-									<TableHeader>
-										<TableRow>
-											<TableHead>Company</TableHead>
-											<TableHead>CCY</TableHead>
-											<TableHead>FY1 growth</TableHead>
-											<TableHead>Daily Earning</TableHead>
-											<TableHead>EBITDA</TableHead>
-											<TableHead>Performance</TableHead>
-										</TableRow>
-									</TableHeader>
-									<TableBody>
-										{datas.map((data) => (
-											<TableRow key={data.company}>
-												<TableCell className="flex items-center">{data.company}</TableCell>
-												<TableCell>
-													<Badge size="20" color="neutral">
-														{data.currency}
-													</Badge>
-												</TableCell>
-												<TableCell className={cn("flex", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
-													{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
-													{data.FY1_growth}%
-												</TableCell>
-												<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
-												<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
-												<TableCell>
-													<Badge color="success" variant="outline">
-														{data.performance}
-													</Badge>
-												</TableCell>
+						</div>
+						<div className="pl-0 pr-0 md:pl-12 lg:px-12">
+							<div className="bg-fill1 rounded-b-none! w-full pt-5 md:rounded-l-2xl md:pl-5 lg:rounded-t-2xl lg:px-5">
+								<div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
+									<Table>
+										<TableHeader>
+											<TableRow>
+												<TableHead>Company</TableHead>
+												<TableHead>CCY</TableHead>
+												<TableHead>FY1 growth</TableHead>
+												<TableHead>Daily Earning</TableHead>
+												<TableHead>EBITDA</TableHead>
+												<TableHead>Performance</TableHead>
 											</TableRow>
-										))}
-									</TableBody>
-								</Table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className="lg:flex-1/3 border-soft flex flex-col gap-12 rounded-xl border">
-					<div className="pt-15 flex flex-col gap-4 px-12">
-						<span className="pb-2">
-							<SquareTerminal size={28} className="stroke-primary-hover" />
-						</span>
-						<h6 className="heading-6">Copy-paste or Install via CLI</h6>
-						<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
-					</div>
-					<div className="gap-12.25 flex flex-col">
-						<div className="pr-11.5 pl-12">
-							<div className="w-104 border-soft flex items-center justify-center rounded-xl border p-1.5">
-								<div className="bg-elevation-level1 border-soft pr-13.25 text-fg-secondary w-full rounded-[10px] border py-3 pl-3 font-mono text-sm">
-									<span className="text-primary-text">npx</span> <span className="text-info-text">radianui</span> <span className="text-success-text">add</span>{" "}
-									<span className="text-warning-text">[component]</span>
+										</TableHeader>
+										<TableBody>
+											{datas.map((data) => (
+												<TableRow key={data.company}>
+													<TableCell className="flex items-center">{data.company}</TableCell>
+													<TableCell>
+														<Badge size="20" color="neutral">
+															{data.currency}
+														</Badge>
+													</TableCell>
+													<TableCell className={cn("flex", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
+														{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
+														{data.FY1_growth}%
+													</TableCell>
+													<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
+													<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
+													<TableCell>
+														<Badge color="success" variant="outline">
+															{data.performance}
+														</Badge>
+													</TableCell>
+												</TableRow>
+											))}
+										</TableBody>
+									</Table>
 								</div>
 							</div>
 						</div>
-
-						<div className="pl-13.5">
-							<div className="max-w-101 border-soft w-full rounded-t-xl border border-b-0">
-								<div className="border-soft flex rounded-t-xl border border-l-0 border-r-0 border-t-0 px-4 py-3">
-									<div className="gap-1.25 flex items-center">
-										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
-										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
-										<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+					</div>
+					<div className="lg:flex-1/3 border-soft flex flex-col gap-12 overflow-hidden rounded-xl border">
+						<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
+							<span className="pb-2">
+								<SquareTerminal size={28} className="stroke-primary-hover" />
+							</span>
+							<h6 className="heading-6 font-medium">Copy-paste or Install via CLI</h6>
+							<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
+						</div>
+						<div className="gap-12.25 flex flex-col">
+							<div className="pr-11.5 pl-12">
+								<div className="w-104 border-soft flex items-center justify-center rounded-xl border p-1.5">
+									<div className="bg-elevation-level1 border-soft pr-13.25 text-fg-secondary w-full rounded-[10px] border py-3 pl-3 font-mono text-sm">
+										<span className="text-primary-text">npx</span> <span className="text-info-text">radianui</span> <span className="text-success-text">add</span>{" "}
+										<span className="text-warning-text">[component]</span>
 									</div>
-									<div className="text-fg-tertiary flex grow items-center justify-center text-xs">radianos js</div>
 								</div>
-								<div>
-									<CodeArea
-										className="h-[155px]"
-										code={`import { Button, Card, Heading, Text } from '@radianos/ui';
+							</div>
+
+							<div className="pl-13.5">
+								<div className="max-w-101 border-soft rounded-r-0 w-full rounded-r-none rounded-t-xl border border-b-0 border-r-0">
+									<div className="border-soft flex rounded-t-xl border border-l-0 border-r-0 border-t-0 px-4 py-3">
+										<div className="gap-1.25 flex items-center">
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										</div>
+										<div className="text-fg-tertiary flex grow items-center justify-center text-xs">radianos.js</div>
+									</div>
+									<div>
+										<CodeArea
+											className="h-[155px]"
+											code={`import { Button, Card, Heading, Text } from '@radianos/ui';
 function MyDashboard() {
   return (
     <Card>
@@ -243,11 +235,175 @@ function MyDashboard() {
 }
 
 export default MyDashboard;`}
-										theme={resolvedTheme === "light" ? "github-light-high-contrast" : "github-dark-high-contrast"}
-										language="tsx"
-									/>
+											theme={resolvedTheme === "light" ? "github-light-high-contrast" : "github-dark-high-contrast"}
+											language="tsx"
+										/>
+									</div>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+				<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="border-soft pt-15 max-h-150 flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
+						<div className="flex flex-col gap-4 px-7 sm:pl-12">
+							<span className="pb-2">
+								<FolderGit size={28} className="stroke-primary-hover" />
+							</span>
+							<h6 className="heading-6 font-medium">Seamless Design to Code Sync</h6>
+							<p className="text-fg-secondary text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
+						</div>
+						<div className="sm:pl-13.5 gap-5.25 flex flex-col px-7 sm:pr-0">
+							<div className="gap-9.75 flex flex-col items-center sm:flex-row">
+								<div className="w-75.5 h-56.75 border-soft overflow-hidden rounded-lg border">
+									<div className="border-soft flex w-full items-center border border-l-0 border-r-0 border-t-0 px-4 py-3">
+										<div className="gap-1.25 flex items-center">
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										</div>
+										<div className="text-fg-tertiary flex grow items-center justify-center text-xs">Figma</div>
+									</div>
+									<div className="px-9.75 size-full">
+										<Skeleton className="bg-fill1 size-full" />
+									</div>
+								</div>
+								<div className="w-75.5 h-56.75 border-soft sm:translate-x-2.25 overflow-hidden rounded-lg border">
+									<div className="border-soft flex w-full items-center border border-l-0 border-r-0 border-t-0 px-4 py-3">
+										<div className="gap-1.25 flex items-center">
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										</div>
+										<div className="text-fg-tertiary flex grow items-center justify-center text-xs">Prod</div>
+									</div>
+									<div className="px-9.75 size-full">
+										<Skeleton className="bg-fill1 size-full" />
+									</div>
+								</div>
+							</div>
+							<div className="gap-9.75 flex items-center">
+								<div className="w-75.5 h-56.75 border-soft translate-x-2.25 overflow-hidden rounded-lg border">
+									<div className="border-soft flex w-full items-center border border-l-0 border-r-0 border-t-0 px-4 py-3">
+										<div className="gap-1.25 flex items-center">
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
+										</div>
+										<div className="text-fg-tertiary flex grow items-center justify-center text-xs">Dev</div>
+									</div>
+									<div className="px-9.75 size-full">
+										<Skeleton className="bg-fill1 size-full" />
+									</div>
+								</div>
+								<div className="w-75.5 h-56.75 rounded-lg"></div>
+							</div>
+						</div>
+					</div>
+					<div className="border-soft flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
+						<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
+							<span className="pb-2">
+								<SwatchBook size={28} className="stroke-primary-hover" />
+							</span>
+							<h6 className="heading-6 font-medium">Themeable System</h6>
+							<p className="text-fg-secondary text-sm">Edit one token to restyle your entire design system — light, dark, or custom themes.</p>
+						</div>
+						<div className="flex gap-14 pl-10">
+							<div className="flex w-full max-w-[241px] flex-col gap-1">
+								<div className="flex w-full items-center justify-between rounded-lg border px-2.5 py-2">
+									<span className="text-fg-secondary text-sm">Sun Burst - Red</span>
+									<ChevronDown className="text-fg-tertiary" size={20} />
+								</div>
+								<div className="flex h-full max-h-[333px] flex-col gap-1 rounded-[10px] rounded-b-none border border-b-0 px-1">
+									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Circle Clover - Purple</div>
+									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Knotted Links - Purple</div>
+									<div className="bg-primary-accent whitespace-nowrap rounded-md px-2 py-1.5">Sun Burst - Red</div>
+									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Wave Globe - Green</div>
+									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Flow Cross - Blue</div>
+									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Octo Frame - Blue</div>
+									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Petal Grid - Green</div>
+									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Gradient - Purple</div>
+								</div>
+							</div>
+							<div className="border-soft relative h-[322px] w-[512px] overflow-hidden rounded-xl rounded-r-none border border-r-0 pl-1.5 pt-1.5">
+								<div className="h-25 from-error-accent to-primary-focus w-full rounded-xl rounded-r-none bg-gradient-to-r" />
+								<div className="top-15 border-6 border-elevation-level1 bg-error absolute left-6 flex size-20 items-center justify-center rounded-2xl">
+									<ShipWheel className="text-white" size={36} />
+								</div>
+								<div className="pl-6.5 flex flex-col gap-2.5 pt-10">
+									<div className="flex flex-col gap-1.5">
+										<h5 className="heading-5 whitespace-nowrap">Hisoka Meureum</h5>
+										<p className="text-fg-secondary whitespace-nowrap text-sm">Founder and CEO at Acme</p>
+									</div>
+									<div className="whitespace-nowrap text-sm">4200 followers</div>
+									<div className="pt-1.5">
+										<Button className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+											Send Message
+										</Button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="border-soft pt-15 flex flex-col gap-12 rounded-xl border lg:w-[510px]">
+						<div className="flex flex-col gap-4 px-7 sm:px-8 lg:px-12">
+							<span className="pb-2">
+								<LayoutDashboard size={28} className="stroke-primary-hover" />
+							</span>
+							<h6 className="heading-6 font-medium">Reusable UI Blocks</h6>
+							<p className="text-fg-secondary text-sm">Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use</p>
+						</div>
+						<InfiniteScroll>
+							<div className="flex items-center justify-center gap-2">
+								<div className="py-1.75 border-soft w-45 flex h-9 items-center rounded-lg border px-2.5">
+									<div className="bg-primary-border border-soft-alpha flex size-[21.6px] items-center justify-center rounded-[7.2px] border">
+										<Grid className="text-white" size={14.4} />
+									</div>
+									<p className="text-fg-secondary flex grow items-center justify-center text-xs">Blogs Section / 01</p>
+								</div>
+								<div className="py-1.75 border-soft w-45 flex h-9 items-center rounded-lg border px-2.5">
+									<div className="bg-primary-border border-soft-alpha flex size-[21.6px] items-center justify-center rounded-[7.2px] border">
+										<Grid className="text-white" size={14.4} />
+									</div>
+									<p className="text-fg-secondary flex grow items-center justify-center text-xs">Blogs Section / 02</p>
+								</div>
+								<div className="py-1.75 border-soft w-45 flex h-9 items-center rounded-lg border px-2.5">
+									<div className="bg-primary-border border-soft-alpha flex size-[21.6px] items-center justify-center rounded-[7.2px] border">
+										<Grid className="text-white" size={14.4} />
+									</div>
+									<p className="text-fg-secondary flex grow items-center justify-center text-xs">Blogs Section / 03</p>
+								</div>
+								<div className="py-1.75 border-soft w-45 flex h-9 items-center rounded-lg border px-2.5">
+									<div className="bg-primary-border border-soft-alpha flex size-[21.6px] items-center justify-center rounded-[7.2px] border">
+										<Grid className="text-white" size={14.4} />
+									</div>
+									<p className="text-fg-secondary flex grow items-center justify-center text-xs">Blogs Section / 04</p>
+								</div>
+								<div className="py-1.75 border-soft w-45 flex h-9 items-center rounded-lg border px-2.5">
+									<div className="bg-primary-border border-soft-alpha flex size-[21.6px] items-center justify-center rounded-[7.2px] border">
+										<Grid className="text-white" size={14.4} />
+									</div>
+									<p className="text-fg-secondary flex grow items-center justify-center text-xs">Blogs Section / 05</p>
+								</div>
+							</div>
+						</InfiniteScroll>
+						<div className="flex items-center justify-center">
+							<Skeleton className="bg-fill2 h-[359px] w-[423px] rounded-xl rounded-b-none" />
+						</div>
+					</div>
+					<div className="border-soft pt-15 flex min-h-[488px] w-full flex-col gap-12 overflow-hidden rounded-xl border">
+						<div className="flex flex-col gap-4 px-7 sm:px-8 lg:pl-12">
+							<span className="pb-2">
+								<CircleGauge size={28} className="stroke-primary-hover" />
+							</span>
+							<h6 className="heading-6 font-medium">Tree-Shakable Architecture</h6>
+							<p className="text-fg-secondary text-sm">Only imports what you use ultra-light bundles for fast and improved performance.</p>
+						</div>
+						<div className="flex h-full gap-[23px] pl-12">
+							<Skeleton className="bg-fill2 min-h-[359px] w-1/3 min-w-[140px] rounded-xl rounded-b-none" />
+							<Skeleton className="bg-fill2 min-h-[359px] w-2/3 min-w-[421px] rounded-xl rounded-b-none" />
 						</div>
 					</div>
 				</div>
