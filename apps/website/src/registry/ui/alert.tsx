@@ -18,7 +18,7 @@ export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const alertVariants = cva(
-	"flex items-stretch w-full gap-2 p-3 rounded-lg [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm  [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
+	"flex items-stretch w-full gap-3 p-3 rounded-lg [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm  [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
 	{
 		variants: {
 			color: {
@@ -31,9 +31,9 @@ const alertVariants = cva(
 			},
 			variant: {
 				strong: "",
-				soft: "",
-				"soft-outline": "ring-1 ring-inset",
-				outline: "border border-soft [&_[data-slot=alert-close]]:text-fg [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg-secondary",
+				soft: "[&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg-secondary",
+				"soft-outline": "ring-1 ring-inset [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg-secondary",
+				outline: "border border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg-secondary",
 			},
 		},
 		compoundVariants: [
@@ -55,11 +55,11 @@ const alertVariants = cva(
 
 			// Soft-outline variants
 			{ color: "neutral", variant: "soft-outline", className: "border-border bg-fill2" },
-			{ color: "primary", variant: "soft-outline", className: "bg-primary-accent text-primary-text border-primary-accent" },
-			{ color: "info", variant: "soft-outline", className: "bg-info-accent text-info-text border-info-accent" },
-			{ color: "success", variant: "soft-outline", className: "bg-success-accent text-success-text border-success-accent" },
-			{ color: "error", variant: "soft-outline", className: "bg-error-accent text-error-text border-error-accent" },
-			{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text border-warning-accent" },
+			{ color: "primary", variant: "soft-outline", className: "bg-primary-accent text-primary-text border-primary" },
+			{ color: "info", variant: "soft-outline", className: "bg-info-accent text-info-text border-info" },
+			{ color: "success", variant: "soft-outline", className: "bg-success-accent text-success-text border-success" },
+			{ color: "error", variant: "soft-outline", className: "bg-error-accent text-error-text border-error" },
+			{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text border-warning" },
 
 			// Outline variants
 			{ color: "neutral", variant: "outline", className: "bg-transparent text-foreground " },
@@ -125,7 +125,7 @@ function AlertContent({ className, ...props }: AlertContentProps) {
 		<div
 			data-slot="alert-content"
 			className={cn(
-				"flex flex-col justify-center gap-1 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:font-medium",
+				"flex grow flex-col justify-center gap-1 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:font-medium",
 				className
 			)}
 			{...props}

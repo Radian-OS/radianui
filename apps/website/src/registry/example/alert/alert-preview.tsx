@@ -1,18 +1,22 @@
-import { Bell } from "lucide-react"
-import { Alert, AlertIcon, AlertTitle, AlertToolbar } from "@/registry/ui/alert"
-import { LinkButton } from "@/registry/ui/button"
+import { CircleCheckBig } from "lucide-react"
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 
 export default function AlertPreview() {
 	return (
-		<div className="flex w-full flex-col items-center gap-6 lg:max-w-[75%]">
-			<Alert close>
+		<div className="max-w-132.5 flex w-full flex-col items-center gap-6">
+			<Alert color="success">
 				<AlertIcon>
-					<Bell />
+					<CircleCheckBig size={20} />
 				</AlertIcon>
-				<AlertTitle>This is simple alert</AlertTitle>
-				<AlertToolbar>
-					<LinkButton href="/">Action</LinkButton>
-				</AlertToolbar>
+				<AlertContent>
+					<AlertTitle>Payment Successful</AlertTitle>
+					<AlertDescription>Your payment has been successfully transferred.</AlertDescription>
+					<section className="flex items-center gap-2 pt-2">
+						<p className="text-sm font-medium">Statement</p>
+						<span className="bg-fg-tertiary size-1 rounded-full"></span>
+						<p className="text-sm font-medium">Transaction</p>
+					</section>
+				</AlertContent>
 			</Alert>
 		</div>
 	)

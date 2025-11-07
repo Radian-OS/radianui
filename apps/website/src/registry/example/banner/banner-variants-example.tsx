@@ -1,54 +1,30 @@
 import React from "react"
-import { CubeIcon } from "@radix-ui/react-icons"
-import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
-import { LinkButton } from "@/registry/ui/button"
+import { Sparkles } from "lucide-react"
+import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
 
 function BannerVariantsExample() {
 	return (
-		<div className="flex w-full flex-col items-center justify-center gap-4">
-			<Banner variant="outline" onClose={() => null}>
+		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
+			<Banner variant="outline">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Sparkles size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton color="neutral" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Outline</BannerTitle>
+				<BannerDescription>This is a variant of banner component</BannerDescription>
 			</Banner>
-			<Banner variant="soft" onClose={() => null}>
+			<Banner variant="soft">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Sparkles size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton href="#">Button Label</LinkButton>
+				<BannerTitle>Soft</BannerTitle>
+				<BannerDescription>This is a variant of banner component</BannerDescription>
 			</Banner>
-			<Banner variant="soft-outline" onClose={() => null}>
+			<Banner variant="strong">
 				<BannerIcon>
-					<CubeIcon className="size-5" />
+					<Sparkles size={20} />
 				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton href="#">Button Label</LinkButton>
-			</Banner>
-			<Banner variant="strong" onClose={() => null}>
-				<BannerIcon>
-					<CubeIcon className="size-5" />
-				</BannerIcon>
-				<BannerContent>
-					<BannerTitle>Banner Title Here</BannerTitle>
-					<BannerDescription>Enter Your banner message here</BannerDescription>
-				</BannerContent>
-				<LinkButton className="text-white" href="#">
-					Button Label
-				</LinkButton>
+				<BannerTitle>Strong</BannerTitle>
+				<BannerDescription>This is a variant of banner component</BannerDescription>
 			</Banner>
 		</div>
 	)

@@ -31,7 +31,7 @@ export default function AccordionWithChevronLeft() {
 			{contents.map((item) => (
 				<AccordionItem value={item.id.toString()} key={item.id}>
 					<AccordionTrigger className="justify-start gap-2.5 [&_svg]:-order-1">{item.trigger}</AccordionTrigger>
-					<AccordionContent className="ps-11.5">{item.content}</AccordionContent>
+					<AccordionContent className="ps-10.5">{item.content}</AccordionContent>
 				</AccordionItem>
 			))}
 		</Accordion>

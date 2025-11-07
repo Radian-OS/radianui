@@ -3,88 +3,103 @@
 import { useEffect, useState } from "react"
 import { Box, CircleDashed, CircleDotDashed, Copy, LockKeyhole, Plus, Share, Square, SquareDashed, Squircle, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
+import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import PlaygroundSignin from "./playground-signin"
+import PlaygroundSignin, { radiusMap } from "./playground-signin"
 
-const CODE = `
-export default function PlaygroundSignin() {
-	return (
-	{/* ... */}
-
-	<div className="flex flex-col gap-1.5">
-		<Label htmlFor="email">Email</Label>
-		<Input size="36" id="email" placeholder="example@radianos.com" />
-	</div>
-
-	<div className="flex flex-col gap-1.5">
-		<Label htmlFor="password">Password</Label>
-		<Input size="36" type="password" id="password" placeholder="••••••••••••" />
-	</div>
-
-	{/* ... */}
-
-	<div className="flex items-center gap-2">
-		<Checkbox id="remember-me" /> <Label htmlFor="remember-me">Remember me</Label>
-	</div>
-
-	{/* ... */}
-
-	<Button size="36" className="w-full">
-		Log In
-	</Button>
-
-	<div className="flex items-center gap-1.5">
-		<Divider className="flex-1" />
-		<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">Or continue with</span>
-		<Divider className="flex-1" />
-	</div>
-
-	<div className="flex gap-3">
-		<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
-			{/* ... */}
-			Google
-		</Button>
-		<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
-			{/* ... */}
-			Github
-		</Button>
-	</div>
-
-	{/* ... */}
-
-	</div>
-	)
+const FONTS: Record<string, string> = {
+	"Inter Display and Inter": ``,
+	Roboto: roboto.className,
+	"Open Sans": openSans.className,
+	Manrope: manrope.className,
+	Geist: geist.className,
+	Rubik: rubik.className,
+	"DM Sans": dmSans.className,
+	Lato: lato.className,
+	Raleway: raleway.className,
+	"Work Sans": workSans.className,
+	"IBM Plex Sans": ibmPlexSans.className,
+	Figtree: figtree.className,
 }
-`
 
 const COLOR_VALUES = {
-	violet: {
-		label: "Violet",
-		icon: <Squircle size={20} className="fill-primary-text stroke-primary-text" />,
-	},
-	red: {
-		label: "Red",
-		icon: <Squircle size={20} className="fill-error stroke-error" />,
-	},
-	yellow: {
-		label: "Yellow",
-		icon: <Squircle size={20} className="fill-warning stroke-warning" />,
-	},
-	green: {
-		label: "Green",
-		icon: <Squircle size={20} className="fill-success stroke-success" />,
+	amber: {
+		label: "Amber",
+		icon: <Squircle size={16} className="color-amber fill-primary stroke-primary" />,
 	},
 	blue: {
 		label: "Blue",
-		icon: <Squircle size={20} className="fill-info stroke-info" />,
+		icon: <Squircle size={16} className="fill-info stroke-info" />,
 	},
-	grey: {
-		label: "Grey",
-		icon: <Squircle size={20} className="fill-fg-tertiary stroke-fg-tertiary" />,
+	cyan: {
+		label: "Cyan",
+		icon: <Squircle size={16} className="color-cyan fill-primary stroke-primary" />,
+	},
+	"dark-orchid": {
+		label: "Dark Orchid",
+		icon: <Squircle size={16} className="color-dark-orchid fill-primary stroke-primary" />,
+	},
+	emerald: {
+		label: "Emerald",
+		icon: <Squircle size={16} className="color-emerald fill-primary stroke-primary" />,
+	},
+	fuchsia: {
+		label: "Fuchsia",
+		icon: <Squircle size={16} className="color-fuchsia fill-primary stroke-primary" />,
+	},
+	green: {
+		label: "Green",
+		icon: <Squircle size={16} className="fill-success stroke-success" />,
+	},
+	"light-blue": {
+		label: "Light Blue",
+		icon: <Squircle size={16} className="color-light-blue fill-primary stroke-primary" />,
+	},
+	magenta: {
+		label: "Magenta",
+		icon: <Squircle size={16} className="color-magenta fill-primary stroke-primary" />,
+	},
+	neon: {
+		label: "Neon",
+		icon: <Squircle size={16} className="color-neon fill-primary stroke-primary" />,
+	},
+	orange: {
+		label: "Orange",
+		icon: <Squircle size={16} className="color-orange fill-primary stroke-primary" />,
+	},
+	purple: {
+		label: "Purple",
+		icon: <Squircle size={16} className="color-purple fill-primary stroke-primary" />,
+	},
+	red: {
+		label: "Red",
+		icon: <Squircle size={16} className="fill-error stroke-error" />,
+	},
+	rose: {
+		label: "Rose",
+		icon: <Squircle size={16} className="color-rose fill-primary stroke-primary" />,
+	},
+	teal: {
+		label: "Teal",
+		icon: <Squircle size={16} className="color-teal fill-primary stroke-primary" />,
+	},
+	violet: {
+		label: "Violet",
+		icon: <Squircle size={16} className="fill-primary-text stroke-primary-text" />,
+	},
+	"violet-blue": {
+		label: "Violet Blue",
+		icon: <Squircle size={16} className="color-violet-blue fill-primary stroke-primary" />,
+	},
+	yellow: {
+		label: "Yellow",
+		icon: <Squircle size={16} className="fill-warning stroke-warning" />,
 	},
 }
 
@@ -110,15 +125,15 @@ const ROUNDED_VALUES = {
 type COLOR_VALUES_TYPE = keyof typeof COLOR_VALUES
 type ROUNDED_VALUES_TYPE = keyof typeof ROUNDED_VALUES
 
-const getGlobalsFileCode = (color: COLOR_VALUES_TYPE, rounded: ROUNDED_VALUES_TYPE) => {
+const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 	let colorValues = ``
-	let roundedValues = ``
 
 	switch (color) {
 		case "red": {
 			colorValues = `--color-primary: oklch(0.6092 0.2041 255.8);
 	--color-primary-accent: oklch(0.949 0.0213 245.85);
 	--color-primary-focus: oklch(0.9135 0.0358 249.52);
+	--color-primary-border: oklch(0.719 0.1751 22.5);
 	--color-primary-hover: oklch(0.6722 0.1615 251.56);
 	--color-primary-text: oklch(0.4663 0.1065 251.21);`
 			break
@@ -127,6 +142,7 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE, rounded: ROUNDED_VALUES_TY
 			colorValues = `--color-primary: oklch(0.6092 0.2041 255.8);
 	--color-primary-accent: oklch(0.949 0.0213 245.85);
 	--color-primary-focus: oklch(0.9135 0.0358 249.52);
+	--color-primary-border: oklch(0.6722 0.1615 251.56);
 	--color-primary-hover: oklch(0.6722 0.1615 251.56);
 	--color-primary-text: oklch(0.4663 0.1065 251.21);`
 			break
@@ -135,16 +151,9 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE, rounded: ROUNDED_VALUES_TY
 			colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
 	--color-primary-accent: oklch(0.271 0.0537 151.74);
 	--color-primary-focus: oklch(0.3887 0.0924 150.55);
+	--color-primary-border: oklch(0.7118 0.2291 142.69);
 	--color-primary-hover: oklch(0.6901 0.1748 149.64);
 	--color-primary-text: oklch(0.871 0.1501 153.14);`
-			break
-		}
-		case "grey": {
-			colorValues = `--color-primary: oklch(0.7 0.011 286.16);
-	--color-primary-accent: oklch(0.94 0.0271 295.05);
-	--color-primary-focus: oklch(0.9169 0.0383 295.46);
-	--color-primary-hover: oklch(0.8 0.011 286.16);
-	--color-primary-text: oklch(0.4515 0.0243 285.39);`
 			break
 		}
 		case "violet": {
@@ -159,34 +168,139 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE, rounded: ROUNDED_VALUES_TY
 			colorValues = `--color-primary: oklch(0.8016 0.1705 73.27);
 	--color-primary-accent: oklch(0.2663 0.0372 84.34);
 	--color-primary-focus: oklch(0.3744 0.0636 81.14);
+	--color-primary-border: oklch(0.8 0.1625 94.77);
 	--color-primary-hover: oklch(0.8342 0.1594 79.51);
 	--color-primary-text: oklch(0.8776 0.1255 82.88);`
 			break
 		}
-	}
-
-	switch (rounded) {
-		case "rounded": {
-			roundedValues = `--radius-sm: 9999px;
-	--radius-md: 9999px;
-	--radius-lg: 9999px;
-	--radius-xl: 9999px;`
+		case "cyan": {
+			colorValues = `--color-primary: oklch(0.6549 0.1092 194.82);
+	--color-primary-accent: oklch(0.9719 0.041 196.5);
+	--color-primary-focus: oklch(0.9531 0.0564 196.24);
+	--color-primary-border: oklch(0.7375 0.1249 194.79);
+	--color-primary-hover: oklch(0.7375 0.1249 194.79);
+	--color-primary-text: oklch(0.5517 0.089 194.88);`
 			break
 		}
-		case "flat": {
-			roundedValues = `--radius-sm: 0;
-	--radius-md: 0;
-	--radius-lg: 0;
-	--radius-xl: 0;
-	--radius-2xl: 0;
-	--radius-3xl: 0;`
+		case "emerald": {
+			colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
+	--color-primary-accent: oklch(0.9685 0.0336 157.66);
+	--color-primary-focus: oklch(0.9489 0.0556 156.34);
+	--color-primary-border: oklch(0.6901 0.1748 149.64);
+	--color-primary-hover: oklch(0.6901 0.1748 149.64);
+	--color-primary-text: oklch(0.5388 0.1339 149.74);
+			`
 			break
 		}
-		case "fun": {
-			roundedValues = `--radius-sm: 6px;
-	--radius-md: 8px;
-	--radius-lg: 12px;
-	--radius-xl: 16px;`
+		case "purple": {
+			colorValues = `--color-primary: oklch(0.5554 0.2522 292.8);
+	--color-primary-accent: oklch(0.9424 0.0277 301.75);
+	--color-primary-focus: oklch(0.92 0.0391 301.86);
+	--color-primary-border: oklch(0.6963 0.1724 298.93);
+	--color-primary-hover: oklch(0.6106 0.2219 295.95);
+	--color-primary-text: oklch(0.5554 0.2522 292.8);
+			`
+			break
+		}
+		case "teal": {
+			colorValues = `--color-primary: oklch(0.6432 0.1255 169.12);
+	--color-primary-accent: oklch(0.972 0.0389 178.68);
+	--color-primary-focus: oklch(0.9513 0.0697 177.06);
+	--color-primary-border: oklch(0.7472 0.1465 169.02);
+	--color-primary-hover: oklch(0.7472 0.1465 169.02);
+	--color-primary-text: oklch(0.5427 0.1008 170.56);
+			`
+			break
+		}
+		case "amber": {
+			colorValues = `--color-primary: oklch(0.8016 0.1705 73.27);
+	--color-primary-accent: oklch(0.9622 0.0384 83.83);
+	--color-primary-focus: oklch(0.946 0.0574 85.03);
+	--color-primary-border: oklch(0.7318 0.1522 75.09);
+	--color-primary-hover: oklch(0.8342 0.1594 79.51);
+	--color-primary-text: oklch(0.5461 0.1088 77.73);
+			`
+			break
+		}
+		case "fuchsia": {
+			colorValues = `--color-primary: oklch(0.6901 0.2628 327.97);
+	--color-primary-accent: oklch(0.9505 0.0442 325.92);
+	--color-primary-focus: oklch(0.923 0.0701 326.13);
+	--color-primary-border: oklch(0.7768 0.2026 327.31);
+	--color-primary-hover: oklch(0.7228 0.2325 327.65);
+	--color-primary-text: oklch(0.5839 0.2494 328.2);
+			`
+			break
+		}
+		case "dark-orchid": {
+			colorValues = `--color-primary: oklch(0.623 0.2799 310.69);
+	--color-primary-accent: oklch(0.9431 0.039 314.14);
+	--color-primary-focus: oklch(0.9219 0.054454 314.5407);
+	--color-primary-border: oklch(0.7475 0.1859 313.32);
+	--color-primary-hover: oklch(0.6625 0.2518 311.98);
+	--color-primary-text: oklch(0.5468 0.2503 310.33);
+			`
+			break
+		}
+		case "light-blue": {
+			colorValues = `--color-primary: oklch(0.6092 0.2041 255.8);
+	--color-primary-accent: oklch(0.949 0.0213 245.85);
+	--color-primary-focus: oklch(0.9135 0.0358 249.52);
+	--color-primary-border: oklch(0.6722 0.1615 251.56);
+	--color-primary-hover: oklch(0.6722 0.1615 251.56);
+	--color-primary-text: oklch(0.4663 0.1065 251.21);
+			`
+			break
+		}
+		case "magenta": {
+			colorValues = `--color-primary: oklch(0.6175 0.2503 347.29);
+	--color-primary-accent: oklch(0.951 0.0283 336.42);
+	--color-primary-focus: oklch(0.9221 0.0463 338.25);
+	--color-primary-border: oklch(0.7455 0.1847 341.92);
+	--color-primary-hover: oklch(0.6725 0.2452 344.84);
+	--color-primary-text: oklch(0.5565 0.2156 345.71);
+			`
+			break
+		}
+		case "neon": {
+			colorValues = `--color-primary: oklch(0.7153 0.1873 128.9);
+	--color-primary-accent: oklch(0.9792 0.0554 122.76);
+	--color-primary-focus: oklch(0.9656 0.0946 123.33);
+	--color-primary-border: oklch(0.825 0.2175 129.2);
+	--color-primary-hover: oklch(0.825 0.2175 129.2);
+	--color-primary-text: oklch(0.5815 0.147 127.99);
+			`
+			break
+		}
+		case "orange": {
+			colorValues = `--color-primary: oklch(0.6211 0.1686 43.12);
+	--color-primary-accent: oklch(0.9602 0.0221 49.93);
+	--color-primary-focus: oklch(0.9372 0.035253 49.2368);
+	--color-primary-border: oklch(0.6842 0.185 43.27);
+	--color-primary-hover: oklch(0.6842 0.185 43.27);
+	--color-primary-text: oklch(0.5381 0.1375 43.87);
+			`
+			break
+		}
+		case "rose": {
+			colorValues = `--color-primary: oklch(0.6515 0.221 6.33);
+	--color-primary-accent: oklch(0.9489 0.0236 354.28);
+	--color-primary-focus: oklch(0.9188 0.0392 355.78);
+	--color-primary-border: oklch(0.7471 0.1505 0.03);
+	--color-primary-hover: oklch(0.6861 0.1948 3.2);
+	--color-primary-text: oklch(0.546 0.1982 8.02);
+			`
+			break
+		}
+		case "violet-blue": {
+			colorValues = `--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-accent: oklch(0.94 0.0271 295.05);
+	--color-primary-focus: oklch(0.9169 0.0383 295.46);
+	--color-primary-border: oklch(0.6784 0.1708 290.38);
+	--color-primary-hover: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.528 0.2539 282.58);
+			`
+			break
 		}
 	}
 
@@ -196,8 +310,6 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE, rounded: ROUNDED_VALUES_TY
 	${colorValues}
 
 	/* ... */
-
-	${rounded !== "default" ? roundedValues : ""}
 }`
 }
 
@@ -206,10 +318,44 @@ export default function PlaygroundSection() {
 	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet")
 	const [rounded, setRounded] = useState<ROUNDED_VALUES_TYPE>("default")
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
+	const [selectedFont, setSelectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
+
+	const CODE = `
+export default function Signin() {
+	return (
+	<div className="flex flex-col gap-4">
+		{/* ... */}
+
+		<div className="flex flex-col gap-1.5">
+			<Label htmlFor="email">Email</Label>
+			<Input size="36" id="email" className="${radiusMap[rounded]}" />
+		</div>
+
+		<div className="flex flex-col gap-1.5">
+			<Label htmlFor="password">Password</Label>
+			<Input size="36" type="password" id="password" className="${radiusMap[rounded]}" />
+		</div>
+
+		<div className="flex items-center gap-2">
+			<Checkbox id="remember-me" className="${radiusMap[rounded]}" />
+			<Label htmlFor="remember-me">Remember me</Label>
+		</div>
+
+		{/* ... */}
+
+		<Button size="36" className="w-full ${radiusMap[rounded]}">
+			Log In
+		</Button>
+
+		{/* ... */}
+	</div>
+	)
+}
+`
 
 	useEffect(() => {
 		setActiveFile("globals.css")
-	}, [rounded, color])
+	}, [color])
 
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
@@ -315,21 +461,82 @@ export default function PlaygroundSection() {
 							<TabsTrigger value="code">Code</TabsTrigger>
 						</TabsList>
 
-						<Button size="36" variant="outline" color="neutral" className="md:hidden">
-							<Box className="text-fg-tertiary" />
-						</Button>
+						<Popover>
+							<PopoverTrigger asChild>
+								<Button size="36" variant="outline" color="neutral" className="md:hidden">
+									<Box className="text-fg-tertiary" />
+								</Button>
+							</PopoverTrigger>
+							<PopoverContent align="end" className="flex flex-col gap-3">
+								<Select value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
+									<SelectTrigger size="36" className="text-fg-secondary w-full font-medium">
+										<SelectValue />
+									</SelectTrigger>
+									<SelectContent>
+										{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
+											<SelectItem value={color} key={color}>
+												{COLOR_VALUES[color].label}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+
+								<Select value={selectedFont} onValueChange={(value) => setSelectedFont(value)}>
+									<SelectTrigger size="36" className="text-fg-secondary w-full font-medium">
+										<SelectValue />
+									</SelectTrigger>
+									<SelectContent>
+										{Object.keys(FONTS).map((fontName) => (
+											<SelectItem key={fontName} value={fontName}>
+												{fontName}
+											</SelectItem>
+										))}
+									</SelectContent>
+								</Select>
+
+								<Tabs value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
+									<TabsList>
+										{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
+											<TabsTrigger key={value} value={value}>
+												{ROUNDED_VALUES[value].icon}
+												<span className="not-lg:hidden">{ROUNDED_VALUES[value].label}</span>
+											</TabsTrigger>
+										))}
+									</TabsList>
+								</Tabs>
+							</PopoverContent>
+						</Popover>
 
 						<div className="not-md:hidden flex items-center gap-3">
-							<Tabs defaultValue={theme} value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)} className="not-md:hidden">
-								<TabsList size="md" variant="default" defaultValue="violet">
+							<Select value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
+								<SelectTrigger size="36" className="text-fg-secondary w-38 font-medium">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
 									{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
-										<TabsTrigger key={color} value={color}>
-											{COLOR_VALUES[color].icon}
-											<span className="not-lg:hidden">{COLOR_VALUES[color].label}</span>
-										</TabsTrigger>
+										<SelectItem value={color} key={color}>
+											<div className="flex items-center gap-1.5">
+												{COLOR_VALUES[color].icon}
+												{COLOR_VALUES[color].label}
+											</div>
+										</SelectItem>
 									))}
-								</TabsList>
-							</Tabs>
+								</SelectContent>
+							</Select>
+
+							<Select value={selectedFont} onValueChange={(value) => setSelectedFont(value)}>
+								<SelectTrigger size="36" className="text-fg-secondary w-49 font-medium">
+									<SelectValue />
+								</SelectTrigger>
+								<SelectContent>
+									{Object.keys(FONTS).map((fontName) => (
+										<SelectItem key={fontName} value={fontName}>
+											{fontName}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+
 							<Tabs value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
 								<TabsList>
 									{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
@@ -344,10 +551,10 @@ export default function PlaygroundSection() {
 					</div>
 					{/* Mobile/Tablet View */}
 					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
-						<TabsContent value="preview">
-							<PlaygroundSignin />
+						<TabsContent value="preview" className={`${FONTS[selectedFont]}`}>
+							<PlaygroundSignin rounded={rounded} />
 						</TabsContent>
-						<TabsContent value="code" className="h-190 overflow-scroll">
+						<TabsContent value="code" className="h-190 overflow-scroll p-2">
 							<Tabs className="h-full gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
 								<TabsList variant="outline-ghost">
 									<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
@@ -358,7 +565,7 @@ export default function PlaygroundSection() {
 								</TabsContent>
 								<TabsContent value="globals.css" className="h-full">
 									<CodeArea
-										code={getGlobalsFileCode(color, rounded)}
+										code={getGlobalsFileCode(color)}
 										language="css"
 										className="h-full w-full overflow-scroll"
 										lineNumbers
@@ -382,7 +589,7 @@ export default function PlaygroundSection() {
 									</TabsContent>
 									<TabsContent value="globals.css">
 										<CodeArea
-											code={getGlobalsFileCode(color, rounded)}
+											code={getGlobalsFileCode(color)}
 											language="css"
 											className="h-full w-full overflow-scroll"
 											lineNumbers
@@ -392,8 +599,8 @@ export default function PlaygroundSection() {
 								</Tabs>
 							</div>
 						</div>
-						<div className={`w-[480px] color-${color} rounded-${rounded}`}>
-							<PlaygroundSignin />
+						<div className={`w-[480px] color-${color} ${FONTS[selectedFont]}`}>
+							<PlaygroundSignin rounded={rounded} />
 						</div>
 					</div>
 				</Tabs>

@@ -19,20 +19,20 @@ export default function AlertDialogPreview() {
 					Show Dialog
 				</Button>
 			</AlertDialogTrigger>
-			<AlertDialogContent>
+			<AlertDialogContent className="max-w-100">
 				<AlertDialogHeader>
-					<AlertDialogTitle>Are you sure?</AlertDialogTitle>
-					<AlertDialogDescription>Take a moment to review the details provided to ensure you understand the implications.</AlertDialogDescription>
+					<AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+					<AlertDialogDescription>You have unsaved changes in the page. Do you want to save or discard it?</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel asChild>
 						<Button variant="outline" color="neutral">
-							Cancel
+							Discard
 						</Button>
 					</AlertDialogCancel>
 					<AlertDialogAction asChild>
 						<Button variant="strong" color="primary">
-							Continue
+							Save Changes
 						</Button>
 					</AlertDialogAction>
 				</AlertDialogFooter>

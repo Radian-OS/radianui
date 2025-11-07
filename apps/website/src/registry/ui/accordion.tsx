@@ -83,8 +83,8 @@ const accordionTriggerVariants = cva("text-fg outline-hidden flex flex-1 cursor-
 			open: "",
 		},
 		size: {
-			sm: "",
-			lg: "",
+			sm: "leading-5",
+			lg: "leading-6",
 		},
 		indicator: {
 			chevron: "[&[data-state=open]>.AccordionChevron]:rotate-180",
@@ -96,22 +96,22 @@ const accordionTriggerVariants = cva("text-fg outline-hidden flex flex-1 cursor-
 		{
 			variant: "open",
 			size: "sm",
-			class: "px-0 py-3 leading-5",
+			class: "px-0 py-3",
 		},
 		{
 			variant: "open",
 			size: "lg",
-			class: "px-0 py-4 leading-6",
+			class: "px-0 py-4",
 		},
 		{
 			variant: ["box", "table"],
 			size: "sm",
-			class: "px-4 py-3 leading-5",
+			class: "p-3",
 		},
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "p-4 leading-6",
+			class: "p-4",
 		},
 		// Indicator sizing
 		{
@@ -150,22 +150,22 @@ const accordionContentInnerVariants = cva("pt-0", {
 		{
 			variant: "open",
 			size: "sm",
-			class: "px-0 pb-3 pt-0",
+			class: "px-0 pb-3",
 		},
 		{
 			variant: "open",
 			size: "lg",
-			class: "px-0 pb-4 pt-0",
+			class: "px-0 pb-4",
 		},
 		{
 			variant: ["box", "table"],
 			size: "sm",
-			class: "px-4 pb-3 pt-0",
+			class: "px-3 pb-3",
 		},
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "px-4 py-4 pt-0",
+			class: "px-4 pb-4",
 		},
 	],
 	defaultVariants: {

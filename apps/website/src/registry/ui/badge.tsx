@@ -10,6 +10,8 @@ export type BadgeProps = Omit<React.HTMLAttributes<HTMLDivElement>, "color"> &
 		asChild?: boolean
 	}
 
+export type BadgeDotProps = React.HTMLAttributes<HTMLSpanElement>
+
 const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace-nowrap transition duration-200 gap-1", {
 	variants: {
 		variant: {
@@ -30,24 +32,19 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			warning: "",
 			neutral: "bg-elevation-level1 border-alpha",
 		},
-		dot: {
-			true: "",
-			false: "",
-		},
 	},
 	defaultVariants: {
 		variant: "soft",
 		size: "24",
 		color: "primary",
-		dot: false,
 	},
 	compoundVariants: [
 		// strong
-		{ variant: "strong", color: "primary", className: "bg-primary text-white font-semibold" },
-		{ variant: "strong", color: "info", className: "bg-info text-white font-semibold" },
-		{ variant: "strong", color: "success", className: "bg-success text-white font-semibold" },
-		{ variant: "strong", color: "error", className: "bg-error text-white font-semibold" },
-		{ variant: "strong", color: "warning", className: "bg-warning text-white font-semibold" },
+		{ variant: "strong", color: "primary", className: "bg-primary text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "info", className: "bg-info text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "success", className: "bg-success text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "error", className: "bg-error text-white font-semibold border border-alpha" },
+		{ variant: "strong", color: "warning", className: "bg-warning text-white font-semibold border border-alpha" },
 		{
 			variant: "strong",
 			color: "neutral",
@@ -61,33 +58,34 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{ variant: "outline", color: "warning", className: "text-warning-text border border-warning bg-transparent" },
 		{ variant: "outline", color: "neutral", className: "text-fg-secondary border bg-transparent" },
 		// soft
-		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text border border-soft-alpha" },
-		{ variant: "soft", color: "info", className: "bg-info-accent text-info-text border border-soft-alpha" },
-		{ variant: "soft", color: "success", className: "bg-success-accent text-success-text border border-soft-alpha" },
-		{ variant: "soft", color: "error", className: "bg-error-accent text-error-text border border-soft-alpha" },
-		{ variant: "soft", color: "warning", className: "bg-warning-accent text-warning-text border border-soft-alpha" },
-		{ variant: "soft", color: "neutral", className: "bg-fill2 text-fg-secondary border border-soft-alpha" },
+		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text" },
+		{ variant: "soft", color: "info", className: "bg-info-accent text-info-text" },
+		{ variant: "soft", color: "success", className: "bg-success-accent text-success-text" },
+		{ variant: "soft", color: "error", className: "bg-error-accent text-error-text" },
+		{ variant: "soft", color: "warning", className: "bg-warning-accent text-warning-text" },
+		{ variant: "soft", color: "neutral", className: "bg-fill2 text-fg-secondary" },
 	],
 })
 
-function Badge({ className, variant, size, color, asChild = false, children, dot, ...props }: BadgeProps) {
+function Badge({ className, variant, size, color, asChild = false, children, ...props }: BadgeProps) {
 	if (asChild) {
-		// When asChild is true, we can't add the dot since Slot expects single child
-		// User should handle dot styling in their custom element
 		return (
-			<Slot className={cn(badgeVariants({ variant, size, color, dot }), className)} {...props}>
+			<Slot className={cn(badgeVariants({ variant, size, color }), className)} {...props}>
 				{children}
 			</Slot>
 		)
 	}
 
 	return (
-		<span className={cn(badgeVariants({ variant, size, color, dot }), className)} {...props}>
-			{dot && <span className={cn("size-1.5 rounded-full bg-current")} />}
+		<span className={cn(badgeVariants({ variant, size, color }), className)} {...props}>
 			{children}
 		</span>
 	)
 }
 
 Badge.displayName = "Badge"
-export { Badge, badgeVariants }
+
+function BadgeDot({ className, ...props }: BadgeDotProps) {
+	return <span data-slot="badge-dot" className={cn("size-1.5 rounded-full bg-[currentColor]", className)} {...props} />
+}
+export { Badge, BadgeDot, badgeVariants }
