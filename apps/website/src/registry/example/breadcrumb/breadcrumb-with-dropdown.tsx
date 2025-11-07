@@ -14,7 +14,7 @@ function BreadcrumbWithDropdown() {
 					</BreadcrumbLink>
 				</BreadcrumbItem>
 
-				<BreadcrumbSeparator className="[&>svg]:size-5" />
+				<BreadcrumbSeparator />
 
 				<BreadcrumbItem>
 					<Dropdown>

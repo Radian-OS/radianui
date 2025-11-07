@@ -38,7 +38,6 @@ export type BlockAsset = {
 }
 
 export const getRegistryComponents = async (): Promise<RegistryComponents> => {
-	console.log("WEBSITE_URL", WEBSITE_URL)
 	try {
 		const response = await fetch(REGISTRY_COMPONENT_URL)
 

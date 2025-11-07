@@ -1,9 +1,13 @@
 import chalk from "chalk"
+import fs from "fs-extra"
+import path from "path"
 import prompts from "prompts"
 import { AddOptions } from "@/commands/add"
 import { InitOptions } from "@/commands/init"
+import { COLORS, FONTS } from "@/utils/constants"
 import { FrameworkName } from "@/utils/frameworks"
 import { Color, Font, getRegistryComponents } from "@/utils/registry"
+import { txt } from "./colors"
 
 export type PromptForNewProject = {
 	projectName: string
@@ -13,42 +17,8 @@ export type PromptForNewProject = {
 	font: Font
 }
 
-const COLORS = [
-	{ title: "Red", value: "red", hex: "#F53D3D" },
-	{ title: "Orange", value: "orange", hex: "#F97316" },
-	{ title: "Amber", value: "amber", hex: "#FFAA00" },
-	{ title: "Yellow", value: "yellow", hex: "#DFBB0C" },
-	{ title: "Neon", value: "neon", hex: "#7EB80A" },
-	{ title: "Green", value: "green", hex: "#13AE13" },
-	{ title: "Emerald", value: "emerald", hex: "#1DA54A" },
-	{ title: "Teal", value: "teal", hex: "#12A580" },
-	{ title: "Cyan", value: "cyan", hex: "#12A5A5" },
-	{ title: "Light Blue", value: "light-blue", hex: "#067FF9" },
-	{ title: "Blue", value: "blue", hex: "#4755EB" },
-	{ title: "Violet Blue (Default)", value: "violet-blue", hex: "#623DF5" },
-	{ title: "Purple", value: "purple", hex: "#803DF5" },
-	{ title: "Dark Orchid", value: "dark-orchid", hex: "#BB33FF" },
-	{ title: "Fuchsia", value: "fuchsia", hex: "#EB47EB" },
-	{ title: "Magenta", value: "magenta", hex: "#E519A1" },
-	{ title: "Rose", value: "rose", hex: "#F53D7A" },
-]
-
-const FONTS = [
-	{ title: "Inter - Inter Display (Default)", value: "inter" },
-	{ title: "Roboto", value: "roboto" },
-	{ title: "Geist", value: "geist" },
-	{ title: "DM Sans", value: "dm-sans" },
-	{ title: "Open Sans", value: "open-sans" },
-	{ title: "Rubik", value: "rubik" },
-	{ title: "Lato", value: "lato" },
-	{ title: "Manrope", value: "manrope" },
-	{ title: "Raleway", value: "raleway" },
-	{ title: "Work Sans", value: "work-sans" },
-	{ title: "IBM Plex Sans", value: "ibm-plex-sans" },
-	{ title: "Figtree", value: "figtree" },
-]
-
 const DEFAULT_FONT = "inter"
+const MAX_PROJECT_NAME_LENGTH = 128
 
 export const promptForNewProject = async (options: InitOptions): Promise<PromptForNewProject> => {
 	if (options.defaultConfigurations) {
@@ -63,7 +33,7 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 
 	// Get project name
 	const projectName =
-		options.projectName ||
+		options.projectName ??
 		(
 			await prompts({
 				type: "text",
@@ -71,7 +41,26 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 				message: "What would you like to name your project?",
 				initial: "my-app",
 				format: (value: string) => value.trim(),
-				validate: (value: string) => (value.length > 128 ? "Name should be less than 128 characters." : true),
+				validate: async (value: string): Promise<string | boolean> => {
+					const name = value.trim()
+
+					if (name.length === 0) {
+						return "Project name cannot be empty."
+					}
+
+					if (name.length > MAX_PROJECT_NAME_LENGTH) {
+						return `Project name must be less than ${MAX_PROJECT_NAME_LENGTH} characters.`
+					}
+
+					const targetPath = path.join(options.cwd, name)
+					const directoryExists = await fs.pathExists(targetPath)
+
+					if (directoryExists) {
+						return `A directory named ${txt.info(name)} already exists. Please choose a different name.`
+					}
+
+					return true
+				},
 			})
 		).projectName
 
@@ -96,7 +85,7 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 	// Get src dir preference (only for Next.js)
 	const useSrcDir =
 		framework === "next-app"
-			? options.useSrc ||
+			? (options.useSrc ??
 				(
 					await prompts({
 						type: "confirm",
@@ -104,7 +93,7 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 						message: "Would you like to use /src directory?",
 						initial: true,
 					})
-				).useSrcDir
+				).useSrcDir)
 			: true
 
 	// Get brand color
