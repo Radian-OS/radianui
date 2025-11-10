@@ -357,6 +357,10 @@ export default function Signin() {
 		setActiveFile("globals.css")
 	}, [color])
 
+	useEffect(() => {
+		setActiveFile("signin.tsx")
+	}, [rounded])
+
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
 			<div className="border-soft align-center pt-15 xl:px-15 relative flex justify-center rounded-t-3xl px-5 xl:border-l xl:border-r xl:border-t">
