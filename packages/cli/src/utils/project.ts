@@ -1,8 +1,9 @@
 import { execa } from "execa"
 import fs from "fs-extra"
 import path from "path"
-import { InitOptions, PROJECT_DEPENDENCIES, VITE_EXTRA_DEPENDENCIES, createGlobalCssFile, createUtils } from "@/commands/init"
+import { InitOptions, createGlobalCssFile, createUtils } from "@/commands/init"
 import { txt } from "@/utils/colors"
+import { PROJECT_DEPENDENCIES, VITE_EXTRA_DEPENDENCIES } from "@/utils/constants"
 import { installDependencies } from "@/utils/dependencyInstaller"
 import { FrameworkName } from "@/utils/frameworks"
 import { getPackageManager } from "@/utils/getPackageManager"
@@ -24,7 +25,9 @@ export const scaffoldNewProject = async (options: InitOptions, projectPrompts: P
 
 	// Check if project name is already used
 	const projectPath = path.join(options.cwd, projectName)
+
 	await fs.access(options.cwd, fs.constants.W_OK)
+
 	if (fs.existsSync(projectPath)) throw new Error(`A project named ${projectName} already exists.`)
 
 	const packageManager = await getPackageManager(options.cwd, { withFallback: true })

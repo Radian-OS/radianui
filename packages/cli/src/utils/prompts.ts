@@ -4,10 +4,10 @@ import path from "path"
 import prompts from "prompts"
 import { AddOptions } from "@/commands/add"
 import { InitOptions } from "@/commands/init"
-import { COLORS, FONTS } from "@/utils/constants"
+import { txt } from "@/utils/colors"
+import { COLORS, DEFAULT_BRAND_COLOR, DEFAULT_FONT, DEFAULT_FRAMEWORK, DEFAULT_PROJECT_NAME, FONTS, MAX_PROJECT_NAME_LENGTH } from "@/utils/constants"
 import { FrameworkName } from "@/utils/frameworks"
 import { Color, Font, getRegistryComponents } from "@/utils/registry"
-import { txt } from "./colors"
 
 export type PromptForNewProject = {
 	projectName: string
@@ -17,17 +17,14 @@ export type PromptForNewProject = {
 	font: Font
 }
 
-const DEFAULT_FONT = "inter"
-const MAX_PROJECT_NAME_LENGTH = 128
-
 export const promptForNewProject = async (options: InitOptions): Promise<PromptForNewProject> => {
 	if (options.defaultConfigurations) {
 		return {
-			projectName: "my-app",
+			projectName: DEFAULT_PROJECT_NAME,
 			useSrcDir: true,
-			framework: "next-app",
-			brandColor: "amber",
-			font: "inter",
+			framework: DEFAULT_FRAMEWORK,
+			brandColor: DEFAULT_BRAND_COLOR,
+			font: DEFAULT_FONT,
 		}
 	}
 
@@ -39,7 +36,7 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 				type: "text",
 				name: "projectName",
 				message: "What would you like to name your project?",
-				initial: "my-app",
+				initial: DEFAULT_PROJECT_NAME,
 				format: (value: string) => value.trim(),
 				validate: async (value: string): Promise<string | boolean> => {
 					const name = value.trim()
@@ -133,6 +130,34 @@ export const promptForNewProject = async (options: InitOptions): Promise<PromptF
 	return { projectName, useSrcDir, framework, brandColor, font }
 }
 
+export async function promptForExistingProject(options: InitOptions): Promise<Pick<PromptForNewProject, "brandColor" | "font">> {
+	const { brandColor } = options.color
+		? { brandColor: options.color }
+		: await prompts({
+				type: "select",
+				name: "brandColor",
+				message: "Which color would you like to use as your brand color?",
+				choices: COLORS.map((color) => ({
+					title: chalk.hex(color.hex)(color.title),
+					value: color.value,
+				})),
+				initial: 11,
+			})
+
+	const { font } = options.font
+		? { font: options.font }
+		: await prompts({
+				type: "select",
+				name: "font",
+				message: "Which font would you like 	to use for your project?",
+				choices: FONTS.map((font) => ({
+					title: font.title,
+					value: font.value,
+				})),
+				initial: 0,
+			})
+	return { brandColor, font }
+}
 /**
  * Prompts the user to select components if they were not provided via CLI.
  *

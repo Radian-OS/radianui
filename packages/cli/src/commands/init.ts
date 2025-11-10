@@ -11,14 +11,11 @@ import { getTailwindCssFilePath } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
 import { scaffoldNewProject, setupProjectConfig } from "@/utils/project"
-import { promptForNewProject } from "@/utils/prompts"
+import { promptForExistingProject, promptForNewProject } from "@/utils/prompts"
 import { Color, Font } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { GLOBAL_CSS_V4, UTILS } from "@/utils/templates"
 import { updateCssWithTheme } from "@/utils/updaters/update-css"
-
-export const PROJECT_DEPENDENCIES = ["tw-animate-css", "class-variance-authority", "clsx", "tailwind-merge", "lucide-react"]
-export const VITE_EXTRA_DEPENDENCIES = ["@tailwindcss/vite"]
 
 export const initOptionsSchema = z.object({
 	cwd: z.string(),
@@ -129,10 +126,10 @@ export const executeInit = async (options: InitOptions) => {
 
 		await updateGlobalCssVariables(projectPath, projectPrompts.useSrcDir, projectPrompts.framework, projectPrompts.brandColor, projectPrompts.font)
 	} else {
+		const { brandColor, font } = await promptForExistingProject(options)
 		// Setup necessary configuration files & install dependencies only
 		// if there is already an existing project
 		logger.warn(`${txt.bold("Note:")} This will replace your global CSS file and add Radian OS styles and colors to your project`)
-		
 
 		await setupProjectConfig(options.cwd, projectInfo.framework.name, projectInfo.hasSrcDir)
 	}
