@@ -1,5 +1,19 @@
 import React, { useEffect, useRef, useState } from "react"
-import { ArrowDownRight, ArrowUpRight, ChevronDown, CircleGauge, Component, FolderGit, Grid, LayoutDashboard, ScanEye, ShipWheel, SquareTerminal, SwatchBook } from "lucide-react"
+import {
+	ArrowDownRight,
+	ArrowUpRight,
+	ChevronDown,
+	CircleGauge,
+	Component,
+	FolderGit,
+	Grid,
+	LayoutDashboard,
+	MousePointer2,
+	ScanEye,
+	ShipWheel,
+	SquareTerminal,
+	SwatchBook,
+} from "lucide-react"
 import { useTheme } from "next-themes"
 // import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
@@ -37,6 +51,27 @@ const FeaturesSectionNew = () => {
 			container.removeEventListener("mousemove", handleMove)
 		}
 	}, [])
+
+	const items = [
+		"Circle Clover - Purple",
+		"Knotted Links - Purple",
+		"Sun Burst - Red",
+		"Wave Globe - Green",
+		"Flow Cross - Blue",
+		"Octo Frame - Blue",
+		"Petal Grid - Green",
+		"Gradient - Purple",
+	]
+
+	const [activeIndex, setActiveIndex] = useState(2) // Start at "Sun Burst - Red"
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActiveIndex((prevIndex) => (prevIndex + 1) % items.length)
+		}, 2000) // Change every 2 seconds
+
+		return () => clearInterval(interval)
+	}, [items.length])
 	const { resolvedTheme } = useTheme()
 	const datas = [
 		{
@@ -409,15 +444,20 @@ export default MyDashboard;`}
 									<span className="text-fg-secondary text-sm">Sun Burst - Red</span>
 									<ChevronDown className="text-fg-tertiary" size={20} />
 								</div>
-								<div className="flex h-full max-h-[333px] flex-col gap-1 rounded-[10px] rounded-b-none border border-b-0 px-1">
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Circle Clover - Purple</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Knotted Links - Purple</div>
-									<div className="bg-primary-accent whitespace-nowrap rounded-md px-2 py-1.5">Sun Burst - Red</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Wave Globe - Green</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Flow Cross - Blue</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Octo Frame - Blue</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Petal Grid - Green</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Gradient - Purple</div>
+								<div className="flex h-full max-h-[333px] flex-col gap-1 rounded-[10px] rounded-b-none border border-b-0 px-1 pt-1">
+									{items.map((item, index) => (
+										<div key={index} className={`relative flex whitespace-nowrap rounded-md px-2 py-1.5 ${index === activeIndex ? "bg-primary-accent" : ""}`}>
+											{item}
+											{index === activeIndex && (
+												<span className="absolute right-0 top-5">
+													<MousePointer2 size={20} className={`fill-primary stroke-white`} />
+													<Badge className="relative left-5" variant="strong">
+														David
+													</Badge>
+												</span>
+											)}
+										</div>
+									))}
 								</div>
 							</div>
 							<div className="border-soft relative h-[322px] w-[512px] overflow-hidden rounded-xl rounded-r-none border border-r-0 pl-1.5 pt-1.5">
