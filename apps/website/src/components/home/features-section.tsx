@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { ArrowDownRight, ArrowUpRight, ChevronDown, CircleGauge, Component, FolderGit, Grid, LayoutDashboard, ScanEye, ShipWheel, SquareTerminal, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
 // import ShikiHighlighter from "react-shiki"
@@ -13,6 +13,30 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 // import { FlickeringGrid } from "../effects/flickering"
 
 const FeaturesSectionNew = () => {
+	const containerRef = useRef<HTMLDivElement>(null)
+	const [pos, setPos] = useState({ x: 0, y: 0 })
+	const [hovering, setHovering] = useState(false)
+
+	const lensSize = 180
+	const zoom = 2
+
+	useEffect(() => {
+		const container = containerRef.current
+		if (!container) return
+
+		const handleMove = (e: MouseEvent) => {
+			const rect = container.getBoundingClientRect()
+			setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+		}
+
+		container.addEventListener("mousemove", handleMove)
+		container.addEventListener("mouseenter", () => setHovering(true))
+		container.addEventListener("mouseleave", () => setHovering(false))
+
+		return () => {
+			container.removeEventListener("mousemove", handleMove)
+		}
+	}, [])
 	const { resolvedTheme } = useTheme()
 	const datas = [
 		{
@@ -147,41 +171,109 @@ const FeaturesSectionNew = () => {
 						<div className="pl-0 pr-0 md:pl-12 lg:px-12">
 							<div className="bg-fill1 rounded-b-none! w-full pt-5 md:rounded-l-2xl md:pl-5 lg:rounded-t-2xl lg:px-5">
 								<div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
-									<Table>
-										<TableHeader>
-											<TableRow>
-												<TableHead>Company</TableHead>
-												<TableHead>CCY</TableHead>
-												<TableHead>FY1 growth</TableHead>
-												<TableHead>Daily Earning</TableHead>
-												<TableHead>EBITDA</TableHead>
-												<TableHead>Performance</TableHead>
-											</TableRow>
-										</TableHeader>
-										<TableBody>
-											{datas.map((data) => (
-												<TableRow key={data.company}>
-													<TableCell className="flex items-center">{data.company}</TableCell>
-													<TableCell>
-														<Badge size="20" color="neutral">
-															{data.currency}
-														</Badge>
-													</TableCell>
-													<TableCell className={cn("flex", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
-														{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
-														{data.FY1_growth}%
-													</TableCell>
-													<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
-													<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
-													<TableCell>
-														<Badge color="success" variant="outline">
-															{data.performance}
-														</Badge>
-													</TableCell>
+									<div ref={containerRef} className="relative cursor-none overflow-hidden">
+										{/* Base table */}
+										<Table className="relative w-full select-none">
+											<TableHeader>
+												<TableRow>
+													<TableHead>Company</TableHead>
+													<TableHead>CCY</TableHead>
+													<TableHead>FY1 growth</TableHead>
+													<TableHead>Daily Earning</TableHead>
+													<TableHead>EBITDA</TableHead>
+													<TableHead>Performance</TableHead>
 												</TableRow>
-											))}
-										</TableBody>
-									</Table>
+											</TableHeader>
+											<TableBody>
+												{datas.map((data) => (
+													<TableRow key={data.company}>
+														<TableCell className="flex items-center">{data.company}</TableCell>
+														<TableCell>
+															<Badge size="20" color="neutral">
+																{data.currency}
+															</Badge>
+														</TableCell>
+														<TableCell className={cn("flex items-center", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
+															{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
+															{data.FY1_growth}%
+														</TableCell>
+														<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
+														<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
+														<TableCell>
+															<Badge color="success" variant="outline">
+																{data.performance}
+															</Badge>
+														</TableCell>
+													</TableRow>
+												))}
+											</TableBody>
+										</Table>
+
+										{/* Magnifier overlay */}
+										{hovering && (
+											<div
+												className="border-3 bg-fill2 pointer-events-none absolute rounded-full"
+												style={{
+													width: lensSize,
+													height: lensSize,
+													top: pos.y - lensSize / 2,
+													left: pos.x - lensSize / 2,
+													overflow: "hidden",
+													boxShadow: "0 4px 8px hsla(260, 6%, 10%, 0.08)",
+												}}>
+												{/* instead of just lens-size, make inner zoomed area cover full table */}
+												<div
+													className="absolute h-full w-full"
+													style={{
+														transform: `scale(${zoom})`,
+														transformOrigin: `${pos.x}px ${pos.y}px`,
+														top: -pos.y * (zoom - 1),
+														left: -pos.x * (zoom - 1),
+														width: containerRef.current?.offsetWidth ?? "100%",
+														height: containerRef.current?.offsetHeight ?? "100%",
+													}}>
+													<div className="absolute left-0 top-0 w-full">
+														{/* full cloned table */}
+														<Table className="w-full select-none">
+															<TableHeader>
+																<TableRow>
+																	<TableHead>Company</TableHead>
+																	<TableHead>CCY</TableHead>
+																	<TableHead>FY1 growth</TableHead>
+																	<TableHead>Daily Earning</TableHead>
+																	<TableHead>EBITDA</TableHead>
+																	<TableHead>Performance</TableHead>
+																</TableRow>
+															</TableHeader>
+															<TableBody>
+																{datas.map((data) => (
+																	<TableRow key={data.company}>
+																		<TableCell className="flex items-center">{data.company}</TableCell>
+																		<TableCell>
+																			<Badge size="20" color="neutral">
+																				{data.currency}
+																			</Badge>
+																		</TableCell>
+																		<TableCell className={cn("flex items-center", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
+																			{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
+																			{data.FY1_growth}%
+																		</TableCell>
+																		<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
+																		<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
+																		<TableCell>
+																			<Badge color="success" variant="outline">
+																				{data.performance}
+																			</Badge>
+																		</TableCell>
+																	</TableRow>
+																))}
+															</TableBody>
+														</Table>
+													</div>
+												</div>
+											</div>
+										)}
+									</div>
 								</div>
 							</div>
 						</div>
