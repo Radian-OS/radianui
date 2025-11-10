@@ -11,7 +11,7 @@ import { removeNextDefaultFont } from "@/utils/removeFont"
 import { spinner } from "@/utils/spinner"
 import { COMPONENTS_JSON_CONFIG } from "@/utils/templates"
 import { updateTsConfigAppForVite, updateTsConfigForVite } from "@/utils/tsConfig"
-import { replaceViteAppTsxAndRemoveCss, updateViteConfig } from "@/utils/viteConfig"
+import { updateViteConfig } from "@/utils/viteConfig"
 
 /**
  * Handles creating project structure
@@ -104,7 +104,7 @@ const setupViteConfig = async (projectDir: string) => {
 		}
 
 		// Perform Vite-specific setup
-		await Promise.all([updateTsConfigForVite(projectDir), updateViteConfig(projectDir), replaceViteAppTsxAndRemoveCss(projectDir), updateTsConfigAppForVite(projectDir, "vite")])
+		await Promise.all([updateTsConfigForVite(projectDir), updateViteConfig(projectDir), updateTsConfigAppForVite(projectDir, "vite")])
 	} catch (error) {
 		throw new Error(`Vite setup failed: ${error.message}`)
 	}
