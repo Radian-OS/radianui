@@ -1,6 +1,6 @@
 import { Blocks, Braces, CaseLower, CloudCog, Cuboid, FileCode, GalleryVertical, LayoutGrid, Palette, Rocket, SunMoon, SwatchBook, Users } from "lucide-react"
-import Image from "next/image"
 import { Badge } from "@/registry/ui/badge"
+import PlaygroundLogo from "./playground-logo"
 
 const DATA = [
 	{
@@ -65,7 +65,7 @@ export default function InvertedSection() {
 	return (
 		<div className="gap-15 relative flex w-full flex-col overflow-clip">
 			<div className="relative flex w-full justify-center">
-				<Image src="/RadianLogo.svg" className="z-10" width={64} height={64} alt="Logo" />
+				<PlaygroundLogo className="z-10" width={64} height={64} />
 				<svg className="not-md:hidden absolute top-1/2" width="699" height="121" viewBox="0 0 699 121" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M696.603 252.38L584.265 10.23C581.513 4.29643 575.566 0.5 569.025 0.5H129.658C123.117 0.5 117.171 4.29642 114.418 10.23L2.08081 252.38C-3.08484 263.515 5.04596 276.25 17.3207 276.25H681.363C693.637 276.25 701.768 263.515 696.603 252.38Z"
@@ -110,7 +110,7 @@ export default function InvertedSection() {
 						</defs>
 					</svg>
 
-					<div className="flex w-full max-w-[977px] flex-col items-center justify-center gap-8">
+					<div className="z-30 flex w-full max-w-[977px] flex-col items-center justify-center gap-8">
 						<div className="relative flex items-center">
 							<Badge size="28" variant="outline" color="neutral" className="border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
 								<Rocket />
