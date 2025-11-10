@@ -357,6 +357,10 @@ export default function Signin() {
 		setActiveFile("globals.css")
 	}, [color])
 
+	useEffect(() => {
+		setActiveFile("signin.tsx")
+	}, [rounded])
+
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
 			<div className="border-soft align-center pt-15 xl:px-15 relative flex justify-center rounded-t-3xl px-5 xl:border-l xl:border-r xl:border-t">
@@ -577,13 +581,13 @@ export default function Signin() {
 					</div>
 					{/* Desktop View */}
 					<div className="not-lg:hidden h-200 flex flex-1">
-						<div className="border-soft h-200 flex-1 overflow-scroll border-r">
-							<div className="p-2">
-								<Tabs className="gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
-									<TabsList variant="outline-ghost">
-										<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
-										<TabsTrigger value="globals.css">globals.css</TabsTrigger>
-									</TabsList>
+						<div className="border-soft h-200 flex-1 border-r p-2">
+							<Tabs className="h-full gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
+								<TabsList variant="outline-ghost" size="md">
+									<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
+									<TabsTrigger value="globals.css">globals.css</TabsTrigger>
+								</TabsList>
+								<div className="flex-1 overflow-auto">
 									<TabsContent value="signin.tsx">
 										<CodeArea code={CODE} language="tsx" className="h-full" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
 									</TabsContent>
@@ -596,8 +600,8 @@ export default function Signin() {
 											theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 										/>
 									</TabsContent>
-								</Tabs>
-							</div>
+								</div>
+							</Tabs>
 						</div>
 						<div className={`w-[480px] color-${color} ${FONTS[selectedFont]}`}>
 							<PlaygroundSignin rounded={rounded} />
