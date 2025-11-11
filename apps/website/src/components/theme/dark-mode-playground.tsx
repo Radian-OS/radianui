@@ -13,7 +13,7 @@ const DarkModePlayground = () => {
 	}
 	return (
 		<div className="flex items-center justify-center rounded-2xl border p-2">
-			<section className="relative flex w-full items-center justify-center overflow-auto rounded-2xl">
+			<section className="relative flex w-full items-center justify-center overflow-x-hidden rounded-2xl">
 				<BeforeAfterSlider
 					delimiterIconStyles={iconStyles}
 					delimiterColor="transparent"
