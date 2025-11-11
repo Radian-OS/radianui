@@ -20,11 +20,11 @@ export const websiteMetadata = {
 		"modern UI kit",
 
 		// Brand, CLI & Domain
-		"Radian",
-		"RadianUI",
-		"RadianUI CLI",
-		"RadianOS",
-		"Radianos",
+		"Radian", // Main brand
+		"RadianUI", // CLI name
+		"radianui", // CLI command (lowercase)
+		"RadianOS", // Domain brand
+		"Radianos", // Domain variation
 	],
 	ogImage: `${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/static-og.png`,
 }
