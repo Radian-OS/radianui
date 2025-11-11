@@ -28,29 +28,30 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 
 const FeaturesSectionNew = () => {
 	const containerRef = useRef<HTMLDivElement>(null)
-	const [pos, setPos] = useState({ x: 0, y: 0 })
-	const [hovering, setHovering] = useState(false)
+	const [pos, setPos] = useState({ x: 0, y: 150 })
+	const [animated, setAnimated] = useState(false)
+
+	useEffect(() => {
+		if (!containerRef.current) return
+		const containerWidth = containerRef.current.offsetWidth
+		let direction = 1
+		let x = lensSize / 2
+
+		const speed = 2 // pixels per frame
+		const interval = setInterval(() => {
+			x += direction * speed
+			if (x + lensSize / 2 >= containerWidth || x - lensSize / 2 <= 0) {
+				direction *= -1 // reverse when hitting edges
+			}
+			setPos((prev) => ({ ...prev, x }))
+		}, 16) // ~60fps
+
+		setAnimated(true)
+		return () => clearInterval(interval)
+	}, [])
 
 	const lensSize = 180
 	const zoom = 2
-
-	useEffect(() => {
-		const container = containerRef.current
-		if (!container) return
-
-		const handleMove = (e: MouseEvent) => {
-			const rect = container.getBoundingClientRect()
-			setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
-		}
-
-		container.addEventListener("mousemove", handleMove)
-		container.addEventListener("mouseenter", () => setHovering(true))
-		container.addEventListener("mouseleave", () => setHovering(false))
-
-		return () => {
-			container.removeEventListener("mousemove", handleMove)
-		}
-	}, [])
 
 	const items = [
 		"Circle Clover - Purple",
@@ -68,10 +69,50 @@ const FeaturesSectionNew = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setActiveIndex((prevIndex) => (prevIndex + 1) % items.length)
-		}, 2000) // Change every 2 seconds
+		}, 2000)
 
-		return () => clearInterval(interval)
+		return () => {
+			clearInterval(interval)
+		}
 	}, [items.length])
+
+	const colorMap: Record<string, { gradient: string; bg: string }> = {
+		"Circle Clover - Purple": {
+			gradient: "from-[#C084FC] to-[#9333EA]",
+			bg: "bg-[#9333EA]",
+		},
+		"Knotted Links - Purple": {
+			gradient: "from-[#A78BFA] to-[#7C3AED]",
+			bg: "bg-[#7C3AED]",
+		},
+		"Sun Burst - Red": {
+			gradient: "from-[#FB7185] to-[#DC2626]",
+			bg: "bg-[#DC2626]",
+		},
+		"Wave Globe - Green": {
+			gradient: "from-[#86EFAC] to-[#16A34A]",
+			bg: "bg-[#16A34A]",
+		},
+		"Flow Cross - Blue": {
+			gradient: "from-[#93C5FD] to-[#2563EB]",
+			bg: "bg-[#2563EB]",
+		},
+		"Octo Frame - Blue": {
+			gradient: "from-[#60A5FA] to-[#1E40AF]",
+			bg: "bg-[#1E40AF]",
+		},
+		"Petal Grid - Green": {
+			gradient: "from-[#4ADE80] to-[#15803D]",
+			bg: "bg-[#15803D]",
+		},
+		"Gradient - Purple": {
+			gradient: "from-[#D8B4FE] to-[#7E22CE]",
+			bg: "bg-[#7E22CE]",
+		},
+	}
+
+	const { gradient, bg } = colorMap[items[activeIndex]] || colorMap["Sun Burst - Red"]
+
 	const { resolvedTheme } = useTheme()
 	const datas = [
 		{
@@ -206,7 +247,7 @@ const FeaturesSectionNew = () => {
 						<div className="pl-0 pr-0 md:pl-12 lg:px-12">
 							<div className="bg-fill1 rounded-b-none! w-full pt-5 md:rounded-l-2xl md:pl-5 lg:rounded-t-2xl lg:px-5">
 								<div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
-									<div ref={containerRef} className="relative cursor-none overflow-hidden">
+									<div ref={containerRef} className="relative overflow-hidden">
 										{/* Base table */}
 										<Table className="relative w-full select-none">
 											<TableHeader>
@@ -245,7 +286,7 @@ const FeaturesSectionNew = () => {
 										</Table>
 
 										{/* Magnifier overlay */}
-										{hovering && (
+										{animated && (
 											<div
 												className="border-3 bg-fill2 pointer-events-none absolute rounded-full"
 												style={{
@@ -440,7 +481,7 @@ export default MyDashboard;`}
 						</div>
 						<div className="flex gap-14 pl-10">
 							<div className="flex w-full max-w-[241px] flex-col gap-1">
-								<div className="flex w-full items-center justify-between rounded-lg border px-2.5 py-2">
+								<div className={`flex w-full items-center justify-between rounded-lg border px-2.5 py-2`}>
 									<span className="text-fg-secondary text-sm">Sun Burst - Red</span>
 									<ChevronDown className="text-fg-tertiary" size={20} />
 								</div>
@@ -461,10 +502,15 @@ export default MyDashboard;`}
 								</div>
 							</div>
 							<div className="border-soft relative h-[322px] w-[512px] overflow-hidden rounded-xl rounded-r-none border border-r-0 pl-1.5 pt-1.5">
-								<div className="h-25 from-error-accent to-primary-focus w-full rounded-xl rounded-r-none bg-gradient-to-r" />
-								<div className="top-15 border-6 border-elevation-level1 bg-error absolute left-6 flex size-20 items-center justify-center rounded-2xl">
+								{/* gradient that changes dynamically */}
+								<div className={`h-25 w-full rounded-xl rounded-r-none bg-gradient-to-r ${gradient}`} />
+
+								{/* ShipWheel background box */}
+								<div className={`top-15 border-6 border-elevation-level1 absolute left-6 flex size-20 items-center justify-center rounded-2xl ${bg}`}>
 									<ShipWheel className="text-white" size={36} />
 								</div>
+
+								{/* rest same */}
 								<div className="pl-6.5 flex flex-col gap-2.5 pt-10">
 									<div className="flex flex-col gap-1.5">
 										<h5 className="heading-5 whitespace-nowrap">Hisoka Meureum</h5>
