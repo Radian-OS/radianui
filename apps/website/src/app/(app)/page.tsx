@@ -142,7 +142,6 @@ export default function Page() {
 				</div>
 			</Background>
 
-			{/* <FeaturesSection /> */}
 			<FeaturesSection />
 
 			<InvertedSection />
