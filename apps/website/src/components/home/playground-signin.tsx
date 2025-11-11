@@ -47,7 +47,7 @@ export default function PlaygroundSignin({ rounded }: { rounded: "default" | "ro
 				<div className="flex flex-1 flex-col gap-8">
 					<PlaygroundLogo />
 					<div className="flex flex-col gap-2">
-						<h1 className="heading-5">Sign In</h1>
+						<span className="heading-5">Sign In</span>
 						<p className="text-fg-secondary text-sm">Welcome! Sign in to continue</p>
 					</div>
 					<div className="flex flex-1 flex-col gap-6">
