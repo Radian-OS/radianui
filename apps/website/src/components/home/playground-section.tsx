@@ -29,78 +29,78 @@ const FONTS: Record<string, string> = {
 }
 
 const COLOR_VALUES = {
-	amber: {
-		label: "Amber",
-		icon: <Squircle size={16} className="color-amber fill-primary stroke-primary" />,
-	},
-	blue: {
-		label: "Blue",
-		icon: <Squircle size={16} className="fill-info stroke-info" />,
-	},
-	cyan: {
-		label: "Cyan",
-		icon: <Squircle size={16} className="color-cyan fill-primary stroke-primary" />,
-	},
-	"dark-orchid": {
-		label: "Dark Orchid",
-		icon: <Squircle size={16} className="color-dark-orchid fill-primary stroke-primary" />,
-	},
-	emerald: {
-		label: "Emerald",
-		icon: <Squircle size={16} className="color-emerald fill-primary stroke-primary" />,
-	},
-	fuchsia: {
-		label: "Fuchsia",
-		icon: <Squircle size={16} className="color-fuchsia fill-primary stroke-primary" />,
-	},
-	green: {
-		label: "Green",
-		icon: <Squircle size={16} className="fill-success stroke-success" />,
-	},
-	"light-blue": {
-		label: "Light Blue",
-		icon: <Squircle size={16} className="color-light-blue fill-primary stroke-primary" />,
-	},
-	magenta: {
-		label: "Magenta",
-		icon: <Squircle size={16} className="color-magenta fill-primary stroke-primary" />,
-	},
-	neon: {
-		label: "Neon",
-		icon: <Squircle size={16} className="color-neon fill-primary stroke-primary" />,
+	red: {
+		label: "Red",
+		icon: <Squircle size={16} className="fill-error stroke-error" />,
 	},
 	orange: {
 		label: "Orange",
 		icon: <Squircle size={16} className="color-orange fill-primary stroke-primary" />,
 	},
-	purple: {
-		label: "Purple",
-		icon: <Squircle size={16} className="color-purple fill-primary stroke-primary" />,
-	},
-	red: {
-		label: "Red",
-		icon: <Squircle size={16} className="fill-error stroke-error" />,
-	},
-	rose: {
-		label: "Rose",
-		icon: <Squircle size={16} className="color-rose fill-primary stroke-primary" />,
-	},
-	teal: {
-		label: "Teal",
-		icon: <Squircle size={16} className="color-teal fill-primary stroke-primary" />,
-	},
-	violet: {
-		label: "Violet",
-		icon: <Squircle size={16} className="fill-primary-text stroke-primary-text" />,
-	},
-	"violet-blue": {
-		label: "Violet Blue",
-		icon: <Squircle size={16} className="color-violet-blue fill-primary stroke-primary" />,
+	amber: {
+		label: "Amber",
+		icon: <Squircle size={16} className="color-amber fill-primary stroke-primary" />,
 	},
 	yellow: {
 		label: "Yellow",
 		icon: <Squircle size={16} className="fill-warning stroke-warning" />,
 	},
+	neon: {
+		label: "Neon",
+		icon: <Squircle size={16} className="color-neon fill-primary stroke-primary" />,
+	},
+	emerald: {
+		label: "Emerald",
+		icon: <Squircle size={16} className="color-emerald fill-primary stroke-primary" />,
+	},
+	teal: {
+		label: "Teal",
+		icon: <Squircle size={16} className="color-teal fill-primary stroke-primary" />,
+	},
+	cyan: {
+		label: "Cyan",
+		icon: <Squircle size={16} className="color-cyan fill-primary stroke-primary" />,
+	},
+	"light-blue": {
+		label: "Light Blue",
+		icon: <Squircle size={16} className="color-light-blue fill-primary stroke-primary" />,
+	},
+	blue: {
+		label: "Blue",
+		icon: <Squircle size={16} className="fill-info stroke-info" />,
+	},
+	"violet-blue": {
+		label: "Violet Blue",
+		icon: <Squircle size={16} className="color-violet-blue fill-primary stroke-primary" />,
+	},
+	purple: {
+		label: "Purple",
+		icon: <Squircle size={16} className="color-purple fill-primary stroke-primary" />,
+	},
+	"dark-orchid": {
+		label: "Dark Orchid",
+		icon: <Squircle size={16} className="color-dark-orchid fill-primary stroke-primary" />,
+	},
+	fuchsia: {
+		label: "Fuchsia",
+		icon: <Squircle size={16} className="color-fuchsia fill-primary stroke-primary" />,
+	},
+	magenta: {
+		label: "Magenta",
+		icon: <Squircle size={16} className="color-magenta fill-primary stroke-primary" />,
+	},
+	rose: {
+		label: "Rose",
+		icon: <Squircle size={16} className="color-rose fill-primary stroke-primary" />,
+	},
+	// green: {
+	// 	label: "Green",
+	// 	icon: <Squircle size={16} className="fill-success stroke-success" />,
+	// },
+	// violet: {
+	// 	label: "Violet",
+	// 	icon: <Squircle size={16} className="fill-primary-text stroke-primary-text" />,
+	// },
 }
 
 const ROUNDED_VALUES = {
@@ -147,23 +147,23 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 	--color-primary-text: oklch(0.4663 0.1065 251.21);`
 			break
 		}
-		case "green": {
-			colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
-	--color-primary-accent: oklch(0.271 0.0537 151.74);
-	--color-primary-focus: oklch(0.3887 0.0924 150.55);
-	--color-primary-border: oklch(0.7118 0.2291 142.69);
-	--color-primary-hover: oklch(0.6901 0.1748 149.64);
-	--color-primary-text: oklch(0.871 0.1501 153.14);`
-			break
-		}
-		case "violet": {
-			colorValues = `--color-primary: oklch(0.528 0.2539 282.58);
-	--color-primary-accent: oklch(0.94 0.0271 295.05);
-	--color-primary-focus: oklch(0.9169 0.0383 295.46);
-	--color-primary-hover: oklch(0.5768 0.2279 286.25);
-	--color-primary-text: oklch(0.4304 0.202 282.82);`
-			break
-		}
+		// 	case "green": {
+		// 		colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
+		// --color-primary-accent: oklch(0.271 0.0537 151.74);
+		// --color-primary-focus: oklch(0.3887 0.0924 150.55);
+		// --color-primary-border: oklch(0.7118 0.2291 142.69);
+		// --color-primary-hover: oklch(0.6901 0.1748 149.64);
+		// --color-primary-text: oklch(0.871 0.1501 153.14);`
+		// 		break
+		// 	}
+		// 	case "violet": {
+		// 		colorValues = `--color-primary: oklch(0.528 0.2539 282.58);
+		// --color-primary-accent: oklch(0.94 0.0271 295.05);
+		// --color-primary-focus: oklch(0.9169 0.0383 295.46);
+		// --color-primary-hover: oklch(0.5768 0.2279 286.25);
+		// --color-primary-text: oklch(0.4304 0.202 282.82);`
+		// 		break
+		// 	}
 		case "yellow": {
 			colorValues = `--color-primary: oklch(0.8016 0.1705 73.27);
 	--color-primary-accent: oklch(0.2663 0.0372 84.34);
@@ -315,7 +315,7 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 
 export default function PlaygroundSection() {
 	const { theme } = useTheme()
-	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet")
+	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet-blue")
 	const [rounded, setRounded] = useState<ROUNDED_VALUES_TYPE>("default")
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
 	const [selectedFont, setSelectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
