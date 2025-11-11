@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: DocPageProps): Promise<Metada
 			title: title,
 			description: description,
 			url,
-			type: "article",
+			type: "website",
 			images: [
 				{
 					url: ogImageUrl,

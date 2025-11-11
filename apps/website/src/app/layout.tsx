@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
-		type: "article",
+		type: "website",
 		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL!}`,
 		images: [
 			{
