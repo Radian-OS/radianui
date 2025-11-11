@@ -65,7 +65,7 @@ export default function Signup() {
 						<Image src="/favicon-16x16.png" height={32} width={32} alt="Logo" />
 					</div>
 					<div className="flex flex-col gap-2">
-						<h1 className="heading-5">Sign Up</h1>
+						<span className="heading-5">Sign Up</span>
 						<p className="text-fg-secondary text-sm">
 							Already have an account?{" "}
 							<LinkButton href="#" color="primary">

@@ -21,7 +21,7 @@ export default function Verification() {
 						</svg>
 					</div>
 					<div className="flex flex-col gap-2">
-						<h1 className="heading-5">Verify your email</h1>
+						<span className="heading-5">Verify your email</span>
 						<div>
 							<p className="text-fg-secondary text-sm">
 								We just sent an email to <span className="text-fg font-medium">account@radian.com</span>. Click the link in the email to verify your account.

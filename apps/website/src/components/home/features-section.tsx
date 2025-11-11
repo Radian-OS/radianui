@@ -221,11 +221,11 @@ const FeaturesSectionNew = () => {
 					</svg>
 				</div>
 				<div className="flex w-full max-w-[730px] flex-col gap-6 text-center">
-					<h2 className="heading-2 text-center">
+					<span className="heading-2 text-center">
 						<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">A design system built for speed,</span>
 						<br />
 						<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">scale and simplicity.</span>
-					</h2>
+					</span>
 					<p className="text-fg-secondary text-base font-normal">
 						Get from design file to production-ready web application. Radian gives you everything you need to design and build faster.
 					</p>
@@ -240,7 +240,7 @@ const FeaturesSectionNew = () => {
 								<span className="pb-2">
 									<ScanEye size={28} className="stroke-primary-hover" />
 								</span>
-								<h6 className="heading-6 font-medium">High Quality Base Components</h6>
+								<span className="heading-6 font-medium">High Quality Base Components</span>
 								<p className="text-fg-secondary w-full max-w-[420px] text-sm">
 									From keyboard navigation to structural semantics, everything follows modern accessibility standards.
 								</p>
@@ -362,7 +362,7 @@ const FeaturesSectionNew = () => {
 							<span className="pb-2">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Copy-paste or Install via CLI</h6>
+							<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
 							<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 						</div>
 						<div className="gap-12.25 flex flex-col">
@@ -422,7 +422,7 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<FolderGit size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Seamless Design to Code Sync</h6>
+							<span className="heading-6 font-medium">Seamless Design to Code Sync</span>
 							<p className="text-fg-secondary text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
 						</div>
 						<div className="sm:pl-13.5 gap-5.25 flex flex-col px-7 sm:pr-0">
@@ -478,7 +478,7 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<SwatchBook size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Themeable System</h6>
+							<span className="heading-6 font-medium">Themeable System</span>
 							<p className="text-fg-secondary text-sm">Edit one token to restyle your entire design system — light, dark, or custom themes.</p>
 						</div>
 						<div className="flex gap-14 pl-10">
@@ -515,7 +515,7 @@ export default MyDashboard;`}
 								{/* rest same */}
 								<div className="pl-6.5 flex flex-col gap-2.5 pt-10">
 									<div className="flex flex-col gap-1.5">
-										<h5 className="heading-5 whitespace-nowrap">Hisoka Meureum</h5>
+										<span className="heading-5 whitespace-nowrap">Hisoka Meureum</span>
 										<p className="text-fg-secondary whitespace-nowrap text-sm">Founder and CEO at Acme</p>
 									</div>
 									<div className="whitespace-nowrap text-sm">4200 followers</div>
@@ -535,7 +535,7 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<LayoutDashboard size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Reusable UI Blocks</h6>
+							<span className="heading-6 font-medium">Reusable UI Blocks</span>
 							<p className="text-fg-secondary text-sm">Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use</p>
 						</div>
 						<div className="h-30 from-bg/5 to-bg w-15 absolute top-[220px] z-10 bg-gradient-to-l" />
@@ -585,7 +585,7 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<CircleGauge size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Tree-Shakable Architecture</h6>
+							<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
 							<p className="text-fg-secondary text-sm">Only imports what you use ultra-light bundles for fast and improved performance.</p>
 						</div>
 						<div className="flex h-full gap-[23px] pl-12">
