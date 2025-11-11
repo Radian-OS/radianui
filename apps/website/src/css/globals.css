@@ -84,10 +84,10 @@
 
 .dark {
 	/* primary */
-	--color-primary: oklch(52.801% 0.25396 282.586);
+	--color-primary: oklch(0.528 0.2539 282.58);
 	--color-primary-accent: oklch(0.1977 0.0597 290.26);
 	--color-primary-focus: oklch(0.2538 0.1064 285.61);
-	--color-primary-border: oklch(52.801% 0.25396 282.586);
+	--color-primary-border: oklch(0.6784 0.1708 290.38);
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
 	--color-primary-text: oklch(0.5768 0.2279 286.25);
 
