@@ -1,3 +1,5 @@
+"use client"
+
 import { Blocks, Braces, CaseLower, CloudCog, Cuboid, FileCode, GalleryVertical, LayoutGrid, Palette, Rocket, SunMoon, SwatchBook, Users } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 import PlaygroundLogo from "./playground-logo"
