@@ -49,6 +49,10 @@ const COLOR_VALUES = {
 		label: "Neon",
 		icon: <Squircle size={16} className="color-neon fill-primary stroke-primary" />,
 	},
+	green: {
+		label: "Green",
+		icon: <Squircle size={16} className="color-green fill-primary stroke-primary" />,
+	},
 	emerald: {
 		label: "Emerald",
 		icon: <Squircle size={16} className="color-emerald fill-primary stroke-primary" />,
@@ -93,14 +97,6 @@ const COLOR_VALUES = {
 		label: "Rose",
 		icon: <Squircle size={16} className="color-rose fill-primary stroke-primary" />,
 	},
-	// green: {
-	// 	label: "Green",
-	// 	icon: <Squircle size={16} className="fill-success stroke-success" />,
-	// },
-	// violet: {
-	// 	label: "Violet",
-	// 	icon: <Squircle size={16} className="fill-primary-text stroke-primary-text" />,
-	// },
 }
 
 const ROUNDED_VALUES = {
@@ -130,49 +126,45 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 
 	switch (color) {
 		case "red": {
-			colorValues = `--color-primary: oklch(0.6092 0.2041 255.8);
-	--color-primary-accent: oklch(0.949 0.0213 245.85);
-	--color-primary-focus: oklch(0.9135 0.0358 249.52);
+			colorValues = `--color-primary: oklch(0.64 0.22 26.04);
+	--color-primary-accent: oklch(0.9465 0.0252 17.61);
+	--color-primary-focus: oklch(0.9133 0.0414 17.93);
 	--color-primary-border: oklch(0.719 0.1751 22.5);
-	--color-primary-hover: oklch(0.6722 0.1615 251.56);
-	--color-primary-text: oklch(0.4663 0.1065 251.21);`
+	--color-primary-hover: oklch(0.6786 0.2095 24.66);
+	--color-primary-text: oklch(0.5716 0.2125 27.27);`
 			break
 		}
+
 		case "blue": {
-			colorValues = `--color-primary: oklch(0.6092 0.2041 255.8);
-	--color-primary-accent: oklch(0.949 0.0213 245.85);
-	--color-primary-focus: oklch(0.9135 0.0358 249.52);
-	--color-primary-border: oklch(0.6722 0.1615 251.56);
-	--color-primary-hover: oklch(0.6722 0.1615 251.56);
-	--color-primary-text: oklch(0.4663 0.1065 251.21);`
+			colorValues = `--color-primary: oklch(0.5345 0.223 272.15);
+	--color-primary-accent: oklch(0.9413 0.0229 283.26);
+	--color-primary-focus: oklch(0.9093 0.0355 280.44);
+	--color-primary-border: oklch(0.6082 0.1993 274.96);
+	--color-primary-hover: oklch(0.6082 0.1993 274.96);
+	--color-primary-text: oklch(0.6082 0.1993 274.96);`
 			break
 		}
-		// 	case "green": {
-		// 		colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
-		// --color-primary-accent: oklch(0.271 0.0537 151.74);
-		// --color-primary-focus: oklch(0.3887 0.0924 150.55);
-		// --color-primary-border: oklch(0.7118 0.2291 142.69);
-		// --color-primary-hover: oklch(0.6901 0.1748 149.64);
-		// --color-primary-text: oklch(0.871 0.1501 153.14);`
-		// 		break
-		// 	}
-		// 	case "violet": {
-		// 		colorValues = `--color-primary: oklch(0.528 0.2539 282.58);
-		// --color-primary-accent: oklch(0.94 0.0271 295.05);
-		// --color-primary-focus: oklch(0.9169 0.0383 295.46);
-		// --color-primary-hover: oklch(0.5768 0.2279 286.25);
-		// --color-primary-text: oklch(0.4304 0.202 282.82);`
-		// 		break
-		// 	}
+
+		case "green": {
+			colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
+		--color-primary-accent: oklch(0.271 0.0537 151.74);
+		--color-primary-focus: oklch(0.3887 0.0924 150.55);
+		--color-primary-border: oklch(0.7118 0.2291 142.69);
+		--color-primary-hover: oklch(0.6901 0.1748 149.64);
+		--color-primary-text: oklch(0.871 0.1501 153.14);`
+			break
+		}
+
 		case "yellow": {
-			colorValues = `--color-primary: oklch(0.8016 0.1705 73.27);
-	--color-primary-accent: oklch(0.2663 0.0372 84.34);
-	--color-primary-focus: oklch(0.3744 0.0636 81.14);
+			colorValues = `--color-primary: oklch(0.8 0.1625 94.77);
+	--color-primary-accent: oklch(0.9596 0.0763 97.95);
+	--color-primary-focus: oklch(0.9333 0.1239 97.87);
 	--color-primary-border: oklch(0.8 0.1625 94.77);
-	--color-primary-hover: oklch(0.8342 0.1594 79.51);
-	--color-primary-text: oklch(0.8776 0.1255 82.88);`
+	--color-primary-hover: oklch(0.8809 0.1806 94.02);
+	--color-primary-text: oklch(0.5465 0.1045 96.86);`
 			break
 		}
+
 		case "cyan": {
 			colorValues = `--color-primary: oklch(0.6549 0.1092 194.82);
 	--color-primary-accent: oklch(0.9719 0.041 196.5);
@@ -186,7 +178,7 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 			colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
 	--color-primary-accent: oklch(0.9685 0.0336 157.66);
 	--color-primary-focus: oklch(0.9489 0.0556 156.34);
-	--color-primary-border: oklch(0.6901 0.1748 149.64);
+	--color-primary-border: oklch(0.7761 0.2117 148.55);
 	--color-primary-hover: oklch(0.6901 0.1748 149.64);
 	--color-primary-text: oklch(0.5388 0.1339 149.74);
 			`
@@ -216,7 +208,7 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 			colorValues = `--color-primary: oklch(0.8016 0.1705 73.27);
 	--color-primary-accent: oklch(0.9622 0.0384 83.83);
 	--color-primary-focus: oklch(0.946 0.0574 85.03);
-	--color-primary-border: oklch(0.7318 0.1522 75.09);
+	--color-primary-border: oklch(0.8016 0.1705 73.27)
 	--color-primary-hover: oklch(0.8342 0.1594 79.51);
 	--color-primary-text: oklch(0.5461 0.1088 77.73);
 			`
@@ -246,9 +238,9 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 			colorValues = `--color-primary: oklch(0.6092 0.2041 255.8);
 	--color-primary-accent: oklch(0.949 0.0213 245.85);
 	--color-primary-focus: oklch(0.9135 0.0358 249.52);
-	--color-primary-border: oklch(0.6722 0.1615 251.56);
+	--color-primary-border: oklch(0.829 0.0811 248.83);
 	--color-primary-hover: oklch(0.6722 0.1615 251.56);
-	--color-primary-text: oklch(0.4663 0.1065 251.21);
+	--color-primary-text: oklch(0.6092 0.2041 255.8)";
 			`
 			break
 		}
