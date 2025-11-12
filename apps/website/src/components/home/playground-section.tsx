@@ -146,12 +146,12 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 		}
 
 		case "green": {
-			colorValues = `--color-primary: oklch(0.6334 0.171 148.65);
-		--color-primary-accent: oklch(0.271 0.0537 151.74);
-		--color-primary-focus: oklch(0.3887 0.0924 150.55);
-		--color-primary-border: oklch(0.7118 0.2291 142.69);
-		--color-primary-hover: oklch(0.6901 0.1748 149.64);
-		--color-primary-text: oklch(0.871 0.1501 153.14);`
+			colorValues = `--color-primary: oklch(0.6523 0.2156 142.6);
+	--color-primary-accent: oklch(0.9662 0.0421 145.24);
+	--color-primary-focus: oklch(0.9454 0.0691 145);
+	--color-primary-border: oklch(0.8006 0.2661 142.58);
+	--color-primary-hover: oklch(0.7118 0.2291 142.69);
+	--color-primary-text: oklch(0.5552 0.1767 142.73);`
 			break
 		}
 
