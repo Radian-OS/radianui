@@ -11,7 +11,7 @@ import { getTailwindCssFilePath } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
 import { scaffoldNewProject, setupProjectConfig } from "@/utils/project"
-import { promptForExistingProject, promptForNewProject } from "@/utils/prompts"
+import { handlePromptCancel, promptForProject } from "@/utils/prompts"
 import { Color, Font } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { GLOBAL_CSS_V4, UTILS } from "@/utils/templates"
@@ -105,34 +105,71 @@ export const executeInit = async (options: InitOptions) => {
 
 	const hasExistingProject = !!projectInfo
 
+	// Handle new project confirmation
 	if (!hasExistingProject) {
-		// Create new project if there is no existing project
 		const confirmation = options.skipPrompts
 			? { confirmNewProject: true }
-			: await prompts({
-					type: "confirm",
-					name: "confirmNewProject",
-					message: `No package.json found at ${txt.bold(txt.info(options.cwd))}. Create a new project?`,
-					initial: false,
-				})
+			: await prompts(
+					{
+						type: "confirm",
+						name: "confirmNewProject",
+						message: `No package.json found at ${txt.bold(txt.info(options.cwd))}. Create a new project?`,
+						initial: false,
+					},
+					{
+						onCancel: () => handlePromptCancel(),
+					}
+				)
 
 		if (!confirmation.confirmNewProject) process.exit()
-
-		const projectPrompts = await promptForNewProject(options)
-
-		const { projectPath } = await scaffoldNewProject(options, projectPrompts)
-
-		await setupProjectConfig(projectPath, projectPrompts.framework, projectPrompts.useSrcDir)
-
-		await updateGlobalCssVariables(projectPath, projectPrompts.useSrcDir, projectPrompts.framework, projectPrompts.brandColor, projectPrompts.font)
-	} else {
-		const { brandColor, font } = await promptForExistingProject(options)
-		// Setup necessary configuration files & install dependencies only
-		// if there is already an existing project
-		logger.warn(`${txt.bold("Note:")} This will replace your global CSS file and add Radian OS styles and colors to your project`)
-
-		await setupProjectConfig(options.cwd, projectInfo.framework.name, projectInfo.hasSrcDir)
 	}
+
+	// Get project prompts (adapts based on hasExistingProject)
+	const projectPrompts = await promptForProject(options, hasExistingProject, projectInfo)
+
+	// Handle existing project confirmation
+	if (hasExistingProject) {
+		const confirmation = options.skipPrompts
+			? { confirmContinue: true }
+			: await prompts(
+					{
+						type: "confirm",
+						name: "confirmContinue",
+						message: `${txt.warning(`${txt.bold("Warning:")} Your existing styles (CSS file) will be overridden.`)} Do you want to continue?`,
+						initial: false,
+					},
+					{
+						onCancel: () => handlePromptCancel(),
+					}
+				)
+
+		if (!confirmation.confirmContinue) process.exit()
+	}
+
+	const { projectName, framework, useSrcDir, brandColor, font } = projectPrompts
+
+	// Scaffold new project if needed
+	let projectPath = options.cwd
+	if (!hasExistingProject) {
+		if (!projectName) {
+			throw new Error("Project name is required to scaffold a new project.")
+		}
+
+		const { projectPath: newProjectPath } = await scaffoldNewProject(options, {
+			projectName,
+			useSrcDir,
+			framework,
+			brandColor,
+			font,
+		})
+		projectPath = newProjectPath
+	}
+
+	// Setup project configuration (same for both new and existing projects)
+	await setupProjectConfig(projectPath, framework, useSrcDir)
+
+	// Update global CSS variables (same for both new and existing projects)
+	await updateGlobalCssVariables(projectPath, useSrcDir, framework, brandColor, font)
 
 	return projectInfo
 }

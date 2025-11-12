@@ -12,9 +12,9 @@ import { removeNextDefaultFont } from "@/utils/removeFont"
 import { spinner } from "@/utils/spinner"
 import { COMPONENTS_JSON_CONFIG } from "@/utils/templates"
 import { updateTsConfigAppForVite, updateTsConfigForVite } from "@/utils/tsConfig"
-import { replaceViteAppTsxAndRemoveCss, updateViteConfig } from "@/utils/viteConfig"
+import { updateViteConfig, updateViteEntryFile } from "@/utils/viteConfig"
 
-/**
+/**`
  * Handles creating project structure
  * for both vite and nextjs project
  * @param options
@@ -23,7 +23,6 @@ import { replaceViteAppTsxAndRemoveCss, updateViteConfig } from "@/utils/viteCon
 export const scaffoldNewProject = async (options: InitOptions, projectPrompts: PromptForNewProject): Promise<{ projectPath: string }> => {
 	const { projectName, useSrcDir, framework } = projectPrompts
 
-	// Check if project name is already used
 	const projectPath = path.join(options.cwd, projectName)
 
 	await fs.access(options.cwd, fs.constants.W_OK)
@@ -107,7 +106,7 @@ const setupViteConfig = async (projectDir: string) => {
 		}
 
 		// Perform Vite-specific setup
-		await Promise.all([updateTsConfigForVite(projectDir), updateViteConfig(projectDir), replaceViteAppTsxAndRemoveCss(projectDir), updateTsConfigAppForVite(projectDir, "vite")])
+		await Promise.all([updateTsConfigForVite(projectDir), updateViteConfig(projectDir), updateViteEntryFile(projectDir), updateTsConfigAppForVite(projectDir, "vite")])
 	} catch (error) {
 		throw new Error(`Vite setup failed: ${error.message}`)
 	}
