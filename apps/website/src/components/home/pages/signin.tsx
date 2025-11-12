@@ -87,7 +87,7 @@ export default function Page() {
 								<Image src="/favicon-16x16.png" height={32} width={32} alt="Logo" />
 							</div>
 							<div className="flex flex-col gap-2">
-								<h1 className="heading-5">Sign In</h1>
+								<span className="heading-5">Sign In</span>
 								<p className="text-fg-secondary text-sm">
 									Don&apos;t have an account?{" "}
 									<LinkButton href="#" color="primary">

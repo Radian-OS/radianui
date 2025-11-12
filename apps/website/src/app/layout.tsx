@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
-	description: "Welcome to Radian—your go-to React & Tailwind CSS lib.",
+	description: "Welcome to Radian your goto React & Tailwind CSS lib.",
 	metadataBase: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
 	keywords: [...websiteMetadata.keywords],
 	icons: {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 	openGraph: {
 		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 		description: "Discover Radian, the ultimate React & Tailwind component lib.",
-		type: "article",
+		type: "website",
 		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL!}`,
 		images: [
 			{
@@ -39,6 +39,17 @@ export const metadata: Metadata = {
 	alternates: {
 		canonical: new URL(process.env.NEXT_PUBLIC_WEBSITE_URL!),
 	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+			"max-video-preview": -1,
+			"max-image-preview": "large",
+			"max-snippet": -1,
+		},
+	},
 }
 
 export default async function RootLayout({
@@ -46,10 +57,26 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
+	const structuredData = {
+		"@context": "https://schema.org",
+		"@type": "SoftwareApplication",
+		name: "Radian",
+		alternateName: ["RadianUI", "RadianOS", "Radianos"],
+		description: "Open-source React component library with Tailwind CSS. Install with radianui CLI.",
+		url: process.env.NEXT_PUBLIC_WEBSITE_URL, // ✅ Evaluated here
+		applicationCategory: "DeveloperApplication",
+		operatingSystem: "Web",
+		offers: {
+			"@type": "Offer",
+			price: "0",
+			priceCurrency: "USD",
+		},
+	}
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<AhrefsAnalytics />
+				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			</head>
 			<body className={cn("relative min-h-svh", "antialiased")}>
 				<PostHogProvider>

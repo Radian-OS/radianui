@@ -1,15 +1,14 @@
-/** @type {import('next-sitemap').IConfig} */
+const isPublic = process.env.NEXT_PUBLIC_DEPLOYMENT_ENV === "PROD"
+
 module.exports = {
 	siteUrl: process.env.NEXT_PUBLIC_WEBSITE_URL,
 	generateRobotsTxt: true,
-	...(process.env.NEXT_PUBLIC_DEPLOYMENT_ENV === "DEV" && {
-		robotsTxtOptions: {
-			policies: [
-				{
-					userAgent: "*",
-					disallow: "/",
-				},
-			],
-		},
-	}),
+	robotsTxtOptions: {
+		policies: [
+			{
+				userAgent: "*",
+				disallow: isPublic ? "" : "/", // Block everything except PROD
+			},
+		],
+	},
 }

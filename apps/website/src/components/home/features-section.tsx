@@ -1,5 +1,21 @@
-import React from "react"
-import { ArrowDownRight, ArrowUpRight, ChevronDown, CircleGauge, Component, FolderGit, Grid, LayoutDashboard, ScanEye, ShipWheel, SquareTerminal, SwatchBook } from "lucide-react"
+"use client"
+
+import React, { useEffect, useRef, useState } from "react"
+import {
+	ArrowDownRight,
+	ArrowUpRight,
+	ChevronDown,
+	CircleGauge,
+	Component,
+	FolderGit,
+	Grid,
+	LayoutDashboard,
+	MousePointer2,
+	ScanEye,
+	ShipWheel,
+	SquareTerminal,
+	SwatchBook,
+} from "lucide-react"
 import { useTheme } from "next-themes"
 // import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
@@ -13,6 +29,92 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 // import { FlickeringGrid } from "../effects/flickering"
 
 const FeaturesSectionNew = () => {
+	const containerRef = useRef<HTMLDivElement>(null)
+	const [pos, setPos] = useState({ x: 0, y: 150 })
+	const [animated, setAnimated] = useState(false)
+
+	useEffect(() => {
+		if (!containerRef.current) return
+		const containerWidth = containerRef.current.offsetWidth
+		let direction = 1
+		let x = lensSize / 2
+
+		const speed = 2 // pixels per frame
+		const interval = setInterval(() => {
+			x += direction * speed
+			if (x + lensSize / 2 >= containerWidth || x - lensSize / 2 <= 0) {
+				direction *= -1 // reverse when hitting edges
+			}
+			setPos((prev) => ({ ...prev, x }))
+		}, 16) // ~60fps
+
+		setAnimated(true)
+		return () => clearInterval(interval)
+	}, [])
+
+	const lensSize = 180
+	const zoom = 2
+
+	const items = [
+		"Circle Clover - Purple",
+		"Knotted Links - Purple",
+		"Sun Burst - Red",
+		"Wave Globe - Green",
+		"Flow Cross - Blue",
+		"Octo Frame - Blue",
+		"Petal Grid - Green",
+		"Gradient - Purple",
+	]
+
+	const [activeIndex, setActiveIndex] = useState(2) // Start at "Sun Burst - Red"
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActiveIndex((prevIndex) => (prevIndex + 1) % items.length)
+		}, 2000)
+
+		return () => {
+			clearInterval(interval)
+		}
+	}, [items.length])
+
+	const colorMap: Record<string, { gradient: string; bg: string }> = {
+		"Circle Clover - Purple": {
+			gradient: "from-[#C084FC] to-[#9333EA]",
+			bg: "bg-[#9333EA]",
+		},
+		"Knotted Links - Purple": {
+			gradient: "from-[#A78BFA] to-[#7C3AED]",
+			bg: "bg-[#7C3AED]",
+		},
+		"Sun Burst - Red": {
+			gradient: "from-[#FB7185] to-[#DC2626]",
+			bg: "bg-[#DC2626]",
+		},
+		"Wave Globe - Green": {
+			gradient: "from-[#86EFAC] to-[#16A34A]",
+			bg: "bg-[#16A34A]",
+		},
+		"Flow Cross - Blue": {
+			gradient: "from-[#93C5FD] to-[#2563EB]",
+			bg: "bg-[#2563EB]",
+		},
+		"Octo Frame - Blue": {
+			gradient: "from-[#60A5FA] to-[#1E40AF]",
+			bg: "bg-[#1E40AF]",
+		},
+		"Petal Grid - Green": {
+			gradient: "from-[#4ADE80] to-[#15803D]",
+			bg: "bg-[#15803D]",
+		},
+		"Gradient - Purple": {
+			gradient: "from-[#D8B4FE] to-[#7E22CE]",
+			bg: "bg-[#7E22CE]",
+		},
+	}
+
+	const { gradient, bg } = colorMap[items[activeIndex]] || colorMap["Sun Burst - Red"]
+
 	const { resolvedTheme } = useTheme()
 	const datas = [
 		{
@@ -75,7 +177,7 @@ const FeaturesSectionNew = () => {
 						<path
 							d="M0.433594 1.2504L70.1484 122C73.1494 127.198 78.6956 130.4 84.6976 130.4L177.71 130.4C184.379 130.4 190.417 134.346 193.095 140.454L280.203 339.097C282.882 345.205 288.886 349.15 295.555 349.15C444.741 349.15 649.277 349.15 798.467 349.15C805.147 349.15 811.159 345.193 813.831 339.071L900.956 139.479C903.629 133.358 909.674 129.4 916.353 129.4L1009.35 129.4C1015.35 129.4 1020.89 126.198 1023.89 121L1093.61 0.250397"
 							strokeWidth="1"
-							stroke="var(--color-fg-disabled)"
+							stroke="var(--color-soft)"
 						/>
 					</svg>
 
@@ -119,11 +221,11 @@ const FeaturesSectionNew = () => {
 					</svg>
 				</div>
 				<div className="flex w-full max-w-[730px] flex-col gap-6 text-center">
-					<h2 className="heading-2 text-center">
+					<span className="heading-2 text-center">
 						<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">A design system built for speed,</span>
 						<br />
 						<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">scale and simplicity.</span>
-					</h2>
+					</span>
 					<p className="text-fg-secondary text-base font-normal">
 						Get from design file to production-ready web application. Radian gives you everything you need to design and build faster.
 					</p>
@@ -138,7 +240,7 @@ const FeaturesSectionNew = () => {
 								<span className="pb-2">
 									<ScanEye size={28} className="stroke-primary-hover" />
 								</span>
-								<h6 className="heading-6 font-medium">High Quality Base Components</h6>
+								<span className="heading-6 font-medium">High Quality Base Components</span>
 								<p className="text-fg-secondary w-full max-w-[420px] text-sm">
 									From keyboard navigation to structural semantics, everything follows modern accessibility standards.
 								</p>
@@ -147,41 +249,109 @@ const FeaturesSectionNew = () => {
 						<div className="pl-0 pr-0 md:pl-12 lg:px-12">
 							<div className="bg-fill1 rounded-b-none! w-full pt-5 md:rounded-l-2xl md:pl-5 lg:rounded-t-2xl lg:px-5">
 								<div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
-									<Table>
-										<TableHeader>
-											<TableRow>
-												<TableHead>Company</TableHead>
-												<TableHead>CCY</TableHead>
-												<TableHead>FY1 growth</TableHead>
-												<TableHead>Daily Earning</TableHead>
-												<TableHead>EBITDA</TableHead>
-												<TableHead>Performance</TableHead>
-											</TableRow>
-										</TableHeader>
-										<TableBody>
-											{datas.map((data) => (
-												<TableRow key={data.company}>
-													<TableCell className="flex items-center">{data.company}</TableCell>
-													<TableCell>
-														<Badge size="20" color="neutral">
-															{data.currency}
-														</Badge>
-													</TableCell>
-													<TableCell className={cn("flex", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
-														{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
-														{data.FY1_growth}%
-													</TableCell>
-													<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
-													<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
-													<TableCell>
-														<Badge color="success" variant="outline">
-															{data.performance}
-														</Badge>
-													</TableCell>
+									<div ref={containerRef} className="relative overflow-hidden">
+										{/* Base table */}
+										<Table className="relative w-full select-none">
+											<TableHeader>
+												<TableRow>
+													<TableHead>Company</TableHead>
+													<TableHead>CCY</TableHead>
+													<TableHead>FY1 growth</TableHead>
+													<TableHead>Daily Earning</TableHead>
+													<TableHead>EBITDA</TableHead>
+													<TableHead>Performance</TableHead>
 												</TableRow>
-											))}
-										</TableBody>
-									</Table>
+											</TableHeader>
+											<TableBody>
+												{datas.map((data) => (
+													<TableRow key={data.company}>
+														<TableCell className="flex items-center">{data.company}</TableCell>
+														<TableCell>
+															<Badge size="20" color="neutral">
+																{data.currency}
+															</Badge>
+														</TableCell>
+														<TableCell className={cn("flex items-center", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
+															{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
+															{data.FY1_growth}%
+														</TableCell>
+														<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
+														<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
+														<TableCell>
+															<Badge color="success" variant="outline">
+																{data.performance}
+															</Badge>
+														</TableCell>
+													</TableRow>
+												))}
+											</TableBody>
+										</Table>
+
+										{/* Magnifier overlay */}
+										{animated && (
+											<div
+												className="border-3 bg-fill2 pointer-events-none absolute rounded-full"
+												style={{
+													width: lensSize,
+													height: lensSize,
+													top: pos.y - lensSize / 2,
+													left: pos.x - lensSize / 2,
+													overflow: "hidden",
+													boxShadow: "0 4px 8px hsla(260, 6%, 10%, 0.08)",
+												}}>
+												{/* instead of just lens-size, make inner zoomed area cover full table */}
+												<div
+													className="absolute h-full w-full"
+													style={{
+														transform: `scale(${zoom})`,
+														transformOrigin: `${pos.x}px ${pos.y}px`,
+														top: -pos.y * (zoom - 1),
+														left: -pos.x * (zoom - 1),
+														width: containerRef.current?.offsetWidth ?? "100%",
+														height: containerRef.current?.offsetHeight ?? "100%",
+													}}>
+													<div className="absolute left-0 top-0 w-full">
+														{/* full cloned table */}
+														<Table className="w-full select-none">
+															<TableHeader>
+																<TableRow>
+																	<TableHead>Company</TableHead>
+																	<TableHead>CCY</TableHead>
+																	<TableHead>FY1 growth</TableHead>
+																	<TableHead>Daily Earning</TableHead>
+																	<TableHead>EBITDA</TableHead>
+																	<TableHead>Performance</TableHead>
+																</TableRow>
+															</TableHeader>
+															<TableBody>
+																{datas.map((data) => (
+																	<TableRow key={data.company}>
+																		<TableCell className="flex items-center">{data.company}</TableCell>
+																		<TableCell>
+																			<Badge size="20" color="neutral">
+																				{data.currency}
+																			</Badge>
+																		</TableCell>
+																		<TableCell className={cn("flex items-center", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
+																			{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
+																			{data.FY1_growth}%
+																		</TableCell>
+																		<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
+																		<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
+																		<TableCell>
+																			<Badge color="success" variant="outline">
+																				{data.performance}
+																			</Badge>
+																		</TableCell>
+																	</TableRow>
+																))}
+															</TableBody>
+														</Table>
+													</div>
+												</div>
+											</div>
+										)}
+									</div>
 								</div>
 							</div>
 						</div>
@@ -192,7 +362,7 @@ const FeaturesSectionNew = () => {
 							<span className="pb-2">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Copy-paste or Install via CLI</h6>
+							<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
 							<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 						</div>
 						<div className="gap-12.25 flex flex-col">
@@ -252,7 +422,7 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<FolderGit size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Seamless Design to Code Sync</h6>
+							<span className="heading-6 font-medium">Seamless Design to Code Sync</span>
 							<p className="text-fg-secondary text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
 						</div>
 						<div className="sm:pl-13.5 gap-5.25 flex flex-col px-7 sm:pr-0">
@@ -308,34 +478,44 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<SwatchBook size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Themeable System</h6>
+							<span className="heading-6 font-medium">Themeable System</span>
 							<p className="text-fg-secondary text-sm">Edit one token to restyle your entire design system — light, dark, or custom themes.</p>
 						</div>
 						<div className="flex gap-14 pl-10">
 							<div className="flex w-full max-w-[241px] flex-col gap-1">
-								<div className="flex w-full items-center justify-between rounded-lg border px-2.5 py-2">
+								<div className={`flex w-full items-center justify-between rounded-lg border px-2.5 py-2`}>
 									<span className="text-fg-secondary text-sm">Sun Burst - Red</span>
 									<ChevronDown className="text-fg-tertiary" size={20} />
 								</div>
-								<div className="flex h-full max-h-[333px] flex-col gap-1 rounded-[10px] rounded-b-none border border-b-0 px-1">
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Circle Clover - Purple</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Knotted Links - Purple</div>
-									<div className="bg-primary-accent whitespace-nowrap rounded-md px-2 py-1.5">Sun Burst - Red</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Wave Globe - Green</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Flow Cross - Blue</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Octo Frame - Blue</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Petal Grid - Green</div>
-									<div className="whitespace-nowrap rounded-md px-2 py-1.5">Gradient - Purple</div>
+								<div className="flex h-full max-h-[333px] flex-col gap-1 rounded-[10px] rounded-b-none border border-b-0 px-1 pt-1">
+									{items.map((item, index) => (
+										<div key={index} className={`relative flex whitespace-nowrap rounded-md px-2 py-1.5 ${index === activeIndex ? "bg-primary-accent" : ""}`}>
+											{item}
+											{index === activeIndex && (
+												<span className="absolute right-0 top-5">
+													<MousePointer2 size={20} className={`fill-primary stroke-white`} />
+													<Badge className="relative left-5" variant="strong">
+														David
+													</Badge>
+												</span>
+											)}
+										</div>
+									))}
 								</div>
 							</div>
 							<div className="border-soft relative h-[322px] w-[512px] overflow-hidden rounded-xl rounded-r-none border border-r-0 pl-1.5 pt-1.5">
-								<div className="h-25 from-error-accent to-primary-focus w-full rounded-xl rounded-r-none bg-gradient-to-r" />
-								<div className="top-15 border-6 border-elevation-level1 bg-error absolute left-6 flex size-20 items-center justify-center rounded-2xl">
+								{/* gradient that changes dynamically */}
+								<div className={`h-25 w-full rounded-xl rounded-r-none bg-gradient-to-r ${gradient}`} />
+
+								{/* ShipWheel background box */}
+								<div className={`top-15 border-6 border-elevation-level1 absolute left-6 flex size-20 items-center justify-center rounded-2xl ${bg}`}>
 									<ShipWheel className="text-white" size={36} />
 								</div>
+
+								{/* rest same */}
 								<div className="pl-6.5 flex flex-col gap-2.5 pt-10">
 									<div className="flex flex-col gap-1.5">
-										<h5 className="heading-5 whitespace-nowrap">Hisoka Meureum</h5>
+										<span className="heading-5 whitespace-nowrap">Hisoka Meureum</span>
 										<p className="text-fg-secondary whitespace-nowrap text-sm">Founder and CEO at Acme</p>
 									</div>
 									<div className="whitespace-nowrap text-sm">4200 followers</div>
@@ -355,7 +535,7 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<LayoutDashboard size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Reusable UI Blocks</h6>
+							<span className="heading-6 font-medium">Reusable UI Blocks</span>
 							<p className="text-fg-secondary text-sm">Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use</p>
 						</div>
 						<div className="h-30 from-bg/5 to-bg w-15 absolute top-[220px] z-10 bg-gradient-to-l" />
@@ -405,7 +585,7 @@ export default MyDashboard;`}
 							<span className="pb-2">
 								<CircleGauge size={28} className="stroke-primary-hover" />
 							</span>
-							<h6 className="heading-6 font-medium">Tree-Shakable Architecture</h6>
+							<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
 							<p className="text-fg-secondary text-sm">Only imports what you use ultra-light bundles for fast and improved performance.</p>
 						</div>
 						<div className="flex h-full gap-[23px] pl-12">

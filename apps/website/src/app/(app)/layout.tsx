@@ -7,9 +7,9 @@ interface Props {
 
 export default function LandingLayout({ children }: Props) {
 	return (
-		<div>
+		<main>
 			<NavigationBar />
 			{children}
-		</div>
+		</main>
 	)
 }
