@@ -9,7 +9,7 @@ function PreviousNextButtons({ currentPath, className }: { currentPath: string; 
 	const { prev, next } = getPrevNext(currentPath)
 
 	return (
-		<div className={cn("flex items-center justify-between", className)}>
+		<footer className={cn("flex items-center justify-between", className)}>
 			<Button asChild color="neutral" size={"36"} variant="outline">
 				<Link href={prev?.url ?? "#"} className={cn(!prev && "invisible")} aria-hidden={!prev}>
 					<span className="inline-flex items-center gap-2">
@@ -27,7 +27,7 @@ function PreviousNextButtons({ currentPath, className }: { currentPath: string; 
 					</span>
 				</Link>
 			</Button>
-		</div>
+		</footer>
 	)
 }
 
