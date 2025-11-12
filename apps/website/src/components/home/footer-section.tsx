@@ -79,7 +79,7 @@ const LINKS = [
 
 export default function FooterSection() {
 	return (
-		<div className="bg-bg before:from-bg before:via-soft before:to-bg w-full before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r">
+		<footer className="bg-bg before:from-bg before:via-soft before:to-bg w-full before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r">
 			{/* For tablet and mobile */}
 			<div className="flex flex-col gap-5 px-5 pt-10 xl:hidden">
 				<WebsiteLogo />
@@ -127,6 +127,6 @@ export default function FooterSection() {
 				<p className="text-fg-secondary text-center text-sm font-medium">© Copyright Radian OS 2025. All rights reserved.</p>
 			</div>
 			<div className="hidden h-10 xl:block" />
-		</div>
+		</footer>
 	)
 }
