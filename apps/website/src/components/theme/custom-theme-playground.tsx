@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { SwatchBook } from "lucide-react"
 import CommonCard from "@/components/common/common-card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
@@ -156,7 +155,6 @@ const CustomThemePlayground = () => {
 		<div className="flex flex-col gap-4 rounded-2xl">
 			<Select value={theme} onValueChange={(value: "light" | "dark") => setTheme(value)}>
 				<SelectTrigger className="w-fit">
-					<SwatchBook />
 					<SelectValue placeholder="Theme" />
 				</SelectTrigger>
 				<SelectContent>
