@@ -38,7 +38,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-success: oklch(0.6334 0.171 148.65);
 	--color-success-accent: oklch(0.9685 0.0336 157.66);
 	--color-success-focus: oklch(0.9489 0.0556 156.34);
-	--color-success-border: oklch(0.6901 0.1748 149.64);
+	--color-success-border: oklch(0.7761 0.2117 148.55);
 	--color-success-hover: oklch(0.6901 0.1748 149.64);
 	--color-success-text: oklch(0.5388 0.1339 149.74);
 
@@ -64,7 +64,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-info-focus: oklch(0.9135 0.0358 249.52);
 	--color-info-border: oklch(0.829 0.0811 248.83);
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
-	--color-info-text: oklch(0.4663 0.1065 251.21);
+	--color-info-text: oklch(0.6092 0.2041 255.8);
 
 	/* background */
 	--color-bg: oklch(1 0 0);
@@ -141,7 +141,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-info-focus: oklch(0.3147 0.0668 250.78);
 	--color-info-border: oklch(0.5067 0.1401 252.67);
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
-	--color-info-text: oklch(0.7466 0.122 250.09);
+	--color-info-text: oklch(0.6722 0.1615 251.56);
 
 	/* background */
 	--color-bg: oklch(0.144 0.0028 247.09);
@@ -152,9 +152,9 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 
 	/* foreground */
 	--color-fg: oklch(1 0 0);
-	--color-fg-secondary: oklch(0.6619 0.0235 285.74);
+	--color-fg-secondary: oklch(66.191% 0.02358 285.7);
 	--color-fg-tertiary: oklch(0.5553 0.0292 285.41);
-	--color-fg-disabled: oklch(0.4515 0.0243 285.39);
+	--color-fg-disabled: oklch(45.149% 0.02436 285.362);
 	--color-fg-inverse: oklch(0.2314 0.0078 274.6);
 
 	/* border */
@@ -335,4 +335,5 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 		/* Chrome, Safari and Opera */
 	}
 }
+
 `
