@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { Info } from "lucide-react"
-import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
+import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
 import { LinkButton } from "@/registry/ui/button"
 
 function BannerExamplePreview() {
@@ -22,8 +22,10 @@ function BannerExamplePreview() {
 						<BannerIcon>
 							<Info />
 						</BannerIcon>
-						<BannerTitle>New Version Available</BannerTitle>
-						<BannerDescription>App Security Patch</BannerDescription>
+						<BannerContent className="flex grow-0 flex-col items-start gap-2 sm:flex-row sm:items-center">
+							<BannerTitle className="truncate">New Version Available</BannerTitle>
+							<BannerDescription className="truncate">App Security Patch</BannerDescription>
+						</BannerContent>
 						<div className="pl-1">
 							<LinkButton color="neutral" href="#">
 								Upgrade Now
