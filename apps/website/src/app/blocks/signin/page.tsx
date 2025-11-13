@@ -5,14 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { GithubIcon } from "@/components/home/github-icon"
+import { GoogleIcon } from "@/components/home/google-icon"
 import { Button, LinkButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
-import { GithubIcon } from "../github-icon"
-import { GoogleIcon } from "../google-icon"
 
 const FormSchema = z
 	.object({
@@ -75,7 +75,7 @@ export default function Page() {
 	}
 
 	return (
-		<div className="bg-bg flex h-full w-full">
+		<div className="bg-bg flex h-screen w-screen">
 			<div className="flex w-full">
 				<div className="hidden flex-1 md:block">
 					<Image className="h-full w-full object-cover" src="/homepage/abstract.png" alt="Background Image" width={400} height={400} />
