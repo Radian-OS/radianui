@@ -22,7 +22,7 @@ function BannerExamplePreview() {
 						<BannerIcon>
 							<Info />
 						</BannerIcon>
-						<BannerContent className="flex grow-0 flex-col items-start gap-2 sm:flex-row sm:items-center">
+						<BannerContent className="gor flex grow flex-col items-start sm:grow-0 sm:flex-row sm:items-center sm:gap-2">
 							<BannerTitle className="truncate">New Version Available</BannerTitle>
 							<BannerDescription className="truncate">App Security Patch</BannerDescription>
 						</BannerContent>

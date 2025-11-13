@@ -62,7 +62,7 @@ const alertVariants = cva(
 			{ color: "warning", variant: "soft-outline", className: "bg-warning-accent text-warning-text border-warning-border" },
 
 			// Outline variants
-			{ color: "neutral", variant: "outline", className: "bg-transparent text-foreground " },
+			{ color: "neutral", variant: "outline", className: "bg-transparent text-fg " },
 			{ color: "primary", variant: "outline", className: "bg-transparent text-primary-text" },
 			{ color: "info", variant: "outline", className: "bg-transparent text-info-text" },
 			{ color: "success", variant: "outline", className: "bg-transparent text-success-text" },

@@ -28,8 +28,8 @@ const AlertSuccessExamples = () => {
 					<section className="flex items-center gap-2 pt-2">
 						<LinkButton color="success" href="#success-alert-examples">
 							View Credit Balance
+							<ArrowRight />
 						</LinkButton>
-						<ArrowRight size={20} />
 					</section>
 				</AlertContent>
 			</Alert>

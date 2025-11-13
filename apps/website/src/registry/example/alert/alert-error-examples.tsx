@@ -20,8 +20,8 @@ const AlertErrorExamples = () => {
 						<span className="bg-fg-tertiary size-1 rounded-full"></span>
 						<LinkButton color="error" href="#error-alerts-examples">
 							File Requirements
+							<ArrowUpRight />
 						</LinkButton>
-						<ArrowUpRight size={20} />
 					</section>
 				</AlertContent>
 			</Alert>
