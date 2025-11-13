@@ -3,12 +3,12 @@
 import { useRef, useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import Image from "next/image"
+import { GithubIcon } from "@/components/home/github-icon"
+import { GoogleIcon } from "@/components/home/google-icon"
 import { Button, LinkButton } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
-import { GithubIcon } from "../github-icon"
-import { GoogleIcon } from "../google-icon"
 
 interface FormData {
 	firstName: string
@@ -58,7 +58,7 @@ export default function Signup() {
 	}
 
 	return (
-		<div className="bg-bg flex h-full w-full items-center justify-center px-5">
+		<div className="bg-bg flex h-screen w-screen items-center justify-center px-5">
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-5 py-6 sm:p-6">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>

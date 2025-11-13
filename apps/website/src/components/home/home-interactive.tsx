@@ -1,59 +1,48 @@
 "use client"
 
 import React, { useState } from "react"
-import { Check, Clipboard, Menu } from "lucide-react"
-import Signin from "@/components/home/pages/signin"
-import Signup from "@/components/home/pages/signup"
-import Verification from "@/components/home/pages/verification"
+import { Check, ChevronDown, Clipboard, Maximize, Share2 } from "lucide-react"
+import Link from "next/link"
+import Signin from "@/app/blocks/signin/page"
+import Signup from "@/app/blocks/signup/page"
+import Verification from "@/app/blocks/verification/page"
+import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerBody, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
+const PAGES = [
+	{
+		value: "signin",
+		label: "Sign In",
+		component: <Signin />,
+		command: "pnpm dlx @radianos/radianbeta add signin-09",
+		link: "/blocks/signin",
+	},
+	{
+		value: "signup",
+		label: "Sign Up",
+		component: <Signup />,
+		command: "pnpm dlx @radianos/radianbeta add signup-02",
+		link: "/blocks/signup",
+	},
+	{
+		value: "verification",
+		label: "Verification",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add verification-01",
+		link: "/blocks/verification",
+	},
+	{
+		value: "password-reset",
+		label: "Password Reset",
+		component: <Verification />,
+		command: "pnpm dlx @radianos/radianbeta add password-reset-01",
+		link: "/blocks/password-reset",
+	},
+] as const
+
 const HomeInteractive = () => {
-	const PAGES = [
-		{
-			value: "signin",
-			label: "Sign In",
-			component: <Signin />,
-			command: "pnpm dlx @radianos/radianbeta add signin-09",
-		},
-		{
-			value: "signup",
-			label: "Sign Up",
-			component: <Signup />,
-			command: "pnpm dlx @radianos/radianbeta add signup-02",
-		},
-		{
-			value: "verification",
-			label: "Verification",
-			component: <Verification />,
-			command: "pnpm dlx @radianos/radianbeta add verification-01",
-		},
-		{
-			value: "settings",
-			label: "Settings",
-			component: <Verification />,
-			command: "pnpm dlx @radianos/radianbeta add settings-01",
-		},
-		{
-			value: "dashboard",
-			label: "Dashboard",
-			component: <Verification />,
-			command: "pnpm dlx @radianos/radianbeta add settings-01",
-		},
-		{
-			value: "hero",
-			label: "Hero Section",
-			component: <Verification />,
-			command: "pnpm dlx @radianos/radianbeta add settings-01",
-		},
-		{
-			value: "form",
-			label: "Form",
-			component: <Verification />,
-			command: "pnpm dlx @radianos/radianbeta add settings-01",
-		},
-	] as const
 	function useCopyPaste() {
 		const [copied, setCopied] = useState(false)
 
@@ -72,44 +61,62 @@ const HomeInteractive = () => {
 	const [activeTab, setActiveTab] = useState<(typeof PAGES)[number]["value"]>("signin")
 	const { copy, copied } = useCopyPaste()
 	return (
-		<div className="bg-bg border-soft z-50 h-full rounded-xl border p-3">
+		<div className="bg-bg/60 border-soft z-50 h-full rounded-xl border p-3 backdrop-blur-[45px]">
 			<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
 				<div className="flex justify-between">
-					<Drawer direction="left">
-						<DrawerTrigger className="md:hidden">
-							<Button variant="ghost" color="neutral">
-								<Menu />
-							</Button>
-						</DrawerTrigger>
-						<DrawerContent>
-							<DrawerHeader>
-								<DrawerTitle>{undefined}</DrawerTitle>
-							</DrawerHeader>
-							<DrawerBody>
-								<TabsList variant="outline-ghost" size="md" className="!h-fit !flex-col md:hidden">
-									{PAGES.map((page, idx) => (
-										<TabsTrigger key={`${page.value}-${idx}`} value={page.value} className="w-full">
-											{page.label}
-										</TabsTrigger>
-									))}
-								</TabsList>
-							</DrawerBody>
-						</DrawerContent>
-					</Drawer>
-					<TabsList variant="outline-ghost" size="md" className="not-md:hidden mx-auto shrink-0">
+					<div className="flex items-center gap-1.5 pl-3">
+						<span className="bg-fill4 size-2 rounded-full" />
+						<span className="bg-fill4 size-2 rounded-full" />
+						<span className="bg-fill4 size-2 rounded-full" />
+					</div>
+					<TabsList variant="outline-ghost" size="md" className="not-lg:hidden mx-auto shrink-0 bg-transparent">
 						{PAGES.map((page, idx) => (
 							<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
 								{page.label}
 							</TabsTrigger>
 						))}
+						<div className="flex items-center gap-2 pl-3">
+							<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!} target="_blank" className="text-fg-secondary text-sm">
+								More Blocks
+							</Link>
+							<Badge variant="soft" size="20">
+								Coming Soon
+							</Badge>
+						</div>
 					</TabsList>
-					<Button onClick={(e) => copy(e, PAGES.find((p) => p.value === activeTab)!.command)} color="neutral" variant="ghost" size="36">
-						{copied ? <Check /> : <Clipboard />}
-					</Button>
+					<div className="flex items-center gap-0.5">
+						<Button onClick={(e) => copy(e, PAGES.find((p) => p.value === activeTab)!.command)} color="neutral" variant="ghost" size="28">
+							{copied ? <Check size={16} className="shrink-0" /> : <Clipboard size={16} className="shrink-0" />}
+						</Button>
+						<Button size="28" color="neutral" variant="ghost" asChild>
+							<Share2 size={16} className="shrink-0" />
+						</Button>
+						<Button size="28" color="neutral" variant="ghost" asChild>
+							<Link href={PAGES.find((p) => p.value === activeTab)?.link ?? ""} target="_blank">
+								<Maximize size={16} className="shrink-0" />
+							</Link>
+						</Button>
+						<Dropdown>
+							<DropdownTrigger asChild className="lg:hidden">
+								<Button color="neutral" size="28" variant="ghost">
+									<ChevronDown size={16} className="shrink-0" />
+								</Button>
+							</DropdownTrigger>
+							<DropdownContent align="end">
+								<DropdownRadioGroup value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])}>
+									{PAGES.map((p) => (
+										<DropdownRadioItem key={p.value} value={p.value}>
+											{p.label}
+										</DropdownRadioItem>
+									))}
+								</DropdownRadioGroup>
+							</DropdownContent>
+						</Dropdown>
+					</div>
 				</div>
 				{PAGES.map((page) => (
-					<TabsContent key={page.value} value={page.value} className="border-soft h-full w-full overflow-clip rounded-lg border">
-						{page.component}
+					<TabsContent forceMount key={page.value} value={page.value} className="border-soft h-full w-full overflow-clip rounded-lg border">
+						<iframe src={page.link} className="h-full w-full" />
 					</TabsContent>
 				))}
 			</Tabs>
