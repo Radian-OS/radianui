@@ -1,6 +1,6 @@
 import React from "react"
 import { Brain } from "lucide-react"
-import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
+import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
 import { LinkButton } from "@/registry/ui/button"
 
 const BannerFloatingExample = () => {
@@ -10,8 +10,10 @@ const BannerFloatingExample = () => {
 				<BannerIcon>
 					<Brain size={20} />
 				</BannerIcon>
-				<BannerTitle>Floating Banner</BannerTitle>
-				<BannerDescription>I am an example of a Floating Banner</BannerDescription>
+				<BannerContent className="sm:grow-0 sm:flex-row sm:items-center sm:gap-2">
+					<BannerTitle className="truncate">Floating Banner</BannerTitle>
+					<BannerDescription className="truncate">I am an example of a Floating Banner</BannerDescription>
+				</BannerContent>
 				<div className="pl-1">
 					<LinkButton href="#floating-banner">Click Me</LinkButton>
 				</div>
