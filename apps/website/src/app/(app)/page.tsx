@@ -27,7 +27,9 @@ export default function Page() {
 							</Badge>
 							<BorderBeam size={50} />
 						</div>
-						<h1 className="heading-1 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-center text-transparent">Build next gen of world class products and solutions</h1>
+						<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
+							Build next gen of world class products and solutions
+						</h1>
 						<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-medium">
 							Radian is a high-quality, flexible and open-source, design and development library built using React, Radix and Tailwind.
 						</p>
@@ -39,7 +41,7 @@ export default function Page() {
 							Copy Terminal Command
 						</Button>
 						<Link href="/docs/components/accordion" className="w-full sm:w-fit">
-							<Button size="40" className="bg-elevation-level1/20 w-full backdrop-blur-md sm:w-fit" variant="outline" color="neutral">
+							<Button size="40" className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit" variant="outline" color="neutral">
 								Browse Components
 							</Button>
 						</Link>
