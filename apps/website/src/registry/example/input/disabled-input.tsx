@@ -5,8 +5,8 @@ import { Label } from "@/registry/ui/label"
 const DisabledInput = () => {
 	return (
 		<div className="flex w-80 flex-col gap-1.5">
-			<Label>Disabled Input</Label>
-			<Input className="w-full" disabled placeholder="Disabled Input" />
+			<Label>Username</Label>
+			<Input className="w-full" disabled placeholder="Script44" />
 		</div>
 	)
 }

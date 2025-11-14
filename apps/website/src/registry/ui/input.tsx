@@ -14,7 +14,7 @@ const inputVariants = cva(
 	`
 	flex w-full items-center bg-bg border border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary 
 	focus-visible:ring-primary-focus  focus-visible:border-primary focus-visible:outline-none focus-visible:ring-2   
-	disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill1
+	disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha
 	[&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed
 	file:h-full [&[type=file]]:py-0 file:border-solid file:border-alpha file:bg-transparent 
 	file:font-medium file:not-italic file:text-fg file:p-0 file:border-0 file:border-e
@@ -60,30 +60,6 @@ const inputAddonVariants = cva(
 		},
 	}
 )
-
-// const inputGroupVariants = cva(
-// 	`
-// 	flex items-stretch
-// 	[&_[data-slot=input]]:grow
-// 	[&_[data-slot=input-addon]:has(+[data-slot=input])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=input])]:border-e-0
-// 	[&_[data-slot=input-addon]:has(+[data-slot=datefield])]:rounded-e-none [&_[data-slot=input-addon]:has(+[data-slot=datefield])]:border-e-0
-// 	[&_[data-slot=input]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=input]+[data-slot=input-addon]]:border-s-0
-// 	[&_[data-slot=input-addon]:has(+[data-slot=button])]:rounded-e-none
-// 	[&_[data-slot=input]+[data-slot=button]]:rounded-s-none
-// 	[&_[data-slot=button]+[data-slot=input]]:rounded-s-none
-// 	[&_[data-slot=input-addon]+[data-slot=input]]:rounded-s-none
-// 	[&_[data-slot=input-addon]+[data-slot=datefield]]:[&_[data-slot=input]]:rounded-s-none
-// 	[&_[data-slot=datefield]:has(+[data-slot=input-addon])]:[&_[data-slot=input]]:rounded-e-none
-// 	[&_[data-slot=input]:has(+[data-slot=button])]:rounded-e-none
-// 	[&_[data-slot=input]:has(+[data-slot=input-addon])]:rounded-e-none
-// 	[&_[data-slot=datefield]]:grow
-// 	[&_[data-slot=datefield]+[data-slot=input-addon]]:rounded-s-none [&_[data-slot=datefield]+[data-slot=input-addon]]:border-s-0
-//   `,
-// 	{
-// 		variants: {},
-// 		defaultVariants: {},
-// 	}
-// )
 
 const inputGroupVariants = cva(
 	`
