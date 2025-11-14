@@ -14,9 +14,6 @@ function ButtonIconOnlyExample() {
 			<IconButton variant="soft" color="primary">
 				<Bookmark />
 			</IconButton>
-			<IconButton variant="soft" color="success">
-				<Bookmark />
-			</IconButton>
 			<IconButton>
 				<Plus />
 			</IconButton>
