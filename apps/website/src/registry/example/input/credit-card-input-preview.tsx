@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
@@ -9,7 +10,7 @@ const CreditCardPreview = () => {
 				<div className="flex w-full gap-1">
 					<InputWrapper>
 						<Input placeholder="0000 0000 0000 0000" />
-						<img src="/creditcard.png" className="h-4" />
+						<Image src="/creditcard.png" height={12.88} width={20} alt="Creditimg1" />
 					</InputWrapper>
 				</div>
 			</div>
@@ -19,7 +20,7 @@ const CreditCardPreview = () => {
 				<div className="flex w-full gap-1">
 					<InputWrapper>
 						<Input placeholder="0000 0000 0000 0000" />
-						<img src="/creditcard.png" className="h-4" />
+						<Image height={12.88} width={20} alt="Creditimg2" src="/creditcard.png" />
 					</InputWrapper>
 					<Input placeholder="MM / YY" />
 					<Input placeholder="CVC" />
@@ -30,7 +31,7 @@ const CreditCardPreview = () => {
 				<div className="w-full">
 					<InputWrapper className={`-ms rounded-b-none border-b-0 focus-within:z-30 focus-within:border-b`}>
 						<Input placeholder="Card Number" />
-						<img src="/creditcard.png" className="h-4" />
+						<Image height={12.88} width={20} alt="Creditimg3" src="/creditcard.png" />
 					</InputWrapper>
 					<div className="flex">
 						<Input placeholder="MM / YY" className={`rounded-r-none rounded-t-none border-r-0 focus-within:z-30 focus-within:border-r`} />
