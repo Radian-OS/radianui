@@ -38,7 +38,7 @@ export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
 	const result = await explorer.search(cwd)
 
 	if (!result) {
-		throw new Error(`Missing ${txt.info("components.json")} — it’s required to know where and how to add components. Run ${txt.info("npx radianui init")} to set it up.`)
+		throw new Error(`To add components, make sure you have a ${txt.info("components.json")} file. Run ${txt.info("npx radianui init")} to set it up.`)
 	}
 
 	try {

@@ -1,34 +1,173 @@
 "use client"
 
 import React, { useState } from "react"
-import { Button } from "@/registry/ui/button"
+import { Check, ChevronDown } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/ui/badge"
+import { IconButton, LinkButton } from "@/registry/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
+import { Divider } from "@/registry/ui/divider"
+import { Progress } from "@/registry/ui/progress"
+import { Spinner } from "@/registry/ui/spinner"
 
-export default function CollapsiblePreview() {
+type TaskStatus = "completed" | "in-progress" | "queued"
+
+type Task = {
+	id: string
+	title: string
+	status: TaskStatus
+	progress?: number
+	statusLabel?: string
+	statusLink?: string
+}
+
+type TaskItemProps = {
+	task: Task
+}
+
+type TaskListProps = {
+	tasks: Task[]
+}
+
+const MOCK_TASKS: Task[] = [
+	{
+		id: "1",
+		title: "Design System Structure Drafted",
+		status: "completed",
+		statusLabel: "View Artifact",
+		statusLink: "#",
+	},
+	{
+		id: "2",
+		title: "Generate Responsive Grid Tokens",
+		status: "completed",
+	},
+	{
+		id: "3",
+		title: "Review Color Contrast & Accessibility",
+		status: "completed",
+		statusLabel: "In Progress",
+	},
+	{
+		id: "4",
+		title: "Compile Component Documentation",
+		status: "completed",
+	},
+	{
+		id: "5",
+		title: "Style Guide Generation",
+		status: "in-progress",
+		progress: 32,
+	},
+	{
+		id: "6",
+		title: "Automated Hand-off to Dev (32%)",
+		status: "queued",
+		statusLabel: "Queued",
+	},
+]
+
+function TaskItem({ task }: TaskItemProps) {
+	const renderStatusIndicator = () => {
+		if (task.status === "queued") {
+			return <span className="size-5 flex-shrink-0" />
+		}
+		if (task.status === "in-progress" && task.progress !== undefined) {
+			return <Spinner variant="activity" className="text-primary size-5 flex-shrink-0" />
+		}
+		return <Check className="size-5 flex-shrink-0" />
+	}
+
+	const renderStatusContent = () => {
+		// Progress indicator
+		if (task.progress !== undefined) {
+			return (
+				<div className="flex items-center gap-2">
+					<span className="text-primary font-medium">{task.progress}%</span>
+					<Progress value={task.progress} className="w-20" />
+				</div>
+			)
+		}
+
+		// Link button
+		if (task.statusLabel && task.statusLink) {
+			return (
+				<LinkButton href={task.statusLink} color={task.status === "completed" ? "primary" : "neutral"} size="14">
+					{task.statusLabel}
+				</LinkButton>
+			)
+		}
+
+		// Plain label
+		if (task.statusLabel) {
+			return <span className="font-medium">{task.statusLabel}</span>
+		}
+
+		return null
+	}
+
+	return (
+		<li className="flex items-center justify-between">
+			<div className="flex items-center gap-2">
+				{renderStatusIndicator()}
+				<span className={cn(task.progress !== undefined && "text-fg font-medium")}>{task.title}</span>
+			</div>
+			{renderStatusContent()}
+		</li>
+	)
+}
+
+function TaskList({ tasks }: TaskListProps) {
+	return (
+		<div className="text-fg-secondary flex flex-col gap-4 px-6 py-6 text-sm">
+			<div className="flex gap-1">
+				<span>Completed Assets & Modules</span>
+				<Badge variant="soft" color="neutral" className="rounded-full">
+					1/2 Resolved
+				</Badge>
+			</div>
+			<ul className="space-y-3">
+				{tasks.map((task) => (
+					<TaskItem key={task.id} task={task} />
+				))}
+			</ul>
+		</div>
+	)
+}
+
+type CollapsibleHeaderProps = {
+	title: string
+	subtitle: string
+	isOpen: boolean
+}
+
+function CollapsibleHeader({ title, subtitle, isOpen }: CollapsibleHeaderProps) {
+	return (
+		<div className="flex items-center gap-3 px-6">
+			<div className="flex flex-1 flex-col gap-1 py-5">
+				<span className="font-semibold">{title}</span>
+				<span className="text-fg-secondary text-sm">{subtitle}</span>
+			</div>
+			<CollapsibleTrigger asChild>
+				<IconButton variant="outline" color="neutral" size="32">
+					<ChevronDown className={cn("transition-transform duration-200", isOpen && "rotate-180")} />
+				</IconButton>
+			</CollapsibleTrigger>
+		</div>
+	)
+}
+
+export default function ProjectCollapsible() {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
-		<div className="w-full max-w-lg">
-			<Collapsible open={isOpen} onOpenChange={setIsOpen}>
-				<div className="space-y-2">
-					<p className="text-muted-foreground text-sm">
-						RadianOS is a modern design system and component library built with React and TypeScript. It provides a comprehensive set of accessible, customizable components for
-						building beautiful user interfaces.
-					</p>
-					<CollapsibleContent>
-						<p className="text-muted-foreground text-sm">
-							Our components are built with accessibility in mind, following WAI-ARIA guidelines and best practices. They are fully customizable with CSS variables and support dark
-							mode out of the box. Whether you are building a simple landing page or a complex dashboard, RadianOS has the components you need to create exceptional user
-							experiences.
-						</p>
-					</CollapsibleContent>
-					<CollapsibleTrigger asChild>
-						<Button variant="ghost" size="28" color="primary" className="px-0 hover:bg-transparent hover:underline">
-							{isOpen ? "Show less" : "Show more"}
-						</Button>
-					</CollapsibleTrigger>
-				</div>
-			</Collapsible>
-		</div>
+		<Collapsible open={isOpen} onOpenChange={setIsOpen} className="max-w-115 border-soft shadow-xs w-full rounded-xl border transition-all duration-200">
+			<CollapsibleHeader title="Design Project: Radian OS 3.0" subtitle="Status: 84% Complete (2 Dependencies Active)" isOpen={isOpen} />
+
+			<CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+				<Divider className="border-soft-alpha" />
+				<TaskList tasks={MOCK_TASKS} />
+			</CollapsibleContent>
+		</Collapsible>
 	)
 }

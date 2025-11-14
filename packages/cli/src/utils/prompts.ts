@@ -287,7 +287,7 @@ export async function promptForProject(
 
 export function handlePromptCancel() {
 	logger.break()
-	logger.error("Operation aborted.")
+	logger.error("Aborted.")
 	logger.break()
 	process.exit(1)
 }
