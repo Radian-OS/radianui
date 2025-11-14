@@ -19,7 +19,7 @@ export default function CollapsibleText() {
 				</p>
 			</CollapsibleContent>
 			<CollapsibleTrigger className="mt-2" asChild>
-				<Button variant="ghost" size="28" color="primary" className="px-0 py-0 font-medium hover:bg-transparent hover:underline">
+				<Button variant="link" color="primary">
 					{isOpen ? "Show Less" : "Show More"}
 				</Button>
 			</CollapsibleTrigger>
