@@ -69,7 +69,7 @@ export default function Signup() {
 						<span className="heading-5">Sign Up</span>
 						<p className="text-fg-secondary text-sm">
 							Already have an account?{" "}
-							<Button asChild color="primary">
+							<Button variant="link" asChild color="primary">
 								<Link href="#">Sign in</Link>
 							</Button>
 						</p>
