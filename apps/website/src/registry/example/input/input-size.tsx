@@ -4,40 +4,40 @@ import { Label } from "@/registry/ui/label"
 
 const InputSize = () => {
 	return (
-		<div className="flex w-80 flex-col gap-4">
+		<div className="flex w-80 flex-col gap-6">
 			{/* Input size 28 */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Size 28</Label>
-				<Input size="28" placeholder="Size 28" />
+				<Input size="28" />
 			</div>
 
 			{/* Input size 32 */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Size 32</Label>
-				<Input size="32" placeholder="Size 32" />
+				<Input size="32" />
 			</div>
 			{/* Input size 36 */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Size 36</Label>
-				<Input size="36" placeholder="Size 36" />
+				<Input size="36" />
 			</div>
 
 			{/* Input size 40 */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Size 40</Label>
-				<Input size="40" placeholder="Size 40" />
+				<Input size="40" />
 			</div>
 
 			{/* Input size 44 */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Size 44</Label>
-				<Input size="44" placeholder="Size 44" />
+				<Input size="44" />
 			</div>
 
 			{/* Input size 48 */}
 			<div className="flex flex-col gap-1.5">
 				<Label>Size 48</Label>
-				<Input size="48" placeholder="Size 48" />
+				<Input size="48" />
 			</div>
 		</div>
 	)

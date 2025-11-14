@@ -4,31 +4,28 @@ import { Label } from "@/registry/ui/label"
 
 const EmailPreview = () => {
 	return (
-		<div className="flex w-80 flex-col gap-4">
-			{/* Default Email Input */}
+		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
-				<Label>Default Email Input</Label>
-				<Input className="w-full" type="email" placeholder="designer@radianos.com" />
+				<Label>Email Input</Label>
+				<Input className="w-full" type="email" placeholder="info@radianos.com" />
 			</div>
 
-			{/* Input Group */}
 			<div className="flex w-full flex-col gap-1.5">
-				<Label>Input Group</Label>
+				<Label>Email w/icon</Label>
+				<InputWrapper className="w-full">
+					<Mail />
+					<Input type="email" placeholder="info@radianos.com" />
+				</InputWrapper>
+			</div>
+
+			<div className="flex w-full flex-col gap-1.5">
+				<Label>Email w/icon inside the input</Label>
 				<InputGroup className="w-full">
 					<InputAddon mode="icon">
 						<Mail />
 					</InputAddon>
-					<Input type="email" placeholder="designer@radianos.com" />
+					<Input type="email" placeholder="info@radianos.com" />
 				</InputGroup>
-			</div>
-
-			{/* Input Wrapper */}
-			<div className="flex w-full flex-col gap-1.5">
-				<Label>Input Wrapper</Label>
-				<InputWrapper className="w-full">
-					<Mail />
-					<Input type="email" placeholder="designer@radianos.com" />
-				</InputWrapper>
 			</div>
 		</div>
 	)

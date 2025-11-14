@@ -1,30 +1,38 @@
 import { useState } from "react"
-import { Input, InputGroup, InputWrapper } from "@/registry/ui/input"
+import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
 type domainOption = ".com" | ".org" | ".net"
 
 const UrlPreview = () => {
-	const [domain, setDomain] = useState<domainOption>(".com")
+	const [domain, setDomain] = useState<domainOption>()
 
 	return (
-		<div className="flex w-80 flex-col gap-4">
-			{/* Default Url Input */}
+		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
-				<Label>Default Url Input</Label>
+				<Label>URL Input</Label>
 				<Input type="url" className="w-full" placeholder="radianos.com" />
 			</div>
 
-			{/* Input Group */}
 			<div className="flex flex-col gap-1.5">
-				<Label>Input Group</Label>
+				<Label>Input URL w/protocol</Label>
+				<InputGroup className="w-full">
+					<InputAddon>
+						<p className="text-fg-tertiary">https://</p>
+					</InputAddon>{" "}
+					<Input type="url" placeholder="radianos.com" />
+				</InputGroup>
+			</div>
+
+			<div className="flex flex-col gap-1.5">
+				<Label>Input URL w/domain selector</Label>
 				<div className="flex">
 					<InputGroup className="w-full">
-						<Input className="rounded-r-none border-r-0 focus-within:border-r md:w-fit" placeholder="radianos.com" type="url" />
+						<Input className="rounded-r-none border-r-0 focus-within:border-r md:w-fit" placeholder="radianos" type="url" />
 						<Select value={domain} onValueChange={(values) => setDomain(values as domainOption)}>
 							<SelectTrigger className="w-fit rounded-l-none">
-								<SelectValue />
+								<SelectValue placeholder=".com" />
 							</SelectTrigger>
 							<SelectContent>
 								<SelectItem value=".com">.com</SelectItem>
@@ -34,15 +42,6 @@ const UrlPreview = () => {
 						</Select>
 					</InputGroup>
 				</div>
-			</div>
-
-			{/* Input Wrapper */}
-			<div className="flex flex-col gap-1.5">
-				<Label>Input Wrapper</Label>
-				<InputWrapper className="w-full">
-					<p> https://</p>
-					<Input type="url" placeholder="designer@radianos.com" />
-				</InputWrapper>
 			</div>
 		</div>
 	)
