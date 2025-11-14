@@ -2,9 +2,10 @@
 
 import React, { useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
+import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
-import { IconButton, LinkButton } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
 import { Divider } from "@/registry/ui/divider"
 import { Progress } from "@/registry/ui/progress"
@@ -92,9 +93,9 @@ function TaskItem({ task }: TaskItemProps) {
 		// Link button
 		if (task.statusLabel && task.statusLink) {
 			return (
-				<LinkButton href={task.statusLink} color={task.status === "completed" ? "primary" : "neutral"} size="14">
-					{task.statusLabel}
-				</LinkButton>
+				<Button variant={"link"} color={task.status === "completed" ? "primary" : "neutral"} asChild>
+					<Link href={task.statusLink}>{task.statusLabel}</Link>
+				</Button>
 			)
 		}
 
