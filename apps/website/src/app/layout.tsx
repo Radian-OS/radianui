@@ -81,7 +81,7 @@ export default async function RootLayout({
 			<body className={cn("relative min-h-svh", "antialiased")}>
 				<PostHogProvider>
 					<ToastProvider>
-						<ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+						<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
 							{children}
 						</ThemeProvider>
 					</ToastProvider>

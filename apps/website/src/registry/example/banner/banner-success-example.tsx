@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Sparkles } from "lucide-react"
-import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
+import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
 import { Button } from "@/registry/ui/button"
 
 const BannerSuccessExample = () => {
@@ -24,10 +24,10 @@ const BannerSuccessExample = () => {
 		<div className="max-w-160 flex w-full flex-col items-center justify-center gap-6">
 			{bannerVisible1 && (
 				<Banner onClose={handleClose1} color="success" variant="strong">
-					<div className="flex grow items-center justify-center gap-2 px-1">
-						<BannerTitle>Your account was created.</BannerTitle>
-						<BannerDescription>You’ll get an email confirmation shortly</BannerDescription>
-					</div>
+					<BannerContent className="flex gap-2 px-1 sm:flex-row sm:items-center sm:justify-center">
+						<BannerTitle className="truncate">Your account was created.</BannerTitle>
+						<BannerDescription className="truncate">You’ll get an email confirmation shortly</BannerDescription>
+					</BannerContent>
 				</Banner>
 			)}
 			{bannerVisible2 && (
@@ -35,8 +35,8 @@ const BannerSuccessExample = () => {
 					<BannerIcon>
 						<Sparkles size={20} />
 					</BannerIcon>
-					<BannerDescription>Get full advantage of Radian with better performance.</BannerDescription>
-					<BannerTitle>Get the Desktop app Now!</BannerTitle>
+					<BannerDescription className="truncate">Get full advantage of Radian with better performance.</BannerDescription>
+					<BannerTitle className="truncate">Get the Desktop app Now!</BannerTitle>
 					<div className="flex items-center justify-center gap-3 pr-1">
 						<Button size="28" color="success" variant="outline">
 							Download

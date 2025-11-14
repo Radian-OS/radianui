@@ -139,8 +139,8 @@ export default function ColorPlayground() {
 					<SelectContent>
 						{COLORS.map((colorOption) => (
 							<SelectItem key={colorOption.value} value={colorOption.value}>
-								<div className="flex items-center justify-center gap-1">
-									<span className={`border-border inline-block h-4 w-4 rounded-sm border ${COLOR_CLASSES[colorOption.value]}`} />
+								<div className="flex items-center justify-center gap-2">
+									<span className={`inline-block h-4 w-4 rounded-sm ${COLOR_CLASSES[colorOption.value]}`} />
 									{colorOption.title}
 								</div>
 							</SelectItem>

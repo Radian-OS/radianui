@@ -1,6 +1,6 @@
 import { CircleAlert, Import } from "lucide-react"
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar } from "@/registry/ui/alert"
-import { LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const AlertInfoExamples = () => {
 	return (
@@ -13,13 +13,13 @@ const AlertInfoExamples = () => {
 					<AlertTitle>New Version Available</AlertTitle>
 					<AlertDescription>Version 2.1 is now live. Refresh to update</AlertDescription>
 					<section className="flex items-center gap-2 pt-2">
-						<LinkButton color="info" href="#info-alerts-examples">
+						<Button color="info" variant="link">
 							Later
-						</LinkButton>
+						</Button>
 						<span className="bg-fg-tertiary size-1 rounded-full"></span>
-						<LinkButton color="info" href="#info-alerts-examples">
+						<Button color="info" variant="link">
 							Update
-						</LinkButton>
+						</Button>
 					</section>
 				</AlertContent>
 			</Alert>
@@ -29,9 +29,9 @@ const AlertInfoExamples = () => {
 				</AlertIcon>
 				<AlertTitle>136 Contacts Imported</AlertTitle>
 				<AlertToolbar>
-					<LinkButton color="info" href="#info-alerts-examples">
+					<Button color="info" variant="link">
 						Undo
-					</LinkButton>
+					</Button>
 				</AlertToolbar>
 			</Alert>
 		</div>

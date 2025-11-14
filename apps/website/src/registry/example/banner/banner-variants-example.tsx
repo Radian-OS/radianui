@@ -9,22 +9,22 @@ function BannerVariantsExample() {
 				<BannerIcon>
 					<Sparkles size={20} />
 				</BannerIcon>
-				<BannerTitle>Outline</BannerTitle>
-				<BannerDescription>This is a variant of banner component</BannerDescription>
+				<BannerTitle className="truncate">Outline</BannerTitle>
+				<BannerDescription className="truncate">This is a variant of banner component</BannerDescription>
 			</Banner>
 			<Banner variant="soft">
 				<BannerIcon>
 					<Sparkles size={20} />
 				</BannerIcon>
-				<BannerTitle>Soft</BannerTitle>
-				<BannerDescription>This is a variant of banner component</BannerDescription>
+				<BannerTitle className="truncate">Soft</BannerTitle>
+				<BannerDescription className="truncate">This is a variant of banner component</BannerDescription>
 			</Banner>
 			<Banner variant="strong">
 				<BannerIcon>
 					<Sparkles size={20} />
 				</BannerIcon>
-				<BannerTitle>Strong</BannerTitle>
-				<BannerDescription>This is a variant of banner component</BannerDescription>
+				<BannerTitle className="truncate">Strong</BannerTitle>
+				<BannerDescription className="truncate">This is a variant of banner component</BannerDescription>
 			</Banner>
 		</div>
 	)

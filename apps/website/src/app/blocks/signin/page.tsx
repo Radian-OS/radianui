@@ -3,16 +3,17 @@
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Image from "next/image"
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { GithubIcon } from "@/components/home/github-icon"
+import { GoogleIcon } from "@/components/home/google-icon"
+import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
-import { GithubIcon } from "../github-icon"
-import { GoogleIcon } from "../google-icon"
 
 const FormSchema = z
 	.object({
@@ -75,7 +76,7 @@ export default function Page() {
 	}
 
 	return (
-		<div className="bg-bg flex h-full w-full">
+		<div className="bg-bg flex h-screen w-screen">
 			<div className="flex w-full">
 				<div className="hidden flex-1 md:block">
 					<Image className="h-full w-full object-cover" src="/homepage/abstract.png" alt="Background Image" width={400} height={400} />
@@ -90,9 +91,9 @@ export default function Page() {
 								<span className="heading-5">Sign In</span>
 								<p className="text-fg-secondary text-sm">
 									Don&apos;t have an account?{" "}
-									<LinkButton href="#" color="primary">
-										Sign up
-									</LinkButton>
+									<Button variant="link" asChild color="primary">
+										<Link href="#">Sign up</Link>
+									</Button>
 								</p>
 							</div>
 						</div>
@@ -142,9 +143,9 @@ export default function Page() {
 												</div>
 											)}
 										/>
-										<LinkButton href="#" color="primary">
-											Forgot Password?
-										</LinkButton>
+										<Button variant="link" asChild color="primary">
+											<Link href="#">Forgot Password?</Link>
+										</Button>
 									</div>
 									<Button className="w-full" type="submit" disabled={isLoading}>
 										{isLoading ? <Spinner variant="default" /> : "Sign In"}

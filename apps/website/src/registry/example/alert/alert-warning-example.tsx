@@ -1,7 +1,7 @@
 import React from "react"
 import { Inbox, TriangleAlert } from "lucide-react"
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
-import { LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const AlertWarningExample = () => {
 	return (
@@ -14,9 +14,9 @@ const AlertWarningExample = () => {
 					<AlertTitle>Low Balance</AlertTitle>
 					<AlertDescription>Your credit balance is low. Add more credits to avoid disruption</AlertDescription>
 					<section className="flex items-center pt-2">
-						<LinkButton color="warning" href="#warning-alert-examples">
+						<Button color="warning" variant="link">
 							Add Credit
-						</LinkButton>
+						</Button>
 					</section>
 				</AlertContent>
 			</Alert>
@@ -29,9 +29,9 @@ const AlertWarningExample = () => {
 					<AlertTitle>Storage Almost Full</AlertTitle>
 					<AlertDescription>You’ve used 95% of your available storage space. Upgrade to get more storage</AlertDescription>
 					<section className="flex items-center pt-2">
-						<LinkButton color="warning" href="#warning-alert-examples">
+						<Button color="warning" variant="link">
 							Upgrade Plan
-						</LinkButton>
+						</Button>
 					</section>
 				</AlertContent>
 			</Alert>

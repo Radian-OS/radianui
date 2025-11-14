@@ -1,14 +1,14 @@
 "use client"
 
 import Image from "next/image"
+import { GoogleIcon } from "@/components/home/google-icon"
+import { OutlookIcon } from "@/components/home/outlook-icon"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
-import { GoogleIcon } from "../google-icon"
-import { OutlookIcon } from "../outlook-icon"
 
 export default function Verification() {
 	return (
-		<div className="bg-bg flex h-full w-full items-center justify-center px-5">
+		<div className="bg-bg flex h-screen w-screen items-center justify-center px-5">
 			<div className="w-100 bg-bg flex">
 				<div className="flex flex-1 flex-col gap-8">
 					<div className="text-fg flex items-center gap-2.5">
