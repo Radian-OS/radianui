@@ -5,7 +5,7 @@ import { Badge } from "@/registry/ui/badge"
 function BadgeNested() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-			<Badge size="28" variant="strong" className="h-8 gap-2 rounded-full" color="neutral">
+			<Badge size="28" variant="strong" className="h-8 gap-2 rounded-full py-1 pl-1 pr-[10px]" color="neutral">
 				<Badge className="rounded-full" variant="strong" color="primary">
 					New
 				</Badge>

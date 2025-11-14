@@ -30,7 +30,7 @@ function BadgeExamplePreview() {
 				<Bookmark />
 				Bookmark
 			</Badge>
-			<Badge variant="outline" color="neutral">
+			<Badge variant="outline" color="neutral" className="rounded-full py-1 pl-1 pr-2">
 				<Avatar size="16">
 					<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 					<AvatarFallback>S</AvatarFallback>
