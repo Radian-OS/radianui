@@ -1,7 +1,7 @@
 import React from "react"
 import { ArrowRight, Box, CircleCheck } from "lucide-react"
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar } from "@/registry/ui/alert"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const AlertSuccessExamples = () => {
 	return (
@@ -26,10 +26,10 @@ const AlertSuccessExamples = () => {
 					<AlertTitle>Credit Purchased Successfully</AlertTitle>
 					<AlertDescription>You have successfully added credits to your account. Start creating more with Radian</AlertDescription>
 					<section className="flex items-center gap-2 pt-2">
-						<LinkButton color="success" href="#success-alert-examples">
+						<Button variant="link" color="success">
 							View Credit Balance
 							<ArrowRight />
-						</LinkButton>
+						</Button>
 					</section>
 				</AlertContent>
 			</Alert>

@@ -3,7 +3,7 @@
 import React from "react"
 import { Calendar, Mail, MapPin, Phone, Settings } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { ScrollArea } from "@/registry/ui/scroll-area"
 
@@ -150,9 +150,9 @@ export default function ScrollAreaPreview() {
 				<Divider orientation="horizontal" className="bg-border my-4" />
 
 				<div className="text-center">
-					<LinkButton href="#" color={"primary"}>
+					<Button variant={"link"} color={"primary"}>
 						View all contacts
-					</LinkButton>
+					</Button>
 				</div>
 			</div>
 		</div>

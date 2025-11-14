@@ -3,7 +3,6 @@
 import React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Spinner } from "./spinner"
 
@@ -19,7 +18,7 @@ export type ButtonProps = React.ComponentProps<"button"> & {
 
 export type ButtonGroupProps = React.HTMLAttributes<HTMLDivElement> & {
 	children: React.ReactNode
-	variant?: VariantProps<typeof buttonVariants>["variant"]
+	variant?: "strong" | "soft" | "outline" | "ghost"
 	size?: VariantProps<typeof buttonVariants>["size"]
 	color?: VariantProps<typeof buttonVariants>["color"]
 }
@@ -34,18 +33,6 @@ export type CompactButtonProps = {
 	disabled?: boolean
 	asChild?: boolean
 } & React.ComponentProps<"button">
-
-export type LinkButtonProps = {
-	loading?: boolean
-	size?: VariantProps<typeof linkButtonVariants>["size"]
-	href: string
-	color?: VariantProps<typeof linkButtonVariants>["color"]
-	className?: string
-	children: React.ReactNode
-	disabled?: boolean
-	target?: string
-	rel?: string
-}
 
 export type IconButtonProps = Omit<React.ComponentProps<"button">, "color"> & {
 	className?: string
@@ -66,6 +53,7 @@ export const buttonVariants = cva(
 				soft: "",
 				outline: "",
 				ghost: "",
+				link: "",
 			},
 			size: {
 				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
@@ -230,12 +218,55 @@ export const buttonVariants = cva(
 				color: "neutral",
 				className: "bg-transparent text-fg-secondary font-medium hover:bg-fill2 focus-visible:outline-none focus-visible:ring-border",
 			},
+
+			// Link variant + colors
+			{
+				variant: "link",
+				color: "primary",
+				className:
+					"bg-transparent text-primary-text font-medium hover:underline focus-visible:ring-primary focus-visible:outline-none h-auto px-0 py-0 gap-1 focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "info",
+				className: "bg-transparent text-info-text font-medium hover:underline focus-visible:ring-info focus-visible:outline-none h-auto px-0 py-0 gap-1 focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "success",
+				className:
+					"bg-transparent text-success-text font-medium hover:underline focus-visible:ring-success focus-visible:outline-none h-auto px-0 py-0 gap-1 focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "error",
+				className: "bg-transparent text-error-text font-medium hover:underline focus-visible:ring-error focus-visible:outline-none h-auto px-0 py-0 gap-1 focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "warning",
+				className:
+					"bg-transparent text-warning-text font-medium hover:underline focus-visible:ring-warning focus-visible:outline-none h-auto px-0 py-0 gap-1 focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "neutral",
+				className:
+					"bg-transparent text-black-inverse font-medium hover:underline focus-visible:ring-black-inverse focus-visible:outline-none h-auto px-0 py-0 gap-1 focus-visible:rounded-sm",
+			},
+
+			// Link variant loading state (no underline when loading)
+			{
+				variant: "link",
+				loading: true,
+				className: "hover:no-underline",
+			},
 		],
 	}
 )
 
 function Button({ loading = false, variant = "strong", size = "36", color = "primary", className, children, disabled, asChild = false, ...props }: ButtonProps) {
-	const combinedClass = cn(buttonVariants({ variant, size, color }), disabled && "opacity-50", className)
+	const combinedClass = cn(buttonVariants({ variant, size, color, loading }), disabled && "opacity-50", className)
 
 	const Comp = asChild ? Slot : "button"
 
@@ -466,60 +497,6 @@ function CompactButton({ loading = false, variant = "strong", size = "24", color
 
 CompactButton.displayName = "CompactButton"
 
-const linkButtonVariants = cva(
-	"inline-flex gap-1 whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 disabled:pointer-events-none hover:cursor-pointer w-fit [&>svg]:size-5",
-	{
-		variants: {
-			color: {
-				primary: "text-primary-text font-medium focus-visible:ring-primary focus-visible:outline-none",
-				info: "text-info-text font-medium focus-visible:ring-info focus-visible:outline-none",
-				success: "text-success-text font-medium focus-visible:ring-success focus-visible:outline-none",
-				error: "text-error-text font-medium focus-visible:ring-error focus-visible:outline-none",
-				warning: "text-warning-text font-medium focus-visible:ring-warning focus-visible:outline-none",
-				neutral: "text-black-inverse font-medium focus-visible:ring-black-inverse focus-visible:outline-none",
-			},
-			size: {
-				"14": "text-sm focus-visible:rounded-sm",
-				"16": "text-base focus-visible:rounded-md",
-			},
-			loading: {
-				true: "",
-				false: "hover:underline",
-			},
-		},
-		defaultVariants: {
-			color: "primary",
-			loading: false,
-		},
-	}
-)
-
-function LinkButton({ size = "14", href, color = "primary", className, children, disabled, target, rel, loading, ...props }: LinkButtonProps) {
-	const combinedClass = cn(linkButtonVariants({ color, size, loading: loading || false }), disabled && "opacity-50 pointer-events-none", className)
-
-	if (disabled) {
-		return (
-			<span className={combinedClass} {...props}>
-				{loading ? <Spinner variant="simple" size={size === "14" ? 14 : 16} /> : null}
-				{children}
-			</span>
-		)
-	}
-
-	return loading ? (
-		<span className={combinedClass} rel={rel} {...props}>
-			{loading ? <Spinner variant="simple" size={size === "14" ? 14 : 16} /> : null}
-			{children}
-		</span>
-	) : (
-		<Link href={href} className={combinedClass} target={target} rel={rel} {...props}>
-			{children}
-		</Link>
-	)
-}
-
-LinkButton.displayName = "LinkButton"
-
 // Icon button size variants - only handles sizing
 export const iconButtonSizeVariants = cva("", {
 	variants: {
@@ -574,6 +551,4 @@ function IconButton({ loading = false, variant = "strong", size = "36", color = 
 
 IconButton.displayName = "IconButton"
 
-IconButton.displayName = "IconButton"
-
-export { Button, ButtonGroup, CompactButton, LinkButton, IconButton }
+export { Button, ButtonGroup, CompactButton, IconButton }

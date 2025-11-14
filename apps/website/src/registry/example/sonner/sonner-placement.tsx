@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, XIcon } from "lucide-react"
 import { toast } from "sonner"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const ToastPlacement = () => {
 	return (
@@ -19,12 +19,12 @@ const ToastPlacement = () => {
 									<p className="text-sm font-normal sm:whitespace-nowrap">Toast description message.</p>
 								</div>
 								<div className="flex gap-3">
-									<LinkButton className="!font-medium text-white" href="#">
+									<Button className="!font-medium text-white" variant={"link"}>
 										Learn More
-									</LinkButton>
-									<LinkButton className="!font-medium text-white" href="#">
+									</Button>
+									<Button className="!font-medium text-white" variant={"link"}>
 										Upgrade
-									</LinkButton>
+									</Button>
 								</div>
 							</div>
 							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer text-white" />
@@ -47,12 +47,12 @@ const ToastPlacement = () => {
 									<p className="text-sm font-normal">Toast description message.</p>
 								</div>
 								<div className="flex gap-3">
-									<LinkButton className="!font-medium text-white" href="#">
+									<Button className="!font-medium text-white" variant="link">
 										Learn More
-									</LinkButton>
-									<LinkButton className="!font-medium text-white" href="#">
+									</Button>
+									<Button className="!font-medium text-white" variant={"link"}>
 										Upgrade
-									</LinkButton>
+									</Button>
 								</div>
 							</div>
 							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer text-white" />

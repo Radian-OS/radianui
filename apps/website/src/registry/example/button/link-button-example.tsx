@@ -1,15 +1,16 @@
 import React from "react"
-import { LinkButton } from "@/registry/ui/button"
+import Link from "next/link"
+import { Button } from "@/registry/ui/button"
 
 function LinkButtonExample() {
 	return (
 		<div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-			<LinkButton color="neutral" href="#link-button">
-				Cancel
-			</LinkButton>
-			<LinkButton color="primary" href="#link-button">
-				Subscribe
-			</LinkButton>
+			<Button color="neutral" asChild variant="link">
+				<Link href="#link-button">Cancel</Link>
+			</Button>
+			<Button color="primary" asChild variant="link">
+				<Link href="#link-button">Subscribe</Link>
+			</Button>
 		</div>
 	)
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import { ChevronDown } from "lucide-react"
 import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
-import { LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
@@ -54,9 +54,9 @@ const InviteCard = () => {
 												<p className="text-fg text-sm font-medium">{member.name}</p>
 												<p className="text-fg-secondary text-[13px] font-normal">{member.email}</p>
 											</span>
-											<LinkButton href="#">
+											<Button variant="link">
 												Can View <ChevronDown />
-											</LinkButton>
+											</Button>
 										</div>
 										{index < emailMembers.length - 1 && <Divider className="my-2" />}
 									</div>

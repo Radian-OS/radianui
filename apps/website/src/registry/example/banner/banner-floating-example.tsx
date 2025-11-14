@@ -1,7 +1,7 @@
 import React from "react"
 import { Brain } from "lucide-react"
 import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
-import { LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const BannerFloatingExample = () => {
 	return (
@@ -15,7 +15,7 @@ const BannerFloatingExample = () => {
 					<BannerDescription className="truncate">I am an example of a Floating Banner</BannerDescription>
 				</BannerContent>
 				<div className="pl-1">
-					<LinkButton href="#floating-banner">Click Me</LinkButton>
+					<Button variant="link">Click Me</Button>
 				</div>
 			</Banner>
 		</div>

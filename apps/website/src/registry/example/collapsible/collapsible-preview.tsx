@@ -23,7 +23,7 @@ export default function CollapsiblePreview() {
 						</p>
 					</CollapsibleContent>
 					<CollapsibleTrigger asChild>
-						<Button variant="ghost" size="28" color="primary" className="px-0 hover:bg-transparent hover:underline">
+						<Button className="text-[13px]" variant="link">
 							{isOpen ? "Show less" : "Show more"}
 						</Button>
 					</CollapsibleTrigger>

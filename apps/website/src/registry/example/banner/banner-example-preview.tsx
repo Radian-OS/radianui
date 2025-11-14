@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { Info } from "lucide-react"
 import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
-import { LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 function BannerExamplePreview() {
 	const [bannerVisible, setBannerVisible] = useState(true)
@@ -27,9 +27,9 @@ function BannerExamplePreview() {
 							<BannerDescription className="truncate">App Security Patch</BannerDescription>
 						</BannerContent>
 						<div className="pl-1">
-							<LinkButton color="neutral" href="#">
+							<Button variant="link" color="neutral">
 								Upgrade Now
-							</LinkButton>
+							</Button>
 						</div>
 					</div>
 				</Banner>

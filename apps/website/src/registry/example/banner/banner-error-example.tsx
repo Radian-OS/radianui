@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { TriangleAlert } from "lucide-react"
 import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const BannerErrorExample = () => {
 	const [bannerVisible, setBannerVisible] = useState(true)
@@ -20,9 +20,9 @@ const BannerErrorExample = () => {
 						<TriangleAlert size={20} />
 					</BannerIcon>
 					<BannerTitle className="grow truncate">Pending Review. There is 1 new important file waiting for your review</BannerTitle>
-					<LinkButton href="#error-banner" className="px-1 text-white">
+					<Button variant="link" className="px-1 text-white">
 						Review Now
-					</LinkButton>
+					</Button>
 				</Banner>
 			)}
 

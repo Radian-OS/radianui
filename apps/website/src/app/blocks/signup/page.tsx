@@ -3,9 +3,10 @@
 import { useRef, useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { GithubIcon } from "@/components/home/github-icon"
 import { GoogleIcon } from "@/components/home/google-icon"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
@@ -68,9 +69,9 @@ export default function Signup() {
 						<span className="heading-5">Sign Up</span>
 						<p className="text-fg-secondary text-sm">
 							Already have an account?{" "}
-							<LinkButton href="#" color="primary">
-								Sign in
-							</LinkButton>
+							<Button asChild color="primary">
+								<Link href="#">Sign in</Link>
+							</Button>
 						</p>
 					</div>
 
@@ -118,13 +119,13 @@ export default function Signup() {
 								</Button>
 								<p className="text-fg-secondary text-sm">
 									By signing up, you agree to Radian&apos;s{" "}
-									<LinkButton href="#" color="info">
-										Terms of Service
-									</LinkButton>{" "}
+									<Button color="info" variant="link">
+										<Link href="#">Terms of Service</Link>
+									</Button>{" "}
 									and{" "}
-									<LinkButton href="#" color="info">
-										Privacy Policy
-									</LinkButton>
+									<Button color="info" variant="link">
+										<Link href="#">Privacy Policy</Link>
+									</Button>
 								</p>
 							</div>
 						</div>
