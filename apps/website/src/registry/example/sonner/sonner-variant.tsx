@@ -1,7 +1,7 @@
 import React from "react"
 import { Box, XIcon } from "lucide-react"
 import { toast } from "sonner"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const ToastColor = () => {
 	return (
@@ -18,12 +18,12 @@ const ToastColor = () => {
 								<p className="text-fg-secondary text-sm font-normal">Toast description message.</p>
 							</div>
 							<div className="flex gap-3">
-								<LinkButton color="neutral" href="#">
+								<Button color="neutral" variant="link">
 									Learn More
-								</LinkButton>
-								<LinkButton color="neutral" href="#">
+								</Button>
+								<Button color="neutral" variant="link">
 									Upgrade
-								</LinkButton>
+								</Button>
 							</div>
 							<XIcon onClick={() => toast.dismiss(t)} size={16} className="text-fg-secondary cursor-pointer" />
 						</div>
@@ -44,12 +44,12 @@ const ToastColor = () => {
 								<p className="text-sm font-normal">Toast description message.</p>
 							</div>
 							<div className="flex gap-3">
-								<LinkButton className="text-white" href="#">
+								<Button className="text-white" variant="link">
 									Learn More
-								</LinkButton>
-								<LinkButton className="text-white" href="#">
+								</Button>
+								<Button className="text-white" variant="link">
 									Upgrade
-								</LinkButton>
+								</Button>
 							</div>
 							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer text-white" />
 						</div>
@@ -70,12 +70,12 @@ const ToastColor = () => {
 								<p className="text-sm font-normal">Toast description message.</p>
 							</div>
 							<div className="flex gap-3">
-								<LinkButton className="text-fg-inverse" href="#">
+								<Button className="text-fg-inverse" variant="link">
 									Learn More
-								</LinkButton>
-								<LinkButton className="text-fg-inverse" href="#">
+								</Button>
+								<Button className="text-fg-inverse" variant="link">
 									Upgrade
-								</LinkButton>
+								</Button>
 							</div>
 							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer" />
 						</div>

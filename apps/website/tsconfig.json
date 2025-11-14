@@ -24,7 +24,8 @@
     ".next/types/**/*.ts",
     "**/*.mdx",
     ".contentlayer/generated",
-    "next-sitemap.config.cjs"
+    "next-sitemap.config.cjs",
+    "src/app/blocks/verification"
   ],
   "exclude": [
     "node_modules",

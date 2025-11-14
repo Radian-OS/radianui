@@ -1,7 +1,8 @@
 "use client"
 
 import { useId, useState } from "react"
-import { Button, LinkButton } from "@/registry/ui/button"
+import Link from "next/link"
+import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import { Input } from "@/registry/ui/input"
@@ -87,9 +88,9 @@ export default function PlaygroundSignin({ rounded }: { rounded: "default" | "ro
 										Remember me
 									</Label>
 								</div>
-								<LinkButton href="#" color="primary">
-									Forgot Password?
-								</LinkButton>
+								<Button variant="link" asChild color="primary">
+									<Link href="#">Forgot Password ?</Link>
+								</Button>
 							</div>
 
 							<Button className={`w-full ${radiusMap[rounded]}`} type="button" disabled={isLoading}>
@@ -100,9 +101,9 @@ export default function PlaygroundSignin({ rounded }: { rounded: "default" | "ro
 
 					<p className="text-fg text-center text-sm">
 						Don&apos;t have an account?{" "}
-						<LinkButton href="#" color="primary">
-							Create account
-						</LinkButton>
+						<Button variant="link" asChild color="primary">
+							<Link href="#">Create account</Link>
+						</Button>
 					</p>
 				</div>
 			</div>

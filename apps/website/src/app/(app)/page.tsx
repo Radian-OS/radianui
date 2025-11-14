@@ -1,4 +1,4 @@
-import { Box, Code, SearchCode } from "lucide-react"
+import { Box } from "lucide-react"
 import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
@@ -28,27 +28,25 @@ export default function Page() {
 							<BorderBeam size={50} />
 						</div>
 						<h1 className="heading-1 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-center text-transparent">Build next gen of world class products and solutions</h1>
-						<p className="text-fg-secondary text-center text-lg font-normal">
-							Radian is a high-quality, flexible and open-source, design and development library built using React and Tailwind. Start your next product here
+						<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-medium">
+							Radian is a high-quality, flexible and open-source, design and development library built using React, Radix and Tailwind.
 						</p>
 					</div>
-					<div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
+						<Button
+							size="40"
+							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] sm:w-fit">
+							Copy Terminal Command
+						</Button>
 						<Link href="/docs/components/accordion" className="w-full sm:w-fit">
-							<Button size="36" className="w-full sm:w-fit" variant="outline" color="neutral">
-								<SearchCode />
+							<Button size="40" className="bg-elevation-level1/20 w-full backdrop-blur-md sm:w-fit" variant="outline" color="neutral">
 								Browse Components
 							</Button>
 						</Link>
-						<Button
-							size="36"
-							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] sm:w-fit">
-							<Code />
-							Copy Terminal Command
-						</Button>
 					</div>
 				</div>
 
-				<div className="mt-27 relative mx-auto h-[860px] max-w-[1400px]">
+				<div className="mt-15 relative mx-auto h-[860px] max-w-[1400px]">
 					<HomeInteractive />
 
 					{/* Upper left line */}

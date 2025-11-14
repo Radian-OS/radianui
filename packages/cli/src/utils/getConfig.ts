@@ -38,7 +38,7 @@ export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
 	const result = await explorer.search(cwd)
 
 	if (!result) {
-		throw new Error(`To add components, make sure you have a components.json file. Run ${txt.info(`npx radianui init`)} to set it up.`)
+		throw new Error(`To add components, make sure you have a ${txt.info("components.json")} file. Run ${txt.info("npx radianui init")} to set it up.`)
 	}
 
 	try {
@@ -49,9 +49,9 @@ export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
 			...parsed,
 			aliases: {
 				...parsed.aliases,
-				animated: parsed.aliases.animated ? parsed.aliases.animated : "@/components/animated",
-				hooks: parsed.aliases.hooks ? parsed.aliases.hooks : "@/components/hooks",
-				lib: parsed.aliases.lib ? parsed.aliases.lib : "@/components/lib",
+				animated: parsed.aliases.animated ?? "@/components/animated",
+				hooks: parsed.aliases.hooks ?? "@/components/hooks",
+				lib: parsed.aliases.lib ?? "@/components/lib",
 			},
 		}
 		return parsed

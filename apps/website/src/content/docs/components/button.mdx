@@ -111,10 +111,6 @@ links:
 
 <ComponentPreview path="button/link-button-example" />
 
-### Link Button Size
-
-<ComponentPreview path="button/link-button-size-example" />
-
 ### Icon Button
 
 <ComponentPreview path="button/icon-button-example" />
@@ -166,7 +162,7 @@ links:
 			{
 				name: "variant",
 				defaultValue: "strong",
-				values: ["strong", "soft", "outline", "ghost"],
+				values: ["strong", "soft", "outline", "ghost","link"],
 				required: false,
 				description: "Defines the visual style of the button",
 			},
@@ -284,39 +280,6 @@ links:
     			required: false,
     			description: "If true, the button will render as a child component",
     		}
-    ]}
-    />
-    <PropsTable
-    title="LinkButton"
-    data={[
-    	{
-            name: "size",
-            defaultValue: "14",
-            values: ["14", "16"],
-            required: false,
-            description: "Sets the size of the button",
-        },
-    	{
-    		name:"disabled",
-    		defaultValue: "false",
-    		values: ["boolean"],
-    		required: false,
-    		description: "Disables interaction with the button when set to true"
-    	},
-    	 {
-            name: "variant",
-            defaultValue: "strong",
-            values: ["strong", "soft", "outline", "ghost"],
-            required: false,
-            description: "Defines the visual style of the button",
-        },
-        {
-            name:"color",
-            defaultValue: "primary",
-            values: ["primary", "info", "success", "warning", "error", "neutral"],
-            required: false,
-            description: "Sets the color scheme of the button",
-        },
     ]}
     />
 

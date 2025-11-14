@@ -1,7 +1,7 @@
 import React from "react"
 import { ArrowUpRight, CircleAlert, OctagonAlert } from "lucide-react"
 import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
-import { LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const AlertErrorExamples = () => {
 	return (
@@ -14,14 +14,14 @@ const AlertErrorExamples = () => {
 					<AlertTitle>An error occurred while uploading your file.</AlertTitle>
 					<AlertDescription>Please ensure it is under 10MB and try again</AlertDescription>
 					<section className="flex items-center gap-2 pt-2">
-						<LinkButton color="error" href="#error-alerts-examples">
+						<Button color="error" variant="link">
 							Try again
-						</LinkButton>
+						</Button>
 						<span className="bg-fg-tertiary size-1 rounded-full"></span>
-						<LinkButton color="error" href="#error-alerts-examples">
+						<Button color="error" variant="link">
 							File Requirements
-						</LinkButton>
-						<ArrowUpRight size={20} />
+							<ArrowUpRight />
+						</Button>
 					</section>
 				</AlertContent>
 			</Alert>
@@ -33,9 +33,9 @@ const AlertErrorExamples = () => {
 					<AlertTitle>Connection Error</AlertTitle>
 					<AlertDescription>Unable to connect to the server. Please try again later</AlertDescription>
 					<section className="flex items-center pt-2">
-						<LinkButton color="error" href="#error-alerts-examples">
+						<Button color="error" variant="link">
 							Retry
-						</LinkButton>
+						</Button>
 					</section>
 				</AlertContent>
 			</Alert>

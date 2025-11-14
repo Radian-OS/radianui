@@ -1,7 +1,7 @@
 import React from "react"
 import { ArrowRight, Info, ShieldCheck } from "lucide-react"
 import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
-import { Button, LinkButton } from "@/registry/ui/button"
+import { Button } from "@/registry/ui/button"
 
 const BannerPrimaryExamples = () => {
 	return (
@@ -10,8 +10,8 @@ const BannerPrimaryExamples = () => {
 				<BannerIcon>
 					<Info size={20} />
 				</BannerIcon>
-				<BannerTitle>You have 1 day remaining in your Trail Period</BannerTitle>
-				<BannerDescription>Have questions or need help ? </BannerDescription>
+				<BannerTitle className="truncate">You have 1 day remaining in your Trail Period</BannerTitle>
+				<BannerDescription className="truncate">Have questions or need help ? </BannerDescription>
 				<div className="pl-1">
 					<Button className="text-fg-secondary bg-white hover:bg-white" color="neutral" size="28">
 						Talk to Sales
@@ -24,9 +24,9 @@ const BannerPrimaryExamples = () => {
 					<ShieldCheck size={20} />
 				</BannerIcon>
 				<BannerTitle className="truncate">New Version 1.0.2</BannerTitle>
-				<BannerDescription className="grow truncate">New security patch and 2FA now available in app</BannerDescription>
+				<BannerDescription className="truncate">New security patch and 2FA now available in app</BannerDescription>
 				<div className="flex items-center justify-center gap-1">
-					<LinkButton href="#primary-banner">Learn More</LinkButton>
+					<Button variant="link">Learn More</Button>
 					<ArrowRight size={20} />
 				</div>
 			</Banner>

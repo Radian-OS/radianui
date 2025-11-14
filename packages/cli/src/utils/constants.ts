@@ -32,3 +32,10 @@ export const FONTS = [
 	{ title: "IBM Plex Sans", value: "ibm-plex-sans" },
 	{ title: "Figtree", value: "figtree" },
 ]
+export const DEFAULT_FRAMEWORK = "next-app"
+export const DEFAULT_FONT = "inter"
+export const DEFAULT_BRAND_COLOR = "amber"
+export const DEFAULT_PROJECT_NAME = "my-app"
+export const MAX_PROJECT_NAME_LENGTH = 128
+export const PROJECT_DEPENDENCIES = ["tw-animate-css", "class-variance-authority", "clsx", "tailwind-merge", "lucide-react"]
+export const VITE_EXTRA_DEPENDENCIES = ["@tailwindcss/vite"]

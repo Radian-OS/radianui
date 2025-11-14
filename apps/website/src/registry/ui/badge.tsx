@@ -51,11 +51,11 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 			className: "bg-black-inverse border border-alpha text-white-inverse font-medium",
 		},
 		// outline
-		{ variant: "outline", color: "primary", className: "text-primary-text border border-primary bg-transparent" },
-		{ variant: "outline", color: "info", className: "text-info-text border border-info bg-transparent" },
-		{ variant: "outline", color: "success", className: "text-success-text border border-success bg-transparent" },
-		{ variant: "outline", color: "error", className: "text-error-text border border-error bg-transparent" },
-		{ variant: "outline", color: "warning", className: "text-warning-text border border-warning bg-transparent" },
+		{ variant: "outline", color: "primary", className: "text-primary-text border border-primary-border bg-transparent" },
+		{ variant: "outline", color: "info", className: "text-info-text border border-info-border bg-transparent" },
+		{ variant: "outline", color: "success", className: "text-success-text border border-success-border bg-transparent" },
+		{ variant: "outline", color: "error", className: "text-error-text border border-error-border bg-transparent" },
+		{ variant: "outline", color: "warning", className: "text-warning-text border border-warning-border bg-transparent" },
 		{ variant: "outline", color: "neutral", className: "text-fg-secondary border bg-transparent" },
 		// soft
 		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text" },

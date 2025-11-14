@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import { Info } from "lucide-react"
-import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
-import { LinkButton } from "@/registry/ui/button"
+import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
+import { Button } from "@/registry/ui/button"
 
 function BannerExamplePreview() {
 	const [bannerVisible, setBannerVisible] = useState(true)
@@ -22,12 +22,14 @@ function BannerExamplePreview() {
 						<BannerIcon>
 							<Info />
 						</BannerIcon>
-						<BannerTitle>New Version Available</BannerTitle>
-						<BannerDescription>App Security Patch</BannerDescription>
+						<BannerContent className="gor flex grow flex-col items-start sm:grow-0 sm:flex-row sm:items-center sm:gap-2">
+							<BannerTitle className="truncate">New Version Available</BannerTitle>
+							<BannerDescription className="truncate">App Security Patch</BannerDescription>
+						</BannerContent>
 						<div className="pl-1">
-							<LinkButton color="neutral" href="#">
+							<Button variant="link" color="neutral">
 								Upgrade Now
-							</LinkButton>
+							</Button>
 						</div>
 					</div>
 				</Banner>
