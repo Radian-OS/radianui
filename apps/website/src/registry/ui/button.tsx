@@ -508,13 +508,29 @@ export const iconButtonSizeVariants = cva("", {
 			"44": "[&>svg]:size-5 rounded-[10px] size-11 p-3",
 			"48": "[&>svg]:size-6 rounded-[10px] size-12 p-3",
 		},
+		color: {
+			primary: "",
+			info: "",
+			success: "",
+			error: "",
+			warning: "",
+			neutral: "",
+		},
 		variant: {
+			strong: "",
+			soft: "",
 			outline: "",
-			default: "",
+			ghost: "",
+			link: "",
 		},
 	},
 	compoundVariants: [
 		// Adjusted padding for outline variant (accounting for border)
+		{ variant: "soft", color: "primary", className: "text-primary" },
+		{ variant: "soft", color: "success", className: "text-success" },
+		{ variant: "soft", color: "error", className: "text-error" },
+		{ variant: "soft", color: "warning", className: "text-warning" },
+		{ variant: "soft", color: "info", className: "text-info" },
 		{ variant: "outline", size: "28", className: "p-1.25" },
 		{ variant: "outline", size: "32", className: "p-1.5" },
 		{ variant: "outline", size: "36", className: "p-1.75" },
@@ -533,7 +549,7 @@ function IconButton({ loading = false, variant = "strong", size = "36", color = 
 
 		iconButtonSizeVariants({
 			size,
-			variant: variant === "outline" ? "outline" : "default",
+			variant,
 		}),
 		disabled && "opacity-50",
 		"flex items-center justify-center",
