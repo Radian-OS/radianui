@@ -16,7 +16,7 @@ function BadgeRoundedExample() {
 				<BadgeDot className="bg-primary-border" />
 				New Customer
 			</Badge>
-			<Badge variant="strong" color="error" className="rounded-full">
+			<Badge variant="strong" color="error" className="rounded-full py-1 pl-1 pr-2">
 				<Avatar size="16">
 					<AvatarImage src="https://randomuser.me/api/portraits/men/1.jpg" />
 					<AvatarFallback>S</AvatarFallback>
