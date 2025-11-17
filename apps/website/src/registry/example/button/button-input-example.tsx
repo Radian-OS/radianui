@@ -34,7 +34,7 @@ const ButtonExampleInput = () => {
 
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
-					<div className="relative w-[250px]">
+					<div className="relative">
 						<Button id="date" type="button" variant="outline" color="neutral">
 							<CalendarIcon />
 							{date ? (

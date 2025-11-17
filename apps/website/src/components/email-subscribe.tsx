@@ -10,13 +10,13 @@ export const EmailSubscribe = () => {
 	const { email, setEmail, isPending, subscriptionResult, handleSubscribe } = useEmailSubscribe()
 	return (
 		<div className="z-30 flex flex-col gap-3">
-			<form className="flex gap-3" onSubmit={handleSubscribe}>
-				<Input size="40" className="sm:min-w-70.25 w-72" type="email" required placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
+			<form className="flex flex-col gap-3 sm:flex-row" onSubmit={handleSubscribe}>
+				<Input size="40" className="sm:min-w-70.25 w-full" type="email" required placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} />
 				<Button
 					size="40"
 					loading={isPending}
 					disabled={isPending}
-					className="border-primary-hover border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
+					className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16),0px_0px_0px_1.5px_#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] sm:w-fit">
 					{isPending ? "Subscribing" : "Subscribe"}
 				</Button>
 			</form>
