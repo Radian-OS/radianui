@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -86,6 +87,7 @@ export default async function RootLayout({
 						</ThemeProvider>
 					</ToastProvider>
 				</PostHogProvider>
+				<Toaster richColors />
 			</body>
 		</html>
 	)
