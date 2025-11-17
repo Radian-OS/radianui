@@ -13,7 +13,7 @@ export default function DatePickerWithTimeExample() {
 	const today = new Date()
 	const id = React.useId()
 
-	const [date, setDate] = React.useState<Date | undefined>(today)
+	const [date, setDate] = React.useState<Date | undefined>()
 	const [time, setTime] = React.useState<Date | undefined>(today)
 
 	const [isPopoverOpen, setIsPopoverOpen] = React.useState(false)
@@ -29,8 +29,12 @@ export default function DatePickerWithTimeExample() {
 	return (
 		<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 			<PopoverTrigger asChild>
-				<Button type="button" variant="outline" className="text-fg w-[250px] justify-start gap-2" color="neutral">
-					{date ? `${format(date, "LLL dd, y")} ${time && `- ${format(time, "hh:mm a")}`}` : <span className="text-fg-tertiary text-sm font-normal">Pick a date and time</span>}
+				<Button type="button" variant="outline" className="text-fg w-[320px] justify-start gap-2" color="neutral">
+					{date ? (
+						`${format(date, "LLL dd, y")} ${time && `- ${format(time, "hh:mm a")}`}`
+					) : (
+						<span className="text-fg-tertiary text-sm font-normal"> {`${format(new Date(), "LLL dd, y - hh:mm a")}`}</span>
+					)}
 					<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 				</Button>
 			</PopoverTrigger>
