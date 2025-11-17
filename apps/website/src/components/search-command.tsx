@@ -1,5 +1,6 @@
 import { useRef } from "react"
 import { ArrowDown, ArrowUp, Search, X } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 import { NavigationItem } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
@@ -67,7 +68,7 @@ export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems
 															itemRefs.current[globalIndex] = el
 														}}
 														className={`hover:bg-text/4 flex cursor-pointer items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium ${selectedIndex === globalIndex ? "bg-fill2" : ""}`}>
-														<img src={section.searchIcon} alt="Search icon" />
+														{section.searchIcon ? <Image height={24} width={24} src={section.searchIcon} alt="Search icon" /> : null}
 														{item.title}
 													</li>
 												</Link>

@@ -39,3 +39,4 @@ export const DEFAULT_PROJECT_NAME = "my-app"
 export const MAX_PROJECT_NAME_LENGTH = 128
 export const PROJECT_DEPENDENCIES = ["tw-animate-css", "class-variance-authority", "clsx", "tailwind-merge", "lucide-react"]
 export const VITE_EXTRA_DEPENDENCIES = ["@tailwindcss/vite"]
+export const FALLBACK_PACKAGE_MANAGER = "npm"

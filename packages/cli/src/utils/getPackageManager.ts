@@ -1,6 +1,7 @@
 import fs from "fs-extra"
 import { type AgentName, detect, getUserAgent } from "package-manager-detector"
 import path from "path"
+import { FALLBACK_PACKAGE_MANAGER } from "@/utils/constants"
 
 export const getPackageManager = async (projectPath: string, { withFallback }: { withFallback?: boolean } = { withFallback: false }): Promise<AgentName> => {
 	const resolvedPath = path.resolve(projectPath)
@@ -24,7 +25,7 @@ export const getPackageManager = async (projectPath: string, { withFallback }: {
 		case "yarn":
 			return detectedPackageManager.name
 		default:
-			return withFallback ? getFallbackPackageManager() : "npm"
+			return withFallback ? getFallbackPackageManager() : FALLBACK_PACKAGE_MANAGER
 	}
 }
 
@@ -35,7 +36,7 @@ function getFallbackPackageManager(): AgentName {
 	if (userAgent.startsWith("yarn")) return "yarn"
 	if (userAgent.startsWith("bun")) return "bun"
 
-	return "npm"
+	return FALLBACK_PACKAGE_MANAGER
 }
 
 export const getPackageRunner = async (projectPath: string) => {

@@ -1,5 +1,15 @@
 # radianui
 
+## 0.1.1
+
+### Patch Changes
+
+- Added font selection and brand-color configuration options
+
+- Improved compatibility with existing Vite and Next.js projects
+
+- Enhanced block-adding logic so variants (e.g., signin-01, signin-02) no longer overwrite each other but register as distinct blocks
+
 ## 0.1.0
 
 ### Minor Changes

@@ -304,14 +304,6 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Pagination UI component illustration",
 			},
 			{
-				title: "Password",
-				description: "2 Components",
-				url: "/docs/components/password",
-				thumbnail: "/thumbnails/coming-soon.webp",
-				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
-				alt: "Password UI component illustration",
-			},
-			{
 				title: "Phone Number",
 				description: "2 Components",
 				url: "/docs/components/phone-number",
