@@ -1,6 +1,6 @@
 import React from "react"
 import { Label } from "@/registry/ui/label"
-import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/one-time-password-field"
+import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 
 export default function OTPFieldDisabled() {
 	return (

@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
 import { Label } from "@/registry/ui/label"
-import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/one-time-password-field"
+import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 
 const EmailCode = () => {
 	const handleSubmitClick = () => {

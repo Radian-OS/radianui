@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/one-time-password-field"
+import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 
 const FormSchema = z.object({
 	pin: z.string().min(6, {
