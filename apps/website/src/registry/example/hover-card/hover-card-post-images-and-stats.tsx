@@ -69,11 +69,11 @@ export default function HoverCardPostImagesAndStats() {
 					</div>
 					<div className="flex flex-col items-center justify-center gap-0.5">
 						<p className="font-semibold">{profile.followersInThousands}k</p>
-						<p className="text-fg-secondary text-xs">Posts</p>
+						<p className="text-fg-secondary text-xs">Followers</p>
 					</div>
 					<div className="flex flex-col items-center justify-center gap-0.5">
 						<p className="font-semibold">{profile.followingInThousands}k</p>
-						<p className="text-fg-secondary text-xs">Posts</p>
+						<p className="text-fg-secondary text-xs">Following</p>
 					</div>
 				</div>
 
