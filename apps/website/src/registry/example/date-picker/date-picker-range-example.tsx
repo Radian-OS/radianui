@@ -41,7 +41,7 @@ export default function DatePickerPresetsExample() {
 	return (
 		<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 			<PopoverTrigger asChild>
-				<Button type="button" variant="outline" className="text-fg w-[250px] justify-start gap-2" color="neutral">
+				<Button type="button" variant="outline" className="text-fg w-[320px] justify-start gap-2" color="neutral">
 					{date?.from ? (
 						date.to ? (
 							<>
