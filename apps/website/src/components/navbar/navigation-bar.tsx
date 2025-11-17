@@ -12,7 +12,11 @@ import FigmaPreviewButton from "./figma-preview-button"
 import { VersionDisplayBadge } from "./version-badge"
 import { WebsiteLogo } from "./website-logo"
 
-export function NavigationBar() {
+type NavigationBarProps = {
+	version: string
+}
+
+export function NavigationBar({ version }: NavigationBarProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 	return (
@@ -22,7 +26,7 @@ export function NavigationBar() {
 					{/* Left-hand side containing the logo and version badge */}
 					<div className="flex h-9 flex-shrink-0 items-center gap-2">
 						<WebsiteLogo />
-						<VersionDisplayBadge />
+						<VersionDisplayBadge version={version} />
 					</div>
 
 					{/* Central navigation items */}
