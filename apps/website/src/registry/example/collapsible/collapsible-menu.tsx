@@ -24,6 +24,12 @@ type MenuItem = {
 	subMenuItems?: SubMenuItem[]
 }
 
+type MenuItemEntryProps = {
+	item: MenuItem
+	activeId: string | null
+	onActivate: (id: string) => void
+}
+
 const MENU_ITEMS: MenuItem[] = [
 	{
 		id: "overview",
@@ -56,13 +62,13 @@ const MENU_ITEMS: MenuItem[] = [
 		href: "#collapsible-menu",
 	},
 	{
-		id: "overview",
-		label: "Overview",
+		id: "workspace",
+		label: "Workspace",
 		icon: Grid2X2,
 		subMenuItems: [
-			{ id: "menu-item-1", label: "Menu Item 1", href: "#collapsible-menu" },
-			{ id: "menu-item-2", label: "Menu Item 2", href: "#collapsible-menu" },
-			{ id: "menu-item-3", label: "Menu Item 3", href: "#collapsible-menu" },
+			{ id: "roadmap", label: "Roadmap", href: "#collapsible-menu" },
+			{ id: "integrations", label: "Integrations", href: "#collapsible-menu" },
+			{ id: "security", label: "Security", href: "#collapsible-menu" },
 		],
 	},
 	{
@@ -70,53 +76,74 @@ const MENU_ITEMS: MenuItem[] = [
 		label: "Shared with members",
 		icon: Users,
 		subMenuItems: [
-			{ id: "menu-item-4", label: "Menu Item 4", href: "#collapsible-menu" },
-			{ id: "menu-item-5", label: "Menu Item 5", href: "#collapsible-menu" },
-			{ id: "menu-item-6", label: "Menu Item 6", href: "#collapsible-menu" },
+			{ id: "handoff", label: "Design handoff", href: "#collapsible-menu" },
+			{ id: "collections", label: "Collections", href: "#collapsible-menu" },
+			{ id: "permissions", label: "Permissions", href: "#collapsible-menu" },
 		],
 	},
 ]
 
 const menuTriggerBaseClasses =
-	"hover:bg-fill2 focus-visible:ring-alpha flex w-full items-center rounded-md p-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2"
+	"hover:bg-fill1 focus-visible:ring-alpha group flex w-full items-center rounded-md p-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2"
 
-function MenuItemCollapsible({ item }: { item: MenuItem }) {
+const activeClasses = "data-[active=true]:bg-primary-accent data-[active=true]:text-primary-text"
+const iconClasses = "text-fg-secondary size-5 group-data-[active=true]:text-primary"
+
+function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
+	const hasChildren = Boolean(item.subMenuItems?.length)
+
+	if (!hasChildren) {
+		const isActive = activeId === item.id
+
+		return (
+			<Link href={item.href || "#"} className={cn(menuTriggerBaseClasses, activeClasses, "gap-2")} data-active={isActive ? "true" : undefined} onClick={() => onActivate(item.id)}>
+				<item.icon className={iconClasses} />
+				{item.label}
+			</Link>
+		)
+	}
+
+	const isParentActive = item.subMenuItems?.some((link) => link.id === activeId)
+
 	return (
-		<Collapsible className="group flex flex-col gap-0.5">
-			<CollapsibleTrigger className={cn("data-[state=open]:bg-fill2 group justify-between", menuTriggerBaseClasses)}>
+		<Collapsible className="group flex flex-col gap-0.5" defaultOpen={isParentActive}>
+			<CollapsibleTrigger
+				className={cn("data-[state=open]:bg-fill2 group justify-between", menuTriggerBaseClasses, activeClasses)}
+				data-active={isParentActive ? "true" : undefined}>
 				<span className="flex items-center gap-2">
-					<item.icon className="text-fg-secondary size-5" />
+					<item.icon className={iconClasses} />
 					{item.label}
 				</span>
 				<ChevronDown className="text-fg-tertiary size-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
 			</CollapsibleTrigger>
 			<CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-				<ul className="text-fg-secondary space-y-0.5">
-					{item.subMenuItems?.map((link) => (
-						<li key={link.id}>
-							<Link href={link.href} className={cn(menuTriggerBaseClasses, "px-9")}>
-								{link.label}
-							</Link>
-						</li>
-					))}
+				<ul className="space-y-0.5">
+					{item.subMenuItems?.map((link) => {
+						const isActive = activeId === link.id
+
+						return (
+							<li key={link.id}>
+								<Link
+									href={link.href}
+									className={cn(menuTriggerBaseClasses, activeClasses, "ps-9")}
+									data-active={isActive ? "true" : undefined}
+									onClick={() => onActivate(link.id)}>
+									{link.label}
+								</Link>
+							</li>
+						)
+					})}
 				</ul>
 			</CollapsibleContent>
 		</Collapsible>
 	)
 }
 
-function MenuItemStatic({ item }: { item: MenuItem }) {
-	return (
-		<Link href={item.href || "#"} className={cn(menuTriggerBaseClasses, "gap-2")}>
-			<item.icon className="text-fg-secondary size-5" />
-			{item.label}
-		</Link>
-	)
-}
-
 export default function CollapsibleMenu() {
+	const [activeId, setActiveId] = React.useState<string | null>(null)
+
 	return (
-		<div className="border-soft bg-bg shadow-xs max-w-67.5 flex w-full flex-col rounded-2xl border text-sm">
+		<div className="border-soft bg-bg shadow-xs max-w-67.5 flex w-full flex-col rounded-xl border text-sm">
 			<header className="flex items-center gap-2 px-4 py-3">
 				<Avatar size="40">
 					<AvatarImage src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=facearea&w=160&q=80" alt="Amelie Laurent" />
@@ -140,9 +167,9 @@ export default function CollapsibleMenu() {
 				</div>
 
 				<nav className="flex flex-col gap-0.5 px-2">
-					{MENU_ITEMS.map((item) =>
-						item.subMenuItems?.length ? <MenuItemCollapsible key={"collapsible-" + item.id} item={item} /> : <MenuItemStatic key={"static-" + item.id} item={item} />
-					)}
+					{MENU_ITEMS.map((item) => (
+						<MenuItemEntry key={item.id} item={item} activeId={activeId} onActivate={setActiveId} />
+					))}
 				</nav>
 			</div>
 		</div>
