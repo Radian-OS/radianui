@@ -39,7 +39,7 @@ export default function SearchInput() {
 				<div className="w-full max-w-80">
 					<InputWrapper className="w-full">
 						<Search className="size-5" />
-						<Input placeholder="Search fruits..." value={query} onChange={handleChange} />
+						<Input placeholder="eg, Apple, Banana, Orange..." value={query} onChange={handleChange} />
 					</InputWrapper>
 				</div>
 			</PopoverTrigger>
