@@ -175,7 +175,7 @@ const components = (examples: typeof Examples | undefined) => ({
 		/>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-fg-secondary", className)} {...props}>
+		<p className={cn("text-fg", className)} {...props}>
 			{children}
 		</p>
 	),
