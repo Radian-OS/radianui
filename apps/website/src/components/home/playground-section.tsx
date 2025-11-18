@@ -1,14 +1,32 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { CircleDashed, CircleDotDashed, FileCode, ListTodo, Lock, Moon, Square, SquareDashed, Squircle, SwatchBook, Type } from "lucide-react"
+import {
+	CircleDashed,
+	CircleDotDashed,
+	ClipboardList,
+	FileCode,
+	FileText,
+	ListTodo,
+	Lock,
+	MessageCircleQuestion,
+	Moon,
+	Settings,
+	Square,
+	SquareDashed,
+	Squircle,
+	SwatchBook,
+	Type,
+} from "lucide-react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code-area"
-// import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/registry/ui/command"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 // import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import PlaygroundSignin, { radiusMap } from "./playground-signin"
@@ -350,6 +368,9 @@ export default function Signin() {
 }
 `
 
+	const [layout, setLayout] = useState("signin-1")
+	const [radius, setRadius] = useState("default")
+
 	useEffect(() => {
 		setActiveFile("globals.css")
 	}, [color])
@@ -576,20 +597,26 @@ export default function Signin() {
 										<FileCode size={20} className="text-fg-tertiary" />
 										<p className="text-fg-secondary text-sm font-normal">app/signin/signin.tsx</p>
 									</div>
-									<TabsList variant="outline" className="h-full rounded-none border-none">
-										<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
-										<TabsTrigger value="globals.css">globals.css</TabsTrigger>
+									<TabsList variant="outline" className="h-full !rounded-none border-none data-[orientation=horizontal]:h-full">
+										<TabsTrigger
+											className="border-border h-full border-l data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
+											value="signin.tsx">
+											signin.tsx
+										</TabsTrigger>
+										<TabsTrigger className="h-full data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none" value="globals.css">
+											globals.css
+										</TabsTrigger>
 									</TabsList>
 								</div>
 								<div className="flex-1 overflow-auto">
 									<TabsContent value="signin.tsx">
-										<CodeArea code={CODE} language="tsx" className="h-full p-0" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
+										<CodeArea code={CODE} language="tsx" className="h-full [&>pre>pre]:!p-4" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
 									</TabsContent>
 									<TabsContent value="globals.css">
 										<CodeArea
 											code={getGlobalsFileCode(color)}
 											language="css"
-											className="h-full w-full overflow-scroll"
+											className="h-full w-full overflow-scroll [&>pre>pre]:!p-4"
 											lineNumbers
 											theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 										/>
@@ -601,15 +628,77 @@ export default function Signin() {
 							<div className="bg-bg absolute right-4 top-4 flex h-12 items-center rounded-xl p-1">
 								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1">
 									<div className="border-border flex h-8 items-center border-r">
-										<p className="hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium">Layout</p>
+										<Dropdown indicatorPosition="right">
+											<DropdownTrigger asChild>
+												<p className="hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium">Layout</p>
+											</DropdownTrigger>
+											<DropdownContent sideOffset={10}>
+												<DropdownRadioGroup value={layout} onValueChange={setLayout}>
+													<DropdownRadioItem value="signin-1">Sign In 1</DropdownRadioItem>
+													<DropdownRadioItem value="signin-2">Sign In 2</DropdownRadioItem>
+													<DropdownRadioItem value="signin-3">Sign In 3</DropdownRadioItem>
+													<DropdownRadioItem value="signin-3">Sign In 3</DropdownRadioItem>
+													<DropdownRadioItem value="signup-1">Sign Up 1</DropdownRadioItem>
+													<DropdownRadioItem value="signup-2">Sign Up 2</DropdownRadioItem>
+												</DropdownRadioGroup>
+											</DropdownContent>
+										</Dropdown>
 									</div>
 									<div className="text-fg-secondary flex">
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<CircleDashed size={18} />
-										</div>
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<Type size={18} />
-										</div>
+										<Dropdown indicatorPosition="right">
+											<DropdownTrigger>
+												<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+													<CircleDashed size={18} />
+												</div>
+											</DropdownTrigger>
+											<DropdownContent sideOffset={10}>
+												<DropdownRadioGroup value={radius} onValueChange={setRadius}>
+													<DropdownRadioItem value="default">Default</DropdownRadioItem>
+													<DropdownRadioItem value="rounded">Rounded</DropdownRadioItem>
+													<DropdownRadioItem value="flat">Flat</DropdownRadioItem>
+													<DropdownRadioItem value="fun">Fun</DropdownRadioItem>
+												</DropdownRadioGroup>
+											</DropdownContent>
+										</Dropdown>
+
+										<Popover>
+											<PopoverTrigger asChild>
+												<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+													<Type size={18} />
+												</div>
+											</PopoverTrigger>
+											<PopoverContent sideOffset={10} className="border-none p-0">
+												<Command className="w-full max-w-md">
+													<CommandInput placeholder="Search Google Fonts" />
+													<CommandList>
+														<CommandEmpty>No results found</CommandEmpty>
+														<CommandItem>
+															<FileText />
+															<span>Search Google Fonts</span>
+															<CommandShortcut>⌘D</CommandShortcut>
+														</CommandItem>
+														<CommandItem>
+															<ClipboardList />
+															<span>Create task</span>
+															<CommandShortcut>⌘T</CommandShortcut>
+														</CommandItem>
+														<CommandDivider />
+														<CommandGroup title="Settings">
+															<CommandItem>
+																<Settings />
+																<span>Open settings</span>
+																<CommandShortcut>⌘S</CommandShortcut>
+															</CommandItem>
+															<CommandItem>
+																<MessageCircleQuestion />
+																<span>Open help center</span>
+																<CommandShortcut>H</CommandShortcut>
+															</CommandItem>
+														</CommandGroup>
+													</CommandList>
+												</Command>
+											</PopoverContent>
+										</Popover>
 										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 											<ListTodo size={18} />
 										</div>
