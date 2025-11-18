@@ -1,5 +1,5 @@
 ---
-title: One Time Password Field
+title: OTP Field
 description: A group of single-character text inputs to handle one-time password verification
 links:
   github:
@@ -9,7 +9,7 @@ links:
       href: https://www.radix-ui.com/primitives/docs/components/one-time-password-field
 ---
 
-<ComponentPreview path="one-time-password-field/otp-field-preview" />
+<ComponentPreview path="otp-field/otp-field-preview" />
 
 ## Installation
 
@@ -21,10 +21,10 @@ links:
 	<TabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm dlx radianui@latest add one-time-password-field",
-				npm: "npx radianui@latest add one-time-password-field",
-				yarn: "yarn dlx radianui@latest add one-time-password-field",
-				bun: "bunx radianui@latest add one-time-password-field",
+				pnpm: "pnpm dlx radianui@latest add otp-field",
+				npm: "npx radianui@latest add otp-field",
+				yarn: "yarn dlx radianui@latest add otp-field",
+				bun: "bunx radianui@latest add otp-field",
 			}}
 		/>
 	</TabsContent>
@@ -33,15 +33,15 @@ links:
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
 			commands={{
-				pnpm: "pnpm add @radix-ui/react-one-time-password-field ",
-				npm: "npm install @radix-ui/react-one-time-password-field",
-				yarn: "yarn add @radix-ui/react-one-time-password-field ",
-				bun: "bun add @radix-ui/react-one-time-password-field ",
+				pnpm: "pnpm add @radix-ui/react-otp-field ",
+				npm: "npm install @radix-ui/react-otp-field",
+				yarn: "yarn add @radix-ui/react-otp-field ",
+				bun: "bun add @radix-ui/react-otp-field ",
 			}}
 		/>
 
     	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="one-time-password-field" title="components/ui/one-time-password-field.tsx" collapsible />
+    	<ComponentSource name="otp-field" title="components/ui/otp-field.tsx" collapsible />
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </TabsContent>
@@ -52,16 +52,12 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/one-time-password-field.tsx"
-	code={`import { OTPField, OTPInput, OTPHiddenInput } from "@/components/ui/one-time-password-field"`}
-	showLineNumbers={false}
-/>
+<CodeSnippet title="/components/ui/otp-field.tsx" code={`import { OTPField, OTPInput, OTPHiddenInput } from "@/components/ui/otp-field"`} showLineNumbers={false} />
 
 ### Code
 
 <CodeSnippet
-	title="/components/ui/one-time-password-field.tsx"
+	title="/components/ui/otp-field.tsx"
 	code={`<OTPField>
 		<OTPInput />
 		<OTPInput />
@@ -78,27 +74,27 @@ links:
 
 ### Size
 
-<ComponentPreview path="one-time-password-field/otp-size" />
+<ComponentPreview path="otp-field/otp-size" />
 
 ### Type - Password
 
-<ComponentPreview path="one-time-password-field/otp-field-type-password" />
+<ComponentPreview path="otp-field/otp-field-type-password" />
 
 ### Validation Type
 
-<ComponentPreview path="one-time-password-field/otp-field-validation-type" />
+<ComponentPreview path="otp-field/otp-field-validation-type" />
 
 ### Disabled
 
-<ComponentPreview path="one-time-password-field/otp-field-disabled" />
+<ComponentPreview path="otp-field/otp-field-disabled" />
 
 ### Form
 
-<ComponentPreview path="one-time-password-field/otp-field-form" />
+<ComponentPreview path="otp-field/otp-field-form" />
 
 ### Auto Submit Form
 
-<ComponentPreview path="one-time-password-field/otp-field-auto-submit" />
+<ComponentPreview path="otp-field/otp-field-auto-submit" />
 
 ---
 

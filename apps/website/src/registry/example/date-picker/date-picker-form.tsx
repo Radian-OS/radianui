@@ -14,9 +14,11 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function DatePickerForm() {
-	const today = new Date()
-	today.setHours(0, 0, 0, 0)
-
+	const today = new Date().toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	})
 	const [date, setDate] = useState<Date | undefined>()
 	const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
@@ -26,25 +28,11 @@ export default function DatePickerForm() {
 			.optional()
 			.refine((d) => d !== undefined, {
 				message: "Please select a delivery date.",
-			})
-			.refine(
-				(selectedDate) => {
-					if (!selectedDate) return false
-					const normalizedDate = new Date(selectedDate)
-					normalizedDate.setHours(0, 0, 0, 0)
-					return normalizedDate >= today
-				},
-				{
-					message: "Delivery date must be today or in the future.",
-				}
-			),
+			}),
 	})
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
-		defaultValues: {
-			deliveryDate: today,
-		},
 	})
 
 	function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -79,7 +67,7 @@ export default function DatePickerForm() {
 									<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 										<PopoverTrigger asChild>
 											<Button id="date" type="button" variant="outline" color="neutral" className="text-fg hover:bg-elevation-level1 w-full justify-start gap-2">
-												{date ? format(date, "PPP") : <span className="text-fg-tertiary text-sm font-normal">Pick a date</span>}
+												{date ? format(date, "PPP") : <span className="text-fg-tertiary text-sm font-normal">{today}</span>}
 												<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 											</Button>
 										</PopoverTrigger>

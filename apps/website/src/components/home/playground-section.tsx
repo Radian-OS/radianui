@@ -1,15 +1,15 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Box, CircleDashed, CircleDotDashed, Copy, LockKeyhole, Plus, Share, Square, SquareDashed, Squircle, SwatchBook } from "lucide-react"
+import { CircleDashed, CircleDotDashed, FileCode, ListTodo, Lock, Moon, Square, SquareDashed, Squircle, SwatchBook, Type } from "lucide-react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+// import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import PlaygroundSignin, { radiusMap } from "./playground-signin"
 
@@ -28,7 +28,7 @@ const FONTS: Record<string, string> = {
 	Figtree: figtree.className,
 }
 
-const COLOR_VALUES = {
+export const COLOR_VALUES = {
 	red: {
 		label: "Red",
 		icon: <Squircle size={16} className="fill-error stroke-error" />,
@@ -99,7 +99,7 @@ const COLOR_VALUES = {
 	},
 }
 
-const ROUNDED_VALUES = {
+export const ROUNDED_VALUES = {
 	rounded: {
 		label: "Rounded",
 		icon: <CircleDashed size={20} className="text-fg-secondary" />,
@@ -307,10 +307,15 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 
 export default function PlaygroundSection() {
 	const { theme } = useTheme()
-	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet-blue")
-	const [rounded, setRounded] = useState<ROUNDED_VALUES_TYPE>("default")
+	const [color] = useState<COLOR_VALUES_TYPE>("violet-blue")
+	const [rounded] = useState<ROUNDED_VALUES_TYPE>("default")
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
-	const [selectedFont, setSelectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
+	const [selectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
+
+	// 	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet-blue")
+	// const [rounded, setRounded] = useState<ROUNDED_VALUES_TYPE>("default")
+	// const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
+	// const [selectedFont, setSelectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
 
 	const CODE = `
 export default function Signin() {
@@ -441,17 +446,17 @@ export default function Signin() {
 						<span className="bg-warning size-2.5 rounded-full" />
 					</div>
 					<div className="text-fg-tertiary flex items-center gap-1.5">
-						<LockKeyhole size={16} />
+						<Lock size={16} />
 						<span className="text-sm">radianos.com</span>
 					</div>
 					<div className="text-fg-tertiary flex items-center gap-3 px-3">
-						<Share size={16} />
+						{/* <Share size={16} />
 						<Plus size={16} />
-						<Copy size={16} />
+						<Copy size={16} /> */}
 					</div>
 				</div>
 				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
-					<div className="border-soft flex items-center justify-between border-b p-3">
+					{/* <div className="border-soft flex items-center justify-between border-b p-3">
 						<TabsList className="lg:hidden">
 							<TabsTrigger value="preview">Preview</TabsTrigger>
 							<TabsTrigger value="code">Code</TabsTrigger>
@@ -533,18 +538,9 @@ export default function Signin() {
 								</SelectContent>
 							</Select>
 
-							<Tabs value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
-								<TabsList>
-									{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
-										<TabsTrigger key={value} value={value}>
-											{ROUNDED_VALUES[value].icon}
-											<span className="not-lg:hidden">{ROUNDED_VALUES[value].label}</span>
-										</TabsTrigger>
-									))}
-								</TabsList>
-							</Tabs>
+
 						</div>
-					</div>
+					</div> */}
 					{/* Mobile/Tablet View */}
 					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
 						<TabsContent value="preview" className={`${FONTS[selectedFont]}`}>
@@ -572,16 +568,22 @@ export default function Signin() {
 						</TabsContent>
 					</div>
 					{/* Desktop View */}
-					<div className="not-lg:hidden h-200 flex flex-1">
-						<div className="border-soft h-200 flex-1 border-r p-2">
+					<div className="not-lg:hidden h-205 flex flex-1">
+						<div className="border-soft h-205 flex-1 border-r">
 							<Tabs className="h-full gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
-								<TabsList variant="outline-ghost" size="md">
-									<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
-									<TabsTrigger value="globals.css">globals.css</TabsTrigger>
-								</TabsList>
+								<div className="border-border flex h-10 items-center justify-between border-b pl-4">
+									<div className="flex items-center gap-2">
+										<FileCode size={20} className="text-fg-tertiary" />
+										<p className="text-fg-secondary text-sm font-normal">app/signin/signin.tsx</p>
+									</div>
+									<TabsList variant="outline" className="h-full rounded-none border-none">
+										<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
+										<TabsTrigger value="globals.css">globals.css</TabsTrigger>
+									</TabsList>
+								</div>
 								<div className="flex-1 overflow-auto">
 									<TabsContent value="signin.tsx">
-										<CodeArea code={CODE} language="tsx" className="h-full" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
+										<CodeArea code={CODE} language="tsx" className="h-full p-0" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
 									</TabsContent>
 									<TabsContent value="globals.css">
 										<CodeArea
@@ -595,7 +597,48 @@ export default function Signin() {
 								</div>
 							</Tabs>
 						</div>
-						<div className={`w-[480px] color-${color} ${FONTS[selectedFont]}`}>
+						<div className={`relative flex-1 color-${color} ${FONTS[selectedFont]}`}>
+							<div className="bg-bg absolute right-4 top-4 flex h-12 items-center rounded-xl p-1">
+								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1">
+									<div className="border-border flex h-8 items-center border-r">
+										<p className="hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium">Layout</p>
+									</div>
+									<div className="text-fg-secondary flex">
+										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+											<CircleDashed size={18} />
+										</div>
+										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+											<Type size={18} />
+										</div>
+										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+											<ListTodo size={18} />
+										</div>
+										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+											<Image alt="" height={18} width={18} src="/mstile-70x70.png" />
+										</div>
+									</div>
+									<div className="border-border flex h-8 items-center border-l px-2">
+										<div className="text-fg-secondary flex">
+											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+												<Moon size={18} />
+											</div>
+											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+												<div className="size-4.5 bg-primary border-border rounded-full border"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{/* <Tabs className="absolute right-4 top-4" value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
+								<TabsList>
+									{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
+										<TabsTrigger key={value} value={value}>
+											{ROUNDED_VALUES[value].icon}
+											<span className="not-lg:hidden">{ROUNDED_VALUES[value].label}</span>
+										</TabsTrigger>
+									))}
+								</TabsList>
+							</Tabs> */}
 							<PlaygroundSignin rounded={rounded} />
 						</div>
 					</div>
