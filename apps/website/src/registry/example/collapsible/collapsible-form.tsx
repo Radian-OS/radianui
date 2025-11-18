@@ -62,7 +62,7 @@ export default function CollapsibleForm() {
 							<Label htmlFor="same-as-shipping">Same as shipping address</Label>
 						</div>
 						<Collapsible open={!sameAsShipping}>
-							<CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down mt-4 overflow-visible">
+							<CollapsibleContent className="mt-4 overflow-visible">
 								<div className="space-y-5">
 									<div className="grid grid-cols-2 gap-2.5">
 										<div>

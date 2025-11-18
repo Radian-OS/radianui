@@ -11,7 +11,7 @@ export default function CollapsibleText() {
 				building beautiful user interfaces.
 			</p>
 			{!isOpen && <p>...</p>}
-			<CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+			<CollapsibleContent>
 				<br />
 				<p>
 					Our components are built with accessibility in mind, following WAI-ARIA guidelines and best practices. They are fully customizable with CSS variables and support dark

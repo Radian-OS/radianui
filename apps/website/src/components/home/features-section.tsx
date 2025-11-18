@@ -267,7 +267,7 @@ const FeaturesSectionNew = () => {
 													<TableRow key={data.company}>
 														<TableCell className="flex items-center">{data.company}</TableCell>
 														<TableCell>
-															<Badge size="20" color="neutral">
+															<Badge size="20" variant="soft" className="bg-primary-accent">
 																{data.currency}
 															</Badge>
 														</TableCell>
@@ -328,7 +328,7 @@ const FeaturesSectionNew = () => {
 																	<TableRow key={data.company}>
 																		<TableCell className="flex items-center">{data.company}</TableCell>
 																		<TableCell>
-																			<Badge size="20" color="neutral">
+																			<Badge size="20" variant="soft" className="bg-primary-accent">
 																				{data.currency}
 																			</Badge>
 																		</TableCell>

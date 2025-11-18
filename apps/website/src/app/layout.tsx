@@ -8,6 +8,8 @@ import { ToastProvider } from "@/contexts/toast-context"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
+console.log(process.env.NEXT_PUBLIC_DEPLOYMENT_ENV!)
+
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
 	description: "Welcome to Radian your goto React & Tailwind CSS lib.",
