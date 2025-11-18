@@ -116,7 +116,7 @@ function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 				</span>
 				<ChevronDown className="text-fg-tertiary size-5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
 			</CollapsibleTrigger>
-			<CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+			<CollapsibleContent>
 				<ul className="space-y-0.5">
 					{item.subMenuItems?.map((link) => {
 						const isActive = activeId === link.id

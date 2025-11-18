@@ -19,7 +19,7 @@ export function CodeCollapsibleWrapper({ className, children, ...props }: React.
 					<Divider orientation="vertical" className="mx-1.5 !h-4" />
 				</div>
 			</CollapsibleTrigger>
-			<CollapsibleContent forceMount className="relative data-[state=closed]:max-h-60">
+			<CollapsibleContent forceMount className="relative data-[state=closed]:max-h-60 data-[state=closed]:animate-none data-[state=open]:animate-none">
 				{children}
 			</CollapsibleContent>
 			<CollapsibleTrigger className="from-bg/70 to-bg text-fg-tertiary absolute inset-x-0 bottom-0 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b text-sm group-data-[state=open]/collapsible:hidden">
