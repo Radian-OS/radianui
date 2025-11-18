@@ -13,7 +13,7 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 			ui_host: "https://us.posthog.com",
 			capture_pageview: false, // We capture pageviews manually
 			capture_pageleave: true, // Enable pageleave capture
-			debug: process.env.NEXT_PUBLIC_DEPLOYMENT_ENV! === "DEV",
+			// debug: process.env.NEXT_PUBLIC_DEPLOYMENT_ENV! === "DEV",
 		})
 	}, [])
 
