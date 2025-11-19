@@ -391,9 +391,9 @@ const FeaturesSectionNew = () => {
 								</div>
 							</div>
 
-							<div className="pl-13.5">
-								<div className="border-soft rounded-r-0 w-full rounded-t-xl border border-b-0">
-									<div className="border-soft flex rounded-t-xl border border-l-0 border-r-0 border-t-0 px-4 py-3">
+							<div className="pl-13.5 pr-11.5">
+								<div className="border-soft bg-fill1 rounded-r-0 min-w-107.5 rounded-t-xl border border-b-0">
+									<div className="flex rounded-t-xl px-4 py-3">
 										<div className="gap-1.25 flex items-center">
 											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
 											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
@@ -401,8 +401,8 @@ const FeaturesSectionNew = () => {
 										</div>
 										<div className="text-fg-tertiary flex grow items-center justify-center text-xs">radianos.js</div>
 									</div>
-									<div>
-										<pre className="overflow-x-auto whitespace-pre-wrap">
+									<div className="bg-fill1 px-1.5">
+										<pre className="bg-bg border-soft overflow-x-auto whitespace-pre-wrap rounded-lg border">
 											<code className="p-1.5">
 												{`
  <div className="example">
