@@ -5,6 +5,7 @@ import {
 	ArrowDownRight,
 	ArrowUpRight,
 	ChevronDown,
+	ChevronRight,
 	CircleGauge,
 	Component,
 	FolderGit,
@@ -16,15 +17,15 @@ import {
 	SquareTerminal,
 	SwatchBook,
 } from "lucide-react"
-import { useTheme } from "next-themes"
 // import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
 import { Skeleton } from "@/registry/ui/skeleton"
+import { Spinner } from "@/registry/ui/spinner"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import DecryptedText from "../effects/decrypted-text"
 
 // import { FlickeringGrid } from "../effects/flickering"
 
@@ -52,7 +53,7 @@ const FeaturesSectionNew = () => {
 		return () => clearInterval(interval)
 	}, [])
 
-	const lensSize = 180
+	const lensSize = 144
 	const zoom = 2
 
 	const items = [
@@ -115,7 +116,6 @@ const FeaturesSectionNew = () => {
 
 	const { gradient, bg } = colorMap[items[activeIndex]] || colorMap["Sun Burst - Red"]
 
-	const { resolvedTheme } = useTheme()
 	const datas = [
 		{
 			company: "PLTR",
@@ -290,7 +290,7 @@ const FeaturesSectionNew = () => {
 										{/* Magnifier overlay */}
 										{animated && (
 											<div
-												className="border-3 bg-fill2 pointer-events-none absolute rounded-full"
+												className="bg-fill2 pointer-events-none absolute rounded-full border"
 												style={{
 													width: lensSize,
 													height: lensSize,
@@ -367,17 +367,33 @@ const FeaturesSectionNew = () => {
 						</div>
 						<div className="gap-12.25 flex flex-col">
 							<div className="pr-11.5 pl-12">
-								<div className="w-104 border-soft flex items-center justify-center rounded-xl border p-1.5">
-									<div className="bg-elevation-level1 border-soft pr-13.25 text-fg-secondary w-full rounded-[10px] border py-3 pl-3 font-mono text-sm">
-										<span className="text-primary-text">npx</span> <span className="text-info-text">radianui</span> <span className="text-success-text">add</span>{" "}
-										<span className="text-warning-text">[component]</span>
+								<div className="border-soft min-w-107.5 bg-fill1 flex flex-col items-start justify-center gap-3 rounded-xl border px-1.5 pb-1.5 pt-3 sm:min-w-fit">
+									<div className="flex gap-1.5 pl-2">
+										<Skeleton className="bg-fill4 size-1.5 rounded-full" />
+										<Skeleton className="bg-fill4 size-1.5 rounded-full" />
+										<Skeleton className="bg-fill4 size-1.5 rounded-full" />
+									</div>
+									<div className="bg-bg border-soft relative flex w-full items-center rounded-xl border px-3 py-4 text-sm">
+										<div className="flex grow gap-2">
+											<ChevronRight width={12} height={20} className="text-black-inverse" />
+											<DecryptedText
+												characters="npx radianui add [component]"
+												text="npx radianui add"
+												speed={150}
+												maxIterations={500}
+												className="text-fg truncate"
+												parentClassName="inline-block truncate max-w-[200px] text-fg"
+											/>
+											<span className="w-2.25 bg-primary animate-caret-blink absolute left-[155px] h-5" />
+										</div>
+										<Spinner variant="activity" className="text-fg-secondary" size={20} />
 									</div>
 								</div>
 							</div>
 
-							<div className="pl-13.5">
-								<div className="max-w-101 border-soft rounded-r-0 w-full rounded-r-none rounded-t-xl border border-b-0 border-r-0">
-									<div className="border-soft flex rounded-t-xl border border-l-0 border-r-0 border-t-0 px-4 py-3">
+							<div className="pl-13.5 pr-11.5">
+								<div className="border-soft bg-fill1 rounded-r-0 min-w-107.5 rounded-t-xl border border-b-0">
+									<div className="flex rounded-t-xl px-4 py-3">
 										<div className="gap-1.25 flex items-center">
 											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
 											<Skeleton className="bg-fg-disabled size-2 rounded-full" />
@@ -385,31 +401,17 @@ const FeaturesSectionNew = () => {
 										</div>
 										<div className="text-fg-tertiary flex grow items-center justify-center text-xs">radianos.js</div>
 									</div>
-									<div>
-										<CodeArea
-											className="h-[155px]"
-											code={`import { Button, Card, Heading, Text } from '@radianos/ui';
-function MyDashboard() {
-  return (
-    <Card>
-      <Heading as="h2">Welcome to Radian</Heading>
-      <Text>
-        Build beautiful interfaces with Radian.
-      </Text>
-      <Button
-        variant="primary"
-        onClick={() => console.log('Button clicked!')}
-      >
-        Get Started
-      </Button>
-    </Card>
-  );
-}
-
-export default MyDashboard;`}
-											theme={resolvedTheme === "light" ? "github-light-high-contrast" : "github-dark-high-contrast"}
-											language="tsx"
-										/>
+									<div className="bg-fill1 px-1.5">
+										<pre className="bg-bg border-soft overflow-x-auto whitespace-pre-wrap rounded-lg border">
+											<code className="p-1.5">
+												{`
+ <div className="example">
+    <h1>Hello World</h1>
+    <p>This is a JSX snippet shown as</p>
+  </div>
+`}
+											</code>
+										</pre>
 									</div>
 								</div>
 							</div>
