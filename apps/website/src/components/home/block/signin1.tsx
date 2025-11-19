@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
@@ -52,8 +53,16 @@ const FormSchema = z
 		}
 	})
 
+export const radiusMap: Record<string, string> = {
+	default: "",
+	rounded: "rounded-full",
+	flat: "rounded-none",
+	fun: "rounded-xl",
+}
+
 export default function Signin1() {
 	const [isLoading, setIsLoading] = useState(false)
+	const { radius } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -104,7 +113,7 @@ export default function Signin1() {
 											<FormItem>
 												<FormLabel>Email Address</FormLabel>
 												<FormControl>
-													<Input size="36" type="email" {...field} />
+													<Input className={`${radiusMap[radius]} w-full`} size="36" type="email" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -117,7 +126,7 @@ export default function Signin1() {
 											<FormItem>
 												<FormLabel>Password</FormLabel>
 												<FormControl>
-													<Input size="36" type="password" {...field} />
+													<Input className={`${radiusMap[radius]} w-full`} size="36" type="password" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -131,7 +140,7 @@ export default function Signin1() {
 										render={({ field }) => (
 											<div className="flex items-center gap-2">
 												<FormControl>
-													<Checkbox id="remember-me" checked={field.value} onCheckedChange={field.onChange} />
+													<Checkbox id="remember-me" className={`${radiusMap[radius]}`} checked={field.value} onCheckedChange={field.onChange} />
 												</FormControl>
 												<FormLabel htmlFor="remember-me" className="text-fg-secondary font-normal">
 													Remember me
@@ -143,7 +152,7 @@ export default function Signin1() {
 										<Link href="#"> Forgot Password?</Link>
 									</Button>
 								</div>
-								<Button className="w-full" type="submit" disabled={isLoading}>
+								<Button className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>
@@ -156,11 +165,11 @@ export default function Signin1() {
 							<Divider className="flex-1" />
 						</div>
 						<div className="flex gap-3">
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GoogleIcon />
 								Google
 							</Button>
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GithubIcon />
 								Github
 							</Button>

@@ -5,12 +5,14 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { Title } from "./components/title"
+import { radiusMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -50,6 +52,7 @@ const FormSchema = z
 
 export default function Signin3() {
 	const [isLoading, setIsLoading] = useState(false)
+	const { radius } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -100,7 +103,7 @@ export default function Signin3() {
 											<FormItem>
 												<FormLabel>Email Address</FormLabel>
 												<FormControl>
-													<Input size="36" type="email" {...field} />
+													<Input className={`${radiusMap[radius]} w-full`} size="36" type="email" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -118,14 +121,14 @@ export default function Signin3() {
 													</Button>
 												</div>
 												<FormControl>
-													<Input size="36" type="password" {...field} />
+													<Input className={`${radiusMap[radius]} w-full`} size="36" type="password" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
 										)}
 									/>
 								</div>
-								<Button className="w-full" type="submit" disabled={isLoading}>
+								<Button className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>

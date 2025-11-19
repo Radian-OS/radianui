@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
@@ -14,6 +15,7 @@ import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
+import { radiusMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -54,6 +56,7 @@ const FormSchema = z
 
 export default function Signin4() {
 	const [isLoading, setIsLoading] = useState(false)
+	const { radius } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -103,7 +106,7 @@ export default function Signin4() {
 										<FormItem>
 											<FormLabel>Email Address</FormLabel>
 											<FormControl>
-												<Input size="36" type="email" {...field} />
+												<Input className={`${radiusMap[radius]} w-full`} size="36" type="email" {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -116,7 +119,7 @@ export default function Signin4() {
 										<FormItem>
 											<FormLabel>Password</FormLabel>
 											<FormControl>
-												<Input size="36" type="password" {...field} />
+												<Input className={`${radiusMap[radius]} w-full`} size="36" type="password" {...field} />
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -129,7 +132,7 @@ export default function Signin4() {
 										render={({ field }) => (
 											<div className="flex items-center gap-2">
 												<FormControl>
-													<Checkbox id="remember-me" checked={field.value} onCheckedChange={field.onChange} />
+													<Checkbox id="remember-me" className={`${radiusMap[radius]}`} checked={field.value} onCheckedChange={field.onChange} />
 												</FormControl>
 												<FormLabel htmlFor="remember-me" className="text-fg-secondary font-normal">
 													Remember me
@@ -141,7 +144,7 @@ export default function Signin4() {
 										<Link href="#"> Forgot Password?</Link>
 									</Button>
 								</div>
-								<Button className="w-full" type="submit" disabled={isLoading}>
+								<Button className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>
@@ -154,11 +157,11 @@ export default function Signin4() {
 							<Divider className="flex-1" />
 						</div>
 						<div className="flex flex-col gap-3">
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GoogleIcon />
 								Continue with Google
 							</Button>
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GithubIcon />
 								Continue with Github
 							</Button>

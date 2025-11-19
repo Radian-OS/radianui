@@ -22,11 +22,15 @@ export type ColorOption =
 	| "magenta"
 	| "rose"
 
+export type RadiusOption = "default" | "rounded" | "flat" | "fun"
+
 interface PlaygroundContextType {
 	layout: LayoutOption
 	setLayout: (layout: LayoutOption) => void
 	color: ColorOption
 	setColor: (color: ColorOption) => void
+	radius: RadiusOption
+	setRadius: (radius: RadiusOption) => void
 }
 
 const PlaygroundContext = createContext<PlaygroundContextType | undefined>(undefined)
@@ -42,6 +46,7 @@ export const usePlayground = () => {
 export const PlaygroundProvider = ({ children }: { children: ReactNode }) => {
 	const [layout, setLayout] = useState<LayoutOption>("signin-1")
 	const [color, setColor] = useState<ColorOption>("violet-blue")
+	const [radius, setRadius] = useState<RadiusOption>("default")
 
-	return <PlaygroundContext.Provider value={{ layout, setLayout, color, setColor }}>{children}</PlaygroundContext.Provider>
+	return <PlaygroundContext.Provider value={{ layout, setLayout, color, setColor, radius, setRadius }}>{children}</PlaygroundContext.Provider>
 }
