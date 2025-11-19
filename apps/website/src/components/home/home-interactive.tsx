@@ -62,7 +62,7 @@ const HomeInteractive = () => {
 	const [activeTab, setActiveTab] = useState<(typeof PAGES)[number]["value"]>("signin")
 	const { copy, copied } = useCopyPaste()
 	return (
-		<div className="bg-bg/60 border-soft z-50 h-full rounded-xl border p-3 backdrop-blur-[45px]">
+		<div className="bg-bg/60 border-soft relative z-50 h-full rounded-xl border p-3 backdrop-blur-[45px]">
 			<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-1.5 pl-3">
@@ -89,15 +89,13 @@ const HomeInteractive = () => {
 						<Button
 							onClick={(e) => {
 								copy(e, PAGES.find((p) => p.value === activeTab)!.command)
-								// toast.success("copied")
-								toast("Toast Title", {
-									description: "Toast Description Message",
-									action: {
-										label: "Upgrade",
-										onClick: () => console.log("Upgrade clicked!"),
-									},
-									duration: 2000,
-								})
+								toast.custom(() => (
+									<div className="bg-black-inverse text-fg-inverse flex w-[200px] items-center justify-between gap-2 rounded-lg p-3">
+										<div className="text-fg-inverse">
+											<p className="text-sm font-normal">Successfully Copied Command</p>
+										</div>
+									</div>
+								))
 							}}
 							color="neutral"
 							variant="ghost"
