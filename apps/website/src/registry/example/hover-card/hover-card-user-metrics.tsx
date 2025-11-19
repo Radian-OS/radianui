@@ -13,85 +13,66 @@ const profile = {
 	followersInThousands: 412.4,
 }
 
-function HoverCardContentShared() {
-	return (
-		<HoverCardContent className="flex w-80 flex-col gap-4 rounded-xl">
-			<div className="space-y-2.5">
-				<div className="flex items-center justify-between">
-					<Avatar size="64">
-						<AvatarImage src={profile.avatar} />
-						<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
-					</Avatar>
-					<Button size="36" className="self-start rounded-full px-3">
-						Follow
-					</Button>
-				</div>
-
-				<div className="gap-0.75 flex flex-col">
-					<span className="flex items-center gap-1">
-						<p className="font-medium">{profile.name}</p>
-						<VerifiedSVGIcon />
-					</span>
-					<p className="text-fg-tertiary text-sm">{profile.username}</p>
-				</div>
-			</div>
-			<p className="text-fg-secondary text-sm">{profile.bio}</p>
-			<div className="flex h-5 gap-3 text-sm">
-				<p className="flex items-center gap-1">
-					<span className="font-medium">{profile.followingInThousands}k</span>
-					<span className="text-fg-secondary">Following</span>
-				</p>
-				<Divider orientation="vertical" className="bg-soft-alpha" />
-				<p className="flex items-center gap-1">
-					<span className="font-medium">{profile.followersInThousands}k</span>
-					<span className="text-fg-secondary">Followers</span>
-				</p>
-			</div>
-		</HoverCardContent>
-	)
-}
-
 export default function HoverCardUserMetrics() {
 	return (
-		<div className="bg-fill2 hover:bg-fill3 w-76 flex items-center justify-between rounded-full py-2 pe-3 ps-2 hover:cursor-pointer">
-			<div className="flex items-center gap-2">
-				{/* Avatar Trigger */}
-				<HoverCard>
-					<HoverCardTrigger asChild>
+		<HoverCard>
+			<HoverCardTrigger asChild>
+				<div className="bg-fill2 hover:bg-fill3 w-76 flex items-center justify-between rounded-full py-2 pe-3 ps-2 hover:cursor-pointer">
+					<div className="flex items-center gap-2">
 						<div className="cursor-pointer">
 							<Avatar>
 								<AvatarImage src={profile.avatar} />
 								<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
 							</Avatar>
 						</div>
-					</HoverCardTrigger>
-					<HoverCardContentShared />
-				</HoverCard>
 
-				<div className="gap-0.75 flex flex-col">
-					<span className="flex items-center gap-0.5">
-						{/* Name Trigger */}
-						<HoverCard>
-							<HoverCardTrigger asChild>
+						<div className="gap-0.75 flex flex-col">
+							<span className="flex items-center gap-0.5">
 								<p className="cursor-pointer text-sm font-medium underline-offset-2 hover:underline">{profile.name}</p>
-							</HoverCardTrigger>
-							<HoverCardContentShared />
-						</HoverCard>
-						<VerifiedSVGIcon />
-					</span>
-					{/* Username Trigger */}
-					<HoverCard>
-						<HoverCardTrigger asChild>
+								<VerifiedSVGIcon />
+							</span>
 							<p className="text-fg-tertiary cursor-pointer text-xs">{profile.username}</p>
-						</HoverCardTrigger>
-						<HoverCardContentShared />
-					</HoverCard>
+						</div>
+					</div>
+					<Button size={"32"} className="rounded-full px-3">
+						Follow
+					</Button>
 				</div>
-			</div>
-			<Button size={"32"} className="rounded-full px-3">
-				Follow
-			</Button>
-		</div>
+			</HoverCardTrigger>
+			<HoverCardContent className="flex w-80 flex-col gap-4 rounded-xl">
+				<div className="space-y-2.5">
+					<div className="flex items-center justify-between">
+						<Avatar size="64">
+							<AvatarImage src={profile.avatar} />
+							<AvatarFallback>{profile.name.charAt(0)}</AvatarFallback>
+						</Avatar>
+						<Button size="36" className="self-start rounded-full px-3">
+							Follow
+						</Button>
+					</div>
+
+					<div className="gap-0.75 flex flex-col">
+						<span className="flex items-center gap-1">
+							<p className="font-medium">{profile.name}</p>
+							<VerifiedSVGIcon />
+						</span>
+						<p className="text-fg-tertiary text-sm">{profile.username}</p>
+					</div>
+				</div>
+				<p className="text-fg-secondary text-sm">{profile.bio}</p>
+				<div className="flex h-5 gap-3 text-sm">
+					<p className="flex items-center gap-1">
+						<span className="font-medium">{profile.followingInThousands}k</span>
+						<span className="text-fg-secondary">Following</span>
+					</p>
+					<Divider orientation="vertical" className="bg-soft-alpha" />
+					<p className="flex items-center gap-1">
+						<span className="font-medium">{profile.followersInThousands}k</span>
+						<span className="text-fg-secondary">Followers</span>
+					</p>
+				</div>
+			</HoverCardContent>
+		</HoverCard>
 	)
 }
 

@@ -26,7 +26,7 @@ export default function CalendarWithYearMonthSelectorExample() {
 			hideNavigation
 			components={{
 				DropdownNav: (props: DropdownNavProps) => {
-					return <div className="flex w-full items-center gap-2">{props.children}</div>
+					return <div className="flex w-full items-center gap-2 p-1 pb-0">{props.children}</div>
 				},
 				Dropdown: (props: DropdownProps) => {
 					return (

@@ -21,66 +21,84 @@ const group = {
 
 export default function HoverCardPreview() {
 	return (
-		<HoverCard>
-			<HoverCardTrigger className="group flex cursor-pointer items-center gap-3">
-				<Avatar>
-					<AvatarImage src={profile.avatar} />
-					<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
-				</Avatar>
-				<div className="space-y-0.5 text-sm">
-					<p className="font-medium underline-offset-2 transition group-hover:underline">{profile.name}</p>
-					<p className="text-fg-tertiary">{profile.description}</p>
-				</div>
-			</HoverCardTrigger>
-			<HoverCardContent className="flex w-80 flex-col gap-4 rounded-xl">
-				<div className="space-y-3">
-					{/* Group information */}
-					<div className="flex items-center gap-2.5">
-						<div className="space-y-0.5">
-							<p className="text-base font-medium">{group.name}</p>
-							<p className="text-fg-tertiary text-sm">{group.description}</p>
-						</div>
-						<Avatar className="self-start">
-							<AvatarImage src={profile.avatar} />
-							<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
-						</Avatar>
-					</div>
+		<div className="flex items-center gap-3">
+			<HoverCard>
+				<HoverCardTrigger asChild>
+					<Avatar className="cursor-pointer">
+						<AvatarImage src={profile.avatar} />
+						<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
+					</Avatar>
+				</HoverCardTrigger>
+				<HoverCardContentShared />
+			</HoverCard>
+			<div className="flex flex-col gap-0.5 text-sm">
+				<HoverCard>
+					<HoverCardTrigger asChild>
+						<span className="cursor-pointer font-medium underline-offset-2 transition hover:underline">{profile.name}</span>
+					</HoverCardTrigger>
+					<HoverCardContentShared />
+				</HoverCard>
+				<HoverCard>
+					<HoverCardTrigger asChild>
+						<span className="text-fg-tertiary">{profile.description}</span>
+					</HoverCardTrigger>
+					<HoverCardContentShared />
+				</HoverCard>
+			</div>
+		</div>
+	)
+}
 
-					{/* Badges */}
-					<div className="flex flex-wrap gap-2">
-						<Badge variant="soft" color="neutral">
-							<MapPinned />
-							{group.location}
-						</Badge>
-						<Badge variant="soft" color="neutral">
-							<EarthLock />
-							{group.visibility}
-						</Badge>
-						<Badge variant="soft" color="neutral">
-							<Users />
-							{group.memberCount}
-						</Badge>
+function HoverCardContentShared() {
+	return (
+		<HoverCardContent className="flex w-80 flex-col gap-4 rounded-xl">
+			<div className="space-y-3">
+				{/* Group information */}
+				<div className="flex items-center gap-2.5">
+					<div className="space-y-0.5">
+						<p className="text-base font-medium">{group.name}</p>
+						<p className="text-fg-tertiary text-sm">{group.description}</p>
 					</div>
+					<Avatar className="self-start">
+						<AvatarImage src={profile.avatar} />
+						<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
+					</Avatar>
 				</div>
 
-				{/* Divider */}
-				<div className="border-soft-alpha border-t border-dashed" />
-
-				{/* Action buttons */}
-				<div className="flex items-center justify-between">
-					<div className="flex gap-3">
-						<IconButton variant="outline" color="neutral">
-							<Heart />
-						</IconButton>
-						<IconButton variant="outline" color="neutral">
-							<Share />
-						</IconButton>
-					</div>
-					<Button variant="strong" color="primary">
-						Request
-					</Button>
+				{/* Badges */}
+				<div className="flex flex-wrap gap-2">
+					<Badge variant="soft" color="neutral">
+						<MapPinned />
+						{group.location}
+					</Badge>
+					<Badge variant="soft" color="neutral">
+						<EarthLock />
+						{group.visibility}
+					</Badge>
+					<Badge variant="soft" color="neutral">
+						<Users />
+						{group.memberCount}
+					</Badge>
 				</div>
-			</HoverCardContent>
-		</HoverCard>
+			</div>
+
+			{/* Divider */}
+			<div className="border-soft-alpha border-t border-dashed" />
+
+			{/* Action buttons */}
+			<div className="flex items-center justify-between">
+				<div className="flex gap-3">
+					<IconButton variant="outline" color="neutral">
+						<Heart />
+					</IconButton>
+					<IconButton variant="outline" color="neutral">
+						<Share />
+					</IconButton>
+				</div>
+				<Button variant="strong" color="primary">
+					Request
+				</Button>
+			</div>
+		</HoverCardContent>
 	)
 }
