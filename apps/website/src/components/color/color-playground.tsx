@@ -6,7 +6,7 @@ import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
-const COLORS = [
+export const COLORS = [
 	{ title: "Red", value: "red" },
 	{ title: "Orange", value: "orange" },
 	{ title: "Amber", value: "amber" },

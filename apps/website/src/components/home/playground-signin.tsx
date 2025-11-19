@@ -8,8 +8,8 @@ import { Divider } from "@/registry/ui/divider"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Spinner } from "@/registry/ui/spinner"
-import { GithubIcon } from "./github-icon"
-import { GoogleIcon } from "./google-icon"
+import { GithubIcon } from "./block/components/github-icon"
+import { GoogleIcon } from "./block/components/google-icon"
 import PlaygroundLogo from "./playground-logo"
 
 export const radiusMap: Record<string, string> = {
@@ -19,7 +19,7 @@ export const radiusMap: Record<string, string> = {
 	fun: "rounded-xl",
 }
 
-export default function PlaygroundSignin({ rounded }: { rounded: "default" | "rounded" | "flat" | "fun" }) {
+export default function Signin1({ rounded }: { rounded: "default" | "rounded" | "flat" | "fun" }) {
 	const rememberMeId = useId()
 	const emailId = useId()
 	const passwordId = useId()

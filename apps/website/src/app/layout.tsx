@@ -4,6 +4,7 @@ import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
 import { ThemeProvider } from "@/components/theme-provider"
 import { websiteMetadata } from "@/config/website-metadata-config"
+import { PlaygroundProvider } from "@/contexts/playground"
 import { ToastProvider } from "@/contexts/toast-context"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
@@ -82,9 +83,11 @@ export default async function RootLayout({
 			<body className={cn("relative min-h-svh", "antialiased")}>
 				<PostHogProvider>
 					<ToastProvider>
-						<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-							{children}
-						</ThemeProvider>
+						<PlaygroundProvider>
+							<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+								{children}
+							</ThemeProvider>
+						</PlaygroundProvider>
 					</ToastProvider>
 				</PostHogProvider>
 				<Toaster richColors />

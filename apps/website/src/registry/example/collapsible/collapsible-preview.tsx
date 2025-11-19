@@ -164,7 +164,7 @@ export default function ProjectCollapsible() {
 	return (
 		<Collapsible open={isOpen} onOpenChange={setIsOpen} className="max-w-115 border-soft shadow-xs w-full rounded-xl border transition-all duration-200">
 			<CollapsibleHeader title="Design Project: Radian OS 3.0" subtitle="Status: 84% Complete (2 Dependencies Active)" isOpen={isOpen} />
-			<CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+			<CollapsibleContent>
 				<Divider className="border-soft-alpha" />
 				<TaskList tasks={MOCK_TASKS} />
 			</CollapsibleContent>
