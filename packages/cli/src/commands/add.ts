@@ -55,7 +55,7 @@ export const add = new Command()
 				logger.break()
 				logger.info("The current path does not have a project. You can add components are creating a new project.")
 				logger.break()
-				
+
 				const initOptions: InitOptions = {
 					cwd: options.cwd,
 					skipPrompts: false,
