@@ -1,17 +1,27 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { CircleDashed, CircleDotDashed, FileCode, ListTodo, Lock, Moon, Square, SquareDashed, Squircle, SwatchBook, Type } from "lucide-react"
+import { CircleDashed, CircleDotDashed, FileCode, Lock, Moon, Square, SquareDashed, Squircle, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
-import Image from "next/image"
+import { usePlayground } from "@/contexts/playground"
 import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code-area"
-// import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import Signin1 from "./block/signin1"
+import Signin2 from "./block/signin2"
+import Signin3 from "./block/signin3"
+import Signin4 from "./block/signin4"
+import Signup1 from "./block/signup1"
+import Signup2 from "./block/signup2"
 import PlaygroundSignin, { radiusMap } from "./playground-signin"
+import Colors from "./playground/color"
+import Font from "./playground/font"
+import Layout from "./playground/layout"
+import ListTodos from "./playground/list-todo"
+import Uploads from "./playground/upload"
 
 const FONTS: Record<string, string> = {
 	"Inter Display and Inter": ``,
@@ -307,15 +317,9 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 
 export default function PlaygroundSection() {
 	const { theme } = useTheme()
-	const [color] = useState<COLOR_VALUES_TYPE>("violet-blue")
 	const [rounded] = useState<ROUNDED_VALUES_TYPE>("default")
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
 	const [selectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
-
-	// 	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet-blue")
-	// const [rounded, setRounded] = useState<ROUNDED_VALUES_TYPE>("default")
-	// const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
-	// const [selectedFont, setSelectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
 
 	const CODE = `
 export default function Signin() {
@@ -350,13 +354,26 @@ export default function Signin() {
 }
 `
 
-	useEffect(() => {
-		setActiveFile("globals.css")
-	}, [color])
+	const [radius, setRadius] = useState("default")
+
+	// useEffect(() => {
+	// 	setActiveFile("globals.css")
+	// }, [color])
 
 	useEffect(() => {
 		setActiveFile("signin.tsx")
 	}, [rounded])
+
+	const { layout, color } = usePlayground()
+
+	const layouts = {
+		"signin-1": <Signin1 />,
+		"signin-2": <Signin2 />,
+		"signin-3": <Signin3 />,
+		"signin-4": <Signin4 />,
+		"signup-1": <Signup1 />,
+		"signup-2": <Signup2 />,
+	}
 
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
@@ -449,98 +466,9 @@ export default function Signin() {
 						<Lock size={16} />
 						<span className="text-sm">radianos.com</span>
 					</div>
-					<div className="text-fg-tertiary flex items-center gap-3 px-3">
-						{/* <Share size={16} />
-						<Plus size={16} />
-						<Copy size={16} /> */}
-					</div>
+					<div className="text-fg-tertiary flex items-center gap-3 px-3">{/* <Share size={16} /> */}</div>
 				</div>
 				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
-					{/* <div className="border-soft flex items-center justify-between border-b p-3">
-						<TabsList className="lg:hidden">
-							<TabsTrigger value="preview">Preview</TabsTrigger>
-							<TabsTrigger value="code">Code</TabsTrigger>
-						</TabsList>
-
-						<Popover>
-							<PopoverTrigger asChild>
-								<Button size="36" variant="outline" color="neutral" className="md:hidden">
-									<Box className="text-fg-tertiary" />
-								</Button>
-							</PopoverTrigger>
-							<PopoverContent align="end" className="flex flex-col gap-3">
-								<Select value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
-									<SelectTrigger size="36" className="text-fg-secondary w-full font-medium">
-										<SelectValue />
-									</SelectTrigger>
-									<SelectContent>
-										{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
-											<SelectItem value={color} key={color}>
-												{COLOR_VALUES[color].label}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-
-								<Select value={selectedFont} onValueChange={(value) => setSelectedFont(value)}>
-									<SelectTrigger size="36" className="text-fg-secondary w-full font-medium">
-										<SelectValue />
-									</SelectTrigger>
-									<SelectContent>
-										{Object.keys(FONTS).map((fontName) => (
-											<SelectItem key={fontName} value={fontName}>
-												{fontName}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-
-								<Tabs value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
-									<TabsList>
-										{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
-											<TabsTrigger key={value} value={value}>
-												{ROUNDED_VALUES[value].icon}
-												<span className="not-lg:hidden">{ROUNDED_VALUES[value].label}</span>
-											</TabsTrigger>
-										))}
-									</TabsList>
-								</Tabs>
-							</PopoverContent>
-						</Popover>
-
-						<div className="not-md:hidden flex items-center gap-3">
-							<Select value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
-								<SelectTrigger size="36" className="text-fg-secondary w-38 font-medium">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
-										<SelectItem value={color} key={color}>
-											<div className="flex items-center gap-1.5">
-												{COLOR_VALUES[color].icon}
-												{COLOR_VALUES[color].label}
-											</div>
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-
-							<Select value={selectedFont} onValueChange={(value) => setSelectedFont(value)}>
-								<SelectTrigger size="36" className="text-fg-secondary w-49 font-medium">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{Object.keys(FONTS).map((fontName) => (
-										<SelectItem key={fontName} value={fontName}>
-											{fontName}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-
-
-						</div>
-					</div> */}
 					{/* Mobile/Tablet View */}
 					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
 						<TabsContent value="preview" className={`${FONTS[selectedFont]}`}>
@@ -576,20 +504,26 @@ export default function Signin() {
 										<FileCode size={20} className="text-fg-tertiary" />
 										<p className="text-fg-secondary text-sm font-normal">app/signin/signin.tsx</p>
 									</div>
-									<TabsList variant="outline" className="h-full rounded-none border-none">
-										<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
-										<TabsTrigger value="globals.css">globals.css</TabsTrigger>
+									<TabsList variant="outline" className="h-full !rounded-none border-none data-[orientation=horizontal]:h-full">
+										<TabsTrigger
+											className="border-border h-full border-l data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
+											value="signin.tsx">
+											signin.tsx
+										</TabsTrigger>
+										<TabsTrigger className="h-full data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none" value="globals.css">
+											globals.css
+										</TabsTrigger>
 									</TabsList>
 								</div>
 								<div className="flex-1 overflow-auto">
 									<TabsContent value="signin.tsx">
-										<CodeArea code={CODE} language="tsx" className="h-full p-0" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
+										<CodeArea code={CODE} language="tsx" className="h-full [&>pre>pre]:!p-4" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
 									</TabsContent>
 									<TabsContent value="globals.css">
 										<CodeArea
 											code={getGlobalsFileCode(color)}
 											language="css"
-											className="h-full w-full overflow-scroll"
+											className="h-full w-full overflow-scroll [&>pre>pre]:!p-4"
 											lineNumbers
 											theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
 										/>
@@ -601,45 +535,42 @@ export default function Signin() {
 							<div className="bg-bg absolute right-4 top-4 flex h-12 items-center rounded-xl p-1">
 								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1">
 									<div className="border-border flex h-8 items-center border-r">
-										<p className="hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium">Layout</p>
+										<Layout />
 									</div>
 									<div className="text-fg-secondary flex">
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<CircleDashed size={18} />
-										</div>
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<Type size={18} />
-										</div>
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<ListTodo size={18} />
-										</div>
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<Image alt="" height={18} width={18} src="/mstile-70x70.png" />
-										</div>
+										<Dropdown indicatorPosition="right">
+											<DropdownTrigger>
+												<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+													<CircleDashed size={18} />
+												</div>
+											</DropdownTrigger>
+											<DropdownContent sideOffset={10}>
+												<DropdownRadioGroup value={radius} onValueChange={setRadius}>
+													<DropdownRadioItem value="default">Default</DropdownRadioItem>
+													<DropdownRadioItem value="rounded">Rounded</DropdownRadioItem>
+													<DropdownRadioItem value="flat">Flat</DropdownRadioItem>
+													<DropdownRadioItem value="fun">Fun</DropdownRadioItem>
+												</DropdownRadioGroup>
+											</DropdownContent>
+										</Dropdown>
+
+										<Font />
+										<ListTodos />
+
+										<Uploads />
 									</div>
 									<div className="border-border flex h-8 items-center border-l px-2">
 										<div className="text-fg-secondary flex">
 											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 												<Moon size={18} />
 											</div>
-											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-												<div className="size-4.5 bg-primary border-border rounded-full border"></div>
-											</div>
+
+											<Colors />
 										</div>
 									</div>
 								</div>
 							</div>
-							{/* <Tabs className="absolute right-4 top-4" value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
-								<TabsList>
-									{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
-										<TabsTrigger key={value} value={value}>
-											{ROUNDED_VALUES[value].icon}
-											<span className="not-lg:hidden">{ROUNDED_VALUES[value].label}</span>
-										</TabsTrigger>
-									))}
-								</TabsList>
-							</Tabs> */}
-							<PlaygroundSignin rounded={rounded} />
+							{layouts[layout]}
 						</div>
 					</div>
 				</Tabs>
