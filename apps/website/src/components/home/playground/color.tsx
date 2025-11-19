@@ -1,9 +1,10 @@
 import React from "react"
 import { COLORS, COLOR_CLASSES } from "@/components/color/color-playground"
+import { ColorOption, usePlayground } from "@/contexts/playground"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 
 export default function Colors() {
-	const [radius, setRadius] = React.useState("default")
+	const { color, setColor } = usePlayground()
 	return (
 		<Dropdown indicatorPosition="right">
 			<DropdownTrigger>
@@ -12,8 +13,7 @@ export default function Colors() {
 				</div>
 			</DropdownTrigger>
 			<DropdownContent align="end" className="h-69.5 overflow-y-scroll" sideOffset={10}>
-				<DropdownRadioGroup value={radius} onValueChange={setRadius}>
-					<DropdownRadioItem value="default">Default</DropdownRadioItem>
+				<DropdownRadioGroup value={color} onValueChange={(value) => setColor(value as ColorOption)}>
 					{COLORS.map((colorOption) => (
 						<DropdownRadioItem key={colorOption.value} value={colorOption.value}>
 							<div className="flex items-center justify-center gap-2">

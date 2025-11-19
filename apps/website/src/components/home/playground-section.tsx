@@ -3,15 +3,23 @@
 import { useEffect, useState } from "react"
 import { CircleDashed, CircleDotDashed, FileCode, Lock, Moon, Square, SquareDashed, Squircle, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
+import { usePlayground } from "@/contexts/playground"
 import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import Signin1 from "./block/signin1"
+import Signin2 from "./block/signin2"
+import Signin3 from "./block/signin3"
+import Signin4 from "./block/signin4"
+import Signup1 from "./block/signup1"
+import Signup2 from "./block/signup2"
 import PlaygroundSignin, { radiusMap } from "./playground-signin"
 import Colors from "./playground/color"
 import Font from "./playground/font"
+import Layout from "./playground/layout"
 import ListTodos from "./playground/list-todo"
 import Uploads from "./playground/upload"
 
@@ -309,7 +317,6 @@ const getGlobalsFileCode = (color: COLOR_VALUES_TYPE) => {
 
 export default function PlaygroundSection() {
 	const { theme } = useTheme()
-	const [color] = useState<COLOR_VALUES_TYPE>("violet-blue")
 	const [rounded] = useState<ROUNDED_VALUES_TYPE>("default")
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
 	const [selectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
@@ -347,16 +354,26 @@ export default function Signin() {
 }
 `
 
-	const [layout, setLayout] = useState("signin-1")
 	const [radius, setRadius] = useState("default")
 
-	useEffect(() => {
-		setActiveFile("globals.css")
-	}, [color])
+	// useEffect(() => {
+	// 	setActiveFile("globals.css")
+	// }, [color])
 
 	useEffect(() => {
 		setActiveFile("signin.tsx")
 	}, [rounded])
+
+	const { layout, color } = usePlayground()
+
+	const layouts = {
+		"signin-1": <Signin1 />,
+		"signin-2": <Signin2 />,
+		"signin-3": <Signin3 />,
+		"signin-4": <Signin4 />,
+		"signup-1": <Signup1 />,
+		"signup-2": <Signup2 />,
+	}
 
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
@@ -518,21 +535,7 @@ export default function Signin() {
 							<div className="bg-bg absolute right-4 top-4 flex h-12 items-center rounded-xl p-1">
 								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1">
 									<div className="border-border flex h-8 items-center border-r">
-										<Dropdown indicatorPosition="right">
-											<DropdownTrigger asChild>
-												<p className="hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium">Layout</p>
-											</DropdownTrigger>
-											<DropdownContent sideOffset={10}>
-												<DropdownRadioGroup value={layout} onValueChange={setLayout}>
-													<DropdownRadioItem value="signin-1">Sign In 1</DropdownRadioItem>
-													<DropdownRadioItem value="signin-2">Sign In 2</DropdownRadioItem>
-													<DropdownRadioItem value="signin-3">Sign In 3</DropdownRadioItem>
-													<DropdownRadioItem value="signin-3">Sign In 3</DropdownRadioItem>
-													<DropdownRadioItem value="signup-1">Sign Up 1</DropdownRadioItem>
-													<DropdownRadioItem value="signup-2">Sign Up 2</DropdownRadioItem>
-												</DropdownRadioGroup>
-											</DropdownContent>
-										</Dropdown>
+										<Layout />
 									</div>
 									<div className="text-fg-secondary flex">
 										<Dropdown indicatorPosition="right">
@@ -567,7 +570,7 @@ export default function Signin() {
 									</div>
 								</div>
 							</div>
-							<PlaygroundSignin rounded={rounded} />
+							{layouts[layout]}
 						</div>
 					</div>
 				</Tabs>

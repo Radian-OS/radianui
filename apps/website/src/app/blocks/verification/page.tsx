@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { GoogleIcon } from "@/components/home/google-icon"
+import { GoogleIcon } from "@/components/home/block/components/google-icon"
 import { OutlookIcon } from "@/components/home/outlook-icon"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
