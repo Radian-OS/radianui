@@ -1,35 +1,19 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import {
-	CircleDashed,
-	CircleDotDashed,
-	ClipboardList,
-	FileCode,
-	FileText,
-	ListTodo,
-	Lock,
-	MessageCircleQuestion,
-	Moon,
-	Settings,
-	Square,
-	SquareDashed,
-	Squircle,
-	SwatchBook,
-	Type,
-} from "lucide-react"
+import { CircleDashed, CircleDotDashed, FileCode, Lock, Moon, Square, SquareDashed, Squircle, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
-import Image from "next/image"
 import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code-area"
-import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/registry/ui/command"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import PlaygroundSignin, { radiusMap } from "./playground-signin"
+import Colors from "./playground/color"
+import Font from "./playground/font"
+import ListTodos from "./playground/list-todo"
+import Uploads from "./playground/upload"
 
 const FONTS: Record<string, string> = {
 	"Inter Display and Inter": ``,
@@ -330,11 +314,6 @@ export default function PlaygroundSection() {
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
 	const [selectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
 
-	// 	const [color, setColor] = useState<COLOR_VALUES_TYPE>("violet-blue")
-	// const [rounded, setRounded] = useState<ROUNDED_VALUES_TYPE>("default")
-	// const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
-	// const [selectedFont, setSelectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
-
 	const CODE = `
 export default function Signin() {
 	return (
@@ -470,98 +449,9 @@ export default function Signin() {
 						<Lock size={16} />
 						<span className="text-sm">radianos.com</span>
 					</div>
-					<div className="text-fg-tertiary flex items-center gap-3 px-3">
-						{/* <Share size={16} />
-						<Plus size={16} />
-						<Copy size={16} /> */}
-					</div>
+					<div className="text-fg-tertiary flex items-center gap-3 px-3">{/* <Share size={16} /> */}</div>
 				</div>
 				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
-					{/* <div className="border-soft flex items-center justify-between border-b p-3">
-						<TabsList className="lg:hidden">
-							<TabsTrigger value="preview">Preview</TabsTrigger>
-							<TabsTrigger value="code">Code</TabsTrigger>
-						</TabsList>
-
-						<Popover>
-							<PopoverTrigger asChild>
-								<Button size="36" variant="outline" color="neutral" className="md:hidden">
-									<Box className="text-fg-tertiary" />
-								</Button>
-							</PopoverTrigger>
-							<PopoverContent align="end" className="flex flex-col gap-3">
-								<Select value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
-									<SelectTrigger size="36" className="text-fg-secondary w-full font-medium">
-										<SelectValue />
-									</SelectTrigger>
-									<SelectContent>
-										{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
-											<SelectItem value={color} key={color}>
-												{COLOR_VALUES[color].label}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-
-								<Select value={selectedFont} onValueChange={(value) => setSelectedFont(value)}>
-									<SelectTrigger size="36" className="text-fg-secondary w-full font-medium">
-										<SelectValue />
-									</SelectTrigger>
-									<SelectContent>
-										{Object.keys(FONTS).map((fontName) => (
-											<SelectItem key={fontName} value={fontName}>
-												{fontName}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-
-								<Tabs value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
-									<TabsList>
-										{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
-											<TabsTrigger key={value} value={value}>
-												{ROUNDED_VALUES[value].icon}
-												<span className="not-lg:hidden">{ROUNDED_VALUES[value].label}</span>
-											</TabsTrigger>
-										))}
-									</TabsList>
-								</Tabs>
-							</PopoverContent>
-						</Popover>
-
-						<div className="not-md:hidden flex items-center gap-3">
-							<Select value={color} onValueChange={(value) => setColor(value as COLOR_VALUES_TYPE)}>
-								<SelectTrigger size="36" className="text-fg-secondary w-38 font-medium">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{(Object.keys(COLOR_VALUES) as COLOR_VALUES_TYPE[]).map((color) => (
-										<SelectItem value={color} key={color}>
-											<div className="flex items-center gap-1.5">
-												{COLOR_VALUES[color].icon}
-												{COLOR_VALUES[color].label}
-											</div>
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-
-							<Select value={selectedFont} onValueChange={(value) => setSelectedFont(value)}>
-								<SelectTrigger size="36" className="text-fg-secondary w-49 font-medium">
-									<SelectValue />
-								</SelectTrigger>
-								<SelectContent>
-									{Object.keys(FONTS).map((fontName) => (
-										<SelectItem key={fontName} value={fontName}>
-											{fontName}
-										</SelectItem>
-									))}
-								</SelectContent>
-							</Select>
-
-
-						</div>
-					</div> */}
 					{/* Mobile/Tablet View */}
 					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
 						<TabsContent value="preview" className={`${FONTS[selectedFont]}`}>
@@ -661,73 +551,22 @@ export default function Signin() {
 											</DropdownContent>
 										</Dropdown>
 
-										<Popover>
-											<PopoverTrigger asChild>
-												<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-													<Type size={18} />
-												</div>
-											</PopoverTrigger>
-											<PopoverContent sideOffset={10} className="border-none p-0">
-												<Command className="w-full max-w-md">
-													<CommandInput placeholder="Search Google Fonts" />
-													<CommandList>
-														<CommandEmpty>No results found</CommandEmpty>
-														<CommandItem>
-															<FileText />
-															<span>Search Google Fonts</span>
-															<CommandShortcut>⌘D</CommandShortcut>
-														</CommandItem>
-														<CommandItem>
-															<ClipboardList />
-															<span>Create task</span>
-															<CommandShortcut>⌘T</CommandShortcut>
-														</CommandItem>
-														<CommandDivider />
-														<CommandGroup title="Settings">
-															<CommandItem>
-																<Settings />
-																<span>Open settings</span>
-																<CommandShortcut>⌘S</CommandShortcut>
-															</CommandItem>
-															<CommandItem>
-																<MessageCircleQuestion />
-																<span>Open help center</span>
-																<CommandShortcut>H</CommandShortcut>
-															</CommandItem>
-														</CommandGroup>
-													</CommandList>
-												</Command>
-											</PopoverContent>
-										</Popover>
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<ListTodo size={18} />
-										</div>
-										<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											<Image alt="" height={18} width={18} src="/mstile-70x70.png" />
-										</div>
+										<Font />
+										<ListTodos />
+
+										<Uploads />
 									</div>
 									<div className="border-border flex h-8 items-center border-l px-2">
 										<div className="text-fg-secondary flex">
 											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 												<Moon size={18} />
 											</div>
-											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-												<div className="size-4.5 bg-primary border-border rounded-full border"></div>
-											</div>
+
+											<Colors />
 										</div>
 									</div>
 								</div>
 							</div>
-							{/* <Tabs className="absolute right-4 top-4" value={rounded} onValueChange={(value) => setRounded(value as ROUNDED_VALUES_TYPE)}>
-								<TabsList>
-									{(Object.keys(ROUNDED_VALUES) as ROUNDED_VALUES_TYPE[]).map((value) => (
-										<TabsTrigger key={value} value={value}>
-											{ROUNDED_VALUES[value].icon}
-											<span className="not-lg:hidden">{ROUNDED_VALUES[value].label}</span>
-										</TabsTrigger>
-									))}
-								</TabsList>
-							</Tabs> */}
 							<PlaygroundSignin rounded={rounded} />
 						</div>
 					</div>
