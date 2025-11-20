@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
+import { ImagePreview } from "../playground/upload"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
 import { buttonStyles, radiusMap, sizeMap, spaceMap } from "./signin1"
@@ -57,7 +58,7 @@ const FormSchema = z
 
 export default function Signin4() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius, spacing, size, label, placeholder, icon, button } = usePlayground()
+	const { radius, spacing, size, label, placeholder, icon, button, logoImage } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -79,12 +80,21 @@ export default function Signin4() {
 	}
 
 	return (
-		<div className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
+		<div
+			style={{
+				backgroundImage: "radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px)",
+				backgroundSize: "10px 10px",
+			}}
+			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className="w-100 bg-bg flex">
 				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 					<div className={`flex flex-1 flex-col items-center ${spaceMap.gap8[spacing ?? "default"]}`}>
 						<div>
-							<PlaygroundLogo width={48} height={48} />
+							{logoImage ? (
+								<ImagePreview size={12} file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} />
+							) : (
+								<PlaygroundLogo height={48} width={48} />
+							)}
 						</div>
 						<div className={`flex flex-col items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
 							<h1 className="heading-5">Welcome to Radian</h1>

@@ -46,6 +46,8 @@ interface PlaygroundContextType {
 	setIcon?: (icon: boolean) => void
 	button?: ButtonOption
 	setButton?: (button: ButtonOption) => void
+	logoImage?: string
+	setLogoImage?: (logo: string | undefined) => void
 }
 
 const PlaygroundContext = createContext<PlaygroundContextType | undefined>(undefined)
@@ -68,6 +70,7 @@ export const PlaygroundProvider = ({ children }: { children: ReactNode }) => {
 	const [placeholder, setPlaceholder] = useState<boolean>(false)
 	const [icon, setIcon] = useState<boolean>(false)
 	const [button, setButton] = useState<ButtonOption>("default")
+	const [logoImage, setLogoImage] = useState<string | undefined>(undefined)
 
 	return (
 		<PlaygroundContext.Provider
@@ -90,6 +93,8 @@ export const PlaygroundProvider = ({ children }: { children: ReactNode }) => {
 				setIcon,
 				button,
 				setButton,
+				logoImage,
+				setLogoImage,
 			}}>
 			{children}
 		</PlaygroundContext.Provider>
