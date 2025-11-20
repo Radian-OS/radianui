@@ -2,18 +2,21 @@
 
 import { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { EyeIcon, EyeOffIcon, Lock, Mail, User } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
+import { ImagePreview } from "../playground/upload"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
+import { buttonStyles, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -81,6 +84,7 @@ const FormSchema = z
 
 export default function Signup2() {
 	const [isLoading, setIsLoading] = useState(false)
+	const { radius, spacing, size, label, placeholder, icon, button, logoImage } = usePlayground()
 
 	const [showPassword, setShowPassword] = useState(false)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -104,8 +108,7 @@ export default function Signup2() {
 		},
 	})
 
-	const onSubmit = (data: z.infer<typeof FormSchema>) => {
-		console.log(data)
+	const onSubmit = () => {
 		setIsLoading(true)
 
 		setTimeout(() => {
@@ -115,13 +118,18 @@ export default function Signup2() {
 	}
 
 	return (
-		<div className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
+		<div
+			style={{
+				backgroundImage: "radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px)",
+				backgroundSize: "10px 10px",
+			}}
+			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
-				<div className="flex flex-1 flex-col gap-8">
+				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 					<div>
-						<PlaygroundLogo />
+						{logoImage ? <ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} /> : <PlaygroundLogo />}
 					</div>
-					<div className="flex flex-col gap-2">
+					<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
 						<h1 className="heading-5">Sign Up</h1>
 						<p className="text-fg-secondary text-sm">
 							Already have an account?{" "}
@@ -133,16 +141,19 @@ export default function Signup2() {
 
 					<Form {...form}>
 						<form onSubmit={form.handleSubmit(onSubmit)}>
-							<div className="flex flex-col gap-8">
-								<div className="flex flex-col gap-4">
+							<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
 									<FormField
 										control={form.control}
 										name="firstName"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel>First Name</FormLabel>
+												{label && <FormLabel>First Name</FormLabel>}
 												<FormControl>
-													<Input size="36" type="text" {...field} />
+													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
+														{icon && <User />}
+														<Input placeholder={placeholder ? "Enter first name" : ""} className={`${radiusMap[radius]} w-full`} type="text" {...field} />
+													</InputWrapper>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -153,9 +164,12 @@ export default function Signup2() {
 										name="email"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel>Email Address</FormLabel>
+												{label && <FormLabel>Email Address</FormLabel>}
 												<FormControl>
-													<Input size="36" type="email" {...field} />
+													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
+														{icon && <Mail />}
+														<Input placeholder={placeholder ? "Enter your email" : ""} className={`${radiusMap[radius]} w-full`} type="email" {...field} />
+													</InputWrapper>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -166,10 +180,19 @@ export default function Signup2() {
 										name="password"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel>Password</FormLabel>
+												{label && <FormLabel>Password</FormLabel>}
 												<FormControl>
-													<InputWrapper>
-														<Input {...field} id="toggle-visible-password" ref={inputRef} className="peer" type={showPassword ? "text" : "password"} />
+													<InputWrapper className={`${radiusMap[radius]} w-full`}>
+														{icon && <Lock />}
+														<Input
+															size={sizeMap[size ?? "default"]}
+															className={`peer`}
+															{...field}
+															placeholder={placeholder ? "Enter your password" : ""}
+															id="toggle-visible-password"
+															ref={inputRef}
+															type={showPassword ? "text" : "password"}
+														/>
 														<IconComponent
 															className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 															onMouseDown={togglePasswordVisibility}
@@ -181,8 +204,8 @@ export default function Signup2() {
 										)}
 									/>
 								</div>
-								<div className="flex flex-col gap-4">
-									<Button className="w-full" type="submit" disabled={isLoading}>
+								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
+									<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
 										{isLoading ? <Spinner variant="default" /> : "Create account"}
 									</Button>
 									<p className="text-fg-secondary text-[13px]">
@@ -205,18 +228,18 @@ export default function Signup2() {
 							</div>
 						</form>
 					</Form>
-					<div className="flex flex-1 flex-col gap-6">
-						<div className="flex items-center gap-2">
+					<div className={`flex flex-1 flex-col ${spaceMap.gap6[spacing ?? "default"]}`}>
+						<div className={`flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
 							<Divider className="flex-1" />
 							<span className="text-fg-secondary whitespace-nowrap text-sm font-medium">Or continue with</span>
 							<Divider className="flex-1" />
 						</div>
-						<div className="flex gap-3">
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+						<div className={`flex ${spaceMap.gap3[spacing ?? "default"]}`}>
+							<Button size={sizeMap[size ?? "default"]} variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GoogleIcon />
 								Google
 							</Button>
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button size={sizeMap[size ?? "default"]} variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GithubIcon />
 								Github
 							</Button>

@@ -53,7 +53,7 @@ export default function CalendarScrollableTime() {
 	const [time, setTime] = React.useState<string | null>(null)
 
 	return (
-		<div className="border-border rounded-xl border">
+		<div className="border-border overflow-clip rounded-xl border">
 			<div className="flex">
 				<Calendar
 					className="rounded-none border-0 border-r"
@@ -66,11 +66,11 @@ export default function CalendarScrollableTime() {
 					}}
 				/>
 				<div className="relative max-sm:h-48 sm:w-40">
-					<div className="absolute inset-0 px-3 py-0 pt-1">
+					<div className="absolute inset-0 px-3 py-1">
 						<ScrollArea className="h-full">
 							<div className="space-y-0.5">
 								<p className="text-fg p-2 text-sm font-medium">{format(date, "MMM d, E")}</p>
-								<div className="grid gap-1 pr-2 max-sm:grid-cols-2">
+								<div className="grid gap-1.5 max-sm:grid-cols-2">
 									{timeSlots.map(({ time: timeSlot, available }) => (
 										<Button
 											key={timeSlot}
@@ -79,6 +79,7 @@ export default function CalendarScrollableTime() {
 											size="32"
 											className={cn("text-fg-secondary hover:bg-fill2-alpha w-full justify-center px-2 py-1.5 text-sm font-medium", {
 												"border-primary bg-primary-accent text-primary-text border": time === timeSlot,
+												"bg-fill1-alpha text-fg-disabled border-none": !available,
 											})}
 											onClick={() => setTime(timeSlot)}
 											disabled={!available}>

@@ -1,6 +1,6 @@
 import { Box } from "lucide-react"
 import Link from "next/link"
-import Background4 from "@/components/effects/background4"
+import Background5 from "@/components/effects/background5"
 import FeaturesSection from "@/components/home/features-section"
 import HomeInteractive from "@/components/home/home-interactive"
 import { BorderBeam } from "@/registry/animated/border-beam"
@@ -10,7 +10,7 @@ import { Button } from "@/registry/ui/button"
 export default function Page() {
 	return (
 		<div className="min-h-screen w-full overflow-x-hidden">
-			<Background4>
+			<Background5>
 				<div className="pt-30 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
 						<div className="relative h-[28px] rounded-md">
@@ -133,7 +133,7 @@ export default function Page() {
 						/>
 					</svg>
 				</div>
-			</Background4>
+			</Background5>
 
 			<FeaturesSection />
 		</div>
