@@ -12,7 +12,7 @@ import { Input } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { Title } from "./components/title"
-import { radiusMap } from "./signin1"
+import { radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -52,7 +52,7 @@ const FormSchema = z
 
 export default function Signin3() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius } = usePlayground()
+	const { radius, spacing, size } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -77,13 +77,12 @@ export default function Signin3() {
 	return (
 		<div className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
-				<div className="flex flex-1 flex-col gap-8">
-					<div className="text-fg flex items-center gap-2.5">
+				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+					<div className={`text-fg flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
 						<PlaygroundLogo />
-
 						<Title />
 					</div>
-					<div className="flex flex-col gap-2">
+					<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
 						<h1 className="heading-5">Sign In</h1>
 						<p className="text-fg-secondary text-sm">
 							Don&apos;t have an account?{" "}
@@ -94,8 +93,8 @@ export default function Signin3() {
 					</div>
 					<Form {...form}>
 						<form onSubmit={form.handleSubmit(onSubmit)}>
-							<div className="flex flex-col gap-8">
-								<div className="flex flex-col gap-5">
+							<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+								<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
 									<FormField
 										control={form.control}
 										name="email"
@@ -103,7 +102,7 @@ export default function Signin3() {
 											<FormItem>
 												<FormLabel>Email Address</FormLabel>
 												<FormControl>
-													<Input className={`${radiusMap[radius]} w-full`} size="36" type="email" {...field} />
+													<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="email" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -121,14 +120,14 @@ export default function Signin3() {
 													</Button>
 												</div>
 												<FormControl>
-													<Input className={`${radiusMap[radius]} w-full`} size="36" type="password" {...field} />
+													<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="password" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
 										)}
 									/>
 								</div>
-								<Button className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
+								<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>

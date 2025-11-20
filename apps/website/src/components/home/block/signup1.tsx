@@ -15,7 +15,7 @@ import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
-import { radiusMap } from "./signin1"
+import { radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -95,7 +95,7 @@ const FormSchema = z
 
 export default function Signup1() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius } = usePlayground()
+	const { radius, spacing, size } = usePlayground()
 
 	const [showPassword, setShowPassword] = useState(false)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -133,12 +133,12 @@ export default function Signup1() {
 	return (
 		<div className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className="w-100 bg-bg flex">
-				<div className="flex flex-1 flex-col gap-8">
-					<div className="flex flex-1 flex-col gap-6">
+				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+					<div className={`flex flex-1 flex-col ${spaceMap.gap6[spacing ?? "default"]}`}>
 						<div>
 							<PlaygroundLogo />
 						</div>
-						<div className="flex flex-col gap-2">
+						<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
 							<h1 className="heading-5">Sign Up</h1>
 							<p className="text-fg-secondary text-sm">
 								Already have an account?{" "}
@@ -151,9 +151,9 @@ export default function Signup1() {
 
 					<Form {...form}>
 						<form onSubmit={form.handleSubmit(onSubmit)}>
-							<div className="flex flex-col gap-5">
-								<div className="flex flex-col gap-4">
-									<div className="flex gap-4">
+							<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
+								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
+									<div className={`flex ${spaceMap.gap4[spacing ?? "default"]}`}>
 										<FormField
 											control={form.control}
 											name="firstName"
@@ -161,7 +161,7 @@ export default function Signup1() {
 												<FormItem className="flex-1">
 													<FormLabel>First Name</FormLabel>
 													<FormControl>
-														<Input className={`${radiusMap[radius]} w-full`} size="36" type="text" {...field} />
+														<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="text" {...field} />
 													</FormControl>
 													<FormMessage />
 												</FormItem>
@@ -174,7 +174,7 @@ export default function Signup1() {
 												<FormItem className="flex-1">
 													<FormLabel>Last Name</FormLabel>
 													<FormControl>
-														<Input className={`${radiusMap[radius]} w-full`} size="36" type="text" {...field} />
+														<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="text" {...field} />
 													</FormControl>
 													<FormMessage />
 												</FormItem>
@@ -188,7 +188,7 @@ export default function Signup1() {
 											<FormItem>
 												<FormLabel>Email Address</FormLabel>
 												<FormControl>
-													<Input className={`${radiusMap[radius]} w-full`} size="36" type="email" {...field} />
+													<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="email" {...field} />
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -202,7 +202,14 @@ export default function Signup1() {
 												<FormLabel>Password</FormLabel>
 												<FormControl>
 													<InputWrapper className={`${radiusMap[radius]} w-full`}>
-														<Input className={`peer`} {...field} id="toggle-visible-password" ref={inputRef} type={showPassword ? "text" : "password"} />
+														<Input
+															size={sizeMap[size ?? "default"]}
+															className={`peer`}
+															{...field}
+															id="toggle-visible-password"
+															ref={inputRef}
+															type={showPassword ? "text" : "password"}
+														/>
 														<IconComponent
 															className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 															onMouseDown={togglePasswordVisibility}
@@ -214,8 +221,8 @@ export default function Signup1() {
 										)}
 									/>
 								</div>
-								<div className="flex flex-col gap-4">
-									<Button className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
+								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
+									<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
 										{isLoading ? <Spinner variant="default" /> : "Create account"}
 									</Button>
 									<p className="text-fg-secondary text-[13px]">
@@ -238,18 +245,18 @@ export default function Signup1() {
 							</div>
 						</form>
 					</Form>
-					<div className="flex flex-1 flex-col gap-6">
-						<div className="flex items-center gap-2">
+					<div className={`flex flex-1 flex-col ${spaceMap.gap6[spacing ?? "default"]}`}>
+						<div className={`flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
 							<Divider className="flex-1" />
 							<span className="text-fg-secondary whitespace-nowrap text-sm font-medium">Or continue with</span>
 							<Divider className="flex-1" />
 						</div>
-						<div className="flex gap-3">
-							<Button variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
+						<div className={`flex ${spaceMap.gap3[spacing ?? "default"]}`}>
+							<Button size={sizeMap[size ?? "default"]} variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GoogleIcon />
 								Google
 							</Button>
-							<Button variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
+							<Button size={sizeMap[size ?? "default"]} variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GithubIcon />
 								Github
 							</Button>
