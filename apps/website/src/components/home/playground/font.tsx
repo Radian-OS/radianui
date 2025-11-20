@@ -1,6 +1,6 @@
 import React from "react"
-import { ClipboardList, FileText, MessageCircleQuestion, Settings, Type } from "lucide-react"
-import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/registry/ui/command"
+import { Type } from "lucide-react"
+import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function Font() {
@@ -16,27 +16,37 @@ export default function Font() {
 					<CommandInput placeholder="Search Google Fonts" />
 					<CommandList>
 						<CommandEmpty>No results found</CommandEmpty>
-						<CommandItem>
-							<FileText />
-							<span>Search Google Fonts</span>
-							<CommandShortcut>⌘D</CommandShortcut>
-						</CommandItem>
-						<CommandItem>
-							<ClipboardList />
-							<span>Create task</span>
-							<CommandShortcut>⌘T</CommandShortcut>
-						</CommandItem>
-						<CommandDivider />
-						<CommandGroup title="Settings">
-							<CommandItem>
-								<Settings />
-								<span>Open settings</span>
-								<CommandShortcut>⌘S</CommandShortcut>
+						<CommandGroup>
+							<CommandItem className="flex justify-between">
+								<span>Marked Fonts</span>
+								<span className="text-fg-tertiary text-[13px] font-normal">Sans Serif</span>
 							</CommandItem>
-							<CommandItem>
-								<MessageCircleQuestion />
-								<span>Open help center</span>
-								<CommandShortcut>H</CommandShortcut>
+							<CommandItem className="flex justify-between">
+								<span>Marked Fonts1</span>
+								<span className="text-fg-tertiary text-[13px] font-normal">Sans Serif</span>
+							</CommandItem>
+							<CommandItem className="flex justify-between">
+								<span>Marked Fonts2</span>
+								<span className="text-fg-tertiary text-[13px] font-normal">Sans Serif</span>
+							</CommandItem>
+							<CommandItem className="flex justify-between">
+								<span>Marked Fonts3</span>
+								<span className="text-fg-tertiary text-[13px] font-normal">Sans Serif</span>
+							</CommandItem>
+						</CommandGroup>
+						<CommandDivider />
+						<CommandGroup>
+							<CommandItem className="flex justify-between">
+								<span>Font Name1</span>
+								<span className="text-fg-tertiary text-[13px] font-normal">Sans Serif</span>
+							</CommandItem>
+							<CommandItem className="flex justify-between">
+								<span>Font Name2</span>
+								<span className="text-fg-tertiary text-[13px] font-normal">Sans Serif</span>
+							</CommandItem>
+							<CommandItem className="flex justify-between">
+								<span>Font Name3</span>
+								<span className="text-fg-tertiary text-[13px] font-normal">Sans Serif</span>
 							</CommandItem>
 						</CommandGroup>
 					</CommandList>

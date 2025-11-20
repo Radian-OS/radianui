@@ -40,7 +40,7 @@ export default function CalendarWithYearMonthSelectorExample() {
 							<SelectTrigger className="h-8 w-fit font-medium first:grow">
 								<SelectValue />
 							</SelectTrigger>
-							<SelectContent className="">
+							<SelectContent className="max-h-100">
 								{props.options?.map((option) => (
 									<SelectItem key={option.value} value={String(option.value)} disabled={option.disabled}>
 										{option.label}

@@ -14,7 +14,7 @@ export const logger = {
 		console.error(txt.error(args.join(" ")))
 	},
 	log: (...args: unknown[]) => {
-		console.log(txt.dark(args.join("")))
+		console.log(txt.light(args.join("")))
 	},
 	break: () => {
 		console.log("")
