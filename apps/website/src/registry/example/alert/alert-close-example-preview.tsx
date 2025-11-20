@@ -27,11 +27,11 @@ function DismissibleAlert() {
 							<AlertTitle>Payment Received</AlertTitle>
 							<AlertDescription>Your payment of $79.99 to Stripe has been successfully processed on card ending in XXXX XXXX XXX 4242.</AlertDescription>
 							<section className="flex items-center gap-2 pt-2">
-								<Button variant="link" color="success">
+								<Button variant="link" color="primary">
 									View Statement
 								</Button>
 								<span className="bg-fill4 size-1 rounded-full"></span>
-								<Button variant="link" color="success">
+								<Button variant="link" color="primary">
 									Dismiss
 								</Button>
 							</section>
