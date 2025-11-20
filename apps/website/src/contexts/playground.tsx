@@ -25,7 +25,6 @@ export type ColorOption =
 export type RadiusOption = "default" | "rounded" | "flat" | "fun"
 export type SpacingOption = "compact" | "default" | "spacious"
 export type SizeOption = "small" | "default" | "large"
-export type InputOption = "label" | "placeholder" | "icon"
 export type ButtonOption = "default" | "gradient" | "fancy" | "inverted"
 
 interface PlaygroundContextType {
@@ -39,8 +38,12 @@ interface PlaygroundContextType {
 	setSpacing?: (spacing: SpacingOption) => void
 	size?: SizeOption
 	setSize?: (size: SizeOption) => void
-	input?: InputOption
-	setInput?: (input: InputOption) => void
+	label?: boolean
+	setLabel?: (label: boolean) => void
+	placeholder?: boolean
+	setPlaceholder?: (placeholder: boolean) => void
+	icon?: boolean
+	setIcon?: (icon: boolean) => void
 	button?: ButtonOption
 	setButton?: (button: ButtonOption) => void
 }
@@ -61,11 +64,33 @@ export const PlaygroundProvider = ({ children }: { children: ReactNode }) => {
 	const [radius, setRadius] = useState<RadiusOption>("default")
 	const [spacing, setSpacing] = useState<SpacingOption>("default")
 	const [size, setSize] = useState<SizeOption>("default")
-	const [input, setInput] = useState<InputOption>("label")
+	const [label, setLabel] = useState<boolean>(true)
+	const [placeholder, setPlaceholder] = useState<boolean>(false)
+	const [icon, setIcon] = useState<boolean>(false)
 	const [button, setButton] = useState<ButtonOption>("default")
 
 	return (
-		<PlaygroundContext.Provider value={{ layout, setLayout, color, setColor, radius, setRadius, spacing, setSpacing, size, setSize, input, setInput, button, setButton }}>
+		<PlaygroundContext.Provider
+			value={{
+				layout,
+				setLayout,
+				color,
+				setColor,
+				radius,
+				setRadius,
+				spacing,
+				setSpacing,
+				size,
+				setSize,
+				label,
+				setLabel,
+				placeholder,
+				setPlaceholder,
+				icon,
+				setIcon,
+				button,
+				setButton,
+			}}>
 			{children}
 		</PlaygroundContext.Provider>
 	)

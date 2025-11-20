@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Lock, Mail } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -10,12 +11,12 @@ import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
+import { Input, InputWrapper } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
-import { radiusMap, sizeMap, spaceMap } from "./signin1"
+import { buttonStyles, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -56,7 +57,7 @@ const FormSchema = z
 
 export default function Signin4() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius, spacing, size } = usePlayground()
+	const { radius, spacing, size, label, placeholder, icon, button } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -68,8 +69,7 @@ export default function Signin4() {
 			rememberMe: false,
 		},
 	})
-	const onSubmit = (data: z.infer<typeof FormSchema>) => {
-		console.log(data)
+	const onSubmit = () => {
 		setIsLoading(true)
 
 		setTimeout(() => {
@@ -104,9 +104,12 @@ export default function Signin4() {
 									name="email"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Email Address</FormLabel>
+											{label && <FormLabel>Email Address</FormLabel>}
 											<FormControl>
-												<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="email" {...field} />
+												<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
+													{icon && <Mail />}
+													<Input placeholder={placeholder ? "Enter your email" : ""} className={`${radiusMap[radius]} w-full`} type="email" {...field} />
+												</InputWrapper>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -117,9 +120,12 @@ export default function Signin4() {
 									name="password"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Password</FormLabel>
+											{label && <FormLabel>Password</FormLabel>}
 											<FormControl>
-												<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="password" {...field} />
+												<InputWrapper size={sizeMap[size ?? "default"]}>
+													{icon && <Lock />}
+													<Input className={`${radiusMap[radius]} w-full`} placeholder={placeholder ? "Enter your password" : ""} type="password" {...field} />
+												</InputWrapper>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -144,7 +150,7 @@ export default function Signin4() {
 										<Link href="#"> Forgot Password?</Link>
 									</Button>
 								</div>
-								<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
+								<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>

@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { EyeIcon, EyeOffIcon } from "lucide-react"
+import { EyeIcon, EyeOffIcon, Lock, Mail, User } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -15,7 +15,7 @@ import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
-import { radiusMap, sizeMap, spaceMap } from "./signin1"
+import { buttonStyles, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -95,7 +95,7 @@ const FormSchema = z
 
 export default function Signup1() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius, spacing, size } = usePlayground()
+	const { radius, spacing, size, label, placeholder, icon, button } = usePlayground()
 
 	const [showPassword, setShowPassword] = useState(false)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -120,8 +120,7 @@ export default function Signup1() {
 		},
 	})
 
-	const onSubmit = (data: z.infer<typeof FormSchema>) => {
-		console.log(data)
+	const onSubmit = () => {
 		setIsLoading(true)
 
 		setTimeout(() => {
@@ -159,9 +158,12 @@ export default function Signup1() {
 											name="firstName"
 											render={({ field }) => (
 												<FormItem className="flex-1">
-													<FormLabel>First Name</FormLabel>
+													{label && <FormLabel>First Name</FormLabel>}
 													<FormControl>
-														<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="text" {...field} />
+														<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
+															{icon && <User />}
+															<Input placeholder={placeholder ? "Enter first name" : ""} className={`${radiusMap[radius]} w-full`} type="text" {...field} />
+														</InputWrapper>
 													</FormControl>
 													<FormMessage />
 												</FormItem>
@@ -172,9 +174,12 @@ export default function Signup1() {
 											name="lastName"
 											render={({ field }) => (
 												<FormItem className="flex-1">
-													<FormLabel>Last Name</FormLabel>
+													{label && <FormLabel>Last Name</FormLabel>}
 													<FormControl>
-														<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="text" {...field} />
+														<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
+															{icon && <User />}
+															<Input placeholder={placeholder ? "Enter last name" : ""} className={`${radiusMap[radius]} w-full`} type="text" {...field} />
+														</InputWrapper>
 													</FormControl>
 													<FormMessage />
 												</FormItem>
@@ -186,9 +191,12 @@ export default function Signup1() {
 										name="email"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel>Email Address</FormLabel>
+												{label && <FormLabel>Email Address</FormLabel>}
 												<FormControl>
-													<Input className={`${radiusMap[radius]} w-full`} size={sizeMap[size ?? "default"]} type="email" {...field} />
+													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
+														{icon && <Mail />}
+														<Input placeholder={placeholder ? "Enter your email" : ""} className={`${radiusMap[radius]} w-full`} type="email" {...field} />
+													</InputWrapper>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -199,13 +207,15 @@ export default function Signup1() {
 										name="password"
 										render={({ field }) => (
 											<FormItem>
-												<FormLabel>Password</FormLabel>
+												{label && <FormLabel>Password</FormLabel>}
 												<FormControl>
-													<InputWrapper className={`${radiusMap[radius]} w-full`}>
+													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
+														{icon && <Lock />}
 														<Input
 															size={sizeMap[size ?? "default"]}
 															className={`peer`}
 															{...field}
+															placeholder={placeholder ? "Enter your password" : ""}
 															id="toggle-visible-password"
 															ref={inputRef}
 															type={showPassword ? "text" : "password"}
@@ -222,7 +232,7 @@ export default function Signup1() {
 									/>
 								</div>
 								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
-									<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full`} type="submit" disabled={isLoading}>
+									<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
 										{isLoading ? <Spinner variant="default" /> : "Create account"}
 									</Button>
 									<p className="text-fg-secondary text-[13px]">
