@@ -66,7 +66,7 @@ function TimePickerCalendarPreview() {
 				className="rounded-none border-0 border-r"
 			/>
 			<div className="relative w-full max-sm:h-48 sm:w-40">
-				<div className="absolute inset-0 px-1.5 py-1">
+				<div className="absolute inset-0 px-1 py-2">
 					<ScrollArea className="h-full">
 						<div className="space-y-0.5">
 							<p className="text-fg-secondary p-2 text-xs font-medium">SELECT TIME</p>
