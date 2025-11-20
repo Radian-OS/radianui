@@ -28,7 +28,7 @@ function QuickSelectionCalendarPreview() {
 
 	return (
 		<div className="border-border bg-elevation-level1 flex overflow-hidden rounded-xl border">
-			<div className="border-border w-50 text-fg flex flex-col border-r px-1.5 py-1">
+			<div className="border-border w-50 text-fg flex flex-col border-r px-1 py-2">
 				<p className="text-fg-tertiary h-8 rounded-sm p-2 text-xs font-medium">SELECT DATE</p>
 				{SHORTCUTS.map(({ value, label, range }) => (
 					<span
