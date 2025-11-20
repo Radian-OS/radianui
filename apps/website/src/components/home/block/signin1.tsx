@@ -71,33 +71,33 @@ export const sizeMap: Record<string, "36" | "32" | "40" | "28" | "44" | "48"> = 
 export const spaceMap = {
 	gap8: {
 		default: "gap-8",
-		compact: "gap-4",
-		spacious: "gap-12",
+		compact: "gap-7",
+		spacious: "gap-9",
 	},
 	gap6: {
 		default: "gap-6",
-		compact: "gap-3",
-		spacious: "gap-8",
+		compact: "gap-5",
+		spacious: "gap-7",
 	},
 	gap5: {
 		default: "gap-5",
-		compact: "gap-2",
-		spacious: "gap-7",
+		compact: "gap-4",
+		spacious: "gap-6",
 	},
 	gap4: {
 		default: "gap-4",
-		compact: "gap-1.5",
-		spacious: "gap-6",
+		compact: "gap-3",
+		spacious: "gap-5",
 	},
 	gap3: {
 		default: "gap-3",
-		compact: "gap-1",
-		spacious: "gap-5",
+		compact: "gap-2",
+		spacious: "gap-4",
 	},
 	gap2: {
 		default: "gap-2",
-		compact: "gap-0.5",
-		spacious: "gap-4",
+		compact: "gap-1",
+		spacious: "gap-3",
 	},
 }
 
