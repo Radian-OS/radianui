@@ -523,7 +523,7 @@ const useMobileDetection = () => {
 	return isMobile
 }
 
-const MagicBento: React.FC<BentoProps> = ({
+const FeaturesSection: React.FC<BentoProps> = ({
 	enableSpotlight = true,
 	disableAnimations = false,
 	spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
@@ -637,7 +637,7 @@ const MagicBento: React.FC<BentoProps> = ({
             content: '';
             position: absolute;
             inset: 0;
-            padding: 6px;
+            padding: 1px;
             background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
                 rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
                 rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
@@ -1187,4 +1187,4 @@ const MagicBento: React.FC<BentoProps> = ({
 	)
 }
 
-export default MagicBento
+export default FeaturesSection
