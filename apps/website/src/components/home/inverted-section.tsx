@@ -120,16 +120,16 @@ export default function InvertedSection() {
 
 						<BorderBeam size={100} className="not-xl:hidden" />
 
-						<div className="bg-black-inverse absolute top-0 flex -translate-y-1/2 items-center border-l border-r border-[#1c1d21] px-2 dark:bg-[#131316]">
-							<Badge size="28" variant="outline" color="neutral" className="z-70 border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
+						<div className="bg-black-inverse z-70 absolute top-0 flex -translate-y-1/2 items-center border-l border-r border-[#1c1d21] px-2 dark:bg-[#131316]">
+							<Badge size="28" variant="outline" color="neutral" className="z-70 relative border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
 								<Rocket />
 								Features inside Radian
 							</Badge>
 						</div>
 
-						<div className="z-70 flex flex-col items-center gap-4">
-							<h2 className="heading-2 to-fg-tertiary bg-gradient-to-b from-white bg-clip-text text-center text-transparent">Features to help you Build Quicker</h2>
-							<p className="text-fg-tertiary w-full max-w-[480px] text-center text-base font-normal">
+						<div className="z-70 relative flex flex-col items-center gap-4">
+							<h2 className="heading-2 to-fg-tertiary z-70 relative bg-gradient-to-b from-white bg-clip-text text-center text-transparent">Features to help you Build Quicker</h2>
+							<p className="text-fg-tertiary z-70 relative w-full max-w-[480px] text-center text-base font-normal">
 								Extend your Radian experience with more features to help you build better apps and products{" "}
 							</p>
 						</div>

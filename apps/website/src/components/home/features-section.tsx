@@ -729,6 +729,17 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								strokeWidth="1"
 								stroke="var(--color-soft)"
 							/>
+							<path
+								id="beamPath"
+								d="M0.433594 1.2504L70.1484 122C73.1494 127.198 78.6956 130.4 84.6976 130.4L177.71 130.4C184.379 130.4 190.417 134.346 193.095 140.454L280.203 339.097C282.882 345.205 288.886 349.15 295.555 349.15C444.741 349.15 649.277 349.15 798.467 349.15C805.147 349.15 811.159 345.193 813.831 339.071L900.956 139.479C903.629 133.358 909.674 129.4 916.353 129.4L1009.35 129.4C1015.35 129.4 1020.89 126.198 1023.89 121L1093.61 0.250397"
+								fill="none"
+								stroke="var(--color-primary)"
+								strokeWidth="1"
+								strokeLinecap="round"
+								className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+								vectorEffect="non-scaling-stroke"
+								pathLength="1000"
+							/>
 						</svg>
 
 						{/* Left side line */}
