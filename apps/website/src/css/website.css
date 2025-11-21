@@ -126,7 +126,6 @@
 	background-repeat: repeat;
 	opacity: 0.08;
 	pointer-events: none;
-	/* mix-blend-mode: overlay; */
 	mix-blend-mode: soft-light;
 }
 

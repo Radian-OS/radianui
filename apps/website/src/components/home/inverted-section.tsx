@@ -1,6 +1,7 @@
 "use client"
 
 import { Blocks, Braces, CaseLower, CloudCog, Cuboid, FileCode, GalleryVertical, LayoutGrid, Palette, Rocket, SunMoon, SwatchBook, Users } from "lucide-react"
+import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import PlaygroundLogo from "./playground-logo"
 
@@ -91,9 +92,9 @@ export default function InvertedSection() {
 					<div className="bg-black-inverse ml-[calc(-1*(theme(spacing.8)-theme(spacing[1.5])))] h-11 flex-auto dark:bg-[#131316]"></div>
 				</div>
 
-				<div className="bg-black-inverse inverted-shape pb-35 relative flex w-full flex-col items-center gap-20 overflow-clip px-5 pt-40 dark:bg-[#131316]">
+				<div className="inverted-shape pb-35 bg-black-inverse relative flex w-full flex-col items-center gap-20 overflow-clip px-5 pt-40 dark:bg-[#131316]">
 					{/* Elliptical shaped gradient for bg */}
-					<svg className="absolute -top-1/2 left-1/2 z-20 -translate-x-1/2" width="3272" height="2545" viewBox="0 0 3272 2545" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="z-60 absolute -top-1/2 left-1/2 -translate-x-1/2" width="3272" height="2545" viewBox="0 0 3272 2545" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g opacity="0.34" filter="url(#filter0_f_1156_17761)">
 							<path
 								d="M1350.4 864.929C964.236 1135.32 648.845 1427.27 450.934 1680.09C351.878 1806.63 283.167 1922.21 249.23 2019.49C215.055 2117.45 217.866 2191.36 252.363 2240.62C286.861 2289.89 355.348 2317.81 459.088 2319.2C562.107 2320.58 694.218 2295.54 847.004 2245.74C1152.27 2146.23 1534.48 1949.72 1920.64 1679.32C2306.8 1408.93 2622.19 1116.98 2820.11 864.16C2919.16 737.622 2987.87 622.042 3021.81 524.763C3055.98 426.803 3053.17 352.898 3018.67 303.631C2984.18 254.364 2915.69 226.445 2811.95 225.054C2708.93 223.674 2576.82 248.709 2424.04 298.513C2118.77 398.02 1736.56 594.537 1350.4 864.929Z"
@@ -114,66 +115,69 @@ export default function InvertedSection() {
 						</defs>
 					</svg>
 
-					<div className="z-30 flex w-full max-w-[977px] flex-col items-center justify-center gap-8">
-						<div className="relative flex items-center">
-							<Badge size="28" variant="outline" color="neutral" className="border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
+					<div className="pt-15 relative z-30 flex w-full max-w-[977px] flex-col items-center justify-center gap-8 rounded-t-3xl border border-[#1c1d21]">
+						<div className="bg-black-inverse absolute -bottom-1 z-10 h-2 w-full dark:bg-[#131316]"></div>
+
+						<BorderBeam size={100} className="not-xl:hidden" />
+
+						<div className="bg-black-inverse absolute top-0 flex -translate-y-1/2 items-center border-l border-r border-[#1c1d21] px-2 dark:bg-[#131316]">
+							<Badge size="28" variant="outline" color="neutral" className="z-70 border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
 								<Rocket />
 								Features inside Radian
 							</Badge>
-
-							{/* Left line */}
-							<svg className="not-xl:hidden absolute -top-36 right-[110%] z-0" width="696" height="1300" viewBox="0 0 696 1300" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M243.5 269.5H203.5C190.245 269.5 179.5 258.755 179.5 245.5V56.443C179.5 49.4919 176.486 42.8822 171.238 38.3239L111 -14" stroke="#1c1d21" />
-								<path d="M179.5 91.5V195.5" stroke="#1c1d21" strokeLinecap="round" />
-								<path d="M683.5 159.5H283.5C270.245 159.5 259.5 170.245 259.5 183.5V375.5" stroke="#1c1d21" />
-								<path d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300" stroke="#1c1d21" />
-								<path
-									id="beamPath"
-									d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300"
-									fill="none"
-									stroke="var(--color-primary)"
-									strokeWidth="1"
-									strokeLinecap="round"
-									className="animate-[var(--animate-beam-flow4)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-									pathLength="1000"
-								/>
-								<path d="M695.5 143.5V175.5" stroke="#1c1d21" />
-							</svg>
-
-							{/* Right line */}
-							<svg
-								className="not-xl:hidden absolute -top-36 left-[110%] z-0 scale-x-[-1]"
-								width="696"
-								height="1196"
-								viewBox="0 0 696 1196"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path d="M243.5 269.5H203.5C190.245 269.5 179.5 258.755 179.5 245.5V56.443C179.5 49.4919 176.486 42.8822 171.238 38.3239L111 -14" stroke="#1c1d21" />
-								<path d="M179.5 91.5V195.5" stroke="#1c1d21" strokeLinecap="round" />
-								<path d="M683.5 159.5H283.5C270.245 159.5 259.5 170.245 259.5 183.5V375.5" stroke="#1c1d21" />
-								<path d="M695.5 143.5V175.5" stroke="#1c1d21" />
-								<path d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300" stroke="#1c1d21" />
-								<path
-									id="beamPath"
-									d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300"
-									fill="none"
-									stroke="var(--color-primary)"
-									strokeWidth="1"
-									strokeLinecap="round"
-									className="animate-[var(--animate-beam-flow4)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
-									pathLength="1000"
-								/>
-							</svg>
 						</div>
-						<div className="z-10 flex flex-col items-center gap-4">
+
+						<div className="z-70 flex flex-col items-center gap-4">
 							<h2 className="heading-2 to-fg-tertiary bg-gradient-to-b from-white bg-clip-text text-center text-transparent">Features to help you Build Quicker</h2>
 							<p className="text-fg-tertiary w-full max-w-[480px] text-center text-base font-normal">
 								Extend your Radian experience with more features to help you build better apps and products{" "}
 							</p>
 						</div>
+
+						{/* Left line */}
+						<svg className="not-xl:hidden absolute -top-36 right-[100%] z-0" width="260" height="1300" viewBox="0 0 260 1300" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M243.5 269.5H203.5C190.245 269.5 179.5 258.755 179.5 245.5V56.443C179.5 49.4919 176.486 42.8822 171.238 38.3239L111 -14" stroke="#1c1d21" />
+							<path d="M179.5 91.5V195.5" stroke="#1c1d21" strokeLinecap="round" />
+							<path d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300" stroke="#1c1d21" />
+							<path d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300" stroke="#1c1d21" />
+							<path
+								id="beamPath"
+								d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300"
+								fill="none"
+								stroke="var(--color-primary)"
+								strokeWidth="1"
+								strokeLinecap="round"
+								className="animate-[var(--animate-beam-flow4)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+								pathLength="1000"
+							/>
+							<path d="M695.5 143.5V175.5" stroke="#1c1d21" />
+						</svg>
+
+						{/* Right line */}
+						<svg
+							className="not-xl:hidden absolute -top-36 left-[100%] z-0 scale-x-[-1]"
+							width="260"
+							height="1196"
+							viewBox="0 0 260 1196"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg">
+							<path d="M243.5 269.5H203.5C190.245 269.5 179.5 258.755 179.5 245.5V56.443C179.5 49.4919 176.486 42.8822 171.238 38.3239L111 -14" stroke="#1c1d21" />
+							<path d="M179.5 91.5V195.5" stroke="#1c1d21" strokeLinecap="round" />
+							<path d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300" stroke="#1c1d21" />
+							<path
+								id="beamPath"
+								d="M 162.5 113.5 H 26.5 C 13.2452 113.5 2.5 124.245 2.5 137.5 V 1300"
+								fill="none"
+								stroke="var(--color-primary)"
+								strokeWidth="1"
+								strokeLinecap="round"
+								className="animate-[var(--animate-beam-flow4)] [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+								pathLength="1000"
+							/>
+						</svg>
 					</div>
 
-					<div className="z-30 grid w-full max-w-[1340px] grid-cols-1 overflow-clip rounded-3xl border border-[#1c1d21] md:grid-cols-2 lg:grid-cols-4">
+					<div className="z-70 grid w-full max-w-[1340px] grid-cols-1 overflow-clip rounded-3xl border border-[#1c1d21] md:grid-cols-2 lg:grid-cols-4">
 						{DATA.map(({ icon: Icon, title, description }, i) => (
 							<div
 								key={i}
