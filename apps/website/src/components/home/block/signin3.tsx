@@ -78,15 +78,20 @@ export default function Signin3() {
 	return (
 		<div
 			style={{
-				backgroundImage: "radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px)",
+				backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
 				backgroundSize: "10px 10px",
 			}}
 			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
 				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 					<div className={`text-fg flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
-						{logoImage ? <ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} /> : <PlaygroundLogo />}
-						<Title />
+						{logoImage ? (
+							<ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} />
+						) : (
+							<>
+								<PlaygroundLogo /> <Title />
+							</>
+						)}
 					</div>
 					<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
 						<h1 className="heading-5">Sign In</h1>
@@ -124,7 +129,7 @@ export default function Signin3() {
 											<FormItem>
 												<div className="flex items-center justify-between">
 													{label && <FormLabel>Password</FormLabel>}
-													<Button variant="link" asChild color="primary">
+													<Button className="flex w-full justify-end" variant="link" asChild color="primary">
 														<Link href="#"> Forgot Password?</Link>
 													</Button>
 												</div>

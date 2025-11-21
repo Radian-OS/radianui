@@ -71,12 +71,12 @@ export const sizeMap: Record<string, "36" | "32" | "40" | "28" | "44" | "48"> = 
 export const spaceMap = {
 	gap8: {
 		default: "gap-8",
-		compact: "gap-7",
+		compact: "gap-5",
 		spacious: "gap-9",
 	},
 	gap6: {
 		default: "gap-6",
-		compact: "gap-5",
+		compact: "gap-4",
 		spacious: "gap-7",
 	},
 	gap5: {
@@ -107,6 +107,8 @@ export const buttonStyles: Record<string, string> = {
 		"active:bg-primary relative w-full overflow-hidden border border-black/10 before:pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/20 before:to-white/0",
 	fancy:
 		"from-primary to-primary-hover before:border-white/16 hover:opacity-92 w-full overflow-hidden bg-gradient-to-b before:absolute before:inset-px before:rounded-lg before:border",
+	elevated:
+		"active:bg-primary w-full shadow-[0_2px_4px_0_rgba(35,20,85,0.16),0_-2px_0_0_rgba(0,0,0,0.3)_inset] hover:shadow-[0_2px_4px_0_rgba(35,20,85,0.12),0_-2px_0_0_rgba(0,0,0,0.2)_inset] active:shadow-[0_2px_4px_0_rgba(35,20,85,0.16)]",
 }
 export default function Signin1() {
 	const [isLoading, setIsLoading] = useState(false)
@@ -134,7 +136,7 @@ export default function Signin1() {
 	return (
 		<div
 			style={{
-				backgroundImage: "radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px)",
+				backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
 				backgroundSize: "10px 10px",
 			}}
 			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">

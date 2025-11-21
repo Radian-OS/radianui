@@ -1,16 +1,16 @@
 "use client"
 
-import { useState } from "react"
-import { FileCode, Lock, Moon, SwatchBook } from "lucide-react"
+import { useEffect, useState } from "react"
+import { FileCode, Lock, Moon, Sun, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
 import { usePlayground } from "@/contexts/playground"
 import code from "@/data/code-snippets.json"
 import colorvalue from "@/data/color-value.json"
-import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { darkThemeVars, lightThemeVars } from "../theme/custom-theme-playground"
 import Signin1 from "./block/signin1"
 import Signin2 from "./block/signin2"
 import Signin3 from "./block/signin3"
@@ -25,27 +25,11 @@ import ListTodos from "./playground/list-todo"
 import Radius from "./playground/radius"
 import Uploads from "./playground/upload"
 
-const FONTS: Record<string, string> = {
-	"Inter Display and Inter": ``,
-	Roboto: roboto.className,
-	"Open Sans": openSans.className,
-	Manrope: manrope.className,
-	Geist: geist.className,
-	Rubik: rubik.className,
-	"DM Sans": dmSans.className,
-	Lato: lato.className,
-	Raleway: raleway.className,
-	"Work Sans": workSans.className,
-	"IBM Plex Sans": ibmPlexSans.className,
-	Figtree: figtree.className,
-}
-
 export default function PlaygroundSection() {
 	const { theme } = useTheme()
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
-	const [selectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
 
-	const { layout, color } = usePlayground()
+	const { layout, color, fontName, fontCategory } = usePlayground()
 
 	const layouts = {
 		"signin-1": <Signin1 />,
@@ -66,6 +50,22 @@ export default function PlaygroundSection() {
 \t/* ... */
 }`
 
+	useEffect(() => {
+		if (!fontName) return
+		const link = document.createElement("link")
+		link.rel = "stylesheet"
+		link.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, "+")}&display=swap`
+		document.head.appendChild(link)
+		return () => {
+			// cleanup: remove the appended link element without returning it
+			document.head.removeChild(link)
+		}
+	}, [fontName])
+
+	const [playgroundTheme, setPlaygroundTheme] = useState<"light" | "dark">("light")
+	const toggleTheme = () => {
+		setPlaygroundTheme(playgroundTheme === "light" ? "dark" : "light")
+	}
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
 			<div className="border-soft align-center pt-15 xl:px-15 relative flex justify-center rounded-t-3xl px-5 xl:border-l xl:border-r xl:border-t">
@@ -162,7 +162,7 @@ export default function PlaygroundSection() {
 				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
 					{/* Mobile/Tablet View */}
 					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
-						<TabsContent value="preview" className={`${FONTS[selectedFont]}`}>
+						<TabsContent value="preview">
 							<PlaygroundSignin rounded="rounded" />
 						</TabsContent>
 						<TabsContent value="code" className="h-190 overflow-scroll p-2">
@@ -228,7 +228,15 @@ export default function PlaygroundSection() {
 								</div>
 							</Tabs>
 						</div>
-						<div className={`relative w-1/2 flex-shrink-0 color-${color} ${FONTS[selectedFont]}`}>
+						<div
+							style={{
+								fontFamily: `${fontName}, ${fontCategory}`,
+								...(playgroundTheme === "light" ? lightThemeVars : darkThemeVars),
+								backgroundColor: "var(--color-elevation-negative)",
+								borderColor: "1px solid var(--color-border)",
+								color: "var(--color-fg)",
+							}}
+							className={`relative w-1/2 flex-shrink-0 color-${color}`}>
 							<div className="bg-bg absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
 								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1">
 									<div className="border-border flex h-8 items-center border-r">
@@ -242,8 +250,8 @@ export default function PlaygroundSection() {
 									</div>
 									<div className="border-border flex h-8 items-center border-l px-2">
 										<div className="text-fg-secondary flex">
-											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-												<Moon size={18} />
+											<div onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+												{playgroundTheme === "light" ? <Moon size={18} /> : <Sun size={18} />}
 											</div>
 											<Colors />
 										</div>

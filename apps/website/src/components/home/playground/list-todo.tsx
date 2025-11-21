@@ -102,8 +102,8 @@ export default function ListTodos() {
 							<Button variant="outline" size="28" color={button === "fancy" ? "primary" : "neutral"} onClick={() => handleButtonClick("fancy")}>
 								Fancy
 							</Button>
-							<Button variant="outline" size="28" color={button === "inverted" ? "primary" : "neutral"} onClick={() => handleButtonClick("inverted")}>
-								Inverted
+							<Button variant="outline" size="28" color={button === "elevated" ? "primary" : "neutral"} onClick={() => handleButtonClick("elevated")}>
+								Elevated
 							</Button>
 						</AccordionContent>
 					</AccordionItem>
