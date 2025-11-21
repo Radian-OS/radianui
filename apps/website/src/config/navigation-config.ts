@@ -111,6 +111,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Accordion UI component illustration",
 			},
 			{
+				title: "Aspect Ratio",
+				description: "1 Component",
+				url: "/docs/components/aspect-ratio",
+				thumbnail: "/thumbnails/aspect-ratio.webp",
+				thumbnailDark: `/thumbnails/aspect-ratio-dark.webp`,
+				alt: "Aspect Ratio UI component illustration",
+			},
+			{
 				title: "Avatar",
 				description: "4 Components",
 				url: "/docs/components/avatar",
