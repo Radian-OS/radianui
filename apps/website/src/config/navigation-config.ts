@@ -111,6 +111,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Accordion UI component illustration",
 			},
 			{
+				title: "Aspect Ratio",
+				description: "1 Component",
+				url: "/docs/components/aspect-ratio",
+				thumbnail: "/thumbnails/aspect-ratio.webp",
+				thumbnailDark: `/thumbnails/aspect-ratio-dark.webp`,
+				alt: "Aspect Ratio UI component illustration",
+			},
+			{
 				title: "Avatar",
 				description: "4 Components",
 				url: "/docs/components/avatar",
@@ -255,12 +263,12 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Input UI component illustration",
 			},
 			{
-				title: "One Time Password Field",
+				title: "OTP Field",
 				description: "2 Components",
-				url: "/docs/components/one-time-password-field",
+				url: "/docs/components/otp-field",
 				thumbnail: "/thumbnails/coming-soon.webp",
 				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
-				alt: "One Time Password Field UI component illustration",
+				alt: "OTP Field UI component illustration",
 			},
 			{
 				title: "File Upload",

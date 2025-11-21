@@ -1,0 +1,126 @@
+---
+title: OTP Field
+description: A group of single-character text inputs to handle one-time password verification
+links:
+  github:
+    href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/one-time-password-field.tsx
+  externalReference:
+    - label: Radix  UI
+      href: https://www.radix-ui.com/primitives/docs/components/one-time-password-field
+---
+
+<ComponentPreview path="otp-field/otp-field-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx radianui@latest add otp-field",
+				npm: "npx radianui@latest add otp-field",
+				yarn: "yarn dlx radianui@latest add otp-field",
+				bun: "bunx radianui@latest add otp-field",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm add @radix-ui/react-otp-field ",
+				npm: "npm install @radix-ui/react-otp-field",
+				yarn: "yarn add @radix-ui/react-otp-field ",
+				bun: "bun add @radix-ui/react-otp-field ",
+			}}
+		/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="otp-field" title="components/ui/otp-field.tsx" collapsible />
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet title="/components/ui/otp-field.tsx" code={`import { OTPField, OTPInput, OTPHiddenInput } from "@/components/ui/otp-field"`} showLineNumbers={false} />
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/otp-field.tsx"
+	code={`<OTPField>
+		<OTPInput />
+		<OTPInput />
+		<OTPInput />
+		{/* HiddenInput is required for the form to have data associated with the field */}
+		<OTPHiddenInput />
+	</OTPField>`}
+	showLineNumbers={false}
+/>
+
+---
+
+## Examples
+
+### Size
+
+<ComponentPreview path="otp-field/otp-size" />
+
+### Type - Password
+
+<ComponentPreview path="otp-field/otp-field-type-password" />
+
+### Validation Type
+
+<ComponentPreview path="otp-field/otp-field-validation-type" />
+
+### Disabled
+
+<ComponentPreview path="otp-field/otp-field-disabled" />
+
+### Form
+
+<ComponentPreview path="otp-field/otp-field-form" />
+
+### Auto Submit Form
+
+<ComponentPreview path="otp-field/otp-field-auto-submit" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="OTPField"
+		data={[
+			{
+				name: "size",
+				description: "Sets the size of all OTP inputs in the OTP field",
+				required: false,
+				defaultValue: "40",
+				values: ["28", "32", "36", "40", "44", "56"],
+			}
+    	]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/one-time-password-field#root"
+    />
+	<PropsTable
+		title="OTPInput"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/one-time-password-field#input"
+	/>
+	<PropsTable
+		title="OTPHiddenInput"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/one-time-password-field#hiddeninput"
+	/>
+
+</PropsTableWrapper>

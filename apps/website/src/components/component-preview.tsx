@@ -1,7 +1,6 @@
 "use client"
 
 import React, { ReactNode, useEffect, useState } from "react"
-import { EyeIcon, SquareTerminal } from "lucide-react"
 import CodeSnippet from "@/components/code-snippet"
 import { Spinner } from "@/registry/ui/spinner"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
@@ -104,15 +103,9 @@ export function ComponentPreview({ path, code, height, align }: ComponentPreview
 		<div className="mb-8">
 			<ComponentPreviewProvider path={path} code={code} height={height ?? 420} align={align ?? "center"}>
 				<Tabs defaultValue="preview" className="w-full">
-					<TabsList variant="outline-ghost" size="md">
-						<TabsTrigger value="preview">
-							<EyeIcon />
-							Preview
-						</TabsTrigger>
-						<TabsTrigger value="code">
-							<SquareTerminal />
-							Code
-						</TabsTrigger>
+					<TabsList size="md">
+						<TabsTrigger value="preview">Preview</TabsTrigger>
+						<TabsTrigger value="code">Code</TabsTrigger>
 					</TabsList>
 
 					<TabsContent value="preview">

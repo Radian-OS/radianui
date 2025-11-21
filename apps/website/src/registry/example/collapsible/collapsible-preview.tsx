@@ -120,7 +120,7 @@ function TaskItem({ task }: TaskItemProps) {
 
 function TaskList({ tasks }: TaskListProps) {
 	return (
-		<div className="text-fg-secondary flex flex-col gap-4 px-6 py-6 text-sm">
+		<div className="text-fg-secondary flex flex-col gap-4 p-4 text-sm">
 			<div className="flex gap-1">
 				<span>Completed Assets & Modules</span>
 				<Badge variant="soft" color="neutral" className="rounded-full">
@@ -144,8 +144,8 @@ type CollapsibleHeaderProps = {
 
 function CollapsibleHeader({ title, subtitle, isOpen }: CollapsibleHeaderProps) {
 	return (
-		<div className="flex items-center gap-3 px-6">
-			<div className="flex flex-1 flex-col gap-1 py-5">
+		<div className="flex items-center gap-3 p-4">
+			<div className="flex flex-1 flex-col gap-1">
 				<span className="font-semibold">{title}</span>
 				<span className="text-fg-secondary text-sm">{subtitle}</span>
 			</div>
@@ -164,8 +164,7 @@ export default function ProjectCollapsible() {
 	return (
 		<Collapsible open={isOpen} onOpenChange={setIsOpen} className="max-w-115 border-soft shadow-xs w-full rounded-xl border transition-all duration-200">
 			<CollapsibleHeader title="Design Project: Radian OS 3.0" subtitle="Status: 84% Complete (2 Dependencies Active)" isOpen={isOpen} />
-
-			<CollapsibleContent className="data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+			<CollapsibleContent>
 				<Divider className="border-soft-alpha" />
 				<TaskList tasks={MOCK_TASKS} />
 			</CollapsibleContent>

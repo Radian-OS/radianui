@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import { Check, ChevronDown, Clipboard, Maximize, Share2 } from "lucide-react"
 import Link from "next/link"
+import { toast } from "sonner"
 import Signin from "@/app/blocks/signin/page"
 import Signup from "@/app/blocks/signup/page"
 import Verification from "@/app/blocks/verification/page"
@@ -61,7 +62,7 @@ const HomeInteractive = () => {
 	const [activeTab, setActiveTab] = useState<(typeof PAGES)[number]["value"]>("signin")
 	const { copy, copied } = useCopyPaste()
 	return (
-		<div className="bg-bg/60 border-soft z-50 h-full rounded-xl border p-3 backdrop-blur-[45px]">
+		<div className="bg-bg/60 border-soft relative z-50 h-full rounded-xl border p-3 backdrop-blur-[45px]">
 			<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-1.5 pl-3">
@@ -85,7 +86,20 @@ const HomeInteractive = () => {
 						</div>
 					</TabsList>
 					<div className="flex items-center gap-0.5">
-						<Button onClick={(e) => copy(e, PAGES.find((p) => p.value === activeTab)!.command)} color="neutral" variant="ghost" size="28">
+						<Button
+							onClick={(e) => {
+								copy(e, PAGES.find((p) => p.value === activeTab)!.command)
+								toast.custom(() => (
+									<div className="bg-black-inverse text-fg-inverse flex w-[200px] items-center justify-between gap-2 rounded-lg p-3">
+										<div className="text-fg-inverse">
+											<p className="text-sm font-normal">Successfully Copied Command</p>
+										</div>
+									</div>
+								))
+							}}
+							color="neutral"
+							variant="ghost"
+							size="28">
 							{copied ? <Check size={16} className="shrink-0" /> : <Clipboard size={16} className="shrink-0" />}
 						</Button>
 						<Button size="28" color="neutral" variant="ghost" asChild>

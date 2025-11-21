@@ -175,7 +175,7 @@ const components = (examples: typeof Examples | undefined) => ({
 		/>
 	),
 	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
-		<p className={cn("text-fg-secondary", className)} {...props}>
+		<p className={cn("text-fg text-base leading-7", className)} {...props}>
 			{children}
 		</p>
 	),
@@ -196,7 +196,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	},
 	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
 
-	code: ({ className, ...props }: React.ComponentProps<"code">) => <code className={cn("bg-fill4 break-words rounded-md p-1 font-mono outline-none", className)} {...props} />,
+	code: ({ className, ...props }: React.ComponentProps<"code">) => <code className={cn("bg-fill2 break-words rounded-md p-1 font-mono outline-none", className)} {...props} />,
 
 	Alert: (props: AlertProps) => {
 		return <Alert variant="soft" color="warning" {...props} />

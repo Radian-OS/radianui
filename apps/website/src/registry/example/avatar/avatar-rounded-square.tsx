@@ -3,18 +3,18 @@ import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } fr
 
 export default function AvatarRoundedSquare() {
 	return (
-		<div className="flex gap-4">
+		<div className="flex gap-6">
 			<Avatar size="48" rounded="square">
-				<AvatarImage src="https://randomuser.me/api/portraits/men/6.jpg" />
-				<AvatarFallback>CH</AvatarFallback>
+				<AvatarImage src="/media/organization-3.png" />
+				<AvatarFallback>AB</AvatarFallback>
 			</Avatar>
 
 			<Avatar size="48" rounded="square">
-				<AvatarFallback>CH</AvatarFallback>
+				<AvatarFallback className="text-success-text bg-success-focus">AP</AvatarFallback>
 			</Avatar>
 
 			<Avatar size="48" rounded="square">
-				<AvatarImage src="https://randomuser.me/api/portraits/men/4.jpg" />
+				<AvatarImage src="/media/female-1.png" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="bottom-1.5 right-1.5">
 					<AvatarStatus variant="online" />

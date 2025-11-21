@@ -43,9 +43,9 @@ export const init = new Command()
 	.option("-s, --skipPrompts", "skip confirmation prompts", false)
 	.option("-d, --defaultConfigurations", "use default configurations", false)
 	.option("-c, --cwd <cwd>", "current working directory", process.cwd())
-	.action(async (projectName, opts) => {
+	.action(async (projectNameArg, opts) => {
 		try {
-			const options = initOptionsSchema.parse({ ...opts, projectName })
+			const options = initOptionsSchema.parse({ ...opts, projectNameArg })
 
 			// Check if both frameworks are passed
 			if (options.next && options.vite) {
@@ -55,10 +55,14 @@ export const init = new Command()
 				process.exit(1)
 			}
 
-			await executeInit(options)
+			const { projectName } = await executeInit(options)
 
 			logger.break()
-			logger.info(`${txt.success("Success!")} Project initialization completed. You may now add components.`)
+			logger.info(`${txt.success("Success!")} Project initialization completed.`)
+			logger.break()
+			logger.log("Next steps:")
+			logger.log(`  cd ${txt.info(projectName)}`)
+			logger.log(`  To add all components, run: ${txt.info("npx radianui add -a")}`)
 			logger.break()
 		} catch (error) {
 			handleError(error)
@@ -171,5 +175,5 @@ export const executeInit = async (options: InitOptions) => {
 	// Update global CSS variables (same for both new and existing projects)
 	await updateGlobalCssVariables(projectPath, useSrcDir, framework, brandColor, font)
 
-	return projectInfo
+	return { projectName, ...projectInfo }
 }

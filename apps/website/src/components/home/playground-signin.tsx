@@ -8,8 +8,8 @@ import { Divider } from "@/registry/ui/divider"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Spinner } from "@/registry/ui/spinner"
-import { GithubIcon } from "./github-icon"
-import { GoogleIcon } from "./google-icon"
+import { GithubIcon } from "./block/components/github-icon"
+import { GoogleIcon } from "./block/components/google-icon"
 import PlaygroundLogo from "./playground-logo"
 
 export const radiusMap: Record<string, string> = {
@@ -19,7 +19,7 @@ export const radiusMap: Record<string, string> = {
 	fun: "rounded-xl",
 }
 
-export default function PlaygroundSignin({ rounded }: { rounded: "default" | "rounded" | "flat" | "fun" }) {
+export default function Signin1({ rounded }: { rounded: "default" | "rounded" | "flat" | "fun" }) {
 	const rememberMeId = useId()
 	const emailId = useId()
 	const passwordId = useId()
@@ -44,7 +44,7 @@ export default function PlaygroundSignin({ rounded }: { rounded: "default" | "ro
 
 	return (
 		<div className="bg-elevation-negative flex h-full w-full items-center justify-center px-5 py-4">
-			<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
+			<div className="max-w-100 bg-bg border-border flex w-full rounded-2xl border px-6 py-8">
 				<div className="flex flex-1 flex-col gap-8">
 					<PlaygroundLogo />
 					<div className="flex flex-col gap-2">
@@ -52,7 +52,7 @@ export default function PlaygroundSignin({ rounded }: { rounded: "default" | "ro
 						<p className="text-fg-secondary text-sm">Welcome! Sign in to continue</p>
 					</div>
 					<div className="flex flex-1 flex-col gap-6">
-						<div className="flex gap-3">
+						<div className="flex flex-col gap-3 sm:flex-row">
 							<Button variant="outline" color="neutral" className={`text-fg-secondary w-full ${radiusMap[rounded]}`}>
 								<GoogleIcon />
 								Google
@@ -81,7 +81,7 @@ export default function PlaygroundSignin({ rounded }: { rounded: "default" | "ro
 								<Input id={passwordId} size="36" type="password" className={`${radiusMap[rounded]} w-full`} value={password} onChange={(e) => setPassword(e.target.value)} />
 							</div>
 
-							<div className="flex items-center justify-between">
+							<div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
 								<div className="flex items-center gap-2">
 									<Checkbox id={rememberMeId} checked={rememberMe} onCheckedChange={(checked) => setRememberMe(!!checked)} className={`${radiusMap[rounded]}`} />
 									<Label htmlFor={rememberMeId} className="text-fg-secondary font-normal">

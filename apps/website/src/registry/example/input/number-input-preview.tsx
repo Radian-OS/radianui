@@ -1,48 +1,48 @@
 import { useState } from "react"
-import { Minus, Plus } from "lucide-react"
+import { ChevronDown, ChevronUp, Minus, Plus } from "lucide-react"
 import { Input, InputAddon, InputGroup, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
 const NumberInputPreview = () => {
-	//default number input
 	const [amount, setAmount] = useState("")
-	//input group number input
 	const [amount1, setAmount1] = useState("")
-	//input wrapper number input
 	const [amount2, setAmount2] = useState("")
+	const [amount3, setAmount3] = useState("")
 
 	interface HandleChangeEvent {
 		target: {
 			value: string
 		}
 	}
-	//function to allow only numbers in default input field
 	const handleChange = (e: HandleChangeEvent) => {
 		const onlyDigits = e.target.value.replace(/\D/g, "")
 		setAmount(onlyDigits)
 	}
 
-	//function to allow only numbers in input group field
 	const handleChange1 = (e: HandleChangeEvent) => {
 		const onlyDigits = e.target.value.replace(/\D/g, "")
 		setAmount1(onlyDigits)
 	}
 
-	//function to allow only numbers in input wrapper field
 	const handleChange2 = (e: HandleChangeEvent) => {
 		const onlyDigits = e.target.value.replace(/\D/g, "")
 		setAmount2(onlyDigits)
 	}
 
+	const handleChange3 = (e: HandleChangeEvent) => {
+		const onlyDigits = e.target.value.replace(/\D/g, "")
+		setAmount3(onlyDigits)
+	}
+
 	return (
-		<div className="flex w-80 flex-col gap-6">
+		<div className="flex w-32 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
-				<Label>Default Number Input</Label>
-				<Input onChange={handleChange} className="w-full" placeholder="Enter number here" value={amount} type="numeric" />{" "}
+				<Label>Default Number</Label>
+				<Input onChange={handleChange} className="w-full" placeholder="Enter number" value={amount} type="numeric" />{" "}
 			</div>
 
 			<div className="flex flex-col gap-1.5">
-				<Label>Number Input w/Button Stepper</Label>
+				<Label>Input with Stepper</Label>
 				<InputGroup className="w-full">
 					<InputAddon
 						mode="icon"
@@ -68,9 +68,35 @@ const NumberInputPreview = () => {
 				</InputGroup>
 			</div>
 
-			{/* Input Wrapper */}
 			<div className="flex flex-col gap-1.5">
-				<Label>Number Input w/Inline Button</Label>
+				<Label>Input with Arrow</Label>
+				<InputGroup className="w-full">
+					<Input onChange={handleChange3} placeholder="12" value={amount3} type="numeric" />
+					<InputAddon mode="icon" className="divide-border flex flex-col divide-y p-0">
+						<div
+							className="flex h-1/2 w-full cursor-pointer items-center justify-center"
+							onClick={(e) => {
+								e.stopPropagation()
+								setAmount3((v) => String(Number(v || "0") + 1))
+							}}
+							onMouseDown={(e) => e.preventDefault()}>
+							<ChevronUp className="size-4" />
+						</div>
+						<div
+							className="flex h-1/2 w-full cursor-pointer items-center justify-center"
+							onClick={(e) => {
+								e.stopPropagation()
+								setAmount3((v) => (Number(v) > 0 ? String(Number(v) - 1) : "0"))
+							}}
+							onMouseDown={(e) => e.preventDefault()}>
+							<ChevronDown className="size-4" />
+						</div>
+					</InputAddon>
+				</InputGroup>
+			</div>
+
+			<div className="flex flex-col gap-1.5">
+				<Label>Input with Inline </Label>
 				<InputWrapper className="w-full">
 					<Minus
 						onClick={(e) => {

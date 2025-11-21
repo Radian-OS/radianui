@@ -4,7 +4,7 @@ import React from "react"
 import CommonCard from "@/components/common/common-card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
-const lightThemeVars = {
+export const lightThemeVars = {
 	// Primary
 	"--color-primary": "oklch(0.528 0.2539 282.58)",
 	"--color-primary-accent": "oklch(0.94 0.0271 295.05)",
@@ -76,7 +76,7 @@ const lightThemeVars = {
 	"--color-fill4-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
 } as React.CSSProperties
 
-const darkThemeVars = {
+export const darkThemeVars = {
 	// Primary
 	"--color-primary": "oklch(0.528 0.2539 282.58)",
 	"--color-primary-accent": "oklch(0.2294 0.0753 289.19)",

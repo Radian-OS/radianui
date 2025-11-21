@@ -3,12 +3,9 @@ import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 
 export default function AvatarFallbackPreview() {
 	return (
-		<div className="flex gap-4">
+		<div className="flex gap-6">
 			<Avatar size="48">
-				<AvatarFallback>CH</AvatarFallback>
-			</Avatar>
-			<Avatar size="48">
-				<AvatarFallback className="text-error bg-error/10">AJ</AvatarFallback>
+				<AvatarFallback>SM</AvatarFallback>
 			</Avatar>
 			<Avatar size="48">
 				<AvatarFallback className="bg-fill4 overflow-hidden">

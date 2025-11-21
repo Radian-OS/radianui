@@ -20,7 +20,10 @@ function CollapsibleTrigger({ ...props }: CollapsibleTriggerProps) {
 
 function CollapsibleContent({ className, children, ...props }: CollapsibleContentProps) {
 	return (
-		<CollapsiblePrimitive.CollapsibleContent data-slot="collapsible-content" className={cn("overflow-hidden", className)} {...props}>
+		<CollapsiblePrimitive.CollapsibleContent
+			data-slot="collapsible-content"
+			className={cn("data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down overflow-hidden", className)}
+			{...props}>
 			{children}
 		</CollapsiblePrimitive.CollapsibleContent>
 	)

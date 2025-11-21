@@ -2,47 +2,28 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
 export const people = [
 	{
-		name: "John Doe",
-		image: "https://randomuser.me/api/portraits/men/1.jpg",
+		name: "Noah Brooks",
+		image: "/media/male-1.png",
 	},
 	{
-		name: "Jane Smith",
-		image: "https://randomuser.me/api/portraits/women/1.jpg",
+		name: "Liam Reed",
+		image: "/media/male-2.png",
 	},
 	{
-		name: "Michael Brown",
-		image: "https://randomuser.me/api/portraits/men/2.jpg",
+		name: "Ethan Cole",
+		image: "/media/male-3.png",
 	},
 	{
-		name: "Emily Davis",
-		image: "https://randomuser.me/api/portraits/women/2.jpg",
+		name: "Ava Patel",
+		image: "/media/female-1.png",
 	},
 	{
-		name: "Chris Johnson",
-		image: "https://randomuser.me/api/portraits/men/3.jpg",
-	},
-	{
-		name: "Sophia Lee",
-		image: "https://randomuser.me/api/portraits/women/3.jpg",
-	},
-	{
-		name: "Daniel Garcia",
-		image: "https://randomuser.me/api/portraits/men/4.jpg",
-	},
-	{
-		name: "Olivia Martinez",
-		image: "https://randomuser.me/api/portraits/women/4.jpg",
-	},
-	{
-		name: "Ethan Wilson",
-		image: "https://randomuser.me/api/portraits/men/5.jpg",
-	},
-	{
-		name: "Mia Taylor",
-		image: "https://randomuser.me/api/portraits/women/5.jpg",
+		name: "Mia Chen",
+		image: "/media/female-2.png",
 	},
 ]
 
+// Utility function to get the initials of a name
 function getInitials(name: string) {
 	const parts = name.trim().split(" ")
 	if (parts.length === 1) {
@@ -54,14 +35,14 @@ function getInitials(name: string) {
 export default function AvatarGroup() {
 	return (
 		<div className="flex -space-x-2.5">
-			{people.slice(0, 4).map((person) => (
-				<Avatar className="border-bg border-2 hover:z-10" key={person.name}>
+			{people.map((person) => (
+				<Avatar size="32" className="border-bg border-4 hover:z-10" key={person.name}>
 					<AvatarImage src={person.image} />
 					<AvatarFallback>{getInitials(person.name)}</AvatarFallback>
 				</Avatar>
 			))}
-			<Avatar className="border-bg border-2 hover:z-10">
-				<AvatarFallback>+7</AvatarFallback>
+			<Avatar size="32" className="border-bg border-4 hover:z-10">
+				<AvatarFallback className="text-sm font-semibold">+9</AvatarFallback>
 			</Avatar>
 		</div>
 	)
