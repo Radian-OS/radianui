@@ -1,7 +1,6 @@
 import React, { useEffect } from "react"
-import { useState } from "react"
 import { Upload } from "lucide-react"
-import { AlertCircleIcon, ImageIcon, Loader2 } from "lucide-react"
+import { AlertCircleIcon } from "lucide-react"
 import Image from "next/image"
 import { usePlayground } from "@/contexts/playground"
 import { Button, IconButton } from "@/registry/ui/button"
@@ -14,48 +13,11 @@ interface ImagePreviewProps {
 		preview?: string
 		file: File | FileMetadata
 	}
-	size?: number
+	height?: number
 }
 
-export function ImagePreview({ file, size = 8 }: ImagePreviewProps) {
-	const [isLoading, setIsLoading] = useState(true)
-	const [hasError, setHasError] = useState(false)
-
-	const handleImageLoad = () => {
-		setIsLoading(false)
-	}
-
-	const handleImageError = () => {
-		setIsLoading(false)
-		setHasError(true)
-	}
-
-	return (
-		<div className={`bg-primary-focus relative size-${size} cursor-pointer rounded-md transition-all`} onClick={() => file.preview}>
-			{/* Loading state - maintains full dimensions */}
-			{isLoading && (
-				<div className="absolute inset-0 flex items-center justify-center rounded-[inherit]">
-					<Loader2 className="size-6 animate-spin opacity-60" />
-				</div>
-			)}
-
-			{/* Error state */}
-			{hasError && (
-				<div className="absolute inset-0 flex items-center justify-center rounded-[inherit]">
-					<ImageIcon className="size-6 opacity-40" />
-				</div>
-			)}
-
-			{/* Image */}
-			<img
-				src={file.preview}
-				alt={file.file.name}
-				className={`size-${size} rounded-[inherit] object-cover transition-opacity ${isLoading ? "opacity-0" : "opacity-100"}`}
-				onLoad={handleImageLoad}
-				onError={handleImageError}
-			/>
-		</div>
-	)
+export function ImagePreview({ file, height = 8 }: ImagePreviewProps) {
+	return <img src={file.preview} alt={file.file.name} className={`h-${height} rounded-[inherit] object-cover transition-opacity`} />
 }
 
 export default function Uploads() {

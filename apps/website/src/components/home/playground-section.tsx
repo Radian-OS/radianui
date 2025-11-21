@@ -1,21 +1,19 @@
 "use client"
 
-import { useState } from "react"
-import { FileCode, Lock, Moon, SwatchBook } from "lucide-react"
+import { useEffect, useState } from "react"
+import { FileCode, Lock, MoonIcon, SunIcon, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
 import { usePlayground } from "@/contexts/playground"
 import code from "@/data/code-snippets.json"
 import colorvalue from "@/data/color-value.json"
-import { dmSans, figtree, geist, ibmPlexSans, lato, manrope, openSans, raleway, roboto, rubik, workSans } from "@/lib/fetch-fonts"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import HoverCard from "./block/hover-card"
 import Signin1 from "./block/signin1"
 import Signin2 from "./block/signin2"
 import Signin3 from "./block/signin3"
-import Signin4 from "./block/signin4"
-import Signup1 from "./block/signup1"
 import Signup2 from "./block/signup2"
 import PlaygroundSignin from "./playground-signin"
 import Colors from "./playground/color"
@@ -25,35 +23,18 @@ import ListTodos from "./playground/list-todo"
 import Radius from "./playground/radius"
 import Uploads from "./playground/upload"
 
-const FONTS: Record<string, string> = {
-	"Inter Display and Inter": ``,
-	Roboto: roboto.className,
-	"Open Sans": openSans.className,
-	Manrope: manrope.className,
-	Geist: geist.className,
-	Rubik: rubik.className,
-	"DM Sans": dmSans.className,
-	Lato: lato.className,
-	Raleway: raleway.className,
-	"Work Sans": workSans.className,
-	"IBM Plex Sans": ibmPlexSans.className,
-	Figtree: figtree.className,
-}
-
 export default function PlaygroundSection() {
-	const { theme } = useTheme()
+	const { theme, setTheme } = useTheme()
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
-	const [selectedFont] = useState<keyof typeof FONTS>("Inter Display and Inter")
 
-	const { layout, color } = usePlayground()
+	const { layout, color, fontName, fontCategory } = usePlayground()
 
 	const layouts = {
 		"signin-1": <Signin1 />,
 		"signin-2": <Signin2 />,
 		"signin-3": <Signin3 />,
-		"signin-4": <Signin4 />,
-		"signup-1": <Signup1 />,
-		"signup-2": <Signup2 />,
+		signup: <Signup2 />,
+		"hover-card": <HoverCard />,
 	}
 
 	const currentCode = code?.[layout] || "// Loading..."
@@ -66,6 +47,30 @@ export default function PlaygroundSection() {
 \t/* ... */
 }`
 
+	useEffect(() => {
+		if (!fontName) return
+		const link = document.createElement("link")
+		link.rel = "stylesheet"
+		link.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, "+")}&display=swap`
+		document.head.appendChild(link)
+		return () => {
+			document.head.removeChild(link)
+		}
+	}, [fontName])
+
+	const toggleTheme = () => {
+		setTheme(theme === "light" ? "dark" : "light")
+	}
+
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	if (!mounted) {
+		return null
+	}
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
 			<div className="border-soft align-center pt-15 xl:px-15 relative flex justify-center rounded-t-3xl px-5 xl:border-l xl:border-r xl:border-t">
@@ -159,10 +164,10 @@ export default function PlaygroundSection() {
 					</div>
 					<div className="text-fg-tertiary flex items-center gap-3 px-3">{/* <Share size={16} /> */}</div>
 				</div>
-				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
+				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 overflow-hidden rounded-xl border">
 					{/* Mobile/Tablet View */}
 					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
-						<TabsContent value="preview" className={`${FONTS[selectedFont]}`}>
+						<TabsContent value="preview">
 							<PlaygroundSignin rounded="rounded" />
 						</TabsContent>
 						<TabsContent value="code" className="h-190 overflow-scroll p-2">
@@ -187,7 +192,7 @@ export default function PlaygroundSection() {
 						</TabsContent>
 					</div>
 					{/* Desktop View */}
-					<div className="not-lg:hidden h-205 flex flex-1">
+					<div className="not-lg:hidden h-205 flex flex-1 overflow-hidden">
 						<div className="border-soft h-205 w-1/2 flex-shrink-0 border-r">
 							<Tabs className="h-full gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
 								<div className="border-border flex h-10 items-center justify-between border-b pl-4">
@@ -228,7 +233,11 @@ export default function PlaygroundSection() {
 								</div>
 							</Tabs>
 						</div>
-						<div className={`relative w-1/2 flex-shrink-0 color-${color} ${FONTS[selectedFont]}`}>
+						<div
+							style={{
+								fontFamily: `${fontName}, ${fontCategory}`,
+							}}
+							className={`relative w-1/2 flex-shrink-0 color-${color}`}>
 							<div className="bg-bg absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
 								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1">
 									<div className="border-border flex h-8 items-center border-r">
@@ -242,8 +251,8 @@ export default function PlaygroundSection() {
 									</div>
 									<div className="border-border flex h-8 items-center border-l px-2">
 										<div className="text-fg-secondary flex">
-											<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-												<Moon size={18} />
+											<div onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+												{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
 											</div>
 											<Colors />
 										</div>

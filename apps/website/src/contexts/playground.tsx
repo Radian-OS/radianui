@@ -2,7 +2,7 @@
 
 import { ReactNode, createContext, useContext, useState } from "react"
 
-export type LayoutOption = "signin-1" | "signin-2" | "signin-3" | "signin-4" | "signup-1" | "signup-2"
+export type LayoutOption = "signin-1" | "signin-2" | "signin-3" | "signup" | "hover-card"
 export type ColorOption =
 	| "red"
 	| "orange"
@@ -25,7 +25,9 @@ export type ColorOption =
 export type RadiusOption = "default" | "rounded" | "flat" | "fun"
 export type SpacingOption = "compact" | "default" | "spacious"
 export type SizeOption = "small" | "default" | "large"
-export type ButtonOption = "default" | "gradient" | "fancy" | "inverted"
+export type ButtonOption = "default" | "gradient" | "fancy" | "elevated"
+export type FontCategory = "Sans Serif" | "Serif" | "Monospace" | "Display" | "Handwriting"
+export type FontName = string
 
 interface PlaygroundContextType {
 	layout: LayoutOption
@@ -48,6 +50,10 @@ interface PlaygroundContextType {
 	setButton?: (button: ButtonOption) => void
 	logoImage?: string
 	setLogoImage?: (logo: string | undefined) => void
+	fontName?: FontName
+	setFontName?: (name: FontName) => void
+	fontCategory?: FontCategory
+	setFontCategory?: (category: FontCategory) => void
 }
 
 const PlaygroundContext = createContext<PlaygroundContextType | undefined>(undefined)
@@ -71,6 +77,8 @@ export const PlaygroundProvider = ({ children }: { children: ReactNode }) => {
 	const [icon, setIcon] = useState<boolean>(false)
 	const [button, setButton] = useState<ButtonOption>("default")
 	const [logoImage, setLogoImage] = useState<string | undefined>(undefined)
+	const [fontName, setFontName] = useState<FontName>("Inter")
+	const [fontCategory, setFontCategory] = useState<FontCategory>("Sans Serif")
 
 	return (
 		<PlaygroundContext.Provider
@@ -95,6 +103,10 @@ export const PlaygroundProvider = ({ children }: { children: ReactNode }) => {
 				setButton,
 				logoImage,
 				setLogoImage,
+				fontName,
+				setFontName,
+				fontCategory,
+				setFontCategory,
 			}}>
 			{children}
 		</PlaygroundContext.Provider>

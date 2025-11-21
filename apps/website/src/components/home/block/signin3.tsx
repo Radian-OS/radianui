@@ -9,12 +9,12 @@ import { z } from "zod"
 import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Input, InputWrapper } from "@/registry/ui/input"
+import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
 import { Title } from "./components/title"
-import { buttonStyles, radiusMap, sizeMap, spaceMap } from "./signin1"
+import { buttonStyles, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -78,15 +78,20 @@ export default function Signin3() {
 	return (
 		<div
 			style={{
-				backgroundImage: "radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px)",
+				backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
 				backgroundSize: "10px 10px",
 			}}
 			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
-			<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
+			<div className={`w-100 bg-bg border-border flex ${radiusBorderMap[radius]} border px-6 py-8`}>
 				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 					<div className={`text-fg flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
-						{logoImage ? <ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} /> : <PlaygroundLogo />}
-						<Title />
+						{logoImage ? (
+							<ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} />
+						) : (
+							<>
+								<PlaygroundLogo /> <Title />
+							</>
+						)}
 					</div>
 					<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
 						<h1 className="heading-5">Sign In</h1>
@@ -108,10 +113,21 @@ export default function Signin3() {
 											<FormItem>
 												{label && <FormLabel>Email Address</FormLabel>}
 												<FormControl>
-													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
-														{icon && <Mail />}
-														<Input placeholder={placeholder ? "Enter your email" : ""} className={`${radiusMap[radius]} w-full`} type="email" {...field} />
-													</InputWrapper>
+													<InputGroup>
+														{icon && (
+															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+																{" "}
+																{icon && <Mail />}
+															</InputAddon>
+														)}
+														<Input
+															size={sizeMap[size ?? "default"]}
+															className={`${radiusMap[radius]} w-full`}
+															placeholder={placeholder ? "Enter your email" : ""}
+															type="email"
+															{...field}
+														/>
+													</InputGroup>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -124,15 +140,25 @@ export default function Signin3() {
 											<FormItem>
 												<div className="flex items-center justify-between">
 													{label && <FormLabel>Password</FormLabel>}
-													<Button variant="link" asChild color="primary">
+													<Button className="flex w-full justify-end" variant="link" asChild color="primary">
 														<Link href="#"> Forgot Password?</Link>
 													</Button>
 												</div>
 												<FormControl>
-													<InputWrapper size={sizeMap[size ?? "default"]}>
-														{icon && <Lock />}
-														<Input className={`${radiusMap[radius]} w-full`} placeholder={placeholder ? "Enter your password" : ""} type="password" {...field} />
-													</InputWrapper>
+													<InputGroup>
+														{icon && (
+															<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
+																<Lock />
+															</InputAddon>
+														)}
+														<Input
+															size={sizeMap[size ?? "default"]}
+															className={`${radiusMap[radius]} w-full`}
+															placeholder={placeholder ? "Enter your password" : ""}
+															type="password"
+															{...field}
+														/>
+													</InputGroup>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
