@@ -14,9 +14,8 @@ export default function Layout() {
 					<DropdownRadioItem value="signin-1">Sign In 1</DropdownRadioItem>
 					<DropdownRadioItem value="signin-2">Sign In 2</DropdownRadioItem>
 					<DropdownRadioItem value="signin-3">Sign In 3</DropdownRadioItem>
-					<DropdownRadioItem value="signin-4">Sign In 4</DropdownRadioItem>
-					<DropdownRadioItem value="signup-1">Sign Up 1</DropdownRadioItem>
-					<DropdownRadioItem value="signup-2">Sign Up 2</DropdownRadioItem>
+					<DropdownRadioItem value="signup">Sign Up</DropdownRadioItem>
+					<DropdownRadioItem value="hover-card">Hover Card</DropdownRadioItem>
 				</DropdownRadioGroup>
 			</DropdownContent>
 		</Dropdown>

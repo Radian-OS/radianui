@@ -10,13 +10,13 @@ import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Input, InputWrapper } from "@/registry/ui/input"
+import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
-import { buttonStyles, radiusMap, sizeMap, spaceMap } from "./signin1"
+import { buttonStyles, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -124,7 +124,7 @@ export default function Signup2() {
 				backgroundSize: "10px 10px",
 			}}
 			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
-			<div className="w-100 bg-bg border-border flex rounded-2xl border px-6 py-8">
+			<div className={`w-100 bg-bg border-border flex ${radiusBorderMap[radius]} border px-6 py-8`}>
 				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 					<div>
 						{logoImage ? <ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} /> : <PlaygroundLogo />}
@@ -150,10 +150,20 @@ export default function Signup2() {
 											<FormItem>
 												{label && <FormLabel>First Name</FormLabel>}
 												<FormControl>
-													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
-														{icon && <User />}
-														<Input placeholder={placeholder ? "Enter first name" : ""} className={`${radiusMap[radius]} w-full`} type="text" {...field} />
-													</InputWrapper>
+													<InputGroup>
+														{icon && (
+															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+																<User />
+															</InputAddon>
+														)}
+														<Input
+															size={sizeMap[size ?? "default"]}
+															placeholder={placeholder ? "Enter first name" : ""}
+															className={`${radiusMap[radius]} w-full`}
+															type="text"
+															{...field}
+														/>
+													</InputGroup>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -166,10 +176,20 @@ export default function Signup2() {
 											<FormItem>
 												{label && <FormLabel>Email Address</FormLabel>}
 												<FormControl>
-													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
-														{icon && <Mail />}
-														<Input placeholder={placeholder ? "Enter your email" : ""} className={`${radiusMap[radius]} w-full`} type="email" {...field} />
-													</InputWrapper>
+													<InputGroup>
+														{icon && (
+															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+																<Mail />
+															</InputAddon>
+														)}
+														<Input
+															size={sizeMap[size ?? "default"]}
+															placeholder={placeholder ? "Enter your email" : ""}
+															className={`${radiusMap[radius]} w-full`}
+															type="email"
+															{...field}
+														/>
+													</InputGroup>
 												</FormControl>
 												<FormMessage />
 											</FormItem>
@@ -182,22 +202,28 @@ export default function Signup2() {
 											<FormItem>
 												{label && <FormLabel>Password</FormLabel>}
 												<FormControl>
-													<InputWrapper className={`${radiusMap[radius]} w-full`}>
-														{icon && <Lock />}
+													<InputGroup className={`${radiusMap[radius]} w-full`}>
+														{icon && (
+															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+																<Lock />
+															</InputAddon>
+														)}
 														<Input
 															size={sizeMap[size ?? "default"]}
-															className={`peer`}
+															className={`peer ${radiusMap[radius]}`}
 															{...field}
 															placeholder={placeholder ? "Enter your password" : ""}
 															id="toggle-visible-password"
 															ref={inputRef}
 															type={showPassword ? "text" : "password"}
 														/>
-														<IconComponent
-															className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
-															onMouseDown={togglePasswordVisibility}
-														/>
-													</InputWrapper>
+														<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
+															<IconComponent
+																className={`hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none`}
+																onMouseDown={togglePasswordVisibility}
+															/>
+														</InputAddon>
+													</InputGroup>
 												</FormControl>
 												<FormMessage />
 											</FormItem>

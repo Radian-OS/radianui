@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { FileCode, Lock, Moon, Sun, SwatchBook } from "lucide-react"
+import { FileCode, Lock, MoonIcon, SunIcon, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
 import { usePlayground } from "@/contexts/playground"
 import code from "@/data/code-snippets.json"
@@ -10,12 +10,10 @@ import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { CodeArea } from "@/registry/ui/code-area"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
-import { darkThemeVars, lightThemeVars } from "../theme/custom-theme-playground"
+import HoverCard from "./block/hover-card"
 import Signin1 from "./block/signin1"
 import Signin2 from "./block/signin2"
 import Signin3 from "./block/signin3"
-import Signin4 from "./block/signin4"
-import Signup1 from "./block/signup1"
 import Signup2 from "./block/signup2"
 import PlaygroundSignin from "./playground-signin"
 import Colors from "./playground/color"
@@ -26,7 +24,7 @@ import Radius from "./playground/radius"
 import Uploads from "./playground/upload"
 
 export default function PlaygroundSection() {
-	const { theme } = useTheme()
+	const { theme, setTheme } = useTheme()
 	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
 
 	const { layout, color, fontName, fontCategory } = usePlayground()
@@ -35,9 +33,8 @@ export default function PlaygroundSection() {
 		"signin-1": <Signin1 />,
 		"signin-2": <Signin2 />,
 		"signin-3": <Signin3 />,
-		"signin-4": <Signin4 />,
-		"signup-1": <Signup1 />,
-		"signup-2": <Signup2 />,
+		signup: <Signup2 />,
+		"hover-card": <HoverCard />,
 	}
 
 	const currentCode = code?.[layout] || "// Loading..."
@@ -57,14 +54,22 @@ export default function PlaygroundSection() {
 		link.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, "+")}&display=swap`
 		document.head.appendChild(link)
 		return () => {
-			// cleanup: remove the appended link element without returning it
 			document.head.removeChild(link)
 		}
 	}, [fontName])
 
-	const [playgroundTheme, setPlaygroundTheme] = useState<"light" | "dark">("light")
 	const toggleTheme = () => {
-		setPlaygroundTheme(playgroundTheme === "light" ? "dark" : "light")
+		setTheme(theme === "light" ? "dark" : "light")
+	}
+
+	const [mounted, setMounted] = useState(false)
+
+	useEffect(() => {
+		setMounted(true)
+	}, [])
+
+	if (!mounted) {
+		return null
 	}
 	return (
 		<div className="py-15 min-[1920px]:pt-25 flex flex-col items-center gap-10 px-5 min-[1920px]:gap-16 min-[1920px]:px-60 min-[1920px]:py-20">
@@ -159,7 +164,7 @@ export default function PlaygroundSection() {
 					</div>
 					<div className="text-fg-tertiary flex items-center gap-3 px-3">{/* <Share size={16} /> */}</div>
 				</div>
-				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 rounded-xl border">
+				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 overflow-hidden rounded-xl border">
 					{/* Mobile/Tablet View */}
 					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
 						<TabsContent value="preview">
@@ -187,7 +192,7 @@ export default function PlaygroundSection() {
 						</TabsContent>
 					</div>
 					{/* Desktop View */}
-					<div className="not-lg:hidden h-205 flex flex-1">
+					<div className="not-lg:hidden h-205 flex flex-1 overflow-hidden">
 						<div className="border-soft h-205 w-1/2 flex-shrink-0 border-r">
 							<Tabs className="h-full gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
 								<div className="border-border flex h-10 items-center justify-between border-b pl-4">
@@ -231,10 +236,6 @@ export default function PlaygroundSection() {
 						<div
 							style={{
 								fontFamily: `${fontName}, ${fontCategory}`,
-								...(playgroundTheme === "light" ? lightThemeVars : darkThemeVars),
-								backgroundColor: "var(--color-elevation-negative)",
-								borderColor: "1px solid var(--color-border)",
-								color: "var(--color-fg)",
 							}}
 							className={`relative w-1/2 flex-shrink-0 color-${color}`}>
 							<div className="bg-bg absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
@@ -251,7 +252,7 @@ export default function PlaygroundSection() {
 									<div className="border-border flex h-8 items-center border-l px-2">
 										<div className="text-fg-secondary flex">
 											<div onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-												{playgroundTheme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+												{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
 											</div>
 											<Colors />
 										</div>

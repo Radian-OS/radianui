@@ -2,7 +2,7 @@
 
 import { ReactNode, createContext, useContext, useState } from "react"
 
-export type LayoutOption = "signin-1" | "signin-2" | "signin-3" | "signin-4" | "signup-1" | "signup-2"
+export type LayoutOption = "signin-1" | "signin-2" | "signin-3" | "signup" | "hover-card"
 export type ColorOption =
 	| "red"
 	| "orange"

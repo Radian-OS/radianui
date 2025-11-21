@@ -8,10 +8,9 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
-import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Input, InputWrapper } from "@/registry/ui/input"
+import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
@@ -58,6 +57,13 @@ const FormSchema = z
 export const radiusMap: Record<string, string> = {
 	default: "",
 	rounded: "rounded-full",
+	flat: "rounded-none",
+	fun: "rounded-xl",
+}
+
+export const radiusBorderMap: Record<string, string> = {
+	default: "rounded-2xl",
+	rounded: "rounded-4xl",
 	flat: "rounded-none",
 	fun: "rounded-xl",
 }
@@ -140,90 +146,16 @@ export default function Signin1() {
 				backgroundSize: "10px 10px",
 			}}
 			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
-			<div className="w-100 bg-bg flex">
+			<div className={`w-100 bg-bg border-border flex ${radiusBorderMap[radius]} border px-6 py-8`}>
 				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
-					<div className={`flex flex-1 flex-col ${spaceMap.gap6[spacing ?? "default"]}`}>
-						<div>
-							{logoImage ? <ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} /> : <PlaygroundLogo />}
-						</div>
-						<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
-							<h1 className="heading-5">Sign In</h1>
-							<p className="text-fg-secondary text-sm">
-								Don&apos;t have an account?{" "}
-								<Button variant="link" asChild color="primary">
-									<Link href="#"> Sign up</Link>
-								</Button>
-							</p>
-						</div>
+					<div>
+						{logoImage ? <ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} /> : <PlaygroundLogo />}
 					</div>
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)}>
-							<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
-								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
-									<FormField
-										control={form.control}
-										name="email"
-										render={({ field }) => (
-											<FormItem>
-												{label && <FormLabel>Email Address</FormLabel>}
-												<FormControl>
-													<InputWrapper size={sizeMap[size ?? "default"]} className="w-full">
-														{icon && <Mail />}
-														<Input placeholder={placeholder ? "Enter your email" : ""} className={`${radiusMap[radius]} w-full`} type="email" {...field} />
-													</InputWrapper>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name="password"
-										render={({ field }) => (
-											<FormItem>
-												{label && <FormLabel>Password</FormLabel>}
-												<FormControl>
-													<InputWrapper size={sizeMap[size ?? "default"]}>
-														{icon && <Lock />}
-														<Input className={`${radiusMap[radius]} w-full`} placeholder={placeholder ? "Enter your password" : ""} type="password" {...field} />
-													</InputWrapper>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-								</div>
-								<div className="flex items-center justify-between">
-									<FormField
-										control={form.control}
-										name="rememberMe"
-										render={({ field }) => (
-											<div className="flex items-center gap-2">
-												<FormControl>
-													<Checkbox id="remember-me" checked={field.value} onCheckedChange={field.onChange} />
-												</FormControl>
-												<FormLabel htmlFor="remember-me" className="text-fg-secondary font-normal">
-													Remember me
-												</FormLabel>
-											</div>
-										)}
-									/>
-									<Button variant="link" asChild color="primary">
-										<Link href="#"> Forgot Password?</Link>
-									</Button>
-								</div>
-								<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
-									{isLoading ? <Spinner variant="default" /> : "Sign In"}
-								</Button>
-							</div>
-						</form>
-					</Form>
+					<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
+						<h1 className="heading-5">Sign In</h1>
+						<p className="text-fg-secondary text-sm">Welcome! Sign in to continue</p>
+					</div>
 					<div className={`flex flex-1 flex-col ${spaceMap.gap6[spacing ?? "default"]}`}>
-						<div className={`flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
-							<Divider className="flex-1" />
-							<span className="text-fg-secondary whitespace-nowrap text-sm font-medium">Or continue with</span>
-							<Divider className="flex-1" />
-						</div>
 						<div className={`flex ${spaceMap.gap3[spacing ?? "default"]}`}>
 							<Button size={sizeMap[size ?? "default"]} variant="outline" color="neutral" className={`${radiusMap[radius]} text-fg-secondary w-full`}>
 								<GoogleIcon />
@@ -234,7 +166,86 @@ export default function Signin1() {
 								Github
 							</Button>
 						</div>
+						<div className={`flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
+							<Divider className="flex-1" />
+							<span className="text-fg-secondary whitespace-nowrap text-sm font-medium">Or continue with</span>
+							<Divider className="flex-1" />
+						</div>
 					</div>
+					<Form {...form}>
+						<form onSubmit={form.handleSubmit(onSubmit)}>
+							<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+								<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
+									<FormField
+										control={form.control}
+										name="email"
+										render={({ field }) => (
+											<FormItem>
+												{label && <FormLabel>Email Address</FormLabel>}
+												<FormControl>
+													<InputGroup>
+														{icon && (
+															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+																<Mail />
+															</InputAddon>
+														)}
+														<Input
+															size={sizeMap[size ?? "default"]}
+															className={`${radiusMap[radius]} w-full`}
+															placeholder={placeholder ? "Enter your email" : ""}
+															type="email"
+															{...field}
+														/>
+													</InputGroup>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name="password"
+										render={({ field }) => (
+											<FormItem>
+												<div className="flex items-center justify-between">
+													{label && <FormLabel>Password</FormLabel>}
+													<Button variant="link" asChild color="primary">
+														<Link href="#"> Forgot Password?</Link>
+													</Button>
+												</div>
+												<FormControl>
+													<InputGroup>
+														{icon && (
+															<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
+																<Lock />
+															</InputAddon>
+														)}
+														<Input
+															size={sizeMap[size ?? "default"]}
+															className={`${radiusMap[radius]} w-full`}
+															placeholder={placeholder ? "Enter your password" : ""}
+															type="password"
+															{...field}
+														/>
+													</InputGroup>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</div>
+								<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
+									{isLoading ? <Spinner variant="default" /> : "Sign In"}
+								</Button>
+							</div>
+						</form>
+					</Form>
+					<p className="text-fg text-center text-sm">
+						Don&apos;t have an account?{" "}
+						<Button variant="link" asChild color="primary">
+							<Link href="#"> Create account</Link>
+						</Button>
+					</p>
 				</div>
 			</div>
 		</div>
