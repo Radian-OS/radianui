@@ -150,7 +150,7 @@ export default function Page() {
 				enableTilt={false}
 				enableMagnetism={false}
 				clickEffect={true}
-				spotlightRadius={800}
+				spotlightRadius={573}
 				particleCount={12}
 				glowColor="132, 0, 255"
 			/>
