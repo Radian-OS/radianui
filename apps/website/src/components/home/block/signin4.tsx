@@ -91,7 +91,7 @@ export default function Signin4() {
 					<div className={`flex flex-1 flex-col items-center ${spaceMap.gap8[spacing ?? "default"]}`}>
 						<div>
 							{logoImage ? (
-								<ImagePreview size={12} file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} />
+								<ImagePreview height={12} file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} />
 							) : (
 								<PlaygroundLogo height={48} width={48} />
 							)}
