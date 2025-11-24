@@ -29,7 +29,7 @@ export default function HoverCard() {
 				backgroundSize: "10px 10px",
 			}}
 			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
-			<div className={`border-border flex w-80 flex-col overflow-hidden ${radiusBorderMap[radius]} border p-0`}>
+			<div className={`border-border bg-bg flex w-80 flex-col overflow-hidden ${radiusBorderMap[radius]} border p-0`}>
 				<div className="bg-primary-focus relative h-16">
 					<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
 						<AvatarImage src={logoImage ? getImageSrc(logoImage) : profile.avatar} />
@@ -63,7 +63,7 @@ export default function HoverCard() {
 						<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full flex-1 ${buttonStyles[button ?? "default"]}`}>
 							Message
 						</Button>
-						<Button variant="outline" color="primary" size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full flex-1 ${buttonStyles[button ?? "default"]}`}>
+						<Button variant="outline" color="primary" size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full flex-1`}>
 							Follow
 						</Button>
 					</div>

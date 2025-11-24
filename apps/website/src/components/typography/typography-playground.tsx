@@ -9,7 +9,7 @@ import { Button } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
-const FONTS: Record<string, string> = {
+export const FONTS: Record<string, string> = {
 	Inter: inter.className,
 	"Inter Display": `${inter.className} tracking-tight`,
 	Roboto: roboto.className,

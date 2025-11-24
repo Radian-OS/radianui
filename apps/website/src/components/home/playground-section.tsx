@@ -15,7 +15,6 @@ import Signin1 from "./block/signin1"
 import Signin2 from "./block/signin2"
 import Signin3 from "./block/signin3"
 import Signup2 from "./block/signup2"
-import PlaygroundSignin from "./playground-signin"
 import Colors from "./playground/color"
 import Font from "./playground/font"
 import Layout from "./playground/layout"
@@ -164,32 +163,40 @@ export default function PlaygroundSection() {
 					</div>
 					<div className="text-fg-tertiary flex items-center gap-3 px-3">{/* <Share size={16} /> */}</div>
 				</div>
-				<Tabs defaultValue="preview" className="border-soft bg-bg flex h-full w-full flex-col gap-0 overflow-hidden rounded-xl border">
+				<Tabs defaultValue="preview" className="border-soft flex h-full w-full flex-col gap-0 overflow-hidden rounded-xl border">
 					{/* Mobile/Tablet View */}
-					<div className={`h-190 flex flex-1 lg:hidden color-${color}`}>
-						<TabsContent value="preview">
-							<PlaygroundSignin rounded="rounded" />
-						</TabsContent>
-						<TabsContent value="code" className="h-190 overflow-scroll p-2">
-							<Tabs className="h-full gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
-								<TabsList variant="outline-ghost">
-									<TabsTrigger value="signin.tsx">signin.tsx</TabsTrigger>
-									<TabsTrigger value="globals.css">globals.css</TabsTrigger>
-								</TabsList>
-								<TabsContent value="signin.tsx">
-									<CodeArea code={currentCode} language="tsx" className="h-full" lineNumbers theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} />
-								</TabsContent>
-								<TabsContent value="globals.css" className="h-full">
-									<CodeArea
-										code={globalsCode}
-										language="css"
-										className="h-full w-full overflow-scroll"
-										lineNumbers
-										theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
-									/>
-								</TabsContent>
-							</Tabs>
-						</TabsContent>
+					<div
+						style={{
+							fontFamily: `${fontName}, ${fontCategory}`,
+						}}
+						className={`sm:h-205 h-190 lg:hidden color-${color}`}>
+						<div
+							style={{
+								backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
+								backgroundSize: "10px 10px",
+							}}
+							className="flex h-12 w-full items-center justify-center rounded-xl p-1 sm:justify-end">
+							<div className="border-border bg-bg mt-5 flex h-10 gap-1 rounded-lg border p-1 sm:mr-3">
+								<div className="border-border flex h-8 items-center border-r">
+									<Layout />
+								</div>
+								<div className="text-fg-secondary flex">
+									<Radius />
+									<Font />
+									<ListTodos />
+									<Uploads />
+								</div>
+								<div className="border-border flex h-8 items-center border-l px-2">
+									<div className="text-fg-secondary flex">
+										<div onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+											{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
+										</div>
+										<Colors />
+									</div>
+								</div>
+							</div>
+						</div>
+						{layouts[layout]}
 					</div>
 					{/* Desktop View */}
 					<div className="not-lg:hidden h-205 flex flex-1 overflow-hidden">
