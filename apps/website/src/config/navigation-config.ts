@@ -167,6 +167,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Calendar UI component illustration",
 			},
 			{
+				title: "Carousel",
+				description: "4 Components",
+				url: "/docs/components/carousel",
+				thumbnail: "/thumbnails/carousel.webp",
+				thumbnailDark: `/thumbnails/carousel-dark.webp`,
+				alt: "Carousel UI component illustration",
+			},
+			{
 				title: "Code Area",
 				description: "1 Component",
 				url: "/docs/components/code-area",
