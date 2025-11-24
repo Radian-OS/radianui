@@ -136,7 +136,7 @@ export default function Signin2() {
 											<FormItem>
 												<div className="flex items-center justify-between">
 													{label && <FormLabel>Password</FormLabel>}
-													<Button variant="link" asChild color="primary">
+													<Button className="flex w-full justify-end" variant="link" asChild color="primary">
 														<Link href="#"> Forgot Password?</Link>
 													</Button>
 												</div>
