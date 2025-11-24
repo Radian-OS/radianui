@@ -18,7 +18,7 @@ export default function Page() {
 	return (
 		<div className="min-h-screen w-full overflow-x-hidden">
 			<Background>
-				<div className="pt-30 flex flex-col items-center justify-center gap-12">
+				<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
 						<div className="relative h-[28px] rounded-md">
 							<Badge size="28">
@@ -30,7 +30,7 @@ export default function Page() {
 						<h1 className="heading-1 dark:from-fg dark:to-fg-secondary not-dark:text-fg bg-clip-text text-center text-transparent dark:bg-gradient-to-b">
 							Build next gen of world class products and solutions
 						</h1>
-						<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-medium">
+						<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
 							Radian is a high-quality, flexible and open-source, design and development library built using React, Radix and Tailwind.
 						</p>
 					</div>

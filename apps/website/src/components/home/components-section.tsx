@@ -20,7 +20,7 @@ function useBreakpoint() {
 	}, [])
 
 	if (width < 640) return 3 // mobile
-	if (width < 1024) return 6 // tablet
+	if (width < 1280) return 6 // tablet
 	return 8 // desktop and larger
 }
 
@@ -87,7 +87,7 @@ export default function ComponentsSection() {
 					/>
 				</svg>
 
-				<div className="relative z-10 grid w-full grid-cols-1 place-items-center gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
+				<div className="relative z-10 grid w-full grid-cols-1 gap-4 gap-x-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
 					{mounted &&
 						HOMEPAGE_COMPONENTS_LIST.slice(0, breakingPoint).map((item, idx) => (
 							<ComponentCard

@@ -181,7 +181,7 @@ export default function InvertedSection() {
 						{DATA.map(({ icon: Icon, title, description }, i) => (
 							<div
 								key={i}
-								className="div-hover group relative flex w-full gap-6 border-b border-r border-[#1c1d21] px-8 py-10 transition-colors duration-300 md:flex-col [&:nth-child(-n+4)]:border-t-0 [&:nth-child(4n+1)]:border-l-0 [&:nth-child(4n+4)]:border-r-0 [&:nth-child(n+9)]:border-b-0"
+								className="div-hover group relative flex w-full gap-6 border-b border-r border-[#1c1d21] p-5 transition-colors duration-300 md:flex-col md:px-8 md:py-10 lg:[&:nth-child(-n+4)]:border-t-0 lg:[&:nth-child(4n+1)]:border-l-0 lg:[&:nth-child(4n+4)]:border-r-0 lg:[&:nth-child(n+9)]:border-b-0"
 								onMouseMove={(e) => {
 									const rect = e.currentTarget.getBoundingClientRect()
 									const x = e.clientX - rect.left

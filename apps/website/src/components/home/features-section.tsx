@@ -587,123 +587,154 @@ const FeaturesSection: React.FC<BentoProps> = ({
 		<>
 			<style>
 				{`
-          .bento-section {
-            --glow-x: 50%;
-            --glow-y: 50%;
-            --glow-intensity: 0;
-            --glow-radius: 200px;
-            --glow-color: ${glowColor};
-            --white: hsl(0, 0%, 100%);
-            --purple-primary: rgba(132, 0, 255, 1);
-            --purple-glow: rgba(132, 0, 255, 0.2);
-            --purple-border: rgba(132, 0, 255, 0.8);
-          }
-          
-          .card-responsive {
-            grid-template-columns: 1fr;
-            width: 90%;
-            margin: 0 auto;
-            padding: 0.5rem;
-          }
-          
-          @media (min-width: 600px) {
-            .card-responsive {
-              grid-template-columns: repeat(2, 1fr);
-            }
-          }
-          
-          @media (min-width: 1024px) {
-            .card-responsive {
-              grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .card-responsive .card:nth-child(3) {
-              grid-column: span 2;
-              grid-row: span 2;
-            }
-            
-            .card-responsive .card:nth-child(4) {
-              grid-column: 1 / span 2;
-              grid-row: 2 / span 2;
-            }
-            
-            .card-responsive .card:nth-child(6) {
-              grid-column: 4;
-              grid-row: 3;
-            }
-          }
-          
-          .card--border-glow::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            padding: 1px;
-            background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
-                rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
-                transparent 60%);
-            border-radius: inherit;
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask-composite: subtract;
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 1;
-          }
-          
-          .card--border-glow:hover::after {
-            opacity: 1;
-          }
-          
-          .particle::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: rgba(${glowColor}, 0.2);
-            border-radius: 50%;
-            z-index: -1;
-          }
-          
-          .particle-container:hover {
-            box-shadow: 0 4px 20px rgba(46, 24, 78, 0.2), 0 0 30px rgba(${glowColor}, 0.2);
-          }
-          
-          .text-clamp-1 {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 1;
-            line-clamp: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          
-          .text-clamp-2 {
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            line-clamp: 2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-          
-          @media (max-width: 599px) {
-            .card-responsive {
-              grid-template-columns: 1fr;
-              width: 90%;
-              margin: 0 auto;
-              padding: 0.5rem;
-            }
-            
-            .card-responsive .card {
-              width: 100%;
-              min-height: 180px;
-            }
-          }
-        `}
+  .bento-section {
+    --glow-x: 50%;
+    --glow-y: 50%;
+    --glow-intensity: 0;
+    --glow-radius: 200px;
+    --glow-color: ${glowColor};
+    --white: hsl(0, 0%, 100%);
+    --purple-primary: rgba(132, 0, 255, 1);
+    --purple-glow: rgba(132, 0, 255, 0.2);
+    --purple-border: rgba(132, 0, 255, 0.8);
+  }
+  
+  .card-responsive {
+    grid-template-columns: 1fr;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0.5rem;
+  }
+  
+  @media (min-width: 600px) {
+    .card-responsive {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .card-responsive {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .card-responsive .card:nth-child(3) {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    
+    .card-responsive .card:nth-child(4) {
+      grid-column: 1 / span 2;
+      grid-row: 2 / span 2;
+    }
+    
+    .card-responsive .card:nth-child(6) {
+      grid-column: 4;
+      grid-row: 3;
+    }
+  }
+  
+  /* Firefox-compatible border glow */
+  .card--border-glow {
+    position: relative;
+  }
+  
+  .card--border-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+        rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
+        rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
+        transparent 70%);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 2;
+    opacity: var(--glow-intensity);
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Chrome/Safari specific - webkit mask */
+  .card--border-glow::before {
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+  }
+  
+  /* Firefox specific - standard mask */
+  @supports (mask-composite: subtract) {
+    .card--border-glow::before {
+      mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask-composite: subtract;
+    }
+  }
+  
+  /* Fallback for older Firefox versions */
+  @supports not (mask-composite: subtract) {
+    .card--border-glow::before {
+      mask: 
+        linear-gradient(#fff, #fff) content-box, 
+        linear-gradient(#fff, #fff);
+      mask-composite: subtract;
+      -webkit-mask: none;
+    }
+  }
+  
+  .card--border-glow:hover::before {
+    opacity: 1;
+  }
+  
+  .particle::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: rgba(${glowColor}, 0.2);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  
+  .particle-container:hover {
+    box-shadow: 0 4px 20px rgba(46, 24, 78, 0.2), 0 0 30px rgba(${glowColor}, 0.2);
+  }
+  
+  .text-clamp-1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .text-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  @media (max-width: 599px) {
+    .card-responsive {
+      grid-template-columns: 1fr;
+      width: 90%;
+      margin: 0 auto;
+      padding: 0.5rem;
+    }
+    
+    .card-responsive .card {
+      width: 100%;
+      min-height: 180px;
+    }
+  }
+`}
 			</style>
 
 			{enableSpotlight && (
@@ -713,7 +744,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center gap-20 pb-40 pt-40">
 				<div className="flex flex-col items-center gap-8 px-5">
 					<div className="relative">
-						<Badge className="relative z-10" variant="soft" color="neutral" size="28">
+						<Badge className="z-1 relative" variant="soft" color="neutral" size="28">
 							<Component className="text-primary" /> Rapid Development
 						</Badge>
 
@@ -770,7 +801,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						</svg>
 
 						{/* Right side line */}
-						<svg className="-right-180 -top-122 absolute scale-x-[-1]" width="698" height="798" viewBox="0 0 698 798" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg className="-right-180 -top-122 absolute z-10 scale-x-[-1]" width="698" height="798" viewBox="0 0 698 798" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M245 609.5H205C191.745 609.5 181 598.755 181 585.5V475.441C181 469.076 178.471 462.971 173.971 458.471L8.52944 293.029C4.02856 288.529 1.5 282.424 1.5 276.059V0"
 								stroke="url(#paint0_linear_1_26452)"
@@ -781,14 +812,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<path d="M261 606V526C261 512.745 271.745 502 285 502H417" stroke="url(#paint2_linear_1_26452)" />
 						</svg>
 					</div>
-					<div className="flex w-full max-w-[730px] flex-col gap-6 text-center">
-						<span className="heading-2 text-center">
-							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">A design system built for speed,</span>
-							<br />
+					<div className="z-20 flex w-full max-w-[730px] flex-col gap-6 text-center">
+						<span className="heading-2 max-w-[730px] text-center">
+							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">A design system built for speed, </span>
 							<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">scale and simplicity.</span>
 						</span>
 						<p className="text-fg-secondary text-base font-normal">
-							Get from design file to production-ready web application. Radian gives you everything you need to design and build faster.
+							Get access to high quality components, animations and blocks. The default settings for Radian can be used for production ready applications
 						</p>
 					</div>
 				</div>
@@ -803,7 +833,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							className={`lg:flex-2/3 pt-15 border-soft card card--border-glow relative flex flex-col gap-12 overflow-hidden rounded-xl border transition-all duration-300 ease-in-out`}>
-							<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
+							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="flex items-center justify-between px-7 sm:pl-12">
 								<div className="flex flex-col gap-4">
 									<span className="pb-2">
@@ -934,7 +964,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							className="lg:flex-1/3 border-soft card card--border-glow relative flex flex-col gap-12 overflow-hidden rounded-xl border">
-							<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
+							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<span className="pb-2">
 									<SquareTerminal size={28} className="stroke-primary-hover" />
@@ -1069,7 +1099,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							className="border-soft card card--border-glow relative flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
-							<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
+							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<span className="pb-2">
 									<SwatchBook size={28} className="stroke-primary-hover" />
@@ -1127,8 +1157,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<span className="heading-6 font-medium">Reusable UI Blocks</span>
 								<p className="text-fg-secondary text-sm">Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use</p>
 							</div>
-							<div className="h-30 from-bg/5 to-bg w-15 absolute top-[220px] z-10 bg-gradient-to-l" />
-							<div className="h-30 from-bg/5 to-bg w-15 absolute right-0 top-[220px] z-10 bg-gradient-to-r" />
+							<div className="h-30 from-bg/5 to-bg w-15 z-1 absolute top-[220px] bg-gradient-to-l" />
+							<div className="h-30 from-bg/5 to-bg w-15 z-1 absolute right-0 top-[220px] bg-gradient-to-r" />
 
 							<InfiniteScroll>
 								<div className="relative flex items-center justify-center gap-2">
@@ -1189,7 +1219,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<Skeleton className="bg-fill2 min-h-[359px] w-1/3 min-w-[140px] rounded-xl rounded-b-none" />
 								<Skeleton className="bg-fill2 min-h-[359px] w-2/3 min-w-[421px] rounded-xl rounded-b-none" />
 							</div>
-							<div className="h-30 from-bg/5 to-bg absolute bottom-0 z-10 w-full bg-gradient-to-b" />
+							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 						</ParticleCard>
 					</div>
 				</div>
