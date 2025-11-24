@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Type } from "lucide-react"
+import { FONTS } from "@/components/typography/typography-playground"
 import { FontCategory, usePlayground } from "@/contexts/playground"
 import fonts from "@/data/google-fonts.json"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Spinner } from "@/registry/ui/spinner"
 
 const PAGE_SIZE = 15
 
@@ -54,6 +56,21 @@ export default function Font() {
 					<CommandInput placeholder="Search Google Fonts" value={searchTerm} onValueChange={setSearchTerm} />
 					<CommandList ref={listRef} onScroll={handleScroll} style={{ maxHeight: "300px", overflowY: "auto" }}>
 						<CommandEmpty>No results found</CommandEmpty>
+						<CommandGroup>
+							{Object.entries(FONTS).map(([family, className]) => (
+								<CommandItem
+									className="flex justify-between"
+									key={family}
+									onSelect={() => {
+										setFontName?.(family)
+										setOpen(false)
+									}}>
+									<span className={className}>{family}</span>
+									<span className="text-fg-tertiary text-[13px] font-normal">sans-serif</span>
+								</CommandItem>
+							))}
+						</CommandGroup>
+						<CommandDivider />
 
 						<CommandGroup>
 							{(searchTerm ? filteredFonts : fonts.fonts.slice(0, visibleCount)).map((font) => (
@@ -70,7 +87,11 @@ export default function Font() {
 								</CommandItem>
 							))}
 
-							{!searchTerm && loading && <div className="text-fg-tertiary py-2 text-center text-sm">Loading more fonts...</div>}
+							{!searchTerm && loading && (
+								<div className="flex w-full items-center justify-center">
+									<Spinner size={28} variant="simple" />
+								</div>
+							)}
 						</CommandGroup>
 					</CommandList>
 				</Command>

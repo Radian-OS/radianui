@@ -63,9 +63,9 @@ export const radiusMap: Record<string, string> = {
 
 export const radiusBorderMap: Record<string, string> = {
 	default: "rounded-2xl",
-	rounded: "rounded-4xl",
+	rounded: "rounded-2xl",
 	flat: "rounded-none",
-	fun: "rounded-xl",
+	fun: "rounded-3xl",
 }
 
 export const sizeMap: Record<string, "36" | "32" | "40" | "28" | "44" | "48"> = {
