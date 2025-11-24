@@ -801,7 +801,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						</svg>
 
 						{/* Right side line */}
-						<svg className="-right-180 -top-122 absolute scale-x-[-1]" width="698" height="798" viewBox="0 0 698 798" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg className="-right-180 -top-122 absolute z-10 scale-x-[-1]" width="698" height="798" viewBox="0 0 698 798" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path
 								d="M245 609.5H205C191.745 609.5 181 598.755 181 585.5V475.441C181 469.076 178.471 462.971 173.971 458.471L8.52944 293.029C4.02856 288.529 1.5 282.424 1.5 276.059V0"
 								stroke="url(#paint0_linear_1_26452)"
@@ -812,14 +812,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<path d="M261 606V526C261 512.745 271.745 502 285 502H417" stroke="url(#paint2_linear_1_26452)" />
 						</svg>
 					</div>
-					<div className="flex w-full max-w-[730px] flex-col gap-6 text-center">
-						<span className="heading-2 text-center">
-							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">A design system built for speed,</span>
-							<br />
+					<div className="z-20 flex w-full max-w-[730px] flex-col gap-6 text-center">
+						<span className="heading-2 max-w-[730px] text-center">
+							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">A design system built for speed, </span>
 							<span className="bg-gradient-to-r from-[#7655F6] to-[#492EB8] bg-clip-text text-transparent">scale and simplicity.</span>
 						</span>
 						<p className="text-fg-secondary text-base font-normal">
-							Get from design file to production-ready web application. Radian gives you everything you need to design and build faster.
+							Get access to high quality components, animations and blocks. The default settings for Radian can be used for production ready applications
 						</p>
 					</div>
 				</div>
