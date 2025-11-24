@@ -13,7 +13,7 @@ export default function ComponentCard({ thumbnail, thumbnailDark, title, descrip
 	return (
 		<Link href={url} className="flex w-full flex-col items-center">
 			<span className="sr-only">{title}</span>
-			<div className="flex w-full flex-col items-center gap-3 lg:items-start">
+			<div className="flex w-full flex-col items-start gap-3">
 				<div className="bg-fill2 flex w-full justify-center rounded-md">
 					<img alt={alt} src={thumbnail} className="max-h-[228x] max-w-[282px] dark:hidden" loading="eager" />
 					<img alt={alt} src={thumbnailDark} className="hidden max-h-[228px] max-w-[282px] dark:block" loading="eager" />

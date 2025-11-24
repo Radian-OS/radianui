@@ -100,8 +100,9 @@ export default function PlaygroundSection() {
 						</div>
 					</div>
 					<div className="flex max-w-[752px] flex-col items-center gap-5">
-						<h2 className="heading-2 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-center text-transparent">
-							Customize Every Detail, <span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">Effortlessly</span>
+						<h2 className="heading-2 text-center">
+							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">Customize Every Detail, </span>
+							<span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">Effortlessly</span>
 						</h2>
 						<p className="text-fg-secondary max-w-[550px] text-center text-base font-normal">
 							From colors to corners to fonts and themes, fine-tune any component to match your brand and ship polished interfaces faster.
