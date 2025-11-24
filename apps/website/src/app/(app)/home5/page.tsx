@@ -1,15 +1,8 @@
 import { Box } from "lucide-react"
 import Link from "next/link"
-import Background from "@/components/effects/background"
-import ComponentsSection from "@/components/home/components-section"
-import CTASection from "@/components/home/cta-section"
-import FAQSection from "@/components/home/faq-section"
+import Background6 from "@/components/effects/background6"
 import FeaturesSection from "@/components/home/features-section"
-import FooterSection from "@/components/home/footer-section"
 import HomeInteractive from "@/components/home/home-interactive"
-import InvertedSection from "@/components/home/inverted-section"
-import PlaygroundSection from "@/components/home/playground-section"
-import VideoSection from "@/components/home/video-section"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -17,7 +10,7 @@ import { Button } from "@/registry/ui/button"
 export default function Page() {
 	return (
 		<div className="min-h-screen w-full overflow-x-hidden">
-			<Background>
+			<Background6>
 				<div className="pt-30 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
 						<div className="relative h-[28px] rounded-md">
@@ -140,34 +133,9 @@ export default function Page() {
 						/>
 					</svg>
 				</div>
-			</Background>
+			</Background6>
 
-			<FeaturesSection
-				textAutoHide={true}
-				enableStars={true}
-				enableSpotlight={true}
-				enableBorderGlow={true}
-				enableTilt={false}
-				enableMagnetism={false}
-				clickEffect={true}
-				spotlightRadius={573}
-				particleCount={12}
-				glowColor="132, 0, 255"
-			/>
-
-			<InvertedSection />
-
-			<ComponentsSection />
-
-			<PlaygroundSection />
-
-			<VideoSection />
-
-			<FAQSection />
-
-			<CTASection />
-
-			<FooterSection />
+			<FeaturesSection />
 		</div>
 	)
 }
