@@ -49,11 +49,11 @@ function DividerPreview() {
 				<Divider orientation="vertical" className="mx-3 self-stretch" />
 				<section className="flex flex-col gap-2.5">
 					<span className="text-fg-secondary flex items-center gap-2 text-sm">
-						<AlarmClock className="size-5" />
+						<Map className="size-5" />
 						<span className="text-sm">San Francisco</span>
 					</span>
 					<span className="text-fg-secondary flex items-center gap-2 text-sm">
-						<Map className="size-5" />
+						<AlarmClock className="size-5" />
 						<span className="text-sm">12:48 AM</span>
 					</span>
 				</section>
