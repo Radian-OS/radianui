@@ -107,11 +107,11 @@ const createParticleElement = (x: number, y: number): HTMLDivElement => {
 	el.className = "particle"
 	el.style.cssText = `
     position: absolute;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--color-primary);
-    box-shadow: 0 0 6px color-mix(in oklch, var(--color-primary), transparent 40%);
+    width: 2px;
+    height: 2px;
+    border-radius: 100%;
+    background: var(--color-black-inverse);
+    box-shadow: 0 0 6px color-mix(in oklch, var(--color-black-inverse), transparent 40%);
     pointer-events: none;
     z-index: 100;
     left: ${x}px;
@@ -199,8 +199,8 @@ const ParticleCard: React.FC<{
 				gsap.fromTo(clone, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" })
 
 				gsap.to(clone, {
-					x: (Math.random() - 0.5) * 100,
-					y: (Math.random() - 0.5) * 100,
+					x: (Math.random() - 0.5) * 10,
+					y: (Math.random() - 0.5) * 10,
 					rotation: Math.random() * 360,
 					duration: 2 + Math.random() * 2,
 					ease: "none",
