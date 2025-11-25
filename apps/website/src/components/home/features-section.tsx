@@ -1114,7 +1114,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<span className="pb-2">
 									<SwatchBook size={28} className="stroke-primary-hover" />
 								</span>
-								<span className="heading-6 bg-warning-focus font-medium">Themeable System</span>
+								<span className="heading-6 font-medium">Themeable System</span>
 								<p className="text-fg-secondary lg:max-w-105 w-fit text-sm">Edit one token to restyle your entire design system — light, dark, or custom themes.</p>
 							</div>
 							<div className="flex items-center justify-center gap-14 pl-10">
