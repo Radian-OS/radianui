@@ -35,7 +35,7 @@ function DividerPreview() {
 		return (parts[0][0]?.toUpperCase() ?? "") + (parts[parts.length - 1][0]?.toUpperCase() ?? "")
 	}
 	return (
-		<div className="border-soft max-w-100.75 max-h-47.5 size-full rounded-xl border p-4">
+		<div className="border-soft max-w-100.75 max-h-47.5 size-full rounded-xl border p-4 shadow-md">
 			<section className="flex items-center justify-between">
 				<div className="text-base font-medium">January Design Fest</div>
 				<div className="text-fg-tertiary text-sm">Nov 12</div>
@@ -49,12 +49,12 @@ function DividerPreview() {
 				<Divider orientation="vertical" className="mx-3 self-stretch" />
 				<section className="flex flex-col gap-2.5">
 					<span className="text-fg-secondary flex items-center gap-2 text-sm">
-						<Map className="size-5" />
-						<span className="text-sm">12:48 AM</span>
-					</span>
-					<span className="text-fg-secondary flex items-center gap-2 text-sm">
 						<AlarmClock className="size-5" />
 						<span className="text-sm">San Francisco</span>
+					</span>
+					<span className="text-fg-secondary flex items-center gap-2 text-sm">
+						<Map className="size-5" />
+						<span className="text-sm">12:48 AM</span>
 					</span>
 				</section>
 				<Divider orientation="vertical" className="mx-3 self-stretch" />
