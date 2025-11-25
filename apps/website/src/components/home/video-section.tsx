@@ -20,9 +20,10 @@ export default function VideoSection() {
 						</div>
 					</div>
 					<div className="flex max-w-[752px] flex-col items-center gap-5">
-						<h2 className="heading-2 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-center text-transparent">
-							Multiple Ready to use UI blocks built for <span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">speed & consistency</span>
-						</h2>
+						<span className="heading-2 text-center">
+							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">Multiple Ready to use UI blocks built for </span>
+							<span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">speed & consistency</span>
+						</span>
 						<p className="text-fg-secondary max-w-[550px] text-center text-base font-normal">
 							Pre-made website & Application UI blocks to simplify your design process and move smoothly from idea to implementation.
 						</p>
