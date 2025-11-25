@@ -28,7 +28,7 @@ export default function HoverCard() {
 				backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
 				backgroundSize: "10px 10px",
 			}}
-			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
+			className="bg-elevation-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className={`border-border bg-bg flex w-80 flex-col overflow-hidden ${radiusBorderMap[radius]} border p-0`}>
 				<div className="bg-primary-focus relative h-16">
 					<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">

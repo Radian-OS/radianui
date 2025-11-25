@@ -100,8 +100,9 @@ export default function PlaygroundSection() {
 						</div>
 					</div>
 					<div className="flex max-w-[752px] flex-col items-center gap-5">
-						<h2 className="heading-2 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-center text-transparent">
-							Customize Every Detail, <span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">Effortlessly</span>
+						<h2 className="heading-2 text-center">
+							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">Customize Every Detail, </span>
+							<span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">Effortlessly</span>
 						</h2>
 						<p className="text-fg-secondary max-w-[550px] text-center text-base font-normal">
 							From colors to corners to fonts and themes, fine-tune any component to match your brand and ship polished interfaces faster.
@@ -175,23 +176,25 @@ export default function PlaygroundSection() {
 								backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
 								backgroundSize: "10px 10px",
 							}}
-							className="flex h-12 w-full items-center justify-center rounded-xl p-1 sm:justify-end">
-							<div className="border-border bg-bg mt-5 flex h-10 gap-1 rounded-lg border p-1 sm:mr-3">
-								<div className="border-border flex h-8 items-center border-r">
-									<Layout />
-								</div>
-								<div className="text-fg-secondary flex">
-									<Radius />
-									<Font />
-									<ListTodos />
-									<Uploads />
-								</div>
-								<div className="border-border flex h-8 items-center border-l px-2">
+							className="bg-elevation-negative flex h-12 w-full items-center justify-center rounded-xl p-1 sm:justify-end">
+							<div className="bg-bg mt-5 rounded-xl p-1 sm:mr-3">
+								<div className="border-border flex h-10 gap-1 rounded-lg border p-1 shadow-[0_4px_8px_0_var(--color-fill4-alpha)]">
+									<div className="border-border flex h-8 items-center border-r">
+										<Layout />
+									</div>
 									<div className="text-fg-secondary flex">
-										<div onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-											{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
+										<Radius />
+										<Font />
+										<ListTodos />
+										<Uploads />
+									</div>
+									<div className="border-border flex h-8 items-center border-l pl-2">
+										<div className="text-fg-secondary flex">
+											<div onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+												{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
+											</div>
+											<Colors />
 										</div>
-										<Colors />
 									</div>
 								</div>
 							</div>
@@ -246,7 +249,7 @@ export default function PlaygroundSection() {
 							}}
 							className={`relative w-1/2 flex-shrink-0 color-${color}`}>
 							<div className="bg-bg absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
-								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1">
+								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1 shadow-[0_4px_8px_0_var(--color-fill4-alpha)]">
 									<div className="border-border flex h-8 items-center border-r">
 										<Layout />
 									</div>
@@ -256,7 +259,7 @@ export default function PlaygroundSection() {
 										<ListTodos />
 										<Uploads />
 									</div>
-									<div className="border-border flex h-8 items-center border-l px-2">
+									<div className="border-border flex h-8 items-center border-l pl-2">
 										<div className="text-fg-secondary flex">
 											<div onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 												{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
