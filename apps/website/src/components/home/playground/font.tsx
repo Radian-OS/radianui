@@ -43,6 +43,21 @@ export default function Font() {
 		if (open) setVisibleCount(PAGE_SIZE)
 	}, [open])
 
+	useEffect(() => {
+		const visibleFonts = searchTerm ? filteredFonts.map((f) => f.family) : fonts.fonts.slice(0, visibleCount).map((f) => f.family)
+
+		visibleFonts.forEach((family) => {
+			const id = `font-preload-${family}`
+			if (document.getElementById(id)) return
+
+			const link = document.createElement("link")
+			link.id = id
+			link.rel = "stylesheet"
+			link.href = `https://fonts.googleapis.com/css2?family=${family.replace(/ /g, "+")}&display=swap`
+			document.head.appendChild(link)
+		})
+	}, [visibleCount, searchTerm])
+
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
@@ -51,13 +66,13 @@ export default function Font() {
 				</div>
 			</PopoverTrigger>
 
-			<PopoverContent sideOffset={10} className="border-none p-0">
+			<PopoverContent sideOffset={10} className="w-82 border-none p-0">
 				<Command className="w-full max-w-md">
 					<CommandInput placeholder="Search Google Fonts" value={searchTerm} onValueChange={setSearchTerm} />
 					<CommandList ref={listRef} onScroll={handleScroll} style={{ maxHeight: "300px", overflowY: "auto" }}>
 						<CommandEmpty>No results found</CommandEmpty>
 						<CommandGroup>
-							{Object.entries(FONTS).map(([family, className]) => (
+							{Object.entries(FONTS).map(([family]) => (
 								<CommandItem
 									className="flex justify-between"
 									key={family}
@@ -65,7 +80,7 @@ export default function Font() {
 										setFontName?.(family)
 										setOpen(false)
 									}}>
-									<span className={className}>{family}</span>
+									<span style={{ fontFamily: `"${family}", sans-serif` }}>{family}</span>
 									<span className="text-fg-tertiary text-[13px] font-normal">sans-serif</span>
 								</CommandItem>
 							))}
@@ -82,7 +97,7 @@ export default function Font() {
 									}}
 									key={font.family}
 									className="flex justify-between">
-									<span>{font.family}</span>
+									<span style={{ fontFamily: `"${font.family}", sans-serif` }}>{font.family}</span>
 									<span className="text-fg-tertiary text-[13px] font-normal">{font.category}</span>
 								</CommandItem>
 							))}

@@ -145,14 +145,14 @@ export default function Signin1() {
 				backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
 				backgroundSize: "10px 10px",
 			}}
-			className="bg-bg-negative flex h-full w-full items-center justify-center px-5 py-4">
+			className="bg-elevation-negative flex h-full w-full items-center justify-center px-5 py-4">
 			<div className={`w-100 bg-bg border-border flex ${radiusBorderMap[radius]} border px-6 py-8`}>
 				<div className={`flex flex-1 flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 					<div>
 						{logoImage ? <ImagePreview file={typeof logoImage === "string" ? { id: "logo", preview: logoImage, file: new File([], "logo") } : logoImage} /> : <PlaygroundLogo />}
 					</div>
 					<div className={`flex flex-col ${spaceMap.gap2[spacing ?? "default"]}`}>
-						<h1 className="heading-5">Sign In</h1>
+						<h1 className="text-2xl font-bold leading-8">Sign In</h1>
 						<p className="text-fg-secondary text-sm">Welcome! Sign in to continue</p>
 					</div>
 					<div className={`flex flex-1 flex-col ${spaceMap.gap6[spacing ?? "default"]}`}>
