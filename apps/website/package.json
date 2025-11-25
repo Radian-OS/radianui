@@ -67,6 +67,7 @@
 		"date-fns-tz": "^3.2.0",
 		"dotenv": "^16.4.7",
 		"drizzle-orm": "^0.41.0",
+		"embla-carousel-react": "^8.6.0",
 		"front-matter": "^4.0.2",
 		"fs": "0.0.1-security",
 		"fs-extra": "^11.3.0",

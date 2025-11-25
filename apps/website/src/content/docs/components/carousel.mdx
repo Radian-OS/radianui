@@ -7,4 +7,86 @@ links:
   externalReference:
     - label: Embla Carousel
       href: https://www.embla-carousel.com/
+      icon: embla.svg
 ---
+
+<ComponentPreview path="carousel/carousel-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx radianui@latest add carousel",
+				npm: "npx radianui@latest add carousel",
+				yarn: "yarn dlx radianui@latest add carousel",
+				bun: "bunx radianui@latest add carousel",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+        <Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add embla-carousel-react",
+    			npm: "npm install embla-carousel-react",
+    			yarn: "yarn add embla-carousel-react",
+    			bun: "bun add embla-carousel-react",
+    		}}
+    	/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="carousel" title="components/ui/carousel.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet
+	title="/components/ui/carousel"
+	code={`import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"`}
+/>
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/carousel"
+	code={`<Carousel>
+  <CarouselContent>
+    <CarouselItem>...</CarouselItem>
+    <CarouselItem>...</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`}
+/>
+
+---
+
+## Examples
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable title="Carousel" externalReference="https://www.embla-carousel.com/" />
+</PropsTableWrapper>
