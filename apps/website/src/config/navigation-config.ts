@@ -263,6 +263,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Drawer UI component illustration",
 			},
 			{
+				title: "Empty",
+				description: "1 Component",
+				url: "/docs/components/empty",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Empty UI component illustration",
+			},
+			{
 				title: "Input",
 				description: "15 Components",
 				url: "/docs/components/input",

@@ -302,6 +302,17 @@
     "type": "ui"
   },
   {
+    "name": "empty",
+    "files": [
+      {
+        "name": "empty.tsx",
+        "content": "import { type VariantProps, cva } from \"class-variance-authority\"\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nexport type EmptyProps = React.ComponentProps<\"div\">\r\nexport type EmptyHeaderProps = React.ComponentProps<\"div\">\r\nexport type EmptyMediaProps = React.ComponentProps<\"div\"> & VariantProps<typeof emptyMediaVariants>\r\nexport type EmptyTitleProps = React.ComponentProps<\"div\">\r\nexport type EmptyDescriptionProps = React.ComponentProps<\"p\">\r\nexport type EmptyActionProps = React.ComponentProps<\"div\">\r\n\r\nfunction Empty({ className, ...props }: EmptyProps) {\r\n\treturn (\r\n\t\t<div data-slot=\"empty\" className={cn(\"flex min-w-0 flex-1 flex-col items-center justify-center gap-6 text-balance rounded-lg p-5 text-center md:p-10\", className)} {...props} />\r\n\t)\r\n}\r\n\r\nfunction EmptyHeader({ className, ...props }: EmptyHeaderProps) {\r\n\treturn <div data-slot=\"empty-header\" className={cn(\"flex max-w-xs flex-col items-center gap-1.5 text-center\", className)} {...props} />\r\n}\r\n\r\nconst emptyMediaVariants = cva(\"flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0\", {\r\n\tvariants: {\r\n\t\tvariant: {\r\n\t\t\tdefault: \"bg-transparent\",\r\n\t\t\ticon: \"bg-primary-focus text-primary flex size-20 shrink-0 items-center justify-center rounded-xl [&_svg:not([class*='size-'])]:size-7\",\r\n\t\t},\r\n\t},\r\n\tdefaultVariants: {\r\n\t\tvariant: \"default\",\r\n\t},\r\n})\r\n\r\nfunction EmptyMedia({ className, variant = \"default\", ...props }: EmptyMediaProps) {\r\n\treturn <div data-slot=\"empty-icon\" data-variant={variant} className={cn(emptyMediaVariants({ variant, className }))} {...props} />\r\n}\r\n\r\nfunction EmptyTitle({ className, ...props }: EmptyTitleProps) {\r\n\treturn <div data-slot=\"empty-title\" className={cn(\"font-medium tracking-tight\", className)} {...props} />\r\n}\r\n\r\nfunction EmptyDescription({ className, ...props }: EmptyDescriptionProps) {\r\n\treturn <div data-slot=\"empty-description\" className={cn(\"text-fg-secondary [&>a:hover]:text-primary text-sm [&>a]:underline [&>a]:underline-offset-4\", className)} {...props} />\r\n}\r\n\r\nfunction EmptyAction({ className, ...props }: EmptyActionProps) {\r\n\treturn <div data-slot=\"empty-content\" className={cn(\"flex w-full min-w-0 max-w-xs items-center justify-center gap-2.5 text-balance text-sm\", className)} {...props} />\r\n}\r\n\r\nexport { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyAction, EmptyMedia }\r\n",
+        "type": "ui"
+      }
+    ],
+    "type": "ui"
+  },
+  {
     "name": "file-upload",
     "files": [
       {
