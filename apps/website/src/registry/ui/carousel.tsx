@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/registry/ui/button"
 
@@ -149,7 +149,7 @@ function CarouselPrevious({ className, variant = "outline", color = "neutral", s
 			disabled={!canScrollPrev}
 			onClick={scrollPrev}
 			{...props}>
-			<ArrowLeft />
+			<ChevronLeft />
 			<span className="sr-only">Previous slide</span>
 		</IconButton>
 	)
@@ -172,7 +172,7 @@ function CarouselNext({ className, variant = "outline", color = "neutral", size 
 			disabled={!canScrollNext}
 			onClick={scrollNext}
 			{...props}>
-			<ArrowRight />
+			<ChevronRight />
 			<span className="sr-only">Next slide</span>
 		</IconButton>
 	)
