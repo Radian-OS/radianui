@@ -32,14 +32,13 @@ export interface BentoProps {
 	spotlightRadius?: number
 	particleCount?: number
 	enableTilt?: boolean
-	glowColor?: string
 	clickEffect?: boolean
 	enableMagnetism?: boolean
 }
 
 const DEFAULT_PARTICLE_COUNT = 12
 const DEFAULT_SPOTLIGHT_RADIUS = 300
-const DEFAULT_GLOW_COLOR = "132, 0, 255"
+// Remove DEFAULT_GLOW_COLOR constant
 const MOBILE_BREAKPOINT = 768
 
 const profile = {
@@ -103,7 +102,7 @@ const cardStyle = {
 	"--glow-radius": "200px",
 } as React.CSSProperties
 
-const createParticleElement = (x: number, y: number, color: string = DEFAULT_GLOW_COLOR): HTMLDivElement => {
+const createParticleElement = (x: number, y: number): HTMLDivElement => {
 	const el = document.createElement("div")
 	el.className = "particle"
 	el.style.cssText = `
@@ -111,8 +110,8 @@ const createParticleElement = (x: number, y: number, color: string = DEFAULT_GLO
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: rgba(${color}, 1);
-    box-shadow: 0 0 6px rgba(${color}, 0.6);
+    background: var(--color-primary);
+    box-shadow: 0 0 6px color-mix(in oklch, var(--color-primary), transparent 40%);
     pointer-events: none;
     z-index: 100;
     left: ${x}px;
@@ -143,21 +142,10 @@ const ParticleCard: React.FC<{
 	disableAnimations?: boolean
 	style?: React.CSSProperties
 	particleCount?: number
-	glowColor?: string
 	enableTilt?: boolean
 	clickEffect?: boolean
 	enableMagnetism?: boolean
-}> = ({
-	children,
-	className = "",
-	disableAnimations = false,
-	style,
-	particleCount = DEFAULT_PARTICLE_COUNT,
-	glowColor = DEFAULT_GLOW_COLOR,
-	enableTilt = true,
-	clickEffect = false,
-	enableMagnetism = false,
-}) => {
+}> = ({ children, className = "", disableAnimations = false, style, particleCount = DEFAULT_PARTICLE_COUNT, enableTilt = true, clickEffect = false, enableMagnetism = false }) => {
 	const cardRef = useRef<HTMLDivElement>(null)
 	const particlesRef = useRef<HTMLDivElement[]>([])
 	const timeoutsRef = useRef<NodeJS.Timeout[]>([])
@@ -170,9 +158,9 @@ const ParticleCard: React.FC<{
 		if (particlesInitialized.current || !cardRef.current) return
 
 		const { width, height } = cardRef.current.getBoundingClientRect()
-		memoizedParticles.current = Array.from({ length: particleCount }, () => createParticleElement(Math.random() * width, Math.random() * height, glowColor))
+		memoizedParticles.current = Array.from({ length: particleCount }, () => createParticleElement(Math.random() * width, Math.random() * height))
 		particlesInitialized.current = true
-	}, [particleCount, glowColor])
+	}, [particleCount])
 
 	const clearAllParticles = useCallback(() => {
 		timeoutsRef.current.forEach(clearTimeout)
@@ -326,7 +314,7 @@ const ParticleCard: React.FC<{
         width: ${maxDistance * 2}px;
         height: ${maxDistance * 2}px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(${glowColor}, 0.4) 0%, rgba(${glowColor}, 0.2) 30%, transparent 70%);
+        background: radial-gradient(circle, color-mix(in oklch, var(--color-primary), transparent 60%) 0%, color-mix(in oklch, var(--color-primary), transparent 80%) 30%, transparent 70%);
         left: ${x - maxDistance}px;
         top: ${y - maxDistance}px;
         pointer-events: none;
@@ -364,7 +352,7 @@ const ParticleCard: React.FC<{
 			element.removeEventListener("click", handleClick)
 			clearAllParticles()
 		}
-	}, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor])
+	}, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect])
 
 	return (
 		<div ref={cardRef} className={`${className} relative overflow-hidden`} style={{ ...style, position: "relative", overflow: "hidden" }}>
@@ -378,8 +366,7 @@ const GlobalSpotlight: React.FC<{
 	disableAnimations?: boolean
 	enabled?: boolean
 	spotlightRadius?: number
-	glowColor?: string
-}> = ({ gridRef, disableAnimations = false, enabled = true, spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS, glowColor = DEFAULT_GLOW_COLOR }) => {
+}> = ({ gridRef, disableAnimations = false, enabled = true, spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS }) => {
 	const spotlightRef = useRef<HTMLDivElement | null>(null)
 	const isInsideSection = useRef(false)
 
@@ -395,11 +382,11 @@ const GlobalSpotlight: React.FC<{
       border-radius: 50%;
       pointer-events: none;
       background: radial-gradient(circle,
-        rgba(${glowColor}, 0.15) 0%,
-        rgba(${glowColor}, 0.08) 15%,
-        rgba(${glowColor}, 0.04) 25%,
-        rgba(${glowColor}, 0.02) 40%,
-        rgba(${glowColor}, 0.01) 65%,
+        color-mix(in oklch, var(--color-primary), transparent 85%) 0%,
+        color-mix(in oklch, var(--color-primary), transparent 92%) 15%,
+        color-mix(in oklch, var(--color-primary), transparent 96%) 25%,
+        color-mix(in oklch, var(--color-primary), transparent 98%) 40%,
+        color-mix(in oklch, var(--color-primary), transparent 99%) 65%,
         transparent 70%
       );
       z-index: 200;
@@ -493,7 +480,7 @@ const GlobalSpotlight: React.FC<{
 			document.removeEventListener("mouseleave", handleMouseLeave)
 			spotlightRef.current?.parentNode?.removeChild(spotlightRef.current)
 		}
-	}, [gridRef, disableAnimations, enabled, spotlightRadius, glowColor])
+	}, [gridRef, disableAnimations, enabled, spotlightRadius])
 
 	return null
 }
@@ -529,7 +516,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 	spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
 	particleCount = DEFAULT_PARTICLE_COUNT,
 	enableTilt = false,
-	glowColor = DEFAULT_GLOW_COLOR,
 	clickEffect = true,
 	enableMagnetism = true,
 }) => {
@@ -549,7 +535,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 					<path d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65m-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z" />
 				</mask>
 				<path
-					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65m-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
+					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
 					className="fill-info opacity-100"
 				/>
 				<path
@@ -592,11 +578,11 @@ const FeaturesSection: React.FC<BentoProps> = ({
     --glow-y: 50%;
     --glow-intensity: 0;
     --glow-radius: 200px;
-    --glow-color: ${glowColor};
+    --glow-color: var(--color-primary);
     --white: hsl(0, 0%, 100%);
-    --purple-primary: rgba(132, 0, 255, 1);
-    --purple-glow: rgba(132, 0, 255, 0.2);
-    --purple-border: rgba(132, 0, 255, 0.8);
+    --purple-primary: var(--color-primary);
+    --purple-glow: color-mix(in oklch, var(--color-primary), transparent 80%);
+    --purple-border: color-mix(in oklch, var(--color-primary), transparent 20%);
   }
   
   .card-responsive {
@@ -644,8 +630,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
     inset: 0;
     padding: 1px;
     background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-        rgba(${glowColor}, calc(var(--glow-intensity) * 0.8)) 0%,
-        rgba(${glowColor}, calc(var(--glow-intensity) * 0.4)) 30%,
+        color-mix(in oklch, var(--color-primary), transparent 20%) 0%,
+        color-mix(in oklch, var(--color-primary), transparent 60%) 30%,
         transparent 70%);
     border-radius: inherit;
     pointer-events: none;
@@ -694,13 +680,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
     left: -2px;
     right: -2px;
     bottom: -2px;
-    background: rgba(${glowColor}, 0.2);
+    background: color-mix(in oklch, var(--color-primary), transparent 80%);
     border-radius: 50%;
     z-index: -1;
   }
   
   .particle-container:hover {
-    box-shadow: 0 4px 20px rgba(46, 24, 78, 0.2), 0 0 30px rgba(${glowColor}, 0.2);
+    box-shadow: 0 4px 20px color-mix(in oklch, var(--color-primary), transparent 80%), 0 0 30px color-mix(in oklch, var(--color-primary), transparent 80%);
   }
   
   .text-clamp-1 {
@@ -737,9 +723,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 `}
 			</style>
 
-			{enableSpotlight && (
-				<GlobalSpotlight gridRef={gridRef} disableAnimations={shouldDisableAnimations} enabled={enableSpotlight} spotlightRadius={spotlightRadius} glowColor={glowColor} />
-			)}
+			{enableSpotlight && <GlobalSpotlight gridRef={gridRef} disableAnimations={shouldDisableAnimations} enabled={enableSpotlight} spotlightRadius={spotlightRadius} />}
 
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center gap-20 pb-40 pt-40">
 				<div className="flex flex-col items-center gap-8 px-5">
@@ -827,7 +811,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						<ParticleCard
 							disableAnimations={shouldDisableAnimations}
 							particleCount={particleCount}
-							glowColor={glowColor}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
@@ -958,7 +941,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						<ParticleCard
 							disableAnimations={shouldDisableAnimations}
 							particleCount={particleCount}
-							glowColor={glowColor}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
@@ -1029,7 +1011,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						<ParticleCard
 							disableAnimations={shouldDisableAnimations}
 							particleCount={particleCount}
-							glowColor={glowColor}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
@@ -1093,7 +1074,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						<ParticleCard
 							disableAnimations={shouldDisableAnimations}
 							particleCount={particleCount}
-							glowColor={glowColor}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
@@ -1202,7 +1182,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						<ParticleCard
 							disableAnimations={shouldDisableAnimations}
 							particleCount={particleCount}
-							glowColor={glowColor}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
