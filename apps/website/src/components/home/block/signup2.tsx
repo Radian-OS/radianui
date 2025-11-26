@@ -16,7 +16,7 @@ import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
-import { buttonStyles, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
+import { buttonStyles, colorMap, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -84,7 +84,7 @@ const FormSchema = z
 
 export default function Signup2() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius, spacing, size, label, placeholder, icon, button, logoImage } = usePlayground()
+	const { radius, spacing, size, label, color, placeholder, icon, button, logoImage } = usePlayground()
 
 	const [showPassword, setShowPassword] = useState(false)
 	const inputRef = useRef<HTMLInputElement>(null)
@@ -231,7 +231,11 @@ export default function Signup2() {
 									/>
 								</div>
 								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
-									<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
+									<Button
+										type="submit"
+										disabled={isLoading}
+										size={sizeMap[size ?? "default"]}
+										className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full ${buttonStyles[button ?? "default"]}`}>
 										{isLoading ? <Spinner variant="default" /> : "Create account"}
 									</Button>
 									<p className="text-fg-secondary text-[13px]">
