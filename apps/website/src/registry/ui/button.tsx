@@ -56,6 +56,7 @@ export const buttonVariants = cva(
 				link: "",
 				glossy: "",
 				"glossy-inverted": "",
+				smooth: "",
 			},
 			size: {
 				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
@@ -336,6 +337,43 @@ export const buttonVariants = cva(
 					"bg-black-inverse focus-visible:ring-black-inverse focus-visible:outline-none active:bg-black-inverse font-medium hover:bg-fg-secondary text-white-inverse overflow-hidden border border-black/10 before:pointer-events-none before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/0 before:to-white/20",
 			},
 
+			// smooth button + inverted
+			{
+				variant: "smooth",
+				color: "primary",
+				className:
+					"before:absolute before:inset-px focus-visible:ring-primary focus-visible:outline-none before:border overflow-hidden before:border-white/16 before:mask-b-from-98%  bg-linear-to-t from-primary to-primary-hover  text-white font-medium before:rounded-[inherit]  hover:before:bg-alpha",
+			},
+			{
+				variant: "smooth",
+				color: "info",
+				className:
+					"before:absolute before:inset-px focus-visible:ring-info focus-visible:outline-none before:border overflow-hidden before:border-white/16 before:mask-b-from-98%  bg-linear-to-t from-info to-info-hover  text-white font-medium before:rounded-[inherit]  hover:before:bg-alpha",
+			},
+			{
+				variant: "smooth",
+				color: "success",
+				className:
+					"before:absolute before:inset-px focus-visible:ring-success focus-visible:outline-none before:border overflow-hidden before:border-white/16 before:mask-b-from-98%  bg-linear-to-t from-success to-success-hover  text-white font-medium before:rounded-[inherit]  hover:before:bg-alpha",
+			},
+			{
+				variant: "smooth",
+				color: "warning",
+				className:
+					"before:absolute before:inset-px focus-visible:ring-warning focus-visible:outline-none before:border overflow-hidden before:border-white/16 before:mask-b-from-98%  bg-linear-to-t from-warning to-warning-hover  text-white font-medium before:rounded-[inherit]  hover:before:bg-alpha",
+			},
+			{
+				variant: "smooth",
+				color: "error",
+				className:
+					"before:absolute before:inset-px focus-visible:ring-error focus-visible:outline-none before:border overflow-hidden before:border-white/16 before:mask-b-from-98%  bg-linear-to-t from-error to-error-hover  text-white font-medium before:rounded-[inherit]  hover:before:bg-alpha",
+			},
+			{
+				variant: "smooth",
+				color: "neutral",
+				className:
+					"before:absolute before:inset-px focus-visible:ring-black-inverse focus-visible:outline-none before:border overflow-hidden before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse  bg-linear-to-t from-white/0 to-white/20 text-white-inverse font-medium before:rounded-[inherit]  hover:before:bg-black-inverse/16",
+			},
 			// Link variant loading state (no underline when loading)
 			{
 				variant: "link",

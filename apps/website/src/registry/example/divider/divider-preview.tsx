@@ -65,7 +65,7 @@ function DividerPreview() {
 					</span>
 					<div className="flex -space-x-2">
 						{people.map((person) => (
-							<Avatar size="20" className="border-bg border-4 hover:z-10" key={person.name}>
+							<Avatar size="20" className="border-bg box-content border-2 hover:z-10" key={person.name}>
 								<AvatarImage src={person.image} />
 								<AvatarFallback>{getInitials(person.name)}</AvatarFallback>
 							</Avatar>
