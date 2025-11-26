@@ -50,12 +50,12 @@ function CommandDialog({ title = "Command Palette", description = "Search for a 
 
 function CommandInput({ className, ...props }: CommandInputProps) {
 	return (
-		<div data-slot="command-input-wrapper" className="flex h-10 items-center gap-2 border-b px-3">
-			<SearchIcon className="size-4 shrink-0 opacity-50" />
+		<div data-slot="command-input-wrapper" className="flex h-10 items-center gap-2 border-b px-3 py-2.5">
+			<SearchIcon className="text-fg-secondary size-4 shrink-0" />
 			<CommandPrimitive.Input
 				data-slot="command-input"
 				className={cn(
-					"placeholder:text-fg-tertiary outline-hidden flex h-10 w-full rounded-md bg-transparent py-3 text-sm disabled:cursor-not-allowed disabled:opacity-50",
+					"placeholder:text-fg-tertiary outline-hidden flex h-10 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -77,7 +77,7 @@ function CommandGroup({ className, ...props }: CommandGroupProps) {
 		<CommandPrimitive.Group
 			data-slot="command-group"
 			className={cn(
-				"text-fg [&_[cmdk-group-heading]]:text-fg-secondary overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium",
+				"text-fg [&_[cmdk-group-heading]]:text-fg-secondary overflow-hidden p-1 [&_[cmdk-group-heading]]:p-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium",
 				className
 			)}
 			{...props}
@@ -94,7 +94,7 @@ function CommandItem({ className, ...props }: CommandItemProps) {
 		<CommandPrimitive.Item
 			data-slot="command-item"
 			className={cn(
-				"data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2.5 py-2 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-accent-foreground [&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}

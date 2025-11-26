@@ -48,7 +48,7 @@ export default function ComboboxWithScrollArea() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<Button variant="outline" color="neutral" role="combobox" aria-expanded={open} className="w-[200px] justify-between">
+				<Button variant="outline" color="neutral" role="combobox" aria-expanded={open} className="w-80 justify-between">
 					{value ? frameworks.find((f) => f.value === value)?.label : "Select framework..."}
 					<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Button>

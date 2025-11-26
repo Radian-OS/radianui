@@ -93,7 +93,7 @@ export default function PlaygroundSection() {
 				<div className="flex flex-col items-center gap-6">
 					<div className="bg-bg absolute bottom-full h-fit translate-y-1/2 px-4">
 						<div className="border-soft px-7 xl:border-l xl:border-r">
-							<Badge size="28" variant="soft" color="neutral">
+							<Badge size="28" variant="soft">
 								<SwatchBook className="text-primary" />
 								Flexibility
 							</Badge>
