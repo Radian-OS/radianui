@@ -14,7 +14,7 @@ import { Spinner } from "@/registry/ui/spinner"
 import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
 import { Title } from "./components/title"
-import { buttonStyles, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
+import { buttonStyles, colorMap, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const FormSchema = z
 	.object({
@@ -54,7 +54,7 @@ const FormSchema = z
 
 export default function Signin3() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius, spacing, size, label, placeholder, icon, button, logoImage } = usePlayground()
+	const { radius, spacing, color, size, label, placeholder, icon, button, logoImage } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -165,7 +165,11 @@ export default function Signin3() {
 										)}
 									/>
 								</div>
-								<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
+								<Button
+									type="submit"
+									disabled={isLoading}
+									size={sizeMap[size ?? "default"]}
+									className={`${radiusMap[radius]} ${colorMap[color]} w-full ${buttonStyles[button ?? "default"]}`}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>

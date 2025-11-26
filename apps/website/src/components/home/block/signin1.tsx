@@ -61,6 +61,10 @@ export const radiusMap: Record<string, string> = {
 	fun: "rounded-xl",
 }
 
+export const colorMap: Record<string, string> = {
+	neutral: "text-primary-text",
+}
+
 export const radiusBorderMap: Record<string, string> = {
 	default: "rounded-2xl",
 	rounded: "rounded-2xl",
@@ -118,7 +122,7 @@ export const buttonStyles: Record<string, string> = {
 }
 export default function Signin1() {
 	const [isLoading, setIsLoading] = useState(false)
-	const { radius, spacing, size, label, placeholder, icon, button, logoImage } = usePlayground()
+	const { color, radius, spacing, size, label, placeholder, icon, button, logoImage } = usePlayground()
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -234,7 +238,11 @@ export default function Signin1() {
 										)}
 									/>
 								</div>
-								<Button type="submit" disabled={isLoading} size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${buttonStyles[button ?? "default"]}`}>
+								<Button
+									type="submit"
+									disabled={isLoading}
+									size={sizeMap[size ?? "default"]}
+									className={`${radiusMap[radius]} w-full ${colorMap[color]} ${buttonStyles[button ?? "default"]}`}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>
