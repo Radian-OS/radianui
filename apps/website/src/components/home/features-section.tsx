@@ -745,7 +745,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center gap-20 pb-40 pt-40">
 				<div className="flex flex-col items-center gap-8 px-5">
 					<div className="relative">
-						<Badge className="z-1 relative" variant="soft" color="neutral" size="28">
+						<Badge className="z-1 relative" variant="soft" size="28">
 							<Component className="text-primary" /> Rapid Development
 						</Badge>
 

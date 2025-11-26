@@ -1,7 +1,9 @@
 import * as React from "react"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import { Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
 
-export default function CarouselSize() {
+export default function CarouselAutoplay() {
+	const [api, setApi] = React.useState<CarouselApi>()
+
 	const images = [
 		{
 			src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
@@ -25,15 +27,28 @@ export default function CarouselSize() {
 		},
 	]
 
+	// Autoplay implementation
+	React.useEffect(() => {
+		if (!api) return
+
+		const intervalId = setInterval(() => {
+			api.scrollNext()
+		}, 2000) // 2 seconds interval
+
+		return () => clearInterval(intervalId)
+	}, [api])
+
 	return (
 		<Carousel
 			opts={{
 				align: "start",
+				loop: true,
 			}}
+			setApi={setApi}
 			className="w-full max-w-sm">
 			<CarouselContent>
 				{images.map((image, index) => (
-					<CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+					<CarouselItem key={index}>
 						<div className="flex aspect-square items-center justify-center">
 							<img src={image.src} alt={image.alt} className="h-full w-full rounded-2xl object-cover" />
 						</div>

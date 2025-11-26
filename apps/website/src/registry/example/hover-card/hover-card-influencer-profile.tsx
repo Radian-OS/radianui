@@ -21,14 +21,14 @@ export default function HoverCardInfluencerProfile() {
 					<AvatarImage src={profile.avatar} />
 					<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
 				</Avatar>
-				<div className="space-y-0.5 text-sm">
-					<p className="font-medium underline-offset-2 transition group-hover:underline">{profile.name}</p>
-					<p className="text-fg-tertiary">{profile.description}</p>
+				<div className="space-y-0.5">
+					<p className="text-sm font-medium underline-offset-2 transition group-hover:underline">{profile.name}</p>
+					<p className="text-fg-tertiary text-xs">{profile.description}</p>
 				</div>
 			</HoverCardTrigger>
 			<HoverCardContent className="flex w-80 flex-col overflow-hidden rounded-xl p-0">
-				<div className="bg-primary-focus relative h-16">
-					<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
+				<div className="bg-primary-focus relative h-20">
+					<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-2.5 box-content translate-y-1/2">
 						<AvatarImage src={profile.avatar} />
 						<AvatarFallback className="text-base">{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
 					</Avatar>
@@ -37,7 +37,7 @@ export default function HoverCardInfluencerProfile() {
 				<div className="flex flex-col gap-4 px-4 pb-4 pt-14">
 					<div className="flex flex-col gap-1">
 						<div className="flex items-center gap-1">
-							<p>{profile.name}</p>
+							<p className="font-medium">{profile.name}</p>
 							<VerifiedSVGIcon />
 						</div>
 						<p className="text-sm">{profile.description}</p>

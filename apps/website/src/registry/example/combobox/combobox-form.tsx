@@ -2,26 +2,24 @@
 
 import React from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Check, ChevronsUpDown } from "lucide-react"
+import { Check, ChevronDown } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const languages = [
-	{ label: "English", value: "en" },
-	{ label: "French", value: "fr" },
-	{ label: "German", value: "de" },
-	{ label: "Spanish", value: "es" },
-	{ label: "Portuguese", value: "pt" },
-	{ label: "Russian", value: "ru" },
-	{ label: "Japanese", value: "ja" },
-	{ label: "Korean", value: "ko" },
-	{ label: "Chinese", value: "zh" },
+	{ label: "English", value: "en", flag: "/media/flags/usa.png", language: "English US" },
+	{ label: "French", value: "fr", flag: "/media/flags/france.png", language: "Français" },
+	{ label: "German", value: "de", flag: "/media/flags/germany.png", language: "Deutsch" },
+	{ label: "Spanish", value: "es", flag: "/media/flags/spain.png", language: "Español" },
+	{ label: "Portuguese", value: "pt", flag: "/media/flags/portugal.png", language: "Português" },
+	{ label: "Russian", value: "ru", flag: "/media/flags/russia.png", language: "Русский" },
+	{ label: "Japanese", value: "ja", flag: "/media/flags/japan.png", language: "日本語 " },
+	{ label: "Chinese", value: "zh", flag: "/media/flags/china.png", language: "中文" },
 ] as const
 
 const FormSchema = z.object({
@@ -44,9 +42,11 @@ export default function ComboboxForm() {
 		})
 	}
 
+	const selectedLanguage = languages.find((country) => country.value === form.getValues().language)
+
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
 				<FormField
 					control={form.control}
 					name="language"
@@ -56,37 +56,42 @@ export default function ComboboxForm() {
 							<Popover open={open} onOpenChange={setOpen}>
 								<PopoverTrigger asChild>
 									<FormControl>
-										<Button
-											variant="outline"
-											color="neutral"
-											role="combobox"
-											aria-haspopup="listbox"
-											aria-expanded={!!field.value}
-											className={cn("w-[200px] justify-between", !field.value && "text-fg-tertiary")}>
-											{field.value ? languages.find((language) => language.value === field.value)?.label : "Select language"}
-											<ChevronsUpDown className="text-fg-tertiary" />
+										<Button variant="outline" color="neutral" role="combobox" aria-haspopup="listbox" aria-expanded={!!field.value} className="text-fg-tertiary w-80 font-normal">
+											{selectedLanguage ? (
+												<>
+													<img src={selectedLanguage.flag} alt={selectedLanguage.value.toUpperCase()} className="size-4" />
+													<span className="text-fg">{languages.find((language) => language.value === field.value)?.language}</span>
+												</>
+											) : (
+												"Select Language"
+											)}
+											<ChevronDown className="text-fg-tertiary ml-auto" />
 										</Button>
 									</FormControl>
 								</PopoverTrigger>
-								<PopoverContent className="bg-bg w-[200px] p-0">
+								<PopoverContent className="w-80 p-0">
 									<Command className="border-0">
-										<CommandInput placeholder="Search language..." className="h-9" />
+										<CommandInput placeholder="Search" className="h-9" />
 										<CommandList>
 											<CommandEmpty>No language found.</CommandEmpty>
 											<CommandGroup>
-												{languages.map((language) => (
+												{languages.map((l) => (
 													<CommandItem
-														value={language.label}
-														key={language.value}
+														value={l.label}
+														key={l.value}
 														onSelect={() => {
-															form.setValue("language", language.value, {
+															form.setValue("language", l.value, {
 																shouldValidate: true,
 																shouldDirty: true,
 															})
 															setOpen(false)
 														}}>
-														{language.label}
-														<Check className={cn("ml-auto", language.value === field.value ? "opacity-100" : "opacity-0")} />
+														<img src={l.flag} alt={l.value.toUpperCase()} className="size-4" />
+														<span className="text-sm">{l.language}</span>
+														<div className="ml-auto flex gap-2">
+															<span className="text-fg-secondary text-[13px] font-normal">({l.label})</span>
+															{l.value === field.value && <Check />}
+														</div>
 													</CommandItem>
 												))}
 											</CommandGroup>
@@ -94,12 +99,13 @@ export default function ComboboxForm() {
 									</Command>
 								</PopoverContent>
 							</Popover>
-							<p className="text-xs">This is the language that will be used in the dashboard.</p>
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
-				<Button type="submit">Submit</Button>
+				<Button type="submit" className="w-full">
+					Set Language
+				</Button>
 			</form>
 		</Form>
 	)

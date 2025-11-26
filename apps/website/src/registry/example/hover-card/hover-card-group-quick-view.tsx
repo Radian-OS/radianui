@@ -39,7 +39,6 @@ export default function HoverCardGroupQuickView() {
 						<AvatarFallback>{organization.name.charAt(0)}</AvatarFallback>
 					</Avatar>
 
-					{/* TODO: add avatar group here */}
 					<div className="border-soft bg-fill2 flex items-center justify-center gap-1 rounded-full border p-1.5 pe-3.5">
 						<div className="flex -space-x-2">
 							{organization.members.slice(0, 4).map((member) => (
@@ -55,7 +54,7 @@ export default function HoverCardGroupQuickView() {
 
 				<div className="75 flex flex-col gap-0">
 					<span className="flex items-center gap-1">
-						<p>{organization.name}</p>
+						<p className="font-medium">{organization.name}</p>
 						<VerifiedSVGIcon />
 					</span>
 					<p className="text-fg-tertiary text-sm">{organization.description}</p>

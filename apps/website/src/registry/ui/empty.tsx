@@ -12,7 +12,7 @@ const emptyMediaVariants = cva("flex shrink-0 items-center justify-center [&_svg
 	variants: {
 		variant: {
 			default: "bg-transparent",
-			icon: "bg-primary-focus text-primary border size-20 border-soft flex shrink-0 items-center justify-center rounded-xl [&_svg:not([class*='size-'])]:size-7 [&_svg:not([class*='stroke-'])]:stroke-primary-border",
+			icon: "bg-primary-focus text-primary-text border p-3 border-soft flex shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6",
 		},
 	},
 	defaultVariants: {
@@ -35,21 +35,17 @@ function EmptyMedia({ className, variant = "default", ...props }: EmptyMediaProp
 }
 
 function EmptyTitle({ className, ...props }: EmptyTitleProps) {
-	return <div data-slot="empty-title" className={cn("font-medium tracking-tight", className)} {...props} />
+	return <div data-slot="empty-title" className={cn("font-medium", className)} {...props} />
 }
 
 function EmptyDescription({ className, ...props }: EmptyDescriptionProps) {
 	return (
-		<div
-			data-slot="empty-description"
-			className={cn("text-fg-secondary [&>a:hover]:text-primary text-sm tracking-tight [&>a]:underline [&>a]:underline-offset-4", className)}
-			{...props}
-		/>
+		<div data-slot="empty-description" className={cn("text-fg-secondary [&>a:hover]:text-primary-text text-sm [&>a]:underline [&>a]:underline-offset-4", className)} {...props} />
 	)
 }
 
 function EmptyAction({ className, ...props }: EmptyActionProps) {
-	return <div data-slot="empty-content" className={cn("flex w-full min-w-0 max-w-xs items-center justify-center gap-2.5 text-balance text-sm", className)} {...props} />
+	return <div data-slot="empty-action" className={cn("flex w-full min-w-0 max-w-xs items-center justify-center gap-2.5 text-balance text-sm", className)} {...props} />
 }
 
 export { Empty, EmptyHeader, EmptyTitle, EmptyDescription, EmptyAction, EmptyMedia }

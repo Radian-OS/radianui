@@ -21,7 +21,7 @@ export default function Page() {
 				<div className="md:pt-30 pt-15 flex flex-col items-center justify-center gap-12">
 					<div className="max-w-250 flex flex-col items-center justify-center gap-6">
 						<div className="relative h-[28px] rounded-md">
-							<Badge size="28">
+							<Badge size="28" variant="soft">
 								<Box size={16} />
 								Under Development - Alpha Release
 							</Badge>

@@ -31,16 +31,16 @@ export default function HoverCardPreview() {
 				</HoverCardTrigger>
 				<HoverCardContentShared />
 			</HoverCard>
-			<div className="flex flex-col gap-0.5 text-sm">
+			<div className="flex flex-col gap-0.5">
 				<HoverCard>
 					<HoverCardTrigger asChild>
-						<span className="cursor-pointer font-medium underline-offset-2 transition hover:underline">{profile.name}</span>
+						<span className="cursor-pointer text-sm font-medium underline-offset-2 transition hover:underline">{profile.name}</span>
 					</HoverCardTrigger>
 					<HoverCardContentShared />
 				</HoverCard>
 				<HoverCard>
 					<HoverCardTrigger asChild>
-						<span className="text-fg-tertiary">{profile.description}</span>
+						<span className="text-fg-tertiary text-xs">{profile.description}</span>
 					</HoverCardTrigger>
 					<HoverCardContentShared />
 				</HoverCard>

@@ -7,7 +7,7 @@ export default function CTASection() {
 	return (
 		<div className="lg:py-28.5 pb-30 relative flex w-full flex-col items-center justify-center gap-5 overflow-hidden px-5 pt-20">
 			<div className="z-40 flex flex-col items-center justify-center gap-4">
-				<Badge size="28" variant="soft" color="neutral">
+				<Badge size="28" variant="soft">
 					<Rocket className="text-primary" />
 					Get Started
 				</Badge>

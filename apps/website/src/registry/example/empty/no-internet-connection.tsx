@@ -9,7 +9,7 @@ export default function NoInternetConnection() {
 				<NoInternetConnectionMediaContent className="h-18 w-27.5" />
 			</EmptyMedia>
 			<EmptyHeader>
-				<EmptyTitle className="text-sm">No Internet Connection</EmptyTitle>
+				<EmptyTitle>No Internet Connection</EmptyTitle>
 				<EmptyDescription>You’re offline. We’ll reconnect automatically when you’re back online</EmptyDescription>
 			</EmptyHeader>
 			<EmptyAction>
