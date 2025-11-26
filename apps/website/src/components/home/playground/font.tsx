@@ -38,7 +38,6 @@ export default function Font() {
 		}
 	}
 
-	// Reset on popover open
 	useEffect(() => {
 		if (open) setVisibleCount(PAGE_SIZE)
 	}, [open])

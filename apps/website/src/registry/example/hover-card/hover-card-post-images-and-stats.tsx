@@ -42,7 +42,7 @@ export default function HoverCardPostImagesAndStats() {
 				<div className="flex flex-col gap-0.5">
 					<p className="text-sm font-medium underline-offset-2 transition group-hover:underline">{profile.name}</p>
 					<div className="text-fg-tertiary flex items-center gap-1.5 text-xs">
-						<span className="bg-success border-success-accent size-3 rounded-full border-2" />
+						<span className="bg-success border-success-accent size-3 shrink-0 rounded-full border-2" />
 						{profile.status}
 					</div>
 				</div>

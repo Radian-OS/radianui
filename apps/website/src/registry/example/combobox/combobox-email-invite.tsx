@@ -1,0 +1,52 @@
+import React from "react"
+import { Check, ChevronRight, Plus } from "lucide-react"
+import { Avatar, AvatarImage } from "@/registry/ui/avatar"
+import { Button } from "@/registry/ui/button"
+import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+
+const DATA = [
+	{ icon: "/media/male-1.png", email: "alex@radian.com" },
+	{ icon: "/media/female-3.png", email: "maria@radian.com" },
+	{ icon: "/media/male-2.png", email: "david@radian.com" },
+	{ icon: "/media/male-3.png", email: "james@radian.com" },
+	{ icon: "/media/female-4.png", email: "sophia@radian.com" },
+]
+
+export default function ComboboxEmailInvite() {
+	const [selectedValues, setSelectedValues] = React.useState<string[]>([])
+
+	const toggleSelection = (value: string) => {
+		setSelectedValues((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]))
+	}
+
+	return (
+		<Popover>
+			<PopoverTrigger asChild>
+				<Button variant="soft">
+					<Plus />
+					Invite to Channel
+					<ChevronRight />
+				</Button>
+			</PopoverTrigger>
+			<PopoverContent align="start" className="p-0">
+				<Command className="border-0">
+					<CommandInput placeholder="Search" />
+					<CommandList>
+						<CommandGroup heading="MEMBERS">
+							{DATA.map((d) => (
+								<CommandItem key={d.email} onSelect={() => toggleSelection(d.email)}>
+									<Avatar size="20">
+										<AvatarImage src={d.icon} />
+									</Avatar>
+									{d.email}
+									{selectedValues.includes(d.email) && <Check className="ml-auto" />}
+								</CommandItem>
+							))}
+						</CommandGroup>
+					</CommandList>
+				</Command>
+			</PopoverContent>
+		</Popover>
+	)
+}

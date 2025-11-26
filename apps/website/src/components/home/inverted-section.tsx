@@ -121,7 +121,7 @@ export default function InvertedSection() {
 						<BorderBeam size={100} className="not-xl:hidden" />
 
 						<div className="bg-black-inverse z-70 absolute top-0 flex -translate-y-1/2 items-center border-l border-r border-[#1c1d21] px-2 dark:bg-[#131316]">
-							<Badge size="28" variant="outline" color="neutral" className="z-70 relative border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
+							<Badge size="28" variant="soft" className="z-70 relative border-[#3A2593] bg-[#211452] text-[#ECE8FC]">
 								<Rocket />
 								Features inside Radian
 							</Badge>

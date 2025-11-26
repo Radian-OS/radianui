@@ -1,28 +1,29 @@
 "use client"
 
 import * as React from "react"
-import { Check, ChevronDown, X } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
+import { Check, ChevronDown, Plus, Squircle, X } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-const backendFrameworks = [
-	{ value: "express", label: "Express.js" },
-	{ value: "django", label: "Django" },
-	{ value: "spring_boot", label: "Spring Boot" },
-	{ value: "laravel", label: "Laravel" },
-	{ value: "fastapi", label: "FastAPI" },
-	{ value: "rails", label: "Ruby on Rails" },
-	{ value: "nest", label: "NestJS" },
-	{ value: "adonis", label: "AdonisJS" },
-	{ value: "flask", label: "Flask" },
-	{ value: "aspnet_core", label: "ASP.NET Core" },
+const companyDepartments = [
+	{ value: "hr", label: "HR", state: "fill-error text-error" },
+	{ value: "engineering", label: "Engineering", state: "fill-info text-info" },
+	{ value: "marketing", label: "Marketing", state: "fill-info text-info" },
+	{ value: "sales", label: "Sales", state: "fill-success text-success" },
+	{ value: "finance", label: "Finance", state: "fill-warning text-warning" },
+	{ value: "it", label: "IT", state: "fill-success text-success" },
+	{ value: "legal", label: "Legal", state: "fill-warning text-warning" },
+	{ value: "product", label: "Product", state: "fill-info text-info" },
+	{ value: "operations", label: "Operations", state: "fill-error text-error" },
 ]
 
-export default function ComboboxMultiselect() {
+export default function ComboboxTags() {
 	const [open, setOpen] = React.useState(false)
-	const [selectedValues, setSelectedValues] = React.useState<string[]>(["express", "django"])
+	const [selectedValues, setSelectedValues] = React.useState<string[]>(["hr", "engineering"])
+	const [search, setSearch] = React.useState("")
 
 	const toggleSelection = (value: string) => {
 		setSelectedValues((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]))
@@ -36,16 +37,17 @@ export default function ComboboxMultiselect() {
 		<div className="w-[300px]">
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
-					<Button variant="outline" role="combobox" aria-expanded={open} className="hover:bg-bg relative h-auto min-h-9 w-full justify-start p-1 pe-5" color="neutral">
-						<div className="flex flex-wrap items-center gap-1">
+					<Button variant="outline" role="combobox" aria-expanded={open} className="relative h-auto min-h-9 w-80 justify-start p-2 pe-6" color="neutral">
+						<div className="flex flex-wrap gap-1">
 							{selectedValues.length > 0 ? (
 								selectedValues.map((val) => {
-									const framework = backendFrameworks.find((f) => f.value === val)
-									return framework ? (
-										<Badge key={val} variant="outline" color="neutral">
-											{framework.label}
+									const department = companyDepartments.find((d) => d.value === val)
+									return department ? (
+										<Badge key={val} variant="outline" color="neutral" size="20">
+											<BadgeDot className={department.state} />
+											{department.label}
 											<X
-												className="hover:text-fg-secondary ml-1 cursor-pointer"
+												className="hover:text-fg-secondary text-fg-tertiary size-3! cursor-pointer"
 												onClick={(e) => {
 													e.stopPropagation()
 													removeSelection(val)
@@ -55,25 +57,37 @@ export default function ComboboxMultiselect() {
 									) : null
 								})
 							) : (
-								<span className="px-2.5">Select backend frameworks</span>
+								<span className="px-2.5">Select tags</span>
 							)}
 						</div>
 						<ChevronDown className="absolute end-1.5 top-2" />
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-(--radix-popper-anchor-width) bg-bg p-0">
+				<PopoverContent className="w-(--radix-popper-anchor-width) fill-bg p-0">
 					<Command className="border-0">
-						<CommandInput placeholder="Search framework..." />
+						<CommandInput placeholder="Search" value={search} onValueChange={setSearch} />
 						<CommandList>
-							<CommandEmpty>No framework found.</CommandEmpty>
+							<CommandEmpty>No department found.</CommandEmpty>
 							<CommandGroup>
-								{backendFrameworks.map((framework) => (
-									<CommandItem key={framework.value} value={framework.value} onSelect={() => toggleSelection(framework.value)}>
-										<span className="truncate">{framework.label}</span>
-										{selectedValues.includes(framework.value) && <Check className="ml-auto" />}
+								<CommandItem className="text-info-text cursor-pointer">
+									<Plus className="stroke-info-text size-4" /> Create new tag
+								</CommandItem>
+								{companyDepartments.map((department) => (
+									<CommandItem key={department.value} value={department.value} onSelect={() => toggleSelection(department.value)}>
+										<Squircle className={cn("size-4", department.state)} />
+										<span className="truncate">{department.label}</span>
+										{selectedValues.includes(department.value) && <Check className="ml-auto" />}
 									</CommandItem>
 								))}
 							</CommandGroup>
+							{search.trim() != "" && (
+								<div className="border-t p-1">
+									<div className="[&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden text-info-text relative flex cursor-default cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0">
+										<Plus className="stroke-info-text size-4" />
+										{`Create new tag "${search}"`}
+									</div>
+								</div>
+							)}
 						</CommandList>
 					</Command>
 				</PopoverContent>
