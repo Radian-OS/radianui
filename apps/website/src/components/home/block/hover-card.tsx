@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { FileWithPreview } from "@/registry/ui/file-upload"
-import { buttonStyles, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
+import { buttonStyles, colorMap, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 const profile = {
 	name: "Zoya Petrova",
@@ -16,7 +16,7 @@ const profile = {
 }
 
 export default function HoverCard() {
-	const { radius, size, button, logoImage, spacing } = usePlayground()
+	const { radius, color, size, button, logoImage, spacing } = usePlayground()
 
 	const getImageSrc = (image: string | FileWithPreview | undefined) => {
 		if (!image) return undefined
@@ -60,7 +60,7 @@ export default function HoverCard() {
 					</div>
 
 					<div className={`flex ${spaceMap.gap3[spacing ?? "default"]}`}>
-						<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full flex-1 ${buttonStyles[button ?? "default"]}`}>
+						<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full flex-1 ${buttonStyles[button ?? "default"]}`}>
 							Message
 						</Button>
 						<Button variant="outline" color="primary" size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full flex-1`}>

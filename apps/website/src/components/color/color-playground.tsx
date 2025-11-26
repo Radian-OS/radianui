@@ -6,7 +6,7 @@ import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
 
-export const COLORS = [
+const COLORS = [
 	{ title: "Red", value: "red" },
 	{ title: "Orange", value: "orange" },
 	{ title: "Amber", value: "amber" },
@@ -26,7 +26,7 @@ export const COLORS = [
 	{ title: "Rose", value: "rose" },
 ] as const
 
-export const COLOR_CLASSES = {
+const COLOR_CLASSES = {
 	red: "bg-[oklch(0.64_0.22_26.04)]",
 	orange: "bg-[oklch(0.6211_0.1686_43.12)]",
 	amber: "bg-[oklch(0.8016_0.1705_73.27)]",

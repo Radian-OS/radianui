@@ -524,6 +524,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 	const shouldDisableAnimations = disableAnimations || isMobile
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [pos, setPos] = useState({ x: 0, y: 150 })
+	const [color, setColor] = useState<"primary" | "error" | "info" | "success" | "warning" | "neutral">("primary")
 
 	const [animated, setAnimated] = useState(false)
 
@@ -536,7 +537,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 				</mask>
 				<path
 					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
-					className="fill-info opacity-100"
+					className={`fill-info opacity-100`}
 				/>
 				<path
 					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
@@ -549,21 +550,50 @@ const FeaturesSection: React.FC<BentoProps> = ({
 
 	useEffect(() => {
 		if (!containerRef.current) return
+
 		const containerWidth = containerRef.current.offsetWidth
 		let direction = 1
 		let x = lensSize / 2
 
-		const speed = 2 // pixels per frame
-		const interval = setInterval(() => {
+		const speed = 2 // px per frame
+
+		// === Color change every 1 sec ===
+		const colorInterval = setInterval(() => {
+			setColor((prev) => {
+				switch (prev) {
+					case "primary":
+						return "info"
+					case "info":
+						return "success"
+					case "success":
+						return "warning"
+					case "warning":
+						return "error"
+					case "error":
+						return "primary"
+					default:
+						return "primary"
+				}
+			})
+		}, 2000)
+
+		// === Movement interval ===
+		const moveInterval = setInterval(() => {
 			x += direction * speed
+
 			if (x + lensSize / 2 >= containerWidth || x - lensSize / 2 <= 0) {
-				direction *= -1 // reverse when hitting edges
+				direction *= -1
 			}
+
 			setPos((prev) => ({ ...prev, x }))
-		}, 16) // ~60fps
+		}, 16)
 
 		setAnimated(true)
-		return () => clearInterval(interval)
+
+		return () => {
+			clearInterval(colorInterval)
+			clearInterval(moveInterval)
+		}
 	}, [])
 
 	const lensSize = 144
@@ -728,7 +758,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center gap-20 pb-40 pt-40">
 				<div className="flex flex-col items-center gap-8 px-5">
 					<div className="relative">
-						<Badge className="z-1 relative" variant="soft" color="neutral" size="28">
+						<Badge className="z-1 relative" variant="soft" size="28">
 							<Component className="text-primary" /> Rapid Development
 						</Badge>
 
@@ -1089,9 +1119,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 							<div className="flex items-center justify-center gap-14 pl-10">
 								<div className="w-78.5 border-soft -rotate-30 skew-x-15 flex translate-y-10 flex-col overflow-hidden rounded-xl border p-0">
-									<div className="bg-primary-focus relative h-16">
+									<div className={`bg-${color}-focus relative h-16 transition-colors duration-100`}>
 										<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
-											<AvatarFallback className="text-base">ZP</AvatarFallback>
+											<AvatarFallback className={`text-base bg-${color}-accent text-${color}-text transition-colors duration-100`}>ZP</AvatarFallback>
 										</Avatar>
 									</div>
 
@@ -1118,8 +1148,10 @@ const FeaturesSection: React.FC<BentoProps> = ({
 										</div>
 
 										<div className="flex gap-3">
-											<Button className="flex-1 rounded-full">Message</Button>
-											<Button variant="outline" color="primary" className="flex-1 rounded-full">
+											<Button color={color} className="flex-1 rounded-full transition-colors duration-100">
+												Message
+											</Button>
+											<Button variant="outline" color={color} className="flex-1 rounded-full transition-colors duration-100">
 												Follow
 											</Button>
 										</div>
