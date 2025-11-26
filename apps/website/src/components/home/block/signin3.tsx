@@ -169,7 +169,7 @@ export default function Signin3() {
 									type="submit"
 									disabled={isLoading}
 									size={sizeMap[size ?? "default"]}
-									className={`${radiusMap[radius]} ${colorMap[color]} w-full ${buttonStyles[button ?? "default"]}`}>
+									className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full ${buttonStyles[button ?? "default"]}`}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>

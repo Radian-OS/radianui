@@ -235,7 +235,7 @@ export default function Signup2() {
 										type="submit"
 										disabled={isLoading}
 										size={sizeMap[size ?? "default"]}
-										className={`${radiusMap[radius]} ${colorMap[color]} w-full ${buttonStyles[button ?? "default"]}`}>
+										className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full ${buttonStyles[button ?? "default"]}`}>
 										{isLoading ? <Spinner variant="default" /> : "Create account"}
 									</Button>
 									<p className="text-fg-secondary text-[13px]">

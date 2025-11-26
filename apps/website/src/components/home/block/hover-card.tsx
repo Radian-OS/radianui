@@ -60,7 +60,7 @@ export default function HoverCard() {
 					</div>
 
 					<div className={`flex ${spaceMap.gap3[spacing ?? "default"]}`}>
-						<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} ${colorMap[color]} w-full flex-1 ${buttonStyles[button ?? "default"]}`}>
+						<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full flex-1 ${buttonStyles[button ?? "default"]}`}>
 							Message
 						</Button>
 						<Button variant="outline" color="primary" size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full flex-1`}>

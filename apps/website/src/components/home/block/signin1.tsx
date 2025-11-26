@@ -62,7 +62,7 @@ export const radiusMap: Record<string, string> = {
 }
 
 export const colorMap: Record<string, string> = {
-	neutral: "text-primary-text",
+	neutral: "text-white-inverse",
 }
 
 export const radiusBorderMap: Record<string, string> = {
@@ -242,7 +242,7 @@ export default function Signin1() {
 									type="submit"
 									disabled={isLoading}
 									size={sizeMap[size ?? "default"]}
-									className={`${radiusMap[radius]} w-full ${colorMap[color]} ${buttonStyles[button ?? "default"]}`}>
+									className={`${radiusMap[radius]} w-full ${colorMap[color] ?? ""} ${buttonStyles[button ?? "default"]}`}>
 									{isLoading ? <Spinner variant="default" /> : "Sign In"}
 								</Button>
 							</div>
