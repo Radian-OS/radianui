@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
 
-export default function CarouselSize() {
+export default function CarouselLoop() {
 	const images = [
 		{
 			src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4",
@@ -29,11 +29,12 @@ export default function CarouselSize() {
 		<Carousel
 			opts={{
 				align: "start",
+				loop: true,
 			}}
 			className="w-full max-w-sm">
 			<CarouselContent>
 				{images.map((image, index) => (
-					<CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+					<CarouselItem key={index} className="basis-1/2">
 						<div className="flex aspect-square items-center justify-center">
 							<img src={image.src} alt={image.alt} className="h-full w-full rounded-2xl object-cover" />
 						</div>
