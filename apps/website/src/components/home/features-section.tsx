@@ -1109,11 +1109,11 @@ const FeaturesSection: React.FC<BentoProps> = ({
 									<div onClick={handleCardClick} className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 absolute left-20 size-80 translate-y-10 rounded-xl border shadow-lg`} />
 									<div
 										onClick={handleCardClick}
-										className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 left-35 absolute size-80 translate-y-10 rounded-xl border shadow-lg ${isBouncing ? "-translate-y-5 scale-95" : ""}`}
+										className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 left-35 absolute size-80 translate-y-10 rounded-xl border shadow-lg ${isBouncing ? "skew-x-11 -translate-y-5 scale-95 duration-300" : ""}`}
 									/>
 									<div
 										onClick={handleCardClick}
-										className={`border-soft bg-bg -rotate-20 skew-x-10 left-50 absolute flex size-80 translate-y-10 flex-col overflow-hidden rounded-xl border p-0 shadow-lg ${isBouncing ? "-translate-y-10 scale-95" : ""}`}>
+										className={`border-soft bg-bg -rotate-20 skew-x-10 left-50 absolute flex size-80 translate-y-10 flex-col overflow-hidden rounded-xl border p-0 shadow-lg ${isBouncing ? "skew-x-11 -translate-y-10 scale-95" : ""}`}>
 										<div className={`bg-primary-focus relative h-16 transition-colors duration-100`}>
 											<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
 												<AvatarFallback className={`bg-primary-accent text-primary-text text-base transition-colors duration-100`}>
