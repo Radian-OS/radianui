@@ -3,6 +3,7 @@
 import React, { SVGProps, useCallback, useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ArrowDownRight, ArrowUpRight, ChevronRight, CircleGauge, Component, FolderGit, Grid, LayoutDashboard, ScanEye, SquareTerminal, SwatchBook } from "lucide-react"
+import { useTheme } from "next-themes"
 import DecryptedText from "@/components/effects/decrypted-text"
 import { cn } from "@/lib/utils"
 import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
@@ -25,20 +26,17 @@ export interface BentoCardProps {
 
 export interface BentoProps {
 	textAutoHide?: boolean
-	enableStars?: boolean
 	enableSpotlight?: boolean
 	enableBorderGlow?: boolean
 	disableAnimations?: boolean
 	spotlightRadius?: number
-	particleCount?: number
 	enableTilt?: boolean
 	clickEffect?: boolean
 	enableMagnetism?: boolean
+	alwaysShowParticles?: boolean
 }
 
-const DEFAULT_PARTICLE_COUNT = 12
 const DEFAULT_SPOTLIGHT_RADIUS = 300
-// Remove DEFAULT_GLOW_COLOR constant
 const MOBILE_BREAKPOINT = 768
 
 const profile = {
@@ -110,10 +108,10 @@ const createParticleElement = (x: number, y: number): HTMLDivElement => {
     width: 2px;
     height: 2px;
     border-radius: 100%;
-    background: var(--color-black-inverse);
-    box-shadow: 0 0 6px color-mix(in oklch, var(--color-black-inverse), transparent 40%);
+    background: white;
+    box-shadow: 0 0 6px color-mix(in oklch, white, transparent 40%);
     pointer-events: none;
-    z-index: 100;
+    z-index: 10;
     left: ${x}px;
     top: ${y}px;
   `
@@ -145,9 +143,24 @@ const ParticleCard: React.FC<{
 	enableTilt?: boolean
 	clickEffect?: boolean
 	enableMagnetism?: boolean
-}> = ({ children, className = "", disableAnimations = false, style, particleCount = DEFAULT_PARTICLE_COUNT, enableTilt = true, clickEffect = false, enableMagnetism = false }) => {
+	alwaysShowParticles?: boolean
+	isDarkMode?: boolean
+}> = ({
+	children,
+	className = "",
+	disableAnimations = false,
+	style,
+	enableTilt = true,
+	clickEffect = false,
+	enableMagnetism = false,
+	alwaysShowParticles = false,
+	isDarkMode = false,
+}) => {
 	const cardRef = useRef<HTMLDivElement>(null)
 	const particlesRef = useRef<HTMLDivElement[]>([])
+	const blinkAnimationsRef = useRef<gsap.core.Tween[]>([])
+	const moveAnimationsRef = useRef<gsap.core.Tween[]>([])
+	const returnAnimationsRef = useRef<gsap.core.Tween[]>([])
 	const timeoutsRef = useRef<NodeJS.Timeout[]>([])
 	const isHoveredRef = useRef(false)
 	const memoizedParticles = useRef<HTMLDivElement[]>([])
@@ -158,14 +171,22 @@ const ParticleCard: React.FC<{
 		if (particlesInitialized.current || !cardRef.current) return
 
 		const { width, height } = cardRef.current.getBoundingClientRect()
-		memoizedParticles.current = Array.from({ length: particleCount }, () => createParticleElement(Math.random() * width, Math.random() * height))
+		memoizedParticles.current = Array.from({ length: 12 }, () => createParticleElement(Math.random() * width, Math.random() * height))
 		particlesInitialized.current = true
-	}, [particleCount])
+	}, [])
 
 	const clearAllParticles = useCallback(() => {
 		timeoutsRef.current.forEach(clearTimeout)
 		timeoutsRef.current = []
 		magnetismAnimationRef.current?.kill()
+
+		// Kill all animations
+		blinkAnimationsRef.current.forEach((animation) => animation.kill())
+		blinkAnimationsRef.current = []
+		moveAnimationsRef.current.forEach((animation) => animation.kill())
+		moveAnimationsRef.current = []
+		returnAnimationsRef.current.forEach((animation) => animation.kill())
+		returnAnimationsRef.current = []
 
 		particlesRef.current.forEach((particle) => {
 			gsap.to(particle, {
@@ -181,8 +202,118 @@ const ParticleCard: React.FC<{
 		particlesRef.current = []
 	}, [])
 
-	const animateParticles = useCallback(() => {
-		if (!cardRef.current || !isHoveredRef.current) return
+	const startBlinkAnimations = useCallback(() => {
+		if (!cardRef.current || !isDarkMode) return
+
+		// Clear existing blink animations
+		blinkAnimationsRef.current.forEach((animation) => animation.kill())
+		blinkAnimationsRef.current = []
+
+		particlesRef.current.forEach((particle) => {
+			// Continuous blinking animation
+			const blinkAnimation = gsap.to(particle, {
+				opacity: 0.3 + Math.random() * 0.4,
+				duration: 2 + Math.random() * 2,
+				ease: "sine.inOut",
+				repeat: -1,
+				yoyo: true,
+			})
+
+			blinkAnimationsRef.current.push(blinkAnimation)
+		})
+	}, [isDarkMode])
+
+	const startMoveAnimations = useCallback(() => {
+		if (!cardRef.current || !isDarkMode) return
+
+		// Clear any return animations first
+		returnAnimationsRef.current.forEach((animation) => animation.kill())
+		returnAnimationsRef.current = []
+
+		// Clear existing move animations
+		moveAnimationsRef.current.forEach((animation) => animation.kill())
+		moveAnimationsRef.current = []
+
+		particlesRef.current.forEach((particle) => {
+			// Floating movement animation
+			const moveAnimation = gsap.to(particle, {
+				x: (Math.random() - 0.5) * 20,
+				y: (Math.random() - 0.5) * 20,
+				rotation: Math.random() * 360,
+				duration: 3 + Math.random() * 3,
+				ease: "sine.inOut",
+				repeat: -1,
+				yoyo: true,
+			})
+
+			moveAnimationsRef.current.push(moveAnimation)
+		})
+	}, [isDarkMode])
+
+	const stopMoveAnimations = useCallback(() => {
+		// Kill all move animations
+		moveAnimationsRef.current.forEach((animation) => animation.kill())
+		moveAnimationsRef.current = []
+
+		// Clear any existing return animations
+		returnAnimationsRef.current.forEach((animation) => animation.kill())
+		returnAnimationsRef.current = []
+
+		// Smoothly animate particles back to their original positions
+		particlesRef.current.forEach((particle) => {
+			const returnAnimation = gsap.to(particle, {
+				x: 0,
+				y: 0,
+				rotation: 0,
+				duration: 1.5, // Longer duration for smooth return
+				ease: "power2.out", // Smooth easing
+				overwrite: true,
+			})
+
+			returnAnimationsRef.current.push(returnAnimation)
+		})
+	}, [])
+
+	const createParticlesWithBlink = useCallback(() => {
+		if (!cardRef.current || !isDarkMode) return
+
+		if (!particlesInitialized.current) {
+			initializeParticles()
+		}
+
+		// Clear existing particles first
+		particlesRef.current.forEach((particle) => {
+			particle.parentNode?.removeChild(particle)
+		})
+		particlesRef.current = []
+
+		// Create particles with blinking only
+		memoizedParticles.current.forEach((particle) => {
+			if (!cardRef.current) return
+
+			const clone = particle.cloneNode(true) as HTMLDivElement
+			cardRef.current.appendChild(clone)
+			particlesRef.current.push(clone)
+
+			// Initial appearance animation
+			gsap.fromTo(
+				clone,
+				{ scale: 0, opacity: 0 },
+				{
+					scale: 1,
+					opacity: 1,
+					duration: 0.5, // Slightly longer for smoother appearance
+					ease: "back.out(1.7)",
+				}
+			)
+		})
+
+		// Start blinking animations
+		startBlinkAnimations()
+	}, [initializeParticles, isDarkMode, startBlinkAnimations])
+
+	const animateParticlesOnHover = useCallback(() => {
+		if (!cardRef.current || !isHoveredRef.current || !isDarkMode) return
 
 		if (!particlesInitialized.current) {
 			initializeParticles()
@@ -196,39 +327,67 @@ const ParticleCard: React.FC<{
 				cardRef.current.appendChild(clone)
 				particlesRef.current.push(clone)
 
-				gsap.fromTo(clone, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "back.out(1.7)" })
+				gsap.fromTo(
+					clone,
+					{ scale: 0, opacity: 0 },
+					{
+						scale: 1,
+						opacity: 1,
+						duration: 0.5,
+						ease: "back.out(1.7)",
+					}
+				)
 
-				gsap.to(clone, {
+				// Start blinking animation immediately
+				const blinkAnimation = gsap.to(clone, {
+					opacity: 0.3 + Math.random() * 0.4,
+					duration: 2 + Math.random() * 2,
+					ease: "sine.inOut",
+					repeat: -1,
+					yoyo: true,
+				})
+
+				blinkAnimationsRef.current.push(blinkAnimation)
+
+				// Start movement animation on hover
+				const moveAnimation = gsap.to(clone, {
 					x: (Math.random() - 0.5) * 10,
 					y: (Math.random() - 0.5) * 10,
 					rotation: Math.random() * 360,
 					duration: 2 + Math.random() * 2,
-					ease: "none",
+					ease: "sine.inOut",
 					repeat: -1,
 					yoyo: true,
 				})
 
-				gsap.to(clone, {
-					opacity: 0.3,
-					duration: 1.5,
-					ease: "power2.inOut",
-					repeat: -1,
-					yoyo: true,
-				})
-			}, index * 100)
+				moveAnimationsRef.current.push(moveAnimation)
+			}, index * 150) // Slightly longer delay for smoother appearance
 
 			timeoutsRef.current.push(timeoutId)
 		})
-	}, [initializeParticles])
+	}, [initializeParticles, isDarkMode])
 
 	useEffect(() => {
 		if (disableAnimations || !cardRef.current) return
 
 		const element = cardRef.current
 
+		// Create particles based on alwaysShowParticles setting
+		if (alwaysShowParticles && isDarkMode) {
+			createParticlesWithBlink()
+		}
+
 		const handleMouseEnter = () => {
 			isHoveredRef.current = true
-			animateParticles()
+
+			// Start movement animations when hovering
+			if (isDarkMode) {
+				if (alwaysShowParticles) {
+					startMoveAnimations()
+				} else {
+					animateParticlesOnHover()
+				}
+			}
 
 			if (enableTilt) {
 				gsap.to(element, {
@@ -243,7 +402,29 @@ const ParticleCard: React.FC<{
 
 		const handleMouseLeave = () => {
 			isHoveredRef.current = false
-			clearAllParticles()
+
+			// Stop movement animations when not hovering (but keep blinking)
+			if (isDarkMode) {
+				if (alwaysShowParticles) {
+					stopMoveAnimations()
+				} else {
+					// For non-alwaysShow particles, smoothly fade out instead of immediate removal
+					particlesRef.current.forEach((particle) => {
+						gsap.to(particle, {
+							scale: 0,
+							opacity: 0,
+							duration: 0.8,
+							ease: "power2.out",
+							onComplete: () => {
+								particle.parentNode?.removeChild(particle)
+							},
+						})
+					})
+					particlesRef.current = []
+					blinkAnimationsRef.current = []
+					moveAnimationsRef.current = []
+				}
+			}
 
 			if (enableTilt) {
 				gsap.to(element, {
@@ -352,7 +533,19 @@ const ParticleCard: React.FC<{
 			element.removeEventListener("click", handleClick)
 			clearAllParticles()
 		}
-	}, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect])
+	}, [
+		animateParticlesOnHover,
+		createParticlesWithBlink,
+		clearAllParticles,
+		disableAnimations,
+		enableTilt,
+		enableMagnetism,
+		clickEffect,
+		alwaysShowParticles,
+		isDarkMode,
+		startMoveAnimations,
+		stopMoveAnimations,
+	])
 
 	return (
 		<div ref={cardRef} className={`${className} relative overflow-hidden`} style={{ ...style, position: "relative", overflow: "hidden" }}>
@@ -366,6 +559,7 @@ const GlobalSpotlight: React.FC<{
 	disableAnimations?: boolean
 	enabled?: boolean
 	spotlightRadius?: number
+	isDarkMode?: boolean
 }> = ({ gridRef, disableAnimations = false, enabled = true, spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS }) => {
 	const spotlightRef = useRef<HTMLDivElement | null>(null)
 	const isInsideSection = useRef(false)
@@ -373,6 +567,7 @@ const GlobalSpotlight: React.FC<{
 	useEffect(() => {
 		if (disableAnimations || !gridRef?.current || !enabled) return
 
+		// Create spotlight element (for both light and dark modes)
 		const spotlight = document.createElement("div")
 		spotlight.className = "global-spotlight"
 		spotlight.style.cssText = `
@@ -514,19 +709,29 @@ const FeaturesSection: React.FC<BentoProps> = ({
 	enableSpotlight = true,
 	disableAnimations = false,
 	spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
-	particleCount = DEFAULT_PARTICLE_COUNT,
 	enableTilt = false,
 	clickEffect = true,
 	enableMagnetism = true,
+	alwaysShowParticles = true,
 }) => {
 	const gridRef = useRef<HTMLDivElement>(null)
 	const isMobile = useMobileDetection()
 	const shouldDisableAnimations = disableAnimations || isMobile
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [pos, setPos] = useState({ x: 0, y: 150 })
-	const [color, setColor] = useState<"primary" | "error" | "info" | "success" | "warning" | "neutral">("primary")
-
+	const [isBouncing, setIsBouncing] = useState(false)
 	const [animated, setAnimated] = useState(false)
+	const { theme } = useTheme()
+	const isDarkMode = theme === "dark"
+
+	const handleCardClick = () => {
+		setIsBouncing(true)
+
+		// Reset the bounce animation after it completes
+		setTimeout(() => {
+			setIsBouncing(false)
+		}, 100)
+	}
 
 	function VerifiedSVGIcon(props: SVGProps<SVGSVGElement>) {
 		return (
@@ -540,7 +745,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 					className={`fill-info opacity-100`}
 				/>
 				<path
-					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
+					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0	0-.3-.7 1.55 1.55 0 0	0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0	0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
 					className="stroke-bg stroke-3"
 					mask="url(#a)"
 				/>
@@ -557,26 +762,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 
 		const speed = 2 // px per frame
 
-		// === Color change every 1 sec ===
-		const colorInterval = setInterval(() => {
-			setColor((prev) => {
-				switch (prev) {
-					case "primary":
-						return "info"
-					case "info":
-						return "success"
-					case "success":
-						return "warning"
-					case "warning":
-						return "error"
-					case "error":
-						return "primary"
-					default:
-						return "primary"
-				}
-			})
-		}, 2000)
-
 		// === Movement interval ===
 		const moveInterval = setInterval(() => {
 			x += direction * speed
@@ -591,7 +776,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 		setAnimated(true)
 
 		return () => {
-			clearInterval(colorInterval)
 			clearInterval(moveInterval)
 		}
 	}, [])
@@ -839,12 +1023,14 @@ const FeaturesSection: React.FC<BentoProps> = ({
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
 					<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
 						<ParticleCard
+							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
-							particleCount={particleCount}
+							particleCount={12}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
+							isDarkMode={isDarkMode}
 							className={`lg:flex-2/3 pt-15 border-soft card card--border-glow relative flex flex-col gap-12 overflow-hidden rounded-xl border transition-all duration-300 ease-in-out`}>
 							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="flex items-center justify-between px-7 sm:pl-12">
@@ -969,12 +1155,14 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 						</ParticleCard>
 						<ParticleCard
+							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
-							particleCount={particleCount}
+							particleCount={12}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
+							isDarkMode={isDarkMode}
 							className="lg:flex-1/3 border-soft card card--border-glow relative flex flex-col gap-12 overflow-hidden rounded-xl border">
 							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
@@ -1039,12 +1227,14 @@ const FeaturesSection: React.FC<BentoProps> = ({
 					</div>
 					<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
 						<ParticleCard
+							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
-							particleCount={particleCount}
+							particleCount={12}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
+							isDarkMode={isDarkMode}
 							className="border-soft pt-15 max-h-150 card card--border-glow flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
 							<div className="flex flex-col gap-4 px-7 sm:pl-12">
 								<span className="pb-2">
@@ -1102,14 +1292,16 @@ const FeaturesSection: React.FC<BentoProps> = ({
 						</ParticleCard>
 
 						<ParticleCard
+							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
-							particleCount={particleCount}
+							particleCount={12}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
+							isDarkMode={isDarkMode}
 							className="border-soft card card--border-glow relative flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
-							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+							<div className="h-25 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<span className="pb-2">
 									<SwatchBook size={28} className="stroke-primary-hover" />
@@ -1118,42 +1310,77 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<p className="text-fg-secondary lg:max-w-105 w-fit text-sm">Edit one token to restyle your entire design system — light, dark, or custom themes.</p>
 							</div>
 							<div className="flex items-center justify-center gap-14 pl-10">
-								<div className="w-78.5 border-soft -rotate-30 skew-x-15 flex translate-y-10 flex-col overflow-hidden rounded-xl border p-0">
-									<div className={`bg-${color}-focus relative h-16 transition-colors duration-100`}>
-										<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
-											<AvatarFallback className={`text-base bg-${color}-accent text-${color}-text transition-colors duration-100`}>ZP</AvatarFallback>
-										</Avatar>
-									</div>
+								<div className="relative size-full">
+									<div onClick={handleCardClick} className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 absolute left-20 size-80 translate-y-10 rounded-xl border shadow-lg`} />
+									<div
+										onClick={handleCardClick}
+										className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 left-35 absolute size-80 translate-y-10 rounded-xl border shadow-lg ${isBouncing ? "skew-x-11 -translate-y-5 scale-95 duration-300" : ""}`}
+									/>
+									<div
+										onClick={handleCardClick}
+										className={`border-soft bg-bg -rotate-20 skew-x-10 left-50 absolute flex size-80 translate-y-10 flex-col overflow-hidden rounded-xl border p-0 shadow-lg ${isBouncing ? "skew-x-11 -translate-y-10 scale-95" : ""}`}>
+										<div className={`bg-primary-focus relative h-16 transition-colors duration-100`}>
+											<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
+												<AvatarFallback className={`bg-primary-accent text-primary-text text-base transition-colors duration-100`}>
+													<span className="relative">
+														<span className="dark:via-primary dark:from-primary-text dark:to-primary-text dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+															ZP
+														</span>
+														<span className="dark:via-primary dark:from-primary-text dark:to-primary-text relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+															ZP
+														</span>
+													</span>
+												</AvatarFallback>
+											</Avatar>
+										</div>
 
-									<div className="bg-bg flex flex-col gap-4 px-4 pb-4 pt-14">
-										<div className="flex flex-col gap-1">
-											<div className="flex items-center gap-1">
-												<p>{profile.name}</p>
-												<VerifiedSVGIcon />
+										<div className="bg-bg flex flex-col gap-4 px-4 pb-4 pt-14">
+											<div className="flex flex-col gap-1">
+												<div className="relative flex items-center gap-1">
+													<p className="dark:via-fg dark:from-black-inverse dark:to-black-inverse dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+														{profile.name}
+													</p>
+													<p className="dark:via-fg dark:from-black-inverse dark:to-black-inverse relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+														{profile.name}
+													</p>
+													<VerifiedSVGIcon />
+												</div>
+												<p className="text-sm">{profile.description}</p>
+												<p className="text-fg-tertiary text-[13px]">{profile.address}</p>
 											</div>
-											<p className="text-sm">{profile.description}</p>
-											<p className="text-fg-tertiary text-[13px]">{profile.address}</p>
-										</div>
 
-										<div className="flex h-5 gap-3 text-sm">
-											<p className="flex items-center gap-1">
-												<span className="font-medium">{profile.followingInThousands}k</span>
-												<span className="text-fg-secondary">Following</span>
-											</p>
-											<Divider orientation="vertical" className="bg-soft-alpha" />
-											<p className="flex items-center gap-1">
-												<span className="font-medium">{profile.followersInThousands}k</span>
-												<span className="text-fg-secondary">Followers</span>
-											</p>
-										</div>
+											<div className="flex h-5 gap-3 text-sm">
+												<p className="flex items-center gap-1">
+													<span className="relative">
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+															{profile.followingInThousands}k
+														</span>
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+															{profile.followingInThousands}k
+														</span>
+													</span>
+													<span className="text-fg-secondary">Following</span>
+												</p>
+												<Divider orientation="vertical" className="bg-soft-alpha" />
+												<p className="flex items-center gap-1">
+													<span className="relative">
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+															{profile.followersInThousands}k
+														</span>
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+															{profile.followersInThousands}k
+														</span>
+													</span>
+													<span className="text-fg-secondary">Followers</span>
+												</p>
+											</div>
 
-										<div className="flex gap-3">
-											<Button color={color} className="flex-1 rounded-full transition-colors duration-100">
-												Message
-											</Button>
-											<Button variant="outline" color={color} className="flex-1 rounded-full transition-colors duration-100">
-												Follow
-											</Button>
+											<div className="flex gap-3">
+												<Button className="flex-1 rounded-full transition-colors duration-100">Message</Button>
+												<Button variant="outline" className="flex-1 rounded-full transition-colors duration-100">
+													Follow
+												</Button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1212,12 +1439,14 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 						</div>
 						<ParticleCard
+							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
-							particleCount={particleCount}
+							particleCount={12}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
+							isDarkMode={isDarkMode}
 							className="border-soft pt-15 card card--border-glow relative flex min-h-[488px] w-full flex-col gap-12 overflow-hidden rounded-xl border">
 							<div className="flex flex-col gap-4 px-7 sm:px-8 lg:w-[510px] lg:pl-12">
 								<span className="pb-2">

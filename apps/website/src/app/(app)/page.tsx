@@ -10,6 +10,7 @@ import HomeInteractive from "@/components/home/home-interactive"
 import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSection from "@/components/home/playground-section"
 import VideoSection from "@/components/home/video-section"
+import { PlaygroundProvider } from "@/contexts/playground"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -142,23 +143,14 @@ export default function Page() {
 				</div>
 			</Background>
 
-			<FeaturesSection
-				textAutoHide={true}
-				enableStars={true}
-				enableSpotlight={true}
-				enableBorderGlow={true}
-				enableTilt={false}
-				enableMagnetism={false}
-				clickEffect={true}
-				spotlightRadius={573}
-				particleCount={12}
-			/>
+			<FeaturesSection textAutoHide={true} enableSpotlight={true} enableBorderGlow={true} enableTilt={false} enableMagnetism={false} clickEffect={true} spotlightRadius={573} />
 
 			<InvertedSection />
 
 			<ComponentsSection />
-
-			<PlaygroundSection />
+			<PlaygroundProvider>
+				<PlaygroundSection />
+			</PlaygroundProvider>
 
 			<VideoSection />
 
