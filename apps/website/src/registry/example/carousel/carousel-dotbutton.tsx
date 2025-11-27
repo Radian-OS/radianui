@@ -68,7 +68,7 @@ export default function CarouselDotButton() {
 						key={index}
 						color="neutral"
 						onClick={() => api?.scrollTo(index)}
-						className={cn("h-4 w-4 cursor-pointer rounded-full transition-colors", current === index ? "bg-primary" : "bg-gray-300")}
+						className={cn("h-2 w-2 cursor-pointer rounded-full transition-colors", current === index ? "bg-primary" : "bg-gray-300")}
 						aria-label={`Go to slide ${index + 1}`}>
 						<span className="sr-only">Go to slide {index + 1}</span>
 					</CompactButton>
