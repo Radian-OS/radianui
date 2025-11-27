@@ -208,6 +208,9 @@ importers:
       embla-carousel-react:
         specifier: ^8.6.0
         version: 8.6.0(react@19.1.0)
+      emoji-picker-react:
+        specifier: ^4.15.2
+        version: 4.15.2(react@19.1.0)
       frimousse:
         specifier: ^0.3.0
         version: 0.3.0(react@19.1.0)(typescript@5.8.2)
@@ -5098,6 +5101,12 @@ packages:
   emits@3.0.0:
     resolution: {integrity: sha512-WJSCMaN/qjIkzWy5Ayu0MDENFltcu4zTPPnWqdFPOVBtsENVTN+A3d76G61yuiVALsMK+76MejdPrwmccv/wag==}
 
+  emoji-picker-react@4.15.2:
+    resolution: {integrity: sha512-Rjd/BgRN9hW6Vt4pBh7uyWGICu2UH9NT99B0YSvG+BqyuigcWwqwekpMLS2CJjLPtVlEsf6F/zuVMwX1qvei9g==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: 19.1.0
+
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
@@ -5484,6 +5493,9 @@ packages:
 
   fix-dts-default-cjs-exports@1.0.1:
     resolution: {integrity: sha512-pVIECanWFC61Hzl2+oOCtoJ3F17kglZC/6N94eRWycFgBH35hHx0Li604ZIzhseh97mf2p0cv7vVrOZGoqhlEg==}
+
+  flairup@1.0.0:
+    resolution: {integrity: sha512-IKlE+pNvL2R+kVL1kEhUYqRxVqeFnjiIvHWDMLFXNaqyUdFXQM2wte44EfMYJNHkW16X991t2Zg8apKkhv7OBA==}
 
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
@@ -13029,6 +13041,11 @@ snapshots:
 
   emits@3.0.0: {}
 
+  emoji-picker-react@4.15.2(react@19.1.0):
+    dependencies:
+      flairup: 1.0.0
+      react: 19.1.0
+
   emoji-regex@8.0.0: {}
 
   emoji-regex@9.2.2: {}
@@ -13661,6 +13678,8 @@ snapshots:
       magic-string: 0.30.21
       mlly: 1.8.0
       rollup: 4.52.5
+
+  flairup@1.0.0: {}
 
   flat-cache@4.0.1:
     dependencies:
