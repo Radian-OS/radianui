@@ -1,14 +1,14 @@
 import { SVGProps } from "react"
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/registry/ui/empty"
 
-export default function EmptyResult() {
+export default function NoSuchDirectory() {
 	return (
 		<Empty>
 			<EmptyMedia>
 				<EmptyResultMediaContent />
 			</EmptyMedia>
 			<EmptyHeader>
-				<EmptyTitle>No results found</EmptyTitle>
+				<EmptyTitle>No Such Directory Found</EmptyTitle>
 				<EmptyDescription>Please try using a different keyword or update your search filters</EmptyDescription>
 			</EmptyHeader>
 		</Empty>

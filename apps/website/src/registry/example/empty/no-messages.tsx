@@ -1,19 +1,19 @@
-import React, { SVGProps } from "react"
+import { SVGProps } from "react"
 import { Button } from "@/registry/ui/button"
 import { Empty, EmptyAction, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/registry/ui/empty"
 
-export default function EmptyConversation() {
+export default function NoMessages() {
 	return (
 		<Empty>
-			<EmptyMedia className="h-20">
-				<EmptyMediaContent />
+			<EmptyMedia>
+				<EmptyMediaContent height={68} />
 			</EmptyMedia>
 			<EmptyHeader>
-				<EmptyTitle>You don’t have any conversations</EmptyTitle>
-				<EmptyDescription>Once you start collaborating, your conversation will appear here</EmptyDescription>
+				<EmptyTitle>Empty Inbox</EmptyTitle>
+				<EmptyDescription>Start chatting to see your messages here</EmptyDescription>
 			</EmptyHeader>
 			<EmptyAction>
-				<Button>Send a message</Button>
+				<Button>New Message</Button>
 			</EmptyAction>
 		</Empty>
 	)
