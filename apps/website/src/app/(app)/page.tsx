@@ -143,17 +143,7 @@ export default function Page() {
 				</div>
 			</Background>
 
-			<FeaturesSection
-				textAutoHide={true}
-				enableStars={true}
-				enableSpotlight={true}
-				enableBorderGlow={true}
-				enableTilt={false}
-				enableMagnetism={false}
-				clickEffect={true}
-				spotlightRadius={573}
-				particleCount={12}
-			/>
+			<FeaturesSection textAutoHide={true} enableSpotlight={true} enableBorderGlow={true} enableTilt={false} enableMagnetism={false} clickEffect={true} spotlightRadius={573} />
 
 			<InvertedSection />
 
