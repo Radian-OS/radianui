@@ -524,9 +524,17 @@ const FeaturesSection: React.FC<BentoProps> = ({
 	const shouldDisableAnimations = disableAnimations || isMobile
 	const containerRef = useRef<HTMLDivElement>(null)
 	const [pos, setPos] = useState({ x: 0, y: 150 })
-	const [color, setColor] = useState<"primary" | "error" | "info" | "success" | "warning" | "neutral">("primary")
-
+	const [isBouncing, setIsBouncing] = useState(false)
 	const [animated, setAnimated] = useState(false)
+
+	const handleCardClick = () => {
+		setIsBouncing(true)
+
+		// Reset the bounce animation after it completes
+		setTimeout(() => {
+			setIsBouncing(false)
+		}, 100)
+	}
 
 	function VerifiedSVGIcon(props: SVGProps<SVGSVGElement>) {
 		return (
@@ -557,26 +565,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 
 		const speed = 2 // px per frame
 
-		// === Color change every 1 sec ===
-		const colorInterval = setInterval(() => {
-			setColor((prev) => {
-				switch (prev) {
-					case "primary":
-						return "info"
-					case "info":
-						return "success"
-					case "success":
-						return "warning"
-					case "warning":
-						return "error"
-					case "error":
-						return "primary"
-					default:
-						return "primary"
-				}
-			})
-		}, 2000)
-
 		// === Movement interval ===
 		const moveInterval = setInterval(() => {
 			x += direction * speed
@@ -591,7 +579,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 		setAnimated(true)
 
 		return () => {
-			clearInterval(colorInterval)
 			clearInterval(moveInterval)
 		}
 	}, [])
@@ -1109,7 +1096,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							className="border-soft card card--border-glow relative flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
-							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+							<div className="h-25 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<span className="pb-2">
 									<SwatchBook size={28} className="stroke-primary-hover" />
@@ -1118,42 +1105,77 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<p className="text-fg-secondary lg:max-w-105 w-fit text-sm">Edit one token to restyle your entire design system — light, dark, or custom themes.</p>
 							</div>
 							<div className="flex items-center justify-center gap-14 pl-10">
-								<div className="w-78.5 border-soft -rotate-30 skew-x-15 flex translate-y-10 flex-col overflow-hidden rounded-xl border p-0">
-									<div className={`bg-${color}-focus relative h-16 transition-colors duration-100`}>
-										<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
-											<AvatarFallback className={`text-base bg-${color}-accent text-${color}-text transition-colors duration-100`}>ZP</AvatarFallback>
-										</Avatar>
-									</div>
+								<div className="relative size-full">
+									<div onClick={handleCardClick} className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 absolute left-20 size-80 translate-y-10 rounded-xl border shadow-lg`} />
+									<div
+										onClick={handleCardClick}
+										className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 left-35 absolute size-80 translate-y-10 rounded-xl border shadow-lg ${isBouncing ? "skew-x-11 -translate-y-5 scale-95 duration-300" : ""}`}
+									/>
+									<div
+										onClick={handleCardClick}
+										className={`border-soft bg-bg -rotate-20 skew-x-10 left-50 absolute flex size-80 translate-y-10 flex-col overflow-hidden rounded-xl border p-0 shadow-lg ${isBouncing ? "skew-x-11 -translate-y-10 scale-95" : ""}`}>
+										<div className={`bg-primary-focus relative h-16 transition-colors duration-100`}>
+											<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
+												<AvatarFallback className={`bg-primary-accent text-primary-text text-base transition-colors duration-100`}>
+													<span className="relative">
+														<span className="dark:via-primary dark:from-primary-text dark:to-primary-text dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+															ZP
+														</span>
+														<span className="dark:via-primary dark:from-primary-text dark:to-primary-text relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+															ZP
+														</span>
+													</span>
+												</AvatarFallback>
+											</Avatar>
+										</div>
 
-									<div className="bg-bg flex flex-col gap-4 px-4 pb-4 pt-14">
-										<div className="flex flex-col gap-1">
-											<div className="flex items-center gap-1">
-												<p>{profile.name}</p>
-												<VerifiedSVGIcon />
+										<div className="bg-bg flex flex-col gap-4 px-4 pb-4 pt-14">
+											<div className="flex flex-col gap-1">
+												<div className="relative flex items-center gap-1">
+													<p className="dark:via-fg dark:from-black-inverse dark:to-black-inverse dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+														{profile.name}
+													</p>
+													<p className="dark:via-fg dark:from-black-inverse dark:to-black-inverse relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+														{profile.name}
+													</p>
+													<VerifiedSVGIcon />
+												</div>
+												<p className="text-sm">{profile.description}</p>
+												<p className="text-fg-tertiary text-[13px]">{profile.address}</p>
 											</div>
-											<p className="text-sm">{profile.description}</p>
-											<p className="text-fg-tertiary text-[13px]">{profile.address}</p>
-										</div>
 
-										<div className="flex h-5 gap-3 text-sm">
-											<p className="flex items-center gap-1">
-												<span className="font-medium">{profile.followingInThousands}k</span>
-												<span className="text-fg-secondary">Following</span>
-											</p>
-											<Divider orientation="vertical" className="bg-soft-alpha" />
-											<p className="flex items-center gap-1">
-												<span className="font-medium">{profile.followersInThousands}k</span>
-												<span className="text-fg-secondary">Followers</span>
-											</p>
-										</div>
+											<div className="flex h-5 gap-3 text-sm">
+												<p className="flex items-center gap-1">
+													<span className="relative">
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+															{profile.followingInThousands}k
+														</span>
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+															{profile.followingInThousands}k
+														</span>
+													</span>
+													<span className="text-fg-secondary">Following</span>
+												</p>
+												<Divider orientation="vertical" className="bg-soft-alpha" />
+												<p className="flex items-center gap-1">
+													<span className="relative">
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse dark:blur-xs absolute mx-auto box-content flex w-fit select-none bg-clip-text text-center text-base font-medium dark:border dark:bg-gradient-to-r dark:text-transparent">
+															{profile.followersInThousands}k
+														</span>
+														<span className="dark:via-fg dark:from-black-inverse dark:to-black-inverse relative top-0 flex h-auto w-fit select-auto items-center justify-center bg-gradient-to-r bg-clip-text text-center text-base font-medium dark:text-transparent">
+															{profile.followersInThousands}k
+														</span>
+													</span>
+													<span className="text-fg-secondary">Followers</span>
+												</p>
+											</div>
 
-										<div className="flex gap-3">
-											<Button color={color} className="flex-1 rounded-full transition-colors duration-100">
-												Message
-											</Button>
-											<Button variant="outline" color={color} className="flex-1 rounded-full transition-colors duration-100">
-												Follow
-											</Button>
+											<div className="flex gap-3">
+												<Button className="flex-1 rounded-full transition-colors duration-100">Message</Button>
+												<Button variant="outline" className="flex-1 rounded-full transition-colors duration-100">
+													Follow
+												</Button>
+											</div>
 										</div>
 									</div>
 								</div>
