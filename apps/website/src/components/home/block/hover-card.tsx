@@ -40,7 +40,7 @@ export default function HoverCard() {
 				<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]} px-4 pb-4 pt-14`}>
 					<div className="flex flex-col gap-1">
 						<div className="flex items-center gap-1">
-							<p>{profile.name}</p>
+							<p className="font-medium">{profile.name}</p>
 							<VerifiedSVGIcon />
 						</div>
 						<p className="text-sm">{profile.description}</p>
