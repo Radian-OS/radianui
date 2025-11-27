@@ -31,9 +31,9 @@ const alertVariants = cva(
 			},
 			variant: {
 				strong: "",
-				soft: "[&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg-secondary",
-				"soft-outline": "ring-1 ring-inset [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg-secondary",
-				outline: "border border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg-secondary",
+				soft: "[&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+				"soft-outline": "ring-1 ring-inset [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+				outline: "border border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
 			},
 		},
 		compoundVariants: [
@@ -92,7 +92,7 @@ function Alert({ className, color = "primary", variant = "soft", close = false, 
 Alert.displayName = "Alert"
 
 function AlertTitle({ className, ...props }: AlertTitleProps) {
-	return <div data-slot="alert-title" className={cn("grow tracking-tight", className)} {...props} />
+	return <div data-slot="alert-title" className={cn("grow", className)} {...props} />
 }
 
 AlertTitle.displayName = "AlertTitle"
