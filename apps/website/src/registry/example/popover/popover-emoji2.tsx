@@ -1,5 +1,5 @@
 import React from "react"
-import data from "@emoji-mart/data"
+import data, { Skin } from "@emoji-mart/data"
 import Picker from "@emoji-mart/react"
 import { SmilePlus } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from "@/registry/ui/avatar"
@@ -43,7 +43,17 @@ export default function PopoverEmoji2() {
 						</PopoverTrigger>
 						<PopoverContent className="w-fit overflow-clip rounded-lg p-0" align="start">
 							<div className="[--rgb-background:var(--color-elevation-level1)]! [--rgb-color:var(--color-fg)]! [--rgb-input:var(--color-elevation-level1)]!">
-								<Picker data={data} onEmojiSelect={console.log} previewPosition="none" skinTonePosition="none" />
+								<Picker
+									data={data}
+									onEmojiSelect={(emoji: Skin) => {
+										if (!selectedEmoji.includes(emoji.native)) setSelectedEmoji((prev) => [...prev, emoji.native])
+										else setSelectedEmoji((prev) => prev.filter((e) => e !== emoji.native))
+
+										setOpen(false)
+									}}
+									previewPosition="none"
+									skinTonePosition="none"
+								/>
 							</div>
 						</PopoverContent>
 					</Popover>
