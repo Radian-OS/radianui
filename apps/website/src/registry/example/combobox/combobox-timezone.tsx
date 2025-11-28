@@ -69,8 +69,8 @@ export default function ComboboxTimezone() {
 										setOpen(false)
 									}}>
 									<div className="flex gap-2 font-normal">
-										<span className="truncate">{t.value}</span>
-										<span className="text-fg-secondary text-[13px]">{t.offset}</span>
+										<span className="flex-1 truncate">{t.value}</span>
+										<span className="text-fg-secondary flex-nowrap text-[13px]">{t.offset}</span>
 									</div>
 									<Check className={cn("ml-auto size-5", value === t.value ? "opacity-100" : "opacity-0")} />
 								</CommandItem>
