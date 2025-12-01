@@ -265,38 +265,38 @@ export const buttonVariants = cva(
 				variant: "glossy",
 				color: "primary",
 				className:
-					"before:absolute before:inset-0 before:border before:border-white/44 bg-primary before:pointer-events-none before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:bg-primary-hover  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden hover:brightness-110 before:mask-b-from-0%  text-white font-medium before:rounded-[inherit]",
+					"bg-primary relative hover:bg-primary-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden text-white font-medium",
 			},
 
 			{
 				variant: "glossy",
 				color: "info",
 				className:
-					"before:absolute before:inset-0 before:border before:border-white/44 bg-info before:pointer-events-none before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:bg-info-hover  focus-visible:ring-info  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)]  overflow-hidden hover:brightness-110 before:mask-b-from-0%  text-white font-medium before:rounded-[inherit]",
+					"bg-info relative hover:bg-info-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-info  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy",
 				color: "success",
 				className:
-					"before:absolute before:inset-0 before:border before:border-white/44 bg-success before:pointer-events-none before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:bg-success-hover  focus-visible:ring-success  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)]  overflow-hidden hover:brightness-110 before:mask-b-from-0%  text-white font-medium before:rounded-[inherit]",
+					"bg-success relative hover:bg-success-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-success  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy",
 				color: "warning",
 				className:
-					"before:absolute before:inset-0 before:border before:border-white/44 bg-warning before:pointer-events-none before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:bg-warning-hover  focus-visible:ring-warning  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)]  overflow-hidden hover:brightness-110 before:mask-b-from-0%  text-white font-medium before:rounded-[inherit]",
+					"bg-warning relative hover:bg-warning-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-warning  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy",
 				color: "error",
 				className:
-					"before:absolute before:inset-0 before:border before:border-white/44 bg-error before:pointer-events-none before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:bg-error-hover  focus-visible:ring-error  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)]  overflow-hidden hover:brightness-110 before:mask-b-from-0%  text-white font-medium before:rounded-[inherit]",
+					"bg-error relative hover:bg-error-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-error  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy",
 				color: "neutral",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-black-inverse focus-visible:outline-none before:border overflow-hidden before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse  bg-linear-to-t from-white/0 to-white/20 text-white-inverse font-medium before:rounded-[inherit]  hover:opacity-90  shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)]",
+					"bg-black-inverse relative hover:brightness-110 before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-black-inverse  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)]  overflow-hidden text-white-inverse font-medium",
 			},
 
 			// glossy-inverted + colors
@@ -304,38 +304,38 @@ export const buttonVariants = cva(
 				variant: "glossy-inverted",
 				color: "primary",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-primary hover:bg-primary-hover bg-primary focus-visible:outline-none before:border overflow-hidden before:border-white/44 before:mask-b-from-0%   text-white font-medium before:rounded-[inherit] before:bg-gradient-to-b before:from-transparent before:to-white/20  shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]",
+					"bg-primary relative hover:bg-primary-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']  focus-visible:ring-primary  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)]  overflow-hidden text-white font-medium",
 			},
 
 			{
 				variant: "glossy-inverted",
 				color: "info",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-info hover:bg-info-hover bg-info focus-visible:outline-none before:border overflow-hidden before:border-white/44 before:mask-b-from-0%   text-white font-medium before:rounded-[inherit] before:bg-gradient-to-b before:from-transparent before:to-white/20  shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)]",
+					"bg-info relative hover:bg-info-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']  focus-visible:ring-info  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "success",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-success hover:bg-success-hover bg-success focus-visible:outline-none before:border overflow-hidden before:border-white/44 before:mask-b-from-0%   text-white font-medium before:rounded-[inherit] before:bg-gradient-to-b before:from-transparent before:to-white/20  shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)]",
+					"bg-success relative hover:bg-success-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']  focus-visible:ring-success  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "warning",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-warning hover:bg-warning-hover bg-warning focus-visible:outline-none before:border overflow-hidden before:border-white/44 before:mask-b-from-0%   text-white font-medium before:rounded-[inherit] before:bg-gradient-to-b before:from-transparent before:to-white/20  shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)]",
+					"bg-warning relative hover:bg-warning-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']  focus-visible:ring-warning  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "error",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-error hover:bg-error-hover bg-error focus-visible:outline-none before:border overflow-hidden before:border-white/44 before:mask-b-from-0%   text-white font-medium before:rounded-[inherit] before:bg-gradient-to-b before:from-transparent before:to-white/20  shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)]",
+					"bg-error relative hover:bg-error-hover before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']  focus-visible:ring-error  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)]  overflow-hidden text-white font-medium",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "neutral",
 				className:
-					"before:absolute before:inset-0 focus-visible:ring-black-inverse focus-visible:outline-none before:border overflow-hidden before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse  bg-linear-to-t from-white/20 to-white/0 text-white-inverse font-medium before:rounded-[inherit]  hover:opacity-90  shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)]",
+					"bg-black-inverse relative hover:brightness-110 before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']  focus-visible:ring-black-inverse  focus-visible:outline-none shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)]  overflow-hidden text-white-inverse font-medium",
 			},
 
 			// smooth button
