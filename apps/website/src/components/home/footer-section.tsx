@@ -2,6 +2,8 @@ import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
+import { Button } from "@/registry/ui/button"
+import { Input } from "@/registry/ui/input"
 import { WebsiteLogo } from "../navbar/website-logo"
 
 const LINKS = [
@@ -123,10 +125,23 @@ export default function FooterSection() {
 				</div>
 			</div>
 
-			<div className="h-13">
+			<div className="flex items-center justify-center">
+				<div className="flex w-full max-w-[1120px] flex-col justify-between gap-3 px-5 py-10 md:flex-row">
+					<div className="flex max-w-[396px] flex-col gap-2">
+						<h5 className="heading-5">Love Building Products?</h5>
+						<p className="text-fg-secondary text-sm font-normal">We’re adding tons of cool components and blocks to help you build. Subscribe to get updates on development</p>
+					</div>
+					<div className="flex gap-3">
+						<Input placeholder="Enter your email" size="40" className="w-70" />
+						<Button size="40">Subscribe</Button>
+					</div>
+				</div>
+			</div>
+
+			<div className="h-13 flex items-center justify-center">
 				<p className="text-fg-secondary text-center text-sm font-medium">© Copyright Radian OS 2025. All rights reserved.</p>
 			</div>
-			<div className="hidden h-10 xl:block" />
+			{/* <div className="hidden h-10 xl:block" /> */}
 		</footer>
 	)
 }
