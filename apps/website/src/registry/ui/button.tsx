@@ -343,75 +343,75 @@ export const buttonVariants = cva(
 				variant: "smooth",
 				color: "primary",
 				className:
-					"relative font-medium text-white focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary-hover after:to-primary after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary-hover after:to-primary after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth",
 				color: "info",
 				className:
-					"relative font-medium focus-visible:ring-info  focus-visible:outline-none text-white bg-info overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-info-hover after:to-info after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium focus-visible:ring-info  focus-visible:outline-none text-white bg-info overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-info-hover after:to-info after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth",
 				color: "success",
 				className:
-					"relative font-medium focus-visible:ring-success  focus-visible:outline-none text-white bg-success overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-success-hover after:to-success after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium focus-visible:ring-success  focus-visible:outline-none text-white bg-success overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-success-hover after:to-success after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth",
 				color: "warning",
 				className:
-					"relative font-medium focus-visible:ring-warning  focus-visible:outline-none text-white bg-warning overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-warning-hover after:to-warning after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium focus-visible:ring-warning  focus-visible:outline-none text-white bg-warning overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-warning-hover after:to-warning after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 
 			{
 				variant: "smooth",
 				color: "error",
 				className:
-					"relative font-medium focus-visible:ring-error  focus-visible:outline-none text-white bg-error overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-error-hover after:to-error after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium focus-visible:ring-error  focus-visible:outline-none text-white bg-error overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-error-hover after:to-error after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth",
 				color: "neutral",
 				className:
-					"relative font-medium focus-visible:ring-black-inverse  focus-visible:outline-none text-white-inverse bg-black-inverse overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] hover:opacity-95 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-white/20 after:to-black-inverse after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white-inverse/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium focus-visible:ring-black-inverse  focus-visible:outline-none text-white-inverse bg-black-inverse overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] hover:opacity-95 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-white/20 after:to-black-inverse after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white-inverse/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			// smooth-inverted variants
 			{
 				variant: "smooth-inverted",
 				color: "primary",
 				className:
-					"relative font-medium text-white focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary after:to-primary-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-primary  focus-visible:outline-none bg-primary overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-primary after:to-primary-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "info",
 				className:
-					"relative font-medium text-white focus-visible:ring-info  focus-visible:outline-none bg-info overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-info after:to-info-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-info  focus-visible:outline-none bg-info overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-info after:to-info-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "success",
 				className:
-					"relative font-medium text-white focus-visible:ring-success  focus-visible:outline-none bg-success overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-success after:to-success-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-success  focus-visible:outline-none bg-success overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-success after:to-success-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "warning",
 				className:
-					"relative font-medium text-white focus-visible:ring-warning  focus-visible:outline-none bg-warning overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-warning after:to-warning-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-warning  focus-visible:outline-none bg-warning overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-warning after:to-warning-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "error",
 				className:
-					"relative font-medium text-white focus-visible:ring-error  focus-visible:outline-none bg-error overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-error after:to-error-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium text-white focus-visible:ring-error  focus-visible:outline-none bg-error overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] hover:brightness-110 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-error after:to-error-hover after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "neutral",
 				className:
-					"relative font-medium focus-visible:ring-black-inverse  focus-visible:outline-none text-white-inverse bg-black-inverse overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] hover:opacity-95 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-black-inverse after:to-white/20 after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white-inverse/44 before:pointer-events-none before:mask-b-from-98%",
+					"relative font-medium focus-visible:ring-black-inverse  focus-visible:outline-none text-white-inverse bg-black-inverse overflow-hidden shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] hover:opacity-95 after:absolute after:inset-0 after:rounded-[inherit] after:bg-gradient-to-b after:from-black-inverse after:to-white/20 after:-z-10 before:absolute before:inset-0 before:rounded-[inherit] before:border before:border-white-inverse/16 before:pointer-events-none before:mask-b-from-98%",
 			},
 			// Link variant loading state (no underline when loading)
 			{
