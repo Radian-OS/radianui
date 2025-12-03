@@ -4,10 +4,8 @@ import { AspectRatio } from "@/registry/ui/aspect-ratio"
 
 export default function AspectRatioPreview() {
 	return (
-		<div className="w-full max-w-[200px]">
-			<AspectRatio ratio={1 / 1} className="bg-fill1 overflow-hidden rounded-xl">
-				<Image src={"/media/background-2.png"} alt="Aspect Ratio Preview" fill className="object-cover" />
-			</AspectRatio>
-		</div>
+		<AspectRatio ratio={1 / 1} className="bg-fill1 overflow-hidden rounded-xl">
+			<Image src={"/media/background-2.png"} alt="Aspect Ratio Preview" fill className="object-cover" />
+		</AspectRatio>
 	)
 }
