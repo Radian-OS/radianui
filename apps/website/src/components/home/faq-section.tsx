@@ -1,3 +1,5 @@
+"use client"
+
 import { BookOpenText, Braces, Handshake, LucideIcon, MessageCircleQuestionIcon, Moon, Orbit, ShieldCheck } from "lucide-react"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"

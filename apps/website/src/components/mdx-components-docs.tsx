@@ -121,10 +121,10 @@ const components = (examples: typeof Examples | undefined) => ({
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
 
-	ComponentPreview: ({ path, height, align }: { path: string; height: number; align: "center" | "start" | "end" }) => {
+	ComponentPreview: ({ path, height, align, type }: { path: string; height: number; align: "center" | "start" | "end"; type?: "component" | "block" }) => {
 		const code = examples?.[0]?.files.find((file) => file.name === path)?.content || ""
 
-		return <ComponentPreview path={path} code={code} height={height} align={align} />
+		return <ComponentPreview type={type} path={path} code={code} height={height} align={align} />
 	},
 
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,

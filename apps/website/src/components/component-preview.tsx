@@ -10,6 +10,7 @@ export type ComponentPreviewProps = {
 	code: string
 	height: number
 	align: "center" | "start" | "end"
+	type?: "component" | "block"
 }
 
 type ComponentPreviewContext = ComponentPreviewProps & {
@@ -26,7 +27,7 @@ export function useComponentPreview() {
 	return context
 }
 
-function ComponentPreviewProvider({ path, code, height, align, children }: ComponentPreviewContext) {
+function ComponentPreviewProvider({ path, code, height, align, children, type }: ComponentPreviewContext) {
 	return (
 		<ComponentPreviewContext.Provider
 			value={{
@@ -35,6 +36,7 @@ function ComponentPreviewProvider({ path, code, height, align, children }: Compo
 				height,
 				align,
 				children,
+				type,
 			}}>
 			<div className="flex min-w-0 flex-col items-stretch">{children}</div>
 		</ComponentPreviewContext.Provider>
@@ -42,7 +44,7 @@ function ComponentPreviewProvider({ path, code, height, align, children }: Compo
 }
 
 function ComponentPreviewDemo() {
-	const { path, height, align } = useComponentPreview()
+	const { path, height, align, type } = useComponentPreview()
 	const [Component, setComponent] = useState<React.ComponentType | null>(null)
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState<string | null>(null)
@@ -68,7 +70,9 @@ function ComponentPreviewDemo() {
 	}, [path])
 
 	return (
-		<div className={`relative flex h-full items-${align} justify-center overflow-auto rounded-xl border px-4 py-10 md:px-6 lg:px-10`} style={{ minHeight: `${height}px` }}>
+		<div
+			className={`relative h-full overflow-auto rounded-xl border ${type === "component" ? `flex px-4 py-10 md:px-6 lg:px-10 items-${align} justify-center` : ""} `}
+			style={{ minHeight: `${height}px` }}>
 			{loading ? (
 				<div className="text-fg-tertiary flex size-full items-center justify-center gap-2">
 					<Spinner size={20} variant="activity" />
@@ -98,10 +102,10 @@ function ComponentPreviewCode() {
 	)
 }
 
-export function ComponentPreview({ path, code, height, align }: ComponentPreviewProps) {
+export function ComponentPreview({ path, code, height, align, type }: ComponentPreviewProps) {
 	return (
 		<div className="mb-8">
-			<ComponentPreviewProvider path={path} code={code} height={height ?? 420} align={align ?? "center"}>
+			<ComponentPreviewProvider type={type ?? "component"} path={path} code={code} height={height ?? 420} align={align ?? "center"}>
 				<Tabs defaultValue="preview" className="w-full">
 					<TabsList size="md">
 						<TabsTrigger value="preview">Preview</TabsTrigger>
