@@ -138,7 +138,7 @@ function SidebarProvider({
 							...style,
 						} as React.CSSProperties
 					}
-					className={cn("group/sidebar-wrapper has-data-[variant=inset]:bg-fill1 flex min-h-svh w-full", className)}
+					className={cn("group/sidebar-wrapper has-data-[variant=inset]:bg-fill1 bg-bg flex min-h-svh w-full", className)}
 					{...props}>
 					{children}
 				</div>
@@ -163,7 +163,7 @@ function Sidebar({
 
 	if (collapsible === "none") {
 		return (
-			<div data-slot="sidebar" className={cn("bg-sidebar text-sidebar-foreground w-(--sidebar-width) flex h-full flex-col", className)} {...props}>
+			<div data-slot="sidebar" className={cn("bg-bg text-fg w-(--sidebar-width) flex h-full flex-col", className)} {...props}>
 				{children}
 			</div>
 		)
@@ -225,7 +225,7 @@ function Sidebar({
 				<div
 					data-sidebar="sidebar"
 					data-slot="sidebar-inner"
-					className="bg-fill1 group-data-[variant=floating]:border-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm">
+					className="bg-bg group-data-[variant=floating]:border-border flex h-full w-full flex-col group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm">
 					{children}
 				</div>
 			</div>
@@ -294,7 +294,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
 }
 
 function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input>) {
-	return <Input data-slot="sidebar-input" data-sidebar="input" className={cn("bg-bg h-8 w-full shadow-none", className)} {...props} />
+	return <Input data-slot="sidebar-input" size={"32"} data-sidebar="input" className={cn("w-full shadow-none", className)} {...props} />
 }
 
 function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
@@ -373,7 +373,7 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-	"peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-primary-border transition-[width,height,padding] hover:bg-primary-accent hover:text-primary-text focus-visible:ring-2 active:bg-primary-accent active:text-primary-text disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-primary-accent data-[active=true]:font-medium data-[active=true]:text-primary-text data-[state=open]:hover:bg-primary-accent data-[state=open]:hover:text-primary-text group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+	"peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-primary-border transition-[width,height,padding] hover:bg-primary-accent hover:text-primary-text focus-visible:ring-2 active:bg-primary-accent active:text-primary-text disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-primary-accent data-[active=true]:font-medium data-[active=true]:text-primary-text data-[state=open]:hover:bg-primary-accent data-[state=open]:hover:text-primary-text group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate  [&>svg]:size-4 [&>svg]:shrink-0",
 	{
 		variants: {
 			variant: {

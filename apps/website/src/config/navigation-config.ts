@@ -390,6 +390,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Select UI component illustration",
 			},
 			{
+				title: "Sidebar",
+				description: "1 Component",
+				url: "/docs/components/sidebar",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Sidebar UI component illustration",
+			},
+			{
 				title: "Skeleton",
 				description: "2 Components",
 				url: "/docs/components/skeleton",
