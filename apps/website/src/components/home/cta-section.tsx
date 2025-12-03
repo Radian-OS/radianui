@@ -1,3 +1,5 @@
+"use client"
+
 import { Rocket } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"

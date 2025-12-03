@@ -167,6 +167,12 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Calendar UI component illustration",
 			},
 			{
+				title: "Card",
+				description: "4 Components",
+				url: "/docs/components/card",
+				alt: "Card UI component illustration",
+			},
+			{
 				title: "Carousel",
 				description: "4 Components",
 				url: "/docs/components/carousel",

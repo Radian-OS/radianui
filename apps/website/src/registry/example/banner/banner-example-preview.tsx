@@ -1,39 +1,25 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
 import { Info } from "lucide-react"
-import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
+import { Banner, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
 import { Button } from "@/registry/ui/button"
 
 function BannerExamplePreview() {
-	const [bannerVisible, setBannerVisible] = useState(true)
-	const handleClose = () => {
-		setBannerVisible(false)
-
-		setTimeout(() => {
-			setBannerVisible(true)
-		}, 1500)
-	}
 	return (
 		<div className="absolute top-0 h-full w-full">
-			{bannerVisible && (
-				<Banner color="primary" variant="outline" onClose={handleClose}>
-					<div className="flex grow items-center justify-center gap-2">
-						<BannerIcon>
-							<Info />
-						</BannerIcon>
-						<BannerContent className="gor flex grow flex-col items-start sm:grow-0 sm:flex-row sm:items-center sm:gap-2">
-							<BannerTitle className="truncate">New Version Available</BannerTitle>
-							<BannerDescription className="truncate">App Security Patch</BannerDescription>
-						</BannerContent>
-						<div className="pl-1">
-							<Button variant="link" color="neutral">
-								Upgrade Now
-							</Button>
-						</div>
-					</div>
-				</Banner>
-			)}
+			<Banner className="w-full" variant="strong">
+				<BannerIcon>
+					<Info size={20} />
+				</BannerIcon>
+				<BannerTitle className="truncate">You have 1 day remaining in your Trail Period</BannerTitle>
+				<BannerDescription className="truncate">Have questions or need help ? </BannerDescription>
+				<div className="pl-1">
+					<Button className="text-fg-secondary bg-white hover:bg-white" color="neutral" size="28">
+						Talk to Sales
+					</Button>
+				</div>
+			</Banner>
 		</div>
 	)
 }
