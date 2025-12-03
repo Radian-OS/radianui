@@ -134,7 +134,7 @@ export default function FooterSection() {
 
 			<div className="flex flex-col items-center justify-center">
 				<Divider className="via-border bg-gradient-to-r from-transparent to-transparent" />
-				<div className="flex w-full max-w-[1120px] flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
+				<div className="max-w-360 lg:px-30 flex w-full flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
 					<div className="flex max-w-[396px] flex-col gap-2">
 						<h5 className="heading-5">Love Building Products?</h5>
 						<p className="text-fg-secondary text-sm font-normal">We’re adding tons of cool components and blocks to help you build. Subscribe to get updates on development</p>
@@ -147,7 +147,7 @@ export default function FooterSection() {
 							</Button>
 						</div>
 						<p
-							className={cn("text-fg-tertiary mt-2 text-xs font-normal", {
+							className={cn("text-fg-tertiary text-xs font-normal", {
 								"text-error-text": subscriptionResult?.success == false,
 							})}>
 							{subscriptionResult?.message && subscriptionResult.message}

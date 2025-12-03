@@ -148,6 +148,7 @@ export default function Page() {
 			<InvertedSection />
 
 			<ComponentsSection />
+
 			<PlaygroundProvider>
 				<PlaygroundSection />
 			</PlaygroundProvider>
