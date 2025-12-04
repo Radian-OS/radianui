@@ -65,7 +65,7 @@ export default function CardWithList() {
 					</IconButton>
 				</div>
 			</CardHeader>
-			<CardContent className="py-1">
+			<CardContent>
 				{users.map((user) => {
 					return (
 						<div key={user.id} className="flex items-center justify-between gap-2 border-b border-dashed py-2 last:border-none">
