@@ -61,7 +61,7 @@ export const getRegistryComponents = async (): Promise<RegistryComponents> => {
 	}
 }
 
-export const downloadAssets = async (assetsDirectory: string): Promise<void> => {
+export const downloadAssets = async (assetsDirectory: string, cwd: string): Promise<void> => {
 	try {
 		const url = new URL(`/api/assets?assetsDirectory=${assetsDirectory}`, REGISTRY_BLOCK_URL).toString()
 		const response = await fetch(url)
@@ -82,7 +82,7 @@ export const downloadAssets = async (assetsDirectory: string): Promise<void> => 
 			throw new Error(`Expected zip file but received: ${contentType}`)
 		}
 
-		const tempDir = path.join(process.cwd(), "temp")
+		const tempDir = path.join(cwd, "temp")
 		const tempZipPath = path.join(tempDir, `${assetsDirectory}-${Date.now()}.zip`)
 
 		if (!fs.existsSync(tempDir)) {
@@ -92,7 +92,7 @@ export const downloadAssets = async (assetsDirectory: string): Promise<void> => 
 		const fileStream = createWriteStream(tempZipPath)
 		await pipeline(response.body!, fileStream)
 
-		const publicDir = path.join(process.cwd(), "public")
+		const publicDir = path.join(cwd, "public")
 		const extractPath = path.join(publicDir, assetsDirectory)
 
 		if (!fs.existsSync(publicDir)) {
@@ -122,10 +122,10 @@ export const downloadAssets = async (assetsDirectory: string): Promise<void> => 
 	}
 }
 
-export const getAssets = async (assets: BlockAsset[]) => {
+export const getAssets = async (assets: BlockAsset[], cwd: string) => {
 	for (const asset of assets) {
 		const getAssetsSpinner = spinner(`Downloading assets for ${asset.componentName}`).start()
-		await downloadAssets(asset.assetsDirectory)
+		await downloadAssets(asset.assetsDirectory, cwd)
 		getAssetsSpinner.succeed()
 	}
 }
