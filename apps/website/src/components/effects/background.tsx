@@ -21,7 +21,7 @@ export default function Background({ children }: { children?: React.ReactNode })
 				gridGap={6}
 				color="#6B7280"
 				maxOpacity={0.4}
-				flickerChance={0.4}
+				flickerChance={0.3}
 			/>
 
 			<div className="relative z-50 w-full">{children}</div>
