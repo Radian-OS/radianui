@@ -31,15 +31,16 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 	const [isInView, setIsInView] = useState(false)
 	const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 })
 
-	// Convert user color → rgba(r,g,b,
 	const memoizedColor = useMemo(() => {
-		const toRGBA = (colorString: string) => {
-			if (typeof window === "undefined") return "rgba(0, 0, 0,"
+		const toRGBA = (color: string) => {
+			if (typeof window === "undefined") {
+				return `rgba(0, 0, 0,`
+			}
 			const canvas = document.createElement("canvas")
 			canvas.width = canvas.height = 1
 			const ctx = canvas.getContext("2d", { alpha: true })
-			if (!ctx) return "rgba(0, 0, 0,"
-			ctx.fillStyle = colorString
+			if (!ctx) return "rgba(255, 0, 0,"
+			ctx.fillStyle = color
 			ctx.fillRect(0, 0, 1, 1)
 			const [r, g, b] = Array.from(ctx.getImageData(0, 0, 1, 1).data)
 			return `rgba(${r}, ${g}, ${b},`
@@ -48,37 +49,29 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 	}, [color])
 
 	const setupCanvas = useCallback(
-		(canvas: HTMLCanvasElement, w: number, h: number) => {
+		(canvas: HTMLCanvasElement, width: number, height: number) => {
 			const dpr = window.devicePixelRatio || 1
-			canvas.width = w * dpr
-			canvas.height = h * dpr
-			canvas.style.width = `${w}px`
-			canvas.style.height = `${h}px`
+			canvas.width = width * dpr
+			canvas.height = height * dpr
+			canvas.style.width = `${width}px`
+			canvas.style.height = `${height}px`
+			const cols = Math.floor(width / (squareSize + gridGap))
+			const rows = Math.floor(height / (squareSize + gridGap))
 
-			const cols = Math.floor(w / (squareSize + gridGap))
-			const rows = Math.floor(h / (squareSize + gridGap))
-			const total = cols * rows
-
-			const squares = new Float32Array(total)
-			// Pre-calculate shapes once for mixed mode
-			const shapes = new Uint8Array(total)
-
-			for (let i = 0; i < total; i++) {
+			const squares = new Float32Array(cols * rows)
+			for (let i = 0; i < squares.length; i++) {
 				squares[i] = Math.random() * maxOpacity
-				shapes[i] = shape === "mixed" ? (Math.random() < 0.5 ? 1 : 0) : shape === "circle" ? 1 : 0
 			}
 
-			return { cols, rows, squares, shapes, dpr }
+			return { cols, rows, squares, dpr }
 		},
-		[squareSize, gridGap, maxOpacity, shape]
+		[squareSize, gridGap, maxOpacity]
 	)
 
 	const updateSquares = useCallback(
 		(squares: Float32Array, deltaTime: number) => {
-			const updateProbability = flickerChance * deltaTime
-
 			for (let i = 0; i < squares.length; i++) {
-				if (Math.random() < updateProbability) {
+				if (Math.random() < flickerChance * deltaTime) {
 					squares[i] = Math.random() * maxOpacity
 				}
 			}
@@ -87,31 +80,28 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 	)
 
 	const drawGrid = useCallback(
-		(ctx: CanvasRenderingContext2D, w: number, h: number, cols: number, rows: number, squares: Float32Array, shapes: Uint8Array, dpr: number) => {
-			ctx.clearRect(0, 0, w, h)
+		(ctx: CanvasRenderingContext2D, width: number, height: number, cols: number, rows: number, squares: Float32Array, dpr: number) => {
+			ctx.clearRect(0, 0, width, height)
+			ctx.fillStyle = "transparent"
+			ctx.fillRect(0, 0, width, height)
 
-			const size = squareSize * dpr
-			const gap = (squareSize + gridGap) * dpr
-			const radius = size / 2
-
-			// Minimize context state changes by batching by opacity
-			let i = 0
-			for (let col = 0; col < cols; col++) {
-				const x = col * gap
-				for (let row = 0; row < rows; row++) {
-					const opacity = squares[i]
-					const isCircle = shapes[i]
-					i++
-
-					if (opacity < 0.01) continue
-
+			for (let i = 0; i < cols; i++) {
+				for (let j = 0; j < rows; j++) {
+					const opacity = squares[i * rows + j]
 					ctx.fillStyle = `${memoizedColor}${opacity})`
 
-					const y = row * gap
+					const x = i * (squareSize + gridGap) * dpr
+					const y = j * (squareSize + gridGap) * dpr
+					const size = squareSize * dpr
+
+					const isCircle = shape === "circle" ? true : shape === "square" ? false : Math.random() < 0.5 // mixed
 
 					if (isCircle) {
+						const centerX = x + size / 2
+						const centerY = y + size / 2
+						const radius = size / 2
 						ctx.beginPath()
-						ctx.arc(x + radius, y + radius, radius, 0, 6.283185307179586) // 2*PI as constant
+						ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
 						ctx.fill()
 					} else {
 						ctx.fillRect(x, y, size, size)
@@ -119,61 +109,121 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 				}
 			}
 		},
-		[memoizedColor, squareSize, gridGap]
+		[memoizedColor, squareSize, gridGap, shape]
 	)
 
+	// useEffect(() => {
+	// 	const canvas = canvasRef.current
+	// 	const container = containerRef.current
+	// 	if (!canvas || !container) return
+
+	// 	const ctx = canvas.getContext("2d")
+	// 	if (!ctx) return
+
+	// 	let animationFrameId: number
+	// 	let gridParams: ReturnType<typeof setupCanvas>
+
+	// 	const updateCanvasSize = () => {
+	// 		const newWidth = width || container.clientWidth
+	// 		const newHeight = height || container.clientHeight
+	// 		setCanvasSize({ width: newWidth, height: newHeight })
+	// 		gridParams = setupCanvas(canvas, newWidth, newHeight)
+	// 	}
+
+	// 	updateCanvasSize()
+
+	// 	let lastTime = 0
+	// 	const animate = (time: number) => {
+	// 		if (!isInView) return
+
+	// 		const deltaTime = (time - lastTime) / 1000
+	// 		lastTime = time
+
+	// 		updateSquares(gridParams.squares, deltaTime)
+	// 		drawGrid(ctx, canvas.width, canvas.height, gridParams.cols, gridParams.rows, gridParams.squares, gridParams.dpr)
+	// 		animationFrameId = requestAnimationFrame(animate)
+	// 	}
+
+	// 	const resizeObserver = new ResizeObserver(() => {
+	// 		updateCanvasSize()
+	// 	})
+
+	// 	resizeObserver.observe(container)
+
+	// 	const intersectionObserver = new IntersectionObserver(
+	// 		([entry]) => {
+	// 			setIsInView(entry.isIntersecting)
+	// 		},
+	// 		{ threshold: 0 }
+	// 	)
+
+	// 	intersectionObserver.observe(canvas)
+
+	// 	if (isInView) {
+	// 		animationFrameId = requestAnimationFrame(animate)
+	// 	}
+
+	// 	return () => {
+	// 		cancelAnimationFrame(animationFrameId)
+	// 		resizeObserver.disconnect()
+	// 		intersectionObserver.disconnect()
+	// 	}
+	// }, [setupCanvas, updateSquares, drawGrid, width, height, isInView])
 	useEffect(() => {
 		const canvas = canvasRef.current
 		const container = containerRef.current
 		if (!canvas || !container) return
 
-		const ctx = canvas.getContext("2d", {
-			alpha: false,
-			desynchronized: true, // Allow GPU acceleration
-		})
+		const ctx = canvas.getContext("2d")
 		if (!ctx) return
 
-		let grid: ReturnType<typeof setupCanvas>
 		let animationFrameId: number
+		let gridParams: ReturnType<typeof setupCanvas>
 
 		const updateCanvasSize = () => {
-			const newW = width || container.clientWidth
-			const newH = height || container.clientHeight
-			setCanvasSize({ width: newW, height: newH })
-			grid = setupCanvas(canvas, newW, newH)
+			const newWidth = width || container.clientWidth
+			const newHeight = height || container.clientHeight
+			setCanvasSize({ width: newWidth, height: newHeight })
+			gridParams = setupCanvas(canvas, newWidth, newHeight)
 		}
 
 		updateCanvasSize()
 
-		const fps = 20
-		const interval = 1000 / fps
-		let then = performance.now()
+		let lastTime = 0
+		const frameDuration = 1000 / 20 // 50ms per frame (20 FPS)
 
 		const animate = (time: number) => {
-			if (!isInView) {
-				animationFrameId = requestAnimationFrame(animate)
-				return
-			}
+			if (!isInView) return
 
-			const delta = time - then
-			if (delta >= interval) {
-				then = time - (delta % interval)
+			if (time - lastTime >= frameDuration) {
+				const deltaTime = (time - lastTime) / 1000
+				lastTime = time
 
-				const deltaTime = delta / 1000
-				updateSquares(grid.squares, deltaTime)
-				drawGrid(ctx, canvas.width, canvas.height, grid.cols, grid.rows, grid.squares, grid.shapes, grid.dpr)
+				updateSquares(gridParams.squares, deltaTime)
+				drawGrid(ctx, canvas.width, canvas.height, gridParams.cols, gridParams.rows, gridParams.squares, gridParams.dpr)
 			}
 
 			animationFrameId = requestAnimationFrame(animate)
 		}
 
-		const resizeObserver = new ResizeObserver(updateCanvasSize)
+		const resizeObserver = new ResizeObserver(() => {
+			updateCanvasSize()
+		})
+
 		resizeObserver.observe(container)
 
-		const intersectionObserver = new IntersectionObserver(([entry]) => setIsInView(entry.isIntersecting), { threshold: 0 })
+		const intersectionObserver = new IntersectionObserver(
+			([entry]) => {
+				setIsInView(entry.isIntersecting)
+			},
+			{ threshold: 0 }
+		)
+
 		intersectionObserver.observe(canvas)
 
-		animationFrameId = requestAnimationFrame(animate)
+		if (isInView) {
+			animationFrameId = requestAnimationFrame(animate)
+		}
 
 		return () => {
 			cancelAnimationFrame(animationFrameId)
