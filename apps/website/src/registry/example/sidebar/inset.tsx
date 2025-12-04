@@ -15,6 +15,7 @@ import {
 	SidebarGroupLabel,
 	SidebarHeader,
 	SidebarInput,
+	SidebarInset,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
@@ -25,12 +26,12 @@ import {
 	SidebarRail,
 } from "@/registry/ui/sidebar"
 
-export default function SidebarPreview() {
+export default function Inset() {
 	return (
 		<div className="h-[420px]">
 			<SidebarProvider>
 				{/* Using absolute positioning to prevent layout shift in the preview — remove when using fullscreen. */}
-				<Sidebar variant="floating" collapsible="offcanvas" className="[&>[data-slot=sidebar-inner]]:bg-fill2-alpha absolute">
+				<Sidebar variant="inset" collapsible="offcanvas" className="absolute">
 					<SidebarHeader className="flex flex-col gap-5">
 						<div className="flex items-center gap-2">
 							<Image src="/favicon-16x16.png" alt="Logo" width={100} height={100} className="h-7 w-fit" />
@@ -144,6 +145,7 @@ export default function SidebarPreview() {
 					</SidebarFooter>
 					<SidebarRail />
 				</Sidebar>
+				<SidebarInset></SidebarInset>
 			</SidebarProvider>
 		</div>
 	)
