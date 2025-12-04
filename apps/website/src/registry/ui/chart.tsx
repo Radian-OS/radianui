@@ -49,7 +49,7 @@ function ChartContainer({
 				data-slot="chart"
 				data-chart={chartId}
 				className={cn(
-					"[&_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-muted [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-surface]:outline-hidden flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-sector[stroke='#fff']]:stroke-transparent",
+					"[&_.recharts-cartesian-axis-tick_text]:fill-fg-secondary [&_.recharts-cartesian-grid_line[stroke='#ccc']]:stroke-border/50 [&_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&_.recharts-polar-grid_[stroke='#ccc']]:stroke-border [&_.recharts-radial-bar-background-sector]:fill-fg-disabled [&_.recharts-rectangle.recharts-tooltip-cursor]:fill-muted [&_.recharts-reference-line_[stroke='#ccc']]:stroke-border [&_.recharts-layer]:outline-hidden [&_.recharts-sector]:outline-hidden [&_.recharts-surface]:outline-hidden flex aspect-video justify-center text-xs [&_.recharts-dot[stroke='#fff']]:stroke-transparent [&_.recharts-sector[stroke='#fff']]:stroke-transparent",
 					className
 				)}
 				{...props}>
@@ -154,7 +154,7 @@ function ChartTooltipContent({
 					return (
 						<div
 							key={item.dataKey}
-							className={cn("[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5", indicator === "dot" && "items-center")}>
+							className={cn("[&>svg]:text-fg-secondary flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5", indicator === "dot" && "items-center")}>
 							{formatter && item?.value !== undefined && item.name ? (
 								formatter(item.value, item.name, item, index, item.payload)
 							) : (
@@ -182,7 +182,7 @@ function ChartTooltipContent({
 									<div className={cn("flex flex-1 justify-between leading-none", nestLabel ? "items-end" : "items-center")}>
 										<div className="grid gap-1.5">
 											{nestLabel ? tooltipLabel : null}
-											<span className="text-muted-foreground">{itemConfig?.label || item.name}</span>
+											<span className="text-fg-secondary">{itemConfig?.label || item.name}</span>
 										</div>
 										{item.value && <span className="text-foreground font-mono font-medium tabular-nums">{item.value.toLocaleString()}</span>}
 									</div>
@@ -222,7 +222,7 @@ function ChartLegendContent({
 				const itemConfig = getPayloadConfigFromPayload(config, item, key)
 
 				return (
-					<div key={item.value} className={cn("[&>svg]:text-muted-foreground flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3")}>
+					<div key={item.value} className={cn("[&>svg]:text-fg-secondary flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3")}>
 						{itemConfig?.icon && !hideIcon ? (
 							<itemConfig.icon />
 						) : (
