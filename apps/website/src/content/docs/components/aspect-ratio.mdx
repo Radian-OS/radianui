@@ -9,7 +9,21 @@ links:
       href: https://www.radix-ui.com/primitives/docs/components/aspect-ratio
 ---
 
-<ComponentPreview path="aspect-ratio/aspect-ratio-preview" />
+<ComponentPreview path="aspect-ratio/aspect-ratio-preview-16-9" />
+
+import { LucideInfo } from "lucide-react"
+
+<Alert variant="soft" color="warning">
+	<AlertIcon>
+		<LucideInfo size={20} />
+	</AlertIcon>
+	<AlertContent>
+		<AlertTitle>Note</AlertTitle>
+		<AlertDescription>
+			For the aspect ratio to work, make sure the container has a set width. The height adjusts automatically based on that width, so the ratio stays correct.
+		</AlertDescription>
+	</AlertContent>
+</Alert>
 
 ## Installation
 
@@ -67,15 +81,15 @@ links:
 
 ### Ratio - 9:16
 
-<ComponentPreview path="aspect-ratio/aspect-ratio-example1" />
+<ComponentPreview path="aspect-ratio/aspect-ratio-9-16" />
 
 ### Ratio - 4:3
 
-<ComponentPreview path="aspect-ratio/aspect-ratio-example2" />
+<ComponentPreview path="aspect-ratio/aspect-ratio-4-3" />
 
 ### Ratio - 1:1
 
-<ComponentPreview path="aspect-ratio/aspect-ratio-example3" />
+<ComponentPreview path="aspect-ratio/aspect-ratio-1-1" />
 
 ---
 
