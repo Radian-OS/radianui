@@ -15,11 +15,9 @@ const data = [
 const config = {
 	revenue: {
 		label: "Revenue",
-		color: "var(--color-primary-focus)", // Using CSS variable
 	},
 	expenses: {
 		label: "Expenses",
-		color: "var(--color-primary)",
 	},
 }
 

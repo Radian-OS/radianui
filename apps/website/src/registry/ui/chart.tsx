@@ -143,7 +143,7 @@ function ChartTooltipContent({
 	const nestLabel = payload.length === 1 && indicator !== "dot"
 
 	return (
-		<div className={cn("border-border/50 bg-background grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl", className)}>
+		<div className={cn("border-border/50 bg-elevation-level1 grid min-w-[8rem] items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl", className)}>
 			{!nestLabel ? tooltipLabel : null}
 			<div className="grid gap-1.5">
 				{payload.map((item, index) => {

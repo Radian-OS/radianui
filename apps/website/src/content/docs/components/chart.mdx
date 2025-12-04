@@ -7,3 +7,85 @@ links:
 ---
 
 <ComponentPreview path="chart/chart-preview" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+	<TabsList>
+		<TabsTrigger value="cli">CLI</TabsTrigger>
+		<TabsTrigger value="manual">Manual</TabsTrigger>
+	</TabsList>
+	<TabsContent value="cli" className="p-0">
+		<PackageManagerTabs
+			commands={{
+				pnpm: "pnpm dlx radianui@latest add chart",
+				npm: "npx radianui@latest add chart",
+				yarn: "yarn dlx radianui@latest add chart",
+				bun: "bunx radianui@latest add chart",
+			}}
+		/>
+	</TabsContent>
+	<TabsContent value="manual" className="p-0">
+	<Steps>
+        <Step>Install the following dependencies:</Step>
+    	<PackageManagerTabs
+    		commands={{
+    			pnpm: "pnpm add recharts",
+    			npm: "npm install recharts",
+    			yarn: "yarn add recharts",
+    			bun: "bun add recharts",
+    		}}
+    	/>
+
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="chart" title="components/ui/chart.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </TabsContent>
+
+</Tabs>
+
+## Usage
+
+### Imports
+
+<CodeSnippet
+	title="/components/ui/card"
+	code={`import {
+ChartContainer,
+ChartTooltip, 
+ChartTooltipContent, 
+ChartLegend, 
+ChartLegendContent, 
+ChartStyle
+} from "@/components/ui/chart"`}
+/>
+
+### Code
+
+<CodeSnippet
+	title="/components/ui/chart"
+	code={`<ChartContainer config={config}>
+<LineChart data={data}>
+ <CartesianGrid />
+  <XAxis  />
+   <YAxis />
+  <ChartTooltip content={<ChartTooltipContent />} />
+  <ChartLegend content={<ChartLegendContent />} />
+  <Line />
+</LineChart>
+</ChartContainer>`}
+/>
+
+---
+
+## Examples
+
+### Area Chart
+
+<ComponentPreview path="chart/chart-area-example" />
+
+### Bar Chart
+
+<ComponentPreview path="chart/chart-bar-example" />
