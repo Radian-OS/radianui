@@ -28,7 +28,7 @@ import {
 
 export default function Inset() {
 	return (
-		<div className="h-[420px]">
+		<div className="h-[700px]">
 			<SidebarProvider>
 				{/* Using absolute positioning to prevent layout shift in the preview — remove when using fullscreen. */}
 				<Sidebar variant="inset" collapsible="offcanvas" className="absolute">

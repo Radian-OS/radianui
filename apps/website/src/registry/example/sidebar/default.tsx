@@ -27,7 +27,7 @@ import {
 
 export default function SidebarVariant() {
 	return (
-		<div className="h-[420px]">
+		<div className="h-[700px]">
 			<SidebarProvider>
 				{/* Using absolute positioning to prevent layout shift in the preview — remove when using fullscreen. */}
 				<Sidebar variant="sidebar" collapsible="offcanvas" className="[&>[data-slot=sidebar-inner]]:bg-fill2-alpha absolute">
