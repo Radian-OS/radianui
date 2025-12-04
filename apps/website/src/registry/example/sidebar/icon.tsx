@@ -1,20 +1,15 @@
 import React from "react"
-import { BarChart3, ChevronRight, Ellipsis, FolderClosed, List, Settings, Star } from "lucide-react"
+import { BarChart3, ChevronRight, FolderClosed, List, Settings, Star } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/ui/card"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
 import {
 	Sidebar,
 	SidebarContent,
-	SidebarFooter,
 	SidebarGroup,
 	SidebarGroupContent,
 	SidebarGroupLabel,
 	SidebarHeader,
-	SidebarInput,
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
@@ -22,28 +17,17 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 	SidebarProvider,
-	SidebarRail,
+	SidebarTrigger,
 } from "@/registry/ui/sidebar"
 
-export default function SidebarPreview() {
+export default function FloatIcon() {
 	return (
 		<div className="h-[700px]">
 			<SidebarProvider>
 				{/* Using absolute positioning to prevent layout shift in the preview — remove when using fullscreen. */}
-				<Sidebar side="left" variant="floating" collapsible="offcanvas" className="[&>[data-slot=sidebar-inner]]:bg-fill2-alpha absolute">
+				<Sidebar variant="floating" collapsible="icon" className="[&>[data-slot=sidebar-inner]]:bg-fill2-alpha absolute">
 					<SidebarHeader className="flex flex-col gap-5">
-						<Image src="/radian.svg" alt="Logo" width={100} height={100} className="h-7 w-fit" />
-						<div className="shadow-xs flex items-center gap-3 rounded-lg border py-2 pe-4 ps-2.5">
-							<Avatar className="flex-shrink-0">
-								<AvatarImage src="/media/male-4.png" />
-								<AvatarFallback>CN</AvatarFallback>
-							</Avatar>
-							<div className="flex flex-1 flex-col">
-								<span className="text-sm font-semibold">Walter Morales</span>
-								<span className="text-fg-tertiary text-xs">Free Plan</span>
-							</div>
-							<Ellipsis className="text-fg-tertiary size-5 shrink-0" />
-						</div>
+						<Image src="/favicon-16x16.png" alt="Logo" width={100} height={100} className="h-7 w-fit" />
 					</SidebarHeader>
 					<SidebarContent>
 						<SidebarGroup>
@@ -121,27 +105,8 @@ export default function SidebarPreview() {
 							</SidebarGroupContent>
 						</SidebarGroup>
 					</SidebarContent>
-					<SidebarFooter>
-						<Card className="gap-2 py-4 shadow-none">
-							<CardHeader className="px-4">
-								<CardTitle className="text-sm">Subscribe to our newsletter</CardTitle>
-								<CardDescription>Opt-in to receive updates and news about the sidebar.</CardDescription>
-							</CardHeader>
-							<CardContent className="px-4">
-								<form>
-									<div className="grid gap-2.5">
-										<SidebarInput type="email" placeholder="Email" />
-										<Button size="32" className="w-full">
-											Subscribe
-										</Button>
-									</div>
-								</form>
-							</CardContent>
-						</Card>
-					</SidebarFooter>
-					<SidebarRail />
 				</Sidebar>
-				test
+				<SidebarTrigger className="mt-1.5" />
 			</SidebarProvider>
 		</div>
 	)
