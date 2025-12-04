@@ -43,15 +43,16 @@ export default function CTASection() {
 			</div>
 
 			{/* Half circle with primary color layer blur */}
-			<div className="bg-primary/30 xl:w-20/100 w-45/100 md:w-35/100 absolute bottom-0 left-1/2 z-30 mx-auto aspect-[2/1] -translate-x-1/2 rounded-t-full blur-[600px]"></div>
+			<div className="bg-primary/60 xl:w-20/100 w-45/100 md:w-35/100 absolute bottom-0 left-1/2 z-30 mx-auto h-1/3 -translate-x-1/2 rounded-t-full blur-[130px]"></div>
 
 			{/* Neutral radial background overlay */}
-			<div className="bg-radial-[at_50%_100%] from-bg/12 to-bg not-lg:h-full absolute left-0 top-0 z-20 max-h-[960px] w-full to-75% lg:aspect-[2/1] lg:rounded-t-full" />
+			{/* <div className="bg-radial-[at_50%_100%] from-bg/12 to-bg not-lg:h-full absolute inset-0 z-20 max-h-[960px] w-full to-75% lg:aspect-[2/1] lg:rounded-t-full" /> */}
+			<div className="bg-radial-[at_50%_100%] to-bg absolute inset-0 z-30 from-transparent to-60%"></div>
 
-			{/* Half circle flickering grid */}
-			<div className="not-lg:h-full absolute left-0 top-0 z-10 w-full overflow-hidden lg:aspect-[2/1] lg:rounded-t-full">
-				<FlickeringGrid className="absolute inset-0 z-10 max-h-[960px]" squareSize={4} gridGap={6} color="#6B7280" maxOpacity={0.4} flickerChance={0.1} />
-			</div>
+			<FlickeringGrid className="absolute left-0 top-0 z-10 h-[calc(100%+12px)]" squareSize={4} gridGap={6} color="#6B7280" maxOpacity={0.4} flickerChance={0.2} />
+
+			{/* Small gradient to soften the sharp bottom border */}
+			<div className="to-bg/95 absolute inset-x-0 -bottom-2 z-30 h-6 bg-gradient-to-b from-transparent to-90%"></div>
 		</div>
 	)
 }

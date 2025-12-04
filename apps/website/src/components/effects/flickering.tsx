@@ -24,7 +24,7 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 	height,
 	className,
 	maxOpacity = 0.3,
-	shape = "circle",
+	shape = "square",
 }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -112,6 +112,63 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 		[memoizedColor, squareSize, gridGap, shape]
 	)
 
+	// useEffect(() => {
+	// 	const canvas = canvasRef.current
+	// 	const container = containerRef.current
+	// 	if (!canvas || !container) return
+
+	// 	const ctx = canvas.getContext("2d")
+	// 	if (!ctx) return
+
+	// 	let animationFrameId: number
+	// 	let gridParams: ReturnType<typeof setupCanvas>
+
+	// 	const updateCanvasSize = () => {
+	// 		const newWidth = width || container.clientWidth
+	// 		const newHeight = height || container.clientHeight
+	// 		setCanvasSize({ width: newWidth, height: newHeight })
+	// 		gridParams = setupCanvas(canvas, newWidth, newHeight)
+	// 	}
+
+	// 	updateCanvasSize()
+
+	// 	let lastTime = 0
+	// 	const animate = (time: number) => {
+	// 		if (!isInView) return
+
+	// 		const deltaTime = (time - lastTime) / 1000
+	// 		lastTime = time
+
+	// 		updateSquares(gridParams.squares, deltaTime)
+	// 		drawGrid(ctx, canvas.width, canvas.height, gridParams.cols, gridParams.rows, gridParams.squares, gridParams.dpr)
+	// 		animationFrameId = requestAnimationFrame(animate)
+	// 	}
+
+	// 	const resizeObserver = new ResizeObserver(() => {
+	// 		updateCanvasSize()
+	// 	})
+
+	// 	resizeObserver.observe(container)
+
+	// 	const intersectionObserver = new IntersectionObserver(
+	// 		([entry]) => {
+	// 			setIsInView(entry.isIntersecting)
+	// 		},
+	// 		{ threshold: 0 }
+	// 	)
+
+	// 	intersectionObserver.observe(canvas)
+
+	// 	if (isInView) {
+	// 		animationFrameId = requestAnimationFrame(animate)
+	// 	}
+
+	// 	return () => {
+	// 		cancelAnimationFrame(animationFrameId)
+	// 		resizeObserver.disconnect()
+	// 		intersectionObserver.disconnect()
+	// 	}
+	// }, [setupCanvas, updateSquares, drawGrid, width, height, isInView])
 	useEffect(() => {
 		const canvas = canvasRef.current
 		const container = containerRef.current
@@ -133,14 +190,19 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 		updateCanvasSize()
 
 		let lastTime = 0
+		const frameDuration = 1000 / 20 // 50ms per frame (20 FPS)
+
 		const animate = (time: number) => {
 			if (!isInView) return
 
-			const deltaTime = (time - lastTime) / 1000
-			lastTime = time
+			if (time - lastTime >= frameDuration) {
+				const deltaTime = (time - lastTime) / 1000
+				lastTime = time
 
-			updateSquares(gridParams.squares, deltaTime)
-			drawGrid(ctx, canvas.width, canvas.height, gridParams.cols, gridParams.rows, gridParams.squares, gridParams.dpr)
+				updateSquares(gridParams.squares, deltaTime)
+				drawGrid(ctx, canvas.width, canvas.height, gridParams.cols, gridParams.rows, gridParams.squares, gridParams.dpr)
+			}
+
 			animationFrameId = requestAnimationFrame(animate)
 		}
 
