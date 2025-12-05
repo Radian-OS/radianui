@@ -11,20 +11,6 @@ links:
 
 <ComponentPreview path="aspect-ratio/aspect-ratio-preview-16-9" />
 
-import { LucideInfo } from "lucide-react"
-
-<Alert variant="soft" color="warning">
-	<AlertIcon>
-		<LucideInfo size={20} />
-	</AlertIcon>
-	<AlertContent>
-		<AlertTitle>Note</AlertTitle>
-		<AlertDescription>
-			For the aspect ratio to work, make sure the container has a set width. The height adjusts automatically based on that width, so the ratio stays correct.
-		</AlertDescription>
-	</AlertContent>
-</Alert>
-
 ## Installation
 
 <Tabs defaultValue="cli">
@@ -61,6 +47,18 @@ import { LucideInfo } from "lucide-react"
 </Tabs>
 
 ## Usage
+
+---
+
+## How Radix Aspect Ratio Works
+
+The **AspectRatio** component ensures that the height is always calculated from the width, keeping the specified ratio intact.
+If you apply a fixed height, the component can’t maintain the ratio as intended.
+
+If you need a fixed height, simply avoid using **AspectRatio**.
+Set the height directly and let the width adjust normally.
+
+---
 
 ### Imports
 
