@@ -89,3 +89,144 @@ ChartStyle
 ### Bar Chart
 
 <ComponentPreview path="chart/chart-bar-example" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="ChartTooltipContent"
+		data={[
+			{
+				name: "active",
+				values: ["boolean"],
+				required: false,
+				description: "Whether tooltip is active",
+				defaultValue: "true",
+			},
+			{
+				name: "data",
+				values: ["any[]"],
+				required: false,
+				description: "Tooltip payload data",
+				defaultValue: "-",
+			},
+			{
+				name: "indicator",
+				values: ["line", "dot", "dashed"],
+				required: false,
+				description: "Visual indicator type",
+				defaultValue: "dot",
+			},
+			{
+				name: "hideLabel",
+				values: ["boolean"],
+				required: false,
+				description: "Hide the label section",
+				defaultValue: "false",
+			},
+			{
+				name: "hideIndicator",
+				values: ["boolean"],
+				required: false,
+				description: "Hide the Indicator",
+				defaultValue: "false",
+			},
+			{
+				name: "label",
+				values: ["string", "number"],
+				required: false,
+				description: "Tooltip label",
+				defaultValue: "-",
+			},
+			{
+				name: "labelFormatter",
+				values: ["(value: any, payload: any[]) => ()"],
+				required: false,
+				description: "Tooltip label",
+				defaultValue: "Function to format label",
+			},
+			{
+				name: "labelClassName",
+				values: ["string"],
+				required: false,
+				description: " CSS classes for label",
+				defaultValue: "-",
+			},
+			{
+				name: "color",
+				values: ["string"],
+				required: false,
+				description: "Custom color for indicator",
+				defaultValue: "-",
+			},
+			{
+				name: "nameKey",
+				values: ["string"],
+				required: false,
+				description: "Key to use for identifying data series",
+				defaultValue: "-",
+			},
+			{
+				name: "labelKey",
+				values: ["string"],
+				required: false,
+				description: "Key to use for label in config",
+				defaultValue: "-",
+			},
+		]}
+		externalReference="https://recharts.github.io/"
+	/>
+	<PropsTable
+	title="ChartLegendContent"
+	data={[
+		{
+			name: "hideIcon",
+				values: ["boolean"],
+				required: false,
+				description: "Hide the icon",
+				defaultValue: "false",
+		},
+		{
+			name: "payLoad",
+				values: ["any[]"],
+				required: false,
+				description: "Legend payload data",
+				defaultValue: "-",
+		},
+		{
+			name:"verticalAlign",
+			values:["top","bottom","middle"],
+			defaultValue: "bottom",
+			description:"Vertical alignment "
+    	},
+		{
+			name:"nameKey",
+			values:["string"],
+			defaultValue: "-",
+			description:"Key to use for identifying data series"
+    	}
+    ]}
+	externalReference="https://recharts.github.io/"
+    />
+	<PropsTable
+	title="ChartConfig"
+	data={[
+		{
+			name:"id",
+			values:["string"],
+			defaultValue: "-",
+			description:" Unique identifier for the chart"
+		},
+		{
+			name:"config",
+			values:["{}"],
+			defaultValue: "-",
+			description:"Configuration object for chart styling"
+		}
+	]}
+	externalReference="https://recharts.github.io/"
+	/>
+
+</PropsTableWrapper>
