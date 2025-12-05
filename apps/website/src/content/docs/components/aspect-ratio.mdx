@@ -48,18 +48,6 @@ links:
 
 ## Usage
 
----
-
-## How Radix Aspect Ratio Works
-
-The **AspectRatio** component ensures that the height is always calculated from the width, keeping the specified ratio intact.
-If you apply a fixed height, the component can’t maintain the ratio as intended.
-
-If you need a fixed height, simply avoid using **AspectRatio**.
-Set the height directly and let the width adjust normally.
-
----
-
 ### Imports
 
 <CodeSnippet title="/components/ui/aspect-ratio" code={`import { AspectRatio } from "@/components/ui/aspect-ratio"`} />
@@ -72,6 +60,16 @@ Set the height directly and let the width adjust normally.
 	    <Image src="/media/background-2.png" alt="Example" fill />
 </AspectRatio>`}
 />
+
+---
+
+## How Radix Aspect Ratio Works
+
+The **AspectRatio** component ensures that the height is always calculated from the width, keeping the specified ratio intact.
+If you apply a fixed height, the component can’t maintain the ratio as intended.
+
+If you need a fixed height, simply avoid using **AspectRatio**.
+Set the height directly and let the width adjust normally.
 
 ---
 
