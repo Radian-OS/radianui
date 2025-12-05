@@ -177,7 +177,7 @@ async function addComponentsToProject(resolvedComponents: RegistryComponents, op
 		}
 	}
 
-	await getAssets(assets)
+	await getAssets(assets, options.cwd)
 
 	filesCreated.sort()
 	filesUpdated.sort()

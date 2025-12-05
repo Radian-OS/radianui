@@ -221,6 +221,14 @@ export const navigationItems: NavigationSection[] = [
 				alt: "Currency Input UI component illustration",
 			},
 			{
+				title: "Chart",
+				description: "3 Components",
+				url: "/docs/components/chart",
+				thumbnail: "/thumbnails/coming-soon.webp",
+				thumbnailDark: `/thumbnails/coming-soon-dark.webp`,
+				alt: "Chart component illustration",
+			},
+			{
 				title: "Check Box",
 				description: "2 Components",
 				url: "/docs/components/checkbox",
