@@ -23,7 +23,7 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 	SidebarProvider,
-	SidebarRail,
+	SidebarTrigger,
 } from "@/registry/ui/sidebar"
 
 export default function Inset() {
@@ -143,9 +143,10 @@ export default function Inset() {
 							</CardContent>
 						</Card>
 					</SidebarFooter>
-					<SidebarRail />
 				</Sidebar>
-				<SidebarInset></SidebarInset>
+				<SidebarInset>
+					<SidebarTrigger className="ml-1.5 mt-1.5" />
+				</SidebarInset>
 			</SidebarProvider>
 		</div>
 	)

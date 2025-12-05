@@ -87,7 +87,7 @@ export default async function RootLayout({
 						</ThemeProvider>
 					</ToastProvider>
 				</PostHogProvider>
-				<Toaster richColors />
+				<Toaster theme="system" richColors />
 			</body>
 		</html>
 	)

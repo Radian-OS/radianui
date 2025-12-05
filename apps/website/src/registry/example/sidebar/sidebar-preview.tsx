@@ -22,7 +22,7 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 	SidebarProvider,
-	SidebarRail,
+	SidebarTrigger,
 } from "@/registry/ui/sidebar"
 
 export default function SidebarPreview() {
@@ -142,8 +142,8 @@ export default function SidebarPreview() {
 							</CardContent>
 						</Card>
 					</SidebarFooter>
-					<SidebarRail />
 				</Sidebar>
+				<SidebarTrigger className="ml-1.5 mt-1.5" />
 			</SidebarProvider>
 		</div>
 	)

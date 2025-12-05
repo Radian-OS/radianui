@@ -11,6 +11,7 @@ import { Drawer, DrawerContent } from "@/registry/ui/drawer"
 import { Input } from "@/registry/ui/input"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+import { Badge } from "./badge"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -472,14 +473,14 @@ function SidebarMenuAction({
 	)
 }
 
-function SidebarMenuBadge({ className, ...props }: React.ComponentProps<"div">) {
+function SidebarMenuBadge({ className, ...props }: React.ComponentProps<typeof Badge>) {
 	return (
-		<div
+		<Badge
 			data-slot="sidebar-menu-badge"
 			data-sidebar="menu-badge"
 			className={cn(
-				"text-fg pointer-events-none absolute right-1 flex h-5 min-w-5 select-none items-center justify-center rounded-md px-1 text-xs font-medium tabular-nums",
-				"peer-hover/menu-button:text-primary-text peer-data-[active=true]/menu-button:text-primary-text",
+				"pointer-events-none absolute right-1 select-none rounded-md tabular-nums",
+				"peer-hover/menu-button:text-primary-text peer-data-[active=true]/menu-button:text-fg",
 				"peer-data-[size=sm]/menu-button:top-1",
 				"peer-data-[size=default]/menu-button:top-1.5",
 				"peer-data-[size=lg]/menu-button:top-2.5",
