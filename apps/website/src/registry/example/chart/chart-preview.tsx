@@ -31,7 +31,7 @@ export default function LineChartExample() {
 				<ChartTooltip content={<ChartTooltipContent />} />
 				<ChartLegend content={<ChartLegendContent />} />
 				<Line dataKey="revenue" type="monotone" stroke="var(--color-success)" strokeWidth={2} dot={false} />
-				<Line dataKey="expenses" type="monotone" stroke="var(--color-warning)" strokeWidth={2} dot={false} />
+				<Line dataKey="expenses" type="monotone" stroke="var(--color-primary)" strokeWidth={2} dot={false} />
 			</LineChart>
 		</ChartContainer>
 	)

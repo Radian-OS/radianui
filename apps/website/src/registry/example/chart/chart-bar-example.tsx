@@ -41,7 +41,7 @@ export default function ChartBarExample() {
 						<XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} tickFormatter={(value) => value.slice(0, 3)} />
 						<ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dashed" />} />
 						<Bar dataKey="desktop" fill="var(--color-primary)" radius={4} />
-						<Bar dataKey="mobile" fill="var(--color-warning)" radius={4} />
+						<Bar dataKey="mobile" fill="var(--color-success)" radius={4} />
 					</BarChart>
 				</ChartContainer>
 			</CardContent>

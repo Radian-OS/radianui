@@ -108,11 +108,9 @@ const chartConfig = {
 	},
 	desktop: {
 		label: "Desktop",
-		color: "var(--color-warning)",
 	},
 	mobile: {
 		label: "Mobile",
-		color: "var(--color-error)",
 	},
 } satisfies ChartConfig
 
@@ -162,8 +160,8 @@ export default function ChartAreaExample() {
 					<AreaChart data={filteredData}>
 						<defs>
 							<linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-								<stop offset="5%" stopColor="var(--color-info)" stopOpacity={0.8} />
-								<stop offset="95%" stopColor="var(--color-info)" stopOpacity={0.1} />
+								<stop offset="5%" stopColor="var(--color-primary)" stopOpacity={0.8} />
+								<stop offset="95%" stopColor="var(--color-primary)" stopOpacity={0.1} />
 							</linearGradient>
 							<linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
 								<stop offset="5%" stopColor="var(--color-success)" stopOpacity={0.8} />
@@ -200,7 +198,7 @@ export default function ChartAreaExample() {
 							}
 						/>
 						<Area dataKey="mobile" type="natural" fill="url(#fillMobile)" stroke="var(--color-success)" stackId="a" />
-						<Area dataKey="desktop" type="natural" fill="url(#fillDesktop)" stroke="var(--color-info)" stackId="a" />
+						<Area dataKey="desktop" type="natural" fill="url(#fillDesktop)" stroke="var(--color-primary)" stackId="a" />
 						<ChartLegend content={<ChartLegendContent />} />
 					</AreaChart>
 				</ChartContainer>
