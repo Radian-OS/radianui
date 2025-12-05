@@ -109,7 +109,7 @@ export default function InsetIcon() {
 				</Sidebar>
 				<SidebarInset>
 					<SidebarTrigger className="ml-1.5 mt-1.5" />
-				</SidebarInset>{" "}
+				</SidebarInset>
 			</SidebarProvider>
 		</div>
 	)
