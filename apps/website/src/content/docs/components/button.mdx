@@ -13,52 +13,42 @@ links:
 
 ## Installation
 
-<Tabs defaultValue="cli">
-	<TabsList>
-		<TabsTrigger value="cli">CLI</TabsTrigger>
-		<TabsTrigger value="manual">Manual</TabsTrigger>
-	</TabsList>
-	<TabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add button",
-				npm: "npx radianui@latest add button",
-				yarn: "yarn dlx radianui@latest add button",
-				bun: "bunx radianui@latest add button",
-			}}
-		/>
-	</TabsContent>
-	<TabsContent value="manual" className="p-0">
-	<Steps>
-        <Step>Install the following dependencies:</Step>
+<InstallationTabs defaultValue="cli" >
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+
+    <InstallTabsContent  value="cli">
     	<PackageManagerTabs
     		commands={{
-    			pnpm: "pnpm add @radix-ui/react-slot",
-    			npm: "npm install @radix-ui/react-slot",
-    			yarn: "yarn add @radix-ui/react-slot",
-    			bun: "bun add @radix-ui/react-slot",
+    			pnpm: "pnpm dlx radianui@latest add button",
+    			npm: "npx radianui@latest add button",
+    			yarn: "yarn dlx radianui@latest add button",
+    			bun: "bunx radianui@latest add button",
     		}}
     	/>
+    </InstallTabsContent>
 
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="button">
-    		<TabsList>
-    			<TabsTrigger value="button">Button</TabsTrigger>
-    			<TabsTrigger value="spinner">Spinner</TabsTrigger>
-    		</TabsList>
-    		<TabsContent value="button">
-    			<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
-    		</TabsContent>
-    		<TabsContent value="spinner">
-    			<ComponentSource name="spinner" title="components/ui/spinner.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
+    <InstallTabsContent value="manual">
+    	<Steps>
+    		<Step>Install dependencies:</Step>
+    		<PackageManagerTabs
+    			commands={{
+    				pnpm: "pnpm add @radix-ui/react-slot",
+    				npm: "npm install @radix-ui/react-slot",
+    				yarn: "yarn add @radix-ui/react-slot",
+    				bun: "bun add @radix-ui/react-slot",
+    			}}
+    		/>
+    		<Step>Copy and paste the following code into your project.</Step>
+    		<ComponentSource name="badge" title="components/ui/button.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
-    </TabsContent>
+    	</Steps>
+    </InstallTabsContent>
 
-</Tabs>
+</InstallationTabs>
 
 ## Usage
 

@@ -4,6 +4,7 @@ import React, { SVGProps } from "react"
 import type { JSX } from "react"
 import { Check, Clipboard } from "lucide-react"
 import { useTheme } from "next-themes"
+import { usePreferences } from "@/lib/preferences"
 import { cn } from "@/lib/utils"
 import { IconButton } from "@/registry/ui/button"
 import { CodeArea } from "@/registry/ui/code-area"
@@ -133,8 +134,11 @@ const BunIcon = (props: SVGProps<SVGSVGElement>) => (
 		/>
 	</svg>
 )
+
 export default function PackageManagerTabs({ commands, className, withIcon = false }: PackageManagerTabsProps) {
 	const { theme } = useTheme()
+	// Replace local state with Zustand store
+	const { packageManager, setPackageManager } = usePreferences()
 
 	const pkg: PackageManager[] = ["pnpm", "npm", "yarn", "bun"]
 
@@ -145,23 +149,22 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 		bun: <BunIcon className="size-4" />,
 	}
 
-	const [activeTab, setActiveTab] = React.useState<PackageManager>(pkg[0])
 	const [copied, setCopied] = React.useState(false)
 
 	const handleCopy = () => {
-		navigator.clipboard.writeText(commands[activeTab])
+		navigator.clipboard.writeText(commands[packageManager])
 		setCopied(true)
 		setTimeout(() => setCopied(false), 1200)
 	}
 
 	const handleTabChange = (val: string) => {
 		if (pkg.includes(val as PackageManager)) {
-			setActiveTab(val as PackageManager)
+			setPackageManager(val as PackageManager)
 		}
 	}
 
 	return (
-		<Tabs value={activeTab} onValueChange={handleTabChange} className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+		<Tabs value={packageManager} onValueChange={handleTabChange} className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
 			<div className="flex items-center justify-between pr-1">
 				<TabsList className="bg-transparent" variant="outline-ghost" size="md">
 					{pkg.map((manager) => (

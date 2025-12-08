@@ -13,12 +13,12 @@ links:
 
 ## Installation
 
-<Tabs defaultValue="cli">
-	<TabsList>
-		<TabsTrigger value="cli">CLI</TabsTrigger>
-		<TabsTrigger value="manual">Manual</TabsTrigger>
-	</TabsList>
-	<TabsContent value="cli" className="p-0">
+<InstallationTabs defaultValue="cli">
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli">
 		<PackageManagerTabs
 			commands={{
 				pnpm: "pnpm dlx radianui@latest add accordion",
@@ -27,8 +27,8 @@ links:
 				bun: "bunx radianui@latest add accordion",
 			}}
 		/>
-	</TabsContent>
-	<TabsContent value="manual" className="p-0">
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
 		<PackageManagerTabs
@@ -45,9 +45,9 @@ links:
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
-    </TabsContent>
+    </InstallTabsContent>
 
-</Tabs>
+</InstallationTabs>
 
 ## Usage
 
