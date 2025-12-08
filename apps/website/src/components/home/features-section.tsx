@@ -1,19 +1,20 @@
 "use client"
 
-import React, { SVGProps, useCallback, useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
-import { ArrowDownRight, ArrowUpRight, ChevronRight, CircleGauge, Component, FolderGit, Grid, LayoutDashboard, ScanEye, SquareTerminal, SwatchBook } from "lucide-react"
+import { CircleGauge, Component, FolderGit, LayoutDashboard, ScanEye, SquareTerminal, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
-import DecryptedText from "@/components/effects/decrypted-text"
+// import DecryptedText from "@/components/effects/decrypted-text"
 import { cn } from "@/lib/utils"
-import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
-import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
+// import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
+// import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { Skeleton } from "@/registry/ui/skeleton"
-import { Spinner } from "@/registry/ui/spinner"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+
+// import { Button } from "@/registry/ui/button"
+// import { Divider } from "@/registry/ui/divider"
+// import { Skeleton } from "@/registry/ui/skeleton"
+// import { Spinner } from "@/registry/ui/spinner"
+// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
 
 export interface BentoCardProps {
 	color?: string
@@ -39,56 +40,56 @@ export interface BentoProps {
 const DEFAULT_SPOTLIGHT_RADIUS = 300
 const MOBILE_BREAKPOINT = 768
 
-const profile = {
-	name: "Zoya Petrova",
-	description: "Engineering partner for @Radianos",
-	address: "Berlin, Germany",
-	followingInThousands: 1.4,
-	followersInThousands: 412.4,
-}
+// const profile = {
+// 	name: "Zoya Petrova",
+// 	description: "Engineering partner for @Radianos",
+// 	address: "Berlin, Germany",
+// 	followingInThousands: 1.4,
+// 	followersInThousands: 412.4,
+// }
 
-const datas = [
-	{
-		company: "PLTR",
-		currency: "USD",
-		FY1_growth: 7.54,
-		daily_earning: 250.5,
-		EBITDA: "1.5B",
-		performance: "+35.14%",
-	},
-	{
-		company: "AMZN",
-		currency: "YEN",
-		FY1_growth: -4.11,
-		daily_earning: 95.0,
-		EBITDA: "-285.45M",
-		performance: "-14.14%",
-	},
-	{
-		company: "UBER",
-		currency: "JR",
-		FY1_growth: -14.41,
-		daily_earning: 275.25,
-		EBITDA: "-120M",
-		performance: "-2.14%",
-	},
-	{
-		company: "NFLX",
-		currency: "GE",
-		FY1_growth: 0.73,
-		daily_earning: 120.0,
-		EBITDA: "215M",
-		performance: "+9.8%",
-	},
-	{
-		company: "GOOGL",
-		currency: "CHF",
-		FY1_growth: 28.6,
-		daily_earning: 400.0,
-		EBITDA: "-120M",
-		performance: "+75.4%",
-	},
-]
+// const datas = [
+// 	{
+// 		company: "PLTR",
+// 		currency: "USD",
+// 		FY1_growth: 7.54,
+// 		daily_earning: 250.5,
+// 		EBITDA: "1.5B",
+// 		performance: "+35.14%",
+// 	},
+// 	{
+// 		company: "AMZN",
+// 		currency: "YEN",
+// 		FY1_growth: -4.11,
+// 		daily_earning: 95.0,
+// 		EBITDA: "-285.45M",
+// 		performance: "-14.14%",
+// 	},
+// 	{
+// 		company: "UBER",
+// 		currency: "JR",
+// 		FY1_growth: -14.41,
+// 		daily_earning: 275.25,
+// 		EBITDA: "-120M",
+// 		performance: "-2.14%",
+// 	},
+// 	{
+// 		company: "NFLX",
+// 		currency: "GE",
+// 		FY1_growth: 0.73,
+// 		daily_earning: 120.0,
+// 		EBITDA: "215M",
+// 		performance: "+9.8%",
+// 	},
+// 	{
+// 		company: "GOOGL",
+// 		currency: "CHF",
+// 		FY1_growth: 28.6,
+// 		daily_earning: 400.0,
+// 		EBITDA: "-120M",
+// 		performance: "+75.4%",
+// 	},
+// ]
 
 const cardStyle = {
 	backgroundColor: "var(--color-bg)",
@@ -717,71 +718,71 @@ const FeaturesSection: React.FC<BentoProps> = ({
 	const gridRef = useRef<HTMLDivElement>(null)
 	const isMobile = useMobileDetection()
 	const shouldDisableAnimations = disableAnimations || isMobile
-	const containerRef = useRef<HTMLDivElement>(null)
-	const [pos, setPos] = useState({ x: 0, y: 150 })
-	const [isBouncing, setIsBouncing] = useState(false)
-	const [animated, setAnimated] = useState(false)
+	// const containerRef = useRef<HTMLDivElement>(null)
+	// const [pos, setPos] = useState({ x: 0, y: 150 })
+	// const [isBouncing, setIsBouncing] = useState(false)
+	// const [animated, setAnimated] = useState(false)
 	const { theme } = useTheme()
 	const isDarkMode = theme === "dark"
 
-	const handleCardClick = () => {
-		setIsBouncing(true)
+	// const handleCardClick = () => {
+	// 	setIsBouncing(true)
 
-		// Reset the bounce animation after it completes
-		setTimeout(() => {
-			setIsBouncing(false)
-		}, 100)
-	}
+	// 	// Reset the bounce animation after it completes
+	// 	setTimeout(() => {
+	// 		setIsBouncing(false)
+	// 	}, 100)
+	// }
 
-	function VerifiedSVGIcon(props: SVGProps<SVGSVGElement>) {
-		return (
-			<svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-				<mask id="a" maskUnits="userSpaceOnUse" x={-0.5} y={-0.5} width={21} height={21} fill="#000">
-					<path className="fill-white" d="M-.5-.5h21v21h-21z" />
-					<path d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65m-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z" />
-				</mask>
-				<path
-					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
-					className={`fill-info opacity-100`}
-				/>
-				<path
-					d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0	0-.3-.7 1.55 1.55 0 0	0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0	0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
-					className="stroke-bg stroke-3"
-					mask="url(#a)"
-				/>
-			</svg>
-		)
-	}
+	// function VerifiedSVGIcon(props: SVGProps<SVGSVGElement>) {
+	// 	return (
+	// 		<svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+	// 			<mask id="a" maskUnits="userSpaceOnUse" x={-0.5} y={-0.5} width={21} height={21} fill="#000">
+	// 				<path className="fill-white" d="M-.5-.5h21v21h-21z" />
+	// 				<path d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65m-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z" />
+	// 			</mask>
+	// 			<path
+	// 				d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0 0-.3-.7 1.55 1.55 0 0 0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0 0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
+	// 				className={`fill-info opacity-100`}
+	// 			/>
+	// 			<path
+	// 				d="M18.392 9.348a1.5 1.5 0 0 0-.476-.558l-1.108-.833a.3.3 0 0 1-.117-.167.3.3 0 0 1 0-.208l.459-1.359c.073-.243.09-.5.05-.75a1.5 1.5 0 0	0-.3-.7 1.55 1.55 0 0	0-.583-.475 1.46 1.46 0 0 0-.709-.141h-1.25a.34.34 0 0 1-.325-.25l-.358-1.25a1.6 1.6 0 0 0-.384-.675 1.7 1.7 0 0 0-.65-.409 1.7 1.7 0 0 0-.766-.05 1.6 1.6 0 0 0-.692.325l-.95.75a.3.3 0 0 1-.192.075.3.3 0 0 1-.183-.041l-.942-.75a1.54 1.54 0 0 0-.666-.317 1.56 1.56 0 0	0-.734 0c-.241.067-.464.19-.65.358-.19.184-.335.41-.424.659L6.083 3.84a.32.32 0 0 1-.125.183.34.34 0 0 1-.225.059H4.55a1.6 1.6 0 0 0-.742.15 1.5 1.5 0 0 0-.591.475c-.154.203-.257.44-.3.691a1.55 1.55 0 0 0 .05.734l.408 1.408q.03.104 0 .208a.34.34 0 0 1-.117.167l-1.108.833a1.66 1.66 0 0 0-.483.567 1.6 1.6 0 0 0 0 1.425c.116.223.281.417.483.567l1.108.833a.34.34 0 0 1 .117.375l-.458 1.358a1.7 1.7 0 0 0-.059.759c.042.249.145.483.3.683.153.209.357.375.592.483.22.105.464.154.708.142H5.7a.32.32 0 0 1 .208.067c.06.04.102.103.117.175l.358 1.258c.074.249.206.477.384.667a1.575 1.575 0 0 0 2.116.141l.958-.758a.325.325 0 0 1 .409 0l.941.75c.2.169.442.281.7.325q.143.012.284 0 .247 0 .483-.075a1.56 1.56 0 0 0 1.034-1.067l.366-1.266a.28.28 0 0 1 .117-.175.33.33 0 0 1 .225-.067h1.191c.255.01.51-.038.742-.142a1.59 1.59 0 0 0 .825-1.933l-.45-1.35a.3.3 0 0 1 0-.208.3.3 0 0 1 .117-.167l1.108-.833a1.56 1.56 0 0 0 .475-.567c.117-.22.177-.467.175-.717a1.6 1.6 0 0 0-.191-.65Zm-4.534-.633-3.683 3.683a1.7 1.7 0 0 1-.492.334 1.6 1.6 0 0 1-.583.116 1.4 1.4 0 0 1-.592-.125 1.6 1.6 0 0 1-.5-.333l-1.817-1.825A.834.834 0 0 1 7.366 9.39L9.1 11.123l3.583-3.591a.833.833 0 0 1 1.175 0 .833.833 0 0 1 0 1.216z"
+	// 				className="stroke-bg stroke-3"
+	// 				mask="url(#a)"
+	// 			/>
+	// 		</svg>
+	// 	)
+	// }
 
-	useEffect(() => {
-		if (!containerRef.current) return
+	// useEffect(() => {
+	// 	if (!containerRef.current) return
 
-		const containerWidth = containerRef.current.offsetWidth
-		let direction = 1
-		let x = lensSize / 2
+	// 	const containerWidth = containerRef.current.offsetWidth
+	// 	let direction = 1
+	// 	let x = lensSize / 2
 
-		const speed = 2 // px per frame
+	// 	const speed = 2 // px per frame
 
-		// === Movement interval ===
-		const moveInterval = setInterval(() => {
-			x += direction * speed
+	// 	// === Movement interval ===
+	// 	const moveInterval = setInterval(() => {
+	// 		x += direction * speed
 
-			if (x + lensSize / 2 >= containerWidth || x - lensSize / 2 <= 0) {
-				direction *= -1
-			}
+	// 		if (x + lensSize / 2 >= containerWidth || x - lensSize / 2 <= 0) {
+	// 			direction *= -1
+	// 		}
 
-			setPos((prev) => ({ ...prev, x }))
-		}, 16)
+	// 		setPos((prev) => ({ ...prev, x }))
+	// 	}, 16)
 
-		setAnimated(true)
+	// 	setAnimated(true)
 
-		return () => {
-			clearInterval(moveInterval)
-		}
-	}, [])
+	// 	return () => {
+	// 		clearInterval(moveInterval)
+	// 	}
+	// }, [])
 
-	const lensSize = 144
-	const zoom = 2
+	// const lensSize = 144
+	// const zoom = 2
 
 	return (
 		<>
@@ -1021,7 +1022,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 					</div>
 				</div>
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
-					<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="flex h-[600px] w-full flex-col gap-6 rounded-xl lg:flex-row">
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
@@ -1031,7 +1032,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className={`lg:flex-2/3 pt-15 border-soft card card--border-glow relative flex flex-col gap-12 overflow-hidden rounded-xl border transition-all duration-300 ease-in-out`}>
+							className={`lg:flex-5 pt-15 border-soft card card--border-glow relative flex h-full flex-col gap-12 overflow-hidden rounded-[20px] border transition-all duration-300 ease-in-out`}>
 							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="flex items-center justify-between px-7 sm:pl-12">
 								<div className="flex flex-col gap-4">
@@ -1039,16 +1040,15 @@ const FeaturesSection: React.FC<BentoProps> = ({
 										<ScanEye size={28} className="stroke-primary-hover" />
 									</span>
 									<span className="heading-6 font-medium">High Quality Base Components</span>
-									<p className="text-fg-secondary w-full max-w-[420px] text-sm">
+									<p className="text-fg-secondary w-full max-w-[380px] text-sm">
 										From keyboard navigation to structural semantics, everything follows modern accessibility standards.
 									</p>
 								</div>
 							</div>
-							<div className="pl-0 pr-0 md:pl-12 lg:px-12">
-								<div className="bg-fill1 rounded-b-none! w-full pt-5 md:rounded-l-2xl md:pl-5 lg:rounded-t-2xl lg:px-5">
-									<div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
+							<div className="h-full pl-0 pr-0">
+								<div className="bg-fill1 h-full w-full pt-5">
+									{/* <div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
 										<div ref={containerRef} className="relative overflow-hidden">
-											{/* Base table */}
 											<Table className="relative w-full select-none">
 												<TableHeader>
 													<TableRow>
@@ -1085,7 +1085,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 												</TableBody>
 											</Table>
 
-											{/* Magnifier overlay */}
 											{animated && (
 												<div
 													className="bg-fill2 pointer-events-none absolute rounded-full border"
@@ -1097,7 +1096,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 														overflow: "hidden",
 														boxShadow: "0 4px 8px hsla(260, 6%, 10%, 0.08)",
 													}}>
-													{/* instead of just lens-size, make inner zoomed area cover full table */}
 													<div
 														className="absolute h-full w-full"
 														style={{
@@ -1109,7 +1107,6 @@ const FeaturesSection: React.FC<BentoProps> = ({
 															height: containerRef.current?.offsetHeight ?? "100%",
 														}}>
 														<div className="absolute left-0 top-0 w-full">
-															{/* full cloned table */}
 															<Table className="w-full select-none">
 																<TableHeader>
 																	<TableRow>
@@ -1150,7 +1147,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 												</div>
 											)}
 										</div>
-									</div>
+									</div> */}
 								</div>
 							</div>
 						</ParticleCard>
@@ -1163,7 +1160,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="lg:flex-1/3 border-soft card card--border-glow relative flex flex-col gap-12 overflow-hidden rounded-xl border">
+							className="lg:flex-3 border-soft card card--border-glow relative flex h-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<span className="pb-2">
@@ -1172,8 +1169,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
 								<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 							</div>
-							<div className="gap-12.25 flex flex-col">
-								<div className="pr-11.5 pl-12">
+							<div className="gap-12.25 bg-fill1 flex h-full flex-col">
+								{/* <div className="pr-11.5 pl-12">
 									<div className="border-soft min-w-107.5 bg-fill1 flex flex-col items-start justify-center gap-3 rounded-xl border px-1.5 pb-1.5 pt-3 sm:min-w-fit">
 										<div className="flex gap-1.5 pl-2">
 											<Skeleton className="bg-fill4 size-1.5 rounded-full" />
@@ -1196,9 +1193,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 											<Spinner variant="activity" className="text-fg-secondary" size={20} />
 										</div>
 									</div>
-								</div>
+								</div> */}
 
-								<div className="pl-13.5 pr-11.5">
+								{/* <div className="pl-13.5 pr-11.5">
 									<div className="border-soft bg-fill1 rounded-r-0 min-w-107.5 rounded-t-xl border border-b-0">
 										<div className="flex rounded-t-xl px-4 py-3">
 											<div className="gap-1.25 flex items-center">
@@ -1221,11 +1218,11 @@ const FeaturesSection: React.FC<BentoProps> = ({
 											</pre>
 										</div>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						</ParticleCard>
 					</div>
-					<div className="flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="flex h-[600px] w-full flex-col gap-6 rounded-xl lg:flex-row">
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
@@ -1235,16 +1232,16 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft pt-15 max-h-150 card card--border-glow flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
+							className="border-soft pt-15 card card--border-glow flex h-full w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
 							<div className="flex flex-col gap-4 px-7 sm:pl-12">
 								<span className="pb-2">
 									<FolderGit size={28} className="stroke-primary-hover" />
 								</span>
 								<span className="heading-6 font-medium">Seamless Design to Code Sync</span>
-								<p className="text-fg-secondary text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
+								<p className="text-fg-secondary max-w-[380px] text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
 							</div>
-							<div className="sm:pl-13.5 gap-5.25 flex flex-col px-7 sm:pr-0">
-								<div className="gap-9.75 flex flex-col items-center sm:flex-row">
+							<div className="sm:pl-13.5 gap-5.25 bg-fill1 flex h-full flex-col px-7 sm:pr-0">
+								{/* <div className="gap-9.75 flex flex-col items-center sm:flex-row">
 									<div className="w-75.5 h-56.75 border-soft overflow-hidden rounded-lg border">
 										<div className="border-soft flex w-full items-center border border-l-0 border-r-0 border-t-0 px-4 py-3">
 											<div className="gap-1.25 flex items-center">
@@ -1271,8 +1268,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 											<Skeleton className="bg-fill1 size-full" />
 										</div>
 									</div>
-								</div>
-								<div className="gap-9.75 flex items-center">
+								</div> */}
+								{/* <div className="gap-9.75 flex items-center">
 									<div className="w-75.5 h-56.75 border-soft translate-x-2.25 overflow-hidden rounded-lg border">
 										<div className="border-soft flex w-full items-center border border-l-0 border-r-0 border-t-0 px-4 py-3">
 											<div className="gap-1.25 flex items-center">
@@ -1287,7 +1284,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 										</div>
 									</div>
 									<div className="w-75.5 h-56.75 rounded-lg"></div>
-								</div>
+								</div> */}
 							</div>
 						</ParticleCard>
 
@@ -1300,17 +1297,17 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft card card--border-glow relative flex w-full flex-col gap-12 overflow-hidden rounded-xl border lg:w-1/2">
+							className="border-soft card card--border-glow relative flex h-full w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
 							<div className="h-25 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<span className="pb-2">
 									<SwatchBook size={28} className="stroke-primary-hover" />
 								</span>
 								<span className="heading-6 font-medium">Themeable System</span>
-								<p className="text-fg-secondary lg:max-w-105 w-fit text-sm">Edit one token to restyle your entire design system — light, dark, or custom themes.</p>
+								<p className="text-fg-secondary lg:max-w-105 w-fit max-w-[380px] text-sm">Edit one token to restyle your entire design system light, dark, or custom themes.</p>
 							</div>
-							<div className="flex items-center justify-center gap-14 pl-10">
-								<div className="relative size-full">
+							<div className="bg-fill1 flex h-full items-center justify-center gap-14 pl-10">
+								{/* <div className="relative size-full">
 									<div onClick={handleCardClick} className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 absolute left-20 size-80 translate-y-10 rounded-xl border shadow-lg`} />
 									<div
 										onClick={handleCardClick}
@@ -1383,23 +1380,50 @@ const FeaturesSection: React.FC<BentoProps> = ({
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> */}
 							</div>
 						</ParticleCard>
 					</div>
-					<div className="relative flex h-full w-full flex-col gap-6 rounded-xl lg:flex-row">
-						<div className="border-soft pt-15 card card--border-glow relative flex flex-col gap-12 rounded-xl border lg:w-[510px]">
+					<div className="relative flex h-[600px] w-full flex-col gap-6 rounded-xl lg:flex-row">
+						<ParticleCard
+							alwaysShowParticles={alwaysShowParticles}
+							disableAnimations={shouldDisableAnimations}
+							particleCount={12}
+							style={cardStyle}
+							enableTilt={enableTilt}
+							clickEffect={clickEffect}
+							enableMagnetism={enableMagnetism}
+							isDarkMode={isDarkMode}
+							className="border-soft pt-15 card card--border-glow lg:flex-3 relative flex h-full w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
+							<div className="flex flex-col gap-4 px-7 sm:px-8 lg:w-[510px] lg:pl-12">
+								<span className="pb-2">
+									<CircleGauge size={28} className="stroke-primary-hover" />
+								</span>
+								<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
+								<p className="text-fg-secondary max-w-[380px] text-sm">Only imports what you use ultra-light bundles for fast and improved performance.</p>
+							</div>
+							<div className="bg-fill1 flex h-full gap-[23px] pl-12">
+								{/* <Skeleton className="bg-fill2 min-h-[359px] w-1/3 min-w-[140px] rounded-xl rounded-b-none" />
+								<Skeleton className="bg-fill2 min-h-[359px] w-2/3 min-w-[421px] rounded-xl rounded-b-none" /> */}
+							</div>
+							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+						</ParticleCard>
+
+						<div className="border-soft lg:flex-5 pt-15 card card--border-glow relative flex h-full w-full flex-col gap-12 rounded-[20px] border">
 							<div className="flex flex-col gap-4 px-7 sm:px-8 lg:px-12">
 								<span className="pb-2">
 									<LayoutDashboard size={28} className="stroke-primary-hover" />
 								</span>
 								<span className="heading-6 font-medium">Reusable UI Blocks</span>
-								<p className="text-fg-secondary text-sm">Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use</p>
+								<p className="text-fg-secondary max-w-[380px] text-sm">
+									Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use
+								</p>
 							</div>
-							<div className="h-30 from-bg/5 to-bg w-15 z-1 absolute top-[220px] bg-gradient-to-l" />
-							<div className="h-30 from-bg/5 to-bg w-15 z-1 absolute right-0 top-[220px] bg-gradient-to-r" />
+							{/* <div className="h-30 from-bg/5 to-bg w-15 z-1 absolute top-[220px] bg-gradient-to-l" />
+							<div className="h-30 from-bg/5 to-bg w-15 z-1 absolute right-0 top-[220px] bg-gradient-to-r" /> */}
 
-							<InfiniteScroll>
+							<div className="bg-fill1 h-full w-full"></div>
+							{/* <InfiniteScroll>
 								<div className="relative flex items-center justify-center gap-2">
 									<div className="py-1.75 border-soft w-45 flex h-9 items-center rounded-lg border px-2.5">
 										<div className="bg-primary-border border-soft-alpha flex size-[21.6px] items-center justify-center rounded-[7.2px] border">
@@ -1432,35 +1456,12 @@ const FeaturesSection: React.FC<BentoProps> = ({
 										<p className="text-fg-secondary flex grow items-center justify-center text-xs">Blogs Section / 05</p>
 									</div>
 								</div>
-							</InfiniteScroll>
+							</InfiniteScroll> */}
 
-							<div className="flex items-center justify-center">
+							{/* <div className="flex items-center justify-center">
 								<Skeleton className="bg-fill2 h-[359px] w-full max-w-[321px] rounded-xl rounded-b-none px-9 sm:max-w-[423px] sm:px-0" />
-							</div>
+							</div> */}
 						</div>
-						<ParticleCard
-							alwaysShowParticles={alwaysShowParticles}
-							disableAnimations={shouldDisableAnimations}
-							particleCount={12}
-							style={cardStyle}
-							enableTilt={enableTilt}
-							clickEffect={clickEffect}
-							enableMagnetism={enableMagnetism}
-							isDarkMode={isDarkMode}
-							className="border-soft pt-15 card card--border-glow relative flex min-h-[488px] w-full flex-col gap-12 overflow-hidden rounded-xl border">
-							<div className="flex flex-col gap-4 px-7 sm:px-8 lg:w-[510px] lg:pl-12">
-								<span className="pb-2">
-									<CircleGauge size={28} className="stroke-primary-hover" />
-								</span>
-								<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
-								<p className="text-fg-secondary text-sm">Only imports what you use ultra-light bundles for fast and improved performance.</p>
-							</div>
-							<div className="flex h-full gap-[23px] pl-12">
-								<Skeleton className="bg-fill2 min-h-[359px] w-1/3 min-w-[140px] rounded-xl rounded-b-none" />
-								<Skeleton className="bg-fill2 min-h-[359px] w-2/3 min-w-[421px] rounded-xl rounded-b-none" />
-							</div>
-							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
-						</ParticleCard>
 					</div>
 				</div>
 			</BentoCardGrid>
