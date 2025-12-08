@@ -4,17 +4,9 @@ import React, { useCallback, useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { CircleGauge, Component, FolderGit, LayoutDashboard, ScanEye, SquareTerminal, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
-// import DecryptedText from "@/components/effects/decrypted-text"
 import { cn } from "@/lib/utils"
-// import { InfiniteScroll } from "@/registry/animated/infinite-scroll"
-// import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
-
-// import { Button } from "@/registry/ui/button"
-// import { Divider } from "@/registry/ui/divider"
-// import { Skeleton } from "@/registry/ui/skeleton"
-// import { Spinner } from "@/registry/ui/spinner"
-// import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import { ComponentSvg } from "./homepagesvg/componentsvg"
 
 export interface BentoCardProps {
 	color?: string
@@ -39,57 +31,6 @@ export interface BentoProps {
 
 const DEFAULT_SPOTLIGHT_RADIUS = 300
 const MOBILE_BREAKPOINT = 768
-
-// const profile = {
-// 	name: "Zoya Petrova",
-// 	description: "Engineering partner for @Radianos",
-// 	address: "Berlin, Germany",
-// 	followingInThousands: 1.4,
-// 	followersInThousands: 412.4,
-// }
-
-// const datas = [
-// 	{
-// 		company: "PLTR",
-// 		currency: "USD",
-// 		FY1_growth: 7.54,
-// 		daily_earning: 250.5,
-// 		EBITDA: "1.5B",
-// 		performance: "+35.14%",
-// 	},
-// 	{
-// 		company: "AMZN",
-// 		currency: "YEN",
-// 		FY1_growth: -4.11,
-// 		daily_earning: 95.0,
-// 		EBITDA: "-285.45M",
-// 		performance: "-14.14%",
-// 	},
-// 	{
-// 		company: "UBER",
-// 		currency: "JR",
-// 		FY1_growth: -14.41,
-// 		daily_earning: 275.25,
-// 		EBITDA: "-120M",
-// 		performance: "-2.14%",
-// 	},
-// 	{
-// 		company: "NFLX",
-// 		currency: "GE",
-// 		FY1_growth: 0.73,
-// 		daily_earning: 120.0,
-// 		EBITDA: "215M",
-// 		performance: "+9.8%",
-// 	},
-// 	{
-// 		company: "GOOGL",
-// 		currency: "CHF",
-// 		FY1_growth: 28.6,
-// 		daily_earning: 400.0,
-// 		EBITDA: "-120M",
-// 		performance: "+75.4%",
-// 	},
-// ]
 
 const cardStyle = {
 	backgroundColor: "var(--color-bg)",
@@ -135,212 +76,100 @@ const updateCardGlowProperties = (card: HTMLElement, mouseX: number, mouseY: num
 	card.style.setProperty("--glow-radius", `${radius}px`)
 }
 
-const ParticleCard: React.FC<{
-	children: React.ReactNode
-	className?: string
-	disableAnimations?: boolean
-	style?: React.CSSProperties
-	particleCount?: number
-	enableTilt?: boolean
-	clickEffect?: boolean
-	enableMagnetism?: boolean
-	alwaysShowParticles?: boolean
-	isDarkMode?: boolean
-}> = ({
-	children,
-	className = "",
-	disableAnimations = false,
-	style,
-	enableTilt = true,
-	clickEffect = false,
-	enableMagnetism = false,
-	alwaysShowParticles = false,
-	isDarkMode = false,
-}) => {
-	const cardRef = useRef<HTMLDivElement>(null)
-	const particlesRef = useRef<HTMLDivElement[]>([])
-	const blinkAnimationsRef = useRef<gsap.core.Tween[]>([])
-	const moveAnimationsRef = useRef<gsap.core.Tween[]>([])
-	const returnAnimationsRef = useRef<gsap.core.Tween[]>([])
-	const timeoutsRef = useRef<NodeJS.Timeout[]>([])
-	const isHoveredRef = useRef(false)
-	const memoizedParticles = useRef<HTMLDivElement[]>([])
-	const particlesInitialized = useRef(false)
-	const magnetismAnimationRef = useRef<gsap.core.Tween | null>(null)
+const ParticleCard = React.forwardRef<
+	HTMLDivElement,
+	{
+		children: React.ReactNode
+		className?: string
+		disableAnimations?: boolean
+		style?: React.CSSProperties
+		particleCount?: number
+		enableTilt?: boolean
+		clickEffect?: boolean
+		enableMagnetism?: boolean
+		alwaysShowParticles?: boolean
+		isDarkMode?: boolean
+	}
+>(
+	(
+		{
+			children,
+			className = "",
+			disableAnimations = false,
+			style,
+			enableTilt = true,
+			clickEffect = false,
+			enableMagnetism = false,
+			alwaysShowParticles = false,
+			isDarkMode = false,
+		},
+		forwardedRef
+	) => {
+		const cardRef = useRef<HTMLDivElement>(null)
+		const particlesRef = useRef<HTMLDivElement[]>([])
+		const blinkAnimationsRef = useRef<gsap.core.Tween[]>([])
+		const moveAnimationsRef = useRef<gsap.core.Tween[]>([])
+		const returnAnimationsRef = useRef<gsap.core.Tween[]>([])
+		const timeoutsRef = useRef<NodeJS.Timeout[]>([])
+		const isHoveredRef = useRef(false)
+		const memoizedParticles = useRef<HTMLDivElement[]>([])
+		const particlesInitialized = useRef(false)
+		const magnetismAnimationRef = useRef<gsap.core.Tween | null>(null)
 
-	const initializeParticles = useCallback(() => {
-		if (particlesInitialized.current || !cardRef.current) return
+		// Combine the forwarded ref with internal ref
+		React.useEffect(() => {
+			if (typeof forwardedRef === "function") {
+				forwardedRef(cardRef.current)
+			} else if (forwardedRef) {
+				forwardedRef.current = cardRef.current
+			}
+		}, [forwardedRef])
 
-		const { width, height } = cardRef.current.getBoundingClientRect()
-		memoizedParticles.current = Array.from({ length: 12 }, () => createParticleElement(Math.random() * width, Math.random() * height))
-		particlesInitialized.current = true
-	}, [])
+		const initializeParticles = useCallback(() => {
+			if (particlesInitialized.current || !cardRef.current) return
 
-	const clearAllParticles = useCallback(() => {
-		timeoutsRef.current.forEach(clearTimeout)
-		timeoutsRef.current = []
-		magnetismAnimationRef.current?.kill()
+			const { width, height } = cardRef.current.getBoundingClientRect()
+			memoizedParticles.current = Array.from({ length: 12 }, () => createParticleElement(Math.random() * width, Math.random() * height))
+			particlesInitialized.current = true
+		}, [])
 
-		// Kill all animations
-		blinkAnimationsRef.current.forEach((animation) => animation.kill())
-		blinkAnimationsRef.current = []
-		moveAnimationsRef.current.forEach((animation) => animation.kill())
-		moveAnimationsRef.current = []
-		returnAnimationsRef.current.forEach((animation) => animation.kill())
-		returnAnimationsRef.current = []
+		const clearAllParticles = useCallback(() => {
+			timeoutsRef.current.forEach(clearTimeout)
+			timeoutsRef.current = []
+			magnetismAnimationRef.current?.kill()
 
-		particlesRef.current.forEach((particle) => {
-			gsap.to(particle, {
-				scale: 0,
-				opacity: 0,
-				duration: 0.3,
-				ease: "back.in(1.7)",
-				onComplete: () => {
-					particle.parentNode?.removeChild(particle)
-				},
+			// Kill all animations
+			blinkAnimationsRef.current.forEach((animation) => animation.kill())
+			blinkAnimationsRef.current = []
+			moveAnimationsRef.current.forEach((animation) => animation.kill())
+			moveAnimationsRef.current = []
+			returnAnimationsRef.current.forEach((animation) => animation.kill())
+			returnAnimationsRef.current = []
+
+			particlesRef.current.forEach((particle) => {
+				gsap.to(particle, {
+					scale: 0,
+					opacity: 0,
+					duration: 0.3,
+					ease: "back.in(1.7)",
+					onComplete: () => {
+						particle.parentNode?.removeChild(particle)
+					},
+				})
 			})
-		})
-		particlesRef.current = []
-	}, [])
+			particlesRef.current = []
+		}, [])
 
-	const startBlinkAnimations = useCallback(() => {
-		if (!cardRef.current || !isDarkMode) return
+		const startBlinkAnimations = useCallback(() => {
+			if (!cardRef.current || !isDarkMode) return
 
-		// Clear existing blink animations
-		blinkAnimationsRef.current.forEach((animation) => animation.kill())
-		blinkAnimationsRef.current = []
+			// Clear existing blink animations
+			blinkAnimationsRef.current.forEach((animation) => animation.kill())
+			blinkAnimationsRef.current = []
 
-		particlesRef.current.forEach((particle) => {
-			// Continuous blinking animation
-			const blinkAnimation = gsap.to(particle, {
-				opacity: 0.3 + Math.random() * 0.4,
-				duration: 2 + Math.random() * 2,
-				ease: "sine.inOut",
-				repeat: -1,
-				yoyo: true,
-			})
-
-			blinkAnimationsRef.current.push(blinkAnimation)
-		})
-	}, [isDarkMode])
-
-	const startMoveAnimations = useCallback(() => {
-		if (!cardRef.current || !isDarkMode) return
-
-		// Clear any return animations first
-		returnAnimationsRef.current.forEach((animation) => animation.kill())
-		returnAnimationsRef.current = []
-
-		// Clear existing move animations
-		moveAnimationsRef.current.forEach((animation) => animation.kill())
-		moveAnimationsRef.current = []
-
-		particlesRef.current.forEach((particle) => {
-			// Floating movement animation
-			const moveAnimation = gsap.to(particle, {
-				x: (Math.random() - 0.5) * 20,
-				y: (Math.random() - 0.5) * 20,
-				rotation: Math.random() * 360,
-				duration: 3 + Math.random() * 3,
-				ease: "sine.inOut",
-				repeat: -1,
-				yoyo: true,
-			})
-
-			moveAnimationsRef.current.push(moveAnimation)
-		})
-	}, [isDarkMode])
-
-	const stopMoveAnimations = useCallback(() => {
-		// Kill all move animations
-		moveAnimationsRef.current.forEach((animation) => animation.kill())
-		moveAnimationsRef.current = []
-
-		// Clear any existing return animations
-		returnAnimationsRef.current.forEach((animation) => animation.kill())
-		returnAnimationsRef.current = []
-
-		// Smoothly animate particles back to their original positions
-		particlesRef.current.forEach((particle) => {
-			const returnAnimation = gsap.to(particle, {
-				x: 0,
-				y: 0,
-				rotation: 0,
-				duration: 1.5, // Longer duration for smooth return
-				ease: "power2.out", // Smooth easing
-				overwrite: true,
-			})
-
-			returnAnimationsRef.current.push(returnAnimation)
-		})
-	}, [])
-
-	const createParticlesWithBlink = useCallback(() => {
-		if (!cardRef.current || !isDarkMode) return
-
-		if (!particlesInitialized.current) {
-			initializeParticles()
-		}
-
-		// Clear existing particles first
-		particlesRef.current.forEach((particle) => {
-			particle.parentNode?.removeChild(particle)
-		})
-		particlesRef.current = []
-
-		// Create particles with blinking only
-		memoizedParticles.current.forEach((particle) => {
-			if (!cardRef.current) return
-
-			const clone = particle.cloneNode(true) as HTMLDivElement
-			cardRef.current.appendChild(clone)
-			particlesRef.current.push(clone)
-
-			// Initial appearance animation
-			gsap.fromTo(
-				clone,
-				{ scale: 0, opacity: 0 },
-				{
-					scale: 1,
-					opacity: 1,
-					duration: 0.5, // Slightly longer for smoother appearance
-					ease: "back.out(1.7)",
-				}
-			)
-		})
-
-		// Start blinking animations
-		startBlinkAnimations()
-	}, [initializeParticles, isDarkMode, startBlinkAnimations])
-
-	const animateParticlesOnHover = useCallback(() => {
-		if (!cardRef.current || !isHoveredRef.current || !isDarkMode) return
-
-		if (!particlesInitialized.current) {
-			initializeParticles()
-		}
-
-		memoizedParticles.current.forEach((particle, index) => {
-			const timeoutId = setTimeout(() => {
-				if (!isHoveredRef.current || !cardRef.current) return
-
-				const clone = particle.cloneNode(true) as HTMLDivElement
-				cardRef.current.appendChild(clone)
-				particlesRef.current.push(clone)
-
-				gsap.fromTo(
-					clone,
-					{ scale: 0, opacity: 0 },
-					{
-						scale: 1,
-						opacity: 1,
-						duration: 0.5,
-						ease: "back.out(1.7)",
-					}
-				)
-
-				// Start blinking animation immediately
-				const blinkAnimation = gsap.to(clone, {
+			particlesRef.current.forEach((particle) => {
+				// Continuous blinking animation
+				const blinkAnimation = gsap.to(particle, {
 					opacity: 0.3 + Math.random() * 0.4,
 					duration: 2 + Math.random() * 2,
 					ease: "sine.inOut",
@@ -349,149 +178,277 @@ const ParticleCard: React.FC<{
 				})
 
 				blinkAnimationsRef.current.push(blinkAnimation)
+			})
+		}, [isDarkMode])
 
-				// Start movement animation on hover
-				const moveAnimation = gsap.to(clone, {
-					x: (Math.random() - 0.5) * 10,
-					y: (Math.random() - 0.5) * 10,
+		const startMoveAnimations = useCallback(() => {
+			if (!cardRef.current || !isDarkMode) return
+
+			// Clear any return animations first
+			returnAnimationsRef.current.forEach((animation) => animation.kill())
+			returnAnimationsRef.current = []
+
+			// Clear existing move animations
+			moveAnimationsRef.current.forEach((animation) => animation.kill())
+			moveAnimationsRef.current = []
+
+			particlesRef.current.forEach((particle) => {
+				// Floating movement animation
+				const moveAnimation = gsap.to(particle, {
+					x: (Math.random() - 0.5) * 20,
+					y: (Math.random() - 0.5) * 20,
 					rotation: Math.random() * 360,
-					duration: 2 + Math.random() * 2,
+					duration: 3 + Math.random() * 3,
 					ease: "sine.inOut",
 					repeat: -1,
 					yoyo: true,
 				})
 
 				moveAnimationsRef.current.push(moveAnimation)
-			}, index * 150) // Slightly longer delay for smoother appearance
+			})
+		}, [isDarkMode])
 
-			timeoutsRef.current.push(timeoutId)
-		})
-	}, [initializeParticles, isDarkMode])
+		const stopMoveAnimations = useCallback(() => {
+			// Kill all move animations
+			moveAnimationsRef.current.forEach((animation) => animation.kill())
+			moveAnimationsRef.current = []
 
-	useEffect(() => {
-		if (disableAnimations || !cardRef.current) return
+			// Clear any existing return animations
+			returnAnimationsRef.current.forEach((animation) => animation.kill())
+			returnAnimationsRef.current = []
 
-		const element = cardRef.current
-
-		// Create particles based on alwaysShowParticles setting
-		if (alwaysShowParticles && isDarkMode) {
-			createParticlesWithBlink()
-		}
-
-		const handleMouseEnter = () => {
-			isHoveredRef.current = true
-
-			// Start movement animations when hovering
-			if (isDarkMode) {
-				if (alwaysShowParticles) {
-					startMoveAnimations()
-				} else {
-					animateParticlesOnHover()
-				}
-			}
-
-			if (enableTilt) {
-				gsap.to(element, {
-					rotateX: 5,
-					rotateY: 5,
-					duration: 0.3,
-					ease: "power2.out",
-					transformPerspective: 1000,
-				})
-			}
-		}
-
-		const handleMouseLeave = () => {
-			isHoveredRef.current = false
-
-			// Stop movement animations when not hovering (but keep blinking)
-			if (isDarkMode) {
-				if (alwaysShowParticles) {
-					stopMoveAnimations()
-				} else {
-					// For non-alwaysShow particles, smoothly fade out instead of immediate removal
-					particlesRef.current.forEach((particle) => {
-						gsap.to(particle, {
-							scale: 0,
-							opacity: 0,
-							duration: 0.8,
-							ease: "power2.out",
-							onComplete: () => {
-								particle.parentNode?.removeChild(particle)
-							},
-						})
-					})
-					particlesRef.current = []
-					blinkAnimationsRef.current = []
-					moveAnimationsRef.current = []
-				}
-			}
-
-			if (enableTilt) {
-				gsap.to(element, {
-					rotateX: 0,
-					rotateY: 0,
-					duration: 0.3,
-					ease: "power2.out",
-				})
-			}
-
-			if (enableMagnetism) {
-				gsap.to(element, {
+			// Smoothly animate particles back to their original positions
+			particlesRef.current.forEach((particle) => {
+				const returnAnimation = gsap.to(particle, {
 					x: 0,
 					y: 0,
-					duration: 0.3,
-					ease: "power2.out",
+					rotation: 0,
+					duration: 1.5, // Longer duration for smooth return
+					ease: "power2.out", // Smooth easing
+					overwrite: true,
 				})
-			}
-		}
 
-		const handleMouseMove = (e: MouseEvent) => {
-			if (!enableTilt && !enableMagnetism) return
+				returnAnimationsRef.current.push(returnAnimation)
+			})
+		}, [])
 
-			const rect = element.getBoundingClientRect()
-			const x = e.clientX - rect.left
-			const y = e.clientY - rect.top
-			const centerX = rect.width / 2
-			const centerY = rect.height / 2
+		const createParticlesWithBlink = useCallback(() => {
+			if (!cardRef.current || !isDarkMode) return
 
-			if (enableTilt) {
-				const rotateX = ((y - centerY) / centerY) * -10
-				const rotateY = ((x - centerX) / centerX) * 10
-
-				gsap.to(element, {
-					rotateX,
-					rotateY,
-					duration: 0.1,
-					ease: "power2.out",
-					transformPerspective: 1000,
-				})
+			if (!particlesInitialized.current) {
+				initializeParticles()
 			}
 
-			if (enableMagnetism) {
-				const magnetX = (x - centerX) * 0.05
-				const magnetY = (y - centerY) * 0.05
+			// Clear existing particles first
+			particlesRef.current.forEach((particle) => {
+				particle.parentNode?.removeChild(particle)
+			})
+			particlesRef.current = []
 
-				magnetismAnimationRef.current = gsap.to(element, {
-					x: magnetX,
-					y: magnetY,
-					duration: 0.3,
-					ease: "power2.out",
-				})
+			// Create particles with blinking only
+			memoizedParticles.current.forEach((particle) => {
+				if (!cardRef.current) return
+
+				const clone = particle.cloneNode(true) as HTMLDivElement
+				cardRef.current.appendChild(clone)
+				particlesRef.current.push(clone)
+
+				// Initial appearance animation
+				gsap.fromTo(
+					clone,
+					{ scale: 0, opacity: 0 },
+					{
+						scale: 1,
+						opacity: 1,
+						duration: 0.5, // Slightly longer for smoother appearance
+						ease: "back.out(1.7)",
+					}
+				)
+			})
+
+			// Start blinking animations
+			startBlinkAnimations()
+		}, [initializeParticles, isDarkMode, startBlinkAnimations])
+
+		const animateParticlesOnHover = useCallback(() => {
+			if (!cardRef.current || !isHoveredRef.current || !isDarkMode) return
+
+			if (!particlesInitialized.current) {
+				initializeParticles()
 			}
-		}
 
-		const handleClick = (e: MouseEvent) => {
-			if (!clickEffect) return
+			memoizedParticles.current.forEach((particle, index) => {
+				const timeoutId = setTimeout(() => {
+					if (!isHoveredRef.current || !cardRef.current) return
 
-			const rect = element.getBoundingClientRect()
-			const x = e.clientX - rect.left
-			const y = e.clientY - rect.top
+					const clone = particle.cloneNode(true) as HTMLDivElement
+					cardRef.current.appendChild(clone)
+					particlesRef.current.push(clone)
 
-			const maxDistance = Math.max(Math.hypot(x, y), Math.hypot(x - rect.width, y), Math.hypot(x, y - rect.height), Math.hypot(x - rect.width, y - rect.height))
+					gsap.fromTo(
+						clone,
+						{ scale: 0, opacity: 0 },
+						{
+							scale: 1,
+							opacity: 1,
+							duration: 0.5,
+							ease: "back.out(1.7)",
+						}
+					)
 
-			const ripple = document.createElement("div")
-			ripple.style.cssText = `
+					// Start blinking animation immediately
+					const blinkAnimation = gsap.to(clone, {
+						opacity: 0.3 + Math.random() * 0.4,
+						duration: 2 + Math.random() * 2,
+						ease: "sine.inOut",
+						repeat: -1,
+						yoyo: true,
+					})
+
+					blinkAnimationsRef.current.push(blinkAnimation)
+
+					// Start movement animation on hover
+					const moveAnimation = gsap.to(clone, {
+						x: (Math.random() - 0.5) * 10,
+						y: (Math.random() - 0.5) * 10,
+						rotation: Math.random() * 360,
+						duration: 2 + Math.random() * 2,
+						ease: "sine.inOut",
+						repeat: -1,
+						yoyo: true,
+					})
+
+					moveAnimationsRef.current.push(moveAnimation)
+				}, index * 150) // Slightly longer delay for smoother appearance
+
+				timeoutsRef.current.push(timeoutId)
+			})
+		}, [initializeParticles, isDarkMode])
+
+		useEffect(() => {
+			if (disableAnimations || !cardRef.current) return
+
+			const element = cardRef.current
+
+			// Create particles based on alwaysShowParticles setting
+			if (alwaysShowParticles && isDarkMode) {
+				createParticlesWithBlink()
+			}
+
+			const handleMouseEnter = () => {
+				isHoveredRef.current = true
+
+				// Start movement animations when hovering
+				if (isDarkMode) {
+					if (alwaysShowParticles) {
+						startMoveAnimations()
+					} else {
+						animateParticlesOnHover()
+					}
+				}
+
+				if (enableTilt) {
+					gsap.to(element, {
+						rotateX: 5,
+						rotateY: 5,
+						duration: 0.3,
+						ease: "power2.out",
+						transformPerspective: 1000,
+					})
+				}
+			}
+
+			const handleMouseLeave = () => {
+				isHoveredRef.current = false
+
+				// Stop movement animations when not hovering (but keep blinking)
+				if (isDarkMode) {
+					if (alwaysShowParticles) {
+						stopMoveAnimations()
+					} else {
+						// For non-alwaysShow particles, smoothly fade out instead of immediate removal
+						particlesRef.current.forEach((particle) => {
+							gsap.to(particle, {
+								scale: 0,
+								opacity: 0,
+								duration: 0.8,
+								ease: "power2.out",
+								onComplete: () => {
+									particle.parentNode?.removeChild(particle)
+								},
+							})
+						})
+						particlesRef.current = []
+						blinkAnimationsRef.current = []
+						moveAnimationsRef.current = []
+					}
+				}
+
+				if (enableTilt) {
+					gsap.to(element, {
+						rotateX: 0,
+						rotateY: 0,
+						duration: 0.3,
+						ease: "power2.out",
+					})
+				}
+
+				if (enableMagnetism) {
+					gsap.to(element, {
+						x: 0,
+						y: 0,
+						duration: 0.3,
+						ease: "power2.out",
+					})
+				}
+			}
+
+			const handleMouseMove = (e: MouseEvent) => {
+				if (!enableTilt && !enableMagnetism) return
+
+				const rect = element.getBoundingClientRect()
+				const x = e.clientX - rect.left
+				const y = e.clientY - rect.top
+				const centerX = rect.width / 2
+				const centerY = rect.height / 2
+
+				if (enableTilt) {
+					const rotateX = ((y - centerY) / centerY) * -10
+					const rotateY = ((x - centerX) / centerX) * 10
+
+					gsap.to(element, {
+						rotateX,
+						rotateY,
+						duration: 0.1,
+						ease: "power2.out",
+						transformPerspective: 1000,
+					})
+				}
+
+				if (enableMagnetism) {
+					const magnetX = (x - centerX) * 0.05
+					const magnetY = (y - centerY) * 0.05
+
+					magnetismAnimationRef.current = gsap.to(element, {
+						x: magnetX,
+						y: magnetY,
+						duration: 0.3,
+						ease: "power2.out",
+					})
+				}
+			}
+
+			const handleClick = (e: MouseEvent) => {
+				if (!clickEffect) return
+
+				const rect = element.getBoundingClientRect()
+				const x = e.clientX - rect.left
+				const y = e.clientY - rect.top
+
+				const maxDistance = Math.max(Math.hypot(x, y), Math.hypot(x - rect.width, y), Math.hypot(x, y - rect.height), Math.hypot(x - rect.width, y - rect.height))
+
+				const ripple = document.createElement("div")
+				ripple.style.cssText = `
         position: absolute;
         width: ${maxDistance * 2}px;
         height: ${maxDistance * 2}px;
@@ -503,57 +460,60 @@ const ParticleCard: React.FC<{
         z-index: 1000;
       `
 
-			element.appendChild(ripple)
+				element.appendChild(ripple)
 
-			gsap.fromTo(
-				ripple,
-				{
-					scale: 0,
-					opacity: 1,
-				},
-				{
-					scale: 1,
-					opacity: 0,
-					duration: 0.8,
-					ease: "power2.out",
-					onComplete: () => ripple.remove(),
-				}
-			)
-		}
+				gsap.fromTo(
+					ripple,
+					{
+						scale: 0,
+						opacity: 1,
+					},
+					{
+						scale: 1,
+						opacity: 0,
+						duration: 0.8,
+						ease: "power2.out",
+						onComplete: () => ripple.remove(),
+					}
+				)
+			}
 
-		element.addEventListener("mouseenter", handleMouseEnter)
-		element.addEventListener("mouseleave", handleMouseLeave)
-		element.addEventListener("mousemove", handleMouseMove)
-		element.addEventListener("click", handleClick)
+			element.addEventListener("mouseenter", handleMouseEnter)
+			element.addEventListener("mouseleave", handleMouseLeave)
+			element.addEventListener("mousemove", handleMouseMove)
+			element.addEventListener("click", handleClick)
 
-		return () => {
-			isHoveredRef.current = false
-			element.removeEventListener("mouseenter", handleMouseEnter)
-			element.removeEventListener("mouseleave", handleMouseLeave)
-			element.removeEventListener("mousemove", handleMouseMove)
-			element.removeEventListener("click", handleClick)
-			clearAllParticles()
-		}
-	}, [
-		animateParticlesOnHover,
-		createParticlesWithBlink,
-		clearAllParticles,
-		disableAnimations,
-		enableTilt,
-		enableMagnetism,
-		clickEffect,
-		alwaysShowParticles,
-		isDarkMode,
-		startMoveAnimations,
-		stopMoveAnimations,
-	])
+			return () => {
+				isHoveredRef.current = false
+				element.removeEventListener("mouseenter", handleMouseEnter)
+				element.removeEventListener("mouseleave", handleMouseLeave)
+				element.removeEventListener("mousemove", handleMouseMove)
+				element.removeEventListener("click", handleClick)
+				clearAllParticles()
+			}
+		}, [
+			animateParticlesOnHover,
+			createParticlesWithBlink,
+			clearAllParticles,
+			disableAnimations,
+			enableTilt,
+			enableMagnetism,
+			clickEffect,
+			alwaysShowParticles,
+			isDarkMode,
+			startMoveAnimations,
+			stopMoveAnimations,
+		])
 
-	return (
-		<div ref={cardRef} className={`${className} relative overflow-hidden`} style={{ ...style, position: "relative", overflow: "hidden" }}>
-			{children}
-		</div>
-	)
-}
+		return (
+			<div ref={cardRef} className={`${className} relative overflow-hidden`} style={{ ...style, position: "relative", overflow: "hidden" }}>
+				{children}
+			</div>
+		)
+	}
+)
+
+ParticleCard.displayName = "ParticleCard"
 
 const GlobalSpotlight: React.FC<{
 	gridRef: React.RefObject<HTMLDivElement | null>
@@ -716,6 +676,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 	alwaysShowParticles = true,
 }) => {
 	const gridRef = useRef<HTMLDivElement>(null)
+	const componentCardRef = useRef<HTMLDivElement>(null) // Add this new ref
+
 	const isMobile = useMobileDetection()
 	const shouldDisableAnimations = disableAnimations || isMobile
 	// const containerRef = useRef<HTMLDivElement>(null)
@@ -935,10 +897,30 @@ const FeaturesSection: React.FC<BentoProps> = ({
       min-height: 180px;
     }
   }
+
+  @keyframes beam-flow-reverse {
+    0% {
+        stroke-dashoffset: -1000;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
 `}
 			</style>
 
 			{enableSpotlight && <GlobalSpotlight gridRef={gridRef} disableAnimations={shouldDisableAnimations} enabled={enableSpotlight} spotlightRadius={spotlightRadius} />}
+
+			{/* Additional GlobalSpotlight specifically for the ComponentSvg card */}
+			{enableSpotlight && <GlobalSpotlight gridRef={componentCardRef} disableAnimations={shouldDisableAnimations} enabled={enableSpotlight} spotlightRadius={spotlightRadius} />}
 
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center gap-20 pb-40 pt-40">
 				<div className="flex flex-col items-center gap-8 px-5">
@@ -1022,18 +1004,16 @@ const FeaturesSection: React.FC<BentoProps> = ({
 					</div>
 				</div>
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
-					<div className="flex h-[600px] w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="flex h-[600px] w-full flex-col gap-6 rounded-[20px] lg:flex-row">
 						<ParticleCard
-							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
-							particleCount={12}
 							style={cardStyle}
 							enableTilt={enableTilt}
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
 							className={`lg:flex-5 pt-15 border-soft card card--border-glow relative flex h-full flex-col gap-12 overflow-hidden rounded-[20px] border transition-all duration-300 ease-in-out`}>
-							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+							{/* <div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" /> */}
 							<div className="flex items-center justify-between px-7 sm:pl-12">
 								<div className="flex flex-col gap-4">
 									<span className="pb-2">
@@ -1047,107 +1027,151 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 							<div className="h-full pl-0 pr-0">
 								<div className="bg-fill1 h-full w-full pt-5">
-									{/* <div className="lg:border-r-1 md:border-l-1 rounded-b-none! overflow-hidden border border-b-0 border-l-0 border-r-0 md:rounded-l-2xl lg:rounded-t-2xl">
-										<div ref={containerRef} className="relative overflow-hidden">
-											<Table className="relative w-full select-none">
-												<TableHeader>
-													<TableRow>
-														<TableHead>Company</TableHead>
-														<TableHead>CCY</TableHead>
-														<TableHead>FY1 growth</TableHead>
-														<TableHead>Daily Earning</TableHead>
-														<TableHead>EBITDA</TableHead>
-														<TableHead>Performance</TableHead>
-													</TableRow>
-												</TableHeader>
-												<TableBody>
-													{datas.map((data) => (
-														<TableRow key={data.company}>
-															<TableCell className="flex items-center">{data.company}</TableCell>
-															<TableCell>
-																<Badge size="20" variant="soft" className="bg-primary-accent">
-																	{data.currency}
-																</Badge>
-															</TableCell>
-															<TableCell className={cn("flex items-center", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
-																{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
-																{data.FY1_growth}%
-															</TableCell>
-															<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
-															<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
-															<TableCell>
-																<Badge color="success" variant="outline">
-																	{data.performance}
-																</Badge>
-															</TableCell>
-														</TableRow>
-													))}
-												</TableBody>
-											</Table>
-
-											{animated && (
-												<div
-													className="bg-fill2 pointer-events-none absolute rounded-full border"
-													style={{
-														width: lensSize,
-														height: lensSize,
-														top: pos.y - lensSize / 2,
-														left: pos.x - lensSize / 2,
-														overflow: "hidden",
-														boxShadow: "0 4px 8px hsla(260, 6%, 10%, 0.08)",
-													}}>
-													<div
-														className="absolute h-full w-full"
+									<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center">
+										<div className="relative flex w-full items-center justify-center">
+											{/* Left side SVGs */}
+											<div className="absolute -top-2 left-0 flex flex-col gap-[38px]">
+												{/* Top left curved path - FLIPPED */}
+												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212" stroke="#E9E9EC" />
+													{/* Animated beam - reversed direction */}
+													<path
+														d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="opacity-0 [stroke-dasharray:50_1000]"
+														vectorEffect="non-scaling-stroke"
 														style={{
-															transform: `scale(${zoom})`,
-															transformOrigin: `${pos.x}px ${pos.y}px`,
-															top: -pos.y * (zoom - 1),
-															left: -pos.x * (zoom - 1),
-															width: containerRef.current?.offsetWidth ?? "100%",
-															height: containerRef.current?.offsetHeight ?? "100%",
-														}}>
-														<div className="absolute left-0 top-0 w-full">
-															<Table className="w-full select-none">
-																<TableHeader>
-																	<TableRow>
-																		<TableHead>Company</TableHead>
-																		<TableHead>CCY</TableHead>
-																		<TableHead>FY1 growth</TableHead>
-																		<TableHead>Daily Earning</TableHead>
-																		<TableHead>EBITDA</TableHead>
-																		<TableHead>Performance</TableHead>
-																	</TableRow>
-																</TableHeader>
-																<TableBody>
-																	{datas.map((data) => (
-																		<TableRow key={data.company}>
-																			<TableCell className="flex items-center">{data.company}</TableCell>
-																			<TableCell>
-																				<Badge size="20" variant="soft" className="bg-primary-accent">
-																					{data.currency}
-																				</Badge>
-																			</TableCell>
-																			<TableCell className={cn("flex items-center", data.FY1_growth > 0 ? "text-success-text" : "text-error-text")}>
-																				{data.FY1_growth > 0 ? <ArrowUpRight size={20} /> : <ArrowDownRight size={20} />}
-																				{data.FY1_growth}%
-																			</TableCell>
-																			<TableCell className="text-fg-secondary">${data.daily_earning}</TableCell>
-																			<TableCell className="text-fg-secondary">{data.EBITDA}</TableCell>
-																			<TableCell>
-																				<Badge color="success" variant="outline">
-																					{data.performance}
-																				</Badge>
-																			</TableCell>
-																		</TableRow>
-																	))}
-																</TableBody>
-															</Table>
-														</div>
-													</div>
-												</div>
-											)}
+															animation: "beam-flow-reverse 3s ease-in-out infinite",
+															animationDelay: "1.5s",
+														}}
+													/>
+												</svg>
+
+												{/* Left straight line */}
+												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
+													{/* Animated beam - reversed direction */}
+													<path
+														d="M0 0.5L212 0.499983"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="opacity-0 [stroke-dasharray:50_1000]"
+														vectorEffect="non-scaling-stroke"
+														style={{
+															animation: "beam-flow-reverse 3s ease-in-out infinite",
+															animationDelay: "1s",
+														}}
+													/>
+												</svg>
+
+												{/* Left straight line 2 */}
+												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
+													{/* Animated beam - reversed direction */}
+													<path
+														d="M0 0.5L212 0.499983"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="opacity-0 [stroke-dasharray:50_1000]"
+														vectorEffect="non-scaling-stroke"
+														style={{
+															animation: "beam-flow-reverse 3s ease-in-out infinite",
+															animationDelay: "0.75s",
+														}}
+													/>
+												</svg>
+
+												{/* Bottom left curved path - FLIPPED */}
+												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212" stroke="#E9E9EC" />
+													{/* Animated beam - reversed direction */}
+													<path
+														d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="opacity-0 [stroke-dasharray:50_1000]"
+														vectorEffect="non-scaling-stroke"
+														style={{
+															animation: "beam-flow-reverse 3s ease-in-out infinite",
+															animationDelay: "0.5s",
+														}}
+													/>
+												</svg>
+											</div>
+
+											{/* Center ComponentSvg */}
+											<div className="relative z-10">
+												<ComponentSvg />
+											</div>
+
+											{/* Right side SVGs */}
+											<div className="absolute -top-2 right-0 flex flex-col gap-[38px]">
+												{/* Top right curved path */}
+												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212" stroke="#E9E9EC" />
+													{/* Animated beam */}
+													<path
+														d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														vectorEffect="non-scaling-stroke"
+													/>
+												</svg>
+
+												{/* Right straight line */}
+												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
+													{/* Animated beam */}
+													<path
+														d="M0 0.5L212 0.499983"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														vectorEffect="non-scaling-stroke"
+														style={{ animationDelay: "0.25s" }}
+													/>
+												</svg>
+
+												{/* Right straight line 2 */}
+												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
+													{/* Animated beam */}
+													<path
+														d="M0 0.5L212 0.499983"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														vectorEffect="non-scaling-stroke"
+														style={{ animationDelay: "0.5s" }}
+													/>
+												</svg>
+
+												{/* Bottom right curved path */}
+												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212" stroke="#E9E9EC" />
+													{/* Animated beam */}
+													<path
+														d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212"
+														stroke="var(--color-primary)"
+														strokeWidth="2"
+														strokeLinecap="round"
+														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														vectorEffect="non-scaling-stroke"
+														style={{ animationDelay: "0.75s" }}
+													/>
+												</svg>
+											</div>
 										</div>
-									</div> */}
+									</BentoCardGrid>
 								</div>
 							</div>
 						</ParticleCard>
@@ -1171,13 +1195,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 							<div className="gap-12.25 bg-fill1 flex h-full flex-col">
 								{/* <div className="pr-11.5 pl-12">
-									<div className="border-soft min-w-107.5 bg-fill1 flex flex-col items-start justify-center gap-3 rounded-xl border px-1.5 pb-1.5 pt-3 sm:min-w-fit">
+									<div className="border-soft min-w-107.5 bg-fill1 flex flex-col items-start justify-center gap-3 rounded-[20px] border px-1.5 pb-1.5 pt-3 sm:min-w-fit">
 										<div className="flex gap-1.5 pl-2">
 											<Skeleton className="bg-fill4 size-1.5 rounded-full" />
 											<Skeleton className="bg-fill4 size-1.5 rounded-full" />
 											<Skeleton className="bg-fill4 size-1.5 rounded-full" />
 										</div>
-										<div className="bg-bg border-soft relative flex w-full items-center rounded-xl border px-3 py-4 text-sm">
+										<div className="bg-bg border-soft relative flex w-full items-center rounded-[20px] border px-3 py-4 text-sm">
 											<div className="flex grow gap-2">
 												<ChevronRight width={12} height={20} className="text-black-inverse" />
 												<DecryptedText
@@ -1222,7 +1246,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 						</ParticleCard>
 					</div>
-					<div className="flex h-[600px] w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="flex h-[600px] w-full flex-col gap-6 rounded-[20px] lg:flex-row">
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
@@ -1308,14 +1332,14 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 							<div className="bg-fill1 flex h-full items-center justify-center gap-14 pl-10">
 								{/* <div className="relative size-full">
-									<div onClick={handleCardClick} className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 absolute left-20 size-80 translate-y-10 rounded-xl border shadow-lg`} />
+									<div onClick={handleCardClick} className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 absolute left-20 size-80 translate-y-10 rounded-[20px] border shadow-lg`} />
 									<div
 										onClick={handleCardClick}
-										className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 left-35 absolute size-80 translate-y-10 rounded-xl border shadow-lg ${isBouncing ? "skew-x-11 -translate-y-5 scale-95 duration-300" : ""}`}
+										className={`border-soft-alpha bg-bg -rotate-20 skew-x-10 left-35 absolute size-80 translate-y-10 rounded-[20px] border shadow-lg ${isBouncing ? "skew-x-11 -translate-y-5 scale-95 duration-300" : ""}`}
 									/>
 									<div
 										onClick={handleCardClick}
-										className={`border-soft bg-bg -rotate-20 skew-x-10 left-50 absolute flex size-80 translate-y-10 flex-col overflow-hidden rounded-xl border p-0 shadow-lg ${isBouncing ? "skew-x-11 -translate-y-10 scale-95" : ""}`}>
+										className={`border-soft bg-bg -rotate-20 skew-x-10 left-50 absolute flex size-80 translate-y-10 flex-col overflow-hidden rounded-[20px] border p-0 shadow-lg ${isBouncing ? "skew-x-11 -translate-y-10 scale-95" : ""}`}>
 										<div className={`bg-primary-focus relative h-16 transition-colors duration-100`}>
 											<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
 												<AvatarFallback className={`bg-primary-accent text-primary-text text-base transition-colors duration-100`}>
@@ -1384,7 +1408,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 						</ParticleCard>
 					</div>
-					<div className="relative flex h-[600px] w-full flex-col gap-6 rounded-xl lg:flex-row">
+					<div className="relative flex h-[600px] w-full flex-col gap-6 rounded-[20px] lg:flex-row">
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
@@ -1403,8 +1427,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<p className="text-fg-secondary max-w-[380px] text-sm">Only imports what you use ultra-light bundles for fast and improved performance.</p>
 							</div>
 							<div className="bg-fill1 flex h-full gap-[23px] pl-12">
-								{/* <Skeleton className="bg-fill2 min-h-[359px] w-1/3 min-w-[140px] rounded-xl rounded-b-none" />
-								<Skeleton className="bg-fill2 min-h-[359px] w-2/3 min-w-[421px] rounded-xl rounded-b-none" /> */}
+								{/* <Skeleton className="bg-fill2 min-h-[359px] w-1/3 min-w-[140px] rounded-[20px] rounded-b-none" />
+								<Skeleton className="bg-fill2 min-h-[359px] w-2/3 min-w-[421px] rounded-[20px] rounded-b-none" /> */}
 							</div>
 							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 						</ParticleCard>
@@ -1459,7 +1483,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</InfiniteScroll> */}
 
 							{/* <div className="flex items-center justify-center">
-								<Skeleton className="bg-fill2 h-[359px] w-full max-w-[321px] rounded-xl rounded-b-none px-9 sm:max-w-[423px] sm:px-0" />
+								<Skeleton className="bg-fill2 h-[359px] w-full max-w-[321px] rounded-[20px] rounded-b-none px-9 sm:max-w-[423px] sm:px-0" />
 							</div> */}
 						</div>
 					</div>
