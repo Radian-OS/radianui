@@ -10,12 +10,12 @@ links:
 
 ## Installation
 
-<Tabs defaultValue="cli">
-	<TabsList>
-		<TabsTrigger value="cli">CLI</TabsTrigger>
-		<TabsTrigger value="manual">Manual</TabsTrigger>
-	</TabsList>
-	<TabsContent value="cli" className="p-0">
+<InstallationTabs >
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
 				pnpm: "pnpm dlx radianui@latest add breadcrumb",
@@ -24,8 +24,8 @@ links:
 				bun: "bunx radianui@latest add breadcrumb",
 			}}
 		/>
-	</TabsContent>
-	<TabsContent value="manual" className="p-0">
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	<Step>Install the following dependencies:</Step>
     	<PackageManagerTabs
@@ -43,9 +43,9 @@ links:
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
-    </TabsContent>
+    </InstallTabsContent>
 
-</Tabs>
+</InstallationTabs>
 
 ---
 
