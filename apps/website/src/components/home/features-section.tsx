@@ -42,23 +42,23 @@ const cardStyle = {
 	"--glow-radius": "200px",
 } as React.CSSProperties
 
-const createParticleElement = (x: number, y: number): HTMLDivElement => {
-	const el = document.createElement("div")
-	el.className = "particle"
-	el.style.cssText = `
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    border-radius: 100%;
-    background: white;
-    box-shadow: 0 0 6px color-mix(in oklch, white, transparent 40%);
-    pointer-events: none;
-    z-index: 10;
-    left: ${x}px;
-    top: ${y}px;
-  `
-	return el
-}
+// const createParticleElement = (x: number, y: number): HTMLDivElement => {
+// 	const el = document.createElement("div")
+// 	el.className = "particle"
+// 	el.style.cssText = `
+//     position: absolute;
+//     width: 2px;
+//     height: 2px;
+//     border-radius: 100%;
+//     background: white;
+//     box-shadow: 0 0 6px color-mix(in oklch, white, transparent 40%);
+//     pointer-events: none;
+//     z-index: 10;
+//     left: ${x}px;
+//     top: ${y}px;
+//   `
+// 	return el
+// }
 
 const calculateSpotlightValues = (radius: number) => ({
 	proximity: radius * 0.5,
@@ -128,8 +128,8 @@ const ParticleCard = React.forwardRef<
 		const initializeParticles = useCallback(() => {
 			if (particlesInitialized.current || !cardRef.current) return
 
-			const { width, height } = cardRef.current.getBoundingClientRect()
-			memoizedParticles.current = Array.from({ length: 12 }, () => createParticleElement(Math.random() * width, Math.random() * height))
+			// const { width, height } = cardRef.current.getBoundingClientRect()
+			// memoizedParticles.current = Array.from({ length: 12 }, () => createParticleElement(Math.random() * width, Math.random() * height))
 			particlesInitialized.current = true
 		}, [])
 
@@ -673,7 +673,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 	enableTilt = false,
 	clickEffect = true,
 	enableMagnetism = true,
-	alwaysShowParticles = true,
+	alwaysShowParticles = false,
 }) => {
 	const gridRef = useRef<HTMLDivElement>(null)
 	const componentCardRef = useRef<HTMLDivElement>(null) // Add this new ref
@@ -898,22 +898,42 @@ const FeaturesSection: React.FC<BentoProps> = ({
     }
   }
 
-  @keyframes beam-flow-reverse {
-    0% {
-        stroke-dashoffset: -1000;
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        stroke-dashoffset: 0;
-        opacity: 0;
-    }
+@keyframes beam-flow {
+	0% {
+		stroke-dashoffset: 1000;
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		stroke-dashoffset: 0;
+		opacity: 0;
+	}
 }
+
+@keyframes beam-flow-reverse {
+	0% {
+		stroke-dashoffset: -1000;
+		opacity: 0;
+	}
+	10% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		stroke-dashoffset: 0;
+		opacity: 0;
+	}
+}
+
+
+
 `}
 			</style>
 
@@ -1026,15 +1046,18 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								</div>
 							</div>
 							<div className="h-full pl-0 pr-0">
-								<div className="bg-fill1 h-full w-full pt-5">
+								<div className="h-full w-full pt-5">
 									<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center">
 										<div className="relative flex w-full items-center justify-center">
 											{/* Left side SVGs */}
 											<div className="absolute -top-2 left-0 flex flex-col gap-[38px]">
 												{/* Top left curved path - FLIPPED */}
 												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212" stroke="#E9E9EC" />
-													{/* Animated beam - reversed direction */}
+													<path
+														d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212"
+														stroke="var(--color-soft)"
+													/>
+													{/* Animated beam - flows FROM left TO right (into component) */}
 													<path
 														d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212"
 														stroke="var(--color-primary)"
@@ -1043,16 +1066,19 @@ const FeaturesSection: React.FC<BentoProps> = ({
 														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
 														style={{
-															animation: "beam-flow-reverse 3s ease-in-out infinite",
-															animationDelay: "1.5s",
+															animationName: "beam-flow",
+															animationDuration: "2s",
+															animationTimingFunction: "ease-in-out",
+															animationIterationCount: "infinite",
+															animationDelay: "0s",
 														}}
 													/>
 												</svg>
 
 												{/* Left straight line */}
 												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
-													{/* Animated beam - reversed direction */}
+													<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
+													{/* Animated beam - flows FROM left TO right (into component) */}
 													<path
 														d="M0 0.5L212 0.499983"
 														stroke="var(--color-primary)"
@@ -1061,16 +1087,16 @@ const FeaturesSection: React.FC<BentoProps> = ({
 														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
 														style={{
-															animation: "beam-flow-reverse 3s ease-in-out infinite",
-															animationDelay: "1s",
+															animation: "beam-flow 2s ease-in-out infinite",
+															animationDelay: "0s",
 														}}
 													/>
 												</svg>
 
 												{/* Left straight line 2 */}
 												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
-													{/* Animated beam - reversed direction */}
+													<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
+													{/* Animated beam - flows FROM left TO right (into component) */}
 													<path
 														d="M0 0.5L212 0.499983"
 														stroke="var(--color-primary)"
@@ -1079,16 +1105,19 @@ const FeaturesSection: React.FC<BentoProps> = ({
 														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
 														style={{
-															animation: "beam-flow-reverse 3s ease-in-out infinite",
-															animationDelay: "0.75s",
+															animation: "beam-flow 2s ease-in-out infinite",
+															animationDelay: "0s",
 														}}
 													/>
 												</svg>
 
 												{/* Bottom left curved path - FLIPPED */}
 												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212" stroke="#E9E9EC" />
-													{/* Animated beam - reversed direction */}
+													<path
+														d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
+														stroke="var(--color-soft)"
+													/>
+													{/* Animated beam - flows FROM left TO right (into component) */}
 													<path
 														d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
 														stroke="var(--color-primary)"
@@ -1097,8 +1126,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
 														style={{
-															animation: "beam-flow-reverse 3s ease-in-out infinite",
-															animationDelay: "0.5s",
+															animation: "beam-flow 2s ease-in-out infinite",
+															animationDelay: "0s",
 														}}
 													/>
 												</svg>
@@ -1113,60 +1142,79 @@ const FeaturesSection: React.FC<BentoProps> = ({
 											<div className="absolute -top-2 right-0 flex flex-col gap-[38px]">
 												{/* Top right curved path */}
 												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212" stroke="#E9E9EC" />
-													{/* Animated beam */}
+													<path
+														d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
+														stroke="var(--color-soft)"
+													/>
+													{/* Animated beam - flows FROM right TO left (into component) */}
 													<path
 														d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
 														stroke="var(--color-primary)"
 														strokeWidth="2"
 														strokeLinecap="round"
-														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
+														style={{
+															animation: "beam-flow-reverse 2s ease-in-out infinite",
+															animationDelay: "0s",
+														}}
 													/>
 												</svg>
 
 												{/* Right straight line */}
 												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
-													{/* Animated beam */}
+													<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
+													{/* Animated beam - flows FROM right TO left (into component) */}
 													<path
 														d="M0 0.5L212 0.499983"
 														stroke="var(--color-primary)"
 														strokeWidth="2"
 														strokeLinecap="round"
-														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
-														style={{ animationDelay: "0.25s" }}
+														style={{
+															animation: "beam-flow-reverse 2s ease-in-out infinite",
+															animationDelay: "0s",
+														}}
 													/>
 												</svg>
 
 												{/* Right straight line 2 */}
 												<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 0.5L212 0.499983" stroke="#E9E9EC" />
-													{/* Animated beam */}
+													<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
+													{/* Animated beam - flows FROM right TO left (into component) */}
 													<path
 														d="M0 0.5L212 0.499983"
 														stroke="var(--color-primary)"
 														strokeWidth="2"
 														strokeLinecap="round"
-														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
-														style={{ animationDelay: "0.5s" }}
+														style={{
+															animation: "beam-flow-reverse 2s ease-in-out infinite",
+															animationDelay: "0s",
+														}}
 													/>
 												</svg>
 
 												{/* Bottom right curved path */}
 												<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212" stroke="#E9E9EC" />
-													{/* Animated beam */}
+													<path
+														d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212"
+														stroke="var(--color-soft)"
+													/>
+													{/* Animated beam - flows FROM right TO left (into component) */}
 													<path
 														d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212"
 														stroke="var(--color-primary)"
 														strokeWidth="2"
 														strokeLinecap="round"
-														className="animate-[var(--animate-beam-flow2)] opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+														className="opacity-0 [stroke-dasharray:50_1000]"
 														vectorEffect="non-scaling-stroke"
-														style={{ animationDelay: "0.75s" }}
+														style={{
+															animation: "beam-flow-reverse 2s ease-in-out infinite",
+															animationDelay: "0s",
+														}}
 													/>
 												</svg>
 											</div>
