@@ -22,6 +22,7 @@ import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import FigmaCard from "@/components/figma/figma-card"
 import Installation from "@/components/installation"
+import { InstallTabsContent, InstallTabsList, InstallTabsTrigger, InstallationTabs } from "@/components/installation-tabs"
 import PackageManagerTabs, { PackageManagerTabsProps } from "@/components/package-manager-tabs"
 import { PropsTable } from "@/components/props-table"
 import SocialLinkCards from "@/components/social-link-cards"
@@ -117,6 +118,10 @@ const components = (examples: typeof Examples | undefined) => ({
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
 	),
+	InstallationTabs: (props: React.ComponentProps<typeof InstallationTabs>) => <InstallationTabs {...props} />,
+	InstallTabsList: (props: React.ComponentProps<typeof InstallTabsList>) => <InstallTabsList {...props} />,
+	InstallTabsTrigger: (props: React.ComponentProps<typeof InstallTabsTrigger>) => <InstallTabsTrigger {...props} />,
+	InstallTabsContent: (props: React.ComponentProps<typeof InstallTabsContent>) => <InstallTabsContent {...props} />,
 	CodeSnippet: ({ code, title, showLineNumbers, collapsible }: { code: string; title: string; showLineNumbers: boolean; collapsible?: boolean }) => (
 		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
 	),
@@ -226,6 +231,7 @@ const components = (examples: typeof Examples | undefined) => ({
 	AccordionContent: (props: AccordionContentProps) => {
 		return <AccordionContent {...props} />
 	},
+
 	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
 		return <Tabs {...props} />
 	},

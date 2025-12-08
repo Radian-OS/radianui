@@ -10,12 +10,12 @@ links:
 
 ## Installation
 
-<Tabs defaultValue="cli">
-	<TabsList>
-		<TabsTrigger value="cli">CLI</TabsTrigger>
-		<TabsTrigger value="manual">Manual</TabsTrigger>
-	</TabsList>
-	<TabsContent value="cli" className="p-0">
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
 				pnpm: "pnpm dlx radianui@latest add empty",
@@ -24,15 +24,15 @@ links:
 				bun: "bunx radianui@latest add empty",
 			}}
 		/>
-	</TabsContent>
-	<TabsContent value="manual" className="p-0">
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
 		<Steps>
 			<Step>Copy and paste the following code into your project.</Step>
 			<ComponentSource name="empty" title="components/ui/empty.tsx" collapsible />
 			<Step>Update the import paths as per your project structure.</Step>
 		</Steps>
-	</TabsContent>
-</Tabs>
+	</InstallTabsContent>
+</InstallationTabs>
 
 ## Usage
 
