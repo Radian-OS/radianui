@@ -14,7 +14,7 @@ const data = [
 			avatar: "/media/female-5.png",
 			username: "lahcsin#44",
 		},
-		timestamp: "2 days ago",
+		timestamp: "1 week ago",
 		tag: "Radian",
 		img: "/mstile-70x70.png",
 	},
@@ -27,7 +27,7 @@ const data = [
 			avatar: "/media/male-1.png",
 			username: "nugas#21",
 		},
-		timestamp: "2 days ago",
+		timestamp: "5 days ago",
 		tag: "Figma",
 		img: "/figma.svg",
 	},
@@ -40,7 +40,7 @@ const data = [
 			avatar: "/media/male-1.png",
 			username: "nugas#21",
 		},
-		timestamp: "2 days ago",
+		timestamp: "5 days ago",
 		tag: "Figma",
 		img: "/figma.svg",
 	},
@@ -79,7 +79,7 @@ const data = [
 			avatar: "/media/female-4.png",
 			username: "yajib#21",
 		},
-		timestamp: "2 days ago",
+		timestamp: "2 hour ago",
 		tag: "Cursor",
 		img: "/cursor.svg",
 	},
@@ -112,38 +112,40 @@ const data = [
 ]
 
 export function CodeSync() {
-	const [offset, setOffset] = useState(-7)
+	const [offset, setOffset] = useState(0)
 	const totalCards = data.length
+	const duplicatedData = Array(6).fill(data).flat()
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setOffset((prev) => {
-				const nextOffset = prev + 1
-				if (nextOffset > 0) {
-					return -7
+				if (prev >= duplicatedData.length - 1) {
+					return 0
 				}
-				return nextOffset
+				return prev + 1
 			})
 		}, 4000)
 
 		return () => clearInterval(interval)
 	}, [totalCards])
 
-	const duplicatedData = [...data, ...data]
-
 	return (
 		<div className="h-full overflow-hidden">
 			<motion.div
-				animate={{ y: offset * 94 }}
+				animate={{ y: -offset * 94 }}
 				transition={{
 					duration: 1,
 					ease: "easeInOut",
 				}}>
 				{duplicatedData.map((item, index) => {
 					const Icon = item.icon
+					// Calculate position relative to current offset
+					const position = index - offset
+					// Determine if this is the top visible card (position 0)
+					const iconClass = position === 0 ? "text-primary-text transition-opacity duration-1000" : "text-fg-secondary transition-opacity duration-1000"
 					return (
 						<div key={index} className="border-soft bg-bg h-23.5 flex gap-5 border-t px-12 py-6">
-							<Icon className="text-fg-tertiary" size={20} />
+							<Icon className={iconClass} size={20} style={{ opacity: 1 }} />
 							<div className="flex flex-col gap-1.5">
 								<p className="text-fg text-sm font-normal">{item.title}</p>
 								<div className="flex items-center gap-2.5">

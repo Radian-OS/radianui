@@ -169,7 +169,7 @@ export const ComponentSvg = ({ className }: { className?: string }) => {
 				<g clipPath="url(#clip4_30_16958)">
 					<path
 						d="M359 147C359 144.791 360.791 143 363 143H434C436.209 143 438 144.791 438 147V157C438 159.209 436.209 161 434 161H363C360.791 161 359 159.209 359 157V147Z"
-						fill="white"
+						fill="var(--color-bg)"
 					/>
 					<path d="M437.75 143.25V160.75H359.25V143.25H437.75Z" stroke="#DEDEE3" strokeWidth="0.5" />
 					<path

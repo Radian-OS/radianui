@@ -892,10 +892,10 @@ const FeaturesSection: React.FC<BentoProps> = ({
 										stroke-dashoffset: -1000;
 										opacity: 0;
 									}
-									10% {
+									5% {
 										opacity: 1;
 									}
-									90% {
+									95% {
 										opacity: 1;
 									}
 									100% {
@@ -950,7 +950,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<p className="text-fg-secondary max-w-[380px] text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
 							</div>
 							<CodeSync />
-							<div className="from-bg/70 to-bg h-62 absolute inset-x-0 bottom-0 flex rounded-b-lg bg-gradient-to-b"></div>
+							<div className="from-bg/0 to-bg h-100 absolute inset-x-0 bottom-0 flex rounded-b-lg bg-gradient-to-b"></div>
 						</ParticleCard>
 
 						<ParticleCard

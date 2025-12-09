@@ -20,10 +20,10 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 							/>
 							<path
 								d="M-8.91712e-06 0.5L68.4891 0.499994C72.7181 0.499994 76.6348 2.726 78.7989 6.35934L132.572 96.6406C134.736 100.274 138.652 102.5 142.881 102.5L212 102.5"
-								stroke="var(--color-primary)"
-								strokeWidth="2"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -35,15 +35,15 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 								}}
 							/>
 						</svg>
-						<svg width="212" height="2" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
 							{/* Animated beam - flows FROM left TO right (into component) */}
 							<path
 								d="M0 0.5L212 0.499983"
-								stroke="var(--color-primary)"
-								strokeWidth="4"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -56,15 +56,15 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 							/>
 						</svg>
 
-						<svg width="212" height="2" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
 							{/* Animated beam - flows FROM left TO right (into component) */}
 							<path
 								d="M0 0.5L212 0.499983"
-								stroke="var(--color-primary)"
-								strokeWidth="4"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -82,10 +82,10 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 							{/* Animated beam - flows FROM left TO right (into component) */}
 							<path
 								d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
-								stroke="var(--color-primary)"
-								strokeWidth="2"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -110,55 +110,55 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 							<path d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212" stroke="var(--color-soft)" />
 							<path
 								d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212"
-								stroke="var(--color-primary)"
-								strokeWidth="2"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000]"
+								className="opacity-0 [stroke-dasharray:30_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
 									animationDuration: "2s",
 									animationTimingFunction: "ease-in-out",
 									animationIterationCount: "infinite",
-									animationDelay: "2.55s",
+									animationDelay: "2.7s",
 								}}
 							/>
 						</svg>
 
-						<svg width="212" height="2" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
 							<path
 								d="M0 0.5L212 0.499983"
-								stroke="var(--color-primary)"
-								strokeWidth="4"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000]"
+								className="opacity-0 [stroke-dasharray:30_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
 									animationDuration: "2s",
 									animationTimingFunction: "ease-in-out",
 									animationIterationCount: "infinite",
-									animationDelay: "2.55s",
+									animationDelay: "2.7s",
 								}}
 							/>
 						</svg>
 
-						<svg width="212" height="2" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<svg width="212" height="1" viewBox="0 0 212 1" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 0.5L212 0.499983" stroke="var(--color-soft)" />
 							<path
 								d="M0 0.5L212 0.499983"
-								stroke="var(--color-primary)"
-								strokeWidth="4"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000]"
+								className="opacity-0 [stroke-dasharray:30_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
 									animationDuration: "2s",
 									animationTimingFunction: "ease-in-out",
 									animationIterationCount: "infinite",
-									animationDelay: "2.55s",
+									animationDelay: "2.7s",
 								}}
 							/>
 						</svg>
@@ -167,17 +167,17 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 							<path d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212" stroke="var(--color-soft)" />
 							<path
 								d="M0 0.5H68.4891C72.7181 0.5 76.6348 2.72601 78.7989 6.35935L132.572 96.6407C134.736 100.274 138.652 102.5 142.881 102.5H212"
-								stroke="var(--color-primary)"
-								strokeWidth="2"
+								stroke="var(--color-primary-border)"
+								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:50_1000]"
+								className="opacity-0 [stroke-dasharray:30_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
 									animationDuration: "2s",
 									animationTimingFunction: "ease-in-out",
 									animationIterationCount: "infinite",
-									animationDelay: "2.55s",
+									animationDelay: "2.7s",
 								}}
 							/>
 						</svg>
