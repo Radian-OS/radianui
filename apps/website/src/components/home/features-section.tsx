@@ -876,7 +876,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 					</div>
 				</div>
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
-					<div className="flex h-[600px] w-full flex-col gap-6 rounded-[20px] lg:flex-row">
+					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
 						<ParticleCard
 							disableAnimations={shouldDisableAnimations}
 							style={cardStyle}
@@ -884,7 +884,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className={`lg:flex-5 pt-15 border-soft card card--border-glow relative flex h-full flex-col gap-12 overflow-hidden rounded-[20px] border transition-all duration-300 ease-in-out`}>
+							className={`lg:flex-5 border-soft card card--border-glow flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border`}>
 							{/* Add scoped style inside this card */}
 							<style jsx>{`
 								@keyframes component-beam-flow-reverse {
@@ -904,15 +904,12 @@ const FeaturesSection: React.FC<BentoProps> = ({
 									}
 								}
 							`}</style>
-							{/* <div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" /> */}
-							<div className="flex items-center justify-between px-7 sm:pl-12">
-								<div className="flex flex-col gap-4">
-									<ScanEye size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">High Quality Base Components</span>
-									<p className="text-fg-secondary w-full max-w-[380px] text-sm">
-										From keyboard navigation to structural semantics, everything follows modern accessibility standards.
-									</p>
-								</div>
+							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
+								<ScanEye size={28} className="stroke-primary-hover" />
+								<span className="heading-6 font-medium">High Quality Base Components</span>
+								<p className="text-fg-secondary w-full max-w-[380px] text-sm">
+									From keyboard navigation to structural semantics, everything follows modern accessibility standards.
+								</p>
 							</div>
 							<div className="h-full pl-0 pr-0">
 								<ComponentFlowCard gridRef={gridRef} />
@@ -927,8 +924,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="lg:flex-3 border-soft card card--border-glow relative flex h-full flex-col gap-12 overflow-hidden rounded-[20px] border">
-							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+							className="lg:flex-3 border-soft card card--border-glow relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
@@ -937,7 +933,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="gap-12.25 bg-fill1 flex h-full flex-col"></div>
 						</ParticleCard>
 					</div>
-					<div className="flex h-[600px] w-full flex-col gap-6 rounded-[20px] lg:flex-row">
+					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
@@ -947,8 +943,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft pt-15 card card--border-glow flex h-full w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
-							<div className="flex flex-col gap-4 px-7 sm:pl-12">
+							className="border-soft card card--border-glow flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
+							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<FolderGit size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Seamless Design to Code Sync</span>
 								<p className="text-fg-secondary max-w-[380px] text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
@@ -966,7 +962,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft card card--border-glow relative flex h-full w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
+							className="border-soft card card--border-glow relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
 							<div className="h-25 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<SwatchBook size={28} className="stroke-primary-hover" />
@@ -976,7 +972,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="bg-fill1 flex h-full items-center justify-center gap-14 pl-10"></div>
 						</ParticleCard>
 					</div>
-					<div className="relative flex h-[600px] w-full flex-col gap-6 rounded-[20px] lg:flex-row">
+					<div className="relative flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
@@ -986,18 +982,18 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft pt-15 card card--border-glow lg:flex-3 relative flex h-full w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
-							<div className="flex flex-col gap-4 px-7 sm:px-8 lg:w-[510px] lg:pl-12">
+							className="border-soft card card--border-glow lg:flex-3 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
+							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<CircleGauge size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
-								<p className="text-fg-secondary max-w-[380px] text-sm">Only imports what you use ultra-light bundles for fast and improved performance.</p>
+								<p className="text-fg-secondary text-sm lg:max-w-[380px]">Only imports what you use ultra-light bundles for fast and improved performance.</p>
 							</div>
 							<div className="bg-fill1 flex h-full gap-[23px] pl-12"></div>
 							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
 						</ParticleCard>
 
-						<div className="border-soft lg:flex-5 pt-15 card card--border-glow relative flex h-full w-full flex-col gap-12 rounded-[20px] border">
-							<div className="flex flex-col gap-4 px-7 sm:px-8 lg:px-12">
+						<div className="border-soft lg:flex-5 card card--border-glow relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
+							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<LayoutDashboard size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Reusable UI Blocks</span>
 								<p className="text-fg-secondary max-w-[380px] text-sm">
