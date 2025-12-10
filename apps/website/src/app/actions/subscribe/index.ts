@@ -3,11 +3,13 @@
 import { Resend } from "resend"
 import WelcomeEmailTemplate from "@/components/email/welcome-email-template"
 
-const resend = new Resend(process.env.RESEND_API_KEY!)
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function subscribe(email: string) {
 	try {
 		const { data } = await resend.contacts.get({ email: email })
+
+		console.log("RESEND_API_KEY", process.env.RESEND_API_KEY)
 
 		if (data?.email) {
 			return { message: "Your email is already subscribed", status: 409 }
