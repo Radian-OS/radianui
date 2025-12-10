@@ -28,7 +28,7 @@ export default function EmailSection() {
 						<div>
 							<p
 								className={cn("text-fg-tertiary text-xs font-normal", {
-									"text-error-text": subscriptionResult?.success == false,
+									"text-error-text": subscriptionResult?.status && subscriptionResult.status >= 400,
 								})}>
 								{subscriptionResult?.message && subscriptionResult.message}
 							</p>
