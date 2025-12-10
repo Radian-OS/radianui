@@ -1,4 +1,4 @@
-import React from "react"
+import React, { memo } from "react"
 import { Check, Clipboard, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
@@ -15,7 +15,7 @@ interface CodeSnippetProps {
 	className?: string
 }
 
-export default function CodeSnippet({ code, title, collapsible = false, showLineNumber = false, className }: CodeSnippetProps) {
+const CodeSnippet = memo(({ code, title, collapsible = false, showLineNumber = false, className }: CodeSnippetProps) => {
 	const { theme } = useTheme()
 	const { copied, copy } = useCopyPaste({
 		code,
@@ -23,6 +23,11 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 		title: title || "CodeSnippet",
 		category: "CodeSnippet",
 	})
+
+	// Memoize the theme selection
+	const codeTheme = theme === "dark" ? "github-dark-high-contrast" : "github-light"
+
+	const CodeBlock = <CodeArea language="tsx" theme={codeTheme} code={code} lineNumbers={showLineNumber} className={cn("border-soft flex-1 rounded-[10px] border", className)} />
 
 	return (
 		<div className={cn("bg-fill2 flex flex-col gap-2 rounded-xl p-1.5", className)}>
@@ -35,26 +40,11 @@ export default function CodeSnippet({ code, title, collapsible = false, showLine
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</Button>
 			</div>
-			{collapsible && (
-				<CodeCollapsibleWrapper>
-					<CodeArea
-						language="tsx"
-						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
-						code={code}
-						lineNumbers={showLineNumber}
-						className={cn("border-soft flex-1 rounded-[10px] border", className)}
-					/>
-				</CodeCollapsibleWrapper>
-			)}
-			{!collapsible && (
-				<CodeArea
-					language="tsx"
-					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
-					code={code}
-					lineNumbers={showLineNumber}
-					className={cn("border-soft flex-1 rounded-[10px] border", className)}
-				/>
-			)}
+			{collapsible ? <CodeCollapsibleWrapper>{CodeBlock}</CodeCollapsibleWrapper> : CodeBlock}
 		</div>
 	)
-}
+})
+
+CodeSnippet.displayName = "CodeSnippet"
+
+export default CodeSnippet

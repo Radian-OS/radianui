@@ -1,5 +1,6 @@
 "use client"
 
+import { memo } from "react"
 import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
 
@@ -146,20 +147,35 @@ type CodeAreaProps = {
 
 const DEFAULT_THEME = "github-dark-high-contrast"
 
-function CodeArea({ code, theme = DEFAULT_THEME, language, className, lineNumbers = false }: CodeAreaProps) {
-	return (
-		<div className={cn("no-scrollbar relative box-border overflow-auto rounded-xl text-sm", className)}>
-			<ShikiHighlighter
-				as={`pre`}
-				className="[&_pre]:no-scrollbar h-full w-full [&_pre]:h-full [&_pre]:w-full"
-				language={language}
-				theme={theme}
-				showLineNumbers={lineNumbers}
-				showLanguage={false}>
-				{code.trim()}
-			</ShikiHighlighter>
-		</div>
-	)
-}
+const CodeArea = memo(
+	({ code, theme = DEFAULT_THEME, language, className, lineNumbers = false }: CodeAreaProps) => {
+		return (
+			<div className={cn("no-scrollbar relative box-border overflow-auto rounded-xl text-sm", className)}>
+				<ShikiHighlighter
+					as={`pre`}
+					className="[&_pre]:no-scrollbar h-full w-full [&_pre]:h-full [&_pre]:w-full"
+					language={language}
+					theme={theme}
+					showLineNumbers={lineNumbers}
+					showLanguage={false}>
+					{code.trim()}
+				</ShikiHighlighter>
+			</div>
+		)
+	},
+	// Custom comparison function - only re-render if these props actually change
+	(prevProps, nextProps) => {
+		return (
+			prevProps.code === nextProps.code &&
+			prevProps.theme === nextProps.theme &&
+			prevProps.language === nextProps.language &&
+			prevProps.className === nextProps.className &&
+			prevProps.lineNumbers === nextProps.lineNumbers
+		)
+	}
+)
+
+// Add display name for better debugging
+CodeArea.displayName = "CodeArea"
 
 export { CodeArea, type CodeAreaProps }
