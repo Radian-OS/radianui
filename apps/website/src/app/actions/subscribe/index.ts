@@ -3,9 +3,11 @@
 import { Resend } from "resend"
 import WelcomeEmailTemplate from "@/components/email/welcome-email-template"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function subscribe(email: string) {
+	const resend = new Resend(process.env.RESEND_API_KEY)
+
+	console.log("RESEND_API_KEY", process.env.RESEND_API_KEY)
+
 	try {
 		const { data } = await resend.contacts.get({ email: email })
 
