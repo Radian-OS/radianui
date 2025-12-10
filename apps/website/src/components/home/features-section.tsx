@@ -8,6 +8,7 @@ import { CodeSync } from "./feature-section-component/code-sync"
 import { ComponentFlowCard } from "./feature-section-component/component-flow"
 import { FeatureHeader } from "./feature-section-component/feature-header"
 import { GlobalSpotlight } from "./feature-section-component/global-spotlight"
+import { Marquee } from "./feature-section-component/marquee"
 import { ParticleCard } from "./feature-section-component/partical-card"
 
 export interface BentoCardProps {
@@ -189,8 +190,11 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
 								<p className="text-fg-secondary text-sm lg:max-w-[380px]">Only imports what you use ultra-light bundles for fast and improved performance.</p>
 							</div>
-							<div className="bg-fill1 flex h-full gap-[23px] pl-12"></div>
-							<div className="h-30 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+							<div className="relative flex h-full">
+								<Marquee />
+								<div className="from-bg/0 to-bg absolute left-0 top-1 h-full w-20 bg-gradient-to-l" />
+								<div className="from-bg/0 to-bg absolute right-0 top-1 h-full w-20 bg-gradient-to-r" />
+							</div>
 						</ParticleCard>
 
 						<div className="border-soft lg:flex-5 card card--border-glow relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
