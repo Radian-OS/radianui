@@ -79,7 +79,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 
 			// Calculate position with navbar offset
 			const elementTop = element.offsetTop
-			const scrollPosition = elementTop - navbarHeight - 10
+			const scrollPosition = elementTop - navbarHeight - 35
 
 			window.scrollTo({
 				top: scrollPosition,
