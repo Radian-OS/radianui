@@ -1,4 +1,4 @@
-import React, { memo } from "react"
+import React from "react"
 import { Check, Clipboard, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
@@ -15,7 +15,7 @@ interface CodeSnippetProps {
 	className?: string
 }
 
-const CodeSnippet = memo(({ code, title, collapsible = false, showLineNumber = false, className }: CodeSnippetProps) => {
+export default function CodeSnippet({ code, title, collapsible = false, showLineNumber = false, className }: CodeSnippetProps) {
 	const { theme } = useTheme()
 	const { copied, copy } = useCopyPaste({
 		code,
@@ -23,11 +23,6 @@ const CodeSnippet = memo(({ code, title, collapsible = false, showLineNumber = f
 		title: title || "CodeSnippet",
 		category: "CodeSnippet",
 	})
-
-	// Memoize the theme selection
-	const codeTheme = theme === "dark" ? "github-dark-high-contrast" : "github-light"
-
-	const CodeBlock = <CodeArea language="tsx" theme={codeTheme} code={code} lineNumbers={showLineNumber} className={cn("border-soft flex-1 rounded-[10px] border", className)} />
 
 	return (
 		<div className={cn("bg-fill2 flex flex-col gap-2 rounded-xl p-1.5", className)}>
@@ -40,11 +35,26 @@ const CodeSnippet = memo(({ code, title, collapsible = false, showLineNumber = f
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</Button>
 			</div>
-			{collapsible ? <CodeCollapsibleWrapper>{CodeBlock}</CodeCollapsibleWrapper> : CodeBlock}
+			{collapsible && (
+				<CodeCollapsibleWrapper>
+					<CodeArea
+						language="tsx"
+						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+						code={code}
+						lineNumbers={showLineNumber}
+						className={cn("border-soft flex-1 rounded-[10px] border", className)}
+					/>
+				</CodeCollapsibleWrapper>
+			)}
+			{!collapsible && (
+				<CodeArea
+					language="tsx"
+					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+					code={code}
+					lineNumbers={showLineNumber}
+					className={cn("border-soft flex-1 rounded-[10px] border", className)}
+				/>
+			)}
 		</div>
 	)
-})
-
-CodeSnippet.displayName = "CodeSnippet"
-
-export default CodeSnippet
+}

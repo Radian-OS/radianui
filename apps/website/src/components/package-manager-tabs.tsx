@@ -1,6 +1,7 @@
 "use client"
 
-import React, { SVGProps, memo, useCallback, useMemo } from "react"
+import React, { SVGProps } from "react"
+import type { JSX } from "react"
 import { Check, Clipboard } from "lucide-react"
 import { useTheme } from "next-themes"
 import { usePreferences } from "@/lib/preferences"
@@ -134,44 +135,33 @@ const BunIcon = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 )
 
-// Move pkg outside - constant reference
-const pkg: PackageManager[] = ["pnpm", "npm", "yarn", "bun"]
-
-const PackageManagerTabs = memo(({ commands, className, withIcon = false }: PackageManagerTabsProps) => {
+export default function PackageManagerTabs({ commands, className, withIcon = false }: PackageManagerTabsProps) {
 	const { theme } = useTheme()
+	// Replace local state with Zustand store
 	const { packageManager, setPackageManager } = usePreferences()
+
+	const pkg: PackageManager[] = ["pnpm", "npm", "yarn", "bun"]
+
+	const iconMap: Record<PackageManager, JSX.Element> = {
+		pnpm: <PnpmIcon className="size-4" />,
+		npm: <NpmIcon className="size-4" />,
+		yarn: <YarnIcon className="size-4" />,
+		bun: <BunIcon className="size-4" />,
+	}
+
 	const [copied, setCopied] = React.useState(false)
 
-	// Memoize theme
-	const codeTheme = useMemo(() => (theme === "dark" ? "github-dark-high-contrast" : "github-light"), [theme])
-
-	// Only create iconMap if withIcon is true
-	const iconMap = useMemo(() => {
-		if (!withIcon) return null
-
-		return {
-			pnpm: <PnpmIcon className="size-4" />,
-			npm: <NpmIcon className="size-4" />,
-			yarn: <YarnIcon className="size-4" />,
-			bun: <BunIcon className="size-4" />,
-		}
-	}, [withIcon])
-
-	// Memoize handlers
-	const handleCopy = useCallback(() => {
+	const handleCopy = () => {
 		navigator.clipboard.writeText(commands[packageManager])
 		setCopied(true)
 		setTimeout(() => setCopied(false), 1200)
-	}, [commands, packageManager])
+	}
 
-	const handleTabChange = useCallback(
-		(val: string) => {
-			if (pkg.includes(val as PackageManager)) {
-				setPackageManager(val as PackageManager)
-			}
-		},
-		[setPackageManager]
-	)
+	const handleTabChange = (val: string) => {
+		if (pkg.includes(val as PackageManager)) {
+			setPackageManager(val as PackageManager)
+		}
+	}
 
 	return (
 		<Tabs value={packageManager} onValueChange={handleTabChange} className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
@@ -179,7 +169,7 @@ const PackageManagerTabs = memo(({ commands, className, withIcon = false }: Pack
 				<TabsList className="bg-transparent" variant="outline-ghost" size="md">
 					{pkg.map((manager) => (
 						<TabsTrigger key={manager} value={manager} className={withIcon ? "gap-1" : ""}>
-							{withIcon && iconMap?.[manager]}
+							{withIcon && iconMap[manager]}
 							{manager}
 						</TabsTrigger>
 					))}
@@ -190,13 +180,15 @@ const PackageManagerTabs = memo(({ commands, className, withIcon = false }: Pack
 			</div>
 			{pkg.map((manager) => (
 				<TabsContent key={manager} value={manager}>
-					<CodeArea language="bash" theme={codeTheme} code={commands[manager]} lineNumbers={false} className={cn("border-soft max-w-full rounded-[10px] border", className)} />
+					<CodeArea
+						language="bash"
+						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+						code={commands[manager]}
+						lineNumbers={false}
+						className={cn("border-soft max-w-full rounded-[10px] border", className)}
+					/>
 				</TabsContent>
 			))}
 		</Tabs>
 	)
-})
-
-PackageManagerTabs.displayName = "PackageManagerTabs"
-
-export default PackageManagerTabs
+}
