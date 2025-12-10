@@ -459,3 +459,146 @@
 	--color-primary-hover: oklch(0.9349 0.004 286.32);
 	--color-primary-text: oklch(0.6619 0.0235 285.74);
 }
+
+/* feature section css */
+
+.bento-section {
+	--glow-x: 50%;
+	--glow-y: 50%;
+	--glow-intensity: 0;
+	--glow-radius: 200px;
+	--glow-color: var(--color-primary);
+	--white: hsl(0, 0%, 100%);
+	--purple-primary: var(--color-primary);
+	--purple-glow: color-mix(in oklch, var(--color-primary), transparent 80%);
+	--purple-border: color-mix(in oklch, var(--color-primary), transparent 20%);
+}
+
+.card-responsive {
+	grid-template-columns: 1fr;
+	width: 90%;
+	margin: 0 auto;
+	padding: 0.5rem;
+}
+
+@media (min-width: 600px) {
+	.card-responsive {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1024px) {
+	.card-responsive {
+		grid-template-columns: repeat(4, 1fr);
+	}
+
+	.card-responsive .card:nth-child(3) {
+		grid-column: span 2;
+		grid-row: span 2;
+	}
+
+	.card-responsive .card:nth-child(4) {
+		grid-column: 1 / span 2;
+		grid-row: 2 / span 2;
+	}
+
+	.card-responsive .card:nth-child(6) {
+		grid-column: 4;
+		grid-row: 3;
+	}
+}
+
+/* Firefox-compatible border glow */
+.card--border-glow {
+	position: relative;
+}
+
+.card--border-glow::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	padding: 1px;
+	background: radial-gradient(
+		var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+		color-mix(in oklch, var(--color-primary), transparent 20%) 0%,
+		color-mix(in oklch, var(--color-primary), transparent 60%) 30%,
+		transparent 70%
+	);
+	border-radius: inherit;
+	pointer-events: none;
+	z-index: 2;
+	opacity: var(--glow-intensity);
+	transition: opacity 0.3s ease;
+}
+
+/* Chrome/Safari specific - webkit mask */
+.card--border-glow::before {
+	mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+	-webkit-mask:
+		linear-gradient(#fff 0 0) content-box,
+		linear-gradient(#fff 0 0);
+	mask-composite: exclude;
+	-webkit-mask-composite: xor;
+}
+
+/* Firefox specific - standard mask */
+@supports (mask-composite: subtract) {
+	.card--border-glow::before {
+		mask:
+			linear-gradient(#fff 0 0) content-box,
+			linear-gradient(#fff 0 0);
+		mask-composite: subtract;
+	}
+}
+
+/* Fallback for older Firefox versions */
+@supports not (mask-composite: subtract) {
+	.card--border-glow::before {
+		mask:
+			linear-gradient(#fff, #fff) content-box,
+			linear-gradient(#fff, #fff);
+		mask-composite: subtract;
+		-webkit-mask: none;
+	}
+}
+
+.card--border-glow:hover::before {
+	opacity: 1;
+}
+
+.particle::before {
+	content: "";
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	background: color-mix(in oklch, var(--color-primary), transparent 80%);
+	border-radius: 50%;
+	z-index: -1;
+}
+
+.particle-container:hover {
+	box-shadow:
+		0 4px 20px color-mix(in oklch, var(--color-primary), transparent 80%),
+		0 0 30px color-mix(in oklch, var(--color-primary), transparent 80%);
+}
+
+@keyframes component-beam-flow-reverse {
+	0% {
+		stroke-dashoffset: -1000;
+		opacity: 0;
+	}
+	5% {
+		opacity: 1;
+	}
+	95% {
+		opacity: 1;
+	}
+	100% {
+		stroke-dashoffset: 0;
+		opacity: 0;
+	}
+}
