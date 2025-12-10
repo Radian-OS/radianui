@@ -23,12 +23,12 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 	SidebarProvider,
-	SidebarRail,
+	SidebarTrigger,
 } from "@/registry/ui/sidebar"
 
 export default function Inset() {
 	return (
-		<div className="h-[420px]">
+		<div className="h-[700px]">
 			<SidebarProvider>
 				{/* Using absolute positioning to prevent layout shift in the preview — remove when using fullscreen. */}
 				<Sidebar variant="inset" collapsible="offcanvas" className="absolute">
@@ -143,9 +143,10 @@ export default function Inset() {
 							</CardContent>
 						</Card>
 					</SidebarFooter>
-					<SidebarRail />
 				</Sidebar>
-				<SidebarInset></SidebarInset>
+				<SidebarInset>
+					<SidebarTrigger className="ml-1.5 mt-1.5" />
+				</SidebarInset>
 			</SidebarProvider>
 		</div>
 	)

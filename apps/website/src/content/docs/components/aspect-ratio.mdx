@@ -11,28 +11,14 @@ links:
 
 <ComponentPreview path="aspect-ratio/aspect-ratio-preview-16-9" />
 
-import { LucideInfo } from "lucide-react"
-
-<Alert variant="soft" color="warning">
-	<AlertIcon>
-		<LucideInfo size={20} />
-	</AlertIcon>
-	<AlertContent>
-		<AlertTitle>Note</AlertTitle>
-		<AlertDescription>
-			For the aspect ratio to work, make sure the container has a set width. The height adjusts automatically based on that width, so the ratio stays correct.
-		</AlertDescription>
-	</AlertContent>
-</Alert>
-
 ## Installation
 
-<Tabs defaultValue="cli">
-	<TabsList>
-		<TabsTrigger value="cli">CLI</TabsTrigger>
-		<TabsTrigger value="manual">Manual</TabsTrigger>
-	</TabsList>
-	<TabsContent value="cli" className="p-0">
+<InstallationTabs>
+	<InstallTabsList>
+		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
+		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
+	</InstallTabsList>
+	<InstallTabsContent value="cli" className="p-0">
 		<PackageManagerTabs
 			commands={{
 				pnpm: "pnpm dlx radianui@latest add aspect-ratio",
@@ -41,8 +27,8 @@ import { LucideInfo } from "lucide-react"
 				bun: "bunx radianui@latest add aspect-ratio",
 			}}
 		/>
-	</TabsContent>
-	<TabsContent value="manual" className="p-0">
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
 		<Steps>
 			<Step>Install the following dependencies:</Step>
 			<PackageManagerTabs
@@ -57,8 +43,8 @@ import { LucideInfo } from "lucide-react"
 			<ComponentSource name="aspect-ratio" title="components/ui/aspect-ratio.tsx" collapsible={false} />
 			<Step>Update the import paths as per your project structure.</Step>
 		</Steps>
-	</TabsContent>
-</Tabs>
+	</InstallTabsContent>
+</InstallationTabs>
 
 ## Usage
 
@@ -74,6 +60,16 @@ import { LucideInfo } from "lucide-react"
 	    <Image src="/media/background-2.png" alt="Example" fill />
 </AspectRatio>`}
 />
+
+---
+
+## How Radix Aspect Ratio Works
+
+The **AspectRatio** component ensures that the height is always calculated from the width, keeping the specified ratio intact.
+If you apply a fixed height, the component can’t maintain the ratio as intended.
+
+If you need a fixed height, simply avoid using **AspectRatio**.
+Set the height directly and let the width adjust normally.
 
 ---
 

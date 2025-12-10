@@ -22,12 +22,12 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 	SidebarProvider,
-	SidebarRail,
+	SidebarTrigger,
 } from "@/registry/ui/sidebar"
 
 export default function SidebarPreview() {
 	return (
-		<div className="h-[420px]">
+		<div className="h-[700px]">
 			<SidebarProvider>
 				{/* Using absolute positioning to prevent layout shift in the preview — remove when using fullscreen. */}
 				<Sidebar variant="floating" collapsible="offcanvas" className="[&>[data-slot=sidebar-inner]]:bg-fill2-alpha absolute">
@@ -142,8 +142,8 @@ export default function SidebarPreview() {
 							</CardContent>
 						</Card>
 					</SidebarFooter>
-					<SidebarRail />
 				</Sidebar>
+				<SidebarTrigger className="ml-1.5 mt-1.5" />
 			</SidebarProvider>
 		</div>
 	)

@@ -22,17 +22,20 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 	SidebarProvider,
-	SidebarRail,
+	SidebarTrigger,
 } from "@/registry/ui/sidebar"
 
 export default function SidebarPreview() {
 	return (
-		<div className="h-[420px]">
+		<div className="h-[700px]">
 			<SidebarProvider>
 				{/* Using absolute positioning to prevent layout shift in the preview — remove when using fullscreen. */}
-				<Sidebar side="left" variant="floating" collapsible="offcanvas" className="[&>[data-slot=sidebar-inner]]:bg-fill2-alpha absolute">
+				<Sidebar className="absolute">
 					<SidebarHeader className="flex flex-col gap-5">
-						<Image src="/radian.svg" alt="Logo" width={100} height={100} className="h-7 w-fit" />
+						<div className="flex items-center gap-2">
+							<Image src="/favicon-16x16.png" alt="Logo" width={100} height={100} className="h-7 w-fit" />
+							<p className="text-xl font-bold">Radian</p>
+						</div>
 						<div className="shadow-xs flex items-center gap-3 rounded-lg border py-2 pe-4 ps-2.5">
 							<Avatar className="flex-shrink-0">
 								<AvatarImage src="/media/male-4.png" />
@@ -139,9 +142,8 @@ export default function SidebarPreview() {
 							</CardContent>
 						</Card>
 					</SidebarFooter>
-					<SidebarRail />
 				</Sidebar>
-				test
+				<SidebarTrigger className="ml-1.5 mt-1.5" />
 			</SidebarProvider>
 		</div>
 	)
