@@ -162,7 +162,7 @@ const components = (examples: typeof Examples | undefined) => ({
 			.replace(/\s+/g, "-")
 			.replace(/[^\w-]/g, "")
 		return (
-			<h3 className={cn("group mb-3 mt-6 flex scroll-mt-20 items-center text-lg font-medium leading-7", className)} {...props}>
+			<h3 className={cn("scroll-mt-26 group mb-3 mt-6 flex items-center text-lg font-medium leading-7", className)} {...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
 					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
