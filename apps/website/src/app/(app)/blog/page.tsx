@@ -1,6 +1,7 @@
 import { allBlogs } from "contentlayer/generated"
 import Image from "next/image"
 import Link from "next/link"
+import { subscribe } from "@/app/actions/subscribe"
 import { EmailSubscribe } from "@/components/email-subscribe"
 // import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
@@ -23,7 +24,7 @@ export default async function BlogPage({ params }: BlogListPageProps) {
 						<h1 className="heading-3">Latest Updates and Insights from the Radian Team</h1>
 					</div>
 					<p className="text-fg-secondary text-base">Learn more about Radian OS, updates, and reads from our team and industry leading experts</p>
-					<EmailSubscribe />
+					<EmailSubscribe subscribe={subscribe} />
 				</section>
 				<div className="hidden items-center md:flex">
 					<svg className="text-border" width="200" height="200" viewBox="0 0 200 200" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
