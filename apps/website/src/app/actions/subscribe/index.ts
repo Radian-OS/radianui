@@ -1,7 +1,9 @@
 "use server"
 
+// import { render } from "@react-email/components"
 import { Resend } from "resend"
-import WelcomeEmailTemplate from "@/components/email/welcome-email-template"
+
+// import WelcomeEmailTemplate from "@/components/email/welcome-email-template"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
@@ -27,7 +29,8 @@ export async function subscribe(email: string) {
 				from: process.env.RESEND_FROM_EMAIL!,
 				to: email,
 				subject: "Welcome to RadianOS",
-				react: WelcomeEmailTemplate({ baseUrl: process.env.NEXT_PUBLIC_WEBSITE_URL! }),
+				// react: render(WelcomeEmailTemplate({ baseUrl: process.env.NEXT_PUBLIC_WEBSITE_URL! })),
+				text: "Hello, world!",
 			})
 		} catch (emailError) {
 			console.error("Failed to send welcome email:", emailError)
