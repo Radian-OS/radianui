@@ -71,6 +71,11 @@
 
 	html {
 		scroll-behavior: smooth;
+		@apply tracking-tight;
+	}
+
+	[class*="heading-"] {
+		@apply tracking-normal;
 	}
 }
 
