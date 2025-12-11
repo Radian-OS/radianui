@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import { subscribe } from "@/app/actions/subscribe"
 import { EmailSubscribe } from "@/components/email-subscribe"
-// import { Avatar, AvatarGroup } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
 
