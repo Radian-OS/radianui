@@ -74,7 +74,7 @@ export default function Uploads() {
 						</div>
 					</div>
 					{errors.length > 0 && (
-						<div className="text-destructive flex items-center gap-1 text-xs" role="alert">
+						<div className="text-error-text flex items-center gap-1 text-xs" role="alert">
 							<AlertCircleIcon className="size-3 shrink-0" />
 							<span>{errors[0]}</span>
 						</div>

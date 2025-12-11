@@ -152,7 +152,7 @@ export default function ColorPlayground() {
 				</Button>
 			</div>
 
-			{error && <div className="text-destructive text-sm">Failed to load theme: {error}</div>}
+			{error && <div className="text-error-text text-sm">Failed to load theme: {error}</div>}
 
 			<div className="bg-elevation-negative border-soft rounded-2xl">
 				<CommonCard />

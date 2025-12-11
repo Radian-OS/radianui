@@ -15,7 +15,7 @@ export default function SliderWithMarks() {
 				{marks.map((mark) => {
 					const percent = ((mark - min) / (max - min)) * 100
 					return (
-						<span key={mark} className="text-muted-foreground absolute flex -translate-x-1/2 flex-col items-center text-xs" style={{ left: `${percent}%` }}>
+						<span key={mark} className="text-fg-secondary absolute flex -translate-x-1/2 flex-col items-center text-xs" style={{ left: `${percent}%` }}>
 							{mark}
 						</span>
 					)

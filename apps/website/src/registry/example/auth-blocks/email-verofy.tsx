@@ -20,7 +20,7 @@ const VerifyEmail = () => {
 						<div className="space-y-2">
 							<h1 className="flex justify-between text-2xl font-semibold">Verify your email</h1>
 							<div className="flex justify-between">
-								<p className="text-muted-foreground text-sm font-medium">We&apos;ve sent an email to fullname@domain.com to activate your account</p>
+								<p className="text-fg-secondary text-sm font-medium">We&apos;ve sent an email to fullname@domain.com to activate your account</p>
 							</div>
 						</div>
 						<div className="space-y-2">
@@ -33,7 +33,7 @@ const VerifyEmail = () => {
 								</Link>
 							</Button>
 							<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
-								<p className="text-muted-foreground">
+								<p className="text-fg-secondary">
 									Didn&apos;t get the email? Check your spam folder!
 									<Link href="/">Re-enter your email and try again</Link>
 								</p>

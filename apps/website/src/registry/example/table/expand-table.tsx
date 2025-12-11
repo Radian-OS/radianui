@@ -3,7 +3,6 @@
 import { Fragment } from "react"
 import { ColumnDef, flexRender, getCoreRowModel, getExpandedRowModel, useReactTable } from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon, InfoIcon } from "lucide-react"
-import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
@@ -114,7 +113,7 @@ const columns: ColumnDef<Item>[] = [
 	{
 		header: "Status",
 		accessorKey: "status",
-		cell: ({ row }) => <Badge className={cn(row.getValue("status") === "Inactive" && "bg-muted-foreground/60 text-primary-foreground")}>{row.getValue("status")}</Badge>,
+		cell: ({ row }) => <Badge color={row.getValue("status") === "Inactive" ? "neutral" : undefined}>{row.getValue("status")}</Badge>,
 	},
 	{
 		header: () => <div className="text-right">Balance</div>,

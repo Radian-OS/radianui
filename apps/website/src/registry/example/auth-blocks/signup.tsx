@@ -21,10 +21,10 @@ const SignUp = () => {
 						<div className="space-y-2">
 							<h1 className="flex justify-between text-2xl font-semibold">Sign up</h1>
 							<div className="flex justify-between">
-								<p className="text-muted-foreground text-sm font-medium">
+								<p className="text-fg-secondary text-sm font-medium">
 									Already have an account?{" "}
 									<Link href={"/signup"}>
-										<span className="text-foreground">Sign in</span>
+										<span className="text-fg">Sign in</span>
 									</Link>
 								</p>
 							</div>
@@ -41,8 +41,8 @@ const SignUp = () => {
 								Sign Up
 							</Button>
 							<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
-								<p className="text-muted-foreground">
-									By signing up, you agree to Radian &apos;s <span className="text-foreground">Terms of Service</span> and <span className="text-foreground">Privacy Policy</span>
+								<p className="text-fg-secondary">
+									By signing up, you agree to Radian &apos;s <span className="text-fg">Terms of Service</span> and <span className="text-fg">Privacy Policy</span>
 								</p>
 							</div>
 						</div>

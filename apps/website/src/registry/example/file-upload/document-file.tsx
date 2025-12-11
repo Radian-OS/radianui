@@ -192,7 +192,7 @@ export default function Component() {
 				onDrop={handleDrop}
 				data-dragging={isDragging || undefined}
 				data-files={files.length > 0 || undefined}
-				className="border-input data-[dragging=true]:bg-accent/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 not-data-[files]:justify-center relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
+				className="border-input data-[dragging=true]:bg-elevation-level1/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 not-data-[files]:justify-center relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
 				<input {...getInputProps()} className="sr-only" aria-label="Upload image file" />
 				{files.length > 0 ? (
 					<div className="flex w-full flex-col gap-3">
@@ -268,11 +268,11 @@ export default function Component() {
 					</div>
 				) : (
 					<div className="flex flex-col items-center justify-center px-4 py-3 text-center">
-						<div className="bg-background mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
+						<div className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 							<ImageIcon className="size-4 opacity-60" />
 						</div>
 						<p className="mb-1.5 text-sm font-medium">Drop your files here</p>
-						<p className="text-muted-foreground text-xs">
+						<p className="text-fg-secondary text-xs">
 							Max {maxFiles} files ∙ Up to {maxSizeMB}MB
 						</p>
 						<Button variant="outline" color="neutral" className="mt-4" onClick={openFileDialog}>
@@ -284,7 +284,7 @@ export default function Component() {
 			</div>
 
 			{errors.length > 0 && (
-				<div className="text-destructive flex items-center gap-1 text-xs" role="alert">
+				<div className="text-error-text flex items-center gap-1 text-xs" role="alert">
 					<AlertCircleIcon className="size-3 shrink-0" />
 					<span>{errors[0]}</span>
 				</div>

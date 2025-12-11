@@ -49,7 +49,7 @@ export default function DocumentUpload() {
 				<input {...getInputProps()} className="sr-only" aria-label="Upload files" />
 
 				<div className="flex flex-col items-center justify-center text-center">
-					<div className="bg-background mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
+					<div className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
 						<FileUpIcon className="size-4 opacity-60" />
 					</div>
 					<p className="mb-1.5 text-sm font-medium">Upload files</p>

@@ -50,7 +50,7 @@ const bannerVariants = cva("flex items-center justify-center w-full gap-2 p-2 ov
 		{ color: "success", variant: "strong", className: "bg-success text-white" },
 
 		// Outline
-		{ color: "neutral", variant: "outline", className: "bg-transparent text-foreground " },
+		{ color: "neutral", variant: "outline", className: "bg-transparent text-fg " },
 		{ color: "primary", variant: "outline", className: "bg-transparent text-primary-text" },
 		{ color: "info", variant: "outline", className: "bg-transparent text-info-text" },
 		{ color: "success", variant: "outline", className: "bg-transparent text-success-text" },

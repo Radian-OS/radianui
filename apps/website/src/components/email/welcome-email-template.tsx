@@ -144,7 +144,7 @@ export default function WelcomeEmailTemplate({ baseUrl }: { baseUrl: string }) {
 												<Column align="right">
 													<Img src={`${baseUrl}/media/github.png`} width="20" height="20" alt="github" style={{ display: "block" }} />
 												</Column>
-												<Column align="left" className="text-secondary text-sm font-medium">
+												<Column align="left" className="text-fg-secondary text-sm font-medium">
 													GitHub
 												</Column>
 											</Row>
@@ -158,7 +158,7 @@ export default function WelcomeEmailTemplate({ baseUrl }: { baseUrl: string }) {
 												<Column align="right">
 													<Img src={`${baseUrl}/media/linked-in.png`} width="20" height="20" alt="linked-in" style={{ display: "block" }} />
 												</Column>
-												<Column align="left" className="text-secondary text-sm font-medium">
+												<Column align="left" className="text-fg-secondary text-sm font-medium">
 													LinkedIn
 												</Column>
 											</Row>

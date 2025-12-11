@@ -23,10 +23,10 @@ const SignIn = () => {
 					<div className="space-y-6">
 						<div className="space-y-2">
 							<h1 className="text-2xl font-semibold">Sign in</h1>
-							<p className="text-muted-foreground text-sm font-medium">
+							<p className="text-fg-secondary text-sm font-medium">
 								Don&apos;t have an account yet?{" "}
 								<Link href={"/signup"}>
-									<span className="text-foreground">Sign up</span>
+									<span className="text-fg">Sign up</span>
 								</Link>
 							</p>
 						</div>
