@@ -1,6 +1,6 @@
 import React from "react"
 import { BentoCardGrid } from "../features-section"
-import { ComponentSvg } from "./componentsvg"
+import { ComponentsUI } from "./components-ui"
 
 interface ComponentFlowCardProps {
 	gridRef?: React.RefObject<HTMLDivElement | null>
@@ -8,7 +8,7 @@ interface ComponentFlowCardProps {
 
 export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef }) => {
 	return (
-		<div className="h-full w-full pt-5">
+		<div className="h-full w-full overflow-hidden pt-5">
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center">
 				<div className="relative flex w-full items-center justify-center">
 					{/* Left side SVGs */}
@@ -99,13 +99,13 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 						</svg>
 					</div>
 
-					{/* Center ComponentSvg */}
-					<div className="relative z-10">
-						<ComponentSvg />
+					{/* Center ComponentUI */}
+					<div className="z-1 relative">
+						<ComponentsUI />
 					</div>
 
 					{/* Right side SVGs */}
-					<div className="absolute -top-2 right-0 flex flex-col gap-[38px]">
+					<div className="absolute -top-2 right-0 z-0 flex flex-col gap-[38px]">
 						<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212" stroke="var(--color-soft)" />
 							<path

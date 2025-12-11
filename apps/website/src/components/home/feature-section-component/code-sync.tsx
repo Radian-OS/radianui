@@ -114,12 +114,12 @@ const data = [
 export function CodeSync() {
 	const [offset, setOffset] = useState(0)
 	const totalCards = data.length
-	const duplicatedData = Array(6).fill(data).flat()
+	const duplicatedData = Array(10).fill(data).flat()
 
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setOffset((prev) => {
-				if (prev >= duplicatedData.length - 1) {
+				if (prev >= duplicatedData.length - 4) {
 					return 0
 				}
 				return prev + 1
