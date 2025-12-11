@@ -27,7 +27,7 @@ export async function subscribe(email: string) {
 				from: process.env.RESEND_FROM_EMAIL!,
 				to: email,
 				subject: "Welcome to RadianOS",
-				react: WelcomeEmailTemplate(),
+				react: WelcomeEmailTemplate({ baseUrl: process.env.NEXT_PUBLIC_WEBSITE_URL! }),
 			})
 		} catch (emailError) {
 			console.error("Failed to send welcome email:", emailError)

@@ -2,7 +2,7 @@ import React from "react"
 import { Body, Button, Column, Container, Font, Head, Heading, Hr, Html, Img, Link, Row, Section, Text } from "@react-email/components"
 import { TailwindConfig } from "@/components/email/tailwind-config"
 
-export default function WelcomeEmailTemplate() {
+export default function WelcomeEmailTemplate({ baseUrl }: { baseUrl: string }) {
 	return (
 		<Html lang="en">
 			<TailwindConfig>
@@ -22,7 +22,7 @@ export default function WelcomeEmailTemplate() {
 					<Container className="max-w-150 my-3">
 						{/* Welcome To The Community Section */}
 						<Section>
-							<Img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/radian.png`} alt="radianos-logo" height="36" />
+							<Img src={`${baseUrl}/media/radian.png`} alt="radianos-logo" height="36" />
 							<Heading as="h1" m={0} className="text-fg my-12 text-2xl font-semibold leading-8">
 								Welcome to the Community 👋🏻
 							</Heading>
@@ -43,7 +43,7 @@ export default function WelcomeEmailTemplate() {
 								Available on the Figma Community, Radian is a free design system and UI kit built for solo designers, freelancers, startups, agencies, and organizations. It
 								utilizes all modern Figma practices such as auto layout, variables, and token systems.
 							</Text>
-							<Img className="border-fill2 my-8 border-8" src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/figma-community-file.png`} alt="figma-community-file" height="352" />
+							<Img className="border-fill2 my-8 border-8" src={`${baseUrl}/media/figma-community-file.png`} alt="figma-community-file" height="352" />
 							<Button className="bg-primary block w-full py-2.5 text-center font-medium text-white hover:cursor-pointer">❖ Radian Design System ❖ Figma Kit ↗</Button>
 						</Section>
 
@@ -58,12 +58,7 @@ export default function WelcomeEmailTemplate() {
 								Get detailed API and prop references for components, usage examples, and installation instructions for different frameworks and many more technical details for your
 								product development.
 							</Text>
-							<Img
-								className="border-fill2 my-8 border-8"
-								src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/documentation-for-development.png`}
-								alt="documentation-for-development"
-								height="352"
-							/>
+							<Img className="border-fill2 my-8 border-8" src={`${baseUrl}/media/documentation-for-development.png`} alt="documentation-for-development" height="352" />
 							<Button className="bg-primary block w-full py-2.5 text-center font-medium text-white hover:cursor-pointer">Read Documentation ↗</Button>
 						</Section>
 
@@ -83,12 +78,7 @@ export default function WelcomeEmailTemplate() {
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Theme Design To Your New Project
 									</Heading>
-									<Img
-										src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/theme-design-to-your-new-project.png`}
-										alt="theme-design-to-your-new-project"
-										height="335"
-										className="border-fill2 my-6 border-8"
-									/>
+									<Img src={`${baseUrl}/media/theme-design-to-your-new-project.png`} alt="theme-design-to-your-new-project" height="335" className="border-fill2 my-6 border-8" />
 									<Text className="text-fg m-0 text-base leading-7">
 										<span className="font-semibold">Changing the logo and Primary theme:</span> The single biggest impact you can make immediately is changing the Primary Color &
 										Brand Logo. Read the documentation on colors, typography and logo pages within the Figma file. This will save hours of rework later.
@@ -99,12 +89,7 @@ export default function WelcomeEmailTemplate() {
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Navigating Documentation
 									</Heading>
-									<Img
-										src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/navigating-documentation.png`}
-										alt="navigating-documentation"
-										height="335"
-										className="border-fill2 my-6 border-8"
-									/>
+									<Img src={`${baseUrl}/media/navigating-documentation.png`} alt="navigating-documentation" height="335" className="border-fill2 my-6 border-8" />
 									<Text className="text-fg m-0 text-base leading-7">
 										<span className="font-semibold">Use the Command Palette for Help:</span> In Radian’s website make use of the [⌘ + K] shortcut. Its the fastest way to search
 										components, specific design stuff, documentation, and helpful troubleshooting tips without leaving your current context.
@@ -115,7 +100,7 @@ export default function WelcomeEmailTemplate() {
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Examples and Blocks
 									</Heading>
-									<Img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/examples-and-blocks.png`} alt="examples-and-blocks" height="335" className="border-fill2 my-6 border-8" />
+									<Img src={`${baseUrl}/media/examples-and-blocks.png`} alt="examples-and-blocks" height="335" className="border-fill2 my-6 border-8" />
 									<Text className="text-fg m-0 text-base leading-7">
 										<span className="font-semibold">Explore / search first:</span> At Radian we try to make sure you have everything you need right out the box. So we have plenty
 										of examples and layout blocks for each component. Navigate the documentation for component or visit the blocks page. You might find something you are trying to
@@ -145,7 +130,7 @@ export default function WelcomeEmailTemplate() {
 										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
-													<Img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/x.png`} width="20" height="20" alt="x" style={{ display: "block" }} />
+													<Img src={`${baseUrl}/media/x.png`} width="20" height="20" alt="x" style={{ display: "block" }} />
 												</Column>
 												<Column align="left">X (Twitter)</Column>
 											</Row>
@@ -157,7 +142,7 @@ export default function WelcomeEmailTemplate() {
 										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
-													<Img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/github.png`} width="20" height="20" alt="github" style={{ display: "block" }} />
+													<Img src={`${baseUrl}/media/github.png`} width="20" height="20" alt="github" style={{ display: "block" }} />
 												</Column>
 												<Column align="left" className="text-secondary text-sm font-medium">
 													GitHub
@@ -171,7 +156,7 @@ export default function WelcomeEmailTemplate() {
 										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
-													<Img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/linked-in.png`} width="20" height="20" alt="linked-in" style={{ display: "block" }} />
+													<Img src={`${baseUrl}/media/linked-in.png`} width="20" height="20" alt="linked-in" style={{ display: "block" }} />
 												</Column>
 												<Column align="left" className="text-secondary text-sm font-medium">
 													LinkedIn
@@ -201,7 +186,7 @@ export default function WelcomeEmailTemplate() {
 						<Hr className="m-0 my-12 bg-[#06063714]" />
 
 						<Section>
-							<Img alt="radian-logo" className="mb-4" height={24} src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/radian.png`} />
+							<Img alt="radian-logo" className="mb-4" height={24} src={`${baseUrl}/media/radian.png`} />
 							<Row>
 								<Column className="w-4/5" align="left">
 									<Text className="text-fg-secondary m-0">
@@ -225,7 +210,7 @@ export default function WelcomeEmailTemplate() {
 													cursor: "pointer",
 													display: "inline-block",
 												}}>
-												<Img alt="github" height="20" src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/github.png`} width="20" />
+												<Img alt="github" height="20" src={`${baseUrl}/media/github.png`} width="20" />
 											</Button>
 										</Column>
 										<Column>
@@ -240,7 +225,7 @@ export default function WelcomeEmailTemplate() {
 													cursor: "pointer",
 													display: "inline-block",
 												}}>
-												<Img alt="linked-in" height="20" src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/linked-in.png`} width="20" />
+												<Img alt="linked-in" height="20" src={`${baseUrl}/media/linked-in.png`} width="20" />
 											</Button>
 										</Column>
 										<Column>
@@ -255,7 +240,7 @@ export default function WelcomeEmailTemplate() {
 													cursor: "pointer",
 													display: "inline-block",
 												}}>
-												<Img alt="x" height="20" src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/media/x.png`} width="20" />
+												<Img alt="x" height="20" src={`${baseUrl}/media/x.png`} width="20" />
 											</Button>
 										</Column>
 									</Row>
