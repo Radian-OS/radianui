@@ -19,7 +19,7 @@ export const COLORS = [
 ]
 
 export const FONTS = [
-	{ title: "Inter - Inter Display (Default)", value: "inter" },
+	{ title: "Geist - Inter (Default)", value: "geist-inter" },
 	{ title: "Roboto", value: "roboto" },
 	{ title: "Geist", value: "geist" },
 	{ title: "DM Sans", value: "dm-sans" },
@@ -33,7 +33,7 @@ export const FONTS = [
 	{ title: "Figtree", value: "figtree" },
 ]
 export const DEFAULT_FRAMEWORK = "next-app"
-export const DEFAULT_FONT = "inter"
+export const DEFAULT_FONT = "geist-inter"
 export const DEFAULT_BRAND_COLOR = "amber"
 export const DEFAULT_PROJECT_NAME = "my-app"
 export const MAX_PROJECT_NAME_LENGTH = 128

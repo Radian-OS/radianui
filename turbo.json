@@ -12,8 +12,7 @@
       "env": [
         "DATABASE_URL",
         "NEXT_PUBLIC_*",
-        "RESEND_API_KEY",
-        "RESEND_FROM_EMAIL"
+        "RESEND_*"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",
