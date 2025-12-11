@@ -16,6 +16,7 @@ export async function subscribe(email: string) {
 		}
 
 		await delay(1000)
+
 		const { error } = await resend.contacts.create({
 			email: email,
 			unsubscribed: false,
@@ -26,6 +27,7 @@ export async function subscribe(email: string) {
 		}
 
 		await delay(1000)
+
 		const { error: emailError } = await resend.emails.send({
 			from: process.env.RESEND_FROM_EMAIL!,
 			to: email,
@@ -36,14 +38,12 @@ export async function subscribe(email: string) {
 		})
 
 		if (emailError) {
-			console.error("Failed to send welcome email:", emailError)
 			return {
 				message: "Contact added but failed to send welcome email",
 				status: 500,
 			}
 		}
 
-		console.log("email sent successfully")
 		return { message: "Email subscribed successfully", status: 201 }
 	} catch (error) {
 		console.error("Failed to subscribe email:", error)
