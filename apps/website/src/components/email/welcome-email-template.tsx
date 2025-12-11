@@ -59,7 +59,9 @@ export default function WelcomeEmailTemplate({ baseUrl }: { baseUrl: string }) {
 								product development.
 							</Text>
 							<Img className="border-fill2 my-8 border-8" src={`${baseUrl}/media/documentation-for-development.png`} alt="documentation-for-development" height="352" />
-							<Button className="bg-primary block w-full py-2.5 text-center font-medium text-white hover:cursor-pointer">Read Documentation ↗</Button>
+							<Button href={`${baseUrl}/docs/getting-started/introduction`} className="bg-primary block w-full py-2.5 text-center font-medium text-white hover:cursor-pointer">
+								Read Documentation ↗
+							</Button>
 						</Section>
 
 						<Hr className="m-0 my-12 bg-[#06063714]" />
@@ -100,7 +102,7 @@ export default function WelcomeEmailTemplate({ baseUrl }: { baseUrl: string }) {
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Examples and Blocks
 									</Heading>
-									<Img src={`${baseUrl}/media/examples-and-blocks.png`} alt="examples-and-blocks" height="335" className="border-fill2 my-6 border-8" />
+									<Img src={`${baseUrl}/media/examples-and-blocks.png`} alt="examples-and-blocks" height="335" className="border-fill2 pointer-events-none my-6 border-8" />
 									<Text className="text-fg m-0 text-base leading-7">
 										<span className="font-semibold">Explore / search first:</span> At Radian we try to make sure you have everything you need right out the box. So we have plenty
 										of examples and layout blocks for each component. Navigate the documentation for component or visit the blocks page. You might find something you are trying to

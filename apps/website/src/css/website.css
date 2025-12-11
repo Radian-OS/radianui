@@ -71,7 +71,7 @@
 
 	html {
 		scroll-behavior: smooth;
-		@apply tracking-tight;
+		letter-spacing: -0.0125em;
 	}
 
 	[class*="heading-"] {
