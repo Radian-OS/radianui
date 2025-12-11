@@ -11,8 +11,9 @@
       ],
       "env": [
         "DATABASE_URL",
-        "NEXT_PUBLIC_POSTHOG_KEY",
-        "NEXT_PUBLIC_WEBAPP_URL"
+        "NEXT_PUBLIC_*",
+        "RESEND_API_KEY",
+        "RESEND_FROM_EMAIL"
       ],
       "inputs": [
         "$TURBO_DEFAULT$",

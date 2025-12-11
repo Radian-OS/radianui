@@ -1,15 +1,29 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
-import { useEmailSubscribe } from "@/hooks/use-email-subscribe"
+import { FieldValues, useForm } from "react-hook-form"
+import z from "zod"
+import { subscribe } from "@/app/actions/subscribe"
 import { cn } from "@/lib/utils"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
+import { Spinner } from "@/registry/ui/spinner"
 import { WebsiteLogo } from "../navbar/website-logo"
+
+type FormData = {
+	email: string
+}
+
+const formSchema = z.object({
+	email: z.string().min(1, "Email is required").email("Please enter a valid email address."),
+})
 
 const LINKS = [
 	{
@@ -85,7 +99,37 @@ const LINKS = [
 ]
 
 export default function FooterSection() {
-	const { email, setEmail, isPending, subscriptionResult, handleSubscribe } = useEmailSubscribe()
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: { email: "" },
+	})
+
+	const [subscriptionResult, setSubscriptionResult] = useState<{ message: string; status: number } | null>(null)
+
+	// Keep the subscription result for 5 seconds
+	useEffect(() => {
+		if (subscriptionResult) {
+			const timer = setTimeout(() => {
+				setSubscriptionResult(null)
+			}, 5000)
+
+			return () => clearTimeout(timer)
+		}
+	}, [subscriptionResult])
+
+	const onSubmit = async (data: FormData) => {
+		setSubscriptionResult(null)
+		try {
+			const result = await subscribe(data.email)
+			setSubscriptionResult(result)
+			if (result.status < 400) {
+				form.reset()
+			}
+		} catch (error) {
+			console.error("Failed to subscribe email:", error)
+			setSubscriptionResult({ message: "Something went wrong. Please try again.", status: 500 })
+		}
+	}
 
 	return (
 		<footer className="bg-bg before:from-bg before:via-soft before:to-bg w-full before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r">
@@ -139,20 +183,27 @@ export default function FooterSection() {
 						<h5 className="heading-5">Love Building Products?</h5>
 						<p className="text-fg-secondary text-sm font-normal">We’re adding tons of cool components and blocks to help you build. Subscribe to get updates on development</p>
 					</div>
-					<form onSubmit={handleSubscribe}>
-						<div className="flex gap-3">
-							<Input placeholder="Enter your email" size="40" className="w-70" value={email} onChange={(e) => setEmail(e.target.value)} required />
-							<Button size="40" type="submit" disabled={isPending}>
-								{isPending ? "Subscribing" : "Subscribe"}
-							</Button>
-						</div>
-						<p
-							className={cn("text-fg-tertiary text-xs font-normal", {
-								"text-error-text": subscriptionResult?.success == false,
-							})}>
-							{subscriptionResult?.message && subscriptionResult.message}
-						</p>
-					</form>
+					<Form {...form}>
+						<form onSubmit={form.handleSubmit(onSubmit)}>
+							<div className="flex gap-3">
+								<FormField
+									control={form.control}
+									name="email"
+									render={({ field }: { field: FieldValues }) => (
+										<FormItem className="w-70">
+											<FormControl>
+												<Input placeholder="Enter your email" type="email" {...field} required />
+											</FormControl>
+											<FormMessage className={cn({ "text-success-text": subscriptionResult?.status === 201 })}>{subscriptionResult?.message}</FormMessage>
+										</FormItem>
+									)}
+								/>
+								<Button className="w-23" type="submit" disabled={form.formState.isSubmitting}>
+									{form.formState.isSubmitting ? <Spinner variant="activity" /> : "Subscribe"}
+								</Button>
+							</div>
+						</form>
+					</Form>
 				</div>
 			</div>
 
@@ -160,7 +211,6 @@ export default function FooterSection() {
 			<div className="h-13 flex items-center justify-center">
 				<p className="text-fg-secondary text-center text-sm font-medium">© Copyright Radian OS 2025. All rights reserved.</p>
 			</div>
-			{/* <div className="hidden h-10 xl:block" /> */}
 		</footer>
 	)
 }

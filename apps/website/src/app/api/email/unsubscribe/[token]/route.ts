@@ -1,24 +1,24 @@
 import { eq } from "drizzle-orm"
 import { db } from "@/db"
-import { emailSubscribers } from "@/db/schema"
+import { subscribers } from "@/db/schema"
 
 export async function GET(_req: Request, { params }: { params: Promise<{ token: string }> }) {
 	const { token } = await params
 
 	try {
-		const [row] = await db.select().from(emailSubscribers).where(eq(emailSubscribers.unsubscribeToken, token))
-		if (!row) return Response.json({ success: false, message: "Token not found" }, { status: 403 })
+		const [row] = await db.select().from(subscribers).where(eq(subscribers.unsubscribeToken, token))
+		if (!row) return Response.json({ message: "Token not found", status: 403 })
 
 		await db
-			.update(emailSubscribers)
+			.update(subscribers)
 			.set({
 				isSubscribed: false,
 			})
-			.where(eq(emailSubscribers.unsubscribeToken, token))
+			.where(eq(subscribers.unsubscribeToken, token))
 
-		return Response.json({ success: true, message: "Unsubscribed from mailing list" }, { status: 200 })
+		return Response.json({ message: "Unsubscribed from mailing list", status: 200 })
 	} catch (err) {
 		console.error(err)
-		return Response.json({ success: false, message: "Error unsubscribing" }, { status: 500 })
+		return Response.json({ message: "Error unsubscribing", status: 500 })
 	}
 }
