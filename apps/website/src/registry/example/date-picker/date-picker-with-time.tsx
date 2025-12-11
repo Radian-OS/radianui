@@ -52,7 +52,7 @@ export default function DatePickerWithTimeExample() {
 								onChange={handleTimeChange}
 								className="peer appearance-none ps-9 [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-calendar-picker-indicator]:appearance-none"
 							/>
-							<div className="text-muted-foreground/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
+							<div className="text-fg-secondary/80 pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 peer-disabled:opacity-50">
 								<ClockIcon size={16} aria-hidden="true" />
 							</div>
 						</div>

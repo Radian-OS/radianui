@@ -184,7 +184,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft card card--border-glow lg:flex-3 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
+							className="border-soft z-5 card card--border-glow lg:flex-3 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<CircleGauge size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
@@ -192,8 +192,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 							<div className="relative flex h-full">
 								<Marquee />
-								<div className="from-bg/0 to-bg absolute left-0 top-1 h-full w-20 bg-gradient-to-l" />
-								<div className="from-bg/0 to-bg absolute right-0 top-1 h-full w-20 bg-gradient-to-r" />
+								<div className="from-bg/0 to-bg absolute left-0 top-1 z-0 h-full w-20 bg-gradient-to-l" />
+								<div className="from-bg/0 to-bg absolute right-0 top-1 z-0 h-full w-20 bg-gradient-to-r" />
 							</div>
 						</ParticleCard>
 

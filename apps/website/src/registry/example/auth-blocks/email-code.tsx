@@ -22,7 +22,7 @@ const EmailCode = () => {
 						<div className="space-y-2">
 							<h1 className="flex justify-between text-2xl font-semibold">Verify your email</h1>
 							<div className="flex justify-between">
-								<p className="text-muted-foreground text-sm font-medium">Please enter the 6-digit code we emailed you at fullname@domain.com</p>
+								<p className="text-fg-secondary text-sm font-medium">Please enter the 6-digit code we emailed you at fullname@domain.com</p>
 							</div>
 						</div>
 						<div className="space-y-5">

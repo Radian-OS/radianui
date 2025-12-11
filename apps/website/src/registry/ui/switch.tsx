@@ -80,7 +80,7 @@ const switchIndicatorVariants = cva("flex items-center justify-center w-full h-f
 	variants: {
 		state: {
 			on: "text-primary",
-			off: "text-muted-foreground",
+			off: "text-fg-secondary",
 		},
 	},
 	defaultVariants: {

@@ -27,7 +27,7 @@ export default function PopoverEmoji() {
 					</div>
 					<p className="text-fg-tertiary text-xs font-normal">radian_profile_1146.jpg</p>
 				</div>
-				<img height={170} width={300} src="/media/background-2.png" className="rounded-md" />
+				<img height={170} width={300} src="/media/background-2.png" alt="background" className="rounded-md" />
 				<div className="max-w-75 flex flex-wrap gap-1.5">
 					{selectedEmoji.map((emoji) => (
 						<Button variant="outline" color="neutral" size="28" key={emoji} onClick={() => setSelectedEmoji((prev) => prev.filter((e) => e !== emoji))}>

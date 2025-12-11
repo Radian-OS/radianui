@@ -37,16 +37,19 @@ export default function Page() {
 						</p>
 					</div>
 					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-						<Button
-							size="40"
-							className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0] sm:w-fit">
+						<Button variant="glossy" size="40">
 							Copy Terminal Command
 						</Button>
-						<Link href="/docs/components/accordion" className="w-full sm:w-fit">
-							<Button size="40" className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit" variant="outline" color="neutral">
+						<Button
+							asChild
+							size="40"
+							className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
+							variant="outline"
+							color="neutral">
+							<Link href="/docs/components/accordion" className="w-full sm:w-fit">
 								Browse Components
-							</Button>
-						</Link>
+							</Link>
+						</Button>
 					</div>
 				</div>
 

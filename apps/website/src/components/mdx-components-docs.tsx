@@ -260,12 +260,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-6")} {...props} />,
 	SocialLinkCards: () => <SocialLinkCards />,
 	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,
-	LinkedCard: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
-		<Link
-			className={cn("bg-card text-card-foreground hover:bg-muted/50 flex w-full flex-col items-center rounded-xl border p-6 shadow transition-colors sm:p-10", className)}
-			{...props}
-		/>
-	),
 	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
 		<Image
 			unoptimized

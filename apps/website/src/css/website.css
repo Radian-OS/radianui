@@ -522,14 +522,14 @@
 	content: "";
 	position: absolute;
 	inset: 0;
-	padding: 1px;
+	padding: 1.5px;
 	background: radial-gradient(
 		var(--glow-radius) circle at var(--glow-x) var(--glow-y),
 		color-mix(in oklch, var(--color-primary), transparent 20%) 0%,
 		color-mix(in oklch, var(--color-primary), transparent 60%) 30%,
 		transparent 70%
 	);
-	border-radius: inherit;
+	border-radius: 19px;
 	pointer-events: none;
 	z-index: 2;
 	opacity: var(--glow-intensity);

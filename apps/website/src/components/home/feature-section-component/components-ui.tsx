@@ -1,4 +1,4 @@
-export const ComponentSvg = ({ className }: { className?: string }) => {
+export const ComponentsUI = ({ className }: { className?: string }) => {
 	return (
 		<svg width="460" className={className} height="404" viewBox="0 0 460 404" fill="none" xmlns="http://www.w3.org/2000/svg">
 			<rect x="0.5" y="0.5" width="459" height="403" rx="15.5" fill="var(--color-bg)" />

@@ -73,7 +73,7 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 															<div className="flex flex-1 items-center gap-2">
 																<FlagImage iso2={parsed.iso2} className="size-5" />
 																<span className="truncate">{parsed.name}</span>
-																<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
+																<span className="text-fg-secondary ml-auto text-sm">+{parsed.dialCode}</span>
 																<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
 															</div>
 														</CommandItem>
@@ -100,7 +100,7 @@ export default function InternationalPhone({ preferredCountries = ["us", "gb", "
 													<div className="flex flex-1 items-center gap-2">
 														<FlagImage iso2={parsed.iso2} className="size-5" />
 														<span className="truncate">{parsed.name}</span>
-														<span className="text-muted-foreground ml-auto text-sm">+{parsed.dialCode}</span>
+														<span className="text-fg-secondary ml-auto text-sm">+{parsed.dialCode}</span>
 														<Check className={cn(country.iso2 === parsed.iso2 ? "opacity-100" : "opacity-0")} />
 													</div>
 												</CommandItem>

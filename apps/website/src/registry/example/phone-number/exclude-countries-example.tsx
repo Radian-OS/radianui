@@ -70,7 +70,7 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 												<div className="flex flex-1 items-center justify-center gap-2">
 													<FlagImage iso2={c.iso2} className="size-5" />
 													<span className="truncate">{c.name}</span>
-													<span className="text-muted-foreground ml-auto text-sm">+{c.dialCode}</span>
+													<span className="text-fg-secondary ml-auto text-sm">+{c.dialCode}</span>
 													<Check className={cn(country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
 												</div>
 											</CommandItem>

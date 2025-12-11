@@ -20,7 +20,7 @@ const AccountVerified = () => {
 						<div className="space-y-2">
 							<h1 className="flex justify-between text-2xl font-semibold">Account verified</h1>
 							<div className="flex justify-between">
-								<p className="text-muted-foreground text-sm font-medium">Congratulations! your email fullname@domain.com has been verified</p>
+								<p className="text-fg-secondary text-sm font-medium">Congratulations! your email fullname@domain.com has been verified</p>
 							</div>
 						</div>
 						<div className="space-y-5">

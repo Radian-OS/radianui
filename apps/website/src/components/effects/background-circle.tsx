@@ -50,7 +50,7 @@ export function BackgroundCircles({ className, variant = "octonary", children }:
 
 	return (
 		<div className={cn("relative flex h-screen w-full items-center justify-center overflow-hidden", "bg-white dark:bg-black/5", className)}>
-			<motion.div className="absolute h-[400px] max-h-[80vh] w-[400px] max-w-[80vw]">
+			<motion.div className="absolute h-[400px] max-h-[80vh] w-[400px] max-w-[80vw] tracking-tight">
 				{[0, 1, 2].map((i) => (
 					<motion.div
 						key={i}
