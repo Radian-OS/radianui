@@ -11,8 +11,12 @@ type TableOfContentsProps = {
 
 export default function TableOfContent({ headings }: TableOfContentsProps) {
 	const [activeHeadingId, setActiveHeadingId] = useState<string>("")
-	const [indicatorStyle, setIndicatorStyle] = useState({ transform: "translateY(0px)" })
+	const [indicatorStyle, setIndicatorStyle] = useState({
+		transform: "translateY(0px)",
+		height: "0px",
+	})
 	const activeRef = useRef<HTMLAnchorElement | null>(null)
+	const containerRef = useRef<HTMLDivElement | null>(null)
 
 	// Track which heading is currently visible
 	useEffect(() => {
@@ -43,25 +47,38 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 
 	// Animate indicator position when active heading changes
 	useEffect(() => {
-		if (activeRef.current) {
-			// Find the scrollable container (the ul element)
-			const scrollContainer = activeRef.current.closest("ul")
-			if (scrollContainer) {
-				// Calculate the position of the active item relative to the container
-				const containerRect = scrollContainer.getBoundingClientRect()
-				const activeRect = activeRef.current.getBoundingClientRect()
-				const relativeTop = activeRect.top - containerRect.top
+		if (activeRef.current && containerRef.current) {
+			const activeElement = activeRef.current
+			const containerElement = containerRef.current
 
-				// Animate the indicator to the new position
-				setIndicatorStyle({
-					transform: `translateY(${relativeTop}px)`,
-				})
+			// Get the position of the active element relative to the container
+			const activeRect = activeElement.getBoundingClientRect()
+			const containerRect = containerElement.getBoundingClientRect()
 
-				// Scroll the active item into view
-				activeRef.current.scrollIntoView({
+			// Calculate the scroll position of the container
+			const scrollTop = containerElement.scrollTop
+
+			// Calculate relative position including scroll
+			const relativeTop = activeRect.top - containerRect.top + scrollTop
+
+			// Get the height of the active element
+			const activeHeight = activeRect.height
+
+			// Set indicator style with exact positioning
+			setIndicatorStyle({
+				transform: `translateY(${relativeTop}px)`,
+				height: `${activeHeight}px`,
+			})
+
+			// Scroll the active item into view with better calculation
+			const containerHeight = containerRect.height
+			const activeElementTop = activeElement.offsetTop
+
+			// Calculate if the active element is outside the visible area
+			if (activeElementTop < containerElement.scrollTop || activeElementTop + activeHeight > containerElement.scrollTop + containerHeight) {
+				activeElement.scrollIntoView({
 					block: "nearest",
 					behavior: "smooth",
-					inline: "nearest",
 				})
 			}
 		}
@@ -86,6 +103,9 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 				behavior: "smooth",
 			})
 			window.history.replaceState(null, "", `#${headingId}`)
+
+			// Also update the active heading immediately
+			setActiveHeadingId(headingId)
 		}
 	}
 
@@ -97,34 +117,37 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 			<span className="mb-1 block py-2">On This Page</span>
 
 			{/* Scrollable content container */}
-			<div className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
+			<div ref={containerRef} className="no-scrollbar min-h-0 flex-1 overflow-y-auto">
 				<ul className="relative flex h-full flex-col gap-1">
 					{/* Background line */}
 					<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
 
 					{/* Animated active indicator */}
-					<div
-						className="bg-primary absolute left-0 w-px transition-transform duration-200 ease-out"
-						style={{
-							...indicatorStyle,
-							height: "1.5rem", // Match the height of each link (py-1 = 0.25rem top + bottom)
-							top: "0.25rem", // Offset to align with the first link's padding
-						}}
-					/>
+					<div className="bg-primary absolute left-0 w-px transition-all duration-200 ease-out" style={indicatorStyle} />
 
-					{headings.map((heading) => (
-						<li key={heading.id} className="relative">
-							<Link
-								ref={activeHeadingId === heading.id ? activeRef : null}
-								className={cn("text-fg-secondary group relative block py-1 pl-4 text-sm")}
-								href={`#${heading.id}`}
-								onClick={(e) => handleHeadingClick(e, heading.id)}>
-								{/* Hover indicator - only show when not active */}
-								{activeHeadingId !== heading.id && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
-								{heading.text}
-							</Link>
-						</li>
-					))}
+					{headings.map((heading) => {
+						const isActive = activeHeadingId === heading.id
+						return (
+							<li key={heading.id} className="relative">
+								<Link
+									ref={isActive ? activeRef : null}
+									className={cn("text-fg-secondary group relative block py-1 pl-4 text-sm transition-colors", isActive && "text-fg")}
+									href={`#${heading.id}`}
+									onClick={(e) => handleHeadingClick(e, heading.id)}
+									style={{
+										// Force consistent line height and padding
+										lineHeight: "1.25rem",
+										minHeight: "1.5rem",
+										display: "flex",
+										alignItems: "center",
+									}}>
+									{/* Hover indicator - only show when not active */}
+									{!isActive && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+									{heading.text}
+								</Link>
+							</li>
+						)
+					})}
 				</ul>
 			</div>
 		</nav>
