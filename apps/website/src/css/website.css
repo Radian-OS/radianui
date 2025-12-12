@@ -71,11 +71,6 @@
 
 	html {
 		scroll-behavior: smooth;
-		letter-spacing: -0.0125em;
-	}
-
-	[class*="heading-"] {
-		@apply tracking-normal;
 	}
 }
 

@@ -34,12 +34,7 @@ export async function subscribe(email: string) {
 			subject: "Welcome to RadianOS",
 			react: WelcomeEmailTemplate({
 				baseUrl: process.env.NEXT_PUBLIC_WEBSITE_URL!,
-				email: email,
 			}),
-			headers: {
-				"List-Unsubscribe": `<${process.env.NEXT_PUBLIC_WEBSITE_URL!}/unsubscribe?email=${email}>`,
-				"List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
-			},
 		})
 
 		if (emailError) {

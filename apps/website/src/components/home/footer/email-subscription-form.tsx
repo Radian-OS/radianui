@@ -22,7 +22,7 @@ type EmailSubscriptionProps = {
 }
 
 export default function EmailSubscription({ subscribe }: EmailSubscriptionProps) {
-	const form = useForm<FormData>({
+	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: { email: "" },
 	})

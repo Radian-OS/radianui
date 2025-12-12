@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export const FONTS: Record<string, string> = {
 	Inter: inter.className,
+	"Inter Display": `${inter.className} tracking-tight`,
 	Roboto: roboto.className,
 	"Open Sans": openSans.className,
 	Manrope: manrope.className,
@@ -25,7 +26,7 @@ export const FONTS: Record<string, string> = {
 }
 
 export default function TypographyPlayground() {
-	const [selectedFont, setSelectedFont] = useState<string>("Geist")
+	const [selectedFont, setSelectedFont] = useState<string>("Inter Display")
 
 	return (
 		<Tabs defaultValue="desktop">
