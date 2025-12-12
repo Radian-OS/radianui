@@ -27,7 +27,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 		const handleScroll = () => {
 			if (isScrollingRef.current) return
 
-			// Find which heading is currently in view
+			// Find which heading is currently view
 			const headingElements = headings
 				.map((heading) => ({
 					id: heading.id,
