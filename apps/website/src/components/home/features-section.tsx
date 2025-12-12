@@ -10,6 +10,7 @@ import { FeatureHeader } from "./feature-section-component/feature-header"
 import { GlobalSpotlight } from "./feature-section-component/global-spotlight"
 import { Marquee } from "./feature-section-component/marquee"
 import { ParticleCard } from "./feature-section-component/partical-card"
+import ReuseComponent from "./feature-section-component/reuse-component"
 
 export interface BentoCardProps {
 	color?: string
@@ -192,8 +193,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 							<div className="relative flex h-full">
 								<Marquee />
-								<div className="from-bg/0 to-bg absolute left-0 top-1 z-0 h-full w-20 bg-gradient-to-l" />
-								<div className="from-bg/0 to-bg absolute right-0 top-1 z-0 h-full w-20 bg-gradient-to-r" />
+								<div className="from-bg/0 to-bg z-1 absolute left-0 top-1 h-full w-20 bg-gradient-to-l" />
+								<div className="from-bg/0 to-bg z-1 absolute right-0 top-1 h-full w-20 bg-gradient-to-r" />
 							</div>
 						</ParticleCard>
 
@@ -206,7 +207,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								</p>
 							</div>
 
-							<div className="bg-fill1 h-full w-full"></div>
+							<div className="h-full w-full">
+								<ReuseComponent />
+							</div>
 						</div>
 					</div>
 				</div>
