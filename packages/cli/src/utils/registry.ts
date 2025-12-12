@@ -130,7 +130,24 @@ export const getAssets = async (assets: BlockAsset[], cwd: string) => {
 	}
 }
 
-export type Color = "emerald" | "amber" | "violet" | "red" | "blue"
+export type Color =
+	| "emerald"
+	| "amber"
+	| "violet"
+	| "red"
+	| "blue"
+	| "orange"
+	| "green"
+	| "teal"
+	| "cyan"
+	| "light-blue"
+	| "blue"
+	| "violet-blue"
+	| "purple"
+	| "dark-orchid"
+	| "fuchsia"
+	| "magenta"
+	| "rose"
 
 export type ColorData = {
 	name: Color
@@ -155,7 +172,7 @@ export const getBrandColor = async (color: Color): Promise<ColorData> => {
 	}
 }
 
-export type Font = "inter" | "geist" | "roboto"
+export type Font = "inter" | "geist" | "roboto" | "geist-inter" | "dm-sans" | "open-sans" | "rubik" | "lato" | "manrope" | "raleway" | "work-sans" | "ibm-plex-sans" | "figtree"
 
 export type FontData = {
 	name: Font
