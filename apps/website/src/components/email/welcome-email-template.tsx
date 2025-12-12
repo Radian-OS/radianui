@@ -2,7 +2,7 @@ import React from "react"
 import { Body, Button, Column, Container, Font, Head, Heading, Hr, Html, Img, Link, Row, Section, Text } from "@react-email/components"
 import { TailwindConfig } from "@/components/email/tailwind-config"
 
-export default function WelcomeEmailTemplate({ baseUrl }: { baseUrl: string }) {
+export default function WelcomeEmailTemplate({ baseUrl, email }: { baseUrl: string; email: string }) {
 	return (
 		<Html lang="en">
 			<TailwindConfig>
@@ -270,7 +270,7 @@ export default function WelcomeEmailTemplate({ baseUrl }: { baseUrl: string }) {
 						<Section className="mt-11 text-center">
 							<Text className="text-fg-tertiary m-0 text-sm">2025 © Radian OS, all rights reserved</Text>
 							<Text className="text-fg-tertiary m-0 my-1 text-sm">8 The Green STE A Dover, Delaware 19901, US</Text>
-							<Link href={"#"} className="text-fg-tertiary text-sm underline">
+							<Link href={`${baseUrl}/unsubscribe?email=${email}`} className="text-fg-tertiary text-sm underline">
 								Unsubscribe
 							</Link>
 						</Section>
