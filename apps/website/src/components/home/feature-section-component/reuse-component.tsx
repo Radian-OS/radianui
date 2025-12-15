@@ -13,54 +13,71 @@ import PlaygroundLogo from "../playground-logo"
 
 export default function ReuseComponent() {
 	const [activePanel, setActivePanel] = useState("middle")
+	const [isAnimating, setIsAnimating] = useState(false)
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
 		const { clientX, currentTarget } = e
 		const { left, width } = currentTarget.getBoundingClientRect()
 		const x: number = clientX - left
 
-		// Divide the screen into regions
 		const leftThird: number = width / 3
 		const rightThird: number = (width * 2) / 3
 
-		if (x < leftThird) {
+		if (x < leftThird && activePanel !== "right") {
 			setActivePanel("right")
-		} else if (x > rightThird) {
+			setIsAnimating(true)
+			setTimeout(() => setIsAnimating(false), 1000)
+		} else if (x > rightThird && activePanel !== "left") {
 			setActivePanel("left")
-		} else {
+			setIsAnimating(true)
+			setTimeout(() => setIsAnimating(false), 1000)
+		} else if (x >= leftThird && x <= rightThird && activePanel !== "middle") {
 			setActivePanel("middle")
+			setIsAnimating(true)
+			setTimeout(() => setIsAnimating(false), 1000)
 		}
 	}
 
 	return (
-		<div className="bg-bg relative z-0 flex w-full items-center justify-center overflow-hidden pt-6" onMouseMove={handleMouseMove} onMouseLeave={() => setActivePanel("middle")}>
+		<div
+			className="relative z-0 flex h-screen w-full items-center justify-center overflow-hidden pt-6"
+			onMouseMove={handleMouseMove}
+			onMouseLeave={() => {
+				if (activePanel !== "middle") {
+					setActivePanel("middle")
+					setIsAnimating(true)
+					setTimeout(() => setIsAnimating(false), 1000)
+				}
+			}}>
 			<div className="relative flex h-full w-full max-w-7xl items-center justify-center gap-5">
-				{/* Left Panel */}
 				<motion.div
-					className="flex h-full flex-1"
+					className="flex h-full"
 					animate={
 						activePanel === "left"
-							? { x: "-100%", y: ["0%", "-50%", "0%"] }
+							? { x: "-150%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
 							: activePanel === "right"
-								? { x: "100%", y: ["0%", "-50%", "0%"], opacity: 1 }
+								? { x: "130%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
 								: {
-										x: 0,
-										y: ["0%", "-50%", "0%"],
+										x: "-10%",
+										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
 										opacity: 1,
 									}
 					}
 					transition={{
 						x: {
-							type: "spring",
-							stiffness: 20,
-							damping: 30,
-							mass: 2,
-						},
-						y: {
-							duration: 8,
-							repeat: Infinity,
+							type: "tween",
+							duration: 1,
 							ease: "easeInOut",
 						},
+						y: isAnimating
+							? {
+									duration: 0,
+								}
+							: {
+									duration: 8,
+									repeat: Infinity,
+									ease: "easeInOut",
+								},
 						opacity: {
 							duration: 0.8,
 							ease: "easeInOut",
@@ -73,7 +90,53 @@ export default function ReuseComponent() {
 							initial={{ opacity: 0.5 }}
 							animate={{ opacity: 1 }}
 							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							{activePanel === "right" ? <Signin /> : <div className="w-90 border-soft bg-fill2 mx-5 h-[594px] rounded-2xl border-2 border-dotted px-6 py-8"></div>}
+							<div className="border-soft bg-fill1 h-[594px] w-56 rounded-2xl border-2 border-dotted px-6 py-8" />
+						</motion.div>
+					</AnimatePresence>
+				</motion.div>
+
+				{/* Left Panel */}
+				<motion.div
+					className="flex h-full flex-1"
+					animate={
+						activePanel === "left"
+							? { x: "-100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
+							: activePanel === "right"
+								? { x: "100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
+								: {
+										x: "10%",
+										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
+										opacity: 1,
+									}
+					}
+					transition={{
+						x: {
+							type: "tween",
+							duration: 1,
+							ease: "easeInOut",
+						},
+						y: isAnimating
+							? {
+									duration: 0,
+								}
+							: {
+									duration: 8,
+									repeat: Infinity,
+									ease: "easeInOut",
+								},
+						opacity: {
+							duration: 0.8,
+							ease: "easeInOut",
+						},
+					}}
+					style={{ zIndex: 10 }}>
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={activePanel === "right" ? "signin" : "placeholder"}
+							initial={{ opacity: 0.5 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.4, ease: "easeInOut" }}>
+							{activePanel === "right" ? <Signin /> : <div className="w-90 border-soft bg-fill1 mx-5 h-[594px] rounded-2xl border-2 border-dotted px-6 py-8"></div>}
 						</motion.div>
 					</AnimatePresence>
 				</motion.div>
@@ -83,27 +146,30 @@ export default function ReuseComponent() {
 					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
-							? { x: "-100%", y: ["0%", "-50%", "0%"] }
+							? { x: "-100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
 							: activePanel === "right"
-								? { x: "100%", y: ["0%", "-50%", "0%"] }
+								? { x: "100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
 								: {
-										x: 0,
-										y: ["0%", "-50%", "0%"],
+										x: "20%",
+										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
 										opacity: 1,
 									}
 					}
 					transition={{
 						x: {
-							type: "spring",
-							stiffness: 20,
-							damping: 30,
-							mass: 2,
-						},
-						y: {
-							duration: 8,
-							repeat: Infinity,
+							type: "tween",
+							duration: 1,
 							ease: "easeInOut",
 						},
+						y: isAnimating
+							? {
+									duration: 0,
+								}
+							: {
+									duration: 8,
+									repeat: Infinity,
+									ease: "easeInOut",
+								},
 						opacity: {
 							duration: 0.8,
 							ease: "easeInOut",
@@ -116,7 +182,7 @@ export default function ReuseComponent() {
 							initial={{ opacity: 0.5 }}
 							animate={{ opacity: 1 }}
 							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							{activePanel === "right" || activePanel === "left" ? <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div> : <Signin />}
+							{activePanel === "right" || activePanel === "left" ? <div className="w-90 border-soft bg-fill1 mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div> : <Signin />}
 						</motion.div>
 					</AnimatePresence>
 				</motion.div>
@@ -126,27 +192,30 @@ export default function ReuseComponent() {
 					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
-							? { x: "-100%", y: ["0%", "-50%", "0%"], opacity: 1 }
+							? { x: "-100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
 							: activePanel === "right"
-								? { x: "100%", y: ["0%", "-50%", "0%"] }
+								? { x: "120%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
 								: {
-										x: 0,
-										y: ["0%", "-50%", "0%"],
+										x: "30%",
+										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
 										opacity: 1,
 									}
 					}
 					transition={{
 						x: {
-							type: "spring",
-							stiffness: 20,
-							damping: 30,
-							mass: 2,
-						},
-						y: {
-							duration: 8,
-							repeat: Infinity,
+							type: "tween",
+							duration: 1,
 							ease: "easeInOut",
 						},
+						y: isAnimating
+							? {
+									duration: 0,
+								}
+							: {
+									duration: 8,
+									repeat: Infinity,
+									ease: "easeInOut",
+								},
 						opacity: {
 							duration: 0.8,
 							ease: "easeInOut",
@@ -159,7 +228,51 @@ export default function ReuseComponent() {
 							initial={{ opacity: 0.5 }}
 							animate={{ opacity: 1 }}
 							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							{activePanel === "left" ? <Signin /> : <div className="w-90 border-soft bg-fill2 mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
+							{activePanel === "left" ? <Signin /> : <div className="w-90 border-soft bg-fill1 mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
+						</motion.div>
+					</AnimatePresence>
+				</motion.div>
+				<motion.div
+					className="flex h-full"
+					animate={
+						activePanel === "left"
+							? { x: "-150%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
+							: activePanel === "right"
+								? { x: "130%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
+								: {
+										x: "10%",
+										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
+										opacity: 1,
+									}
+					}
+					transition={{
+						x: {
+							type: "tween",
+							duration: 1,
+							ease: "easeInOut",
+						},
+						y: isAnimating
+							? {
+									duration: 0,
+								}
+							: {
+									duration: 8,
+									repeat: Infinity,
+									ease: "easeInOut",
+								},
+						opacity: {
+							duration: 0.8,
+							ease: "easeInOut",
+						},
+					}}
+					style={{ zIndex: 10 }}>
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={activePanel === "left" ? "signin" : "placeholder"}
+							initial={{ opacity: 0.5 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.4, ease: "easeInOut" }}>
+							<div className="border-soft bg-fill1 h-[594px] w-56 rounded-2xl border-2 border-dotted px-6 py-8" />
 						</motion.div>
 					</AnimatePresence>
 				</motion.div>
