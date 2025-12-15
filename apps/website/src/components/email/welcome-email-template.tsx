@@ -69,7 +69,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 							</Text>
 							<Link href={`${baseUrl}/docs/getting-started/introduction`}>
 								<Img
-									src={`${baseUrl}/media/documentation-for-development.png`}
+									src={`${baseUrl}/media/documentation-for-development.gif`}
 									alt="documentation-for-development"
 									className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]"
 								/>
@@ -131,7 +131,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										Examples and Blocks
 									</Heading>
 									<Link href={`${baseUrl}/docs/getting-started/introduction`}>
-										<Img src={`${baseUrl}/media/examples-and-blocks.png`} alt="examples-and-blocks" className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]" />
+										<Img src={`${baseUrl}/media/examples-and-blocks.gif`} alt="examples-and-blocks" className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]" />
 									</Link>
 									<Text className="text-fg m-0 text-base leading-7">
 										<span className="font-semibold">Explore / search first:</span> At Radian we try to make sure you have everything you need right out the box. So we have plenty
