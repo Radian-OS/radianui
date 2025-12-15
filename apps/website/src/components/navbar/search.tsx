@@ -18,6 +18,7 @@ export function SearchDocs() {
 
 	// Filter sidebar items based on the search term
 	const filteredItems = navigationItems
+		.filter((section) => section.title !== "Animations") // 👈 Add this line
 		.map((section) => ({
 			...section,
 			items: section.items.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase())),

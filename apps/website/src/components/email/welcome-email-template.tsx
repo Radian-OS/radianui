@@ -22,7 +22,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 					<Container className="max-w-150 my-3">
 						{/* Welcome To The Community Section */}
 						<Section>
-							<Img src={`${baseUrl}/media/radian.png`} alt="radianos-logo" height="36" />
+							<Img src={`${baseUrl}/media/welcome-email/radian.png`} alt="radianos-logo" height="36" />
 							<Heading as="h1" m={0} className="text-fg my-12 text-2xl font-semibold leading-8">
 								Welcome to the Community 👋🏻
 							</Heading>
@@ -43,8 +43,8 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								Available on the Figma Community, Radian is a free design system and UI kit built for solo designers, freelancers, startups, agencies, and organizations. It
 								utilizes all modern Figma practices such as auto layout, variables, and token systems.
 							</Text>
-							<Link href={`${baseUrl}/docs/getting-started/introduction`}>
-								<Img src={`${baseUrl}/media/figma-community-file.png`} alt="figma-community-file" className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]" />
+							<Link href={`#`}>
+								<Img src={`${baseUrl}/media/welcome-email/figma-community-file.jpg`} alt="figma-community-file" className="my-8 w-full max-w-full border-8 border-[#F4F4F6]" />
 							</Link>
 							<Button href="#" className="bg-primary block w-full py-1.5 text-center font-medium text-white hover:cursor-pointer">
 								<Row cellSpacing={6} align="center" className="mx-auto w-fit">
@@ -69,7 +69,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 							</Text>
 							<Link href={`${baseUrl}/docs/getting-started/introduction`}>
 								<Img
-									src={`${baseUrl}/media/documentation-for-development.gif`}
+									src={`${baseUrl}/media/welcome-email/documentation-for-development.gif`}
 									alt="documentation-for-development"
 									className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]"
 								/>
@@ -100,9 +100,9 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Theme Design To Your New Project
 									</Heading>
-									<Link href={`${baseUrl}/docs/getting-started/introduction`}>
+									<Link href={`${baseUrl}/docs/fundamentals/theme`}>
 										<Img
-											src={`${baseUrl}/media/theme-design-to-your-new-project.png`}
+											src={`${baseUrl}/media/welcome-email/theme-design-to-your-new-project.jpg`}
 											alt="theme-design-to-your-new-project"
 											className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]"
 										/>
@@ -117,8 +117,12 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Navigating Documentation
 									</Heading>
-									<Link href={`${baseUrl}/docs/getting-started/introduction`}>
-										<Img src={`${baseUrl}/media/navigating-documentation.png`} alt="navigating-documentation" className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]" />
+									<Link href={`#`}>
+										<Img
+											src={`${baseUrl}/media/welcome-email/navigating-documentation.jpg`}
+											alt="navigating-documentation"
+											className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]"
+										/>
 									</Link>
 									<Text className="text-fg m-0 text-base leading-7">
 										<span className="font-semibold">Use the Command Palette for Help:</span> In Radian’s website make use of the [⌘ + K] shortcut. Its the fastest way to search
@@ -130,8 +134,12 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Examples and Blocks
 									</Heading>
-									<Link href={`${baseUrl}/docs/getting-started/introduction`}>
-										<Img src={`${baseUrl}/media/examples-and-blocks.gif`} alt="examples-and-blocks" className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]" />
+									<Link href={`#`}>
+										<Img
+											src={`${baseUrl}/media/welcome-email/examples-and-blocks.gif`}
+											alt="examples-and-blocks"
+											className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]"
+										/>
 									</Link>
 									<Text className="text-fg m-0 text-base leading-7">
 										<span className="font-semibold">Explore / search first:</span> At Radian we try to make sure you have everything you need right out the box. So we have plenty
@@ -162,7 +170,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
-													<Img src={`${baseUrl}/media/x.png`} width="20" height="20" alt="x" style={{ display: "block" }} />
+													<Img src={`${baseUrl}/media/welcome-email/x.png`} width="20" height="20" alt="x" style={{ display: "block" }} />
 												</Column>
 												<Column align="left">X (Twitter)</Column>
 											</Row>
@@ -174,7 +182,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
-													<Img src={`${baseUrl}/media/github.png`} width="20" height="20" alt="github" style={{ display: "block" }} />
+													<Img src={`${baseUrl}/media/welcome-email/github.png`} width="20" height="20" alt="github" style={{ display: "block" }} />
 												</Column>
 												<Column align="left" className="text-fg-secondary text-sm font-medium">
 													GitHub
@@ -188,7 +196,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
-													<Img src={`${baseUrl}/media/linked-in.png`} width="20" height="20" alt="linked-in" style={{ display: "block" }} />
+													<Img src={`${baseUrl}/media/welcome-email/linked-in.png`} width="20" height="20" alt="linked-in" style={{ display: "block" }} />
 												</Column>
 												<Column align="left" className="text-fg-secondary text-sm font-medium">
 													LinkedIn
@@ -218,7 +226,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 						<Hr className="m-0 my-12 bg-[#06063714]" />
 
 						<Section>
-							<Img alt="radian-logo" className="mb-4" height={24} src={`${baseUrl}/media/radian.png`} />
+							<Img alt="radian-logo" className="mb-4" height={24} src={`${baseUrl}/media/welcome-email/radian.png`} />
 							<Row>
 								<Column className="w-4/5" align="left">
 									<Text className="text-fg-secondary m-0">
@@ -242,7 +250,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 													cursor: "pointer",
 													display: "inline-block",
 												}}>
-												<Img alt="github" height="20" src={`${baseUrl}/media/github.png`} width="20" />
+												<Img alt="github" height="20" src={`${baseUrl}/media/welcome-email/github.png`} width="20" />
 											</Button>
 										</Column>
 										<Column>
@@ -257,7 +265,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 													cursor: "pointer",
 													display: "inline-block",
 												}}>
-												<Img alt="linked-in" height="20" src={`${baseUrl}/media/linked-in.png`} width="20" />
+												<Img alt="linked-in" height="20" src={`${baseUrl}/media/welcome-email/linked-in.png`} width="20" />
 											</Button>
 										</Column>
 										<Column>
@@ -272,7 +280,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 													cursor: "pointer",
 													display: "inline-block",
 												}}>
-												<Img alt="x" height="20" src={`${baseUrl}/media/x.png`} width="20" />
+												<Img alt="x" height="20" src={`${baseUrl}/media/welcome-email/x.png`} width="20" />
 											</Button>
 										</Column>
 									</Row>

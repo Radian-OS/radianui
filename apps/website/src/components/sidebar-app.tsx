@@ -23,11 +23,15 @@ export default function Sidebar() {
 		}
 	}, [pathName])
 
+	const filteredNavigationItems = navigationItems.filter((section) => {
+		return section.title !== "Blocks"
+	})
+
 	return (
 		<div className="no-scrollbar w-65 not-lg:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] overflow-y-auto py-10 pe-2.5 text-sm">
 			<ScrollArea className="flex h-full w-full pe-4">
 				<div className="flex flex-col gap-3">
-					{navigationItems.map((section) => (
+					{filteredNavigationItems.map((section) => (
 						<div className="flex flex-col gap-2 text-sm font-medium" key={section.title}>
 							<span className="py-1.5">{section.title}</span>
 							<ul className="relative flex flex-col gap-1">
