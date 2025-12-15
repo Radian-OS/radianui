@@ -44,7 +44,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								utilizes all modern Figma practices such as auto layout, variables, and token systems.
 							</Text>
 							<Link href={`${baseUrl}/docs/getting-started/introduction`}>
-								<img src={`${baseUrl}/media/figma-community-file.png`} alt="figma-community-file" className="my-8 h-auto w-full max-w-full border-8 border-[#F4F4F6]" />
+								<img src={`${baseUrl}/media/figma-community-file.jpg`} alt="figma-community-file" className="my-8 w-full max-w-full border-8 border-[#F4F4F6]" />
 							</Link>
 							<Button href="#" className="bg-primary block w-full py-1.5 text-center font-medium text-white hover:cursor-pointer">
 								<Row cellSpacing={6} align="center" className="mx-auto w-fit">
