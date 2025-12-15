@@ -37,7 +37,7 @@ export default function Page() {
 						</p>
 					</div>
 					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-						<Button variant="glossy" size="40">
+						<Button variant="glossy" className="w-full sm:w-fit" size="40">
 							Copy Terminal Command
 						</Button>
 						<Button
