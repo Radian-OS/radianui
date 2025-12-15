@@ -4,7 +4,7 @@ import React, { ReactNode } from "react"
 import { useTheme } from "next-themes"
 import { Toaster, ToasterProps } from "sonner"
 import AsideBar from "@/components/aside-bar"
-import Sidebar from "@/components/sidebar"
+import Sidebar from "@/components/sidebar-app"
 import { useToast } from "@/contexts/toast-context"
 
 interface Props {
