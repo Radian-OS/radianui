@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { Button } from "@/registry/ui/button"
@@ -40,43 +40,9 @@ export default function ReuseComponent() {
 					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
-							? { x: "-100%", y: 0 }
+							? { x: "-100%", y: ["0%", "-50%", "0%"] }
 							: activePanel === "right"
-								? { x: "100%", y: 0, opacity: 1 }
-								: activePanel === "bottom"
-									? { x: 0, y: "-50%" }
-									: { x: 0, y: 0 }
-					}
-					transition={{
-						x: {
-							type: "spring",
-							stiffness: 40,
-							damping: 20,
-							mass: 0.8,
-						},
-						y: {
-							type: "spring",
-							stiffness: 40,
-							damping: 20,
-							mass: 0.8,
-						},
-						opacity: {
-							duration: 0.8,
-							ease: "easeInOut",
-						},
-					}}
-					style={{ zIndex: 10 }}>
-					{activePanel === "right" ? <Signin /> : <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
-				</motion.div>
-
-				{/* Middle Panel */}
-				<motion.div
-					className="flex h-full flex-1"
-					animate={
-						activePanel === "left"
-							? { x: "-100%", y: 0 }
-							: activePanel === "right"
-								? { x: "100%", y: 0 }
+								? { x: "100%", y: ["0%", "-50%", "0%"], opacity: 1 }
 								: {
 										x: 0,
 										y: ["0%", "-50%", "0%"],
@@ -86,56 +52,14 @@ export default function ReuseComponent() {
 					transition={{
 						x: {
 							type: "spring",
-							stiffness: 40,
-							damping: 20,
-							mass: 0.8,
-						},
-						y:
-							activePanel === "middle"
-								? {
-										duration: 8,
-										repeat: Infinity,
-										ease: "easeInOut",
-									}
-								: {
-										type: "spring",
-										stiffness: 40,
-										damping: 20,
-										mass: 0.8,
-									},
-						opacity: {
-							duration: 0.8,
-							ease: "easeInOut",
-						},
-					}}
-					style={{ zIndex: 15 }}>
-					{activePanel === "right" || activePanel === "left" ? <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div> : <Signin />}
-				</motion.div>
-
-				{/* Right Panel */}
-				<motion.div
-					className="flex h-full flex-1"
-					animate={
-						activePanel === "left"
-							? { x: "-100%", y: 0, opacity: 1 }
-							: activePanel === "right"
-								? { x: "100%", y: 0 }
-								: activePanel === "bottom"
-									? { x: 0, y: "-50%" }
-									: { x: 0, y: 0 }
-					}
-					transition={{
-						x: {
-							type: "spring",
-							stiffness: 40,
-							damping: 20,
-							mass: 0.8,
+							stiffness: 20,
+							damping: 30,
+							mass: 2,
 						},
 						y: {
-							type: "spring",
-							stiffness: 40,
-							damping: 20,
-							mass: 0.8,
+							duration: 8,
+							repeat: Infinity,
+							ease: "easeInOut",
 						},
 						opacity: {
 							duration: 0.8,
@@ -143,7 +67,104 @@ export default function ReuseComponent() {
 						},
 					}}
 					style={{ zIndex: 10 }}>
-					{activePanel === "left" ? <Signin /> : <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={activePanel === "right" ? "signin" : "placeholder"}
+							initial={{ opacity: 0, scale: 0.95 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.95 }}
+							transition={{ duration: 0.6, ease: "easeInOut" }}>
+							{activePanel === "right" ? <Signin /> : <div className="w-90 border-soft bg-fill2 mx-5 h-[594px] rounded-2xl border-2 border-dotted px-6 py-8"></div>}
+						</motion.div>
+					</AnimatePresence>
+				</motion.div>
+
+				{/* Middle Panel */}
+				<motion.div
+					className="flex h-full flex-1"
+					animate={
+						activePanel === "left"
+							? { x: "-100%", y: ["0%", "-50%", "0%"] }
+							: activePanel === "right"
+								? { x: "100%", y: ["0%", "-50%", "0%"] }
+								: {
+										x: 0,
+										y: ["0%", "-50%", "0%"],
+										opacity: 1,
+									}
+					}
+					transition={{
+						x: {
+							type: "spring",
+							stiffness: 20,
+							damping: 30,
+							mass: 2,
+						},
+						y: {
+							duration: 8,
+							repeat: Infinity,
+							ease: "easeInOut",
+						},
+						opacity: {
+							duration: 0.8,
+							ease: "easeInOut",
+						},
+					}}
+					style={{ zIndex: 15 }}>
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={activePanel === "right" || activePanel === "left" ? "signin1" : "placeholder1"}
+							initial={{ opacity: 0, scale: 0.95 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.95 }}
+							transition={{ duration: 0.2, ease: "linear" }}>
+							{activePanel === "right" || activePanel === "left" ? <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div> : <Signin />}
+						</motion.div>
+					</AnimatePresence>
+				</motion.div>
+
+				{/* Right Panel */}
+				<motion.div
+					className="flex h-full flex-1"
+					animate={
+						activePanel === "left"
+							? { x: "-100%", y: ["0%", "-50%", "0%"], opacity: 1 }
+							: activePanel === "right"
+								? { x: "100%", y: ["0%", "-50%", "0%"] }
+								: {
+										x: 0,
+										y: ["0%", "-50%", "0%"],
+										opacity: 1,
+									}
+					}
+					transition={{
+						x: {
+							type: "spring",
+							stiffness: 20,
+							damping: 30,
+							mass: 2,
+						},
+						y: {
+							duration: 8,
+							repeat: Infinity,
+							ease: "easeInOut",
+						},
+						opacity: {
+							duration: 0.8,
+							ease: "easeInOut",
+						},
+					}}
+					style={{ zIndex: 10 }}>
+					<AnimatePresence mode="wait">
+						<motion.div
+							key={activePanel === "left" ? "signin" : "placeholder"}
+							initial={{ opacity: 0, scale: 0.95 }}
+							animate={{ opacity: 1, scale: 1 }}
+							exit={{ opacity: 0, scale: 0.95 }}
+							transition={{ duration: 0.6, ease: "easeInOut" }}>
+							{activePanel === "left" ? <Signin /> : <div className="w-90 border-soft bg-fill2 mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
+						</motion.div>
+					</AnimatePresence>
 				</motion.div>
 			</div>
 		</div>
