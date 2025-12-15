@@ -1,54 +1,56 @@
 "use server"
 
-import { Resend } from "resend"
 import WelcomeEmailTemplate from "@/components/email/welcome-email-template"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { resend } from "@/lib/resend"
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export async function subscribe(email: string) {
 	try {
-		const { data } = await resend.contacts.get({ email: email })
+		const { data: existing_contact_data } = await resend.contacts.get({ email })
 
-		if (data?.email) {
-			return { message: "Your email is already subscribed", status: 409 }
+		if (existing_contact_data) {
+			if (!existing_contact_data.unsubscribed) {
+				return { message: "Email is already subscribed", status: 409 }
+			}
+			await resend.contacts.update({
+				id: existing_contact_data.id,
+				unsubscribed: !existing_contact_data.unsubscribed,
+			})
+			return { message: "Email re-subscribed successfully", status: 200 }
 		}
 
-		await delay(1000)
-
-		const { error } = await resend.contacts.create({
+		const { data: new_contact_data, error: new_contact_error } = await resend.contacts.create({
 			email: email,
 			unsubscribed: false,
 		})
 
-		if (error) {
-			return { message: error.message, status: 500 }
+		if (new_contact_error) {
+			return { message: "Email subscription failed. Please try again later.", status: 400 }
 		}
 
 		await delay(1000)
 
-		const { error: emailError } = await resend.emails.send({
+		const { error: email_send_error } = await resend.emails.send({
 			from: process.env.RESEND_FROM_EMAIL!,
 			to: email,
 			subject: "Welcome to RadianOS",
 			react: WelcomeEmailTemplate({
 				baseUrl: process.env.NEXT_PUBLIC_WEBSITE_URL!,
-				email: email,
+				id: new_contact_data.id,
 			}),
 			headers: {
-				"List-Unsubscribe": `<${process.env.NEXT_PUBLIC_WEBSITE_URL!}/unsubscribe?email=${email}>`,
+				"List-Unsubscribe": `<${process.env.NEXT_PUBLIC_WEBSITE_URL!}/api/unsubscribe?id=${encodeURIComponent(new_contact_data.id)}>`,
 				"List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
 			},
 		})
 
-		if (emailError) {
+		if (email_send_error) {
 			return {
-				message: "Contact added but failed to send welcome email",
-				status: 500,
+				message: "Email subscription successful but failed to send welcome email",
+				status: 400,
 			}
 		}
-
 		return { message: "Email subscribed successfully", status: 201 }
 	} catch (error) {
 		console.error("Failed to subscribe email:", error)

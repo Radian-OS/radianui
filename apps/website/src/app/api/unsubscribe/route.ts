@@ -1,48 +1,27 @@
 import { NextRequest, NextResponse } from "next/server"
-import { Resend } from "resend"
-
-const resend = new Resend(process.env.RESEND_API_KEY)
+import { unsubscribe } from "@/app/actions/unsubscribe"
 
 export async function POST(request: NextRequest) {
 	try {
 		const url = new URL(request.url)
-		const email = url.searchParams.get("email")
+		const id = url.searchParams.get("id")
 
-		if (!email) {
-			return NextResponse.json({ error: "Email required" }, { status: 400 })
+		if (!id) {
+			return new NextResponse("", { status: 200 })
 		}
 
-		await resend.contacts.update({
-			email: email,
-			unsubscribed: true,
-		})
+		await unsubscribe(id)
 
-		return NextResponse.json({ message: "Unsubscribed successfully" }, { status: 200 })
+		return new NextResponse("", { status: 200 })
 	} catch (error) {
 		console.error("Unsubscribe error:", error)
-		return NextResponse.json({ error: "Failed to unsubscribe" }, { status: 500 })
+		return new NextResponse("", { status: 500 })
 	}
 }
 
 export async function GET(request: NextRequest) {
 	const url = new URL(request.url)
-	const email = url.searchParams.get("email")
+	const id = url.searchParams.get("id")
 
-	return new NextResponse(
-		`
-		<!DOCTYPE html>
-		<html>
-			<body>
-				<h1>Unsubscribe</h1>
-				<p>Click below to unsubscribe ${email}</p>
-				<form method="POST">
-					<button type="submit">Unsubscribe</button>
-				</form>
-			</body>
-		</html>
-	`,
-		{
-			headers: { "Content-Type": "text/html" },
-		}
-	)
+	return NextResponse.redirect(new URL(`/unsubscribe?id=${encodeURIComponent(id || "")}`, request.url))
 }
