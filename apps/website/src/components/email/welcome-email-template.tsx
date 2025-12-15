@@ -48,6 +48,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								alt="figma-community-file"
 								width="600"
 								style={{
+									backgroundColor: "#F4F4F6",
 									display: "block",
 									width: "100%",
 									maxWidth: "100%",
@@ -82,6 +83,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								alt="documentation-for-development"
 								width="600"
 								style={{
+									backgroundColor: "#F4F4F6",
 									display: "block",
 									width: "100%",
 									maxWidth: "100%",
@@ -121,6 +123,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										alt="theme-design-to-your-new-project"
 										width="600"
 										style={{
+											backgroundColor: "#F4F4F6",
 											display: "block",
 											width: "100%",
 											maxWidth: "100%",
@@ -144,6 +147,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										alt="navigating-documentation"
 										width="600"
 										style={{
+											backgroundColor: "#F4F4F6",
 											display: "block",
 											width: "100%",
 											maxWidth: "100%",
@@ -167,6 +171,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										alt="examples-and-blocks"
 										width="600"
 										style={{
+											backgroundColor: "#F4F4F6",
 											display: "block",
 											width: "100%",
 											maxWidth: "100%",
