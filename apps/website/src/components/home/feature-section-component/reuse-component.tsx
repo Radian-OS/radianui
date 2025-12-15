@@ -15,41 +15,37 @@ export default function ReuseComponent() {
 	const [activePanel, setActivePanel] = useState("middle")
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
-		const { clientX, clientY, currentTarget } = e
-		const { left, top, width, height } = currentTarget.getBoundingClientRect()
+		const { clientX, currentTarget } = e
+		const { left, width } = currentTarget.getBoundingClientRect()
 		const x: number = clientX - left
-		const y: number = clientY - top
 
 		// Divide the screen into regions
 		const leftThird: number = width / 3
 		const rightThird: number = (width * 2) / 3
-		const middleVertical: number = height / 2
 
 		if (x < leftThird) {
 			setActivePanel("right")
 		} else if (x > rightThird) {
 			setActivePanel("left")
-		} else if (y < middleVertical) {
-			setActivePanel("bottom")
 		} else {
 			setActivePanel("middle")
 		}
 	}
 
 	return (
-		<div className="bg-bg relative z-0 flex w-full items-center justify-center overflow-hidden pt-10" onMouseMove={handleMouseMove} onMouseLeave={() => setActivePanel("middle")}>
+		<div className="bg-bg relative z-0 flex w-full items-center justify-center overflow-hidden pt-6" onMouseMove={handleMouseMove} onMouseLeave={() => setActivePanel("middle")}>
 			<div className="relative flex h-full w-full max-w-7xl items-center justify-center gap-5">
 				{/* Left Panel */}
 				<motion.div
 					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
-							? { x: "-100%", y: 0, opacity: 0.1 }
+							? { x: "-100%", y: 0 }
 							: activePanel === "right"
 								? { x: "100%", y: 0, opacity: 1 }
 								: activePanel === "bottom"
-									? { x: 0, y: "-50%", opacity: 0.1 }
-									: { x: 0, y: 0, opacity: 0.1 }
+									? { x: 0, y: "-50%" }
+									: { x: 0, y: 0 }
 					}
 					transition={{
 						x: {
@@ -70,7 +66,7 @@ export default function ReuseComponent() {
 						},
 					}}
 					style={{ zIndex: 10 }}>
-					<Signin />
+					{activePanel === "right" ? <Signin /> : <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
 				</motion.div>
 
 				{/* Middle Panel */}
@@ -78,12 +74,14 @@ export default function ReuseComponent() {
 					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
-							? { x: "-100%", y: 0, opacity: 0.1 }
+							? { x: "-100%", y: 0 }
 							: activePanel === "right"
-								? { x: "100%", y: 0, opacity: 0.1 }
-								: activePanel === "bottom"
-									? { x: 0, y: "-50%", opacity: 1 }
-									: { x: 0, y: 0, opacity: 1 }
+								? { x: "100%", y: 0 }
+								: {
+										x: 0,
+										y: ["0%", "-50%", "0%"],
+										opacity: 1,
+									}
 					}
 					transition={{
 						x: {
@@ -92,19 +90,26 @@ export default function ReuseComponent() {
 							damping: 20,
 							mass: 0.8,
 						},
-						y: {
-							type: "spring",
-							stiffness: 40,
-							damping: 20,
-							mass: 0.8,
-						},
+						y:
+							activePanel === "middle"
+								? {
+										duration: 8,
+										repeat: Infinity,
+										ease: "easeInOut",
+									}
+								: {
+										type: "spring",
+										stiffness: 40,
+										damping: 20,
+										mass: 0.8,
+									},
 						opacity: {
 							duration: 0.8,
 							ease: "easeInOut",
 						},
 					}}
 					style={{ zIndex: 15 }}>
-					<Signin />
+					{activePanel === "right" || activePanel === "left" ? <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div> : <Signin />}
 				</motion.div>
 
 				{/* Right Panel */}
@@ -114,10 +119,10 @@ export default function ReuseComponent() {
 						activePanel === "left"
 							? { x: "-100%", y: 0, opacity: 1 }
 							: activePanel === "right"
-								? { x: "100%", y: 0, opacity: 0.1 }
+								? { x: "100%", y: 0 }
 								: activePanel === "bottom"
-									? { x: 0, y: "-50%", opacity: 0.1 }
-									: { x: 0, y: 0, opacity: 0.1 }
+									? { x: 0, y: "-50%" }
+									: { x: 0, y: 0 }
 					}
 					transition={{
 						x: {
@@ -138,7 +143,7 @@ export default function ReuseComponent() {
 						},
 					}}
 					style={{ zIndex: 10 }}>
-					<Signin />
+					{activePanel === "left" ? <Signin /> : <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
 				</motion.div>
 			</div>
 		</div>
@@ -148,7 +153,7 @@ const Signin = () => {
 	const form = useForm()
 
 	return (
-		<div className="w-90 bg-bg border-soft z-0 mx-5 flex rounded-2xl border px-6 py-8 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
+		<div className="w-90 bg-bg border-soft z-0 flex rounded-2xl border px-6 py-8 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
 			<div className="flex flex-1 flex-col gap-6">
 				<div>
 					<PlaygroundLogo />

@@ -215,7 +215,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 									Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use
 								</p>
 							</div>
-							<div className="h-full w-full">
+							<div className="relative h-full w-full">
+								<div className="z-1 from-bg/0 to-bg absolute left-0 top-0 h-14 w-full bg-gradient-to-t" />
+
 								<ReuseComponent />
 							</div>
 						</ParticleCard>
