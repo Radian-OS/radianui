@@ -73,7 +73,9 @@ export default function EmailSubscription({ subscribe }: EmailSubscriptionProps)
 										<FormControl>
 											<Input placeholder="Enter your email" type="email" {...field} required />
 										</FormControl>
-										<FormMessage className={cn({ "text-success-text": subscriptionResult?.status === 201 })}>{subscriptionResult?.message}</FormMessage>
+										<FormMessage className={cn({ "text-success-text": subscriptionResult?.status && subscriptionResult?.status >= 200 && subscriptionResult?.status < 400 })}>
+											{subscriptionResult?.message}
+										</FormMessage>
 									</FormItem>
 								)}
 							/>
