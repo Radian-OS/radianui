@@ -70,10 +70,9 @@ export default function ReuseComponent() {
 					<AnimatePresence mode="wait">
 						<motion.div
 							key={activePanel === "right" ? "signin" : "placeholder"}
-							initial={{ opacity: 0, scale: 0.95 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.95 }}
-							transition={{ duration: 0.6, ease: "easeInOut" }}>
+							initial={{ opacity: 0.5 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.4, ease: "easeInOut" }}>
 							{activePanel === "right" ? <Signin /> : <div className="w-90 border-soft bg-fill2 mx-5 h-[594px] rounded-2xl border-2 border-dotted px-6 py-8"></div>}
 						</motion.div>
 					</AnimatePresence>
@@ -114,10 +113,9 @@ export default function ReuseComponent() {
 					<AnimatePresence mode="wait">
 						<motion.div
 							key={activePanel === "right" || activePanel === "left" ? "signin1" : "placeholder1"}
-							initial={{ opacity: 0, scale: 0.95 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.95 }}
-							transition={{ duration: 0.2, ease: "linear" }}>
+							initial={{ opacity: 0.5 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.4, ease: "easeInOut" }}>
 							{activePanel === "right" || activePanel === "left" ? <div className="w-90 bg-fill2 border-soft mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div> : <Signin />}
 						</motion.div>
 					</AnimatePresence>
@@ -158,10 +156,9 @@ export default function ReuseComponent() {
 					<AnimatePresence mode="wait">
 						<motion.div
 							key={activePanel === "left" ? "signin" : "placeholder"}
-							initial={{ opacity: 0, scale: 0.95 }}
-							animate={{ opacity: 1, scale: 1 }}
-							exit={{ opacity: 0, scale: 0.95 }}
-							transition={{ duration: 0.6, ease: "easeInOut" }}>
+							initial={{ opacity: 0.5 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.4, ease: "easeInOut" }}>
 							{activePanel === "left" ? <Signin /> : <div className="w-90 border-soft bg-fill2 mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
 						</motion.div>
 					</AnimatePresence>
