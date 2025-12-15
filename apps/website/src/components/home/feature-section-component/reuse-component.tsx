@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { motion } from "motion/react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
@@ -14,24 +14,34 @@ import PlaygroundLogo from "../playground-logo"
 export default function ReuseComponent() {
 	const [activePanel, setActivePanel] = useState("middle")
 
-	useEffect(() => {
-		const sequence = ["middle", "left", "middle", "right", "middle", "bottom", "middle"]
-		let currentIndex = 0
+	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
+		const { clientX, clientY, currentTarget } = e
+		const { left, top, width, height } = currentTarget.getBoundingClientRect()
+		const x: number = clientX - left
+		const y: number = clientY - top
 
-		const interval = setInterval(() => {
-			currentIndex = (currentIndex + 1) % sequence.length
-			setActivePanel(sequence[currentIndex])
-		}, 3000)
+		// Divide the screen into regions
+		const leftThird: number = width / 3
+		const rightThird: number = (width * 2) / 3
+		const middleVertical: number = height / 2
 
-		return () => clearInterval(interval)
-	}, [])
+		if (x < leftThird) {
+			setActivePanel("right")
+		} else if (x > rightThird) {
+			setActivePanel("left")
+		} else if (y < middleVertical) {
+			setActivePanel("bottom")
+		} else {
+			setActivePanel("middle")
+		}
+	}
 
 	return (
-		<div className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+		<div className="bg-bg relative z-0 flex w-full items-center justify-center overflow-hidden pt-10" onMouseMove={handleMouseMove} onMouseLeave={() => setActivePanel("middle")}>
 			<div className="relative flex h-full w-full max-w-7xl items-center justify-center gap-5">
 				{/* Left Panel */}
 				<motion.div
-					className="w-90 flex h-full flex-1 items-center justify-center"
+					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
 							? { x: "-100%", y: 0, opacity: 0.1 }
@@ -44,22 +54,19 @@ export default function ReuseComponent() {
 					transition={{
 						x: {
 							type: "spring",
-							stiffness: 50,
+							stiffness: 40,
 							damping: 20,
 							mass: 0.8,
 						},
 						y: {
 							type: "spring",
-							stiffness: 50,
+							stiffness: 40,
 							damping: 20,
 							mass: 0.8,
 						},
 						opacity: {
 							duration: 0.8,
 							ease: "easeInOut",
-						},
-						display: {
-							delay: activePanel === "left" ? 0.8 : 0,
 						},
 					}}
 					style={{ zIndex: 10 }}>
@@ -68,7 +75,7 @@ export default function ReuseComponent() {
 
 				{/* Middle Panel */}
 				<motion.div
-					className="w-90 flex h-full flex-1 items-center justify-center"
+					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
 							? { x: "-100%", y: 0, opacity: 0.1 }
@@ -79,10 +86,22 @@ export default function ReuseComponent() {
 									: { x: 0, y: 0, opacity: 1 }
 					}
 					transition={{
-						type: "spring",
-						stiffness: 50,
-						damping: 20,
-						mass: 0.8,
+						x: {
+							type: "spring",
+							stiffness: 40,
+							damping: 20,
+							mass: 0.8,
+						},
+						y: {
+							type: "spring",
+							stiffness: 40,
+							damping: 20,
+							mass: 0.8,
+						},
+						opacity: {
+							duration: 0.8,
+							ease: "easeInOut",
+						},
 					}}
 					style={{ zIndex: 15 }}>
 					<Signin />
@@ -90,7 +109,7 @@ export default function ReuseComponent() {
 
 				{/* Right Panel */}
 				<motion.div
-					className="w-90 flex h-full flex-1 items-center justify-center"
+					className="flex h-full flex-1"
 					animate={
 						activePanel === "left"
 							? { x: "-100%", y: 0, opacity: 1 }
@@ -103,13 +122,13 @@ export default function ReuseComponent() {
 					transition={{
 						x: {
 							type: "spring",
-							stiffness: 50,
+							stiffness: 40,
 							damping: 20,
 							mass: 0.8,
 						},
 						y: {
 							type: "spring",
-							stiffness: 50,
+							stiffness: 40,
 							damping: 20,
 							mass: 0.8,
 						},
@@ -117,23 +136,20 @@ export default function ReuseComponent() {
 							duration: 0.8,
 							ease: "easeInOut",
 						},
-						display: {
-							delay: activePanel === "right" ? 0.8 : 0,
-						},
-					}}>
+					}}
+					style={{ zIndex: 10 }}>
 					<Signin />
 				</motion.div>
 			</div>
 		</div>
 	)
 }
-
 const Signin = () => {
 	const form = useForm()
 
 	return (
-		<div className="w-90 bg-bg border-soft mx-5 flex rounded-2xl border px-6 py-8 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
-			<div className="flex flex-1 flex-col gap-8">
+		<div className="w-90 bg-bg border-soft z-0 mx-5 flex rounded-2xl border px-6 py-8 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
+			<div className="flex flex-1 flex-col gap-6">
 				<div>
 					<PlaygroundLogo />
 				</div>

@@ -198,7 +198,16 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 						</ParticleCard>
 
-						<div className="border-soft lg:flex-5 card card--border-glow relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
+						<ParticleCard
+							alwaysShowParticles={alwaysShowParticles}
+							disableAnimations={shouldDisableAnimations}
+							particleCount={12}
+							style={cardStyle}
+							enableTilt={enableTilt}
+							clickEffect={clickEffect}
+							enableMagnetism={enableMagnetism}
+							isDarkMode={isDarkMode}
+							className="border-soft lg:flex-5 card z-1 card card--border-glow relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<LayoutDashboard size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Reusable UI Blocks</span>
@@ -206,11 +215,10 @@ const FeaturesSection: React.FC<BentoProps> = ({
 									Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use
 								</p>
 							</div>
-
 							<div className="h-full w-full">
 								<ReuseComponent />
 							</div>
-						</div>
+						</ParticleCard>
 					</div>
 				</div>
 			</BentoCardGrid>
