@@ -1,0 +1,1 @@
+ALTER TABLE "email_subscribers" ALTER COLUMN "is_subscribed" SET DEFAULT true;

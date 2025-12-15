@@ -74,8 +74,8 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								Documentation for Development
 							</Heading>
 							<Text className="text-fg m-0 text-base leading-7">
-								Access comprehensive API references, detailed component prop documentation, and practical code examples. Find framework-specific installation guides, integration
-								patterns, and best practices to help you build faster and more efficiently. Everything you need to get started and scale your projects with confidence.
+								Get detailed API and prop references for components, usage examples, and installation instructions for different frameworks and many more technical details for your
+								product development.
 							</Text>
 							<Img
 								src={`${baseUrl}/media/documentation-for-development.png`}
@@ -201,7 +201,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								<Row cellSpacing={8}>
 									{/* Twitter */}
 									<Column className="w-1/3">
-										<Link href="https://x.com/radian_os" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
+										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
 													<Img src={`${baseUrl}/media/x.png`} width="20" height="20" alt="x" style={{ display: "block" }} />
@@ -213,9 +213,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 
 									{/* GitHub */}
 									<Column className="w-1/3">
-										<Link
-											href="https://github.com/Radian-os/radianos"
-											className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
+										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
 													<Img src={`${baseUrl}/media/github.png`} width="20" height="20" alt="github" style={{ display: "block" }} />
@@ -229,9 +227,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 
 									{/* LinkedIn */}
 									<Column className="w-1/3">
-										<Link
-											href="https://www.linkedin.com/company/radianos/"
-											className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
+										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
 													<Img src={`${baseUrl}/media/linked-in.png`} width="20" height="20" alt="linked-in" style={{ display: "block" }} />
@@ -278,7 +274,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 									<Row align="right" cellSpacing={8}>
 										<Column>
 											<Button
-												href="https://github.com/Radian-os/radianos"
+												href="#"
 												style={{
 													boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 													borderRadius: "8px",
@@ -293,7 +289,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										</Column>
 										<Column>
 											<Button
-												href="https://x.com/radian_os"
+												href="#"
 												style={{
 													boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 													borderRadius: "8px",
@@ -308,7 +304,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										</Column>
 										<Column>
 											<Button
-												href="https://www.linkedin.com/company/radianos/"
+												href="#"
 												style={{
 													boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 													borderRadius: "8px",

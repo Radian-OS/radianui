@@ -51,7 +51,7 @@ const HeadingFontSpecs = () => {
 							{headings.map(({ name, size, lineHeight }, index) => (
 								<div key={name} className={`flex flex-col gap-2 ${index !== headings.length - 1 ? "border-b pb-4" : ""}`}>
 									<span
-										className="font-heading font-bold"
+										className="font-bold"
 										style={{
 											fontSize: `${size}px`,
 											lineHeight: `${lineHeight}px`,
