@@ -122,9 +122,17 @@ const INSTALLATION_ITEMS: NavigationItem[] = [
 ]
 
 // ===== Blocks Section =====
-const BLOCKS_ITEMS: NavigationItem[] = ["Sign In", "Sign Up", "Verification", "Forgot Password", "Reset Password", "Hero Section"].map((title) => ({
+const BLOCKS_DATA = [
+	{ title: "Sign In", category: "authentication" },
+	{ title: "Sign Up", category: "authentication" },
+	{ title: "Verification", category: "authentication" },
+	{ title: "Forgot Password", category: "authentication" },
+	{ title: "Reset Password", category: "authentication" },
+	{ title: "Hero Section", category: "website" },
+]
+const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(({ title, category }) => ({
 	title,
-	url: `${process.env.NEXT_PUBLIC_BLOCKS_URL!}/blocks/${title.toLowerCase().replace(/\s+/g, "-")}`,
+	url: `${process.env.NEXT_PUBLIC_BLOCKS_URL!}/blocks/${category}/${title.toLowerCase().replace(/\s+/g, "-")}`,
 }))
 
 // ===== Animations Section =====
