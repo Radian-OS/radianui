@@ -41,9 +41,9 @@ export default function ReuseComponent() {
 	// Start continuous up-down animation
 	const startFloatingAnimation = () => {
 		controls.start({
-			y: [0, -400, 0],
+			y: [0, -350, 0],
 			transition: {
-				duration: 10,
+				duration: 8,
 				repeat: Infinity,
 				ease: "easeInOut",
 			},
@@ -87,9 +87,9 @@ export default function ReuseComponent() {
 
 		let targetScroll
 		if (direction === "left") {
-			targetScroll = Math.max(0, currentScroll + cardWidth)
+			targetScroll = Math.max(0, currentScroll - cardWidth)
 		} else {
-			targetScroll = Math.min(maxScroll, currentScroll - cardWidth)
+			targetScroll = Math.min(maxScroll, currentScroll + cardWidth)
 		}
 
 		controls.stop()
@@ -168,7 +168,7 @@ export default function ReuseComponent() {
 	]
 
 	return (
-		<div className="flex h-screen w-full items-center justify-center overflow-hidden">
+		<div className="flex w-full items-center justify-center overflow-hidden pt-8">
 			<motion.div
 				ref={containerRef}
 				animate={controls}
@@ -181,25 +181,32 @@ export default function ReuseComponent() {
 					msOverflowStyle: "none",
 				}}>
 				{cards.map((card, index) => (
-					<div key={card.id} className={`w-90 flex h-[594px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
-						<AnimatePresence mode="wait">
+					<div key={card.id} className={`w-90 relative flex h-[594px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
+						<AnimatePresence mode="sync">
 							{centerCardIndex === index - 2 ? (
 								<motion.div
-									key="signin"
-									initial={{ opacity: 0, scale: 0.98 }}
-									animate={{ opacity: 1, scale: 1 }}
+									key={`signin-${index}`}
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
-									transition={{ duration: 0.4, ease: "easeOut" }}>
+									transition={{
+										duration: 1,
+										ease: [0.4, 0, 0.2, 1],
+									}}
+									className="absolute inset-0 flex items-center justify-center">
 									<Signin />
 								</motion.div>
 							) : (
 								<motion.div
-									key="empty"
+									key={`empty-${index}`}
 									initial={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
-									transition={{ duration: 0.3, ease: "easeOut" }}
-									className="w-90 bg-fill2 flex h-[594px] flex-shrink-0 flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
+									transition={{
+										duration: 1,
+										ease: [0.4, 0, 0.2, 1],
+									}}
+									className="w-90 bg-fill2 absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
 								/>
 							)}
 						</AnimatePresence>
