@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { useEffect, useRef, useState } from "react"
+import { AnimatePresence, motion, useAnimationControls, useSpring } from "motion/react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { Button } from "@/registry/ui/button"
@@ -12,279 +12,209 @@ import { GoogleIcon } from "../block/components/google-icon"
 import PlaygroundLogo from "../playground-logo"
 
 export default function ReuseComponent() {
-	const [activePanel, setActivePanel] = useState("middle")
+	const containerRef = useRef<HTMLDivElement>(null)
+	const controls = useAnimationControls()
+	const [isHovering, setIsHovering] = useState<"left" | "right" | null>(null)
 	const [isAnimating, setIsAnimating] = useState(false)
+	const [centerCardIndex, setCenterCardIndex] = useState<number | null>(null)
+	const scrollX = useSpring(0, {
+		stiffness: 50,
+		damping: 30,
+		mass: 1,
+	})
+	const cardWidth = 360 + 20 // w-90 = 360px + gap-5 = 20px
 
-	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>): void => {
-		const { clientX, currentTarget } = e
-		const { left, width } = currentTarget.getBoundingClientRect()
-		const x: number = clientX - left
+	// Calculate which card is in the center
+	const calculateCenterCard = () => {
+		const container = containerRef.current
+		if (!container) return
 
-		const leftThird: number = width / 3
-		const rightThird: number = (width * 2) / 3
+		const containerCenter = container.clientWidth / 2
+		const scrollLeft = container.scrollLeft
+		const absoluteCenter = scrollLeft + containerCenter
 
-		if (x < leftThird && activePanel !== "right") {
-			setActivePanel("right")
+		// Calculate which card index is at center
+		const cardIndex = Math.round(absoluteCenter / cardWidth)
+		setCenterCardIndex(cardIndex)
+	}
+
+	// Start continuous up-down animation
+	const startFloatingAnimation = () => {
+		controls.start({
+			y: [0, -400, 0],
+			transition: {
+				duration: 10,
+				repeat: Infinity,
+				ease: "easeInOut",
+			},
+		})
+	}
+
+	useEffect(() => {
+		const container = containerRef.current
+		if (container) {
+			// Set initial scroll position to center the signin card
+			const initialScroll = 1 * cardWidth
+			container.scrollLeft = initialScroll
+			scrollX.set(initialScroll)
+		}
+
+		startFloatingAnimation()
+		calculateCenterCard()
+	}, [])
+
+	// Listen to scroll animation completion
+	useEffect(() => {
+		const unsubscribe = scrollX.on("change", () => {
+			const velocity = scrollX.getVelocity()
+
+			// When velocity is near zero, animation is complete
+			if (Math.abs(velocity) < 1 && isAnimating) {
+				setIsAnimating(false)
+				startFloatingAnimation()
+			}
+		})
+
+		return unsubscribe
+	}, [isAnimating])
+
+	const scrollToCard = (direction: "left" | "right") => {
+		const container = containerRef.current
+		if (!container) return
+
+		const currentScroll = container.scrollLeft
+		const maxScroll = container.scrollWidth - container.clientWidth
+
+		let targetScroll
+		if (direction === "left") {
+			targetScroll = Math.max(0, currentScroll + cardWidth)
+		} else {
+			targetScroll = Math.min(maxScroll, currentScroll - cardWidth)
+		}
+
+		controls.stop()
+		controls.set({ y: 0 })
+		setIsAnimating(true)
+		scrollX.set(targetScroll)
+	}
+
+	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+		const container = containerRef.current
+		if (!container) return
+
+		const rect = container.getBoundingClientRect()
+		const x = e.clientX - rect.left
+		const containerWidth = rect.width
+
+		const currentScroll = container.scrollLeft
+		const maxScroll = container.scrollWidth - container.clientWidth
+
+		if (x < containerWidth / 2) {
+			// Check if we can actually scroll left
+			if (isHovering !== "left" && currentScroll > 0) {
+				setIsHovering("left")
+				setIsAnimating(true)
+				controls.stop()
+				scrollToCard("left")
+			}
+		} else {
+			// Check if we can actually scroll right
+			if (isHovering !== "right" && currentScroll < maxScroll) {
+				setIsHovering("right")
+				setIsAnimating(true)
+				controls.stop()
+				scrollToCard("right")
+			}
+		}
+	}
+	const handleMouseLeave = () => {
+		setIsHovering(null)
+
+		// Stop any ongoing animation
+		controls.stop()
+
+		// Scroll back to the original center position (signin card at index 2)
+		const container = containerRef.current
+		if (container) {
+			const originalScroll = 1 * cardWidth // Center the signin card (index 2, centerCardIndex checks index-1)
+			scrollX.set(originalScroll)
+			controls.set({ y: 0 })
+			// Wait for scroll animation to complete before restarting floating
 			setIsAnimating(true)
-			setTimeout(() => setIsAnimating(false), 1000)
-		} else if (x > rightThird && activePanel !== "left") {
-			setActivePanel("left")
-			setIsAnimating(true)
-			setTimeout(() => setIsAnimating(false), 1000)
-		} else if (x >= leftThird && x <= rightThird && activePanel !== "middle") {
-			setActivePanel("middle")
-			setIsAnimating(true)
-			setTimeout(() => setIsAnimating(false), 1000)
 		}
 	}
 
+	// Sync scroll position and calculate center card
+	useEffect(() => {
+		const unsubscribe = scrollX.on("change", (latest) => {
+			if (containerRef.current) {
+				containerRef.current.scrollLeft = latest
+				calculateCenterCard()
+			}
+		})
+
+		return unsubscribe
+	}, [scrollX])
+
+	// Cards data - you can modify this array as needed
+	const cards = [
+		{ id: 0, type: "empty" },
+		{ id: 1, type: "empty" },
+		{ id: 2, type: "signin" },
+		{ id: 3, type: "empty" },
+		{ id: 4, type: "empty" },
+		{ id: 5, type: "empty" },
+		{ id: 6, type: "empty" },
+	]
+
 	return (
-		<div
-			className="relative z-0 flex h-screen w-full items-center justify-center overflow-hidden pt-6"
-			onMouseMove={handleMouseMove}
-			onMouseLeave={() => {
-				if (activePanel !== "middle") {
-					setActivePanel("middle")
-					setIsAnimating(true)
-					setTimeout(() => setIsAnimating(false), 1000)
-				}
-			}}>
-			<div className="relative flex h-full w-full max-w-7xl items-center justify-center gap-5">
-				<motion.div
-					className="flex h-full"
-					animate={
-						activePanel === "left"
-							? { x: "-150%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
-							: activePanel === "right"
-								? { x: "130%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
-								: {
-										x: "-10%",
-										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
-										opacity: 1,
-									}
-					}
-					transition={{
-						x: {
-							type: "tween",
-							duration: 1,
-							ease: "easeInOut",
-						},
-						y: isAnimating
-							? {
-									duration: 0,
-								}
-							: {
-									duration: 8,
-									repeat: Infinity,
-									ease: "easeInOut",
-								},
-						opacity: {
-							duration: 0.8,
-							ease: "easeInOut",
-						},
-					}}
-					style={{ zIndex: 10 }}>
-					<AnimatePresence mode="wait">
-						<motion.div
-							key={activePanel === "right" ? "signin" : "placeholder"}
-							initial={{ opacity: 0.5 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							<div className="border-soft bg-fill1 h-[594px] w-56 rounded-2xl border-2 border-dotted px-6 py-8" />
-						</motion.div>
-					</AnimatePresence>
-				</motion.div>
-
-				{/* Left Panel */}
-				<motion.div
-					className="flex h-full flex-1"
-					animate={
-						activePanel === "left"
-							? { x: "-100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
-							: activePanel === "right"
-								? { x: "100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
-								: {
-										x: "10%",
-										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
-										opacity: 1,
-									}
-					}
-					transition={{
-						x: {
-							type: "tween",
-							duration: 1,
-							ease: "easeInOut",
-						},
-						y: isAnimating
-							? {
-									duration: 0,
-								}
-							: {
-									duration: 8,
-									repeat: Infinity,
-									ease: "easeInOut",
-								},
-						opacity: {
-							duration: 0.8,
-							ease: "easeInOut",
-						},
-					}}
-					style={{ zIndex: 10 }}>
-					<AnimatePresence mode="wait">
-						<motion.div
-							key={activePanel === "right" ? "signin" : "placeholder"}
-							initial={{ opacity: 0.5 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							{activePanel === "right" ? <Signin /> : <div className="w-90 border-soft bg-fill1 mx-5 h-[594px] rounded-2xl border-2 border-dotted px-6 py-8"></div>}
-						</motion.div>
-					</AnimatePresence>
-				</motion.div>
-
-				{/* Middle Panel */}
-				<motion.div
-					className="flex h-full flex-1"
-					animate={
-						activePanel === "left"
-							? { x: "-100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
-							: activePanel === "right"
-								? { x: "100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
-								: {
-										x: "20%",
-										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
-										opacity: 1,
-									}
-					}
-					transition={{
-						x: {
-							type: "tween",
-							duration: 1,
-							ease: "easeInOut",
-						},
-						y: isAnimating
-							? {
-									duration: 0,
-								}
-							: {
-									duration: 8,
-									repeat: Infinity,
-									ease: "easeInOut",
-								},
-						opacity: {
-							duration: 0.8,
-							ease: "easeInOut",
-						},
-					}}
-					style={{ zIndex: 15 }}>
-					<AnimatePresence mode="wait">
-						<motion.div
-							key={activePanel === "right" || activePanel === "left" ? "signin1" : "placeholder1"}
-							initial={{ opacity: 0.5 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							{activePanel === "right" || activePanel === "left" ? <div className="w-90 border-soft bg-fill1 mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div> : <Signin />}
-						</motion.div>
-					</AnimatePresence>
-				</motion.div>
-
-				{/* Right Panel */}
-				<motion.div
-					className="flex h-full flex-1"
-					animate={
-						activePanel === "left"
-							? { x: "-100%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
-							: activePanel === "right"
-								? { x: "120%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
-								: {
-										x: "30%",
-										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
-										opacity: 1,
-									}
-					}
-					transition={{
-						x: {
-							type: "tween",
-							duration: 1,
-							ease: "easeInOut",
-						},
-						y: isAnimating
-							? {
-									duration: 0,
-								}
-							: {
-									duration: 8,
-									repeat: Infinity,
-									ease: "easeInOut",
-								},
-						opacity: {
-							duration: 0.8,
-							ease: "easeInOut",
-						},
-					}}
-					style={{ zIndex: 10 }}>
-					<AnimatePresence mode="wait">
-						<motion.div
-							key={activePanel === "left" ? "signin" : "placeholder"}
-							initial={{ opacity: 0.5 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							{activePanel === "left" ? <Signin /> : <div className="w-90 border-soft bg-fill1 mx-5 h-[594px] rounded-2xl border-2 border-dotted"></div>}
-						</motion.div>
-					</AnimatePresence>
-				</motion.div>
-				<motion.div
-					className="flex h-full"
-					animate={
-						activePanel === "left"
-							? { x: "-150%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"], opacity: 1 }
-							: activePanel === "right"
-								? { x: "130%", y: isAnimating ? "0%" : ["0%", "-50%", "0%"] }
-								: {
-										x: "10%",
-										y: isAnimating ? "0%" : ["0%", "-50%", "0%"],
-										opacity: 1,
-									}
-					}
-					transition={{
-						x: {
-							type: "tween",
-							duration: 1,
-							ease: "easeInOut",
-						},
-						y: isAnimating
-							? {
-									duration: 0,
-								}
-							: {
-									duration: 8,
-									repeat: Infinity,
-									ease: "easeInOut",
-								},
-						opacity: {
-							duration: 0.8,
-							ease: "easeInOut",
-						},
-					}}
-					style={{ zIndex: 10 }}>
-					<AnimatePresence mode="wait">
-						<motion.div
-							key={activePanel === "left" ? "signin" : "placeholder"}
-							initial={{ opacity: 0.5 }}
-							animate={{ opacity: 1 }}
-							transition={{ duration: 0.4, ease: "easeInOut" }}>
-							<div className="border-soft bg-fill1 h-[594px] w-56 rounded-2xl border-2 border-dotted px-6 py-8" />
-						</motion.div>
-					</AnimatePresence>
-				</motion.div>
-			</div>
+		<div className="flex h-screen w-full items-center justify-center overflow-hidden">
+			<motion.div
+				ref={containerRef}
+				animate={controls}
+				className="relative z-0 flex cursor-pointer items-center justify-center gap-5 overflow-x-auto overflow-y-hidden"
+				onMouseMove={handleMouseMove}
+				onMouseLeave={handleMouseLeave}
+				style={{
+					scrollBehavior: "auto",
+					scrollbarWidth: "none",
+					msOverflowStyle: "none",
+				}}>
+				{cards.map((card, index) => (
+					<div key={card.id} className={`w-90 flex h-[594px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
+						<AnimatePresence mode="wait">
+							{centerCardIndex === index - 2 ? (
+								<motion.div
+									key="signin"
+									initial={{ opacity: 0, scale: 0.98 }}
+									animate={{ opacity: 1, scale: 1 }}
+									exit={{ opacity: 0 }}
+									transition={{ duration: 0.4, ease: "easeOut" }}>
+									<Signin />
+								</motion.div>
+							) : (
+								<motion.div
+									key="empty"
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									exit={{ opacity: 0 }}
+									transition={{ duration: 0.3, ease: "easeOut" }}
+									className="w-90 bg-fill2 flex h-[594px] flex-shrink-0 flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
+								/>
+							)}
+						</AnimatePresence>
+					</div>
+				))}
+			</motion.div>
 		</div>
 	)
 }
+
 const Signin = () => {
 	const form = useForm()
 
 	return (
-		<div className="w-90 bg-bg border-soft z-0 flex rounded-2xl border px-6 py-8 shadow-[0_16px_24px_-4px_rgba(25,24,27,0.12)]">
+		<div className="w-90 bg-bg border-soft z-0 flex flex-shrink-0 rounded-2xl border px-6 py-8">
 			<div className="flex flex-1 flex-col gap-6">
 				<div>
 					<PlaygroundLogo />
