@@ -167,7 +167,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								<Row cellSpacing={8}>
 									{/* Twitter */}
 									<Column className="w-1/3">
-										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
+										<Link href="https://x.com/radian_os" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
 													<Img src={`${baseUrl}/media/welcome-email/x.png`} width="20" height="20" alt="x" style={{ display: "block" }} />
@@ -179,7 +179,9 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 
 									{/* GitHub */}
 									<Column className="w-1/3">
-										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
+										<Link
+											href="https://github.com/Radian-os/radianos"
+											className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
 													<Img src={`${baseUrl}/media/welcome-email/github.png`} width="20" height="20" alt="github" style={{ display: "block" }} />
@@ -193,7 +195,9 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 
 									{/* LinkedIn */}
 									<Column className="w-1/3">
-										<Link href="#" className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
+										<Link
+											href="https://www.linkedin.com/company/radianos/"
+											className="border-border text-fg-secondary block w-full rounded-lg border bg-white py-2 text-sm font-medium no-underline">
 											<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 												<Column align="right">
 													<Img src={`${baseUrl}/media/welcome-email/linked-in.png`} width="20" height="20" alt="linked-in" style={{ display: "block" }} />
@@ -240,7 +244,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 									<Row align="right" cellSpacing={8}>
 										<Column>
 											<Button
-												href="#"
+												href="https://github.com/Radian-os/radianos"
 												style={{
 													boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 													borderRadius: "8px",
@@ -255,7 +259,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										</Column>
 										<Column>
 											<Button
-												href="#"
+												href="https://www.linkedin.com/company/radianos/"
 												style={{
 													boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 													borderRadius: "8px",
@@ -270,7 +274,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 										</Column>
 										<Column>
 											<Button
-												href="#"
+												href="https://x.com/radian_os"
 												style={{
 													boxShadow: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
 													borderRadius: "8px",
