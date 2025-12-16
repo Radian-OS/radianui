@@ -14,7 +14,8 @@ import PlaygroundLogo from "../playground-logo"
 export default function ReuseComponent() {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const controls = useAnimationControls()
-	const [isHovering, setIsHovering] = useState<"left" | "right" | null>(null)
+	const [hasHoveredCard5, setHasHoveredCard5] = useState(false)
+	const [, setIsHovering] = useState<"left" | "right" | null>(null)
 	const [isAnimating, setIsAnimating] = useState(false)
 	const [centerCardIndex, setCenterCardIndex] = useState<number | null>(null)
 	const scrollX = useSpring(0, {
@@ -89,7 +90,7 @@ export default function ReuseComponent() {
 		if (direction === "left") {
 			targetScroll = Math.max(0, currentScroll - cardWidth)
 		} else {
-			targetScroll = Math.min(maxScroll, currentScroll + cardWidth)
+			targetScroll = Math.min(maxScroll - 2, currentScroll + cardWidth)
 		}
 
 		controls.stop()
@@ -98,37 +99,31 @@ export default function ReuseComponent() {
 		scrollX.set(targetScroll)
 	}
 
-	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, cardId: number) => {
 		const container = containerRef.current
 		if (!container) return
 
-		const rect = container.getBoundingClientRect()
-		const x = e.clientX - rect.left
-		const containerWidth = rect.width
-
-		const currentScroll = container.scrollLeft
-		const maxScroll = container.scrollWidth - container.clientWidth
-
-		if (x < containerWidth / 2) {
-			// Check if we can actually scroll left
-			if (isHovering !== "left" && currentScroll > 0) {
-				setIsHovering("left")
-				setIsAnimating(true)
-				controls.stop()
-				scrollToCard("left")
-			}
-		} else {
-			// Check if we can actually scroll right
-			if (isHovering !== "right" && currentScroll < maxScroll) {
+		// Only trigger on card id 1 (left) or id 3 (right)
+		if (cardId === 3) {
+			// Left hover
+			setIsHovering("left")
+			setIsAnimating(true)
+			controls.stop()
+			scrollToCard("left")
+		} else if (cardId === 5) {
+			if (!hasHoveredCard5) {
+				// Right hover
 				setIsHovering("right")
 				setIsAnimating(true)
 				controls.stop()
 				scrollToCard("right")
+				setHasHoveredCard5(true)
 			}
 		}
 	}
 	const handleMouseLeave = () => {
 		setIsHovering(null)
+		setHasHoveredCard5(false)
 
 		// Stop any ongoing animation
 		controls.stop()
@@ -173,7 +168,6 @@ export default function ReuseComponent() {
 				ref={containerRef}
 				animate={controls}
 				className="relative z-0 flex cursor-pointer items-center justify-center gap-5 overflow-x-auto overflow-y-hidden"
-				onMouseMove={handleMouseMove}
 				onMouseLeave={handleMouseLeave}
 				style={{
 					scrollBehavior: "auto",
@@ -181,7 +175,10 @@ export default function ReuseComponent() {
 					msOverflowStyle: "none",
 				}}>
 				{cards.map((card, index) => (
-					<div key={card.id} className={`w-90 relative flex h-[594px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
+					<div
+						onMouseMove={(e) => handleMouseMove(e, card.id)}
+						key={card.id}
+						className={`w-90 relative flex h-[594px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
 						<AnimatePresence mode="sync">
 							{centerCardIndex === index - 2 ? (
 								<motion.div
@@ -190,8 +187,8 @@ export default function ReuseComponent() {
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
 									transition={{
-										duration: 1,
-										ease: [0.4, 0, 0.2, 1],
+										duration: 0.5,
+										ease: "linear",
 									}}
 									className="absolute inset-0 flex items-center justify-center">
 									<Signin />
@@ -203,10 +200,10 @@ export default function ReuseComponent() {
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
 									transition={{
-										duration: 1,
-										ease: [0.4, 0, 0.2, 1],
+										duration: 0.5,
+										ease: "linear",
 									}}
-									className="w-90 bg-fill2 absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
+									className="w-90 bg-fill1 absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
 								/>
 							)}
 						</AnimatePresence>
