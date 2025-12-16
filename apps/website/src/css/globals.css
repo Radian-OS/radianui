@@ -124,14 +124,14 @@
 	--color-info-text: oklch(0.6722 0.1615 251.56);
 
 	/* background */
-	--color-bg: oklch(0.144 0.0028 247.09);
+	--color-bg: #090a0b;
 	--color-fill1: oklch(0.1652 0.0062 285.7);
 	--color-fill2: oklch(0.1881 0.006 285.81);
 	--color-fill3: oklch(0.2314 0.0078 274.6);
 	--color-fill4: oklch(0.2738 0.0093 276.77);
 
 	/* foreground */
-	--color-fg: oklch(0.9824 0.0013 286.38);
+	--color-fg: #f9f9fa;
 	--color-fg-secondary: oklch(0.6619 0.0235 285.74);
 	--color-fg-tertiary: oklch(0.5553 0.0292 285.41);
 	--color-fg-disabled: oklch(0.4515 0.0243 285.39);
