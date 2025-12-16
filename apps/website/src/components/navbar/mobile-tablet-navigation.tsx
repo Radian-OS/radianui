@@ -84,26 +84,28 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 				</ul>
 
 				<Accordion type="single" size="sm" variant="open" collapsible>
-					{navigationItems.map((section) => (
-						<AccordionItem className="border-none" value={section.title} key={section.title}>
-							<section>
-								<AccordionTrigger className="py-3 text-base">{section.title}</AccordionTrigger>
-								<AccordionContent>
-									<div className="flex flex-col items-start">
-										{section.items.map((item) => (
-											<Link
-												onClick={() => setIsMobileMenuOpen(false)}
-												key={item.url}
-												className={`${pathname === item.url ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
-												href={item.url}>
-												{item.title}
-											</Link>
-										))}
-									</div>
-								</AccordionContent>
-							</section>
-						</AccordionItem>
-					))}
+					{navigationItems
+						.filter((item) => item.title !== "Blocks")
+						.map((section) => (
+							<AccordionItem className="border-none" value={section.title} key={section.title}>
+								<section>
+									<AccordionTrigger className="py-3 text-base">{section.title}</AccordionTrigger>
+									<AccordionContent>
+										<div className="flex flex-col items-start">
+											{section.items.map((item) => (
+												<Link
+													onClick={() => setIsMobileMenuOpen(false)}
+													key={item.url}
+													className={`${pathname === item.url ? "text-fg0" : ""} text-fgflex text-fgfont-normal w-full items-center py-3`}
+													href={item.url}>
+													{item.title}
+												</Link>
+											))}
+										</div>
+									</AccordionContent>
+								</section>
+							</AccordionItem>
+						))}
 				</Accordion>
 			</div>
 		</nav>
