@@ -50,7 +50,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 									<Column align="right">❖ Radian Design System ❖ Figma Kit </Column>
 									<Column align="left">
-										<Img src={`${baseUrl}/media/arrow-up-right.png`} width="20" height="20" alt="arrow-up-right" className="block" />
+										<Img src={`${baseUrl}/media/welcome-email/arrow-up-right.png`} width="20" height="20" alt="arrow-up-right" className="block" />
 									</Column>
 								</Row>
 							</Button>
@@ -78,7 +78,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 									<Column align="right">Read Documentation</Column>
 									<Column align="left">
-										<Img src={`${baseUrl}/media/arrow-up-right.png`} width="20" height="20" alt="arrow-up-right" className="block" />
+										<Img src={`${baseUrl}/media/welcome-email/arrow-up-right.png`} width="20" height="20" alt="arrow-up-right" className="block" />
 									</Column>
 								</Row>
 							</Button>
