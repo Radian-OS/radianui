@@ -74,7 +74,7 @@ export function ThemeableSystem() {
 
 	// reset scrollIndex silently when near end to avoid snapping
 	useEffect(() => {
-		if (scrollIndex > duplicatedData.length - COLORS.length * 2 - 14) {
+		if (scrollIndex > 150) {
 			setScrollIndex(COLORS.length)
 		}
 	}, [scrollIndex, duplicatedData.length])
@@ -90,7 +90,8 @@ export function ThemeableSystem() {
 	return (
 		<div ref={containerRef} className="relative flex h-full w-full items-center justify-between overflow-hidden px-10">
 			{/* Top gradient */}
-			<div className="from-bg/0 to-bg absolute left-0 top-0 z-10 h-10 w-full bg-gradient-to-t" />
+			<div className="z-1 h-39 from-bg/5 to-bg absolute left-0 top-0 w-full bg-gradient-to-t" />
+			<div className="z-1 h-43 from-bg/5 to-bg absolute bottom-0 left-0 w-full bg-gradient-to-b" />
 
 			{/* Color list */}
 			<motion.div animate={{ y: -centerOffset }} transition={{ duration: 0.6, ease: "easeOut" }} className="flex flex-col">
@@ -123,7 +124,7 @@ const profile = {
 
 function HoverCard({ activeColor }: { activeColor: string }) {
 	return (
-		<div className={`color-${activeColor}`}>
+		<div className={`color-${activeColor} z-1`}>
 			<div className={`border-border bg-bg flex h-fit w-80 flex-col overflow-hidden rounded-xl border p-0`}>
 				<div className={`bg-primary-focus relative h-16`}>
 					<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">

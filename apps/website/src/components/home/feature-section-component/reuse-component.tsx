@@ -40,7 +40,14 @@ export function ReuseComponent() {
 	}
 
 	// Start continuous up-down animation
-	const startFloatingAnimation = () => {
+	const startFloatingAnimation = async () => {
+		// First, smoothly move to starting position if not already there
+		await controls.start({
+			y: 0,
+			transition: { duration: 0.5, ease: "easeOut" },
+		})
+
+		// Then start the infinite loop
 		controls.start({
 			y: [0, -350, 0],
 			transition: {
@@ -94,7 +101,6 @@ export function ReuseComponent() {
 		}
 
 		controls.stop()
-		controls.set({ y: 0 })
 		setIsAnimating(true)
 		scrollX.set(targetScroll)
 	}
@@ -136,7 +142,6 @@ export function ReuseComponent() {
 		if (container) {
 			const originalScroll = 1 * cardWidth // Center the signin card (index 2, centerCardIndex checks index-1)
 			scrollX.set(originalScroll)
-			controls.set({ y: 0 })
 			// Wait for scroll animation to complete before restarting floating
 			setIsAnimating(true)
 		}

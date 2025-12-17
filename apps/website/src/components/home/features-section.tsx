@@ -166,8 +166,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft card card--border-glow relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
-							<div className="h-25 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+							className="border-soft card card--border-glow z-3 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<SwatchBook size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Themeable System</span>
