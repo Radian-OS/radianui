@@ -134,7 +134,7 @@ export const getAliasPrefixFromTsConfigFile = async (cwd: string) => {
 
 	for (const [alias, paths] of Object.entries(tsConfigFile.paths)) {
 		if (paths.includes("./*") || paths.includes("./src/*") || paths.includes("./app/*") || paths.includes("./resources/js/*/")) {
-			return alias.at(0) ?? null
+			return alias[0] ?? null
 		}
 	}
 	return null

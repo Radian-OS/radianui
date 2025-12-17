@@ -1,11 +1,9 @@
 import { Command } from "commander"
 import fs from "fs-extra"
 import path from "path"
-import prompts from "prompts"
 import { z } from "zod"
 import { InitOptions } from "@/commands/init"
 import { preflightAdd } from "@/preflights/preFlightAdd"
-import { txt } from "@/utils/colors"
 import { createFilePath } from "@/utils/createFilePath"
 import { installComponentDependencies } from "@/utils/dependencyInstaller"
 import { findBlockDependencies } from "@/utils/findBlockDependencies"
@@ -25,21 +23,18 @@ const addOptionsSchema = z.object({
 	yes: z.boolean(),
 	all: z.boolean(),
 	overwrite: z.boolean(),
-	silent: z.boolean(),
 })
 
 export type AddOptions = z.infer<typeof addOptionsSchema>
 
-// Define the `add` command with available options
 export const add = new Command()
 	.name("add")
-	.description("Add components to ui folder inside the components folder in your project")
-	.argument("[components...]", "The components to add.")
-	.option("-y, --yes", "Skip confirmation prompts.", false)
-	.option("-a, --all", "Install all available components.", false)
-	.option("-c, --cwd <cwd>", "The working directory. Defaults to the current directory.", process.cwd())
-	.option("-o, --overwrite", "Overwrite existing files if they exist.", false)
-	.option("-s, --silent", "Mute output logs.", false)
+	.description("add components to ui folder inside the components folder in your project")
+	.argument("[components...]", "the components to add.")
+	.option("-y, --yes", "skip confirmation prompts.", false)
+	.option("-a, --all", "install all available components.", false)
+	.option("-c, --cwd <cwd>", "the working directory. defaults to the current directory.", process.cwd())
+	.option("-o, --overwrite", "overwrite existing files if they exist.", false)
 	.action(async (components, opts) => {
 		try {
 			const options: AddOptions = addOptionsSchema.parse({
@@ -185,33 +180,25 @@ async function addComponentsToProject(resolvedComponents: RegistryComponents, op
 
 	const hasUpdatedFiles = filesCreated.length || filesUpdated.length
 	if (!hasUpdatedFiles && !filesSkipped.length) {
-		spinner(`No files updated.`, {
-			silent: options.silent,
-		})?.info()
+		spinner(`No files updated.`)?.info()
 	}
 
 	if (filesCreated.length) {
-		spinner(`Created ${filesCreated.length} ${filesCreated.length === 1 ? "file" : "files"}:`, {
-			silent: options.silent,
-		})?.succeed()
+		spinner(`Created ${filesCreated.length} ${filesCreated.length === 1 ? "file" : "files"}:`)?.succeed()
 		for (const file of filesCreated) {
 			logger.log(`  - ${file}`)
 		}
 	}
 
 	if (filesUpdated.length) {
-		spinner(`Updated ${filesUpdated.length} ${filesUpdated.length === 1 ? "file" : "files"}:`, {
-			silent: options.silent,
-		})?.info()
+		spinner(`Updated ${filesUpdated.length} ${filesUpdated.length === 1 ? "file" : "files"}:`)?.info()
 		for (const file of filesUpdated) {
 			logger.log(`  - ${file}`)
 		}
 	}
 
 	if (filesSkipped.length) {
-		spinner(`Skipped ${filesSkipped.length} ${filesSkipped.length === 1 ? "file" : "files"}: (files might be identical,use --overwrite flag to overwrite)`, {
-			silent: options.silent,
-		})?.info()
+		spinner(`Skipped ${filesSkipped.length} ${filesSkipped.length === 1 ? "file" : "files"}: (files might be identical,use --overwrite flag to overwrite)`)?.info()
 		for (const file of filesSkipped) {
 			logger.log(`  - ${file}`)
 		}
