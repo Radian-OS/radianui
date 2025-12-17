@@ -50,9 +50,6 @@ export default async function UnsubscribePage({ searchParams }: UnsubscribePageP
 							</EmptyDescription>
 						</EmptyHeader>
 						<EmptyAction className="max-w-full">
-							<Button variant={"outline"} size={"40"}>
-								Subscribe Again
-							</Button>
 							<Button size={"40"} asChild>
 								<Link href="/">Go to Homepage</Link>
 							</Button>

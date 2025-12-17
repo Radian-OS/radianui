@@ -43,10 +43,10 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 								Available on the Figma Community, Radian is a free design system and UI kit built for solo designers, freelancers, startups, agencies, and organizations. It
 								utilizes all modern Figma practices such as auto layout, variables, and token systems.
 							</Text>
-							<Link href={`#`}>
+							<Link href={`${baseUrl}/docs/getting-started/introduction`}>
 								<Img src={`${baseUrl}/media/welcome-email/figma-community-file.jpg`} alt="figma-community-file" className="my-8 w-full max-w-full border-8 border-[#F4F4F6]" />
 							</Link>
-							<Button href="#" className="bg-primary block w-full py-1.5 text-center font-medium text-white hover:cursor-pointer">
+							<Button href={`${baseUrl}/docs/getting-started/introduction`} className="bg-primary block w-full py-1.5 text-center font-medium text-white hover:cursor-pointer">
 								<Row cellSpacing={6} align="center" className="mx-auto w-fit">
 									<Column align="right">❖ Radian Design System ❖ Figma Kit </Column>
 									<Column align="left">
@@ -117,7 +117,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Navigating Documentation
 									</Heading>
-									<Link href={`#`}>
+									<Link href={`${baseUrl}/docs/getting-started/introduction`}>
 										<Img
 											src={`${baseUrl}/media/welcome-email/navigating-documentation.jpg`}
 											alt="navigating-documentation"
@@ -134,7 +134,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 									<Heading as="h3" m={0} className="text-fg text-lg font-semibold leading-7">
 										Examples and Blocks
 									</Heading>
-									<Link href={`#`}>
+									<Link href={`https://blocks.radianos.com/`}>
 										<Img
 											src={`${baseUrl}/media/welcome-email/examples-and-blocks.gif`}
 											alt="examples-and-blocks"

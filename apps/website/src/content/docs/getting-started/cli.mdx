@@ -8,7 +8,7 @@ description: Use the CLI to add components to your project.
 Use the **`init`** command to initialize configuration and dependencies for a new project.
 
 <br />
-The **`init`** command installs dependencies, adds the radianos util, configures tailwind.config.js, and CSS variables for the project.
+The **`init`** command installs dependencies, adds the radianos util and CSS variables for the project.
 <br />
 <PackageManagerTabs
 	commands={{
@@ -41,22 +41,27 @@ Success! Project initialization completed. You may now add components.
 `}
 />
 
-## options
+### options
 
 <CodeSnippet
 	title="Terminal"
-	code={`Usage: radianui [options] [command]
+	code={`Usage: radianui init [options] [project-name]
 
-Add components to your project
+initializes your project with required dependencies
+
+Arguments:
+project-name The name of the project
 
 Options:
--v, --version display the version number
--h, --help display help for command
-
-Commands:
-init [options] [project-name] initializes your project with required dependencies
-add [options] [components...] Add components to ui folder inside the components folder in your project
-help [command] display help for command`}
+--next use next.js (default: false)
+--vite use vite (default: false)
+--useSrc use src directory
+--color <color> set brand color
+--font <font> set default font
+-s, --skipPrompts skip confirmation prompts (default: false)
+-d, --defaultConfigurations use default configurations (default: false)
+-c, --cwd <cwd> current working directory (default: "D:\\RadianOS\\radianos")
+-h, --help display help for command`}
 />
 
 ## add
