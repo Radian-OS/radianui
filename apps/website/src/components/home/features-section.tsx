@@ -10,7 +10,8 @@ import { FeatureHeader } from "./feature-section-component/feature-header"
 import { GlobalSpotlight } from "./feature-section-component/global-spotlight"
 import { Marquee } from "./feature-section-component/marquee"
 import { ParticleCard } from "./feature-section-component/partical-card"
-import ReuseComponent from "./feature-section-component/reuse-component"
+import { ReuseComponent } from "./feature-section-component/reuse-component"
+import { ThemeableSystem } from "./feature-section-component/themeable-system-card"
 
 export interface BentoCardProps {
 	color?: string
@@ -172,7 +173,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<span className="heading-6 font-medium">Themeable System</span>
 								<p className="text-fg-secondary lg:max-w-105 w-fit max-w-[380px] text-sm">Edit one token to restyle your entire design system light, dark, or custom themes.</p>
 							</div>
-							<div className="bg-fill1 flex h-full items-center justify-center gap-14 pl-10"></div>
+							<ThemeableSystem />
 						</ParticleCard>
 					</div>
 					<div className="relative flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">

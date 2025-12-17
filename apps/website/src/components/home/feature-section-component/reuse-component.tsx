@@ -11,7 +11,7 @@ import { GithubIcon } from "../block/components/github-icon"
 import { GoogleIcon } from "../block/components/google-icon"
 import PlaygroundLogo from "../playground-logo"
 
-export default function ReuseComponent() {
+export function ReuseComponent() {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const controls = useAnimationControls()
 	const [hasHoveredCard5, setHasHoveredCard5] = useState(false)
@@ -120,6 +120,9 @@ export default function ReuseComponent() {
 				setHasHoveredCard5(true)
 			}
 		}
+		// else if (cardId === 4) {
+		// 	handleMouseLeave()
+		// }
 	}
 	const handleMouseLeave = () => {
 		setIsHovering(null)
