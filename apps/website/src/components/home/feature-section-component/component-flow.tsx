@@ -6,7 +6,7 @@ interface ComponentFlowCardProps {
 	gridRef?: React.RefObject<HTMLDivElement | null>
 }
 
-export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef }) => {
+export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 	return (
 		<div className="h-full w-full overflow-hidden pt-5">
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center">
