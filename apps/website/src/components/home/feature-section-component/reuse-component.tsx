@@ -44,7 +44,7 @@ export function ReuseComponent() {
 		// First, smoothly move to starting position if not already there
 		await controls.start({
 			y: 0,
-			transition: { duration: 0.5, ease: "easeOut" },
+			transition: { duration: 2, ease: "easeOut" },
 		})
 
 		// Then start the infinite loop

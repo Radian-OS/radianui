@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react"
 import { CircleGauge, FolderGit, LayoutDashboard, ScanEye, SquareTerminal, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+import { CliCard } from "./feature-section-component/cli-card"
 import { CodeSync } from "./feature-section-component/code-sync"
 import { ComponentFlowCard } from "./feature-section-component/component-flow"
 import { FeatureHeader } from "./feature-section-component/feature-header"
@@ -128,13 +129,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="lg:flex-3 border-soft card card--border-glow relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
+							className="lg:flex-3 border-soft card card--border-glow relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border px-10">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
 								<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 							</div>
-							<div className="gap-12.25 bg-fill1 flex h-full flex-col"></div>
+							<CliCard />
 						</ParticleCard>
 					</div>
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
