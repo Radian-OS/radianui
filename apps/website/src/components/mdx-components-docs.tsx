@@ -5,16 +5,6 @@ import { Link as LinkIcon, Moon, Sun } from "lucide-react"
 import { getMDXComponent } from "mdx-bundler/client"
 import Image from "next/image"
 import Link from "next/link"
-import AnimatedListPreview from "@/component-preview/animations/animated-list-preview"
-import BorderBeamPreview from "@/component-preview/animations/border-beam-preview"
-import ChangingTextPreview from "@/component-preview/animations/changing-text-preview"
-import DraggablePreview from "@/component-preview/animations/draggable-preview"
-import FadePreview from "@/component-preview/animations/fade-preview"
-import GradientTextPreview from "@/component-preview/animations/gradient-text-preview"
-import InfiniteScrollPreview from "@/component-preview/animations/infinite-scroll-preview"
-import PointerPreview from "@/component-preview/animations/pointer-preview"
-import TextRevealPreview from "@/component-preview/animations/text-reveal-preview"
-import TypingTextPreview from "@/component-preview/animations/typing-text-preview"
 import CodeSnippet from "@/components/code-snippet"
 import ColorPlayground from "@/components/color/color-playground"
 import { ColorData, ColorTable } from "@/components/color/color-table"
@@ -34,11 +24,6 @@ import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
 import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
-import BlurFadeExample from "@/registry/example/animated/blur-fade-example"
-import CollaborationPointerExample from "@/registry/example/animated/collaboration-pointer-example"
-import DragConstraintsExample from "@/registry/example/animated/drag-constraints-example"
-import FadeOutExample from "@/registry/example/animated/fade-out-example"
-import InfiniteScrollVerticalExample from "@/registry/example/animated/infinite-scroll-vertical"
 import BadgeExamplePreview from "@/registry/example/badge/badge-color-example"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
@@ -99,21 +84,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	DarkModePlayground: () => <DarkModePlayground />,
 	CustomThemePlayground: () => <CustomThemePlayground />,
 	// Animation components
-	TypingTextPreview: () => <TypingTextPreview />,
-	GradientTextPreview: () => <GradientTextPreview />,
-	DraggablePreview: () => <DraggablePreview />,
-	FadePreview: () => <FadePreview />,
-	InfiniteScrollPreview: () => <InfiniteScrollPreview />,
-	PointerPreview: () => <PointerPreview />,
-	BorderBeamPreview: () => <BorderBeamPreview />,
-	ChangingTextPreview: () => <ChangingTextPreview />,
-	InfiniteScrollVerticalExample: () => <InfiniteScrollVerticalExample />,
-	CollaborationPointerExample: () => <CollaborationPointerExample />,
-	DragConstraintsExample: () => <DragConstraintsExample />,
-	AnimatedListPreview: () => <AnimatedListPreview />,
-	TextRevealPreview: () => <TextRevealPreview />,
-	BlurFadeExample: () => <BlurFadeExample />,
-	FadeOutExample: () => <FadeOutExample />,
 	ProgressPreview: () => <ProgressPreview />,
 	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
 		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
@@ -133,7 +103,6 @@ const components = (examples: typeof Examples | undefined) => ({
 	},
 
 	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
-	// AlertLucide: () => <AlertLucide />,
 	FigmaCard: () => <FigmaCard />,
 	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
