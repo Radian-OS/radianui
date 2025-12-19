@@ -88,7 +88,7 @@ export function ThemeableSystem() {
 	const centerOffset = scrollIndex * ITEM_HEIGHT - (containerHeight / 2 - ITEM_HEIGHT / 2) + ACTIVE_OFFSET
 
 	return (
-		<div ref={containerRef} className="relative flex h-full w-full items-center justify-between overflow-hidden px-10">
+		<div ref={containerRef} className="relative flex h-full w-full select-none items-center gap-20 overflow-hidden px-10">
 			{/* Top gradient */}
 			<div className="z-1 h-39 from-bg/5 to-bg absolute left-0 top-0 w-full bg-gradient-to-t" />
 			<div className="z-1 h-43 from-bg/5 to-bg absolute bottom-0 left-0 w-full bg-gradient-to-b" />

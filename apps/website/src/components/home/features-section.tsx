@@ -129,11 +129,11 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="lg:flex-3 border-soft card card--border-glow relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border px-10">
+							className="lg:flex-3 border-soft card card--border-glow relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
-								<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
+								<p className="text-fg-secondary max-w-[380px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 							</div>
 							<CliCard />
 						</ParticleCard>

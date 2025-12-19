@@ -226,7 +226,7 @@ const Signin = () => {
 	const form = useForm()
 
 	return (
-		<div className="w-90 bg-bg border-soft z-0 flex flex-shrink-0 rounded-2xl border px-6 py-8">
+		<div className="w-90 bg-bg border-soft z-0 flex flex-shrink-0 select-none rounded-2xl border px-6 py-8">
 			<div className="flex flex-1 flex-col gap-6">
 				<div>
 					<PlaygroundLogo />

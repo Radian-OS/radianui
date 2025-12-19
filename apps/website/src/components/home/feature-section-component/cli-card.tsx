@@ -9,8 +9,8 @@ interface FlowCardProps {
 
 export function CliCard({ gridRef }: FlowCardProps) {
 	return (
-		<BentoCardGrid gridRef={gridRef} className="flex flex-col">
-			<div className="relative">
+		<BentoCardGrid gridRef={gridRef} className="flex flex-col px-7 sm:px-12">
+			<div className="relative select-none">
 				<div className="bg-elevation-negative border-soft w-90 rounded-xl border px-1.5 py-2">
 					<div className="flex h-full flex-col gap-2">
 						<div className="flex px-2 pt-1">
