@@ -1,7 +1,7 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
-interface PreferencesState {
+type PreferencesState = {
 	packageManager: "pnpm" | "npm" | "yarn" | "bun"
 	installMethod: "cli" | "manual"
 	setPackageManager: (pm: PreferencesState["packageManager"]) => void
@@ -17,7 +17,7 @@ export const usePreferences = create<PreferencesState>()(
 			setInstallMethod: (method) => set({ installMethod: method }),
 		}),
 		{
-			name: "radianui-preferences", // localStorage key
+			name: "radianui-preferences",
 		}
 	)
 )
