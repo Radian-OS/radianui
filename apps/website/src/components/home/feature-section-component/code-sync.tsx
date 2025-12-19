@@ -130,7 +130,7 @@ export function CodeSync() {
 	}, [totalCards])
 
 	return (
-		<div className="h-full overflow-hidden">
+		<div className="h-full select-none overflow-hidden">
 			<motion.div
 				animate={{ y: -offset * 94 }}
 				transition={{

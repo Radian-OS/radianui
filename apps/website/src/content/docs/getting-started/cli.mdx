@@ -8,7 +8,7 @@ description: Use the CLI to add components to your project.
 Use the **`init`** command to initialize configuration and dependencies for a new project.
 
 <br />
-The **`init`** command installs dependencies, adds the radianos util, configures tailwind.config.js, and CSS variables for the project.
+The **`init`** command installs dependencies, adds the radianos util and CSS variables for the project.
 <br />
 <PackageManagerTabs
 	commands={{
@@ -41,22 +41,11 @@ Success! Project initialization completed. You may now add components.
 `}
 />
 
-## options
+### options
 
 <CodeSnippet
 	title="Terminal"
-	code={`Usage: radianui [options] [command]
-
-Add components to your project
-
-Options:
--v, --version display the version number
--h, --help display help for command
-
-Commands:
-init [options] [project-name] initializes your project with required dependencies
-add [options] [components...] Add components to ui folder inside the components folder in your project
-help [command] display help for command`}
+	code={`Usage: radianui init [options] [project-name]\r\n\r\ninitializes your project with required dependencies\r\n\r\nArguments:\r\n  project-name                 the name of the project\r\n\r\nOptions:\r\n  --next                       use next.js (default: false)\r\n  --vite                       use vite (default: false)\r\n  --useSrc                     use src directory\r\n  --color <color>              set brand color\r\n  --font <font>                set default font\r\n  -s, --skipPrompts            skip confirmation prompts (default: false)\r\n  -d, --defaultConfigurations  use default configurations (default: false)\r\n  -c, --cwd <cwd>              current working directory (default: \"D:\\\\RadianOS\\\\radianos\")\r\n  -h, --help                   display help for command`}
 />
 
 ## add
@@ -86,3 +75,10 @@ Created 1 file(s):
 
 - C:\\Project\\components\\ui\\accordion.tsx`}
   />
+
+### options
+
+<CodeSnippet
+	title="Terminal"
+	code={`Usage: radianui add [options] [components...]\r\n\r\nadd components to ui folder inside the components folder in your project\r\n\r\nArguments:\r\n  components       the components to add.\r\n\r\nOptions:\r\n  -y, --yes        skip confirmation prompts. (default: false)\r\n  -a, --all        install all available components. (default: false)\r\n  -c, --cwd <cwd>  the working directory. defaults to the current directory. (default: \"D:\\\\RadianOS\\\\radianos\")\r\n  -o, --overwrite  overwrite existing files if they exist. (default: false)\r\n  -h, --help       display help for command`}
+/>

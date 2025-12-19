@@ -22,9 +22,7 @@ export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo
 
 	const errors: string[] = []
 
-	const beforeInitCheckSpinner = spinner("Preflight checks", {
-		silent: false,
-	}).start()
+	const beforeInitCheckSpinner = spinner("Preflight checks").start()
 
 	if (fs.existsSync(path.resolve(options.cwd, "components.json"))) {
 		beforeInitCheckSpinner.fail()
@@ -34,9 +32,7 @@ export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo
 		beforeInitCheckSpinner.succeed("Before init checks completed")
 	}
 
-	const frameworkSpinner = spinner("Detecting framework", {
-		silent: false,
-	}).start()
+	const frameworkSpinner = spinner("Detecting framework").start()
 
 	if (!projectInfo || projectInfo?.framework.name === "manual") {
 		frameworkSpinner?.fail()
@@ -50,9 +46,7 @@ export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo
 		frameworkSpinner?.succeed(`Detecting framework. Detected ${txt.info(projectInfo.framework.label)}.`)
 	}
 
-	const tailwindSpinner = spinner("Verifying tailwind configuration", {
-		silent: false,
-	}).start()
+	const tailwindSpinner = spinner("Verifying tailwind configuration").start()
 
 	if (!projectInfo.tailwindCssFile) {
 		tailwindSpinner?.fail()
@@ -74,12 +68,13 @@ export const preFlightInit = async (options: InitOptions): Promise<{ projectInfo
 		tailwindSpinner?.succeed(`Verifying tailwind configuration. Found Tailwind configuration.`)
 	}
 
-	const tsConfigSpinner = spinner("Validating import alias", {
-		silent: false,
-	}).start()
+	const tsConfigSpinner = spinner("Validating import alias").start()
 	if (!projectInfo.aliasPrefix) {
 		tsConfigSpinner?.fail()
-		errors.push(`No import alias found in your tsconfig.json file.\n` + `Visit ${txt.info("https://radianos.com/docs/installation/manual#configure-path-aliases")} to learn how to set an import alias.`)
+		errors.push(
+			`No import alias found in your tsconfig.json file.\n` +
+				`Visit ${txt.info("https://radianos.com/docs/installation/manual#configure-path-aliases")} to learn how to set an import alias.`
+		)
 	} else {
 		tsConfigSpinner?.succeed(`Verifying import alias. Found import alias prefix: ${projectInfo.aliasPrefix}`)
 	}

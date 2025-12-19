@@ -5,7 +5,7 @@ import { handleError } from "@/utils/handleError"
 import { RegistryComponents } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 
-export const installDependencies = async (projectDir: string, dependencies: string[], silent?: boolean) => {
+export const installDependencies = async (projectDir: string, dependencies: string[]) => {
 	if (!dependencies.length) return
 	const packageManager = await getPackageManager(projectDir, { withFallback: true })
 	const dependencyInstaller = await getDependencyInstaller(projectDir)
@@ -14,7 +14,7 @@ export const installDependencies = async (projectDir: string, dependencies: stri
 		handleError("Failed to install dependencies: Dependency installer not found")
 	}
 
-	const dependencySpinner = spinner("Installing dependencies", { silent }).start()
+	const dependencySpinner = spinner("Installing dependencies").start()
 	try {
 		await execa(packageManager, [dependencyInstaller!, ...dependencies], {
 			cwd: projectDir,

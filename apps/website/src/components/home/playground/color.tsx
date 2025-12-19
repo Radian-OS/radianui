@@ -2,7 +2,7 @@ import React from "react"
 import { ColorOption, usePlayground } from "@/contexts/playground"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 
-const COLORS = [
+export const COLORS = [
 	{ title: "Red", value: "red" },
 	{ title: "Orange", value: "orange" },
 	{ title: "Amber", value: "amber" },
@@ -23,7 +23,7 @@ const COLORS = [
 	{ title: "Neutral", value: "neutral" },
 ] as const
 
-const COLOR_CLASSES = {
+export const COLOR_CLASSES = {
 	red: "bg-[oklch(0.64_0.22_26.04)]",
 	orange: "bg-[oklch(0.6211_0.1686_43.12)]",
 	amber: "bg-[oklch(0.8016_0.1705_73.27)]",

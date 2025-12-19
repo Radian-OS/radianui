@@ -6,13 +6,13 @@ interface ComponentFlowCardProps {
 	gridRef?: React.RefObject<HTMLDivElement | null>
 }
 
-export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef }) => {
+export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 	return (
-		<div className="h-full w-full overflow-hidden pt-5">
+		<div className="h-full w-full overflow-hidden pt-2 sm:pt-3 md:pt-5">
 			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center">
 				<div className="relative flex w-full items-center justify-center">
 					{/* Left side SVGs */}
-					<div className="absolute -top-2 left-0 flex flex-col gap-[38px]">
+					<div className="md:scale-x-130 sm:scale-x-70 absolute -top-1 left-0 z-0 flex origin-left scale-50 flex-col gap-[38px] sm:scale-y-90 md:scale-y-105 lg:scale-100">
 						<svg xmlns="http://www.w3.org/2000/svg" width="212" height="103" viewBox="0 0 212 103" fill="none">
 							<path
 								d="M-8.91712e-06 0.5L68.4891 0.499994C72.7181 0.499994 76.6348 2.726 78.7989 6.35934L132.572 96.6406C134.736 100.274 138.652 102.5 142.881 102.5L212 102.5"
@@ -100,12 +100,12 @@ export const ComponentFlowCard: React.FC<ComponentFlowCardProps> = ({ gridRef })
 					</div>
 
 					{/* Center ComponentUI */}
-					<div className="z-1 relative">
+					<div className="z-1 scale-60 relative sm:scale-90 md:scale-100">
 						<ComponentsUI />
 					</div>
 
 					{/* Right side SVGs */}
-					<div className="absolute -top-2 right-0 z-0 flex flex-col gap-[38px]">
+					<div className="md:scale-x-130 sm:scale-x-70 absolute -top-1 right-0 z-0 flex origin-right scale-50 flex-col gap-[38px] sm:scale-y-90 md:scale-y-105 lg:scale-100">
 						<svg width="212" height="103" viewBox="0 0 212 103" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0 102.5H68.4891C72.7181 102.5 76.6348 100.274 78.7989 96.6407L132.572 6.35935C134.736 2.72601 138.652 0.5 142.881 0.5H212" stroke="var(--color-soft)" />
 							<path

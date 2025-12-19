@@ -86,6 +86,6 @@ function Badge({ className, variant, size, color, asChild = false, children, ...
 Badge.displayName = "Badge"
 
 function BadgeDot({ className, ...props }: BadgeDotProps) {
-	return <span data-slot="badge-dot" className={cn("size-1.5 rounded-full bg-[currentColor]", className)} {...props} />
+	return <span data-slot="badge-dot" className={cn("size-1.5 shrink-0 rounded-full bg-[currentColor]", className)} {...props} />
 }
 export { Badge, BadgeDot, badgeVariants }

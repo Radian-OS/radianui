@@ -4,13 +4,15 @@ import React, { useEffect, useRef, useState } from "react"
 import { CircleGauge, FolderGit, LayoutDashboard, ScanEye, SquareTerminal, SwatchBook } from "lucide-react"
 import { useTheme } from "next-themes"
 import { cn } from "@/lib/utils"
+import { CliCard } from "./feature-section-component/cli-card"
 import { CodeSync } from "./feature-section-component/code-sync"
 import { ComponentFlowCard } from "./feature-section-component/component-flow"
 import { FeatureHeader } from "./feature-section-component/feature-header"
 import { GlobalSpotlight } from "./feature-section-component/global-spotlight"
 import { Marquee } from "./feature-section-component/marquee"
 import { ParticleCard } from "./feature-section-component/partical-card"
-import ReuseComponent from "./feature-section-component/reuse-component"
+import { ReuseComponent } from "./feature-section-component/reuse-component"
+import { ThemeableSystem } from "./feature-section-component/themeable-system-card"
 
 export interface BentoCardProps {
 	color?: string
@@ -131,9 +133,9 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
-								<p className="text-fg-secondary w-full max-w-[420px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
+								<p className="text-fg-secondary max-w-[380px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 							</div>
-							<div className="gap-12.25 bg-fill1 flex h-full flex-col"></div>
+							<CliCard />
 						</ParticleCard>
 					</div>
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
@@ -165,14 +167,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft card card--border-glow relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
-							<div className="h-25 from-bg/5 to-bg z-1 absolute bottom-0 w-full bg-gradient-to-b" />
+							className="border-soft card card--border-glow z-3 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<SwatchBook size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Themeable System</span>
 								<p className="text-fg-secondary lg:max-w-105 w-fit max-w-[380px] text-sm">Edit one token to restyle your entire design system light, dark, or custom themes.</p>
 							</div>
-							<div className="bg-fill1 flex h-full items-center justify-center gap-14 pl-10"></div>
+							<ThemeableSystem />
 						</ParticleCard>
 					</div>
 					<div className="relative flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">

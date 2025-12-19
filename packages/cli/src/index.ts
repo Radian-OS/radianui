@@ -5,7 +5,6 @@ import { init } from "@/commands/init.js"
 import { displayGradientString } from "@/utils/gradientString"
 import { handleError } from "@/utils/handleError"
 import packageJson from "../package.json"
-import { spinner } from "./utils/spinner"
 
 process.on("uncaughtException", handleError)
 process.on("unhandledRejection", handleError)
