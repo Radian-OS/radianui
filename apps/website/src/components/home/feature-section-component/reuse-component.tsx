@@ -11,7 +11,7 @@ import { GithubIcon } from "../block/components/github-icon"
 import { GoogleIcon } from "../block/components/google-icon"
 import PlaygroundLogo from "../playground-logo"
 
-export default function ReuseComponent() {
+export function ReuseComponent() {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const controls = useAnimationControls()
 	const [hasHoveredCard5, setHasHoveredCard5] = useState(false)
@@ -40,7 +40,14 @@ export default function ReuseComponent() {
 	}
 
 	// Start continuous up-down animation
-	const startFloatingAnimation = () => {
+	const startFloatingAnimation = async () => {
+		// First, smoothly move to starting position if not already there
+		await controls.start({
+			y: 0,
+			transition: { duration: 2, ease: "easeOut" },
+		})
+
+		// Then start the infinite loop
 		controls.start({
 			y: [0, -350, 0],
 			transition: {
@@ -94,7 +101,6 @@ export default function ReuseComponent() {
 		}
 
 		controls.stop()
-		controls.set({ y: 0 })
 		setIsAnimating(true)
 		scrollX.set(targetScroll)
 	}
@@ -120,6 +126,9 @@ export default function ReuseComponent() {
 				setHasHoveredCard5(true)
 			}
 		}
+		// else if (cardId === 4) {
+		// 	handleMouseLeave()
+		// }
 	}
 	const handleMouseLeave = () => {
 		setIsHovering(null)
@@ -133,7 +142,6 @@ export default function ReuseComponent() {
 		if (container) {
 			const originalScroll = 1 * cardWidth // Center the signin card (index 2, centerCardIndex checks index-1)
 			scrollX.set(originalScroll)
-			controls.set({ y: 0 })
 			// Wait for scroll animation to complete before restarting floating
 			setIsAnimating(true)
 		}
@@ -218,7 +226,7 @@ const Signin = () => {
 	const form = useForm()
 
 	return (
-		<div className="w-90 bg-bg border-soft z-0 flex flex-shrink-0 rounded-2xl border px-6 py-8">
+		<div className="w-90 bg-bg border-soft z-0 flex flex-shrink-0 select-none rounded-2xl border px-6 py-8">
 			<div className="flex flex-1 flex-col gap-6">
 				<div>
 					<PlaygroundLogo />

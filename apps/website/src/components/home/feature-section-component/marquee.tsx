@@ -18,7 +18,7 @@ export const Marquee = () => {
 	}
 
 	return (
-		<div className="flex w-full flex-col items-center gap-4">
+		<div className="flex w-full select-none flex-col items-center gap-4">
 			<InfiniteScroll>
 				<div className="relative flex items-center justify-center gap-3">
 					{componentStyle.map((component, index) => (

@@ -32,7 +32,7 @@ const FUNDAMENTALS_DATA = [
 		description: "17 Styles",
 	},
 	{
-		title: "Icons",
+		title: "Iconography",
 		description: "1,200 Components",
 	},
 	{
