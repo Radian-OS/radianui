@@ -142,9 +142,9 @@ export function CodeSync() {
 					// Calculate position relative to current offset
 					const position = index - offset
 					// Determine if this is the top visible card (position 0)
-					const iconClass = position === 0 ? "text-primary-text transition-opacity duration-1000" : "text-fg-secondary transition-opacity duration-1000"
+					const iconClass = position === 0 ? "text-primary-text shrink-0 transition-opacity duration-1000" : "text-fg-secondary shrink-0 transition-opacity duration-1000"
 					return (
-						<div key={index} className="border-soft bg-bg h-23.5 flex gap-5 border-t px-12 py-6">
+						<div key={index} className="border-soft bg-bg h-23.5 flex gap-5 border-t py-6 pl-4 md:px-12">
 							<Icon className={iconClass} size={20} style={{ opacity: 1 }} />
 							<div className="flex flex-col gap-1.5">
 								<p className="text-fg text-sm font-normal">{item.title}</p>
