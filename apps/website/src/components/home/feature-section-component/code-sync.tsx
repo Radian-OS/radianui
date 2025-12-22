@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { BoxIcon, GitPullRequestArrow, PencilRuler } from "lucide-react"
 import { motion } from "motion/react"
 import Image from "next/image"
@@ -115,6 +115,26 @@ export function CodeSync() {
 	const [offset, setOffset] = useState(0)
 	const totalCards = data.length
 	const duplicatedData = Array(10).fill(data).flat()
+	const [cardHeight, setCardHeight] = useState(94)
+	const cardRef = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		// Measure the actual card height after first render
+		if (cardRef.current) {
+			const height = cardRef.current.offsetHeight
+			setCardHeight(height)
+		}
+
+		// Update on window resize
+		const handleResize = () => {
+			if (cardRef.current) {
+				setCardHeight(cardRef.current.offsetHeight)
+			}
+		}
+
+		window.addEventListener("resize", handleResize)
+		return () => window.removeEventListener("resize", handleResize)
+	}, [])
 
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -132,7 +152,7 @@ export function CodeSync() {
 	return (
 		<div className="h-full select-none overflow-hidden">
 			<motion.div
-				animate={{ y: -offset * 94 }}
+				animate={{ y: -offset * cardHeight }}
 				transition={{
 					duration: 1,
 					ease: "easeInOut",
@@ -142,10 +162,10 @@ export function CodeSync() {
 					// Calculate position relative to current offset
 					const position = index - offset
 					// Determine if this is the top visible card (position 0)
-					const iconClass = position === 0 ? "text-primary-text shrink-0 transition-opacity duration-1000" : "text-fg-secondary shrink-0 transition-opacity duration-1000"
+					const iconClass = position === 1 ? "text-primary-text " : "text-fg-secondary "
 					return (
-						<div key={index} className="border-soft bg-bg h-23.5 flex gap-5 border-t py-6 pl-4 md:px-12">
-							<Icon className={iconClass} size={20} style={{ opacity: 1 }} />
+						<div key={index} ref={index === 0 ? cardRef : null} className="border-soft bg-bg flex gap-5 border-t p-4 md:px-12">
+							<Icon className={`${iconClass} shrink-0 transition-opacity duration-1000`} size={20} style={{ opacity: 1 }} />
 							<div className="flex flex-col gap-1.5">
 								<p className="text-fg text-sm font-normal">{item.title}</p>
 								<div className="flex items-center gap-2.5">

@@ -155,7 +155,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 								<p className="text-fg-secondary max-w-[380px] text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
 							</div>
 							<CodeSync />
-							<div className="from-bg/0 to-bg h-100 absolute inset-x-0 bottom-0 flex rounded-b-lg bg-gradient-to-b"></div>
+							<div className="h-50 from-bg/0 to-bg absolute inset-x-0 bottom-0 flex bg-gradient-to-b"></div>
+							<div className="top-55 h-30 from-bg/0 to-bg absolute inset-x-0 flex bg-gradient-to-t"></div>
 						</ParticleCard>
 
 						<ParticleCard
