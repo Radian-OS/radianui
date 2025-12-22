@@ -118,17 +118,6 @@
 	background-image: radial-gradient(circle at var(--x) var(--y), color-mix(in oklch, #fff 4%, transparent) 0%, transparent 100%);
 }
 
-.div-hover::after {
-	content: "";
-	position: absolute;
-	inset: 0;
-	background-image: url("/homepage/noise.png");
-	background-repeat: repeat;
-	opacity: 0.08;
-	pointer-events: none;
-	mix-blend-mode: soft-light;
-}
-
 .color-red {
 	--color-primary: oklch(0.64 0.22 26.04);
 	--color-primary-accent: oklch(0.9465 0.0252 17.61);
