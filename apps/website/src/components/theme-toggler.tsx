@@ -29,7 +29,7 @@ export function DesktopThemeToggler() {
 	}
 
 	return (
-		<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
+		<IconButton aria-label="Theme toggling button" variant="outline" color="neutral" onClick={toggleTheme}>
 			{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
 		</IconButton>
 	)
@@ -56,7 +56,7 @@ export function TabletMobileThemeToggler() {
 	}
 
 	return (
-		<Button variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
+		<Button aria-label="Theme toggling button" variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
 			{resolvedTheme === "light" ? (
 				<>
 					<MoonIcon className="size-5" />
