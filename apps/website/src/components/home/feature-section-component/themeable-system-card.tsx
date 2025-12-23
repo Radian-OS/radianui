@@ -52,14 +52,15 @@ export function ThemeableSystem() {
 
 	const [scrollIndex, setScrollIndex] = useState(0)
 	const [containerHeight, setContainerHeight] = useState(0)
+	const [containerWidth, setContainerWidth] = useState(0)
 
 	// duplicate list to allow continuous scroll
 	const duplicatedData = Array(20).fill(COLORS).flat()
 
-	// get container height
 	useEffect(() => {
 		if (containerRef.current) {
 			setContainerHeight(containerRef.current.clientHeight)
+			setContainerWidth(containerRef.current.clientWidth)
 		}
 	}, [])
 
@@ -85,16 +86,38 @@ export function ThemeableSystem() {
 
 	// offset so active item is centered with extra gap
 	const ACTIVE_OFFSET = 190
+	const ITEM_WIDTH = 120
+	const ACTIVE_OFFSET_X = 275
+	const GAP_SIZE = 8
+
 	const centerOffset = scrollIndex * ITEM_HEIGHT - (containerHeight / 2 - ITEM_HEIGHT / 2) + ACTIVE_OFFSET
+	const centerOffsetX = scrollIndex * (ITEM_WIDTH + GAP_SIZE) - (containerWidth / 2 - ITEM_WIDTH / 2) + ACTIVE_OFFSET_X
 
 	return (
-		<div ref={containerRef} className="relative flex h-full w-full select-none items-center gap-20 overflow-hidden px-10">
+		<div ref={containerRef} className="relative flex h-full w-full select-none flex-col items-center gap-4 overflow-hidden px-10 sm:flex-row sm:gap-20">
 			{/* Top gradient */}
-			<div className="z-1 h-39 from-bg/5 to-bg absolute left-0 top-0 w-full bg-gradient-to-t" />
-			<div className="z-1 h-43 from-bg/5 to-bg absolute bottom-0 left-0 w-full bg-gradient-to-b" />
+			<div className="z-1 h-39 from-bg/5 to-bg absolute left-0 top-0 hidden w-full bg-gradient-to-t sm:block" />
+			<div className="z-1 h-43 from-bg/5 to-bg absolute bottom-0 left-0 hidden w-full bg-gradient-to-b sm:block" />
+
+			<div className="z-1 from-bg/5 to-bg absolute left-0 h-full w-40 bg-gradient-to-l sm:hidden" />
+			<div className="z-1 from-bg/5 to-bg absolute right-0 h-full w-40 bg-gradient-to-r sm:hidden" />
 
 			{/* Color list */}
-			<motion.div animate={{ y: -centerOffset }} transition={{ duration: 0.6, ease: "easeOut" }} className="flex flex-col">
+			<motion.div animate={{ y: -centerOffset }} transition={{ duration: 0.6, ease: "easeOut" }} className="hidden flex-col sm:flex">
+				{duplicatedData.map((colorOption, index) => {
+					const isActive = index % COLORS.length === activeColorIndex
+
+					return (
+						<div key={index} className="flex h-[36px] items-center justify-center">
+							<Badge className={`min-w-30 ${isActive ? "bg-fill2" : ""}`} size="28" variant="outline" color="neutral">
+								<BadgeDot className={COLOR_CLASSES[colorOption.value as keyof typeof COLOR_CLASSES]} /> <p className="w-full text-center">{colorOption.title}</p>
+							</Badge>
+						</div>
+					)
+				})}
+			</motion.div>
+
+			<motion.div animate={{ x: -centerOffsetX }} transition={{ duration: 0.6, ease: "easeOut" }} className="flex gap-2 sm:hidden">
 				{duplicatedData.map((colorOption, index) => {
 					const isActive = index % COLORS.length === activeColorIndex
 
