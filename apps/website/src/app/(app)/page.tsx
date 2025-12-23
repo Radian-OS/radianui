@@ -4,7 +4,7 @@ import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
-import FeaturesSection from "@/components/home/features-section"
+import FeaturesSectionWrapper from "@/components/home/features-section-wrapper"
 import Footer from "@/components/home/footer"
 // import FooterSection from "@/components/home/footer-section"
 import HomeInteractive from "@/components/home/home-interactive"
@@ -146,7 +146,7 @@ export default function Page() {
 				</div>
 			</Background>
 
-			<FeaturesSection textAutoHide={true} enableSpotlight={true} enableBorderGlow={true} enableTilt={false} enableMagnetism={false} clickEffect={true} spotlightRadius={573} />
+			<FeaturesSectionWrapper />
 
 			<InvertedSection />
 
