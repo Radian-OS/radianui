@@ -43,7 +43,7 @@ export function NavigationBar({ version }: NavigationBarProps) {
 						<DesktopThemeToggler />
 
 						{/* Mobile Navigation */}
-						<IconButton color="neutral" variant="soft" className="xl:hidden" onClick={() => setIsMobileMenuOpen(true)}>
+						<IconButton aria-label="Open mobile navigation" color="neutral" variant="soft" className="xl:hidden" onClick={() => setIsMobileMenuOpen(true)}>
 							<HamburgerMenuIcon className="size-6" />
 						</IconButton>
 					</div>

@@ -11,6 +11,6 @@ export function spinner(
 	return ora({
 		text: txt.light(text),
 		isSilent: options?.silent,
-		spinner: options?.spinner ?? "clock",
+		spinner: options?.spinner,
 	})
 }

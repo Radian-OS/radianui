@@ -2,7 +2,7 @@ import { Command } from "commander"
 import fs from "fs-extra"
 import path from "path"
 import { z } from "zod"
-import { InitOptions } from "@/commands/init"
+import { InitOptions, executeInit } from "@/commands/init"
 import { preflightAdd } from "@/preflights/preFlightAdd"
 import { createFilePath } from "@/utils/createFilePath"
 import { installComponentDependencies } from "@/utils/dependencyInstaller"
@@ -11,8 +11,7 @@ import { RawConfig, getConfig } from "@/utils/getConfig"
 import { ProjectInfo, getProjectInfo } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
-import { scaffoldNewProject, setupProjectConfig } from "@/utils/project"
-import { promptForComponents, promptForNewProject } from "@/utils/prompts"
+import { promptForComponents } from "@/utils/prompts"
 import { BlockAsset, RegistryComponentFile, type RegistryComponents, getAssets, getRegistryComponents, resolveComponents } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { transform } from "@/utils/transformers/transform"
@@ -53,19 +52,13 @@ export const add = new Command()
 
 				const initOptions: InitOptions = {
 					cwd: options.cwd,
-					skipPrompts: false,
+					skipPrompts: options.yes,
 					defaultConfigurations: false,
-					next: true,
-					vite: false,
 				}
-				const projectPrompts = await promptForNewProject(initOptions)
 
-				const { projectPath } = await scaffoldNewProject(initOptions, projectPrompts)
-
-				await setupProjectConfig(projectPath, projectPrompts.framework, projectPrompts.useSrcDir)
-
+				const { projectName } = await executeInit(initOptions)
 				// Update cwd to the new created project path
-				options.cwd = projectPath
+				options.cwd = path.join(options.cwd, projectName!)
 			}
 
 			// If no components were provided, prompt the user to select

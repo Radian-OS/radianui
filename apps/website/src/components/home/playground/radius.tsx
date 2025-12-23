@@ -7,7 +7,7 @@ export default function Radius() {
 	const { radius, setRadius } = usePlayground()
 	return (
 		<Dropdown indicatorPosition="right">
-			<DropdownTrigger>
+			<DropdownTrigger aria-label="Change Radius">
 				<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<CircleDashed size={18} />
 				</div>
