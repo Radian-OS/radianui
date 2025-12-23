@@ -57,7 +57,7 @@ export default function EmailSubscription({ subscribe }: EmailSubscriptionProps)
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<Divider className="via-border bg-gradient-to-r from-transparent to-transparent" />
-			<div className="max-w-360 lg:px-30 flex w-full flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
+			<div className="max-w-360 xl:px-30 flex w-full flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
 				<div className="flex max-w-[396px] flex-col gap-2">
 					<h5 className="heading-5">Love Building Products?</h5>
 					<p className="text-fg-secondary text-sm font-normal">We’re adding tons of cool components and blocks to help you build. Subscribe to get updates on development</p>
@@ -69,7 +69,7 @@ export default function EmailSubscription({ subscribe }: EmailSubscriptionProps)
 								control={form.control}
 								name="email"
 								render={({ field }: { field: FieldValues }) => (
-									<FormItem className="w-70">
+									<FormItem className="md:w-70 w-full">
 										<FormControl>
 											<Input placeholder="Enter your email" type="email" {...field} required />
 										</FormControl>
