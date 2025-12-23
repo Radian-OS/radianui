@@ -171,7 +171,7 @@ export function CodeSync() {
 								<div className="flex items-center gap-2.5">
 									<div className="flex items-center gap-1.5">
 										<Avatar size="20" rounded="circle">
-											<AvatarImage src={item.profile.avatar} />
+											<AvatarImage alt={item.profile.name} src={item.profile.avatar} />
 											<AvatarFallback>{item.profile.name.charAt(0)}</AvatarFallback>
 										</Avatar>
 										<p className="text-fg-secondary text-xs font-normal">{item.profile.username}</p>
@@ -180,7 +180,7 @@ export function CodeSync() {
 									<p className="text-fg-secondary text-xs font-normal">{item.timestamp}</p>
 									<div className="bg-fill3 h-1 w-1 rounded-full"></div>
 									<div className="flex items-center gap-1.5">
-										<Image src={item.img ?? "/mstile-70x70.png"} alt="Radian" width={16} height={16} />
+										<Image src={item.img ?? "/mstile-70x70.png"} alt={item.img ?? "Radian"} width={16} height={16} />
 										<p className="text-fg-secondary text-xs font-normal">{item.tag}</p>
 									</div>
 								</div>
