@@ -47,7 +47,7 @@ export default function Colors() {
 	const { color, setColor } = usePlayground()
 	return (
 		<Dropdown indicatorPosition="right">
-			<DropdownTrigger>
+			<DropdownTrigger aria-label="Change Primary Color">
 				<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<div className="size-4.5 bg-primary border-border rounded-full border"></div>
 				</div>

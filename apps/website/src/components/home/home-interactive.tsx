@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { Check, ChevronDown, Clipboard, Maximize, Share2 } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
+import PasswordReset from "@/app/blocks/password-reset/page"
 import Signin from "@/app/blocks/signin/page"
 import Signup from "@/app/blocks/signup/page"
 import Verification from "@/app/blocks/verification/page"
@@ -37,7 +38,7 @@ const PAGES = [
 	{
 		value: "password-reset",
 		label: "Password Reset",
-		component: <Verification />,
+		component: <PasswordReset />,
 		command: "pnpm dlx @radianos/radianbeta add password-reset-01",
 		link: "/blocks/password-reset",
 	},
@@ -98,14 +99,15 @@ const HomeInteractive = () => {
 								))
 							}}
 							color="neutral"
+							aria-label="Copy Add Block Command Button"
 							variant="ghost"
 							size="28">
 							{copied ? <Check size={16} className="shrink-0" /> : <Clipboard size={16} className="shrink-0" />}
 						</Button>
-						<Button size="28" color="neutral" variant="ghost" asChild>
+						<Button aria-label="Share Link" size="28" color="neutral" variant="ghost" asChild>
 							<Share2 size={16} className="shrink-0" />
 						</Button>
-						<Button size="28" color="neutral" variant="ghost" asChild>
+						<Button aria-label="Fullscreen" size="28" color="neutral" variant="ghost" asChild>
 							<Link href={PAGES.find((p) => p.value === activeTab)?.link ?? ""} target="_blank">
 								<Maximize size={16} className="shrink-0" />
 							</Link>
@@ -129,8 +131,8 @@ const HomeInteractive = () => {
 					</div>
 				</div>
 				{PAGES.map((page) => (
-					<TabsContent forceMount key={page.value} value={page.value} className="border-soft h-full w-full overflow-clip rounded-lg border">
-						<iframe src={page.link} className="h-full w-full" />
+					<TabsContent key={page.value} value={page.value} className="border-soft h-full w-full overflow-clip rounded-lg border">
+						{page.component}
 					</TabsContent>
 				))}
 			</Tabs>
