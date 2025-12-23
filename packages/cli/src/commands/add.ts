@@ -57,7 +57,7 @@ export const add = new Command()
 				}
 
 				const { projectName } = await executeInit(initOptions)
-				// Update cwd to the new created project path
+				// Update cwd to the new created project path so components will be added there
 				options.cwd = path.join(options.cwd, projectName!)
 			}
 
