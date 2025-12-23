@@ -95,7 +95,7 @@ export function SearchDocs() {
 			{/* Mobile Search */}
 			<Drawer direction="bottom" variant="rounded" handle={true} modal={true} preventScrollRestoration={true}>
 				<DrawerTrigger asChild>
-					<IconButton variant="outline" color="neutral" className="md:hidden">
+					<IconButton aria-label="Search Components" variant="outline" color="neutral" className="md:hidden">
 						<Search />
 					</IconButton>
 				</DrawerTrigger>
