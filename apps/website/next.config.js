@@ -63,5 +63,8 @@ const nextConfig = {
 		RESEND_API_KEY: process.env.RESEND_API_KEY,
 		RESEND_FROM_EMAIL: process.env.RESEND_FROM_EMAIL,
 	},
+	experimental: {
+		optimizePackageImports: ["lucide-react"],
+	},
 }
 export default withBundleAnalyzer(withContentlayer(nextConfig))
