@@ -8,13 +8,17 @@ import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals"
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
-		posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-			api_host: "/ingest",
-			ui_host: "https://us.posthog.com",
-			capture_pageview: false, // We capture pageviews manually
-			capture_pageleave: true, // Enable pageleave capture
-			// debug: process.env.NEXT_PUBLIC_DEPLOYMENT_ENV! === "DEV",
-		})
+		// Only init PostHog on production domain
+		const isProduction = typeof window !== "undefined" && (window.location.hostname === "radianos.com" || window.location.hostname === "www.radianos.com")
+
+		if (isProduction) {
+			posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+				api_host: "/ingest",
+				ui_host: "https://us.posthog.com",
+				capture_pageview: false,
+				capture_pageleave: true,
+			})
+		}
 	}, [])
 
 	return (

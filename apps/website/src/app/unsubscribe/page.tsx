@@ -34,8 +34,8 @@ export default async function UnsubscribePage({ searchParams }: UnsubscribePageP
 		<div className="bg-fill1 flex min-h-screen items-center justify-center px-4">
 			<div className="flex flex-col items-center justify-center gap-12">
 				<Link href={"/"}>
-					<Image src={"/radian.svg"} alt="Radian" width={150} height={36} className="block h-9 dark:hidden" />
-					<Image src={"/radian-dark.svg"} alt="Radian" width={150} height={36} className="not-dark:hidden block h-9" />
+					<Image src={"/radian.svg"} alt="Radian" width={150} height={36} className="block h-9 dark:hidden" priority />
+					<Image src={"/radian-dark.svg"} alt="Radian" width={150} height={36} className="not-dark:hidden block h-9" priority />
 				</Link>
 				<Card className="bg-bg max-w-150 w-full px-16 py-12">
 					<Empty className="gap-8 p-0 md:p-0">

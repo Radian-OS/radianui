@@ -9,9 +9,8 @@ import Footer from "@/components/home/footer"
 // import FooterSection from "@/components/home/footer-section"
 import HomeInteractive from "@/components/home/home-interactive"
 import InvertedSection from "@/components/home/inverted-section"
-import PlaygroundSection from "@/components/home/playground-section"
+import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import VideoSection from "@/components/home/video-section"
-import { PlaygroundProvider } from "@/contexts/playground"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -153,9 +152,7 @@ export default function Page() {
 
 			<ComponentsSection />
 
-			<PlaygroundProvider>
-				<PlaygroundSection />
-			</PlaygroundProvider>
+			<PlaygroundSectionWrapper />
 
 			<VideoSection />
 
