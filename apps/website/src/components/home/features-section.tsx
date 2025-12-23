@@ -156,7 +156,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							</div>
 							<CodeSync />
 							<div className="h-50 from-bg/0 to-bg absolute inset-x-0 bottom-0 flex bg-gradient-to-b"></div>
-							<div className="top-55 h-30 from-bg/0 to-bg absolute inset-x-0 flex bg-gradient-to-t"></div>
+							<div className="top-58 h-30 from-bg/0 to-bg absolute inset-x-0 flex bg-gradient-to-t"></div>
 						</ParticleCard>
 
 						<ParticleCard
