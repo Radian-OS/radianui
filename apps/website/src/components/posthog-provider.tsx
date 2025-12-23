@@ -8,24 +8,16 @@ import { onCLS, onFCP, onINP, onLCP, onTTFB } from "web-vitals"
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
-		const hostname = window.location.hostname
-		const isProduction = hostname === "radianos.com" || hostname === "www.radianos.com"
-
-		console.log("🔍 PostHog Debug:")
-		console.log("  Hostname:", hostname)
-		console.log("  Is Production:", isProduction)
-		console.log("  PostHog Key:", process.env.NEXT_PUBLIC_POSTHOG_KEY ? "✅ Present" : "❌ Missing")
+		// Only init PostHog on production domain
+		const isProduction = typeof window !== "undefined" && (window.location.hostname === "radianos.com" || window.location.hostname === "www.radianos.com")
 
 		if (isProduction) {
-			console.log("✅ Initializing PostHog")
 			posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
 				api_host: "/ingest",
 				ui_host: "https://us.posthog.com",
 				capture_pageview: false,
 				capture_pageleave: true,
 			})
-		} else {
-			console.log("⏭️ Skipping PostHog (not production)")
 		}
 	}, [])
 
