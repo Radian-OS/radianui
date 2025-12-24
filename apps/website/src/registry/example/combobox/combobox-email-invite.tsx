@@ -6,11 +6,11 @@ import { Command, CommandGroup, CommandInput, CommandItem, CommandList } from "@
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const DATA = [
-	{ icon: "/media/male-1.png", email: "alex@radian.com" },
-	{ icon: "/media/female-3.png", email: "maria@radian.com" },
-	{ icon: "/media/male-2.png", email: "david@radian.com" },
-	{ icon: "/media/male-3.png", email: "james@radian.com" },
-	{ icon: "/media/female-4.png", email: "sophia@radian.com" },
+	{ icon: "/media/male-1.jpg", email: "alex@radian.com" },
+	{ icon: "/media/female-3.jpg", email: "maria@radian.com" },
+	{ icon: "/media/male-2.jpg", email: "david@radian.com" },
+	{ icon: "/media/male-3.jpg", email: "james@radian.com" },
+	{ icon: "/media/female-4.jpg", email: "sophia@radian.com" },
 ]
 
 export default function ComboboxEmailInvite() {

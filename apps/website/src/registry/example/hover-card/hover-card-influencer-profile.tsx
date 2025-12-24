@@ -7,7 +7,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hov
 const profile = {
 	name: "Zoya Petrova",
 	description: "Engineering partner for @Radianos",
-	avatar: "/media/male-2.png",
+	avatar: "/media/male-2.jpg",
 	address: "Berlin, Germany",
 	followingInThousands: 1.4,
 	followersInThousands: 412.4,

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import { useState } from "react"
 import { Check, ChevronDown, Clipboard, Maximize, Share2 } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
@@ -114,7 +114,7 @@ const HomeInteractive = () => {
 						</Button>
 						<Dropdown>
 							<DropdownTrigger asChild className="lg:hidden">
-								<Button color="neutral" size="28" variant="ghost">
+								<Button aria-label="Change Block" color="neutral" size="28" variant="ghost">
 									<ChevronDown size={16} className="shrink-0" />
 								</Button>
 							</DropdownTrigger>
