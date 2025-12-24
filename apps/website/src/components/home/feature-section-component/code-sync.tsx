@@ -11,7 +11,7 @@ const data = [
 		title: "Building with Radian, Design and Development",
 		profile: {
 			name: "Kaelin Tristian",
-			avatar: "/media/female-5.png",
+			avatar: "/media/female-5.jpg",
 			username: "lahcsin#44",
 		},
 		timestamp: "1 week ago",
@@ -24,7 +24,7 @@ const data = [
 		title: "Updated design system to match new project",
 		profile: {
 			name: "Alex Morgan",
-			avatar: "/media/male-1.png",
+			avatar: "/media/male-1.jpg",
 			username: "nugas#21",
 		},
 		timestamp: "5 days ago",
@@ -37,7 +37,7 @@ const data = [
 		title: "Created all user flows using blocks",
 		profile: {
 			name: "Alex Morgan",
-			avatar: "/media/male-1.png",
+			avatar: "/media/male-1.jpg",
 			username: "nugas#21",
 		},
 		timestamp: "5 days ago",
@@ -50,7 +50,7 @@ const data = [
 		title: "Modified a few screens to match our project requirements",
 		profile: {
 			name: "Alex Morgan",
-			avatar: "/media/male-1.png",
+			avatar: "/media/male-1.jpg",
 			username: "nugas#21",
 		},
 		timestamp: "2 days ago",
@@ -63,7 +63,7 @@ const data = [
 		title: "Initializing project via CLI and adding all components",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 days ago",
@@ -76,7 +76,7 @@ const data = [
 		title: "Pulled all blocks from radian blocks directory",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 hours ago",
@@ -89,7 +89,7 @@ const data = [
 		title: "Fixing a few components and screens to update design requirements",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 hours ago",
@@ -102,7 +102,7 @@ const data = [
 		title: "The project looks good to go. Validated with the team",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 hours ago",

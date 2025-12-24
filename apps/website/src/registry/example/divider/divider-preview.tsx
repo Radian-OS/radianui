@@ -7,23 +7,23 @@ function DividerPreview() {
 	const people = [
 		{
 			name: "Noah Brooks",
-			image: "/media/male-1.png",
+			image: "/media/male-1.jpg",
 		},
 		{
 			name: "Liam Reed",
-			image: "/media/male-2.png",
+			image: "/media/male-2.jpg",
 		},
 		{
 			name: "Ethan Cole",
-			image: "/media/male-3.png",
+			image: "/media/male-3.jpg",
 		},
 		{
 			name: "Ava Patel",
-			image: "/media/female-1.png",
+			image: "/media/female-1.jpg",
 		},
 		{
 			name: "Mia Chen",
-			image: "/media/female-2.png",
+			image: "/media/female-2.jpg",
 		},
 	]
 	// Utility function to get the initials of a name
