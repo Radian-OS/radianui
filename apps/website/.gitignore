@@ -1,3 +1,11 @@
-.env*
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 next-env.d.ts
 .contentlayer/
+robots.txt
+sitemap-*.xml
+sitemap.xml
+
