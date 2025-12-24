@@ -6,7 +6,7 @@ export default function CustomAvatarStatusPreview() {
 	return (
 		<div className="flex gap-6">
 			<Avatar size="48">
-				<AvatarImage src="/media/female-3.png" />
+				<AvatarImage src="/media/female-3.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="bottom-0 right-0">
 					<svg width={16} height={16} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -27,7 +27,7 @@ export default function CustomAvatarStatusPreview() {
 				</AvatarIndicator>
 			</Avatar>
 			<Avatar size="48">
-				<AvatarImage src="/media/male-3.png" />
+				<AvatarImage src="/media/male-3.jpg" />
 				<AvatarFallback className="text-warning bg-warning/10">AJ</AvatarFallback>
 				<AvatarIndicator className="bottom-0 right-0">
 					<Plus size={16} className="bg-primary text-white-inverse border-bg rounded-full border-2 p-0.5" />

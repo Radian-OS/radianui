@@ -12,7 +12,7 @@ const profile = {
 	worksAt: "@Radian",
 	title: "UI/UX Designer",
 	bio: "Crafting intuitive website experiences for tech innovators.",
-	avatar: "/media/female-11.png",
+	avatar: "/media/female-11.jpg",
 }
 
 export default function HoverCardUserMiniProfile() {

@@ -139,7 +139,7 @@ export function ThemeableSystem() {
 const profile = {
 	name: "Zoya Petrova",
 	description: "Engineering partner for @Radianos",
-	avatar: "/media/male-2.png",
+	avatar: "/media/male-2.jpg",
 	address: "Berlin, Germany",
 	followingInThousands: 1.4,
 	followersInThousands: 412.4,
@@ -151,7 +151,7 @@ function HoverCard({ activeColor }: { activeColor: string }) {
 			<div className={`border-border bg-bg flex h-fit w-80 flex-col overflow-hidden rounded-xl border p-0`}>
 				<div className={`bg-primary-focus relative h-16`}>
 					<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">
-						<AvatarImage src={profile.avatar} />
+						<AvatarImage alt={profile.name} src={profile.avatar} />
 						<AvatarFallback className="text-base">{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
 					</Avatar>
 				</div>

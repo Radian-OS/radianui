@@ -11,7 +11,7 @@ const data = [
 		title: "Building with Radian, Design and Development",
 		profile: {
 			name: "Kaelin Tristian",
-			avatar: "/media/female-5.png",
+			avatar: "/media/female-5.jpg",
 			username: "lahcsin#44",
 		},
 		timestamp: "1 week ago",
@@ -24,7 +24,7 @@ const data = [
 		title: "Updated design system to match new project",
 		profile: {
 			name: "Alex Morgan",
-			avatar: "/media/male-1.png",
+			avatar: "/media/male-1.jpg",
 			username: "nugas#21",
 		},
 		timestamp: "5 days ago",
@@ -37,7 +37,7 @@ const data = [
 		title: "Created all user flows using blocks",
 		profile: {
 			name: "Alex Morgan",
-			avatar: "/media/male-1.png",
+			avatar: "/media/male-1.jpg",
 			username: "nugas#21",
 		},
 		timestamp: "5 days ago",
@@ -50,7 +50,7 @@ const data = [
 		title: "Modified a few screens to match our project requirements",
 		profile: {
 			name: "Alex Morgan",
-			avatar: "/media/male-1.png",
+			avatar: "/media/male-1.jpg",
 			username: "nugas#21",
 		},
 		timestamp: "2 days ago",
@@ -63,7 +63,7 @@ const data = [
 		title: "Initializing project via CLI and adding all components",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 days ago",
@@ -76,7 +76,7 @@ const data = [
 		title: "Pulled all blocks from radian blocks directory",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 hours ago",
@@ -89,7 +89,7 @@ const data = [
 		title: "Fixing a few components and screens to update design requirements",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 hours ago",
@@ -102,7 +102,7 @@ const data = [
 		title: "The project looks good to go. Validated with the team",
 		profile: {
 			name: "Emma Wilson",
-			avatar: "/media/female-4.png",
+			avatar: "/media/female-4.jpg",
 			username: "yajib#21",
 		},
 		timestamp: "2 hours ago",
@@ -171,7 +171,7 @@ export function CodeSync() {
 								<div className="flex items-center gap-2.5">
 									<div className="flex items-center gap-1.5">
 										<Avatar size="20" rounded="circle">
-											<AvatarImage src={item.profile.avatar} />
+											<AvatarImage alt={item.profile.name} src={item.profile.avatar} />
 											<AvatarFallback>{item.profile.name.charAt(0)}</AvatarFallback>
 										</Avatar>
 										<p className="text-fg-secondary text-xs font-normal">{item.profile.username}</p>
@@ -180,7 +180,7 @@ export function CodeSync() {
 									<p className="text-fg-secondary text-xs font-normal">{item.timestamp}</p>
 									<div className="bg-fill3 h-1 w-1 rounded-full"></div>
 									<div className="flex items-center gap-1.5">
-										<Image src={item.img ?? "/mstile-70x70.png"} alt="Radian" width={16} height={16} />
+										<Image src={item.img ?? "/mstile-70x70.png"} alt={item.img ?? "Radian"} width={16} height={16} />
 										<p className="text-fg-secondary text-xs font-normal">{item.tag}</p>
 									</div>
 								</div>
