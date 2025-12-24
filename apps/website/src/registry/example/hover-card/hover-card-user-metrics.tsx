@@ -7,7 +7,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hov
 const profile = {
 	name: "Jolly Rodgers",
 	username: "@rodgers_jolly",
-	avatar: "/media/male-9.png",
+	avatar: "/media/male-9.jpg",
 	bio: "A detail-oriented data solutions architect with a passion for optimizing business processes.",
 	followingInThousands: 1.4,
 	followersInThousands: 412.4,

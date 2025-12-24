@@ -7,7 +7,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hov
 const profile = {
 	name: "Kaelin Tristian",
 	status: "Last online 3 minute ago",
-	avatar: "/media/male-7.png",
+	avatar: "/media/male-7.jpg",
 	userName: "@kaelintristi",
 	posts: 9194,
 	followersInThousands: 413,
@@ -20,7 +20,7 @@ const profile = {
 		},
 		{
 			id: 2,
-			src: "/media/background-2.png",
+			src: "/media/background-2.jpg",
 			alt: "Workspace",
 		},
 		{
