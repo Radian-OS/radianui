@@ -87,7 +87,7 @@ export function ThemeableSystem() {
 	// offset so active item is centered with extra gap
 	const ACTIVE_OFFSET = 190
 	const ITEM_WIDTH = 120
-	const ACTIVE_OFFSET_X = 275
+	const ACTIVE_OFFSET_X = 340
 	const GAP_SIZE = 8
 
 	const centerOffset = scrollIndex * ITEM_HEIGHT - (containerHeight / 2 - ITEM_HEIGHT / 2) + ACTIVE_OFFSET
@@ -95,14 +95,14 @@ export function ThemeableSystem() {
 
 	return (
 		<div ref={containerRef} className="relative flex h-full w-full select-none flex-col items-center gap-4 overflow-hidden px-10 sm:flex-row sm:gap-20">
-			{/* Top gradient */}
+			{/* Top Bottom gradient for desktop */}
 			<div className="z-1 h-39 from-bg/5 to-bg absolute left-0 top-0 hidden w-full bg-gradient-to-t sm:block" />
 			<div className="z-1 h-43 from-bg/5 to-bg absolute bottom-0 left-0 hidden w-full bg-gradient-to-b sm:block" />
-
+			{/* Side gradient for mobile */}
 			<div className="z-1 from-bg/5 to-bg absolute left-0 h-full w-40 bg-gradient-to-l sm:hidden" />
 			<div className="z-1 from-bg/5 to-bg absolute right-0 h-full w-40 bg-gradient-to-r sm:hidden" />
 
-			{/* Color list */}
+			{/* Desktop View */}
 			<motion.div animate={{ y: -centerOffset }} transition={{ duration: 0.6, ease: "easeOut" }} className="hidden flex-col sm:flex">
 				{duplicatedData.map((colorOption, index) => {
 					const isActive = index % COLORS.length === activeColorIndex
@@ -117,6 +117,7 @@ export function ThemeableSystem() {
 				})}
 			</motion.div>
 
+			{/* Mobile View */}
 			<motion.div animate={{ x: -centerOffsetX }} transition={{ duration: 0.6, ease: "easeOut" }} className="flex gap-2 sm:hidden">
 				{duplicatedData.map((colorOption, index) => {
 					const isActive = index % COLORS.length === activeColorIndex
@@ -131,7 +132,6 @@ export function ThemeableSystem() {
 				})}
 			</motion.div>
 
-			{/* Hover card */}
 			<HoverCard activeColor={activeColor} />
 		</div>
 	)

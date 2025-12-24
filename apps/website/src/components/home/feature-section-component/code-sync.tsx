@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
 const data = [
 	{
-		id: "test1",
+		id: "1",
 		icon: BoxIcon,
 		title: "Building with Radian, Design and Development",
 		profile: {
@@ -19,7 +19,7 @@ const data = [
 		img: "/mstile-70x70.png",
 	},
 	{
-		id: "test2",
+		id: "2",
 		icon: PencilRuler,
 		title: "Updated design system to match new project",
 		profile: {
@@ -32,7 +32,7 @@ const data = [
 		img: "/figma.svg",
 	},
 	{
-		id: "test3",
+		id: "3",
 		icon: PencilRuler,
 		title: "Created all user flows using blocks",
 		profile: {
@@ -45,7 +45,7 @@ const data = [
 		img: "/figma.svg",
 	},
 	{
-		id: "test4",
+		id: "4",
 		icon: PencilRuler,
 		title: "Modified a few screens to match our project requirements",
 		profile: {
@@ -58,7 +58,7 @@ const data = [
 		img: "/figma.svg",
 	},
 	{
-		id: "test5",
+		id: "5",
 		icon: GitPullRequestArrow,
 		title: "Initializing project via CLI and adding all components",
 		profile: {
@@ -71,7 +71,7 @@ const data = [
 		img: "/cursor.svg",
 	},
 	{
-		id: "test6",
+		id: "6",
 		icon: GitPullRequestArrow,
 		title: "Pulled all blocks from radian blocks directory",
 		profile: {
@@ -79,12 +79,12 @@ const data = [
 			avatar: "/media/female-4.png",
 			username: "yajib#21",
 		},
-		timestamp: "2 hours ago",
+		timestamp: "10 hours ago",
 		tag: "Cursor",
 		img: "/cursor.svg",
 	},
 	{
-		id: "test7",
+		id: "7",
 		icon: GitPullRequestArrow,
 		title: "Fixing a few components and screens to update design requirements",
 		profile: {
@@ -97,7 +97,7 @@ const data = [
 		img: "/cursor.svg",
 	},
 	{
-		id: "test8",
+		id: "8",
 		icon: GitPullRequestArrow,
 		title: "The project looks good to go. Validated with the team",
 		profile: {
