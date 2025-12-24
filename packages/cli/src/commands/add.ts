@@ -47,7 +47,7 @@ export const add = new Command()
 			// No project found. Ask the user to create a project first
 			if (!preflight.config) {
 				logger.break()
-				logger.info("The current path does not have a project. You can add components are creating a new project.")
+				logger.info("The current path does not have a project. You can add components after creating a new project.")
 				logger.break()
 
 				const initOptions: InitOptions = {
