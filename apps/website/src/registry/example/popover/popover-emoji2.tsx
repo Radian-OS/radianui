@@ -2,6 +2,7 @@ import React from "react"
 import data, { Skin } from "@emoji-mart/data"
 import Picker from "@emoji-mart/react"
 import { SmilePlus } from "lucide-react"
+import Image from "next/image"
 import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
@@ -13,7 +14,7 @@ export default function PopoverEmoji2() {
 		<div className="flex gap-2.5">
 			<div>
 				<Avatar size="36">
-					<AvatarImage src="/media/male-1.png" />
+					<AvatarImage src="/media/male-1.jpg" />
 					<AvatarFallback>JJ</AvatarFallback>
 					<AvatarIndicator className="bottom-1.5 right-1.5">
 						<AvatarStatus variant={"online"} />
@@ -28,7 +29,7 @@ export default function PopoverEmoji2() {
 					</div>
 					<p className="text-fg-tertiary text-xs font-normal">radian_profile_1146.jpg</p>
 				</div>
-				<img height={170} width={300} src="/media/background-2.png" alt="Background2" className="rounded-md" />
+				<Image height={170} width={300} src="/media/background-2.jpg" alt="Background2" className="rounded-md" />
 				<div className="max-w-75 flex flex-wrap gap-1.5">
 					{selectedEmoji.map((emoji) => (
 						<Button variant="outline" color="neutral" size="28" key={emoji} onClick={() => setSelectedEmoji((prev) => prev.filter((e) => e !== emoji))}>

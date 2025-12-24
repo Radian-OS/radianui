@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
 const profile = {
 	name: "Kaelin Tristian",
-	avatar: "/media/female-3.png",
+	avatar: "/media/female-3.jpg",
 }
 
 // Utility function to get the avatar fallback from the name

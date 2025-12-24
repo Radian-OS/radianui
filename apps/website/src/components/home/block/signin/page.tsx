@@ -79,7 +79,7 @@ export default function Page() {
 		<div className="bg-bg flex h-full w-full">
 			<div className="flex w-full">
 				<div className="hidden flex-1 md:block">
-					<Image className="h-full w-full object-cover" src="/homepage/abstract.png" alt="Background Image" width={400} height={400} />
+					<img className="h-full w-full object-cover" src="/media/background-2.png" alt="Background Image" width={400} height={400} />
 				</div>
 				<div className="bg-bg flex h-full w-full flex-1 items-center justify-center p-5">
 					<div className="w-90 flex flex-col gap-8">

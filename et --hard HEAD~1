@@ -1,0 +1,2265 @@
+[33mcommit 03196e66b0b8b97bf8c9feaa536ae6dbbdf05a5a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m)[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 24 11:47:01 2025 +0545
+
+    fix: remove localhost sitemap and robots file
+
+[33mcommit 5a154bcf8dac98132028a59c4c3a656415e1c4cb[m[33m ([m[1;31morigin/dev[m[33m)[m
+Merge: 835a02d4 6116152b
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 24 11:29:36 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 835a02d46e5b02b2b20449b10059b68d9c79a6bc[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 24 11:28:57 2025 +0545
+
+    fix: table of contents fix
+
+[33mcommit 6116152be4f6280f733b75798f60b3e74a9c6d1f[m
+Merge: b9739a90 66747ea3
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 24 11:26:13 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit b9739a90402edc11f0c5a4df501241b85554f62e[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 24 11:25:02 2025 +0545
+
+    chore: removed some unused components
+
+[33mcommit 66747ea322a564c21b5c7c6309271677e26d4082[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Wed Dec 24 11:16:19 2025 +0545
+
+    perf: change images from png to jpg
+
+[33mcommit c7747b4e8c5adcabc8738d0e420e4d20cb8f590c[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Wed Dec 24 09:27:58 2025 +0545
+
+    perf: optimize images and lazy load ahref script
+
+[33mcommit 44e597aae020e8e44c68e466f3e190359d9e46a7[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Dec 23 13:55:30 2025 +0545
+
+    perf: optimize lucide-react imports
+
+[33mcommit 198ca30b780ae7cc276d81f6dfde068a2b02dc12[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Dec 23 13:19:08 2025 +0545
+
+    chore: add aria-label for buttons
+
+[33mcommit 87352b386a93ec632ffe7b4336b4ec8da45b73de[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Dec 23 12:34:44 2025 +0545
+
+    fix: remove dynamically loading features section
+
+[33mcommit f662d443d049eb33c220bc49447e4e8c1c38c932[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Dec 23 12:27:54 2025 +0545
+
+    perf: optimize avatar images and dynamically load features section
+
+[33mcommit 0d2604878cb82cdcdf9bde88e32041ca147f9782[m
+Merge: ef817fa7 e4db4fe2
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 23 11:55:41 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit ef817fa7516d89af2cd61be2c4d9f61e825c4bc0[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 23 11:53:38 2025 +0545
+
+    chore: posthog test
+
+[33mcommit e4db4fe2b6358f6eb56b87508680a4a2c5790691[m
+Merge: 60599789 c297945a
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 23 11:53:03 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 60599789887e8ea65950208c216e76fe2601b1de[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 23 11:52:01 2025 +0545
+
+    fix: alt added on avatar images
+
+[33mcommit c297945ad95d9d4c09f23f552b299103b0eff033[m
+Merge: efc939df 5953e840
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 23 11:39:40 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit efc939dfe5e86ac9d02c3f1a7afc63b589fdaad4[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 23 11:39:04 2025 +0545
+
+    chore: posthog test
+
+[33mcommit 5953e840473bfa5df66eaa847dee205674f166ac[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Dec 23 11:19:48 2025 +0545
+
+    fix: cli add login on non existing project and remove iframes in homepage
+
+[33mcommit ad23116aa8d144dcd230bd2b50718214e5e62de7[m
+Merge: db47ebb3 52b88d2e
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 23 10:07:00 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit db47ebb33db097d43f24506a52b4853f34185e19[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 23 10:04:00 2025 +0545
+
+    fix: color change card responsive
+
+[33mcommit 52b88d2e61a1c6a01626804494fd8d094f048643[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 23 08:14:48 2025 +0545
+
+    chore: fix production environments for posthog
+
+[33mcommit ef1c45bc3ce159931e99379e4f91e149dbb9334d[m
+Merge: 94317bbc 2efbf2a4
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 22 17:39:39 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 94317bbc29108593293b79351216cc14f2d5fe78[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 22 17:38:58 2025 +0545
+
+    chore: fix posthog init
+
+[33mcommit 2efbf2a4b73a0c7e0df85c9bae02a9492003fb68[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Mon Dec 22 13:23:04 2025 +0545
+
+    perf: add sharp and set cache ttl to 24 hours
+
+[33mcommit fd0a362a8babd7a82c7f388e1e90402273315dcd[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Mon Dec 22 12:12:14 2025 +0545
+
+    perf: dynamically import playground
+
+[33mcommit ed960521b5aee24c3b45dfa0c1cb75e31233cf0f[m
+Merge: 17c77559 e6f38a1a
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 22 11:33:06 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 17c77559cddbab4170e334f7b41b8d543f67270b[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 22 11:32:22 2025 +0545
+
+    fix: import formatting in each components docs
+
+[33mcommit e6f38a1a1f46efde14839a2b89f47283a2f6175a[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Mon Dec 22 11:22:35 2025 +0545
+
+    perf: remove noise image and font cdn
+
+[33mcommit 718718c9174b523758c6c1e701bc4e4b0f494e2d[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 22 09:25:21 2025 +0545
+
+    fix: responsive card in homepage
+
+[33mcommit 65cbaee5adbd6bb2d158cc23254019c3fbfcaf8e[m
+Merge: 44754956 0bab582c
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 19 15:18:36 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 4475495600e930f57dd5ddb45c5f94f12dc37ba7[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 19 15:17:37 2025 +0545
+
+    fix: responsive fix in light beam
+
+[33mcommit 0bab582c365230fe65c3cef04bf0ab2291232ea2[m
+Merge: 75878193 8491bcfc
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Dec 19 14:38:20 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit 7587819367af405261e6e2c50c4f61e9670b01d7[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Dec 19 14:37:55 2025 +0545
+
+    refactor: svg updated to png image in unsubscribe form
+
+[33mcommit 8491bcfc661799a255da98ab5696dc88893c2f40[m
+Merge: a594e1e7 d0ea338b
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 19 14:35:01 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit a594e1e7ca3b72508dc4f8757e86c00b16a58f59[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 19 14:32:26 2025 +0545
+
+    fix: responsive handle
+
+[33mcommit d0ea338b367178349566c196688a94fc4967c907[m
+Merge: 13f977f2 efc6d045
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Dec 19 11:53:25 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit 13f977f26021758734665f8c733088789262543b[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Dec 19 09:44:28 2025 +0545
+
+    refactor: svg updated to png image in unsubscribe form
+
+[33mcommit efc6d04508f25c2b3e6cf61704208709194a7c20[m
+Merge: ffcc00fc 436e6437
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 19 09:11:48 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit ffcc00fca43206f7c2ca63d8679ee393431971dd[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 19 09:10:35 2025 +0545
+
+    chore: fix route for iconography
+
+[33mcommit 436e643790e6d07a91fb8977e7c763fe257d8a56[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 19 08:49:26 2025 +0545
+
+    fix: padding, none select and responsive update
+
+[33mcommit eabde7f0641475d40f2dde95d1d0f04e65c16c54[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 18 13:59:07 2025 +0545
+
+    chore: beam light added in cli component card
+
+[33mcommit a61b000969029cf6ee3f1f100f862db94803fe7b[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 18 08:52:14 2025 +0545
+
+    chore: cli animation card added
+
+[33mcommit c02c957bdcb3d7c7db65107f883e671838d957a3[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 17 16:46:57 2025 +0545
+
+    fix: color slide and slide motion of card
+
+[33mcommit e279415063a4b2aa7817670cb8d751cc41992e05[m
+Merge: dd783ce8 ebf41ed8
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 17 14:02:32 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit dd783ce8a998e9bd0790d0e59ea707ecee954657[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 17 14:01:26 2025 +0545
+
+    chore: slide color component added in homepage
+
+[33mcommit ebf41ed86d93b75c168a597d08a4ef835402f4de[m
+Merge: cae2c7b1 01e4b579
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 17 13:26:49 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit cae2c7b15157ed669ff5ef29d421a55409db41ea[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 17 13:25:50 2025 +0545
+
+    docs: updated the documentation for the CLI
+
+[33mcommit 98b1bd5daf330a64c9c1e273b851b4e7e6a6cc2a[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 17 09:37:17 2025 +0545
+
+    chore: working links added to welcome-email
+
+[33mcommit 01e4b5790f92f768f4b9761c3f4ecfda0e92e01e[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 16 16:31:35 2025 +0545
+
+    fix: hover set on cards and bg changed to fill1
+
+[33mcommit 6b639d106e50fc9f9bd3221ce0a354cd77ec0904[m
+Merge: e18a0f20 3425aa56
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 16 15:21:18 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit e18a0f208d7fdd4246efec95e0ce0225fe2a651e[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 16 15:20:27 2025 +0545
+
+    fix: slide card position and transition update
+
+[33mcommit 688112c30a1b593b75672ea6ff462789135ff0ed[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Dec 16 14:24:13 2025 +0545
+
+    chore: updated the missing links in the welcome-email
+
+[33mcommit 3425aa56f3840f2be0728a55322fe524d31e8927[m
+Merge: 06753dd1 c1d430ca
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Dec 16 14:01:29 2025 +0545
+
+    chore: unsubscribe page svg updated
+
+[33mcommit 06753dd1e6ad8be1a9348d0c03ec506f043a5c98[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Dec 16 14:00:40 2025 +0545
+
+    chore: unsubscribe page svg updated
+
+[33mcommit d5c2112f05c55dff2fb78e6a62151c4b08c5845e[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Dec 16 13:56:49 2025 +0545
+
+    chore: unsubscribe page svg updated
+
+[33mcommit c1d430ca754b563f21a4fe1e979fdb039c00d692[m
+Merge: 703e3a7c aa6b01ca
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 16 11:54:01 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 703e3a7c929a9e6439122abe33a372194786e5b9[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 16 11:51:29 2025 +0545
+
+    fix: sliding animation
+
+[33mcommit aa6b01ca9984aea379d0c1d79ba5df19fc1ac86e[m
+Merge: de73222b 41c7d897
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Dec 16 11:12:31 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit de73222b801a3bb9a67d2f5b2c1d343be71d07bc[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Dec 16 11:11:38 2025 +0545
+
+    chore: unsubscribe page ongoing
+
+[33mcommit 41c7d897bb72bc374ab26620e97a8e86958556a2[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 17:17:43 2025 +0545
+
+    fix: slide and jump animation update
+
+[33mcommit 0c051e6b1e8b3839063639fe4ab74cd36ec30132[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 13:55:57 2025 +0545
+
+    fix: animation speed and opacity
+
+[33mcommit 05ac9590047701781dae8608e4327190cfaea471[m
+Merge: 526fa972 d63bd753
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 13:44:20 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 526fa972d1ff0c613cfb6b357c8082e7b1beb63b[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 13:42:53 2025 +0545
+
+    fix: slow animation speed
+
+[33mcommit d63bd75337e8051e0b898ed0ead22af86a5522bb[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 13:33:03 2025 +0545
+
+    fix: remove aurora
+
+[33mcommit 140c451df0ffa81e73b24abbe3640fb472e4ccd9[m
+Merge: 551f35b6 d1435984
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 13:31:45 2025 +0545
+
+    chore: update for mobile navigation
+
+[33mcommit 551f35b61fe3182efd2e7985da54afc8cf15045e[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 13:31:15 2025 +0545
+
+    chore: update for mobile navigation
+
+[33mcommit 99474b2fc44c17dcbf25609cf3d3a94350b1993e[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 13:30:35 2025 +0545
+
+    chore: update for mobile navigation
+
+[33mcommit d14359849fcba4a63119ee7570e752dfda481a27[m
+Merge: 3d0f8a94 f18816f5
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 13:24:48 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit 3d0f8a94e45bc831b869f40082bac8e851f5d9f7[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 13:24:08 2025 +0545
+
+    chore: welcome email png images replaced with jpg
+
+[33mcommit f18816f5900fcff58064c3f2236f7ab0495bc9e9[m
+Merge: 3aa829fb 289218b8
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 13:00:41 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 3aa829fb14a912a381146de1673feb0634c79c36[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 12:59:54 2025 +0545
+
+    feat: update search sync in blocks and website
+
+[33mcommit 289218b8458cf7ffd3b82f8e4af75bd1c6a63b82[m
+Merge: a1ecd85d e5c27169
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 12:56:26 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit a1ecd85d6fcbc9992fe3028d0fe74be556119962[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 12:55:47 2025 +0545
+
+    chore: replace the png with jpg in welcome-email template
+
+[33mcommit e5c27169178b2850f5af375e303e250e82e604e5[m
+Merge: e95d87db 50d4dbca
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 12:50:57 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit e95d87db550370c5e7dd98e3e2722b24c09e23a2[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 12:50:08 2025 +0545
+
+    feat: add blocks in search
+
+[33mcommit 50d4dbca2644672dd8cb6a715faef9301347419e[m
+Merge: 2509016c 214d5416
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 12:40:31 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit 2509016c768766cc65d4d586c2148b2d86421b7d[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 12:39:48 2025 +0545
+
+    chore: replace the img tag of react-email with native img
+
+[33mcommit 214d5416846dce5e3fbd646239adf9007aaa84a1[m
+Merge: 9ef94ff8 06f02d84
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 12:35:31 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 06f02d846d92f74e9538ba58bd15171b65711b10[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 12:29:43 2025 +0545
+
+    chore: border on image implemented via css in the welcome-email
+
+[33mcommit 9ef94ff8a6cbb4c2a7f6a220921016749797e296[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 12:29:05 2025 +0545
+
+    fix: hover added on left and right only, auto up down animation and gradient on top part 0f the card
+
+[33mcommit 34a9d63cd04679b580d816dbac53746c06af1c02[m
+Merge: 476e3270 e1636db4
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 12:10:45 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit 476e3270b3c5d7a90031caf89ddce8730e2e328f[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 12:09:57 2025 +0545
+
+    chore: border on image implemented via css in the welcome-email
+
+[33mcommit 3fbbfca8fec66d489fe19ba55551be356c9966c7[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 10:18:24 2025 +0545
+
+    fix: buttons fix in homepage
+
+[33mcommit e1636db4cf98f137fc5a0123e5689ed6ef9a9e5d[m
+Merge: 7b372073 5370cce9
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 10:17:18 2025 +0545
+
+    fix: buttons fix in homepage
+
+[33mcommit 7b372073a2819cd6b290322adea03394dfe3ccbc[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 10:16:02 2025 +0545
+
+    fix: buttons fix in homepage
+
+[33mcommit 36d270ed1ab63547774279421d9624a31aaa67cb[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 15 10:14:49 2025 +0545
+
+    fix: buttons fix in homepage
+
+[33mcommit 5370cce9f25b7323a5abfed4f8cb5523574709ac[m
+Merge: 71afeb6b 2ff3a7e5
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 09:33:14 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 2ff3a7e54d972e1dd79c5ea15eafcb6f2bb9c0ca[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 09:32:16 2025 +0545
+
+    chore: border on image achieved via background color in welcome-email template
+
+[33mcommit 71afeb6bb6ddd85f333bb4b6d7bad4f76e29d66b[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 15 09:30:08 2025 +0545
+
+    fix: hover interaction added in reuse component file
+
+[33mcommit 3f41da6287f867a630294cfb6293baae2d64e6be[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 08:52:55 2025 +0545
+
+    chore: unsubscribe feature implemented and the image on welcome image replaced
+
+[33mcommit 1aad44d495878cb0e2d5fa4286acb51e078b3430[m
+Merge: bf34b831 4a481416
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 08:34:29 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit bf34b831e8b64db3e74c6fc2ddd822d2f91f7311[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Dec 15 08:32:34 2025 +0545
+
+    chore: unsubscribe email going on
+
+[33mcommit 4a4814163f619626c6bb5423923e9be5cede2a69[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 13:37:25 2025 +0545
+
+    chore: fix scrollbar
+
+[33mcommit 2e36b008aa6f7b601d56aded1adf86c9bd22cf09[m
+Merge: 97b58f73 8d7a1ae9
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 13:28:14 2025 +0545
+
+    fix: scroll bar in asidebar
+
+[33mcommit 97b58f73f850c7fccdd15fe4673c8dde526045c2[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 13:24:13 2025 +0545
+
+    fix: scroll bar in asidebar
+
+[33mcommit 8d7a1ae9a0e6f438247724d9b63467a010b786cf[m
+Merge: e1d9c22d 40f212cc
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 12 13:00:54 2025 +0545
+
+    fix: merge fix
+
+[33mcommit e1d9c22d7a7d594a1b60df3e42cb72b9033abba9[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 12 12:56:18 2025 +0545
+
+    chore: reuseable card added
+
+[33mcommit 40f212ccd977c4f4b470757f1838dd56f9bbcb67[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 12:08:21 2025 +0545
+
+    chore: update typography content
+
+[33mcommit 1c4bfa86c5a261e4fd5454baa5a7c3fd0aea7887[m
+Merge: c9253db3 008f64f5
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 12:05:30 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit c9253db35612da3c938bf5dfebc1cc9016e8e5b0[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 12:04:34 2025 +0545
+
+    fix: update table of contents
+
+[33mcommit 008f64f588693564fb825d58cc52738f97eb0373[m
+Merge: b3a578f2 1ee99f30
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Dec 12 11:46:46 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit b3a578f2d8f606960a1331c9b5d67e8fed594e27[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Dec 12 11:45:34 2025 +0545
+
+    chore: unsubscribe email going on
+
+[33mcommit 1ee99f306c6009317df3db647b0243061748c9a2[m
+Merge: 705ee892 3dd099db
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 11:30:38 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 705ee892c65e2f0acffd345252be57bcf65c0640[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 12 11:29:39 2025 +0545
+
+    fix: update aside bar scroll
+
+[33mcommit 3dd099dbaf0090efb2bdaf79c985ca3fa3108bac[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Dec 12 09:15:18 2025 +0545
+
+    chore: welcome-email-template buttons update and image updated
+
+[33mcommit 61e46a829940e8f249549dac2d86c2044252b7be[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 14:41:51 2025 +0545
+
+    chore: website body letter spacing increased to -0.0125em
+
+[33mcommit 7668fd8223e752aafcc9303df26b01471c6ff00e[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 14:02:15 2025 +0545
+
+    chore: deleted the old hero-section component of the home
+
+[33mcommit 9f21a03023db563004f2b5c04964b8057c42ce6c[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 13:57:45 2025 +0545
+
+    chore: email subscription implemented in blogs section
+
+[33mcommit ea4288a4b6d0bec468e28fe0be28d0b27b9114d2[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 13:12:15 2025 +0545
+
+    chore: color-picker-preview removed and socail links added to email template
+
+[33mcommit afabe71ce3ee3ea55f3ad323316a975a9170fbb3[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 12:59:19 2025 +0545
+
+    chore: api for unsubscribe email removed
+
+[33mcommit e4c12ee0433c2648bcf3b9dbc9584f7e29651b64[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 12:55:23 2025 +0545
+
+    chore(website): heading font and tracking changed
+
+[33mcommit f18da8133ce68e7caf83e19c9635635ea9e2f804[m
+Merge: bd38734d bfb8db3e
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 12:54:01 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit bd38734d0fc50fc542aaef7e08356fb60d662dc3[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 12:53:11 2025 +0545
+
+    chore(website): heading font changed to geist and tracking tight applied to body font
+
+[33mcommit bfb8db3e242d6ae09400de38b6e361f01f501e35[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 11 12:44:59 2025 +0545
+
+    fix: signup width to 360 px
+
+[33mcommit cfe3d9e3685ff59a74d29268074b16ab9ae0619e[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 11 12:30:46 2025 +0545
+
+    fix: landing page buttons
+
+[33mcommit 7491cd7fa9ecb776dde40378ec79812debc24aea[m
+Merge: 45883347 ce4109e8
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 11 12:22:13 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 458833471b194c33acc62c216d8b70e497d5835d[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 11 12:21:29 2025 +0545
+
+    fix: remove shadcn colors and implement radian colors
+
+[33mcommit 4c53ec3cd981cbde61c9b5d477a43781ba96b82a[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 11 12:19:58 2025 +0545
+
+    fix: remove shadcn colors and implement radian colors
+
+[33mcommit ce4109e8162d6cfa531aa4f6ae4b6d54cdd7dcb3[m
+Merge: a5cbb2e9 30c97850
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 11 11:06:16 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit a5cbb2e9730f794ad3794d35cbccf05f911143ab[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 11 11:01:51 2025 +0545
+
+    fix: partical border and flickering bg
+
+[33mcommit 30c978504bf630aeede4ee69afc497a0ef3c6ceb[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 10:09:26 2025 +0545
+
+    chore: resend problem solved
+
+[33mcommit 297a20ad102cfd796317ba628d0e6cc80d93be8f[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 09:59:35 2025 +0545
+
+    chore: resend too many request problem resolved with delay
+
+[33mcommit 288de1c49186aa02abff21707516264d22423224[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 09:46:18 2025 +0545
+
+    chore: resend error resolving
+
+[33mcommit 55503f3f8b3a031b5d4c265b7f761ba64e05a474[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 09:00:31 2025 +0545
+
+    chore: replace the react with text in send email to test
+
+[33mcommit 1b82eaf8974b41a810f2c39c33b94e8649bd28e6[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 11 08:34:03 2025 +0545
+
+    fix: passed the env variable as props to email template
+
+[33mcommit e6e5685af0e023091fdd0b3f245a7f304ce8738d[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 21:05:57 2025 +0545
+
+    chore: env added to the next.config.js
+
+[33mcommit 7df82af45d4bf21a54502229b884d5dd9d454e36[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 20:28:17 2025 +0545
+
+    fix: subscribe function
+
+[33mcommit b661f50911bc8f6ce0fba7751fc98faf8e206ea2[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 20:18:37 2025 +0545
+
+    chore: turbo.json fix
+
+[33mcommit 5806f4639624f39b441c1c5725fd7179e0207cea[m
+Merge: d77c6537 39eb7f8e
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 19:28:22 2025 +0545
+
+    Merge branch 'dev' of https://github.com/Radian-os/radianos into dev
+
+[33mcommit d77c653754192e94a24c9645c006c3a70d335214[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 19:24:48 2025 +0545
+
+    chore: .env implementation fix
+
+[33mcommit 39eb7f8ebb64537b3971e4296ffaa89cc4271fa3[m
+Merge: c67399f2 e016ed9f
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 16:55:45 2025 +0545
+
+    chore: update early access button and password structure fix
+
+[33mcommit c67399f2ebe2935b7a6ecf01c52b464876a48a26[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 16:53:40 2025 +0545
+
+    chore: update early access button and password structure fix
+
+[33mcommit e016ed9f261f1fe53fa2a217ac791d5ca05be2a1[m
+Merge: b63b268d 6f20963e
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 16:41:51 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit b63b268d5d43aa84df6e2c215e17bbfd1d95bc3f[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 16:40:18 2025 +0545
+
+    refactor: divided the footer into chunks to separate client and server components
+
+[33mcommit 6f20963ec24307f4fcb8024b6285007f786dc36d[m
+Merge: b3222e2d 4d63b7bd
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 16:33:45 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit b3222e2dacd76fb6f5a52c93d5a68ca2192464aa[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 16:33:09 2025 +0545
+
+    fix: scrollbar position fix
+
+[33mcommit 4d63b7bdca85471096e5a0721d53c99ccb222c35[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 15:33:35 2025 +0545
+
+    chore: resend instantiation moved inside the function
+
+[33mcommit a2e37dbc3180b28da0b3bc920f12eb5cbb730d5d[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 15:13:57 2025 +0545
+
+    fix: resend problem
+
+[33mcommit c0e838a3b70a8b8d18c05152351ab66f5b716856[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 14:20:23 2025 +0545
+
+    chore: push for deployment
+
+[33mcommit 4ec2ea1159792985e2605b7e21bd77958d974707[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 14:16:58 2025 +0545
+
+    fix: some unused components and hooks removed
+
+[33mcommit f331ea0c9b66483a56762fa4864225207988933a[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 14:12:37 2025 +0545
+
+    chore: revert back the email-subscribe file
+
+[33mcommit 8cd6009402608ad7e7c2a03d3ea0d28458cd617e[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 14:07:31 2025 +0545
+
+    chore: unnecessary email-subscribe component removed
+
+[33mcommit 942206c0e7adf4e03edc0d62932159d9accbffdb[m
+Merge: 4522558c 41d5c0b9
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 14:01:06 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit 4522558c9a1d088333efab2d4ae56d3c6539748f[m
+Merge: 76acbf8c e062187c
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 14:00:13 2025 +0545
+
+    chore: merge local with remote
+
+[33mcommit 41d5c0b983da518888f46074322602c5a3229a6c[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 14:00:09 2025 +0545
+
+    chore: experimental memoized code area component
+
+[33mcommit 76acbf8c215744a91fb96d7dd1f9e33df113370a[m
+Merge: 44f6f6aa f55318df
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 13:55:45 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit e062187c91bbac682f9753e978c9f58569034ff4[m
+Merge: bb4bcf2e f55318df
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 13:55:20 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit bb4bcf2eefc60bc7b1f68e1a9be3ce41569c8d1b[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 13:54:40 2025 +0545
+
+    chore: experimental memoized code area component
+
+[33mcommit 44f6f6aad38e787ff30d0b79da0f8e030e2a6060[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 10 13:41:01 2025 +0545
+
+    feat: subscribe email feature implemented
+
+[33mcommit f55318df067013b98b29d835486d988aec8fdadf[m
+Merge: 51c3abc7 0347c6d4
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 10 13:09:19 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 51c3abc762b7a040cc1520509b24d0fa6612cba4[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 10 13:08:07 2025 +0545
+
+    chore: marquee added
+
+[33mcommit 0347c6d44e72af8d47257632f8bf56bfb8fe487b[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 10:46:22 2025 +0545
+
+    chore: password examples add
+
+[33mcommit 927b614abe0e47612e7c52991325f1cd5b586fce[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 09:55:39 2025 +0545
+
+    feat: fix security issues
+
+[33mcommit 065cbcb436252a5a045df43c1d2bcb9511efb6a8[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 10 09:48:00 2025 +0545
+
+    chore: fix react next security issues
+
+[33mcommit 231f550cd8d454f7d05981563482af269a81db53[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 10 08:36:19 2025 +0545
+
+    refactor: feature section code separated into multiple components
+
+[33mcommit 1fa8ae9e7be69c1b050367e3d08e1f04894ad9b6[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 9 16:06:34 2025 +0545
+
+    fix: slide card date
+
+[33mcommit 017591ebd0feabf1a872327bb784c9e5d426ec57[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 9 15:58:55 2025 +0545
+
+    chore: beam animation and slide up animation fix
+
+[33mcommit 9193d63998d1e99084f50d8d9f0636d859e22070[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 9 13:57:13 2025 +0545
+
+    fix: padding in each section and border color update
+
+[33mcommit e0283aed4eb30353a6487054bf5b90263abe2786[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Dec 9 12:54:25 2025 +0545
+
+    chore: code sync section animation added
+
+[33mcommit 27eb894565b08871017a7741592ea9e7eebd3829[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 8 17:17:29 2025 +0545
+
+    chore: svg color update on both light and dark
+
+[33mcommit 9112293dda9a1d95111a29f97cdcc7c268a05c97[m
+Merge: 9f0fadbd cf0f81c3
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 8 13:58:41 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 9f0fadbdbb68742d73668da68f64aa4067bdc664[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 8 13:57:09 2025 +0545
+
+    chore: beam animation on componentsvg of homepage
+
+[33mcommit cf0f81c3d07dbb0e98bf3151ef6b4b3f0b8615e2[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 8 13:31:00 2025 +0545
+
+    chore: backlog tasks
+
+[33mcommit 4da7183fbc040312f108a5d4629f63fd882ab6bf[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 8 12:54:20 2025 +0545
+
+    chore: persistant storage add across docs:
+
+[33mcommit f2fd4523a00edb1fe0b04598f6288d3308946421[m
+Merge: c06ce6d6 fcd4d309
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 8 11:48:50 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit c06ce6d6758e6d177d07c4a2e9ac70ad88c08423[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 8 11:48:13 2025 +0545
+
+    feat: add persistant storage for tabs and docs
+
+[33mcommit fcd4d309ad0195576a62abb27cfc87bc04666b99[m
+Merge: 320626d4 22f6f304
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 8 11:31:17 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 320626d4e6de1d9ae679088a64f72ad9c9c6fe4f[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Dec 8 11:28:35 2025 +0545
+
+    chore: homepage feature section card height, rounded and bg update
+
+[33mcommit 22f6f30410e99e7f9e9037a9b4d1406d8709c3d0[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 14:58:31 2025 +0545
+
+    chore: charts example add radial chart example
+
+[33mcommit 152965e0a1fedd955ed932939f90ece23d7e567b[m
+Merge: 42b4a9e1 d06bd439
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 13:56:23 2025 +0545
+
+    chore: charts example add radial radar
+
+[33mcommit 42b4a9e190fd29dc269eace82fcf9b1dcf3efb5c[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 13:53:19 2025 +0545
+
+    chore: charts example add radial radar
+
+[33mcommit d06bd439cd1430cd4141213b50c3c97b0c8e654b[m
+Merge: 9cc04a53 1762dded
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 5 13:51:32 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 9cc04a535e0faa5d3e9e08b870d7fd924a13cf45[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Dec 5 13:50:30 2025 +0545
+
+    chore: sidebar group and menu added
+
+[33mcommit 1762dded4499bedcbf595d4d85801cc51f5f00dd[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 12:31:16 2025 +0545
+
+    chore: charts example update
+
+[33mcommit d58eb96e81474ace9bfc996ac3ccc577ba886987[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 11:31:07 2025 +0545
+
+    docs: aspect ratio docs update
+
+[33mcommit 48dffb7b05030d30f45e59cf81f5edc110f18db3[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 10:14:23 2025 +0545
+
+    docs: aspect ratio docs update
+
+[33mcommit cdfb6eb201a3fe299d5052b1d1af60a092e4762a[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 09:45:43 2025 +0545
+
+    chore: add pie chart examples
+
+[33mcommit 0d996f8c1d49cc75576b4cb3279facd10a47e9cd[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Dec 5 09:33:53 2025 +0545
+
+    chore: add chart examples
+
+[33mcommit 501ff64ffc59312a0193ccf69a70450ac40d2a02[m
+Merge: 6e70085c 40b07109
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 4 17:15:38 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 6e70085cd268b81393df4136b30265fb87c06090[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 4 17:13:44 2025 +0545
+
+    feat: add card examples
+
+[33mcommit 40b07109ed805b3d8987ac630a82760f79f223e7[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Thu Dec 4 16:21:40 2025 +0545
+
+    fix(cli): use projects cwd instead of user's cwd to download assets
+
+[33mcommit f80ba4259a380553497d5013f63903c394cf943d[m
+Merge: fe9bd8c6 c916d945
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 4 15:54:13 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit fe9bd8c692fb8a70a6b9266272606971e8fb74b2[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 4 15:53:41 2025 +0545
+
+    chore: chart preview update
+
+[33mcommit c916d945aa6974b2b010699bdb37ddf5a0b14cc5[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 4 15:31:17 2025 +0545
+
+    fix: preview playground height updated to 700px
+
+[33mcommit c181a9106e734cb0a25fd1469df37dfb074eb0b2[m
+Merge: 8a06b883 0a374ec6
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 4 14:02:35 2025 +0545
+
+    fix: merge fix
+
+[33mcommit 8a06b88342fb8fdf269ca17f55a04581dc626943[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 4 13:58:33 2025 +0545
+
+    chore: sidebar variant added
+
+[33mcommit 0a374ec69bdf9fdb3fa9eb3fea9047378c11b325[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Thu Dec 4 12:19:00 2025 +0545
+
+    fix: flickering grid bg color
+
+[33mcommit 5bf0949fc320b08f493613ac90aa2a88e14dd9a7[m
+Merge: d263439a 5c8ea947
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 4 12:17:10 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit d263439a93d370c863932afe69bc344b8c08164c[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Dec 4 12:16:41 2025 +0545
+
+    refactor: card examples
+
+[33mcommit 5c8ea9477c7ee0b315e34ca0dc34313e27f8c379[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Thu Dec 4 12:06:26 2025 +0545
+
+    perf: try to optimize flickering grid
+
+[33mcommit 6e09c860e6c95182b41e09e67047ba4cd68a86a9[m
+Merge: 3a77d7c2 3c04d13d
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 4 11:53:49 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 3a77d7c26dae7c4e42e195a25ded556322e5d60c[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Dec 4 11:51:03 2025 +0545
+
+    refactor: aspect-ratio examples
+
+[33mcommit 3c04d13dc8edd7e50af8d78a7e833c73b30c0d69[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Dec 4 11:29:06 2025 +0545
+
+    chore: inset and float variant
+
+[33mcommit 369406bb7d5bfcd9fced0aecff3b42fbeb12d6ce[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 20:20:07 2025 +0545
+
+    chore: card aspect ratio example update
+
+[33mcommit 7ca40167d092fc07b22ccd36daf74cb37f8dabac[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 20:18:05 2025 +0545
+
+    chore: card aspect ratio example update
+
+[33mcommit fbbf5fa95c0af696685502c73abf91458ec5ea37[m
+Merge: 25ca5e2d 7e00fd82
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 14:37:45 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 25ca5e2d7f91c895e72b8588aa6eb87888b58706[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 14:37:07 2025 +0545
+
+    chore: aspect ratio examples
+
+[33mcommit 7e00fd82931774ab09ad654736a3db125b3f8d6d[m
+Merge: e43692cf 12d5e1ba
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 3 13:54:17 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit e43692cf38b59c7ed39b624787628ccffa73d5a2[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 3 13:53:27 2025 +0545
+
+    chore: ongoing sidebar component implementation
+
+[33mcommit 12d5e1ba9465ac0a5e4c810d9ddc435e97da4856[m
+Merge: 5fd1bf69 9717c514
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 12:26:03 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 5fd1bf694420085c510e775f086d9f37f5333f79[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 12:25:39 2025 +0545
+
+    chore: card example update
+
+[33mcommit ed07b106638ed37847a6ab72f65942b76c202d92[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Dec 3 12:22:23 2025 +0545
+
+    chore: ongoing sidebar component
+
+[33mcommit 9717c514e54cf5f3088d129574ef061f5936c82c[m
+Merge: 8afc9ec9 932e8e4c
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 3 12:12:17 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 8afc9ec965f36d1b26a42f4ee8220ab6f8711ab5[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Dec 3 12:11:11 2025 +0545
+
+    fix: block type added in component preview
+
+[33mcommit 932e8e4c57b5ba586d57eb6c6ad8bce62d1976c2[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Wed Dec 3 11:52:12 2025 +0545
+
+    style(homepage): fix width and padding
+
+[33mcommit d24d71e0eeaad019ac19c7c6dda4867fcf05e2a0[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 10:53:36 2025 +0545
+
+    chore: card-preview update
+
+[33mcommit d1524484d8ffee1ea55c4b2b29a9fcde9f97bb1d[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Dec 3 09:30:39 2025 +0545
+
+    chore: aspect ratio examples update
+
+[33mcommit 575ca50ca82910ab587b95f9e0af60506a8d99b6[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 13:41:30 2025 +0545
+
+    feat: update button props and aspect ratio examples
+
+[33mcommit 0c473e9b5079c3f3f79444e8727b13206ea08085[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 13:41:07 2025 +0545
+
+    feat: update button props and aspect ratio examples
+
+[33mcommit 078c48d6886772255618554ec8db40f3d19975f4[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 13:22:52 2025 +0545
+
+    feat: update pagination example including card
+
+[33mcommit d879be2f251d6cd7e17e2772fe83652ba096bb17[m
+Merge: 93410d23 48295230
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 13:18:32 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 93410d23097e565497824e7d381232e95945e4c3[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 13:18:11 2025 +0545
+
+    feat: add card component
+
+[33mcommit 482952309853d4ceee47a638e5d823745840f3cf[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Dec 2 13:13:34 2025 +0545
+
+    feat: add footer email subscriber functionality
+
+[33mcommit 0fe2baa12b307177a64cb7cc903b226ed000ff8f[m
+Merge: d407a355 89d9c634
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 13:07:45 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit d407a355d9db5b22b17feb238148d0e00259f4e7[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 13:07:11 2025 +0545
+
+    feat: add card component
+
+[33mcommit 89d9c6340cac4aab78d9013ea26f4fe8585dc65b[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Dec 2 11:00:47 2025 +0545
+
+    feat: add footer email subscriber div
+
+[33mcommit 914be219777b03a09f446a2aeece973fc9839f8c[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 10:49:51 2025 +0545
+
+    chore: button smooth variant update border
+
+[33mcommit 7dc3ee816bc3a099f8e4608a597a2c04205f9c60[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Dec 2 10:33:40 2025 +0545
+
+    chore: button smooth variant update
+
+[33mcommit af22e4016c0d1a2ed6d7cf0a675a090bd0213a59[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 1 15:56:47 2025 +0545
+
+    feat: smooth button update
+
+[33mcommit 7ec41c05b3a5de9e96a9bb06e22b011b5096ea5d[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Dec 1 10:30:23 2025 +0545
+
+    chore: update buttons
+
+[33mcommit 9687908dd4bf194b2b3c853311cff6161404c5ba[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 28 13:37:57 2025 +0545
+
+    chore: fix the fancy buttons
+
+[33mcommit 24d4d8c75152db7719fd0f6e21f6d03314860b22[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Fri Nov 28 12:12:46 2025 +0545
+
+    feat: add functionality to emoji mart
+
+[33mcommit d0b2a93c840ec9760d484ce64c40009fd771aa9e[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Fri Nov 28 10:05:35 2025 +0545
+
+    feat: add emoji mart
+
+[33mcommit cf524639e174fcd00a868a51cb27dbff472a970b[m
+Merge: d14d896b 0a2f66e2
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 27 13:59:41 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit d14d896bd3a8c3e295da91e0b63ca51ee50ddbab[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 27 13:58:54 2025 +0545
+
+    chore: button,alert,banner,aspect-ratio update
+
+[33mcommit 0a2f66e267fe46ff6b36022e93b9e896850fcdd8[m
+Merge: 64f90eb4 409157eb
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Nov 27 13:21:13 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 64f90eb470c9b55ae458240bc55d5f3ff38d4e15[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Nov 27 13:20:29 2025 +0545
+
+    chore: added more examples for the empty component and removed some
+
+[33mcommit 409157ebcc4343b8ef018ee4a8904baad3884102[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Thu Nov 27 13:05:17 2025 +0545
+
+    chore: remove unused homepage versions
+
+[33mcommit f96d910216f39187146ca448a048e99e9fe5bfe2[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 27 12:44:19 2025 +0545
+
+    chore: fetaures section particles update
+
+[33mcommit 6d7c029ec71d261fdebd238b5c4c0939ccff50e5[m
+Merge: 532098c6 9e033135
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 27 09:35:46 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 532098c612fabc6eedc77c5f9aee55bd0d6a7659[m
+Merge: c4ddbb1a 5d7c453b
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 27 09:35:36 2025 +0545
+
+    Merge remote-tracking branch 'origin' into dev
+
+[33mcommit c4ddbb1aefda428ec00aa770f4bdfc6da5577556[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 27 09:33:53 2025 +0545
+
+    chore: update button variants
+
+[33mcommit 9e03313562458b24098ef14e62feebb873712543[m
+Merge: 0eb77bfd a63ce978
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 27 08:14:59 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 0eb77bfd540108622d196858c5cc9232fbb09f2e[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 27 08:13:38 2025 +0545
+
+    fix: hover card text in playground
+
+[33mcommit a63ce9787c1e35d3d39df1a4bc004c0c4368c4ef[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 26 16:56:34 2025 +0545
+
+    fix: card stack fix
+
+[33mcommit 16a134dc957d07a8ab77b791a3f74d64247c7e95[m
+Merge: 19809633 158e64c0
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 26 13:59:13 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 1980963333429d11d0101ef256749455e0db55aa[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 26 13:58:45 2025 +0545
+
+    chore: features section add bounce animation
+
+[33mcommit 158e64c0b7caaf2818b2ae3d9e086ff0fda81f2f[m
+Merge: b68eb50c 193594c0
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 26 13:39:53 2025 +0545
+
+    fix: merge fix
+
+[33mcommit b68eb50c46eea7f773ef5f6da2b495477b42b73f[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 26 13:35:52 2025 +0545
+
+    chore: carousel example added
+
+[33mcommit 193594c0a69fcf3da5f83699e0e43ca66160b172[m
+Merge: 3281ea26 430bb1e4
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Nov 26 13:20:37 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 3281ea2628818f0e72390f1743889f03fbfbedef[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Nov 26 13:19:36 2025 +0545
+
+    refactor: slight updates in hover card examples and empty component
+
+[33mcommit 430bb1e48c698d8ba89160de54c0316ea76e672e[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Wed Nov 26 12:50:21 2025 +0545
+
+    feat: add combobox examples
+
+[33mcommit 200f8fa934284f0a7eb633f524c0a6969296e6ae[m
+Merge: 77ca39c0 851fd093
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 26 11:11:33 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 77ca39c082d8500595950a50a0d1bd9643b28246[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 26 11:11:02 2025 +0545
+
+    chore: buttons variant add
+
+[33mcommit 851fd093937bba6caf68ea91f795c4a54d86bbfe[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 26 07:52:07 2025 +0545
+
+    fix: color update in neutral color
+
+[33mcommit ddaf53f6e0d5cb7941768443c9860c1637a2c984[m
+Merge: d5c6e1a9 0f448cad
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 26 07:41:18 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit d5c6e1a950f06124f4c858fb8b7a3bef895e58ec[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 26 07:40:00 2025 +0545
+
+    chore: neutral color added in playground
+
+[33mcommit 0f448cadadc473040f524394cfcfb1d76e4cf4a9[m
+Merge: 72d7e876 03695bb7
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 17:56:16 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 72d7e876377763dca9e69011d93481978e4d2de0[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 17:55:48 2025 +0545
+
+    chore: add new button variants
+
+[33mcommit d20c863e6ca5a39f795fed2571a57c44f7319b94[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 14:56:08 2025 +0545
+
+    chore: button variants update
+
+[33mcommit 03695bb7fce7ea258404d6a5a74af1b5d43f58f8[m
+Merge: c0311be6 c15fa0af
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 25 14:05:22 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit c0311be69b4d2c0e220bf05de7acb59040cd4f26[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 25 14:04:12 2025 +0545
+
+    chore: carousel example added
+
+[33mcommit c15fa0af4404d37b1f8b8bce0c1c3b34dd22d99f[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 13:59:54 2025 +0545
+
+    chore: colors issue warning-focus
+
+[33mcommit 48aba30747898cec0fa2134e2eb932187312ae50[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 13:57:42 2025 +0545
+
+    chore: colors update
+
+[33mcommit 1ae4cbdae85b905e0dbfe68518c8825469fa4aee[m
+Merge: cf186ac4 6385caa6
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 13:49:31 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit cf186ac4f8e47ce2f5340bc23d2bb4aa17f723e6[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 13:48:42 2025 +0545
+
+    chore: colors update
+
+[33mcommit 6385caa68f95ffbf844e15788056f1f5df1fdc59[m
+Merge: b7e0c6df ec0d79eb
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Nov 25 13:19:40 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit b7e0c6df06e487db467c68e5696683c8d635c5c2[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Nov 25 13:18:35 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 1a066c176e7bb14d315aa3ff578146b21b3f0153[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Nov 25 13:17:28 2025 +0545
+
+    chore: ongoing empty component
+
+[33mcommit ec0d79eb0f96696be8998e781707de68bcad1e8a[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Tue Nov 25 12:11:46 2025 +0545
+
+    chore: remove unused images
+
+[33mcommit a6c183e677a84791b31f94e96ec5d60b761995f3[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 12:02:52 2025 +0545
+
+    fix: fix shadow in divider preview
+
+[33mcommit 9c7c4f14d58a276fe40d88e22060f0e5b5c5c101[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 11:39:07 2025 +0545
+
+    fix: update particles in features-section
+
+[33mcommit 90e82d32a688fc4ccc7a7613b8ce7fdb5cc6333e[m
+Merge: b4b788e3 8dbbb6bc
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 10:55:40 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit b4b788e39580ae9112f35046fa0d6dcf248dd6ed[m
+Merge: 15bbb09a 0d366b09
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 10:55:02 2025 +0545
+
+    fix: update colors for features section
+
+[33mcommit 15bbb09a5c53009e721cbe15f345cae8753c448a[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 25 10:53:50 2025 +0545
+
+    fix: update colors for features section
+
+[33mcommit 8dbbb6bc65657a5774ff8d247bf6c23afc2cd13b[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 25 10:52:10 2025 +0545
+
+    chore: carousel preview added
+
+[33mcommit 0d366b092cc5577b8a176c3c35d8512e3e124a4c[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 25 07:44:30 2025 +0545
+
+    fix: build fix
+
+[33mcommit 9b99567bac5d931da45849a5f06aa0c7a4cc210f[m
+Merge: 3d213b7f d9d6e3e4
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 25 07:37:11 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 3d213b7fe672f8a42db55c3648156233167dc7b6[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 25 07:36:22 2025 +0545
+
+    fix: playground box shadow and font update in popover
+
+[33mcommit d9d6e3e42f1aab5b4900a0bcd47c6049b2752b1e[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Mon Nov 24 15:38:15 2025 +0545
+
+    fix(homepage): text-clipping colors, scroll margin top on hyperlinks and alignment of text
+
+[33mcommit e887f8935e8390f70046a62932ebd1aae4a81d42[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 24 15:17:39 2025 +0545
+
+    chore: carousel mdx added
+
+[33mcommit c490853124c58791406b822dbf38323800b2231b[m
+Merge: 16fb57cd a95a8a78
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 24 14:24:16 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 16fb57cd1dc7eb404b125127ec7465c01f5f670c[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 24 14:18:16 2025 +0545
+
+    fix: forgot password alignment fix
+
+[33mcommit eb276e9b384801c3eb84968b4fd7400a92f8e8f6[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 24 13:36:08 2025 +0545
+
+    fix: alt tags add for badge
+
+[33mcommit a95a8a78477f561c4b6fb225bc74000006b2e588[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Mon Nov 24 11:47:58 2025 +0545
+
+    fix(homepage): spacing between component cards
+
+[33mcommit 5618630e35e8da1e8d8a729dbc3d7d68209acae1[m
+Merge: 9bae1b02 865291bb
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 24 11:35:41 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 9bae1b02f46986c22efecc164bfa2f6fe01b70f3[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 24 11:33:51 2025 +0545
+
+    feat: exaples update for divider
+
+[33mcommit 865291bb9b6a325ef6191c6117e32c85b946053b[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Mon Nov 24 10:53:36 2025 +0545
+
+    style: add minor tweaks to homepage
+
+[33mcommit 8f30691226ad510e4d75c126756737d743f67d41[m
+Merge: b9632fa6 73b4d03a
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 24 09:05:02 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit b9632fa6fd810dd42e993090acde1b7e21a17b94[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 24 09:04:03 2025 +0545
+
+    fix: animation for all browsers
+
+[33mcommit 73b4d03abc75b7312f95c3c562e9c122eabd4318[m
+Merge: 516110c8 81cbd02a
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 24 08:11:11 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 516110c898aafd1b19d1bf1ebc8d079cf1afa338[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 24 08:09:15 2025 +0545
+
+    fix: responsive fixed in playground
+
+[33mcommit 5d7c453b04ab9c80fd0e43736a7780b4941a993a[m
+Merge: 12f3b3de 81cbd02a
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Fri Nov 21 16:02:21 2025 +0545
+
+    Merge pull request #1 from Radian-os/dev
+    
+    chore: merge dev to main
+
+[33mcommit 81cbd02a59534ec2b6beca13b488a09023393da8[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Fri Nov 21 15:57:25 2025 +0545
+
+    style: add beam animation to lines
+
+[33mcommit ee78e1b0742d9a0b0fdb59f2a03a6fcb70e97b88[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Fri Nov 21 14:18:58 2025 +0545
+
+    style: add beam animation to lines
+
+[33mcommit 47d1fc65c763243e302077c53ee3cc7ff1e73b0e[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 21 13:56:17 2025 +0545
+
+    chore: features section border update
+
+[33mcommit 5e170999d40096eca12e7ddc6d25b599e077fb67[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 21 13:34:55 2025 +0545
+
+    chore: features section animation update
+
+[33mcommit e3126c25e719cce5cb0126ee946db18c34ab2f6c[m
+Merge: 80cb41da d71b4b54
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 21 13:27:53 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 80cb41dafe1d66a5240910211f0b659cb74fc017[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 21 13:24:29 2025 +0545
+
+    chore: features section animation update
+
+[33mcommit d71b4b544bf58d0935686c6c541289b91e590a32[m
+Merge: 60b7147b 00cd3ebd
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Nov 21 13:18:50 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 60b7147b4734d0211e63f977466c223c8a7468e5[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Nov 21 13:17:23 2025 +0545
+
+    chore: hover card added and rounded and color fix
+
+[33mcommit 00cd3ebde14d62b9813c2d2c0ae291d4cec4a75b[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Nov 21 12:25:29 2025 +0545
+
+    chore(website): collapsible-menu avatar updated
+
+[33mcommit 7ab092d3eb6998f74dd628f31a80c536d1f92385[m
+Merge: 95a6aaf0 25230653
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Nov 21 11:48:16 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 95a6aaf0807ae176458ab101112a22f0d2e6efac[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Nov 21 11:47:18 2025 +0545
+
+    chore: aspect-ratio component added
+
+[33mcommit 25230653b202fa7da81d7e5dd762b8778e0ed3d5[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Fri Nov 21 08:12:41 2025 +0545
+
+    chore: theme and font added in playground
+
+[33mcommit 92b9230b19d6b2ea510640d5e7344a619f9c103b[m
+Merge: 62934975 55e16e06
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 20 14:01:32 2025 +0545
+
+    fix: merge fix
+
+[33mcommit 55e16e060080df2004c5464e9c205abd0bbfa34e[m
+Merge: 746d2cd6 c68ac7d2
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 20 13:59:13 2025 +0545
+
+    chore: badge update
+
+[33mcommit 6293497532db99330a3cfd1a577c997e8c0808e1[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 20 13:58:48 2025 +0545
+
+    refactor: playground gap value fix
+
+[33mcommit 746d2cd66f0e232b8fab3fa63e978cdab2f89717[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Thu Nov 20 13:57:54 2025 +0545
+
+    chore: badge update
+
+[33mcommit c68ac7d25ed3512d7dc7f9ddfdfcc241ece35891[m
+Merge: 68fd236b db5701fb
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Nov 20 13:27:59 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 68fd236b11c2445b845f6ecc505b36410db026c0[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Thu Nov 20 13:27:00 2025 +0545
+
+    fix: custom-avatar-with-badge badge position fixed
+
+[33mcommit db5701fb2eae46c053b3f3dc720b25c017fae602[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 20 13:23:16 2025 +0545
+
+    chore: image and dot pattern added
+
+[33mcommit 8ae6ed6a43f32e9ace014346203d0e2a2606ba83[m
+Merge: e71fc932 d79e3c68
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 20 11:51:52 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit e71fc932dd19b207c505e3f17b64ab2e3ad2750d[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 20 11:50:56 2025 +0545
+
+    chore: button playground update
+
+[33mcommit d79e3c6847e44453a5de527992f59dd509edeaa7[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Thu Nov 20 11:33:35 2025 +0545
+
+    style: fix padding in calendar examples
+
+[33mcommit fb32e71e48351d35fdb420a4c164677a2e473944[m
+Merge: 779d3e08 83d07312
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 20 10:22:20 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 779d3e08d351040b822ba101c73c715af268bcc8[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Thu Nov 20 10:21:26 2025 +0545
+
+    chore: space and size of todolist playground update
+
+[33mcommit 83d0731221ac7d7802f600321975b43a317c81c7[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Wed Nov 19 15:48:39 2025 +0545
+
+    style: add homepage variation
+
+[33mcommit 1308248969fe9d0911e96d6a48eaea876e1c3dad[m
+Merge: cc487116 0d7fbfa1
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 19 14:47:45 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit cc4871168869f014d9f0fd2eaeb80703ba3f0a25[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 19 14:45:03 2025 +0545
+
+    fix: mdx p tag lineheight 28px and text 16px
+
+[33mcommit 0d7fbfa122d9415310f483f6111f7c1444ed8db3[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 19 13:57:22 2025 +0545
+
+    chore: update animation and responsiveness features-section
+
+[33mcommit 0ee8bdd8e8782352f091c524ca2c199e12ceceaa[m
+Merge: 4a871877 7dfeff05
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 19 13:42:40 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 7dfeff058620cbddb70b7155a18e8043a83b3229[m
+Merge: 807bd290 cde39b4e
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 19 13:39:34 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 4a871877b163145bc73f21c603e1a688b4bfc83b[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Wed Nov 19 13:39:27 2025 +0545
+
+    chore: animation add decrypted-text
+
+[33mcommit 807bd29075f393de57301522c51484b0ab6148ce[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 19 13:38:52 2025 +0545
+
+    chore: radius and code section update in playground
+
+[33mcommit cde39b4ef06ed313737059f98617cdfea8d4e638[m
+Merge: 9e36bd5e 2e9a9c3b
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Nov 19 13:15:52 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 9e36bd5e4c1e2f36315d09f2842dc4b32ec9b5be[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Wed Nov 19 13:14:15 2025 +0545
+
+    refactor: hover-card-user-metrics to old state nd hover-card-preview to new
+
+[33mcommit 2e9a9c3bb1464920e7e22ea6ea64b567a21c7fd6[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Wed Nov 19 12:20:42 2025 +0545
+
+    style: change calendar
+
+[33mcommit 11af8d49fb40eddb7b0a073c101a841541aee29c[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 19 11:47:02 2025 +0545
+
+    chore: layout and color update in playground
+
+[33mcommit 0429becb91fb2549e6db7e6023f43b8af7214488[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Wed Nov 19 08:38:01 2025 +0545
+
+    fix: text color updated
+
+[33mcommit c87fdc7bde2d1e3a36d258c94be1a23b9962a6b1[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 18 15:29:44 2025 +0545
+
+    test: mdx desc color
+
+[33mcommit 664ca389ba09456a81bcd14748a312621ce27d60[m
+Merge: c745849b 5070ca64
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 18 13:25:19 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit c745849bb3d18d9fd78b58b79619a76dfa230fe1[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 18 13:24:05 2025 +0545
+
+    chore: playground dropdown update
+
+[33mcommit 5070ca64b382f9fd9991aef4954154bcf287daed[m
+Merge: 5cc1ecb0 05a532ed
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Nov 18 13:12:59 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 5cc1ecb0cc045835cabbf431a998f6a4d48a7395[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Tue Nov 18 13:12:07 2025 +0545
+
+    chore: avatar preview and examples updated to newer designs
+
+[33mcommit 05a532eda36712bfefc6c668c97c4d9cefb3698e[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 18 12:32:16 2025 +0545
+
+    chore: web-vitals metrics add complete
+
+[33mcommit 747518a12669e12652cfdcc986b4286539e726c1[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 18 12:10:33 2025 +0545
+
+    chore: add debugging settings for posthog
+
+[33mcommit bf4b1560bb5eb17128248f1b2abe43778cfedf1f[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 18 11:49:39 2025 +0545
+
+    fix: web vitals in posthoga add
+
+[33mcommit f2eacdb42b4acc9e6ea5b781d23d03f83f9ea030[m
+Merge: a1b51e67 b02031db
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 18 10:53:30 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit a1b51e6756b572388fcd2a8a5cf4d4eccd274732[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Tue Nov 18 10:52:48 2025 +0545
+
+    chore: add web vitals metrics to posthog
+
+[33mcommit b02031db8f592392080b40056bb2cb697f52c6fd[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Tue Nov 18 09:25:01 2025 +0545
+
+    chore: playground update
+
+[33mcommit 7848dfc3729183e47541a343edce5afcd7d6e6b9[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Nov 17 15:45:38 2025 +0545
+
+    fix: hover-card-post-images-and-stats missing words
+
+[33mcommit a6b13071031fd522a23b0d99c68a7bad03d9c5fc[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Nov 17 15:42:14 2025 +0545
+
+    refactor: renamed the one-time-password-field component to otp-field
+
+[33mcommit 8df85cd838eba9ad8133778d98988fca328fc0b1[m
+Merge: ea739511 58a9618f
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Nov 17 15:31:54 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit ea739511cf22536528b142ccffa98c58b6229bb9[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Mon Nov 17 15:30:35 2025 +0545
+
+    chore: hover-card preview and examples updated
+
+[33mcommit 58a9618f93549d4d51628e078cfadd8c65e042e1[m
+Merge: 02861ee2 eb0a577a
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 17 13:38:08 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit 02861ee26dc20cf2653eba52b6591cf4abd8b379[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 17 13:37:20 2025 +0545
+
+    fix: datepicker form validation
+
+[33mcommit eb0a577a887051270cf725d9aecad0e312cf6f5c[m
+Merge: 754fc5ec fdca2fdd
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 17 13:28:23 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 754fc5ec48637be9ca783d4b450d6dacf0592255[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 17 13:27:56 2025 +0545
+
+    fix: responsivenesss in button example
+
+[33mcommit fdca2fdd16f709d27d00df02734901b59078de7c[m
+Merge: f3cf7726 14cf5099
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 17 13:02:00 2025 +0545
+
+    Merge branch 'dev' of github.com:Radian-os/radianos into dev
+
+[33mcommit f3cf77262e501b0c913f999a04694ee02e69f95b[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 17 13:00:23 2025 +0545
+
+    chore: datepicker example added
+
+[33mcommit 14cf5099aac3cbfcb7800bae322f7e8df29d192c[m
+Merge: 1ecde399 19e80f72
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 17 11:16:15 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 1ecde399d22cca89e64bfbc4bfdc36e12aa6b288[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 17 11:15:37 2025 +0545
+
+    fix: version match bug fix
+
+[33mcommit 19e80f72c8bd0222adf00fe4c71abd92b5d59809[m
+Author: Bijay Khapung <khapungbj84@gmail.com>
+Date:   Mon Nov 17 10:16:32 2025 +0545
+
+    chore: add two homepage versions
+
+[33mcommit 77f3a6e280bac40f9a4a28f3e3259d80a6b3d4eb[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 17 10:09:45 2025 +0545
+
+    chore: update version to match from npm package
+
+[33mcommit eb62a39cecec09620173cec0adbef7d73ebc3eba[m
+Merge: 04237d44 2576ae6e
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 17 09:56:24 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 04237d44bca073462660d72df00aa57739b966cc[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Mon Nov 17 09:55:55 2025 +0545
+
+    ci: update dependencies for vite
+
+[33mcommit 2576ae6ec43162f5a7f11a5e489d7ace6ffe39d0[m
+Merge: 3825bafa 12f3b3de
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 17 07:55:28 2025 +0545
+
+    fix: merge fix
+
+[33mcommit 3825bafa6cd766dab801fd6aeb2c4a7c612a76d0[m
+Author: yube01 <yubraja008@gmail.com>
+Date:   Mon Nov 17 07:53:27 2025 +0545
+
+    chore: input search and form added
+
+[33mcommit 12f3b3de216cc17dad06f012cf397f9bf9d571e7[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Nov 14 15:38:38 2025 +0545
+
+    chore: release of v0.1.1 of the radianui
+
+[33mcommit 9b55f2b19fcb212070681a56e204eab64c4af3a0[m[33m ([m[1;33mtag: [m[1;33mv0.1.1[m[33m)[m
+Merge: 8fbeeda8 45f836b3
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Nov 14 15:18:12 2025 +0545
+
+    chore: merge local branch with the remote one
+
+[33mcommit 8fbeeda88f11931df50968e9cdb36a02dd761935[m
+Author: Be-En-AyA <bt.binaya@gmail.com>
+Date:   Fri Nov 14 15:16:54 2025 +0545
+
+    fix: padding and color issues in collapsible examples
+
+[33mcommit 45f836b33939be76352129691930aadb7d94233b[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 14 14:59:06 2025 +0545
+
+    chore: button imports fix
+
+[33mcommit edbe8099b423e45cf19b5f73253e8f4dd8a37d0e[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 14 14:57:22 2025 +0545
+
+    chore: badge examples update
+
+[33mcommit 1501e9645f027854553ff2afab3bb92d37c49f94[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 14 14:53:38 2025 +0545
+
+    chore: badge examples update
+
+[33mcommit 26a7828f19d5d5294c30ba2b9bb2ade81f817068[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 14 14:34:11 2025 +0545
+
+    chore: credit card input update
+
+[33mcommit 522628eff70162da2924fd7b1244797019855990[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 14 14:22:17 2025 +0545
+
+    chore: credit card input update
+
+[33mcommit 1a5c9ac72bfc71565d3dc224d393de77f4ef420f[m
+Merge: 81844d87 20e15e58
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 14 13:54:04 2025 +0545
+
+    Merge remote-tracking branch 'origin/dev' into dev
+
+[33mcommit 81844d876caa576a114bee0325a8e7f9743869f7[m
+Author: Ashmit72 <ashmitbastola@gmail.com>
+Date:   Fri Nov 14 13:52:19 2025 +0545
+
+    docs: docs update for yarn

@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 
 const profile = {
 	name: "Kaelin Tristian",
-	avatar: "/media/female-5.png",
+	avatar: "/media/female-5.jpg",
 }
 
 export default function AvatarPreview() {

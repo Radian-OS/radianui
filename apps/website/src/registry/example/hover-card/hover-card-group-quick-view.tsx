@@ -11,15 +11,15 @@ const organization = {
 	members: [
 		{
 			name: "Maya Rios",
-			image: "/media/female-1.png",
+			image: "/media/female-1.jpg",
 		},
 		{
 			name: "Aria Patel",
-			image: "/media/female-2.png",
+			image: "/media/female-2.jpg",
 		},
 		{
 			name: "John Doe",
-			image: "/media/male-1.png",
+			image: "/media/male-1.jpg",
 		},
 	],
 }

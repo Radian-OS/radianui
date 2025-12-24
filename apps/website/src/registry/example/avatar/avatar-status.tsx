@@ -5,7 +5,7 @@ export default function AvatarStatusPreview() {
 	return (
 		<div className="flex gap-6">
 			<Avatar size="48">
-				<AvatarImage src="/media/female-6.png" />
+				<AvatarImage src="/media/female-6.jpg" />
 				<AvatarFallback>CH</AvatarFallback>
 				<AvatarIndicator className="bottom-2 right-2">
 					<AvatarStatus variant={"online"} />
@@ -13,7 +13,7 @@ export default function AvatarStatusPreview() {
 			</Avatar>
 
 			<Avatar size="48">
-				<AvatarImage src="/media/female-2.png" />
+				<AvatarImage src="/media/female-2.jpg" />
 				<AvatarFallback className="text-error bg-error/10">AJ</AvatarFallback>
 				<AvatarIndicator className="bottom-2 right-2">
 					<AvatarStatus className="bg-error" />
@@ -21,7 +21,7 @@ export default function AvatarStatusPreview() {
 			</Avatar>
 
 			<Avatar size="48">
-				<AvatarImage src="/media/male-6.png" />
+				<AvatarImage src="/media/male-6.jpg" />
 				<AvatarFallback className="bg-fill4 overflow-hidden">
 					<svg width="100" height="100" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<defs>
@@ -44,7 +44,7 @@ export default function AvatarStatusPreview() {
 			</Avatar>
 
 			<Avatar size="48">
-				<AvatarImage src="/media/male-2.png" />
+				<AvatarImage src="/media/male-2.jpg" />
 				<AvatarFallback className="bg-fill4 overflow-hidden">
 					<svg width="100" height="100" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<defs>
