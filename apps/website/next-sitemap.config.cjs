@@ -7,7 +7,7 @@ module.exports = {
 		policies: [
 			{
 				userAgent: "*",
-				disallow: isPublic ? "" : "/", // Block everything except PROD
+				disallow: isPublic ? "" : "/",
 			},
 		],
 	},

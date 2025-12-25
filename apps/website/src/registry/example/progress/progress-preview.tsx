@@ -36,7 +36,7 @@ const ProgressPreview = () => {
 				</TabsList>
 				<div className="flex gap-2">
 					<div className="flex gap-1">
-						<IconButton variant="outline" color="neutral" onClick={handleRefresh}>
+						<IconButton aria-label="Re-Preview Button" variant="outline" color="neutral" onClick={handleRefresh}>
 							<RotateCw />
 						</IconButton>
 					</div>

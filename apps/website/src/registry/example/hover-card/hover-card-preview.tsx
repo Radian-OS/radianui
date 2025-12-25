@@ -88,10 +88,10 @@ function HoverCardContentShared() {
 			{/* Action buttons */}
 			<div className="flex items-center justify-between">
 				<div className="flex gap-3">
-					<IconButton variant="outline" color="neutral">
+					<IconButton aria-label="Heart Button" variant="outline" color="neutral">
 						<Heart />
 					</IconButton>
-					<IconButton variant="outline" color="neutral">
+					<IconButton aria-label="Share Button" variant="outline" color="neutral">
 						<Share />
 					</IconButton>
 				</div>

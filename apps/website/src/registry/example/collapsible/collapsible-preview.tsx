@@ -150,7 +150,7 @@ function CollapsibleHeader({ title, subtitle, isOpen }: CollapsibleHeaderProps) 
 				<span className="text-fg-secondary text-sm">{subtitle}</span>
 			</div>
 			<CollapsibleTrigger asChild>
-				<IconButton variant="outline" color="neutral" size="32">
+				<IconButton aria-label="Collapsible Button" variant="outline" color="neutral" size="32">
 					<ChevronDown className={cn("transition-transform duration-200", isOpen && "rotate-180")} />
 				</IconButton>
 			</CollapsibleTrigger>

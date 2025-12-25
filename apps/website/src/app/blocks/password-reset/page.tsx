@@ -7,17 +7,22 @@ import { z } from "zod"
 import { GmailIcon } from "@/components/home/gmail-icon"
 import { OutlookIcon } from "@/components/home/outlook-icon"
 import Logo from "@/components/home/playground-logo"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 
+interface VerificationProps {
+	fullScreen?: boolean
+}
+
 const FormSchema = z.object({
 	email: z.email("Please enter a valid email address"),
 })
 
-export default function Page() {
+export default function Page({ fullScreen = true }: VerificationProps) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const form = useForm<z.infer<typeof FormSchema>>({
@@ -38,7 +43,7 @@ export default function Page() {
 	}
 
 	return (
-		<div className="bg-bg flex h-full w-full items-center justify-center px-5">
+		<div className={cn("bg-bg flex items-center justify-center px-5", { "h-full w-full": !fullScreen, "h-screen w-screen": fullScreen })}>
 			<div className="w-100 bg-bg flex">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>

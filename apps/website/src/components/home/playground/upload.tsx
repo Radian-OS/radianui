@@ -61,7 +61,7 @@ export default function Uploads() {
 						<input {...getInputProps()} className="sr-only" aria-label="Upload files" />
 
 						<div className="flex flex-col items-center justify-center gap-3 text-center">
-							<IconButton onClick={openFileDialog} color="neutral" variant="outline">
+							<IconButton aria-label="Upload Button" onClick={openFileDialog} color="neutral" variant="outline">
 								<Upload size={20} />
 							</IconButton>
 							<div className="flex flex-col gap-1">

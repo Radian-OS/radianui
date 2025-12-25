@@ -5,7 +5,19 @@ import { WebsiteLogo } from "@/components/navbar/website-logo"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 
-const LINKS = [
+interface LinkItem {
+	href: string
+	name: string
+	badge?: React.ReactNode
+	target?: string
+}
+
+interface Link {
+	title: string
+	linkItems: LinkItem[]
+}
+
+const LINKS: Link[] = [
 	{
 		title: "Documentation",
 		linkItems: [
@@ -25,6 +37,7 @@ const LINKS = [
 				href: process.env.NEXT_PUBLIC_BLOCKS_URL!,
 				name: "Explore Blocks",
 				badge: <ArrowUpRight className="text-fg-secondary size-5" />,
+				target: "_blank",
 			},
 		],
 	},
@@ -49,7 +62,7 @@ const LINKS = [
 				name: "Blog Articles",
 			},
 			{
-				href: "#",
+				href: "/docs/getting-started/figma",
 				name: "Radian Figma",
 				badge: (
 					<Badge variant="soft" size="20">
@@ -65,14 +78,16 @@ const LINKS = [
 			{
 				href: "https://github.com/Radian-os/radianos",
 				name: "Github",
+				target: "_blank",
 			},
 			{
-				href: "#",
+				href: "/docs/getting-started/figma",
 				name: "Figma",
 			},
 			{
-				href: "#",
+				href: "https://x.com/radian_os",
 				name: "X (Twitter)",
+				target: "_blank",
 			},
 		],
 	},
@@ -92,7 +107,7 @@ export default function FooterNavigation() {
 								<AccordionContent>
 									<div className="flex flex-col">
 										{item.linkItems.map((linkItem) => (
-											<Link key={linkItem.name} href={linkItem.href} className="py-2.5">
+											<Link key={linkItem.name} href={linkItem.href} className="py-2.5" target={linkItem.target ?? "_self"}>
 												{linkItem.name}
 											</Link>
 										))}
@@ -114,7 +129,9 @@ export default function FooterNavigation() {
 							<div className="flex flex-col gap-4">
 								{item.linkItems.map((linkItem) => (
 									<span key={linkItem.name} className="flex items-center gap-2">
-										<Link href={linkItem.href}>{linkItem.name}</Link>
+										<Link href={linkItem.href} target={linkItem.target ?? "_self"}>
+											{linkItem.name}
+										</Link>
 										{linkItem.badge && linkItem.badge}
 									</span>
 								))}

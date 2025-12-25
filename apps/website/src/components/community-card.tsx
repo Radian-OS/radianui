@@ -156,7 +156,7 @@ export default function CommunityCard() {
 						</Link>
 					</Button>
 
-					<IconButton asChild variant={"outline"} color={"neutral"}>
+					<IconButton aria-label="X (Formerly Twitter)" asChild variant={"outline"} color={"neutral"}>
 						<Link href="https://x.com/radian_os" target="_blank">
 							<XIcon />
 						</Link>
