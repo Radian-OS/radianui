@@ -431,7 +431,7 @@ export const ParticleCard = React.forwardRef<
 		])
 
 		return (
-			<div ref={cardRef} className={`${className} relative overflow-hidden`} style={{ ...style, position: "relative", overflow: "hidden" }}>
+			<div ref={cardRef} className={`${className} relative`} style={{ ...style, position: "relative", overflow: "hidden" }}>
 				{children}
 			</div>
 		)

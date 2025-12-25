@@ -26,39 +26,52 @@ export const GlobalSpotlight: React.FC<{
 	spotlightRadius?: number
 	isDarkMode?: boolean
 }> = ({ gridRef, disableAnimations = false, enabled = true, spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS }) => {
-	const spotlightRef = useRef<HTMLDivElement | null>(null)
+	const spotlightsRef = useRef<HTMLDivElement[]>([])
 	const isInsideSection = useRef(false)
 
 	useEffect(() => {
 		if (disableAnimations || !gridRef?.current || !enabled) return
 
-		// Create spotlight element (for both light and dark modes)
-		const spotlight = document.createElement("div")
-		spotlight.className = "global-spotlight"
-		spotlight.style.cssText = `
-      position: fixed;
-      width: 800px;
-      height: 800px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: radial-gradient(circle,
-        color-mix(in oklch, var(--color-primary), transparent 85%) 0%,
-        color-mix(in oklch, var(--color-primary), transparent 92%) 15%,
-        color-mix(in oklch, var(--color-primary), transparent 96%) 25%,
-        color-mix(in oklch, var(--color-primary), transparent 98%) 40%,
-        color-mix(in oklch, var(--color-primary), transparent 99%) 65%,
-        transparent 70%
-      );
-      z-index: 200;
-      opacity: 0;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: screen;
-    `
-		document.body.appendChild(spotlight)
-		spotlightRef.current = spotlight
+		const cards = gridRef.current.querySelectorAll(".card")
+		const spotlights: HTMLDivElement[] = []
+
+		// Create spotlight element for each card
+		cards.forEach((card) => {
+			const cardElement = card as HTMLElement
+			const spotlight = document.createElement("div")
+			spotlight.className = "card-spotlight"
+			spotlight.style.cssText = `
+				position: absolute;
+				width: 800px;
+				height: 800px;
+				border-radius: 50%;
+				pointer-events: none;
+				background: radial-gradient(circle,
+					color-mix(in oklch, var(--color-primary), transparent 85%) 0%,
+					color-mix(in oklch, var(--color-primary), transparent 92%) 15%,
+					color-mix(in oklch, var(--color-primary), transparent 96%) 25%,
+					color-mix(in oklch, var(--color-primary), transparent 98%) 40%,
+					color-mix(in oklch, var(--color-primary), transparent 99%) 65%,
+					transparent 70%
+				);
+				z-index: 1;
+				opacity: 0;
+				transform: translate(-50%, -50%);
+				mix-blend-mode: screen;
+			`
+
+			// Make card relative and hide overflow to contain spotlight
+			cardElement.style.position = "relative"
+			cardElement.style.overflow = "hidden"
+
+			cardElement.appendChild(spotlight)
+			spotlights.push(spotlight)
+		})
+
+		spotlightsRef.current = spotlights
 
 		const handleMouseMove = (e: MouseEvent) => {
-			if (!spotlightRef.current || !gridRef.current) return
+			if (!gridRef.current) return
 
 			const section = gridRef.current.closest(".bento-section")
 			const rect = section?.getBoundingClientRect()
@@ -68,10 +81,12 @@ export const GlobalSpotlight: React.FC<{
 			const cards = gridRef.current.querySelectorAll(".card")
 
 			if (!mouseInside) {
-				gsap.to(spotlightRef.current, {
-					opacity: 0,
-					duration: 0.3,
-					ease: "power2.out",
+				spotlightsRef.current.forEach((spotlight) => {
+					gsap.to(spotlight, {
+						opacity: 0,
+						duration: 0.3,
+						ease: "power2.out",
+					})
 				})
 				cards.forEach((card) => {
 					;(card as HTMLElement).style.setProperty("--glow-intensity", "0")
@@ -82,7 +97,7 @@ export const GlobalSpotlight: React.FC<{
 			const { proximity, fadeDistance } = calculateSpotlightValues(spotlightRadius)
 			let minDistance = Infinity
 
-			cards.forEach((card) => {
+			cards.forEach((card, index) => {
 				const cardElement = card as HTMLElement
 				const cardRect = cardElement.getBoundingClientRect()
 				const centerX = cardRect.left + cardRect.width / 2
@@ -100,21 +115,28 @@ export const GlobalSpotlight: React.FC<{
 				}
 
 				updateCardGlowProperties(cardElement, e.clientX, e.clientY, glowIntensity, spotlightRadius)
-			})
 
-			gsap.to(spotlightRef.current, {
-				left: e.clientX,
-				top: e.clientY,
-				duration: 0.1,
-				ease: "power2.out",
-			})
+				// Update spotlight position relative to card
+				const spotlight = spotlightsRef.current[index]
+				if (spotlight) {
+					const relativeX = e.clientX - cardRect.left
+					const relativeY = e.clientY - cardRect.top
 
-			const targetOpacity = minDistance <= proximity ? 0.8 : minDistance <= fadeDistance ? ((fadeDistance - minDistance) / (fadeDistance - proximity)) * 0.8 : 0
+					gsap.to(spotlight, {
+						left: relativeX,
+						top: relativeY,
+						duration: 0.1,
+						ease: "power2.out",
+					})
 
-			gsap.to(spotlightRef.current, {
-				opacity: targetOpacity,
-				duration: targetOpacity > 0 ? 0.2 : 0.5,
-				ease: "power2.out",
+					const targetOpacity = glowIntensity * 0.8
+
+					gsap.to(spotlight, {
+						opacity: targetOpacity,
+						duration: targetOpacity > 0 ? 0.2 : 0.5,
+						ease: "power2.out",
+					})
+				}
 			})
 		}
 
@@ -123,13 +145,13 @@ export const GlobalSpotlight: React.FC<{
 			gridRef.current?.querySelectorAll(".card").forEach((card) => {
 				;(card as HTMLElement).style.setProperty("--glow-intensity", "0")
 			})
-			if (spotlightRef.current) {
-				gsap.to(spotlightRef.current, {
+			spotlightsRef.current.forEach((spotlight) => {
+				gsap.to(spotlight, {
 					opacity: 0,
 					duration: 0.3,
 					ease: "power2.out",
 				})
-			}
+			})
 		}
 
 		document.addEventListener("mousemove", handleMouseMove)
@@ -138,7 +160,9 @@ export const GlobalSpotlight: React.FC<{
 		return () => {
 			document.removeEventListener("mousemove", handleMouseMove)
 			document.removeEventListener("mouseleave", handleMouseLeave)
-			spotlightRef.current?.parentNode?.removeChild(spotlightRef.current)
+			spotlightsRef.current.forEach((spotlight) => {
+				spotlight.parentNode?.removeChild(spotlight)
+			})
 		}
 	}, [gridRef, disableAnimations, enabled, spotlightRadius])
 

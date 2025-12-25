@@ -23,7 +23,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -43,7 +43,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -64,7 +64,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -85,7 +85,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000] [stroke-dashoffset:0]"
+								className="opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -113,7 +113,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000]"
+								className="opacity-0 [stroke-dasharray:20_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -132,7 +132,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000]"
+								className="opacity-0 [stroke-dasharray:20_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -151,7 +151,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000]"
+								className="opacity-0 [stroke-dasharray:20_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
@@ -170,7 +170,7 @@ export function ComponentFlowCard({ gridRef }: ComponentFlowCardProps) {
 								stroke="var(--color-primary-border)"
 								strokeWidth="1"
 								strokeLinecap="round"
-								className="opacity-0 [stroke-dasharray:30_1000]"
+								className="opacity-0 [stroke-dasharray:20_1000]"
 								vectorEffect="non-scaling-stroke"
 								style={{
 									animationName: "component-beam-flow-reverse",
