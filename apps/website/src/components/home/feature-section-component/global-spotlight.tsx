@@ -54,7 +54,7 @@ export const GlobalSpotlight: React.FC<{
 					color-mix(in oklch, var(--color-primary), transparent 99%) 65%,
 					transparent 70%
 				);
-				z-index: 1;
+				z-index: 200;
 				opacity: 0;
 				transform: translate(-50%, -50%);
 				mix-blend-mode: screen;
