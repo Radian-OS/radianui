@@ -515,7 +515,7 @@
 	);
 	border-radius: 19px;
 	pointer-events: none;
-	z-index: 2;
+	z-index: 300;
 	opacity: var(--glow-intensity);
 	transition: opacity 0.3s ease;
 }

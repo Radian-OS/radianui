@@ -50,7 +50,7 @@ export function ThemeableSystem() {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const ITEM_HEIGHT = 36
 
-	const [scrollIndex, setScrollIndex] = useState(0)
+	const [scrollIndex, setScrollIndex] = useState(11)
 	const [containerHeight, setContainerHeight] = useState(0)
 	const [containerWidth, setContainerWidth] = useState(0)
 
@@ -62,15 +62,6 @@ export function ThemeableSystem() {
 			setContainerHeight(containerRef.current.clientHeight)
 			setContainerWidth(containerRef.current.clientWidth)
 		}
-	}, [])
-
-	// continuously increment scrollIndex
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setScrollIndex((prev) => prev + 1)
-		}, 2000) // change speed here
-
-		return () => clearInterval(interval)
 	}, [])
 
 	// reset scrollIndex silently when near end to avoid snapping
@@ -132,22 +123,27 @@ export function ThemeableSystem() {
 				})}
 			</motion.div>
 
-			<HoverCard activeColor={activeColor} />
+			<HoverCard
+				onClick={() => {
+					setScrollIndex((prev) => prev + 1)
+				}}
+				activeColor={activeColor}
+			/>
 		</div>
 	)
 }
 const profile = {
 	name: "Zoya Petrova",
 	description: "Engineering partner for @Radianos",
-	avatar: "/media/male-2.jpg",
+	avatar: "/media/female-10.jpg",
 	address: "Berlin, Germany",
 	followingInThousands: 1.4,
 	followersInThousands: 412.4,
 }
 
-function HoverCard({ activeColor }: { activeColor: string }) {
+function HoverCard({ activeColor, onClick }: { activeColor: string; onClick: () => void }) {
 	return (
-		<div className={`color-${activeColor} z-1`}>
+		<div onClick={onClick} className={`color-${activeColor} z-1 cursor-pointer`}>
 			<div className={`border-border bg-bg flex h-fit w-80 flex-col overflow-hidden rounded-xl border p-0`}>
 				<div className={`bg-primary-focus relative h-16`}>
 					<Avatar size="80" className="border-bg border-6 absolute bottom-0 left-4 translate-y-1/2">

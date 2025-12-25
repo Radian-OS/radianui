@@ -12,7 +12,7 @@ type FigmaPreviewButtonProps = {
 export default function FigmaPreviewButton({ size, variant, color, className }: FigmaPreviewButtonProps) {
 	return (
 		<Button size={size ?? "36"} variant={variant ?? "outline"} color={color ?? "neutral"} className={className} asChild>
-			<Link href={"#"}>
+			<Link href={"/docs/getting-started/figma"}>
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 					<path
 						d="M9.72266 10.0001C9.72266 8.3893 11.0285 7.08344 12.6393 7.08344C14.2501 7.08344 15.556 8.3893 15.556 10.0001C15.556 11.6109 14.2501 12.9168 12.6393 12.9168C11.0285 12.9168 9.72266 11.6109 9.72266 10.0001Z"

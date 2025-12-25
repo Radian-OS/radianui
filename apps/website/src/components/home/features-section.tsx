@@ -108,18 +108,17 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className={`lg:flex-5 border-soft card card--border-glow flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border`}>
+							className={`lg:flex-5 border-soft card card--border-glow flex h-[600px] flex-col gap-12 rounded-[20px] border`}>
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<ScanEye size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">High Quality Base Components</span>
-								<p className="text-fg-secondary w-full max-w-[380px] text-sm">
-									From keyboard navigation to structural semantics, everything follows modern accessibility standards.
-								</p>
+								<p className="text-fg-secondary w-full text-sm leading-6 lg:max-w-[380px]">Solid, reusable components built with attention to detail and best practices. </p>
 							</div>
 							<div className="h-full pl-0 pr-0">
 								<ComponentFlowCard gridRef={gridRef} />
 							</div>
 						</ParticleCard>
+
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
 							disableAnimations={shouldDisableAnimations}
@@ -132,12 +131,13 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							className="lg:flex-3 border-soft card card--border-glow relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<SquareTerminal size={28} className="stroke-primary-hover" />
-								<span className="heading-6 font-medium">Copy-paste or Install via CLI</span>
-								<p className="text-fg-secondary max-w-[380px] text-sm">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
+								<span className="heading-6 font-medium">Install via CLI or Copy Paste</span>
+								<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
 							</div>
 							<CliCard />
 						</ParticleCard>
 					</div>
+
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
 						<ParticleCard
 							alwaysShowParticles={alwaysShowParticles}
@@ -148,15 +148,16 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="border-soft card card--border-glow flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
+							className="border-soft card card--border-glow z-2 flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<FolderGit size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Seamless Design to Code Sync</span>
-								<p className="text-fg-secondary max-w-[380px] text-sm">Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.</p>
+								<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
+									Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.
+								</p>
 							</div>
 							<CodeSync />
-							<div className="h-50 from-bg/0 to-bg absolute inset-x-0 bottom-0 flex bg-gradient-to-b"></div>
-							<div className="top-58 h-30 from-bg/0 to-bg absolute inset-x-0 flex bg-gradient-to-t"></div>
+							<div className="from-bg/0 to-bg h-70 absolute inset-x-0 bottom-0 flex bg-gradient-to-b"></div>
 						</ParticleCard>
 
 						<ParticleCard
@@ -172,7 +173,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 								<SwatchBook size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Themeable System</span>
-								<p className="text-fg-secondary lg:max-w-105 w-fit max-w-[380px] text-sm">Edit one token to restyle your entire design system light, dark, or custom themes.</p>
+								<p className="text-fg-secondary w-fit text-sm leading-6 lg:max-w-[380px]">Edit one token to restyle your entire design system light, dark, or custom themes.</p>
 							</div>
 							<ThemeableSystem />
 						</ParticleCard>
@@ -191,7 +192,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<CircleGauge size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
-								<p className="text-fg-secondary text-sm lg:max-w-[380px]">Only imports what you use ultra-light bundles for fast and improved performance.</p>
+								<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">Only imports what you use ultra-light bundles for fast and improved performance.</p>
 							</div>
 							<div className="relative flex h-full">
 								<Marquee />
@@ -213,8 +214,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 								<LayoutDashboard size={28} className="stroke-primary-hover" />
 								<span className="heading-6 font-medium">Reusable UI Blocks</span>
-								<p className="text-fg-secondary max-w-[380px] text-sm">
-									Get access to high quality pre-built UI blocks, designed and developed to plug into any layout and ready for use
+								<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
+									Get access to high quality pre-built UI blocks, designed and developed to plug into any layout.{" "}
 								</p>
 							</div>
 							<div className="relative h-full w-full">
