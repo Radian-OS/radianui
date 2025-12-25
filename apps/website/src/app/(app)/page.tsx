@@ -6,7 +6,6 @@ import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
 import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
-// import FooterSection from "@/components/home/footer-section"
 import HomeInteractive from "@/components/home/home-interactive"
 import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
@@ -159,8 +158,6 @@ export default function Page() {
 			<FAQSection />
 
 			<CTASection />
-
-			{/* <FooterSection /> */}
 
 			<Footer />
 		</div>

@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { GithubIcon } from "@/components/home/block/components/github-icon"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
@@ -52,7 +53,11 @@ const FormSchema = z
 		}
 	})
 
-export default function Page() {
+interface SigninProps {
+	fullScreen?: boolean
+}
+
+export default function Page({ fullScreen = true }: SigninProps) {
 	const [isLoading, setIsLoading] = useState(false)
 
 	const form = useForm<z.infer<typeof FormSchema>>({
@@ -76,7 +81,7 @@ export default function Page() {
 	}
 
 	return (
-		<div className="bg-bg flex h-full w-full">
+		<div className={cn("bg-bg flex", { "h-screen w-screen": fullScreen, "h-full w-full": !fullScreen })}>
 			<div className="flex w-full">
 				<div className="hidden flex-1 md:block">
 					<img className="h-full w-full object-cover" src="/media/background-2.jpg" alt="Background Image" width={400} height={400} />

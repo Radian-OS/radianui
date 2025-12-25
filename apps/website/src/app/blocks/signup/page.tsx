@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { GithubIcon } from "@/components/home/block/components/github-icon"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Input, InputWrapper } from "@/registry/ui/input"
@@ -17,7 +18,11 @@ interface FormData {
 	password: string
 }
 
-export default function Signup() {
+interface SignupProps {
+	fullScreen?: boolean
+}
+
+export default function Signup({ fullScreen = true }: SignupProps) {
 	const [isLoading, setIsLoading] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
 	const [formData, setFormData] = useState<FormData>({
@@ -59,7 +64,7 @@ export default function Signup() {
 	}
 
 	return (
-		<div className="bg-bg flex h-full w-full items-center justify-center px-5">
+		<div className={cn("bg-bg flex items-center justify-center px-5", { "h-screen w-screen": fullScreen, "h-full w-full": !fullScreen })}>
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-5 py-6 sm:p-6">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>
