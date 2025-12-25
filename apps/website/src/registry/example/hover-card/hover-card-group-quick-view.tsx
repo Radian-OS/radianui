@@ -61,7 +61,7 @@ export default function HoverCardGroupQuickView() {
 				</div>
 
 				<div className="flex items-center justify-between">
-					<IconButton variant="outline" color="neutral" size={"36"}>
+					<IconButton aria-label="Heart Button" variant="outline" color="neutral" size={"36"}>
 						<Heart />
 					</IconButton>
 					<div className="flex items-center justify-center gap-2">

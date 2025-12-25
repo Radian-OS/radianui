@@ -224,6 +224,7 @@ const DraggableTableHeader = ({ header }: { header: Header<Item, unknown> }) => 
 				<IconButton
 					variant="ghost"
 					color="neutral"
+					aria-label="Sorting Button"
 					className="group -mr-1 size-7 shadow-none"
 					onClick={header.column.getToggleSortingHandler()}
 					onKeyDown={(e) => {

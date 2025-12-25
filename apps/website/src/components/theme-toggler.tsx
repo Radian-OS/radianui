@@ -22,7 +22,7 @@ export function DesktopThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<IconButton variant="outline" color="neutral" disabled>
+			<IconButton aria-label="Loading theme" variant="outline" color="neutral" disabled>
 				<Loader2 className="size-5 animate-spin" />
 			</IconButton>
 		)
@@ -49,7 +49,7 @@ export function TabletMobileThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<IconButton variant="outline" color="neutral" disabled>
+			<IconButton aria-label="Loading theme" variant="outline" color="neutral" disabled>
 				<Loader2 className="size-5 animate-spin" />
 			</IconButton>
 		)

@@ -60,7 +60,7 @@ export default function CardWithList() {
 			<CardHeader>
 				<div className="flex items-center justify-between">
 					<CardTitle>Recent Users</CardTitle>
-					<IconButton color="neutral" variant="outline" size="28">
+					<IconButton aria-label="Settings Button" color="neutral" variant="outline" size="28">
 						<Settings />
 					</IconButton>
 				</div>

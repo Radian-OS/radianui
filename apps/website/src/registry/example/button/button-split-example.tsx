@@ -10,7 +10,7 @@ function ButtonSplitExample() {
 				<ButtonGroup>
 					<Button>Download File</Button>
 					<DropdownTrigger asChild>
-						<IconButton>
+						<IconButton aria-label="Button With Dropdown">
 							<ChevronDown />
 						</IconButton>
 					</DropdownTrigger>

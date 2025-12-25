@@ -306,6 +306,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
 		<IconButton
 			data-sidebar="trigger"
 			data-slot="sidebar-trigger"
+			aria-label="Sidebar Button"
 			variant="ghost"
 			size={"28"}
 			className={cn("", className)}
