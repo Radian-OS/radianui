@@ -1,18 +1,17 @@
 import { Box } from "lucide-react"
-import Link from "next/link"
 import Background from "@/components/effects/background"
 import ComponentsSection from "@/components/home/components-section"
 import CTASection from "@/components/home/cta-section"
 import FAQSection from "@/components/home/faq-section"
 import FeaturesSection from "@/components/home/features-section"
 import Footer from "@/components/home/footer"
+import HeroActionButtons from "@/components/home/hero-action-buttons"
 import HomeInteractive from "@/components/home/home-interactive"
 import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import VideoSection from "@/components/home/video-section"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
 
 export default function Page() {
 	return (
@@ -35,19 +34,7 @@ export default function Page() {
 						</p>
 					</div>
 					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
-						<Button variant="glossy" className="w-full sm:w-fit" size="40">
-							Copy Terminal Command
-						</Button>
-						<Button
-							asChild
-							size="40"
-							className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
-							variant="outline"
-							color="neutral">
-							<Link href="/docs/components/accordion" className="w-full sm:w-fit">
-								Browse Components
-							</Link>
-						</Button>
+						<HeroActionButtons />
 					</div>
 				</div>
 
