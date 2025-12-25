@@ -44,10 +44,10 @@ export default function HoverCardUserMiniProfile() {
 						</AvatarIndicator>
 					</Avatar>
 					<div className="flex items-center gap-2 self-start">
-						<IconButton variant="outline" color="neutral" size={"28"}>
+						<IconButton aria-label="Calendar Button" variant="outline" color="neutral" size={"28"}>
 							<Calendar />
 						</IconButton>
-						<IconButton variant="outline" color="neutral" size={"28"}>
+						<IconButton aria-label="Mail Button" variant="outline" color="neutral" size={"28"}>
 							<Mail />
 						</IconButton>
 						<Button size="28">Follow</Button>
