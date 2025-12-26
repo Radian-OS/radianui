@@ -377,7 +377,7 @@
       },
       {
         "name": "button/compact-button-example",
-        "content": "import React from \"react\"\nimport { ChevronDown, X } from \"lucide-react\"\nimport { CompactButton } from \"@/components/ui/button\"\n\nfunction CompactButtonExample() {\n\treturn (\n\t\t<div className=\"flex flex-wrap items-center justify-center gap-3\">\n\t\t\t<CompactButton size=\"20\" variant=\"outline\" color=\"neutral\">\n\t\t\t\t<ChevronDown />\n\t\t\t</CompactButton>\n\t\t\t<CompactButton size=\"20\" variant=\"soft\" color=\"neutral\">\n\t\t\t\t<X />\n\t\t\t</CompactButton>\n\t\t\t<CompactButton size=\"24\" variant=\"outline\" color=\"neutral\">\n\t\t\t\t<ChevronDown />\n\t\t\t</CompactButton>\n\t\t\t<CompactButton size=\"24\" variant=\"soft\" color=\"neutral\">\n\t\t\t\t<X />\n\t\t\t</CompactButton>\n\t\t</div>\n\t)\n}\n\nexport default CompactButtonExample\n"
+        "content": "import React from \"react\"\nimport { ChevronDown, X } from \"lucide-react\"\nimport { CompactButton } from \"@/components/ui/button\"\n\nfunction CompactButtonExample() {\n\treturn (\n\t\t<div className=\"flex flex-wrap items-center justify-center gap-3\">\n\t\t\t<CompactButton aria-label=\"Button with Down Arrow\" size=\"20\" variant=\"outline\" color=\"neutral\">\n\t\t\t\t<ChevronDown />\n\t\t\t</CompactButton>\n\t\t\t<CompactButton aria-label=\"Close Button\" size=\"20\" variant=\"soft\" color=\"neutral\">\n\t\t\t\t<X />\n\t\t\t</CompactButton>\n\t\t\t<CompactButton size=\"24\" variant=\"outline\" color=\"neutral\">\n\t\t\t\t<ChevronDown />\n\t\t\t</CompactButton>\n\t\t\t<CompactButton aria-label=\"Close Button\" size=\"24\" variant=\"soft\" color=\"neutral\">\n\t\t\t\t<X />\n\t\t\t</CompactButton>\n\t\t</div>\n\t)\n}\n\nexport default CompactButtonExample\n"
       },
       {
         "name": "button/icon-button-example",
@@ -389,7 +389,7 @@
       },
       {
         "name": "button/loading-button-example",
-        "content": "import { User } from \"lucide-react\"\nimport { Button, IconButton } from \"@/components/ui/button\"\n\nfunction LoadingButtonExample() {\n\treturn (\n\t\t<div className=\"flex flex-col items-center justify-center gap-3 sm:flex-row\">\n\t\t\t<Button disabled loading>\n\t\t\t\tSync Progress\n\t\t\t</Button>\n\t\t\t<IconButton disabled loading>\n\t\t\t\t<User />\n\t\t\t</IconButton>\n\t\t</div>\n\t)\n}\nexport default LoadingButtonExample\n"
+        "content": "import { User } from \"lucide-react\"\nimport { Button, IconButton } from \"@/components/ui/button\"\n\nfunction LoadingButtonExample() {\n\treturn (\n\t\t<div className=\"flex flex-col items-center justify-center gap-3 sm:flex-row\">\n\t\t\t<Button disabled loading>\n\t\t\t\tSync Progress\n\t\t\t</Button>\n\t\t\t<IconButton aria-label=\"Loading Button\" disabled loading>\n\t\t\t\t<User />\n\t\t\t</IconButton>\n\t\t</div>\n\t)\n}\nexport default LoadingButtonExample\n"
       },
       {
         "name": "button/social-button-example",

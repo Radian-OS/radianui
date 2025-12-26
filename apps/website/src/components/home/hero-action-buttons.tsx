@@ -1,28 +1,15 @@
 "use client"
 
-import { useState } from "react"
+import { Check } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
+import { useCopyPasteSimple } from "@/hooks/use-copy-paste-simple"
 import { Button } from "@/registry/ui/button"
 
-export function useCopyPaste(text: string) {
-	const [copied, setCopied] = useState(false)
-
-	const copy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		e.preventDefault()
-		navigator.clipboard.writeText(text)
-		setCopied(true)
-
-		setTimeout(() => {
-			setCopied(false)
-		}, 1500)
-	}
-
-	return { copied, copy }
-}
+const TERMINAL_COMMAND = "pnpm dlx radianui@latest init"
 
 export default function HeroActionButtons() {
-	const { copy } = useCopyPaste("npx radianui@latest init")
+	const { copy } = useCopyPasteSimple(TERMINAL_COMMAND)
 
 	return (
 		<>
@@ -32,9 +19,14 @@ export default function HeroActionButtons() {
 				size="40"
 				onClick={(e) => {
 					copy(e)
+
 					toast.custom(() => (
-						<div className="bg-elevation-level1 border-border flex w-[416px] items-center justify-between gap-2 rounded-lg border px-4 py-3">
-							<p className="text-fg-secondary text-sm font-normal">Successfully Copied Terminal Command</p>
+						<div className="bg-black-inverse text-fg-inverse flex w-[416px] items-center gap-2 rounded-lg px-3 py-2.5">
+							<Check size={20} className="text-success" />
+							<div className="text-fg-inverse">
+								<p className="text-sm font-medium">Copied Command:</p>
+								<p className="text-sm font-normal">{TERMINAL_COMMAND}</p>
+							</div>
 						</div>
 					))
 				}}>

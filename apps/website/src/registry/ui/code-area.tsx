@@ -1,5 +1,3 @@
-"use client"
-
 import ShikiHighlighter from "react-shiki"
 import { cn } from "@/lib/utils"
 
