@@ -110,8 +110,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="card z-2 card--border-glow overflow-hidden rounded-[20px]">
-							<div className="lg:flex-5 border-soft flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
+							className="card z-2 lg:flex-5 card--border-glow flex overflow-hidden rounded-[20px]">
+							<div className="border-soft flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<ScanEye size={28} className="stroke-primary-hover" />
 									<span className="heading-6 font-medium">High Quality Base Components</span>
@@ -132,8 +132,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="card z-2 card--border-glow rounded-[20px]">
-							<div className="lg:flex-3 border-soft relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
+							className="card z-2 lg:flex-3 card--border-glow flex rounded-[20px]">
+							<div className="border-soft relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<SquareTerminal size={28} className="stroke-primary-hover" />
 									<span className="heading-6 font-medium">Install via CLI or Copy Paste</span>
@@ -154,8 +154,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="card z-2 card--border-glow rounded-[20px]">
-							<div className="border-soft flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
+							className="card z-2 card--border-glow flex rounded-[20px] lg:flex-1">
+							<div className="border-soft flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<FolderGit size={28} className="stroke-primary-hover" />
 									<span className="heading-6 font-medium">Seamless Design to Code Sync</span>
@@ -177,10 +177,10 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="card card--border-glow z-3 rounded-[20px]">
+							className="card card--border-glow z-3 flex rounded-[20px] lg:flex-1">
 							<div
 								onClick={() => setScrollIndex((prev) => prev + 1)}
-								className="border-soft relative flex h-[600px] w-full cursor-pointer flex-col gap-12 overflow-hidden rounded-[20px] border lg:flex-1">
+								className="border-soft relative flex h-[600px] w-full cursor-pointer flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 									<SwatchBook size={28} className="stroke-primary-hover" />
 									<span className="heading-6 font-medium">Themeable System</span>
@@ -200,8 +200,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="z-5 card card--border-glow rounded-[20px]">
-							<div className="border-soft z-5 lg:flex-3 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
+							className="z-5 card lg:flex-3 card--border-glow flex rounded-[20px]">
+							<div className="border-soft z-5 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<CircleGauge size={28} className="stroke-primary-hover" />
 									<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
@@ -224,8 +224,8 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							clickEffect={clickEffect}
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
-							className="z-1 card card--border-glow rounded-[20px]">
-							<div className="border-soft lg:flex-5 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
+							className="z-1 card card--border-glow lg:flex-5 flex rounded-[20px]">
+							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<LayoutDashboard size={28} className="stroke-primary-hover" />
 									<span className="heading-6 font-medium">Reusable UI Blocks</span>
