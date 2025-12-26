@@ -513,7 +513,7 @@
 		color-mix(in oklch, var(--color-primary), transparent 60%) 30%,
 		transparent 70%
 	);
-	border-radius: 19px;
+	border-radius: inherit;
 	pointer-events: none;
 	z-index: 300;
 	opacity: var(--glow-intensity);

@@ -46,11 +46,10 @@ const COLOR_CLASSES = {
 	rose: "bg-[oklch(0.6515_0.221_6.33)]",
 } as const
 
-export function ThemeableSystem() {
+export function ThemeableSystem({ scrollIndex, setScrollIndex }: { scrollIndex: number; setScrollIndex: React.Dispatch<React.SetStateAction<number>> }) {
 	const containerRef = useRef<HTMLDivElement>(null)
 	const ITEM_HEIGHT = 36
 
-	const [scrollIndex, setScrollIndex] = useState(11)
 	const [containerHeight, setContainerHeight] = useState(0)
 	const [containerWidth, setContainerWidth] = useState(0)
 
