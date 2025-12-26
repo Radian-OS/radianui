@@ -133,7 +133,7 @@ const FeaturesSection: React.FC<BentoProps> = ({
 							enableMagnetism={enableMagnetism}
 							isDarkMode={isDarkMode}
 							className="card z-2 lg:flex-3 card--border-glow flex rounded-[20px]">
-							<div className="border-soft relative flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
+							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<SquareTerminal size={28} className="stroke-primary-hover" />
 									<span className="heading-6 font-medium">Install via CLI or Copy Paste</span>

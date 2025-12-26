@@ -192,7 +192,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 					{/* Background line */}
 					<div className="bg-border absolute bottom-0 left-0 top-0 w-px" />
 
-					<ul className="flex flex-col gap-0.5 pl-4">
+					<ul className="flex flex-col gap-0.5">
 						{headings.map((heading) => {
 							const isActive = activeHeadingId === heading.id
 							return (
@@ -210,7 +210,7 @@ export default function TableOfContent({ headings }: TableOfContentsProps) {
 										onClick={(e) => handleHeadingClick(e, heading.id)}
 										title={heading.text}>
 										{/* Active indicator - positioned absolutely within the link */}
-										{isActive && <div className="bg-primary absolute -left-4 bottom-0 top-0 w-px" />}
+										{isActive && <div className="bg-primary absolute -left-0 bottom-0 top-0 w-px" />}
 
 										{/* Hover indicator - only show when not active */}
 										{!isActive && <div className="bg-border absolute -left-4 bottom-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
