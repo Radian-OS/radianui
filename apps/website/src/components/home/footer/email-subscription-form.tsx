@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { FieldValues, useForm } from "react-hook-form"
-import z from "zod"
+import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
@@ -20,6 +20,8 @@ type FormData = z.infer<typeof formSchema>
 type EmailSubscriptionProps = {
 	subscribe: (email: string) => Promise<{ message: string; status: number }>
 }
+
+console.log("Loaded email form")
 
 export default function EmailSubscription({ subscribe }: EmailSubscriptionProps) {
 	const form = useForm<z.infer<typeof formSchema>>({

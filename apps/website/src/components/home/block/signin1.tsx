@@ -1,58 +1,14 @@
-"use client"
-
-import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { Lock, Mail } from "lucide-react"
 import Link from "next/link"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
+import { Label } from "@/registry/ui/label"
 import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
-
-const FormSchema = z
-	.object({
-		email: z.string(),
-		password: z.string(),
-		rememberMe: z.boolean(),
-	})
-	.superRefine((data, ctx) => {
-		// Validate email first
-		if (!data.email || data.email.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Email is required",
-				path: ["email"],
-			})
-			return // Stop here
-		}
-
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		if (!emailRegex.test(data.email)) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Please enter a valid email address",
-				path: ["email"],
-			})
-			return // Stop here - don't validate password
-		}
-
-		// Only validate password if email is valid
-		if (!data.password || data.password.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Password is required",
-				path: ["password"],
-			})
-		}
-	})
 
 export const radiusMap: Record<string, string> = {
 	default: "",
@@ -120,28 +76,9 @@ export const buttonStyles: Record<string, string> = {
 	elevated:
 		"active:bg-primary w-full shadow-[0_2px_4px_0_rgba(35,20,85,0.16),0_-2px_0_0_rgba(0,0,0,0.3)_inset] hover:shadow-[0_2px_4px_0_rgba(35,20,85,0.12),0_-2px_0_0_rgba(0,0,0,0.2)_inset] active:shadow-[0_2px_4px_0_rgba(35,20,85,0.16)]",
 }
+
 export default function Signin1() {
-	const [isLoading, setIsLoading] = useState(false)
 	const { color, radius, spacing, size, label, placeholder, icon, button, logoImage } = usePlayground()
-
-	const form = useForm<z.infer<typeof FormSchema>>({
-		resolver: zodResolver(FormSchema),
-		mode: "onSubmit",
-		reValidateMode: "onChange",
-		defaultValues: {
-			email: "",
-			password: "",
-			rememberMe: false,
-		},
-	})
-	const onSubmit = () => {
-		setIsLoading(true)
-
-		setTimeout(() => {
-			setIsLoading(false)
-			form.reset()
-		}, 2000)
-	}
 
 	return (
 		<div
@@ -176,78 +113,54 @@ export default function Signin1() {
 							<Divider className="flex-1" />
 						</div>
 					</div>
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)}>
-							<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
-								<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
-									<FormField
-										control={form.control}
-										name="email"
-										render={({ field }) => (
-											<FormItem>
-												{label && <FormLabel>Email Address</FormLabel>}
-												<FormControl>
-													<InputGroup>
-														{icon && (
-															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
-																<Mail />
-															</InputAddon>
-														)}
-														<Input
-															size={sizeMap[size ?? "default"]}
-															className={`${radiusMap[radius]} w-full`}
-															placeholder={placeholder ? "Enter your email" : ""}
-															type="email"
-															{...field}
-														/>
-													</InputGroup>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
+					<form>
+						<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+							<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
+								<div data-slot="form-item" className="flex flex-col gap-1.5">
+									{label && <Label htmlFor="email-input">Email Address</Label>}
+									<InputGroup>
+										{icon && (
+											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+												<Mail />
+											</InputAddon>
 										)}
-									/>
-									<FormField
-										control={form.control}
-										name="password"
-										render={({ field }) => (
-											<FormItem>
-												<div className="flex items-center justify-between">
-													{label && <FormLabel>Password</FormLabel>}
-													<Button className="flex w-full justify-end" variant="link" asChild color="primary">
-														<Link href="#"> Forgot Password?</Link>
-													</Button>
-												</div>
-												<FormControl>
-													<InputGroup>
-														{icon && (
-															<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
-																<Lock />
-															</InputAddon>
-														)}
-														<Input
-															size={sizeMap[size ?? "default"]}
-															className={`${radiusMap[radius]} w-full`}
-															placeholder={placeholder ? "Enter your password" : ""}
-															type="password"
-															{...field}
-														/>
-													</InputGroup>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
+										<Input
+											id="email-input"
+											size={sizeMap[size ?? "default"]}
+											className={`${radiusMap[radius]} w-full`}
+											placeholder={placeholder ? "Enter your email" : ""}
+											type="email"
+										/>
+									</InputGroup>
 								</div>
-								<Button
-									type="submit"
-									disabled={isLoading}
-									size={sizeMap[size ?? "default"]}
-									className={`${radiusMap[radius]} w-full ${colorMap[color] ?? ""} ${buttonStyles[button ?? "default"]}`}>
-									{isLoading ? <Spinner variant="default" /> : "Sign In"}
-								</Button>
+								<div data-slot="form-item" className="flex flex-col gap-1.5">
+									<div className="flex items-center justify-between">
+										{label && <Label htmlFor="password-input">Password</Label>}
+										<Button className="flex w-full justify-end" variant="link" asChild color="primary">
+											<Link href="#"> Forgot Password?</Link>
+										</Button>
+									</div>
+									<InputGroup>
+										{icon && (
+											<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
+												<Lock />
+											</InputAddon>
+										)}
+										<Input
+											id="password-input"
+											size={sizeMap[size ?? "default"]}
+											className={`${radiusMap[radius]} w-full`}
+											placeholder={placeholder ? "Enter your password" : ""}
+											type="password"
+										/>
+									</InputGroup>
+								</div>
 							</div>
-						</form>
-					</Form>
+							<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} w-full ${colorMap[color] ?? ""} ${buttonStyles[button ?? "default"]}`}>
+								Sign In
+							</Button>
+						</div>
+					</form>
 					<p className="text-fg text-center text-sm">
 						Don&apos;t have an account?{" "}
 						<Button variant="link" asChild color="primary">

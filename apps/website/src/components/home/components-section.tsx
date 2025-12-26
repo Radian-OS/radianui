@@ -1,39 +1,10 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import { Component } from "lucide-react"
-import { useRouter } from "next/navigation"
-import { HOMEPAGE_COMPONENTS_LIST } from "@/config/homepage-components-config"
+import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import ComponentCard from "./component-card"
-
-function useBreakpoint() {
-	const [width, setWidth] = useState<number>(typeof window !== "undefined" ? window.innerWidth : 0)
-
-	useEffect(() => {
-		function handleResize() {
-			setWidth(window.innerWidth)
-		}
-		window.addEventListener("resize", handleResize)
-		return () => window.removeEventListener("resize", handleResize)
-	}, [])
-
-	if (width < 640) return 3 // mobile
-	if (width < 1280) return 6 // tablet
-	return 8 // desktop and larger
-}
+import ComponentSectionItems from "./components-section/components-section-items"
 
 export default function ComponentsSection() {
-	const router = useRouter()
-	const [mounted, setMounted] = useState(false)
-
-	useEffect(() => {
-		setMounted(true)
-	}, [])
-
-	const breakingPoint = useBreakpoint()
-
 	return (
 		<div className="pb-25 flex w-full flex-col items-center gap-12 px-5 pt-36 xl:gap-20">
 			<div className="w-full max-w-[1230px]">
@@ -89,27 +60,18 @@ export default function ComponentsSection() {
 				</svg>
 
 				<div className="relative z-10 grid w-full grid-cols-1 gap-4 gap-x-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-					{mounted &&
-						HOMEPAGE_COMPONENTS_LIST.slice(0, breakingPoint).map((item, idx) => (
-							<ComponentCard
-								alt={item.alt!}
-								key={item.title + idx}
-								url={item.url}
-								title={item.title}
-								description={item.description!}
-								thumbnail={item.thumbnail!}
-								thumbnailDark={item.thumbnailDark!}
-							/>
-						))}
+					<ComponentSectionItems />
 				</div>
 
 				{/* Gradient overlay */}
 				<div className="from-bg/4 to-bg absolute bottom-0 z-30 h-[150px] w-full bg-gradient-to-b" />
 			</div>
 
-			<Button variant="outline" color="neutral" className="z-50" onClick={() => router.push("/components")}>
-				<Component />
-				View all Components
+			<Button variant="outline" color="neutral" className="z-50" asChild>
+				<Link href="/components">
+					<Component />
+					View all Components
+				</Link>
 			</Button>
 		</div>
 	)

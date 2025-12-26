@@ -34,10 +34,8 @@ export default function Verification({ fullScreen = true }: VerificationProps) {
 						</div>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Button className="w-full" type="submit">
-							Resend email
-						</Button>
-						<Button className="w-full" color="neutral" variant="outline" type="submit">
+						<Button className="w-full">Resend email</Button>
+						<Button className="w-full" color="neutral" variant="outline">
 							Update email address
 						</Button>
 					</div>

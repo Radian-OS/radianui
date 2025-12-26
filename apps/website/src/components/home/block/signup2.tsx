@@ -1,93 +1,23 @@
 "use client"
 
-import { useRef, useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
 import { EyeIcon, EyeOffIcon, Lock, Mail, User } from "lucide-react"
 import Link from "next/link"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
+import { Label } from "@/registry/ui/label"
 import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
 import { GithubIcon } from "./components/github-icon"
 import { GoogleIcon } from "./components/google-icon"
 import { buttonStyles, colorMap, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
-const FormSchema = z
-	.object({
-		firstName: z.string(),
-		email: z.string(),
-		password: z.string(),
-	})
-	.superRefine((data, ctx) => {
-		// Validate first name first
-		if (!data.firstName || data.firstName.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "First name is required",
-				path: ["firstName"],
-			})
-			return
-		}
-		// Validate email
-		if (!data.email || data.email.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Email is required",
-				path: ["email"],
-			})
-			return
-		}
-
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		if (!emailRegex.test(data.email)) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Please enter a valid email address",
-				path: ["email"],
-			})
-			return
-		}
-
-		// Validate password (only if all above are valid)
-		if (!data.password || data.password.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Password is required",
-				path: ["password"],
-			})
-			return
-		}
-
-		if (data.password.length < 8) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Password must be at least 8 characters long",
-				path: ["password"],
-			})
-			return
-		}
-
-		if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(data.password)) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Password must contain at least one uppercase letter, one lowercase letter, and one number",
-				path: ["password"],
-			})
-		}
-	})
-
 export default function Signup2() {
-	const [isLoading, setIsLoading] = useState(false)
 	const { radius, spacing, size, label, color, placeholder, icon, button, logoImage } = usePlayground()
 
 	const [showPassword, setShowPassword] = useState(false)
-	const inputRef = useRef<HTMLInputElement>(null)
 
 	function togglePasswordVisibility(e: React.MouseEvent) {
 		e.preventDefault()
@@ -96,26 +26,6 @@ export default function Signup2() {
 	}
 
 	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
-
-	const form = useForm<z.infer<typeof FormSchema>>({
-		resolver: zodResolver(FormSchema),
-		mode: "onSubmit",
-		reValidateMode: "onChange",
-		defaultValues: {
-			firstName: "",
-			email: "",
-			password: "",
-		},
-	})
-
-	const onSubmit = () => {
-		setIsLoading(true)
-
-		setTimeout(() => {
-			setIsLoading(false)
-			form.reset()
-		}, 2000)
-	}
 
 	return (
 		<div
@@ -139,125 +49,90 @@ export default function Signup2() {
 						</p>
 					</div>
 
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)}>
-							<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
-								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
-									<FormField
-										control={form.control}
-										name="firstName"
-										render={({ field }) => (
-											<FormItem>
-												{label && <FormLabel>First Name</FormLabel>}
-												<FormControl>
-													<InputGroup>
-														{icon && (
-															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
-																<User />
-															</InputAddon>
-														)}
-														<Input
-															size={sizeMap[size ?? "default"]}
-															placeholder={placeholder ? "Enter first name" : ""}
-															className={`${radiusMap[radius]} w-full`}
-															type="text"
-															{...field}
-														/>
-													</InputGroup>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
+					<form>
+						<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+							<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
+								<div data-slot="form-item" className="flex flex-col gap-1.5">
+									{label && <Label htmlFor="first-name-input">First Name</Label>}
+									<InputGroup>
+										{icon && (
+											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+												<User />
+											</InputAddon>
 										)}
-									/>
-									<FormField
-										control={form.control}
-										name="email"
-										render={({ field }) => (
-											<FormItem>
-												{label && <FormLabel>Email Address</FormLabel>}
-												<FormControl>
-													<InputGroup>
-														{icon && (
-															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
-																<Mail />
-															</InputAddon>
-														)}
-														<Input
-															size={sizeMap[size ?? "default"]}
-															placeholder={placeholder ? "Enter your email" : ""}
-															className={`${radiusMap[radius]} w-full`}
-															type="email"
-															{...field}
-														/>
-													</InputGroup>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name="password"
-										render={({ field }) => (
-											<FormItem>
-												{label && <FormLabel>Password</FormLabel>}
-												<FormControl>
-													<InputGroup className={`${radiusMap[radius]} w-full`}>
-														{icon && (
-															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
-																<Lock />
-															</InputAddon>
-														)}
-														<Input
-															size={sizeMap[size ?? "default"]}
-															className={`peer ${radiusMap[radius]}`}
-															{...field}
-															placeholder={placeholder ? "Enter your password" : ""}
-															id="toggle-visible-password"
-															ref={inputRef}
-															type={showPassword ? "text" : "password"}
-														/>
-														<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
-															<IconComponent
-																className={`hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none`}
-																onMouseDown={togglePasswordVisibility}
-															/>
-														</InputAddon>
-													</InputGroup>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
+										<Input
+											id="first-name-input"
+											size={sizeMap[size ?? "default"]}
+											placeholder={placeholder ? "Enter first name" : ""}
+											className={`${radiusMap[radius]} w-full`}
+											type="text"
+										/>
+									</InputGroup>
 								</div>
-								<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
-									<Button
-										type="submit"
-										disabled={isLoading}
-										size={sizeMap[size ?? "default"]}
-										className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full ${buttonStyles[button ?? "default"]}`}>
-										{isLoading ? <Spinner variant="default" /> : "Create account"}
-									</Button>
-									<p className="text-fg-secondary text-[13px]">
-										By signing up, you agree to Radian&apos;s{" "}
-										<Button variant="link" asChild color="primary">
-											<Link className="text-[13px]" href="#">
-												{" "}
-												Terms of Service
-											</Link>
-										</Button>{" "}
-										and{" "}
-										<Button variant="link" asChild color="primary">
-											<Link className="text-[13px]" href="#">
-												{" "}
-												Privacy Policy
-											</Link>
-										</Button>
-									</p>
+								<div data-slot="form-item" className="flex flex-col gap-1.5">
+									{label && <Label htmlFor="email-input">Email Address</Label>}
+									<InputGroup>
+										{icon && (
+											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+												<Mail />
+											</InputAddon>
+										)}
+										<Input
+											id="email-input"
+											size={sizeMap[size ?? "default"]}
+											placeholder={placeholder ? "Enter your email" : ""}
+											className={`${radiusMap[radius]} w-full`}
+											type="email"
+										/>
+									</InputGroup>
+								</div>
+								<div data-slot="form-item" className="flex flex-col gap-1.5">
+									{label && <Label htmlFor="password-input">Password</Label>}
+									<InputGroup className={`${radiusMap[radius]} w-full`}>
+										{icon && (
+											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+												<Lock />
+											</InputAddon>
+										)}
+										<Input
+											id="password-input"
+											size={sizeMap[size ?? "default"]}
+											className={`peer ${radiusMap[radius]}`}
+											placeholder={placeholder ? "Enter your password" : ""}
+											type={showPassword ? "text" : "password"}
+										/>
+										<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
+											<IconComponent
+												className={`hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none`}
+												onMouseDown={togglePasswordVisibility}
+											/>
+										</InputAddon>
+									</InputGroup>
 								</div>
 							</div>
-						</form>
-					</Form>
+							<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
+								<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full ${buttonStyles[button ?? "default"]}`}>
+									Create account
+								</Button>
+								<p className="text-fg-secondary text-[13px]">
+									By signing up, you agree to Radian&apos;s{" "}
+									<Button variant="link" asChild color="primary">
+										<Link className="text-[13px]" href="#">
+											{" "}
+											Terms of Service
+										</Link>
+									</Button>{" "}
+									and{" "}
+									<Button variant="link" asChild color="primary">
+										<Link className="text-[13px]" href="#">
+											{" "}
+											Privacy Policy
+										</Link>
+									</Button>
+								</p>
+							</div>
+						</div>
+					</form>
 					<div className={`flex flex-1 flex-col ${spaceMap.gap6[spacing ?? "default"]}`}>
 						<div className={`flex items-center ${spaceMap.gap2[spacing ?? "default"]}`}>
 							<Divider className="flex-1" />

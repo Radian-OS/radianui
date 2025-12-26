@@ -1,5 +1,3 @@
-"use client"
-
 import { FlickeringGrid } from "./flickering"
 
 export default function Background({ children }: { children?: React.ReactNode }) {
