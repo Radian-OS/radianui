@@ -1,85 +1,19 @@
-"use client"
-
-import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
 import Image from "next/image"
 import Link from "next/link"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { GithubIcon } from "@/components/home/block/components/github-icon"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Divider } from "@/registry/ui/divider"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
-
-const FormSchema = z
-	.object({
-		email: z.string(),
-		password: z.string(),
-		rememberMe: z.boolean(),
-	})
-	.superRefine((data, ctx) => {
-		// Validate email first
-		if (!data.email || data.email.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Email is required",
-				path: ["email"],
-			})
-			return // Stop here
-		}
-
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		if (!emailRegex.test(data.email)) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Please enter a valid email address",
-				path: ["email"],
-			})
-			return // Stop here - don't validate password
-		}
-
-		// Only validate password if email is valid
-		if (!data.password || data.password.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Password is required",
-				path: ["password"],
-			})
-		}
-	})
+import { Label } from "@/registry/ui/label"
 
 interface SigninProps {
 	fullScreen?: boolean
 }
 
 export default function Page({ fullScreen = true }: SigninProps) {
-	const [isLoading, setIsLoading] = useState(false)
-
-	const form = useForm<z.infer<typeof FormSchema>>({
-		resolver: zodResolver(FormSchema),
-		mode: "onSubmit",
-		reValidateMode: "onChange",
-		defaultValues: {
-			email: "",
-			password: "",
-			rememberMe: false,
-		},
-	})
-	const onSubmit = (data: z.infer<typeof FormSchema>) => {
-		console.log(data)
-		setIsLoading(true)
-
-		setTimeout(() => {
-			setIsLoading(false)
-			form.reset()
-		}, 2000)
-	}
-
 	return (
 		<div className={cn("bg-bg flex", { "h-screen w-screen": fullScreen, "h-full w-full": !fullScreen })}>
 			<div className="flex w-full">
@@ -102,62 +36,36 @@ export default function Page({ fullScreen = true }: SigninProps) {
 								</p>
 							</div>
 						</div>
-						<Form {...form}>
-							<form onSubmit={form.handleSubmit(onSubmit)}>
-								<div className="flex flex-col gap-5">
-									<div className="flex flex-col gap-4">
-										<FormField
-											control={form.control}
-											name="email"
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel>Email Address</FormLabel>
-													<FormControl>
-														<Input size="36" type="email" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
-										<FormField
-											control={form.control}
-											name="password"
-											render={({ field }) => (
-												<FormItem>
-													<FormLabel>Password</FormLabel>
-													<FormControl>
-														<Input size="36" type="password" {...field} />
-													</FormControl>
-													<FormMessage />
-												</FormItem>
-											)}
-										/>
+						<form>
+							<div className="flex flex-col gap-5">
+								<div className="flex flex-col gap-4">
+									<div className="flex flex-col gap-1.5">
+										<Label htmlFor="email" className="text-fg text-sm font-medium">
+											Email Address
+										</Label>
+										<Input id="email" name="email" size="36" type="email" />
 									</div>
-									<div className="flex items-center justify-between">
-										<FormField
-											control={form.control}
-											name="rememberMe"
-											render={({ field }) => (
-												<div className="flex items-center gap-2">
-													<FormControl>
-														<Checkbox id="remember-me" checked={field.value} onCheckedChange={field.onChange} />
-													</FormControl>
-													<FormLabel htmlFor="remember-me" className="text-fg-secondary font-normal">
-														Remember me
-													</FormLabel>
-												</div>
-											)}
-										/>
-										<Button variant="link" asChild color="primary">
-											<Link href="#">Forgot Password?</Link>
-										</Button>
+									<div className="flex flex-col gap-1.5">
+										<Label htmlFor="password" className="text-fg text-sm font-medium">
+											Password
+										</Label>
+										<Input id="password" name="password" size="36" type="password" />
 									</div>
-									<Button className="w-full" type="submit" disabled={isLoading}>
-										{isLoading ? <Spinner variant="default" /> : "Sign In"}
+								</div>
+								<div className="flex items-center justify-between">
+									<div className="flex items-center gap-2">
+										<Checkbox id="remember-me" name="rememberMe" />
+										<Label htmlFor="remember-me" className="text-fg-secondary font-normal">
+											Remember me
+										</Label>
+									</div>
+									<Button variant="link" asChild color="primary">
+										<Link href="#">Forgot Password?</Link>
 									</Button>
 								</div>
-							</form>
-						</Form>
+								<Button className="w-full">Sign In</Button>
+							</div>
+						</form>
 						<div className="flex flex-1 flex-col gap-6">
 							<div className="flex items-center gap-2">
 								<Divider className="flex-1" />

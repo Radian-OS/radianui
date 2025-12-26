@@ -1,8 +1,12 @@
+"use client"
+
 import React from "react"
+import dynamic from "next/dynamic"
 import { subscribe } from "@/app/actions/subscribe"
-import EmailSubscription from "@/components/home/footer/email-subscription-form"
 import FooterNavigation from "@/components/home/footer/footer-navigation"
 import MiniFooter from "@/components/home/footer/mini-footer"
+
+const EmailSubscription = dynamic(() => import("@/components/home/footer/email-subscription-form"), { ssr: false })
 
 export default function Footer() {
 	return (
