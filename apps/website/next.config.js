@@ -92,5 +92,6 @@ const nextConfig = {
 	experimental: {
 		optimizePackageImports: ["lucide-react"],
 	},
+	compress: false,
 }
 export default withBundleAnalyzer(withContentlayer(nextConfig))
