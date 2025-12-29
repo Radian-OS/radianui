@@ -1,31 +1,23 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { GithubIcon } from "@/components/home/block/components/github-icon"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Input, InputWrapper } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
+import { Label } from "@/registry/ui/label"
 
-interface FormData {
-	firstName: string
-	email: string
-	password: string
+interface SignupProps {
+	fullScreen?: boolean
 }
 
-export default function Signup() {
-	const [isLoading, setIsLoading] = useState(false)
+export default function Signup({ fullScreen = true }: SignupProps) {
 	const [showPassword, setShowPassword] = useState(false)
-	const [formData, setFormData] = useState<FormData>({
-		firstName: "",
-		email: "",
-		password: "",
-	})
-	const inputRef = useRef<HTMLInputElement>(null)
 
 	function togglePasswordVisibility(e: React.MouseEvent) {
 		e.preventDefault()
@@ -35,31 +27,8 @@ export default function Signup() {
 
 	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
-	const handleInputChange = (field: keyof FormData) => (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFormData((prev) => ({
-			...prev,
-			[field]: e.target.value,
-		}))
-	}
-
-	const onSubmit = (e: React.FormEvent) => {
-		e.preventDefault()
-
-		console.log(formData)
-		setIsLoading(true)
-
-		setTimeout(() => {
-			setIsLoading(false)
-			setFormData({
-				firstName: "",
-				email: "",
-				password: "",
-			})
-		}, 2000)
-	}
-
 	return (
-		<div className="bg-bg flex h-full w-full items-center justify-center px-5">
+		<div className={cn("bg-bg flex items-center justify-center px-5", { "h-screen w-screen": fullScreen, "h-full w-full": !fullScreen })}>
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-5 py-6 sm:p-6">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>
@@ -75,36 +44,29 @@ export default function Signup() {
 						</p>
 					</div>
 
-					<form onSubmit={onSubmit}>
+					<form>
 						<div className="flex flex-col gap-8">
 							<div className="flex flex-col gap-4">
 								<div className="flex flex-col gap-1.5">
-									<label htmlFor="firstName" className="text-sm font-medium">
+									<Label htmlFor="firstName" className="text-sm font-medium">
 										First Name
-									</label>
-									<Input id="firstName" size="36" type="text" value={formData.firstName} onChange={handleInputChange("firstName")} />
+									</Label>
+									<Input id="firstName" size="36" type="text" />
 								</div>
 
 								<div className="flex flex-col gap-1.5">
-									<label htmlFor="email" className="text-sm font-medium">
+									<Label htmlFor="email" className="text-sm font-medium">
 										Email Address
-									</label>
-									<Input id="email" size="36" type="email" value={formData.email} onChange={handleInputChange("email")} />
+									</Label>
+									<Input id="email" size="36" type="email" />
 								</div>
 
 								<div className="flex flex-col gap-1.5">
-									<label htmlFor="password" className="text-sm font-medium">
+									<Label htmlFor="password" className="text-sm font-medium">
 										Password
-									</label>
+									</Label>
 									<InputWrapper>
-										<Input
-											id="password"
-											ref={inputRef}
-											className="peer"
-											type={showPassword ? "text" : "password"}
-											value={formData.password}
-											onChange={handleInputChange("password")}
-										/>
+										<Input id="password" className="peer" type={showPassword ? "text" : "password"} />
 										<IconComponent
 											className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 											onMouseDown={togglePasswordVisibility}
@@ -114,9 +76,7 @@ export default function Signup() {
 							</div>
 
 							<div className="flex flex-col gap-3">
-								<Button className="w-full" type="submit" disabled={isLoading}>
-									{isLoading ? <Spinner variant="default" /> : "Create account"}
-								</Button>
+								<Button className="w-full">Create account</Button>
 								<p className="text-fg-secondary text-sm">
 									By signing up, you agree to Radian&apos;s{" "}
 									<Button color="info" variant="link">

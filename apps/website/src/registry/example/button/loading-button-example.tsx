@@ -7,7 +7,7 @@ function LoadingButtonExample() {
 			<Button disabled loading>
 				Sync Progress
 			</Button>
-			<IconButton disabled loading>
+			<IconButton aria-label="Loading Button" disabled loading>
 				<User />
 			</IconButton>
 		</div>

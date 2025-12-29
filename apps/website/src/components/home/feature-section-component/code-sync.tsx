@@ -144,13 +144,15 @@ export function CodeSync() {
 				}
 				return prev + 1
 			})
-		}, 4000)
+		}, 8000)
 
 		return () => clearInterval(interval)
 	}, [totalCards])
 
 	return (
-		<div className="h-full select-none overflow-hidden">
+		<div className="relative h-full select-none overflow-hidden">
+			<div className="h-30 from-bg/0 to-bg z-1 absolute inset-x-0 top-0 flex bg-gradient-to-t"></div>
+
 			<motion.div
 				animate={{ y: -offset * cardHeight }}
 				transition={{
@@ -164,7 +166,7 @@ export function CodeSync() {
 					// Determine if this is the top visible card (position 0)
 					const iconClass = position === 1 ? "text-primary-text " : "text-fg-secondary "
 					return (
-						<div key={index} ref={index === 0 ? cardRef : null} className="border-soft bg-bg flex gap-5 border-t p-4 md:px-12">
+						<div key={index} ref={index === 0 ? cardRef : null} className="border-soft bg-bg flex gap-5 border-t px-7 py-4 sm:px-12">
 							<Icon className={`${iconClass} shrink-0 transition-opacity duration-1000`} size={20} style={{ opacity: 1 }} />
 							<div className="flex flex-col gap-1.5">
 								<p className="text-fg text-sm font-normal">{item.title}</p>

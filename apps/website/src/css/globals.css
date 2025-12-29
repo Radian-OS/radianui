@@ -1,4 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"); */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "./website.css";
@@ -167,7 +166,7 @@
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
-		--heading-font: "Inter Display", system-ui, sans-serif;
+		--heading-font: "Geist", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
 	}
 	/* Safari button fix - prevents shrinking on hover */

@@ -3,12 +3,17 @@
 import Image from "next/image"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
 import { OutlookIcon } from "@/components/home/outlook-icon"
+import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 
-export default function Verification() {
+interface VerificationProps {
+	fullScreen?: boolean
+}
+
+export default function Verification({ fullScreen = true }: VerificationProps) {
 	return (
-		<div className="bg-bg flex h-full w-full items-center justify-center px-5">
+		<div className={cn("bg-bg flex items-center justify-center px-5", { "h-full w-full": !fullScreen, "h-screen w-screen": fullScreen })}>
 			<div className="w-100 bg-bg flex">
 				<div className="flex flex-1 flex-col gap-8">
 					<div className="text-fg flex items-center gap-2.5">
@@ -29,10 +34,8 @@ export default function Verification() {
 						</div>
 					</div>
 					<div className="flex flex-col gap-3">
-						<Button className="w-full" type="submit">
-							Resend email
-						</Button>
-						<Button className="w-full" color="neutral" variant="outline" type="submit">
+						<Button className="w-full">Resend email</Button>
+						<Button className="w-full" color="neutral" variant="outline">
 							Update email address
 						</Button>
 					</div>

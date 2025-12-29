@@ -1,79 +1,16 @@
-"use client"
-
-import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { Lock, Mail } from "lucide-react"
 import Link from "next/link"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { usePlayground } from "@/contexts/playground"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
 import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
+import { Label } from "@/registry/ui/label"
 import PlaygroundLogo from "../playground-logo"
 import { ImagePreview } from "../playground/upload"
 import { Title } from "./components/title"
 import { buttonStyles, colorMap, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
-const FormSchema = z
-	.object({
-		email: z.string(),
-		password: z.string(),
-	})
-	.superRefine((data, ctx) => {
-		// Validate email first
-		if (!data.email || data.email.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Email is required",
-				path: ["email"],
-			})
-			return // Stop here
-		}
-
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-		if (!emailRegex.test(data.email)) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Please enter a valid email address",
-				path: ["email"],
-			})
-			return // Stop here - don't validate password
-		}
-
-		// Only validate password if email is valid
-		if (!data.password || data.password.trim().length === 0) {
-			ctx.addIssue({
-				code: "custom",
-				message: "Password is required",
-				path: ["password"],
-			})
-		}
-	})
-
 export default function Signin3() {
-	const [isLoading, setIsLoading] = useState(false)
 	const { radius, spacing, color, size, label, placeholder, icon, button, logoImage } = usePlayground()
-
-	const form = useForm<z.infer<typeof FormSchema>>({
-		resolver: zodResolver(FormSchema),
-		mode: "onSubmit",
-		reValidateMode: "onChange",
-		defaultValues: {
-			email: "",
-			password: "",
-		},
-	})
-
-	const onSubmit = () => {
-		setIsLoading(true)
-
-		setTimeout(() => {
-			setIsLoading(false)
-			form.reset()
-		}, 2000)
-	}
 
 	return (
 		<div
@@ -102,79 +39,55 @@ export default function Signin3() {
 							</Button>
 						</p>
 					</div>
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)}>
-							<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
-								<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
-									<FormField
-										control={form.control}
-										name="email"
-										render={({ field }) => (
-											<FormItem>
-												{label && <FormLabel>Email Address</FormLabel>}
-												<FormControl>
-													<InputGroup>
-														{icon && (
-															<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
-																{" "}
-																{icon && <Mail />}
-															</InputAddon>
-														)}
-														<Input
-															size={sizeMap[size ?? "default"]}
-															className={`${radiusMap[radius]} w-full`}
-															placeholder={placeholder ? "Enter your email" : ""}
-															type="email"
-															{...field}
-														/>
-													</InputGroup>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
+					<form>
+						<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
+							<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
+								<div data-slot="form-item" className="flex flex-col gap-1.5">
+									{label && <Label htmlFor="email-input">Email Address</Label>}
+									<InputGroup>
+										{icon && (
+											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
+												{" "}
+												{icon && <Mail />}
+											</InputAddon>
 										)}
-									/>
-									<FormField
-										control={form.control}
-										name="password"
-										render={({ field }) => (
-											<FormItem>
-												<div className="flex items-center justify-between">
-													{label && <FormLabel>Password</FormLabel>}
-													<Button className="flex w-full justify-end" variant="link" asChild color="primary">
-														<Link href="#"> Forgot Password?</Link>
-													</Button>
-												</div>
-												<FormControl>
-													<InputGroup>
-														{icon && (
-															<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
-																<Lock />
-															</InputAddon>
-														)}
-														<Input
-															size={sizeMap[size ?? "default"]}
-															className={`${radiusMap[radius]} w-full`}
-															placeholder={placeholder ? "Enter your password" : ""}
-															type="password"
-															{...field}
-														/>
-													</InputGroup>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
+										<Input
+											id="email-input"
+											size={sizeMap[size ?? "default"]}
+											className={`${radiusMap[radius]} w-full`}
+											placeholder={placeholder ? "Enter your email" : ""}
+											type="email"
+										/>
+									</InputGroup>
 								</div>
-								<Button
-									type="submit"
-									disabled={isLoading}
-									size={sizeMap[size ?? "default"]}
-									className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full ${buttonStyles[button ?? "default"]}`}>
-									{isLoading ? <Spinner variant="default" /> : "Sign In"}
-								</Button>
+								<div data-slot="form-item" className="flex flex-col gap-1.5">
+									<div className="flex items-center justify-between">
+										{label && <Label htmlFor="password-input">Password</Label>}
+										<Button className="flex w-full justify-end" variant="link" asChild color="primary">
+											<Link href="#"> Forgot Password?</Link>
+										</Button>
+									</div>
+									<InputGroup>
+										{icon && (
+											<InputAddon className={`${radiusMap[radius]}`} size={sizeMap[size ?? "default"]}>
+												<Lock />
+											</InputAddon>
+										)}
+										<Input
+											id="password-input"
+											size={sizeMap[size ?? "default"]}
+											className={`${radiusMap[radius]} w-full`}
+											placeholder={placeholder ? "Enter your password" : ""}
+											type="password"
+										/>
+									</InputGroup>
+								</div>
 							</div>
-						</form>
-					</Form>
+							<Button size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]} ${colorMap[color] ?? ""} w-full ${buttonStyles[button ?? "default"]}`}>
+								Sign In
+							</Button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

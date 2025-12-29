@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Check, ChevronDown, Clipboard, Maximize, Share2 } from "lucide-react"
+import { Check, ChevronDown, Clipboard, Maximize } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import PasswordReset from "@/app/blocks/password-reset/page"
@@ -17,29 +17,29 @@ const PAGES = [
 	{
 		value: "signin",
 		label: "Sign In",
-		component: <Signin />,
-		command: "pnpm dlx @radianos/radianbeta add signin-09",
+		component: <Signin fullScreen={false} />,
+		command: "pnpm dlx radianui@latest add signin-09",
 		link: "/blocks/signin",
 	},
 	{
 		value: "signup",
 		label: "Sign Up",
-		component: <Signup />,
-		command: "pnpm dlx @radianos/radianbeta add signup-02",
+		component: <Signup fullScreen={false} />,
+		command: "pnpm dlx radianui@latest add signup-02",
 		link: "/blocks/signup",
 	},
 	{
 		value: "verification",
 		label: "Verification",
-		component: <Verification />,
-		command: "pnpm dlx @radianos/radianbeta add verification-01",
+		component: <Verification fullScreen={false} />,
+		command: "pnpm dlx radianui@latest add verification-01",
 		link: "/blocks/verification",
 	},
 	{
 		value: "password-reset",
 		label: "Password Reset",
-		component: <PasswordReset />,
-		command: "pnpm dlx @radianos/radianbeta add password-reset-01",
+		component: <PasswordReset fullScreen={false} />,
+		command: "pnpm dlx radianui@latest add password-reset-01",
 		link: "/blocks/password-reset",
 	},
 ] as const
@@ -62,6 +62,7 @@ const HomeInteractive = () => {
 	}
 	const [activeTab, setActiveTab] = useState<(typeof PAGES)[number]["value"]>("signin")
 	const { copy, copied } = useCopyPaste()
+
 	return (
 		<div className="bg-bg/60 border-soft relative z-50 h-full rounded-xl border p-3 backdrop-blur-[45px]">
 			<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
@@ -89,11 +90,14 @@ const HomeInteractive = () => {
 					<div className="flex items-center gap-0.5">
 						<Button
 							onClick={(e) => {
-								copy(e, PAGES.find((p) => p.value === activeTab)!.command)
+								const activePage = PAGES.find((p) => p.value === activeTab)!
+								copy(e, activePage.command)
 								toast.custom(() => (
-									<div className="bg-black-inverse text-fg-inverse flex w-[200px] items-center justify-between gap-2 rounded-lg p-3">
+									<div className="bg-black-inverse text-fg-inverse flex w-[416px] items-center gap-2 rounded-lg px-3 py-2.5">
+										<Check size={20} className="text-success" />
 										<div className="text-fg-inverse">
-											<p className="text-sm font-normal">Successfully Copied Command</p>
+											<p className="text-sm font-medium">Copied Command:</p>
+											<p className="text-sm font-normal">{activePage.command}</p>
 										</div>
 									</div>
 								))
@@ -103,9 +107,6 @@ const HomeInteractive = () => {
 							variant="ghost"
 							size="28">
 							{copied ? <Check size={16} className="shrink-0" /> : <Clipboard size={16} className="shrink-0" />}
-						</Button>
-						<Button aria-label="Share Link" size="28" color="neutral" variant="ghost" asChild>
-							<Share2 size={16} className="shrink-0" />
 						</Button>
 						<Button aria-label="Fullscreen" size="28" color="neutral" variant="ghost" asChild>
 							<Link href={PAGES.find((p) => p.value === activeTab)?.link ?? ""} target="_blank">
