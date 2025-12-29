@@ -1,3 +1,5 @@
+"use client"
+
 import { ChangeEvent, useState } from "react"
 import { VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"

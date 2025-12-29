@@ -24,6 +24,10 @@ const nextConfig = {
 						key: "X-Content-Type-Options",
 						value: "nosniff",
 					},
+					{
+						key: "Cache-Control",
+						value: "public, max-age=2592000, s-maxage=5184000, stale-while-revalidate=59",
+					},
 				],
 			},
 		]
