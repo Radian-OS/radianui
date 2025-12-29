@@ -12,17 +12,63 @@ const nextConfig = {
 			{
 				source: "/:path*",
 				headers: [
+					// Referrer Policy - controls what info is sent when users click external links
 					{
 						key: "Referrer-Policy",
 						value: "strict-origin-when-cross-origin",
 					},
+					// HSTS - forces HTTPS, prevents downgrade attacks
 					{
 						key: "Strict-Transport-Security",
 						value: "max-age=31536000; includeSubDomains",
 					},
+					// Prevents MIME type sniffing
 					{
 						key: "X-Content-Type-Options",
 						value: "nosniff",
+					},
+					// Prevents your site from being embedded in iframes (clickjacking protection)
+					{
+						key: "X-Frame-Options",
+						value: "SAMEORIGIN",
+					},
+					// XSS Protection (legacy but still good to have)
+					{
+						key: "X-XSS-Protection",
+						value: "1; mode=block",
+					},
+					// CSP - Balanced security without breaking functionality
+					// Loose enough for real-world use, tight enough to pass SEO audits
+					{
+						key: "Content-Security-Policy",
+						value: [
+							"default-src 'self' https:",
+							// Scripts: allow inline + eval (Next.js, PostHog, analytics need this)
+							"script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
+							// Styles: allow inline (Tailwind, styled-components need this)
+							"style-src 'self' 'unsafe-inline' https:",
+							// Images: allow everything (CDNs, remote images, data URIs)
+							"img-src 'self' data: blob: https:",
+							// Fonts: allow everything
+							"font-src 'self' data: https:",
+							// AJAX/WebSockets: allow all HTTPS (PostHog, APIs, CDNs)
+							"connect-src 'self' https: wss:",
+							// Frames: allow HTTPS iframes (for embeds like YouTube, Loom, etc.)
+							"frame-src 'self' https:",
+							// Media: allow all HTTPS
+							"media-src 'self' https:",
+							// Objects: block plugins (Flash, Java)
+							"object-src 'none'",
+							// Base URI: lock down to prevent injection
+							"base-uri 'self'",
+							// Form actions: allow your domain + HTTPS (for external form submissions if needed)
+							"form-action 'self' https:",
+						].join("; "),
+					},
+					// Permissions Policy - controls browser features
+					{
+						key: "Permissions-Policy",
+						value: "camera=(), microphone=(), geolocation=()",
 					},
 				],
 			},
