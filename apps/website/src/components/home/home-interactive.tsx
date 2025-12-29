@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Check, ChevronDown, Clipboard, Maximize, Share2 } from "lucide-react"
+import { Check, ChevronDown, Clipboard, Maximize } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import PasswordReset from "@/app/blocks/password-reset/page"
@@ -107,9 +107,6 @@ const HomeInteractive = () => {
 							variant="ghost"
 							size="28">
 							{copied ? <Check size={16} className="shrink-0" /> : <Clipboard size={16} className="shrink-0" />}
-						</Button>
-						<Button aria-label="Share Link" size="28" color="neutral" variant="ghost" asChild>
-							<Share2 size={16} className="shrink-0" />
 						</Button>
 						<Button aria-label="Fullscreen" size="28" color="neutral" variant="ghost" asChild>
 							<Link href={PAGES.find((p) => p.value === activeTab)?.link ?? ""} target="_blank">
