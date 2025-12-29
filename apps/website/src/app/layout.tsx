@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { Geist, Inter } from "next/font/google"
 import { Toaster } from "sonner"
 import AhrefsAnalytics from "@/components/ahrefs-analytics"
 import { PostHogProvider } from "@/components/posthog-provider"
@@ -7,6 +8,9 @@ import { websiteMetadata } from "@/config/website-metadata-config"
 import { ToastProvider } from "@/contexts/toast-context"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
+
+const geist = Geist({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
@@ -79,7 +83,7 @@ export default async function RootLayout({
 				<AhrefsAnalytics />
 				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			</head>
-			<body className={cn("relative min-h-svh", "antialiased")}>
+			<body className={cn("relative min-h-svh antialiased", geist.className, inter.className)}>
 				<PostHogProvider>
 					<ToastProvider>
 						<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>

@@ -21,8 +21,6 @@ type EmailSubscriptionProps = {
 	subscribe: (email: string) => Promise<{ message: string; status: number }>
 }
 
-console.log("Loaded email form")
-
 export default function EmailSubscription({ subscribe }: EmailSubscriptionProps) {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
