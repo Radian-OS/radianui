@@ -54,14 +54,14 @@ const badgeVariants = cva("inline-flex items-center font-medium w-fit whitespace
 		{ variant: "outline", color: "success", className: "text-success-text border border-success-border bg-transparent" },
 		{ variant: "outline", color: "error", className: "text-error-text border border-error-border bg-transparent" },
 		{ variant: "outline", color: "warning", className: "text-warning-text border border-warning-border bg-transparent" },
-		{ variant: "outline", color: "neutral", className: "text-fg-secondary border bg-transparent" },
+		{ variant: "outline", color: "neutral", className: "text-fg border bg-transparent" },
 		// soft
-		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text" },
-		{ variant: "soft", color: "info", className: "bg-info-accent text-info-text" },
-		{ variant: "soft", color: "success", className: "bg-success-accent text-success-text" },
-		{ variant: "soft", color: "error", className: "bg-error-accent text-error-text" },
-		{ variant: "soft", color: "warning", className: "bg-warning-accent text-warning-text" },
-		{ variant: "soft", color: "neutral", className: "bg-fill2 text-fg-secondary" },
+		{ variant: "soft", color: "primary", className: "bg-primary-accent text-primary-text border-soft-alpha" },
+		{ variant: "soft", color: "info", className: "bg-info-accent text-info-text border-soft-alpha" },
+		{ variant: "soft", color: "success", className: "bg-success-accent text-success-text border-soft-alpha" },
+		{ variant: "soft", color: "error", className: "bg-error-accent text-error-text border-soft-alpha" },
+		{ variant: "soft", color: "warning", className: "bg-warning-accent text-warning-text border-soft-alpha" },
+		{ variant: "soft", color: "neutral", className: "bg-fill2 text-fg border-soft-alpha" },
 	],
 })
 
