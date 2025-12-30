@@ -11,7 +11,9 @@ export default function Layout() {
 	return (
 		<Dropdown indicatorPosition="right">
 			<DropdownTrigger asChild>
-				<p className={`${inter.className} hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium`}>Layout</p>
+				<button aria-label="Change Layout" className={`${inter.className} hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium`}>
+					Layout
+				</button>
 			</DropdownTrigger>
 			<DropdownContent sideOffset={10}>
 				<DropdownRadioGroup value={layout} onValueChange={(value) => setLayout(value as LayoutOption)}>

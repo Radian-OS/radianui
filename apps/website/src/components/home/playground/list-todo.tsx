@@ -3,7 +3,7 @@ import { Label } from "@radix-ui/react-label"
 import { ListTodo } from "lucide-react"
 import { ButtonOption, SizeOption, SpacingOption, usePlayground } from "@/contexts/playground"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { Switch } from "@/registry/ui/switch"
@@ -34,9 +34,9 @@ export default function ListTodos() {
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
-				<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+				<IconButton variant="ghost" color="neutral" aria-label="Change Form Styles" className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<ListTodo size={18} />
-				</div>
+				</IconButton>
 			</PopoverTrigger>
 			<PopoverContent sideOffset={10} className="border-none p-0">
 				<p className="text-fg-tertiary px-3 py-2 text-xs font-medium">FORM CONTROL</p>

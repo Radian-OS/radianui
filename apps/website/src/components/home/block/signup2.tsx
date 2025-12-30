@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useId, useState } from "react"
 import { EyeIcon, EyeOffIcon, Lock, Mail, User } from "lucide-react"
 import Link from "next/link"
 import { usePlayground } from "@/contexts/playground"
@@ -15,6 +15,10 @@ import { GoogleIcon } from "./components/google-icon"
 import { buttonStyles, colorMap, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 export default function Signup2() {
+	const firstNameId = useId()
+	const emailId = useId()
+	const passwordId = useId()
+
 	const { radius, spacing, size, label, color, placeholder, icon, button, logoImage } = usePlayground()
 
 	const [showPassword, setShowPassword] = useState(false)
@@ -53,7 +57,7 @@ export default function Signup2() {
 						<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 							<div className={`flex flex-col ${spaceMap.gap4[spacing ?? "default"]}`}>
 								<div data-slot="form-item" className="flex flex-col gap-1.5">
-									{label && <Label htmlFor="first-name-input">First Name</Label>}
+									{label && <Label htmlFor={firstNameId}>First Name</Label>}
 									<InputGroup>
 										{icon && (
 											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
@@ -61,7 +65,7 @@ export default function Signup2() {
 											</InputAddon>
 										)}
 										<Input
-											id="first-name-input"
+											id={firstNameId}
 											size={sizeMap[size ?? "default"]}
 											placeholder={placeholder ? "Enter first name" : ""}
 											className={`${radiusMap[radius]} w-full`}
@@ -70,7 +74,7 @@ export default function Signup2() {
 									</InputGroup>
 								</div>
 								<div data-slot="form-item" className="flex flex-col gap-1.5">
-									{label && <Label htmlFor="email-input">Email Address</Label>}
+									{label && <Label htmlFor={emailId}>Email Address</Label>}
 									<InputGroup>
 										{icon && (
 											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
@@ -78,7 +82,7 @@ export default function Signup2() {
 											</InputAddon>
 										)}
 										<Input
-											id="email-input"
+											id={emailId}
 											size={sizeMap[size ?? "default"]}
 											placeholder={placeholder ? "Enter your email" : ""}
 											className={`${radiusMap[radius]} w-full`}
@@ -87,7 +91,7 @@ export default function Signup2() {
 									</InputGroup>
 								</div>
 								<div data-slot="form-item" className="flex flex-col gap-1.5">
-									{label && <Label htmlFor="password-input">Password</Label>}
+									{label && <Label htmlFor={passwordId}>Password</Label>}
 									<InputGroup className={`${radiusMap[radius]} w-full`}>
 										{icon && (
 											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
@@ -95,7 +99,7 @@ export default function Signup2() {
 											</InputAddon>
 										)}
 										<Input
-											id="password-input"
+											id={passwordId}
 											size={sizeMap[size ?? "default"]}
 											className={`peer ${radiusMap[radius]}`}
 											placeholder={placeholder ? "Enter your password" : ""}

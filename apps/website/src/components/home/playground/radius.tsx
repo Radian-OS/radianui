@@ -1,16 +1,17 @@
 import React from "react"
 import { CircleDashed } from "lucide-react"
 import { RadiusOption, usePlayground } from "@/contexts/playground"
+import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 
 export default function Radius() {
 	const { radius, setRadius } = usePlayground()
 	return (
 		<Dropdown indicatorPosition="right">
-			<DropdownTrigger aria-label="Change Radius">
-				<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+			<DropdownTrigger asChild>
+				<IconButton variant="ghost" color="neutral" aria-label="Change Radius" className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<CircleDashed size={18} />
-				</div>
+				</IconButton>
 			</DropdownTrigger>
 			<DropdownContent sideOffset={10}>
 				<DropdownRadioGroup value={radius} onValueChange={(value) => setRadius(value as RadiusOption)}>
