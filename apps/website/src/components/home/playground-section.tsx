@@ -190,7 +190,7 @@ export default function PlaygroundSection() {
 									</div>
 									<div className="border-border flex h-8 items-center border-l pl-2">
 										<div className="text-fg-secondary flex">
-											<button aria-label="Toggle Theme" onClick={toggleTheme} className="hover:bg-fill2 a flex size-8 cursor-pointer items-center justify-center rounded-md">
+											<button aria-label="Toggle Theme" onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 												{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
 											</button>
 											<Colors />
