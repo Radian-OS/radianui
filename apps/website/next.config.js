@@ -20,7 +20,7 @@ const nextConfig = {
 							"font-src 'self' data: https://fonts.gstatic.com",
 							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 							"img-src 'self' data: https: blob:",
-							"connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com",
+							"connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com https://analytics.ahrefs.com",
 							"frame-src 'self'",
 							"object-src 'none'",
 							"base-uri 'self'",
