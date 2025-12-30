@@ -17,6 +17,7 @@ const nextConfig = {
 						value: [
 							"default-src 'self'",
 							"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us-assets.i.posthog.com https://us.i.posthog.com https://analytics.ahrefs.com",
+							"script-src-elem 'self' 'unsafe-inline' https://us-assets.i.posthog.com https://us.i.posthog.com https://analytics.ahrefs.com",
 							"font-src 'self' data: https://fonts.gstatic.com",
 							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 							"img-src 'self' data: https: blob:",
