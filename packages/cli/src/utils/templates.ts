@@ -137,7 +137,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 	/* information */
 	--color-info: oklch(0.6092 0.2041 255.8);
 	--color-primary-accent: oklch(0.2544 0.0418 249.78);
-	--color-primary-focus: oklch(0.2809 0.1185 272.2);
+	--color-primary-focus: oklch(0.3147 0.0668 250.78);
 	--color-info-border: oklch(0.5067 0.1401 252.67);
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
 	--color-info-text: oklch(0.6722 0.1615 251.56);
@@ -334,5 +334,4 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 		/* Chrome, Safari and Opera */
 	}
 }
-
 `

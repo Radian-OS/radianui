@@ -292,7 +292,7 @@
 .dark .color-light-blue {
 	--color-primary: oklch(0.6092 0.2041 255.8);
 	--color-primary-accent: oklch(0.2544 0.0418 249.78);
-	--color-primary-focus: oklch(0.2809 0.1185 272.2);
+	--color-primary-focus: oklch(0.3147 0.0668 250.78);
 	--color-primary-border: oklch(0.5067 0.1401 252.67);
 	--color-primary-hover: oklch(0.6722 0.1615 251.56);
 	--color-primary-text: oklch(0.6722 0.1615 251.56);
@@ -310,7 +310,7 @@
 .dark .color-blue {
 	--color-primary: oklch(0.5345 0.223 272.15);
 	--color-blue-accent: oklch(0.246 0.078 275);
-	--color-primary-focus: oklch(0.2519 0.1025 272.67);
+	--color-primary-focus: oklch(0.2809 0.1185 272.2);
 	--color-primary-border: oklch(0.5345 0.223 272.15);
 	--color-primary-hover: oklch(0.6082 0.1993 274.96);
 	--color-primary-text: oklch(0.6893 0.1433 278.39);
