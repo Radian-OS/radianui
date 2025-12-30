@@ -16,10 +16,10 @@ const nextConfig = {
 						key: "Content-Security-Policy",
 						value: [
 							"default-src 'self'",
-							"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us-assets.i.posthog.com https://us.i.posthog.com",
-							"style-src 'self' 'unsafe-inline'",
+							"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us-assets.i.posthog.com https://us.i.posthog.com https://analytics.ahrefs.com",
+							"font-src 'self' data: https://fonts.gstatic.com",
+							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
 							"img-src 'self' data: https: blob:",
-							"font-src 'self' data:",
 							"connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com",
 							"frame-src 'self'",
 							"object-src 'none'",
