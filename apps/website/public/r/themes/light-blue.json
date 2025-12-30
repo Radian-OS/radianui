@@ -12,8 +12,8 @@
 		},
 		"dark": {
 			"primary": "oklch(0.6092 0.2041 255.8)",
-			"primary-accent": "oklch(0.2332 0.0364 248.15)",
-			"primary-focus": "oklch(0.3147 0.0668 250.78)",
+			"primary-accent": "oklch(0.2544 0.0418 249.78)",
+			"primary-focus": "oklch(0.2809 0.1185 272.2)",
 			"primary-border": "oklch(0.5067 0.1401 252.67)",
 			"primary-hover": "oklch(0.6722 0.1615 251.56)",
 			"primary-text": "oklch(0.6722 0.1615 251.56)"

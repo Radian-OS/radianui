@@ -19,8 +19,7 @@ export const COMPONENTS_JSON_CONFIG = `{
   "hasSrcDir": true
 }`
 
-export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-@import "tailwindcss";
+export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -68,23 +67,23 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 
 	/* background */
 	--color-bg: oklch(1 0 0);
-	--color-fill1: oklch(0.9824 0.0013 286.38);
+	--color-fill1: oklch(0.9843 0.0011 197.14);
 	--color-fill2: oklch(0.9677 0.0027 286.35);
-	--color-fill3: oklch(0.9349 0.004 286.32);
-	--color-fill4: oklch(0.902 0.0068 286.26);
+	--color-fill3: oklch(0.9368 0.0029 264.54);
+	--color-fill4: oklch(0.904 0.0055 274.96);
 
 	/* foreground */
 	--color-fg: oklch(0.2314 0.0078 274.6);
-	--color-fg-secondary: oklch(0.4515 0.0243 285.39);
-	--color-fg-tertiary: oklch(0.6261 0.0268 285.6);
-	--color-fg-disabled: oklch(0.8352 0.011 286.16);
+	--color-fg-secondary: oklch(0.527 0.0238 276.59);
+	--color-fg-tertiary: oklch(0.6683 0.0194 275.5);
+	--color-fg-disabled: oklch(0.7366 0.0159 277.76);
 	--color-fg-inverse: oklch(1 0 0);
 
 	/* border */
-	--color-border: oklch(0.902 0.0068 286.26);
-	--color-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
-	--color-soft: oklch(0.9349 0.004 286.32);
-	--color-soft-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
+	--color-border: oklch(0.904 0.0055 274.96);
+	--color-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 88%);
+	--color-soft: oklch(0.9368 0.0029 264.54);
+	--color-soft-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 92%);
 
 	/* background elevation */
 	--color-elevation-negative: oklch(0.9677 0.0027 286.35);
@@ -105,8 +104,8 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 .dark {
 	/* primary */
 	--color-primary: oklch(0.528 0.2539 282.58);
-	--color-primary-accent: oklch(0.1977 0.0597 290.26);
-	--color-primary-focus: oklch(0.2538 0.1064 285.61);
+	--color-primary-accent: oklch(0.2622 0.0915 289.13);
+	--color-primary-focus: oklch(0.2827 0.1227 284.67);
 	--color-primary-border: oklch(0.528 0.2539 282.58);
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
 	--color-primary-text: oklch(0.5768 0.2279 286.25);
@@ -137,8 +136,8 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 
 	/* information */
 	--color-info: oklch(0.6092 0.2041 255.8);
-	--color-info-accent: oklch(0.2332 0.0364 248.15);
-	--color-info-focus: oklch(0.3147 0.0668 250.78);
+	--color-primary-accent: oklch(0.2544 0.0418 249.78);
+	--color-primary-focus: oklch(0.2809 0.1185 272.2);
 	--color-info-border: oklch(0.5067 0.1401 252.67);
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
 	--color-info-text: oklch(0.6722 0.1615 251.56);
@@ -151,10 +150,10 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	--color-fill4: oklch(0.2738 0.0093 276.77);
 
 	/* foreground */
-	--color-fg: oklch(1 0 0);
-	--color-fg-secondary: oklch(66.191% 0.02358 285.7);
-	--color-fg-tertiary: oklch(0.5553 0.0292 285.41);
-	--color-fg-disabled: oklch(45.149% 0.02436 285.362);
+	--color-fg: oklch(0.9843 0.0011 197.14);
+	--color-fg-secondary: oklch(0.6683 0.0194 275.5);
+	--color-fg-tertiary: oklch(0.562 0.0249 277.15);
+	--color-fg-disabled: oklch(0.4585 0.0198 274.46);
 	--color-fg-inverse: oklch(0.2314 0.0078 274.6);
 
 	/* border */
@@ -187,7 +186,7 @@ export const GLOBAL_CSS_V4 = `@import url("https://fonts.googleapis.com/css2?fam
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
-		--heading-font: "Inter Display", system-ui, sans-serif;
+		--heading-font: "Geist", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
 	}
 	/* Safari button fix - prevents shrinking on hover */

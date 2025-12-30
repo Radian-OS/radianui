@@ -30,7 +30,7 @@ const tabsListStyles = cva(
 			width: {
 				fit: "w-max min-w-max max-w-full",
 				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
-			},
+			}, // default medium
 			variant: {
 				default: "bg-fill2",
 				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
@@ -58,7 +58,7 @@ const tabsListStyles = cva(
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-[0.625rem]",
+				className: "rounded-lg",
 			},
 			{
 				size: "lg",
@@ -106,7 +106,7 @@ const tabsTriggerStyles = cva(
 			{
 				size: "md",
 				variant: ["default"],
-				className: "rounded-lg px-2.5 py-1.5 h-full",
+				className: "rounded-md px-2.5 py-1.5 h-full",
 			},
 			{
 				size: "lg",
