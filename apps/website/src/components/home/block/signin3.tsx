@@ -1,3 +1,4 @@
+import { useId } from "react"
 import { Lock, Mail } from "lucide-react"
 import Link from "next/link"
 import { usePlayground } from "@/contexts/playground"
@@ -10,6 +11,8 @@ import { Title } from "./components/title"
 import { buttonStyles, colorMap, radiusBorderMap, radiusMap, sizeMap, spaceMap } from "./signin1"
 
 export default function Signin3() {
+	const emailId = useId()
+	const passwordId = useId()
 	const { radius, spacing, color, size, label, placeholder, icon, button, logoImage } = usePlayground()
 
 	return (
@@ -43,7 +46,7 @@ export default function Signin3() {
 						<div className={`flex flex-col ${spaceMap.gap8[spacing ?? "default"]}`}>
 							<div className={`flex flex-col ${spaceMap.gap5[spacing ?? "default"]}`}>
 								<div data-slot="form-item" className="flex flex-col gap-1.5">
-									{label && <Label htmlFor="email-input">Email Address</Label>}
+									{label && <Label htmlFor={emailId}>Email Address</Label>}
 									<InputGroup>
 										{icon && (
 											<InputAddon size={sizeMap[size ?? "default"]} className={`${radiusMap[radius]}`}>
@@ -52,7 +55,7 @@ export default function Signin3() {
 											</InputAddon>
 										)}
 										<Input
-											id="email-input"
+											id={emailId}
 											size={sizeMap[size ?? "default"]}
 											className={`${radiusMap[radius]} w-full`}
 											placeholder={placeholder ? "Enter your email" : ""}
@@ -62,7 +65,7 @@ export default function Signin3() {
 								</div>
 								<div data-slot="form-item" className="flex flex-col gap-1.5">
 									<div className="flex items-center justify-between">
-										{label && <Label htmlFor="password-input">Password</Label>}
+										{label && <Label htmlFor={passwordId}>Password</Label>}
 										<Button className="flex w-full justify-end" variant="link" asChild color="primary">
 											<Link href="#"> Forgot Password?</Link>
 										</Button>
@@ -74,7 +77,7 @@ export default function Signin3() {
 											</InputAddon>
 										)}
 										<Input
-											id="password-input"
+											id={passwordId}
 											size={sizeMap[size ?? "default"]}
 											className={`${radiusMap[radius]} w-full`}
 											placeholder={placeholder ? "Enter your password" : ""}

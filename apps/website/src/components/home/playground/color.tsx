@@ -1,5 +1,6 @@
 import React from "react"
 import { ColorOption, usePlayground } from "@/contexts/playground"
+import { IconButton } from "@/registry/ui/button"
 import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
 
 export const COLORS = [
@@ -47,10 +48,15 @@ export default function Colors() {
 	const { color, setColor } = usePlayground()
 	return (
 		<Dropdown indicatorPosition="right">
-			<DropdownTrigger aria-label="Change Primary Color">
-				<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
-					<div className="size-4.5 bg-primary border-border rounded-full border"></div>
-				</div>
+			<DropdownTrigger asChild>
+				<IconButton
+					size="32"
+					aria-label="Change Primary Color"
+					variant="ghost"
+					color="neutral"
+					className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+					<div className="size-4.5 bg-primary border-border rounded-full border" />
+				</IconButton>
 			</DropdownTrigger>
 			<DropdownContent align="end" className="h-69.5 overflow-y-scroll" sideOffset={10}>
 				<DropdownRadioGroup value={color} onValueChange={(value) => setColor(value as ColorOption)}>
