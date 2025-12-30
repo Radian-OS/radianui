@@ -72,12 +72,14 @@ const HomeInteractive = () => {
 						<span className="bg-fill4 size-2 rounded-full" />
 						<span className="bg-fill4 size-2 rounded-full" />
 					</div>
-					<TabsList variant="outline-ghost" size="md" className="not-lg:hidden mx-auto shrink-0 bg-transparent">
-						{PAGES.map((page, idx) => (
-							<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
-								{page.label}
-							</TabsTrigger>
-						))}
+					<div className="flex">
+						<TabsList variant="outline-ghost" size="md" className="not-lg:hidden mx-auto shrink-0 bg-transparent">
+							{PAGES.map((page, idx) => (
+								<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
+									{page.label}
+								</TabsTrigger>
+							))}
+						</TabsList>
 						<div className="flex items-center gap-2 pl-3">
 							<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!} target="_blank" rel="noopener noreferrer" className="text-fg-secondary text-sm">
 								More Blocks
@@ -86,7 +88,7 @@ const HomeInteractive = () => {
 								Coming Soon
 							</Badge>
 						</div>
-					</TabsList>
+					</div>
 					<div className="flex items-center gap-0.5">
 						<Button
 							onClick={(e) => {
