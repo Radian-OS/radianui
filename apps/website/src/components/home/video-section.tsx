@@ -76,7 +76,7 @@ export default function VideoSection() {
 					size="40"
 					asChild
 					className="border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]">
-					<Link target="_blank" href={process.env.NEXT_PUBLIC_BLOCKS_URL!}>
+					<Link target="_blank" rel="noopener noreferrer" href={process.env.NEXT_PUBLIC_BLOCKS_URL!}>
 						Explore UI Blocks
 					</Link>
 				</Button>

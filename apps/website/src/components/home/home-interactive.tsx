@@ -79,7 +79,7 @@ const HomeInteractive = () => {
 							</TabsTrigger>
 						))}
 						<div className="flex items-center gap-2 pl-3">
-							<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!} target="_blank" className="text-fg-secondary text-sm">
+							<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!} target="_blank" rel="noopener noreferrer" className="text-fg-secondary text-sm">
 								More Blocks
 							</Link>
 							<Badge variant="soft" size="20">
@@ -109,7 +109,7 @@ const HomeInteractive = () => {
 							{copied ? <Check size={16} className="shrink-0" /> : <Clipboard size={16} className="shrink-0" />}
 						</Button>
 						<Button aria-label="Fullscreen" size="28" color="neutral" variant="ghost" asChild>
-							<Link href={PAGES.find((p) => p.value === activeTab)?.link ?? ""} target="_blank">
+							<Link rel="noopener noreferrer" href={PAGES.find((p) => p.value === activeTab)?.link ?? ""} target="_blank">
 								<Maximize size={16} className="shrink-0" />
 							</Link>
 						</Button>

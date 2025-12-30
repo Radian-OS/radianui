@@ -37,6 +37,7 @@ export default function SocialLinkCards() {
 						href={link.href}
 						key={link.name}
 						target="_blank"
+						rel="noopener noreferrer"
 						className="hover:bg-elevation-level1 group cursor-pointer rounded-[0.625rem] border p-4 transition-all duration-200 hover:shadow-md">
 						<span className="sr-only">{link.description}</span>
 						<div className="flex h-full items-center gap-3">
