@@ -92,6 +92,6 @@ const nextConfig = {
 	experimental: {
 		optimizePackageImports: ["lucide-react"],
 	},
-	compress: false,
+	compress: false, // Let cloudflare handle the compression
 }
 export default withBundleAnalyzer(withContentlayer(nextConfig))

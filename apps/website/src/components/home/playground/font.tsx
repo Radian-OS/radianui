@@ -3,6 +3,7 @@ import { Type } from "lucide-react"
 import { FONTS } from "@/components/typography/typography-playground"
 import { FontCategory, usePlayground } from "@/contexts/playground"
 import fonts from "@/data/google-fonts.json"
+import { IconButton } from "@/registry/ui/button"
 import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { Spinner } from "@/registry/ui/spinner"
@@ -60,9 +61,9 @@ export default function Font() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<div className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+				<IconButton aria-label="Change Font" variant="ghost" color="neutral" className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<Type size={18} />
-				</div>
+				</IconButton>
 			</PopoverTrigger>
 
 			<PopoverContent sideOffset={10} className="w-82 border-none p-0">
