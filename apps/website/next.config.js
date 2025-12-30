@@ -116,6 +116,7 @@ const nextConfig = {
 	},
 	experimental: {
 		optimizePackageImports: ["lucide-react"],
+		optimizeCss: true,
 	},
 	compress: false, // Let cloudflare handle the compression
 }
