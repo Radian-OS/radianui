@@ -50,7 +50,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 				<span className="text-fg-secondary text-sm">Author</span>
 				{blog.author?.map((author, index) =>
 					author.username && author.avatar ? (
-						<Link target="_blank" href={author.link || "#"} key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
+						<Link target="_blank" rel="noopener noreferrer" href={author.link || "#"} key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
 							<Avatar size="24">
 								<AvatarImage src={author.avatar} />
 								<AvatarFallback>{author.name.charAt(0).toUpperCase()}</AvatarFallback>

@@ -107,7 +107,12 @@ export default function FooterNavigation() {
 								<AccordionContent>
 									<div className="flex flex-col">
 										{item.linkItems.map((linkItem) => (
-											<Link key={linkItem.name} href={linkItem.href} className="py-2.5" target={linkItem.target ?? "_self"}>
+											<Link
+												key={linkItem.name}
+												href={linkItem.href}
+												className="py-2.5"
+												target={linkItem.target ?? "_self"}
+												rel={linkItem.target === "_blank" ? "noopener noreferrer" : undefined}>
 												{linkItem.name}
 											</Link>
 										))}
@@ -129,7 +134,7 @@ export default function FooterNavigation() {
 							<div className="flex flex-col gap-4">
 								{item.linkItems.map((linkItem) => (
 									<span key={linkItem.name} className="flex items-center gap-2">
-										<Link href={linkItem.href} target={linkItem.target ?? "_self"}>
+										<Link href={linkItem.href} target={linkItem.target ?? "_self"} rel={linkItem.target === "_blank" ? "noopener noreferrer" : undefined}>
 											{linkItem.name}
 										</Link>
 										{linkItem.badge && linkItem.badge}

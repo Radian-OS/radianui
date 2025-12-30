@@ -10,6 +10,39 @@ interface BlogListPageProps {
 	params: { slug?: string[] }
 }
 
+export const metadata = {
+	title: "Radian Blogs - Latest Updates & Insights",
+	description:
+		"Stay updated with the latest blogs, updates, and insights from the RadianOS team. Discover product updates, industry trends, and tips to make the most of Radian OS.",
+	keywords: ["RadianOS blog", "Radian UI Blogs", "Radian  updates", "tech insights", "product updates", "Radian tips", "industry news"],
+	author: "RadianOS Team",
+	robots: "index, follow",
+	viewport: "width=device-width, initial-scale=1",
+	openGraph: {
+		title: "RadianOS Blog | Latest Updates & Insights",
+		description: "Read the latest updates and insights from the RadianOS team. Stay informed about product releases, industry trends, and expert tips.",
+		type: "website",
+		url: "https://radianos.com/blog",
+		site_name: "RadianOS",
+		images: [
+			{
+				url: "https://radianos.com/og/static-og.png",
+				width: 1200,
+				height: 630,
+				alt: "RadianOS Blog Open Graph Image",
+			},
+		],
+	},
+	twitter: {
+		card: "summary_large_image",
+		title: "Radian Blogs - Latest Updates & Insights",
+		description: "Stay informed with blogs and updates from the RadianOS team. Discover product news, industry insights, and expert tips.",
+		site: "@RadianOS",
+		creator: "@RadianOS",
+		image: "https://radianos.com/og/static-og.png",
+	},
+}
+
 export default async function BlogPage({ params }: BlogListPageProps) {
 	const slugPath = Array.isArray(params.slug) ? params.slug.join("/") : typeof params.slug === "string" ? params.slug : ""
 	const filteredBlogs = allBlogs.filter((blog) => blog.slugAsParams.startsWith(slugPath))

@@ -150,14 +150,14 @@ export default function CommunityCard() {
 
 				<div className="flex gap-2">
 					<Button asChild variant={"strong"} color={"neutral"}>
-						<Link href="https://github.com/Radian-os/radianos" target="_blank">
+						<Link href="https://github.com/Radian-os/radianos" target="_blank" rel="noopener noreferrer">
 							<GithubIcon />
 							Github
 						</Link>
 					</Button>
 
 					<IconButton aria-label="X (Formerly Twitter)" asChild variant={"outline"} color={"neutral"}>
-						<Link href="https://x.com/radian_os" target="_blank">
+						<Link href="https://x.com/radian_os" target="_blank" rel="noopener noreferrer">
 							<XIcon />
 						</Link>
 					</IconButton>
