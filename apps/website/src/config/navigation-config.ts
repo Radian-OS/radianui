@@ -63,7 +63,7 @@ const COMPONENTS_DATA = [
 	"Combobox",
 	"Command",
 	"Currency Input",
-	// "Chart",
+	"Chart",
 	"Checkbox",
 	"Date Picker",
 	"Dialog",
