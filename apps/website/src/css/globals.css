@@ -53,7 +53,7 @@
 	--color-fill4: oklch(0.904 0.0055 274.96);
 
 	/* foreground */
-	--color-fg: oklch(0.2314 0.0078 274.6);
+	--color-fg: oklch(0.2738 0.0093 276.77);
 	--color-fg-secondary: oklch(0.527 0.0238 276.59);
 	--color-fg-tertiary: oklch(0.6683 0.0194 275.5);
 	--color-fg-disabled: oklch(0.7366 0.0159 277.76);
@@ -88,7 +88,7 @@
 	--color-primary-focus: oklch(0.2827 0.1227 284.67);
 	--color-primary-border: oklch(0.528 0.2539 282.58);
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
-	--color-primary-text: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.6784 0.1708 290.38);
 
 	/* success */
 	--color-success: oklch(0.6334 0.171 148.65);

@@ -21,6 +21,7 @@ export const COMPONENTS_JSON_CONFIG = `{
 
 export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 @import "tw-animate-css";
+@import "./website.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -73,7 +74,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 	--color-fill4: oklch(0.904 0.0055 274.96);
 
 	/* foreground */
-	--color-fg: oklch(0.2314 0.0078 274.6);
+	--color-fg: oklch(0.2738 0.0093 276.77);
 	--color-fg-secondary: oklch(0.527 0.0238 276.59);
 	--color-fg-tertiary: oklch(0.6683 0.0194 275.5);
 	--color-fg-disabled: oklch(0.7366 0.0159 277.76);
@@ -108,7 +109,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 	--color-primary-focus: oklch(0.2827 0.1227 284.67);
 	--color-primary-border: oklch(0.528 0.2539 282.58);
 	--color-primary-hover: oklch(0.5768 0.2279 286.25);
-	--color-primary-text: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.6784 0.1708 290.38);
 
 	/* success */
 	--color-success: oklch(0.6334 0.171 148.65);
@@ -130,14 +131,14 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 	--color-warning: oklch(0.8016 0.1705 73.27);
 	--color-warning-accent: oklch(0.2663 0.0372 84.34);
 	--color-warning-focus: oklch(0.3744 0.0636 81.14);
-	---color-warning-border: oklch(0.5461 0.1088 77.73);
+	--color-warning-border: oklch(0.5461 0.1088 77.73);
 	--color-warning-hover: oklch(0.8342 0.1594 79.51);
 	--color-warning-text: oklch(0.8342 0.1594 79.51);
 
 	/* information */
 	--color-info: oklch(0.6092 0.2041 255.8);
-	--color-primary-accent: oklch(0.2544 0.0418 249.78);
-	--color-primary-focus: oklch(0.3147 0.0668 250.78);
+	--color-info-accent: oklch(0.2544 0.0418 249.78);
+	--color-info-focus: oklch(0.3147 0.0668 250.78);
 	--color-info-border: oklch(0.5067 0.1401 252.67);
 	--color-info-hover: oklch(0.6722 0.1615 251.56);
 	--color-info-text: oklch(0.6722 0.1615 251.56);
