@@ -77,7 +77,7 @@ const COMPONENTS_DATA = [
 	"Hover Card",
 	"Label",
 	"Pagination",
-	"Phone Number",
+	"Phone Number Input",
 	"Popover",
 	"Progress",
 	"Radio Group",
