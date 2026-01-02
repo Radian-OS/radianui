@@ -17,7 +17,6 @@ export const metadata = {
 	keywords: ["RadianOS blog", "Radian UI Blogs", "Radian  updates", "tech insights", "product updates", "Radian tips", "industry news"],
 	author: "RadianOS Team",
 	robots: "index, follow",
-	viewport: "width=device-width, initial-scale=1",
 	openGraph: {
 		title: "RadianOS Blog | Latest Updates & Insights",
 		description: "Read the latest updates and insights from the RadianOS team. Stay informed about product releases, industry trends, and expert tips.",
