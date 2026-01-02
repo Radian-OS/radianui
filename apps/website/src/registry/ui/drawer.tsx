@@ -42,7 +42,7 @@ export type DrawerCloseProps = {
 	children: React.ReactNode
 }
 
-const drawerVariants = cva("fixed z-[999] bg-bg flex flex-col gap-5 overflow-hidden", {
+const drawerVariants = cva("fixed z-50 bg-bg flex flex-col gap-5 overflow-hidden", {
 	variants: {
 		variant: {
 			float: "rounded-xl shadow-lg outline outline-border",
@@ -132,7 +132,7 @@ const drawerVariants = cva("fixed z-[999] bg-bg flex flex-col gap-5 overflow-hid
 	],
 })
 
-const backdropVariants = cva("z-[999] fixed", {
+const backdropVariants = cva("z-50 fixed", {
 	variants: {
 		backdrop: {
 			overlay: "inset-0 bg-black/50",
@@ -145,7 +145,7 @@ const backdropVariants = cva("z-[999] fixed", {
 	},
 })
 
-const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-[999]! bg-border! rounded-full!", {
+const handleVariants = cva("absolute! max-h-20! max-w-1.5! z-50! bg-border! rounded-full!", {
 	variants: {
 		direction: {
 			left: "right-3! top-1/2! -translate-y-1/2! h-full! w-1.5!",
