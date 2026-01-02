@@ -10,7 +10,16 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/:path*",
+				source: "/_next/static/:path*", // Static assets (JS, CSS, images)
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=2592000, immutable",
+					},
+				],
+			},
+			{
+				source: "/:path*", // HTML pages and other
 				headers: [
 					// {
 					// 	key: "Referrer-Policy",
@@ -34,7 +43,7 @@ const nextConfig = {
 					},
 					{
 						key: "Cache-Control",
-						value: "public, max-age=2592000, s-maxage=5184000, stale-while-revalidate=59",
+						value: "public, max-age=60, stale-while-revalidate=30",
 					},
 				],
 			},
