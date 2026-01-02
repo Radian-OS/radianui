@@ -79,7 +79,6 @@
 		"fs": "0.0.1-security",
 		"fs-extra": "^11.3.0",
 		"github-slugger": "^2.0.0",
-		"gsap": "^3.13.0",
 		"hast-util-to-jsx-runtime": "^2.3.6",
 		"input-otp": "^1.4.2",
 		"lucide-react": "^0.486.0",
