@@ -163,12 +163,14 @@
 	* {
 		border-color: var(--color-border);
 	}
+
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
 		--heading-font: "Geist", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
 	}
+
 	/* Safari button fix - prevents shrinking on hover */
 	button,
 	[role="button"],
