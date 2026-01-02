@@ -13,24 +13,6 @@ const nextConfig = {
 				source: "/:path*",
 				headers: [
 					{
-						key: "Content-Security-Policy",
-						value: [
-							"default-src 'self'",
-							"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us-assets.i.posthog.com https://us.i.posthog.com https://analytics.ahrefs.com https://static.cloudflareinsights.com",
-							"script-src-elem 'self' 'unsafe-inline' https://us-assets.i.posthog.com https://us.i.posthog.com https://analytics.ahrefs.com https://static.cloudflareinsights.com",
-							"font-src 'self' data: https://fonts.gstatic.com",
-							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-							"img-src 'self' data: https: blob:",
-							"connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com https://analytics.ahrefs.com https://cloudflareinsights.com",
-							"frame-src 'self'",
-							"object-src 'none'",
-							"base-uri 'self'",
-							"form-action 'self'",
-							"frame-ancestors 'none'",
-							"upgrade-insecure-requests",
-						].join("; "),
-					},
-					{
 						key: "Referrer-Policy",
 						value: "strict-origin-when-cross-origin",
 					},
