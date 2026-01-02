@@ -64,7 +64,7 @@ const HomeInteractive = () => {
 	const { copy, copied } = useCopyPaste()
 
 	return (
-		<div className="bg-bg/60 border-soft relative z-50 h-full rounded-xl border p-3 backdrop-blur-[45px]">
+		<div className="bg-bg/60 border-soft relative z-30 h-full rounded-xl border p-3 backdrop-blur-[45px]">
 			<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-1.5 pl-3">
@@ -80,7 +80,7 @@ const HomeInteractive = () => {
 								</TabsTrigger>
 							))}
 						</TabsList>
-						<div className="flex items-center gap-2 pl-3">
+						<div className="not-lg:hidden flex items-center gap-2 pl-3">
 							<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!} target="_blank" rel="noopener noreferrer" className="text-fg-secondary text-sm">
 								More Blocks
 							</Link>

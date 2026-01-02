@@ -16,9 +16,18 @@ interface SigninProps {
 export default function Page({ fullScreen = true }: SigninProps) {
 	return (
 		<div className={cn("bg-bg flex", { "h-screen w-screen": fullScreen, "h-full w-full": !fullScreen })}>
-			<div className="flex w-full">
-				<div className="relative hidden flex-1 md:block">
-					<Image fill fetchPriority="high" priority={true} className="object-cover" src="/media/background-2-homepage.jpg" alt="Background Image" />
+			<div className="flex h-full w-full">
+				<div className="relative hidden h-full flex-1 md:block">
+					<Image
+						fill
+						fetchPriority="high"
+						priority={true}
+						className="object-cover"
+						src="/media/background-2-homepage.jpg"
+						alt="Background Image"
+						sizes="(max-width: 768px) 100vw, 900px"
+						quality={80}
+					/>
 				</div>
 				<div className="bg-bg flex h-full w-full flex-1 shrink-0 items-center justify-center p-5">
 					<div className="w-90 flex flex-col gap-8">

@@ -10,20 +10,29 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/:path*",
+				source: "/_next/static/:path*", // Static assets (JS, CSS, images)
 				headers: [
 					{
-						key: "Referrer-Policy",
-						value: "strict-origin-when-cross-origin",
+						key: "Cache-Control",
+						value: "public, max-age=2592000, immutable",
 					},
+				],
+			},
+			{
+				source: "/:path*", // HTML pages and other
+				headers: [
+					// {
+					// 	key: "Referrer-Policy",
+					// 	value: "strict-origin-when-cross-origin",
+					// },
 					{
 						key: "Strict-Transport-Security",
 						value: "max-age=63072000; includeSubDomains; preload",
 					},
-					{
-						key: "X-Content-Type-Options",
-						value: "nosniff",
-					},
+					// {
+					// 	key: "X-Content-Type-Options",
+					// 	value: "nosniff",
+					// },
 					{
 						key: "X-Frame-Options",
 						value: "DENY",
@@ -34,7 +43,7 @@ const nextConfig = {
 					},
 					{
 						key: "Cache-Control",
-						value: "public, max-age=2592000, s-maxage=5184000, stale-while-revalidate=59",
+						value: "public, max-age=60, stale-while-revalidate=30",
 					},
 				],
 			},
@@ -72,6 +81,11 @@ const nextConfig = {
 			{
 				source: "/components",
 				destination: "/docs/components/accordion",
+				permanent: true,
+			},
+			{
+				source: "/figma",
+				destination: "/docs/getting-started/figma",
 				permanent: true,
 			},
 		]
