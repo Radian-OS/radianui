@@ -35,7 +35,7 @@ export default function InvertedSection() {
 
 				<div className="inverted-shape pb-35 bg-black-inverse relative flex w-full flex-col items-center gap-20 overflow-clip px-5 pt-40 dark:bg-[#131316]">
 					{/* Elliptical shaped gradient for bg */}
-					<svg className="z-60 absolute -top-1/2 left-1/2 -translate-x-1/2" width="3272" height="2545" viewBox="0 0 3272 2545" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg className="absolute -top-1/2 left-1/2 z-40 -translate-x-1/2" width="3272" height="2545" viewBox="0 0 3272 2545" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g opacity="0.34" filter="url(#filter0_f_1156_17761)">
 							<path
 								d="M1350.4 864.929C964.236 1135.32 648.845 1427.27 450.934 1680.09C351.878 1806.63 283.167 1922.21 249.23 2019.49C215.055 2117.45 217.866 2191.36 252.363 2240.62C286.861 2289.89 355.348 2317.81 459.088 2319.2C562.107 2320.58 694.218 2295.54 847.004 2245.74C1152.27 2146.23 1534.48 1949.72 1920.64 1679.32C2306.8 1408.93 2622.19 1116.98 2820.11 864.16C2919.16 737.622 2987.87 622.042 3021.81 524.763C3055.98 426.803 3053.17 352.898 3018.67 303.631C2984.18 254.364 2915.69 226.445 2811.95 225.054C2708.93 223.674 2576.82 248.709 2424.04 298.513C2118.77 398.02 1736.56 594.537 1350.4 864.929Z"
@@ -68,7 +68,7 @@ export default function InvertedSection() {
 							</Badge>
 						</div>
 
-						<div className="z-70 relative flex flex-col items-center gap-4">
+						<div className="relative z-40 flex flex-col items-center gap-4">
 							<h2 className="heading-2 to-fg-tertiary z-70 relative bg-gradient-to-b from-white bg-clip-text text-center text-transparent">Features to help you Build Quicker</h2>
 							<p className="text-fg-tertiary z-70 relative w-full max-w-[480px] text-center text-base font-normal">
 								Extend your Radian experience with more features to help you build better apps and products{" "}
@@ -118,7 +118,7 @@ export default function InvertedSection() {
 						</svg>
 					</div>
 
-					<div className="z-70 grid w-full max-w-[1340px] grid-cols-1 overflow-clip rounded-3xl border border-[#1c1d21] md:grid-cols-2 lg:grid-cols-4">
+					<div className="z-40 grid w-full max-w-[1340px] grid-cols-1 overflow-clip rounded-3xl border border-[#1c1d21] md:grid-cols-2 lg:grid-cols-4">
 						<InvertedSectionItems />
 					</div>
 				</div>
