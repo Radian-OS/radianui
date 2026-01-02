@@ -74,6 +74,11 @@ const nextConfig = {
 				destination: "/docs/components/accordion",
 				permanent: true,
 			},
+			{
+				source: "/figma",
+				destination: "/docs/getting-started/figma",
+				permanent: true,
+			},
 		]
 	},
 	skipTrailingSlashRedirect: true,
