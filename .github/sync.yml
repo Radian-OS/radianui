@@ -1,4 +1,4 @@
-Radian-os/radianos-blocks@main:
+Radian-os/radianos-blocks@dev:
   - source: apps/website/src/registry/ui/
     dest: src/registry/ui/
   - source: apps/website/src/css/

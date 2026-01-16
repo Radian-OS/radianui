@@ -136,7 +136,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
 	)
 }
 
-function CarouselPrevious({ className, variant = "outline", color = "neutral", size = "36", ...props }: Omit<React.ComponentProps<typeof IconButton>, "children">) {
+function CarouselPrevious({ className, variant = "outline", color = "neutral", size = "32", children, ...props }: React.ComponentProps<typeof IconButton>) {
 	const { orientation, scrollPrev, canScrollPrev } = useCarousel()
 
 	return (
@@ -145,18 +145,18 @@ function CarouselPrevious({ className, variant = "outline", color = "neutral", s
 			variant={variant}
 			size={size}
 			color={color}
-			className={cn("absolute size-8 rounded-full", orientation === "horizontal" ? "-left-12 top-1/2 -translate-y-1/2" : "-top-12 left-1/2 -translate-x-1/2 rotate-90", className)}
+			className={cn("absolute rounded-full", orientation === "horizontal" ? "-left-12 top-1/2 -translate-y-1/2" : "-top-12 left-1/2 -translate-x-1/2 rotate-90", className)}
 			disabled={!canScrollPrev}
 			onClick={scrollPrev}
 			aria-label="Previous Button"
 			{...props}>
-			<ChevronLeft />
+			{children ?? <ChevronLeft />}
 			<span className="sr-only">Previous slide</span>
 		</IconButton>
 	)
 }
 
-function CarouselNext({ className, variant = "outline", color = "neutral", size = "36", ...props }: Omit<React.ComponentProps<typeof IconButton>, "children">) {
+function CarouselNext({ className, variant = "outline", color = "neutral", size = "32", children, ...props }: React.ComponentProps<typeof IconButton>) {
 	const { orientation, scrollNext, canScrollNext } = useCarousel()
 
 	return (
@@ -166,16 +166,11 @@ function CarouselNext({ className, variant = "outline", color = "neutral", size 
 			color={color}
 			aria-label="Next Button"
 			size={size}
-			className={cn(
-				"absolute size-8 rounded-full",
-				orientation === "horizontal" ? "-right-12 top-1/2 -translate-y-1/2" : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
-				className
-			)}
+			className={cn("absolute rounded-full", orientation === "horizontal" ? "-right-12 top-1/2 -translate-y-1/2" : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90", className)}
 			disabled={!canScrollNext}
 			onClick={scrollNext}
 			{...props}>
-			<ChevronRight />
-			<span className="sr-only">Next slide</span>
+			{children ?? <ChevronRight />} <span className="sr-only">Next slide</span>
 		</IconButton>
 	)
 }
