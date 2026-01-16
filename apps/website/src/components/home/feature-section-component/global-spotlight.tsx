@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
 
 const DEFAULT_SPOTLIGHT_RADIUS = 300
+
+const EASE_OUT_POWER2 = "cubic-bezier(0.22, 1, 0.36, 1)"
 
 const calculateSpotlightValues = (radius: number) => ({
 	proximity: radius * 0.5,
@@ -29,16 +30,22 @@ export const GlobalSpotlight: React.FC<{
 	const spotlightsRef = useRef<HTMLDivElement[]>([])
 	const isInsideSection = useRef(false)
 
+	// rAF throttle for mousemove work
+	const rafIdRef = useRef<number | null>(null)
+	const lastMouseRef = useRef<{ x: number; y: number } | null>(null)
+
 	useEffect(() => {
 		if (disableAnimations || !gridRef?.current || !enabled) return
 
-		const cards = gridRef.current.querySelectorAll(".card")
+		const gridEl = gridRef.current
+		const cards = gridEl.querySelectorAll(".card")
 		const spotlights: HTMLDivElement[] = []
 
 		// Create spotlight element for each card
 		cards.forEach((card) => {
 			const cardElement = card as HTMLElement
 			const spotlight = document.createElement("div")
+
 			spotlight.className = "card-spotlight"
 			spotlight.style.cssText = `
 				position: absolute;
@@ -56,8 +63,14 @@ export const GlobalSpotlight: React.FC<{
 				);
 				z-index: 200;
 				opacity: 0;
+				left: 0px;
+				top: 0px;
 				transform: translate(-50%, -50%);
 				mix-blend-mode: screen;
+				will-change: left, top, opacity;
+				transition-property: left, top, opacity;
+				transition-timing-function: ${EASE_OUT_POWER2}, ${EASE_OUT_POWER2}, ${EASE_OUT_POWER2};
+				transition-duration: 0.1s, 0.1s, 0.3s;
 			`
 
 			// Make card relative and hide overflow to contain spotlight
@@ -70,42 +83,41 @@ export const GlobalSpotlight: React.FC<{
 
 		spotlightsRef.current = spotlights
 
-		const handleMouseMove = (e: MouseEvent) => {
-			if (!gridRef.current) return
+		const fadeAllOut = (durationSeconds: number) => {
+			spotlightsRef.current.forEach((spotlight) => {
+				// keep same movement smoothing; only change opacity duration here
+				spotlight.style.transitionDuration = `0.1s, 0.1s, ${durationSeconds}s`
+				spotlight.style.opacity = "0"
+			})
+			gridEl.querySelectorAll(".card").forEach((card) => {
+				;(card as HTMLElement).style.setProperty("--glow-intensity", "0")
+			})
+		}
 
-			const section = gridRef.current.closest(".bento-section")
+		const applyUpdate = (x: number, y: number) => {
+			const section = gridEl.closest(".bento-section")
 			const rect = section?.getBoundingClientRect()
-			const mouseInside = rect && e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom
+			const mouseInside = !!rect && x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
 
-			isInsideSection.current = mouseInside || false
-			const cards = gridRef.current.querySelectorAll(".card")
+			isInsideSection.current = mouseInside
+
+			const cardsNow = gridEl.querySelectorAll(".card")
 
 			if (!mouseInside) {
-				spotlightsRef.current.forEach((spotlight) => {
-					gsap.to(spotlight, {
-						opacity: 0,
-						duration: 0.3,
-						ease: "power2.out",
-					})
-				})
-				cards.forEach((card) => {
-					;(card as HTMLElement).style.setProperty("--glow-intensity", "0")
-				})
+				fadeAllOut(0.3)
 				return
 			}
 
 			const { proximity, fadeDistance } = calculateSpotlightValues(spotlightRadius)
-			let minDistance = Infinity
 
-			cards.forEach((card, index) => {
+			cardsNow.forEach((card, index) => {
 				const cardElement = card as HTMLElement
 				const cardRect = cardElement.getBoundingClientRect()
 				const centerX = cardRect.left + cardRect.width / 2
 				const centerY = cardRect.top + cardRect.height / 2
-				const distance = Math.hypot(e.clientX - centerX, e.clientY - centerY) - Math.max(cardRect.width, cardRect.height) / 2
-				const effectiveDistance = Math.max(0, distance)
 
-				minDistance = Math.min(minDistance, effectiveDistance)
+				const distance = Math.hypot(x - centerX, y - centerY) - Math.max(cardRect.width, cardRect.height) / 2
+				const effectiveDistance = Math.max(0, distance)
 
 				let glowIntensity = 0
 				if (effectiveDistance <= proximity) {
@@ -114,55 +126,57 @@ export const GlobalSpotlight: React.FC<{
 					glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity)
 				}
 
-				updateCardGlowProperties(cardElement, e.clientX, e.clientY, glowIntensity, spotlightRadius)
+				updateCardGlowProperties(cardElement, x, y, glowIntensity, spotlightRadius)
 
-				// Update spotlight position relative to card
 				const spotlight = spotlightsRef.current[index]
-				if (spotlight) {
-					const relativeX = e.clientX - cardRect.left
-					const relativeY = e.clientY - cardRect.top
+				if (!spotlight) return
 
-					gsap.to(spotlight, {
-						left: relativeX,
-						top: relativeY,
-						duration: 0.1,
-						ease: "power2.out",
-					})
+				const relativeX = x - cardRect.left
+				const relativeY = y - cardRect.top
 
-					const targetOpacity = glowIntensity * 0.8
+				spotlight.style.transitionDuration = `0.1s, 0.1s, ${glowIntensity * 0.8 > 0 ? 0.2 : 0.5}s`
 
-					gsap.to(spotlight, {
-						opacity: targetOpacity,
-						duration: targetOpacity > 0 ? 0.2 : 0.5,
-						ease: "power2.out",
-					})
-				}
+				spotlight.style.left = `${relativeX}px`
+				spotlight.style.top = `${relativeY}px`
+
+				const targetOpacity = glowIntensity * 0.8
+				spotlight.style.opacity = `${targetOpacity}`
+			})
+		}
+
+		const handleMouseMove = (e: MouseEvent) => {
+			lastMouseRef.current = { x: e.clientX, y: e.clientY }
+
+			if (rafIdRef.current != null) return
+			rafIdRef.current = window.requestAnimationFrame(() => {
+				rafIdRef.current = null
+				const last = lastMouseRef.current
+				if (!last) return
+				applyUpdate(last.x, last.y)
 			})
 		}
 
 		const handleMouseLeave = () => {
 			isInsideSection.current = false
-			gridRef.current?.querySelectorAll(".card").forEach((card) => {
-				;(card as HTMLElement).style.setProperty("--glow-intensity", "0")
-			})
-			spotlightsRef.current.forEach((spotlight) => {
-				gsap.to(spotlight, {
-					opacity: 0,
-					duration: 0.3,
-					ease: "power2.out",
-				})
-			})
+			fadeAllOut(0.3)
 		}
 
-		document.addEventListener("mousemove", handleMouseMove)
+		document.addEventListener("mousemove", handleMouseMove, { passive: true })
 		document.addEventListener("mouseleave", handleMouseLeave)
 
 		return () => {
 			document.removeEventListener("mousemove", handleMouseMove)
 			document.removeEventListener("mouseleave", handleMouseLeave)
+
+			if (rafIdRef.current != null) {
+				cancelAnimationFrame(rafIdRef.current)
+				rafIdRef.current = null
+			}
+
 			spotlightsRef.current.forEach((spotlight) => {
 				spotlight.parentNode?.removeChild(spotlight)
 			})
+			spotlightsRef.current = []
 		}
 	}, [gridRef, disableAnimations, enabled, spotlightRadius])
 

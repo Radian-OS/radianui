@@ -134,7 +134,6 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 		[isInView, flickerChance, maxOpacity, rgbaBase, squareSize]
 	)
 
-	/* ---------- Observers ---------- */
 	useEffect(() => {
 		setupGrid()
 
@@ -160,7 +159,6 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 		}
 	}, [setupGrid])
 
-	/* ---------- Shared RAF ---------- */
 	useEffect(() => {
 		if (!isInView) return
 		return subscribeRAF(animate)

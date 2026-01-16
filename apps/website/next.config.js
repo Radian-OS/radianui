@@ -10,38 +10,29 @@ const nextConfig = {
 	async headers() {
 		return [
 			{
-				source: "/:path*",
+				source: "/_next/static/:path*", // Static assets (JS, CSS, images)
 				headers: [
 					{
-						key: "Content-Security-Policy",
-						value: [
-							"default-src 'self'",
-							"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://us-assets.i.posthog.com https://us.i.posthog.com https://analytics.ahrefs.com https://static.cloudflareinsights.com",
-							"script-src-elem 'self' 'unsafe-inline' https://us-assets.i.posthog.com https://us.i.posthog.com https://analytics.ahrefs.com https://static.cloudflareinsights.com",
-							"font-src 'self' data: https://fonts.gstatic.com",
-							"style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-							"img-src 'self' data: https: blob:",
-							"connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com https://analytics.ahrefs.com https://cloudflareinsights.com",
-							"frame-src 'self'",
-							"object-src 'none'",
-							"base-uri 'self'",
-							"form-action 'self'",
-							"frame-ancestors 'none'",
-							"upgrade-insecure-requests",
-						].join("; "),
+						key: "Cache-Control",
+						value: "public, max-age=2592000, immutable",
 					},
-					{
-						key: "Referrer-Policy",
-						value: "strict-origin-when-cross-origin",
-					},
+				],
+			},
+			{
+				source: "/:path*", // HTML pages and other
+				headers: [
+					// {
+					// 	key: "Referrer-Policy",
+					// 	value: "strict-origin-when-cross-origin",
+					// },
 					{
 						key: "Strict-Transport-Security",
 						value: "max-age=63072000; includeSubDomains; preload",
 					},
-					{
-						key: "X-Content-Type-Options",
-						value: "nosniff",
-					},
+					// {
+					// 	key: "X-Content-Type-Options",
+					// 	value: "nosniff",
+					// },
 					{
 						key: "X-Frame-Options",
 						value: "DENY",
@@ -52,7 +43,7 @@ const nextConfig = {
 					},
 					{
 						key: "Cache-Control",
-						value: "public, max-age=2592000, s-maxage=5184000, stale-while-revalidate=59",
+						value: "public, max-age=60, stale-while-revalidate=30",
 					},
 				],
 			},
@@ -90,6 +81,11 @@ const nextConfig = {
 			{
 				source: "/components",
 				destination: "/docs/components/accordion",
+				permanent: true,
+			},
+			{
+				source: "/figma",
+				destination: "/docs/getting-started/figma",
 				permanent: true,
 			},
 		]

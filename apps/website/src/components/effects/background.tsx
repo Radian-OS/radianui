@@ -21,7 +21,7 @@ export default function Background({ children }: { children?: React.ReactNode })
 				flickerChance={0.3}
 			/>
 
-			<div className="relative z-50 w-full">{children}</div>
+			<div className="relative z-30 w-full">{children}</div>
 		</div>
 	)
 }
