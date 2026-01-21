@@ -38,7 +38,7 @@ export function NavigationBar({ version }: NavigationBarProps) {
 
 						<FigmaPreviewButton className="not-xl:hidden" />
 
-						<EarlyAccessButton className="not-xl:hidden" />
+						<EarlyAccessButton className="not-xl:hidden gap-1.5" />
 
 						<DesktopThemeToggler />
 

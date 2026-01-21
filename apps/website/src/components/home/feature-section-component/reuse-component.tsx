@@ -211,7 +211,7 @@ export function ReuseComponent() {
 										duration: 0.5,
 										ease: "linear",
 									}}
-									className="w-90 bg-fill1 absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
+									className="w-90 bg-fill1 absolute inset-0 hidden flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8 sm:flex"
 								/>
 							)}
 						</AnimatePresence>

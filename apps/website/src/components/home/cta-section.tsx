@@ -12,7 +12,7 @@ export default function CTASection() {
 					<Rocket className="text-primary" />
 					Get Started
 				</Badge>
-				<h2 className="heading-2">
+				<h2 className="heading-2 text-center">
 					Build faster with <span className="text-primary-text">Radian</span>
 				</h2>
 				<p className="text-fg-secondary text-center text-lg font-normal">Copy, paste, and customize your next feature without starting from scratch.</p>
