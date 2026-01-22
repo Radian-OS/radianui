@@ -220,13 +220,12 @@ export function ReuseComponent() {
 			</motion.div>
 			{/* mobile responsive */}
 			<motion.div
-				ref={containerRef}
 				className="relative z-0 flex items-center justify-center overflow-hidden sm:hidden"
 				animate={{
 					y: [0, -350, 0],
 				}}
 				transition={{
-					duration: 20,
+					duration: 8,
 					ease: "easeInOut",
 					repeat: Infinity,
 				}}>
