@@ -175,7 +175,7 @@ export function ReuseComponent() {
 			<motion.div
 				ref={containerRef}
 				animate={controls}
-				className="relative z-0 flex cursor-pointer items-center justify-center gap-5 overflow-x-auto overflow-y-hidden"
+				className="relative z-0 hidden cursor-pointer items-center justify-center gap-5 overflow-x-auto overflow-y-hidden sm:flex"
 				onMouseLeave={handleMouseLeave}
 				style={{
 					scrollBehavior: "auto",
@@ -211,12 +211,39 @@ export function ReuseComponent() {
 										duration: 0.5,
 										ease: "linear",
 									}}
-									className="w-90 bg-fill1 absolute inset-0 hidden flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8 sm:flex"
+									className="w-90 bg-fill1 absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
 								/>
 							)}
 						</AnimatePresence>
 					</div>
 				))}
+			</motion.div>
+			{/* mobile responsive */}
+			<motion.div
+				ref={containerRef}
+				animate={controls}
+				className="relative z-0 flex cursor-pointer items-center justify-center gap-5 overflow-x-auto overflow-y-hidden sm:hidden"
+				onMouseLeave={handleMouseLeave}
+				style={{
+					scrollBehavior: "auto",
+					scrollbarWidth: "none",
+					msOverflowStyle: "none",
+				}}>
+				<div className={`w-90 relative flex h-[594px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
+					<AnimatePresence mode="sync">
+						<motion.div
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{
+								duration: 0.5,
+								ease: "linear",
+							}}
+							className="absolute inset-0 flex items-center justify-center">
+							<Signin />
+						</motion.div>
+					</AnimatePresence>
+				</div>
 			</motion.div>
 		</div>
 	)
