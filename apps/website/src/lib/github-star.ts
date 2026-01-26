@@ -1,6 +1,8 @@
 export async function fetchGithubStars() {
 	try {
-		const res = await fetch("https://api.github.com/repos/Radian-os/radianos")
+		const res = await fetch("https://api.github.com/repos/Radian-os/radianos", {
+			cache: "no-store",
+		})
 		if (!res.ok) throw new Error("Failed to fetch")
 
 		const data = await res.json()

@@ -1,8 +1,5 @@
-"use client"
-
-import React, { ComponentProps, useEffect, useState } from "react"
+import React, { ComponentProps } from "react"
 import Link from "next/link"
-import { fetchGithubStars } from "@/lib/github-star"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -20,18 +17,13 @@ type EarlyAccessButtonProps = {
 	size?: ComponentProps<typeof Button>["size"]
 	variant?: ComponentProps<typeof Button>["variant"]
 	className?: string
+	stars: number | null
 }
 
-function EarlyAccessButton({ size, variant, className }: EarlyAccessButtonProps) {
-	const [stars, setStars] = useState<number | null>(null)
-
-	useEffect(() => {
-		fetchGithubStars().then(setStars)
-	}, [])
-
+function EarlyAccessButton({ size, variant, className, stars }: EarlyAccessButtonProps) {
 	return (
 		<Button size={size ?? "36"} variant={variant ?? "smooth"} color={"primary"} className={cn(className)} asChild>
-			<Link href={"#"}>
+			<Link rel="noopener noreferrer" target="_blank" href={"https://github.com/Radian-os/radianos"}>
 				<GithubIcon />
 				Github
 				<Badge variant="strong" size="20" color="primary">
