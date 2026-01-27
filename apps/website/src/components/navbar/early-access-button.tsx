@@ -1,9 +1,43 @@
-import React, { ComponentProps } from "react"
+"use client"
+
+import React, { ComponentProps, useEffect, useState } from "react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 
+const REPO_NAME = "Radian-os/radianos"
+const DEFAULT_STARS = 10 // fallback
+
+// Custom hook to fetch GitHub stars
+function useGithubStars(repo = REPO_NAME) {
+	const [loading, setLoading] = useState(true)
+	const [stars, setStars] = useState<number>(DEFAULT_STARS)
+
+	useEffect(() => {
+		const fetchStars = async () => {
+			try {
+				const response = await fetch(`https://api.github.com/repos/${repo}`)
+				if (response.ok) {
+					const data = await response.json()
+					if (data?.stargazers_count) {
+						setStars(data.stargazers_count)
+					}
+				}
+			} catch (error) {
+				console.error("Error fetching GitHub stars:", error)
+				// fallback value already set
+			} finally {
+				setLoading(false)
+			}
+		}
+		fetchStars()
+	}, [repo])
+
+	return { stars, loading }
+}
+
+// Github Icon component
 const GithubIcon = () => (
 	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
@@ -17,18 +51,21 @@ type EarlyAccessButtonProps = {
 	size?: ComponentProps<typeof Button>["size"]
 	variant?: ComponentProps<typeof Button>["variant"]
 	className?: string
-	stars: number | null
 }
 
-function EarlyAccessButton({ size, variant, className, stars }: EarlyAccessButtonProps) {
+function EarlyAccessButton({ size, variant, className }: EarlyAccessButtonProps) {
+	const { stars, loading } = useGithubStars()
+
 	return (
-		<Button size={size ?? "36"} variant={variant ?? "smooth"} color={"primary"} className={cn(className)} asChild>
-			<Link rel="noopener noreferrer" target="_blank" href={"https://github.com/Radian-os/radianos"}>
+		<Button loading={loading} disabled={loading} size={size ?? "36"} variant={variant ?? "smooth"} color="primary" className={cn(className)} asChild>
+			<Link rel="noopener noreferrer" target="_blank" href={`https://github.com/${REPO_NAME}`} className="flex items-center gap-2">
 				<GithubIcon />
 				Github
-				<Badge variant="strong" size="20" color="primary">
-					{stars ?? "."}
-				</Badge>
+				{!loading && (
+					<Badge variant="strong" size="20" color="primary">
+						{stars ?? DEFAULT_STARS}
+					</Badge>
+				)}
 			</Link>
 		</Button>
 	)
