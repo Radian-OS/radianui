@@ -5,9 +5,10 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { CountingNumber } from "../counting-numbers"
 
 const REPO_NAME = "Radian-os/radianos"
-const GITHUB_STARS = 10
+const GITHUB_STARS = 0
 
 // Custom hook to fetch GitHub stars
 function useGithubStars(repo = REPO_NAME) {
@@ -57,7 +58,7 @@ function EarlyAccessButton({ size, variant, className }: EarlyAccessButtonProps)
 				<GithubIcon />
 				Github
 				<Badge variant="strong" size="20" color="primary">
-					{stars}
+					<CountingNumber from={0} to={stars} duration={1} />
 				</Badge>
 			</Link>
 		</Button>
