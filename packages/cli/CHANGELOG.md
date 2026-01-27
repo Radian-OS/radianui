@@ -1,5 +1,11 @@
 # radianui
 
+## 0.1.2
+
+### Patch Changes
+
+- Default body font inter and heading font to geist
+
 ## 0.1.1
 
 ### Patch Changes

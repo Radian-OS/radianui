@@ -19,7 +19,7 @@ export const COLORS = [
 ]
 
 export const FONTS = [
-	{ title: "Inter - Inter Display (Default)", value: "inter" },
+	{ title: "Inter - Geist (Default)", value: "inter" },
 	{ title: "Roboto", value: "roboto" },
 	{ title: "Geist", value: "geist" },
 	{ title: "DM Sans", value: "dm-sans" },
