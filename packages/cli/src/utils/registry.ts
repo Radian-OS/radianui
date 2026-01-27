@@ -6,7 +6,8 @@ import { pipeline } from "stream/promises"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 
-const WEBSITE_URL = "https://radianos.com"
+// const WEBSITE_URL = "https://radianos.com"
+const WEBSITE_URL = "http://localhost:3001";
 const BLOCKS_URL = "https://blocks.radianos.com"
 const REGISTRY_COMPONENT_URL = `${WEBSITE_URL}/api/components`
 const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`

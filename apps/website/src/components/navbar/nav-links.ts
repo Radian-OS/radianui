@@ -3,5 +3,4 @@ export const navLinks = [
 	{ name: "Documentation", link: "/docs/getting-started/introduction" },
 	{ name: "Blog", link: "/blog" },
 	{ name: "Blocks", link: process.env.NEXT_PUBLIC_BLOCKS_URL! },
-	{ name: "Figma", link: "/docs/getting-started/figma" },
 ]

@@ -124,7 +124,7 @@ export function ThemeableSystem({ scrollIndex, setScrollIndex }: { scrollIndex: 
 
 			<HoverCard
 				onClick={() => {
-					setScrollIndex((prev) => prev + 1)
+					setScrollIndex((prev) => prev + 0)
 				}}
 				activeColor={activeColor}
 			/>

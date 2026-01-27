@@ -14,9 +14,10 @@ import { WebsiteLogo } from "./website-logo"
 
 type NavigationBarProps = {
 	version: string
+	stars: number | null
 }
 
-export function NavigationBar({ version }: NavigationBarProps) {
+export function NavigationBar({ version, stars }: NavigationBarProps) {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
 	return (
@@ -38,7 +39,7 @@ export function NavigationBar({ version }: NavigationBarProps) {
 
 						<FigmaPreviewButton className="not-xl:hidden" />
 
-						<EarlyAccessButton className="not-xl:hidden" />
+						<EarlyAccessButton stars={stars} className="not-xl:hidden gap-1.5" />
 
 						<DesktopThemeToggler />
 
@@ -49,7 +50,7 @@ export function NavigationBar({ version }: NavigationBarProps) {
 					</div>
 				</div>
 			</nav>
-			<MobileNavigation isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+			<MobileNavigation stars={stars} isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
 		</>
 	)
 }
