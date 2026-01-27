@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
-import { VariantProps, cva } from "class-variance-authority"
+import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 type TooltipProps = React.ComponentProps<typeof TooltipPrimitive.Root>

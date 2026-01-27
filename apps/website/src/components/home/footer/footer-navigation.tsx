@@ -134,7 +134,7 @@ export default function FooterNavigation() {
 							<div className="flex flex-col gap-4">
 								{item.linkItems.map((linkItem) => (
 									<span key={linkItem.name} className="flex items-center gap-2">
-										<Link href={linkItem.href} target={linkItem.target ?? "_self"} rel={linkItem.target === "_blank" ? "noopener noreferrer" : undefined}>
+										<Link href={linkItem.href} className="text-sm" target={linkItem.target ?? "_self"} rel={linkItem.target === "_blank" ? "noopener noreferrer" : undefined}>
 											{linkItem.name}
 										</Link>
 										{linkItem.badge && linkItem.badge}

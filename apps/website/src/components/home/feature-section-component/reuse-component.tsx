@@ -175,7 +175,7 @@ export function ReuseComponent() {
 			<motion.div
 				ref={containerRef}
 				animate={controls}
-				className="relative z-0 flex cursor-pointer items-center justify-center gap-5 overflow-x-auto overflow-y-hidden"
+				className="relative z-0 hidden cursor-pointer items-center justify-center gap-5 overflow-x-auto overflow-y-hidden sm:flex"
 				onMouseLeave={handleMouseLeave}
 				style={{
 					scrollBehavior: "auto",
@@ -217,6 +217,23 @@ export function ReuseComponent() {
 						</AnimatePresence>
 					</div>
 				))}
+			</motion.div>
+			{/* mobile responsive */}
+			<motion.div
+				className="relative z-0 flex items-center justify-center overflow-hidden sm:hidden"
+				animate={{
+					y: [0, -350, 0],
+				}}
+				transition={{
+					duration: 8,
+					ease: "easeInOut",
+					repeat: Infinity,
+				}}>
+				<div className="w-90 relative flex h-[594px] flex-shrink-0 items-center justify-center">
+					<AnimatePresence>
+						<Signin />
+					</AnimatePresence>
+				</div>
 			</motion.div>
 		</div>
 	)
