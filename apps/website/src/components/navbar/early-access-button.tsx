@@ -5,14 +5,14 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { CountingNumber } from "../counting-numbers"
 
 const REPO_NAME = "Radian-os/radianos"
-const DEFAULT_STARS = 10 // fallback
+const GITHUB_STARS = 0
 
 // Custom hook to fetch GitHub stars
 function useGithubStars(repo = REPO_NAME) {
-	const [loading, setLoading] = useState(true)
-	const [stars, setStars] = useState<number>(DEFAULT_STARS)
+	const [stars, setStars] = useState<number>(GITHUB_STARS)
 
 	useEffect(() => {
 		const fetchStars = async () => {
@@ -21,23 +21,20 @@ function useGithubStars(repo = REPO_NAME) {
 				if (response.ok) {
 					const data = await response.json()
 					if (data?.stargazers_count) {
+						console.log("GitHub stars fetched:", data.stargazers_count)
 						setStars(data.stargazers_count)
 					}
 				}
 			} catch (error) {
 				console.error("Error fetching GitHub stars:", error)
-				// fallback value already set
-			} finally {
-				setLoading(false)
 			}
 		}
 		fetchStars()
 	}, [repo])
 
-	return { stars, loading }
+	return stars
 }
 
-// Github Icon component
 const GithubIcon = () => (
 	<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<path
@@ -54,18 +51,15 @@ type EarlyAccessButtonProps = {
 }
 
 function EarlyAccessButton({ size, variant, className }: EarlyAccessButtonProps) {
-	const { stars, loading } = useGithubStars()
-
+	const stars = useGithubStars()
 	return (
-		<Button loading={loading} disabled={loading} size={size ?? "36"} variant={variant ?? "smooth"} color="primary" className={cn(className)} asChild>
-			<Link rel="noopener noreferrer" target="_blank" href={`https://github.com/${REPO_NAME}`} className="flex items-center gap-2">
+		<Button size={size ?? "36"} variant={variant ?? "smooth"} color={"primary"} className={cn(className)} asChild>
+			<Link rel="noopener noreferrer" target="_blank" href={"https://github.com/Radian-os/radianos"}>
 				<GithubIcon />
 				Github
-				{!loading && (
-					<Badge variant="strong" size="20" color="primary">
-						{stars ?? DEFAULT_STARS}
-					</Badge>
-				)}
+				<Badge variant="strong" size="20" color="primary">
+					<CountingNumber from={0} to={stars} duration={1} />
+				</Badge>
 			</Link>
 		</Button>
 	)
