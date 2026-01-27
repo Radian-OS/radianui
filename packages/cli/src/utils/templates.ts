@@ -21,7 +21,6 @@ export const COMPONENTS_JSON_CONFIG = `{
 
 export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 @import "tw-animate-css";
-@import "./website.css";
 
 @custom-variant dark (&:is(.dark *));
 
