@@ -15,10 +15,9 @@ import { WebsiteLogo } from "./website-logo"
 interface MobileNavigationProps {
 	isMobileMenuOpen: boolean
 	setIsMobileMenuOpen: (open: boolean) => void
-	stars: number | null
 }
 
-export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen, stars }: MobileNavigationProps) {
+export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: MobileNavigationProps) {
 	const pathname = usePathname()
 
 	useEffect(() => {
@@ -60,7 +59,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen, stars 
 				<div className="flex items-center justify-center gap-2">
 					<div className="hidden items-center justify-center gap-2 sm:flex">
 						<FigmaPreviewButton />
-						<EarlyAccessButton stars={stars} />
+						<EarlyAccessButton />
 					</div>
 					<IconButton aria-label="Close mobile navigation" color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
 						<X className="size-5" />
@@ -69,7 +68,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen, stars 
 			</div>
 
 			<div className="flex flex-col items-center justify-center gap-3 pb-4 pt-6 sm:hidden">
-				<EarlyAccessButton stars={stars} size={"44"} className="w-full" />
+				<EarlyAccessButton size={"44"} className="w-full" />
 				<FigmaPreviewButton size={"44"} className="w-full" />
 			</div>
 
