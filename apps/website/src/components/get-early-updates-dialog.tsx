@@ -24,7 +24,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>
 
 export function GetEarlyUpdatesDialog() {
-	const [subscriptionResult, setSubscriptionResult] = useState<{ message: string; status: number } | null>(null)
+	const [subscriptionResult, setSubscriptionResult] = useState<Awaited<ReturnType<typeof subscribe>> | null>(null)
 
 	const form = useForm<FormData>({
 		resolver: zodResolver(formSchema),
@@ -58,12 +58,14 @@ export function GetEarlyUpdatesDialog() {
 
 	return (
 		<Dialog defaultOpen>
-			<DialogContent closeButton="hidden" className="max-w-167.5 flex flex-row overflow-hidden p-0">
+			<DialogContent closeButton="hidden" className="max-w-83.5 md:max-w-167.5 flex w-full flex-col gap-0 overflow-hidden p-0 md:flex-row">
 				{/* Left Side - Graphic Background */}
-				<div className="bg-fill1 relative w-1/2 overflow-hidden bg-[radial-gradient(var(--color-fill4-alpha)_1px,transparent_1px)] [background-size:10px_10px]" />
-
+				<div className="relative hidden w-full overflow-hidden md:flex md:w-1/2">
+					<Image src="/get-early-updates-light.png" alt="get-early-updates-light" fill className="object-cover dark:hidden" unoptimized priority />
+					<Image src="/get-early-updates-dark.png" alt="get-early-updates-dark" fill className="hidden object-cover dark:block" unoptimized priority />
+				</div>
 				{/* Right Side - Form */}
-				<div className="bg-bg flex w-1/2 flex-col justify-center gap-5 px-6 py-8">
+				<div className="bg-bg flex w-full flex-col justify-center gap-5 px-6 py-8 md:w-1/2">
 					{/* Logo and Title Section */}
 					<div className="flex flex-col gap-4">
 						<div className="flex items-center justify-between">
@@ -81,7 +83,7 @@ export function GetEarlyUpdatesDialog() {
 
 					{/* Form Section */}
 					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+						<form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
 							<FormField
 								control={form.control}
 								name="email"
