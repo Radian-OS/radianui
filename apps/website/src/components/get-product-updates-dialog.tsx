@@ -2,14 +2,12 @@
 
 import React, { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { SquareDashedBottomCode } from "lucide-react"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { subscribe } from "@/app/actions/subscribe"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/registry/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormMessage } from "@/registry/ui/form"
@@ -23,7 +21,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>
 
-export function GetEarlyUpdatesDialog() {
+export function GetProductUpdatesDialog() {
 	const [subscriptionResult, setSubscriptionResult] = useState<Awaited<ReturnType<typeof subscribe>> | null>(null)
 
 	const form = useForm<FormData>({
@@ -58,53 +56,47 @@ export function GetEarlyUpdatesDialog() {
 
 	return (
 		<Dialog defaultOpen>
-			<DialogContent closeButton="hidden" className="max-w-83.5 md:max-w-167.5 flex w-full flex-col gap-0 overflow-hidden p-0 md:flex-row">
+			<DialogContent closeButton="hidden" backdrop="blur" className="max-w-85 md:max-w-170 flex w-full flex-col gap-0 overflow-hidden p-0 md:flex-row">
 				{/* Left Side - Graphic Background */}
 				<div className="relative hidden w-full overflow-hidden md:flex md:w-1/2">
-					<Image src="/get-early-updates-light.png" alt="get-early-updates-light" fill className="object-cover dark:hidden" unoptimized priority />
-					<Image src="/get-early-updates-dark.png" alt="get-early-updates-dark" fill className="hidden object-cover dark:block" unoptimized priority />
+					<Image src="/get-product-updates-light.png" alt="get-early-updates-light" fill className="object-cover dark:hidden" unoptimized priority />
+					<Image src="/get-product-updates-dark.png" alt="get-early-updates-dark" fill className="hidden object-cover dark:block" unoptimized priority />
 				</div>
 				{/* Right Side - Form */}
 				<div className="bg-bg flex w-full flex-col justify-center gap-5 px-6 py-8 md:w-1/2">
 					{/* Logo and Title Section */}
 					<div className="flex flex-col gap-4">
-						<div className="flex items-center justify-between">
-							<Image src="/logo.svg" alt="radian_logo" width={36} height={36} />
-							<Badge className="&_[svg]:size-4 border-soft-alpha gap-1.5 self-start border">
-								<SquareDashedBottomCode />
-								Early Access
-							</Badge>
-						</div>
+						<Image src="/logo.svg" alt="radian_logo" width={36} height={36} />
 						<div className="flex flex-col gap-1">
-							<DialogTitle>Get Early Updates</DialogTitle>
-							<DialogDescription>Radian is still underdevelopment. Subscribe to receive updates on new components, UI blocks, and key milestones as we build.</DialogDescription>
+							<DialogTitle>Get Product Updates</DialogTitle>
+							<DialogDescription>Subscribe to receive updates on new components, UI blocks, and key milestones as we build.</DialogDescription>
 						</div>
+
+						{/* Form Section */}
+						<Form {...form}>
+							<form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
+								<FormField
+									control={form.control}
+									name="email"
+									render={({ field }) => (
+										<FormItem>
+											<Label htmlFor="email">Email address</Label>
+											<FormControl>
+												<Input id="email" placeholder="johndoe@radian.com" type="email" {...field} />
+											</FormControl>
+											<FormMessage className={cn({ "text-success-text": subscriptionResult?.status && subscriptionResult?.status >= 200 && subscriptionResult?.status < 400 })}>
+												{subscriptionResult?.message}
+											</FormMessage>
+										</FormItem>
+									)}
+								/>
+
+								<Button variant={"smooth"} type="submit" disabled={form.formState.isSubmitting} className="w-full">
+									{form.formState.isSubmitting ? <Spinner variant="activity" /> : "Get Product Updates"}
+								</Button>
+							</form>
+						</Form>
 					</div>
-
-					{/* Form Section */}
-					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5">
-							<FormField
-								control={form.control}
-								name="email"
-								render={({ field }) => (
-									<FormItem>
-										<Label htmlFor="email">Email address</Label>
-										<FormControl>
-											<Input id="email" placeholder="johndoe@radian.com" type="email" {...field} />
-										</FormControl>
-										<FormMessage className={cn({ "text-success-text": subscriptionResult?.status && subscriptionResult?.status >= 200 && subscriptionResult?.status < 400 })}>
-											{subscriptionResult?.message}
-										</FormMessage>
-									</FormItem>
-								)}
-							/>
-
-							<Button variant={"smooth"} type="submit" disabled={form.formState.isSubmitting} className="w-full">
-								{form.formState.isSubmitting ? <Spinner variant="activity" /> : "Get Product Updates"}
-							</Button>
-						</form>
-					</Form>
 				</div>
 			</DialogContent>
 		</Dialog>
