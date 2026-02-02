@@ -8,6 +8,7 @@ export type NavigationItem = {
 	isNew?: boolean
 	isUpdated?: boolean
 	isComingSoon?: boolean
+	disabled?: boolean
 	subItems?: NavigationItem[]
 }
 
@@ -138,6 +139,7 @@ const ANIMATIONS_ITEMS: NavigationItem[] = ["Fade", "Infinite Scroll", "Pointer"
 	title,
 	url: "#",
 	isComingSoon: true,
+	disabled: true,
 }))
 
 // ===== Fundamentals Items Mapping =====
