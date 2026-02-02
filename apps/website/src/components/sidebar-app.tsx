@@ -39,38 +39,48 @@ export default function Sidebar() {
 								<div className="bg-soft absolute bottom-0 left-0 top-0 w-px" />
 								{section.items.map((item) => {
 									const isActive = pathName === item.url
+									const content = (
+										<>
+											{/* Active indicator */}
+											{isActive && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
+
+											{/* Hover indicator */}
+											{!isActive && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+											<div className="flex items-center justify-between">
+												<span>{item.title}</span>
+												{item.isComingSoon && (
+													<Badge size="20" variant="soft" color="warning">
+														Coming Soon
+													</Badge>
+												)}
+												{item.isUpdated && (
+													<Badge size="20" variant="soft" color="info">
+														Updated
+													</Badge>
+												)}
+												{item.isNew && (
+													<Badge size="20" variant="soft" color="success">
+														New
+													</Badge>
+												)}
+											</div>
+										</>
+									)
+
 									return (
 										<li key={item.title} className="relative" ref={isActive ? activeItemRef : null}>
-											<Link
-												className={cn(
-													"text-fg-secondary hover:text-fg focus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
-													isActive ? "text-fg font-medium" : ""
-												)}
-												href={item.url}>
-												{/* Active indicator */}
-												{isActive && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
-
-												{/* Hover indicator */}
-												{!isActive && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
-												<div className="flex items-center justify-between">
-													<span>{item.title}</span>
-													{item.isComingSoon && (
-														<Badge size="20" variant="soft" color="warning">
-															Coming Soon
-														</Badge>
+											{item.disabled ? (
+												<div className={cn("text-fg-tertiary relative block cursor-not-allowed py-1.5 pl-3 text-sm")}>{content}</div>
+											) : (
+												<Link
+													className={cn(
+														"text-fg-secondary hover:text-fg focus-visible:inset-ring-border group relative block py-1.5 pl-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset",
+														isActive ? "text-fg font-medium" : ""
 													)}
-													{item.isUpdated && (
-														<Badge size="20" variant="soft" color="info">
-															Updated
-														</Badge>
-													)}
-													{item.isNew && (
-														<Badge size="20" variant="soft" color="success">
-															New
-														</Badge>
-													)}
-												</div>
-											</Link>
+													href={item.url}>
+													{content}
+												</Link>
+											)}
 										</li>
 									)
 								})}

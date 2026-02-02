@@ -230,9 +230,7 @@ export function ReuseComponent() {
 					repeat: Infinity,
 				}}>
 				<div className="w-90 relative flex h-[594px] flex-shrink-0 items-center justify-center">
-					<AnimatePresence>
-						<Signin />
-					</AnimatePresence>
+					<Signin />
 				</div>
 			</motion.div>
 		</div>
