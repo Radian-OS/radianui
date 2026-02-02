@@ -24,7 +24,7 @@ export const DATA = [
 	{
 		icon: Palette,
 		title: "Color Presets",
-		description: "Use predefined color palettes to maintain harmony and visual consistency",
+		description: "Use predefined color palettes to maintain harmony & visual consistency",
 	},
 	{
 		icon: GalleryVertical,
