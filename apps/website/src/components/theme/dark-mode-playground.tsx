@@ -7,7 +7,7 @@ const DarkModePlayground = () => {
 		border: "1px solid var(--color-border)",
 		height: "28px",
 		width: "28px",
-		backgroundImage: "url(/doc/chevrons-left-right.png)",
+		backgroundImage: "url(/doc/chevrons-left-right.svg)",
 		backgroundRepeat: "no-repeat",
 		backgroundPosition: "center",
 	}

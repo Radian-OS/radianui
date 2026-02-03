@@ -47,7 +47,7 @@ export default function FAQAccordion() {
 		<Accordion size="lg" type="single" className="w-full" collapsible variant="open">
 			{CONTENT.map(({ title, content, icon: Icon }) => (
 				<AccordionItem key={title} value={title}>
-					<AccordionTrigger>
+					<AccordionTrigger className="gap-2">
 						<div className="flex items-center gap-3">
 							<Icon size={24} strokeWidth={1.5} className="text-fg-secondary shrink-0" aria-hidden="true" />
 							<span>{title}</span>

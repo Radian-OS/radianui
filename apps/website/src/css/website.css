@@ -72,13 +72,14 @@
 	html {
 		scroll-behavior: smooth;
 	}
+
 	h1,
 	h2,
 	h3,
 	h4,
 	h5,
 	h6,
-	[class^="heading-"] {
+	:is(.heading-1, .heading-2, .heading-3, .heading-4, .heading-5, .heading-6) {
 		@apply tracking-[-0.01em];
 	}
 }
