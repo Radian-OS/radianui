@@ -195,7 +195,7 @@ const components = (examples: typeof Examples | undefined) => ({
 		return <AccordionItem {...props} />
 	},
 	AccordionTrigger: (props: AccordionTriggerProps) => {
-		return <AccordionTrigger {...props} />
+		return <AccordionTrigger className="gap-2" {...props} />
 	},
 	AccordionContent: (props: AccordionContentProps) => {
 		return <AccordionContent {...props} />
