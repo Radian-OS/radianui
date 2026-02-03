@@ -104,9 +104,9 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
 )
 
 const DotPattern = (props: SVGProps<SVGSVGElement>) => (
-	<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="244" height="130" viewBox="0 0 244 130" fill="none" {...props}>
-		<rect width="244" height="130" fill="url(#pattern0_6183_4429)" fillOpacity="0.1" />
-		<rect width="244" height="130" fill="url(#paint0_linear_6183_4429)" />
+	<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="260" height="130" viewBox="0 0 260 130" fill="none" {...props}>
+		<rect width="260" height="130" fill="url(#pattern0_6183_4429)" fillOpacity="0.1" />
+		<rect width="260" height="130" fill="url(#paint0_linear_6183_4429)" />
 		<defs>
 			<linearGradient id="paint0_linear_6183_4429" x1="122" y1="0" x2="122" y2="130" gradientUnits="userSpaceOnUse">
 				<stop offset="0.5" stopColor="var(--color-bg)" stopOpacity="0" />
