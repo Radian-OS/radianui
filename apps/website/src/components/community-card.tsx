@@ -104,23 +104,18 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
 )
 
 const DotPattern = (props: SVGProps<SVGSVGElement>) => (
-	<svg width={244} height={93} viewBox="0 0 244 93" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" {...props}>
-		<g
-			style={{
-				mixBlendMode: "darken",
-			}}>
-			<rect x={-5} width={259} height={93} fill="url(#pattern0_3077_106948)" />
-		</g>
+	<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="260" height="130" viewBox="0 0 260 130" fill="none" {...props}>
+		<rect width="260" height="130" fill="url(#pattern0_6183_4429)" fillOpacity="0.1" />
+		<rect width="260" height="130" fill="url(#paint0_linear_6183_4429)" />
 		<defs>
-			<pattern
-				id="pattern0_3077_106948"
-				patternUnits="userSpaceOnUse"
-				viewBox="17418 -43 10 10"
-				width="3.8610038610038608%"
-				height="10.75268817204301%"
-				x={128.5}
-				patternContentUnits="objectBoundingBox">
-				<rect x={17418} y={-43} width={2} height={2} rx={1} fill="#dfdfe2" className="fill-fill4" />
+			<linearGradient id="paint0_linear_6183_4429" x1="122" y1="0" x2="122" y2="130" gradientUnits="userSpaceOnUse">
+				<stop offset="0.5" stopColor="var(--color-bg)" stopOpacity="0" />
+				<stop offset="1" stopColor="var(--color-bg)" />
+			</linearGradient>
+			<pattern id="pattern0_6183_4429" patternUnits="userSpaceOnUse" patternTransform="matrix(10 0 0 10 121 0)" preserveAspectRatio="none" viewBox="0 0 10 10" width="1" height="1">
+				<g id="pattern0_6183_4429_inner">
+					<rect width="2" height="2" rx="1" fill="var(--color-fg)" />
+				</g>
 			</pattern>
 		</defs>
 	</svg>
@@ -130,7 +125,7 @@ export default function CommunityCard() {
 	return (
 		<div className="relative overflow-hidden rounded-xl border p-4">
 			{/* Dotted SVG background, full width */}
-			<div className="z-1 absolute left-0 top-0 h-24 w-full">
+			<div className="z-1 h-32.5 absolute left-0 top-0 w-full">
 				<DotPattern />
 			</div>
 
