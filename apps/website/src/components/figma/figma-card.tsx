@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react"
 
 const FigmaCard = () => {
 	return (
-		<div className="border-border bg-elevation-level1 flex w-full flex-col gap-8 rounded-lg border p-4">
+		<div className="border-border bg-elevation-level1 hover:bg-fill2 flex w-full flex-col gap-8 rounded-lg border p-4">
 			<div className="flex items-center justify-between">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 					<path
