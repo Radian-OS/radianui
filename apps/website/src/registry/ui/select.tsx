@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ReactNode, isValidElement } from "react"
+import { type ReactNode, isValidElement } from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
