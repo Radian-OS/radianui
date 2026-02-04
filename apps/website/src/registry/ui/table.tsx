@@ -44,7 +44,7 @@ function TableFooter({ className, ...props }: TableFooterProps) {
 TableFooter.displayName = "TableFooter"
 
 function TableRow({ className, ...props }: TableRowProps) {
-	return <tr data-slot="table-row" className={cn("[&:has(td):hover]:bg-fill2 data-[state=selected]:bg-primary-accent border-b transition-colors", className)} {...props} />
+	return <tr data-slot="table-row" className={cn("[&:has(td):hover]:bg-fill1 data-[state=selected]:bg-primary-accent border-b transition-colors", className)} {...props} />
 }
 TableRow.displayName = "TableRow"
 
