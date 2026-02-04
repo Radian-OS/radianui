@@ -144,7 +144,7 @@ const components = (examples: typeof Examples | undefined) => ({
 			aria-label="Link"
 			rel="noopener noreferrer"
 			target="_blank"
-			className={cn("text-primary hover:text-primary-hover font-medium underline underline-offset-4 transition-colors duration-200", className)}
+			className={cn("text-primary-text font-medium underline underline-offset-4 transition-colors duration-200", className)}
 			{...props}
 		/>
 	),
