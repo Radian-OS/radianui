@@ -3,6 +3,7 @@ import Link from "next/link"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import VideoDialogPreview from "./video/video-dialog-preview"
 
 export default function VideoSection() {
 	return (
@@ -49,9 +50,7 @@ export default function VideoSection() {
 				</svg>
 			</div>
 
-			<div className="border-soft bg-fill1 z-20 h-[400px] w-full max-w-[1440px] rounded-xl border p-4 lg:h-[800px]">
-				<div className="bg-bg border-border h-full w-full rounded-2xl border text-center">Video here</div>
-			</div>
+			<VideoDialogPreview />
 
 			<div className="z-20 flex w-full flex-col gap-3 md:w-fit md:flex-row">
 				<Button asChild className="w-full" variant="outline" color="neutral" size="40">
