@@ -110,8 +110,8 @@ export default function PlaygroundSection() {
 					</div>
 				</div>
 
-				<div className="bg-bg absolute -right-1 bottom-0 z-50 h-1/3 w-2" />
-				<div className="bg-bg absolute -left-1 bottom-0 z-50 h-1/3 w-2" />
+				<div className="bg-bg absolute -right-1 bottom-0 z-40 h-1/3 w-2" />
+				<div className="bg-bg absolute -left-1 bottom-0 z-40 h-1/3 w-2" />
 
 				{/* Right curve line */}
 				<svg
