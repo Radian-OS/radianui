@@ -67,7 +67,7 @@ export default function ComponentsSection() {
 				<div className="from-bg/4 to-bg absolute bottom-0 z-10 h-[150px] w-full bg-gradient-to-b" />
 			</div>
 
-			<Button variant="outline" color="neutral" className="z-50" asChild>
+			<Button variant="outline" color="neutral" className="z-40" asChild>
 				<Link href="/components">
 					<Component />
 					View all Components
