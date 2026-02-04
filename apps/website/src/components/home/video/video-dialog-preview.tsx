@@ -26,7 +26,7 @@ export default function VideoDialogPreview() {
 			</DialogTrigger>
 
 			{/* Dialog Content */}
-			<DialogContent backdrop="overlay" className="mx-2 w-full md:max-w-3xl">
+			<DialogContent backdrop="overlay" className="w-full max-w-3xl">
 				<DialogHeader>
 					<DialogTitle>Radian OS Demo Video</DialogTitle>
 					<DialogDescription>Watch the full demo on YouTube</DialogDescription>
@@ -38,7 +38,7 @@ export default function VideoDialogPreview() {
 						<iframe
 							className="absolute left-0 top-0 h-full w-full rounded-lg"
 							referrerPolicy="strict-origin-when-cross-origin"
-							src="https://www.youtube.com/embed/hFLP4i7Q0eM?si=Rmh6vjK2QUBpv4AD&autoplay=1&mute=1&rel=0&modestbranding=1"
+							src="https://www.youtube.com/embed/XeYZ6IauaMc?si=mzZLOA22F9MOSAyP"
 							title="Radian OS Demo"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							allowFullScreen
