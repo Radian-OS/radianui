@@ -50,7 +50,9 @@ export default function VideoSection() {
 			</div>
 
 			<div className="border-soft bg-fill1 z-20 h-[400px] w-full max-w-[1440px] rounded-xl border p-4 lg:h-[800px]">
-				<div className="bg-bg border-border h-full w-full rounded-2xl border text-center">Video here</div>
+				<div className="bg-bg border-border h-full w-full rounded-2xl border text-center">
+					<video className="h-full w-full rounded-2xl object-cover" src="/video/Radian-OS.mp4" autoPlay loop muted playsInline />
+				</div>
 			</div>
 
 			<div className="z-20 flex w-full flex-col gap-3 md:w-fit md:flex-row">
