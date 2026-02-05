@@ -125,9 +125,9 @@ const BLOCKS_DATA = [
 	{ title: "Sign In", category: "authentication" },
 	{ title: "Sign Up", category: "authentication" },
 	{ title: "Verification", category: "authentication" },
-	{ title: "Forgot Password", category: "authentication" },
-	{ title: "Reset Password", category: "authentication" },
-	{ title: "Hero Section", category: "website" },
+	{ title: "Password Reset", category: "authentication" },
+	{ title: "Reset Email Sent", category: "authentication" },
+	{ title: "New Password", category: "authentication" },
 ]
 const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(({ title, category }) => ({
 	title,
@@ -171,6 +171,6 @@ export const navigationItems: NavigationSection[] = [
 		searchIcon: "/search-icons/search-components.svg",
 		items: generateComponentsItems.sort((a, b) => a.title.localeCompare(b.title)),
 	},
-	{ title: "Blocks", searchIcon: "/search-icons/search-components.svg", items: BLOCKS_ITEMS },
+	{ title: "Blocks", searchIcon: "/search-icons/search-ui-blocks.svg", items: BLOCKS_ITEMS },
 	{ title: "Animations", searchIcon: "/search-icons/search-components.svg", items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)) },
 ]
