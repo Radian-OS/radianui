@@ -34,14 +34,14 @@ export default function ComponentsSection() {
 				<div className="not-xl:hidden bg-bg absolute -top-[70px] right-10 z-30 px-2">
 					<span className="text-fg-tertiary text-xs">
 						Press{" "}
-						<Badge variant="outline" color="neutral" className="text-fg-tertiary">
+						<Badge size="20" variant="outline" color="neutral" className="text-fg-tertiary">
 							CMD + K
 						</Badge>{" "}
 						To search for components
 					</span>
 				</div>
 
-				<svg className="not-xl:hidden -right-25 absolute bottom-[calc(91%)] z-20" xmlns="http://www.w3.org/2000/svg" width={999} height={98} viewBox="0 0 999 98" fill="none">
+				<svg className="not-xl:hidden -right-25 absolute bottom-[calc(93%)] z-20" xmlns="http://www.w3.org/2000/svg" width={999} height={98} viewBox="0 0 999 98" fill="none">
 					<defs>
 						<linearGradient id="lineGradient" x1="0" y1="0" x2="999" y2="0" gradientUnits="userSpaceOnUse">
 							<stop offset="0%" stopColor="color-mix(in srgb, var(--color-bg) 4%, transparent)" />
@@ -65,6 +65,7 @@ export default function ComponentsSection() {
 
 				{/* Gradient overlay */}
 				<div className="from-bg/4 to-bg absolute bottom-0 z-10 h-[150px] w-full bg-gradient-to-b" />
+				<div className="from-bg/4 to-bg absolute bottom-[-3.05rem] z-10 h-[50px] w-full bg-gradient-to-t" />
 			</div>
 
 			<Button variant="outline" color="neutral" className="z-40" asChild>

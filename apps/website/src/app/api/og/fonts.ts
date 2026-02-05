@@ -1,3 +1,4 @@
+import geistSemibold from "./fonts/geist-semibold.json"
 import interSemibold from "./fonts/inter-semibold.json"
 
 export type FontMap = Record<
@@ -16,6 +17,12 @@ const loadFontsRaw = async (): Promise<FontMap> => {
 		"inter-semibold": {
 			name: "Inter",
 			data: Buffer.from(interSemibold.base64, "base64"),
+			weight: 600,
+			style: "normal",
+		},
+		"geist-semibold": {
+			name: "Geist",
+			data: Buffer.from(geistSemibold.base64, "base64"),
 			weight: 600,
 			style: "normal",
 		},
