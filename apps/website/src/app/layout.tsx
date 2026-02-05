@@ -9,8 +9,8 @@ import { ToastProvider } from "@/contexts/toast-context"
 import "@/css/globals.css"
 import { cn } from "@/lib/utils"
 
-const geist = Geist({ subsets: ["latin"] })
-const inter = Inter({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist" })
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
 export const metadata: Metadata = {
 	title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
@@ -83,7 +83,7 @@ export default async function RootLayout({
 				<AhrefsAnalytics />
 				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 			</head>
-			<body className={cn("relative min-h-svh antialiased", geist.className, inter.className)}>
+			<body className={cn("relative min-h-svh antialiased", geist.variable, inter.variable)}>
 				<PostHogProvider>
 					<ToastProvider>
 						<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
