@@ -86,24 +86,24 @@ export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems
 			</div>
 			<div className="text-fg-tertiary hidden items-center gap-4 p-4 text-sm md:flex">
 				<div className="flex items-center gap-2">
-					<Badge size="20" className="text-fg-secondary uppercase">
+					<Badge size="20" className="uppercase" variant="outline" color="neutral">
 						<ArrowUp size={16} />
 					</Badge>
-					<Badge size="20" className="text-fg-secondary uppercase">
+					<Badge size="20" className="uppercase" variant="outline" color="neutral">
 						<ArrowDown size={16} />
 					</Badge>
 					<span>Navigate</span>
 				</div>
 				<div className="flex w-full justify-between">
 					<div className="flex items-center gap-2">
-						<Badge size="20" className="text-fg-secondary uppercase">
+						<Badge size="20" className="uppercase" variant="outline" color="neutral">
 							Enter
 						</Badge>
 						<span>Select</span>
 					</div>
 					<div className="flex items-center gap-2">
 						<span>Close</span>
-						<Badge size="20" className="text-fg-secondary uppercase">
+						<Badge size="20" className="uppercase" variant="outline" color="neutral">
 							ESC
 						</Badge>
 					</div>
