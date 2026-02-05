@@ -19,7 +19,8 @@ export const COMPONENTS_JSON_CONFIG = `{
   "hasSrcDir": true
 }`
 
-export const GLOBAL_CSS_V4 = `@import "tailwindcss";
+export const GLOBAL_CSS_V4 = `
+@import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -183,12 +184,14 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 	* {
 		border-color: var(--color-border);
 	}
+
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
 		--heading-font: "Geist", system-ui, sans-serif;
 		--body-font: "Inter", system-ui, sans-serif;
 	}
+
 	/* Safari button fix - prevents shrinking on hover */
 	button,
 	[role="button"],
@@ -221,7 +224,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 
 /* Heading 1 */
 @utility heading-1 {
-	@apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
+	@apply font-heading text-[2.25rem] font-semibold leading-[2.75rem];
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 3rem;
@@ -236,7 +239,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 
 /* Heading 2 */
 @utility heading-2 {
-	@apply font-heading text-[2rem] font-bold leading-[2.5rem];
+	@apply font-heading text-[2rem] font-semibold leading-[2.5rem];
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 2.5rem;
@@ -251,7 +254,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 
 /* Heading 3 */
 @utility heading-3 {
-	@apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
+	@apply font-heading text-[1.875rem] font-semibold leading-[2.375rem];
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 2.25rem;
@@ -266,7 +269,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 
 /* Heading 4 */
 @utility heading-4 {
-	@apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
+	@apply font-heading text-[1.75rem] font-semibold leading-[2.25rem];
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 1.875rem;
@@ -281,7 +284,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 
 /* Heading 5 */
 @utility heading-5 {
-	@apply font-heading text-[1.5rem] font-bold leading-[2rem];
+	@apply font-heading text-[1.5rem] font-semibold leading-[2rem];
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 1.5rem;
@@ -296,7 +299,7 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 
 /* Heading 6 */
 @utility heading-6 {
-	@apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
+	@apply font-heading text-[1.25rem] font-semibold leading-[1.75rem];
 
 	@media (width >=theme(--breakpoint-sm)) {
 		font-size: 1.25rem;
@@ -334,4 +337,5 @@ export const GLOBAL_CSS_V4 = `@import "tailwindcss";
 		/* Chrome, Safari and Opera */
 	}
 }
+
 `
