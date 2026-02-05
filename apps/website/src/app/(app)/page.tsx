@@ -38,7 +38,7 @@ export default function Page() {
 					</div>
 				</div>
 
-				<div className="mt-15 relative mx-auto h-[860px] max-w-[1400px]">
+				<div className="mt-15 relative mx-auto h-[760px] max-w-[1400px] sm:h-[860px]">
 					<HomeInteractive />
 
 					{/* Upper left line */}
