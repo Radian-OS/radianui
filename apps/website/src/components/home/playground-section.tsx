@@ -118,7 +118,7 @@ export default function PlaygroundSection() {
 					className="not-xl:hidden z-5 absolute bottom-1/2 left-[calc(100%+20px)]"
 					xmlns="http://www.w3.org/2000/svg"
 					width={80}
-					height={440}
+					height={420}
 					viewBox="0 -503 80 520"
 					fill="none">
 					<path d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503" stroke="var(--color-soft)" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
@@ -140,7 +140,7 @@ export default function PlaygroundSection() {
 					className="not-xl:hidden absolute bottom-1/2 right-[calc(100%+20px)] scale-x-[-1]"
 					xmlns="http://www.w3.org/2000/svg"
 					width={80}
-					height={440}
+					height={420}
 					viewBox="0 -503 80 520"
 					fill="none">
 					<path d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503" stroke="var(--color-soft)" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />

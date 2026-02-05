@@ -65,6 +65,7 @@ export default function ComponentsSection() {
 
 				{/* Gradient overlay */}
 				<div className="from-bg/4 to-bg absolute bottom-0 z-10 h-[150px] w-full bg-gradient-to-b" />
+				<div className="from-bg/4 to-bg absolute bottom-[-3.05rem] z-10 h-[50px] w-full bg-gradient-to-t" />
 			</div>
 
 			<Button variant="outline" color="neutral" className="z-40" asChild>
