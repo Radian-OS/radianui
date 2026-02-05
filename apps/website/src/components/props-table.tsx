@@ -109,7 +109,7 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 					{externalReference && (
 						<TableRow>
 							<TableCell className="max-w-[150px]">
-								<Link href={externalReference} className="text-primary flex items-center gap-2 text-sm font-medium" target="_blank" rel="noopener noreferrer">
+								<Link href={externalReference} className="text-primary-text flex items-center gap-2 text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
 									<ExternalLink size={16} />
 									<span className="flex-1">External Reference</span>
 								</Link>

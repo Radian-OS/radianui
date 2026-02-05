@@ -50,7 +50,7 @@ const switchVariants = cva(
 // Thumb Variants
 const switchThumbVariants = cva(
 	`
-  pointer-events-none block bg-white shadow-lg ring-0 transition-transform 
+  pointer-events-none bg-white shadow-lg ring-0 transition-transform 
   data-[state=unchecked]:translate-x-[3px]
   rtl:data-[state=unchecked]:-translate-x-[3px]
   rtl:data-[state=checked]:-translate-x-[calc(100%-3px)]

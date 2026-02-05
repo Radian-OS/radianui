@@ -31,8 +31,8 @@ export default function VideoSection() {
 					</div>
 				</div>
 
-				<div className="bg-bg absolute -right-[1px] bottom-0 z-50 h-1/3 w-2" />
-				<div className="bg-bg absolute -left-[1px] bottom-0 z-50 h-1/3 w-2" />
+				<div className="bg-bg absolute -right-[1px] bottom-0 z-40 h-1/3 w-2" />
+				<div className="bg-bg absolute -left-[1px] bottom-0 z-40 h-1/3 w-2" />
 
 				{/* Right curve line */}
 				<svg className="not-xl:hidden absolute bottom-1/2 left-[calc(100%+20px)]" xmlns="http://www.w3.org/2000/svg" width={80} height={520} viewBox="0 -503 80 520" fill="none">
