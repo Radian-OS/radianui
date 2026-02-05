@@ -167,8 +167,8 @@
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
-		--heading-font: "Geist", system-ui, sans-serif;
-		--body-font: "Inter", system-ui, sans-serif;
+		--heading-font: var(--font-geist), system-ui, sans-serif;
+		--body-font: var(--font-inter), system-ui, sans-serif;
 	}
 
 	/* Safari button fix - prevents shrinking on hover */

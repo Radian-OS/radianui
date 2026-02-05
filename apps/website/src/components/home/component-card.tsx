@@ -16,8 +16,8 @@ export default function ComponentCard({ thumbnail, thumbnailDark, title, descrip
 			<span className="sr-only">{title}</span>
 			<div className="flex w-full flex-col items-start gap-3">
 				<div className="bg-fill2 flex w-full justify-center rounded-md">
-					<Image width={200} height={200} alt={alt} src={thumbnail} className="max-h-[228x] max-w-[282px] dark:hidden" />
-					<Image width={200} height={200} alt={alt} src={thumbnailDark} className="hidden max-h-[228px] max-w-[282px] dark:block" />
+					<Image width={282} height={228} alt={alt} src={thumbnail} className="max-h-[228x] max-w-[282px] dark:hidden" />
+					<Image width={282} height={228} alt={alt} src={thumbnailDark} className="hidden max-h-[228px] max-w-[282px] dark:block" />
 				</div>
 				<div className="flex flex-col gap-1 text-sm">
 					<p className="text-fg font-semibold">{title}</p>

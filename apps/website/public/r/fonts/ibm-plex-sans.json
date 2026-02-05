@@ -1,7 +1,7 @@
 {
     "name": "ibm-plex-sans",
     "label": "IBM Plex Sans",
-    "importURL": "https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap",
+    "importURL": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap",
     "cssVariables": {
         "heading-font": "IBM Plex Sans",
         "body-font": "IBM Plex Sans"

@@ -18,7 +18,7 @@ export default function WelcomeEmailTemplate({ baseUrl, id }: { baseUrl: string;
 						fontStyle="normal"
 					/>
 				</Head>
-				<Body>
+				<Body className="bg-bg">
 					<Container className="max-w-150 my-3">
 						{/* Welcome To The Community Section */}
 						<Section>

@@ -34,7 +34,7 @@ export default function ComponentsSection() {
 				<div className="not-xl:hidden bg-bg absolute -top-[70px] right-10 z-30 px-2">
 					<span className="text-fg-tertiary text-xs">
 						Press{" "}
-						<Badge variant="outline" color="neutral" className="text-fg-tertiary">
+						<Badge size="20" variant="outline" color="neutral" className="text-fg-tertiary">
 							CMD + K
 						</Badge>{" "}
 						To search for components
@@ -64,10 +64,11 @@ export default function ComponentsSection() {
 				</div>
 
 				{/* Gradient overlay */}
-				<div className="from-bg/4 to-bg absolute bottom-0 z-30 h-[150px] w-full bg-gradient-to-b" />
+				<div className="from-bg/4 to-bg absolute bottom-0 z-10 h-[150px] w-full bg-gradient-to-b" />
+				<div className="from-bg/4 to-bg absolute bottom-[-4.35rem] z-10 h-[70px] w-full bg-gradient-to-t" />
 			</div>
 
-			<Button variant="outline" color="neutral" className="z-50" asChild>
+			<Button variant="outline" color="neutral" className="z-40" asChild>
 				<Link href="/components">
 					<Component />
 					View all Components

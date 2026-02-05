@@ -12,13 +12,14 @@ export async function GET(request: NextRequest) {
 	return new ImageResponse(
 		(
 			<>
+				{/* Background Image */}
 				<div
 					style={{
 						height: "630px",
 						width: "1200px",
 						display: "flex",
 						backgroundImage: `url('${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-bg.png')`,
-						backgroundSize: "cover",
+						backgroundSize: "100% 100%",
 						backgroundPosition: "center",
 						backgroundRepeat: "no-repeat",
 						position: "relative",
@@ -27,37 +28,35 @@ export async function GET(request: NextRequest) {
 						boxSizing: "border-box",
 					}}>
 					{/* Left side with logo and dynamic text */}
+
 					<div
 						style={{
+							position: "relative",
+							width: "40%",
+							top: "302px",
+							left: "100px",
 							display: "flex",
 							flexDirection: "column",
-							width: "60%",
-							height: "100%",
-							padding: "100px",
-							justifyContent: "center",
+							gap: "48px",
 							boxSizing: "border-box",
 						}}>
 						{/* Logo */}
-						<div
-							style={{
-								display: "flex",
-								alignItems: "center",
-								marginBottom: "41px",
-							}}>
-							<img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-logo.png`} alt="radian-logo" width="150" height="36" />
-						</div>
+						<img src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-logo.png`} alt="radian-logo" height="48" />
+
 						{/* Dynamic Title */}
 						<h1
 							style={{
 								fontSize: "64px",
+								letterSpacing: "-0.64px",
 								fontWeight: 600,
 								lineHeight: "72px",
-								fontFamily: "Inter",
-								background: "linear-gradient(95.81deg, #737682, #ffffff 47.6%, #737682)",
+								fontFamily: "Geist",
+								background: "linear-gradient(0deg, #444A6B 0%, #26272C 100%)",
 								backgroundClip: "text",
 								WebkitBackgroundClip: "text",
 								color: "transparent",
 								WebkitTextFillColor: "transparent",
+								margin: 0,
 							}}>
 							{title}
 						</h1>
@@ -68,14 +67,14 @@ export async function GET(request: NextRequest) {
 					src={`${process.env.NEXT_PUBLIC_WEBSITE_URL}/og/dynamic-og-image.png`}
 					alt="og-image"
 					style={{
-						height: "561px",
-						width: "956px",
+						height: "558px",
+						width: "900px",
 						position: "absolute",
-						right: "-431px",
-						top: "120px",
+						right: "-347px",
+						top: "147px",
 					}}
-					width={956}
-					height={561}
+					width={900}
+					height={558}
 				/>
 			</>
 		),

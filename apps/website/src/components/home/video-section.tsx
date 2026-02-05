@@ -3,6 +3,7 @@ import Link from "next/link"
 import { BorderBeam } from "@/registry/animated/border-beam"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import VideoDialogPreview from "./video/video-dialog-preview"
 
 export default function VideoSection() {
 	return (
@@ -30,8 +31,8 @@ export default function VideoSection() {
 					</div>
 				</div>
 
-				<div className="bg-bg absolute -right-[1px] bottom-0 z-50 h-1/3 w-2" />
-				<div className="bg-bg absolute -left-[1px] bottom-0 z-50 h-1/3 w-2" />
+				<div className="bg-bg absolute -right-[1px] bottom-0 z-40 h-1/3 w-2" />
+				<div className="bg-bg absolute -left-[1px] bottom-0 z-40 h-1/3 w-2" />
 
 				{/* Right curve line */}
 				<svg className="not-xl:hidden absolute bottom-1/2 left-[calc(100%+20px)]" xmlns="http://www.w3.org/2000/svg" width={80} height={520} viewBox="0 -503 80 520" fill="none">
@@ -49,9 +50,7 @@ export default function VideoSection() {
 				</svg>
 			</div>
 
-			<div className="border-soft bg-fill1 z-20 h-[400px] w-full max-w-[1440px] rounded-xl border p-4 lg:h-[800px]">
-				<div className="bg-bg border-border h-full w-full rounded-2xl border text-center">Video here</div>
-			</div>
+			<VideoDialogPreview />
 
 			<div className="z-20 flex w-full flex-col gap-3 md:w-fit md:flex-row">
 				<Button asChild className="w-full" variant="outline" color="neutral" size="40">
