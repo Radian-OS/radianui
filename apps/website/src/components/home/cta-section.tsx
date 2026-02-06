@@ -53,7 +53,7 @@ export default function CTASection() {
 			<FlickeringGrid className="absolute left-0 top-0 z-10 h-[calc(100%+12px)]" squareSize={4} gridGap={6} color="#6B7280" maxOpacity={0.4} flickerChance={0.2} />
 
 			{/* Small gradient to soften the sharp bottom border */}
-			<div className="to-bg/95 absolute inset-x-0 -bottom-2 z-30 h-6 bg-gradient-to-b from-transparent to-90%"></div>
+			{/* <div className="to-bg/95 absolute inset-x-0 -bottom-2 z-30 h-6 bg-gradient-to-b from-transparent to-90%"></div> */}
 		</div>
 	)
 }
