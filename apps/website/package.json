@@ -58,6 +58,7 @@
 		"@react-email/components": "^1.0.1",
 		"@react-email/render": "^2.0.0",
 		"@tanstack/react-table": "^8.21.2",
+		"@tanstack/react-virtual": "^3.13.18",
 		"@types/country-flag-icons": "^1.2.2",
 		"@types/fs-extra": "^11.0.4",
 		"@types/mdx": "^2.0.13",
