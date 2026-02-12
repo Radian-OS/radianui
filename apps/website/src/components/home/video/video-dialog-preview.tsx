@@ -11,16 +11,23 @@ export default function VideoDialogPreview() {
 		<Dialog
 			onOpenChange={(open) => {
 				if (backgroundVideoRef.current) {
-					if (open)
-						backgroundVideoRef.current.pause() // pause background video
-					else backgroundVideoRef.current.play() // resume when dialog closes
+					if (open) {
+						backgroundVideoRef.current.pause()
+					} else {
+						// Explicitly play with error handling for Safari
+						backgroundVideoRef.current.play().catch((error) => {
+							console.log("Autoplay failed:", error)
+						})
+					}
 				}
 			}}>
 			{/* Trigger */}
 			<DialogTrigger asChild>
 				<div className="border-soft bg-bg z-20 w-full max-w-[1440px] cursor-pointer rounded-2xl p-0 sm:border sm:p-3">
 					<AspectRatio ratio={16 / 9} className="bg-bg border-soft overflow-hidden rounded-2xl border">
-						<video ref={backgroundVideoRef} className="h-full w-full rounded-2xl object-cover" src="/video/Radian-OS.mp4" autoPlay loop muted playsInline />
+						<video ref={backgroundVideoRef} autoPlay loop muted playsInline className="h-full w-full rounded-2xl object-cover">
+							<source src="/video/Radian-OS.mp4" type="video/mp4" />
+						</video>
 					</AspectRatio>
 				</div>
 			</DialogTrigger>
