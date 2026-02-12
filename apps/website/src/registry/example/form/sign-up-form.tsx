@@ -112,10 +112,10 @@ export default function SignUp() {
 									name="password"
 									render={({ field }: { field: FieldValues }) => (
 										<FormItem>
-											<FormLabel htmlFor="sign-in-password">Password</FormLabel>
+											<FormLabel htmlFor="sign-up-password">Password</FormLabel>
 											<FormControl>
 												<InputWrapper>
-													<Input id="sign-in-password" placeholder="Enter your password" type={showPassword ? "text" : "password"} {...field} />
+													<Input id="sign-up-password" placeholder="Enter your password" type={showPassword ? "text" : "password"} {...field} />
 													<IconComponent
 														className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 														onMouseDown={togglePasswordVisibility}
