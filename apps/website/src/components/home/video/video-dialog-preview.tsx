@@ -1,12 +1,32 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { Dialog, DialogBody, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 
 export default function VideoDialogPreview() {
 	const backgroundVideoRef = useRef<HTMLVideoElement>(null)
 
+	useEffect(() => {
+		const video = backgroundVideoRef.current
+		if (!video) return
+
+		// Log video state
+		console.log("Video ready state:", video.readyState)
+		console.log("Video paused:", video.paused)
+
+		video.addEventListener("loadedmetadata", () => {
+			console.log("Metadata loaded")
+			video
+				.play()
+				.then(() => console.log("Playing!"))
+				.catch((e) => console.error("Play failed:", e.message))
+		})
+
+		video.addEventListener("error", (e) => {
+			console.error("Video error:", e)
+		})
+	}, [])
 	return (
 		<Dialog
 			onOpenChange={(open) => {
