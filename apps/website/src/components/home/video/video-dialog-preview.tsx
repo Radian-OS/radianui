@@ -1,11 +1,19 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { Dialog, DialogBody, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 
 export default function VideoDialogPreview() {
 	const backgroundVideoRef = useRef<HTMLVideoElement>(null)
+
+	useEffect(() => {
+		const video = backgroundVideoRef.current
+		if (!video) return
+
+		video.muted = true // IMPORTANT for Safari
+		video.play().catch(() => {})
+	}, [])
 
 	return (
 		<Dialog
