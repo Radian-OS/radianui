@@ -49,7 +49,9 @@ export default function VideoSection() {
 					<path d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503" stroke="var(--color-soft)" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
 				</svg>
 			</div>
-
+			<video autoPlay loop muted playsInline className="h-full w-full rounded-2xl object-cover">
+				<source src="/video/Radian-OS.mp4" type="video/mp4" />
+			</video>
 			<VideoDialogPreview />
 
 			<div className="z-20 flex w-full flex-col gap-3 md:w-fit md:flex-row">
