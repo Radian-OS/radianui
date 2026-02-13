@@ -1,11 +1,12 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { Dialog, DialogBody, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
 
 export default function VideoDialogPreview() {
 	const backgroundVideoRef = useRef<HTMLVideoElement>(null)
+	const [hasInteracted, setHasInteracted] = useState(false)
 
 	useEffect(() => {
 		const video = backgroundVideoRef.current
@@ -13,10 +14,11 @@ export default function VideoDialogPreview() {
 
 		const attemptPlay = async () => {
 			try {
-				// Safari requires these attributes to be set programmatically
 				video.muted = true
 				video.playsInline = true
+				video.defaultMuted = true
 
+				await video.load() // Force reload
 				await video.play()
 				console.log("Playing!")
 			} catch (e) {
@@ -24,23 +26,21 @@ export default function VideoDialogPreview() {
 			}
 		}
 
-		// Small delay to ensure video element is fully ready
-		const timer = setTimeout(() => {
-			if (video.readyState >= 2) {
-				console.log("Video already loaded, playing now")
-				attemptPlay()
-			} else {
-				console.log("Waiting for metadata...")
-				video.addEventListener("loadeddata", attemptPlay, { once: true })
-			}
-		}, 100)
-
-		video.addEventListener("error", (e) => {
-			console.error("Video error:", e)
-		})
+		// Try to play after a delay
+		const timer = setTimeout(attemptPlay, 150)
 
 		return () => clearTimeout(timer)
 	}, [])
+
+	// Trigger play on any user interaction
+	const handleInteraction = () => {
+		if (!hasInteracted && backgroundVideoRef.current) {
+			setHasInteracted(true)
+			const video = backgroundVideoRef.current
+			video.muted = true
+			video.play().catch(console.error)
+		}
+	}
 
 	return (
 		<Dialog
@@ -49,7 +49,6 @@ export default function VideoDialogPreview() {
 					if (open) {
 						backgroundVideoRef.current.pause()
 					} else {
-						// Ensure muted when resuming
 						backgroundVideoRef.current.muted = true
 						backgroundVideoRef.current.play().catch((error) => {
 							console.log("Autoplay failed:", error)
@@ -58,9 +57,21 @@ export default function VideoDialogPreview() {
 				}
 			}}>
 			<DialogTrigger asChild>
-				<div className="border-soft bg-bg z-20 w-full max-w-[1440px] cursor-pointer rounded-2xl p-0 sm:border sm:p-3">
+				<div
+					className="border-soft bg-bg z-20 w-full max-w-[1440px] cursor-pointer rounded-2xl p-0 sm:border sm:p-3"
+					onMouseEnter={handleInteraction}
+					onTouchStart={handleInteraction}
+					onClick={handleInteraction}>
 					<AspectRatio ratio={16 / 9} className="bg-bg border-soft overflow-hidden rounded-2xl border">
-						<video ref={backgroundVideoRef} loop muted playsInline preload="auto" className="h-full w-full rounded-2xl object-cover">
+						<video
+							ref={backgroundVideoRef}
+							loop
+							muted
+							playsInline
+							preload="auto"
+							webkit-playsinline="true"
+							x5-playsinline="true"
+							className="h-full w-full rounded-2xl object-cover">
 							<source src="/video/Radian-OS.mp4" type="video/mp4" />
 						</video>
 					</AspectRatio>
