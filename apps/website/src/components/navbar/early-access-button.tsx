@@ -21,7 +21,6 @@ function useGithubStars(repo = REPO_NAME) {
 				if (response.ok) {
 					const data = await response.json()
 					if (data?.stargazers_count) {
-						console.log("GitHub stars fetched:", data.stargazers_count)
 						setStars(data.stargazers_count)
 					}
 				}
