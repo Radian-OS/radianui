@@ -1,5 +1,11 @@
 # radianui
 
+## 0.1.3
+
+### Patch Changes
+
+- global.css template updated
+
 ## 0.1.2
 
 ### Patch Changes

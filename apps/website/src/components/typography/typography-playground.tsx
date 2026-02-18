@@ -11,7 +11,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 export const FONTS: Record<string, string> = {
 	Inter: inter.className,
-	"Inter Display": `${inter.className} tracking-tight`,
 	Roboto: roboto.className,
 	"Open Sans": openSans.className,
 	Manrope: manrope.className,
@@ -26,7 +25,7 @@ export const FONTS: Record<string, string> = {
 }
 
 export default function TypographyPlayground() {
-	const [selectedFont, setSelectedFont] = useState<string>("Inter Display")
+	const [selectedFont, setSelectedFont] = useState<string>("Geist")
 
 	return (
 		<Tabs defaultValue="desktop">
@@ -61,7 +60,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
 						</Badge>
-						<span className={`text-5xl font-bold leading-[3.5rem]`}>Levy Chronicles</span>
+						<span className={`text-5xl font-semibold leading-[3.5rem]`}>Levy Chronicles</span>
 						<p className="text-fg-secondary">
 							In a seafaring empire, the treasury ran thin after a winter of failed harvests and costly patrols. The regent&apos;s council needed revenue fast, and the merchant
 							guild refused new tariffs on grain or sailcloth.
@@ -71,7 +70,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 4
 						</Badge>
-						<span className={`text-[2rem] font-bold leading-[2.5rem]`}>The Regent&apos;s Edict</span>
+						<span className={`text-[2rem] font-semibold leading-[2.5rem]`}>The Regent&apos;s Edict</span>
 						<p className="text-fg-secondary">
 							Within a week, heralds posted notices along the docks. No ship could depart without a stamped chart, and every chart would carry a fee. The regent called it a fair
 							contribution from those who profit from the sea.
@@ -143,7 +142,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
 						</Badge>
-						<span className={`text-[2.5rem] font-bold leading-[3rem]`}>Levy Chronicles</span>
+						<span className={`text-[2.5rem] font-semibold leading-[3rem]`}>Levy Chronicles</span>
 						<p className="text-fg-secondary">
 							In a seafaring empire, the treasury ran thin after a winter of failed harvests and costly patrols. The regent&apos;s council needed revenue fast, and the merchant
 							guild refused new tariffs on grain or sailcloth.
@@ -153,7 +152,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 4
 						</Badge>
-						<span className={`text-[1.875rem] font-bold leading-[2.375rem]`}>The Regent&apos;s Edict</span>
+						<span className={`text-[1.875rem] font-semibold leading-[2.375rem]`}>The Regent&apos;s Edict</span>
 						<p className="text-fg-secondary">
 							Within a week, heralds posted notices along the docks. No ship could depart without a stamped chart, and every chart would carry a fee. The regent called it a fair
 							contribution from those who profit from the sea.
@@ -225,7 +224,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 2
 						</Badge>
-						<span className={`text-[2.25rem] font-bold leading-[2.75rem]`}>Levy Chronicles</span>
+						<span className={`text-[2.25rem] font-semibold leading-[2.75rem]`}>Levy Chronicles</span>
 						<p className="text-fg-secondary">
 							In a seafaring empire, the treasury ran thin after a winter of failed harvests and costly patrols. The regent&apos;s council needed revenue fast, and the merchant
 							guild refused new tariffs on grain or sailcloth.
@@ -235,7 +234,7 @@ export default function TypographyPlayground() {
 						<Badge variant="soft" color="primary" size="24">
 							Heading 4
 						</Badge>
-						<span className={`text-[1.75rem] font-bold leading-[2.25rem]`}>The Regent&apos;s Edict</span>
+						<span className={`text-[1.75rem] font-semibold leading-[2.25rem]`}>The Regent&apos;s Edict</span>
 						<p className="text-fg-secondary">
 							Within a week, heralds posted notices along the docks. No ship could depart without a stamped chart, and every chart would carry a fee. The regent called it a fair
 							contribution from those who profit from the sea.

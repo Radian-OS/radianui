@@ -102,6 +102,10 @@ const nextConfig = {
 				pathname: "/photo/**",
 				search: "",
 			},
+			{
+				protocol: "https",
+				hostname: "images.unsplash.com",
+			},
 		],
 	},
 	compiler: {

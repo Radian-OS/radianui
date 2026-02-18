@@ -1,9 +1,14 @@
 import React from "react"
 import { ArrowUpRight } from "lucide-react"
+import Link from "next/link"
 
 const FigmaCard = () => {
 	return (
-		<div className="border-border bg-elevation-level1 hover:bg-fill2 flex w-full flex-col gap-8 rounded-lg border p-4">
+		<Link
+			href="https://www.figma.com/community/file/1601125934366184350/radian-design-system-version-0-1-2"
+			target="_blank"
+			rel="noopener noreferrer"
+			className="border-border bg-elevation-level1 hover:bg-fill2 flex w-full flex-col gap-8 rounded-lg border p-4">
 			<div className="flex items-center justify-between">
 				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
 					<path
@@ -21,10 +26,10 @@ const FigmaCard = () => {
 				<ArrowUpRight size={20} className="text-fg-tertiary" />
 			</div>
 			<div className="flex flex-col gap-1 px-0.5">
-				<p className="text-fg-secondary font-medium leading-5">Get Radian Design System Kit Figma</p>
+				<p className="text-fg font-medium leading-5">Get Radian Design System Kit Figma</p>
 				<p className="text-fg-tertiary font-normal leading-5">radianos.com/figma</p>
 			</div>
-		</div>
+		</Link>
 	)
 }
 

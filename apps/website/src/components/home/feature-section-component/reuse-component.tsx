@@ -1,15 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { AnimatePresence, motion, useAnimationControls, useSpring } from "motion/react"
-import Link from "next/link"
-import { useForm } from "react-hook-form"
-import { Button } from "@/registry/ui/button"
-import { Checkbox } from "@/registry/ui/checkbox"
-import { Divider } from "@/registry/ui/divider"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
-import { GithubIcon } from "../block/components/github-icon"
-import { GoogleIcon } from "../block/components/google-icon"
-import PlaygroundLogo from "../playground-logo"
+import Image from "next/image"
 
 export function ReuseComponent() {
 	const containerRef = useRef<HTMLDivElement>(null)
@@ -39,25 +30,6 @@ export function ReuseComponent() {
 		setCenterCardIndex(cardIndex)
 	}
 
-	// Start continuous up-down animation
-	const startFloatingAnimation = async () => {
-		// First, smoothly move to starting position if not already there
-		await controls.start({
-			y: 0,
-			transition: { duration: 2, ease: "easeOut" },
-		})
-
-		// Then start the infinite loop
-		controls.start({
-			y: [0, -350, 0],
-			transition: {
-				duration: 8,
-				repeat: Infinity,
-				ease: "easeInOut",
-			},
-		})
-	}
-
 	useEffect(() => {
 		const container = containerRef.current
 		if (container) {
@@ -67,7 +39,6 @@ export function ReuseComponent() {
 			scrollX.set(initialScroll)
 		}
 
-		startFloatingAnimation()
 		calculateCenterCard()
 	}, [])
 
@@ -79,7 +50,6 @@ export function ReuseComponent() {
 			// When velocity is near zero, animation is complete
 			if (Math.abs(velocity) < 1 && isAnimating) {
 				setIsAnimating(false)
-				startFloatingAnimation()
 			}
 		})
 
@@ -161,13 +131,55 @@ export function ReuseComponent() {
 
 	// Cards data - you can modify this array as needed
 	const cards = [
-		{ id: 0, type: "empty" },
-		{ id: 1, type: "empty" },
-		{ id: 2, type: "signin" },
-		{ id: 3, type: "empty" },
-		{ id: 4, type: "empty" },
-		{ id: 5, type: "empty" },
-		{ id: 6, type: "empty" },
+		{
+			id: 0,
+			type: {
+				darkmode: "",
+				lightmode: "",
+			},
+		},
+		{
+			id: 1,
+			type: {
+				darkmode: "",
+				lightmode: "",
+			},
+		},
+		{
+			id: 2,
+			type: {
+				darkmode: "",
+				lightmode: "",
+			},
+		},
+		{
+			id: 3,
+			type: {
+				darkmode: "/reuseable-ui/dark-mode3.png",
+				lightmode: "/reuseable-ui/light-mode3.png",
+			},
+		},
+		{
+			id: 4,
+			type: {
+				darkmode: "/reuseable-ui/dark-mode2.png",
+				lightmode: "/reuseable-ui/light-mode2.png",
+			},
+		},
+		{
+			id: 5,
+			type: {
+				darkmode: "/reuseable-ui/dark-mode1.png",
+				lightmode: "/reuseable-ui/light-mode1.png",
+			},
+		},
+		{
+			id: 6,
+			type: {
+				darkmode: "",
+				lightmode: "",
+			},
+		},
 	]
 
 	return (
@@ -186,7 +198,7 @@ export function ReuseComponent() {
 					<div
 						onMouseMove={(e) => handleMouseMove(e, card.id)}
 						key={card.id}
-						className={`w-90 relative flex h-[594px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
+						className={`w-90 relative flex h-[580px] flex-shrink-0 flex-col items-center justify-center transition-all duration-300`}>
 						<AnimatePresence mode="sync">
 							{centerCardIndex === index - 2 ? (
 								<motion.div
@@ -198,21 +210,40 @@ export function ReuseComponent() {
 										duration: 0.5,
 										ease: "linear",
 									}}
-									className="absolute inset-0 flex items-center justify-center">
-									<Signin />
+									className="absolute inset-0 flex items-start justify-center">
+									{card.type.darkmode && <Image unoptimized src={card.type.darkmode} className="not-dark:hidden" alt="Dark Mode" width={360} height={594} />}
+									{card.type.lightmode && <Image unoptimized src={card.type.lightmode} className="dark:hidden" alt="Light Mode" width={360} height={594} />}
 								</motion.div>
 							) : (
-								<motion.div
-									key={`empty-${index}`}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									transition={{
-										duration: 0.5,
-										ease: "linear",
-									}}
-									className="w-90 bg-fill1 absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8"
-								/>
+								<>
+									{!card.type.darkmode || !card.type.lightmode ? (
+										<motion.div
+											key={`empty1-${index}`}
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											transition={{
+												duration: 0.5,
+												ease: "linear",
+											}}
+											className="w-90 bg-fill1 absolute inset-0 flex flex-col items-center justify-center rounded-2xl border-2 border-dotted px-6 py-8 opacity-10"
+										/>
+									) : (
+										<motion.div
+											key={`empty-${index}`}
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											exit={{ opacity: 0 }}
+											transition={{
+												duration: 0.5,
+												ease: "linear",
+											}}
+											className="absolute inset-0 flex items-start justify-center">
+											{card.type.darkmode && <Image unoptimized src={card.type.darkmode} className="not-dark:hidden opacity-20" alt="Dark Mode" width={360} height={594} />}
+											{card.type.lightmode && <Image unoptimized src={card.type.lightmode} className="opacity-20 dark:hidden" alt="Light Mode" width={360} height={594} />}
+										</motion.div>
+									)}
+								</>
 							)}
 						</AnimatePresence>
 					</div>
@@ -222,112 +253,18 @@ export function ReuseComponent() {
 			<motion.div
 				className="relative z-0 flex items-center justify-center overflow-hidden sm:hidden"
 				animate={{
-					y: [0, -350, 0],
+					y: [-50, -150, -50],
 				}}
 				transition={{
-					duration: 8,
+					duration: 4,
 					ease: "easeInOut",
 					repeat: Infinity,
 				}}>
-				<div className="w-90 relative flex h-[594px] flex-shrink-0 items-center justify-center">
-					<Signin />
+				<div className="w-90 relative flex h-[520px] flex-shrink-0 items-center justify-center">
+					<Image src="/reuseable-ui/dark-mode1.png" className="not-dark:hidden" alt="Dark Mode 1" width={360} height={594} />
+					<Image src="/reuseable-ui/light-mode1.png" className="dark:hidden" alt="Dark Mode 1" width={360} height={594} />
 				</div>
 			</motion.div>
-		</div>
-	)
-}
-
-const Signin = () => {
-	const form = useForm()
-
-	return (
-		<div className="w-90 bg-bg border-soft z-0 flex flex-shrink-0 select-none rounded-2xl border px-6 py-8">
-			<div className="flex flex-1 flex-col gap-6">
-				<div>
-					<PlaygroundLogo />
-				</div>
-				<div className="flex flex-col gap-2">
-					<h1 className="heading-5">Sign In</h1>
-					<p className="text-fg-secondary text-sm">Welcome! Sign in to continue</p>
-				</div>
-				<div className="flex flex-1 flex-col gap-6">
-					<div className="flex gap-3">
-						<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
-							<GoogleIcon />
-							Google
-						</Button>
-						<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
-							<GithubIcon />
-							Github
-						</Button>
-					</div>
-					<div className="flex items-center gap-2">
-						<Divider className="flex-1" />
-						<span className="text-fg-secondary whitespace-nowrap text-sm font-medium">Or continue with</span>
-						<Divider className="flex-1" />
-					</div>
-				</div>
-				<Form {...form}>
-					<form>
-						<div className="flex flex-col gap-5">
-							<FormField
-								control={form.control}
-								name="email"
-								render={() => (
-									<FormItem>
-										<FormLabel>Email Address</FormLabel>
-										<FormControl>
-											<Input size="36" type="email" />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name="password"
-								render={() => (
-									<FormItem>
-										<FormLabel>Password</FormLabel>
-										<FormControl>
-											<Input size="36" type="password" />
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<div className="flex items-center justify-between">
-								<FormField
-									control={form.control}
-									name="rememberMe"
-									render={() => (
-										<div className="flex items-center gap-2">
-											<FormControl>
-												<Checkbox id="remember-me" />
-											</FormControl>
-											<FormLabel htmlFor="remember-me" className="text-fg-secondary font-normal">
-												Remember me
-											</FormLabel>
-										</div>
-									)}
-								/>
-								<Button variant="link" asChild color="primary">
-									<Link href="#">Forgot Password?</Link>
-								</Button>
-							</div>
-							<Button className="w-full" type="submit">
-								Sign In
-							</Button>
-						</div>
-					</form>
-				</Form>
-				<p className="text-fg text-center text-sm">
-					Don&apos;t have an account?{" "}
-					<Button variant="link" asChild color="primary">
-						<Link href="#">Create account</Link>
-					</Button>
-				</p>
-			</div>
 		</div>
 	)
 }

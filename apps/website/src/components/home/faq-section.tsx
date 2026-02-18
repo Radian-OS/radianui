@@ -44,6 +44,17 @@ export default function FAQSection() {
 						strokeWidth="1"
 						fill="none"
 					/>
+					<path
+						id="beamPath"
+						d="M 0 0 L -65 0 C -76 5 -81 15 -80 32 L -80 231 C -75 248 -64 258 -48 256 L 178 256 C 200 256 212 262 220 272 L 276 341"
+						strokeWidth="1"
+						fill="none"
+						stroke="var(--color-primary)"
+						strokeLinecap="round"
+						className="animate-[var(--animate-beam-flow4)] opacity-0 [stroke-dasharray:20_1000] [stroke-dashoffset:0]"
+						vectorEffect="non-scaling-stroke"
+						pathLength="400"
+					/>
 				</svg>
 			</div>
 			<div className="max-w-360 flex w-full flex-col gap-12 lg:flex-row">

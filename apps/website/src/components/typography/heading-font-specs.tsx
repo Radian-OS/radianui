@@ -51,7 +51,7 @@ const HeadingFontSpecs = () => {
 							{headings.map(({ name, size, lineHeight }, index) => (
 								<div key={name} className={`flex flex-col gap-2 ${index !== headings.length - 1 ? "border-b pb-4" : ""}`}>
 									<span
-										className="font-bold"
+										className="font-semibold"
 										style={{
 											fontSize: `${size}px`,
 											lineHeight: `${lineHeight}px`,
@@ -63,7 +63,7 @@ const HeadingFontSpecs = () => {
 											Font Size: {size}px
 										</Badge>
 										<Badge color="neutral" variant="outline">
-											Weight: Bold
+											Weight: Semi Bold
 										</Badge>
 										<Badge color="neutral" variant="outline">
 											Line Height: {lineHeight}px
