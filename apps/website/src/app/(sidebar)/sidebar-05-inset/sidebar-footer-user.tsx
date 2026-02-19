@@ -9,7 +9,7 @@ export function SidebarFooterUser() {
 	const { isMobile } = useSidebar()
 
 	return (
-		<SidebarMenu className="group-data-[state=collapsed]:items-center group-data-[state=collapsed]:pl-1">
+		<SidebarMenu className="group-data-[state=collapsed]:pl-3">
 			<SidebarMenuItem className="p-2">
 				<Dropdown>
 					<DropdownTrigger asChild>

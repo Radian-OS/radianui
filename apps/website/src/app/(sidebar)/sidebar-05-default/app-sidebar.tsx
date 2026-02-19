@@ -1,11 +1,12 @@
 "use client"
 
 import React from "react"
-import { ArrowRight, Briefcase, ClockFading, Cog, Contact, GitBranch, Headphones, Home, LucideIcon, MessagesSquare, Repeat, Search, SquareCheck, Users2 } from "lucide-react"
+import { Briefcase, ClockFading, Cog, Contact, GitBranch, Headphones, Home, Info, LucideIcon, MessagesSquare, Repeat, Search, SquareCheck, Users2 } from "lucide-react"
 import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
+import { IconButton } from "@/registry/ui/button"
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card"
 import { Input, InputWrapper } from "@/registry/ui/input"
-import { Progress } from "@/registry/ui/progress"
 import {
 	Sidebar,
 	SidebarContent,
@@ -22,6 +23,7 @@ import {
 	SidebarSeparator,
 	useSidebar,
 } from "@/registry/ui/sidebar"
+import { InfoCard } from "./info-card"
 import Logo from "./logo"
 import LogoFull from "./logo-full"
 import { SidebarFooterUser } from "./sidebar-footer-user"
@@ -116,28 +118,43 @@ interface AppSidebarProps {
 }
 
 export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-grey" }: AppSidebarProps) {
-	const { isMobile } = useSidebar()
+	const { isMobile, setOpen } = useSidebar()
+	const inputRef = React.useRef<HTMLInputElement>(null)
 
 	return (
 		<Sidebar variant="sidebar" theme={theme} collapsible="icon" className="p-0">
-			<SidebarHeader className="gap-0 group-data-[state='collapsed']:p-3 group-data-[state='expanded']:p-0">
-				<div className="p-4 group-data-[state='collapsed']:p-0">
-					<LogoFull className="shrink-0 group-data-[state='collapsed']:hidden" />
-					{!isMobile && <Logo className="shrink-0 group-data-[state='expanded']:hidden" />}
+			<SidebarHeader className="gap-0 p-0">
+				<div className="p-4 group-data-[state=collapsed]:px-3">
+					<LogoFull className="shrink-0 group-data-[state=collapsed]:hidden" />
+					{!isMobile && <Logo className="shrink-0 group-data-[state=expanded]:hidden" />}
 				</div>
 
-				<div className="w-full px-3 py-2 group-data-[state='collapsed']:hidden">
-					<InputWrapper className="w-full">
-						<Search className="text-fg-tertiary size-5" />
-						<Input type="search" placeholder="Search" />
+				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-2">
+					<InputWrapper className="group-data-[state=collapsed]:hidden" size="32">
+						<Search className="text-fg-tertiary" />
+						<Input ref={inputRef} type="search" placeholder="Search" />
 						<Badge size="20" color="neutral" variant="outline">
 							⌘ /
 						</Badge>
 					</InputWrapper>
+
+					<IconButton
+						onClick={() => {
+							setOpen(true)
+							setTimeout(() => {
+								inputRef.current?.focus()
+							}, 200)
+						}}
+						size="32"
+						variant="outline"
+						color="neutral"
+						className="group-data-[state=expanded]:hidden">
+						<Search className="text-fg-tertiary" />
+					</IconButton>
 				</div>
 			</SidebarHeader>
 			<SidebarContent className="gap-0">
-				{data.map((section, index) => (
+				{data.map((section) => (
 					<React.Fragment key={section.title}>
 						<SidebarGroup>
 							{section.title && <SidebarGroupLabel>{section.title}</SidebarGroupLabel>}
@@ -154,27 +171,25 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-gr
 								</SidebarMenu>
 							</SidebarGroupContent>
 						</SidebarGroup>
-						{index !== data.length - 1 && <SidebarSeparator className="group-data-[state='expanded']:hidden" />}
 					</React.Fragment>
 				))}
 			</SidebarContent>
 			<SidebarFooter className="gap-0 p-0">
-				<div className="px-3 py-1 group-data-[state='collapsed']:hidden">
-					<div className="bg-fill1 border-soft flex flex-col gap-1.5 rounded-lg border p-1 pb-2">
-						<div className="bg-bg rounded-md p-2">
-							<span className="text-xs font-normal">Complete your tutorial to unlock additional 100 credits</span>
-
-							<Progress value={60} />
-
-							<span className="text-fg-secondary text-xs font-normal">50% Complete</span>
-						</div>
-
-						<Link href="#" className="flex items-center gap-2 px-2 text-sm">
-							<span className="text-primary-text flex-1 font-medium">Get Started</span>
-							<ArrowRight className="text-fg-secondary size-4" />
-						</Link>
-					</div>
+				<div className="p-2 group-data-[state=expanded]:hidden">
+					<HoverCard>
+						<HoverCardTrigger asChild>
+							<IconButton size="32" variant="ghost" color="neutral">
+								<Info className="text-fg-secondary" />
+							</IconButton>
+						</HoverCardTrigger>
+						<HoverCardContent side="right" sideOffset={4} className="w-auto rounded-lg border-none p-0">
+							<InfoCard className="p-0" />
+						</HoverCardContent>
+					</HoverCard>
 				</div>
+
+				<InfoCard className="group-data-[state=collapsed]:hidden" />
+
 				<SidebarGroup>
 					<SidebarGroupContent>
 						<SidebarMenu>
