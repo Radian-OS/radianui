@@ -490,7 +490,7 @@ function SidebarMenuButton({ asChild = false, isActive = false, variant = "stron
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>{button}</TooltipTrigger>
-			<TooltipContent withArrow side="right" align="center" hidden={state !== "collapsed" || isMobile} {...tooltip} />
+			<TooltipContent side="right" align="center" hidden={state !== "collapsed" || isMobile} {...tooltip} />
 		</Tooltip>
 	)
 }

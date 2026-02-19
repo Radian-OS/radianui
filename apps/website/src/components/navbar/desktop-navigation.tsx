@@ -10,7 +10,9 @@ export function DesktopNavigation() {
 				{navLinks.map((item) => (
 					<li key={item.name}>
 						<Button variant={"ghost"} color={"neutral"} asChild>
-							<Link href={item.link}>{item.name}</Link>
+							<Link href={item.link} target={item.isExternal ? "_blank" : "_self"}>
+								{item.name}
+							</Link>
 						</Button>
 					</li>
 				))}

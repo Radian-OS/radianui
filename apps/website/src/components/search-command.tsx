@@ -62,7 +62,7 @@ export default function SearchCommand({ searchTerm, setSearchTerm, filteredItems
 
 										return (
 											<DialogClose asChild key={item.title}>
-												<Link href={item.url}>
+												<Link href={item.url} target={item.isExternal ? "_blank" : "_self"}>
 													<li
 														ref={(el) => {
 															itemRefs.current[globalIndex] = el

@@ -10,6 +10,7 @@ export type NavigationItem = {
 	isComingSoon?: boolean
 	disabled?: boolean
 	subItems?: NavigationItem[]
+	isExternal?: boolean
 }
 
 export type NavigationSection = {
@@ -132,6 +133,7 @@ const BLOCKS_DATA = [
 const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(({ title, category }) => ({
 	title,
 	url: `${process.env.NEXT_PUBLIC_BLOCKS_URL!}/blocks/${category}/${title.toLowerCase().replace(/\s+/g, "-")}`,
+	isExternal: true,
 }))
 
 // ===== Animations Section =====
