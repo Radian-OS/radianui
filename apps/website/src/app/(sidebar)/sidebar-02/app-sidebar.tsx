@@ -19,7 +19,7 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 } from "@/registry/ui/sidebar"
-import Logo from "../sidebar-01/logo"
+import Logo from "./logo"
 
 // This is sample data.
 const data = {

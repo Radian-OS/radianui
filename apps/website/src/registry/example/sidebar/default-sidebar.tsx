@@ -54,7 +54,7 @@ export default function SidebarPreview() {
 							<SidebarGroupContent>
 								<SidebarMenu>
 									<SidebarMenuItem>
-										<SidebarMenuButton variant="leftbar" isActive tooltip={"Dashboard"}>
+										<SidebarMenuButton isActive tooltip={"Dashboard"}>
 											<List />
 											Dashboard
 										</SidebarMenuButton>
