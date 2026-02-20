@@ -126,7 +126,7 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "neutral-dar
 			<SidebarHeader className="gap-0 p-0">
 				<div className="p-4 group-data-[state=collapsed]:px-3">
 					<LogoFull className="shrink-0 group-data-[state='collapsed']:hidden" />
-					<Logo className="shrink-0 group-data-[state='expanded']:hidden" />
+					<Logo className="shrink-0 group-data-[mobile=true]:hidden group-data-[state='expanded']:hidden" />
 				</div>
 
 				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-2">
@@ -148,7 +148,7 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "neutral-dar
 						size="32"
 						variant="outline"
 						color="neutral"
-						className="group-data-[state=expanded]:hidden">
+						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 						<Search className="text-fg-tertiary" />
 					</IconButton>
 				</div>
@@ -173,7 +173,7 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "neutral-dar
 				))}
 			</SidebarContent>
 			<SidebarFooter className="gap-0 p-0">
-				<div className="p-2 group-data-[state=expanded]:hidden">
+				<div className="p-2 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 					<HoverCard>
 						<HoverCardTrigger asChild>
 							<IconButton size="32" variant="ghost" color="neutral">

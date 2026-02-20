@@ -5,6 +5,7 @@ export default function Page() {
 		{ name: "Sidebar Float Variant", href: "/sidebar-05-float" },
 		{ name: "Sidebar Default Variant", href: "/sidebar-05-default" },
 		{ name: "Sidebar Inset Variant", href: "/sidebar-05-inset" },
+		{ name: "Nested Collapsible Sidebar Example", href: "/sidebar-03" },
 	]
 
 	return (

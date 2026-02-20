@@ -148,7 +148,7 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-gr
 						size="32"
 						variant="outline"
 						color="neutral"
-						className="group-data-[state=expanded]:hidden">
+						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 						<Search className="text-fg-tertiary" />
 					</IconButton>
 				</div>
@@ -175,7 +175,7 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-gr
 				))}
 			</SidebarContent>
 			<SidebarFooter className="gap-0 p-0">
-				<div className="p-2 group-data-[state=expanded]:hidden">
+				<div className="p-2 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 					<HoverCard>
 						<HoverCardTrigger asChild>
 							<IconButton size="32" variant="ghost" color="neutral">

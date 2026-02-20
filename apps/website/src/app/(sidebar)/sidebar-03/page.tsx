@@ -1,14 +1,16 @@
 import { FolderClosed } from "lucide-react"
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
-import { SidebarInset, SidebarProvider } from "@/registry/ui/sidebar"
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/registry/ui/sidebar"
 import { AppSidebar } from "./app-sidebar"
 
 export default function Page() {
 	return (
 		<SidebarProvider>
 			<AppSidebar />
-			<SidebarInset className="bg-fill1">
-				<header className="py-7.5 px-3">
+			<SidebarInset>
+				<header className="py-7.5 flex items-center gap-3 px-3">
+					<SidebarTrigger size="24" />
+
 					<Breadcrumb>
 						<BreadcrumbList>
 							<BreadcrumbItem>

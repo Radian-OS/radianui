@@ -15,7 +15,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-	SidebarMenuSubButton,
+	SidebarMenuSub,
 	SidebarMenuSubItem,
 	SidebarRail,
 } from "@/registry/ui/sidebar"
@@ -170,17 +170,17 @@ export function AppSidebar() {
 										</SidebarMenuButton>
 									</SidebarCollapsibleTrigger>
 									<SidebarCollapsibleContent>
-										{/* <SidebarMenuSub> */}
-										{item.items?.map((subItem) => (
-											<SidebarMenuSubItem key={subItem.title}>
-												<SidebarMenuSubButton asChild>
-													<a href={subItem.url}>
-														<span>{subItem.title}</span>
-													</a>
-												</SidebarMenuSubButton>
-											</SidebarMenuSubItem>
-										))}
-										{/* </SidebarMenuSub> */}
+										<SidebarMenuSub>
+											{item.items?.map((subItem) => (
+												<SidebarMenuSubItem key={subItem.title}>
+													<SidebarMenuButton asChild>
+														<a href={subItem.url}>
+															<span>{subItem.title}</span>
+														</a>
+													</SidebarMenuButton>
+												</SidebarMenuSubItem>
+											))}
+										</SidebarMenuSub>
 									</SidebarCollapsibleContent>
 								</SidebarMenuItem>
 							</SidebarCollapsible>
