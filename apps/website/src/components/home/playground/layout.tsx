@@ -11,7 +11,9 @@ export default function Layout() {
 	return (
 		<Dropdown indicatorPosition="right">
 			<DropdownTrigger asChild>
-				<button aria-label="Change Layout" className={`${inter.className} hover:bg-fill2 mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium`}>
+				<button
+					aria-label="Change Layout"
+					className={`${inter.className} hover:bg-fg-secondary text-bg mr-1 flex h-8 cursor-pointer items-center rounded-md px-2 text-sm font-medium`}>
 					Layout
 				</button>
 			</DropdownTrigger>

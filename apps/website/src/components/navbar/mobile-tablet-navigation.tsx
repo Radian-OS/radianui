@@ -73,7 +73,7 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 			</div>
 
 			<div className="text-fg">
-				<ul className="text-fg1 text-fgfont-medium flex flex-col items-start">
+				<ul className="text-fg1 text-fg flex flex-col items-start font-medium">
 					{navLinks.map((item) => (
 						<li key={item.name} className="flex w-full items-center">
 							<Link

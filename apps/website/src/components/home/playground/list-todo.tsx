@@ -34,7 +34,11 @@ export default function ListTodos() {
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
-				<IconButton variant="ghost" color="neutral" aria-label="Change Form Styles" className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+				<IconButton
+					variant="ghost"
+					color="neutral"
+					aria-label="Change Form Styles"
+					className="hover:bg-fg-secondary text-bg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<ListTodo size={18} />
 				</IconButton>
 			</PopoverTrigger>

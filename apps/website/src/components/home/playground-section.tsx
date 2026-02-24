@@ -183,7 +183,7 @@ export default function PlaygroundSection() {
 								backgroundSize: "10px 10px",
 							}}
 							className="bg-elevation-negative flex h-12 w-full items-center justify-center rounded-xl p-1 sm:justify-end">
-							<div className="bg-bg mt-5 rounded-xl p-1 sm:mr-3">
+							<div className="bg-black-inverse mt-5 rounded-xl p-1 sm:mr-3">
 								<div className="border-border flex h-10 gap-1 rounded-lg border p-1 shadow-[0_4px_8px_0_var(--color-fill4-alpha)]">
 									<div className="border-border flex h-8 items-center border-r">
 										<Layout />
@@ -196,7 +196,10 @@ export default function PlaygroundSection() {
 									</div>
 									<div className="border-border flex h-8 items-center border-l pl-2">
 										<div className="text-fg-secondary flex">
-											<button aria-label="Toggle Theme" onClick={toggleTheme} className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+											<button
+												aria-label="Toggle Theme"
+												onClick={toggleTheme}
+												className="hover:bg-fg-secondary text-bg flex size-8 cursor-pointer items-center justify-center rounded-md">
 												{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
 											</button>
 											<Colors />
@@ -255,11 +258,11 @@ export default function PlaygroundSection() {
 							}}
 							className={`relative w-1/2 flex-shrink-0 color-${color}`}>
 							<div className="bg-bg absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
-								<div className="border-border flex h-10 items-center gap-1 rounded-lg border p-1 shadow-[0_4px_8px_0_var(--color-fill4-alpha)]">
+								<div className="border-border bg-black-inverse flex h-10 items-center gap-1 rounded-lg border p-1 shadow-[0_4px_8px_0_var(--color-fill4-alpha)]">
 									<div className="border-border flex h-8 items-center border-r">
 										<Layout />
 									</div>
-									<div className="text-fg-secondary flex">
+									<div className="text-bg flex">
 										<Radius />
 										<Font />
 										<ListTodos />
@@ -267,7 +270,10 @@ export default function PlaygroundSection() {
 									</div>
 									<div className="border-border flex h-8 items-center border-l pl-2">
 										<div className="text-fg-secondary flex">
-											<button onClick={toggleTheme} aria-label="Toggle Theme" className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+											<button
+												onClick={toggleTheme}
+												aria-label="Toggle Theme"
+												className="hover:bg-fg-secondary text-bg flex size-8 cursor-pointer items-center justify-center rounded-md">
 												{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
 											</button>
 											<Colors />
