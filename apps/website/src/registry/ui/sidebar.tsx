@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Portal } from "@radix-ui/react-hover-card"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { PanelLeftIcon } from "lucide-react"
@@ -15,7 +14,6 @@ import { Skeleton } from "@/registry/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 import { Badge } from "./badge"
 import { DialogTitle } from "./dialog"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "./hover-card"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -602,78 +600,16 @@ function SidebarMenuSubButton({ asChild = false, size = "md", isActive = false, 
 	)
 }
 
-function SidebarCollapsible({ className, children, ...props }: React.ComponentProps<typeof Collapsible>) {
-	const { state, isMobile } = useSidebar()
-	const [hoverOpen, setHoverOpen] = React.useState(false)
-	const isHoverCardDisabled = state === "expanded" || isMobile
-
-	React.useEffect(() => {
-		if (isHoverCardDisabled) {
-			setHoverOpen(false)
-		}
-	}, [isHoverCardDisabled])
-
-	return (
-		<Collapsible data-slot="sidebar-collapsible" data-sidebar="collapsible" className={cn("group/collapsible", className)} {...props}>
-			<HoverCard
-				openDelay={250}
-				open={isHoverCardDisabled ? false : hoverOpen}
-				onOpenChange={(open) => {
-					if (isHoverCardDisabled) return
-					setHoverOpen(open)
-				}}>
-				{children}
-			</HoverCard>
-		</Collapsible>
-	)
+function SidebarCollapsible({ className, ...props }: React.ComponentProps<typeof Collapsible>) {
+	return <Collapsible data-slot="sidebar-collapsible" data-sidebar="collapsible" className={cn("group/collapsible", className)} {...props} />
 }
 
-function SidebarCollapsibleTrigger({ className, asChild, children, ...props }: React.ComponentProps<typeof CollapsibleTrigger>) {
-	if (asChild) {
-		return (
-			<CollapsibleTrigger asChild {...props}>
-				<HoverCardTrigger asChild>{children}</HoverCardTrigger>
-			</CollapsibleTrigger>
-		)
-	}
-
-	return (
-		<CollapsibleTrigger asChild {...props}>
-			<HoverCardTrigger asChild>
-				<button className={cn("p-2 text-sm [&>svg]:size-4", className)}>{children}</button>
-			</HoverCardTrigger>
-		</CollapsibleTrigger>
-	)
+function SidebarCollapsibleTrigger({ ...props }: React.ComponentProps<typeof CollapsibleTrigger>) {
+	return <CollapsibleTrigger data-slot="sidebar-collapsible-trigger" data-sidebar="collapsible-trigger" {...props} />
 }
 
-function SidebarCollapsibleContent({ className, children, ...props }: React.ComponentProps<typeof CollapsibleContent>) {
-	const { state, isMobile } = useSidebar()
-
-	return (
-		<>
-			<CollapsibleContent
-				data-slot="sidebar-collapsible-content"
-				data-sidebar="collapsible-content"
-				className={cn("group", state === "collapsed" && "hidden", className)}
-				{...props}>
-				{children}
-			</CollapsibleContent>
-
-			{state === "collapsed" && !isMobile && (
-				<Portal>
-					<HoverCardContent
-						sideOffset={4}
-						side="right"
-						data-slot="sidebar-collapsible-content"
-						data-sidebar="collapsible-content"
-						className={cn("group p-2", className)}
-						{...props}>
-						{children}
-					</HoverCardContent>
-				</Portal>
-			)}
-		</>
-	)
+function SidebarCollapsibleContent({ className, ...props }: React.ComponentProps<typeof CollapsibleContent>) {
+	return <CollapsibleContent data-slot="sidebar-collapsible-content" data-sidebar="collapsible-content" className={cn("group", className)} {...props} />
 }
 
 export {
