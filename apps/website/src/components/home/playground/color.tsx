@@ -54,7 +54,7 @@ export default function Colors() {
 					aria-label="Change Primary Color"
 					variant="ghost"
 					color="neutral"
-					className="hover:bg-fg-secondary flex size-8 cursor-pointer items-center justify-center rounded-md">
+					className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<div className="size-4.5 bg-primary border-border rounded-full border" />
 				</IconButton>
 			</DropdownTrigger>

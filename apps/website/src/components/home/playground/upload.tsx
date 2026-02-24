@@ -42,7 +42,7 @@ export default function Uploads() {
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
-				<IconButton aria-label="Upload Logo" variant="ghost" color="neutral" className="hover:bg-fg-secondary flex size-8 cursor-pointer items-center justify-center rounded-md">
+				<IconButton aria-label="Upload Logo" variant="ghost" color="neutral" className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<Image alt="" height={18} width={18} src="/mstile-70x70.png" />
 				</IconButton>
 			</PopoverTrigger>

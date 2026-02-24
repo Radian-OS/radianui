@@ -601,3 +601,17 @@
 		opacity: 0;
 	}
 }
+
+.dark .theme-inverse {
+	--color-bg: oklch(1 0 0);
+	--color-fill1: oklch(0.9843 0.0011 197.14);
+	--color-fill2: oklch(0.9677 0.0027 286.35);
+	--color-fill3: oklch(0.9368 0.0029 264.54);
+	--color-fill4: oklch(0.904 0.0055 274.96);
+	--color-fg: oklch(0.2738 0.0093 276.77);
+	--color-fg-secondary: oklch(0.527 0.0238 276.59);
+	--color-border: oklch(0.904 0.0055 274.96);
+	--color-elevation-negative: oklch(0.9677 0.0027 286.35);
+	--color-black-inverse: oklch(0.144 0.0028 247.09);
+	--color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
+}

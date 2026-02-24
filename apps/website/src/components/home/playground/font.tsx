@@ -61,11 +61,7 @@ export default function Font() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<IconButton
-					aria-label="Change Font"
-					variant="ghost"
-					color="neutral"
-					className="hover:bg-fg-secondary text-bg flex size-8 cursor-pointer items-center justify-center rounded-md">
+				<IconButton aria-label="Change Font" variant="ghost" color="neutral" className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<Type size={18} />
 				</IconButton>
 			</PopoverTrigger>

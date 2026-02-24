@@ -9,11 +9,7 @@ export default function Radius() {
 	return (
 		<Dropdown indicatorPosition="right">
 			<DropdownTrigger asChild>
-				<IconButton
-					variant="ghost"
-					color="neutral"
-					aria-label="Change Radius"
-					className="hover:bg-fg-secondary text-bg flex size-8 cursor-pointer items-center justify-center rounded-md">
+				<IconButton variant="ghost" color="neutral" aria-label="Change Radius" className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<CircleDashed size={18} />
 				</IconButton>
 			</DropdownTrigger>
