@@ -110,6 +110,20 @@ const chatData = [
 ]
 
 export function AppSidebar() {
+	const [openItem, setOpenItem] = React.useState<string | null>(null)
+	const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+
+	const openMenu = (title: string) => {
+		if (timeoutRef.current) clearTimeout(timeoutRef.current)
+		setOpenItem(title)
+	}
+
+	const closeMenu = () => {
+		timeoutRef.current = setTimeout(() => {
+			setOpenItem(null)
+		}, 150)
+	}
+
 	return (
 		<Sidebar theme="white-on-grey" variant="floating" collapsible="icon">
 			<SidebarHeader className="gap-0 p-0">
@@ -171,7 +185,7 @@ export function AppSidebar() {
 								<SidebarGroupContent>
 									<SidebarMenu>
 										{section.items.map((subsection) => (
-											<SidebarCollapsible key={subsection.title} defaultOpen>
+											<SidebarCollapsible key={subsection.title} defaultOpen className="group-data-[state=collapsed]:hidden">
 												<SidebarCollapsibleTrigger asChild className="group/trigger w-full">
 													<SidebarMenuButton>
 														{subsection.icon && <subsection.icon className="size-5" />}
@@ -202,11 +216,18 @@ export function AppSidebar() {
 					<SidebarMenu className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 						{data.map((section) =>
 							section.items.map((subsection) => (
-								<Dropdown key={subsection.title}>
+								<Dropdown
+									open={openItem === subsection.title}
+									onOpenChange={(open) => {
+										if (!open) setOpenItem(null)
+									}}
+									key={subsection.title}>
 									<DropdownTrigger className="group/trigger w-full" asChild>
-										<SidebarMenuButton>{subsection.icon && <subsection.icon className="size-5" />}</SidebarMenuButton>
+										<SidebarMenuButton onMouseEnter={() => openMenu(subsection.title)} onMouseLeave={closeMenu}>
+											{subsection.icon && <subsection.icon className="size-5" />}
+										</SidebarMenuButton>
 									</DropdownTrigger>
-									<DropdownContent className="w-60" side="right" align="center">
+									<DropdownContent onMouseEnter={() => openMenu(subsection.title)} onMouseLeave={closeMenu} className="w-60" side="right" align="center">
 										<DropdownLabel>{subsection.title}</DropdownLabel>
 										{subsection.items.map((item) => (
 											<DropdownItem key={item.title} asChild>
