@@ -613,5 +613,5 @@
 	--color-border: oklch(0.904 0.0055 274.96);
 	--color-elevation-negative: oklch(0.9677 0.0027 286.35);
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
-	--color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
+	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
 }

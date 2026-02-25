@@ -1,71 +1,51 @@
 {
-  "$schema": "https://turbo.build/schema.json",
-  "ui": "tui",
-  "globalDependencies": [
-    ".env"
-  ],
-  "tasks": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "env": [
-        "DATABASE_URL",
-        "NEXT_PUBLIC_*",
-        "RESEND_API_KEY",
-        "RESEND_FROM_EMAIL"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ],
-      "outputs": [
-        ".next/**",
-        "!.next/cache/**",
-        "dist/**"
-      ]
-    },
-    "lint": {
-      "dependsOn": [
-        "^lint"
-      ]
-    },
-    "check-types": {
-      "dependsOn": [
-        "^check-types"
-      ]
-    },
-    "dev": {
-      "cache": false,
-      "persistent": true,
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env"
-      ]
-    },
-    "start": {
-      "cache": false,
-      "persistent": true
-    },
-    "format:check": {
-      "cache": false,
-      "outputs": []
-    },
-    "format:write": {
-      "cache": false,
-      "outputs": []
-    },
-    "db:generate": {
-      "dependsOn": [],
-      "outputs": []
-    },
-    "db:migrate": {
-      "dependsOn": [],
-      "outputs": []
-    },
-    "generate-component-json": {
-      "dependsOn": [],
-      "outputs": []
-    }
-  }
+	"$schema": "https://turbo.build/schema.json",
+	"ui": "tui",
+	"globalDependencies": [".env"],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"env": ["DATABASE_URL", "NEXT_PUBLIC_*", "RESEND_API_KEY", "RESEND_FROM_EMAIL"],
+			"inputs": ["$TURBO_DEFAULT$", ".env"],
+			"outputs": [".next/**", "!.next/cache/**", "dist/**"]
+		},
+		"lint": {
+			"dependsOn": ["^lint"]
+		},
+		"check-types": {
+			"dependsOn": ["^check-types"]
+		},
+		"dev": {
+			"cache": false,
+			"persistent": true,
+			"inputs": ["$TURBO_DEFAULT$", ".env"]
+		},
+		"start": {
+			"cache": false,
+			"persistent": true
+		},
+		"format:check": {
+			"cache": false,
+			"outputs": []
+		},
+		"format:write": {
+			"cache": false,
+			"outputs": []
+		},
+		"db:generate": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"db:migrate": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"generate-component-json": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"build:llms": {
+			"outputs": []
+		}
+	}
 }
