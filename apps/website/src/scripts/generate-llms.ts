@@ -1,84 +1,107 @@
+import { config } from "dotenv"
 import { promises as fs } from "node:fs"
 import { app } from "@/config/llms-config"
+import { NavigationItem, NavigationSection, navigationItems } from "@/config/navigation-config"
 
-type RegistryFile = {
-	name: string
-	content: string
-	type?: string
+config({ path: ".env" })
+
+// ===== Helpers =====
+
+function toTitleCase(str: string) {
+	return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-type RegistryItem = {
-	name: string
-	files: RegistryFile[]
-	dependencies?: string[]
-	type?: string
+function buildItemLine(item: NavigationItem): string {
+	const label = item.isComingSoon ? `${item.title} (coming soon)` : item.title
+	const description = item.description ? `${item.description}` : `Detailed documentation for ${item.title}`
+	const url = item.isExternal ? item.url : `${item.url}.md`
+	return `- [${label}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${url}): ${description}`
 }
 
-async function buildComponents(components: RegistryItem[]) {
+// ===== Builders =====
+
+async function buildLlmsTxt(sections: NavigationSection[]) {
 	const lines: string[] = []
 
-	lines.push(`# ${app.name} Components`)
+	// Header
+	lines.push(`# ${app.name} Documentation for LLMs`)
 	lines.push("")
-	lines.push("> These are the core UI component source files.")
+	lines.push(`> ${app.description}`)
+	lines.push("")
+	lines.push("This site provides documentation in a format optimized for Large Language Models, with each page available as a clean markdown file.")
 	lines.push("")
 
-	for (const component of components) {
-		const sectionTitle = component.name.charAt(0).toUpperCase() + component.name.slice(1)
-		lines.push(`\n## ${sectionTitle}`)
+	// Complete docs link
+	lines.push("## Complete Documentation")
+	lines.push("")
+	lines.push(`- [Complete documentation](${process.env.NEXT_PUBLIC_WEBSITE_URL}/llms.txt): The complete ${app.name} documentation including all sections`)
+	lines.push("")
 
-		if (component.dependencies?.length) {
+	// Sections
+	for (const section of sections) {
+		lines.push(`## ${toTitleCase(section.title)}`)
+		lines.push("")
+
+		if (section.description) {
+			lines.push(`> ${section.description}`)
 			lines.push("")
-			lines.push(`**Dependencies:** ${component.dependencies.join(", ")}`)
 		}
 
-		for (const file of component.files) {
-			lines.push(`\n### ${file.name}`)
-			lines.push("")
-			lines.push("```tsx")
-			lines.push(file.content.trimEnd())
-			lines.push("```")
+		for (const item of section.items) {
+			// Skip disabled items without a valid URL
+			if (item.disabled && !item.url) continue
+
+			lines.push(buildItemLine(item))
+
+			// Expand subItems as nested entries
+			if (item.subItems?.length) {
+				for (const sub of item.subItems) {
+					const subDescription = `Detailed documentation for ${item.title} (${sub.title})`
+					lines.push(`- [${item.title} — ${sub.title}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): ${subDescription}`)
+				}
+			}
 		}
+
+		lines.push("")
 	}
 
 	await fs.writeFile("public/llms.txt", lines.join("\n"))
-	console.log("✅ llms-components.txt built successfully")
+	console.log("✅ llms.txt built successfully")
 }
 
-async function buildExamples(examples: RegistryItem[]) {
-	const lines: string[] = []
+// async function buildLlmsFullTxt(sections: NavigationSection[]) {
+// 	const lines: string[] = []
 
-	lines.push(`# ${app.name} Component Examples`)
-	lines.push("")
-	lines.push("> These are usage examples for each component.")
-	lines.push("")
+// 	lines.push(`# ${app.name} — Full Documentation Index`)
+// 	lines.push("")
+// 	lines.push("> Complete flat index of all documentation pages.")
+// 	lines.push("")
 
-	for (const component of examples) {
-		const sectionTitle = component.name.charAt(0).toUpperCase() + component.name.slice(1)
-		lines.push(`\n## ${sectionTitle}`)
+// 	for (const section of sections) {
+// 		lines.push(`\n## ${toTitleCase(section.title)}`)
+// 		lines.push("")
 
-		for (const file of component.files) {
-			lines.push(`\n### [${file.name}]`)
-			lines.push("")
-			lines.push("```tsx")
-			lines.push(file.content.trimEnd())
-			lines.push("```")
-		}
-	}
+// 		for (const item of section.items) {
+// 			if (item.disabled && !item.url) continue
 
-	await fs.writeFile("public/llms-full.txt", lines.join("\n"))
-	console.log("✅ llms-full.txt built successfully")
-}
+// 			lines.push(buildItemLine(item))
+
+// 			if (item.subItems?.length) {
+// 				for (const sub of item.subItems) {
+// 					lines.push(`  - [${item.title} — ${sub.title}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): Detailed documentation for ${item.title} (${sub.title})`)
+// 				}
+// 			}
+// 		}
+// 	}
+
+// 	await fs.writeFile("public/llms-full.txt", lines.join("\n"))
+// 	console.log("✅ llms-full.txt built successfully")
+// }
+
+// ===== Entry =====
 
 async function build() {
-	const [examplesData, componentsData] = await Promise.all([
-		fs.readFile("src/registry/example/example.json", "utf8"),
-		fs.readFile("src/app/api/components/components.json", "utf8"),
-	])
-
-	const examples: RegistryItem[] = JSON.parse(examplesData)
-	const components: RegistryItem[] = JSON.parse(componentsData)
-
-	await Promise.all([buildComponents(components), buildExamples(examples)])
+	await Promise.all([buildLlmsTxt(navigationItems) /*, buildLlmsFullTxt(navigationItems)*/])
 }
 
 build()
