@@ -12,6 +12,7 @@ function toTitleCase(str: string) {
 }
 
 function buildItemLine(item: NavigationItem): string {
+	if (item.isExternal) return ""
 	const label = item.isComingSoon ? `${item.title} (coming soon)` : item.title
 	const description = item.description ? `${item.description}` : `Detailed documentation for ${item.title}`
 	const url = item.isExternal ? item.url : `${item.url}.md`
@@ -39,6 +40,7 @@ async function buildLlmsTxt(sections: NavigationSection[]) {
 
 	// Sections
 	for (const section of sections) {
+		if (section.title === "Blocks" || section.title === "Animations") continue
 		lines.push(`## ${toTitleCase(section.title)}`)
 		lines.push("")
 
