@@ -184,8 +184,8 @@ export default function PlaygroundSection() {
 							}}
 							className="bg-elevation-negative flex h-12 w-full items-center justify-center p-1 sm:justify-end">
 							<div className={theme === "light" ? "dark" : "theme-inverse"}>
-								<div className="bg-bg mt-5 rounded-xl p-1 sm:mr-3">
-									<div className="border-border flex h-10 gap-1 rounded-lg border p-1 shadow-[0_4px_8px_color-mix(in_srgb,oklch(1_0_0),transparent_88%)] dark:shadow-[0_4px_8px_color-mix(in_srgb,oklch(0_0_0),transparent_60%)]">
+								<div className="bg-bg/20 mt-5 rounded-xl p-1 sm:mr-3">
+									<div className="border-border bg-bg flex h-10 gap-1 rounded-lg border p-1 shadow-[0_4px_8px_color-mix(in_srgb,oklch(1_0_0),transparent_88%)] dark:shadow-[0_4px_8px_color-mix(in_srgb,oklch(0_0_0),transparent_60%)]">
 										<div className="border-border flex h-8 items-center border-r">
 											<Layout />
 										</div>
@@ -260,7 +260,7 @@ export default function PlaygroundSection() {
 							}}
 							className={`relative w-1/2 flex-shrink-0 color-${color}`}>
 							<div className={theme === "light" ? "dark" : "theme-inverse"}>
-								<div className="bg-bg absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
+								<div className="bg-bg/20 absolute right-4 top-4 z-10 flex h-12 items-center rounded-xl p-1">
 									<div className="border-border bg-bg flex h-10 items-center gap-1 rounded-lg border p-1 shadow-[0_4px_8px_color-mix(in_srgb,oklch(1_0_0),transparent_88%)] dark:shadow-[0_4px_8px_color-mix(in_srgb,oklch(0_0_0),transparent_60%)]">
 										<div className="border-border flex h-8 items-center border-r">
 											<Layout />
