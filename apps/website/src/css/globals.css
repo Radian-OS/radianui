@@ -60,9 +60,9 @@
 	--color-fg-inverse: oklch(1 0 0);
 
 	/* border */
-	--color-border: oklch(0.9368 0.0029 264.54);
+	--color-border: oklch(0.906 0.0046 258.33);
 	--color-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 88%);
-	--color-soft: oklch(0.906 0.0046 258.33);
+	--color-soft: oklch(0.9368 0.0029 264.54);
 	--color-soft-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 92%);
 
 	/* background elevation */
@@ -137,9 +137,9 @@
 	--color-fg-inverse: oklch(0.2342 0.0065 258.36);
 
 	/* border */
-	--color-border: oklch(0.2342 0.0065 258.36);
+	--color-border: oklch(0.2764 0.0079 264.44);
 	--color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-	--color-soft: oklch(0.2764 0.0079 264.44);
+	--color-soft: oklch(0.2342 0.0065 258.36);
 	--color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 
 	/* background elevation */
