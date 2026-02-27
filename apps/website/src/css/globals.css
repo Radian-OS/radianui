@@ -75,18 +75,10 @@
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
 	/* background fill alpha */
-	--color-fill0-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 100%);
 	--color-fill1-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 96%);
 	--color-fill2-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 92%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 88%);
 	--color-fill4-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 84%);
-
-	/* background fill inverse alpha */
-	--color-fill0-inverse-alpha: color-mix(in srgb, oklch(1 0 0), transparent 100%);
-	--color-fill1-inverse-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
-	--color-fill2-inverse-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
-	--color-fill3-inverse-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-	--color-fill4-inverse-alpha: color-mix(in srgb, oklch(1 0 0), transparent 84%);
 }
 
 .dark {
@@ -160,18 +152,10 @@
 	--color-black-inverse: oklch(1 0 0);
 
 	/* background fill alpha */
-	--color-fill0-alpha: color-mix(in srgb, oklch(1 0 0), transparent 100%);
 	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
 	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
 	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 84%);
-
-	/* background fill inverse alpha */
-	--color-fill0-inverse-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 100%);
-	--color-fill1-inverse-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 96%);
-	--color-fill2-inverse-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 92%);
-	--color-fill3-inverse-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 88%);
-	--color-fill4-inverse-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 84%);
 }
 
 /* Base styles */

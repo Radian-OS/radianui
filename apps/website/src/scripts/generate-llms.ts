@@ -29,13 +29,9 @@ async function buildLlmsTxt(sections: NavigationSection[]) {
 	lines.push("")
 	lines.push(`> ${app.description}`)
 	lines.push("")
-	lines.push("This site provides documentation in a format optimized for Large Language Models, with each page available as a clean markdown file.")
-	lines.push("")
-
-	// Complete docs link
-	lines.push("## Complete Documentation")
-	lines.push("")
-	lines.push(`- [Complete documentation](${process.env.NEXT_PUBLIC_WEBSITE_URL}/llms.txt): The complete ${app.name} documentation including all sections`)
+	lines.push(
+		"This documentation is designed for AI agents and LLMs, providing structured Markdown files optimized for context retrieval, semantic understanding, and automated code generation."
+	)
 	lines.push("")
 
 	// Sections
