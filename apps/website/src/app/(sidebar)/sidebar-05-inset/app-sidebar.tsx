@@ -117,12 +117,12 @@ interface AppSidebarProps {
 	theme?: SidebarProps["theme"]
 }
 
-export function AppSidebar({ menuButtonVariant = "neutral", theme = "neutral-white" }: AppSidebarProps) {
+export function AppSidebar({ menuButtonVariant = "neutral", theme }: AppSidebarProps) {
 	const { setOpen } = useSidebar()
 	const inputRef = React.useRef<HTMLInputElement>(null)
 
 	return (
-		<Sidebar variant="inset" theme={theme} collapsible="icon" className="p-0">
+		<Sidebar theme={theme} variant="inset" collapsible="icon" className="p-0">
 			<SidebarHeader className="gap-0 p-0">
 				<div className="p-4 group-data-[state=collapsed]:pl-6">
 					<LogoFull className="shrink-0 group-data-[state='collapsed']:hidden" />

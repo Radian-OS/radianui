@@ -241,6 +241,18 @@ const components = (examples: typeof Examples | undefined) => ({
 			quality={85}
 		/>
 	),
+	table: ({ className, ...props }: React.ComponentProps<"table">) => (
+		<div className="no-scrollbar my-6 w-full overflow-y-auto rounded-xl border">
+			<table className={cn("relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0", className)} {...props} />
+		</div>
+	),
+	tr: ({ className, ...props }: React.ComponentProps<"tr">) => <tr className={cn("m-0 border-b", className)} {...props} />,
+	th: ({ className, ...props }: React.ComponentProps<"th">) => (
+		<th className={cn("px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right", className)} {...props} />
+	),
+	td: ({ className, ...props }: React.ComponentProps<"td">) => (
+		<td className={cn("whitespace-nowrap px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right", className)} {...props} />
+	),
 })
 
 /**
