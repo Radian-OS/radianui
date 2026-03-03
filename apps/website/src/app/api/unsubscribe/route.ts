@@ -23,5 +23,7 @@ export async function GET(request: NextRequest) {
 	const url = new URL(request.url)
 	const id = url.searchParams.get("id")
 	const baseUrl = process.env.NEXT_PUBLIC_WEBSITE_URL || url.origin
-	return NextResponse.redirect(new URL(`/unsubscribe?id=${encodeURIComponent(id || "")}`, baseUrl))
+	return NextResponse.redirect(
+		new URL(`/unsubscribe?id=${encodeURIComponent(id || "")}`, baseUrl)
+	)
 }

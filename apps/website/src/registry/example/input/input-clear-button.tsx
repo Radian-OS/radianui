@@ -13,8 +13,16 @@ export default function InputClearButton() {
 		<div className="flex w-80 flex-col gap-1.5">
 			<Label>Email Address</Label>
 			<InputWrapper className="max-w-80">
-				<Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="sagunmdr@radian.com" />
-				<X className="text-fg-tertiary size-4 cursor-pointer" onClick={handleClear} />
+				<Input
+					type="email"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					placeholder="sagunmdr@radian.com"
+				/>
+				<X
+					className="text-fg-tertiary size-4 cursor-pointer"
+					onClick={handleClear}
+				/>
 			</InputWrapper>
 		</div>
 	)

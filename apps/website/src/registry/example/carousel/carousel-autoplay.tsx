@@ -1,7 +1,14 @@
 import * as React from "react"
 import Image from "next/image"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import {
+	Carousel,
+	type CarouselApi,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/registry/ui/carousel"
 
 export default function CarouselAutoplay() {
 	const [api, setApi] = React.useState<CarouselApi>()
@@ -51,8 +58,15 @@ export default function CarouselAutoplay() {
 			<CarouselContent>
 				{images.map((image, index) => (
 					<CarouselItem key={index}>
-						<AspectRatio ratio={1 / 1} className="flex items-center justify-center">
-							<Image src={image.src} alt={image.alt} fill className="rounded-2xl object-cover" />
+						<AspectRatio
+							ratio={1 / 1}
+							className="flex items-center justify-center">
+							<Image
+								src={image.src}
+								alt={image.alt}
+								fill
+								className="rounded-2xl object-cover"
+							/>
 						</AspectRatio>
 					</CarouselItem>
 				))}

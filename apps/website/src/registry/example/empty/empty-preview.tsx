@@ -1,7 +1,14 @@
 import React from "react"
 import { Database } from "lucide-react"
 import { Button } from "@/registry/ui/button"
-import { Empty, EmptyAction, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/registry/ui/empty"
+import {
+	Empty,
+	EmptyAction,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/registry/ui/empty"
 
 export default function EmptyPreview() {
 	return (
@@ -11,7 +18,10 @@ export default function EmptyPreview() {
 			</EmptyMedia>
 			<EmptyHeader>
 				<EmptyTitle>Empty State Header</EmptyTitle>
-				<EmptyDescription>Message to help users create or search data values for this placeholder</EmptyDescription>
+				<EmptyDescription>
+					Message to help users create or search data values for this
+					placeholder
+				</EmptyDescription>
 			</EmptyHeader>
 			<EmptyAction>
 				<Button variant="outline" color="neutral">

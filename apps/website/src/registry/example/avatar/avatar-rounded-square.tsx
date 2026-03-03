@@ -1,5 +1,11 @@
 import React from "react"
-import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from "@/registry/ui/avatar"
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	AvatarIndicator,
+	AvatarStatus,
+} from "@/registry/ui/avatar"
 
 export default function AvatarRoundedSquare() {
 	return (
@@ -10,7 +16,9 @@ export default function AvatarRoundedSquare() {
 			</Avatar>
 
 			<Avatar size="48" rounded="square">
-				<AvatarFallback className="text-success-text bg-success-focus">AP</AvatarFallback>
+				<AvatarFallback className="text-success-text bg-success-focus">
+					AP
+				</AvatarFallback>
 			</Avatar>
 
 			<Avatar size="48" rounded="square">

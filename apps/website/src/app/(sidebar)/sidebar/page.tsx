@@ -15,7 +15,10 @@ export default function Page() {
 				<ul className="space-y-4 text-center">
 					{links.map((link) => (
 						<li key={link.href}>
-							<Link href={link.href} className="text-lg font-medium text-blue-600 transition-colors hover:text-blue-800 hover:underline" target="_blank">
+							<Link
+								href={link.href}
+								className="text-lg font-medium text-blue-600 transition-colors hover:text-blue-800 hover:underline"
+								target="_blank">
 								{link.name}
 							</Link>
 						</li>

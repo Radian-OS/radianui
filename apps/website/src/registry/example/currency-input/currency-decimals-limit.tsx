@@ -6,11 +6,20 @@ export default function CurrencyDecimalsLimit() {
 		<div className="flex flex-col items-center gap-4">
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="2-dl">2 Decimals - Default</Label>
-				<CurrencyInput id="2-dl" className="md:w-80" placeholder="Enter Amount Here" />
+				<CurrencyInput
+					id="2-dl"
+					className="md:w-80"
+					placeholder="Enter Amount Here"
+				/>
 			</div>
 			<div className="flex flex-col gap-1.5">
 				<Label htmlFor="4-dl">4 Decimals</Label>
-				<CurrencyInput id="4-dl" className="md:w-80" placeholder="Enter Amount Here" decimalsLimit={4} />
+				<CurrencyInput
+					id="4-dl"
+					className="md:w-80"
+					placeholder="Enter Amount Here"
+					decimalsLimit={4}
+				/>
 			</div>
 		</div>
 	)

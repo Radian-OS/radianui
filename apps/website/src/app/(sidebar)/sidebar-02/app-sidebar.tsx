@@ -1,6 +1,17 @@
 "use client"
 
-import { BookOpen, Bot, ChevronRight, Frame, LifeBuoy, Map, PieChart, Send, Settings2, SquareTerminal } from "lucide-react"
+import {
+	BookOpen,
+	Bot,
+	ChevronRight,
+	Frame,
+	LifeBuoy,
+	Map,
+	PieChart,
+	Send,
+	Settings2,
+	SquareTerminal,
+} from "lucide-react"
 import {
 	Sidebar,
 	SidebarCollapsible,
@@ -152,7 +163,9 @@ export function AppSidebar() {
 			<SidebarHeader>
 				<div className="flex items-center gap-2 px-1.5 py-1">
 					<Logo />
-					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">Nomi</span>
+					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
+						Nomi
+					</span>
 				</div>
 			</SidebarHeader>
 			<SidebarContent>
@@ -160,7 +173,11 @@ export function AppSidebar() {
 					<SidebarGroupLabel>Platform</SidebarGroupLabel>
 					<SidebarMenu>
 						{data.navMain.map((item) => (
-							<SidebarCollapsible key={item.title} asChild defaultOpen={item.isActive} className="group/collapsible">
+							<SidebarCollapsible
+								key={item.title}
+								asChild
+								defaultOpen={item.isActive}
+								className="group/collapsible">
 								<SidebarMenuItem>
 									<SidebarCollapsibleTrigger asChild>
 										<SidebarMenuButton variant="soft" tooltip={item.title}>

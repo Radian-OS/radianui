@@ -7,19 +7,73 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 import { Button } from "@/registry/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const languages = [
-	{ label: "English", value: "en", flag: "/media/flags/usa.png", language: "English US" },
-	{ label: "French", value: "fr", flag: "/media/flags/france.png", language: "Français" },
-	{ label: "German", value: "de", flag: "/media/flags/germany.png", language: "Deutsch" },
-	{ label: "Spanish", value: "es", flag: "/media/flags/spain.png", language: "Español" },
-	{ label: "Portuguese", value: "pt", flag: "/media/flags/portugal.png", language: "Português" },
-	{ label: "Russian", value: "ru", flag: "/media/flags/russia.png", language: "Русский" },
-	{ label: "Japanese", value: "ja", flag: "/media/flags/japan.png", language: "日本語 " },
-	{ label: "Chinese", value: "zh", flag: "/media/flags/china.png", language: "中文" },
+	{
+		label: "English",
+		value: "en",
+		flag: "/media/flags/usa.png",
+		language: "English US",
+	},
+	{
+		label: "French",
+		value: "fr",
+		flag: "/media/flags/france.png",
+		language: "Français",
+	},
+	{
+		label: "German",
+		value: "de",
+		flag: "/media/flags/germany.png",
+		language: "Deutsch",
+	},
+	{
+		label: "Spanish",
+		value: "es",
+		flag: "/media/flags/spain.png",
+		language: "Español",
+	},
+	{
+		label: "Portuguese",
+		value: "pt",
+		flag: "/media/flags/portugal.png",
+		language: "Português",
+	},
+	{
+		label: "Russian",
+		value: "ru",
+		flag: "/media/flags/russia.png",
+		language: "Русский",
+	},
+	{
+		label: "Japanese",
+		value: "ja",
+		flag: "/media/flags/japan.png",
+		language: "日本語 ",
+	},
+	{
+		label: "Chinese",
+		value: "zh",
+		flag: "/media/flags/china.png",
+		language: "中文",
+	},
 ] as const
 
 const FormSchema = z.object({
@@ -42,7 +96,9 @@ export default function ComboboxForm() {
 		})
 	}
 
-	const selectedLanguage = languages.find((country) => country.value === form.getValues().language)
+	const selectedLanguage = languages.find(
+		(country) => country.value === form.getValues().language
+	)
 
 	return (
 		<Form {...form}>
@@ -56,11 +112,27 @@ export default function ComboboxForm() {
 							<Popover open={open} onOpenChange={setOpen}>
 								<PopoverTrigger asChild>
 									<FormControl>
-										<Button variant="outline" color="neutral" role="combobox" aria-haspopup="listbox" aria-expanded={!!field.value} className="text-fg-tertiary w-80 font-normal">
+										<Button
+											variant="outline"
+											color="neutral"
+											role="combobox"
+											aria-haspopup="listbox"
+											aria-expanded={!!field.value}
+											className="text-fg-tertiary w-80 font-normal">
 											{selectedLanguage ? (
 												<>
-													<img src={selectedLanguage.flag} alt={selectedLanguage.value.toUpperCase()} className="size-4" />
-													<span className="text-fg">{languages.find((language) => language.value === field.value)?.language}</span>
+													<img
+														src={selectedLanguage.flag}
+														alt={selectedLanguage.value.toUpperCase()}
+														className="size-4"
+													/>
+													<span className="text-fg">
+														{
+															languages.find(
+																(language) => language.value === field.value
+															)?.language
+														}
+													</span>
 												</>
 											) : (
 												"Select Language"
@@ -86,10 +158,16 @@ export default function ComboboxForm() {
 															})
 															setOpen(false)
 														}}>
-														<img src={l.flag} alt={l.value.toUpperCase()} className="size-4" />
+														<img
+															src={l.flag}
+															alt={l.value.toUpperCase()}
+															className="size-4"
+														/>
 														<span className="text-sm">{l.language}</span>
 														<div className="ml-auto flex gap-2">
-															<span className="text-fg-secondary text-[13px] font-normal">({l.label})</span>
+															<span className="text-fg-secondary text-[13px] font-normal">
+																({l.label})
+															</span>
 															{l.value === field.value && <Check />}
 														</div>
 													</CommandItem>

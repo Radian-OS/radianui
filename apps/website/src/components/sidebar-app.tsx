@@ -32,7 +32,9 @@ export default function Sidebar() {
 			<ScrollArea className="flex h-full w-full pe-4">
 				<div className="flex flex-col gap-3">
 					{filteredNavigationItems.map((section) => (
-						<div className="flex flex-col gap-2 text-sm font-medium" key={section.title}>
+						<div
+							className="flex flex-col gap-2 text-sm font-medium"
+							key={section.title}>
 							<span className="py-1.5">{section.title}</span>
 							<ul className="relative flex flex-col gap-1">
 								{/* Vertical line */}
@@ -42,10 +44,14 @@ export default function Sidebar() {
 									const content = (
 										<>
 											{/* Active indicator */}
-											{isActive && <div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />}
+											{isActive && (
+												<div className="bg-primary absolute bottom-0 left-0 top-0 w-px" />
+											)}
 
 											{/* Hover indicator */}
-											{!isActive && <div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />}
+											{!isActive && (
+												<div className="bg-alpha absolute bottom-0 left-0 top-0 w-px opacity-0 transition-opacity group-hover:opacity-100" />
+											)}
 											<div className="flex items-center justify-between">
 												<span>{item.title}</span>
 												{item.isComingSoon && (
@@ -68,9 +74,17 @@ export default function Sidebar() {
 									)
 
 									return (
-										<li key={item.title} className="relative" ref={isActive ? activeItemRef : null}>
+										<li
+											key={item.title}
+											className="relative"
+											ref={isActive ? activeItemRef : null}>
 											{item.disabled ? (
-												<div className={cn("text-fg-tertiary relative block cursor-not-allowed py-1.5 pl-3 text-sm")}>{content}</div>
+												<div
+													className={cn(
+														"text-fg-tertiary relative block cursor-not-allowed py-1.5 pl-3 text-sm"
+													)}>
+													{content}
+												</div>
 											) : (
 												<Link
 													className={cn(

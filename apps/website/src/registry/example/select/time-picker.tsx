@@ -1,6 +1,12 @@
 import React from "react"
 import { Time } from "@internationalized/date"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 export type TimePickerProps = {
 	interval?: number
@@ -34,11 +40,23 @@ function deserializeTime(timeString: string) {
 	return new Time(hour, minute)
 }
 
-function TimePicker({ interval = 15, onValueChange, className, is24Hour = false, minTime = "00:00", maxTime = "23:59", defaultValue, value = null, ...props }: TimePickerProps) {
+function TimePicker({
+	interval = 15,
+	onValueChange,
+	className,
+	is24Hour = false,
+	minTime = "00:00",
+	maxTime = "23:59",
+	defaultValue,
+	value = null,
+	...props
+}: TimePickerProps) {
 	const isControlled = value !== null
 
 	/* Store the time as a serialized string ("HH:mm") to simplify comparisons and render */
-	const [internalValue, setInternalValue] = React.useState<string[]>(defaultValue ? [serializeTime(defaultValue)] : [])
+	const [internalValue, setInternalValue] = React.useState<string[]>(
+		defaultValue ? [serializeTime(defaultValue)] : []
+	)
 
 	const currentValue = isControlled ? serializeTime(value) : internalValue[0]
 
@@ -58,7 +76,10 @@ function TimePicker({ interval = 15, onValueChange, className, is24Hour = false,
 		let currentHour = minHour
 		let currentMinute = minMinute
 
-		while (currentHour < maxHour || (currentHour === maxHour && currentMinute <= maxMinute)) {
+		while (
+			currentHour < maxHour ||
+			(currentHour === maxHour && currentMinute <= maxMinute)
+		) {
 			const time = new Time(currentHour, currentMinute)
 			times.push(time)
 

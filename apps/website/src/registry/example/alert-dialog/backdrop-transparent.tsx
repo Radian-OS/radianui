@@ -22,7 +22,10 @@ export default function BackdropTransparent() {
 			<AlertDialogContent backdrop="transparent" className="max-w-100">
 				<AlertDialogHeader>
 					<AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
-					<AlertDialogDescription>You have unsaved changes in the page. Do you want to save or discard it?</AlertDialogDescription>
+					<AlertDialogDescription>
+						You have unsaved changes in the page. Do you want to save or discard
+						it?
+					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel asChild>

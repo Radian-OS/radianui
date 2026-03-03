@@ -1,11 +1,29 @@
 import React from "react"
-import { BarChart3, ChevronRight, Ellipsis, FolderClosed, List, Settings, Star } from "lucide-react"
+import {
+	BarChart3,
+	ChevronRight,
+	Ellipsis,
+	FolderClosed,
+	List,
+	Settings,
+	Star,
+} from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/registry/ui/card"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from "@/registry/ui/card"
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "@/registry/ui/collapsible"
 import {
 	Sidebar,
 	SidebarContent,
@@ -33,7 +51,13 @@ export default function SidebarPreview() {
 				<Sidebar className="absolute">
 					<SidebarHeader className="flex flex-col gap-5">
 						<div className="flex items-center gap-2">
-							<Image src="/favicon-16x16.png" alt="Logo" width={100} height={100} className="h-7 w-fit" />
+							<Image
+								src="/favicon-16x16.png"
+								alt="Logo"
+								width={100}
+								height={100}
+								className="h-7 w-fit"
+							/>
 							<p className="text-xl font-bold">Radian</p>
 						</div>
 						<div className="shadow-xs flex items-center gap-3 rounded-lg border py-2 pe-4 ps-2.5">
@@ -127,8 +151,12 @@ export default function SidebarPreview() {
 					<SidebarFooter>
 						<Card className="gap-2 py-4 shadow-none">
 							<CardHeader className="px-4">
-								<CardTitle className="text-sm">Subscribe to our newsletter</CardTitle>
-								<CardDescription>Opt-in to receive updates and news about the sidebar.</CardDescription>
+								<CardTitle className="text-sm">
+									Subscribe to our newsletter
+								</CardTitle>
+								<CardDescription>
+									Opt-in to receive updates and news about the sidebar.
+								</CardDescription>
 							</CardHeader>
 							<CardContent className="px-4">
 								<form>

@@ -32,7 +32,12 @@ export default function HeroActionButtons() {
 				}}>
 				Copy Terminal Command
 			</Button>
-			<Button asChild size="40" className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit" variant="outline" color="neutral">
+			<Button
+				asChild
+				size="40"
+				className="bg-elevation-level1/20 dark:hover:bg-fill2/40 hover:bg-fill2/40 w-full backdrop-blur-md sm:w-fit"
+				variant="outline"
+				color="neutral">
 				<Link href="/docs/components/accordion" className="w-full sm:w-fit">
 					Browse Components
 				</Link>

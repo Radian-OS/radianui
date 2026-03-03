@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react"
-import { AnimatePresence, motion, useAnimationControls, useSpring } from "motion/react"
+import {
+	AnimatePresence,
+	motion,
+	useAnimationControls,
+	useSpring,
+} from "motion/react"
 import Image from "next/image"
 
 export function ReuseComponent() {
@@ -75,7 +80,10 @@ export function ReuseComponent() {
 		scrollX.set(targetScroll)
 	}
 
-	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, cardId: number) => {
+	const handleMouseMove = (
+		e: React.MouseEvent<HTMLDivElement>,
+		cardId: number
+	) => {
 		const container = containerRef.current
 		if (!container) return
 
@@ -211,8 +219,26 @@ export function ReuseComponent() {
 										ease: "linear",
 									}}
 									className="absolute inset-0 flex items-start justify-center">
-									{card.type.darkmode && <Image unoptimized src={card.type.darkmode} className="not-dark:hidden" alt="Dark Mode" width={360} height={594} />}
-									{card.type.lightmode && <Image unoptimized src={card.type.lightmode} className="dark:hidden" alt="Light Mode" width={360} height={594} />}
+									{card.type.darkmode && (
+										<Image
+											unoptimized
+											src={card.type.darkmode}
+											className="not-dark:hidden"
+											alt="Dark Mode"
+											width={360}
+											height={594}
+										/>
+									)}
+									{card.type.lightmode && (
+										<Image
+											unoptimized
+											src={card.type.lightmode}
+											className="dark:hidden"
+											alt="Light Mode"
+											width={360}
+											height={594}
+										/>
+									)}
 								</motion.div>
 							) : (
 								<>
@@ -239,8 +265,26 @@ export function ReuseComponent() {
 												ease: "linear",
 											}}
 											className="absolute inset-0 flex items-start justify-center">
-											{card.type.darkmode && <Image unoptimized src={card.type.darkmode} className="not-dark:hidden opacity-20" alt="Dark Mode" width={360} height={594} />}
-											{card.type.lightmode && <Image unoptimized src={card.type.lightmode} className="opacity-20 dark:hidden" alt="Light Mode" width={360} height={594} />}
+											{card.type.darkmode && (
+												<Image
+													unoptimized
+													src={card.type.darkmode}
+													className="not-dark:hidden opacity-20"
+													alt="Dark Mode"
+													width={360}
+													height={594}
+												/>
+											)}
+											{card.type.lightmode && (
+												<Image
+													unoptimized
+													src={card.type.lightmode}
+													className="opacity-20 dark:hidden"
+													alt="Light Mode"
+													width={360}
+													height={594}
+												/>
+											)}
 										</motion.div>
 									)}
 								</>
@@ -261,8 +305,20 @@ export function ReuseComponent() {
 					repeat: Infinity,
 				}}>
 				<div className="w-90 relative flex h-[520px] flex-shrink-0 items-center justify-center">
-					<Image src="/reuseable-ui/dark-mode1.png" className="not-dark:hidden" alt="Dark Mode 1" width={360} height={594} />
-					<Image src="/reuseable-ui/light-mode1.png" className="dark:hidden" alt="Dark Mode 1" width={360} height={594} />
+					<Image
+						src="/reuseable-ui/dark-mode1.png"
+						className="not-dark:hidden"
+						alt="Dark Mode 1"
+						width={360}
+						height={594}
+					/>
+					<Image
+						src="/reuseable-ui/light-mode1.png"
+						className="dark:hidden"
+						alt="Dark Mode 1"
+						width={360}
+						height={594}
+					/>
 				</div>
 			</motion.div>
 		</div>

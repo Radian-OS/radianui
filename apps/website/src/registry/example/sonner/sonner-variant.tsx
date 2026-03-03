@@ -15,7 +15,9 @@ const ToastColor = () => {
 							<Box size={20} className="text-primary" />
 							<div>
 								<p className="text-fg text-sm font-medium">Toast Title</p>
-								<p className="text-fg-secondary text-sm font-normal">Toast description message.</p>
+								<p className="text-fg-secondary text-sm font-normal">
+									Toast description message.
+								</p>
 							</div>
 							<div className="flex gap-3">
 								<Button color="neutral" variant="link">
@@ -25,7 +27,11 @@ const ToastColor = () => {
 									Upgrade
 								</Button>
 							</div>
-							<XIcon onClick={() => toast.dismiss(t)} size={16} className="text-fg-secondary cursor-pointer" />
+							<XIcon
+								onClick={() => toast.dismiss(t)}
+								size={16}
+								className="text-fg-secondary cursor-pointer"
+							/>
 						</div>
 					))
 				}>
@@ -41,7 +47,9 @@ const ToastColor = () => {
 							<Box size={20} className="text-white" />
 							<div className="text-white">
 								<p className="text-sm font-medium">Toast Title</p>
-								<p className="text-sm font-normal">Toast description message.</p>
+								<p className="text-sm font-normal">
+									Toast description message.
+								</p>
 							</div>
 							<div className="flex gap-3">
 								<Button className="text-white" variant="link">
@@ -51,7 +59,11 @@ const ToastColor = () => {
 									Upgrade
 								</Button>
 							</div>
-							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer text-white" />
+							<XIcon
+								onClick={() => toast.dismiss(t)}
+								size={16}
+								className="cursor-pointer text-white"
+							/>
 						</div>
 					))
 				}>
@@ -67,7 +79,9 @@ const ToastColor = () => {
 							<Box size={20} className="text-primary" />
 							<div className="text-fg-inverse">
 								<p className="text-sm font-medium">Toast Title</p>
-								<p className="text-sm font-normal">Toast description message.</p>
+								<p className="text-sm font-normal">
+									Toast description message.
+								</p>
 							</div>
 							<div className="flex gap-3">
 								<Button className="text-fg-inverse" variant="link">
@@ -77,7 +91,11 @@ const ToastColor = () => {
 									Upgrade
 								</Button>
 							</div>
-							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer" />
+							<XIcon
+								onClick={() => toast.dismiss(t)}
+								size={16}
+								className="cursor-pointer"
+							/>
 						</div>
 					))
 				}>

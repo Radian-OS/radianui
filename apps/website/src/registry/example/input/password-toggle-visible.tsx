@@ -21,8 +21,17 @@ export default function PasswordToggleVisible() {
 		<div className="flex flex-col gap-1.5">
 			<Label htmlFor="toggle-visible-password">Password</Label>
 			<InputWrapper className="w-80">
-				<Input id="toggle-visible-password" ref={inputRef} placeholder="Enter your password" className="peer" type={showPassword ? "text" : "password"} />
-				<IconComponent className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none" onMouseDown={togglePasswordVisibility} />
+				<Input
+					id="toggle-visible-password"
+					ref={inputRef}
+					placeholder="Enter your password"
+					className="peer"
+					type={showPassword ? "text" : "password"}
+				/>
+				<IconComponent
+					className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+					onMouseDown={togglePasswordVisibility}
+				/>
 			</InputWrapper>
 		</div>
 	)

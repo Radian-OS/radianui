@@ -1,5 +1,10 @@
 import React from "react"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/registry/ui/accordion"
 
 const contents = [
 	{
@@ -23,13 +28,18 @@ const contents = [
 	{
 		id: 4,
 		trigger: "How can I stay updated with Radian OS developments?",
-		content: "You can subscribe to Radian OS updates to receive the latest information, tips, and exclusive offers directly from the development team.",
+		content:
+			"You can subscribe to Radian OS updates to receive the latest information, tips, and exclusive offers directly from the development team.",
 	},
 ]
 
 export default function AccordionIndicator() {
 	return (
-		<Accordion type="single" indicator={"plus-minus"} className="w-full lg:w-[75%]" collapsible>
+		<Accordion
+			type="single"
+			indicator={"plus-minus"}
+			className="w-full lg:w-[75%]"
+			collapsible>
 			{contents.map((item) => (
 				<AccordionItem value={item.id.toString()} key={item.id}>
 					<AccordionTrigger>{item.trigger}</AccordionTrigger>

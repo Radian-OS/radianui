@@ -6,7 +6,9 @@ import { Label } from "@/registry/ui/label"
 export default function CheckboxGroup() {
 	return (
 		<div className="bg-bg border-soft w-full max-w-60 rounded-lg border p-4">
-			<div className="mb-3 text-sm font-medium">Pick your favorite hobbies </div>
+			<div className="mb-3 text-sm font-medium">
+				Pick your favorite hobbies{" "}
+			</div>
 			<div className="flex flex-col gap-3">
 				<div className="flex items-center gap-2">
 					<Checkbox id="eating" value="eating" />

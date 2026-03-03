@@ -1,9 +1,19 @@
 import React from "react"
-import { ChevronFirst, ChevronLast, ChevronLeft, ChevronRight } from "lucide-react"
+import {
+	ChevronFirst,
+	ChevronLast,
+	ChevronLeft,
+	ChevronRight,
+} from "lucide-react"
 import Link from "next/link"
 import { IconButton } from "@/registry/ui/button"
 import { Card } from "@/registry/ui/card"
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from "@/registry/ui/pagination"
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+} from "@/registry/ui/pagination"
 
 const PaginationCardExample = () => {
 	return (
@@ -12,31 +22,53 @@ const PaginationCardExample = () => {
 				<Pagination>
 					<PaginationContent className="p-1">
 						<PaginationItem>
-							<IconButton aria-label="First Page" color="neutral" variant="ghost" asChild disabled>
+							<IconButton
+								aria-label="First Page"
+								color="neutral"
+								variant="ghost"
+								asChild
+								disabled>
 								<Link href="#">
 									<ChevronFirst className="rtl:rotate-180" />
 								</Link>
 							</IconButton>
 						</PaginationItem>
 						<PaginationItem>
-							<IconButton aria-label="Previous Page" color="neutral" variant="ghost" asChild disabled>
+							<IconButton
+								aria-label="Previous Page"
+								color="neutral"
+								variant="ghost"
+								asChild
+								disabled>
 								<Link href="#">
 									<ChevronLeft className="rtl:rotate-180" />
 								</Link>
 							</IconButton>
 						</PaginationItem>
 						<PaginationItem>
-							<IconButton aria-label="Page 1" color="neutral" variant="ghost" asChild>
+							<IconButton
+								aria-label="Page 1"
+								color="neutral"
+								variant="ghost"
+								asChild>
 								<Link href="#">1</Link>
 							</IconButton>
 						</PaginationItem>
 						<PaginationItem>
-							<IconButton aria-label="Page 2" color="neutral" variant="ghost" asChild>
+							<IconButton
+								aria-label="Page 2"
+								color="neutral"
+								variant="ghost"
+								asChild>
 								<Link href="#">2</Link>
 							</IconButton>
 						</PaginationItem>
 						<PaginationItem>
-							<IconButton aria-label="Page 3" color="neutral" variant="ghost" asChild>
+							<IconButton
+								aria-label="Page 3"
+								color="neutral"
+								variant="ghost"
+								asChild>
 								<Link href="#">3</Link>
 							</IconButton>
 						</PaginationItem>
@@ -44,14 +76,22 @@ const PaginationCardExample = () => {
 							<PaginationEllipsis />
 						</PaginationItem>
 						<PaginationItem>
-							<IconButton aria-label="Next Page" color="neutral" variant="ghost" asChild>
+							<IconButton
+								aria-label="Next Page"
+								color="neutral"
+								variant="ghost"
+								asChild>
 								<Link href="#">
 									<ChevronRight className="rtl:rotate-180" />
 								</Link>
 							</IconButton>
 						</PaginationItem>
 						<PaginationItem>
-							<IconButton aria-label="Last Page" color="neutral" variant="ghost" asChild>
+							<IconButton
+								aria-label="Last Page"
+								color="neutral"
+								variant="ghost"
+								asChild>
 								<Link href="#">
 									<ChevronLast className="rtl:rotate-180" />
 								</Link>

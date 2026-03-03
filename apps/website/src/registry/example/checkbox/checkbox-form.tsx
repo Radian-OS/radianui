@@ -8,7 +8,14 @@ import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 
 export default function CheckboxForm() {
 	const FormSchema = z.object({
@@ -25,7 +32,10 @@ export default function CheckboxForm() {
 	function onSubmit() {
 		toast.custom(
 			(t) => (
-				<Alert variant="strong" color="success" onClose={() => toast.dismiss(t)}>
+				<Alert
+					variant="strong"
+					color="success"
+					onClose={() => toast.dismiss(t)}>
 					<AlertIcon>
 						<CheckCircle />
 					</AlertIcon>
@@ -49,9 +59,14 @@ export default function CheckboxForm() {
 						<FormItem>
 							<div className="flex items-center gap-2">
 								<FormControl>
-									<Checkbox checked={field.value} onCheckedChange={field.onChange} />
+									<Checkbox
+										checked={field.value}
+										onCheckedChange={field.onChange}
+									/>
 								</FormControl>
-								<FormLabel className="text-fg-secondary">Same as the shipping address</FormLabel>
+								<FormLabel className="text-fg-secondary">
+									Same as the shipping address
+								</FormLabel>
 							</div>
 							<FormMessage />
 						</FormItem>

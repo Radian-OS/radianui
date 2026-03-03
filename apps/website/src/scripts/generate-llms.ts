@@ -1,7 +1,11 @@
 import { config } from "dotenv"
 import { promises as fs } from "node:fs"
 import { app } from "@/config/llms-config"
-import { NavigationItem, NavigationSection, navigationItems } from "@/config/navigation-config"
+import {
+	NavigationItem,
+	NavigationSection,
+	navigationItems,
+} from "@/config/navigation-config"
 
 config({ path: ".env" })
 
@@ -14,7 +18,9 @@ function toTitleCase(str: string) {
 function buildItemLine(item: NavigationItem): string {
 	if (item.isExternal) return ""
 	const label = item.isComingSoon ? `${item.title} (coming soon)` : item.title
-	const description = item.description ? `${item.description}` : `Detailed documentation for ${item.title}`
+	const description = item.description
+		? `${item.description}`
+		: `Detailed documentation for ${item.title}`
 	const url = item.isExternal ? item.url : `${item.url}.md`
 	return `- [${label}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${url}): ${description}`
 }
@@ -55,7 +61,9 @@ async function buildLlmsTxt(sections: NavigationSection[]) {
 			if (item.subItems?.length) {
 				for (const sub of item.subItems) {
 					const subDescription = `Detailed documentation for ${item.title} (${sub.title})`
-					lines.push(`- [${item.title} — ${sub.title}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): ${subDescription}`)
+					lines.push(
+						`- [${item.title} — ${sub.title}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): ${subDescription}`
+					)
 				}
 			}
 		}
@@ -99,7 +107,9 @@ async function buildLlmsTxt(sections: NavigationSection[]) {
 // ===== Entry =====
 
 async function build() {
-	await Promise.all([buildLlmsTxt(navigationItems) /*, buildLlmsFullTxt(navigationItems)*/])
+	await Promise.all([
+		buildLlmsTxt(navigationItems) /*, buildLlmsFullTxt(navigationItems)*/,
+	])
 }
 
 build()

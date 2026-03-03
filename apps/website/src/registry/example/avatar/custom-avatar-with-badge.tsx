@@ -1,5 +1,10 @@
 import React from "react"
-import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator } from "@/registry/ui/avatar"
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	AvatarIndicator,
+} from "@/registry/ui/avatar"
 
 export default function CustomAvatarWithBadgePreview() {
 	return (
@@ -15,7 +20,9 @@ export default function CustomAvatarWithBadgePreview() {
 			</Avatar>
 			<Avatar size="48" rounded="square">
 				<AvatarImage src="/media/male-5.jpg" />
-				<AvatarFallback className="text-info-text bg-info-focus">AJ</AvatarFallback>
+				<AvatarFallback className="text-info-text bg-info-focus">
+					AJ
+				</AvatarFallback>
 				<AvatarIndicator className="-right-0.5 -top-0.5">
 					<div className="bg-info border-alpha ring-offset-bg flex size-4 items-center justify-center rounded-full border text-xs text-white ring ring-transparent ring-offset-2">
 						<span>8</span>

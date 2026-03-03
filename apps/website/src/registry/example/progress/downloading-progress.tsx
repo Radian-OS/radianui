@@ -65,8 +65,14 @@ export default function DownloadingProgress() {
 	return (
 		<div className="mx-auto w-full p-8">
 			<div className="mb-6 text-center">
-				<h2 className="mb-1 text-xl font-semibold">{isComplete ? "Installation Complete!" : "Workspace Setup"}</h2>
-				<p className="text-fg-secondary text-sm">{isComplete ? "Ready to launch your workspace" : "Setting up your development environment"}</p>
+				<h2 className="mb-1 text-xl font-semibold">
+					{isComplete ? "Installation Complete!" : "Workspace Setup"}
+				</h2>
+				<p className="text-fg-secondary text-sm">
+					{isComplete
+						? "Ready to launch your workspace"
+						: "Setting up your development environment"}
+				</p>
 			</div>
 
 			<div className="flex flex-col gap-1.5">
@@ -74,7 +80,9 @@ export default function DownloadingProgress() {
 				<div className="flex items-center justify-between text-sm">
 					<Label>Progress</Label>
 					<div className="flex items-center space-x-4">
-						<span className="text-fg-secondary">{speed > 0 ? `${speed.toFixed(1)} MB/s` : "--"}</span>
+						<span className="text-fg-secondary">
+							{speed > 0 ? `${speed.toFixed(1)} MB/s` : "--"}
+						</span>
 						<Badge variant="soft" color="neutral">
 							{progressPercentage}%
 						</Badge>
@@ -84,7 +92,9 @@ export default function DownloadingProgress() {
 				<Progress value={downloadProgress} className="h-2 w-full" />
 
 				<div className="flex items-center justify-between">
-					<span className={`text-fg-secondary text-sm font-medium`}>{statusData.message}</span>
+					<span className={`text-fg-secondary text-sm font-medium`}>
+						{statusData.message}
+					</span>
 				</div>
 
 				<Divider className="my-2" />
@@ -92,11 +102,15 @@ export default function DownloadingProgress() {
 				<div className="flex justify-between">
 					<div className="text-xs">
 						<span className="text-fg-secondary">Files processed:</span>
-						<div className="text-fg font-mono">{Math.floor((downloadProgress / 100) * 1247)} / 1247</div>
+						<div className="text-fg font-mono">
+							{Math.floor((downloadProgress / 100) * 1247)} / 1247
+						</div>
 					</div>
 					<div className="text-xs">
 						<span className="text-fg-secondary">Size:</span>
-						<div className="text-fg font-mono">{((downloadProgress / 100) * 2.4).toFixed(1)} / 2.4 GB</div>
+						<div className="text-fg font-mono">
+							{((downloadProgress / 100) * 2.4).toFixed(1)} / 2.4 GB
+						</div>
 					</div>
 				</div>
 			</div>

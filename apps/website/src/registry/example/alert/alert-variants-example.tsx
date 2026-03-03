@@ -1,6 +1,12 @@
 import React from "react"
 import { Box } from "lucide-react"
-import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import {
+	Alert,
+	AlertContent,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+} from "@/registry/ui/alert"
 
 const AlertVariantsExample = () => {
 	return (

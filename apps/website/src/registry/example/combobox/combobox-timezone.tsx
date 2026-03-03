@@ -4,7 +4,14 @@ import * as React from "react"
 import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function ComboboxTimezone() {
@@ -23,14 +30,18 @@ export default function ComboboxTimezone() {
 
 				const parts = formatter.formatToParts(new Date())
 
-				const offset = parts.find((part) => part.type === "timeZoneName")?.value || ""
+				const offset =
+					parts.find((part) => part.type === "timeZoneName")?.value || ""
 
 				const formattedOffset = offset === "GMT" ? "GMT+0" : offset
 
 				return {
 					value: timezone,
 					offset,
-					numericOffset: parseInt(formattedOffset.replace("GMT", "").replace("+", "") || "0".slice(0, 2)),
+					numericOffset: parseInt(
+						formattedOffset.replace("GMT", "").replace("+", "") ||
+							"0".slice(0, 2)
+					),
 				}
 			})
 			.sort((a, b) => a.numericOffset - b.numericOffset)
@@ -41,14 +52,23 @@ export default function ComboboxTimezone() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<Button variant="outline" color="neutral" role="combobox" aria-expanded={open} className="w-80">
+				<Button
+					variant="outline"
+					color="neutral"
+					role="combobox"
+					aria-expanded={open}
+					className="w-80">
 					{value ? (
 						<>
 							<span>{selectedTimezone.value}</span>
-							<span className="text-fg-tertiary">{selectedTimezone.offset}</span>
+							<span className="text-fg-tertiary">
+								{selectedTimezone.offset}
+							</span>
 						</>
 					) : (
-						<span className="text-fg-secondary truncate text-sm font-normal">Select Timezone</span>
+						<span className="text-fg-secondary truncate text-sm font-normal">
+							Select Timezone
+						</span>
 					)}
 					<ChevronDown className="text-fg-tertiary ml-auto" />
 				</Button>
@@ -70,9 +90,16 @@ export default function ComboboxTimezone() {
 									}}>
 									<div className="flex gap-2 font-normal">
 										<span className="flex-1 truncate">{t.value}</span>
-										<span className="text-fg-secondary flex-nowrap text-[13px]">{t.offset}</span>
+										<span className="text-fg-secondary flex-nowrap text-[13px]">
+											{t.offset}
+										</span>
 									</div>
-									<Check className={cn("ml-auto size-5", value === t.value ? "opacity-100" : "opacity-0")} />
+									<Check
+										className={cn(
+											"ml-auto size-5",
+											value === t.value ? "opacity-100" : "opacity-0"
+										)}
+									/>
 								</CommandItem>
 							))}
 						</CommandGroup>

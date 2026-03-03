@@ -18,9 +18,19 @@ const ColorInput = () => {
 							className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
 							onChange={(e) => setColor(e.target.value)}
 						/>
-						<span className="block size-full" style={{ backgroundColor: color }} />
+						<span
+							className="block size-full"
+							style={{ backgroundColor: color }}
+						/>
 					</label>
-					<Input size="40" className="pl-8" type="text" value={color} placeholder="#000000" onChange={(e) => setColor(e.target.value)} />
+					<Input
+						size="40"
+						className="pl-8"
+						type="text"
+						value={color}
+						placeholder="#000000"
+						onChange={(e) => setColor(e.target.value)}
+					/>
 				</div>
 			</div>
 		</div>

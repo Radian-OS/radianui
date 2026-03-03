@@ -1,4 +1,13 @@
-import { Select, SelectContent, SelectDivider, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectDivider,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 export default function SelectPreview() {
 	return (

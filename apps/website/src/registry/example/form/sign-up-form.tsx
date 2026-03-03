@@ -9,7 +9,14 @@ import { toast } from "sonner"
 import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Input, InputWrapper } from "@/registry/ui/input"
 
 interface FormData {
@@ -24,7 +31,10 @@ const FormSchema = z.object({
 	password: z
 		.string()
 		.min(8, "Password must be at least 8 characters long")
-		.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, "Password must contain at least one uppercase letter, one lowercase letter, and one number"),
+		.regex(
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+			"Password must contain at least one uppercase letter, one lowercase letter, and one number"
+		),
 })
 
 export default function SignUp() {
@@ -63,12 +73,26 @@ export default function SignUp() {
 		<div className="w-100">
 			<div className="mx-auto flex flex-col gap-9">
 				<Link href="/" style={{ fill: "white", color: "white" }}>
-					<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
-					<img src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
+					<img
+						src="/radian.svg"
+						className="dark:hidden"
+						alt="radian-logo"
+						width={112}
+						height={36}
+					/>
+					<img
+						src="/radian-dark.svg"
+						alt="radian-logo"
+						className="hidden dark:block"
+						width={112}
+						height={36}
+					/>
 				</Link>
 				<div className="space-y-6">
 					<div className="space-y-2">
-						<h1 className="flex justify-between text-2xl font-semibold">Sign up</h1>
+						<h1 className="flex justify-between text-2xl font-semibold">
+							Sign up
+						</h1>
 						<div className="flex justify-between">
 							<p className="text-fg-secondary text-sm font-medium">
 								Already have an account?{" "}
@@ -80,7 +104,9 @@ export default function SignUp() {
 					</div>
 					<div className="space-y-5">
 						<Form {...form}>
-							<form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
+							<form
+								className="space-y-4"
+								onSubmit={form.handleSubmit(onSubmit)}>
 								<FormField
 									control={form.control}
 									name="name"
@@ -101,7 +127,11 @@ export default function SignUp() {
 										<FormItem>
 											<FormLabel>Email</FormLabel>
 											<FormControl>
-												<Input type="email" placeholder="Enter your email address" {...field} />
+												<Input
+													type="email"
+													placeholder="Enter your email address"
+													{...field}
+												/>
 											</FormControl>
 											<FormMessage />
 										</FormItem>
@@ -115,7 +145,12 @@ export default function SignUp() {
 											<FormLabel htmlFor="sign-up-password">Password</FormLabel>
 											<FormControl>
 												<InputWrapper>
-													<Input id="sign-up-password" placeholder="Enter your password" type={showPassword ? "text" : "password"} {...field} />
+													<Input
+														id="sign-up-password"
+														placeholder="Enter your password"
+														type={showPassword ? "text" : "password"}
+														{...field}
+													/>
 													<IconComponent
 														className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 														onMouseDown={togglePasswordVisibility}
@@ -133,7 +168,9 @@ export default function SignUp() {
 						</Form>
 						<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
 							<p className="text-fg-secondary">
-								By signing up, you agree to Radian&apos;s <span className="text-fg">Terms of Service</span> and <span className="text-fg">Privacy Policy</span>
+								By signing up, you agree to Radian&apos;s{" "}
+								<span className="text-fg">Terms of Service</span> and{" "}
+								<span className="text-fg">Privacy Policy</span>
 							</p>
 						</div>
 					</div>

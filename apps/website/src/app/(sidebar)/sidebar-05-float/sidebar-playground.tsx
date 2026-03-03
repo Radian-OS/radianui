@@ -3,14 +3,23 @@
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
 import { SidebarMenuButtonProps, SidebarProps } from "@/registry/ui/sidebar"
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/registry/ui/sidebar"
+import {
+	SidebarInset,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/registry/ui/sidebar"
 import { AppSidebar } from "./app-sidebar"
 
 type Variant = NonNullable<SidebarMenuButtonProps["variant"]>
 type Theme = NonNullable<SidebarProps["theme"]>
 
 const variants: Variant[] = ["strong", "soft", "neutral"]
-const themes: Theme[] = ["neutral-accent", "neutral-white", "white-on-grey", "neutral-dark"]
+const themes: Theme[] = [
+	"neutral-accent",
+	"neutral-white",
+	"white-on-grey",
+	"neutral-dark",
+]
 
 export function SidebarPlayground() {
 	const [activeVariant, setActiveVariant] = useState<Variant>("neutral")
@@ -27,22 +36,40 @@ export function SidebarPlayground() {
 					</div>
 					<div className="flex h-full flex-col items-center justify-center gap-8 p-8">
 						<div className="flex flex-col items-center gap-3">
-							<span className="text-fg-secondary text-xs font-medium uppercase tracking-widest">SidebarMenuButton Variant</span>
-							<span className="text-fg text-xl font-semibold">{activeVariant}</span>
+							<span className="text-fg-secondary text-xs font-medium uppercase tracking-widest">
+								SidebarMenuButton Variant
+							</span>
+							<span className="text-fg text-xl font-semibold">
+								{activeVariant}
+							</span>
 							<div className="flex flex-wrap justify-center gap-2">
 								{variants.map((variant) => (
-									<Button key={variant} variant={activeVariant === variant ? "strong" : "outline"} color="neutral" size="32" onClick={() => setActiveVariant(variant)}>
+									<Button
+										key={variant}
+										variant={activeVariant === variant ? "strong" : "outline"}
+										color="neutral"
+										size="32"
+										onClick={() => setActiveVariant(variant)}>
 										{variant}
 									</Button>
 								))}
 							</div>
 						</div>
 						<div className="flex flex-col items-center gap-3">
-							<span className="text-fg-secondary text-xs font-medium uppercase tracking-widest">Sidebar Theme</span>
-							<span className="text-fg text-xl font-semibold">{activeTheme}</span>
+							<span className="text-fg-secondary text-xs font-medium uppercase tracking-widest">
+								Sidebar Theme
+							</span>
+							<span className="text-fg text-xl font-semibold">
+								{activeTheme}
+							</span>
 							<div className="flex flex-wrap justify-center gap-2">
 								{themes.map((theme) => (
-									<Button key={theme} variant={activeTheme === theme ? "strong" : "outline"} color="neutral" size="32" onClick={() => setActiveTheme(theme)}>
+									<Button
+										key={theme}
+										variant={activeTheme === theme ? "strong" : "outline"}
+										color="neutral"
+										size="32"
+										onClick={() => setActiveTheme(theme)}>
 										{theme}
 									</Button>
 								))}

@@ -5,7 +5,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 
 const FormSchema = z.object({
@@ -36,14 +44,20 @@ export default function OTPFieldAutoSubmit() {
 						<FormItem>
 							<FormLabel>One-Time Password</FormLabel>
 							<FormControl>
-								<OTPField value={field.value} placeholder="000000" onValueChange={field.onChange} autoSubmit>
+								<OTPField
+									value={field.value}
+									placeholder="000000"
+									onValueChange={field.onChange}
+									autoSubmit>
 									{Array.from({ length: 6 }).map((_, index) => (
 										<OTPInput key={index} index={index} />
 									))}
 									<OTPHiddenInput />
 								</OTPField>
 							</FormControl>
-							<FormDescription>Please enter the OTP sent to your phone.</FormDescription>
+							<FormDescription>
+								Please enter the OTP sent to your phone.
+							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}

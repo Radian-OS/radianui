@@ -28,7 +28,9 @@ export default function DestructiveDialogCenter() {
 					</span>
 					<AlertDialogHeader className="sm:text-center">
 						<AlertDialogTitle>Delete Account</AlertDialogTitle>
-						<AlertDialogDescription>Are you sure you want to delete the record?</AlertDialogDescription>
+						<AlertDialogDescription>
+							Are you sure you want to delete the record?
+						</AlertDialogDescription>
 					</AlertDialogHeader>
 				</div>
 				<AlertDialogFooter className="sm:flex-col-reverse">

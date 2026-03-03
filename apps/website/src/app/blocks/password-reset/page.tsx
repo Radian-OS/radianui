@@ -13,7 +13,11 @@ interface VerificationProps {
 
 export default function Page({ fullScreen = true }: VerificationProps) {
 	return (
-		<div className={cn("bg-bg flex items-center justify-center px-5", { "h-full w-full": !fullScreen, "h-screen w-screen": fullScreen })}>
+		<div
+			className={cn("bg-bg flex items-center justify-center px-5", {
+				"h-full w-full": !fullScreen,
+				"h-screen w-screen": fullScreen,
+			})}>
 			<div className="w-100 bg-bg flex">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>
@@ -21,7 +25,10 @@ export default function Page({ fullScreen = true }: VerificationProps) {
 					</div>
 					<div className="flex flex-col gap-2">
 						<h1 className="heading-5">Reset password</h1>
-						<p className="text-fg-secondary text-sm">Enter the email address you registered with and we&apos;ll send you the reset instructions</p>
+						<p className="text-fg-secondary text-sm">
+							Enter the email address you registered with and we&apos;ll send
+							you the reset instructions
+						</p>
 					</div>
 					<form className="flex flex-col gap-4">
 						<div className="flex flex-col gap-5">
@@ -35,11 +42,17 @@ export default function Page({ fullScreen = true }: VerificationProps) {
 						</div>
 						<Divider className="my-2.5" />
 						<div className="flex gap-3">
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button
+								variant="outline"
+								color="neutral"
+								className="text-fg-secondary w-full">
 								<GmailIcon />
 								Open Gmail
 							</Button>
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button
+								variant="outline"
+								color="neutral"
+								className="text-fg-secondary w-full">
 								<OutlookIcon />
 								Open Outlook
 							</Button>

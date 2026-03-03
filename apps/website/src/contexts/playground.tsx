@@ -2,7 +2,12 @@
 
 import { ReactNode, createContext, useContext, useState } from "react"
 
-export type LayoutOption = "signin-1" | "signin-2" | "signin-3" | "signup" | "hover-card"
+export type LayoutOption =
+	| "signin-1"
+	| "signin-2"
+	| "signin-3"
+	| "signup"
+	| "hover-card"
 export type ColorOption =
 	| "red"
 	| "orange"
@@ -26,7 +31,12 @@ export type RadiusOption = "default" | "rounded" | "flat" | "fun"
 export type SpacingOption = "compact" | "default" | "spacious"
 export type SizeOption = "small" | "default" | "large"
 export type ButtonOption = "default" | "gradient" | "fancy" | "elevated"
-export type FontCategory = "Sans Serif" | "Serif" | "Monospace" | "Display" | "Handwriting"
+export type FontCategory =
+	| "Sans Serif"
+	| "Serif"
+	| "Monospace"
+	| "Display"
+	| "Handwriting"
 export type FontName = string
 
 interface PlaygroundContextType {
@@ -56,7 +66,9 @@ interface PlaygroundContextType {
 	setFontCategory?: (category: FontCategory) => void
 }
 
-const PlaygroundContext = createContext<PlaygroundContextType | undefined>(undefined)
+const PlaygroundContext = createContext<PlaygroundContextType | undefined>(
+	undefined
+)
 
 export const usePlayground = () => {
 	const context = useContext(PlaygroundContext)

@@ -42,7 +42,13 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
 			{/* Blog Image */}
 			<div className="py-6">
-				<Image width={500} height={500} className="h-auto w-full rounded-lg object-cover" alt={blog.title} src={blog.image ?? "/og/static-og.png"} />
+				<Image
+					width={500}
+					height={500}
+					className="h-auto w-full rounded-lg object-cover"
+					alt={blog.title}
+					src={blog.image ?? "/og/static-og.png"}
+				/>
 			</div>
 
 			{/* Author Info */}
@@ -50,14 +56,23 @@ export default async function BlogPage({ params }: BlogPageProps) {
 				<span className="text-fg-secondary text-sm">Author</span>
 				{blog.author?.map((author, index) =>
 					author.username && author.avatar ? (
-						<Link target="_blank" rel="noopener noreferrer" href={author.link || "#"} key={author._id} className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
+						<Link
+							target="_blank"
+							rel="noopener noreferrer"
+							href={author.link || "#"}
+							key={author._id}
+							className={`flex items-center gap-3 ${index !== 0 ? "px-3" : ""}`}>
 							<Avatar size="24">
 								<AvatarImage src={author.avatar} />
-								<AvatarFallback>{author.name.charAt(0).toUpperCase()}</AvatarFallback>
+								<AvatarFallback>
+									{author.name.charAt(0).toUpperCase()}
+								</AvatarFallback>
 							</Avatar>
 							<span className="flex flex-col">
 								<span className="text-sm font-medium">{author.name}</span>
-								<span className="text-fg-secondary text-xs">{author.username}</span>
+								<span className="text-fg-secondary text-xs">
+									{author.username}
+								</span>
 							</span>
 						</Link>
 					) : (

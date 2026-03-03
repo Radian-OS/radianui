@@ -8,7 +8,13 @@ type SpinnerProps = React.SVGProps<SVGSVGElement> & {
 	variant?: SpinnerVariants
 }
 
-function DefaultSpinner({ size, color, "aria-label": ariaLabel, className, ...props }: SpinnerProps) {
+function DefaultSpinner({
+	size,
+	color,
+	"aria-label": ariaLabel,
+	className,
+	...props
+}: SpinnerProps) {
 	return (
 		<svg
 			width={size}
@@ -33,7 +39,13 @@ function DefaultSpinner({ size, color, "aria-label": ariaLabel, className, ...pr
 }
 DefaultSpinner.displayName = "DefaultSpinner"
 
-function SimpleSpinner({ size, color, "aria-label": ariaLabel, className, ...props }: SpinnerProps) {
+function SimpleSpinner({
+	size,
+	color,
+	"aria-label": ariaLabel,
+	className,
+	...props
+}: SpinnerProps) {
 	return (
 		<svg
 			width={size}
@@ -65,7 +77,12 @@ function SimpleSpinner({ size, color, "aria-label": ariaLabel, className, ...pro
 }
 SimpleSpinner.displayName = "SimpleSpinner"
 
-function ActivitySpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
+function ActivitySpinner({
+	size,
+	color,
+	"aria-label": ariaLabel,
+	...props
+}: SpinnerProps) {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -99,27 +116,88 @@ function ActivitySpinner({ size, color, "aria-label": ariaLabel, ...props }: Spi
 				`}
 			</style>
 			{/* Top */}
-			<path className="spinner-line" d="M12 2V6" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M12 2V6"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 			{/* Top-right */}
-			<path className="spinner-line" d="M16.1997 7.7999L19.0997 4.8999" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M16.1997 7.7999L19.0997 4.8999"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 			{/* Right */}
-			<path className="spinner-line" d="M18 12H22" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M18 12H22"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 			{/* Bottom-right */}
-			<path className="spinner-line" d="M16.1997 16.2L19.0997 19.1" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M16.1997 16.2L19.0997 19.1"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 			{/* Bottom */}
-			<path className="spinner-line" d="M12 18V22" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M12 18V22"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 			{/* Bottom-left */}
-			<path className="spinner-line" d="M4.8999 19.1L7.7999 16.2" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M4.8999 19.1L7.7999 16.2"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 			{/* Left */}
-			<path className="spinner-line" d="M2 12H6" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M2 12H6"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 			{/* Top-left */}
-			<path className="spinner-line" d="M4.8999 4.8999L7.7999 7.7999" stroke={color || "currentColor"} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path
+				className="spinner-line"
+				d="M4.8999 4.8999L7.7999 7.7999"
+				stroke={color || "currentColor"}
+				strokeWidth="2.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
+			/>
 		</svg>
 	)
 }
 ActivitySpinner.displayName = "ActivitySpinner"
 
-function WaveSpinner({ size, color, "aria-label": ariaLabel, ...props }: SpinnerProps) {
+function WaveSpinner({
+	size,
+	color,
+	"aria-label": ariaLabel,
+	...props
+}: SpinnerProps) {
 	return (
 		<svg
 			width={size}
@@ -188,7 +266,12 @@ function WaveSpinner({ size, color, "aria-label": ariaLabel, ...props }: Spinner
 }
 WaveSpinner.displayName = "WaveSpinner"
 
-function Spinner({ size = 36, color, variant = "default", ...props }: SpinnerProps) {
+function Spinner({
+	size = 36,
+	color,
+	variant = "default",
+	...props
+}: SpinnerProps) {
 	const commonProps = {
 		size,
 		color,

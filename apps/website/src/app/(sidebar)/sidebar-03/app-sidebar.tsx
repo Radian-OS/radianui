@@ -1,11 +1,24 @@
 "use client"
 
 import React from "react"
-import { ChevronDown, ChevronRight, Ellipsis, FolderClosed, Search, SquarePen } from "lucide-react"
+import {
+	ChevronDown,
+	ChevronRight,
+	Ellipsis,
+	FolderClosed,
+	Search,
+	SquarePen,
+} from "lucide-react"
 import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { CompactButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownItem, DropdownLabel, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownItem,
+	DropdownLabel,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import {
 	Sidebar,
@@ -130,7 +143,9 @@ export function AppSidebar() {
 				<div className="flex justify-between gap-1 p-4 group-data-[state=collapsed]:px-3">
 					<div className="flex items-center gap-2">
 						<Logo />
-						<span className="text-lg font-semibold group-data-[state=collapsed]:hidden">Solara</span>
+						<span className="text-lg font-semibold group-data-[state=collapsed]:hidden">
+							Solara
+						</span>
 					</div>
 					<div className="text-fg-secondary flex gap-0.5 group-data-[state=collapsed]:hidden">
 						<CompactButton variant="ghost" color="neutral" size="24">
@@ -185,10 +200,17 @@ export function AppSidebar() {
 								<SidebarGroupContent>
 									<SidebarMenu>
 										{section.items.map((subsection) => (
-											<SidebarCollapsible key={subsection.title} defaultOpen className="group-data-[state=collapsed]:hidden">
-												<SidebarCollapsibleTrigger asChild className="group/trigger w-full">
+											<SidebarCollapsible
+												key={subsection.title}
+												defaultOpen
+												className="group-data-[state=collapsed]:hidden">
+												<SidebarCollapsibleTrigger
+													asChild
+													className="group/trigger w-full">
 													<SidebarMenuButton>
-														{subsection.icon && <subsection.icon className="size-5" />}
+														{subsection.icon && (
+															<subsection.icon className="size-5" />
+														)}
 														{subsection.title}
 
 														<ChevronRight className="ml-auto size-4 transition-transform group-data-[state=open]/trigger:rotate-90" />
@@ -198,7 +220,9 @@ export function AppSidebar() {
 													<SidebarMenuSub className="">
 														{subsection.items.map((item) => (
 															<SidebarMenuItem key={item.title}>
-																<SidebarMenuButton className="font-normal" asChild>
+																<SidebarMenuButton
+																	className="font-normal"
+																	asChild>
 																	<Link href={item.href}>{item.title}</Link>
 																</SidebarMenuButton>
 															</SidebarMenuItem>
@@ -223,11 +247,20 @@ export function AppSidebar() {
 									}}
 									key={subsection.title}>
 									<DropdownTrigger className="group/trigger w-full" asChild>
-										<SidebarMenuButton onMouseEnter={() => openMenu(subsection.title)} onMouseLeave={closeMenu}>
-											{subsection.icon && <subsection.icon className="size-5" />}
+										<SidebarMenuButton
+											onMouseEnter={() => openMenu(subsection.title)}
+											onMouseLeave={closeMenu}>
+											{subsection.icon && (
+												<subsection.icon className="size-5" />
+											)}
 										</SidebarMenuButton>
 									</DropdownTrigger>
-									<DropdownContent onMouseEnter={() => openMenu(subsection.title)} onMouseLeave={closeMenu} className="w-60" side="right" align="center">
+									<DropdownContent
+										onMouseEnter={() => openMenu(subsection.title)}
+										onMouseLeave={closeMenu}
+										className="w-60"
+										side="right"
+										align="center">
 										<DropdownLabel>{subsection.title}</DropdownLabel>
 										{subsection.items.map((item) => (
 											<DropdownItem key={item.title} asChild>

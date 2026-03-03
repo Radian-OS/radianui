@@ -144,9 +144,19 @@ type CodeAreaProps = {
 
 const DEFAULT_THEME = "github-dark-high-contrast"
 
-function CodeArea({ code, theme = DEFAULT_THEME, language, className, lineNumbers = false }: CodeAreaProps) {
+function CodeArea({
+	code,
+	theme = DEFAULT_THEME,
+	language,
+	className,
+	lineNumbers = false,
+}: CodeAreaProps) {
 	return (
-		<div className={cn("no-scrollbar relative box-border overflow-auto rounded-xl text-sm", className)}>
+		<div
+			className={cn(
+				"no-scrollbar relative box-border overflow-auto rounded-xl text-sm",
+				className
+			)}>
 			<ShikiHighlighter
 				as={`pre`}
 				className="[&_pre]:no-scrollbar h-full w-full [&_pre]:h-full [&_pre]:w-full"

@@ -1,10 +1,24 @@
 "use client"
 
 import { useState } from "react"
-import { ColumnDef, SortingState, flexRender, getCoreRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table"
+import {
+	ColumnDef,
+	SortingState,
+	flexRender,
+	getCoreRowModel,
+	getSortedRowModel,
+	useReactTable,
+} from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/registry/ui/table"
 
 type Item = {
 	id: string
@@ -81,7 +95,9 @@ const columns: ColumnDef<Item>[] = [
 	{
 		header: "Location",
 		accessorKey: "location",
-		cell: ({ row }) => <div className="truncate">{row.getValue("location")}</div>,
+		cell: ({ row }) => (
+			<div className="truncate">{row.getValue("location")}</div>
+		),
 	},
 	{
 		header: "Balance",
@@ -145,7 +161,13 @@ export default function ResizableTable() {
 									<TableHead
 										key={header.id}
 										className="relative h-10 select-none border-t last:[&>.cursor-col-resize]:opacity-0"
-										aria-sort={header.column.getIsSorted() === "asc" ? "ascending" : header.column.getIsSorted() === "desc" ? "descending" : "none"}
+										aria-sort={
+											header.column.getIsSorted() === "asc"
+												? "ascending"
+												: header.column.getIsSorted() === "desc"
+													? "descending"
+													: "none"
+										}
 										{...{
 											colSpan: header.colSpan,
 											style: {
@@ -154,20 +176,43 @@ export default function ResizableTable() {
 										}}>
 										{header.isPlaceholder ? null : (
 											<div
-												className={cn(header.column.getCanSort() && "flex h-full cursor-pointer select-none items-center justify-between gap-2")}
+												className={cn(
+													header.column.getCanSort() &&
+														"flex h-full cursor-pointer select-none items-center justify-between gap-2"
+												)}
 												onClick={header.column.getToggleSortingHandler()}
 												onKeyDown={(e) => {
 													// Enhanced keyboard handling for sorting
-													if (header.column.getCanSort() && (e.key === "Enter" || e.key === " ")) {
+													if (
+														header.column.getCanSort() &&
+														(e.key === "Enter" || e.key === " ")
+													) {
 														e.preventDefault()
 														header.column.getToggleSortingHandler()?.(e)
 													}
 												}}
 												tabIndex={header.column.getCanSort() ? 0 : undefined}>
-												<span className="truncate">{flexRender(header.column.columnDef.header, header.getContext())}</span>
+												<span className="truncate">
+													{flexRender(
+														header.column.columnDef.header,
+														header.getContext()
+													)}
+												</span>
 												{{
-													asc: <ChevronUpIcon className="shrink-0 opacity-60" size={16} aria-hidden="true" />,
-													desc: <ChevronDownIcon className="shrink-0 opacity-60" size={16} aria-hidden="true" />,
+													asc: (
+														<ChevronUpIcon
+															className="shrink-0 opacity-60"
+															size={16}
+															aria-hidden="true"
+														/>
+													),
+													desc: (
+														<ChevronDownIcon
+															className="shrink-0 opacity-60"
+															size={16}
+															aria-hidden="true"
+														/>
+													),
 												}[header.column.getIsSorted() as string] ?? null}
 											</div>
 										)}
@@ -191,7 +236,9 @@ export default function ResizableTable() {
 				<TableBody>
 					{table.getRowModel().rows?.length ? (
 						table.getRowModel().rows.map((row) => (
-							<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+							<TableRow
+								key={row.id}
+								data-state={row.getIsSelected() && "selected"}>
 								{row.getVisibleCells().map((cell) => (
 									<TableCell key={cell.id} className="truncate">
 										{flexRender(cell.column.columnDef.cell, cell.getContext())}

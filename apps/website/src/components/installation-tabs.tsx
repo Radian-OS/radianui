@@ -7,7 +7,10 @@ export function InstallationTabs({ children }: { children: React.ReactNode }) {
 	const { installMethod, setInstallMethod } = usePreferences()
 
 	return (
-		<Tabs value={installMethod} onValueChange={(value) => setInstallMethod(value as "cli" | "manual")} className="w-full">
+		<Tabs
+			value={installMethod}
+			onValueChange={(value) => setInstallMethod(value as "cli" | "manual")}
+			className="w-full">
 			{children}
 		</Tabs>
 	)
@@ -21,10 +24,22 @@ export function InstallTabsList({ children }: { children: React.ReactNode }) {
 	)
 }
 
-export function InstallTabsTrigger({ value, children }: { value: string; children: React.ReactNode }) {
+export function InstallTabsTrigger({
+	value,
+	children,
+}: {
+	value: string
+	children: React.ReactNode
+}) {
 	return <TabsTrigger value={value}>{children}</TabsTrigger>
 }
 
-export function InstallTabsContent({ value, children }: { value: string; children: React.ReactNode }) {
+export function InstallTabsContent({
+	value,
+	children,
+}: {
+	value: string
+	children: React.ReactNode
+}) {
 	return <TabsContent value={value}>{children}</TabsContent>
 }

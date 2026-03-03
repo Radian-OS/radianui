@@ -5,17 +5,24 @@ import { cn } from "@/lib/utils"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
-function Calendar({ showOutsideDays = true, className, classNames, ...props }: CalendarProps) {
+function Calendar({
+	showOutsideDays = true,
+	className,
+	classNames,
+	...props
+}: CalendarProps) {
 	return (
 		<DayPicker
 			classNames={{
 				months: "relative flex flex-col gap-5 p-0 sm:flex-row",
-				month_caption: "flex mx-auto items-center justify-center z-20 p-0 text-base font-semibold h-7",
+				month_caption:
+					"flex mx-auto items-center justify-center z-20 p-0 text-base font-semibold h-7",
 				nav: "absolute top-0 flex w-full justify-between z-10 p-0 pb-3",
 				month: "flex flex-col gap-3 w-full",
 				month_grid: "flex flex-col gap-1 items-center",
 				weekdays: "w-full flex gap-1",
-				weekday: "text-fg-tertiary text-sm font-medium size-9 shrink-0 flex items-center justify-center",
+				weekday:
+					"text-fg-tertiary text-sm font-medium size-9 shrink-0 flex items-center justify-center",
 				weeks: "w-full flex flex-col gap-1",
 				week: "w-full flex gap-1",
 				day: "size-9 p-0 shrink-0 group text-sm aria-selected:opacity-100 *:data-disabled:text-red-500",
@@ -32,11 +39,15 @@ function Calendar({ showOutsideDays = true, className, classNames, ...props }: C
 			}}
 			components={{
 				Chevron: (props: ChevronProps) => {
-					if (props.orientation === "left") return <ChevronLeft size={16} className="text-fg-tertiary" />
+					if (props.orientation === "left")
+						return <ChevronLeft size={16} className="text-fg-tertiary" />
 					return <ChevronRight size={16} className="text-fg-tertiary" />
 				},
 			}}
-			className={cn("bg-elevation-level1 border-border rounded-xl border p-3", className)}
+			className={cn(
+				"bg-elevation-level1 border-border rounded-xl border p-3",
+				className
+			)}
 			showOutsideDays={showOutsideDays}
 			mode="single"
 			{...props}

@@ -46,7 +46,9 @@ const BodyFontSpecs = () => {
 					<div className="bg-fill2 rounded-2xl p-2">
 						<div className="bg-bg flex flex-col gap-3 rounded-2xl border p-4 sm:p-8">
 							{headings.map(({ name, size, lineHeight }, index) => (
-								<div key={name} className={`flex flex-col gap-2 ${index !== headings.length - 1 ? "border-b pb-4" : ""}`}>
+								<div
+									key={name}
+									className={`flex flex-col gap-2 ${index !== headings.length - 1 ? "border-b pb-4" : ""}`}>
 									<span
 										style={{
 											fontSize: `${size}px`,

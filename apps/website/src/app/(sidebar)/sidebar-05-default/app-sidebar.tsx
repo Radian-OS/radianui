@@ -1,11 +1,30 @@
 "use client"
 
 import React from "react"
-import { Briefcase, ClockFading, Cog, Contact, GitBranch, Headphones, Home, Info, LucideIcon, MessagesSquare, Repeat, Search, SquareCheck, Users2 } from "lucide-react"
+import {
+	Briefcase,
+	ClockFading,
+	Cog,
+	Contact,
+	GitBranch,
+	Headphones,
+	Home,
+	Info,
+	LucideIcon,
+	MessagesSquare,
+	Repeat,
+	Search,
+	SquareCheck,
+	Users2,
+} from "lucide-react"
 import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card"
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "@/registry/ui/hover-card"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import {
 	Sidebar,
@@ -117,7 +136,10 @@ interface AppSidebarProps {
 	theme?: SidebarProps["theme"]
 }
 
-export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-grey" }: AppSidebarProps) {
+export function AppSidebar({
+	menuButtonVariant = "neutral",
+	theme = "white-on-grey",
+}: AppSidebarProps) {
 	const { isMobile, setOpen } = useSidebar()
 	const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -126,11 +148,15 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-gr
 			<SidebarHeader className="gap-0 p-0">
 				<div className="p-4 group-data-[state=collapsed]:px-3">
 					<LogoFull className="shrink-0 group-data-[state=collapsed]:hidden" />
-					{!isMobile && <Logo className="shrink-0 group-data-[state=expanded]:hidden" />}
+					{!isMobile && (
+						<Logo className="shrink-0 group-data-[state=expanded]:hidden" />
+					)}
 				</div>
 
 				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-2">
-					<InputWrapper className="group-data-[state=collapsed]:hidden" size="32">
+					<InputWrapper
+						className="group-data-[state=collapsed]:hidden"
+						size="32">
 						<Search className="text-fg-tertiary" />
 						<Input ref={inputRef} type="search" placeholder="Search" />
 						<Badge size="20" color="neutral" variant="outline">
@@ -157,12 +183,17 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-gr
 				{data.map((section) => (
 					<React.Fragment key={section.title}>
 						<SidebarGroup>
-							{section.title && <SidebarGroupLabel>{section.title}</SidebarGroupLabel>}
+							{section.title && (
+								<SidebarGroupLabel>{section.title}</SidebarGroupLabel>
+							)}
 							<SidebarGroupContent>
 								<SidebarMenu>
 									{section.items.map((item) => (
 										<SidebarMenuItem key={item.title}>
-											<SidebarMenuButton tooltip={item.title!} variant={menuButtonVariant} isActive={item.isActive}>
+											<SidebarMenuButton
+												tooltip={item.title!}
+												variant={menuButtonVariant}
+												isActive={item.isActive}>
 												{item.icon && <item.icon />}
 												<Link href={item.href}>{item.title}</Link>
 											</SidebarMenuButton>
@@ -182,7 +213,10 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-gr
 								<Info className="text-fg-secondary" />
 							</IconButton>
 						</HoverCardTrigger>
-						<HoverCardContent side="right" sideOffset={4} className="w-auto rounded-lg border-none p-0">
+						<HoverCardContent
+							side="right"
+							sideOffset={4}
+							className="w-auto rounded-lg border-none p-0">
 							<InfoCard className="p-0" />
 						</HoverCardContent>
 					</HoverCard>
@@ -195,7 +229,9 @@ export function AppSidebar({ menuButtonVariant = "neutral", theme = "white-on-gr
 						<SidebarMenu>
 							{footerData.map((item) => (
 								<SidebarMenuItem key={item.title}>
-									<SidebarMenuButton tooltip={item.title!} variant={menuButtonVariant}>
+									<SidebarMenuButton
+										tooltip={item.title!}
+										variant={menuButtonVariant}>
 										{item.icon && <item.icon />}
 										<Link href={item.href}>{item.title}</Link>
 									</SidebarMenuButton>

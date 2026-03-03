@@ -18,7 +18,10 @@ type GetHeadingsOptions = {
  * @param options Optional: minDepth/maxDepth for heading levels (default: 2-3)
  * @returns Promise<MdxHeading[]>
  */
-export async function getHeadingsFromMdx(mdxCode: string, options: GetHeadingsOptions = { minDepth: 2, maxDepth: 3 }): Promise<MdxHeading[]> {
+export async function getHeadingsFromMdx(
+	mdxCode: string,
+	options: GetHeadingsOptions = { minDepth: 2, maxDepth: 3 }
+): Promise<MdxHeading[]> {
 	const { minDepth = 2, maxDepth = 3 } = options
 	const slugger = new GithubSlugger()
 	const headings: MdxHeading[] = []
@@ -28,7 +31,8 @@ export async function getHeadingsFromMdx(mdxCode: string, options: GetHeadingsOp
 	function extractText(node: any): string {
 		if (!node) return ""
 		if (node.type === "text" || node.type === "inlineCode") return node.value
-		if (Array.isArray(node.children)) return node.children.map(extractText).join("")
+		if (Array.isArray(node.children))
+			return node.children.map(extractText).join("")
 		return ""
 	}
 

@@ -1,6 +1,17 @@
 import { FolderClosed } from "lucide-react"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/registry/ui/sidebar"
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/registry/ui/breadcrumb"
+import {
+	SidebarInset,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/registry/ui/sidebar"
 import { AppSidebar } from "./app-sidebar"
 
 export default function Page() {

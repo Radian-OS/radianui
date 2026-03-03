@@ -2,7 +2,12 @@ import React from "react"
 import { ArrowUpRight } from "lucide-react"
 import Link from "next/link"
 import { WebsiteLogo } from "@/components/navbar/website-logo"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/registry/ui/accordion"
 import { Badge } from "@/registry/ui/badge"
 
 interface LinkItem {
@@ -112,7 +117,11 @@ export default function FooterNavigation() {
 												href={linkItem.href}
 												className="py-2.5"
 												target={linkItem.target ?? "_self"}
-												rel={linkItem.target === "_blank" ? "noopener noreferrer" : undefined}>
+												rel={
+													linkItem.target === "_blank"
+														? "noopener noreferrer"
+														: undefined
+												}>
 												{linkItem.name}
 											</Link>
 										))}
@@ -130,11 +139,21 @@ export default function FooterNavigation() {
 				<div className="flex gap-20">
 					{LINKS.map((item) => (
 						<div className="flex flex-col gap-5" key={item.title}>
-							<p className="text-fg-tertiary text-sm font-medium uppercase">{item.title}</p>
+							<p className="text-fg-tertiary text-sm font-medium uppercase">
+								{item.title}
+							</p>
 							<div className="flex flex-col gap-4">
 								{item.linkItems.map((linkItem) => (
 									<span key={linkItem.name} className="flex items-center gap-2">
-										<Link href={linkItem.href} className="text-sm" target={linkItem.target ?? "_self"} rel={linkItem.target === "_blank" ? "noopener noreferrer" : undefined}>
+										<Link
+											href={linkItem.href}
+											className="text-sm"
+											target={linkItem.target ?? "_self"}
+											rel={
+												linkItem.target === "_blank"
+													? "noopener noreferrer"
+													: undefined
+											}>
 											{linkItem.name}
 										</Link>
 										{linkItem.badge && linkItem.badge}

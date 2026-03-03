@@ -3,7 +3,12 @@ import { format } from "date-fns"
 import { Calendar as CalendarIcon, ChevronDown } from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
-import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const ButtonExampleInput = () => {
@@ -11,7 +16,13 @@ const ButtonExampleInput = () => {
 	const [date, setDate] = React.useState<Date>()
 	const [value, setValue] = React.useState("Last 30 Days")
 
-	const options = ["Last 7 Days", "Last 30 Days", "Last 90 Days", "Last 6 Months", "Last Year"]
+	const options = [
+		"Last 7 Days",
+		"Last 30 Days",
+		"Last 90 Days",
+		"Last 6 Months",
+		"Last Year",
+	]
 
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">

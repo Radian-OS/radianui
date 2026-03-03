@@ -1,19 +1,62 @@
 "use client"
 
 import { useId, useState } from "react"
-import { ColumnDef, PaginationState, SortingState, flexRender, getCoreRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table"
-import { ChevronDownIcon, ChevronFirstIcon, ChevronLastIcon, ChevronLeftIcon, ChevronRightIcon, ChevronUpIcon, Ellipsis, Mail, Pen, PhoneCall, Settings } from "lucide-react"
+import {
+	ColumnDef,
+	PaginationState,
+	SortingState,
+	flexRender,
+	getCoreRowModel,
+	getPaginationRowModel,
+	getSortedRowModel,
+	useReactTable,
+} from "@tanstack/react-table"
+import {
+	ChevronDownIcon,
+	ChevronFirstIcon,
+	ChevronLastIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon,
+	ChevronUpIcon,
+	Ellipsis,
+	Mail,
+	Pen,
+	PhoneCall,
+	Settings,
+} from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Label } from "@/registry/ui/label"
-import { Pagination, PaginationContent, PaginationItem } from "@/registry/ui/pagination"
+import {
+	Pagination,
+	PaginationContent,
+	PaginationItem,
+} from "@/registry/ui/pagination"
 import { Progress } from "@/registry/ui/progress"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/registry/ui/table"
 
 type UserDetails = {
 	name: string
@@ -79,13 +122,17 @@ function getInitials(name: string) {
 	if (parts.length === 1) {
 		return parts[0][0]?.toUpperCase() ?? ""
 	}
-	return (parts[0][0]?.toUpperCase() ?? "") + (parts[parts.length - 1][0]?.toUpperCase() ?? "")
+	return (
+		(parts[0][0]?.toUpperCase() ?? "") +
+		(parts[parts.length - 1][0]?.toUpperCase() ?? "")
+	)
 }
 const data: UserData[] = [
 	{
 		user_details: {
 			name: "Alice Johnson",
-			imageSrc: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
 			email: "alice.johnson@example.com",
 		},
 		status: "Active",
@@ -98,7 +145,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "David Smith",
-			imageSrc: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
 			email: "david.smith@example.com",
 		},
 		status: "Inactive",
@@ -111,7 +159,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Sophia Lee",
-			imageSrc: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
 			email: "sophia.lee@example.com",
 		},
 		status: "Pending",
@@ -124,7 +173,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Michael Brown",
-			imageSrc: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
 			email: "michael.brown@example.com",
 		},
 		status: "Active",
@@ -137,7 +187,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Emily Carter",
-			imageSrc: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face",
 			email: "emily.carter@example.com",
 		},
 		status: "Active",
@@ -150,7 +201,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "James Wilson",
-			imageSrc: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
 			email: "james.wilson@example.com",
 		},
 		status: "Inactive",
@@ -163,7 +215,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Olivia Martinez",
-			imageSrc: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
 			email: "olivia.martinez@example.com",
 		},
 		status: "Pending",
@@ -176,7 +229,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Daniel White",
-			imageSrc: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face",
 			email: "daniel.white@example.com",
 		},
 		status: "Active",
@@ -189,7 +243,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Grace Hall",
-			imageSrc: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=150&h=150&fit=crop&crop=face",
 			email: "grace.hall@example.com",
 		},
 		status: "Active",
@@ -202,7 +257,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Benjamin King",
-			imageSrc: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face",
 			email: "benjamin.king@example.com",
 		},
 		status: "Inactive",
@@ -215,7 +271,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Chloe Scott",
-			imageSrc: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop&crop=face",
 			email: "chloe.scott@example.com",
 		},
 		status: "Pending",
@@ -228,7 +285,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Ethan Harris",
-			imageSrc: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=150&h=150&fit=crop&crop=face",
 			email: "ethan.harris@example.com",
 		},
 		status: "Active",
@@ -241,7 +299,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Milli Walker",
-			imageSrc: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=150&h=150&fit=crop&crop=face",
 			email: "milli.walker@example.com",
 		},
 		status: "Inactive",
@@ -254,7 +313,8 @@ const data: UserData[] = [
 	{
 		user_details: {
 			name: "Lucas Young",
-			imageSrc: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face",
+			imageSrc:
+				"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face",
 			email: "lucas.young@example.com",
 		},
 		status: "Active",
@@ -296,12 +356,22 @@ const columns: ColumnDef<UserData>[] = [
 			<Checkbox
 				size="sm"
 				className="flex w-full items-center justify-start"
-				checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
+				checked={
+					table.getIsAllPageRowsSelected() ||
+					(table.getIsSomePageRowsSelected() && "indeterminate")
+				}
 				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
 				aria-label="Select all"
 			/>
 		),
-		cell: ({ row }) => <Checkbox size="sm" checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />,
+		cell: ({ row }) => (
+			<Checkbox
+				size="sm"
+				checked={row.getIsSelected()}
+				onCheckedChange={(value) => row.toggleSelected(!!value)}
+				aria-label="Select row"
+			/>
+		),
 		size: 28,
 		enableSorting: false,
 	},
@@ -318,7 +388,9 @@ const columns: ColumnDef<UserData>[] = [
 					</Avatar>
 					<div className="flex flex-col">
 						<p className="text-fg text-sm font-medium">{userDetails.name}</p>
-						<p className="text-fg-secondary text-xs font-normal">{userDetails.email}</p>
+						<p className="text-fg-secondary text-xs font-normal">
+							{userDetails.email}
+						</p>
 					</div>
 				</div>
 			)
@@ -335,7 +407,10 @@ const columns: ColumnDef<UserData>[] = [
 			return (
 				<div className="flex -space-x-2.5">
 					{people.slice(0, avatarCount).map((person) => (
-						<Avatar size="20" className="border-bg border-2 hover:z-10" key={person.name}>
+						<Avatar
+							size="20"
+							className="border-bg border-2 hover:z-10"
+							key={person.name}>
 							<AvatarImage src={person.image} />
 							<AvatarFallback>{getInitials(person.name)}</AvatarFallback>
 						</Avatar>
@@ -351,14 +426,27 @@ const columns: ColumnDef<UserData>[] = [
 	{
 		header: "Total Spend",
 		accessorKey: "income",
-		cell: ({ row }) => <p className="text-fg-secondary text-sm font-normal">{row.getValue("income")}</p>,
+		cell: ({ row }) => (
+			<p className="text-fg-secondary text-sm font-normal">
+				{row.getValue("income")}
+			</p>
+		),
 		size: 140,
 	},
 	{
 		header: "Status",
 		accessorKey: "status",
 		cell: ({ row }) => (
-			<Badge size="20" variant="soft" color={row.getValue("status") === "Inactive" ? "error" : row.getValue("status") === "Pending" ? "warning" : "success"}>
+			<Badge
+				size="20"
+				variant="soft"
+				color={
+					row.getValue("status") === "Inactive"
+						? "error"
+						: row.getValue("status") === "Pending"
+							? "warning"
+							: "success"
+				}>
 				{row.getValue("status")}
 			</Badge>
 		),
@@ -372,8 +460,12 @@ const columns: ColumnDef<UserData>[] = [
 
 			return (
 				<div className="text-fg-secondary flex items-center justify-start gap-2">
-					{(contactValue === "both" || contactValue === "email") && <Mail size={16} />}
-					{(contactValue === "both" || contactValue === "phone") && <PhoneCall size={16} />}
+					{(contactValue === "both" || contactValue === "email") && (
+						<Mail size={16} />
+					)}
+					{(contactValue === "both" || contactValue === "phone") && (
+						<PhoneCall size={16} />
+					)}
 				</div>
 			)
 		},
@@ -384,7 +476,11 @@ const columns: ColumnDef<UserData>[] = [
 		accessorKey: "lastActiveTime",
 		cell: ({ row }) => {
 			const lastActiveTime = row.getValue("lastActiveTime") as string
-			return <p className="text-fg-secondary text-sm font-normal">{getTimeAgo(lastActiveTime)}</p>
+			return (
+				<p className="text-fg-secondary text-sm font-normal">
+					{getTimeAgo(lastActiveTime)}
+				</p>
+			)
 		},
 		size: 140,
 	},
@@ -465,26 +561,53 @@ export default function Component() {
 							<TableRow key={headerGroup.id} className="hover:bg-transparent">
 								{headerGroup.headers.map((header) => {
 									return (
-										<TableHead key={header.id} style={{ width: `${header.getSize()}px` }} className="h-11">
+										<TableHead
+											key={header.id}
+											style={{ width: `${header.getSize()}px` }}
+											className="h-11">
 											{header.isPlaceholder ? null : header.column.getCanSort() ? (
 												<div
-													className={cn(header.column.getCanSort() && "flex h-full cursor-pointer select-none items-center justify-between gap-2")}
+													className={cn(
+														header.column.getCanSort() &&
+															"flex h-full cursor-pointer select-none items-center justify-between gap-2"
+													)}
 													onClick={header.column.getToggleSortingHandler()}
 													onKeyDown={(e) => {
-														if (header.column.getCanSort() && (e.key === "Enter" || e.key === " ")) {
+														if (
+															header.column.getCanSort() &&
+															(e.key === "Enter" || e.key === " ")
+														) {
 															e.preventDefault()
 															header.column.getToggleSortingHandler()?.(e)
 														}
 													}}
 													tabIndex={header.column.getCanSort() ? 0 : undefined}>
-													{flexRender(header.column.columnDef.header, header.getContext())}
+													{flexRender(
+														header.column.columnDef.header,
+														header.getContext()
+													)}
 													{{
-														asc: <ChevronUpIcon className="shrink-0 opacity-60" size={16} aria-hidden="true" />,
-														desc: <ChevronDownIcon className="shrink-0 opacity-60" size={16} aria-hidden="true" />,
+														asc: (
+															<ChevronUpIcon
+																className="shrink-0 opacity-60"
+																size={16}
+																aria-hidden="true"
+															/>
+														),
+														desc: (
+															<ChevronDownIcon
+																className="shrink-0 opacity-60"
+																size={16}
+																aria-hidden="true"
+															/>
+														),
 													}[header.column.getIsSorted() as string] ?? null}
 												</div>
 											) : (
-												flexRender(header.column.columnDef.header, header.getContext())
+												flexRender(
+													header.column.columnDef.header,
+													header.getContext()
+												)
 											)}
 										</TableHead>
 									)
@@ -495,15 +618,24 @@ export default function Component() {
 					<TableBody>
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => (
-								<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+								<TableRow
+									key={row.id}
+									data-state={row.getIsSelected() && "selected"}>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+										<TableCell key={cell.id}>
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											)}
+										</TableCell>
 									))}
 								</TableRow>
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={columns.length} className="h-24 text-center">
+								<TableCell
+									colSpan={columns.length}
+									className="h-24 text-center">
 									No results.
 								</TableCell>
 							</TableRow>
@@ -523,7 +655,10 @@ export default function Component() {
 						onValueChange={(value) => {
 							table.setPageSize(Number(value))
 						}}>
-						<SelectTrigger size="32" id={id} className="w-fit whitespace-nowrap">
+						<SelectTrigger
+							size="32"
+							id={id}
+							className="w-fit whitespace-nowrap">
 							<SelectValue placeholder="Select number of results" />
 						</SelectTrigger>
 						<SelectContent className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
@@ -537,12 +672,28 @@ export default function Component() {
 				</div>
 				{/* Page number information */}
 				<div className="text-fg-secondary flex grow justify-end whitespace-nowrap text-sm">
-					<p className="text-fg-secondary whitespace-nowrap text-sm" aria-live="polite">
+					<p
+						className="text-fg-secondary whitespace-nowrap text-sm"
+						aria-live="polite">
 						<span className="text-shadow-fg-disabled">
-							{table.getState().pagination.pageIndex * table.getState().pagination.pageSize + 1}-
-							{Math.min(Math.max(table.getState().pagination.pageIndex * table.getState().pagination.pageSize + table.getState().pagination.pageSize, 0), table.getRowCount())}
+							{table.getState().pagination.pageIndex *
+								table.getState().pagination.pageSize +
+								1}
+							-
+							{Math.min(
+								Math.max(
+									table.getState().pagination.pageIndex *
+										table.getState().pagination.pageSize +
+										table.getState().pagination.pageSize,
+									0
+								),
+								table.getRowCount()
+							)}
 						</span>{" "}
-						of <span className="text-fg-secondary">{table.getRowCount().toString()}</span>
+						of{" "}
+						<span className="text-fg-secondary">
+							{table.getRowCount().toString()}
+						</span>
 					</p>
 				</div>
 				{/* Pagination buttons */}

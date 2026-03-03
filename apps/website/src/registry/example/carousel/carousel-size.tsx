@@ -1,7 +1,13 @@
 import * as React from "react"
 import Image from "next/image"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/registry/ui/carousel"
 
 export default function CarouselSize() {
 	const images = [
@@ -36,8 +42,15 @@ export default function CarouselSize() {
 			<CarouselContent>
 				{images.map((image, index) => (
 					<CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-						<AspectRatio ratio={1 / 1} className="flex items-center justify-center">
-							<Image src={image.src} alt={image.alt} fill className="rounded-2xl object-cover" />
+						<AspectRatio
+							ratio={1 / 1}
+							className="flex items-center justify-center">
+							<Image
+								src={image.src}
+								alt={image.alt}
+								fill
+								className="rounded-2xl object-cover"
+							/>
 						</AspectRatio>
 					</CarouselItem>
 				))}

@@ -15,7 +15,10 @@ type ExampleItem = {
 }
 
 // Function to process a component folder
-async function processExampleFolder(componentFolder: string, componentName: string): Promise<ExampleItem> {
+async function processExampleFolder(
+	componentFolder: string,
+	componentName: string
+): Promise<ExampleItem> {
 	const entries = await fs.readdir(componentFolder)
 	const files: ExampleFile[] = []
 
@@ -25,7 +28,9 @@ async function processExampleFolder(componentFolder: string, componentName: stri
 
 		if (stat.isFile()) {
 			const rawCode = await fs.readFile(entryPath, "utf-8")
-			const code = rawCode.replaceAll("@/registry/ui/", "@/components/ui/").replaceAll("@/registry/hooks/", "@/hooks/")
+			const code = rawCode
+				.replaceAll("@/registry/ui/", "@/components/ui/")
+				.replaceAll("@/registry/hooks/", "@/hooks/")
 
 			files.push({
 				name: `${componentName}/${path.basename(entry, path.extname(entry))}`,
@@ -51,7 +56,10 @@ async function generateExamplesJSON() {
 			const stat = await fs.stat(componentFolder)
 
 			if (stat.isDirectory()) {
-				const exampleItem = await processExampleFolder(componentFolder, component)
+				const exampleItem = await processExampleFolder(
+					componentFolder,
+					component
+				)
 				examplesData.push(exampleItem)
 			}
 		}
@@ -60,7 +68,11 @@ async function generateExamplesJSON() {
 		await fs.mkdir(path.dirname(outputPath), { recursive: true })
 
 		// Write the examples.json file
-		await fs.writeFile(outputPath, JSON.stringify(examplesData, null, 2), "utf-8")
+		await fs.writeFile(
+			outputPath,
+			JSON.stringify(examplesData, null, 2),
+			"utf-8"
+		)
 		console.log(`Examples JSON generated successfully at: ${outputPath}`)
 	} catch (error) {
 		console.error("Error generating examples JSON:", error)

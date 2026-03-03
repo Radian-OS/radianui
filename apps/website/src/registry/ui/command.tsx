@@ -2,7 +2,13 @@ import * as React from "react"
 import { Command as CommandPrimitive } from "cmdk"
 import { SearchIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/registry/ui/dialog"
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+} from "@/registry/ui/dialog"
 
 type CommandProps = React.ComponentProps<typeof CommandPrimitive>
 
@@ -20,24 +26,44 @@ type CommandEmptyProps = React.ComponentProps<typeof CommandPrimitive.Empty>
 
 type CommandGroupProps = React.ComponentProps<typeof CommandPrimitive.Group>
 
-type CommandDividerProps = React.ComponentProps<typeof CommandPrimitive.Separator>
+type CommandDividerProps = React.ComponentProps<
+	typeof CommandPrimitive.Separator
+>
 
 type CommandItemProps = React.ComponentProps<typeof CommandPrimitive.Item>
 
 type CommandShortcutProps = React.ComponentProps<"span">
 
 function Command({ className, ...props }: CommandProps) {
-	return <CommandPrimitive data-slot="command" className={cn("bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-lg border", className)} {...props} />
+	return (
+		<CommandPrimitive
+			data-slot="command"
+			className={cn(
+				"bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-lg border",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 
-function CommandDialog({ title = "Command Palette", description = "Search for a command to run...", children, className, closeButton, ...props }: CommandDialogProps) {
+function CommandDialog({
+	title = "Command Palette",
+	description = "Search for a command to run...",
+	children,
+	className,
+	closeButton,
+	...props
+}: CommandDialogProps) {
 	return (
 		<Dialog {...props}>
 			<DialogHeader className="sr-only">
 				<DialogTitle>{title}</DialogTitle>
 				<DialogDescription>{description}</DialogDescription>
 			</DialogHeader>
-			<DialogContent className={cn("overflow-hidden p-0", className)} closeButton={closeButton}>
+			<DialogContent
+				className={cn("overflow-hidden p-0", className)}
+				closeButton={closeButton}>
 				<Command className="[&_[cmdk-group-heading]]:text-fg **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
 					{children}
 				</Command>
@@ -48,7 +74,9 @@ function CommandDialog({ title = "Command Palette", description = "Search for a 
 
 function CommandInput({ className, ...props }: CommandInputProps) {
 	return (
-		<div data-slot="command-input-wrapper" className="flex h-10 items-center gap-2 border-b px-3 py-2.5">
+		<div
+			data-slot="command-input-wrapper"
+			className="flex h-10 items-center gap-2 border-b px-3 py-2.5">
 			<SearchIcon className="text-fg-secondary size-4 shrink-0" />
 			<CommandPrimitive.Input
 				data-slot="command-input"
@@ -63,11 +91,26 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 }
 
 function CommandList({ className, ...props }: CommandListProps) {
-	return <CommandPrimitive.List data-slot="command-list" className={cn("max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden", className)} {...props} />
+	return (
+		<CommandPrimitive.List
+			data-slot="command-list"
+			className={cn(
+				"max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 
 function CommandEmpty({ ...props }: CommandEmptyProps) {
-	return <CommandPrimitive.Empty data-slot="command-empty" className="py-6 text-center text-sm" {...props} />
+	return (
+		<CommandPrimitive.Empty
+			data-slot="command-empty"
+			className="py-6 text-center text-sm"
+			{...props}
+		/>
+	)
 }
 
 function CommandGroup({ className, ...props }: CommandGroupProps) {
@@ -84,7 +127,13 @@ function CommandGroup({ className, ...props }: CommandGroupProps) {
 }
 
 function CommandDivider({ className, ...props }: CommandDividerProps) {
-	return <CommandPrimitive.Separator data-slot="command-separator" className={cn("bg-border -mx-1 h-px", className)} {...props} />
+	return (
+		<CommandPrimitive.Separator
+			data-slot="command-separator"
+			className={cn("bg-border -mx-1 h-px", className)}
+			{...props}
+		/>
+	)
 }
 
 function CommandItem({ className, ...props }: CommandItemProps) {
@@ -101,7 +150,26 @@ function CommandItem({ className, ...props }: CommandItemProps) {
 }
 
 function CommandShortcut({ className, ...props }: CommandShortcutProps) {
-	return <span data-slot="command-shortcut" className={cn("text-fg-tertiary ml-auto text-xs tracking-widest", className)} {...props} />
+	return (
+		<span
+			data-slot="command-shortcut"
+			className={cn(
+				"text-fg-tertiary ml-auto text-xs tracking-widest",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 
-export { Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandShortcut, CommandDivider }
+export {
+	Command,
+	CommandDialog,
+	CommandInput,
+	CommandList,
+	CommandEmpty,
+	CommandGroup,
+	CommandItem,
+	CommandShortcut,
+	CommandDivider,
+}

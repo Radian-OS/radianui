@@ -27,7 +27,10 @@ function PasswordValidationExample() {
 
 	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
-	const validation = useMemo(() => passwordSchema.safeParse(password), [password])
+	const validation = useMemo(
+		() => passwordSchema.safeParse(password),
+		[password]
+	)
 
 	const errors = useMemo(() => {
 		if (validation.success) return []
@@ -55,15 +58,27 @@ function PasswordValidationExample() {
 						onFocus={() => setIsFocused(true)}
 						onBlur={() => setIsFocused(false)}
 					/>
-					{isFocused && <IconComponent className="hover:text-fg cursor-pointer" onMouseDown={togglePasswordVisibility} />}
+					{isFocused && (
+						<IconComponent
+							className="hover:text-fg cursor-pointer"
+							onMouseDown={togglePasswordVisibility}
+						/>
+					)}
 				</InputWrapper>
 			</div>
 			<div className="body-13 flex w-full flex-col gap-2">
 				<Progress value={progress} />
 				<p className="text-sm font-semibold">Your Password must contain</p>
-				{["At least 8 characters", "At least one number", "At least one lowercase letter", "At least one uppercase letter"].map((label) => (
+				{[
+					"At least 8 characters",
+					"At least one number",
+					"At least one lowercase letter",
+					"At least one uppercase letter",
+				].map((label) => (
 					<p key={label} className="text-fg-tertiary flex items-center gap-2">
-						<CircleCheck className={`size-4 ${isValid(label) ? "text-success-text" : ""}`} />
+						<CircleCheck
+							className={`size-4 ${isValid(label) ? "text-success-text" : ""}`}
+						/>
 						{label}
 					</p>
 				))}

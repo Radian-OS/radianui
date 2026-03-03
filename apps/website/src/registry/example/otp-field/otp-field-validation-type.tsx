@@ -7,7 +7,9 @@ export default function OTPFieldValidationTypeNumeric() {
 	return (
 		<div className="flex flex-col justify-center gap-3">
 			<div className="flex flex-col justify-center space-y-1.5">
-				<Label htmlFor="one-time-password">Validation Type - Alphanumeric</Label>
+				<Label htmlFor="one-time-password">
+					Validation Type - Alphanumeric
+				</Label>
 				<OTPField id="one-time-password" validationType="alphanumeric">
 					{Array.from({ length: PASSWORD_LENGTH }).map((_, i) => (
 						<OTPInput key={i} />

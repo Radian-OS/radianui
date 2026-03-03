@@ -1,5 +1,20 @@
-import { ClipboardList, FileText, MessageCircleQuestion, Settings, Sun } from "lucide-react"
-import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/registry/ui/command"
+import {
+	ClipboardList,
+	FileText,
+	MessageCircleQuestion,
+	Settings,
+	Sun,
+} from "lucide-react"
+import {
+	Command,
+	CommandDivider,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+	CommandShortcut,
+} from "@/registry/ui/command"
 
 export default function CommandPreview() {
 	return (

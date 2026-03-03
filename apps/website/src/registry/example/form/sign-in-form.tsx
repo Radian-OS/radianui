@@ -10,7 +10,14 @@ import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Input, InputWrapper } from "@/registry/ui/input"
 
 const FormSchema = z.object({
@@ -55,8 +62,20 @@ export default function SignIn() {
 		<div className="w-100">
 			<div className="mx-auto flex flex-col gap-9">
 				<Link href="/" style={{ fill: "white", color: "white" }}>
-					<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
-					<img src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
+					<img
+						src="/radian.svg"
+						className="dark:hidden"
+						alt="radian-logo"
+						width={112}
+						height={36}
+					/>
+					<img
+						src="/radian-dark.svg"
+						alt="radian-logo"
+						className="hidden dark:block"
+						width={112}
+						height={36}
+					/>
 				</Link>
 
 				<div className="space-y-6">
@@ -80,7 +99,12 @@ export default function SignIn() {
 									<FormItem>
 										<FormLabel htmlFor="sign-in-email">Email</FormLabel>
 										<FormControl>
-											<Input id="sign-in-email" type="email" placeholder="Enter your email address" {...field} />
+											<Input
+												id="sign-in-email"
+												type="email"
+												placeholder="Enter your email address"
+												{...field}
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -94,7 +118,12 @@ export default function SignIn() {
 										<FormLabel htmlFor="sign-in-password">Password</FormLabel>
 										<FormControl>
 											<InputWrapper>
-												<Input id="sign-in-password" placeholder="Enter your password" type={showPassword ? "text" : "password"} {...field} />
+												<Input
+													id="sign-in-password"
+													placeholder="Enter your password"
+													type={showPassword ? "text" : "password"}
+													{...field}
+												/>
 												<IconComponent
 													className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 													onMouseDown={togglePasswordVisibility}
@@ -111,7 +140,10 @@ export default function SignIn() {
 								render={({ field }: { field: FieldValues }) => (
 									<FormItem className="flex flex-row items-start space-x-3 space-y-0">
 										<FormControl>
-											<Checkbox checked={field.value} onCheckedChange={field.onChange} />
+											<Checkbox
+												checked={field.value}
+												onCheckedChange={field.onChange}
+											/>
 										</FormControl>
 										<div className="space-y-1 leading-none">
 											<FormLabel>Keep me signed in</FormLabel>
@@ -119,7 +151,10 @@ export default function SignIn() {
 									</FormItem>
 								)}
 							/>
-							<Button type="submit" className="w-full" onClick={form.handleSubmit(onSubmit)}>
+							<Button
+								type="submit"
+								className="w-full"
+								onClick={form.handleSubmit(onSubmit)}>
 								Sign In
 							</Button>
 						</div>

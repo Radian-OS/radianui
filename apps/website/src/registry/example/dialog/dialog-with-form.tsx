@@ -1,6 +1,15 @@
 import Image from "next/image"
 import { Button } from "@/registry/ui/button"
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/registry/ui/dialog"
 import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
@@ -14,12 +23,27 @@ export default function DialogWithForm() {
 			</DialogTrigger>
 			<DialogContent closeButton="hover">
 				<div className="flex items-center justify-center gap-2 pt-6">
-					<Image className="border-3 rounded-2xl p-0.5" src={"/radian-mb.svg"} alt="radian" height={60} width={60} />
-					<Image className="border-3 rounded-2xl p-0.5" src={"/github.webp"} alt="github" height={60} width={60} />
+					<Image
+						className="border-3 rounded-2xl p-0.5"
+						src={"/radian-mb.svg"}
+						alt="radian"
+						height={60}
+						width={60}
+					/>
+					<Image
+						className="border-3 rounded-2xl p-0.5"
+						src={"/github.webp"}
+						alt="github"
+						height={60}
+						width={60}
+					/>
 				</div>
 				<DialogHeader className="text-center">
 					<DialogTitle>Connect RadianOS to Github</DialogTitle>
-					<DialogDescription>Streamline your API requests by using Github SDK’s and automate all your tickets</DialogDescription>
+					<DialogDescription>
+						Streamline your API requests by using Github SDK’s and automate all
+						your tickets
+					</DialogDescription>
 				</DialogHeader>
 				<div className="flex flex-col gap-4">
 					<div className="flex flex-col gap-2">
@@ -32,7 +56,11 @@ export default function DialogWithForm() {
 					</div>
 					<div className="flex flex-col gap-2">
 						<Label htmlFor="url">Workspace URL</Label>
-						<Input type="text" id="url" placeholder="e.g https://example@workspace.com" />
+						<Input
+							type="text"
+							id="url"
+							placeholder="e.g https://example@workspace.com"
+						/>
 					</div>
 				</div>
 				<DialogFooter className="justify-start">

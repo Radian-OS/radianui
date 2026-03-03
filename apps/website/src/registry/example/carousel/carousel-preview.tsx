@@ -1,7 +1,13 @@
 import * as React from "react"
 import Image from "next/image"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/registry/ui/carousel"
 
 export default function CarouselPreview() {
 	const images = [
@@ -33,8 +39,15 @@ export default function CarouselPreview() {
 				{images.map((image, index) => (
 					<CarouselItem key={index}>
 						<div className="p-1">
-							<AspectRatio ratio={1 / 1} className="relative overflow-hidden rounded-lg">
-								<Image src={image.src} alt={image.alt} fill className="object-cover" />
+							<AspectRatio
+								ratio={1 / 1}
+								className="relative overflow-hidden rounded-lg">
+								<Image
+									src={image.src}
+									alt={image.alt}
+									fill
+									className="object-cover"
+								/>
 							</AspectRatio>
 						</div>
 					</CarouselItem>

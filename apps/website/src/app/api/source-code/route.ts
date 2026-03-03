@@ -8,7 +8,10 @@ export async function GET(request: NextRequest) {
 		const file = searchParams.get("file")
 
 		if (!file) {
-			return NextResponse.json({ error: "File parameter is required" }, { status: 400 })
+			return NextResponse.json(
+				{ error: "File parameter is required" },
+				{ status: 400 }
+			)
 		}
 
 		// Security: Prevent directory traversal attacks

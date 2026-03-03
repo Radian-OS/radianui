@@ -1,12 +1,25 @@
 "use client"
 
 import { Fragment } from "react"
-import { ColumnDef, flexRender, getCoreRowModel, getExpandedRowModel, useReactTable } from "@tanstack/react-table"
+import {
+	ColumnDef,
+	flexRender,
+	getCoreRowModel,
+	getExpandedRowModel,
+	useReactTable,
+} from "@tanstack/react-table"
 import { ChevronDownIcon, ChevronUpIcon, InfoIcon } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/registry/ui/table"
 
 type Item = {
 	id: string
@@ -79,11 +92,25 @@ const columns: ColumnDef<Item>[] = [
 						className: "size-7 shadow-none text-fg-secondary",
 						onClick: row.getToggleExpandedHandler(),
 						"aria-expanded": row.getIsExpanded(),
-						"aria-label": row.getIsExpanded() ? `Collapse details for ${row.original.name}` : `Expand details for ${row.original.name}`,
+						"aria-label": row.getIsExpanded()
+							? `Collapse details for ${row.original.name}`
+							: `Expand details for ${row.original.name}`,
 						variant: "ghost",
 						color: "neutral",
 					}}>
-					{row.getIsExpanded() ? <ChevronUpIcon className="opacity-60" size={16} aria-hidden="true" /> : <ChevronDownIcon className="opacity-60" size={16} aria-hidden="true" />}
+					{row.getIsExpanded() ? (
+						<ChevronUpIcon
+							className="opacity-60"
+							size={16}
+							aria-hidden="true"
+						/>
+					) : (
+						<ChevronDownIcon
+							className="opacity-60"
+							size={16}
+							aria-hidden="true"
+						/>
+					)}
 				</IconButton>
 			) : undefined
 		},
@@ -94,17 +121,29 @@ const columns: ColumnDef<Item>[] = [
 			<Checkbox
 				size="sm"
 				className="flex items-center justify-start"
-				checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
+				checked={
+					table.getIsAllPageRowsSelected() ||
+					(table.getIsSomePageRowsSelected() && "indeterminate")
+				}
 				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
 				aria-label="Select all"
 			/>
 		),
-		cell: ({ row }) => <Checkbox size="sm" checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />,
+		cell: ({ row }) => (
+			<Checkbox
+				size="sm"
+				checked={row.getIsSelected()}
+				onCheckedChange={(value) => row.toggleSelected(!!value)}
+				aria-label="Select row"
+			/>
+		),
 	},
 	{
 		header: "Name",
 		accessorKey: "name",
-		cell: ({ row }) => <div className="font-medium">{row.getValue("name")}</div>,
+		cell: ({ row }) => (
+			<div className="font-medium">{row.getValue("name")}</div>
+		),
 	},
 	{
 		header: "Email",
@@ -113,7 +152,12 @@ const columns: ColumnDef<Item>[] = [
 	{
 		header: "Status",
 		accessorKey: "status",
-		cell: ({ row }) => <Badge color={row.getValue("status") === "Inactive" ? "neutral" : undefined}>{row.getValue("status")}</Badge>,
+		cell: ({ row }) => (
+			<Badge
+				color={row.getValue("status") === "Inactive" ? "neutral" : undefined}>
+				{row.getValue("status")}
+			</Badge>
+		),
 	},
 	{
 		header: () => <div className="text-right">Balance</div>,
@@ -147,8 +191,15 @@ export default function ExpandTable() {
 							<TableRow key={headerGroup.id} className="hover:bg-transparent">
 								{headerGroup.headers.map((header) => {
 									return (
-										<TableHead style={{ width: `${header.getSize()}px` }} key={header.id}>
-											{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+										<TableHead
+											style={{ width: `${header.getSize()}px` }}
+											key={header.id}>
+											{header.isPlaceholder
+												? null
+												: flexRender(
+														header.column.columnDef.header,
+														header.getContext()
+													)}
 										</TableHead>
 									)
 								})}
@@ -159,10 +210,17 @@ export default function ExpandTable() {
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => (
 								<Fragment key={row.id}>
-									<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+									<TableRow
+										key={row.id}
+										data-state={row.getIsSelected() && "selected"}>
 										{row.getVisibleCells().map((cell) => (
-											<TableCell key={cell.id} className="whitespace-nowrap [&:has([aria-expanded])]:w-px [&:has([aria-expanded])]:py-0 [&:has([aria-expanded])]:pr-0">
-												{flexRender(cell.column.columnDef.cell, cell.getContext())}
+											<TableCell
+												key={cell.id}
+												className="whitespace-nowrap [&:has([aria-expanded])]:w-px [&:has([aria-expanded])]:py-0 [&:has([aria-expanded])]:pr-0">
+												{flexRender(
+													cell.column.columnDef.cell,
+													cell.getContext()
+												)}
 											</TableCell>
 										))}
 									</TableRow>
@@ -170,7 +228,9 @@ export default function ExpandTable() {
 										<TableRow>
 											<TableCell colSpan={row.getVisibleCells().length}>
 												<div className="text-fg flex items-start py-2">
-													<span className="me-3 mt-0.5 flex w-7 shrink-0 justify-center" aria-hidden="true">
+													<span
+														className="me-3 mt-0.5 flex w-7 shrink-0 justify-center"
+														aria-hidden="true">
 														<InfoIcon className="opacity-60" size={16} />
 													</span>
 													<p className="text-sm">{row.original.note}</p>
@@ -182,7 +242,9 @@ export default function ExpandTable() {
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={columns.length} className="h-24 text-center">
+								<TableCell
+									colSpan={columns.length}
+									className="h-24 text-center">
 									No results.
 								</TableCell>
 							</TableRow>

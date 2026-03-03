@@ -25,7 +25,9 @@ export default function DestructiveDialogWithDivider() {
 			<AlertDialogContent className="max-w-100 gap-0 p-0">
 				<AlertDialogHeader className="px-6 py-5">
 					<AlertDialogTitle>Delete Account</AlertDialogTitle>
-					<AlertDialogDescription>Are you sure you want to delete the record?</AlertDialogDescription>
+					<AlertDialogDescription>
+						Are you sure you want to delete the record?
+					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<Divider className="bg-soft-alpha" />
 				<AlertDialogFooter className="px-6 py-5">

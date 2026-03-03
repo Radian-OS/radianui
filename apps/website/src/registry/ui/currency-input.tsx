@@ -4,7 +4,10 @@ import CurrencyInputField from "react-currency-input-field"
 import { cn } from "@/lib/utils"
 import { inputVariants } from "@/registry/ui/input"
 
-export type CurrencyInputProps = Omit<React.ComponentProps<typeof CurrencyInputField>, "size"> & {
+export type CurrencyInputProps = Omit<
+	React.ComponentProps<typeof CurrencyInputField>,
+	"size"
+> & {
 	size?: VariantProps<typeof inputVariants>["size"]
 }
 

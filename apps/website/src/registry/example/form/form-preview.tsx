@@ -7,7 +7,14 @@ import { toast } from "sonner"
 import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 
 interface FormData {

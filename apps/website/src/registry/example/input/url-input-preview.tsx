@@ -1,7 +1,13 @@
 import { useState } from "react"
 import { Input, InputAddon, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 type domainOption = ".com" | ".org" | ".net"
 
@@ -29,8 +35,14 @@ const UrlPreview = () => {
 				<Label>Input URL w/domain selector</Label>
 				<div className="flex">
 					<InputGroup className="w-full">
-						<Input className="rounded-r-none border-r-0 focus-within:border-r md:w-fit" placeholder="radianos" type="url" />
-						<Select value={domain} onValueChange={(values) => setDomain(values as domainOption)}>
+						<Input
+							className="rounded-r-none border-r-0 focus-within:border-r md:w-fit"
+							placeholder="radianos"
+							type="url"
+						/>
+						<Select
+							value={domain}
+							onValueChange={(values) => setDomain(values as domainOption)}>
 							<SelectTrigger className="w-fit rounded-l-none">
 								<SelectValue placeholder=".com" />
 							</SelectTrigger>

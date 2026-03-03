@@ -1,11 +1,19 @@
 import * as React from "react"
 import Image from "next/image"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import {
+	Carousel,
+	type CarouselApi,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/registry/ui/carousel"
 
 const BASE_TWEEN = 1
 
-const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max)
+const clamp = (n: number, min: number, max: number) =>
+	Math.min(Math.max(n, min), max)
 
 export default function CarouselScale() {
 	const [api, setApi] = React.useState<CarouselApi>()
@@ -37,7 +45,9 @@ export default function CarouselScale() {
 	// cache slide nodes once
 	const registerSlides = React.useCallback((embla: CarouselApi) => {
 		if (!embla) return
-		slideNodes.current = embla.slideNodes().map((slide) => slide.querySelector(".scale-wrap") as HTMLElement)
+		slideNodes.current = embla
+			.slideNodes()
+			.map((slide) => slide.querySelector(".scale-wrap") as HTMLElement)
 	}, [])
 
 	const setFactor = React.useCallback((embla: CarouselApi) => {
@@ -85,7 +95,12 @@ export default function CarouselScale() {
 		setFactor(api)
 		applyScale(api)
 
-		api.on("reInit", registerSlides).on("reInit", setFactor).on("reInit", applyScale).on("scroll", applyScale).on("slideFocus", applyScale)
+		api
+			.on("reInit", registerSlides)
+			.on("reInit", setFactor)
+			.on("reInit", applyScale)
+			.on("scroll", applyScale)
+			.on("slideFocus", applyScale)
 
 		return () => {
 			api.off("reInit", registerSlides)
@@ -107,8 +122,15 @@ export default function CarouselScale() {
 			<CarouselContent className="-ml-2 md:-ml-4">
 				{images.map((image, index) => (
 					<CarouselItem key={index} className="basis-1/3 pl-2 md:pl-4">
-						<AspectRatio ratio={1 / 1} className="scale-wrap duration-50 flex items-center justify-center transition-transform will-change-transform">
-							<Image src={image.src} alt={image.alt} fill className="rounded-2xl object-cover" />
+						<AspectRatio
+							ratio={1 / 1}
+							className="scale-wrap duration-50 flex items-center justify-center transition-transform will-change-transform">
+							<Image
+								src={image.src}
+								alt={image.alt}
+								fill
+								className="rounded-2xl object-cover"
+							/>
 						</AspectRatio>
 					</CarouselItem>
 				))}

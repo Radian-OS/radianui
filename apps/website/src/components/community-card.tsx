@@ -4,7 +4,13 @@ import Link from "next/link"
 import { Button, IconButton } from "@/registry/ui/button"
 
 const Logo = (props: SVGProps<SVGSVGElement>) => (
-	<svg xmlns="http://www.w3.org/2000/svg" width={32} height={32} viewBox="0 0 32 32" fill="none" {...props}>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		width={32}
+		height={32}
+		viewBox="0 0 32 32"
+		fill="none"
+		{...props}>
 		<mask
 			id="mask0_3077_106949"
 			style={{
@@ -18,7 +24,12 @@ const Logo = (props: SVGProps<SVGSVGElement>) => (
 			<rect width={32} height={32} rx={9.14286} fill="#D9D9D9" />
 		</mask>
 		<g mask="url(#mask0_3077_106949)">
-			<rect width={32} height={32} rx={8} fill="url(#paint0_linear_3077_106949)" />
+			<rect
+				width={32}
+				height={32}
+				rx={8}
+				fill="url(#paint0_linear_3077_106949)"
+			/>
 			<path
 				d="M27.7111 11.2951C27.711 11.295 27.7111 11.2949 27.7112 11.2949C27.9017 11.3384 27.853 11.771 27.7488 11.9363C27.5674 12.2228 26.9505 12.6291 25.6356 13.2865C19.8839 15.9567 14.6254 17.8057 7.39507 19.7366C6.46064 19.9861 5.76617 20.0494 5.24919 20.0494C4.73222 20.0494 3.8245 19.8736 4.49398 19.423C5.16346 18.9724 5.46632 18.7953 5.68001 18.6708C8.2778 17.2258 8.1533 16.1893 9.05326 13.5411C10.3599 9.23989 15.4861 7.25988 19.4918 9.11151C20.9471 9.76074 21.8669 10.9119 23.4299 11.3039C24.3122 11.5266 25.577 11.5073 26.5033 11.4103C26.8715 11.4146 27.3457 11.2127 27.711 11.2952C27.7111 11.2952 27.7111 11.2951 27.7111 11.2951ZM13.6143 15.7964C15.2143 15.2234 17.1008 14.591 18.4372 14.0775C18.8495 13.9176 19.2346 13.7979 19.6616 13.5976C19.8498 13.5079 20.026 13.3714 20.2186 13.1775C20.8161 12.5356 19.1459 11.5999 18.666 11.3427C15.4336 9.64916 11.6192 11.7942 11.1741 15.3574C11.0953 16.1079 11.3796 16.4228 12.1181 16.2587C12.6299 16.1493 13.155 15.9562 13.6052 15.7994L13.6143 15.7964Z"
 				fill="white"
@@ -74,7 +85,13 @@ const Logo = (props: SVGProps<SVGSVGElement>) => (
 			</g>
 		</g>
 		<defs>
-			<linearGradient id="paint0_linear_3077_106949" x1={16} y1={0} x2={16} y2={32} gradientUnits="userSpaceOnUse">
+			<linearGradient
+				id="paint0_linear_3077_106949"
+				x1={16}
+				y1={0}
+				x2={16}
+				y2={32}
+				gradientUnits="userSpaceOnUse">
 				<stop stopColor="#3C3746" />
 				<stop offset={1} stopColor="#9A95A4" />
 			</linearGradient>
@@ -83,7 +100,13 @@ const Logo = (props: SVGProps<SVGSVGElement>) => (
 )
 
 const GithubIcon = (props: SVGProps<SVGSVGElement>) => (
-	<svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+	<svg
+		width={20}
+		height={20}
+		viewBox="0 0 20 20"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}>
 		<path
 			d="M9.96974 1.98495C0.462177 2.18375 -1.51713 14.9412 7.3768 18.001C7.79168 18.0787 7.94726 17.8194 7.94726 17.6033C7.94726 17.3872 7.94726 16.8946 7.94726 16.2032C5.62222 16.7045 5.12954 15.1055 5.12954 15.1055C4.97362 14.6054 4.64207 14.1787 4.19608 13.9041C3.44412 13.3941 4.25658 13.4027 4.25658 13.4027C4.52219 13.4378 4.77603 13.5342 4.99803 13.6842C5.22003 13.8342 5.40412 14.0337 5.53578 14.2671C5.77157 14.6776 6.15907 14.9791 6.61489 15.1067C7.07073 15.2345 7.55847 15.1782 7.97319 14.9499C8.01589 14.5338 8.20234 14.1456 8.50041 13.8522C6.64213 13.6447 4.69738 12.936 4.69738 9.78982C4.68569 8.97032 4.99604 8.17891 5.56171 7.5858C5.30004 6.87121 5.3311 6.08221 5.64814 5.39041C5.64814 5.39041 6.34825 5.17432 7.94726 6.25473C9.31691 5.88303 10.7609 5.88303 12.1306 6.25473C13.721 5.19161 14.4211 5.39041 14.4211 5.39041C14.7252 6.07963 14.7531 6.85935 14.4988 7.56851C15.0645 8.16163 15.3749 8.95299 15.3632 9.77257C15.3632 12.9273 13.4098 13.6275 11.5515 13.8262C12.4158 14.2843 12.0528 17.2317 12.1047 17.5947C12.1047 17.8108 12.2516 18.0701 12.6837 17.9923C21.5517 14.9585 19.4774 2.18375 9.96974 1.98495Z"
 			fill="#FFFFFF"
@@ -93,7 +116,13 @@ const GithubIcon = (props: SVGProps<SVGSVGElement>) => (
 )
 
 const XIcon = (props: SVGProps<SVGSVGElement>) => (
-	<svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+	<svg
+		width={20}
+		height={20}
+		viewBox="0 0 20 20"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}>
 		<path
 			d="M6.69141 3L10.1836 7.5957L10.5537 8.08301L10.957 7.62305L15.0195 3H16.2432L11.3896 8.52344L11.1201 8.83105L11.3672 9.15625L17.3262 17H13.4365L9.55859 11.9512L9.18848 11.4688L8.78711 11.9258L4.32715 17H3.10156L8.34375 11.0342L8.61523 10.7256L8.36426 10.3994L2.68164 3H6.69141ZM4.25488 4.24805L13.499 16.2812L13.6494 16.4766H16.3203L15.71 15.6748L6.56934 3.64062L6.41895 3.44336H3.63672L4.25488 4.24805Z"
 			fill="#0A0A0B"
@@ -104,15 +133,40 @@ const XIcon = (props: SVGProps<SVGSVGElement>) => (
 )
 
 const DotPattern = (props: SVGProps<SVGSVGElement>) => (
-	<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="260" height="130" viewBox="0 0 260 130" fill="none" {...props}>
-		<rect width="260" height="130" fill="url(#pattern0_6183_4429)" fillOpacity="0.1" />
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		xmlnsXlink="http://www.w3.org/1999/xlink"
+		width="260"
+		height="130"
+		viewBox="0 0 260 130"
+		fill="none"
+		{...props}>
+		<rect
+			width="260"
+			height="130"
+			fill="url(#pattern0_6183_4429)"
+			fillOpacity="0.1"
+		/>
 		<rect width="260" height="130" fill="url(#paint0_linear_6183_4429)" />
 		<defs>
-			<linearGradient id="paint0_linear_6183_4429" x1="122" y1="0" x2="122" y2="130" gradientUnits="userSpaceOnUse">
+			<linearGradient
+				id="paint0_linear_6183_4429"
+				x1="122"
+				y1="0"
+				x2="122"
+				y2="130"
+				gradientUnits="userSpaceOnUse">
 				<stop offset="0.5" stopColor="var(--color-bg)" stopOpacity="0" />
 				<stop offset="1" stopColor="var(--color-bg)" />
 			</linearGradient>
-			<pattern id="pattern0_6183_4429" patternUnits="userSpaceOnUse" patternTransform="matrix(10 0 0 10 121 0)" preserveAspectRatio="none" viewBox="0 0 10 10" width="1" height="1">
+			<pattern
+				id="pattern0_6183_4429"
+				patternUnits="userSpaceOnUse"
+				patternTransform="matrix(10 0 0 10 121 0)"
+				preserveAspectRatio="none"
+				viewBox="0 0 10 10"
+				width="1"
+				height="1">
 				<g id="pattern0_6183_4429_inner">
 					<rect width="2" height="2" rx="1" fill="var(--color-fg)" />
 				</g>
@@ -135,7 +189,9 @@ export default function CommunityCard() {
 				<Logo className="size-8" />
 
 				<div>
-					<span className="text-fg mb-1 font-semibold">Join the Conversation</span>
+					<span className="text-fg mb-1 font-semibold">
+						Join the Conversation
+					</span>
 					<p className="text-fg-secondary body-13">
 						Community of product builders,
 						<br />
@@ -145,14 +201,24 @@ export default function CommunityCard() {
 
 				<div className="flex gap-2">
 					<Button asChild variant={"strong"} color={"neutral"}>
-						<Link href="https://github.com/Radian-os/radianos" target="_blank" rel="noopener noreferrer">
+						<Link
+							href="https://github.com/Radian-os/radianos"
+							target="_blank"
+							rel="noopener noreferrer">
 							<GithubIcon />
 							Github
 						</Link>
 					</Button>
 
-					<IconButton aria-label="X (Formerly Twitter)" asChild variant={"outline"} color={"neutral"}>
-						<Link href="https://x.com/radian_os" target="_blank" rel="noopener noreferrer">
+					<IconButton
+						aria-label="X (Formerly Twitter)"
+						asChild
+						variant={"outline"}
+						color={"neutral"}>
+						<Link
+							href="https://x.com/radian_os"
+							target="_blank"
+							rel="noopener noreferrer">
 							<XIcon />
 						</Link>
 					</IconButton>

@@ -1,6 +1,13 @@
 import { SVGProps } from "react"
 import { Button } from "@/registry/ui/button"
-import { Empty, EmptyAction, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/registry/ui/empty"
+import {
+	Empty,
+	EmptyAction,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/registry/ui/empty"
 
 export default function NoInternetConnection() {
 	return (
@@ -10,7 +17,9 @@ export default function NoInternetConnection() {
 			</EmptyMedia>
 			<EmptyHeader>
 				<EmptyTitle>No Internet Connection</EmptyTitle>
-				<EmptyDescription>You’re offline. We’ll reconnect automatically when you’re back online</EmptyDescription>
+				<EmptyDescription>
+					You’re offline. We’ll reconnect automatically when you’re back online
+				</EmptyDescription>
 			</EmptyHeader>
 			<EmptyAction>
 				<Button>Refresh Page</Button>
@@ -21,13 +30,56 @@ export default function NoInternetConnection() {
 
 function NoInternetConnectionMediaContent(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg width={126} height={88} viewBox="0 0 126 88" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+		<svg
+			width={126}
+			height={88}
+			viewBox="0 0 126 88"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			{...props}>
 			<g filter="url(#filter0_d_1643_2599)">
-				<rect x={8} y={4} width={110} height={72} rx={8} className="fill-bg" shapeRendering="crispEdges" />
-				<rect x={8.5} y={4.5} width={109} height={71} rx={7.5} className="stroke-soft" shapeRendering="crispEdges" />
-				<rect x={16} y={12} width={6} height={6} rx={3} className="fill-fill4" />
-				<rect x={26} y={12} width={6} height={6} rx={3} className="fill-fill4" />
-				<rect x={36} y={12} width={6} height={6} rx={3} className="fill-fill4" />
+				<rect
+					x={8}
+					y={4}
+					width={110}
+					height={72}
+					rx={8}
+					className="fill-bg"
+					shapeRendering="crispEdges"
+				/>
+				<rect
+					x={8.5}
+					y={4.5}
+					width={109}
+					height={71}
+					rx={7.5}
+					className="stroke-soft"
+					shapeRendering="crispEdges"
+				/>
+				<rect
+					x={16}
+					y={12}
+					width={6}
+					height={6}
+					rx={3}
+					className="fill-fill4"
+				/>
+				<rect
+					x={26}
+					y={12}
+					width={6}
+					height={6}
+					rx={3}
+					className="fill-fill4"
+				/>
+				<rect
+					x={36}
+					y={12}
+					width={6}
+					height={6}
+					rx={3}
+					className="fill-fill4"
+				/>
 				<path
 					fillRule="evenodd"
 					clipRule="evenodd"
@@ -48,15 +100,39 @@ function NoInternetConnectionMediaContent(props: SVGProps<SVGSVGElement>) {
 				/>
 			</g>
 			<defs>
-				<filter id="filter0_d_1643_2599" x={0} y={0} width={126} height={88} filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+				<filter
+					id="filter0_d_1643_2599"
+					x={0}
+					y={0}
+					width={126}
+					height={88}
+					filterUnits="userSpaceOnUse"
+					colorInterpolationFilters="sRGB">
 					<feFlood floodOpacity={0} result="BackgroundImageFix" />
-					<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+					<feColorMatrix
+						in="SourceAlpha"
+						type="matrix"
+						values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+						result="hardAlpha"
+					/>
 					<feOffset dy={4} />
 					<feGaussianBlur stdDeviation={4} />
 					<feComposite in2="hardAlpha" operator="out" />
-					<feColorMatrix type="matrix" values="0 0 0 0 0.0980392 0 0 0 0 0.0941176 0 0 0 0 0.105882 0 0 0 0.08 0" />
-					<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1643_2599" />
-					<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1643_2599" result="shape" />
+					<feColorMatrix
+						type="matrix"
+						values="0 0 0 0 0.0980392 0 0 0 0 0.0941176 0 0 0 0 0.105882 0 0 0 0.08 0"
+					/>
+					<feBlend
+						mode="normal"
+						in2="BackgroundImageFix"
+						result="effect1_dropShadow_1643_2599"
+					/>
+					<feBlend
+						mode="normal"
+						in="SourceGraphic"
+						in2="effect1_dropShadow_1643_2599"
+						result="shape"
+					/>
 				</filter>
 			</defs>
 		</svg>

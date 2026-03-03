@@ -8,7 +8,13 @@ export default function CardPreview() {
 	return (
 		<Card className="max-w-100 w-full px-6 py-8">
 			<div className="flex flex-1 flex-col gap-8">
-				<Image src="/favicon-16x16.png" className="size-8" alt="radian-logo" width={112} height={36} />
+				<Image
+					src="/favicon-16x16.png"
+					className="size-8"
+					alt="radian-logo"
+					width={112}
+					height={36}
+				/>
 				<CardHeader className="flex flex-col gap-2 px-0">
 					<span className="heading-5">Sign In</span>
 					<span className="text-fg-secondary text-sm">

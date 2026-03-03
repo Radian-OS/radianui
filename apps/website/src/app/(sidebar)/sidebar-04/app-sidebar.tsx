@@ -1,4 +1,19 @@
-import { Box, ChartCandlestick, ChartSpline, ClipboardList, Cog, CreditCard, Headphones, LayoutTemplate, MessagesSquare, Monitor, Search, UserCog, Users2, Zap } from "lucide-react"
+import {
+	Box,
+	ChartCandlestick,
+	ChartSpline,
+	ClipboardList,
+	Cog,
+	CreditCard,
+	Headphones,
+	LayoutTemplate,
+	MessagesSquare,
+	Monitor,
+	Search,
+	UserCog,
+	Users2,
+	Zap,
+} from "lucide-react"
 import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { Input, InputWrapper } from "@/registry/ui/input"

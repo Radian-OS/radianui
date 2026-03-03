@@ -7,7 +7,15 @@ import { toast } from "sonner"
 import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
@@ -36,7 +44,10 @@ export default function RadioGroupForm() {
 		const selected = options.find((o) => o.id === values.chip)?.id
 		toast.custom(
 			(t) => (
-				<Alert variant="strong" color="success" onClose={() => toast.dismiss(t)}>
+				<Alert
+					variant="strong"
+					color="success"
+					onClose={() => toast.dismiss(t)}>
 					<AlertIcon>
 						<CheckCircle />
 					</AlertIcon>
@@ -51,7 +62,9 @@ export default function RadioGroupForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-[320px] space-y-6">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-[320px] space-y-6">
 				<FormField
 					control={form.control}
 					name="chip"
@@ -64,13 +77,19 @@ export default function RadioGroupForm() {
 								<RadioGroup value={field.value} onValueChange={field.onChange}>
 									{options.map((opt) => (
 										<div className="flex items-center gap-2" key={opt.id}>
-											<RadioGroupItem value={opt.id} id={opt.id} disabled={opt.disabled} />
+											<RadioGroupItem
+												value={opt.id}
+												id={opt.id}
+												disabled={opt.disabled}
+											/>
 											<Label htmlFor={opt.id}>{opt.label}</Label>
 										</div>
 									))}
 								</RadioGroup>
 							</FormControl>
-							<FormDescription>Choose one option before submitting.</FormDescription>
+							<FormDescription>
+								Choose one option before submitting.
+							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}

@@ -27,7 +27,10 @@ export default function TabsDisabled() {
 			<Tabs defaultValue={data[0].trigger.toLowerCase()}>
 				<TabsList size="lg">
 					{data.map((item) => (
-						<TabsTrigger key={item.id} disabled={item.disabled} value={item.trigger.toLowerCase()}>
+						<TabsTrigger
+							key={item.id}
+							disabled={item.disabled}
+							value={item.trigger.toLowerCase()}>
 							{item.icon}
 							{item.trigger}
 						</TabsTrigger>

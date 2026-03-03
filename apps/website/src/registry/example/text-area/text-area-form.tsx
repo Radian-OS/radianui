@@ -3,7 +3,15 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import z from "zod"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { TextArea } from "@/registry/ui/text-area"
 
 const FormSchema = z.object({
@@ -33,7 +41,9 @@ export default function TextAreaForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-md space-y-6">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full max-w-md space-y-6">
 				<FormField
 					control={form.control}
 					name="review"
@@ -42,10 +52,16 @@ export default function TextAreaForm() {
 							<FormLabel>Leave a review</FormLabel>
 
 							<FormControl>
-								<TextArea placeholder="Write your review here." className="w-full max-w-md" {...field} />
+								<TextArea
+									placeholder="Write your review here."
+									className="w-full max-w-md"
+									{...field}
+								/>
 							</FormControl>
 
-							<FormDescription>Leave a review between 12 to 500 characters long.</FormDescription>
+							<FormDescription>
+								Leave a review between 12 to 500 characters long.
+							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}

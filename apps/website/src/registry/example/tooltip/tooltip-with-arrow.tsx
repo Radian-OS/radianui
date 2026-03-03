@@ -18,7 +18,9 @@ export default function TooltipWithArrow() {
 						Tooltip with Arrow
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent withArrow>Access the full documentation.</TooltipContent>
+				<TooltipContent withArrow>
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 		</div>
 	)

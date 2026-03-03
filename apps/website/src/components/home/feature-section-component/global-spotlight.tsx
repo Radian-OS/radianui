@@ -9,7 +9,13 @@ const calculateSpotlightValues = (radius: number) => ({
 	fadeDistance: radius * 0.75,
 })
 
-const updateCardGlowProperties = (card: HTMLElement, mouseX: number, mouseY: number, glow: number, radius: number) => {
+const updateCardGlowProperties = (
+	card: HTMLElement,
+	mouseX: number,
+	mouseY: number,
+	glow: number,
+	radius: number
+) => {
 	const rect = card.getBoundingClientRect()
 	const relativeX = ((mouseX - rect.left) / rect.width) * 100
 	const relativeY = ((mouseY - rect.top) / rect.height) * 100
@@ -26,7 +32,12 @@ export const GlobalSpotlight: React.FC<{
 	enabled?: boolean
 	spotlightRadius?: number
 	isDarkMode?: boolean
-}> = ({ gridRef, disableAnimations = false, enabled = true, spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS }) => {
+}> = ({
+	gridRef,
+	disableAnimations = false,
+	enabled = true,
+	spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
+}) => {
 	const spotlightsRef = useRef<HTMLDivElement[]>([])
 	const isInsideSection = useRef(false)
 
@@ -97,7 +108,12 @@ export const GlobalSpotlight: React.FC<{
 		const applyUpdate = (x: number, y: number) => {
 			const section = gridEl.closest(".bento-section")
 			const rect = section?.getBoundingClientRect()
-			const mouseInside = !!rect && x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
+			const mouseInside =
+				!!rect &&
+				x >= rect.left &&
+				x <= rect.right &&
+				y >= rect.top &&
+				y <= rect.bottom
 
 			isInsideSection.current = mouseInside
 
@@ -108,7 +124,8 @@ export const GlobalSpotlight: React.FC<{
 				return
 			}
 
-			const { proximity, fadeDistance } = calculateSpotlightValues(spotlightRadius)
+			const { proximity, fadeDistance } =
+				calculateSpotlightValues(spotlightRadius)
 
 			cardsNow.forEach((card, index) => {
 				const cardElement = card as HTMLElement
@@ -116,17 +133,26 @@ export const GlobalSpotlight: React.FC<{
 				const centerX = cardRect.left + cardRect.width / 2
 				const centerY = cardRect.top + cardRect.height / 2
 
-				const distance = Math.hypot(x - centerX, y - centerY) - Math.max(cardRect.width, cardRect.height) / 2
+				const distance =
+					Math.hypot(x - centerX, y - centerY) -
+					Math.max(cardRect.width, cardRect.height) / 2
 				const effectiveDistance = Math.max(0, distance)
 
 				let glowIntensity = 0
 				if (effectiveDistance <= proximity) {
 					glowIntensity = 1
 				} else if (effectiveDistance <= fadeDistance) {
-					glowIntensity = (fadeDistance - effectiveDistance) / (fadeDistance - proximity)
+					glowIntensity =
+						(fadeDistance - effectiveDistance) / (fadeDistance - proximity)
 				}
 
-				updateCardGlowProperties(cardElement, x, y, glowIntensity, spotlightRadius)
+				updateCardGlowProperties(
+					cardElement,
+					x,
+					y,
+					glowIntensity,
+					spotlightRadius
+				)
 
 				const spotlight = spotlightsRef.current[index]
 				if (!spotlight) return

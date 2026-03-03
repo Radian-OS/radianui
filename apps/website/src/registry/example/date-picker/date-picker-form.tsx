@@ -10,7 +10,15 @@ import { z } from "zod"
 import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 export default function DatePickerForm() {
@@ -40,11 +48,16 @@ export default function DatePickerForm() {
 
 		toast.custom(
 			(t) => (
-				<Alert variant="strong" color="success" onClose={() => toast.dismiss(t)}>
+				<Alert
+					variant="strong"
+					color="success"
+					onClose={() => toast.dismiss(t)}>
 					<AlertIcon>
 						<CheckCircle />
 					</AlertIcon>
-					<AlertTitle>Your delivery is scheduled for {formattedDate}</AlertTitle>
+					<AlertTitle>
+						Your delivery is scheduled for {formattedDate}
+					</AlertTitle>
 				</Alert>
 			),
 			{
@@ -55,7 +68,9 @@ export default function DatePickerForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="flex w-[320px] flex-col gap-4">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="flex w-[320px] flex-col gap-4">
 				<FormField
 					control={form.control}
 					name="deliveryDate"
@@ -66,8 +81,19 @@ export default function DatePickerForm() {
 								<FormControl>
 									<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 										<PopoverTrigger asChild>
-											<Button id="date" type="button" variant="outline" color="neutral" className="text-fg hover:bg-elevation-level1 w-full justify-start gap-2">
-												{date ? format(date, "PPP") : <span className="text-fg-tertiary text-sm font-normal">{today}</span>}
+											<Button
+												id="date"
+												type="button"
+												variant="outline"
+												color="neutral"
+												className="text-fg hover:bg-elevation-level1 w-full justify-start gap-2">
+												{date ? (
+													format(date, "PPP")
+												) : (
+													<span className="text-fg-tertiary text-sm font-normal">
+														{today}
+													</span>
+												)}
 												<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 											</Button>
 										</PopoverTrigger>
@@ -86,7 +112,9 @@ export default function DatePickerForm() {
 										</PopoverContent>
 									</Popover>
 								</FormControl>
-								<FormDescription className="text-fg-secondary">This helps us plan and ensure timely delivery.</FormDescription>
+								<FormDescription className="text-fg-secondary">
+									This helps us plan and ensure timely delivery.
+								</FormDescription>
 							</div>
 							<FormMessage />
 						</FormItem>

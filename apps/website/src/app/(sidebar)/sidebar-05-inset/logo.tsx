@@ -1,6 +1,12 @@
 export default function Logo({ className }: { className?: string }) {
 	return (
-		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			className={className}>
 			<path
 				d="M17.6 0H6.4C2.86538 0 0 2.86538 0 6.4V17.6C0 21.1346 2.86538 24 6.4 24H17.6C21.1346 24 24 21.1346 24 17.6V6.4C24 2.86538 21.1346 0 17.6 0Z"
 				fill="url(#paint0_linear_14073_378)"
@@ -39,7 +45,13 @@ export default function Logo({ className }: { className?: string }) {
 				fillOpacity="0.2"
 			/>
 			<defs>
-				<linearGradient id="paint0_linear_14073_378" x1="12" y1="0" x2="12" y2="24" gradientUnits="userSpaceOnUse">
+				<linearGradient
+					id="paint0_linear_14073_378"
+					x1="12"
+					y1="0"
+					x2="12"
+					y2="24"
+					gradientUnits="userSpaceOnUse">
 					<stop stopColor="#623DF5" />
 					<stop offset="1" stopColor="#9981F8" />
 				</linearGradient>

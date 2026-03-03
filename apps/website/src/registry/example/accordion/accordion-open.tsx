@@ -1,5 +1,10 @@
 import React from "react"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/registry/ui/accordion"
 
 const contents = [
 	{
@@ -11,23 +16,30 @@ const contents = [
 	{
 		id: 2,
 		trigger: "What components are available in Radian OS?",
-		content: "Radian OS offers a variety of Ul components including Accordions, Alerts, Avatars, Badges, Banners, Buttons, Calendars, Checkboxes, Dropdowns and more.",
+		content:
+			"Radian OS offers a variety of Ul components including Accordions, Alerts, Avatars, Badges, Banners, Buttons, Calendars, Checkboxes, Dropdowns and more.",
 	},
 	{
 		id: 3,
 		trigger: "What application components does Radian OS provide?",
-		content: "Application components such as User Authentication, Navigation Bars, Application Settings, and many more.",
+		content:
+			"Application components such as User Authentication, Navigation Bars, Application Settings, and many more.",
 	},
 	{
 		id: 4,
 		trigger: "How can I stay updated with Radian OS developments?",
-		content: "You can subscribe to Radian OS newsletter to receive the latest information, tips, and exclusive offers.",
+		content:
+			"You can subscribe to Radian OS newsletter to receive the latest information, tips, and exclusive offers.",
 	},
 ]
 
 export default function AccordionOpen() {
 	return (
-		<Accordion type="single" variant="open" className="w-full lg:w-[75%]" collapsible>
+		<Accordion
+			type="single"
+			variant="open"
+			className="w-full lg:w-[75%]"
+			collapsible>
 			{contents.map((item) => (
 				<AccordionItem value={item.id.toString()} key={item.id}>
 					<AccordionTrigger>{item.trigger}</AccordionTrigger>

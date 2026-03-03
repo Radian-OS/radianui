@@ -2,7 +2,12 @@ import React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import Link from "next/link"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from "@/registry/ui/pagination"
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+} from "@/registry/ui/pagination"
 
 const PaginationTextExample = () => {
 	return (
@@ -17,17 +22,29 @@ const PaginationTextExample = () => {
 						</Button>
 					</PaginationItem>
 					<PaginationItem>
-						<IconButton aria-label="Page 1" color="neutral" variant="ghost" asChild>
+						<IconButton
+							aria-label="Page 1"
+							color="neutral"
+							variant="ghost"
+							asChild>
 							<Link href="#">1</Link>
 						</IconButton>
 					</PaginationItem>
 					<PaginationItem>
-						<IconButton aria-label="Page 2" color="neutral" variant="outline" asChild>
+						<IconButton
+							aria-label="Page 2"
+							color="neutral"
+							variant="outline"
+							asChild>
 							<Link href="#">2</Link>
 						</IconButton>
 					</PaginationItem>
 					<PaginationItem>
-						<IconButton aria-label="Page 3" color="neutral" variant="ghost" asChild>
+						<IconButton
+							aria-label="Page 3"
+							color="neutral"
+							variant="ghost"
+							asChild>
 							<Link href="#">3</Link>
 						</IconButton>
 					</PaginationItem>

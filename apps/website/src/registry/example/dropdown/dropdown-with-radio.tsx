@@ -2,7 +2,13 @@
 
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 
 export default function DropdownWithRadioExample() {
 	const [theme, setTheme] = useState("system")

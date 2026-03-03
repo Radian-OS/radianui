@@ -1,6 +1,12 @@
 import React from "react"
 import { Flame, X } from "lucide-react"
-import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/registry/ui/banner"
+import {
+	Banner,
+	BannerContent,
+	BannerDescription,
+	BannerIcon,
+	BannerTitle,
+} from "@/registry/ui/banner"
 import { Button, ButtonGroup } from "@/registry/ui/button"
 
 const BannerExample = () => {
@@ -9,12 +15,17 @@ const BannerExample = () => {
 			<Banner className="w-full max-w-3xl">
 				<BannerIcon className="flex-shrink-0">
 					<span className="flex size-9 items-center justify-center rounded-full bg-white">
-						<Flame className="fill-warning-hover text-warning-hover" size={20} />
+						<Flame
+							className="fill-warning-hover text-warning-hover"
+							size={20}
+						/>
 					</span>
 				</BannerIcon>
 				<BannerContent className="min-w-0">
 					<BannerTitle>Black Friday Sale</BannerTitle>
-					<BannerDescription className="max max-w-[200px] truncate sm:max-w-[280px]">Get 50% off on all your pro subscription purchases</BannerDescription>
+					<BannerDescription className="max max-w-[200px] truncate sm:max-w-[280px]">
+						Get 50% off on all your pro subscription purchases
+					</BannerDescription>
 				</BannerContent>
 				<section className="flex flex-shrink-0 items-center justify-center gap-2 px-1 sm:gap-3">
 					<ButtonGroup size="32" className="hidden md:flex">

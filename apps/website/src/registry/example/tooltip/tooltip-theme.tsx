@@ -13,7 +13,9 @@ export default function TooltipTheme() {
 						Light Tooltip
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent theme="light">Access the full documentation.</TooltipContent>
+				<TooltipContent theme="light">
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
@@ -22,7 +24,9 @@ export default function TooltipTheme() {
 						Dark Tooltip
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent theme="default">Access the full documentation.</TooltipContent>
+				<TooltipContent theme="default">
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 		</div>
 	)

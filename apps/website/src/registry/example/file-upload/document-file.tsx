@@ -1,9 +1,23 @@
 "use client"
 
 import { useState } from "react"
-import { AlertCircleIcon, FileArchiveIcon, FileIcon, FileSpreadsheetIcon, FileTextIcon, ImageIcon, Trash2Icon, UploadIcon, XIcon } from "lucide-react"
+import {
+	AlertCircleIcon,
+	FileArchiveIcon,
+	FileIcon,
+	FileSpreadsheetIcon,
+	FileTextIcon,
+	ImageIcon,
+	Trash2Icon,
+	UploadIcon,
+	XIcon,
+} from "lucide-react"
 import { Button, IconButton } from "@/registry/ui/button"
-import { type FileWithPreview, formatBytes, useFileUpload } from "@/registry/ui/file-upload"
+import {
+	type FileWithPreview,
+	formatBytes,
+	useFileUpload,
+} from "@/registry/ui/file-upload"
 import { Progress } from "@/registry/ui/progress"
 
 const initialFiles = [
@@ -44,15 +58,27 @@ const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 	const iconMap = {
 		pdf: {
 			icon: FileTextIcon,
-			conditions: (type: string, name: string) => type.includes("pdf") || name.endsWith(".pdf") || type.includes("word") || name.endsWith(".doc") || name.endsWith(".docx"),
+			conditions: (type: string, name: string) =>
+				type.includes("pdf") ||
+				name.endsWith(".pdf") ||
+				type.includes("word") ||
+				name.endsWith(".doc") ||
+				name.endsWith(".docx"),
 		},
 		archive: {
 			icon: FileArchiveIcon,
-			conditions: (type: string, name: string) => type.includes("zip") || type.includes("archive") || name.endsWith(".zip") || name.endsWith(".rar"),
+			conditions: (type: string, name: string) =>
+				type.includes("zip") ||
+				type.includes("archive") ||
+				name.endsWith(".zip") ||
+				name.endsWith(".rar"),
 		},
 		excel: {
 			icon: FileSpreadsheetIcon,
-			conditions: (type: string, name: string) => type.includes("excel") || name.endsWith(".xls") || name.endsWith(".xlsx"),
+			conditions: (type: string, name: string) =>
+				type.includes("excel") ||
+				name.endsWith(".xls") ||
+				name.endsWith(".xlsx"),
 		},
 	}
 
@@ -73,7 +99,11 @@ type UploadProgress = {
 }
 
 // Function to simulate file upload with more realistic timing and progress
-const simulateUpload = (totalBytes: number, onProgress: (progress: number) => void, onComplete: () => void) => {
+const simulateUpload = (
+	totalBytes: number,
+	onProgress: (progress: number) => void,
+	onComplete: () => void
+) => {
 	let timeoutId: NodeJS.Timeout
 	let uploadedBytes = 0
 	let lastProgressReport = 0
@@ -143,18 +173,27 @@ export default function Component() {
 
 		// Start simulated upload for each file
 		addedFiles.forEach((file) => {
-			const fileSize = file.file instanceof File ? file.file.size : file.file.size
+			const fileSize =
+				file.file instanceof File ? file.file.size : file.file.size
 
 			// Start the upload simulation and store the cleanup function
 			const cleanup = simulateUpload(
 				fileSize,
 				// Progress callback
 				(progress) => {
-					setUploadProgress((prev) => prev.map((item) => (item.fileId === file.id ? { ...item, progress } : item)))
+					setUploadProgress((prev) =>
+						prev.map((item) =>
+							item.fileId === file.id ? { ...item, progress } : item
+						)
+					)
 				},
 				// Complete callback
 				() => {
-					setUploadProgress((prev) => prev.map((item) => (item.fileId === file.id ? { ...item, completed: true } : item)))
+					setUploadProgress((prev) =>
+						prev.map((item) =>
+							item.fileId === file.id ? { ...item, completed: true } : item
+						)
+					)
 				}
 			)
 
@@ -172,7 +211,19 @@ export default function Component() {
 		setUploadProgress((prev) => prev.filter((item) => item.fileId !== fileId))
 	}
 
-	const [{ files, isDragging, errors }, { handleDragEnter, handleDragLeave, handleDragOver, handleDrop, openFileDialog, removeFile, clearFiles, getInputProps }] = useFileUpload({
+	const [
+		{ files, isDragging, errors },
+		{
+			handleDragEnter,
+			handleDragLeave,
+			handleDragOver,
+			handleDrop,
+			openFileDialog,
+			removeFile,
+			clearFiles,
+			getInputProps,
+		},
+	] = useFileUpload({
 		accept:
 			"application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,text/plain,application/vnd.oasis.opendocument.text",
 		multiple: true,
@@ -193,14 +244,27 @@ export default function Component() {
 				data-dragging={isDragging || undefined}
 				data-files={files.length > 0 || undefined}
 				className="border-input data-[dragging=true]:bg-elevation-level1/50 has-[input:focus]:border-ring has-[input:focus]:ring-ring/50 not-data-[files]:justify-center relative flex min-h-52 flex-col items-center overflow-hidden rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
-				<input {...getInputProps()} className="sr-only" aria-label="Upload image file" />
+				<input
+					{...getInputProps()}
+					className="sr-only"
+					aria-label="Upload image file"
+				/>
 				{files.length > 0 ? (
 					<div className="flex w-full flex-col gap-3">
 						<div className="flex items-center justify-between gap-2">
-							<h3 className="truncate text-sm font-medium">Files ({files.length})</h3>
+							<h3 className="truncate text-sm font-medium">
+								Files ({files.length})
+							</h3>
 							<div className="flex gap-2">
-								<Button variant="outline" color="neutral" size="28" onClick={openFileDialog}>
-									<UploadIcon className="-ms-0.5 size-3.5 opacity-60" aria-hidden="true" />
+								<Button
+									variant="outline"
+									color="neutral"
+									size="28"
+									onClick={openFileDialog}>
+									<UploadIcon
+										className="-ms-0.5 size-3.5 opacity-60"
+										aria-hidden="true"
+									/>
 									Add files
 								</Button>
 								<Button
@@ -212,7 +276,10 @@ export default function Component() {
 										setUploadProgress([])
 										clearFiles()
 									}}>
-									<Trash2Icon className="-ms-0.5 size-3.5 opacity-60" aria-hidden="true" />
+									<Trash2Icon
+										className="-ms-0.5 size-3.5 opacity-60"
+										aria-hidden="true"
+									/>
 									Remove all
 								</Button>
 							</div>
@@ -221,17 +288,34 @@ export default function Component() {
 						<div className="w-full space-y-2">
 							{files.map((file) => {
 								// Find the upload progress for this file once to avoid repeated lookups
-								const fileProgress = uploadProgress.find((p) => p.fileId === file.id)
+								const fileProgress = uploadProgress.find(
+									(p) => p.fileId === file.id
+								)
 								const isUploading = fileProgress && !fileProgress.completed
 
 								return (
-									<div key={file.id} data-uploading={isUploading || undefined} className="bg-bg flex flex-col gap-1 rounded-lg border p-2 pe-3 transition-opacity duration-300">
+									<div
+										key={file.id}
+										data-uploading={isUploading || undefined}
+										className="bg-bg flex flex-col gap-1 rounded-lg border p-2 pe-3 transition-opacity duration-300">
 										<div className="flex items-center justify-between gap-2">
 											<div className="in-data-[uploading=true]:opacity-50 flex items-center gap-3 overflow-hidden">
-												<div className="flex aspect-square size-10 shrink-0 items-center justify-center rounded border">{getFileIcon(file)}</div>
+												<div className="flex aspect-square size-10 shrink-0 items-center justify-center rounded border">
+													{getFileIcon(file)}
+												</div>
 												<div className="flex min-w-0 flex-col gap-0.5">
-													<p className="truncate text-[13px] font-medium">{file.file instanceof File ? file.file.name : file.file.name}</p>
-													<p className="text-fg-secondary text-xs">{formatBytes(file.file instanceof File ? file.file.size : file.file.size)}</p>
+													<p className="truncate text-[13px] font-medium">
+														{file.file instanceof File
+															? file.file.name
+															: file.file.name}
+													</p>
+													<p className="text-fg-secondary text-xs">
+														{formatBytes(
+															file.file instanceof File
+																? file.file.size
+																: file.file.size
+														)}
+													</p>
 												</div>
 											</div>
 											<IconButton
@@ -257,7 +341,9 @@ export default function Component() {
 												return (
 													<div className="mt-1 flex items-center gap-2">
 														<Progress value={progress} max={100} />
-														<span className="text-fg-secondary w-10 text-xs tabular-nums">{progress}%</span>
+														<span className="text-fg-secondary w-10 text-xs tabular-nums">
+															{progress}%
+														</span>
 													</div>
 												)
 											})()}
@@ -268,14 +354,20 @@ export default function Component() {
 					</div>
 				) : (
 					<div className="flex flex-col items-center justify-center px-4 py-3 text-center">
-						<div className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
+						<div
+							className="bg-bg mb-2 flex size-11 shrink-0 items-center justify-center rounded-full border"
+							aria-hidden="true">
 							<ImageIcon className="size-4 opacity-60" />
 						</div>
 						<p className="mb-1.5 text-sm font-medium">Drop your files here</p>
 						<p className="text-fg-secondary text-xs">
 							Max {maxFiles} files ∙ Up to {maxSizeMB}MB
 						</p>
-						<Button variant="outline" color="neutral" className="mt-4" onClick={openFileDialog}>
+						<Button
+							variant="outline"
+							color="neutral"
+							className="mt-4"
+							onClick={openFileDialog}>
 							<UploadIcon className="-ms-1 opacity-60" aria-hidden="true" />
 							Select documents
 						</Button>
@@ -284,7 +376,9 @@ export default function Component() {
 			</div>
 
 			{errors.length > 0 && (
-				<div className="text-error-text flex items-center gap-1 text-xs" role="alert">
+				<div
+					className="text-error-text flex items-center gap-1 text-xs"
+					role="alert">
 					<AlertCircleIcon className="size-3 shrink-0" />
 					<span>{errors[0]}</span>
 				</div>

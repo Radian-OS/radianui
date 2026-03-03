@@ -10,9 +10,13 @@ type RadioGroupContextType = {
 	size?: VariantProps<typeof radioItemVariants>["size"]
 }
 
-type RadioGroupItemProps = React.ComponentProps<typeof RadioGroupPrimitive.Item> & RadioGroupContextType
+type RadioGroupItemProps = React.ComponentProps<
+	typeof RadioGroupPrimitive.Item
+> &
+	RadioGroupContextType
 
-type RadioGroupProps = React.ComponentProps<typeof RadioGroupPrimitive.Root> & RadioGroupContextType
+type RadioGroupProps = React.ComponentProps<typeof RadioGroupPrimitive.Root> &
+	RadioGroupContextType
 
 const radioItemVariants = cva(
 	cn(
@@ -34,19 +38,30 @@ const radioItemVariants = cva(
 	}
 )
 
-const RadioGroupContext = React.createContext<RadioGroupContextType | null>(null)
+const RadioGroupContext = React.createContext<RadioGroupContextType | null>(
+	null
+)
 
 function useRadioGroup() {
 	const context = React.useContext(RadioGroupContext)
-	if (!context) throw new Error("useRadioGroup must be used within a <RadioGroup />")
+	if (!context)
+		throw new Error("useRadioGroup must be used within a <RadioGroup />")
 	return context
 }
 
-function RadioGroup({ className, size = "md", children, ...props }: RadioGroupProps) {
+function RadioGroup({
+	className,
+	size = "md",
+	children,
+	...props
+}: RadioGroupProps) {
 	const ctxValues = React.useMemo(() => ({ size }), [size])
 	return (
 		<RadioGroupContext.Provider value={ctxValues}>
-			<RadioGroupPrimitive.Root className={cn("grid gap-4", className)} data-slot="radio-group" {...props}>
+			<RadioGroupPrimitive.Root
+				className={cn("grid gap-4", className)}
+				data-slot="radio-group"
+				{...props}>
 				{children}
 			</RadioGroupPrimitive.Root>
 		</RadioGroupContext.Provider>
@@ -55,13 +70,22 @@ function RadioGroup({ className, size = "md", children, ...props }: RadioGroupPr
 
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName
 
-function RadioGroupItem({ className, size: itemSize, ...props }: RadioGroupItemProps) {
+function RadioGroupItem({
+	className,
+	size: itemSize,
+	...props
+}: RadioGroupItemProps) {
 	const { size: groupSize } = useRadioGroup()
 	const size = itemSize ?? groupSize
 
 	return (
-		<RadioGroupPrimitive.Item data-slot="radio-group-item" className={cn(radioItemVariants({ size }), className)} {...props}>
-			<RadioGroupPrimitive.Indicator data-slot="radio-group-indicator" className="relative flex items-center justify-center">
+		<RadioGroupPrimitive.Item
+			data-slot="radio-group-item"
+			className={cn(radioItemVariants({ size }), className)}
+			{...props}>
+			<RadioGroupPrimitive.Indicator
+				data-slot="radio-group-indicator"
+				className="relative flex items-center justify-center">
 				<CircleIcon className="fill-bg stroke-bg absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
 			</RadioGroupPrimitive.Indicator>
 		</RadioGroupPrimitive.Item>

@@ -1,5 +1,11 @@
 import { Label } from "@/registry/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 const Sizes = ["28", "32", "36", "40", "44", "48"] as const
 

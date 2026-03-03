@@ -5,8 +5,22 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import * as z from "zod"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 const FormSchema = z.object({
 	role: z.string().min(1, { error: "Please select a role" }),
@@ -38,7 +52,9 @@ export default function SelectForm() {
 						<FormItem>
 							<FormLabel>Role</FormLabel>
 							<FormControl>
-								<Select onValueChange={field.onChange} defaultValue={field.value}>
+								<Select
+									onValueChange={field.onChange}
+									defaultValue={field.value}>
 									<SelectTrigger className="w-60">
 										<SelectValue placeholder="Select a role" />
 									</SelectTrigger>

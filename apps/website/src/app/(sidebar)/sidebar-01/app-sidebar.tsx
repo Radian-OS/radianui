@@ -161,19 +161,28 @@ export function AppSidebar() {
 					<Logo />
 					<h5 className="text-[18px] font-semibold">Nomi</h5>
 				</div>
-				<IconButton className="ml-auto" size="32" variant="ghost" color="neutral">
+				<IconButton
+					className="ml-auto"
+					size="32"
+					variant="ghost"
+					color="neutral">
 					<Search className="size-5" />
 				</IconButton>
 			</SidebarHeader>
 			<SidebarContent className="gap-0">
 				{data.map((section) => (
 					<SidebarGroup className="px-2 py-1.5" key={section.title}>
-						{section.title && <SidebarGroupLabel>{section.title}</SidebarGroupLabel>}
+						{section.title && (
+							<SidebarGroupLabel>{section.title}</SidebarGroupLabel>
+						)}
 						<SidebarGroupContent>
 							<SidebarMenu>
 								{section.items.map((item) => (
 									<SidebarMenuItem key={item.label}>
-										<SidebarMenuButton variant="neutral" color="primary" isActive={item.isActive}>
+										<SidebarMenuButton
+											variant="neutral"
+											color="primary"
+											isActive={item.isActive}>
 											<item.icon /> {item.label}
 										</SidebarMenuButton>
 									</SidebarMenuItem>
@@ -193,7 +202,9 @@ export function AppSidebar() {
 						<div className="flex w-full items-center justify-between gap-2 text-xs">
 							<p>Calls</p>
 							<span className="flex items-center gap-2">
-								<span className="text-fg-secondary font-normal">200 of 40k</span>
+								<span className="text-fg-secondary font-normal">
+									200 of 40k
+								</span>
 								<Progress className="w-8" value={10} />
 							</span>
 						</div>
@@ -207,7 +218,9 @@ export function AppSidebar() {
 						<div className="flex w-full items-center justify-between gap-2 text-xs">
 							<p>Storage</p>
 							<span className="flex items-center gap-2">
-								<span className="text-fg-secondary font-normal">0.864 of 12 GB</span>
+								<span className="text-fg-secondary font-normal">
+									0.864 of 12 GB
+								</span>
 								<Progress className="w-8" value={15} />
 							</span>
 						</div>
@@ -215,7 +228,9 @@ export function AppSidebar() {
 				</Card>
 				{footerData.map((section) => (
 					<SidebarGroup key={section.title}>
-						{section.title && <SidebarGroupLabel>{section.title}</SidebarGroupLabel>}
+						{section.title && (
+							<SidebarGroupLabel>{section.title}</SidebarGroupLabel>
+						)}
 						<SidebarGroupContent>
 							<SidebarMenu>
 								{section.items.map((item) => (

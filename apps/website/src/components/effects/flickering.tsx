@@ -86,7 +86,14 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 
 		for (let i = 0; i < squares.length; i++) {
 			squares[i] = Math.random() * maxOpacity
-			shapes[i] = shape === "mixed" ? (Math.random() < 0.5 ? 1 : 0) : shape === "circle" ? 1 : 0
+			shapes[i] =
+				shape === "mixed"
+					? Math.random() < 0.5
+						? 1
+						: 0
+					: shape === "circle"
+						? 1
+						: 0
 		}
 
 		gridRef.current = { ctx, cols, rows, squares, shapes, step }
@@ -123,7 +130,13 @@ export const FlickeringGrid: React.FC<FlickeringGridProps> = ({
 
 					if (shapes[idx]) {
 						ctx.beginPath()
-						ctx.arc(x + squareSize / 2, y + squareSize / 2, squareSize / 2, 0, Math.PI * 2)
+						ctx.arc(
+							x + squareSize / 2,
+							y + squareSize / 2,
+							squareSize / 2,
+							0,
+							Math.PI * 2
+						)
 						ctx.fill()
 					} else {
 						ctx.fillRect(x, y, squareSize, squareSize)

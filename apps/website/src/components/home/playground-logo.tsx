@@ -1,13 +1,31 @@
 import React, { useId } from "react"
 
-export default function PlaygroundLogo({ width = 32, height = 32, ...props }: React.ComponentProps<"svg"> & { primaryColor?: string; borderColor?: string }) {
+export default function PlaygroundLogo({
+	width = 32,
+	height = 32,
+	...props
+}: React.ComponentProps<"svg"> & {
+	primaryColor?: string
+	borderColor?: string
+}) {
 	const gradientId = useId()
 	const clipPathId = useId()
 
 	return (
-		<svg width={width} height={height} viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" {...props}>
+		<svg
+			width={width}
+			height={height}
+			viewBox="0 0 48 48"
+			xmlns="http://www.w3.org/2000/svg"
+			{...props}>
 			<defs>
-				<linearGradient id={gradientId} x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
+				<linearGradient
+					id={gradientId}
+					x1="24"
+					y1="0"
+					x2="24"
+					y2="48"
+					gradientUnits="userSpaceOnUse">
 					<stop stopColor="var(--color-primary)" />
 					<stop offset="1" stopColor="var(--color-primary-border)" />
 				</linearGradient>

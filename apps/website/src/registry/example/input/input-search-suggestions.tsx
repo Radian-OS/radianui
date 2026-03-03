@@ -5,7 +5,15 @@ import { Search } from "lucide-react"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
-const suggestions = ["Apple", "Banana", "Orange", "Grapes", "Watermelon", "Mango", "Cherry"]
+const suggestions = [
+	"Apple",
+	"Banana",
+	"Orange",
+	"Grapes",
+	"Watermelon",
+	"Mango",
+	"Cherry",
+]
 
 export default function SearchInput() {
 	const [query, setQuery] = React.useState("")
@@ -14,7 +22,9 @@ export default function SearchInput() {
 
 	React.useEffect(() => {
 		if (query.length > 0) {
-			const matches = suggestions.filter((item) => item.toLowerCase().includes(query.toLowerCase()))
+			const matches = suggestions.filter((item) =>
+				item.toLowerCase().includes(query.toLowerCase())
+			)
 			setFiltered(matches)
 		} else {
 			setFiltered([])
@@ -39,16 +49,25 @@ export default function SearchInput() {
 				<div className="w-full max-w-80">
 					<InputWrapper className="w-full">
 						<Search className="size-5" />
-						<Input placeholder="eg, Apple, Banana, Orange..." value={query} onChange={handleChange} />
+						<Input
+							placeholder="eg, Apple, Banana, Orange..."
+							value={query}
+							onChange={handleChange}
+						/>
 					</InputWrapper>
 				</div>
 			</PopoverTrigger>
 
 			{filtered.length > 0 && (
-				<PopoverContent onOpenAutoFocus={(e) => e.preventDefault()} className="max-h-100 min-w-[var(--radix-popper-anchor-width)] overflow-y-auto p-1">
+				<PopoverContent
+					onOpenAutoFocus={(e) => e.preventDefault()}
+					className="max-h-100 min-w-[var(--radix-popper-anchor-width)] overflow-y-auto p-1">
 					<ul>
 						{filtered.map((item) => (
-							<li key={item} className="hover:bg-fill2-alpha cursor-pointer px-2 py-1.5 text-sm" onClick={() => handleSelect(item)}>
+							<li
+								key={item}
+								className="hover:bg-fill2-alpha cursor-pointer px-2 py-1.5 text-sm"
+								onClick={() => handleSelect(item)}>
 								{item}
 							</li>
 						))}

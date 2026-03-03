@@ -32,7 +32,10 @@ function DividerPreview() {
 		if (parts.length === 1) {
 			return parts[0][0]?.toUpperCase() ?? ""
 		}
-		return (parts[0][0]?.toUpperCase() ?? "") + (parts[parts.length - 1][0]?.toUpperCase() ?? "")
+		return (
+			(parts[0][0]?.toUpperCase() ?? "") +
+			(parts[parts.length - 1][0]?.toUpperCase() ?? "")
+		)
 	}
 	return (
 		<div className="border-soft max-w-100.75 max-h-47.5 size-full rounded-xl border p-4 shadow-md">
@@ -65,7 +68,10 @@ function DividerPreview() {
 					</span>
 					<div className="flex -space-x-2">
 						{people.map((person) => (
-							<Avatar size="20" className="border-bg box-content border-2 hover:z-10" key={person.name}>
+							<Avatar
+								size="20"
+								className="border-bg box-content border-2 hover:z-10"
+								key={person.name}>
 								<AvatarImage src={person.image} />
 								<AvatarFallback>{getInitials(person.name)}</AvatarFallback>
 							</Avatar>

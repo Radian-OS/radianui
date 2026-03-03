@@ -20,13 +20,17 @@ export async function subscribe(email: string) {
 			return { message: "Email re-subscribed successfully", status: 200 }
 		}
 
-		const { data: new_contact_data, error: new_contact_error } = await resend.contacts.create({
-			email: email,
-			unsubscribed: false,
-		})
+		const { data: new_contact_data, error: new_contact_error } =
+			await resend.contacts.create({
+				email: email,
+				unsubscribed: false,
+			})
 
 		if (new_contact_error) {
-			return { message: "Email subscription failed. Please try again later.", status: 400 }
+			return {
+				message: "Email subscription failed. Please try again later.",
+				status: 400,
+			}
 		}
 
 		await delay(1000)
@@ -47,13 +51,17 @@ export async function subscribe(email: string) {
 
 		if (email_send_error) {
 			return {
-				message: "Email subscription successful but failed to send welcome email",
+				message:
+					"Email subscription successful but failed to send welcome email",
 				status: 400,
 			}
 		}
 		return { message: "Email subscribed successfully", status: 201 }
 	} catch (error) {
 		console.error("Failed to subscribe email:", error)
-		return { message: "Something went wrong. Please try again later.", status: 500 }
+		return {
+			message: "Something went wrong. Please try again later.",
+			status: 500,
+		}
 	}
 }

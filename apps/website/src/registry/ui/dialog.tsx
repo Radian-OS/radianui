@@ -8,9 +8,13 @@ type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
 
 type DialogProps = DialogPrimitive.DialogProps
 
-type DialogOverlayProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay> & { backdrop?: Backdrop }
+type DialogOverlayProps = React.ComponentPropsWithoutRef<
+	typeof DialogPrimitive.Overlay
+> & { backdrop?: Backdrop }
 
-type DialogContentProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
+type DialogContentProps = React.ComponentPropsWithoutRef<
+	typeof DialogPrimitive.Content
+> & {
 	backdrop?: Backdrop
 	closeButton?: "hidden" | "visible" | "hover"
 }
@@ -19,22 +23,29 @@ type DialogHeaderProps = React.HTMLAttributes<HTMLDivElement>
 
 type DialogFooterProps = React.HTMLAttributes<HTMLDivElement>
 
-type DialogTitleProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+type DialogTitleProps = React.ComponentPropsWithoutRef<
+	typeof DialogPrimitive.Title
+>
 
-type DialogDescriptionProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+type DialogDescriptionProps = React.ComponentPropsWithoutRef<
+	typeof DialogPrimitive.Description
+>
 
-const dialogOverlayVariants = cva("data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50", {
-	variants: {
-		backdrop: {
-			overlay: "bg-black/50",
-			blur: "backdrop-blur-sm",
-			transparent: "bg-transparent",
+const dialogOverlayVariants = cva(
+	"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50",
+	{
+		variants: {
+			backdrop: {
+				overlay: "bg-black/50",
+				blur: "backdrop-blur-sm",
+				transparent: "bg-transparent",
+			},
 		},
-	},
-	defaultVariants: {
-		backdrop: "overlay",
-	},
-})
+		defaultVariants: {
+			backdrop: "overlay",
+		},
+	}
+)
 
 function Dialog({ children, ...props }: DialogProps) {
 	return (
@@ -48,12 +59,28 @@ const DialogTrigger = DialogPrimitive.Trigger
 const DialogPortal = DialogPrimitive.Portal
 const DialogClose = DialogPrimitive.Close
 
-function DialogOverlay({ className, backdrop = "overlay", ...props }: DialogOverlayProps) {
-	return <DialogPrimitive.Overlay data-slot="dialog-overlay" className={cn(dialogOverlayVariants({ backdrop }), className)} {...props} />
+function DialogOverlay({
+	className,
+	backdrop = "overlay",
+	...props
+}: DialogOverlayProps) {
+	return (
+		<DialogPrimitive.Overlay
+			data-slot="dialog-overlay"
+			className={cn(dialogOverlayVariants({ backdrop }), className)}
+			{...props}
+		/>
+	)
 }
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
 
-function DialogContent({ className, children, backdrop, closeButton = "visible", ...props }: DialogContentProps) {
+function DialogContent({
+	className,
+	children,
+	backdrop,
+	closeButton = "visible",
+	...props
+}: DialogContentProps) {
 	return (
 		<DialogPortal>
 			<DialogOverlay backdrop={backdrop} />
@@ -71,7 +98,8 @@ function DialogContent({ className, children, backdrop, closeButton = "visible",
 							type="button"
 							className={cn(
 								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute right-3 top-3 box-border inline-flex h-6 w-6 items-center justify-center whitespace-nowrap rounded-md bg-transparent font-medium hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&>svg]:!h-4 [&>svg]:!w-4",
-								closeButton === "hover" && "opacity-0 transition-opacity group-hover:opacity-100"
+								closeButton === "hover" &&
+									"opacity-0 transition-opacity group-hover:opacity-100"
 							)}
 							aria-label="Close">
 							<X />
@@ -85,28 +113,72 @@ function DialogContent({ className, children, backdrop, closeButton = "visible",
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
 function DialogHeader({ className, ...props }: DialogHeaderProps) {
-	return <div data-slot="dialog-header" className={cn("flex flex-col space-y-1 text-center sm:text-left", className)} {...props} />
+	return (
+		<div
+			data-slot="dialog-header"
+			className={cn(
+				"flex flex-col space-y-1 text-center sm:text-left",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 DialogHeader.displayName = "DialogHeader"
 
-function DialogBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-	return <div data-slot="dialog-body" className={cn("", className)} {...props} />
+function DialogBody({
+	className,
+	...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+	return (
+		<div data-slot="dialog-body" className={cn("", className)} {...props} />
+	)
 }
 DialogBody.displayName = "DialogBody"
 
 function DialogFooter({ className, ...props }: DialogFooterProps) {
-	return <div data-slot="dialog-footer" className={cn("flex justify-end gap-2", className)} {...props} />
+	return (
+		<div
+			data-slot="dialog-footer"
+			className={cn("flex justify-end gap-2", className)}
+			{...props}
+		/>
+	)
 }
 DialogFooter.displayName = "DialogFooter"
 
 function DialogTitle({ className, ...props }: DialogTitleProps) {
-	return <DialogPrimitive.Title data-slot="dialog-title" className={cn("text-lg font-semibold", className)} {...props} />
+	return (
+		<DialogPrimitive.Title
+			data-slot="dialog-title"
+			className={cn("text-lg font-semibold", className)}
+			{...props}
+		/>
+	)
 }
 DialogTitle.displayName = DialogPrimitive.Title.displayName
 
 function DialogDescription({ className, ...props }: DialogDescriptionProps) {
-	return <DialogPrimitive.Description data-slot="dialog-description" className={cn("text-fg-secondary text-sm/5 leading-tight", className)} {...props} />
+	return (
+		<DialogPrimitive.Description
+			data-slot="dialog-description"
+			className={cn("text-fg-secondary text-sm/5 leading-tight", className)}
+			{...props}
+		/>
+	)
 }
 DialogDescription.displayName = DialogPrimitive.Description.displayName
 
-export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogBody, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger }
+export {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogBody,
+	DialogOverlay,
+	DialogPortal,
+	DialogTitle,
+	DialogTrigger,
+}

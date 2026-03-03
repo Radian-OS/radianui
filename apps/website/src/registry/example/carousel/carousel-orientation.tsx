@@ -1,6 +1,12 @@
 import * as React from "react"
 import Image from "next/image"
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/registry/ui/carousel"
 
 export default function CarouselOrientation() {
 	const images = [
@@ -39,7 +45,13 @@ export default function CarouselOrientation() {
 						<CarouselItem key={index} className="basis-1/2 pb-1">
 							<div>
 								<div className="flex h-full items-center justify-center overflow-hidden rounded-lg">
-									<Image src={image.src} alt={image.alt} width={300} height={150} className="h-[150px] w-full object-cover" />
+									<Image
+										src={image.src}
+										alt={image.alt}
+										width={300}
+										height={150}
+										className="h-[150px] w-full object-cover"
+									/>
 								</div>
 							</div>
 						</CarouselItem>

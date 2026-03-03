@@ -2,7 +2,13 @@
 
 import React from "react"
 import CommonCard from "@/components/common/common-card"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 export const lightThemeVars = {
 	// Primary
@@ -56,9 +62,11 @@ export const lightThemeVars = {
 
 	// Border
 	"--color-border": "oklch(0.902 0.0068 286.26)",
-	"--color-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
+	"--color-alpha":
+		"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
 	"--color-soft": "oklch(0.9349 0.004 286.32)",
-	"--color-soft-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
+	"--color-soft-alpha":
+		"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
 
 	// Background elevation
 	"--color-elevation-negative": "oklch(0.9677 0.0027 286.35)",
@@ -70,10 +78,14 @@ export const lightThemeVars = {
 	"--color-black-inverse": "oklch(0.144 0.0028 247.09)",
 
 	// Background fill alpha
-	"--color-fill1-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%)",
-	"--color-fill2-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%)",
-	"--color-fill3-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
-	"--color-fill4-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
+	"--color-fill1-alpha":
+		"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%)",
+	"--color-fill2-alpha":
+		"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%)",
+	"--color-fill3-alpha":
+		"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
+	"--color-fill4-alpha":
+		"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
 } as React.CSSProperties
 
 export const darkThemeVars = {
@@ -153,7 +165,9 @@ const CustomThemePlayground = () => {
 
 	return (
 		<div className="flex flex-col gap-4 rounded-2xl">
-			<Select value={theme} onValueChange={(value: "light" | "dark") => setTheme(value)}>
+			<Select
+				value={theme}
+				onValueChange={(value: "light" | "dark") => setTheme(value)}>
 				<SelectTrigger className="w-fit">
 					<SelectValue placeholder="Theme" />
 				</SelectTrigger>

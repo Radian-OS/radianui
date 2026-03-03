@@ -17,7 +17,11 @@ const DocsLayout = ({ children }: Props) => {
 
 	return (
 		<div className="max-w-368 mx-auto flex w-full px-4 md:px-5">
-			<Toaster expand={isExpandable} position={position} theme={theme as ToasterProps["theme"]} />
+			<Toaster
+				expand={isExpandable}
+				position={position}
+				theme={theme as ToasterProps["theme"]}
+			/>
 
 			{/* Left Sidebar */}
 			<Sidebar />

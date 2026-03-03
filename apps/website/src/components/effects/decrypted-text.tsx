@@ -30,7 +30,9 @@ export default function DecryptedText({
 	...props
 }: DecryptedTextProps) {
 	const [displayText, setDisplayText] = useState<string>(text)
-	const [isHovering, setIsHovering] = useState<boolean>(animateOn === "continuous")
+	const [isHovering, setIsHovering] = useState<boolean>(
+		animateOn === "continuous"
+	)
 	const [isScrambling, setIsScrambling] = useState<boolean>(false)
 	const [revealedIndices, setRevealedIndices] = useState<Set<number>>(new Set())
 	const [hasAnimated, setHasAnimated] = useState<boolean>(false)
@@ -50,9 +52,14 @@ export default function DecryptedText({
 				case "center": {
 					const middle = Math.floor(textLength / 2)
 					const offset = Math.floor(revealedSet.size / 2)
-					const nextIndex = revealedSet.size % 2 === 0 ? middle + offset : middle - offset - 1
+					const nextIndex =
+						revealedSet.size % 2 === 0 ? middle + offset : middle - offset - 1
 
-					if (nextIndex >= 0 && nextIndex < textLength && !revealedSet.has(nextIndex)) {
+					if (
+						nextIndex >= 0 &&
+						nextIndex < textLength &&
+						!revealedSet.has(nextIndex)
+					) {
 						return nextIndex
 					}
 					for (let i = 0; i < textLength; i++) {
@@ -65,9 +72,14 @@ export default function DecryptedText({
 			}
 		}
 
-		const availableChars = useOriginalCharsOnly ? Array.from(new Set(text.split(""))).filter((char) => char !== " ") : characters.split("")
+		const availableChars = useOriginalCharsOnly
+			? Array.from(new Set(text.split(""))).filter((char) => char !== " ")
+			: characters.split("")
 
-		const shuffleText = (originalText: string, currentRevealed: Set<number>): string => {
+		const shuffleText = (
+			originalText: string,
+			currentRevealed: Set<number>
+		): string => {
 			if (useOriginalCharsOnly) {
 				const positions = originalText.split("").map((char, i) => ({
 					char,
@@ -76,11 +88,16 @@ export default function DecryptedText({
 					isRevealed: currentRevealed.has(i),
 				}))
 
-				const nonSpaceChars = positions.filter((p) => !p.isSpace && !p.isRevealed).map((p) => p.char)
+				const nonSpaceChars = positions
+					.filter((p) => !p.isSpace && !p.isRevealed)
+					.map((p) => p.char)
 
 				for (let i = nonSpaceChars.length - 1; i > 0; i--) {
 					const j = Math.floor(Math.random() * (i + 1))
-					;[nonSpaceChars[i], nonSpaceChars[j]] = [nonSpaceChars[j], nonSpaceChars[i]]
+					;[nonSpaceChars[i], nonSpaceChars[j]] = [
+						nonSpaceChars[j],
+						nonSpaceChars[i],
+					]
 				}
 
 				let charIndex = 0
@@ -97,7 +114,9 @@ export default function DecryptedText({
 					.map((char, i) => {
 						if (char === " ") return " "
 						if (currentRevealed.has(i)) return originalText[i]
-						return availableChars[Math.floor(Math.random() * availableChars.length)]
+						return availableChars[
+							Math.floor(Math.random() * availableChars.length)
+						]
 					})
 					.join("")
 			}
@@ -151,7 +170,17 @@ export default function DecryptedText({
 		return () => {
 			if (interval) clearInterval(interval)
 		}
-	}, [isHovering, text, speed, maxIterations, sequential, revealDirection, characters, useOriginalCharsOnly, animateOn])
+	}, [
+		isHovering,
+		text,
+		speed,
+		maxIterations,
+		sequential,
+		revealDirection,
+		characters,
+		useOriginalCharsOnly,
+		animateOn,
+	])
 
 	useEffect(() => {
 		if (animateOn !== "view" && animateOn !== "both") return
@@ -191,15 +220,24 @@ export default function DecryptedText({
 			: {}
 
 	return (
-		<motion.span ref={containerRef} className={`inline-block whitespace-pre-wrap ${parentClassName}`} {...hoverProps} {...props}>
+		<motion.span
+			ref={containerRef}
+			className={`inline-block whitespace-pre-wrap ${parentClassName}`}
+			{...hoverProps}
+			{...props}>
 			<span className="sr-only">{displayText}</span>
 
 			<span aria-hidden="true">
 				{displayText.split("").map((char, index) => {
-					const isRevealedOrDone = revealedIndices.has(index) || !isScrambling || (!isHovering && animateOn !== "continuous")
+					const isRevealedOrDone =
+						revealedIndices.has(index) ||
+						!isScrambling ||
+						(!isHovering && animateOn !== "continuous")
 
 					return (
-						<span key={index} className={isRevealedOrDone ? className : encryptedClassName}>
+						<span
+							key={index}
+							className={isRevealedOrDone ? className : encryptedClassName}>
 							{char}
 						</span>
 					)

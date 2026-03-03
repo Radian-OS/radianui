@@ -6,7 +6,12 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { navLinks } from "@/components/navbar/nav-links"
 import { navigationItems } from "@/config/navigation-config"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/registry/ui/accordion"
 import { IconButton } from "@/registry/ui/button"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
@@ -17,7 +22,10 @@ interface MobileNavigationProps {
 	setIsMobileMenuOpen: (open: boolean) => void
 }
 
-export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: MobileNavigationProps) {
+export function MobileNavigation({
+	isMobileMenuOpen,
+	setIsMobileMenuOpen,
+}: MobileNavigationProps) {
 	const pathname = usePathname()
 
 	useEffect(() => {
@@ -61,7 +69,11 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 						<FigmaPreviewButton />
 						<EarlyAccessButton />
 					</div>
-					<IconButton aria-label="Close mobile navigation" color="primary" variant="soft" onClick={() => setIsMobileMenuOpen(false)}>
+					<IconButton
+						aria-label="Close mobile navigation"
+						color="primary"
+						variant="soft"
+						onClick={() => setIsMobileMenuOpen(false)}>
 						<X className="size-5" />
 					</IconButton>
 				</div>
@@ -91,9 +103,14 @@ export function MobileNavigation({ isMobileMenuOpen, setIsMobileMenuOpen }: Mobi
 					{navigationItems
 						.filter((item) => item.title !== "Blocks")
 						.map((section) => (
-							<AccordionItem className="border-none" value={section.title} key={section.title}>
+							<AccordionItem
+								className="border-none"
+								value={section.title}
+								key={section.title}>
 								<section>
-									<AccordionTrigger className="py-3 text-base">{section.title}</AccordionTrigger>
+									<AccordionTrigger className="py-3 text-base">
+										{section.title}
+									</AccordionTrigger>
 									<AccordionContent>
 										<div className="flex flex-col items-start">
 											{section.items.map((item) => (

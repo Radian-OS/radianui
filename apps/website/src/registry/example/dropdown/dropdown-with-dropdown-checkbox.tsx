@@ -2,7 +2,12 @@
 
 import * as React from "react"
 import { Button } from "@/registry/ui/button"
-import { Dropdown, DropdownCheckboxItem, DropdownContent, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownCheckboxItem,
+	DropdownContent,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 
 export default function DropdownWithDropdownCheckbox() {
 	const [email, setEmail] = React.useState(true)
@@ -17,13 +22,22 @@ export default function DropdownWithDropdownCheckbox() {
 				</Button>
 			</DropdownTrigger>
 			<DropdownContent>
-				<DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={email} onCheckedChange={(checked) => setEmail(checked)}>
+				<DropdownCheckboxItem
+					onSelect={(e) => e.preventDefault()}
+					checked={email}
+					onCheckedChange={(checked) => setEmail(checked)}>
 					Email
 				</DropdownCheckboxItem>
-				<DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={sms} onCheckedChange={(checked) => setSms(checked)}>
+				<DropdownCheckboxItem
+					onSelect={(e) => e.preventDefault()}
+					checked={sms}
+					onCheckedChange={(checked) => setSms(checked)}>
 					SMS
 				</DropdownCheckboxItem>
-				<DropdownCheckboxItem onSelect={(e) => e.preventDefault()} checked={push} onCheckedChange={(checked) => setPush(checked)}>
+				<DropdownCheckboxItem
+					onSelect={(e) => e.preventDefault()}
+					checked={push}
+					onCheckedChange={(checked) => setPush(checked)}>
 					Push Notifications
 				</DropdownCheckboxItem>
 			</DropdownContent>

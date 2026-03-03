@@ -14,12 +14,26 @@ const SignUp = () => {
 			<div className="max-w-88 sm:w-88 w-full px-4">
 				<div className="mx-auto flex flex-col gap-9">
 					<Link href="/" style={{ fill: "white", color: "white" }}>
-						<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
-						<img src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
+						<img
+							src="/radian.svg"
+							className="dark:hidden"
+							alt="radian-logo"
+							width={112}
+							height={36}
+						/>
+						<img
+							src="/radian-dark.svg"
+							alt="radian-logo"
+							className="hidden dark:block"
+							width={112}
+							height={36}
+						/>
 					</Link>
 					<div className="space-y-6">
 						<div className="space-y-2">
-							<h1 className="flex justify-between text-2xl font-semibold">Sign up</h1>
+							<h1 className="flex justify-between text-2xl font-semibold">
+								Sign up
+							</h1>
 							<div className="flex justify-between">
 								<p className="text-fg-secondary text-sm font-medium">
 									Already have an account?{" "}
@@ -37,12 +51,16 @@ const SignUp = () => {
 									<Input type="password" />
 								</form>
 							</div>
-							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
+							<Button
+								className="w-full bg-black px-3.5 py-2.5"
+								onClick={handleSubmitClick}>
 								Sign Up
 							</Button>
 							<div className="text-[0.875rem] font-normal leading-[1.3125rem]">
 								<p className="text-fg-secondary">
-									By signing up, you agree to Radian &apos;s <span className="text-fg">Terms of Service</span> and <span className="text-fg">Privacy Policy</span>
+									By signing up, you agree to Radian &apos;s{" "}
+									<span className="text-fg">Terms of Service</span> and{" "}
+									<span className="text-fg">Privacy Policy</span>
 								</p>
 							</div>
 						</div>

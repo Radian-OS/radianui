@@ -3,7 +3,14 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
 import { CompactButton } from "@/registry/ui/button"
-import { Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import {
+	Carousel,
+	type CarouselApi,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/registry/ui/carousel"
 
 export default function CarouselDotButton() {
 	const [api, setApi] = React.useState<CarouselApi>()
@@ -54,7 +61,12 @@ export default function CarouselDotButton() {
 					<CarouselItem key={index}>
 						<div className="p-1">
 							<AspectRatio ratio={1 / 1} className="overflow-hidden rounded-lg">
-								<Image src={image.src} alt={image.alt} fill className="object-cover" />
+								<Image
+									src={image.src}
+									alt={image.alt}
+									fill
+									className="object-cover"
+								/>
 							</AspectRatio>
 						</div>
 					</CarouselItem>
@@ -70,7 +82,10 @@ export default function CarouselDotButton() {
 						key={index}
 						color="neutral"
 						onClick={() => api?.scrollTo(index)}
-						className={cn("h-2 w-2 cursor-pointer rounded-full transition-colors", current === index ? "bg-primary" : "bg-gray-300")}
+						className={cn(
+							"h-2 w-2 cursor-pointer rounded-full transition-colors",
+							current === index ? "bg-primary" : "bg-gray-300"
+						)}
 						aria-label={`Go to slide ${index + 1}`}>
 						<span className="sr-only">Go to slide {index + 1}</span>
 					</CompactButton>

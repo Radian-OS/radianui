@@ -7,7 +7,11 @@ export default function CheckboxChecked() {
 	const [checked, setChecked] = useState(true)
 	return (
 		<div className="flex items-center gap-2">
-			<Checkbox id={id} checked={checked} onCheckedChange={(v) => setChecked(v === true)} />
+			<Checkbox
+				id={id}
+				checked={checked}
+				onCheckedChange={(v) => setChecked(v === true)}
+			/>
 			<Label htmlFor={id}>Keep me signed in</Label>
 		</div>
 	)

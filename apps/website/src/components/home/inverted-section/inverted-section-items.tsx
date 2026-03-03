@@ -21,7 +21,10 @@ export default function InvertedSectionItems() {
 			{/* Styling line for the div */}
 			<div className="duration-400 not-xl:hidden absolute left-0 top-1/2 h-8 w-[1px] -translate-y-1/2 bg-[#545463] transition-all group-hover:top-1/4" />
 
-			<Icon size={24} className="shrink-0 text-[#545463] transition-colors duration-300 group-hover:text-[#C8C8D0]" />
+			<Icon
+				size={24}
+				className="shrink-0 text-[#545463] transition-colors duration-300 group-hover:text-[#C8C8D0]"
+			/>
 			<div className="flex flex-col gap-2">
 				<p className="text-base font-medium text-[#C8C8D0]">{title}</p>
 				<p className="text-sm font-normal text-[#868698]">{description}</p>

@@ -10,7 +10,9 @@ export default function TooltipWithChart() {
 					Activity Log
 				</Button>
 			</TooltipTrigger>
-			<TooltipContent theme={"light"} className="w-45 flex flex-col gap-2 rounded-lg p-3">
+			<TooltipContent
+				theme={"light"}
+				className="w-45 flex flex-col gap-2 rounded-lg p-3">
 				{/* Title */}
 				<p className="text-fg-secondary text-sm font-medium">Tuesday, Oct 14</p>
 				<div className="flex flex-col gap-1.5">

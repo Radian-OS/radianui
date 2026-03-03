@@ -2,11 +2,21 @@
 
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
-import { Controller, type ControllerProps, type FieldPath, type FieldValues, FormProvider, useFormContext } from "react-hook-form"
+import {
+	Controller,
+	type ControllerProps,
+	type FieldPath,
+	type FieldValues,
+	FormProvider,
+	useFormContext,
+} from "react-hook-form"
 import { cn } from "@/lib/utils"
 import { Label, type LabelProps } from "@/registry/ui/label"
 
-export type FormFieldContextValue<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>> = {
+export type FormFieldContextValue<
+	TFieldValues extends FieldValues = FieldValues,
+	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> = {
 	name: TName
 }
 
@@ -52,9 +62,10 @@ function useFormField() {
 
 const Form = FormProvider
 
-function FormField<TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>({
-	...props
-}: ControllerProps<TFieldValues, TName>) {
+function FormField<
+	TFieldValues extends FieldValues = FieldValues,
+	TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+>({ ...props }: ControllerProps<TFieldValues, TName>) {
 	return (
 		<FormFieldContext.Provider value={{ name: props.name }}>
 			<Controller {...props} />
@@ -70,7 +81,12 @@ function FormItem({ className, ...props }: FormItemProps) {
 
 	return (
 		<FormItemContext.Provider value={{ id }}>
-			<div data-slot="form-item" className={cn("flex flex-col gap-1.5", className)} data-invalid={!!error} {...props} />
+			<div
+				data-slot="form-item"
+				className={cn("flex flex-col gap-1.5", className)}
+				data-invalid={!!error}
+				{...props}
+			/>
 		</FormItemContext.Provider>
 	)
 }
@@ -80,7 +96,14 @@ FormItem.displayName = "FormItem"
 function FormLabel({ className, ...props }: FormLabelProps) {
 	const { formItemId } = useFormField()
 
-	return <Label data-slot="form-label" className={cn("text-fg text-sm font-medium", className)} htmlFor={formItemId} {...props} />
+	return (
+		<Label
+			data-slot="form-label"
+			className={cn("text-fg text-sm font-medium", className)}
+			htmlFor={formItemId}
+			{...props}
+		/>
+	)
 }
 
 FormLabel.displayName = "FormLabel"
@@ -89,7 +112,17 @@ function FormControl({ ...props }: FormControlProps) {
 	const { error, formItemId, formDescriptionId, formMessageId } = useFormField()
 
 	return (
-		<Slot data-slot="form-control" id={formItemId} aria-describedby={!error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`} aria-invalid={!!error} {...props} />
+		<Slot
+			data-slot="form-control"
+			id={formItemId}
+			aria-describedby={
+				!error
+					? `${formDescriptionId}`
+					: `${formDescriptionId} ${formMessageId}`
+			}
+			aria-invalid={!!error}
+			{...props}
+		/>
 	)
 }
 
@@ -102,7 +135,14 @@ function FormDescription({ className, ...props }: FormDescriptionProps) {
 		return null
 	}
 
-	return <div data-slot="form-description" id={formDescriptionId} className={cn("text-fg-secondary text-xs font-normal", className)} {...props} />
+	return (
+		<div
+			data-slot="form-description"
+			id={formDescriptionId}
+			className={cn("text-fg-secondary text-xs font-normal", className)}
+			{...props}
+		/>
+	)
 }
 
 FormDescription.displayName = "FormDescription"
@@ -116,7 +156,11 @@ function FormMessage({ className, children, ...props }: FormMessageProps) {
 	}
 
 	return (
-		<div data-slot="form-message" id={formMessageId} className={cn("text-error-text text-xs font-normal", className)} {...props}>
+		<div
+			data-slot="form-message"
+			id={formMessageId}
+			className={cn("text-error-text text-xs font-normal", className)}
+			{...props}>
 			{body}
 		</div>
 	)
@@ -124,4 +168,13 @@ function FormMessage({ className, children, ...props }: FormMessageProps) {
 
 FormMessage.displayName = "FormMessage"
 
-export { useFormField, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage }
+export {
+	useFormField,
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+}

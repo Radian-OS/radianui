@@ -22,7 +22,12 @@ export default function CalendarTimeInput() {
 
 	return (
 		<div className="border-border overflow-clip rounded-xl border">
-			<Calendar mode="single" className="rounded-none border-0 p-3" selected={date} onSelect={setDate} />
+			<Calendar
+				mode="single"
+				className="rounded-none border-0 p-3"
+				selected={date}
+				onSelect={setDate}
+			/>
 			<div className="border-t p-3">
 				<div className="flex w-full items-center justify-between gap-3">
 					<Label htmlFor={id} className="text-sm font-normal">

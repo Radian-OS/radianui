@@ -1,6 +1,16 @@
 import { CircleAlert } from "lucide-react"
 import { Button } from "@/registry/ui/button"
-import { Dialog, DialogBody, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
+import {
+	Dialog,
+	DialogBody,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/registry/ui/dialog"
 
 export default function DialogCloseButtonHidden() {
 	return (
@@ -18,7 +28,9 @@ export default function DialogCloseButtonHidden() {
 						</div>
 						<div className="flex flex-col gap-1">
 							<DialogTitle>This is sample header</DialogTitle>
-							<DialogDescription>Are you sure you want to change the content?</DialogDescription>
+							<DialogDescription>
+								Are you sure you want to change the content?
+							</DialogDescription>
 						</div>
 					</div>
 				</DialogHeader>

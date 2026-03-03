@@ -2,7 +2,15 @@
 
 import React, { useRef } from "react"
 import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { Dialog, DialogBody, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
+import {
+	Dialog,
+	DialogBody,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/registry/ui/dialog"
 
 export default function VideoDialogPreview() {
 	const backgroundVideoRef = useRef<HTMLVideoElement>(null)
@@ -19,7 +27,9 @@ export default function VideoDialogPreview() {
 			{/* Trigger */}
 			<DialogTrigger asChild>
 				<div className="border-soft bg-bg z-20 w-full max-w-[1440px] cursor-pointer rounded-2xl p-0 sm:border sm:p-3">
-					<AspectRatio ratio={16 / 9} className="bg-bg border-soft overflow-hidden rounded-2xl border">
+					<AspectRatio
+						ratio={16 / 9}
+						className="bg-bg border-soft overflow-hidden rounded-2xl border">
 						<video
 							ref={backgroundVideoRef}
 							loop
@@ -38,7 +48,9 @@ export default function VideoDialogPreview() {
 			</DialogTrigger>
 
 			{/* Dialog Content */}
-			<DialogContent backdrop="overlay" className="mx-auto max-w-[1440px] overflow-hidden p-0">
+			<DialogContent
+				backdrop="overlay"
+				className="mx-auto max-w-[1440px] overflow-hidden p-0">
 				<DialogHeader className="hidden">
 					<DialogTitle></DialogTitle>
 					<DialogDescription></DialogDescription>

@@ -9,12 +9,14 @@ const data = [
 	{
 		label: "Email",
 		value: "emails",
-		content: "Manage your product listings, inventory levels, and pricing. Easily add new items or update existing ones.",
+		content:
+			"Manage your product listings, inventory levels, and pricing. Easily add new items or update existing ones.",
 	},
 	{
 		label: "Smart app",
 		value: "smartapp",
-		content: "View and track recent orders, check fulfillment status, and manage shipping or cancellations of the orders.",
+		content:
+			"View and track recent orders, check fulfillment status, and manage shipping or cancellations of the orders.",
 	},
 ]
 
@@ -30,12 +32,17 @@ const InviteCard = () => {
 		<div className="bg-bg border-border flex w-full flex-col gap-3 rounded-2xl border p-5">
 			<span>
 				<p className="text-fg text-base font-medium">Invite team members</p>
-				<p className="text-fg-secondary text-sm font-normal">Send instructions to join your workspace</p>
+				<p className="text-fg-secondary text-sm font-normal">
+					Send instructions to join your workspace
+				</p>
 			</span>
 			<Tabs defaultValue={data[0].value}>
 				<TabsList width="full">
 					{data.map((dataItem) => (
-						<TabsTrigger key={dataItem.value} className="cursor-pointer" value={dataItem.value}>
+						<TabsTrigger
+							key={dataItem.value}
+							className="cursor-pointer"
+							value={dataItem.value}>
 							{dataItem.label}
 						</TabsTrigger>
 					))}
@@ -51,14 +58,20 @@ const InviteCard = () => {
 												<AvatarFallback>{member.fallback}</AvatarFallback>
 											</Avatar>
 											<span className="grow">
-												<p className="text-fg text-sm font-medium">{member.name}</p>
-												<p className="text-fg-secondary text-[13px] font-normal">{member.email}</p>
+												<p className="text-fg text-sm font-medium">
+													{member.name}
+												</p>
+												<p className="text-fg-secondary text-[13px] font-normal">
+													{member.email}
+												</p>
 											</span>
 											<Button variant="link">
 												Can View <ChevronDown />
 											</Button>
 										</div>
-										{index < emailMembers.length - 1 && <Divider className="my-2" />}
+										{index < emailMembers.length - 1 && (
+											<Divider className="my-2" />
+										)}
 									</div>
 								))}
 							</div>
@@ -71,11 +84,17 @@ const InviteCard = () => {
 												<AvatarFallback>{member.fallback}</AvatarFallback>
 											</Avatar>
 											<span className="grow">
-												<p className="text-fg text-sm font-medium">{member.name}</p>
-												<p className="text-fg-secondary text-[13px] font-normal">{member.email}</p>
+												<p className="text-fg text-sm font-medium">
+													{member.name}
+												</p>
+												<p className="text-fg-secondary text-[13px] font-normal">
+													{member.email}
+												</p>
 											</span>
 										</div>
-										{index < emailMembers.length - 1 && <Divider className="my-2" />}
+										{index < emailMembers.length - 1 && (
+											<Divider className="my-2" />
+										)}
 									</div>
 								))}
 							</div>

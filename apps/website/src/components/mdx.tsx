@@ -3,7 +3,6 @@
  * @param code - The MDX code to render
  * @returns A React component that renders the MDX content
  */
-
 import { useMemo } from "react"
 import { getMDXComponent } from "mdx-bundler/client"
 import Examples from "@/registry/example/example.json"

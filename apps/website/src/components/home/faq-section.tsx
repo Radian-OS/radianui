@@ -10,12 +10,26 @@ export default function FAQSection() {
 					<MessageCircleQuestionIcon className="text-primary-text" />
 					<span className="text-fg-secondary">FAQ&apos;s</span>
 				</Badge>
-				<svg className="not-xl:hidden absolute bottom-[50%] left-0 z-0" width="1593" height="775" fill="none" viewBox="0 0 1593 775" xmlns="http://www.w3.org/2000/svg">
+				<svg
+					className="not-xl:hidden absolute bottom-[50%] left-0 z-0"
+					width="1593"
+					height="775"
+					fill="none"
+					viewBox="0 0 1593 775"
+					xmlns="http://www.w3.org/2000/svg">
 					<defs>
 						<linearGradient id="faqPath" x1="0%" y1="0%" x2="0%" y2="100%">
 							<stop offset="0%" stopColor="var(--color-bg)" stopOpacity="1" />
-							<stop offset="20%" stopColor="var(--color-soft)" stopOpacity="1" />
-							<stop offset="100%" stopColor="var(--color-soft)" stopOpacity="1" />
+							<stop
+								offset="20%"
+								stopColor="var(--color-soft)"
+								stopOpacity="1"
+							/>
+							<stop
+								offset="100%"
+								stopColor="var(--color-soft)"
+								stopOpacity="1"
+							/>
 						</linearGradient>
 					</defs>
 
@@ -37,7 +51,10 @@ export default function FAQSection() {
 					/>
 				</svg>
 
-				<svg className="not-xl:hidden absolute -left-[50px] top-[50%] z-0 max-h-[341px]" viewBox="-80 0 350 341" xmlns="http://www.w3.org/2000/svg">
+				<svg
+					className="not-xl:hidden absolute -left-[50px] top-[50%] z-0 max-h-[341px]"
+					viewBox="-80 0 350 341"
+					xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M 0 0 L -65 0 C -76 5 -81 15 -80 32 L -80 231 C -75 248 -64 258 -48 256 L 178 256 C 200 256 212 262 220 272 L 276 341"
 						stroke="var(--color-soft)"
@@ -60,7 +77,9 @@ export default function FAQSection() {
 			<div className="max-w-360 flex w-full flex-col gap-12 lg:flex-row">
 				<div className="flex flex-col gap-8">
 					<div className="flex flex-col gap-4">
-						<h2 className="heading-2 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">Frequently Asked Questions.</h2>
+						<h2 className="heading-2 from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
+							Frequently Asked Questions.
+						</h2>
 						<p className="text-fg-secondary">
 							Got questions? We&apos;ve got answers. <br />
 							Find everything you need to know about Radian here.

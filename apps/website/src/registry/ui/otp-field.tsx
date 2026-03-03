@@ -9,9 +9,16 @@ type SlotSize = NonNullable<VariantProps<typeof otpInputVariants>["size"]>
 type OTPContextType = {
 	size?: SlotSize
 }
-type OTPFieldProps = React.ComponentPropsWithoutRef<typeof OneTimePasswordFieldPrimitive.Root> & OTPContextType
-type OTPInputProps = React.ComponentPropsWithoutRef<typeof OneTimePasswordFieldPrimitive.Input>
-type OTPHiddenInputProps = React.ComponentPropsWithoutRef<typeof OneTimePasswordFieldPrimitive.HiddenInput>
+type OTPFieldProps = React.ComponentPropsWithoutRef<
+	typeof OneTimePasswordFieldPrimitive.Root
+> &
+	OTPContextType
+type OTPInputProps = React.ComponentPropsWithoutRef<
+	typeof OneTimePasswordFieldPrimitive.Input
+>
+type OTPHiddenInputProps = React.ComponentPropsWithoutRef<
+	typeof OneTimePasswordFieldPrimitive.HiddenInput
+>
 
 const otpInputVariants = cva(
 	cn(
@@ -44,14 +51,22 @@ function useOTPContext() {
 	return context
 }
 
-function OTPField({ className, children, validationType = "alphanumeric", ...props }: OTPFieldProps) {
+function OTPField({
+	className,
+	children,
+	validationType = "alphanumeric",
+	...props
+}: OTPFieldProps) {
 	const { size = "40" } = props as OTPContextType
 	const ctx = React.useMemo(() => ({ size }), [size])
 	return (
 		<OneTimePasswordFieldPrimitive.Root
 			data-slot="otp-field"
 			validationType={validationType}
-			className={cn("has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5", className)}
+			className={cn(
+				"has-disabled:cursor-not-allowed group peer flex flex-nowrap gap-1.5",
+				className
+			)}
 			{...props}>
 			<OTPContext.Provider value={ctx}>{children}</OTPContext.Provider>
 		</OneTimePasswordFieldPrimitive.Root>
@@ -61,12 +76,24 @@ OTPField.displayName = "OTPField"
 
 function OTPInput({ className, ...props }: OTPInputProps) {
 	const { size } = useOTPContext()
-	return <OneTimePasswordFieldPrimitive.Input data-slot="otp-input" className={cn(otpInputVariants({ size }), className)} {...props} />
+	return (
+		<OneTimePasswordFieldPrimitive.Input
+			data-slot="otp-input"
+			className={cn(otpInputVariants({ size }), className)}
+			{...props}
+		/>
+	)
 }
 OTPInput.displayName = "OTPInput"
 
 function OTPHiddenInput({ className, ...props }: OTPHiddenInputProps) {
-	return <OneTimePasswordFieldPrimitive.HiddenInput data-slot="otp-hidden-input" className={className} {...props} />
+	return (
+		<OneTimePasswordFieldPrimitive.HiddenInput
+			data-slot="otp-hidden-input"
+			className={className}
+			{...props}
+		/>
+	)
 }
 OTPHiddenInput.displayName = "OTPHiddenInput"
 

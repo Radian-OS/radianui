@@ -1,5 +1,11 @@
 import { SVGProps } from "react"
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/registry/ui/empty"
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/registry/ui/empty"
 
 export default function NoSuchDirectory() {
 	return (
@@ -9,7 +15,9 @@ export default function NoSuchDirectory() {
 			</EmptyMedia>
 			<EmptyHeader>
 				<EmptyTitle>No Such Directory Found</EmptyTitle>
-				<EmptyDescription>Please try using a different keyword or update your search filters</EmptyDescription>
+				<EmptyDescription>
+					Please try using a different keyword or update your search filters
+				</EmptyDescription>
 			</EmptyHeader>
 		</Empty>
 	)
@@ -17,7 +25,13 @@ export default function NoSuchDirectory() {
 
 function EmptyResultMediaContent(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg width={100} height={75} viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+		<svg
+			width={100}
+			height={75}
+			viewBox="0 0 80 60"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			{...props}>
 			<path
 				d="M33.2969 6.35937L27.0156 1.6875C25.5312 0.593749 23.75 0 21.9062 0H4.6875C2.09375 0 0 2.09375 0 4.6875V59.2969H63.1406C65.5156 59.2969 67.4219 57.375 67.4219 55.0156V12.7344C67.4219 10.1406 65.3281 8.04688 62.7344 8.04688H38.4219C36.5781 8.04688 34.7812 7.45312 33.2969 6.35937Z"
 				className="fill-primary-hover"

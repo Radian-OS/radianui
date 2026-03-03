@@ -24,7 +24,9 @@ import Uploads from "./playground/upload"
 
 export default function PlaygroundSection() {
 	const { theme, setTheme } = useTheme()
-	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">("signin.tsx")
+	const [activeFile, setActiveFile] = useState<"signin.tsx" | "globals.css">(
+		"signin.tsx"
+	)
 
 	const { layout, color, fontName, fontCategory } = usePlayground()
 
@@ -77,17 +79,43 @@ export default function PlaygroundSection() {
 				<div className="bg-bg absolute -bottom-1 z-10 h-2 w-full"></div>
 				<BorderBeam size={100} className="not-xl:hidden" />
 
-				<svg className="-top-25 not-xl:hidden absolute" width="812" height="77" viewBox="0 0 812 77" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg
+					className="-top-25 not-xl:hidden absolute"
+					width="812"
+					height="77"
+					viewBox="0 0 812 77"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg">
 					<defs>
-						<linearGradient id="playgroundPath" x1="0%" y1="0%" x2="100%" y2="0%">
+						<linearGradient
+							id="playgroundPath"
+							x1="0%"
+							y1="0%"
+							x2="100%"
+							y2="0%">
 							<stop offset="0%" stopColor="var(--color-bg)" stopOpacity="1" />
-							<stop offset="10%" stopColor="var(--color-soft)" stopOpacity="1" />
-							<stop offset="50%" stopColor="var(--color-soft)" stopOpacity="1" />
-							<stop offset="90%" stopColor="var(--color-soft)" stopOpacity="1" />
+							<stop
+								offset="10%"
+								stopColor="var(--color-soft)"
+								stopOpacity="1"
+							/>
+							<stop
+								offset="50%"
+								stopColor="var(--color-soft)"
+								stopOpacity="1"
+							/>
+							<stop
+								offset="90%"
+								stopColor="var(--color-soft)"
+								stopOpacity="1"
+							/>
 							<stop offset="100%" stopColor="var(--color-bg)" stopOpacity="1" />
 						</linearGradient>
 					</defs>
-					<path d="M811.5 76.5V25C811.5 11.7452 800.755 1 787.5 1H25C11.7452 1 1 11.7452 1 25V76.5" stroke="url(#playgroundPath)" />
+					<path
+						d="M811.5 76.5V25C811.5 11.7452 800.755 1 787.5 1H25C11.7452 1 1 11.7452 1 25V76.5"
+						stroke="url(#playgroundPath)"
+					/>
 				</svg>
 
 				<div className="flex flex-col items-center gap-6">
@@ -101,11 +129,16 @@ export default function PlaygroundSection() {
 					</div>
 					<div className="flex max-w-[752px] flex-col items-center gap-5">
 						<h2 className="heading-2 text-center">
-							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">Customize Every Detail, </span>
-							<span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">Effortlessly</span>
+							<span className="from-fg to-fg-secondary bg-gradient-to-b bg-clip-text text-transparent">
+								Customize Every Detail,{" "}
+							</span>
+							<span className="bg-gradient-to-b from-[#492EB8] to-[#7655F6] bg-clip-text text-transparent">
+								Effortlessly
+							</span>
 						</h2>
 						<p className="text-fg-secondary max-w-[550px] text-center text-base font-normal">
-							From colors to corners to fonts and themes, fine-tune any component to match your brand and ship polished interfaces faster.
+							From colors to corners to fonts and themes, fine-tune any
+							component to match your brand and ship polished interfaces faster.
 						</p>
 					</div>
 				</div>
@@ -121,7 +154,13 @@ export default function PlaygroundSection() {
 					height={410}
 					viewBox="0 -503 80 520"
 					fill="none">
-					<path d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503" stroke="var(--color-soft)" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
+					<path
+						d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503"
+						stroke="var(--color-soft)"
+						strokeWidth={1}
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					/>
 
 					<path
 						id="beamPath"
@@ -143,7 +182,13 @@ export default function PlaygroundSection() {
 					height={410}
 					viewBox="0 -503 80 520"
 					fill="none">
-					<path d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503" stroke="var(--color-soft)" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round" />
+					<path
+						d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503"
+						stroke="var(--color-soft)"
+						strokeWidth={1}
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					/>
 					<path
 						id="beamPath"
 						d="M 0 0 L 45 0 C 68 0 70 -10 69 -43 L 69 -503"
@@ -168,9 +213,13 @@ export default function PlaygroundSection() {
 						<Lock size={16} />
 						<span className="text-sm">radianos.com</span>
 					</div>
-					<div className="text-fg-tertiary flex items-center gap-3 px-3">{/* <Share size={16} /> */}</div>
+					<div className="text-fg-tertiary flex items-center gap-3 px-3">
+						{/* <Share size={16} /> */}
+					</div>
 				</div>
-				<Tabs defaultValue="preview" className="border-soft flex h-full w-full flex-col gap-0 overflow-hidden rounded-xl border">
+				<Tabs
+					defaultValue="preview"
+					className="border-soft flex h-full w-full flex-col gap-0 overflow-hidden rounded-xl border">
 					{/* Mobile/Tablet View */}
 					<div
 						style={{
@@ -179,7 +228,8 @@ export default function PlaygroundSection() {
 						className={`sm:h-205 h-190 lg:hidden color-${color}`}>
 						<div
 							style={{
-								backgroundImage: "radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
+								backgroundImage:
+									"radial-gradient(circle, var(--color-fill4-alpha) 1px, transparent 1px)",
 								backgroundSize: "10px 10px",
 							}}
 							className="bg-elevation-negative flex h-12 w-full items-center justify-center p-1 sm:justify-end">
@@ -201,7 +251,11 @@ export default function PlaygroundSection() {
 													aria-label="Toggle Theme"
 													onClick={toggleTheme}
 													className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
-													{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
+													{theme === "light" ? (
+														<MoonIcon size={18} />
+													) : (
+														<SunIcon size={18} />
+													)}
 												</button>
 												<Colors />
 											</div>
@@ -215,19 +269,30 @@ export default function PlaygroundSection() {
 					{/* Desktop View */}
 					<div className="not-lg:hidden h-205 flex flex-1 overflow-hidden">
 						<div className="border-soft h-205 w-1/2 flex-shrink-0 border-r">
-							<Tabs className="h-full gap-0" value={activeFile} onValueChange={(value) => setActiveFile(value as typeof activeFile)}>
+							<Tabs
+								className="h-full gap-0"
+								value={activeFile}
+								onValueChange={(value) =>
+									setActiveFile(value as typeof activeFile)
+								}>
 								<div className="border-border flex h-10 items-center justify-between border-b pl-4">
 									<div className="flex items-center gap-2">
 										<FileCode size={20} className="text-fg-tertiary" />
-										<p className="text-fg-secondary text-sm font-normal">app/auth/{layout}.tsx</p>
+										<p className="text-fg-secondary text-sm font-normal">
+											app/auth/{layout}.tsx
+										</p>
 									</div>
-									<TabsList variant="outline" className="h-full !rounded-none border-none data-[orientation=horizontal]:h-full">
+									<TabsList
+										variant="outline"
+										className="h-full !rounded-none border-none data-[orientation=horizontal]:h-full">
 										<TabsTrigger
 											className="border-border h-full border-l data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
 											value="signin.tsx">
 											{layout}.tsx
 										</TabsTrigger>
-										<TabsTrigger className="h-full data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none" value="globals.css">
+										<TabsTrigger
+											className="h-full data-[orientation=horizontal]:first:rounded-l-none data-[orientation=horizontal]:last:rounded-r-none"
+											value="globals.css">
 											globals.css
 										</TabsTrigger>
 									</TabsList>
@@ -239,7 +304,11 @@ export default function PlaygroundSection() {
 											language="tsx"
 											className="h-full [&>pre>pre]:!p-4"
 											lineNumbers
-											theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+											theme={
+												theme === "dark"
+													? "github-dark-high-contrast"
+													: "github-light"
+											}
 										/>
 									</TabsContent>
 									<TabsContent value="globals.css">
@@ -248,7 +317,11 @@ export default function PlaygroundSection() {
 											language="css"
 											className="h-full w-full overflow-scroll [&>pre>pre]:!p-4"
 											lineNumbers
-											theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+											theme={
+												theme === "dark"
+													? "github-dark-high-contrast"
+													: "github-light"
+											}
 										/>
 									</TabsContent>
 								</div>
@@ -277,7 +350,11 @@ export default function PlaygroundSection() {
 													onClick={toggleTheme}
 													aria-label="Toggle Theme"
 													className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
-													{theme === "light" ? <MoonIcon size={18} /> : <SunIcon size={18} />}
+													{theme === "light" ? (
+														<MoonIcon size={18} />
+													) : (
+														<SunIcon size={18} />
+													)}
 												</button>
 												<Colors />
 											</div>

@@ -15,7 +15,14 @@ import {
 } from "@tanstack/react-table"
 import { ChevronsUpDown } from "lucide-react"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/registry/ui/table"
 
 const data: Payment[] = [
 	{
@@ -70,12 +77,22 @@ export const columns: ColumnDef<Payment>[] = [
 			<Checkbox
 				size="sm"
 				className="flex items-center justify-center"
-				checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
+				checked={
+					table.getIsAllPageRowsSelected() ||
+					(table.getIsSomePageRowsSelected() && "indeterminate")
+				}
 				onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
 				aria-label="Select all"
 			/>
 		),
-		cell: ({ row }) => <Checkbox size="sm" checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />,
+		cell: ({ row }) => (
+			<Checkbox
+				size="sm"
+				checked={row.getIsSelected()}
+				onCheckedChange={(value) => row.toggleSelected(!!value)}
+				aria-label="Select row"
+			/>
+		),
 		enableSorting: false,
 		enableHiding: false,
 	},
@@ -83,7 +100,9 @@ export const columns: ColumnDef<Payment>[] = [
 		accessorKey: "email",
 		header: ({ column }) => {
 			return (
-				<div className="flex cursor-pointer items-center justify-start gap-1" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+				<div
+					className="flex cursor-pointer items-center justify-start gap-1"
+					onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
 					Email
 					<ChevronsUpDown size={16} />
 				</div>
@@ -94,7 +113,9 @@ export const columns: ColumnDef<Payment>[] = [
 	{
 		accessorKey: "status",
 		header: "Status",
-		cell: ({ row }) => <div className="capitalize">{row.getValue("status")}</div>,
+		cell: ({ row }) => (
+			<div className="capitalize">{row.getValue("status")}</div>
+		),
 	},
 
 	{
@@ -116,8 +137,11 @@ export const columns: ColumnDef<Payment>[] = [
 
 export default function BasicDataTable() {
 	const [sorting, setSorting] = React.useState<SortingState>([])
-	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-	const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
+	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+		[]
+	)
+	const [columnVisibility, setColumnVisibility] =
+		React.useState<VisibilityState>({})
 	const [rowSelection, setRowSelection] = React.useState({})
 
 	const table = useReactTable({
@@ -148,7 +172,16 @@ export default function BasicDataTable() {
 						{table.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => {
-									return <TableHead key={header.id}>{header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}</TableHead>
+									return (
+										<TableHead key={header.id}>
+											{header.isPlaceholder
+												? null
+												: flexRender(
+														header.column.columnDef.header,
+														header.getContext()
+													)}
+										</TableHead>
+									)
 								})}
 							</TableRow>
 						))}
@@ -156,15 +189,24 @@ export default function BasicDataTable() {
 					<TableBody>
 						{table.getRowModel().rows?.length ? (
 							table.getRowModel().rows.map((row) => (
-								<TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
+								<TableRow
+									key={row.id}
+									data-state={row.getIsSelected() && "selected"}>
 									{row.getVisibleCells().map((cell) => (
-										<TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+										<TableCell key={cell.id}>
+											{flexRender(
+												cell.column.columnDef.cell,
+												cell.getContext()
+											)}
+										</TableCell>
 									))}
 								</TableRow>
 							))
 						) : (
 							<TableRow>
-								<TableCell colSpan={columns.length} className="h-24 text-center">
+								<TableCell
+									colSpan={columns.length}
+									className="h-24 text-center">
 									No results.
 								</TableCell>
 							</TableRow>
@@ -173,7 +215,8 @@ export default function BasicDataTable() {
 				</Table>
 			</div>
 			<div className="flex items-center justify-end pt-4 text-sm">
-				{table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s) selected.
+				{table.getFilteredSelectedRowModel().rows.length} of{" "}
+				{table.getFilteredRowModel().rows.length} row(s) selected.
 			</div>
 		</div>
 	)
