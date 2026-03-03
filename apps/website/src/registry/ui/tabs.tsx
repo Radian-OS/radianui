@@ -14,9 +14,14 @@ export type TabsListContextType = {
 	width?: TabsListWidth
 }
 export type TabsProps = React.ComponentProps<typeof TabsPrimitive.Root>
-export type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> & TabsListContextType
-export type TabsTriggerProps = React.ComponentProps<typeof TabsPrimitive.Trigger>
-export type TabsContentProps = React.ComponentProps<typeof TabsPrimitive.Content>
+export type TabsListProps = React.ComponentProps<typeof TabsPrimitive.List> &
+	TabsListContextType
+export type TabsTriggerProps = React.ComponentProps<
+	typeof TabsPrimitive.Trigger
+>
+export type TabsContentProps = React.ComponentProps<
+	typeof TabsPrimitive.Content
+>
 
 const tabsListStyles = cva(
 	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center  data-[orientation=vertical]:flex-col shrink-0 overflow-x-scroll no-scrollbar",
@@ -68,12 +73,14 @@ const tabsListStyles = cva(
 			{
 				size: ["sm", "md"],
 				variant: "open",
-				className: "data-[orientation=horizontal]:gap-3 data-[orientation=vertical]:gap-2",
+				className:
+					"data-[orientation=horizontal]:gap-3 data-[orientation=vertical]:gap-2",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3",
+				className:
+					"data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3",
 			},
 		],
 	}
@@ -91,10 +98,12 @@ const tabsTriggerStyles = cva(
 			variant: {
 				default:
 					"data-[state=active]:bg-elevation-level2 border border-transparent data-[state=active]:border data-[state=active]:border-soft-alpha data-[state=active]:drop-shadow-xs",
-				outline: "data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
+				outline:
+					"data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
 				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill2",
-				"outline-ghost": "data-[state=active]:bg-bg border border-transparent data-[state=active]:border-soft data-[state=active]:drop-shadow-xs",
+				"outline-ghost":
+					"data-[state=active]:bg-bg border border-transparent data-[state=active]:border-soft data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [
@@ -131,17 +140,20 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: "open",
-				className: "data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5 h-7",
+				className:
+					"data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5 h-7",
 			},
 			{
 				size: "md",
 				variant: "open",
-				className: "data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
+				className:
+					"data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3 h-11",
+				className:
+					"data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3 h-11",
 			},
 			{
 				size: "sm",
@@ -195,15 +207,37 @@ function useTabsList() {
 }
 
 function Tabs({ className, ...props }: TabsProps) {
-	return <TabsPrimitive.Root data-slot="tabs" className={cn("no-scrollbar flex flex-col gap-3 data-[orientation=vertical]:flex-row", className)} {...props} />
+	return (
+		<TabsPrimitive.Root
+			data-slot="tabs"
+			className={cn(
+				"no-scrollbar flex flex-col gap-3 data-[orientation=vertical]:flex-row",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 Tabs.displayName = TabsPrimitive.Root.displayName
 
-function TabsList({ className, width = "fit", children, size = "md", variant = "default", ...props }: TabsListProps) {
-	const ctxValues = React.useMemo(() => ({ variant, size, width }), [variant, size, width])
+function TabsList({
+	className,
+	width = "fit",
+	children,
+	size = "md",
+	variant = "default",
+	...props
+}: TabsListProps) {
+	const ctxValues = React.useMemo(
+		() => ({ variant, size, width }),
+		[variant, size, width]
+	)
 	return (
 		<TabsListContext.Provider value={ctxValues}>
-			<TabsPrimitive.List data-slot="tabs-list" className={cn(tabsListStyles({ size, variant, width }), className)} {...props}>
+			<TabsPrimitive.List
+				data-slot="tabs-list"
+				className={cn(tabsListStyles({ size, variant, width }), className)}
+				{...props}>
 				{children}
 			</TabsPrimitive.List>
 		</TabsListContext.Provider>
@@ -213,12 +247,27 @@ TabsList.displayName = TabsPrimitive.List.displayName
 
 function TabsTrigger({ className, ...props }: TabsTriggerProps) {
 	const { size, variant } = useTabsList()
-	return <TabsPrimitive.Trigger data-slot="tabs-trigger" className={cn(tabsTriggerStyles({ variant, size }), className)} {...props} />
+	return (
+		<TabsPrimitive.Trigger
+			data-slot="tabs-trigger"
+			className={cn(tabsTriggerStyles({ variant, size }), className)}
+			{...props}
+		/>
+	)
 }
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
 function TabsContent({ className, ...props }: TabsContentProps) {
-	return <TabsPrimitive.Content data-slot="tabs-content" className={cn("flex-1 outline-none data-[state=inactive]:hidden", className)} {...props} />
+	return (
+		<TabsPrimitive.Content
+			data-slot="tabs-content"
+			className={cn(
+				"flex-1 outline-none data-[state=inactive]:hidden",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 
 TabsContent.displayName = TabsPrimitive.Content.displayName

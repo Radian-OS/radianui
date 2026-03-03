@@ -5,7 +5,9 @@ import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 export default function OTPFieldDisabled() {
 	return (
 		<div className="flex flex-col justify-center space-y-1.5">
-			<Label htmlFor="one-time-password" className="text-fg-disabled cursor-not-allowed">
+			<Label
+				htmlFor="one-time-password"
+				className="text-fg-disabled cursor-not-allowed">
 				One Time Password
 			</Label>
 			<OTPField size="44" placeholder="000000" disabled>

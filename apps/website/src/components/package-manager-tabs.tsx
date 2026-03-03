@@ -19,16 +19,29 @@ export type PackageManagerTabsProps = {
 }
 
 const NpmIcon = (props: SVGProps<SVGSVGElement>) => (
-	<svg width={40} height={40} viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" {...props}>
+	<svg
+		width={40}
+		height={40}
+		viewBox="0 0 40 40"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}>
 		<g fill="none" fillRule="evenodd">
 			<path width={24} height={24} fill="#D40001" d="M0 0H40V40H0V0z" />
-			<path fill="#FFF" d="M27.863 13.213h-7.522V33.75H6.667V5h26.667v28.748h-5.47z" />
+			<path
+				fill="#FFF"
+				d="M27.863 13.213h-7.522V33.75H6.667V5h26.667v28.748h-5.47z"
+			/>
 		</g>
 	</svg>
 )
 
 const PnpmIcon = (props: SVGProps<SVGSVGElement>) => (
-	<svg width="40" height="40" viewBox="0 0 1.6 1.6" xmlns="http://www.w3.org/2000/svg" {...props}>
+	<svg
+		width="40"
+		height="40"
+		viewBox="0 0 1.6 1.6"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}>
 		<title>{"file_type_light_pnpm"}</title>
 		<path
 			d="M1.5 0.537h-0.437V0.1H1.5Z"
@@ -82,7 +95,12 @@ const PnpmIcon = (props: SVGProps<SVGSVGElement>) => (
 )
 
 const YarnIcon = (props: SVGProps<SVGSVGElement>) => (
-	<svg width="40px" height="40px" viewBox="0 0 1.6 1.6" xmlns="http://www.w3.org/2000/svg" {...props}>
+	<svg
+		width="40px"
+		height="40px"
+		viewBox="0 0 1.6 1.6"
+		xmlns="http://www.w3.org/2000/svg"
+		{...props}>
 		<title>{"file_type_yarn"}</title>
 		<path
 			d="M1.41 1.22a0.525 0.525 0 0 0 -0.198 0.091 1.185 1.185 0 0 1 -0.292 0.132 0.082 0.082 0 0 1 -0.049 0.028 3.1 3.1 0 0 1 -0.322 0.029c-0.058 0 -0.094 -0.015 -0.104 -0.039a0.079 0.079 0 0 1 0.043 -0.104 0.2 0.2 0 0 1 -0.026 -0.019c-0.009 -0.009 -0.018 -0.026 -0.02 -0.019 -0.011 0.028 -0.017 0.095 -0.047 0.125 -0.042 0.042 -0.12 0.028 -0.166 0.004 -0.051 -0.027 0.004 -0.091 0.004 -0.091a0.036 0.036 0 0 1 -0.05 -0.017 0.242 0.242 0 0 1 -0.033 -0.147 0.269 0.269 0 0 1 0.087 -0.145 0.467 0.467 0 0 1 0.033 -0.22 0.522 0.522 0 0 1 0.158 -0.183S0.331 0.537 0.367 0.441c0.023 -0.063 0.033 -0.063 0.041 -0.065a0.18 0.18 0 0 0 0.073 -0.043 0.264 0.264 0 0 1 0.221 -0.085S0.76 0.07 0.814 0.104a0.92 0.92 0 0 1 0.077 0.144s0.064 -0.037 0.071 -0.023a0.567 0.567 0 0 1 0.026 0.307 0.7 0.7 0 0 1 -0.13 0.271c-0.007 0.011 0.078 0.047 0.131 0.194 0.049 0.135 0.005 0.248 0.013 0.261 0.001 0.002 0.002 0.003 0.002 0.003s0.056 0.004 0.17 -0.065a0.425 0.425 0 0 1 0.214 -0.08 0.054 0.054 0 0 1 0.023 0.105Z"
@@ -94,7 +112,12 @@ const YarnIcon = (props: SVGProps<SVGSVGElement>) => (
 )
 
 const BunIcon = (props: SVGProps<SVGSVGElement>) => (
-	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width={40} height={40} {...props}>
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 40 40"
+		width={40}
+		height={40}
+		{...props}>
 		<path d="M35.545 13.125a5.938 5.938 0 0 0 -0.25 -0.241c-0.085 -0.077 -0.165 -0.164 -0.25 -0.241s-0.165 -0.164 -0.25 -0.241c-0.085 -0.077 -0.165 -0.164 -0.25 -0.241s-0.165 -0.164 -0.25 -0.241 -0.165 -0.164 -0.25 -0.241 -0.165 -0.164 -0.25 -0.241c2.48 2.35 3.901 5.547 3.955 8.9 0 7.989 -8.41 14.488 -18.75 14.488 -5.79 0 -10.97 -2.039 -14.415 -5.236l0.25 0.241 0.25 0.241 0.25 0.241 0.25 0.241 0.25 0.241 0.25 0.241 0.25 0.241c3.44 3.332 8.735 5.477 14.665 5.477 10.34 0 18.75 -6.499 18.75 -14.464 0 -3.404 -1.52 -6.63 -4.205 -9.166" />
 		<path
 			fill="#fbf0df"
@@ -135,7 +158,11 @@ const BunIcon = (props: SVGProps<SVGSVGElement>) => (
 	</svg>
 )
 
-export default function PackageManagerTabs({ commands, className, withIcon = false }: PackageManagerTabsProps) {
+export default function PackageManagerTabs({
+	commands,
+	className,
+	withIcon = false,
+}: PackageManagerTabsProps) {
 	const { theme } = useTheme()
 	// Replace local state with Zustand store
 	const { packageManager, setPackageManager } = usePreferences()
@@ -164,17 +191,31 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 	}
 
 	return (
-		<Tabs value={packageManager} onValueChange={handleTabChange} className={cn("bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5", className)}>
+		<Tabs
+			value={packageManager}
+			onValueChange={handleTabChange}
+			className={cn(
+				"bg-fill2 gap-2 overflow-hidden rounded-xl p-1.5",
+				className
+			)}>
 			<div className="flex items-center justify-between pr-1">
 				<TabsList className="bg-transparent" variant="outline-ghost" size="md">
 					{pkg.map((manager) => (
-						<TabsTrigger key={manager} value={manager} className={withIcon ? "gap-1" : ""}>
+						<TabsTrigger
+							key={manager}
+							value={manager}
+							className={withIcon ? "gap-1" : ""}>
 							{withIcon && iconMap[manager]}
 							{manager}
 						</TabsTrigger>
 					))}
 				</TabsList>
-				<IconButton variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={handleCopy}>
+				<IconButton
+					variant="ghost"
+					color="neutral"
+					size={"28"}
+					aria-label="Copy command"
+					onClick={handleCopy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</IconButton>
 			</div>
@@ -182,10 +223,15 @@ export default function PackageManagerTabs({ commands, className, withIcon = fal
 				<TabsContent key={manager} value={manager}>
 					<CodeArea
 						language="bash"
-						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
+						theme={
+							theme === "dark" ? "github-dark-high-contrast" : "github-light"
+						}
 						code={commands[manager]}
 						lineNumbers={false}
-						className={cn("border-soft max-w-full rounded-[10px] border", className)}
+						className={cn(
+							"border-soft max-w-full rounded-[10px] border",
+							className
+						)}
 					/>
 				</TabsContent>
 			))}

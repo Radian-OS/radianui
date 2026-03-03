@@ -2,16 +2,33 @@
 
 import React, { useMemo, useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
-import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
+import {
+	CountryIso2,
+	FlagImage,
+	defaultCountries,
+	parseCountry,
+	usePhoneInput,
+} from "react-international-phone"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { ScrollArea } from "@/registry/ui/scroll-area"
 
-export default function InternationalPhone({ excludeCountries = ["us", "np", "it", "gb"] }: { excludeCountries?: CountryIso2[] }) {
+export default function InternationalPhone({
+	excludeCountries = ["us", "np", "it", "gb"],
+}: {
+	excludeCountries?: CountryIso2[]
+}) {
 	const [internalValue, setInternalValue] = useState<string>("")
 	const [open, setOpen] = useState(false)
 
@@ -29,14 +46,15 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 		return defaultCountries
 	}, [excludeCountries])
 
-	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
-		defaultCountry: "ca",
-		value: internalValue,
-		countries: filteredCountries,
-		onChange: (data) => {
-			setInternalValue(data.phone)
-		},
-	})
+	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } =
+		usePhoneInput({
+			defaultCountry: "ca",
+			value: internalValue,
+			countries: filteredCountries,
+			onChange: (data) => {
+				setInternalValue(data.phone)
+			},
+		})
 
 	const parsedCountries = filteredCountries.map(parseCountry)
 
@@ -46,7 +64,12 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 			<InputGroup className="w-full">
 				<Popover open={open} onOpenChange={setOpen}>
 					<PopoverTrigger asChild>
-						<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
+						<Button
+							color="neutral"
+							variant="outline"
+							role="combobox"
+							aria-expanded={open}
+							className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
 							<FlagImage iso2={country.iso2} className="size-4" />
 							<ChevronDown className="size-4 opacity-50" />
 						</Button>
@@ -70,8 +93,16 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 												<div className="flex flex-1 items-center justify-center gap-2">
 													<FlagImage iso2={c.iso2} className="size-5" />
 													<span className="truncate">{c.name}</span>
-													<span className="text-fg-secondary ml-auto text-sm">+{c.dialCode}</span>
-													<Check className={cn(country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
+													<span className="text-fg-secondary ml-auto text-sm">
+														+{c.dialCode}
+													</span>
+													<Check
+														className={cn(
+															country.iso2 === c.iso2
+																? "opacity-100"
+																: "opacity-0"
+														)}
+													/>
 												</div>
 											</CommandItem>
 										))}
@@ -91,7 +122,9 @@ export default function InternationalPhone({ excludeCountries = ["us", "np", "it
 					className="flex-1 rounded-l-none border-l-0 focus-within:border-l"
 				/>
 			</InputGroup>
-			<p className="text-fg-secondary text-xs">Excluded Countries: USA, Nepal, Italy & United Kingdom</p>
+			<p className="text-fg-secondary text-xs">
+				Excluded Countries: USA, Nepal, Italy & United Kingdom
+			</p>
 		</div>
 	)
 }

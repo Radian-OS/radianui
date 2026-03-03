@@ -3,7 +3,13 @@ import data, { Skin } from "@emoji-mart/data"
 import Picker from "@emoji-mart/react"
 import { SmilePlus } from "lucide-react"
 import Image from "next/image"
-import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from "@/registry/ui/avatar"
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	AvatarIndicator,
+	AvatarStatus,
+} from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
@@ -25,14 +31,31 @@ export default function PopoverEmoji2() {
 				<div className="flex flex-col gap-0.5">
 					<div className="flex items-center gap-1.5">
 						<span className="font-medium">John Jacks</span>
-						<span className="text-fg-tertiary text-xs">11/10/2025 11:24 PM</span>
+						<span className="text-fg-tertiary text-xs">
+							11/10/2025 11:24 PM
+						</span>
 					</div>
-					<p className="text-fg-tertiary text-xs font-normal">radian_profile_1146.jpg</p>
+					<p className="text-fg-tertiary text-xs font-normal">
+						radian_profile_1146.jpg
+					</p>
 				</div>
-				<Image height={170} width={300} src="/media/background-2.jpg" alt="Background2" className="rounded-md" />
+				<Image
+					height={170}
+					width={300}
+					src="/media/background-2.jpg"
+					alt="Background2"
+					className="rounded-md"
+				/>
 				<div className="max-w-75 flex flex-wrap gap-1.5">
 					{selectedEmoji.map((emoji) => (
-						<Button variant="outline" color="neutral" size="28" key={emoji} onClick={() => setSelectedEmoji((prev) => prev.filter((e) => e !== emoji))}>
+						<Button
+							variant="outline"
+							color="neutral"
+							size="28"
+							key={emoji}
+							onClick={() =>
+								setSelectedEmoji((prev) => prev.filter((e) => e !== emoji))
+							}>
 							{emoji}
 						</Button>
 					))}
@@ -42,13 +65,19 @@ export default function PopoverEmoji2() {
 								<SmilePlus />
 							</Button>
 						</PopoverTrigger>
-						<PopoverContent className="w-fit overflow-clip rounded-lg p-0" align="start">
+						<PopoverContent
+							className="w-fit overflow-clip rounded-lg p-0"
+							align="start">
 							<div className="[--rgb-background:var(--color-elevation-level1)]! [--rgb-color:var(--color-fg)]! [--rgb-input:var(--color-elevation-level1)]!">
 								<Picker
 									data={data}
 									onEmojiSelect={(emoji: Skin) => {
-										if (!selectedEmoji.includes(emoji.native)) setSelectedEmoji((prev) => [...prev, emoji.native])
-										else setSelectedEmoji((prev) => prev.filter((e) => e !== emoji.native))
+										if (!selectedEmoji.includes(emoji.native))
+											setSelectedEmoji((prev) => [...prev, emoji.native])
+										else
+											setSelectedEmoji((prev) =>
+												prev.filter((e) => e !== emoji.native)
+											)
 
 										setOpen(false)
 									}}

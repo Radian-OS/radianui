@@ -19,26 +19,16 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add tabs",
-				npm: "npx radianui@latest add tabs",
-				yarn: "yarn dlx radianui@latest add tabs",
-				bun: "bunx radianui@latest add tabs",
-			}}
-		/>
+		```bash
+		npx radianui@latest add tabs
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 		<Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-tabs",
-				npm: "npm install @radix-ui/react-tabs",
-				yarn: "yarn add @radix-ui/react-tabs",
-				bun: "bun add @radix-ui/react-tabs",
-			}}
-		/>
+		```bash
+		npm install @radix-ui/react-tabs
+		```
 
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="tabs" title="components/ui/tabs.tsx" collapsible />
@@ -53,29 +43,22 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/tabs"
-	code={`import { 
-Tabs, 
-TabsList, 
-TabsTrigger, 
-TabsContent 
-} from "@/components/ui/tabs"`}
-/>
+```tsx showLineNumbers
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/tabs"
-	code={`<Tabs defaultValue="account">
-		<TabsList>
-			<TabsTrigger value="account">Account</TabsTrigger>
-			<TabsTrigger value="password">Password</TabsTrigger>
-		</TabsList>
-		<TabsContent value="account">Make changes to your account here.</TabsContent>
-		<TabsContent value="password">Change your password here.</TabsContent>
-</Tabs>`}
-/>
+```tsx showLineNumbers
+<Tabs defaultValue="account">
+	<TabsList>
+		<TabsTrigger value="account">Account</TabsTrigger>
+		<TabsTrigger value="password">Password</TabsTrigger>
+	</TabsList>
+	<TabsContent value="account">Make changes to your account here.</TabsContent>
+	<TabsContent value="password">Change your password here.</TabsContent>
+</Tabs>
+```
 
 ---
 

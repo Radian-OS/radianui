@@ -1,6 +1,11 @@
 import { useState } from "react"
 import { ChevronDown, ChevronUp, Minus, Plus } from "lucide-react"
-import { Input, InputAddon, InputGroup, InputWrapper } from "@/registry/ui/input"
+import {
+	Input,
+	InputAddon,
+	InputGroup,
+	InputWrapper,
+} from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
 const NumberInputPreview = () => {
@@ -38,7 +43,13 @@ const NumberInputPreview = () => {
 		<div className="flex w-32 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
 				<Label>Default Number</Label>
-				<Input onChange={handleChange} className="w-full" placeholder="Enter number" value={amount} type="numeric" />{" "}
+				<Input
+					onChange={handleChange}
+					className="w-full"
+					placeholder="Enter number"
+					value={amount}
+					type="numeric"
+				/>{" "}
 			</div>
 
 			<div className="flex flex-col gap-1.5">
@@ -54,7 +65,13 @@ const NumberInputPreview = () => {
 						onMouseDown={(e) => e.preventDefault()}>
 						<Minus />
 					</InputAddon>
-					<Input onChange={handleChange1} className="text-center" placeholder="12" value={amount1} type="numeric" />
+					<Input
+						onChange={handleChange1}
+						className="text-center"
+						placeholder="12"
+						value={amount1}
+						type="numeric"
+					/>
 					<InputAddon
 						mode="icon"
 						className="cursor-pointer"
@@ -71,8 +88,15 @@ const NumberInputPreview = () => {
 			<div className="flex flex-col gap-1.5">
 				<Label>Input with Arrow</Label>
 				<InputGroup className="w-full">
-					<Input onChange={handleChange3} placeholder="12" value={amount3} type="numeric" />
-					<InputAddon mode="icon" className="divide-border flex flex-col divide-y p-0">
+					<Input
+						onChange={handleChange3}
+						placeholder="12"
+						value={amount3}
+						type="numeric"
+					/>
+					<InputAddon
+						mode="icon"
+						className="divide-border flex flex-col divide-y p-0">
 						<div
 							className="flex h-1/2 w-full cursor-pointer items-center justify-center"
 							onClick={(e) => {
@@ -106,7 +130,13 @@ const NumberInputPreview = () => {
 						onMouseDown={(e) => e.preventDefault()}
 						className="cursor-pointer"
 					/>
-					<Input onChange={handleChange2} className="text-center" placeholder="12" value={amount2} type="numeric" />
+					<Input
+						onChange={handleChange2}
+						className="text-center"
+						placeholder="12"
+						value={amount2}
+						type="numeric"
+					/>
 					<Plus
 						onClick={(e) => {
 							e.stopPropagation()

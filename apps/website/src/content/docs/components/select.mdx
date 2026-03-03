@@ -53,35 +53,29 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/select"
-	code={`import { 
-Select, 
-SelectTrigger, 
-SelectContent, 
-SelectValue, 
-SelectItem 
-} from "@/components/ui/select"`}
-/>
+```tsx showLineNumbers title="/components/ui/select.tsx"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/select"
-	code={`
+```tsx
 <Select>
-	
 	<SelectTrigger>
-		<SelectValue/>
+		<SelectValue />
 	</SelectTrigger>
-	
 	<SelectContent>
 		<SelectItem value="male">Male</SelectItem>
 		<SelectItem value="female">Female</SelectItem>
 	</SelectContent>
-	
-</Select>`}
-/>
+</Select>
+```
 
 ---
 

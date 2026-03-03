@@ -1,7 +1,14 @@
 "use client"
 
 import React, { useRef, useState } from "react"
-import { CircleGauge, FolderGit, LayoutDashboard, ScanEye, SquareTerminal, SwatchBook } from "lucide-react"
+import {
+	CircleGauge,
+	FolderGit,
+	LayoutDashboard,
+	ScanEye,
+	SquareTerminal,
+	SwatchBook,
+} from "lucide-react"
 import { cn } from "@/lib/utils"
 import { CliCard } from "./feature-section-component/cli-card"
 import { CodeSync } from "./feature-section-component/code-sync"
@@ -50,12 +57,19 @@ export const BentoCardGrid: React.FC<{
 	className: string
 	gridRef?: React.RefObject<HTMLDivElement | null>
 }> = ({ children, gridRef, className }) => (
-	<div className={cn("bento-section", className)} style={{ fontSize: "clamp(1rem, 0.9rem + 0.5vw, 1.5rem)" }} ref={gridRef}>
+	<div
+		className={cn("bento-section", className)}
+		style={{ fontSize: "clamp(1rem, 0.9rem + 0.5vw, 1.5rem)" }}
+		ref={gridRef}>
 		{children}
 	</div>
 )
 
-const FeaturesSection: React.FC<BentoProps> = ({ enableSpotlight = true, spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS, clickEffect = true }) => {
+const FeaturesSection: React.FC<BentoProps> = ({
+	enableSpotlight = true,
+	spotlightRadius = DEFAULT_SPOTLIGHT_RADIUS,
+	clickEffect = true,
+}) => {
 	const gridRef = useRef<HTMLDivElement>(null)
 	const componentCardRef = useRef<HTMLDivElement>(null)
 
@@ -63,21 +77,45 @@ const FeaturesSection: React.FC<BentoProps> = ({ enableSpotlight = true, spotlig
 
 	return (
 		<>
-			{enableSpotlight && <GlobalSpotlight gridRef={gridRef} disableAnimations={false} enabled={enableSpotlight} spotlightRadius={spotlightRadius} />}
+			{enableSpotlight && (
+				<GlobalSpotlight
+					gridRef={gridRef}
+					disableAnimations={false}
+					enabled={enableSpotlight}
+					spotlightRadius={spotlightRadius}
+				/>
+			)}
 
 			{/* Additional GlobalSpotlight specifically for the ComponentSvg card */}
-			{enableSpotlight && <GlobalSpotlight gridRef={componentCardRef} disableAnimations={false} enabled={enableSpotlight} spotlightRadius={spotlightRadius} />}
+			{enableSpotlight && (
+				<GlobalSpotlight
+					gridRef={componentCardRef}
+					disableAnimations={false}
+					enabled={enableSpotlight}
+					spotlightRadius={spotlightRadius}
+				/>
+			)}
 
-			<BentoCardGrid gridRef={gridRef} className="flex flex-col items-center gap-20 pb-40 pt-40">
+			<BentoCardGrid
+				gridRef={gridRef}
+				className="flex flex-col items-center gap-20 pb-40 pt-40">
 				<FeatureHeader />
 				<div className="flex w-full max-w-[1400px] flex-col gap-6 px-5">
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
-						<FeatureCard style={cardStyle} clickEffect={clickEffect} className="card z-2 lg:flex-5 card--border-glow flex overflow-hidden rounded-[20px]">
+						<FeatureCard
+							style={cardStyle}
+							clickEffect={clickEffect}
+							className="card z-2 lg:flex-5 card--border-glow flex overflow-hidden rounded-[20px]">
 							<div className="border-soft flex h-[600px] flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<ScanEye size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">High Quality Base Components</span>
-									<p className="text-fg-secondary w-full text-sm leading-6 lg:max-w-[380px]">Solid, reusable components built with attention to detail and best practices. </p>
+									<span className="heading-6 font-medium">
+										High Quality Base Components
+									</span>
+									<p className="text-fg-secondary w-full text-sm leading-6 lg:max-w-[380px]">
+										Solid, reusable components built with attention to detail
+										and best practices.{" "}
+									</p>
 								</div>
 								<div className="h-full pl-0 pr-0">
 									<ComponentFlowCard gridRef={gridRef} />
@@ -85,12 +123,20 @@ const FeaturesSection: React.FC<BentoProps> = ({ enableSpotlight = true, spotlig
 							</div>
 						</FeatureCard>
 
-						<FeatureCard style={cardStyle} clickEffect={clickEffect} className="card z-2 lg:flex-3 card--border-glow flex rounded-[20px]">
+						<FeatureCard
+							style={cardStyle}
+							clickEffect={clickEffect}
+							className="card z-2 lg:flex-3 card--border-glow flex rounded-[20px]">
 							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<SquareTerminal size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">Install via CLI or Copy Paste</span>
-									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">Install with one command or copy the snippet. No configuration. No waiting. Just build.</p>
+									<span className="heading-6 font-medium">
+										Install via CLI or Copy Paste
+									</span>
+									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
+										Install with one command or copy the snippet. No
+										configuration. No waiting. Just build.
+									</p>
 								</div>
 								<CliCard />
 							</div>
@@ -98,13 +144,19 @@ const FeaturesSection: React.FC<BentoProps> = ({ enableSpotlight = true, spotlig
 					</div>
 
 					<div className="flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
-						<FeatureCard style={cardStyle} clickEffect={clickEffect} className="card z-2 card--border-glow flex rounded-[20px] lg:flex-1">
+						<FeatureCard
+							style={cardStyle}
+							clickEffect={clickEffect}
+							className="card z-2 card--border-glow flex rounded-[20px] lg:flex-1">
 							<div className="border-soft flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<FolderGit size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">Seamless Design to Code Sync</span>
+									<span className="heading-6 font-medium">
+										Seamless Design to Code Sync
+									</span>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
-										Changes made in Figma are easily replicable in the code, guaranteeing pixel-perfect consistency.
+										Changes made in Figma are easily replicable in the code,
+										guaranteeing pixel-perfect consistency.
 									</p>
 								</div>
 								<CodeSync />
@@ -112,26 +164,45 @@ const FeaturesSection: React.FC<BentoProps> = ({ enableSpotlight = true, spotlig
 							</div>
 						</FeatureCard>
 
-						<FeatureCard style={cardStyle} clickEffect={clickEffect} className="card card--border-glow z-3 flex rounded-[20px] lg:flex-1">
+						<FeatureCard
+							style={cardStyle}
+							clickEffect={clickEffect}
+							className="card card--border-glow z-3 flex rounded-[20px] lg:flex-1">
 							<div
 								onClick={() => setScrollIndex((prev) => prev + 1)}
 								className="border-soft relative flex h-[600px] w-full cursor-pointer flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:pl-12">
 									<SwatchBook size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">Themeable System</span>
-									<p className="text-fg-secondary w-fit text-sm leading-6 lg:max-w-[380px]">Edit one token to restyle your entire design system light, dark, or custom themes.</p>
+									<span className="heading-6 font-medium">
+										Themeable System
+									</span>
+									<p className="text-fg-secondary w-fit text-sm leading-6 lg:max-w-[380px]">
+										Edit one token to restyle your entire design system light,
+										dark, or custom themes.
+									</p>
 								</div>
-								<ThemeableSystem scrollIndex={scrollIndex} setScrollIndex={setScrollIndex} />
+								<ThemeableSystem
+									scrollIndex={scrollIndex}
+									setScrollIndex={setScrollIndex}
+								/>
 							</div>
 						</FeatureCard>
 					</div>
 					<div className="relative flex w-full flex-col gap-6 rounded-[20px] lg:h-[600px] lg:flex-row">
-						<FeatureCard style={cardStyle} clickEffect={clickEffect} className="z-5 card lg:flex-3 card--border-glow flex rounded-[20px]">
+						<FeatureCard
+							style={cardStyle}
+							clickEffect={clickEffect}
+							className="z-5 card lg:flex-3 card--border-glow flex rounded-[20px]">
 							<div className="border-soft z-5 relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<CircleGauge size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">Tree-Shakable Architecture</span>
-									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">Only imports what you use ultra-light bundles for fast and improved performance.</p>
+									<span className="heading-6 font-medium">
+										Tree-Shakable Architecture
+									</span>
+									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
+										Only imports what you use ultra-light bundles for fast and
+										improved performance.
+									</p>
 								</div>
 								<div className="relative flex h-full">
 									<Marquee />
@@ -141,13 +212,19 @@ const FeaturesSection: React.FC<BentoProps> = ({ enableSpotlight = true, spotlig
 							</div>
 						</FeatureCard>
 
-						<FeatureCard style={cardStyle} clickEffect={clickEffect} className="z-1 card card--border-glow lg:flex-5 flex rounded-[20px]">
+						<FeatureCard
+							style={cardStyle}
+							clickEffect={clickEffect}
+							className="z-1 card card--border-glow lg:flex-5 flex rounded-[20px]">
 							<div className="border-soft relative flex h-[600px] w-full flex-col gap-12 overflow-hidden rounded-[20px] border">
 								<div className="pt-15 flex flex-col gap-4 px-7 sm:px-12">
 									<LayoutDashboard size={28} className="stroke-primary-hover" />
-									<span className="heading-6 font-medium">Reusable UI Blocks</span>
+									<span className="heading-6 font-medium">
+										Reusable UI Blocks
+									</span>
 									<p className="text-fg-secondary text-sm leading-6 lg:max-w-[380px]">
-										Get access to high quality pre-built UI blocks, designed and developed to plug into any layout.{" "}
+										Get access to high quality pre-built UI blocks, designed and
+										developed to plug into any layout.{" "}
 									</p>
 								</div>
 								<div className="relative h-full w-full">

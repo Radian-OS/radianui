@@ -2,7 +2,13 @@ import React from "react"
 import { EmojiPicker } from "frimousse"
 import { Search, SmilePlus } from "lucide-react"
 import Image from "next/image"
-import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from "@/registry/ui/avatar"
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	AvatarIndicator,
+	AvatarStatus,
+} from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
@@ -24,14 +30,31 @@ export default function PopoverEmoji() {
 				<div className="flex flex-col gap-0.5">
 					<div className="flex items-center gap-1.5">
 						<span className="font-medium">John Jacks</span>
-						<span className="text-fg-tertiary text-xs">11/10/2025 11:24 PM</span>
+						<span className="text-fg-tertiary text-xs">
+							11/10/2025 11:24 PM
+						</span>
 					</div>
-					<p className="text-fg-tertiary text-xs font-normal">radian_profile_1146.jpg</p>
+					<p className="text-fg-tertiary text-xs font-normal">
+						radian_profile_1146.jpg
+					</p>
 				</div>
-				<Image height={170} width={300} src="/media/background-2.jpg" alt="background" className="rounded-md" />
+				<Image
+					height={170}
+					width={300}
+					src="/media/background-2.jpg"
+					alt="background"
+					className="rounded-md"
+				/>
 				<div className="max-w-75 flex flex-wrap gap-1.5">
 					{selectedEmoji.map((emoji) => (
-						<Button variant="outline" color="neutral" size="28" key={emoji} onClick={() => setSelectedEmoji((prev) => prev.filter((e) => e !== emoji))}>
+						<Button
+							variant="outline"
+							color="neutral"
+							size="28"
+							key={emoji}
+							onClick={() =>
+								setSelectedEmoji((prev) => prev.filter((e) => e !== emoji))
+							}>
 							{emoji}
 						</Button>
 					))}
@@ -41,28 +64,40 @@ export default function PopoverEmoji() {
 								<SmilePlus />
 							</Button>
 						</PopoverTrigger>
-						<PopoverContent className="w-fit overflow-clip rounded-lg p-0" align="start">
+						<PopoverContent
+							className="w-fit overflow-clip rounded-lg p-0"
+							align="start">
 							<EmojiPicker.Root
 								onEmojiSelect={(emoji) =>
 									setSelectedEmoji((prev) => {
 										setOpen(false)
-										if (!prev.includes(emoji.emoji)) return [...prev, emoji.emoji]
+										if (!prev.includes(emoji.emoji))
+											return [...prev, emoji.emoji]
 										return prev.filter((e) => e !== emoji.emoji)
 									})
 								}
 								className="bg-elevation-level1 isolate flex h-[368px] flex-col">
 								<div className="flex items-center gap-2 px-3 py-2.5">
 									<Search className="size-4 shrink-0" />
-									<EmojiPicker.Search placeholder="Search" className="placeholder:text-fg-tertiary z-10 w-full appearance-none text-sm font-normal focus:outline-0" />
+									<EmojiPicker.Search
+										placeholder="Search"
+										className="placeholder:text-fg-tertiary z-10 w-full appearance-none text-sm font-normal focus:outline-0"
+									/>
 								</div>
 								<EmojiPicker.Viewport className="outline-hidden relative flex-1">
-									<EmojiPicker.Loading className="text-fg-tertiary absolute inset-0 flex items-center justify-center text-sm">Loading…</EmojiPicker.Loading>
-									<EmojiPicker.Empty className="text-fg-secondary absolute inset-0 flex items-center justify-center text-sm">No emoji found.</EmojiPicker.Empty>
+									<EmojiPicker.Loading className="text-fg-tertiary absolute inset-0 flex items-center justify-center text-sm">
+										Loading…
+									</EmojiPicker.Loading>
+									<EmojiPicker.Empty className="text-fg-secondary absolute inset-0 flex items-center justify-center text-sm">
+										No emoji found.
+									</EmojiPicker.Empty>
 									<EmojiPicker.List
 										className="select-none pb-1.5"
 										components={{
 											CategoryHeader: ({ category, ...props }) => (
-												<div className="bg-elevation-level1 text-fg-tertiary px-2 py-1.5 text-xs font-normal" {...props}>
+												<div
+													className="bg-elevation-level1 text-fg-tertiary px-2 py-1.5 text-xs font-normal"
+													{...props}>
 													{category.label}
 												</div>
 											),
@@ -72,7 +107,9 @@ export default function PopoverEmoji() {
 												</div>
 											),
 											Emoji: ({ emoji, ...props }) => (
-												<button className="data-[active]:bg-fill3 flex size-8 cursor-pointer items-center justify-center rounded-md text-lg" {...props}>
+												<button
+													className="data-[active]:bg-fill3 flex size-8 cursor-pointer items-center justify-center rounded-md text-lg"
+													{...props}>
 													{emoji.emoji}
 												</button>
 											),

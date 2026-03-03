@@ -4,7 +4,12 @@ import { cn } from "@/lib/utils"
 
 export type DividerProps = React.ComponentProps<typeof SeparatorPrimitive.Root>
 
-function Divider({ className, orientation = "horizontal", decorative = true, ...props }: DividerProps) {
+function Divider({
+	className,
+	orientation = "horizontal",
+	decorative = true,
+	...props
+}: DividerProps) {
 	return (
 		<SeparatorPrimitive.Root
 			data-slot="divider"

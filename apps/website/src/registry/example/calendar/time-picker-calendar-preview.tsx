@@ -69,7 +69,9 @@ function TimePickerCalendarPreview() {
 				<div className="absolute inset-0 px-1 py-2">
 					<ScrollArea className="h-full">
 						<div className="space-y-0.5">
-							<p className="text-fg-secondary p-2 text-xs font-medium">SELECT TIME</p>
+							<p className="text-fg-secondary p-2 text-xs font-medium">
+								SELECT TIME
+							</p>
 							<div className="grid gap-1 max-sm:grid-cols-2">
 								{timeSlots.map(({ time: timeSlot, available }) => (
 									<Button
@@ -82,7 +84,9 @@ function TimePickerCalendarPreview() {
 										disabled={!available}>
 										{format(parse(timeSlot, "HH:mm", new Date()), "h:mm a")}
 
-										{time === timeSlot && <Check className="text-fg-tertiary ml-auto" size={20} />}
+										{time === timeSlot && (
+											<Check className="text-fg-tertiary ml-auto" size={20} />
+										)}
 									</Button>
 								))}
 							</div>

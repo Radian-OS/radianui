@@ -3,12 +3,21 @@
 import * as React from "react"
 import { DropdownNavProps, DropdownProps } from "react-day-picker"
 import { Calendar } from "@/registry/ui/calendar"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 export default function CalendarWithYearMonthSelectorExample() {
 	const [date, setDate] = React.useState<Date | undefined>(new Date())
 
-	const handleCalendarChange = (value: string | number, onChange: React.ChangeEventHandler<HTMLSelectElement>) => {
+	const handleCalendarChange = (
+		value: string | number,
+		onChange: React.ChangeEventHandler<HTMLSelectElement>
+	) => {
 		onChange({
 			target: { value: String(value) },
 		} as unknown as React.ChangeEvent<HTMLSelectElement>)
@@ -26,7 +35,11 @@ export default function CalendarWithYearMonthSelectorExample() {
 			hideNavigation
 			components={{
 				DropdownNav: (props: DropdownNavProps) => {
-					return <div className="flex w-full items-center gap-2 p-1 pb-0">{props.children}</div>
+					return (
+						<div className="flex w-full items-center gap-2 p-1 pb-0">
+							{props.children}
+						</div>
+					)
 				},
 				Dropdown: (props: DropdownProps) => {
 					return (
@@ -42,7 +55,10 @@ export default function CalendarWithYearMonthSelectorExample() {
 							</SelectTrigger>
 							<SelectContent className="max-h-100">
 								{props.options?.map((option) => (
-									<SelectItem key={option.value} value={String(option.value)} disabled={option.disabled}>
+									<SelectItem
+										key={option.value}
+										value={String(option.value)}
+										disabled={option.disabled}>
 										{option.label}
 									</SelectItem>
 								))}

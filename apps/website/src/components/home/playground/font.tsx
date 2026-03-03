@@ -4,7 +4,15 @@ import { FONTS } from "@/components/typography/typography-playground"
 import { FontCategory, usePlayground } from "@/contexts/playground"
 import fonts from "@/data/google-fonts.json"
 import { IconButton } from "@/registry/ui/button"
-import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import {
+	Command,
+	CommandDivider,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { Spinner } from "@/registry/ui/spinner"
 
@@ -20,7 +28,9 @@ export default function Font() {
 	const listRef = useRef<HTMLDivElement>(null)
 
 	// Filter fonts based on search term
-	const filteredFonts = fonts.fonts.filter((font) => font.family.toLowerCase().includes(searchTerm.toLowerCase()))
+	const filteredFonts = fonts.fonts.filter((font) =>
+		font.family.toLowerCase().includes(searchTerm.toLowerCase())
+	)
 
 	// Handle scroll to load more (only if no search)
 	const handleScroll = () => {
@@ -33,7 +43,9 @@ export default function Font() {
 			setLoading(true)
 
 			setTimeout(() => {
-				setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, fonts.fonts.length))
+				setVisibleCount((prev) =>
+					Math.min(prev + PAGE_SIZE, fonts.fonts.length)
+				)
 				setLoading(false)
 			}, 1000)
 		}
@@ -44,7 +56,9 @@ export default function Font() {
 	}, [open])
 
 	useEffect(() => {
-		const visibleFonts = searchTerm ? filteredFonts.map((f) => f.family) : fonts.fonts.slice(0, visibleCount).map((f) => f.family)
+		const visibleFonts = searchTerm
+			? filteredFonts.map((f) => f.family)
+			: fonts.fonts.slice(0, visibleCount).map((f) => f.family)
 
 		visibleFonts.forEach((family) => {
 			const id = `font-preload-${family}`
@@ -61,15 +75,26 @@ export default function Font() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<IconButton aria-label="Change Font" variant="ghost" color="neutral" className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+				<IconButton
+					aria-label="Change Font"
+					variant="ghost"
+					color="neutral"
+					className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<Type size={18} />
 				</IconButton>
 			</PopoverTrigger>
 
 			<PopoverContent sideOffset={10} className="w-82 border-none p-0">
 				<Command className="w-full max-w-md">
-					<CommandInput placeholder="Search Google Fonts" value={searchTerm} onValueChange={setSearchTerm} />
-					<CommandList ref={listRef} onScroll={handleScroll} style={{ maxHeight: "300px", overflowY: "auto" }}>
+					<CommandInput
+						placeholder="Search Google Fonts"
+						value={searchTerm}
+						onValueChange={setSearchTerm}
+					/>
+					<CommandList
+						ref={listRef}
+						onScroll={handleScroll}
+						style={{ maxHeight: "300px", overflowY: "auto" }}>
 						<CommandEmpty>No results found</CommandEmpty>
 						<CommandGroup>
 							{Object.entries(FONTS).map(([family]) => (
@@ -80,15 +105,22 @@ export default function Font() {
 										setFontName?.(family)
 										setOpen(false)
 									}}>
-									<span style={{ fontFamily: `"${family}", sans-serif` }}>{family}</span>
-									<span className="text-fg-tertiary text-[13px] font-normal">sans-serif</span>
+									<span style={{ fontFamily: `"${family}", sans-serif` }}>
+										{family}
+									</span>
+									<span className="text-fg-tertiary text-[13px] font-normal">
+										sans-serif
+									</span>
 								</CommandItem>
 							))}
 						</CommandGroup>
 						<CommandDivider />
 
 						<CommandGroup>
-							{(searchTerm ? filteredFonts : fonts.fonts.slice(0, visibleCount)).map((font) => (
+							{(searchTerm
+								? filteredFonts
+								: fonts.fonts.slice(0, visibleCount)
+							).map((font) => (
 								<CommandItem
 									onSelect={() => {
 										setFontName?.(font.family)
@@ -97,8 +129,12 @@ export default function Font() {
 									}}
 									key={font.family}
 									className="flex justify-between">
-									<span style={{ fontFamily: `"${font.family}", sans-serif` }}>{font.family}</span>
-									<span className="text-fg-tertiary text-[13px] font-normal">{font.category}</span>
+									<span style={{ fontFamily: `"${font.family}", sans-serif` }}>
+										{font.family}
+									</span>
+									<span className="text-fg-tertiary text-[13px] font-normal">
+										{font.category}
+									</span>
 								</CommandItem>
 							))}
 

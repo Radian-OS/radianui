@@ -2,10 +2,23 @@
 
 import React, { useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
-import { CountryIso2, FlagImage, defaultCountries, parseCountry, usePhoneInput } from "react-international-phone"
+import {
+	CountryIso2,
+	FlagImage,
+	defaultCountries,
+	parseCountry,
+	usePhoneInput,
+} from "react-international-phone"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
@@ -15,15 +28,16 @@ function InternationalPhone() {
 	const [internalValue, setInternalValue] = useState<string>("")
 	const [open, setOpen] = useState(false)
 
-	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } = usePhoneInput({
-		defaultCountry: "us",
-		disableDialCodeAndPrefix: true,
-		value: internalValue,
-		countries: defaultCountries,
-		onChange: (data) => {
-			setInternalValue(data.phone)
-		},
-	})
+	const { inputValue, handlePhoneValueChange, inputRef, country, setCountry } =
+		usePhoneInput({
+			defaultCountry: "us",
+			disableDialCodeAndPrefix: true,
+			value: internalValue,
+			countries: defaultCountries,
+			onChange: (data) => {
+				setInternalValue(data.phone)
+			},
+		})
 
 	const parsedCountries = defaultCountries.map(parseCountry)
 
@@ -33,7 +47,12 @@ function InternationalPhone() {
 			<InputGroup className="w-full">
 				<Popover open={open} onOpenChange={setOpen}>
 					<PopoverTrigger asChild>
-						<Button color="neutral" variant="outline" role="combobox" aria-expanded={open} className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
+						<Button
+							color="neutral"
+							variant="outline"
+							role="combobox"
+							aria-expanded={open}
+							className="border-r-1 w-fit justify-between gap-2 rounded-r-none">
 							<div className="flex items-center gap-2">
 								<FlagImage iso2={country.iso2} className="size-4" />
 							</div>
@@ -59,8 +78,16 @@ function InternationalPhone() {
 												<div className="flex flex-1 items-center gap-2">
 													<FlagImage iso2={c.iso2} className="size-5" />
 													<span className="truncate">{c.name}</span>
-													<span className="text-fg-secondary ml-auto text-sm">+{c.dialCode}</span>
-													<Check className={cn(country.iso2 === c.iso2 ? "opacity-100" : "opacity-0")} />
+													<span className="text-fg-secondary ml-auto text-sm">
+														+{c.dialCode}
+													</span>
+													<Check
+														className={cn(
+															country.iso2 === c.iso2
+																? "opacity-100"
+																: "opacity-0"
+														)}
+													/>
 												</div>
 											</CommandItem>
 										))}

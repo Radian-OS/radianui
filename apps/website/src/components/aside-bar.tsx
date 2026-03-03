@@ -18,7 +18,9 @@ const AsideBar = () => {
 	}
 
 	const currentDoc = getCurrentDoc()
-	const [headings, setHeadings] = React.useState<{ id: string; text: string; level: number }[]>([])
+	const [headings, setHeadings] = React.useState<
+		{ id: string; text: string; level: number }[]
+	>([])
 
 	// Load headings when doc changes
 	React.useEffect(() => {

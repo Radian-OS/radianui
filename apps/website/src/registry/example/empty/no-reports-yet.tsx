@@ -1,5 +1,11 @@
 import { SVGProps } from "react"
-import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/registry/ui/empty"
+import {
+	Empty,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/registry/ui/empty"
 
 export default function NoReportsYet() {
 	return (
@@ -17,7 +23,13 @@ export default function NoReportsYet() {
 
 function EmptyMediaContent(props: SVGProps<SVGSVGElement>) {
 	return (
-		<svg width={80} height={80} viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+		<svg
+			width={80}
+			height={80}
+			viewBox="0 0 80 80"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			{...props}>
 			<g clipPath="url(#clip0_2124_3822)">
 				<mask
 					id="mask0_2124_3822"
@@ -76,7 +88,10 @@ function EmptyMediaContent(props: SVGProps<SVGSVGElement>) {
 							d="M59.0589 67.2942H20.9412C20.0641 67.2942 19.353 68.0053 19.353 68.8824V70.4707C19.353 71.3478 20.0641 72.0589 20.9412 72.0589H59.0589C59.936 72.0589 60.6471 71.3478 60.6471 70.4707V68.8824C60.6471 68.0053 59.936 67.2942 59.0589 67.2942Z"
 							className="fill-primary-accent"
 						/>
-						<path d="M55.6478 76.8235H24.3522C29.1585 78.8685 34.4471 80 40 80C45.5529 80 50.8415 78.8685 55.6478 76.8235Z" className="fill-primary-accent" />
+						<path
+							d="M55.6478 76.8235H24.3522C29.1585 78.8685 34.4471 80 40 80C45.5529 80 50.8415 78.8685 55.6478 76.8235Z"
+							className="fill-primary-accent"
+						/>
 					</g>
 					<mask
 						id="mask2_2124_3822"

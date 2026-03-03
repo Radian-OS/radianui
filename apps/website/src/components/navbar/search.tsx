@@ -5,8 +5,19 @@ import { Search } from "lucide-react"
 import { navigationItems } from "@/config/navigation-config"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/registry/ui/dialog"
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
+import {
+	Dialog,
+	DialogContent,
+	DialogTitle,
+	DialogTrigger,
+} from "@/registry/ui/dialog"
+import {
+	Drawer,
+	DrawerContent,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/registry/ui/drawer"
 import SearchCommand from "../search-command"
 
 export function SearchDocs() {
@@ -21,11 +32,16 @@ export function SearchDocs() {
 		.filter((section) => section.title !== "Animations") // 👈 Add this line
 		.map((section) => ({
 			...section,
-			items: section.items.filter((item) => item.title.toLowerCase().includes(searchTerm.toLowerCase())),
+			items: section.items.filter((item) =>
+				item.title.toLowerCase().includes(searchTerm.toLowerCase())
+			),
 		}))
 		.filter((section) => section.items.length > 0)
 
-	const getTotalItems = useCallback(() => filteredItems.reduce((acc, section) => acc + section.items.length, 0), [filteredItems])
+	const getTotalItems = useCallback(
+		() => filteredItems.reduce((acc, section) => acc + section.items.length, 0),
+		[filteredItems]
+	)
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
@@ -38,10 +54,14 @@ export function SearchDocs() {
 
 			if (event.key === "ArrowDown") {
 				event.preventDefault()
-				setSelectedIndex((prevIndex) => (prevIndex < getTotalItems() - 1 ? prevIndex + 1 : prevIndex))
+				setSelectedIndex((prevIndex) =>
+					prevIndex < getTotalItems() - 1 ? prevIndex + 1 : prevIndex
+				)
 			} else if (event.key === "ArrowUp") {
 				event.preventDefault()
-				setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex))
+				setSelectedIndex((prevIndex) =>
+					prevIndex > 0 ? prevIndex - 1 : prevIndex
+				)
 			} else if (event.key === "Enter" && selectedIndex !== -1) {
 				event.preventDefault()
 				itemRefs.current[selectedIndex]?.click()
@@ -65,7 +85,10 @@ export function SearchDocs() {
 	useEffect(() => {
 		const handleResize = () => {
 			if (drawerRef.current) {
-				drawerRef.current.style.setProperty("bottom", `env(safe-area-inset-bottom)`)
+				drawerRef.current.style.setProperty(
+					"bottom",
+					`env(safe-area-inset-bottom)`
+				)
 			}
 		}
 
@@ -93,9 +116,18 @@ export function SearchDocs() {
 	return (
 		<>
 			{/* Mobile Search */}
-			<Drawer direction="bottom" variant="rounded" handle={true} modal={true} preventScrollRestoration={true}>
+			<Drawer
+				direction="bottom"
+				variant="rounded"
+				handle={true}
+				modal={true}
+				preventScrollRestoration={true}>
 				<DrawerTrigger asChild>
-					<IconButton aria-label="Search Components" variant="outline" color="neutral" className="md:hidden">
+					<IconButton
+						aria-label="Search Components"
+						variant="outline"
+						color="neutral"
+						className="md:hidden">
 						<Search />
 					</IconButton>
 				</DrawerTrigger>
@@ -112,15 +144,26 @@ export function SearchDocs() {
 			{/* Desktop Search */}
 			<Dialog open={isOpen} onOpenChange={setIsOpen}>
 				<DialogTrigger asChild>
-					<Button className="not-md:hidden gap-1" variant={"outline"} color={"neutral"}>
+					<Button
+						className="not-md:hidden gap-1"
+						variant={"outline"}
+						color={"neutral"}>
 						<Search className="text-fg-tertiary" />
-						<span className="text-fg-tertiary w-43 flex-1 px-1 text-start">Search</span>
-						<Badge className="text-fg-secondary" size="20" variant="outline" color="neutral">
+						<span className="text-fg-tertiary w-43 flex-1 px-1 text-start">
+							Search
+						</span>
+						<Badge
+							className="text-fg-secondary"
+							size="20"
+							variant="outline"
+							color="neutral">
 							⌘K
 						</Badge>
 					</Button>
 				</DialogTrigger>
-				<DialogContent closeButton="hidden" className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
+				<DialogContent
+					closeButton="hidden"
+					className="h-150 w-125 bg-fill3 border-alpha gap-0 rounded-2xl border p-1">
 					<DialogTitle className="hidden">Command Search</DialogTitle>
 					<SearchCommand {...searchCommandProps} />
 				</DialogContent>

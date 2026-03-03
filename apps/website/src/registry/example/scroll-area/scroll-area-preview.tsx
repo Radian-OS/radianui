@@ -106,7 +106,11 @@ export default function ScrollAreaPreview() {
 			<div className="border-border bg-elevation-level1 rounded-lg border py-4">
 				<div className="flex items-center justify-between px-4">
 					<p className="heading-6 font-medium">Contacts</p>
-					<Button variant="ghost" color="neutral" size="28" className="h-8 w-8 p-0">
+					<Button
+						variant="ghost"
+						color="neutral"
+						size="28"
+						className="h-8 w-8 p-0">
 						<Settings className="text-fg-tertiary h-4 w-4" />
 					</Button>
 				</div>
@@ -116,10 +120,21 @@ export default function ScrollAreaPreview() {
 				<ScrollArea className="h-80 px-4">
 					<div className="space-y-3">
 						{contacts.map((contact) => (
-							<div key={contact.id} className="border-border rounded-lg border border-dotted p-4">
+							<div
+								key={contact.id}
+								className="border-border rounded-lg border border-dotted p-4">
 								<div className="mb-2 flex items-center justify-between">
 									<h4 className="text-fg font-medium">{contact.name}</h4>
-									<Badge variant="soft" color={contact.status === "online" ? "success" : contact.status === "away" ? "warning" : "neutral"} size="20">
+									<Badge
+										variant="soft"
+										color={
+											contact.status === "online"
+												? "success"
+												: contact.status === "away"
+													? "warning"
+													: "neutral"
+										}
+										size="20">
 										{contact.status}
 									</Badge>
 								</div>

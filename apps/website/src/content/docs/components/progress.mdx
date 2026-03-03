@@ -13,55 +13,23 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
-	<InstallTabsList>
-		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
-		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
-	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add progress",
-				npm: "npx radianui@latest add progress",
-				yarn: "yarn dlx radianui@latest add progress",
-				bun: "bunx radianui@latest add progress",
-			}}
-		/>
-	</InstallTabsContent>
-	<InstallTabsContent value="manual" className="p-0">
-	<Steps>
-	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-progress",
-				npm: "npm install @radix-ui/react-progress",
-				yarn: "yarn add @radix-ui/react-progress",
-				bun: "bun add @radix-ui/react-progress",
-			}}
-		/>
-
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<Tabs defaultValue="progress">
-    		<TabsContent value="progress">
-    			<ComponentSource name="progress" title="components/ui/progress.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
-
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
-    </InstallTabsContent>
-
-</InstallationTabs>
+```bash
+npm install @radix-ui/react-progress
+```
 
 ## Usage
 
 ### Imports
 
-<CodeSnippet title="/components/ui/progress-bar" code={`import { Progress } from "@/components/ui/progress"`} />
+```tsx showLineNumbers title="/components/ui/progress-bar"
+import { Progress } from "@/components/ui/progress"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/progress-bar" code={`<Progress value={50} />`} />
+```tsx showLineNumbers title="/components/ui/progress-bar"
+<Progress value={50} />
+```
 
 ---
 

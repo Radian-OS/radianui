@@ -4,7 +4,13 @@ import { cn } from "@/lib/utils"
 export type AspectRatioProps = React.ComponentProps<typeof AspectRatioPrimitive>
 
 function AspectRatio({ className, ...props }: AspectRatioProps) {
-	return <AspectRatioPrimitive data-slot="aspect-ratio" className={cn("", className)} {...props} />
+	return (
+		<AspectRatioPrimitive
+			data-slot="aspect-ratio"
+			className={cn("", className)}
+			{...props}
+		/>
+	)
 }
 
 AspectRatio.displayName = "AspectRatio"

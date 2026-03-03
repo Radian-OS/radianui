@@ -102,6 +102,10 @@ const nextConfig = {
 				pathname: "/photo/**",
 				search: "",
 			},
+			{
+				protocol: "https",
+				hostname: "images.unsplash.com",
+			},
 		],
 	},
 	compiler: {
@@ -114,6 +118,16 @@ const nextConfig = {
 	experimental: {
 		optimizePackageImports: ["lucide-react"],
 	},
-	compress: false, // Let cloudflare handle the compression
+	compress: false, // Let cloudflare handle the compression,
+	webpack: (config, { isServer }) => {
+		if (!isServer) {
+			config.resolve.fallback = {
+				...config.resolve.fallback,
+				fs: false,
+				path: false,
+			}
+		}
+		return config
+	},
 }
 export default withBundleAnalyzer(withContentlayer(nextConfig))

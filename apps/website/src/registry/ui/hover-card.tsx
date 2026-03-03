@@ -3,8 +3,12 @@ import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
 import { cn } from "@/lib/utils"
 
 type HoverCardProps = React.ComponentProps<typeof HoverCardPrimitive.Root>
-type HoverCardTriggerProps = React.ComponentProps<typeof HoverCardPrimitive.Trigger>
-type HoverCardContentProps = React.ComponentProps<typeof HoverCardPrimitive.Content>
+type HoverCardTriggerProps = React.ComponentProps<
+	typeof HoverCardPrimitive.Trigger
+>
+type HoverCardContentProps = React.ComponentProps<
+	typeof HoverCardPrimitive.Content
+>
 
 function HoverCard({ children, ...props }: HoverCardProps) {
 	return (
@@ -17,11 +21,18 @@ function HoverCard({ children, ...props }: HoverCardProps) {
 HoverCard.displayName = HoverCardPrimitive.Root.displayName
 
 function HoverCardTrigger({ ...props }: HoverCardTriggerProps) {
-	return <HoverCardPrimitive.Trigger data-slot="hover-card-trigger" {...props} />
+	return (
+		<HoverCardPrimitive.Trigger data-slot="hover-card-trigger" {...props} />
+	)
 }
 HoverCardTrigger.displayName = HoverCardPrimitive.Trigger.displayName
 
-function HoverCardContent({ className, sideOffset = 8, children, ...props }: HoverCardContentProps) {
+function HoverCardContent({
+	className,
+	sideOffset = 8,
+	children,
+	...props
+}: HoverCardContentProps) {
 	return (
 		<HoverCardPrimitive.Content
 			data-slot="hover-card-content"

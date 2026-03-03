@@ -19,28 +19,17 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add carousel",
-				npm: "npx radianui@latest add carousel",
-				yarn: "yarn dlx radianui@latest add carousel",
-				bun: "bunx radianui@latest add carousel",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add carousel
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-        <Step>Install the following dependencies:</Step>
-    	<PackageManagerTabs
-    		commands={{
-    			pnpm: "pnpm add embla-carousel-react",
-    			npm: "npm install embla-carousel-react",
-    			yarn: "yarn add embla-carousel-react",
-    			bun: "bun add embla-carousel-react",
-    		}}
-    	/>
-
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install embla-carousel-react
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="carousel" title="components/ui/carousel.tsx" collapsible />
 
@@ -54,65 +43,23 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/carousel"
-	code={`import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"`}
-/>
+```tsx showLineNumbers title="/components/ui/carousel.tsx"
+import {
+	Carousel,
+	CarouselContent,
+	CarouselPrevious,
+} from "@/components/ui/carousel"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/carousel"
-	code={`<Carousel>
-  <CarouselContent>
-    <CarouselItem>...</CarouselItem>
-    <CarouselItem>...</CarouselItem>
-  </CarouselContent>
-  <CarouselPrevious />
-  <CarouselNext />
-</Carousel>`}
-/>
-
----
-
-## Examples
-
-### Dot Button
-
-<ComponentPreview path="carousel/carousel-dotbutton" />
-
-### Size
-
-<ComponentPreview path="carousel/carousel-size" />
-
-### Loop
-
-<ComponentPreview path="carousel/carousel-loop" />
-
-### Autoplay
-
-<ComponentPreview path="carousel/carousel-autoplay" />
-
-### Spacing
-
-<ComponentPreview path="carousel/carousel-space" />
-
-### Scaling
-
-<ComponentPreview path="carousel/carousel-scale" />
-
-### Orientation
-
-<ComponentPreview path="carousel/carousel-orientation" />
-
-## Props
-
-<PropsTableWrapper>
-	<PropsTable title="Carousel" externalReference="https://www.embla-carousel.com/" />
-</PropsTableWrapper>
+```tsx showLineNumbers title="/components/ui/carousel.tsx"
+<Carousel>
+	<CarouselContent>
+		<div>Slide 1</div>
+		<div>Slide 2</div>
+		<div>Slide 3</div>
+	</CarouselContent>
+	<CarouselPrevious>Previous</CarouselPrevious>
+</Carousel>
+```

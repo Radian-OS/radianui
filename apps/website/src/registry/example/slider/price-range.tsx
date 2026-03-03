@@ -4,7 +4,14 @@ import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
 import { Button } from "@/registry/ui/button"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Slider, SliderThumb } from "@/registry/ui/slider"
@@ -42,7 +49,9 @@ export default function PriceRange() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="w-full max-w-md space-y-6">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="w-full max-w-md space-y-6">
 				<FormField
 					control={form.control}
 					name="range"
@@ -51,7 +60,12 @@ export default function PriceRange() {
 							<FormLabel>Price Range</FormLabel>
 
 							<FormControl>
-								<Slider min={MIN_PRICE} max={MAX_PRICE} value={field.value} onValueChange={(values) => field.onChange(values)} defaultValue={[MIN_PRICE, MAX_PRICE]}>
+								<Slider
+									min={MIN_PRICE}
+									max={MAX_PRICE}
+									value={field.value}
+									onValueChange={(values) => field.onChange(values)}
+									defaultValue={[MIN_PRICE, MAX_PRICE]}>
 									<SliderThumb />
 									<SliderThumb />
 								</Slider>
@@ -69,7 +83,12 @@ export default function PriceRange() {
 												if (isNaN(value)) return
 												field.onChange([value, field.value[1]])
 											}}
-											onBlur={() => field.onChange([Math.min(MAX_PRICE, field.value[0]), field.value[1]])}
+											onBlur={() =>
+												field.onChange([
+													Math.min(MAX_PRICE, field.value[0]),
+													field.value[1],
+												])
+											}
 										/>
 										<PoundSterling className="size-4" />
 									</InputWrapper>
@@ -84,7 +103,12 @@ export default function PriceRange() {
 												if (isNaN(value)) return
 												field.onChange([field.value[0], value])
 											}}
-											onBlur={() => field.onChange([field.value[0], Math.min(MAX_PRICE, field.value[1])])}
+											onBlur={() =>
+												field.onChange([
+													field.value[0],
+													Math.min(MAX_PRICE, field.value[1]),
+												])
+											}
 										/>
 										<PoundSterling className="size-4" />
 									</InputWrapper>
@@ -97,7 +121,10 @@ export default function PriceRange() {
 				/>
 
 				<div className="flex items-center justify-end gap-2">
-					<Button variant="outline" color="neutral" onClick={() => form.reset()}>
+					<Button
+						variant="outline"
+						color="neutral"
+						onClick={() => form.reset()}>
 						Reset
 					</Button>
 					<Button type="submit">Submit</Button>

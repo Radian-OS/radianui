@@ -10,26 +10,20 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add pagination",
-				npm: "npx radianui@latest add pagination",
-				yarn: "yarn dlx radianui@latest add pagination",
-				bun: "bunx radianui@latest add pagination",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add pagination
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-    	<Step>Copy and paste the following code into your project.</Step>
+	    <Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="pagination" title="components/ui/pagination.tsx" collapsible />
-
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
@@ -40,40 +34,32 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/pagination"
-	code={`import { 
-Pagination, 
-PaginationContent,
-PaginationEllipsis, 
-PaginationItem 
-} from "@/components/ui/pagination"`}
-/>
+```tsx showLineNumbers title="/components/ui/pagination"
+import {
+	Pagination,
+	PaginationContent,
+	PaginationEllipsis,
+	PaginationItem,
+} from "@/components/ui/pagination"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/pagination"
-	code={`<Pagination>
-
-<PaginationContent>
-
-<PaginationItem>
-	<Link href="#">First</Link>
-</PaginationItem>
-
-<PaginationItem>
-	<PaginationEllipsis />
-</PaginationItem>
-
-<PaginationItem>
-	<Link href="#">Second</Link>
-</PaginationItem>
-
-    </PaginationContent>
-
-</Pagination>`}
-/>
+```tsx showLineNumbers title="/components/ui/pagination"
+<Pagination>
+	<PaginationContent>
+		<PaginationItem>
+			<Link href="#">First</Link>
+		</PaginationItem>
+		<PaginationItem>
+			<PaginationEllipsis />
+		</PaginationItem>
+		<PaginationItem>
+			<Link href="#">Second</Link>
+		</PaginationItem>
+	</PaginationContent>
+</Pagination>
+```
 
 ## Examples
 

@@ -24,7 +24,9 @@ export default function DestructiveAlertDialog() {
 			<AlertDialogContent className="max-w-100">
 				<AlertDialogHeader>
 					<AlertDialogTitle>Delete Account</AlertDialogTitle>
-					<AlertDialogDescription>Are you sure you want to delete the record?</AlertDialogDescription>
+					<AlertDialogDescription>
+						Are you sure you want to delete the record?
+					</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
 					<AlertDialogCancel asChild>

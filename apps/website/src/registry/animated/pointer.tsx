@@ -1,7 +1,12 @@
 "use client"
 
 import React from "react"
-import { AnimatePresence, HTMLMotionProps, motion, useMotionValue } from "motion/react"
+import {
+	AnimatePresence,
+	HTMLMotionProps,
+	motion,
+	useMotionValue,
+} from "motion/react"
 import { cn } from "@/lib/utils"
 
 type PointerProps = Omit<HTMLMotionProps<"div">, "ref">

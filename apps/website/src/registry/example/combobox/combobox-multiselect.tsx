@@ -5,7 +5,14 @@ import { Check, ChevronDown, Plus, Squircle, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge, BadgeDot } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 const companyDepartments = [
@@ -22,11 +29,16 @@ const companyDepartments = [
 
 export default function ComboboxTags() {
 	const [open, setOpen] = React.useState(false)
-	const [selectedValues, setSelectedValues] = React.useState<string[]>(["hr", "engineering"])
+	const [selectedValues, setSelectedValues] = React.useState<string[]>([
+		"hr",
+		"engineering",
+	])
 	const [search, setSearch] = React.useState("")
 
 	const toggleSelection = (value: string) => {
-		setSelectedValues((prev) => (prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]))
+		setSelectedValues((prev) =>
+			prev.includes(value) ? prev.filter((v) => v !== value) : [...prev, value]
+		)
 	}
 
 	const removeSelection = (value: string) => {
@@ -37,13 +49,24 @@ export default function ComboboxTags() {
 		<div className="w-[300px]">
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
-					<Button variant="outline" role="combobox" aria-expanded={open} className="relative h-auto min-h-9 w-80 justify-start p-2 pe-6" color="neutral">
+					<Button
+						variant="outline"
+						role="combobox"
+						aria-expanded={open}
+						className="relative h-auto min-h-9 w-80 justify-start p-2 pe-6"
+						color="neutral">
 						<div className="flex flex-wrap gap-1">
 							{selectedValues.length > 0 ? (
 								selectedValues.map((val) => {
-									const department = companyDepartments.find((d) => d.value === val)
+									const department = companyDepartments.find(
+										(d) => d.value === val
+									)
 									return department ? (
-										<Badge key={val} variant="outline" color="neutral" size="20">
+										<Badge
+											key={val}
+											variant="outline"
+											color="neutral"
+											size="20">
 											<BadgeDot className={department.state} />
 											{department.label}
 											<X
@@ -65,7 +88,11 @@ export default function ComboboxTags() {
 				</PopoverTrigger>
 				<PopoverContent className="w-(--radix-popper-anchor-width) fill-bg p-0">
 					<Command className="border-0">
-						<CommandInput placeholder="Search" value={search} onValueChange={setSearch} />
+						<CommandInput
+							placeholder="Search"
+							value={search}
+							onValueChange={setSearch}
+						/>
 						<CommandList>
 							<CommandEmpty>No department found.</CommandEmpty>
 							<CommandGroup>
@@ -73,10 +100,15 @@ export default function ComboboxTags() {
 									<Plus className="stroke-info-text size-4" /> Create new tag
 								</CommandItem>
 								{companyDepartments.map((department) => (
-									<CommandItem key={department.value} value={department.value} onSelect={() => toggleSelection(department.value)}>
+									<CommandItem
+										key={department.value}
+										value={department.value}
+										onSelect={() => toggleSelection(department.value)}>
 										<Squircle className={cn("size-4", department.state)} />
 										<span className="truncate">{department.label}</span>
-										{selectedValues.includes(department.value) && <Check className="ml-auto" />}
+										{selectedValues.includes(department.value) && (
+											<Check className="ml-auto" />
+										)}
 									</CommandItem>
 								))}
 							</CommandGroup>

@@ -1,7 +1,13 @@
 import React from "react"
 import { ColorOption, usePlayground } from "@/contexts/playground"
 import { IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 
 export const COLORS = [
 	{ title: "Red", value: "red" },
@@ -54,16 +60,25 @@ export default function Colors() {
 					aria-label="Change Primary Color"
 					variant="ghost"
 					color="neutral"
-					className="hover:bg-fill2 flex size-8 cursor-pointer items-center justify-center rounded-md">
+					className="hover:bg-fill2 text-fg flex size-8 cursor-pointer items-center justify-center rounded-md">
 					<div className="size-4.5 bg-primary border-border rounded-full border" />
 				</IconButton>
 			</DropdownTrigger>
-			<DropdownContent align="end" className="h-69.5 overflow-y-scroll" sideOffset={10}>
-				<DropdownRadioGroup value={color} onValueChange={(value) => setColor(value as ColorOption)}>
+			<DropdownContent
+				align="end"
+				className="h-69.5 overflow-y-scroll"
+				sideOffset={10}>
+				<DropdownRadioGroup
+					value={color}
+					onValueChange={(value) => setColor(value as ColorOption)}>
 					{COLORS.map((colorOption) => (
-						<DropdownRadioItem key={colorOption.value} value={colorOption.value}>
+						<DropdownRadioItem
+							key={colorOption.value}
+							value={colorOption.value}>
 							<div className="flex items-center justify-center gap-2">
-								<span className={`inline-block h-4 w-4 rounded-sm ${COLOR_CLASSES[colorOption.value]}`} />
+								<span
+									className={`inline-block h-4 w-4 rounded-sm ${COLOR_CLASSES[colorOption.value]}`}
+								/>
 								{colorOption.title}
 							</div>
 						</DropdownRadioItem>

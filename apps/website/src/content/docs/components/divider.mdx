@@ -15,27 +15,17 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add divider",
-				npm: "npx radianui@latest add divider",
-				yarn: "yarn dlx radianui@latest add divider",
-				bun: "bunx radianui@latest add divider",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add divider
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-	<Step>Install the following dependencies:</Step>
-	<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-separator",
-				npm: "npm i @radix-ui/react-separator",
-				yarn: "yarn add @radix-ui/react-separator",
-				bun: "bun add @radix-ui/react-separator",
-			}}
-		/>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-separator
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="divider" title="components/ui/divider.tsx" collapsible />
 
@@ -49,11 +39,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/Divider" language="tsx" code={`import { Divider } from "@/components/ui/Divider"`} />
+```tsx showLineNumbers title="/components/ui/divider.tsx"
+import { Divider } from "@/components/ui/divider"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/Divider" language="tsx" code={`<Divider orientation="vertical" />`} />
+```tsx showLineNumbers title="/components/ui/divider.tsx"
+<Divider orientation="vertical" />
+```
 
 ---
 

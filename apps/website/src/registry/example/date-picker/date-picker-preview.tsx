@@ -18,8 +18,19 @@ export default function DatePickerDemo() {
 			<Popover open={open} onOpenChange={setOpen}>
 				<PopoverTrigger asChild>
 					<div className="relative w-[320px]">
-						<Button id="date" type="button" variant="outline" color="neutral" className="text-fg hover:bg-elevation-level1 w-full justify-start gap-2">
-							{date ? format(date, "PPP") : <span className="text-fg-tertiary text-sm font-normal">Pick a date</span>}
+						<Button
+							id="date"
+							type="button"
+							variant="outline"
+							color="neutral"
+							className="text-fg hover:bg-elevation-level1 w-full justify-start gap-2">
+							{date ? (
+								format(date, "PPP")
+							) : (
+								<span className="text-fg-tertiary text-sm font-normal">
+									Pick a date
+								</span>
+							)}
 							<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 						</Button>
 					</div>

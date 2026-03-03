@@ -70,7 +70,17 @@ export const TypingText = ({
 		}
 
 		return () => clearTimeout(timeout)
-	}, [displayedText, isDeleting, textIndex, texts, duration, deleteSpeed, pauseBetween, loop, onComplete])
+	}, [
+		displayedText,
+		isDeleting,
+		textIndex,
+		texts,
+		duration,
+		deleteSpeed,
+		pauseBetween,
+		loop,
+		onComplete,
+	])
 
 	const cursorVariants: Variants = {
 		visible: { opacity: 1 },

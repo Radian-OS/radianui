@@ -29,14 +29,20 @@ function getInitials(name: string) {
 	if (parts.length === 1) {
 		return parts[0][0]?.toUpperCase() ?? ""
 	}
-	return (parts[0][0]?.toUpperCase() ?? "") + (parts[parts.length - 1][0]?.toUpperCase() ?? "")
+	return (
+		(parts[0][0]?.toUpperCase() ?? "") +
+		(parts[parts.length - 1][0]?.toUpperCase() ?? "")
+	)
 }
 
 export default function AvatarGroup() {
 	return (
 		<div className="flex -space-x-2.5">
 			{people.map((person) => (
-				<Avatar size="32" className="border-bg border-4 hover:z-10" key={person.name}>
+				<Avatar
+					size="32"
+					className="border-bg border-4 hover:z-10"
+					key={person.name}>
 					<AvatarImage src={person.image} />
 					<AvatarFallback>{getInitials(person.name)}</AvatarFallback>
 				</Avatar>

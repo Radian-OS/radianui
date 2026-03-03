@@ -19,28 +19,17 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add drawer",
-				npm: "npx radianui@latest add drawer",
-				yarn: "yarn dlx radianui@latest add drawer",
-				bun: "bunx radianui@latest add drawer",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add drawer
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add vaul",
-				npm: "npm install vaul",
-				yarn: "yarn add vaul",
-				bun: "bun add vaul",
-			}}
-		/>
-
+		```bash
+		npm install vaul
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="drawer" title="components/ui/drawer.tsx" collapsible />
 
@@ -54,10 +43,8 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	language="tsx"
-	title="/components/ui/drawer.tsx"
-	code={`import { 
+```tsx showLineNumbers title="/components/ui/drawer.tsx"
+import {
 	Drawer,
 	DrawerBody,
 	DrawerClose,
@@ -66,40 +53,40 @@ links:
 	DrawerFooter,
 	DrawerHeader,
 	DrawerTitle,
-	DrawerTrigger 
-	} from "@/registry/ui/drawer"`}
-/>
+	DrawerTrigger,
+} from "@/components/ui/drawer"
+```
 
 ### Code
 
-<CodeSnippet
-	language="tsx"
-	title="/components/ui/drawer.tsx"
-	code={`<Drawer variant="default" direction="left" handle={false} backdrop="overlay">
-  <DrawerTrigger>
-   <Button variant="outline" color="neutral">
-    <ChevronLeft size={20} /> Left
-   </Button>
-  </DrawerTrigger>
-  <DrawerContent>
-   <DrawerHeader>
-     <DrawerTitle>This is a drawer header</DrawerTitle>
-     <DrawerDescription>This is a drawer description message.</DrawerDescription>
-   </DrawerHeader>
-   <DrawerBody>
-    <p>This is the main content of the drawer.</p>
-   </DrawerBody>
-	<DrawerFooter>
-	  <DrawerClose>
-         <Button variant="outline" color="neutral">
-           Close Drawer
-         </Button>
-	  </DrawerClose>
-      <Button>Submit Action</Button>
-    </DrawerFooter>
-  </DrawerContent>
-</Drawer>`}
-/>
+```tsx showLineNumbers title="/components/ui/drawer.tsx"
+<Drawer variant="default" direction="left" handle={false} backdrop="overlay">
+	<DrawerTrigger>
+		<Button variant="outline" color="neutral">
+			<ChevronLeft size={20} /> Left
+		</Button>
+	</DrawerTrigger>
+	<DrawerContent>
+		<DrawerHeader>
+			<DrawerTitle>This is a drawer header</DrawerTitle>
+			<DrawerDescription>
+				This is a drawer description message.
+			</DrawerDescription>
+		</DrawerHeader>
+		<DrawerBody>
+			<p>This is the main content of the drawer.</p>
+		</DrawerBody>
+		<DrawerFooter>
+			<DrawerClose>
+				<Button variant="outline" color="neutral">
+					Close Drawer
+				</Button>
+			</DrawerClose>
+			<Button>Submit Action</Button>
+		</DrawerFooter>
+	</DrawerContent>
+</Drawer>
+```
 
 ## Examples
 
@@ -181,5 +168,8 @@ links:
 			},
 		]}
 	/>
-	<PropsTable title="DrawerFooter" externalReference="https://vaul.emilkowal.ski/getting-started" />
+	<PropsTable
+		title="DrawerFooter"
+		externalReference="https://vaul.emilkowal.ski/getting-started"
+	/>
 </PropsTableWrapper>

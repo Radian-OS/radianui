@@ -36,12 +36,24 @@ export default function CodeWithCopyExample() {
 				<span className="bg-bg text-fg-tertiary rounded-md p-1">
 					<Terminal className="size-4" />
 				</span>
-				<span className="text-fg-secondary flex-1 text-sm">Code area with copy button</span>
-				<IconButton variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={copy}>
+				<span className="text-fg-secondary flex-1 text-sm">
+					Code area with copy button
+				</span>
+				<IconButton
+					variant="ghost"
+					color="neutral"
+					size={"28"}
+					aria-label="Copy command"
+					onClick={copy}>
 					{copied ? <Check size={20} /> : <Clipboard size={20} />}
 				</IconButton>
 			</div>
-			<CodeArea language="tsx" theme="github-dark-high-contrast" code={code} className={cn("border-soft flex-1 rounded-[10px] border")} />
+			<CodeArea
+				language="tsx"
+				theme="github-dark-high-contrast"
+				code={code}
+				className={cn("border-soft flex-1 rounded-[10px] border")}
+			/>
 		</div>
 	)
 }

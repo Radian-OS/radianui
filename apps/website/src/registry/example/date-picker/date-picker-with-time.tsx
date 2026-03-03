@@ -29,17 +29,29 @@ export default function DatePickerWithTimeExample() {
 	return (
 		<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 			<PopoverTrigger asChild>
-				<Button type="button" variant="outline" className="text-fg w-[320px] justify-start gap-2" color="neutral">
+				<Button
+					type="button"
+					variant="outline"
+					className="text-fg w-[320px] justify-start gap-2"
+					color="neutral">
 					{date ? (
 						`${format(date, "LLL dd, y")} ${time && `- ${format(time, "hh:mm a")}`}`
 					) : (
-						<span className="text-fg-tertiary text-sm font-normal"> {`${format(new Date(), "LLL dd, y - hh:mm a")}`}</span>
+						<span className="text-fg-tertiary text-sm font-normal">
+							{" "}
+							{`${format(new Date(), "LLL dd, y - hh:mm a")}`}
+						</span>
 					)}
 					<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-auto p-0" align="start" side="top">
-				<Calendar mode="single" className="border-0 p-2" selected={date} onSelect={setDate} />
+				<Calendar
+					mode="single"
+					className="border-0 p-2"
+					selected={date}
+					onSelect={setDate}
+				/>
 				<div className="border-t p-3">
 					<div className="flex items-center gap-3">
 						<Label htmlFor={id}>Enter time</Label>

@@ -2,7 +2,13 @@
 
 import { ReactNode, createContext, useContext, useState } from "react"
 
-type ToastPosition = "top-left" | "top-center" | "top-right" | "bottom-left" | "bottom-center" | "bottom-right"
+type ToastPosition =
+	| "top-left"
+	| "top-center"
+	| "top-right"
+	| "bottom-left"
+	| "bottom-center"
+	| "bottom-right"
 
 interface ToastContextType {
 	position: ToastPosition
@@ -25,5 +31,10 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
 	const [position, setPosition] = useState<ToastPosition>("bottom-right")
 	const [isExpandable, setIsExpandable] = useState(false)
 
-	return <ToastContext.Provider value={{ position, setPosition, isExpandable, setIsExpandable }}>{children}</ToastContext.Provider>
+	return (
+		<ToastContext.Provider
+			value={{ position, setPosition, isExpandable, setIsExpandable }}>
+			{children}
+		</ToastContext.Provider>
+	)
 }

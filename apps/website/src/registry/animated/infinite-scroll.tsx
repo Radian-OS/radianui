@@ -42,7 +42,14 @@ const getClass = (isVertical: boolean) => {
 	return infiniteScrollX
 }
 
-const InfiniteScroll = ({ duration = 20, reverse = false, vertical = false, pauseOnHover = true, className, children }: InfiniteScrollProps) => {
+const InfiniteScroll = ({
+	duration = 20,
+	reverse = false,
+	vertical = false,
+	pauseOnHover = true,
+	className,
+	children,
+}: InfiniteScrollProps) => {
 	return (
 		<div
 			className={cn(

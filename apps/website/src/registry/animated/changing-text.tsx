@@ -1,7 +1,12 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { AnimatePresence, type MotionProps, easeOut, motion } from "motion/react"
+import {
+	AnimatePresence,
+	type MotionProps,
+	easeOut,
+	motion,
+} from "motion/react"
 import { cn } from "@/lib/utils"
 
 interface ChangingTextProps {
@@ -12,7 +17,13 @@ interface ChangingTextProps {
 	direction?: "up" | "down" | "left" | "right"
 }
 
-const ChangingText = ({ texts, duration = 2500, motionProps, direction = "down", className }: ChangingTextProps) => {
+const ChangingText = ({
+	texts,
+	duration = 2500,
+	motionProps,
+	direction = "down",
+	className,
+}: ChangingTextProps) => {
 	const [index, setIndex] = useState(0)
 
 	let axis: "x" | "y"
@@ -43,7 +54,10 @@ const ChangingText = ({ texts, duration = 2500, motionProps, direction = "down",
 	return (
 		<div className="overflow-hidden py-2">
 			<AnimatePresence mode="wait">
-				<motion.p key={texts[index]} className={cn(className)} {...combinedMotionProps}>
+				<motion.p
+					key={texts[index]}
+					className={cn(className)}
+					{...combinedMotionProps}>
 					{texts[index]}
 				</motion.p>
 			</AnimatePresence>

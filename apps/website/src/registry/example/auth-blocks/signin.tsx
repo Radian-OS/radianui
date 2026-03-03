@@ -16,8 +16,20 @@ const SignIn = () => {
 			<div className="max-w-88 sm:w-88 w-full px-4">
 				<div className="mx-auto flex flex-col gap-9">
 					<Link href="/" style={{ fill: "white", color: "white" }}>
-						<img src="/radian.svg" className="dark:hidden" alt="radian-logo" width={112} height={36} />
-						<img src="/radian-dark.svg" alt="radian-logo" className="hidden dark:block" width={112} height={36} />
+						<img
+							src="/radian.svg"
+							className="dark:hidden"
+							alt="radian-logo"
+							width={112}
+							height={36}
+						/>
+						<img
+							src="/radian-dark.svg"
+							alt="radian-logo"
+							className="hidden dark:block"
+							width={112}
+							height={36}
+						/>
 					</Link>
 
 					<div className="space-y-6">
@@ -41,7 +53,9 @@ const SignIn = () => {
 								</div>
 							</form>
 
-							<Button className="w-full bg-black px-3.5 py-2.5" onClick={handleSubmitClick}>
+							<Button
+								className="w-full bg-black px-3.5 py-2.5"
+								onClick={handleSubmitClick}>
 								Sign In
 							</Button>
 						</div>

@@ -1,4 +1,7 @@
-import { type NavigationItem, navigationItems } from "@/config/navigation-config"
+import {
+	type NavigationItem,
+	navigationItems,
+} from "@/config/navigation-config"
 
 export function getAllNavigationItems() {
 	const flattenItems = (items: NavigationItem[]): NavigationItem[] => {

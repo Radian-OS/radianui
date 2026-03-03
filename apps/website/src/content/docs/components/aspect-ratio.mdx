@@ -18,79 +18,38 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add aspect-ratio",
-				npm: "npx radianui@latest add aspect-ratio",
-				yarn: "yarn dlx radianui@latest add aspect-ratio",
-				bun: "bunx radianui@latest add aspect-ratio",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add aspect-ratio
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
-		<Steps>
-			<Step>Install the following dependencies:</Step>
-			<PackageManagerTabs
-				commands={{
-					pnpm: "pnpm add @radix-ui/react-aspect-ratio",
-					npm: "npm install @radix-ui/react-aspect-ratio",
-					yarn: "yarn add @radix-ui/react-aspect-ratio",
-					bun: "bun add @radix-ui/react-aspect-ratio",
-				}}
-			/>
-			<Step>Copy and paste the following code into your project.</Step>
-			<ComponentSource name="aspect-ratio" title="components/ui/aspect-ratio.tsx" collapsible={false} />
-			<Step>Update the import paths as per your project structure.</Step>
-		</Steps>
-	</InstallTabsContent>
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-aspect-ratio
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="aspect-ratio" title="components/ui/aspect-ratio.tsx" collapsible />
+
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
 </InstallationTabs>
 
 ## Usage
 
 ### Imports
 
-<CodeSnippet title="/components/ui/aspect-ratio" code={`import { AspectRatio } from "@/components/ui/aspect-ratio"`} />
+```tsx showLineNumbers title="/components/ui/aspect-ratio.tsx"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/aspect-ratio"
-	code={`<AspectRatio ratio={16 / 9}>
-	    <Image src="/media/background-2.png" alt="Example" fill />
-</AspectRatio>`}
-/>
-
----
-
-## How Radix Aspect Ratio Works
-
-The **AspectRatio** component ensures that the height is always calculated from the width, keeping the specified ratio intact.
-If you apply a fixed height, the component can’t maintain the ratio as intended.
-
-If you need a fixed height, simply avoid using **AspectRatio**.
-Set the height directly and let the width adjust normally.
-
----
-
-## Examples
-
-### Ratio - 9:16
-
-<ComponentPreview path="aspect-ratio/aspect-ratio-9-16" />
-
-### Ratio - 4:3
-
-<ComponentPreview path="aspect-ratio/aspect-ratio-4-3" />
-
-### Ratio - 1:1
-
-<ComponentPreview path="aspect-ratio/aspect-ratio-1-1" />
-
----
-
-## Props
-
-<PropsTableWrapper>
-	<PropsTable title="AspectRatio" externalReference="https://www.radix-ui.com/primitives/docs/components/aspect-ratio#root" />
-</PropsTableWrapper>
+```tsx showLineNumbers title="/components/ui/aspect-ratio.tsx"
+<AspectRatio ratio={16 / 9}>
+	<Image src="/media/background-2.png" alt="Example" fill />
+</AspectRatio>
+```

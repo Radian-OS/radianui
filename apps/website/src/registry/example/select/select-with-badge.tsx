@@ -1,5 +1,11 @@
 import { Badge } from "@/registry/ui/badge"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 export default function SelectWithBadge() {
 	return (

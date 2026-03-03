@@ -20,7 +20,10 @@ const ToastExpand = () => {
 	return (
 		<div className="flex flex-col gap-4">
 			<div className="flex gap-2">
-				<Button variant="outline" className="flex-1 sm:w-[140px]" onClick={() => showToast(true)}>
+				<Button
+					variant="outline"
+					className="flex-1 sm:w-[140px]"
+					onClick={() => showToast(true)}>
 					Expand
 				</Button>
 			</div>

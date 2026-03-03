@@ -28,7 +28,11 @@ export default function Signup({ fullScreen = true }: SignupProps) {
 	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
 	return (
-		<div className={cn("bg-bg flex items-center justify-center px-5", { "h-screen w-screen": fullScreen, "h-full w-full": !fullScreen })}>
+		<div
+			className={cn("bg-bg flex items-center justify-center px-5", {
+				"h-screen w-screen": fullScreen,
+				"h-full w-full": !fullScreen,
+			})}>
 			<div className="w-100 bg-bg border-border flex rounded-2xl border px-5 py-6 sm:p-6">
 				<div className="flex flex-1 flex-col gap-8">
 					<div>
@@ -66,7 +70,11 @@ export default function Signup({ fullScreen = true }: SignupProps) {
 										Password
 									</Label>
 									<InputWrapper>
-										<Input id="password" className="peer" type={showPassword ? "text" : "password"} />
+										<Input
+											id="password"
+											className="peer"
+											type={showPassword ? "text" : "password"}
+										/>
 										<IconComponent
 											className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 											onMouseDown={togglePasswordVisibility}
@@ -94,15 +102,23 @@ export default function Signup({ fullScreen = true }: SignupProps) {
 					<div className="flex flex-1 flex-col gap-6">
 						<div className="flex items-center gap-2">
 							<Divider className="flex-1" />
-							<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">Or continue with</span>
+							<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">
+								Or continue with
+							</span>
 							<Divider className="flex-1" />
 						</div>
 						<div className="flex gap-3">
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button
+								variant="outline"
+								color="neutral"
+								className="text-fg-secondary w-full">
 								<GoogleIcon />
 								Google
 							</Button>
-							<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+							<Button
+								variant="outline"
+								color="neutral"
+								className="text-fg-secondary w-full">
 								<GithubIcon />
 								Github
 							</Button>

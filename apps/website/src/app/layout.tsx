@@ -24,7 +24,8 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
-		description: "Discover Radian, the ultimate React & Tailwind component lib.",
+		description:
+			"Discover Radian, the ultimate React & Tailwind component lib.",
 		type: "website",
 		url: `${process.env.NEXT_PUBLIC_WEBSITE_URL!}`,
 		images: [
@@ -38,7 +39,8 @@ export const metadata: Metadata = {
 	twitter: {
 		card: "summary_large_image",
 		title: `${websiteMetadata.name} - Ship next generation of world class products and solutions`,
-		description: "Discover Radian, the ultimate React & Tailwind component lib.",
+		description:
+			"Discover Radian, the ultimate React & Tailwind component lib.",
 		images: [`${websiteMetadata.ogImage}`],
 	},
 	alternates: {
@@ -67,7 +69,8 @@ export default async function RootLayout({
 		"@type": "SoftwareApplication",
 		name: "Radian",
 		alternateName: ["RadianUI", "RadianOS", "Radianos"],
-		description: "Open-source React component library with Tailwind CSS. Install with radianui CLI.",
+		description:
+			"Open-source React component library with Tailwind CSS. Install with radianui CLI.",
 		url: process.env.NEXT_PUBLIC_WEBSITE_URL, // ✅ Evaluated here
 		applicationCategory: "DeveloperApplication",
 		operatingSystem: "Web",
@@ -81,12 +84,19 @@ export default async function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<head>
 				<AhrefsAnalytics />
-				<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+				<script
+					type="application/ld+json"
+					dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+				/>
 			</head>
 			<body className={cn("relative min-h-svh antialiased", geist.variable, inter.variable)}>
 				<PostHogProvider>
 					<ToastProvider>
-						<ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="dark"
+							enableSystem
+							disableTransitionOnChange>
 							{children}
 						</ThemeProvider>
 					</ToastProvider>

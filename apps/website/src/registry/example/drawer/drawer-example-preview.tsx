@@ -1,18 +1,34 @@
 import React from "react"
 import { Button } from "@/registry/ui/button"
-import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/registry/ui/drawer"
+import {
+	Drawer,
+	DrawerBody,
+	DrawerClose,
+	DrawerContent,
+	DrawerDescription,
+	DrawerFooter,
+	DrawerHeader,
+	DrawerTitle,
+	DrawerTrigger,
+} from "@/registry/ui/drawer"
 
 function DrawerExamplePreview() {
 	return (
 		<div className="flex items-center justify-center">
-			<Drawer variant="default" direction="right" handle={false} backdrop="overlay">
+			<Drawer
+				variant="default"
+				direction="right"
+				handle={false}
+				backdrop="overlay">
 				<DrawerTrigger>
 					<Button>Open Trigger</Button>
 				</DrawerTrigger>
 				<DrawerContent>
 					<DrawerHeader>
 						<DrawerTitle>This is a drawer header</DrawerTitle>
-						<DrawerDescription>This is a drawer description message.</DrawerDescription>
+						<DrawerDescription>
+							This is a drawer description message.
+						</DrawerDescription>
 					</DrawerHeader>
 					<DrawerBody className="h-100 w-112.5 flex flex-col gap-3">
 						<div className="bg-fill4 h-64 rounded-xl"></div>

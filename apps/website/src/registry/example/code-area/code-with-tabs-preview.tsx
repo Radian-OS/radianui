@@ -17,7 +17,9 @@ const CodeWithTabsPreview = () => {
 	}
 
 	return (
-		<Tabs defaultValue="pnpm" className="bg-fill2 w-full gap-2 overflow-hidden rounded-xl p-1.5">
+		<Tabs
+			defaultValue="pnpm"
+			className="bg-fill2 w-full gap-2 overflow-hidden rounded-xl p-1.5">
 			<TabsList>
 				{Object.keys(commands).map((pkgManager) => (
 					<TabsTrigger value={pkgManager} key={pkgManager}>
@@ -27,7 +29,14 @@ const CodeWithTabsPreview = () => {
 			</TabsList>
 			{Object.entries(commands).map(([pkgManager, code]) => (
 				<TabsContent value={pkgManager} key={pkgManager}>
-					<CodeArea language="bash" theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"} code={code} className="border-soft rounded-[10px] border" />
+					<CodeArea
+						language="bash"
+						theme={
+							theme === "dark" ? "github-dark-high-contrast" : "github-light"
+						}
+						code={code}
+						className="border-soft rounded-[10px] border"
+					/>
 				</TabsContent>
 			))}
 		</Tabs>

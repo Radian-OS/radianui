@@ -10,7 +10,9 @@ export default function TextInsideSwitch() {
 		<div className="flex items-center gap-2.5">
 			<SwitchWrapper>
 				<Switch id={id} size={"32"} checked={isOn} onCheckedChange={setIsOn}>
-					<SwitchIndicator state={isOn ? "on" : "off"} className="text-fg-tertiary text-[8px] font-semibold">
+					<SwitchIndicator
+						state={isOn ? "on" : "off"}
+						className="text-fg-tertiary text-[8px] font-semibold">
 						{isOn ? "ON" : "OFF"}
 					</SwitchIndicator>
 				</Switch>

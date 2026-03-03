@@ -7,5 +7,11 @@ export default function AhrefsAnalytics() {
 		return null
 	}
 
-	return <Script src="https://analytics.ahrefs.com/analytics.js" data-key={key} strategy="lazyOnload" />
+	return (
+		<Script
+			src="https://analytics.ahrefs.com/analytics.js"
+			data-key={key}
+			strategy="lazyOnload"
+		/>
+	)
 }

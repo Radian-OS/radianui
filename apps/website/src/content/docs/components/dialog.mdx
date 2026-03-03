@@ -13,87 +13,71 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add dialog",
-				npm: "npx radianui@latest add dialog",
-				yarn: "yarn dlx radianui@latest add dialog",
-				bun: "bunx radianui@latest add dialog",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add dialog
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-dialog",
-				npm: "npm install @radix-ui/react-dialog",
-				yarn: "yarn add @radix-ui/react-dialog",
-				bun: "bun add @radix-ui/react-dialog",
-			}}
-		/>
-
+		```bash
+		npm install @radix-ui/react-dialog
+		```
     	<Step>Copy and paste the following code into your project.</Step>
-
     	<ComponentSource name="dialog" title="components/ui/dialog.tsx" collapsible />
-
 
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
+    </InstallTabsContent>
 
-</InstallTabsContent>
 </InstallationTabs>
-## Code
+
+## Usage
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/dialog"
-	code={`import { 
-Dialog, 
-DialogTrigger, 
-DialogContent, 
-DialogHeader, 
-DialogTitle, 
-DialogDescription, 
-DialogBody, 
-DialogFooter, 
-DialogClose 
-} from "@/components/ui/dialog";`}
-/>
+```tsx showLineNumbers title="/components/ui/dialog.tsx"
+import {
+	Dialog,
+	DialogBody,
+	DialogClose,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/dialog"
-	code={`<Dialog>
-      <DialogTrigger>Open Dialog</DialogTrigger>
-      <DialogContent>
-        <DialogHeader>
-    		<DialogTitle>My Dialog</DialogTitle>
-         	<DialogDescription>My Dialog Description</DialogDescription>
-        </DialogHeader>
-        <DialogBody>
-          This is a simple dialog body content.
-        </DialogBody>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline" color="neutral">
-              Cancel
-            </Button>
-          </DialogClose>
-          <Button>Confirm</Button>
-        </DialogFooter>
-      </DialogContent>
-</Dialog>`}
-/>
+```tsx showLineNumbers title="/components/ui/dialog.tsx"
+<Dialog>
+	<DialogTrigger>Open Dialog</DialogTrigger>
+	<DialogContent>
+		<DialogHeader>
+			<DialogTitle>My Dialog</DialogTitle>
+			<DialogDescription>My Dialog Description</DialogDescription>
+		</DialogHeader>
+		<DialogBody>This is a simple dialog body content.</DialogBody>
+		<DialogFooter>
+			<DialogClose asChild>
+				<Button variant="outline" color="neutral">
+					Cancel
+				</Button>
+			</DialogClose>
+			<Button>Confirm</Button>
+		</DialogFooter>
+	</DialogContent>
+</Dialog>
+```
 
 ---
 
@@ -128,8 +112,14 @@ DialogClose
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable title="Dialog" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#root" />
-	<PropsTable title="DialogTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#trigger" />
+	<PropsTable
+		title="Dialog"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#root"
+	/>
+	<PropsTable
+		title="DialogTrigger"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#trigger"
+	/>
 	<PropsTable
 		title="DialogContent"
 		data={[
@@ -148,9 +138,18 @@ DialogClose
 		]}
 	/>
 	<PropsTable title="DialogHeader" />
-	<PropsTable title="DialogTitle" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#title" />
-	<PropsTable title="DialogDescription" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#description" />
+	<PropsTable
+		title="DialogTitle"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#title"
+	/>
+	<PropsTable
+		title="DialogDescription"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#description"
+	/>
 	<PropsTable title="DialogBody" />
 	<PropsTable title="DialogFooter" />
-	<PropsTable title="DialogClose" externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#close" />
+	<PropsTable
+		title="DialogClose"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dialog#close"
+	/>
 </PropsTableWrapper>

@@ -29,7 +29,12 @@ const textareaStyles = cva(
 	}
 )
 
-function TextArea({ className, rounded = "rounded", resizable = true, ...props }: TextAreaProps) {
+function TextArea({
+	className,
+	rounded = "rounded",
+	resizable = true,
+	...props
+}: TextAreaProps) {
 	return (
 		<textarea
 			role="textarea"
@@ -48,7 +53,10 @@ function TextArea({ className, rounded = "rounded", resizable = true, ...props }
 }
 TextArea.display = "TextArea"
 
-function useCharacterLimit({ maxLength, initialValue = "" }: UseCharacterLimitOptions) {
+function useCharacterLimit({
+	maxLength,
+	initialValue = "",
+}: UseCharacterLimitOptions) {
 	const [value, setValue] = useState(initialValue)
 
 	const characterCount = value.length

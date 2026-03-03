@@ -10,39 +10,67 @@ export type DropdownContextType = {
 	indicator?: React.ReactNode
 }
 
-export type DropdownProps = React.ComponentProps<typeof DropdownMenuPrimitive.Root> & DropdownContextType
+export type DropdownProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.Root
+> &
+	DropdownContextType
 
-export type DropdownTriggerProps = React.ComponentProps<typeof DropdownMenuPrimitive.Trigger>
+export type DropdownTriggerProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.Trigger
+>
 
-export type DropdownContentProps = React.ComponentProps<typeof DropdownMenuPrimitive.Content> & React.RefAttributes<HTMLDivElement>
+export type DropdownContentProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.Content
+> &
+	React.RefAttributes<HTMLDivElement>
 
-export type DropdownItemProps = React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
+export type DropdownItemProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.Item
+> & {
 	inset?: boolean
 }
 
-export type DropdownCheckboxItemProps = React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>
+export type DropdownCheckboxItemProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.CheckboxItem
+>
 
-export type DropdownRadioGroupProps = React.ComponentProps<typeof DropdownMenuPrimitive.RadioGroup>
+export type DropdownRadioGroupProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.RadioGroup
+>
 
-export type DropdownRadioItemProps = React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>
+export type DropdownRadioItemProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.RadioItem
+>
 
-export type DropdownGroupProps = React.ComponentProps<typeof DropdownMenuPrimitive.Group>
+export type DropdownGroupProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.Group
+>
 
-export type DropdownSubProps = React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Sub>
+export type DropdownSubProps = React.ComponentPropsWithoutRef<
+	typeof DropdownMenuPrimitive.Sub
+>
 
-export type DropdownSubTriggerProps = React.ComponentPropsWithRef<typeof DropdownMenuPrimitive.SubTrigger> & {
+export type DropdownSubTriggerProps = React.ComponentPropsWithRef<
+	typeof DropdownMenuPrimitive.SubTrigger
+> & {
 	inset?: boolean
 }
 
-export type DropdownSubContentProps = React.ComponentProps<typeof DropdownMenuPrimitive.SubContent>
+export type DropdownSubContentProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.SubContent
+>
 
-export type DropdownLabelProps = React.ComponentProps<typeof DropdownMenuPrimitive.Label> & {
+export type DropdownLabelProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.Label
+> & {
 	inset?: boolean
 }
 
 export type DropdownShortcutProps = React.HTMLAttributes<HTMLSpanElement>
 
-export type DropdownDividerProps = React.ComponentProps<typeof DropdownMenuPrimitive.Separator>
+export type DropdownDividerProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.Separator
+>
 
 const DropdownContext = React.createContext<DropdownContextType | null>(null)
 
@@ -54,16 +82,27 @@ function useDropdown() {
 	return context
 }
 
-function Dropdown({ indicatorPosition = "right", indicator, ...props }: DropdownProps) {
+function Dropdown({
+	indicatorPosition = "right",
+	indicator,
+	...props
+}: DropdownProps) {
 	return (
-		<DropdownContext.Provider value={{ indicatorPosition: indicatorPosition ?? "right", indicator }}>
+		<DropdownContext.Provider
+			value={{ indicatorPosition: indicatorPosition ?? "right", indicator }}>
 			<DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />
 		</DropdownContext.Provider>
 	)
 }
 
 function DropdownTrigger({ className, ...props }: DropdownTriggerProps) {
-	return <DropdownMenuPrimitive.Trigger data-slot="dropdown-menu-trigger" className={cn("outline-none", className)} {...props} />
+	return (
+		<DropdownMenuPrimitive.Trigger
+			data-slot="dropdown-menu-trigger"
+			className={cn("outline-none", className)}
+			{...props}
+		/>
+	)
 }
 
 function DropdownContent({ className, ...props }: DropdownContentProps) {
@@ -99,7 +138,11 @@ function DropdownItem({ className, inset, ...props }: DropdownItemProps) {
 	)
 }
 
-function DropdownCheckboxItem({ children, className, ...props }: DropdownCheckboxItemProps) {
+function DropdownCheckboxItem({
+	children,
+	className,
+	...props
+}: DropdownCheckboxItemProps) {
 	const { indicatorPosition, indicator } = useDropdown()
 
 	return (
@@ -116,7 +159,11 @@ function DropdownCheckboxItem({ children, className, ...props }: DropdownCheckbo
 			{indicator && React.isValidElement(indicator) ? (
 				indicator
 			) : (
-				<span className={cn("absolute flex size-5 items-center justify-center", indicatorPosition === "left" ? "start-2" : "end-2")}>
+				<span
+					className={cn(
+						"absolute flex size-5 items-center justify-center",
+						indicatorPosition === "left" ? "start-2" : "end-2"
+					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
 						<Check size={20} />
 					</DropdownMenuPrimitive.ItemIndicator>
@@ -127,10 +174,19 @@ function DropdownCheckboxItem({ children, className, ...props }: DropdownCheckbo
 }
 
 function DropdownRadioGroup({ ...props }: DropdownRadioGroupProps) {
-	return <DropdownMenuPrimitive.RadioGroup data-slot="dropdown-menu-radio-group" {...props} />
+	return (
+		<DropdownMenuPrimitive.RadioGroup
+			data-slot="dropdown-menu-radio-group"
+			{...props}
+		/>
+	)
 }
 
-function DropdownRadioItem({ children, className, ...props }: DropdownRadioItemProps) {
+function DropdownRadioItem({
+	children,
+	className,
+	...props
+}: DropdownRadioItemProps) {
 	const { indicatorPosition, indicator } = useDropdown()
 
 	return (
@@ -147,7 +203,11 @@ function DropdownRadioItem({ children, className, ...props }: DropdownRadioItemP
 			{indicator && React.isValidElement(indicator) ? (
 				indicator
 			) : (
-				<span className={cn("absolute flex size-5 items-center justify-center", indicatorPosition === "left" ? "start-2" : "end-2")}>
+				<span
+					className={cn(
+						"absolute flex size-5 items-center justify-center",
+						indicatorPosition === "left" ? "start-2" : "end-2"
+					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
 						<Check size={20} />
 					</DropdownMenuPrimitive.ItemIndicator>
@@ -157,14 +217,26 @@ function DropdownRadioItem({ children, className, ...props }: DropdownRadioItemP
 	)
 }
 
-function DropdownGroup({ children, title, className, ...props }: DropdownGroupProps) {
+function DropdownGroup({
+	children,
+	title,
+	className,
+	...props
+}: DropdownGroupProps) {
 	return (
 		<DropdownMenuPrimitive.Group
 			data-slot="dropdown-menu-group"
-			className={cn("z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0", className)}
+			className={cn(
+				"z-50 flex flex-col items-stretch justify-start gap-0.5 px-0 py-0",
+				className
+			)}
 			data-radix-dropdown-menu-group
 			{...props}>
-			{title && <label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center gap-2.5 p-2 font-medium uppercase">{title}</label>}
+			{title && (
+				<label className="text-fg-tertiary text-xs/4.5 flex h-7 items-center gap-2.5 p-2 font-medium uppercase">
+					{title}
+				</label>
+			)}
 			{children}
 		</DropdownMenuPrimitive.Group>
 	)
@@ -174,7 +246,12 @@ function DropdownSub({ ...props }: DropdownSubProps) {
 	return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />
 }
 
-function DropdownSubTrigger({ children, className, inset, ...props }: DropdownSubTriggerProps) {
+function DropdownSubTrigger({
+	children,
+	className,
+	inset,
+	...props
+}: DropdownSubTriggerProps) {
 	return (
 		<DropdownMenuPrimitive.SubTrigger
 			data-slot="dropdown-menu-sub-trigger"
@@ -209,15 +286,40 @@ function DropdownSubContent({ className, ...props }: DropdownSubContentProps) {
 }
 
 function DropdownLabel({ className, inset, ...props }: DropdownLabelProps) {
-	return <DropdownMenuPrimitive.Label data-slot="dropdown-menu-label" className={cn("text-fg-tertiary px-2 py-1.5 text-xs font-medium", { "pl-8": inset }, className)} {...props} />
+	return (
+		<DropdownMenuPrimitive.Label
+			data-slot="dropdown-menu-label"
+			className={cn(
+				"text-fg-tertiary px-2 py-1.5 text-xs font-medium",
+				{ "pl-8": inset },
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 
 function DropdownShortcut({ className, ...props }: DropdownShortcutProps) {
-	return <span data-slot="dropdown-menu-shortcut" className={cn("text-fg-secondary ml-auto text-xs tracking-widest", className)} {...props} />
+	return (
+		<span
+			data-slot="dropdown-menu-shortcut"
+			className={cn(
+				"text-fg-secondary ml-auto text-xs tracking-widest",
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 
 function DropdownDivider({ className, ...props }: DropdownDividerProps) {
-	return <DropdownMenuPrimitive.Separator data-slot="dropdown-menu-separator" className={cn("bg-soft-alpha -mx-1 my-1 h-px", className)} {...props} />
+	return (
+		<DropdownMenuPrimitive.Separator
+			data-slot="dropdown-menu-separator"
+			className={cn("bg-soft-alpha -mx-1 my-1 h-px", className)}
+			{...props}
+		/>
+	)
 }
 
 export {

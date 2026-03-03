@@ -1,8 +1,20 @@
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
+import {
+	Breadcrumb,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbSeparator,
+} from "@/registry/ui/breadcrumb"
 import { Button } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 
 function BreadcrumbWithDropdown() {
 	return (

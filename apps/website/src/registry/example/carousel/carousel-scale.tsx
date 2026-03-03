@@ -1,27 +1,53 @@
 import * as React from "react"
-import { Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/registry/ui/carousel"
+import Image from "next/image"
+import { AspectRatio } from "@/registry/ui/aspect-ratio"
+import {
+	Carousel,
+	type CarouselApi,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "@/registry/ui/carousel"
 
 const BASE_TWEEN = 1
 
-const clamp = (n: number, min: number, max: number) => Math.min(Math.max(n, min), max)
+const clamp = (n: number, min: number, max: number) =>
+	Math.min(Math.max(n, min), max)
 
 export default function CarouselScale() {
 	const [api, setApi] = React.useState<CarouselApi>()
 	const tweenFactor = React.useRef(0)
 	const slideNodes = React.useRef<HTMLElement[]>([])
-
 	const images = [
-		{ src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4", alt: "Mountain landscape" },
-		{ src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e", alt: "Nature scenery" },
-		{ src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05", alt: "Foggy forest" },
-		{ src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e", alt: "Forest path" },
-		{ src: "https://images.unsplash.com/photo-1426604966848-d7adac402bff", alt: "Valley view" },
+		{
+			src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&auto=format",
+			alt: "Mountain landscape",
+		},
+		{
+			src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800&q=80&auto=format",
+			alt: "Nature scenery",
+		},
+		{
+			src: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800&q=80&auto=format",
+			alt: "Foggy forest",
+		},
+		{
+			src: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80&auto=format",
+			alt: "Forest path",
+		},
+		{
+			src: "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800&q=80&auto=format",
+			alt: "Valley view",
+		},
 	]
 
 	// cache slide nodes once
 	const registerSlides = React.useCallback((embla: CarouselApi) => {
 		if (!embla) return
-		slideNodes.current = embla.slideNodes().map((slide) => slide.querySelector(".scale-wrap") as HTMLElement)
+		slideNodes.current = embla
+			.slideNodes()
+			.map((slide) => slide.querySelector(".scale-wrap") as HTMLElement)
 	}, [])
 
 	const setFactor = React.useCallback((embla: CarouselApi) => {
@@ -69,7 +95,12 @@ export default function CarouselScale() {
 		setFactor(api)
 		applyScale(api)
 
-		api.on("reInit", registerSlides).on("reInit", setFactor).on("reInit", applyScale).on("scroll", applyScale).on("slideFocus", applyScale)
+		api
+			.on("reInit", registerSlides)
+			.on("reInit", setFactor)
+			.on("reInit", applyScale)
+			.on("scroll", applyScale)
+			.on("slideFocus", applyScale)
 
 		return () => {
 			api.off("reInit", registerSlides)
@@ -91,9 +122,16 @@ export default function CarouselScale() {
 			<CarouselContent className="-ml-2 md:-ml-4">
 				{images.map((image, index) => (
 					<CarouselItem key={index} className="basis-1/3 pl-2 md:pl-4">
-						<div className="scale-wrap duration-50 flex aspect-square items-center justify-center transition-transform will-change-transform">
-							<img src={image.src} alt={image.alt} className="h-full w-full rounded-2xl object-cover" />
-						</div>
+						<AspectRatio
+							ratio={1 / 1}
+							className="scale-wrap duration-50 flex items-center justify-center transition-transform will-change-transform">
+							<Image
+								src={image.src}
+								alt={image.alt}
+								fill
+								className="rounded-2xl object-cover"
+							/>
+						</AspectRatio>
 					</CarouselItem>
 				))}
 			</CarouselContent>

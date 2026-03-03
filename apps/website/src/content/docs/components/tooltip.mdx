@@ -19,26 +19,16 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add tooltip",
-				npm: "npx radianui@latest add tooltip",
-				yarn: "yarn dlx radianui@latest add tooltip",
-				bun: "bunx radianui@latest add tooltip",
-			}}
-		/>
+		```bash
+		npx radianui@latest add tooltip
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-tooltip",
-				npm: "npm install @radix-ui/react-tooltip",
-				yarn: "yarn add @radix-ui/react-tooltip",
-				bun: "bun add @radix-ui/react-tooltip",
-			}}
-		/>
+		```bash
+		npm install @radix-ui/react-tooltip
+		```
 
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="tooltip" title="components/ui/tooltip.tsx" collapsible />
@@ -53,24 +43,22 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/tooltip"
-	code={`import { 
-Tooltip, 
-TooltipTrigger, 
-TooltipContent 
-} from "@/components/ui/tooltip"`}
-/>
+```tsx showLineNumbers
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/components/ui/tooltip"
+```
 
 ### Code
 
-<CodeSnippet
-	title="Usage"
-	code={`<Tooltip>
-		<TooltipTrigger>Hover Me</TooltipTrigger>
-		<TooltipContent>This is a tooltip.</TooltipContent>
-	</Tooltip>`}
-/>
+```tsx showLineNumbers
+<Tooltip>
+	<TooltipTrigger>Hover Me</TooltipTrigger>
+	<TooltipContent>This is a tooltip.</TooltipContent>
+</Tooltip>
+```
 
 ---
 

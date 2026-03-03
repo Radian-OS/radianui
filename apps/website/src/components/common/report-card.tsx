@@ -9,7 +9,9 @@ const ReportCard = () => {
 		<div className="bg-bg border-border flex w-full flex-col gap-4 rounded-2xl border p-5">
 			<span>
 				<p className="text-fg text-base font-medium">Report an issue</p>
-				<p className="text-fg-secondary text-sm font-normal">What area are you having problems with?</p>
+				<p className="text-fg-secondary text-sm font-normal">
+					What area are you having problems with?
+				</p>
 			</span>
 			<span className="flex gap-3">
 				<span className="flex flex-col gap-1.5">
@@ -23,7 +25,10 @@ const ReportCard = () => {
 			</span>
 			<span className="flex flex-col gap-1.5">
 				<Label>Description</Label>
-				<TextArea rows={4} placeholder="Please include all information relevant to your issue." />
+				<TextArea
+					rows={4}
+					placeholder="Please include all information relevant to your issue."
+				/>
 			</span>
 			<span className="flex justify-end gap-2">
 				<Button variant="outline" color="neutral">

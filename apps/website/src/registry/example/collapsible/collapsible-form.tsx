@@ -1,7 +1,12 @@
 "use client"
 
 import React, { useState } from "react"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/registry/ui/accordion"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/registry/ui/accordion"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
 import { Collapsible, CollapsibleContent } from "@/registry/ui/collapsible"
@@ -13,7 +18,12 @@ export default function CollapsibleForm() {
 
 	return (
 		<div className="max-w-95 w-full">
-			<Accordion type="single" variant={"table"} size={"lg"} collapsible defaultValue="billing">
+			<Accordion
+				type="single"
+				variant={"table"}
+				size={"lg"}
+				collapsible
+				defaultValue="billing">
 				<AccordionItem value="shipping">
 					<AccordionTrigger>Shipping Address</AccordionTrigger>
 					<AccordionContent className="text-fg">
@@ -58,7 +68,13 @@ export default function CollapsibleForm() {
 					<AccordionTrigger>Billing Address</AccordionTrigger>
 					<AccordionContent className="text-fg">
 						<div className="flex items-center gap-2">
-							<Checkbox id="same-as-shipping" checked={sameAsShipping} onCheckedChange={(checked) => setSameAsShipping(checked === true)} />
+							<Checkbox
+								id="same-as-shipping"
+								checked={sameAsShipping}
+								onCheckedChange={(checked) =>
+									setSameAsShipping(checked === true)
+								}
+							/>
 							<Label htmlFor="same-as-shipping">Same as shipping address</Label>
 						</div>
 						<Collapsible open={!sameAsShipping}>
@@ -67,7 +83,10 @@ export default function CollapsibleForm() {
 									<div className="grid grid-cols-2 gap-2.5">
 										<div>
 											<Label htmlFor="billing-first-name">First Name</Label>
-											<Input id="billing-first-name" name="billing-first-name" />
+											<Input
+												id="billing-first-name"
+												name="billing-first-name"
+											/>
 										</div>
 										<div className="space-y-1.5">
 											<Label htmlFor="billing-last-name">Last Name</Label>
@@ -101,7 +120,9 @@ export default function CollapsibleForm() {
 						</Collapsible>
 					</AccordionContent>
 				</AccordionItem>
-				<AccordionItem value="footer" className="flex items-center justify-end gap-2 p-4">
+				<AccordionItem
+					value="footer"
+					className="flex items-center justify-end gap-2 p-4">
 					<Button variant="outline" color="neutral" type="button">
 						Go Back
 					</Button>

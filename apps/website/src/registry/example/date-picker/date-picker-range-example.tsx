@@ -41,23 +41,39 @@ export default function DatePickerPresetsExample() {
 	return (
 		<Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
 			<PopoverTrigger asChild>
-				<Button type="button" variant="outline" className="text-fg w-[320px] justify-start gap-2" color="neutral">
+				<Button
+					type="button"
+					variant="outline"
+					className="text-fg w-[320px] justify-start gap-2"
+					color="neutral">
 					{date?.from ? (
 						date.to ? (
 							<>
-								{format(date.from, "LLL dd, y")} - {format(date.to, "LLL dd, y")}
+								{format(date.from, "LLL dd, y")} -{" "}
+								{format(date.to, "LLL dd, y")}
 							</>
 						) : (
 							format(date.from, "LLL dd, y")
 						)
 					) : (
-						<span className="text-fg-tertiary text-sm font-normal">Pick a date range</span>
+						<span className="text-fg-tertiary text-sm font-normal">
+							Pick a date range
+						</span>
 					)}
 					<CalendarIcon className="text-fg-tertiary ml-auto size-4" />
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className="w-auto p-0">
-				<Calendar autoFocus className="border-0" mode="range" defaultMonth={date?.from} showOutsideDays={false} selected={date} onSelect={handleSelect} numberOfMonths={2} />
+				<Calendar
+					autoFocus
+					className="border-0"
+					mode="range"
+					defaultMonth={date?.from}
+					showOutsideDays={false}
+					selected={date}
+					onSelect={handleSelect}
+					numberOfMonths={2}
+				/>
 				<div className="border-border flex items-center justify-end gap-1.5 border-t p-3">
 					<Button color="neutral" variant="outline" onClick={handleReset}>
 						Reset

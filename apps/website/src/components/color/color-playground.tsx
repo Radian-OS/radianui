@@ -4,7 +4,13 @@ import React, { useEffect, useMemo, useState } from "react"
 import CommonCard from "@/components/common/common-card"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { Button } from "@/registry/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 const COLORS = [
 	{ title: "Red", value: "red" },
@@ -46,7 +52,14 @@ const COLOR_CLASSES = {
 	rose: "bg-[oklch(0.6515_0.221_6.33)]",
 } as const
 
-const CSS_VARIABLE_ORDER = ["primary", "primary-accent", "primary-focus", "primary-border", "primary-hover", "primary-text"] as const
+const CSS_VARIABLE_ORDER = [
+	"primary",
+	"primary-accent",
+	"primary-focus",
+	"primary-border",
+	"primary-hover",
+	"primary-text",
+] as const
 
 type Theme = {
 	name: string
@@ -89,8 +102,11 @@ function useTheme(colorName: string) {
 				setLoading(true)
 				setError(null)
 				try {
-					const res = await fetch(`/r/themes/${colorName}.json`, { cache: "force-cache" })
-					if (!res.ok) throw new Error(`Failed to load theme: ${res.statusText}`)
+					const res = await fetch(`/r/themes/${colorName}.json`, {
+						cache: "force-cache",
+					})
+					if (!res.ok)
+						throw new Error(`Failed to load theme: ${res.statusText}`)
 					const data: Theme = await res.json()
 					cache.set(colorName, data)
 					setTheme(data)
@@ -140,19 +156,30 @@ export default function ColorPlayground() {
 						{COLORS.map((colorOption) => (
 							<SelectItem key={colorOption.value} value={colorOption.value}>
 								<div className="flex items-center justify-center gap-2">
-									<span className={`inline-block h-4 w-4 rounded-sm ${COLOR_CLASSES[colorOption.value]}`} />
+									<span
+										className={`inline-block h-4 w-4 rounded-sm ${COLOR_CLASSES[colorOption.value]}`}
+									/>
 									{colorOption.title}
 								</div>
 							</SelectItem>
 						))}
 					</SelectContent>
 				</Select>
-				<Button variant="outline" color="neutral" aria-label={copied ? "Copied" : "Copy Primary Color"} onClick={copy} disabled={loading || !css}>
+				<Button
+					variant="outline"
+					color="neutral"
+					aria-label={copied ? "Copied" : "Copy Primary Color"}
+					onClick={copy}
+					disabled={loading || !css}>
 					{copied ? "Copied" : "Copy CSS"}
 				</Button>
 			</div>
 
-			{error && <div className="text-error-text text-sm">Failed to load theme: {error}</div>}
+			{error && (
+				<div className="text-error-text text-sm">
+					Failed to load theme: {error}
+				</div>
+			)}
 
 			<div className="bg-elevation-negative border-soft rounded-2xl">
 				<CommonCard />

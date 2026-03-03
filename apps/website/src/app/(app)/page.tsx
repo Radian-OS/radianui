@@ -30,7 +30,8 @@ export default function Page() {
 							Build next gen of world class products and solutions
 						</h1>
 						<p className="text-fg-secondary w-full max-w-[640px] text-center text-lg font-normal">
-							Radian is a high-quality, flexible and open-source, design and development library built using React, Radix and Tailwind.
+							Radian is a high-quality, flexible and open-source, design and
+							development library built using React, Radix and Tailwind.
 						</p>
 					</div>
 					<div className="flex w-full flex-col items-center justify-center gap-3 sm:flex-row">
@@ -42,7 +43,11 @@ export default function Page() {
 					<HomeInteractive />
 
 					{/* Upper left line */}
-					<svg className="not-lg:hidden full -left-290 absolute bottom-[70%] -z-10 max-h-[756px]" viewBox="0 0 1552 756" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						className="not-lg:hidden full -left-290 absolute bottom-[70%] -z-10 max-h-[756px]"
+						viewBox="0 0 1552 756"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M 1552 756 L 1284.28 210.94 C 1280.06 203.268 1272 198.5 1263.24 198.5 L 1088.88 198.5 C 1080.31 198.5 1072.39 193.926 1068.1 186.5 L 967.928 13 C 963.641 5.5744 955.718 1 947.144 1 H 0"
 							stroke="var(--color-soft)"
@@ -61,7 +66,13 @@ export default function Page() {
 					</svg>
 
 					{/* Lower left line */}
-					<svg className="not-lg:hidden -left-290 absolute bottom-[75%] -z-10" width="1331" height="402" viewBox="0 0 1331 402" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg
+						className="not-lg:hidden -left-290 absolute bottom-[75%] -z-10"
+						width="1331"
+						height="402"
+						viewBox="0 0 1331 402"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg">
 						<path
 							d="M1329.73 401L1193.99 159.301C1190.79 153.591 1184.75 150.057 1178.2 150.057L1019.5 150.057C1013.03 150.057 1007.05 146.604 1003.81 141L928.21 10.0566C924.974 4.45235 918.995 1 912.523 1H-4"
 							stroke="var(--color-soft)"
@@ -132,7 +143,13 @@ export default function Page() {
 				</div>
 			</Background>
 
-			<FeaturesSection textAutoHide={true} enableSpotlight={true} enableBorderGlow={true} clickEffect={true} spotlightRadius={573} />
+			<FeaturesSection
+				textAutoHide={true}
+				enableSpotlight={true}
+				enableBorderGlow={true}
+				clickEffect={true}
+				spotlightRadius={573}
+			/>
 
 			<InvertedSection />
 

@@ -5,7 +5,14 @@ import * as Flags from "country-flag-icons/react/3x2"
 import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 
 // const countries = [
@@ -378,12 +385,19 @@ export default function ComboboxDemo() {
 	const [selectedCode, setSelectedCode] = React.useState("")
 	const [open, setOpen] = React.useState(false)
 
-	const selectedCountry = countries.find((country) => country.code === selectedCode)
+	const selectedCountry = countries.find(
+		(country) => country.code === selectedCode
+	)
 
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<Button variant="outline" color="neutral" role="combobox" aria-haspopup="listbox" className="text-fg-tertiary w-80 font-normal">
+				<Button
+					variant="outline"
+					color="neutral"
+					role="combobox"
+					aria-haspopup="listbox"
+					className="text-fg-tertiary w-80 font-normal">
 					{selectedCountry ? (
 						<>
 							{<selectedCountry.flag className="size-4" />}
@@ -411,7 +425,12 @@ export default function ComboboxDemo() {
 									}}>
 									{<c.flag className="size-4" />}
 									<span>{c.name}</span>
-									<Check className={cn("ml-auto", c.code === selectedCode ? "opacity-100" : "opacity-0")} />
+									<Check
+										className={cn(
+											"ml-auto",
+											c.code === selectedCode ? "opacity-100" : "opacity-0"
+										)}
+									/>
 								</CommandItem>
 							))}
 						</CommandGroup>

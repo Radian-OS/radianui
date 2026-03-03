@@ -1,6 +1,19 @@
 import React from "react"
-import { BellRing, Box, CircleCheckBig, OctagonAlert, Sparkles, TriangleAlert } from "lucide-react"
-import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import {
+	BellRing,
+	Box,
+	CircleCheckBig,
+	OctagonAlert,
+	Sparkles,
+	TriangleAlert,
+} from "lucide-react"
+import {
+	Alert,
+	AlertContent,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+} from "@/registry/ui/alert"
 
 const AlertColorsExample = () => {
 	return (
@@ -11,7 +24,9 @@ const AlertColorsExample = () => {
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Primary alert</AlertTitle>
-					<AlertDescription>This alert is used to highlight information </AlertDescription>
+					<AlertDescription>
+						This alert is used to highlight information{" "}
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 			<Alert color="neutral">
@@ -20,7 +35,9 @@ const AlertColorsExample = () => {
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Neutral alert</AlertTitle>
-					<AlertDescription>This alert is used to highlight information </AlertDescription>
+					<AlertDescription>
+						This alert is used to highlight information{" "}
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 			<Alert color="success">
@@ -29,7 +46,9 @@ const AlertColorsExample = () => {
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Success alert</AlertTitle>
-					<AlertDescription>This alert is used to highlight information </AlertDescription>
+					<AlertDescription>
+						This alert is used to highlight information{" "}
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 			<Alert color="error">
@@ -38,7 +57,9 @@ const AlertColorsExample = () => {
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Error alert</AlertTitle>
-					<AlertDescription>This alert is used to highlight information </AlertDescription>
+					<AlertDescription>
+						This alert is used to highlight information{" "}
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 			<Alert color="info">
@@ -47,7 +68,9 @@ const AlertColorsExample = () => {
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Info alert</AlertTitle>
-					<AlertDescription>This alert is used to highlight information </AlertDescription>
+					<AlertDescription>
+						This alert is used to highlight information{" "}
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 			<Alert color="warning">
@@ -56,7 +79,9 @@ const AlertColorsExample = () => {
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Warning alert</AlertTitle>
-					<AlertDescription>This alert is used to highlight information </AlertDescription>
+					<AlertDescription>
+						This alert is used to highlight information{" "}
+					</AlertDescription>
 				</AlertContent>
 			</Alert>
 		</div>

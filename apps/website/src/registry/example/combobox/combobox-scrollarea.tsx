@@ -4,7 +4,14 @@ import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/registry/ui/command"
+import {
+	Command,
+	CommandEmpty,
+	CommandGroup,
+	CommandInput,
+	CommandItem,
+	CommandList,
+} from "@/registry/ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { ScrollArea } from "@/registry/ui/scroll-area"
 
@@ -48,8 +55,15 @@ export default function ComboboxWithScrollArea() {
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<Button variant="outline" color="neutral" role="combobox" aria-expanded={open} className="w-80 justify-between">
-					{value ? frameworks.find((f) => f.value === value)?.label : "Select framework..."}
+				<Button
+					variant="outline"
+					color="neutral"
+					role="combobox"
+					aria-expanded={open}
+					className="w-80 justify-between">
+					{value
+						? frameworks.find((f) => f.value === value)?.label
+						: "Select framework..."}
 					<ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
 				</Button>
 			</PopoverTrigger>
@@ -70,7 +84,12 @@ export default function ComboboxWithScrollArea() {
 											setOpen(false)
 										}}>
 										<span className="truncate">{framework.label}</span>
-										<Check className={cn("ml-auto", value === framework.value ? "opacity-100" : "opacity-0")} />
+										<Check
+											className={cn(
+												"ml-auto",
+												value === framework.value ? "opacity-100" : "opacity-0"
+											)}
+										/>
 									</CommandItem>
 								))}
 							</CommandGroup>

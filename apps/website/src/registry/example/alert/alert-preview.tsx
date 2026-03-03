@@ -1,5 +1,11 @@
 import { CircleCheckBig } from "lucide-react"
-import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import {
+	Alert,
+	AlertContent,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+} from "@/registry/ui/alert"
 import { Button } from "@/registry/ui/button"
 
 export default function AlertPreview() {
@@ -11,7 +17,9 @@ export default function AlertPreview() {
 				</AlertIcon>
 				<AlertContent>
 					<AlertTitle>Payment Successful</AlertTitle>
-					<AlertDescription>Your payment has been successfully transferred.</AlertDescription>
+					<AlertDescription>
+						Your payment has been successfully transferred.
+					</AlertDescription>
 					<section className="flex items-center gap-2 pt-2">
 						<Button variant="link" color="success">
 							Statement

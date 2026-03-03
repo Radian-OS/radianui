@@ -22,14 +22,22 @@ export function DesktopThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<IconButton aria-label="Loading theme" variant="outline" color="neutral" disabled>
+			<IconButton
+				aria-label="Loading theme"
+				variant="outline"
+				color="neutral"
+				disabled>
 				<Loader2 className="size-5 animate-spin" />
 			</IconButton>
 		)
 	}
 
 	return (
-		<IconButton aria-label="Theme toggling button" variant="outline" color="neutral" onClick={toggleTheme}>
+		<IconButton
+			aria-label="Theme toggling button"
+			variant="outline"
+			color="neutral"
+			onClick={toggleTheme}>
 			{resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
 		</IconButton>
 	)
@@ -49,14 +57,23 @@ export function TabletMobileThemeToggler() {
 
 	if (!mounted) {
 		return (
-			<IconButton aria-label="Loading theme" variant="outline" color="neutral" disabled>
+			<IconButton
+				aria-label="Loading theme"
+				variant="outline"
+				color="neutral"
+				disabled>
 				<Loader2 className="size-5 animate-spin" />
 			</IconButton>
 		)
 	}
 
 	return (
-		<Button aria-label="Theme toggling button" variant="outline" color="neutral" className="w-full" onClick={toggleTheme}>
+		<Button
+			aria-label="Theme toggling button"
+			variant="outline"
+			color="neutral"
+			className="w-full"
+			onClick={toggleTheme}>
 			{resolvedTheme === "light" ? (
 				<>
 					<MoonIcon className="size-5" />

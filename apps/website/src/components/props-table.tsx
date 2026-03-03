@@ -13,45 +13,87 @@ export type PropsData = {
 	required?: boolean
 }
 
-export const Table = ({ children, className, ...props }: HTMLAttributes<HTMLTableElement>) => (
+export const Table = ({
+	children,
+	className,
+	...props
+}: HTMLAttributes<HTMLTableElement>) => (
 	<div className="overflow-x-auto">
-		<table className={cn("text-fg-secondary border-soft w-full min-w-[650px] table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border", className)} {...props}>
+		<table
+			className={cn(
+				"text-fg-secondary border-soft w-full min-w-[650px] table-auto border-separate border-spacing-0 overflow-hidden rounded-lg border",
+				className
+			)}
+			{...props}>
 			{children}
 		</table>
 	</div>
 )
 
-export const TableHeader = ({ children, className, ...props }: HTMLAttributes<HTMLTableSectionElement>) => (
+export const TableHeader = ({
+	children,
+	className,
+	...props
+}: HTMLAttributes<HTMLTableSectionElement>) => (
 	<thead className={cn("bg-bg", className)} {...props}>
 		{children}
 	</thead>
 )
 
-export const TableBody = ({ children, className, ...props }: HTMLAttributes<HTMLTableSectionElement>) => (
+export const TableBody = ({
+	children,
+	className,
+	...props
+}: HTMLAttributes<HTMLTableSectionElement>) => (
 	<tbody className={cn("", className)} {...props}>
 		{children}
 	</tbody>
 )
 
-export const TableHead = ({ children, className, ...props }: HTMLAttributes<HTMLTableCellElement>) => (
-	<th className={cn("border-soft border-b px-2 py-3 text-start text-sm font-medium", className)} {...props}>
+export const TableHead = ({
+	children,
+	className,
+	...props
+}: HTMLAttributes<HTMLTableCellElement>) => (
+	<th
+		className={cn(
+			"border-soft border-b px-2 py-3 text-start text-sm font-medium",
+			className
+		)}
+		{...props}>
 		{children}
 	</th>
 )
 
-export const TableRow = ({ children, className, ...props }: HTMLAttributes<HTMLTableRowElement>) => (
+export const TableRow = ({
+	children,
+	className,
+	...props
+}: HTMLAttributes<HTMLTableRowElement>) => (
 	<tr className={cn("", className)} {...props}>
 		{children}
 	</tr>
 )
 
-export const TableCell = ({ children, className, colSpan, ...props }: HTMLAttributes<HTMLTableCellElement> & { colSpan?: number }) => (
-	<td className={cn("px-2 py-3 text-sm", className)} colSpan={colSpan} {...props}>
+export const TableCell = ({
+	children,
+	className,
+	colSpan,
+	...props
+}: HTMLAttributes<HTMLTableCellElement> & { colSpan?: number }) => (
+	<td
+		className={cn("px-2 py-3 text-sm", className)}
+		colSpan={colSpan}
+		{...props}>
 		{children}
 	</td>
 )
 
-export const DescriptionTooltip = ({ description }: { description: string }) => {
+export const DescriptionTooltip = ({
+	description,
+}: {
+	description: string
+}) => {
 	return (
 		<Tooltip>
 			<TooltipTrigger asChild>
@@ -62,7 +104,15 @@ export const DescriptionTooltip = ({ description }: { description: string }) => 
 	)
 }
 
-export const PropsTable = ({ title, data, externalReference }: { title?: string; data: PropsData[]; externalReference?: string }) => {
+export const PropsTable = ({
+	title,
+	data,
+	externalReference,
+}: {
+	title?: string
+	data: PropsData[]
+	externalReference?: string
+}) => {
 	return (
 		<div className="flex flex-col gap-2">
 			<div className="flex items-center gap-2 p-2">
@@ -86,7 +136,9 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 								<span className="flex items-center gap-2 whitespace-nowrap">
 									<DescriptionTooltip description={prop.description} />
 									{prop.name}
-									{prop.required && <span className="text-primary ml-1">*</span>}
+									{prop.required && (
+										<span className="text-primary ml-1">*</span>
+									)}
 								</span>
 							</TableCell>
 							<TableCell className="w-[140px]">
@@ -98,7 +150,11 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 							<TableCell className="grow">
 								<span className="flex flex-wrap gap-1">
 									{prop.values?.map((value) => (
-										<Badge key={value} variant="outline" color="neutral" size="20">
+										<Badge
+											key={value}
+											variant="outline"
+											color="neutral"
+											size="20">
 											{value}
 										</Badge>
 									))}
@@ -109,7 +165,11 @@ export const PropsTable = ({ title, data, externalReference }: { title?: string;
 					{externalReference && (
 						<TableRow>
 							<TableCell className="max-w-[150px]">
-								<Link href={externalReference} className="text-primary-text flex items-center gap-2 text-sm font-medium hover:underline" target="_blank" rel="noopener noreferrer">
+								<Link
+									href={externalReference}
+									className="text-primary-text flex items-center gap-2 text-sm font-medium hover:underline"
+									target="_blank"
+									rel="noopener noreferrer">
 									<ExternalLink size={16} />
 									<span className="flex-1">External Reference</span>
 								</Link>

@@ -18,48 +18,21 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add currency-input",
-				npm: "npx radianui@latest add currency-input",
-				yarn: "yarn dlx radianui@latest add currency-input",
-				bun: "bunx radianui@latest add currency-input",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add currency-input
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-	<Step>Install the following Dependencies</Step>
-	<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add react-currency-input-field",
-				npm: "npm install react-currency-input-field",
-				yarn: "yarn add react-currency-input-field",
-				bun: "bun add react-currency-input-field",
-			}}
-		/>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install react-currency-input-field
+		```
     	<Step>Copy and paste the following code into your project.</Step>
-		
-		<Tabs defaultValue="input">
-
-    		<TabsList>
-    			<TabsTrigger value="input">Input</TabsTrigger>
-    			<TabsTrigger value="currency-input">Currency Input</TabsTrigger>
-    		</TabsList>
-
-    		<TabsContent value="input">
-    		<ComponentSource name="input" title="components/ui/input.tsx" collapsible />
-    		</TabsContent>
-
-    		<TabsContent value="currency-input">
-    		<ComponentSource name="currency-input" title="components/ui/currency-input.tsx" collapsible />
-    		</TabsContent>
-    		</Tabs>
-
+    	<ComponentSource name="currency-input" title="components/ui/currency-input.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
-
     </Steps>
     </InstallTabsContent>
 
@@ -69,11 +42,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/currency-input" code={`import { CurrencyInput } from "@/components/ui/currency-input"`} />
+```tsx showLineNumbers title="/components/ui/currency-input.tsx"
+import { CurrencyInput } from "@/components/ui/currency-input"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/currency-input" code={`<CurrencyInput placeholder="Enter Currency Amount" />`} />
+```tsx showLineNumbers title="/components/ui/currency-input.tsx"
+<CurrencyInput placeholder="Enter Currency Amount" />
+```
 
 ---
 
@@ -124,7 +101,8 @@ links:
 <ComponentPreview path="currency-input/currency-select-with-custom-prefix" />
 
 <br />
-The currency-input is built on top of `react-currency-input-field` with [Input](/docs/components/input). For more details, refer to the [official
+The currency-input is built on top of `react-currency-input-field` with
+[Input](/docs/components/input). For more details, refer to the [official
 documentation](https://www.npmjs.com/package/react-currency-input-field).
 
 ---
@@ -132,5 +110,8 @@ documentation](https://www.npmjs.com/package/react-currency-input-field).
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable title="CurrencyInput" externalReference="https://www.npmjs.com/package/react-currency-input-field#props" />
+	<PropsTable
+		title="CurrencyInput"
+		externalReference="https://www.npmjs.com/package/react-currency-input-field#props"
+	/>
 </PropsTableWrapper>

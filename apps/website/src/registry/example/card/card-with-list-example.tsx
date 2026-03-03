@@ -7,7 +7,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 // Assuming you have a Badge component
 import { Button, IconButton } from "@/registry/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/registry/ui/card"
+import {
+	Card,
+	CardContent,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from "@/registry/ui/card"
 
 // User data
 const users = [
@@ -60,7 +66,11 @@ export default function CardWithList() {
 			<CardHeader>
 				<div className="flex items-center justify-between">
 					<CardTitle>Recent Users</CardTitle>
-					<IconButton aria-label="Settings Button" color="neutral" variant="outline" size="28">
+					<IconButton
+						aria-label="Settings Button"
+						color="neutral"
+						variant="outline"
+						size="28">
 						<Settings />
 					</IconButton>
 				</div>
@@ -68,22 +78,33 @@ export default function CardWithList() {
 			<CardContent>
 				{users.map((user) => {
 					return (
-						<div key={user.id} className="flex items-center justify-between gap-2 border-b border-dashed py-2 last:border-none">
+						<div
+							key={user.id}
+							className="flex items-center justify-between gap-2 border-b border-dashed py-2 last:border-none">
 							{/* Left: Avatar and User Info */}
 							<div className="flex items-center gap-3">
 								<Avatar className="size-8">
-									<AvatarImage src={`/media/avatars/${user.avatar}`} alt={user.name} />
+									<AvatarImage
+										src={`/media/avatars/${user.avatar}`}
+										alt={user.name}
+									/>
 									<AvatarFallback>SA</AvatarFallback>
 								</Avatar>
 								<div>
-									<Link href="#" className="text-fg hover:text-primary text-sm font-medium">
+									<Link
+										href="#"
+										className="text-fg hover:text-primary text-sm font-medium">
 										{user.name}
 									</Link>
-									<div className="text-fg-tertiary text-sm font-normal">{user.email}</div>
+									<div className="text-fg-tertiary text-sm font-normal">
+										{user.email}
+									</div>
 								</div>
 							</div>
 							{/* Right: Status Badge */}
-							<Badge color={user.status === "active" ? "success" : "neutral"} variant={user.status === "active" ? "strong" : "outline"}>
+							<Badge
+								color={user.status === "active" ? "success" : "neutral"}
+								variant={user.status === "active" ? "strong" : "outline"}>
 								{user.status.charAt(0).toUpperCase() + user.status.slice(1)}
 							</Badge>
 						</div>

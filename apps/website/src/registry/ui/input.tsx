@@ -2,13 +2,17 @@ import * as React from "react"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
-export type InputProps = Omit<React.ComponentProps<"input">, "size"> & VariantProps<typeof inputVariants>
+export type InputProps = Omit<React.ComponentProps<"input">, "size"> &
+	VariantProps<typeof inputVariants>
 
-export type InputAddonProps = React.ComponentProps<"div"> & VariantProps<typeof inputAddonVariants>
+export type InputAddonProps = React.ComponentProps<"div"> &
+	VariantProps<typeof inputAddonVariants>
 
-export type InputGroupProps = React.ComponentProps<"div"> & VariantProps<typeof inputGroupVariants>
+export type InputGroupProps = React.ComponentProps<"div"> &
+	VariantProps<typeof inputGroupVariants>
 
-export type InputWrapperProps = React.ComponentProps<"div"> & VariantProps<typeof inputWrapperVariants>
+export type InputWrapperProps = React.ComponentProps<"div"> &
+	VariantProps<typeof inputWrapperVariants>
 
 const inputVariants = cva(
 	`
@@ -143,27 +147,68 @@ const inputWrapperVariants = cva(
 )
 
 function Input({ className, type, size, ...props }: InputProps) {
-	return <input data-slot="input" type={type} className={cn(inputVariants({ size }), className)} {...props} />
+	return (
+		<input
+			data-slot="input"
+			type={type}
+			className={cn(inputVariants({ size }), className)}
+			{...props}
+		/>
+	)
 }
 
 Input.displayName = "Input"
 
 function InputAddon({ className, size, mode, ...props }: InputAddonProps) {
-	return <div data-slot="input-addon" className={cn(inputAddonVariants({ size, mode }), className)} {...props} />
+	return (
+		<div
+			data-slot="input-addon"
+			className={cn(inputAddonVariants({ size, mode }), className)}
+			{...props}
+		/>
+	)
 }
 
 InputAddon.displayName = "InputAddon"
 
 function InputGroup({ className, ...props }: InputGroupProps) {
-	return <div data-slot="input-group" className={cn(inputGroupVariants(), className)} {...props} />
+	return (
+		<div
+			data-slot="input-group"
+			className={cn(inputGroupVariants(), className)}
+			{...props}
+		/>
+	)
 }
 
 InputGroup.displayName = "InputGroup"
 
-function InputWrapper({ className, size, disabled, ...props }: InputWrapperProps) {
-	return <div data-slot="input-wrapper" className={cn(inputVariants({ size }), inputWrapperVariants({ size, disabled }), className)} {...props} />
+function InputWrapper({
+	className,
+	size,
+	disabled,
+	...props
+}: InputWrapperProps) {
+	return (
+		<div
+			data-slot="input-wrapper"
+			className={cn(
+				inputVariants({ size }),
+				inputWrapperVariants({ size, disabled }),
+				className
+			)}
+			{...props}
+		/>
+	)
 }
 
 InputWrapper.displayName = "InputWrapper"
 
-export { Input, InputAddon, InputGroup, InputWrapper, inputVariants, inputAddonVariants }
+export {
+	Input,
+	InputAddon,
+	InputGroup,
+	InputWrapper,
+	inputVariants,
+	inputAddonVariants,
+}

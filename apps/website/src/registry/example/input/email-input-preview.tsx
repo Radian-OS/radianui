@@ -1,5 +1,10 @@
 import { Mail } from "lucide-react"
-import { Input, InputAddon, InputGroup, InputWrapper } from "@/registry/ui/input"
+import {
+	Input,
+	InputAddon,
+	InputGroup,
+	InputWrapper,
+} from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 
 const EmailPreview = () => {
@@ -7,7 +12,11 @@ const EmailPreview = () => {
 		<div className="flex w-80 flex-col gap-6">
 			<div className="flex flex-col gap-1.5">
 				<Label>Email Input</Label>
-				<Input className="w-full" type="email" placeholder="info@radianos.com" />
+				<Input
+					className="w-full"
+					type="email"
+					placeholder="info@radianos.com"
+				/>
 			</div>
 
 			<div className="flex w-full flex-col gap-1.5">

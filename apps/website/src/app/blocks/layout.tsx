@@ -5,6 +5,8 @@ export const metadata = {
 	},
 }
 
-export default function BlocksLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function BlocksLayout({
+	children,
+}: Readonly<{ children: React.ReactNode }>) {
 	return <>{children}</>
 }

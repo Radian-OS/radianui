@@ -33,14 +33,24 @@ const data = [
 
 export default function VerticalTabs() {
 	return (
-		<Tabs defaultValue={data[0].trigger.toLowerCase()} className="w-full" orientation="vertical">
+		<Tabs
+			defaultValue={data[0].trigger.toLowerCase()}
+			className="w-full"
+			orientation="vertical">
 			<TabsList>
 				{data.map((item) => (
-					<TabsTrigger className="justify-start" key={item.id} value={item.trigger.toLowerCase()}>
+					<TabsTrigger
+						className="justify-start"
+						key={item.id}
+						value={item.trigger.toLowerCase()}>
 						{item.icon}
 						{item.trigger}
 						{item.count && (
-							<Badge color="error" size="20" variant="strong" className="rounded-full">
+							<Badge
+								color="error"
+								size="20"
+								variant="strong"
+								className="rounded-full">
 								{item.count}
 							</Badge>
 						)}

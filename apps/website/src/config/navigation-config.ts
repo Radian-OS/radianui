@@ -10,6 +10,7 @@ export type NavigationItem = {
 	isComingSoon?: boolean
 	disabled?: boolean
 	subItems?: NavigationItem[]
+	isExternal?: boolean
 }
 
 export type NavigationSection = {
@@ -20,7 +21,8 @@ export type NavigationSection = {
 }
 
 // Helper to generate thumbnail paths
-const getThumbnail = (title: string, dark = false) => `/thumbnails/${title.toLowerCase().replace(/\s+/g, "-")}${dark ? "-dark" : ""}.webp`
+const getThumbnail = (title: string, dark = false) =>
+	`/thumbnails/${title.toLowerCase().replace(/\s+/g, "-")}${dark ? "-dark" : ""}.webp`
 
 // ===== Fundamentals & Components Data =====
 const FUNDAMENTALS_DATA = [
@@ -129,13 +131,20 @@ const BLOCKS_DATA = [
 	{ title: "Reset Email Sent", category: "authentication" },
 	{ title: "New Password", category: "authentication" },
 ]
-const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(({ title, category }) => ({
-	title,
-	url: `${process.env.NEXT_PUBLIC_BLOCKS_URL!}/blocks/${category}/${title.toLowerCase().replace(/\s+/g, "-")}`,
-}))
+const BLOCKS_ITEMS: NavigationItem[] = BLOCKS_DATA.map(
+	({ title, category }) => ({
+		title,
+		url: `${process.env.NEXT_PUBLIC_BLOCKS_URL!}/blocks/${category}/${title.toLowerCase().replace(/\s+/g, "-")}`,
+		isExternal: true,
+	})
+)
 
 // ===== Animations Section =====
-const ANIMATIONS_ITEMS: NavigationItem[] = ["Fade", "Infinite Scroll", "Pointer"].map((title) => ({
+const ANIMATIONS_ITEMS: NavigationItem[] = [
+	"Fade",
+	"Infinite Scroll",
+	"Pointer",
+].map((title) => ({
 	title,
 	url: "#",
 	isComingSoon: true,
@@ -158,19 +167,38 @@ const FUNDAMENTALS_ITEMS: NavigationItem[] = FUNDAMENTALS_DATA.map((item) => ({
 
 // ===== Final Navigation =====
 export const navigationItems: NavigationSection[] = [
-	{ title: "Getting Started", searchIcon: "/search-icons/search-installation.svg", items: GETTING_STARTED_ITEMS },
-	{ title: "Installation", searchIcon: "/search-icons/search-installation.svg", items: INSTALLATION_ITEMS },
+	{
+		title: "Getting Started",
+		searchIcon: "/search-icons/search-installation.svg",
+		items: GETTING_STARTED_ITEMS,
+	},
+	{
+		title: "Installation",
+		searchIcon: "/search-icons/search-installation.svg",
+		items: INSTALLATION_ITEMS,
+	},
 	{
 		title: "Fundamentals",
 		searchIcon: "/search-icons/search-fundamentals.svg",
-		description: "Universal settings for building a strong foundation for a digital product",
+		description:
+			"Universal settings for building a strong foundation for a digital product",
 		items: FUNDAMENTALS_ITEMS,
 	},
 	{
 		title: "Components",
 		searchIcon: "/search-icons/search-components.svg",
-		items: generateComponentsItems.sort((a, b) => a.title.localeCompare(b.title)),
+		items: generateComponentsItems.sort((a, b) =>
+			a.title.localeCompare(b.title)
+		),
 	},
-	{ title: "Blocks", searchIcon: "/search-icons/search-ui-blocks.svg", items: BLOCKS_ITEMS },
-	{ title: "Animations", searchIcon: "/search-icons/search-components.svg", items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)) },
+	{
+		title: "Blocks",
+		searchIcon: "/search-icons/search-ui-blocks.svg",
+		items: BLOCKS_ITEMS,
+	},
+	{
+		title: "Animations",
+		searchIcon: "/search-icons/search-components.svg",
+		items: ANIMATIONS_ITEMS.sort((a, b) => a.title.localeCompare(b.title)),
+	},
 ]

@@ -1,5 +1,14 @@
 import React from "react"
-import { BadgeHelp, BookOpen, Box, CircleUserRound, Keyboard, LogOutIcon, Settings, Slack } from "lucide-react"
+import {
+	BadgeHelp,
+	BookOpen,
+	Box,
+	CircleUserRound,
+	Keyboard,
+	LogOutIcon,
+	Settings,
+	Slack,
+} from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Divider } from "@/registry/ui/divider"
@@ -15,7 +24,9 @@ const Dropdown = () => {
 					</Avatar>
 					<span className="grow">
 						<p className="text-fg text-sm font-medium">Saru Shrestha</p>
-						<p className="text-fg-tertiary text-[13px] font-normal">saru@radian.com</p>
+						<p className="text-fg-tertiary text-[13px] font-normal">
+							saru@radian.com
+						</p>
 					</span>
 					<Badge variant="strong" color="primary" size="24">
 						PRO
@@ -26,7 +37,11 @@ const Dropdown = () => {
 			<div className="p-1">
 				<p className="text-fg-tertiary p-2 text-[12px] font-medium"> GENERAL</p>
 				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
-					<CircleUserRound size={20} strokeWidth={1.5} className="text-fg-secondary" />
+					<CircleUserRound
+						size={20}
+						strokeWidth={1.5}
+						className="text-fg-secondary"
+					/>
 					<p className="text-fg text-sm font-normal">View Profile</p>
 				</span>
 				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
@@ -45,7 +60,11 @@ const Dropdown = () => {
 					<p className="text-fg text-sm font-normal">Slack Community</p>
 				</span>
 				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
-					<BadgeHelp size={20} strokeWidth={1.5} className="text-fg-secondary" />
+					<BadgeHelp
+						size={20}
+						strokeWidth={1.5}
+						className="text-fg-secondary"
+					/>
 					<p className="text-fg text-sm font-normal">Support</p>
 				</span>
 				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
@@ -60,7 +79,11 @@ const Dropdown = () => {
 					<p className="text-fg text-sm font-normal">Settings</p>
 				</span>
 				<span className="hover:bg-fill2-alpha flex cursor-pointer gap-2 rounded-sm p-2">
-					<LogOutIcon size={20} strokeWidth={1.5} className="text-fg-secondary" />
+					<LogOutIcon
+						size={20}
+						strokeWidth={1.5}
+						className="text-fg-secondary"
+					/>
 					<p className="text-fg text-sm font-normal">Log out</p>
 				</span>
 			</div>

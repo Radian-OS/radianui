@@ -7,25 +7,16 @@ description: Install and configure Vite.
 
 Run the `init` command to create a new Vite project:
 
-<br />
-<PackageManagerTabs
-	commands={{
-		npm: "npx radianui@latest init --vite",
-		yarn: "yarn dlx radianui@latest init --vite",
-		pnpm: "pnpm dlx radianui@latest init --vite",
-		bun: "bunx radianui@latest init --vite",
-	}}
-/>
+```bash
+npx radianui@latest init --vite
+```
 
 ## Configure components.json
 
 You will be asked a few questions to configure `components.json`:
 
-<br/>
-<CodeSnippet
-					title="components.json"
-					showLineNumber
-					code={`√ No package.json found at C:\\Users\\RadianOS\\Projects. Create a new project? ... yes
+```bash title="components.json"
+√ No package.json found at C:\\Users\\RadianOS\\Projects. Create a new project? ... yes
 √ What would you like to name your project? ... vite-project
 √ Which color would you like to use as your brand color? » Cyan
 √ Which font would you like to use for your project? » Geist
@@ -36,201 +27,159 @@ You will be asked a few questions to configure `components.json`:
 ✔ Updating global CSS variables
 
 Success! Project initialization completed. You may now add components.
-`}
-/>
+```
 
 ## Add Components
 
 You can now start adding components to your project.
 
+```bash
+npx radianui@latest add button
+```
+
 <br />
-<PackageManagerTabs
-	commands={{
-		npm: "npx radianui@latest add button",
-		yarn: "yarn dlx radianui@latest add button",
-		pnpm: "pnpm dlx radianui@latest add button",
-		bun: "bunx radianui@latest add button",
-	}}
-/>
-<br />
-The command above will add the `Button` component to your project. You can then import it like this:
-<br/>
-<CodeSnippet
-					title="app.tsx"
-					showLineNumber
-					code={`import {Button} from "@/components/ui/Button"
+The command above will add the `Button` component to your project. You can then
+include it like this:
+
+```tsx title="app.tsx" showLineNumbers
+import {Button} from "@/components/ui/Button"
 
 export default function App() {
   return (
     <div>
         <Button variant="strong" />
             Button
-        </Button>         
+        </Button>
     </div>
   )
-}                   `}
-/>
+}
+```
 
 ## In existing Project
 
 ### Install TailwindCSS
 
-<PackageManagerTabs
-	commands={{
-		npm: "npm install tailwindcss @tailwindcss/vite",
-		yarn: "yarn add tailwindcss @tailwindcss/vite",
-		pnpm: "pnpm add tailwindcss @tailwindcss/vite",
-		bun: "bun add tailwindcss @tailwindcss/vite",
-	}}
-/>
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
 <br />
-Replace everything in src/index.css with following
-<br />
-<CodeSnippet title="src/index.css" showLineNumber code={`@import "tailwindcss";`} />
+Replace everything in `src/index.css` with following
+
+```css title="src/index.css" showLineNumbers
+@import "tailwindcss";
+```
 
 ### Edit tsconfig.json file
 
 The current version of Vite splits TypeScript configuration into three files, two of which need to be edited. Add the baseUrl and paths properties to the compilerOptions section of
 the tsconfig.json and tsconfig.app.json files:
 
-<br />
-<CodeSnippet
-	title="tsconfig.json"
-	showLineNumber
-	code={`
+```json title="tsconfig.json"
 {
-		"files": [],
-		"references": [
-			{
+	"files": [],
+	"references": [
+		{
 			"path": "./tsconfig.app.json"
-			},
-			{
+		},
+		{
 			"path": "./tsconfig.node.json"
-			}
-		],
-		"compilerOptions": {
-			"baseUrl": ".",
-			"paths": {
-				"@/*": ["./src/*"]
-			}
 		}
-}`}
-/>
+	],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	}
+}
+```
 
 ### Edit tsconfig.app.json file
 
-<CodeSnippet
-	title="tsconfig.app.json"
-	showLineNumber
-	code={`
+```json title="tsconfig.app.json"
 {
-		"compilerOptions": {
-			// ...
-			"baseUrl": ".",
-			"paths": {
-				"@/*": [
-					"./src/*"
-				]
-			}
-			// ...
+	"compilerOptions": {
+		// ...
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"]
 		}
-}`}
-/>
+		// ...
+	}
+}
+```
 
 ### Update vite.config.ts
 
 Add the following code to the vite.config.ts so your app can resolve paths without error:
 
-<br />
-<PackageManagerTabs
-	commands={{
-		npm: "npm install -D @types/node",
-		yarn: "yarn add -D @types/node",
-		pnpm: "pnpm add -D @types/node",
-		bun: "bun add -D @types/node",
-	}}
-/>
-<br/>
- <CodeSnippet
-	title="vite.config.ts"
-	showLineNumber
-	code={
-`import path from "path"
+```bash
+npm install -D @types/node
+```
+
+```ts showLineNumbers title="vite.config.ts"
+import path from "path"
 import tailwindcss from "@tailwindcss/vite"
 import react from "@vitejs/plugin-react"
 import { defineConfig } from "vite"
 
-// https://vite.dev/config/
 export default defineConfig({
-plugins: [react(), tailwindcss()],
-resolve: {
-alias: {
-"@": path.resolve(\_\_dirname, "./src"),
-},
-},
-})`}
-/>
+	plugins: [react(), tailwindcss()],
+	resolve: {
+		alias: {
+			"@": path.resolve(\_\_dirname, "./src")
+		}
+	}
+})
+```
 
 ### Run the CLI
 
 Run the radian init command to setup your project:
 
-<br/>
-<PackageManagerTabs
-commands={{
-		npm: "npx radianui@latest init",
-		yarn: "yarn dlx radianui@latest init",
-		pnpm: "pnpm dlx radianui@latest init",
-		bun: "bunx radianui@latest init",
-	}}
- /> 
- <br/>
- <CodeSnippet
- code={`✔ Before init checks completed
+```bash
+npx radianui@latest init
+```
+
+```bash
+✔ Before init checks completed
 ✔ Detecting framework. Detected Vite.
 ✔ Verifying tailwind configuration. Found Tailwind configuration.
 ✔ Verifying import alias. Found import alias prefix: @
 ✅ Preflight checks passed
 🔍 Framework detected: vite, overriding provided option: next
 ✔ Writing components.json file
-⠋ Setting up project configuration✅ Vite project setup completed
+⠋ Setting up project configuration
+✅ Vite project setup completed
 ✔ Project configuration completed
 ✔ Installing dependencies
 
-Success! Project initialization completed. You may now add components.`}
-/>
+Success! Project initialization completed. You may now add components.
+```
 
 ### Add Components
 
 You can now start adding components to your project.
 
-<br />
-<PackageManagerTabs
-	commands={{
-		npm: "npx radianui@latest add button",
-		yarn: "yarn dlx radianui@latest add button",
-		pnpm: "pnpm dlx radianui@latest add button",
-		bun: "bunx radianui@latest add button",
-	}}
-/>
-<br />
-The command above will add the `Button` component to your project. You can then import it like this:
+```bash
+npx radianui@latest add button
+```
 
-<br/>
-<CodeSnippet
-					title="app.tsx"
-					showLineNumber
-					code={`import { Button } from "@/components/ui/Button"
+<br />
+The command above will add the `Button` component to your project. You can then
+include it like this:
+
+```tsx title="app.tsx" showLineNumbers
+import { Button } from "@/components/ui/Button"
 
 export default function App() {
   return (
     <div>
         <Button variant="strong"/>
             Button
-        </Button>         
+        </Button>
     </div>
   )
-}                   `}
-/
-
->
+}
+```

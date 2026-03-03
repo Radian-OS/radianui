@@ -12,7 +12,12 @@ export default function Installation() {
 					href={item.link}
 					className="hover:bg-elevation-level1 flex flex-col items-center justify-center gap-2 rounded-[10px] border px-6 py-10 transition-all duration-200 hover:shadow-md">
 					<span className="sr-only">{item.name}</span>
-					<svg role="img" viewBox={"0 0 40 40"} xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="fill-fg-secondary size-10">
+					<svg
+						role="img"
+						viewBox={"0 0 40 40"}
+						xmlns="http://www.w3.org/2000/svg"
+						fill="currentColor"
+						className="fill-fg-secondary size-10">
 						<title>{item.name}</title>
 						<path d={`${item.path}`} />
 					</svg>

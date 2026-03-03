@@ -34,7 +34,11 @@ export default function TabsVariantOutline() {
 						{item.icon}
 						{item.trigger}
 						{item.count && (
-							<Badge color="error" size="20" variant="strong" className="rounded-full">
+							<Badge
+								color="error"
+								size="20"
+								variant="strong"
+								className="rounded-full">
 								{item.count}
 							</Badge>
 						)}

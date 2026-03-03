@@ -2,11 +2,30 @@
 
 import React from "react"
 import type { LucideIcon } from "lucide-react"
-import { ChartColumnBig, ChartNetwork, ChevronDown, CopyCheck, Grid2X2, House, Layers2, Search, Users } from "lucide-react"
+import {
+	ChartColumnBig,
+	ChartNetwork,
+	ChevronDown,
+	CopyCheck,
+	Grid2X2,
+	House,
+	Layers2,
+	Search,
+	Users,
+} from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage, AvatarStatus } from "@/registry/ui/avatar"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	AvatarStatus,
+} from "@/registry/ui/avatar"
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "@/registry/ui/collapsible"
 import { Divider } from "@/registry/ui/divider"
 import { Input, InputWrapper } from "@/registry/ui/input"
 
@@ -86,8 +105,10 @@ const MENU_ITEMS: MenuItem[] = [
 const menuTriggerBaseClasses =
 	"hover:bg-fill1 focus-visible:ring-alpha group flex w-full items-center rounded-md p-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2"
 
-const activeClasses = "data-[active=true]:bg-primary-accent data-[active=true]:text-primary-text"
-const iconClasses = "text-fg-secondary size-5 group-data-[active=true]:text-primary"
+const activeClasses =
+	"data-[active=true]:bg-primary-accent data-[active=true]:text-primary-text"
+const iconClasses =
+	"text-fg-secondary size-5 group-data-[active=true]:text-primary"
 
 function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 	const hasChildren = Boolean(item.subMenuItems?.length)
@@ -96,7 +117,11 @@ function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 		const isActive = activeId === item.id
 
 		return (
-			<Link href={item.href || "#"} className={cn(menuTriggerBaseClasses, activeClasses, "gap-2")} data-active={isActive ? "true" : undefined} onClick={() => onActivate(item.id)}>
+			<Link
+				href={item.href || "#"}
+				className={cn(menuTriggerBaseClasses, activeClasses, "gap-2")}
+				data-active={isActive ? "true" : undefined}
+				onClick={() => onActivate(item.id)}>
 				<item.icon className={iconClasses} />
 				{item.label}
 			</Link>
@@ -106,9 +131,15 @@ function MenuItemEntry({ item, activeId, onActivate }: MenuItemEntryProps) {
 	const isParentActive = item.subMenuItems?.some((link) => link.id === activeId)
 
 	return (
-		<Collapsible className="group flex flex-col gap-0.5" defaultOpen={isParentActive}>
+		<Collapsible
+			className="group flex flex-col gap-0.5"
+			defaultOpen={isParentActive}>
 			<CollapsibleTrigger
-				className={cn("data-[state=open]:bg-fill2 group justify-between", menuTriggerBaseClasses, activeClasses)}
+				className={cn(
+					"data-[state=open]:bg-fill2 group justify-between",
+					menuTriggerBaseClasses,
+					activeClasses
+				)}
 				data-active={isParentActive ? "true" : undefined}>
 				<span className="flex items-center gap-2">
 					<item.icon className={iconClasses} />
@@ -168,7 +199,12 @@ export default function CollapsibleMenu() {
 
 				<nav className="flex flex-col gap-0.5 px-2">
 					{MENU_ITEMS.map((item) => (
-						<MenuItemEntry key={item.id} item={item} activeId={activeId} onActivate={setActiveId} />
+						<MenuItemEntry
+							key={item.id}
+							item={item}
+							activeId={activeId}
+							onActivate={setActiveId}
+						/>
 					))}
 				</nav>
 			</div>

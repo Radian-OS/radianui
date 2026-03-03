@@ -16,14 +16,9 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add spinner",
-				npm: "npx radianui@latest add spinner",
-				yarn: "yarn dlx radianui@latest add spinner",
-				bun: "bunx radianui@latest add spinner",
-			}}
-		/>
+		```bash
+		npx radianui@latest add spinner
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
@@ -40,11 +35,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/spinner" code={`import { Spinner }  from "@/components/ui/spinner"`} />
+```tsx showLineNumbers title="/components/ui/spinner.tsx"
+import { Spinner } from "@/components/ui/spinner"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/spinner" code={`<Spinner />`} />
+```tsx showLineNumbers title="/components/ui/spinner.tsx"
+<Spinner />
+```
 
 ---
 

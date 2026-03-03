@@ -1,9 +1,15 @@
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/registry/ui/resizable"
+import {
+	ResizableHandle,
+	ResizablePanel,
+	ResizablePanelGroup,
+} from "@/registry/ui/resizable"
 
 const ResizableExample = () => {
 	return (
 		<div className="mx-auto max-h-[200px] max-w-3xl">
-			<ResizablePanelGroup direction="horizontal" className="my-10 min-h-[200px] max-w-md rounded-lg border md:min-w-[350px]">
+			<ResizablePanelGroup
+				direction="horizontal"
+				className="my-10 min-h-[200px] max-w-md rounded-lg border md:min-w-[350px]">
 				<ResizablePanel defaultSize={50}>
 					<ResizablePanelGroup direction="horizontal">
 						<ResizablePanel defaultSize={25}>

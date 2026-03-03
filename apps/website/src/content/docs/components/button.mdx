@@ -18,50 +18,22 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-
-    <InstallTabsContent  value="cli">
-    	<PackageManagerTabs
-    		commands={{
-    			pnpm: "pnpm dlx radianui@latest add button",
-    			npm: "npx radianui@latest add button",
-    			yarn: "yarn dlx radianui@latest add button",
-    			bun: "bunx radianui@latest add button",
-    		}}
-    	/>
-    </InstallTabsContent>
-
-    <InstallTabsContent value="manual">
-    	<Steps>
-    		<Step>Install dependencies:</Step>
-    		<PackageManagerTabs
-    			commands={{
-    				pnpm: "pnpm add @radix-ui/react-slot",
-    				npm: "npm install @radix-ui/react-slot",
-    				yarn: "yarn add @radix-ui/react-slot",
-    				bun: "bun add @radix-ui/react-slot",
-    			}}
-    		/>
-    		<Step>Copy and paste the following code into your project.</Step>
-    		<Tabs defaultValue="button">
-
-    	    <TabsList>
-    			<TabsTrigger value="button">Button</TabsTrigger>
-    			<TabsTrigger value="spinner">Spinner</TabsTrigger>
-    		</TabsList>
-
-    		<TabsContent value="button">
-    		<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
-    		</TabsContent>
-
-    		<TabsContent value="spinner">
-    			<ComponentSource name="spinner" title="components/ui/spinner.tsx" collapsible />
-    		</TabsContent>
-
-    		</Tabs>
-
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add button
+		```
+	</InstallTabsContent>
+	<InstallTabsContent value="manual" className="p-0">
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-button
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="button" title="components/ui/button.tsx" collapsible />
 
     	<Step>Update the import paths as per your project structure.</Step>
-    	</Steps>
+    </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
@@ -70,19 +42,20 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/button.tsx"
-	code={`import { 
-Button, 
-ButtonGroup, 
-CompactButton, 
-IconButton 
-} from "@/components/ui/button"`}
-/>
+```tsx showLineNumbers title="/components/ui/button.tsx"
+import {
+	Button,
+	ButtonGroup,
+	CompactButton,
+	IconButton,
+} from "@/components/ui/button"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/button.tsx" code={`<Button>Click Me</Button>`} />
+```tsx showLineNumbers title="/components/ui/button.tsx"
+<Button>Click Me</Button>
+```
 
 ## Examples
 

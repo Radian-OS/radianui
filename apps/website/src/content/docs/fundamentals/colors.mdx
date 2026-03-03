@@ -4,11 +4,13 @@ description: Minimal and effective color for your entire Ul
 ---
 
 <br />
-Colors in Radian design system is built on minimal yet effective colors that is flexible enough to build an entire product on. The color system provides variables for all of the
-most common use cases while building an interface.
+Colors in Radian design system is built on minimal yet effective colors that is
+flexible enough to build an entire product on. The color system provides
+variables for all of the most common use cases while building an interface.
 
 <br />
-Colors are organized based on usage like text, border, background, & primary colors to ensure using color is easier for most people.
+Colors are organized based on usage like text, border, background, & primary
+colors to ensure using color is easier for most people.
 
 ## Preview Colors
 
@@ -38,7 +40,8 @@ Colors are organized based on usage like text, border, background, & primary col
 			token: "bg-fill2",
 			light: "#F4F4F6",
 			dark: "#131316",
-			usage: "Use [ bg-fill2 ] if gray background section needs more visibility",
+			usage:
+				"Use [ bg-fill2 ] if gray background section needs more visibility",
 		},
 		{
 			token: "bg-fill3",
@@ -218,7 +221,8 @@ Colors are organized based on usage like text, border, background, & primary col
 			token: "bg-fill1-alpha",
 			light: "#0A0A0B05",
 			dark: "#FFFFFF05",
-			usage: "Transparent version of fill-1 color, used for elevated components",
+			usage:
+				"Transparent version of fill-1 color, used for elevated components",
 		},
 		{
 			token: "bg-fill2-alpha",
@@ -417,156 +421,182 @@ Colors are organized based on usage like text, border, background, & primary col
 
 1. **Explore Color Primitives:** Radian already offers 15+ base color ranges to choose from.
 
-<Image src="/doc/mapcolors.png" width="704" height="450" alt="Color Primitives" />
-2. **Map Your Tokens(Design):** Create a smaller, more manageable set of design tokens that map to specific use cases.
+<Image
+	src="/doc/mapcolors.png"
+	width="704"
+	height="450"
+	alt="Color Primitives"
+/>
+2. **Map Your Tokens(Design):** Create a smaller, more manageable set of design
+tokens that map to specific use cases.
 
 <Image src="/doc/mapcolor.png" width="704" height="450" alt="Map Color" />
-3. **Map Your Colors(Development):** Map the colors from your Figma file to Global CSS file. Convert to OKLCH color format for best performance on all devices.
+3. **Map Your Colors(Development):** Map the colors from your Figma file to
+Global CSS file. Convert to OKLCH color format for best performance on all
+devices.
 
-<CodeSnippet
-	title="globals.css"
-	collapsible
-	showLineNumber
-	code={`
+<CodeCollapsibleWrapper>
+
+```css title="globals.css" showLineNumbers
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark \*));
 
 @theme {
+	--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-accent: oklch(0.94 0.0271 295.05);
+	--color-primary-focus: oklch(0.9169 0.0383 295.46);
+	--color-primary-border: oklch(0.6784 0.1708 290.38);
+	--color-primary-hover: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.528 0.2539 282.58);
 
-    --color-primary: oklch(0.528 0.2539 282.58);
-    --color-primary-accent: oklch(0.94 0.0271 295.05);
-    --color-primary-focus: oklch(0.9169 0.0383 295.46);
-    --color-primary-border: oklch(0.6784 0.1708 290.38);
-    --color-primary-hover: oklch(0.5768 0.2279 286.25);
-    --color-primary-text: oklch(0.528 0.2539 282.58);
+	--color-success: oklch(0.6334 0.171 148.65);
+	--color-success-accent: oklch(0.9685 0.0336 157.66);
+	--color-success-focus: oklch(0.9489 0.0556 156.34);
+	--color-success-border: oklch(0.7761 0.2117 148.55);
+	--color-success-hover: oklch(0.6901 0.1748 149.64);
+	--color-success-text: oklch(0.5388 0.1339 149.74);
 
-    --color-success: oklch(0.6334 0.171 148.65);
-    --color-success-accent: oklch(0.9685 0.0336 157.66);
-    --color-success-focus: oklch(0.9489 0.0556 156.34);
-    --color-success-border: oklch(0.7761 0.2117 148.55);
-    --color-success-hover: oklch(0.6901 0.1748 149.64);
-    --color-success-text: oklch(0.5388 0.1339 149.74);
+	--color-error: oklch(0.64 0.22 26.04);
+	--color-error-accent: oklch(0.9465 0.0252 17.61);
+	--color-error-focus: oklch(0.9133 0.0414 17.93);
+	--color-error-border: oklch(0.719 0.1751 22.5);
+	--color-error-hover: oklch(0.6786 0.2095 24.66);
+	--color-error-text: oklch(0.5716 0.2125 27.27);
 
-    --color-error: oklch(0.64 0.22 26.04);
-    --color-error-accent: oklch(0.9465 0.0252 17.61);
-    --color-error-focus: oklch(0.9133 0.0414 17.93);
-    --color-error-border: oklch(0.719 0.1751 22.5);
-    --color-error-hover: oklch(0.6786 0.2095 24.66);
-    --color-error-text: oklch(0.5716 0.2125 27.27);
+	--color-warning: oklch(0.8016 0.1705 73.27);
+	--color-warning-accent: oklch(0.9622 0.0384 83.83);
+	--color-warning-focus: oklch(0.946 0.0574 85.03);
+	--color-warning-border: oklch(0.7318 0.1522 75.09);
+	--color-warning-hover: oklch(0.8342 0.1594 79.51);
+	--color-warning-text: oklch(0.5461 0.1088 77.73);
 
-    --color-warning: oklch(0.8016 0.1705 73.27);
-    --color-warning-accent: oklch(0.9622 0.0384 83.83);
-    --color-warning-focus: oklch(0.946 0.0574 85.03);
-    --color-warning-border: oklch(0.7318 0.1522 75.09);
-    --color-warning-hover: oklch(0.8342 0.1594 79.51);
-    --color-warning-text: oklch(0.5461 0.1088 77.73);
+	--color-info: oklch(0.6092 0.2041 255.8);
+	--color-info-accent: oklch(0.949 0.0213 245.85);
+	--color-info-focus: oklch(0.9135 0.0358 249.52);
+	--color-info-border: oklch(0.829 0.0811 248.83);
+	--color-info-hover: oklch(0.6722 0.1615 251.56);
+	--color-info-text: oklch(0.6092 0.2041 255.8);
 
-    --color-info: oklch(0.6092 0.2041 255.8);
-    --color-info-accent: oklch(0.949 0.0213 245.85);
-    --color-info-focus: oklch(0.9135 0.0358 249.52);
-    --color-info-border: oklch(0.829 0.0811 248.83);
-    --color-info-hover: oklch(0.6722 0.1615 251.56);
-    --color-info-text: oklch(0.6092 0.2041 255.8);
+	--color-bg: oklch(1 0 0);
+	--color-fill1: oklch(0.9843 0.0011 197.14);
+	--color-fill2: oklch(0.9677 0.0027 286.35);
+	--color-fill3: oklch(0.9368 0.0029 264.54);
+	--color-fill4: oklch(0.904 0.0055 274.96);
 
-    --color-bg: oklch(1 0 0);
-    --color-fill1: oklch(0.9843 0.0011 197.14);
-    --color-fill2: oklch(0.9677 0.0027 286.35);
-    --color-fill3: oklch(0.9368 0.0029 264.54);
-    --color-fill4: oklch(0.904 0.0055 274.96);
+	--color-fg: oklch(0.2738 0.0093 276.77);
+	--color-fg-secondary: oklch(0.527 0.0238 276.59);
+	--color-fg-tertiary: oklch(0.6683 0.0194 275.5);
+	--color-fg-disabled: oklch(0.7366 0.0159 277.76);
+	--color-fg-inverse: oklch(1 0 0);
 
-    --color-fg: oklch(0.2738 0.0093 276.77);
-    --color-fg-secondary: oklch(0.527 0.0238 276.59);
-    --color-fg-tertiary: oklch(0.6683 0.0194 275.5);
-    --color-fg-disabled: oklch(0.7366 0.0159 277.76);
-    --color-fg-inverse: oklch(1 0 0);
+	--color-border: oklch(0.904 0.0055 274.96);
+	--color-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 88%
+	);
+	--color-soft: oklch(0.9368 0.0029 264.54);
+	--color-soft-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 92%
+	);
 
-    --color-border: oklch(0.904 0.0055 274.96);
-    --color-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 88%);
-    --color-soft: oklch(0.9368 0.0029 264.54);
-    --color-soft-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 92%);
+	--color-elevation-negative: oklch(0.9677 0.0027 286.35);
+	--color-elevation-level1: oklch(1 0 0);
+	--color-elevation-level2: oklch(1 0 0);
 
-    --color-elevation-negative: oklch(0.9677 0.0027 286.35);
-    --color-elevation-level1: oklch(1 0 0);
-    --color-elevation-level2: oklch(1 0 0);
+	--color-white-inverse: oklch(1 0 0);
+	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
-    --color-white-inverse: oklch(1 0 0);
-    --color-black-inverse: oklch(0.144 0.0028 247.09);
-
-    --color-fill1-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
-    --color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
-    --color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
-    --color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
-
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.1452 0.0021 286.13),
+		transparent 98%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.1452 0.0021 286.13),
+		transparent 96%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.1452 0.0021 286.13),
+		transparent 92%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.1452 0.0021 286.13),
+		transparent 88%
+	);
 }
 
 .dark {
+	--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-accent: oklch(0.2622 0.0915 289.13);
+	--color-primary-focus: oklch(0.2827 0.1227 284.67);
+	--color-primary-border: oklch(0.528 0.2539 282.58);
+	--color-primary-hover: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.6784 0.1708 290.38);
 
-    --color-primary: oklch(0.528 0.2539 282.58);
-    --color-primary-accent: oklch(0.2622 0.0915 289.13);
-    --color-primary-focus: oklch(0.2827 0.1227 284.67);
-    --color-primary-border: oklch(0.528 0.2539 282.58);
-    --color-primary-hover: oklch(0.5768 0.2279 286.25);
-    --color-primary-text: oklch(0.6784 0.1708 290.38);
+	--color-success: oklch(0.6334 0.171 148.65);
+	--color-success-accent: oklch(0.271 0.0537 151.74);
+	--color-success-focus: oklch(0.3887 0.0924 150.55);
+	--color-success-border: oklch(0.5388 0.1339 149.74);
+	--color-success-hover: oklch(0.6901 0.1748 149.64);
+	--color-success-text: oklch(0.7761 0.2117 148.55);
 
-    --color-success: oklch(0.6334 0.171 148.65);
-    --color-success-accent: oklch(0.271 0.0537 151.74);
-    --color-success-focus: oklch(0.3887 0.0924 150.55);
-    --color-success-border: oklch(0.5388 0.1339 149.74);
-    --color-success-hover: oklch(0.6901 0.1748 149.64);
-    --color-success-text: oklch(0.7761 0.2117 148.55);
+	--color-error: oklch(0.64 0.22 26.04);
+	--color-error-accent: oklch(0.2567 0.0648 22.77);
+	--color-error-focus: oklch(0.2973 0.0922 24.71);
+	--color-error-border: oklch(0.4423 0.146 25.48);
+	--color-error-hover: oklch(0.6786 0.2095 24.66);
+	--color-error-text: oklch(0.719 0.1751 22.5);
 
-    --color-error: oklch(0.64 0.22 26.04);
-    --color-error-accent: oklch(0.2567 0.0648 22.77);
-    --color-error-focus: oklch(0.2973 0.0922 24.71);
-    --color-error-border: oklch(0.4423 0.146 25.48);
-    --color-error-hover: oklch(0.6786 0.2095 24.66);
-    --color-error-text: oklch(0.719 0.1751 22.5);
+	--color-warning: oklch(0.8016 0.1705 73.27);
+	--color-warning-accent: oklch(0.2663 0.0372 84.34);
+	--color-warning-focus: oklch(0.3744 0.0636 81.14);
+	--color-warning-border: oklch(0.5461 0.1088 77.73);
+	--color-warning-hover: oklch(0.8342 0.1594 79.51);
+	--color-warning-text: oklch(0.8342 0.1594 79.51);
 
-    --color-warning: oklch(0.8016 0.1705 73.27);
-    --color-warning-accent: oklch(0.2663 0.0372 84.34);
-    --color-warning-focus: oklch(0.3744 0.0636 81.14);
-    --color-warning-border: oklch(0.5461 0.1088 77.73);
-    --color-warning-hover: oklch(0.8342 0.1594 79.51);
-    --color-warning-text: oklch(0.8342 0.1594 79.51);
+	--color-info: oklch(0.6092 0.2041 255.8);
+	--color-info-accent: oklch(0.2544 0.0418 249.78);
+	--color-info-focus: oklch(0.3147 0.0668 250.78);
+	--color-info-border: oklch(0.5067 0.1401 252.67);
+	--color-info-hover: oklch(0.6722 0.1615 251.56);
+	--color-info-text: oklch(0.6722 0.1615 251.56);
 
-    --color-info: oklch(0.6092 0.2041 255.8);
-    --color-info-accent: oklch(0.2544 0.0418 249.78);
-    --color-info-focus: oklch(0.3147 0.0668 250.78);
-    --color-info-border: oklch(0.5067 0.1401 252.67);
-    --color-info-hover: oklch(0.6722 0.1615 251.56);
-    --color-info-text: oklch(0.6722 0.1615 251.56);
+	--color-bg: oklch(0.144 0.0028 247.09);
+	--color-fill1: oklch(0.1652 0.0062 285.7);
+	--color-fill2: oklch(0.1881 0.006 285.81);
+	--color-fill3: oklch(0.2314 0.0078 274.6);
+	--color-fill4: oklch(0.2738 0.0093 276.77);
 
-    --color-bg: oklch(0.144 0.0028 247.09);
-    --color-fill1: oklch(0.1652 0.0062 285.7);
-    --color-fill2: oklch(0.1881 0.006 285.81);
-    --color-fill3: oklch(0.2314 0.0078 274.6);
-    --color-fill4: oklch(0.2738 0.0093 276.77);
+	--color-fg: oklch(0.9843 0.0011 197.14);
+	--color-fg-secondary: oklch(0.6683 0.0194 275.5);
+	--color-fg-tertiary: oklch(0.562 0.0249 277.15);
+	--color-fg-disabled: oklch(0.4585 0.0198 274.46);
+	--color-fg-inverse: oklch(0.2314 0.0078 274.6);
 
-    --color-fg: oklch(0.9843 0.0011 197.14);
-    --color-fg-secondary: oklch(0.6683 0.0194 275.5);
-    --color-fg-tertiary: oklch(0.562 0.0249 277.15);
-    --color-fg-disabled: oklch(0.4585 0.0198 274.46);
-    --color-fg-inverse: oklch(0.2314 0.0078 274.6);
+	--color-border: oklch(0.2738 0.0093 276.77);
+	--color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+	--color-soft: oklch(0.2314 0.0078 274.6);
+	--color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 
-    --color-border: oklch(0.2738 0.0093 276.77);
-    --color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-    --color-soft: oklch(0.2314 0.0078 274.6);
-    --color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+	--color-elevation-negative: oklch(0 0 0);
+	--color-elevation-level1: oklch(0.1881 0.006 285.81);
+	--color-elevation-level2: oklch(0.2314 0.0078 274.6);
 
-    --color-elevation-negative: oklch(0 0 0);
-    --color-elevation-level1: oklch(0.1881 0.006 285.81);
-    --color-elevation-level2: oklch(0.2314 0.0078 274.6);
+	--color-white-inverse: oklch(0.144 0.0028 247.09);
+	--color-black-inverse: oklch(1 0 0);
 
-    --color-white-inverse: oklch(0.144 0.0028 247.09);
-    --color-black-inverse: oklch(1 0 0);
-
-    --color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 98%);
-    --color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
-    --color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
-    --color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-
+	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 98%);
+	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
+	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
 }
 
 @layer base {
@@ -737,5 +767,6 @@ Colors are organized based on usage like text, border, background, & primary col
     }
 
 }
-`}
-/>
+```
+
+</CodeCollapsibleWrapper>

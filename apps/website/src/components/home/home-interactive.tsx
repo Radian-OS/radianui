@@ -10,7 +10,13 @@ import Signup from "@/app/blocks/signup/page"
 import Verification from "@/app/blocks/verification/page"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownRadioGroup, DropdownRadioItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownRadioGroup,
+	DropdownRadioItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 
 const PAGES = [
@@ -48,7 +54,10 @@ const HomeInteractive = () => {
 	function useCopyPaste() {
 		const [copied, setCopied] = useState(false)
 
-		const copy = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, code: string) => {
+		const copy = (
+			e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+			code: string
+		) => {
 			e.preventDefault()
 			navigator.clipboard.writeText(code)
 			setCopied(true)
@@ -60,12 +69,18 @@ const HomeInteractive = () => {
 
 		return { copied, copy }
 	}
-	const [activeTab, setActiveTab] = useState<(typeof PAGES)[number]["value"]>("signin")
+	const [activeTab, setActiveTab] =
+		useState<(typeof PAGES)[number]["value"]>("signin")
 	const { copy, copied } = useCopyPaste()
 
 	return (
 		<div className="bg-bg/60 border-soft relative z-30 h-full rounded-xl border p-3 backdrop-blur-[45px]">
-			<Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])} className="h-full">
+			<Tabs
+				value={activeTab}
+				onValueChange={(value) =>
+					setActiveTab(value as (typeof PAGES)[number]["value"])
+				}
+				className="h-full">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-1.5 pl-3">
 						<span className="bg-fill4 size-2 rounded-full" />
@@ -73,7 +88,10 @@ const HomeInteractive = () => {
 						<span className="bg-fill4 size-2 rounded-full" />
 					</div>
 					<div className="flex">
-						<TabsList variant="outline-ghost" size="md" className="not-lg:hidden mx-auto shrink-0 bg-transparent">
+						<TabsList
+							variant="outline-ghost"
+							size="md"
+							className="not-lg:hidden mx-auto shrink-0 bg-transparent">
 							{PAGES.map((page, idx) => (
 								<TabsTrigger key={`${page.value}-${idx}`} value={page.value}>
 									{page.label}
@@ -81,7 +99,11 @@ const HomeInteractive = () => {
 							))}
 						</TabsList>
 						<div className="not-lg:hidden flex items-center gap-2 pl-3">
-							<Link href={process.env.NEXT_PUBLIC_BLOCKS_URL!} target="_blank" rel="noopener noreferrer" className="text-fg-secondary text-sm">
+							<Link
+								href={process.env.NEXT_PUBLIC_BLOCKS_URL!}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="text-fg-secondary text-sm">
 								More Blocks
 							</Link>
 							<Badge variant="soft" size="20">
@@ -99,7 +121,9 @@ const HomeInteractive = () => {
 										<Check size={20} className="text-success" />
 										<div className="text-fg-inverse">
 											<p className="text-sm font-medium">Copied Command:</p>
-											<p className="text-sm font-normal">{activePage.command}</p>
+											<p className="text-sm font-normal">
+												{activePage.command}
+											</p>
 										</div>
 									</div>
 								))
@@ -108,21 +132,41 @@ const HomeInteractive = () => {
 							aria-label="Copy Add Block Command Button"
 							variant="ghost"
 							size="28">
-							{copied ? <Check size={16} className="shrink-0" /> : <Clipboard size={16} className="shrink-0" />}
+							{copied ? (
+								<Check size={16} className="shrink-0" />
+							) : (
+								<Clipboard size={16} className="shrink-0" />
+							)}
 						</Button>
-						<Button aria-label="Fullscreen" size="28" color="neutral" variant="ghost" asChild>
-							<Link rel="noopener noreferrer" href={PAGES.find((p) => p.value === activeTab)?.link ?? ""} target="_blank">
+						<Button
+							aria-label="Fullscreen"
+							size="28"
+							color="neutral"
+							variant="ghost"
+							asChild>
+							<Link
+								rel="noopener noreferrer"
+								href={PAGES.find((p) => p.value === activeTab)?.link ?? ""}
+								target="_blank">
 								<Maximize size={16} className="shrink-0" />
 							</Link>
 						</Button>
 						<Dropdown>
 							<DropdownTrigger asChild className="lg:hidden">
-								<Button aria-label="Change Block" color="neutral" size="28" variant="ghost">
+								<Button
+									aria-label="Change Block"
+									color="neutral"
+									size="28"
+									variant="ghost">
 									<ChevronDown size={16} className="shrink-0" />
 								</Button>
 							</DropdownTrigger>
 							<DropdownContent align="end">
-								<DropdownRadioGroup value={activeTab} onValueChange={(value) => setActiveTab(value as (typeof PAGES)[number]["value"])}>
+								<DropdownRadioGroup
+									value={activeTab}
+									onValueChange={(value) =>
+										setActiveTab(value as (typeof PAGES)[number]["value"])
+									}>
 									{PAGES.map((p) => (
 										<DropdownRadioItem key={p.value} value={p.value}>
 											{p.label}
@@ -134,7 +178,10 @@ const HomeInteractive = () => {
 					</div>
 				</div>
 				{PAGES.map((page) => (
-					<TabsContent key={page.value} value={page.value} className="border-soft h-full w-full overflow-clip rounded-lg border">
+					<TabsContent
+						key={page.value}
+						value={page.value}
+						className="border-soft h-full w-full overflow-clip rounded-lg border">
 						{page.component}
 					</TabsContent>
 				))}

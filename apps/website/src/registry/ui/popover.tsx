@@ -22,7 +22,14 @@ function PopoverTrigger({ ...props }: PopoverTriggerProps) {
 }
 PopoverTrigger.displayName = PopoverPrimitive.Trigger.displayName
 
-function PopoverContent({ align = "center", side = "bottom", sideOffset = 4, className, children, ...props }: PopoverContentProps) {
+function PopoverContent({
+	align = "center",
+	side = "bottom",
+	sideOffset = 4,
+	className,
+	children,
+	...props
+}: PopoverContentProps) {
 	return (
 		<PopoverPrimitive.Portal>
 			<PopoverPrimitive.Content

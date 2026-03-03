@@ -1,11 +1,28 @@
 import { TriangleAlert, User, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle } from "@/registry/ui/alert"
+import {
+	Alert,
+	AlertContent,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+} from "@/registry/ui/alert"
 import { IconButton } from "@/registry/ui/button"
 import { formatBytes, useFileUpload } from "@/registry/ui/file-upload"
 
 const FileUploadPreview = () => {
-	const [{ files, isDragging, errors }, { removeFile, handleDragEnter, handleDragLeave, handleDragOver, handleDrop, openFileDialog, getInputProps }] = useFileUpload({
+	const [
+		{ files, isDragging, errors },
+		{
+			removeFile,
+			handleDragEnter,
+			handleDragLeave,
+			handleDragOver,
+			handleDrop,
+			openFileDialog,
+			getInputProps,
+		},
+	] = useFileUpload({
 		maxFiles: 1,
 		accept: "image/*",
 		multiple: false,
@@ -24,7 +41,9 @@ const FileUploadPreview = () => {
 				<div
 					className={cn(
 						"group/avatar relative h-24 w-24 cursor-pointer overflow-hidden rounded-full border border-dashed transition-colors",
-						isDragging ? "border-primary bg-primary-focus" : "border-fg-secondary hover:border-fg-tertiary",
+						isDragging
+							? "border-primary bg-primary-focus"
+							: "border-fg-secondary hover:border-fg-tertiary",
 						previewUrl && "border-solid"
 					)}
 					onDragEnter={handleDragEnter}
@@ -34,7 +53,11 @@ const FileUploadPreview = () => {
 					onClick={openFileDialog}>
 					<input {...getInputProps()} className="sr-only" />
 					{previewUrl ? (
-						<img src={previewUrl} alt="Avatar" className="h-full w-full object-cover" />
+						<img
+							src={previewUrl}
+							alt="Avatar"
+							className="h-full w-full object-cover"
+						/>
 					) : (
 						<div className="flex h-full w-full items-center justify-center">
 							<User className="text-fg size-6" />
@@ -42,14 +65,23 @@ const FileUploadPreview = () => {
 					)}
 				</div>
 				{currentFile && (
-					<IconButton variant="strong" color="neutral" onClick={handleRemove} className="absolute end-0 top-0 size-7 rounded-full" aria-label="Remove avatar">
+					<IconButton
+						variant="strong"
+						color="neutral"
+						onClick={handleRemove}
+						className="absolute end-0 top-0 size-7 rounded-full"
+						aria-label="Remove avatar">
 						<X className="size-3.5" />
 					</IconButton>
 				)}
 			</div>
 			<div className="space-y-0.5 text-center">
-				<p className="text-sm font-medium">{currentFile ? "Avatar uploaded" : "Upload avatar"}</p>
-				<p className="text-fg text-xs">PNG, JPG up to {formatBytes(2 * 1024 * 1024)}</p>
+				<p className="text-sm font-medium">
+					{currentFile ? "Avatar uploaded" : "Upload avatar"}
+				</p>
+				<p className="text-fg text-xs">
+					PNG, JPG up to {formatBytes(2 * 1024 * 1024)}
+				</p>
 			</div>
 			{errors.length > 0 && (
 				<Alert variant="soft" color="error" className="mt-5">

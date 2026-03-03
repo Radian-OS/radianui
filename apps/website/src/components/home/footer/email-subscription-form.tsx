@@ -7,12 +7,21 @@ import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 
 const formSchema = z.object({
-	email: z.string().min(1, "Email is required").email("Please enter a valid email address."),
+	email: z
+		.string()
+		.min(1, "Email is required")
+		.email("Please enter a valid email address."),
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -21,13 +30,18 @@ type EmailSubscriptionProps = {
 	subscribe: (email: string) => Promise<{ message: string; status: number }>
 }
 
-export default function EmailSubscription({ subscribe }: EmailSubscriptionProps) {
+export default function EmailSubscription({
+	subscribe,
+}: EmailSubscriptionProps) {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: { email: "" },
 	})
 
-	const [subscriptionResult, setSubscriptionResult] = useState<{ message: string; status: number } | null>(null)
+	const [subscriptionResult, setSubscriptionResult] = useState<{
+		message: string
+		status: number
+	} | null>(null)
 
 	// Keep the subscription result for 5 seconds
 	useEffect(() => {
@@ -50,7 +64,10 @@ export default function EmailSubscription({ subscribe }: EmailSubscriptionProps)
 			}
 		} catch (error) {
 			console.error("Failed to subscribe email:", error)
-			setSubscriptionResult({ message: "Something went wrong. Please try again.", status: 500 })
+			setSubscriptionResult({
+				message: "Something went wrong. Please try again.",
+				status: 500,
+			})
 		}
 	}
 
@@ -60,7 +77,10 @@ export default function EmailSubscription({ subscribe }: EmailSubscriptionProps)
 			<div className="max-w-360 xl:px-30 flex w-full flex-col justify-between gap-8 px-5 py-8 md:flex-row md:py-10">
 				<div className="flex max-w-[396px] flex-col gap-2">
 					<span className="heading-5">Love Building Products?</span>
-					<p className="text-fg-secondary text-sm font-normal">We’re adding tons of cool components and blocks to help you build. Subscribe to get updates on development</p>
+					<p className="text-fg-secondary text-sm font-normal">
+						We’re adding tons of cool components and blocks to help you build.
+						Subscribe to get updates on development
+					</p>
 				</div>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -71,16 +91,34 @@ export default function EmailSubscription({ subscribe }: EmailSubscriptionProps)
 								render={({ field }: { field: FieldValues }) => (
 									<FormItem className="md:w-70 w-full">
 										<FormControl>
-											<Input placeholder="Enter your email" type="email" {...field} required />
+											<Input
+												placeholder="Enter your email"
+												type="email"
+												{...field}
+												required
+											/>
 										</FormControl>
-										<FormMessage className={cn({ "text-success-text": subscriptionResult?.status && subscriptionResult?.status >= 200 && subscriptionResult?.status < 400 })}>
+										<FormMessage
+											className={cn({
+												"text-success-text":
+													subscriptionResult?.status &&
+													subscriptionResult?.status >= 200 &&
+													subscriptionResult?.status < 400,
+											})}>
 											{subscriptionResult?.message}
 										</FormMessage>
 									</FormItem>
 								)}
 							/>
-							<Button className="w-23" type="submit" disabled={form.formState.isSubmitting}>
-								{form.formState.isSubmitting ? <Spinner variant="activity" /> : "Subscribe"}
+							<Button
+								className="w-23"
+								type="submit"
+								disabled={form.formState.isSubmitting}>
+								{form.formState.isSubmitting ? (
+									<Spinner variant="activity" />
+								) : (
+									"Subscribe"
+								)}
 							</Button>
 						</div>
 					</form>

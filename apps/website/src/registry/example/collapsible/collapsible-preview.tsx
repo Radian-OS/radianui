@@ -6,7 +6,11 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "@/registry/ui/collapsible"
 import { Divider } from "@/registry/ui/divider"
 import { Progress } from "@/registry/ui/progress"
 import { Spinner } from "@/registry/ui/spinner"
@@ -74,7 +78,12 @@ function TaskItem({ task }: TaskItemProps) {
 			return <span className="size-5 flex-shrink-0" />
 		}
 		if (task.status === "in-progress" && task.progress !== undefined) {
-			return <Spinner variant="activity" className="text-primary size-5 flex-shrink-0" />
+			return (
+				<Spinner
+					variant="activity"
+					className="text-primary size-5 flex-shrink-0"
+				/>
+			)
 		}
 		return <Check className="size-5 flex-shrink-0" />
 	}
@@ -93,7 +102,10 @@ function TaskItem({ task }: TaskItemProps) {
 		// Link button
 		if (task.statusLabel && task.statusLink) {
 			return (
-				<Button variant={"link"} color={task.status === "completed" ? "primary" : "neutral"} asChild>
+				<Button
+					variant={"link"}
+					color={task.status === "completed" ? "primary" : "neutral"}
+					asChild>
 					<Link href={task.statusLink}>{task.statusLabel}</Link>
 				</Button>
 			)
@@ -111,7 +123,10 @@ function TaskItem({ task }: TaskItemProps) {
 		<li className="flex items-center justify-between">
 			<div className="flex items-center gap-2">
 				{renderStatusIndicator()}
-				<span className={cn(task.progress !== undefined && "text-fg font-medium")}>{task.title}</span>
+				<span
+					className={cn(task.progress !== undefined && "text-fg font-medium")}>
+					{task.title}
+				</span>
 			</div>
 			{renderStatusContent()}
 		</li>
@@ -142,7 +157,11 @@ type CollapsibleHeaderProps = {
 	isOpen: boolean
 }
 
-function CollapsibleHeader({ title, subtitle, isOpen }: CollapsibleHeaderProps) {
+function CollapsibleHeader({
+	title,
+	subtitle,
+	isOpen,
+}: CollapsibleHeaderProps) {
 	return (
 		<div className="flex items-center gap-3 p-4">
 			<div className="flex flex-1 flex-col gap-1">
@@ -150,8 +169,17 @@ function CollapsibleHeader({ title, subtitle, isOpen }: CollapsibleHeaderProps) 
 				<span className="text-fg-secondary text-sm">{subtitle}</span>
 			</div>
 			<CollapsibleTrigger asChild>
-				<IconButton aria-label="Collapsible Button" variant="outline" color="neutral" size="32">
-					<ChevronDown className={cn("transition-transform duration-200", isOpen && "rotate-180")} />
+				<IconButton
+					aria-label="Collapsible Button"
+					variant="outline"
+					color="neutral"
+					size="32">
+					<ChevronDown
+						className={cn(
+							"transition-transform duration-200",
+							isOpen && "rotate-180"
+						)}
+					/>
 				</IconButton>
 			</CollapsibleTrigger>
 		</div>
@@ -162,8 +190,15 @@ export default function ProjectCollapsible() {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
-		<Collapsible open={isOpen} onOpenChange={setIsOpen} className="max-w-115 border-soft shadow-xs w-full rounded-xl border transition-all duration-200">
-			<CollapsibleHeader title="Design Project: Radian OS 3.0" subtitle="Status: 84% Complete (2 Dependencies Active)" isOpen={isOpen} />
+		<Collapsible
+			open={isOpen}
+			onOpenChange={setIsOpen}
+			className="max-w-115 border-soft shadow-xs w-full rounded-xl border transition-all duration-200">
+			<CollapsibleHeader
+				title="Design Project: Radian OS 3.0"
+				subtitle="Status: 84% Complete (2 Dependencies Active)"
+				isOpen={isOpen}
+			/>
 			<CollapsibleContent>
 				<Divider className="border-soft-alpha" />
 				<TaskList tasks={MOCK_TASKS} />

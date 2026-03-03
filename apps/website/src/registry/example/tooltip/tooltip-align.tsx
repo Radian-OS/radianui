@@ -13,7 +13,9 @@ export default function TooltipAlign() {
 						Start
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent align="start">Access the full documentation.</TooltipContent>
+				<TooltipContent align="start">
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
@@ -22,7 +24,9 @@ export default function TooltipAlign() {
 						Center
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent align="center">Access the full documentation.</TooltipContent>
+				<TooltipContent align="center">
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 			<Tooltip>
 				<TooltipTrigger asChild>
@@ -31,7 +35,9 @@ export default function TooltipAlign() {
 						End
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent align="end">Access the full documentation.</TooltipContent>
+				<TooltipContent align="end">
+					Access the full documentation.
+				</TooltipContent>
 			</Tooltip>
 		</div>
 	)

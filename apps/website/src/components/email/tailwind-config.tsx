@@ -48,18 +48,24 @@ export function TailwindConfig({ children }: { children: React.ReactNode }) {
 							"fg-disabled": "oklch(0.7325 0.0186 285.93)",
 							"fg-inverse": "oklch(1 0 0)",
 							border: "oklch(0.902 0.0068 286.26)",
-							alpha: "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
+							alpha:
+								"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
 							soft: "oklch(0.9349 0.004 286.32)",
-							"soft-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
+							"soft-alpha":
+								"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
 							"elevation-negative": "oklch(0.9677 0.0027 286.35)",
 							"elevation-level1": "oklch(1 0 0)",
 							"elevation-level2": "oklch(1 0 0)",
 							"white-inverse": "oklch(1 0 0)",
 							"black-inverse": "oklch(0.144 0.0028 247.09)",
-							"fill1-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%)",
-							"fill2-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%)",
-							"fill3-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
-							"fill4-alpha": "color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
+							"fill1-alpha":
+								"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%)",
+							"fill2-alpha":
+								"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%)",
+							"fill3-alpha":
+								"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%)",
+							"fill4-alpha":
+								"color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%)",
 						},
 					},
 				},

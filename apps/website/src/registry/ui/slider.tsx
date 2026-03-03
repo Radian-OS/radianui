@@ -2,7 +2,9 @@ import React from "react"
 import * as SliderPrimitive from "@radix-ui/react-slider"
 import { cn } from "@/lib/utils"
 
-export type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Root> & {
+export type SliderProps = React.ComponentPropsWithRef<
+	typeof SliderPrimitive.Root
+> & {
 	classNames?: {
 		sliderRoot?: string
 		sliderTrack?: string
@@ -10,9 +12,18 @@ export type SliderProps = React.ComponentPropsWithRef<typeof SliderPrimitive.Roo
 	}
 }
 
-export type SliderThumbProps = React.ComponentProps<typeof SliderPrimitive.Thumb>
+export type SliderThumbProps = React.ComponentProps<
+	typeof SliderPrimitive.Thumb
+>
 
-function Slider({ className, min = 0, max = 100, classNames, children, ...props }: SliderProps) {
+function Slider({
+	className,
+	min = 0,
+	max = 100,
+	classNames,
+	children,
+	...props
+}: SliderProps) {
 	return (
 		<SliderPrimitive.Root
 			data-slot="slider"
@@ -32,7 +43,10 @@ function Slider({ className, min = 0, max = 100, classNames, children, ...props 
 				)}>
 				<SliderPrimitive.Range
 					data-slot="slider-range"
-					className={cn("bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-8", classNames?.sliderRange)}
+					className={cn(
+						"bg-primary absolute data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-8",
+						classNames?.sliderRange
+					)}
 				/>
 			</SliderPrimitive.Track>
 

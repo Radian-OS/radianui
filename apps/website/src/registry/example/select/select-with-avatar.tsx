@@ -1,5 +1,13 @@
 import { Avatar, AvatarImage } from "@/registry/ui/avatar"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/registry/ui/select"
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
 
 export default function SelectWithBadge() {
 	return (
@@ -9,7 +17,9 @@ export default function SelectWithBadge() {
 			</SelectTrigger>
 			<SelectContent>
 				<SelectGroup>
-					<SelectLabel className="text-fg-secondary py-1 ps-2 text-xs font-normal">Select a user</SelectLabel>
+					<SelectLabel className="text-fg-secondary py-1 ps-2 text-xs font-normal">
+						Select a user
+					</SelectLabel>
 					<SelectItem value="1">
 						<span className="flex items-center gap-2">
 							<Avatar size="24">

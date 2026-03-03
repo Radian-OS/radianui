@@ -1,6 +1,19 @@
 import Link from "next/link"
-import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/registry/ui/breadcrumb"
-import { Dropdown, DropdownContent, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Breadcrumb,
+	BreadcrumbEllipsis,
+	BreadcrumbItem,
+	BreadcrumbLink,
+	BreadcrumbList,
+	BreadcrumbPage,
+	BreadcrumbSeparator,
+} from "@/registry/ui/breadcrumb"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 
 function BreadCrumbPreview() {
 	return (
@@ -20,7 +33,9 @@ function BreadCrumbPreview() {
 						</DropdownTrigger>
 						<DropdownContent className="w-39.5">
 							<DropdownItem asChild>
-								<Link href="/docs/getting-started/installation">Installations</Link>
+								<Link href="/docs/getting-started/installation">
+									Installations
+								</Link>
 							</DropdownItem>
 							<DropdownItem asChild>
 								<Link href="/docs/fundamentals/colors">Fundamentals</Link>

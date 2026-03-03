@@ -15,7 +15,11 @@ interface SigninProps {
 
 export default function Page({ fullScreen = true }: SigninProps) {
 	return (
-		<div className={cn("bg-bg flex", { "h-screen w-screen": fullScreen, "h-full w-full": !fullScreen })}>
+		<div
+			className={cn("bg-bg flex", {
+				"h-screen w-screen": fullScreen,
+				"h-full w-full": !fullScreen,
+			})}>
 			<div className="flex h-full w-full">
 				<div className="relative hidden h-full flex-1 md:block">
 					<Image
@@ -33,7 +37,12 @@ export default function Page({ fullScreen = true }: SigninProps) {
 					<div className="w-90 flex flex-col gap-8">
 						<div className="flex flex-1 flex-col gap-6">
 							<div>
-								<Image src="/favicon-16x16.png" height={32} width={32} alt="Logo" />
+								<Image
+									src="/favicon-16x16.png"
+									height={32}
+									width={32}
+									alt="Logo"
+								/>
 							</div>
 							<div className="flex flex-col gap-2">
 								<span className="heading-5">Sign In</span>
@@ -49,22 +58,33 @@ export default function Page({ fullScreen = true }: SigninProps) {
 							<div className="flex flex-col gap-5">
 								<div className="flex flex-col gap-4">
 									<div className="flex flex-col gap-1.5">
-										<Label htmlFor="email" className="text-fg text-sm font-medium">
+										<Label
+											htmlFor="email"
+											className="text-fg text-sm font-medium">
 											Email Address
 										</Label>
 										<Input id="email" name="email" size="36" type="email" />
 									</div>
 									<div className="flex flex-col gap-1.5">
-										<Label htmlFor="password" className="text-fg text-sm font-medium">
+										<Label
+											htmlFor="password"
+											className="text-fg text-sm font-medium">
 											Password
 										</Label>
-										<Input id="password" name="password" size="36" type="password" />
+										<Input
+											id="password"
+											name="password"
+											size="36"
+											type="password"
+										/>
 									</div>
 								</div>
 								<div className="flex items-center justify-between">
 									<div className="flex items-center gap-2">
 										<Checkbox id="remember-me" name="rememberMe" />
-										<Label htmlFor="remember-me" className="text-fg-secondary font-normal">
+										<Label
+											htmlFor="remember-me"
+											className="text-fg-secondary font-normal">
 											Remember me
 										</Label>
 									</div>
@@ -78,15 +98,23 @@ export default function Page({ fullScreen = true }: SigninProps) {
 						<div className="flex flex-1 flex-col gap-6">
 							<div className="flex items-center gap-2">
 								<Divider className="flex-1" />
-								<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">Or continue with</span>
+								<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">
+									Or continue with
+								</span>
 								<Divider className="flex-1" />
 							</div>
 							<div className="flex gap-3">
-								<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+								<Button
+									variant="outline"
+									color="neutral"
+									className="text-fg-secondary w-full">
 									<GoogleIcon />
 									Google
 								</Button>
-								<Button variant="outline" color="neutral" className="text-fg-secondary w-full">
+								<Button
+									variant="outline"
+									color="neutral"
+									className="text-fg-secondary w-full">
 									<GithubIcon />
 									Github
 								</Button>

@@ -23,7 +23,13 @@ const project = new Project({
 })
 
 // Define constants for file paths and ignored dependencies
-const IGNORED_DEPENDENCIES = ["react", "react-dom", "lucide-react", "class-variance-authority", "next"]
+const IGNORED_DEPENDENCIES = [
+	"react",
+	"react-dom",
+	"lucide-react",
+	"class-variance-authority",
+	"next",
+]
 
 const UI_DIRECTORY_PATH = path.resolve("src/registry/ui")
 // const ANIMATED_UI_DIRECTORY_PATH = path.resolve("src/registry/animated")
@@ -56,7 +62,10 @@ async function getDependencyArray(filePath: string): Promise<string[]> {
 		const moduleName = importDeclaration.getModuleSpecifierValue()
 
 		if (!moduleName.startsWith("@/") && !moduleName.startsWith("./")) {
-			const baseModule = !moduleName.startsWith("@") && moduleName.includes("/") ? moduleName.split("/")[0] : moduleName
+			const baseModule =
+				!moduleName.startsWith("@") && moduleName.includes("/")
+					? moduleName.split("/")[0]
+					: moduleName
 			if (!IGNORED_DEPENDENCIES.includes(baseModule)) {
 				dependencies.add(baseModule)
 			}
@@ -80,9 +89,14 @@ async function getRegistryDependencyArray(filePath: string): Promise<string[]> {
 		if (IGNORED_DEPENDENCIES.includes(moduleName)) return
 
 		// Check if import is a local component inside the registry
-		if (moduleName.startsWith("@/registry/ui/") || moduleName.startsWith("./")) {
+		if (
+			moduleName.startsWith("@/registry/ui/") ||
+			moduleName.startsWith("./")
+		) {
 			const importedPath = path.resolve(path.dirname(filePath), moduleName)
-			const importedFile = path.basename(importedPath).replace(/\.(tsx?|js)$/, "")
+			const importedFile = path
+				.basename(importedPath)
+				.replace(/\.(tsx?|js)$/, "")
 			registryDependencies.add(importedFile)
 		}
 	})
@@ -133,7 +147,12 @@ async function writeComponentJSON() {
 			const name = component.name.replace(/\.(tsx?|js)$/, "")
 
 			// Extract dependencies and content asynchronously
-			const [dependencyArray, registryDependencyArray, content] = await Promise.all([getDependencyArray(filePath), getRegistryDependencyArray(filePath), getContent(filePath)])
+			const [dependencyArray, registryDependencyArray, content] =
+				await Promise.all([
+					getDependencyArray(filePath),
+					getRegistryDependencyArray(filePath),
+					getContent(filePath),
+				])
 
 			// Create the registry file object
 			const registryFile: RegistryFile = {
@@ -157,7 +176,10 @@ async function writeComponentJSON() {
 		}
 
 		// Write the collected registry data to the JSON file
-		await fs.writeFile(REGISTRY_PATH, JSON.stringify(componentJSONContent, null, 2))
+		await fs.writeFile(
+			REGISTRY_PATH,
+			JSON.stringify(componentJSONContent, null, 2)
+		)
 		console.log(`Component JSON generated successfully at: ${REGISTRY_PATH}`)
 	} catch (error) {
 		console.error("Error generating component JSON:", error)

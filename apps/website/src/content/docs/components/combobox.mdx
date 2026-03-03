@@ -9,6 +9,27 @@ description: Autocomplete input and command palette with a list of suggestions.
 
 The Combobox is built using a composition of the [Popover](/docs/components/popover) and the [Command](/docs/components/command) components.
 
+## Usage
+
+### Imports
+
+```tsx showLineNumbers title="/components/ui/combobox.tsx"
+import { Combobox } from "@/components/ui/combobox"
+```
+
+### Code
+
+```tsx showLineNumbers title="/components/ui/combobox.tsx"
+<Combobox>
+	<Combobox.Input placeholder="Search..." />
+	<Combobox.List>
+		<Combobox.Item>Option 1</Combobox.Item>
+		<Combobox.Item>Option 2</Combobox.Item>
+		<Combobox.Item>Option 3</Combobox.Item>
+	</Combobox.List>
+</Combobox>
+```
+
 ---
 
 ## Examples
@@ -28,6 +49,10 @@ The Combobox is built using a composition of the [Popover](/docs/components/popo
 ### With ScrollArea
 
 <ComponentPreview path="combobox/combobox-scrollarea" />
+
+### Virtualized List
+
+<ComponentPreview path="combobox/virtualized-list" />
 
 ### Form
 

@@ -2,7 +2,11 @@ import { EarthLock, Heart, MapPinned, Share, Users } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
 import { Badge } from "@/registry/ui/badge"
 import { Button, IconButton } from "@/registry/ui/button"
-import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/registry/ui/hover-card"
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "@/registry/ui/hover-card"
 
 const profile = {
 	name: "Zoya Petrova",
@@ -13,7 +17,8 @@ const profile = {
 const group = {
 	name: "Azure Coast Society",
 	logo: "/media/organization-2.png",
-	description: "Hey water enthusiasts! Anyone in Queens who loves exploring scenic rivers and lakes? Let's plan some trips!",
+	description:
+		"Hey water enthusiasts! Anyone in Queens who loves exploring scenic rivers and lakes? Let's plan some trips!",
 	location: "Berlin, Germany",
 	visibility: "Public",
 	memberCount: 489,
@@ -26,7 +31,9 @@ export default function HoverCardPreview() {
 				<HoverCardTrigger asChild>
 					<Avatar className="cursor-pointer">
 						<AvatarImage src={profile.avatar} />
-						<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
+						<AvatarFallback>
+							{profile.name.charAt(0).toUpperCase()}
+						</AvatarFallback>
 					</Avatar>
 				</HoverCardTrigger>
 				<HoverCardContentShared />
@@ -34,13 +41,17 @@ export default function HoverCardPreview() {
 			<div className="flex flex-col gap-0.5">
 				<HoverCard>
 					<HoverCardTrigger asChild>
-						<span className="cursor-pointer text-sm font-medium underline-offset-2 transition hover:underline">{profile.name}</span>
+						<span className="cursor-pointer text-sm font-medium underline-offset-2 transition hover:underline">
+							{profile.name}
+						</span>
 					</HoverCardTrigger>
 					<HoverCardContentShared />
 				</HoverCard>
 				<HoverCard>
 					<HoverCardTrigger asChild>
-						<span className="text-fg-tertiary text-xs">{profile.description}</span>
+						<span className="text-fg-tertiary text-xs">
+							{profile.description}
+						</span>
 					</HoverCardTrigger>
 					<HoverCardContentShared />
 				</HoverCard>
@@ -61,7 +72,9 @@ function HoverCardContentShared() {
 					</div>
 					<Avatar className="self-start">
 						<AvatarImage src={profile.avatar} />
-						<AvatarFallback>{profile.name.charAt(0).toUpperCase()}</AvatarFallback>
+						<AvatarFallback>
+							{profile.name.charAt(0).toUpperCase()}
+						</AvatarFallback>
 					</Avatar>
 				</div>
 
@@ -88,10 +101,16 @@ function HoverCardContentShared() {
 			{/* Action buttons */}
 			<div className="flex items-center justify-between">
 				<div className="flex gap-3">
-					<IconButton aria-label="Heart Button" variant="outline" color="neutral">
+					<IconButton
+						aria-label="Heart Button"
+						variant="outline"
+						color="neutral">
 						<Heart />
 					</IconButton>
-					<IconButton aria-label="Share Button" variant="outline" color="neutral">
+					<IconButton
+						aria-label="Share Button"
+						variant="outline"
+						color="neutral">
 						<Share />
 					</IconButton>
 				</div>

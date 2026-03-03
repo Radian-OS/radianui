@@ -7,7 +7,14 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/registry/ui/button"
 import { Checkbox } from "@/registry/ui/checkbox"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/registry/ui/form"
+import {
+	Form,
+	FormControl,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { Spinner } from "@/registry/ui/spinner"
 
@@ -80,7 +87,9 @@ export default function InputForm() {
 				</div>
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Sign In</h1>
-					<p className="text-fg-secondary text-sm">Welcome! Sign in to continue</p>
+					<p className="text-fg-secondary text-sm">
+						Welcome! Sign in to continue
+					</p>
 				</div>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
@@ -118,7 +127,11 @@ export default function InputForm() {
 									render={({ field }) => (
 										<div className="flex items-center gap-2">
 											<FormControl>
-												<Checkbox id="remember-me" checked={field.value} onCheckedChange={field.onChange} />
+												<Checkbox
+													id="remember-me"
+													checked={field.value}
+													onCheckedChange={field.onChange}
+												/>
 											</FormControl>
 											<FormLabel htmlFor="remember-me" className="text-text">
 												Remember me
@@ -149,7 +162,12 @@ export default function InputForm() {
 
 function Logo({ width = 32, height = 32 }: React.ComponentProps<"svg">) {
 	return (
-		<svg width={width} height={height} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			width={width}
+			height={height}
+			viewBox="0 0 48 48"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg">
 			<g clipPath="url(#clip0_11867_1118)">
 				<path
 					d="M35.2 0H12.8C5.73075 0 0 5.73075 0 12.8V35.2C0 42.2692 5.73075 48 12.8 48H35.2C42.2692 48 48 42.2692 48 35.2V12.8C48 5.73075 42.2692 0 35.2 0Z"
@@ -190,7 +208,13 @@ function Logo({ width = 32, height = 32 }: React.ComponentProps<"svg">) {
 				/>
 			</g>
 			<defs>
-				<linearGradient id="paint0_linear_11867_1118" x1="24" y1="0" x2="24" y2="48" gradientUnits="userSpaceOnUse">
+				<linearGradient
+					id="paint0_linear_11867_1118"
+					x1="24"
+					y1="0"
+					x2="24"
+					y2="48"
+					gradientUnits="userSpaceOnUse">
 					<stop stopColor="var(--color-primary)" />
 					<stop offset="1" stopColor="var(--color-primary-border)" />
 				</linearGradient>

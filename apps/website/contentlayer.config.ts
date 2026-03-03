@@ -1,6 +1,12 @@
-import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/source-files"
+import {
+	defineDocumentType,
+	defineNestedType,
+	makeSource,
+} from "contentlayer2/source-files"
+import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
+import { transformers } from "@/lib/highligh-code"
 
 export const LinkProperties = defineNestedType(() => ({
 	name: "Links",
@@ -31,7 +37,11 @@ const LinksField = defineNestedType(() => ({
 	name: "LinksField",
 	fields: {
 		github: { type: "nested", of: GithubLink, required: false },
-		externalReference: { type: "list", of: ExternalReferenceLink, required: false },
+		externalReference: {
+			type: "list",
+			of: ExternalReferenceLink,
+			required: false,
+		},
 	},
 }))
 
@@ -81,7 +91,8 @@ export const Doc = defineDocumentType(() => ({
 		},
 		slugAsParams: {
 			type: "string",
-			resolve: (doc: any) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+			resolve: (doc: any) =>
+				doc._raw.flattenedPath.split("/").slice(1).join("/"),
 		},
 	},
 }))
@@ -116,13 +127,18 @@ export const Blog = defineDocumentType(() => ({
 		},
 		slugAsParams: {
 			type: "string",
-			resolve: (doc: any) => doc._raw.flattenedPath.split("/").slice(1).join("/"),
+			resolve: (doc: any) =>
+				doc._raw.flattenedPath.split("/").slice(1).join("/"),
 		},
 		formattedDate: {
 			type: "string",
 			resolve: (doc) => {
 				const date = new Date(doc.date)
-				const options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" }
+				const options: Intl.DateTimeFormatOptions = {
+					year: "numeric",
+					month: "long",
+					day: "numeric",
+				}
 				return date.toLocaleDateString("en-US", options)
 			},
 		},
@@ -135,6 +151,19 @@ export default makeSource({
 	disableImportAliasWarning: true,
 	mdx: {
 		remarkPlugins: [remarkGfm],
-		rehypePlugins: [rehypeSlug],
+		rehypePlugins: [
+			rehypeSlug,
+			[
+				rehypePrettyCode,
+				{
+					theme: {
+						dark: "github-dark",
+						light: "github-light",
+					},
+					keepBackground: true,
+					transformers,
+				},
+			],
+		],
 	},
 })

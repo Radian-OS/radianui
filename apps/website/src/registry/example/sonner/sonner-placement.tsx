@@ -16,7 +16,9 @@ const ToastPlacement = () => {
 							<div className="flex gap-3">
 								<div className="text-white">
 									<p className="text-sm font-medium">Toast Title</p>
-									<p className="text-sm font-normal sm:whitespace-nowrap">Toast description message.</p>
+									<p className="text-sm font-normal sm:whitespace-nowrap">
+										Toast description message.
+									</p>
 								</div>
 								<div className="flex gap-3">
 									<Button className="!font-medium text-white" variant={"link"}>
@@ -27,7 +29,11 @@ const ToastPlacement = () => {
 									</Button>
 								</div>
 							</div>
-							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer text-white" />
+							<XIcon
+								onClick={() => toast.dismiss(t)}
+								size={16}
+								className="cursor-pointer text-white"
+							/>
 						</div>
 					))
 				}>
@@ -44,7 +50,9 @@ const ToastPlacement = () => {
 							<div className="flex flex-col gap-1.5">
 								<div className="text-white">
 									<p className="text-sm font-medium">Toast Title</p>
-									<p className="text-sm font-normal">Toast description message.</p>
+									<p className="text-sm font-normal">
+										Toast description message.
+									</p>
 								</div>
 								<div className="flex gap-3">
 									<Button className="!font-medium text-white" variant="link">
@@ -55,7 +63,11 @@ const ToastPlacement = () => {
 									</Button>
 								</div>
 							</div>
-							<XIcon onClick={() => toast.dismiss(t)} size={16} className="cursor-pointer text-white" />
+							<XIcon
+								onClick={() => toast.dismiss(t)}
+								size={16}
+								className="cursor-pointer text-white"
+							/>
 						</div>
 					))
 				}>

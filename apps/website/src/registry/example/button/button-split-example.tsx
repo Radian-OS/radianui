@@ -1,7 +1,13 @@
 import React from "react"
 import { ChevronDown } from "lucide-react"
 import { Button, ButtonGroup, IconButton } from "@/registry/ui/button"
-import { Dropdown, DropdownContent, DropdownGroup, DropdownItem, DropdownTrigger } from "@/registry/ui/dropdown"
+import {
+	Dropdown,
+	DropdownContent,
+	DropdownGroup,
+	DropdownItem,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
 
 function ButtonSplitExample() {
 	return (

@@ -1,13 +1,35 @@
 "use client"
 
 import { useId, useState } from "react"
-import { ChevronFirstIcon, ChevronLastIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react"
+import {
+	ChevronFirstIcon,
+	ChevronLastIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon,
+} from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import { Label } from "@/registry/ui/label"
-import { Pagination, PaginationContent, PaginationItem } from "@/registry/ui/pagination"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/registry/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import {
+	Pagination,
+	PaginationContent,
+	PaginationItem,
+} from "@/registry/ui/pagination"
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/registry/ui/select"
+import {
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/registry/ui/table"
 
 // Mock Data
 type UserData = {
@@ -18,26 +40,126 @@ type UserData = {
 }
 
 const data: UserData[] = [
-	{ name: "Alice Johnson", email: "alice@example.com", role: "Admin", status: "Active" },
-	{ name: "Bob Smith", email: "bob@example.com", role: "User", status: "Active" },
-	{ name: "Charlie Brown", email: "charlie@example.com", role: "Editor", status: "Inactive" },
-	{ name: "Diana Prince", email: "diana@example.com", role: "User", status: "Active" },
-	{ name: "Ethan Hunt", email: "ethan@example.com", role: "Admin", status: "Active" },
-	{ name: "Fiona Green", email: "fiona@example.com", role: "User", status: "Inactive" },
-	{ name: "George Wilson", email: "george@example.com", role: "Editor", status: "Active" },
-	{ name: "Hannah Lee", email: "hannah@example.com", role: "User", status: "Inactive" },
-	{ name: "Ian Malcolm", email: "ian@example.com", role: "Admin", status: "Active" },
-	{ name: "Julia Roberts", email: "julia@example.com", role: "User", status: "Active" },
-	{ name: "Kevin Hart", email: "kevin@example.com", role: "Editor", status: "Active" },
-	{ name: "Laura Palmer", email: "laura@example.com", role: "User", status: "Inactive" },
-	{ name: "Michael Scott", email: "michael@example.com", role: "Admin", status: "Active" },
-	{ name: "Nina Simone", email: "nina@example.com", role: "User", status: "Active" },
-	{ name: "Oliver Twist", email: "oliver@example.com", role: "Editor", status: "Inactive" },
-	{ name: "Patricia Moore", email: "patricia@example.com", role: "User", status: "Active" },
-	{ name: "Quinn Harper", email: "quinn@example.com", role: "User", status: "Inactive" },
-	{ name: "Rachel Green", email: "rachel@example.com", role: "Editor", status: "Active" },
-	{ name: "Samuel Jackson", email: "samuel@example.com", role: "Admin", status: "Active" },
-	{ name: "Tina Turner", email: "tina@example.com", role: "User", status: "Active" },
+	{
+		name: "Alice Johnson",
+		email: "alice@example.com",
+		role: "Admin",
+		status: "Active",
+	},
+	{
+		name: "Bob Smith",
+		email: "bob@example.com",
+		role: "User",
+		status: "Active",
+	},
+	{
+		name: "Charlie Brown",
+		email: "charlie@example.com",
+		role: "Editor",
+		status: "Inactive",
+	},
+	{
+		name: "Diana Prince",
+		email: "diana@example.com",
+		role: "User",
+		status: "Active",
+	},
+	{
+		name: "Ethan Hunt",
+		email: "ethan@example.com",
+		role: "Admin",
+		status: "Active",
+	},
+	{
+		name: "Fiona Green",
+		email: "fiona@example.com",
+		role: "User",
+		status: "Inactive",
+	},
+	{
+		name: "George Wilson",
+		email: "george@example.com",
+		role: "Editor",
+		status: "Active",
+	},
+	{
+		name: "Hannah Lee",
+		email: "hannah@example.com",
+		role: "User",
+		status: "Inactive",
+	},
+	{
+		name: "Ian Malcolm",
+		email: "ian@example.com",
+		role: "Admin",
+		status: "Active",
+	},
+	{
+		name: "Julia Roberts",
+		email: "julia@example.com",
+		role: "User",
+		status: "Active",
+	},
+	{
+		name: "Kevin Hart",
+		email: "kevin@example.com",
+		role: "Editor",
+		status: "Active",
+	},
+	{
+		name: "Laura Palmer",
+		email: "laura@example.com",
+		role: "User",
+		status: "Inactive",
+	},
+	{
+		name: "Michael Scott",
+		email: "michael@example.com",
+		role: "Admin",
+		status: "Active",
+	},
+	{
+		name: "Nina Simone",
+		email: "nina@example.com",
+		role: "User",
+		status: "Active",
+	},
+	{
+		name: "Oliver Twist",
+		email: "oliver@example.com",
+		role: "Editor",
+		status: "Inactive",
+	},
+	{
+		name: "Patricia Moore",
+		email: "patricia@example.com",
+		role: "User",
+		status: "Active",
+	},
+	{
+		name: "Quinn Harper",
+		email: "quinn@example.com",
+		role: "User",
+		status: "Inactive",
+	},
+	{
+		name: "Rachel Green",
+		email: "rachel@example.com",
+		role: "Editor",
+		status: "Active",
+	},
+	{
+		name: "Samuel Jackson",
+		email: "samuel@example.com",
+		role: "Admin",
+		status: "Active",
+	},
+	{
+		name: "Tina Turner",
+		email: "tina@example.com",
+		role: "User",
+		status: "Active",
+	},
 ]
 
 export default function Component() {
@@ -73,7 +195,9 @@ export default function Component() {
 									<TableCell>{user.email}</TableCell>
 									<TableCell>{user.role}</TableCell>
 									<TableCell>
-										<Badge variant="soft" color={user.status === "Active" ? "success" : "error"}>
+										<Badge
+											variant="soft"
+											color={user.status === "Active" ? "success" : "error"}>
 											{user.status}
 										</Badge>
 									</TableCell>
@@ -102,7 +226,10 @@ export default function Component() {
 							setRowsPerPage(Number(value))
 							setCurrentPage(0) // Reset to first page when changing rows per page
 						}}>
-						<SelectTrigger size="32" id={id} className="w-fit whitespace-nowrap">
+						<SelectTrigger
+							size="32"
+							id={id}
+							className="w-fit whitespace-nowrap">
 							<SelectValue placeholder="Select number of results" />
 						</SelectTrigger>
 						<SelectContent className="[&_*[role=option]>span]:end-2 [&_*[role=option]>span]:start-auto [&_*[role=option]]:pe-8 [&_*[role=option]]:ps-2">
@@ -117,7 +244,9 @@ export default function Component() {
 
 				{/* Page number information */}
 				<div className="text-fg-secondary flex grow justify-end whitespace-nowrap text-sm">
-					<p className="text-fg-secondary whitespace-nowrap text-sm" aria-live="polite">
+					<p
+						className="text-fg-secondary whitespace-nowrap text-sm"
+						aria-live="polite">
 						<span className="text-shadow-fg-disabled">
 							{startIndex + 1}-{Math.min(endIndex, data.length)}
 						</span>{" "}

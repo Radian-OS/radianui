@@ -39,7 +39,11 @@ const BorderBeam = ({
 	return (
 		<div className="pointer-events-none absolute inset-0 rounded-[inherit] border border-transparent [mask-clip:padding-box,border-box] [mask-composite:intersect] [mask-image:linear-gradient(transparent,transparent),linear-gradient(#000,#000)]">
 			<motion.div
-				className={cn("absolute aspect-square", "bg-gradient-to-l from-[var(--color-from)] via-[var(--color-to)] to-transparent", className)}
+				className={cn(
+					"absolute aspect-square",
+					"bg-gradient-to-l from-[var(--color-from)] via-[var(--color-to)] to-transparent",
+					className
+				)}
 				style={
 					{
 						width: size,
@@ -51,7 +55,9 @@ const BorderBeam = ({
 				}
 				initial={{ offsetDistance: `${initialOffset}%` }}
 				animate={{
-					offsetDistance: reverse ? [`${100 - initialOffset}%`, `${-initialOffset}%`] : [`${initialOffset}%`, `${100 + initialOffset}%`],
+					offsetDistance: reverse
+						? [`${100 - initialOffset}%`, `${-initialOffset}%`]
+						: [`${initialOffset}%`, `${100 + initialOffset}%`],
 				}}
 				transition={{
 					repeat: Infinity,

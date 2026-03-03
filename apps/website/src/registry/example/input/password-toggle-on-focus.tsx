@@ -28,7 +28,12 @@ export default function PasswordToggleOnFocus() {
 					onFocus={() => setIsFocused(true)}
 					onBlur={() => setIsFocused(false)}
 				/>
-				{isFocused && <IconComponent className="hover:text-fg cursor-pointer" onMouseDown={togglePasswordVisibility} />}
+				{isFocused && (
+					<IconComponent
+						className="hover:text-fg cursor-pointer"
+						onMouseDown={togglePasswordVisibility}
+					/>
+				)}
 			</InputWrapper>
 		</div>
 	)

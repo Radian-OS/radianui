@@ -132,7 +132,13 @@ function drawGrid(g: GridState) {
 
 			const y = j * step
 
-			const isCircle = isCircleFixed ? true : isSquareFixed ? false : mixedMask ? mixedMask[idx] === 1 : false
+			const isCircle = isCircleFixed
+				? true
+				: isSquareFixed
+					? false
+					: mixedMask
+						? mixedMask[idx] === 1
+						: false
 
 			if (isCircle) {
 				const cx = x + size / 2
@@ -245,7 +251,8 @@ self.onmessage = (ev: MessageEvent<Msg>) => {
 	if (msg.type === "update") {
 		if (typeof msg.squareSize === "number") g.squareSize = msg.squareSize
 		if (typeof msg.gridGap === "number") g.gridGap = msg.gridGap
-		if (typeof msg.flickerChance === "number") g.flickerChance = msg.flickerChance
+		if (typeof msg.flickerChance === "number")
+			g.flickerChance = msg.flickerChance
 		if (typeof msg.maxOpacity === "number") g.maxOpacity = msg.maxOpacity
 		if (typeof msg.rgbaPrefix === "string") g.rgbaPrefix = msg.rgbaPrefix
 		if (typeof msg.shape === "string") g.shape = msg.shape

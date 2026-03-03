@@ -8,24 +8,18 @@ description: Use the CLI to add components to your project.
 Use the **`init`** command to initialize configuration and dependencies for a new project.
 
 <br />
-The **`init`** command installs dependencies, adds the radianos util and CSS variables for the project.
-<br />
-<PackageManagerTabs
-	commands={{
-		npm: "npx radianui@latest init",
-		yarn: "yarn dlx radianui@latest init",
-		pnpm: "pnpm dlx radianui@latest init",
-		bun: "bunx radianui@latest init",
-	}}
-/>
+The **`init`** command installs dependencies, adds the radianos util and CSS
+variables for the project.
+
+```bash
+npx radianui@latest init
+```
+
 <br />
 You will be asked a few questions to configure components.json:
 
-<br/>
-<CodeSnippet
-	title="Terminal"
-	showLineNumber
-	code={`√ No package.json found at C:\\Users\\RadianOS\\Projects. Create a new project? ... yes
+```bash title="Terminal"
+√ No package.json found at C:\Users\RadianOS\Projects. Create a new project? ... yes
 √ What would you like to name your project? ... my-app
 √ Which framework do you want to use? » Next.js
 √ Would you like to use /src directory? ... yes
@@ -38,47 +32,63 @@ You will be asked a few questions to configure components.json:
 ✔ Updating global CSS variables
 
 Success! Project initialization completed. You may now add components.
-`}
-/>
+```
 
 ### options
 
-<CodeSnippet
-	title="Terminal"
-	code={`Usage: radianui init [options] [project-name]\r\n\r\ninitializes your project with required dependencies\r\n\r\nArguments:\r\n  project-name                 the name of the project\r\n\r\nOptions:\r\n  --next                       use next.js (default: false)\r\n  --vite                       use vite (default: false)\r\n  --useSrc                     use src directory\r\n  --color <color>              set brand color\r\n  --font <font>                set default font\r\n  -s, --skipPrompts            skip confirmation prompts (default: false)\r\n  -d, --defaultConfigurations  use default configurations (default: false)\r\n  -c, --cwd <cwd>              current working directory (default: \"D:\\\\RadianOS\\\\radianos\")\r\n  -h, --help                   display help for command`}
-/>
+```bash title="Terminal"
+Usage: radianui init [options] [project-name]
+
+Arguments:
+  project-name                 the name of the project
+
+Options:
+  --next                       use next.js (default: false)
+  --vite                       use vite (default: false)
+  --useSrc                     use src directory
+  --color <color>              set brand color
+  --font <font>                set default font
+  -s, --skipPrompts            skip confirmation prompts (default: false)
+  -d, --defaultConfigurations  use default configurations (default: false)
+  -c, --cwd <cwd>              current working directory (default: "D:\\RadianOS\\radianos")
+  -h, --help                   display help for command
+```
 
 ## add
 
 Use the **`add`** command to add components and dependencies to your project.
 
-<br />
-<PackageManagerTabs
-	commands={{
-		npm: "npx radianui@latest add [component]",
-		yarn: "yarn dlx radianui@latest add [component]",
-		pnpm: "pnpm dlx radianui@latest add [component]",
-		bun: "bunx radianui@latest add [component]",
-	}}
-/>
+```bash
+npx radianui@latest add [component]
+```
+
 <br />
 You will be presented with installation process:
-<br/>
-<CodeSnippet
-	title="Terminal"
-	code={`RadianOS v1.0.0
 
+```bash title="Terminal"
+RadianOS v1.0.0
 √ Checking registry
 √ Installing the dependencies
 
 Created 1 file(s):
 
-- C:\\Project\\components\\ui\\accordion.tsx`}
-  />
+- C:\Project\components\ui\accordion.tsx
+```
 
 ### options
 
-<CodeSnippet
-	title="Terminal"
-	code={`Usage: radianui add [options] [components...]\r\n\r\nadd components to ui folder inside the components folder in your project\r\n\r\nArguments:\r\n  components       the components to add.\r\n\r\nOptions:\r\n  -y, --yes        skip confirmation prompts. (default: false)\r\n  -a, --all        install all available components. (default: false)\r\n  -c, --cwd <cwd>  the working directory. defaults to the current directory. (default: \"D:\\\\RadianOS\\\\radianos\")\r\n  -o, --overwrite  overwrite existing files if they exist. (default: false)\r\n  -h, --help       display help for command`}
-/>
+```bash title="Terminal"
+Usage: radianui add [options] [components...]
+
+add components to ui folder inside the components folder in your project
+
+Arguments:
+  components       the components to add.
+
+Options:
+  -y, --yes        skip confirmation prompts. (default: false)
+  -a, --all        install all available components. (default: false)
+  -c, --cwd <cwd>  the working directory. defaults to the current directory. (default: "D:\\RadianOS\\radianos")
+  -o, --overwrite  overwrite existing files if they exist. (default: false)
+  -h, --help       display help for command
+```

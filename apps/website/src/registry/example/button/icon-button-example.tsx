@@ -5,7 +5,10 @@ import { IconButton } from "@/registry/ui/button"
 function ButtonIconOnlyExample() {
 	return (
 		<div className="flex flex-wrap items-center justify-center gap-3">
-			<IconButton aria-label="Settings Button" color="neutral" variant="outline">
+			<IconButton
+				aria-label="Settings Button"
+				color="neutral"
+				variant="outline">
 				<Settings />
 			</IconButton>
 			<IconButton aria-label="Trash Button" variant="soft" color="error">
@@ -17,7 +20,11 @@ function ButtonIconOnlyExample() {
 			<IconButton aria-label="Plus Button">
 				<Plus />
 			</IconButton>
-			<IconButton aria-label="Rounded Plus Button" className="rounded-full" variant="outline" color="neutral">
+			<IconButton
+				aria-label="Rounded Plus Button"
+				className="rounded-full"
+				variant="outline"
+				color="neutral">
 				<Plus />
 			</IconButton>
 		</div>

@@ -1,5 +1,15 @@
 import * as React from "react"
-import { Clock, CreditCard, Headset, LogOut, MessageCircleMore, Settings, UserPlus, UserRound, Users } from "lucide-react"
+import {
+	Clock,
+	CreditCard,
+	Headset,
+	LogOut,
+	MessageCircleMore,
+	Settings,
+	UserPlus,
+	UserRound,
+	Users,
+} from "lucide-react"
 import { Button } from "@/registry/ui/button"
 import {
 	Dropdown,

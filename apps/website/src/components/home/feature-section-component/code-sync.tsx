@@ -164,26 +164,50 @@ export function CodeSync() {
 					// Calculate position relative to current offset
 					const position = index - offset
 					// Determine if this is the top visible card (position 0)
-					const iconClass = position === 1 ? "text-primary-text " : "text-fg-secondary "
+					const iconClass =
+						position === 1 ? "text-primary-text " : "text-fg-secondary "
 					return (
-						<div key={index} ref={index === 0 ? cardRef : null} className="border-soft bg-bg flex gap-5 border-t px-7 py-4 sm:px-12">
-							<Icon className={`${iconClass} shrink-0 transition-opacity duration-1000`} size={20} style={{ opacity: 1 }} />
+						<div
+							key={index}
+							ref={index === 0 ? cardRef : null}
+							className="border-soft bg-bg flex gap-5 border-t px-7 py-4 sm:px-12">
+							<Icon
+								className={`${iconClass} shrink-0 transition-opacity duration-1000`}
+								size={20}
+								style={{ opacity: 1 }}
+							/>
 							<div className="flex flex-col gap-1.5">
 								<p className="text-fg text-sm font-normal">{item.title}</p>
 								<div className="flex items-center gap-2.5">
 									<div className="flex items-center gap-1.5">
 										<Avatar size="20" rounded="circle">
-											<AvatarImage alt={item.profile.name} src={item.profile.avatar} />
-											<AvatarFallback>{item.profile.name.charAt(0)}</AvatarFallback>
+											<AvatarImage
+												alt={item.profile.name}
+												src={item.profile.avatar}
+											/>
+											<AvatarFallback>
+												{item.profile.name.charAt(0)}
+											</AvatarFallback>
 										</Avatar>
-										<p className="text-fg-secondary text-xs font-normal">{item.profile.username}</p>
+										<p className="text-fg-secondary text-xs font-normal">
+											{item.profile.username}
+										</p>
 									</div>
 									<div className="bg-fill3 h-1 w-1 rounded-full"></div>
-									<p className="text-fg-secondary text-xs font-normal">{item.timestamp}</p>
+									<p className="text-fg-secondary text-xs font-normal">
+										{item.timestamp}
+									</p>
 									<div className="bg-fill3 h-1 w-1 rounded-full"></div>
 									<div className="flex items-center gap-1.5">
-										<Image src={item.img ?? "/mstile-70x70.png"} alt={item.img ?? "Radian"} width={16} height={16} />
-										<p className="text-fg-secondary text-xs font-normal">{item.tag}</p>
+										<Image
+											src={item.img ?? "/mstile-70x70.png"}
+											alt={item.img ?? "Radian"}
+											width={16}
+											height={16}
+										/>
+										<p className="text-fg-secondary text-xs font-normal">
+											{item.tag}
+										</p>
 									</div>
 								</div>
 							</div>

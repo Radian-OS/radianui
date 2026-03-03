@@ -1,6 +1,14 @@
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
-import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/registry/ui/table"
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/registry/ui/table"
 
 type PersonData = {
 	name: string
@@ -99,7 +107,13 @@ const TablePreview = () => {
 							<TableCell>{data.name}</TableCell>
 							<TableCell>{data.email}</TableCell>
 							<TableCell>
-								<Badge size="20" className={cn(data.status === "Inactive" && "bg-elevation-level1 text-fg-secondary", data.status === "Active" && "bg-white text-black")}>
+								<Badge
+									size="20"
+									className={cn(
+										data.status === "Inactive" &&
+											"bg-elevation-level1 text-fg-secondary",
+										data.status === "Active" && "bg-white text-black"
+									)}>
 									{data.status}
 								</Badge>
 							</TableCell>

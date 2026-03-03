@@ -16,14 +16,9 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add text-area",
-				npm: "npx radianui@latest add text-area",
-				yarn: "yarn dlx radianui@latest add text-area",
-				bun: "bunx radianui@latest add text-area",
-			}}
-		/>
+		```bash
+		npx radianui@latest add text-area
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
@@ -40,11 +35,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/registry/ui/text-area" code={`import { TextArea } from "@/components/ui/text-area"`} />
+```tsx showLineNumbers
+import { TextArea } from "@/components/ui/text-area"
+```
 
 ### Code
 
-<CodeSnippet title="Usage" code={`<TextArea placeholder="Enter your message" />`} />
+```tsx showLineNumbers
+<TextArea placeholder="Enter your message" />
+```
 
 ---
 
