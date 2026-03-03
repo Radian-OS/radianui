@@ -3,26 +3,40 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/registry/ui/collapsible"
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "@/registry/ui/collapsible"
 import { Divider } from "@/registry/ui/divider"
 
-export function CodeCollapsibleWrapper({ className, children, ...props }: React.ComponentProps<typeof Collapsible>) {
+export function CodeCollapsibleWrapper({
+	className,
+	children,
+	...props
+}: React.ComponentProps<typeof Collapsible>) {
 	const [isOpened, setIsOpened] = React.useState(false)
 
 	return (
-		<Collapsible open={isOpened} onOpenChange={setIsOpened} className={cn("group/collapsible relative", className)} {...props}>
+		<Collapsible
+			open={isOpened}
+			onOpenChange={setIsOpened}
+			className={cn("group/collapsible relative", className)}
+			{...props}>
 			<CollapsibleTrigger asChild>
-				<div className="absolute -top-9 right-9 z-10 flex items-center">
+				<div className="absolute right-9 top-1.5 z-10 flex items-center">
 					<Button variant="ghost" color="neutral" size="28">
 						{isOpened ? "Show Less" : "Show More"}
 					</Button>
 					<Divider orientation="vertical" className="mx-1.5 !h-4" />
 				</div>
 			</CollapsibleTrigger>
-			<CollapsibleContent forceMount className="relative data-[state=closed]:max-h-60 data-[state=closed]:animate-none data-[state=open]:animate-none">
+			<CollapsibleContent
+				forceMount
+				className="relative data-[state=closed]:max-h-64 data-[state=closed]:animate-none data-[state=open]:animate-none data-[state=closed]:[content-visibility:auto] [&>figure]:mt-0 [&>figure]:md:!mx-0">
 				{children}
 			</CollapsibleContent>
-			<CollapsibleTrigger className="from-bg/70 to-bg text-fg-tertiary absolute inset-x-0 bottom-0 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b text-sm group-data-[state=open]/collapsible:hidden">
+			<CollapsibleTrigger className="from-bg/70 to-bg text-fg-tertiary absolute inset-x-2 -bottom-2 flex h-20 items-center justify-center rounded-b-lg bg-gradient-to-b text-sm group-data-[state=open]/collapsible:hidden">
 				{isOpened ? "Show Less" : "Show More"}
 			</CollapsibleTrigger>
 		</Collapsible>

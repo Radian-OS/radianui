@@ -16,14 +16,9 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add banner",
-				npm: "npx radianui@latest add banner",
-				yarn: "yarn dlx radianui@latest add banner",
-				bun: "bunx radianui@latest add banner",
-			}}
-		/>
+	```bash
+	npx radianui@latest add banner
+	```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
@@ -40,38 +35,34 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/banner.tsx"
-	language="tsx"
-	code={`import {
-Banner,
-BannerContent, 
-BannerIcon, 
-BannerDescription, 
-BannerTitle 
-} from "@/components/ui/banner"`}
-/>
+```tsx showLineNumbers title="/components/ui/banner.tsx"
+import {
+	Banner,
+	BannerContent,
+	BannerDescription,
+	BannerIcon,
+	BannerTitle,
+} from "@/components/ui/banner"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/banner.tsx"
-	code={`<Banner variant="strong" color="primary" onClose={() => setBannerVisible(false)}>
+```tsx showLineNumbers title="/components/ui/banner.tsx"
+<Banner
+	variant="strong"
+	color="primary"
+	onClose={() => setBannerVisible(false)}>
+	<BannerContent>
+		<BannerIcon>
+			<Sparkles />
+		</BannerIcon>
 
-<BannerContent>
+		<BannerTitle>New Feature!</BannerTitle>
 
-<BannerIcon>
-	<Sparkles />
-</BannerIcon>
-
-<BannerTitle>New Feature!</BannerTitle>
-
-<BannerDescription>Check it out</BannerDescription>
-
- </BannerContent>
- 
-</Banner>`}
-/>
+		<BannerDescription>Check it out</BannerDescription>
+	</BannerContent>
+</Banner>
+```
 
 ---
 
@@ -131,7 +122,8 @@ BannerTitle
 				name: "onClose",
 				values: ["() => void"],
 				required: false,
-				description: "Callback function when banner is closed. If provided, close button will be rendered",
+				description:
+					"Callback function when banner is closed. If provided, close button will be rendered",
 				defaultValue: "undefined",
 			},
 		]}

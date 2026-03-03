@@ -10,28 +10,20 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add file-upload",
-				npm: "npx radianui@latest add file-upload",
-				yarn: "yarn dlx radianui@latest add file-upload",
-				bun: "bunx radianui@latest add file-upload",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add file-upload
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-
-    	<Step>Copy and paste the following code into your project.</Step>
-
+	    <Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="file-upload" title="components/ui/file-upload.tsx" collapsible />
-
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
@@ -42,11 +34,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/file-upload.tsx" code={`import { useFileUpload } from "@/components/ui/file-upload"`} />
+```tsx showLineNumbers title="/components/ui/file-upload.tsx"
+import { useFileUpload } from "@/components/ui/file-upload"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/file-upload.tsx" code={`<Input className="w-fit" type="file" />`} />
+```tsx showLineNumbers title="/components/ui/file-upload.tsx"
+<Input className="w-fit" type="file" />
+```
 
 ---
 

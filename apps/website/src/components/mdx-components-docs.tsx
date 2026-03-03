@@ -1,19 +1,20 @@
-"use client"
-
-import React, { HTMLAttributes, useMemo } from "react"
-import { Link as LinkIcon, Moon, Sun } from "lucide-react"
-import { getMDXComponent } from "mdx-bundler/client"
+import React, { HTMLAttributes } from "react"
+import { Link as LinkIcon, TerminalIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import CodeSnippet from "@/components/code-snippet"
 import ColorPlayground from "@/components/color/color-playground"
-import { ColorData, ColorTable } from "@/components/color/color-table"
+import { ColorTable } from "@/components/color/color-table"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentSource } from "@/components/component-source"
 import FigmaCard from "@/components/figma/figma-card"
 import Installation from "@/components/installation"
-import { InstallTabsContent, InstallTabsList, InstallTabsTrigger, InstallationTabs } from "@/components/installation-tabs"
-import PackageManagerTabs, { PackageManagerTabsProps } from "@/components/package-manager-tabs"
+import {
+	InstallTabsContent,
+	InstallTabsList,
+	InstallTabsTrigger,
+	InstallationTabs,
+} from "@/components/installation-tabs"
+import PackageManagerTabs from "@/components/package-manager-tabs"
 import { PropsTable } from "@/components/props-table"
 import SocialLinkCards from "@/components/social-link-cards"
 import CustomThemePlayground from "@/components/theme/custom-theme-playground"
@@ -22,7 +23,6 @@ import DarkModePlayground from "@/components/theme/dark-mode-playground"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
-import { useTheme } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
 import BadgeExamplePreview from "@/registry/example/badge/badge-color-example"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
@@ -32,109 +32,142 @@ import ProgressPreview from "@/registry/example/progress/progress-preview"
 import {
 	Accordion,
 	AccordionContent,
-	AccordionContentProps,
 	AccordionItem,
-	AccordionItemProps,
 	AccordionProps,
 	AccordionTrigger,
 	AccordionTriggerProps,
 } from "@/registry/ui/accordion"
-import { Alert, AlertContent, AlertDescription, AlertIcon, AlertProps, AlertTitle } from "@/registry/ui/alert"
+import {
+	Alert,
+	AlertContent,
+	AlertDescription,
+	AlertIcon,
+	AlertProps,
+	AlertTitle,
+} from "@/registry/ui/alert"
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { CodeBlockCommandServer } from "./code-block-command-server"
+import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
+import ColorTableThemeToggle from "./color/color-table-theme-toggle"
+import { CopyButton } from "./copy-button"
 
-type MdxProps = {
-	code: string
-	examples: typeof Examples
-}
-
-const components = (examples: typeof Examples | undefined) => ({
-	PropsTable: (props: React.ComponentProps<typeof PropsTable>) => <PropsTable title={props.title} data={props.data} externalReference={props.externalReference} />,
-	ColorTable: ({ data }: { data: ColorData[] }) => {
-		const { isDark } = useTheme()
-		return <ColorTable data={data} isDark={isDark} />
-	},
-	ColorTableThemeToggle: () => {
-		const { isDark, toggleTheme } = useTheme()
+export const components = (examples: typeof Examples | undefined) => ({
+	PropsTable,
+	ColorTable,
+	ColorTableThemeToggle,
+	ColorPlayground,
+	DarkModeFramework,
+	PropsTableWrapper: ({
+		children,
+	}: {
+		children: React.ReactNode | React.ReactNode[]
+	}) => (
+		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">
+			{children}
+		</div>
+	),
+	Installation,
+	BadgeExamplePreview,
+	TypographyPlayground,
+	DatePickerPresetsExample,
+	DatePickerWithTimeExample,
+	HeadingFontSpecs,
+	BodyFontSpecs,
+	DarkModePlayground,
+	CustomThemePlayground,
+	// Animation components
+	ProgressPreview,
+	PackageManagerTabs,
+	InstallationTabs,
+	InstallTabsList,
+	InstallTabsTrigger,
+	InstallTabsContent,
+	ComponentPreview: ({
+		path,
+		height,
+		align,
+		type,
+	}: {
+		path: string
+		height: number
+		align: "center" | "start" | "end"
+		type?: "component" | "block"
+	}) => {
+		const code =
+			examples?.[0]?.files.find((file) => file.name === path)?.content || ""
 
 		return (
-			<div onClick={toggleTheme} className="bg-fill2 relative mb-2 flex h-8 cursor-pointer items-center rounded-md p-1 transition-all duration-300" style={{ width: "88px" }}>
-				<div className={`bg-elevation-level2 absolute h-6 w-10 rounded-md shadow-sm transition-all duration-300 ease-out ${isDark ? "translate-x-10" : "translate-x-0"}`} />
-				<div className="relative z-10 flex h-6 w-10 items-center justify-center">
-					<Sun size={14} className="text-fg-secondary" />
-				</div>
-				<div className="relative z-10 flex h-6 w-10 items-center justify-center">
-					<Moon size={14} className="text-fg-secondary" />
-				</div>
-			</div>
+			<ComponentPreview
+				type={type}
+				path={path}
+				code={code}
+				height={height}
+				align={align}
+			/>
 		)
 	},
-	ColorPlayground: () => <ColorPlayground />,
-	DarkModeFramework: () => <DarkModeFramework />,
-	PropsTableWrapper: ({ children }: { children: React.ReactNode | React.ReactNode[] }) => (
-		<div className="bg-elevation-negative mt-3 flex flex-col gap-2 rounded-xl p-1.5">{children}</div>
-	),
-	Installation: () => <Installation />,
-	BadgeExamplePreview: () => <BadgeExamplePreview />,
-	TypographyPlayground: () => <TypographyPlayground />,
-	DatePickerPresetsExample: () => <DatePickerPresetsExample />,
-	DatePickerWithTimeExample: () => <DatePickerWithTimeExample />,
-	HeadingFontSpecs: () => <HeadingFontSpecs />,
-	BodyFontSpecs: () => <BodyFontSpecs />,
-	DarkModePlayground: () => <DarkModePlayground />,
-	CustomThemePlayground: () => <CustomThemePlayground />,
-	// Animation components
-	ProgressPreview: () => <ProgressPreview />,
-	PackageManagerTabs: ({ commands, className, withIcon = false }: PackageManagerTabsProps) => (
-		<PackageManagerTabs commands={commands} className={cn(className)} withIcon={withIcon} />
-	),
-	InstallationTabs: (props: React.ComponentProps<typeof InstallationTabs>) => <InstallationTabs {...props} />,
-	InstallTabsList: (props: React.ComponentProps<typeof InstallTabsList>) => <InstallTabsList {...props} />,
-	InstallTabsTrigger: (props: React.ComponentProps<typeof InstallTabsTrigger>) => <InstallTabsTrigger {...props} />,
-	InstallTabsContent: (props: React.ComponentProps<typeof InstallTabsContent>) => <InstallTabsContent {...props} />,
-	CodeSnippet: ({ code, title, showLineNumbers, collapsible }: { code: string; title: string; showLineNumbers: boolean; collapsible?: boolean }) => (
-		<CodeSnippet code={code} title={title} showLineNumber={showLineNumbers} collapsible={collapsible} />
-	),
-
-	ComponentPreview: ({ path, height, align, type }: { path: string; height: number; align: "center" | "start" | "end"; type?: "component" | "block" }) => {
-		const code = examples?.[0]?.files.find((file) => file.name === path)?.content || ""
-
-		return <ComponentPreview type={type} path={path} code={code} height={height} align={align} />
-	},
-
-	ComponentSource: ({ name, title, collapsible }: { name: string; title: string; collapsible: boolean }) => <ComponentSource name={name} title={title} collapsible={collapsible} />,
-	FigmaCard: () => <FigmaCard />,
-	h1: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => (
+	ComponentSource,
+	FigmaCard,
+	h1: ({
+		children,
+		className,
+		...props
+	}: HTMLAttributes<HTMLHeadingElement>) => (
 		<h1 className={cn("heading-4", className)} {...props}>
 			{children}
 		</h1>
 	),
-	h2: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => {
+	h2: ({
+		children,
+		className,
+		...props
+	}: HTMLAttributes<HTMLHeadingElement>) => {
 		const text = typeof children === "string" ? children : ""
 		const id = text
 			.toLowerCase()
 			.replace(/\s+/g, "-")
 			.replace(/[^\w-]/g, "")
 		return (
-			<h2 className={cn("heading-5 font-semibold! scroll-mt-26 group mb-3 mt-10 flex items-center", className)} {...props}>
+			<h2
+				className={cn(
+					"heading-5 font-semibold! scroll-mt-26 group mb-3 mt-10 flex items-center",
+					className
+				)}
+				{...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
-					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
+					<LinkIcon
+						size={16}
+						className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100"
+					/>
 				</Link>
 			</h2>
 		)
 	},
-	h3: ({ children, className, ...props }: HTMLAttributes<HTMLHeadingElement>) => {
+	h3: ({
+		children,
+		className,
+		...props
+	}: HTMLAttributes<HTMLHeadingElement>) => {
 		const text = typeof children === "string" ? children : ""
 		const id = text
 			.toLowerCase()
 			.replace(/\s+/g, "-")
 			.replace(/[^\w-]/g, "")
 		return (
-			<h3 className={cn("scroll-mt-26 group mb-3 mt-6 flex items-center text-lg font-medium leading-7", className)} {...props}>
+			<h3
+				className={cn(
+					"scroll-mt-26 group mb-3 mt-6 flex items-center text-lg font-medium leading-7",
+					className
+				)}
+				{...props}>
 				<Link href={`#${id}`} className="flex items-center gap-2">
 					{children}
-					<LinkIcon size={16} className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100" />
+					<LinkIcon
+						size={16}
+						className="text-fg-tertiary opacity-0 transition-opacity group-hover:opacity-100"
+					/>
 				</Link>
 			</h3>
 		)
@@ -144,75 +177,99 @@ const components = (examples: typeof Examples | undefined) => ({
 			aria-label="Link"
 			rel="noopener noreferrer"
 			target="_blank"
-			className={cn("text-primary-text font-medium underline underline-offset-4 transition-colors duration-200", className)}
+			className={cn(
+				"text-primary-text font-medium underline underline-offset-4 transition-colors duration-200",
+				className
+			)}
 			{...props}
 		/>
 	),
-	p: ({ children, className, ...props }: HTMLAttributes<HTMLParagraphElement>) => (
+	p: ({
+		children,
+		className,
+		...props
+	}: HTMLAttributes<HTMLParagraphElement>) => (
 		<p className={cn("text-fg text-base leading-7", className)} {...props}>
 			{children}
 		</p>
 	),
-	strong: ({ children, className, ...props }: HTMLAttributes<HTMLBodyElement>) => (
+	strong: ({
+		children,
+		className,
+		...props
+	}: HTMLAttributes<HTMLBodyElement>) => (
 		<strong className={cn("text-fg font-semibold", className)} {...props}>
 			{children}
 		</strong>
 	),
 	hr: () => <Divider orientation={"horizontal"} className="mt-10" />,
 
-	ul: ({ children, className }: { children: React.ReactNode; className?: string }) => {
-		return <ul className={cn("my-6 ml-1 list-inside list-disc space-y-4 pb-6", className)}>{children}</ul>
+	ul: ({
+		children,
+		className,
+	}: {
+		children: React.ReactNode
+		className?: string
+	}) => {
+		return (
+			<ul
+				className={cn(
+					"my-6 ml-1 list-inside list-disc space-y-4 pb-6",
+					className
+				)}>
+				{children}
+			</ul>
+		)
 	},
-	ol: ({ className, ...props }: React.ComponentProps<"ol">) => <ol className={cn("marker:text-fg my-6 ml-6 list-decimal space-y-4 marker:font-bold", className)} {...props} />,
+	ol: ({ className, ...props }: React.ComponentProps<"ol">) => (
+		<ol
+			className={cn(
+				"marker:text-fg my-6 ml-6 list-decimal space-y-4 marker:font-bold",
+				className
+			)}
+			{...props}
+		/>
+	),
 
-	li: ({ children, className }: { children: React.ReactNode; className?: string }) => {
+	li: ({
+		children,
+		className,
+	}: {
+		children: React.ReactNode
+		className?: string
+	}) => {
 		return <li className={cn("text-fg-secondary", className)}>{children}</li>
 	},
-	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => <blockquote className={cn("mt-6 border-l-2 pl-6 italic", className)} {...props} />,
-
-	code: ({ className, ...props }: React.ComponentProps<"code">) => <code className={cn("bg-fill2 break-words rounded-md p-1 font-mono outline-none", className)} {...props} />,
+	blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => (
+		<blockquote
+			className={cn("mt-6 border-l-2 pl-6 italic", className)}
+			{...props}
+		/>
+	),
 
 	Alert: (props: AlertProps) => {
 		return <Alert variant="soft" color="warning" {...props} />
 	},
-	AlertIcon: ({ children }: { children: React.ReactNode }) => {
-		return <AlertIcon>{children}</AlertIcon>
-	},
-	AlertContent: (props: React.ComponentProps<typeof AlertContent>) => {
-		return <AlertContent {...props} />
-	},
-	AlertTitle: (props: React.ComponentProps<typeof AlertTitle>) => {
-		return <AlertTitle {...props} />
-	},
-	AlertDescription: (props: React.ComponentProps<typeof AlertDescription>) => {
-		return <AlertDescription {...props} />
-	},
+	AlertIcon,
+	AlertContent,
+	AlertTitle,
+	AlertDescription,
 
 	Accordion: (props: AccordionProps) => {
 		return <Accordion {...props} size="lg" variant="open" />
 	},
-	AccordionItem: (props: AccordionItemProps) => {
-		return <AccordionItem {...props} />
-	},
+	AccordionItem,
 	AccordionTrigger: (props: AccordionTriggerProps) => {
 		return <AccordionTrigger className="gap-2" {...props} />
 	},
-	AccordionContent: (props: AccordionContentProps) => {
-		return <AccordionContent {...props} />
-	},
+	AccordionContent,
 
-	Tabs: (props: React.ComponentProps<typeof Tabs>) => {
-		return <Tabs {...props} />
-	},
+	Tabs,
 	TabsList: (props: React.ComponentProps<typeof TabsList>) => {
 		return <TabsList width="full" variant="default" size="md" {...props} />
 	},
-	TabsTrigger: (props: React.ComponentProps<typeof TabsTrigger>) => {
-		return <TabsTrigger {...props} />
-	},
-	TabsContent: (props: React.ComponentProps<typeof TabsContent>) => {
-		return <TabsContent {...props} />
-	},
+	TabsTrigger,
+	TabsContent,
 	Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
 		<h3
 			className={cn(
@@ -226,13 +283,38 @@ const components = (examples: typeof Examples | undefined) => ({
 			{...props}
 		/>
 	),
-	Steps: ({ ...props }) => <div className={cn("border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-6")} {...props} />,
-	SocialLinkCards: () => <SocialLinkCards />,
-	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => <Link className={cn("font-medium text-amber-300 underline underline-offset-4", className)} {...props} />,
-	Image: ({ src, className, width, height, alt, ...props }: React.ComponentProps<"img">) => (
+	Steps: ({ ...props }) => (
+		<div
+			className={cn(
+				"border-dashed [counter-reset:step] md:ml-4 md:border-l-2 md:pl-6"
+			)}
+			{...props}
+		/>
+	),
+	SocialLinkCards,
+	Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
+		<Link
+			className={cn(
+				"font-medium text-amber-300 underline underline-offset-4",
+				className
+			)}
+			{...props}
+		/>
+	),
+	Image: ({
+		src,
+		className,
+		width,
+		height,
+		alt,
+		...props
+	}: React.ComponentProps<"img">) => (
 		<Image
 			unoptimized
-			className={cn("bg-fill2 border-soft mb-6 mt-4 rounded-2xl border-8 object-cover", className)}
+			className={cn(
+				"bg-fill2 border-soft mb-6 mt-4 rounded-2xl border-8 object-cover",
+				className
+			)}
 			src={src || ""}
 			width={Number(width)}
 			height={Number(height)}
@@ -243,42 +325,115 @@ const components = (examples: typeof Examples | undefined) => ({
 	),
 	table: ({ className, ...props }: React.ComponentProps<"table">) => (
 		<div className="no-scrollbar my-6 w-full overflow-y-auto rounded-xl border">
-			<table className={cn("relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0", className)} {...props} />
+			<table
+				className={cn(
+					"relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0",
+					className
+				)}
+				{...props}
+			/>
 		</div>
 	),
-	tr: ({ className, ...props }: React.ComponentProps<"tr">) => <tr className={cn("m-0 border-b", className)} {...props} />,
+	tr: ({ className, ...props }: React.ComponentProps<"tr">) => (
+		<tr className={cn("m-0 border-b", className)} {...props} />
+	),
 	th: ({ className, ...props }: React.ComponentProps<"th">) => (
-		<th className={cn("px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right", className)} {...props} />
+		<th
+			className={cn(
+				"px-4 py-2 text-left font-bold [&[align=center]]:text-center [&[align=right]]:text-right",
+				className
+			)}
+			{...props}
+		/>
 	),
 	td: ({ className, ...props }: React.ComponentProps<"td">) => (
-		<td className={cn("whitespace-nowrap px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right", className)} {...props} />
+		<td
+			className={cn(
+				"whitespace-nowrap px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
+				className
+			)}
+			{...props}
+		/>
 	),
-})
+	figure: ({ className, ...props }: React.ComponentProps<"figure">) => {
+		return <figure className={cn(className)} {...props} />
+	},
+	figcaption: ({ className, ...props }: React.ComponentProps<"figcaption">) => {
+		const isCodeTitle = "data-language" in props
 
-/**
- * @returns A React component that renders an error message
- */
-
-function ErrorComponent() {
-	return <div className="text-error-text">Error rendering content</div>
-}
-
-/**
- * Mdx component to render MDX content
- * @param code - The MDX code to render
- * @returns A React component that renders the MDX content
- */
-
-export function Mdx({ code, examples }: MdxProps) {
-	const Component = useMemo(() => {
-		if (!code) return () => null
-		try {
-			return getMDXComponent(code)
-		} catch (error) {
-			console.log(error)
-			return ErrorComponent
+		return (
+			<figcaption className={cn(className)} {...props}>
+				{isCodeTitle && (
+					<span className="bg-bg text-fg-tertiary rounded-md p-1">
+						<TerminalIcon size={16} />
+					</span>
+				)}
+				{props.children}
+			</figcaption>
+		)
+	},
+	pre: ({ className, children, ...props }: React.ComponentProps<"pre">) => {
+		return (
+			<pre
+				className={cn(
+					"bg-bg no-scrollbar has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0 min-w-0 overflow-x-auto overflow-y-auto overscroll-y-auto overscroll-x-contain rounded-lg px-5 py-4 pb-5 outline-none",
+					className
+				)}
+				{...props}>
+				{children}
+			</pre>
+		)
+	},
+	code: ({
+		className,
+		__raw__,
+		__src__,
+		__npm__,
+		__yarn__,
+		__pnpm__,
+		__bun__,
+		...props
+	}: React.ComponentProps<"code"> & {
+		__raw__?: string
+		__src__?: string
+		__npm__?: string
+		__yarn__?: string
+		__pnpm__?: string
+		__bun__?: string
+	}) => {
+		// Inline Code.
+		if (typeof props.children === "string") {
+			return (
+				<code
+					className={cn(
+						"bg-fill2 wrap-break-word relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] outline-none",
+						className
+					)}
+					{...props}
+				/>
+			)
 		}
-	}, [code])
 
-	return <Component components={components(examples)} />
-}
+		// npm command.
+		const isNpmCommand = __npm__ && __yarn__ && __pnpm__ && __bun__
+		if (isNpmCommand) {
+			return (
+				<CodeBlockCommandServer
+					__npm__={__npm__}
+					__yarn__={__yarn__}
+					__pnpm__={__pnpm__}
+					__bun__={__bun__}
+				/>
+			)
+		}
+
+		// Default codeblock.
+		return (
+			<>
+				{__raw__ && <CopyButton value={__raw__} src={__src__} />}
+				<code className={cn(className)} {...props} />
+			</>
+		)
+	},
+	CodeCollapsibleWrapper,
+})

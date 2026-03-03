@@ -18,51 +18,25 @@ links:
 
 <br />
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add form",
-				npm: "npx radianui@latest add form",
-				yarn: "yarn dlx radianui@latest add form",
-				bun: "bunx radianui@latest add form",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add form
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
-		<Steps>
+	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-slot react-hook-form",
-				npm: "npm install @radix-ui/react-slot react-hook-form",
-				yarn: "yarn add @radix-ui/react-slot react-hook-form",
-				bun: "bun add @radix-ui/react-slot react-hook-form",
-			}}
-		/>
+		```bash
+		npm install @radix-ui/react-slot react-hook-form
+		```
     	<Step>Copy and paste the following code into your project.</Step>
-		
-		<Tabs defaultValue="form">
-
-    	    <TabsList>
-    			<TabsTrigger value="form">Form</TabsTrigger>
-    			<TabsTrigger value="label">Label</TabsTrigger>
-    		</TabsList>
-
-    		<TabsContent value="form">
-    		<ComponentSource name="form" title="components/ui/form.tsx" collapsible />
-    		</TabsContent>
-
-    		<TabsContent value="label">
-    			<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
-    		</TabsContent>
-    	</Tabs>
-
-
+    	<ComponentSource name="form" title="components/ui/form.tsx" collapsible />
+    	<ComponentSource name="label" title="components/ui/label.tsx" collapsible />
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
@@ -81,24 +55,22 @@ These components are also integrated with form for validation and state manageme
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/form.tsx"
-	code={`import {
-Form, 
-FormControl, 
-FormDescription, 
-FormField, 
-FormItem, 
-FormLabel, 
-FormMessage
-} from '@/components/ui/form'`}
-/>
+```tsx showLineNumbers title="/components/ui/form.tsx"
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/form.tsx"
-	code={`<Form>
+```tsx showLineNumbers title="/components/ui/form.tsx"
+<Form>
 	<FormField
 		render={({ field }) => (
 			<FormItem>
@@ -109,19 +81,7 @@ FormMessage
 				<FormDescription>Enter your email</FormDescription>
 				<FormMessage />
 			</FormItem>
-		)} 
+		)}
 	/>
-</Form>`}
-/>
-
----
-
-## Examples
-
-### Sign up form
-
-<ComponentPreview path="form/sign-up-form" />
-
-### Sign in form
-
-<ComponentPreview path="form/sign-in-form" />
+</Form>
+```

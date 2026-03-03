@@ -125,7 +125,11 @@
 }
 
 .div-hover {
-	background-image: radial-gradient(circle at var(--x) var(--y), color-mix(in oklch, #fff 4%, transparent) 0%, transparent 100%);
+	background-image: radial-gradient(
+		circle at var(--x) var(--y),
+		color-mix(in oklch, #fff 4%, transparent) 0%,
+		transparent 100%
+	);
 }
 
 .color-red {
@@ -613,5 +617,58 @@
 	--color-border: oklch(0.9368 0.0029 264.54);
 	--color-elevation-negative: oklch(0.9764 0.0013 286.38);
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
-	--color-fill4-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 84%);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 84%
+	);
+}
+
+[data-line] span {
+	color: var(--shiki-light);
+
+	@variant dark {
+		color: var(--shiki-dark) !important;
+	}
+}
+
+[data-rehype-pretty-code-figure] {
+	background-color: var(--color-fill2);
+	border-radius: var(--radius-xl);
+	overflow: hidden;
+	font-size: var(--text-sm);
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 6px;
+	position: relative;
+	margin-top: calc(var(--spacing) * 6);
+
+	&:has([data-rehype-pretty-code-title]) [data-slot="copy-button"] {
+		top: calc(var(--spacing) * 1.5) !important;
+	}
+}
+
+[data-rehype-pretty-code-title] {
+	display: inline-flex;
+	padding: 4px 2px;
+	align-items: center;
+	gap: 12px;
+	color: var(--color-fg-secondary);
+	font-size: var(--text-sm);
+}
+
+[data-line-numbers] {
+	counter-reset: line;
+}
+
+[data-line-numbers] [data-line]::before {
+	counter-increment: line;
+	content: counter(line);
+	display: inline-block;
+	width: 3rem;
+	padding-right: 1.5rem;
+	text-align: right;
+	color: var(--color-fg-tertiary);
+	padding-left: 0.5rem;
 }

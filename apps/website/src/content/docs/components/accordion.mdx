@@ -19,27 +19,16 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add accordion",
-				npm: "npx radianui@latest add accordion",
-				yarn: "yarn dlx radianui@latest add accordion",
-				bun: "bunx radianui@latest add accordion",
-			}}
-		/>
+		```bash
+		npx radianui@latest add accordion
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-accordion",
-				npm: "npm install @radix-ui/react-accordion",
-				yarn: "yarn add @radix-ui/react-accordion",
-				bun: "bun add @radix-ui/react-accordion",
-			}}
-		/>
-
+		```bash
+		npm install @radix-ui/react-accordion
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="accordion" title="components/ui/accordion.tsx" collapsible />
 
@@ -53,31 +42,27 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/accordion.tsx"
-	code={`import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"`}
-	showLineNumbers
-/>
+```tsx showLineNumbers title="/components/ui/accordion.tsx"
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/ui/accordion"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/accordion.tsx"
-	code={`<Accordion type="single" collapsible>
-      <AccordionItem value="item-1">
-        <AccordionTrigger>First Item</AccordionTrigger>
-        <AccordionContent>
-          <p>This is the content of the first accordion item.</p>
-        </AccordionContent>
-      </AccordionItem>
-</Accordion>`}
-	showLineNumbers
-/>
+```tsx showLineNumbers title="/components/ui/accordion.tsx"
+<Accordion type="single" collapsible>
+	<AccordionItem value="item-1">
+		<AccordionTrigger>First Item</AccordionTrigger>
+		<AccordionContent>
+			<p>This is the content of the first accordion item.</p>
+		</AccordionContent>
+	</AccordionItem>
+</Accordion>
+```
 
 ---
 
@@ -146,9 +131,10 @@ links:
 			required: false,
 			description: "Defines the indicator to be displayed in the accordion trigger",
 		}
-		
-	]}
-	externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#root"
+
+    ]}
+    externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#root"
+
 />
 
     <PropsTable title="AccordionItem" externalReference="https://www.radix-ui.com/primitives/docs/components/accordion#item" />

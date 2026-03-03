@@ -13,33 +13,22 @@ links:
 
 ## Installation
 
-<InstallationTabs >
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add avatar",
-				npm: "npx radianui@latest add avatar",
-				yarn: "yarn dlx radianui@latest add avatar",
-				bun: "bunx radianui@latest add avatar",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add avatar
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-<Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-avatar",
-				npm: "npm install @radix-ui/react-avatar",
-				yarn: "yarn add @radix-ui/react-avatar",
-				bun: "bun add @radix-ui/react-avatar",
-			}}
-		/>
-
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-avatar
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="avatar" title="components/ui/avatar.tsx" collapsible />
 
@@ -53,32 +42,27 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/avatar.tsx"
-	language="tsx"
-	code={`import { 
-Avatar,
-AvatarFallback,
-AvatarImage,
-AvatarIndicator,
-AvatarStatus,
-} from "@/components/ui/avatar"`}
-	showLineNumbers
-/>
+```tsx showLineNumbers title="/components/ui/avatar.tsx"
+import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	AvatarIndicator,
+	AvatarStatus,
+} from "@/components/ui/avatar"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/avatar.tsx"
-	code={`<Avatar size="48" rounded="circle">
+```tsx showLineNumbers title="/components/ui/avatar.tsx"
+<Avatar size="48" rounded="circle">
 	<AvatarImage src="https://radianos.com/logo.png" />
 	<AvatarFallback>RS</AvatarFallback>
 	<AvatarIndicator>
 		<AvatarStatus variant="online" />
 	</AvatarIndicator>
-</Avatar>`}
-	showLineNumbers
-/>
+</Avatar>
+```
 
 ---
 
@@ -141,8 +125,14 @@ AvatarStatus,
 		]}
 		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#root"
 	/>
-	<PropsTable title="AvatarImage" externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#image" />
-	<PropsTable title="AvatarFallback" externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#fallback" />
+	<PropsTable
+		title="AvatarImage"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#image"
+	/>
+	<PropsTable
+		title="AvatarFallback"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/avatar#fallback"
+	/>
 	<PropsTable title="AvatarIndicator" />
 	<PropsTable
 		title="AvatarStatus"

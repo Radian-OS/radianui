@@ -1,6 +1,6 @@
 ---
 title: Alert Dialog
-description: Dialog that interrupts the user with important content and expects a response.
+description: A modal dialog that interrupts the user with important information.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/alert-dialog.tsx
@@ -13,32 +13,22 @@ links:
 
 ## Installation
 
-<InstallationTabs >
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add alert-dialog",
-				npm: "npx radianui@latest add alert-dialog",
-				yarn: "yarn dlx radianui@latest add alert-dialog",
-				bun: "bunx radianui@latest add alert-dialog",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add alert-dialog
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-    	<Step>Install the following dependencies:</Step>
-    	<PackageManagerTabs
-    		commands={{
-    			pnpm: "pnpm add @radix-ui/react-alert-dialog",
-    			npm: "npm install @radix-ui/react-alert-dialog",
-    			yarn: "yarn add @radix-ui/react-alert-dialog",
-    			bun: "bun add @radix-ui/react-alert-dialog",
-    		}}
-    	/>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-alert-dialog
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="alert-dialog" title="components/ui/alert-dialog.tsx" collapsible />
 
@@ -52,39 +42,40 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/alert-dialog.tsx"
-	code={`import { 
+```tsx showLineNumbers title="/components/ui/alert-dialog.tsx"
+import {
 	AlertDialog,
-	AlertDialogTrigger,
-	AlertDialogHeader,
-	AlertDialogTitle,
+	AlertDialogAction,
+	AlertDialogCancel,
 	AlertDialogContent,
 	AlertDialogDescription,
 	AlertDialogFooter,
-	AlertDialogAction,
-	AlertDialogCancel
-} from "@/components/ui/alert-dialog"`}
-/>
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/alert-dialog.tsx"
-	code={`<AlertDialog>
-		<AlertDialogTrigger>Show Dialog</AlertDialogTrigger>
-		<AlertDialogContent>
-			<AlertDialogHeader>
-				<AlertDialogTitle>Are you sure?</AlertDialogTitle>
-				<AlertDialogDescription>Take a moment to review the details provided to ensure you understand the implications.</AlertDialogDescription>
-			</AlertDialogHeader>
-			<AlertDialogFooter>
-				<AlertDialogCancel>Cancel</AlertDialogCancel>
-				<AlertDialogAction>Continue</AlertDialogAction>
-			</AlertDialogFooter>
-		</AlertDialogContent>
-	</AlertDialog>`}
-/>
+```tsx showLineNumbers title="/components/ui/alert-dialog.tsx"
+<AlertDialog>
+	<AlertDialogTrigger>Open</AlertDialogTrigger>
+	<AlertDialogContent>
+		<AlertDialogHeader>
+			<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+			<AlertDialogDescription>
+				This action cannot be undone. This will permanently delete your account
+				and remove your data from our servers.
+			</AlertDialogDescription>
+		</AlertDialogHeader>
+		<AlertDialogFooter>
+			<AlertDialogCancel>Cancel</AlertDialogCancel>
+			<AlertDialogAction>Continue</AlertDialogAction>
+		</AlertDialogFooter>
+	</AlertDialogContent>
+</AlertDialog>
+```
 
 ---
 
@@ -115,8 +106,14 @@ links:
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable title="AlertDialog" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#root" />
-	<PropsTable title="AlertDialogTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#trigger" />
+	<PropsTable
+		title="AlertDialog"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#root"
+	/>
+	<PropsTable
+		title="AlertDialogTrigger"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#trigger"
+	/>
 	<PropsTable
 		title="AlertDialogContent"
 		data={[
@@ -130,9 +127,21 @@ links:
 		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#content"
 	/>
 	<PropsTable title="AlertDialogHeader" data={[]} />
-	<PropsTable title="AlertDialogTitle" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#title" />
-	<PropsTable title="AlertDialogDescription" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#description" />
+	<PropsTable
+		title="AlertDialogTitle"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#title"
+	/>
+	<PropsTable
+		title="AlertDialogDescription"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#description"
+	/>
 	<PropsTable title="AlertDialogFooter" data={[]} />
-	<PropsTable title="AlertDialogAction" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#action" />
-	<PropsTable title="AlertDialogCancel" externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#cancel" />
+	<PropsTable
+		title="AlertDialogAction"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#action"
+	/>
+	<PropsTable
+		title="AlertDialogCancel"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/alert-dialog#cancel"
+	/>
 </PropsTableWrapper>

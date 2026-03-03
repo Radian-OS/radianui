@@ -13,33 +13,22 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add otp-field",
-				npm: "npx radianui@latest add otp-field",
-				yarn: "yarn dlx radianui@latest add otp-field",
-				bun: "bunx radianui@latest add otp-field",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add otp-field
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-otp-field ",
-				npm: "npm install @radix-ui/react-otp-field",
-				yarn: "yarn add @radix-ui/react-otp-field ",
-				bun: "bun add @radix-ui/react-otp-field ",
-			}}
-		/>
-
+		```bash
+		npm install @radix-ui/react-otp-field
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="otp-field" title="components/ui/otp-field.tsx" collapsible />
     	<Step>Update the import paths as per your project structure.</Step>
@@ -52,29 +41,21 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/otp-field.tsx"
-	code={`import { 
-OTPField, 
-OTPInput, 
-OTPHiddenInput 
-} from "@/components/ui/otp-field"`}
-	showLineNumbers={false}
-/>
+```tsx showLineNumbers title="/components/ui/otp-field.tsx"
+import { OTPField, OTPHiddenInput, OTPInput } from "@/components/ui/otp-field"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/otp-field.tsx"
-	code={`<OTPField>
-		<OTPInput />
-		<OTPInput />
-		<OTPInput />
-		{/* HiddenInput is required for the form to have data associated with the field */}
-		<OTPHiddenInput />
-	</OTPField>`}
-	showLineNumbers={false}
-/>
+```tsx showLineNumbers title="/components/ui/otp-field.tsx"
+<OTPField>
+	<OTPInput />
+	<OTPInput />
+	<OTPInput />
+	{/* HiddenInput is required for the form to have data associated with the field */}
+	<OTPHiddenInput />
+</OTPField>
+```
 
 ---
 

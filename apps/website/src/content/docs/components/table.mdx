@@ -16,14 +16,9 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add table",
-				npm: "npx radianui@latest add table",
-				yarn: "yarn dlx radianui@latest add table",
-				bun: "bunx radianui@latest add table",
-			}}
-		/>
+		```bash
+		npx radianui@latest add table
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
@@ -45,27 +40,25 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/table"
-	code={`import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'`}
-/>
+```tsx showLineNumbers
+import {
+	Table,
+	TableBody,
+	TableCaption,
+	TableCell,
+	TableFooter,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table"
+```
 
 ---
 
 ### Code
 
-<CodeSnippet
-	title="Usage"
-	code={`<Table>
+```tsx showLineNumbers
+<Table>
 	<TableCaption>User Table</TableCaption>
 	<TableHeader>
 		<TableRow>
@@ -77,8 +70,8 @@ links:
 			<TableCell>Radian</TableCell>
 		</TableRow>
 	</TableBody>
-</Table>`}
-/>
+</Table>
+```
 
 ---
 
@@ -97,8 +90,9 @@ import { LucideInfo } from "lucide-react"
 	<AlertContent>
 		<AlertTitle className="font-semibold">Note</AlertTitle>
 		<AlertDescription className="[&_p]:text-warning-text">
-			[TanStack Table](https://tanstack.com/table/latest) is a required dependency for all implementations. [dnd-kit](https://dndkit.com/) is only needed for examples that include
-			drag-and-drop functionality.
+			[TanStack Table](https://tanstack.com/table/latest) is a required
+			dependency for all implementations. [dnd-kit](https://dndkit.com/) is only
+			needed for examples that include drag-and-drop functionality.
 		</AlertDescription>
 	</AlertContent>
 </Alert>
@@ -126,3 +120,4 @@ import { LucideInfo } from "lucide-react"
 ### Employee Dashboard Table
 
 <ComponentPreview path="table/table-example" />
+````

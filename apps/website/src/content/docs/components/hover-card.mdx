@@ -13,38 +13,26 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add hover-card",
-				npm: "npx radianui@latest add hover-card",
-				yarn: "yarn dlx radianui@latest add hover-card",
-				bun: "bunx radianui@latest add hover-card",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add hover-card
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
-		<Steps>
-		    <Step>Install the following dependencies:</Step>
-			<PackageManagerTabs
-				commands={{
-					pnpm: "pnpm add @radix-ui/react-hover-card",
-					npm: "npm install @radix-ui/react-hover-card",
-					yarn: "yarn add @radix-ui/react-hover-card",
-					bun: "bun add @radix-ui/react-hover-card",
-				}}
-			/>
-
-    		<Step>Copy and paste the following code into your project.</Step>
-    		<ComponentSource name="hover-card" title="components/ui/hover-card.tsx" collapsible />
-
-    		<Step>Update the import paths as per your project structure.</Step>
-    	</Steps>
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-hover-card
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="hover-card" title="components/ui/hover-card.tsx" collapsible />
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
@@ -53,61 +41,19 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/hover-card.tsx"
-	code={`import { 
-HoverCard, 
-HoverCardTrigger, 
-HoverCardContent 
-} from "@/components/ui/hover-card.tsx"`}
-/>
+```tsx showLineNumbers title="/components/ui/hover-card.tsx"
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "@/components/ui/hover-card"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/hover-card.tsx"
-	code={` <HoverCard>
-    	<HoverCardTrigger>Hover Me</HoverCardTrigger>
-    	<HoverCardContent>
-			Hello! I am a tooltip-like card.
-		</HoverCardContent>
-</HoverCard>`}
-/>
-
----
-
-## Examples
-
-### User Mini-Profile
-
-<ComponentPreview path="hover-card/hover-card-user-mini-profile" />
-
-### User Metrics
-
-<ComponentPreview path="hover-card/hover-card-user-metrics" />
-
-### Group Quick View
-
-<ComponentPreview path="hover-card/hover-card-group-quick-view" />
-
-### Influencer Profile
-
-<ComponentPreview path="hover-card/hover-card-influencer-profile" />
-
-### Post Images and Stats
-
-<ComponentPreview path="hover-card/hover-card-post-images-and-stats" />
-
----
-
-## Props
-
-<PropsTableWrapper>
-<PropsTable title="HoverCard" externalReference="https://www.radix-ui.com/primitives/docs/components/hover-card#root" />
-<PropsTable title="HoverCardTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/hover-card#trigger" />
-<PropsTable
-	title="HoverCardContent"
-	externalReference="https://www.radix-ui.com/primitives/docs/components/hover-card#content"
-/>
-
-</PropsTableWrapper>
+```tsx showLineNumbers title="/components/ui/hover-card.tsx"
+<HoverCard>
+	<HoverCardTrigger>Hover Me</HoverCardTrigger>
+	<HoverCardContent>Hello! I am a tooltip-like card.</HoverCardContent>
+</HoverCard>
+```

@@ -15,58 +15,54 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add empty",
-				npm: "npx radianui@latest add empty",
-				yarn: "yarn dlx radianui@latest add empty",
-				bun: "bunx radianui@latest add empty",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add empty
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
-		<Steps>
-			<Step>Copy and paste the following code into your project.</Step>
-			<ComponentSource name="empty" title="components/ui/empty.tsx" collapsible />
-			<Step>Update the import paths as per your project structure.</Step>
-		</Steps>
-	</InstallTabsContent>
+	<Steps>
+	    <Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="empty" title="components/ui/empty.tsx" collapsible />
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
+    </InstallTabsContent>
+
 </InstallationTabs>
 
 ## Usage
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/empty"
-	code={`import { 
-Empty, 
-EmptyMedia,
-EmptyHeader,
-EmptyTitle, 
-EmptyDescription, 
-EmptyAction 
-} from "@/components/ui/empty"`}
-/>
+```tsx showLineNumbers title="/components/ui/empty.tsx"
+import {
+	Empty,
+	EmptyAction,
+	EmptyDescription,
+	EmptyHeader,
+	EmptyMedia,
+	EmptyTitle,
+} from "@/components/ui/empty"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/empty"
-	code={`<Empty>
+```tsx showLineNumbers title="/components/ui/empty.tsx"
+<Empty>
 	<EmptyMedia>
 		<EmptyIcon />
 	</EmptyMedia>
 	<EmptyHeader>
 		<EmptyTitle>No results found</EmptyTitle>
-		<EmptyDescription>Please try using a different keyword or update your search filters</EmptyDescription>
+		<EmptyDescription>
+			Please try using a different keyword or update your search filters
+		</EmptyDescription>
 	</EmptyHeader>
 	<EmptyAction>
 		<Button>Clear filters</Button>
 	</EmptyAction>
-</Empty>`}
-/>
+</Empty>
+```
 
 ---
 

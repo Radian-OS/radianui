@@ -18,32 +18,22 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add collapsible",
-				npm: "npx radianui@latest add collapsible",
-				yarn: "yarn dlx radianui@latest add collapsible",
-				bun: "bunx radianui@latest add collapsible",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add collapsible
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
-		<Steps>
-			<Step>Install the following dependencies:</Step>
-			<PackageManagerTabs
-				commands={{
-					pnpm: "pnpm add @radix-ui/react-collapsible",
-					npm: "npm install @radix-ui/react-collapsible",
-					yarn: "yarn add @radix-ui/react-collapsible",
-					bun: "bun add @radix-ui/react-collapsible",
-				}}
-			/>
-			<Step>Copy and paste the following code into your project.</Step>
-			<ComponentSource name="collapsible" title="components/ui/collapsible.tsx" collapsible />
+	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-collapsible
+		```
+    	<Step>Copy and paste the following code into your project.</Step>
+    	<ComponentSource name="collapsible" title="components/ui/collapsible.tsx" collapsible />
 
-    		<Step>Update the import paths as per your project structure.</Step>
-    	</Steps>
+    	<Step>Update the import paths as per your project structure.</Step>
+    </Steps>
     </InstallTabsContent>
 
 </InstallationTabs>
@@ -52,28 +42,26 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/collapsible"
-	code={`import { 
-Collapsible, 
-CollapsibleTrigger, 
-CollapsibleContent 
-} from "@/components/ui/collapsible"`}
-/>
+```tsx showLineNumbers title="/components/ui/collapsible.tsx"
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "@/components/ui/collapsible"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/collapsible"
-	code={`<Collapsible>
-	    <CollapsibleTrigger>
-		    Can I use RadianOS in my project?
-	    </CollapsibleTrigger>
-	    <CollapsibleContent>
-		    Of course! RadianOS is a free and open-source design system and component library built with React and TypeScript. It provides a comprehensive set of accessible, customizable components for building beautiful user interfaces.
-	    </CollapsibleContent>
-</Collapsible>`}
-/>
+```tsx showLineNumbers title="/components/ui/collapsible.tsx"
+<Collapsible>
+	<CollapsibleTrigger>Can I use RadianOS in my project?</CollapsibleTrigger>
+	<CollapsibleContent>
+		Of course! RadianOS is a free and open-source design system and component
+		library built with React and TypeScript. It provides a comprehensive set of
+		accessible, customizable components for building beautiful user interfaces.
+	</CollapsibleContent>
+</Collapsible>
+```
 
 ---
 
@@ -96,7 +84,16 @@ CollapsibleContent
 ## Props
 
 <PropsTableWrapper>
-	<PropsTable title="Collapsible" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#root" />
-	<PropsTable title="CollapsibleTrigger" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#trigger" />
-	<PropsTable title="CollapsibleContent" externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#content" />
+	<PropsTable
+		title="Collapsible"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#root"
+	/>
+	<PropsTable
+		title="CollapsibleTrigger"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#trigger"
+	/>
+	<PropsTable
+		title="CollapsibleContent"
+		externalReference="https://www.radix-ui.com/primitives/docs/components/collapsible#content"
+	/>
 </PropsTableWrapper>

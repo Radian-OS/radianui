@@ -5,111 +5,108 @@ description: Add dark mode to your Vite application
 
 ## Create a Theme Provider
 
-    <CodeSnippet
-    collapsible
-    code={`import { createContext, useContext, useEffect, useState } from "react"
+<CodeCollapsibleWrapper>
+
+```tsx showLineNumbers title="components/theme-provider.tsx"
+import { createContext, useContext, useEffect, useState } from "react"
 
 type Theme = "dark" | "light" | "system"
 
 type ThemeProviderProps = {
-children: React.ReactNode
-defaultTheme?: Theme
-storageKey?: string
+	children: React.ReactNode
+	defaultTheme?: Theme
+	storageKey?: string
 }
 
 type ThemeProviderState = {
-theme: Theme
-setTheme: (theme: Theme) => void
+	theme: Theme
+	setTheme: (theme: Theme) => void
 }
 
 const initialState: ThemeProviderState = {
-theme: "system",
-setTheme: () => null,
+	theme: "system",
+	setTheme: () => null,
 }
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
 export function ThemeProvider({
-  children,
-  defaultTheme = "system",
-  storageKey = "vite-ui-theme",
-  ...props
+	children,
+	defaultTheme = "system",
+	storageKey = "vite-ui-theme",
+	...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
+	const [theme, setTheme] = useState<Theme>(
+		() => (localStorage.getItem(storageKey) as Theme) || defaultTheme
+	)
 
-useEffect(() => {
-const root = window.document.documentElement
+	useEffect(() => {
+		const root = window.document.documentElement
 
-    root.classList.remove("light", "dark")
+		root.classList.remove("light", "dark")
 
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light"
+		if (theme === "system") {
+			const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+				.matches
+				? "dark"
+				: "light"
 
-      root.classList.add(systemTheme)
-      return
-    }
+			root.classList.add(systemTheme)
+			return
+		}
 
-    root.classList.add(theme)
+		root.classList.add(theme)
+	}, [theme])
 
-}, [theme])
+	const value = {
+		theme,
+		setTheme: (theme: Theme) => {
+			localStorage.setItem(storageKey, theme)
+			setTheme(theme)
+		},
+	}
 
-const value = {
-theme,
-setTheme: (theme: Theme) => {
-localStorage.setItem(storageKey, theme)
-setTheme(theme)
-},
+	return (
+		<ThemeProviderContext.Provider {...props} value={value}>
+			{children}
+		</ThemeProviderContext.Provider>
+	)
 }
-
-return (
-
-<ThemeProviderContext.Provider {...props} value={value}>
-	{children}
-</ThemeProviderContext.Provider>
-) }
 
 export const useTheme = () => {
-  const context = useContext(ThemeProviderContext)
+	const context = useContext(ThemeProviderContext)
 
-if (context === undefined)
-throw new Error("useTheme must be used within a ThemeProvider")
+	if (context === undefined)
+		throw new Error("useTheme must be used within a ThemeProvider")
 
-return context
+	return context
 }
-`}
-title="components/theme-provider.tsx"
-/>
+```
+
+</CodeCollapsibleWrapper>
 
 ## Wrap your Root Layout
 
 Add the `ThemeProvider` to your root layout.
 
-<br/>
-<CodeSnippet
-code={`import { ThemeProvider } from "@/components/theme-provider"
- 
+```tsx showLineNumbers title="App.tsx"
+import { ThemeProvider } from "@/components/theme-provider"
+
 function App() {
-    return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        {children}
-    </ThemeProvider>
-    )
+	return (
+		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+			{children}
+		</ThemeProvider>
+	)
 }
 
-export default App`}
-title="App.tsx"
-/>
+export default App
+```
 
 ## Create a Theme Toggler
 
-<CodeSnippet
-title="components/theme-toggler.tsx"
-code={`import { useEffect, useState } from "react"
+```tsx showLineNumbers title="components/theme-toggler.tsx"
+import { useEffect, useState } from "react"
 import { Loader2, MoonIcon, SunIcon } from "lucide-react"
 import { useTheme } from "@/components/theme-provider"
 import { Button, IconButton } from "@/components/ui/button"
@@ -118,48 +115,41 @@ export function ThemeToggler() {
 	const [mounted, setMounted] = useState(false)
 	const { theme, setTheme } = useTheme()
 
-    const toggleTheme = () => {
-    	setTheme(theme === "light" ? "dark" : "light")
-    }
+	const toggleTheme = () => {
+		setTheme(theme === "light" ? "dark" : "light")
+	}
 
-    useEffect(() => {
-    	setMounted(true)
-    }, [])
+	useEffect(() => {
+		setMounted(true)
+	}, [])
 
-    if (!mounted) {
-    	return (
-    		<IconButton variant="outline" color="neutral" disabled>
-    			<Loader2 className="size-5 animate-spin" />
-    		</IconButton>
-    	)
-    }
+	if (!mounted) {
+		return (
+			<IconButton variant="outline" color="neutral" disabled>
+				<Loader2 className="size-5 animate-spin" />
+			</IconButton>
+		)
+	}
 
-    return (
-    	<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
-    		{theme === "light" ? <MoonIcon /> : <SunIcon />}
-    	</IconButton>
-    )
-
+	return (
+		<IconButton variant="outline" color="neutral" onClick={toggleTheme}>
+			{theme === "light" ? <MoonIcon /> : <SunIcon />}
+		</IconButton>
+	)
 }
-`}
-
-/>
+```
 
 ## Use the Theme Toggler
 
-<CodeSnippet
-title="components/navigation-bar.tsx"
-code={`import { ThemeToggler } from "@/components/theme-toggler"
+```tsx showLineNumbers title="components/navigation-bar.tsx"
+import { ThemeToggler } from "@/components/theme-toggler"
 
 export function NavigationBar() {
-    return (
-    <nav>
-        // ....
-        <ThemeToggler />
-    </nav>
-    )
+	return (
+		<nav>
+			// ....
+			<ThemeToggler />
+		</nav>
+	)
 }
-`}
-/
-
->
+```

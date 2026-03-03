@@ -13,66 +13,30 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
-	<InstallTabsList>
-		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
-		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
-	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add popover",
-				npm: "npx radianui@latest add popover",
-				yarn: "yarn dlx radianui@latest add popover",
-				bun: "bunx radianui@latest add popover",
-			}}
-		/>
-	</InstallTabsContent>
-	<InstallTabsContent value="manual" className="p-0">
-	<Steps>
-	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-popover",
-				npm: "npm install @radix-ui/react-popover",
-				yarn: "yarn add @radix-ui/react-popover",
-				bun: "bun add @radix-ui/react-popover",
-			}}
-		/>
-
-    	<Step>Copy and paste the following code into your project.</Step>
-    	<ComponentSource name="popover" title="components/ui/popover.tsx" collapsible />
-
-    	<Step>Update the import paths as per your project structure.</Step>
-    </Steps>
-    </InstallTabsContent>
-
-</InstallationTabs>
+```bash
+npm install @radix-ui/react-popover
+```
 
 ## Usage
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/popover"
-	code={`import { 
-Popover, 
-PopoverContent, 
-PopoverTrigger 
-} from "@/components/ui/popover"`}
-/>
+```tsx showLineNumbers title="/components/ui/popover"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/components/ui/popover"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/popover"
-	code={`<Popover>
-        <PopoverTrigger>Open Popover</PopoverTrigger>
-        <PopoverContent>
-          This is a simple popover content
-        </PopoverContent>
-    </Popover>`}
-/>
+```tsx showLineNumbers title="/components/ui/popover"
+<Popover>
+	<PopoverTrigger>Open Popover</PopoverTrigger>
+	<PopoverContent>This is a simple popover content</PopoverContent>
+</Popover>
+```
 
 ---
 
@@ -88,13 +52,19 @@ PopoverTrigger
 
 ### Emoji Picker with frimousse
 
-<p className="mb-1">Lightweight and fast, focused on core emojis with minimal overhead. Best for performance-sensitive UI.</p>
+<p className="mb-1">
+	Lightweight and fast, focused on core emojis with minimal overhead. Best for
+	performance-sensitive UI.
+</p>
 
 <ComponentPreview path="popover/popover-emoji" />
 
 ### Emoji Picker with emoji-mart
 
-<p className="mb-1">Feature-rich, with recents and category tabs. Best when functionality and browsing options are priorities.</p>
+<p className="mb-1">
+	Feature-rich, with recents and category tabs. Best when functionality and
+	browsing options are priorities.
+</p>
 
 <ComponentPreview path="popover/popover-emoji2" />
 

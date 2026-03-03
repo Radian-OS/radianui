@@ -1,3 +1,5 @@
+"use client"
+
 import BeforeAfterSlider from "react-before-after-slider-component"
 import "react-before-after-slider-component/dist/build.css"
 

@@ -16,37 +16,30 @@ links:
 
         <Tabs defaultValue="cli">
           <TabsContent value="cli" className="p-0">
-            <PackageManagerTabs
-              commands={{
-                pnpm: "pnpm i sonner",
-                npm: "npm i sonner",
-                yarn: "yarn i sonner",
-                bun: "bunx i sonner",
-            }}
-            />
+          ```bash
+          npm install sonner
+          ```
         </TabsContent>
 
         </Tabs>
 
         <Step>Wrap your application with the `Toaster` component from `sonner`.</Step>
 
-        <CodeSnippet
-        	title="app/layout.tsx"
-        	code={`import { Toaster } from "sonner"
+        ```tsx showLineNumbers title="app/layout.tsx"
+        import { Toaster } from "sonner"
 
-export default function RootLayout({ children }) {
-    return (
-      <html lang="en">
-        <head />
-        <body>
-          <main>{children}</main>
-          <Toaster />
-        </body>
-      </html>
-    )
-  }
-          `}
-        />
+        export default function RootLayout({ children }) {
+          return (
+            <html lang="en">
+              <head />
+              <body>
+                <main>{children}</main>
+                <Toaster />
+              </body>
+            </html>
+          )
+        }
+        ```
 
         <Step>Update the import paths as per your project structure.</Step>
 
@@ -56,26 +49,27 @@ export default function RootLayout({ children }) {
 
 ### Imports
 
-<CodeSnippet title="/components/ui/sonner" code={`import { toast } from "sonner"`} />
+```tsx showLineNumbers title="/components/ui/sonner.tsx"
+import { toast } from "sonner"
+```
 
 ### Code
 
-<CodeSnippet
-	title="Usage"
-	code={`<Button
-	    variant="outline"
-	    onClick={() =>
-	    	toast("Toast Title", {
-	    		description: "Toast Description Message",
-	    		action: {
-	    			label: "Upgrade",
-	    			onClick: () => console.log("Upgrade clicked!"),
-	    		},
-	    	})
-	    }>
-	    Show Toast
-</Button>`}
-/>
+```tsx showLineNumbers title="/components/ui/sonner.tsx"
+<Button
+	variant="outline"
+	onClick={() =>
+		toast("Toast Title", {
+			description: "Toast Description Message",
+			action: {
+				label: "Upgrade",
+				onClick: () => console.log("Upgrade clicked!"),
+			},
+		})
+	}>
+	Show Toast
+</Button>
+```
 
 ---
 

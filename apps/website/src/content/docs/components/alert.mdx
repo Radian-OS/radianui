@@ -15,18 +15,17 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add alert",
-				npm: "npx radianui@latest add alert",
-				yarn: "yarn dlx radianui@latest add alert",
-				bun: "bunx radianui@latest add alert",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add alert
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-alert
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="alert" title="components/ui/alert.tsx" collapsible />
 
@@ -40,43 +39,37 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/alert.tsx"
-	code={`import { 
-Alert, 
-AlertContent, 
-AlertDescription, 
-AlertIcon, 
-AlertTitle,
-AlertToolbar 
-} from "@/components/ui/alert"`}
-/>
+```tsx showLineNumbers title="/components/ui/alert.tsx"
+import {
+	Alert,
+	AlertContent,
+	AlertDescription,
+	AlertIcon,
+	AlertTitle,
+	AlertToolbar,
+} from "@/components/ui/alert"
+```
 
 ### Code
 
-<CodeSnippet
-	title="/components/ui/alert.tsx"
-	code={`<Alert>
- 
- <AlertIcon>
-  <Bell size={16} />
- </AlertIcon>
- 
- <AlertContent>
-  <AlertTitle>Alert Title</AlertTitle>
- <AlertDescription>This is alert description.</AlertDescription>
- </AlertContent>
-			
- <AlertToolbar>
-  <Button asChild variant="link" >
-  <Link href="#">
-  Action
-  </Link>
-  </Button>
- </AlertToolbar>
- 
-</Alert>`}
-/>
+```tsx showLineNumbers title="/components/ui/alert.tsx"
+<Alert>
+	<AlertIcon>
+		<Bell size={16} />
+	</AlertIcon>
+
+	<AlertContent>
+		<AlertTitle>Alert Title</AlertTitle>
+		<AlertDescription>This is alert description.</AlertDescription>
+	</AlertContent>
+
+	<AlertToolbar>
+		<Button asChild variant="link">
+			<Link href="#">Action</Link>
+		</Button>
+	</AlertToolbar>
+</Alert>
+```
 
 ---
 

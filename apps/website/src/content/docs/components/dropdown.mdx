@@ -13,33 +13,22 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add dropdown",
-				npm: "npx radianui@latest add dropdown",
-				yarn: "yarn dlx radianui@latest add dropdown",
-				bun: "bunx radianui@latest add dropdown",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add dropdown
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-dropdown-menu",
-				npm: "npm install @radix-ui/react-dropdown-menu",
-				yarn: "yarn add @radix-ui/react-dropdown-menu",
-				bun: "bun add @radix-ui/react-dropdown-menu",
-			}}
-		/>
-
+		```bash
+		npm install @radix-ui/react-dropdown-menu
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="dropdown" title="components/ui/dropdown.tsx" collapsible />
 
@@ -53,126 +42,31 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="components/ui/dropdown.tsx"
-	code={`import { 
-	Dropdown, 
-	DropdownTrigger, 
+```tsx showLineNumbers title="/components/ui/dropdown.tsx"
+import {
+	Dropdown,
 	DropdownContent,
-	DropdownItem, 
-	DropdownSub, 
-	DropdownSubTrigger, 
-	DropdownSubContent 
-	} from "@/components/ui/dropdown"`}
-/>
+	DropdownItem,
+	DropdownSub,
+	DropdownSubContent,
+	DropdownSubTrigger,
+	DropdownTrigger,
+} from "@/components/ui/dropdown"
+```
 
 ### Code
 
-<CodeSnippet title="components/ui/dropdown.tsx" code={`<Dropdown>
-
-    	<DropdownTrigger asChild>
-    		<Button variant="outline">Open Menu</Button>
-    	</DropdownTrigger>
-
-    	<DropdownContent>
-
-    		<DropdownGroup title="Actions" selectionMode="single">
-
-    		<DropdownItem value="new">New File</DropdownItem>
-    		<DropdownItem value="open">Open File</DropdownItem>
-    		<DropdownItem value="save">Save</DropdownItem>
-
-    		</DropdownGroup>
-
-    	</DropdownContent>
-
-</Dropdown>`} />
-
----
-
-## Examples
-
-### User Menu
-
-<ComponentPreview path="dropdown/user-profile-dropdown-example" />
-
-### With Checkbox
-
-<ComponentPreview path="dropdown/dropdown-with-dropdown-checkbox" />
-
-### With Radio Group
-
-<ComponentPreview path="dropdown/dropdown-with-radio" />
-
----
-
-## Props
-
-<PropsTableWrapper>
-	<PropsTable
-		title="Dropdown"
-		data={[
-			{
-				name: "indicatorPosition",
-				required: false,
-				defaultValue: "right",
-				values: ["left", "right"],
-				description: "Where to show the indicator.",
-			},
-			{
-				name: "indicator",
-				required: false,
-				defaultValue: "null",
-				values: ["ReactNode"],
-				description: "Replace the default indicator with custom indicator",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
-	/>
-	<PropsTable
-		title="DropdownTrigger"
-		data={[
-			{
-				name: "asChild",
-				required: false,
-				defaultValue: "true",
-				description: "Use this prop to render the trigger as a child component.",
-				values: ["boolean"],
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
-	/>
-	<PropsTable
-		title="DropdownContent"
-		data={[
-			{
-				name: "placement",
-				required: false,
-				description: "The placement of the dropdown.",
-				values: ["top", "bottom", "left", "right"],
-				defaultValue: "bottom",
-			},
-			{
-				name: "align",
-				required: false,
-				description: "The alignment of the dropdown content.",
-				values: ["start", "center", "end"],
-				defaultValue: "start",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
-	/>
-	<PropsTable
-		title="DropdownItem"
-		data={[
-			{
-				name: "inset",
-				required: false,
-				description: "If true, the item will be inset.",
-				values: ["boolean"],
-				defaultValue: "false",
-			},
-		]}
-		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
-	/>
-</PropsTableWrapper>
+```tsx showLineNumbers title="/components/ui/dropdown.tsx"
+<Dropdown>
+	<DropdownTrigger asChild>
+		<Button variant="outline">Open Menu</Button>
+	</DropdownTrigger>
+	<DropdownContent>
+		<DropdownGroup title="Actions" selectionMode="single">
+			<DropdownItem value="new">New File</DropdownItem>
+			<DropdownItem value="open">Open File</DropdownItem>
+			<DropdownItem value="save">Save</DropdownItem>
+		</DropdownGroup>
+	</DropdownContent>
+</Dropdown>
+```

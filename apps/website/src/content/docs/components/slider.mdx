@@ -19,26 +19,16 @@ links:
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add slider",
-				npm: "npx radianui@latest add slider",
-				yarn: "yarn dlx radianui@latest add slider",
-				bun: "bunx radianui@latest add slider",
-			}}
-		/>
+	```bash
+	npx radianui@latest add slider
+	```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-slider",
-				npm: "npm install @radix-ui/react-slider",
-				yarn: "yarn add @radix-ui/react-slider",
-				bun: "bun add @radix-ui/react-slider",
-			}}
-		/>
+		```bash
+		npm install @radix-ui/react-slider
+		```
 
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="slider" title="components/ui/slider.tsx" collapsible />
@@ -53,17 +43,15 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/slider"
-	code={`import { 
-Slider,
-SliderThumb
-} from "@/components/ui/slider"`}
-/>
+```tsx showLineNumbers title="/components/ui/slider.tsx"
+import { Slider, SliderThumb } from "@/components/ui/slider"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/slider" code={`<Slider />`} />
+```tsx showLineNumbers title="/components/ui/slider.tsx"
+<Slider />
+```
 
 ---
 

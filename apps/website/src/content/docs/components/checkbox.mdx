@@ -13,33 +13,22 @@ links:
 
 ## Installation
 
-<InstallationTabs>	
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add checkbox",
-				npm: "npx radianui@latest add checkbox",
-				yarn: "yarn dlx radianui@latest add checkbox",
-				bun: "bunx radianui@latest add checkbox",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add checkbox
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-		<Step>Install the following dependencies:</Step>
-    	<PackageManagerTabs
-    		commands={{
-    			pnpm: "pnpm add @radix-ui/react-checkbox",
-    			npm: "npm install @radix-ui/react-checkbox",
-    			yarn: "yarn add @radix-ui/react-checkbox",
-    			bun: "bun add @radix-ui/react-checkbox",
-    		}}
-    	/>
-
+	    <Step>Install the following dependencies:</Step>
+		```bash
+		npm install @radix-ui/react-checkbox
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="checkbox" title="components/ui/checkbox.tsx" collapsible />
 
@@ -53,11 +42,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/checkbox" code={`import { Checkbox } from "@/components/ui/checkbox"`} />
+```tsx showLineNumbers title="/components/ui/checkbox.tsx"
+import { Checkbox } from "@/components/ui/checkbox"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/checkbox" code={`<Checkbox/>`} />
+```tsx showLineNumbers title="/components/ui/checkbox.tsx"
+<Checkbox />
+```
 
 ---
 

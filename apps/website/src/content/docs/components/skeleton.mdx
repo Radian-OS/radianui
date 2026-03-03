@@ -16,14 +16,9 @@ links:
 		<TabsTrigger value="manual">Manual</TabsTrigger>
 	</InstallTabsList>
 	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add skeleton",
-				npm: "npx radianui@latest add skeleton",
-				yarn: "yarn dlx radianui@latest add skeleton",
-				bun: "bunx radianui@latest add skeleton",
-			}}
-		/>
+		```bash
+		npx radianui@latest add skeleton
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 		<Steps>
@@ -40,11 +35,15 @@ links:
 
 ### Imports
 
-<CodeSnippet title="/components/ui/skeleton" code={`import { Skeleton } from "@/components/ui/skeleton"`} />
+```tsx showLineNumbers title="/components/ui/skeleton.tsx"
+import { Skeleton } from "@/components/ui/skeleton"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/skeleton" code={`<Skeleton className="w-full h-10" />`} />
+```tsx showLineNumbers title="/components/ui/skeleton.tsx"
+<Skeleton className="h-10 w-full" />
+```
 
 ---
 

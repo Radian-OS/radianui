@@ -18,28 +18,17 @@ links:
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add badge",
-				npm: "npx radianui@latest add badge",
-				yarn: "yarn dlx radianui@latest add badge",
-				bun: "bunx radianui@latest add badge",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add badge
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
 	    <Step>Install the following dependencies:</Step>
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm add @radix-ui/react-slot",
-				npm: "npm install @radix-ui/react-slot",
-				yarn: "yarn add @radix-ui/react-slot",
-				bun: "bun add @radix-ui/react-slot",
-			}}
-		/>
-
+		```bash
+		npm install @radix-ui/react-slot
+		```
     	<Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="badge" title="components/ui/badge.tsx" collapsible />
 
@@ -53,17 +42,17 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="/components/ui/badge.tsx"
-	code={`import { 
-Badge, 
-BadgeDot 
-} from "@/components/ui/badge"`}
-/>
+```tsx showLineNumbers title="/components/ui/badge.tsx"
+import { Badge, BadgeDot } from "@/components/ui/badge"
+```
 
 ### Code
 
-<CodeSnippet title="/components/ui/badge.tsx" code={`<Badge variant="strong" color="success">Active</Badge>`} />
+```tsx showLineNumbers title="/components/ui/badge.tsx"
+<Badge variant="strong" color="success">
+	Active
+</Badge>
+```
 
 ---
 

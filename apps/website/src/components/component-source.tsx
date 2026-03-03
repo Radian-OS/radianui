@@ -1,22 +1,25 @@
-import { Check, Clipboard, Terminal } from "lucide-react"
-import { useTheme } from "next-themes"
+import { TerminalIcon } from "lucide-react"
 import components from "@/app/api/components/components.json"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
-import { useCopyPaste } from "@/hooks/use-copy-paste"
+import { highlightCode } from "@/lib/highligh-code"
 import { cn } from "@/lib/utils"
-import { IconButton } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
+import { CopyButton } from "./copy-button"
 
 type ComponentSourceProps = {
 	name: string
 	title: string
 	collapsible?: boolean
 	className?: string
+	language?: string
 }
 
-function ComponentSource({ name, title, collapsible = true, className }: ComponentSourceProps) {
-	const { theme } = useTheme()
-
+async function ComponentSource({
+	name,
+	title,
+	collapsible = true,
+	language,
+	className,
+}: ComponentSourceProps) {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const component = components.find((comp: any) => comp.name === name)
 
@@ -31,45 +34,63 @@ function ComponentSource({ name, title, collapsible = true, className }: Compone
 		throw new Error(`No source code found for component "${name}"`)
 	}
 
-	const { copied, copy } = useCopyPaste({
-		code,
-		eventName: "block_cli_copy",
-		title: "CodeSnippet",
-		category: "CodeSnippet",
-	})
+	const lang = language ?? title?.split(".").pop() ?? "tsx"
+	const highlightedCode = await highlightCode(code)
+
+	if (!collapsible) {
+		return (
+			<div className={cn("relative", className)}>
+				<ComponentCode
+					code={code}
+					language={lang}
+					title={title}
+					highlightedCode={highlightedCode}
+				/>
+			</div>
+		)
+	}
 
 	return (
-		<div className={cn("bg-fill2 flex flex-col gap-2 rounded-xl p-1.5", className)}>
-			<div className="inline-flex items-center gap-3 px-1 py-0.5">
-				<span className="bg-bg text-fg-tertiary rounded-md p-1">
-					<Terminal className="size-4" />
-				</span>
-				<span className="text-fg-secondary flex-1 text-sm">{title}</span>
-				<IconButton variant="ghost" color="neutral" size={"28"} aria-label="Copy command" onClick={copy}>
-					{copied ? <Check size={20} /> : <Clipboard size={20} />}
-				</IconButton>
-			</div>
-			{collapsible && (
-				<CodeCollapsibleWrapper>
-					<CodeArea
-						language="tsx"
-						theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
-						code={code}
-						lineNumbers={true}
-						className={cn("border-soft flex-1 rounded-[10px] border", className)}
-					/>
-				</CodeCollapsibleWrapper>
-			)}
-			{!collapsible && (
-				<CodeArea
-					language="tsx"
-					theme={theme === "dark" ? "github-dark-high-contrast" : "github-light"}
-					code={code}
-					lineNumbers={true}
-					className={cn("border-soft flex-1 rounded-[10px] border", className)}
-				/>
-			)}
-		</div>
+		<CodeCollapsibleWrapper>
+			<ComponentCode
+				code={code}
+				title={title}
+				language={lang}
+				highlightedCode={highlightedCode}
+			/>
+		</CodeCollapsibleWrapper>
+	)
+}
+
+function ComponentCode({
+	highlightedCode,
+	title,
+	code,
+	language,
+}: {
+	code: string
+	language: string
+	highlightedCode: string
+	title?: string
+}) {
+	return (
+		<figure data-rehype-pretty-code-figure="" className="[&>pre]:max-h-96">
+			<figcaption data-rehype-pretty-code-title="" data-language={language}>
+				{title && (
+					<>
+						<span className="bg-bg text-fg-tertiary rounded-md p-1">
+							<TerminalIcon size={16} />
+						</span>
+						{title}
+					</>
+				)}
+			</figcaption>
+			<CopyButton value={code} />
+			<div
+				className="bg-bg border-soft rounded-xl border"
+				dangerouslySetInnerHTML={{ __html: highlightedCode }}
+			/>
+		</figure>
 	)
 }
 

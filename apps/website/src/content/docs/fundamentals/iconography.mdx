@@ -9,7 +9,13 @@ Radian currently uses Lucide icon library by default. Lucide is an open-source i
 
 <br />
 
-<Image src="/doc/lucideicons.png" width="704" height="450" alt="Lucide Icons" priority />
+<Image
+	src="/doc/lucideicons.png"
+	width="704"
+	height="450"
+	alt="Lucide Icons"
+	priority
+/>
 
 ## Benefits of Lucide Icon Pack
 
@@ -34,36 +40,32 @@ icons are lightweight SVGs that can be imported and customized easily.
 
 ### Next JS
 
-<CodeSnippet
-					title="components/icon_example.tsx"
-					showLineNumber
-					code={`import { Home } from "lucide-react";
+```tsx title="components/icon_example.tsx" showLineNumbers
+import { Home } from "lucide-react"
 
 export default function Page() {
-    return (
-      <div>
-        <Home size={32} strokeWidth={2} className="text-blue-500" />      
-        <p>Welcome home!</p>
-      </div>
-    );
-}                 `}
-/>
+	return (
+		<div>
+			<Home size={32} strokeWidth={2} className="text-blue-500" />
+			<p>Welcome home!</p>
+		</div>
+	)
+}
+```
 
 ### Vite
 
-<CodeSnippet
-					title="components/icon_example.tsx"
-					showLineNumber
-					code={`import { Search } from "lucide-react";
+```tsx title="components/icon_example.tsx" showLineNumbers
+import { Search } from "lucide-react"
 
 export default function App() {
-    return (
-        <button className="flex items-center gap-2">
-            <Search size={20} /> Search
-        </button>
-    );
-}                 `}
-/>
+	return (
+		<button className="flex items-center gap-2">
+			<Search size={20} /> Search
+		</button>
+	)
+}
+```
 
 <br />
 <br />

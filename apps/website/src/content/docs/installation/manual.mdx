@@ -13,57 +13,45 @@ Components are styled using Tailwind CSS. You need to install Tailwind CSS in yo
 {/* <Link href="https://tailwindcss.com/docs/installation" className="underline underline-offset-4" target="_blank" rel="noopener noreferrer">
 	Follow the Tailwind CSS installation instructions to get started.
 </Link> */}
-[Follow the Tailwind CSS installation instructions to get started.](https://tailwindcss.com/docs/installation)
+[Follow the Tailwind CSS installation instructions to get
+started.](https://tailwindcss.com/docs/installation)
 
 ## Add dependencies
 
 Add the following dependencies to your project:
 
-<br />
-<PackageManagerTabs
-	commands={{
-		npm: "npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react tw-animate-css",
-		yarn: "yarn add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react tw-animate-css",
-		pnpm: "pnpm add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react tw-animate-css",
-		bun: "bun add tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react tw-animate-css",
-	}}
-/>
+```bash
+npm install tailwindcss-animate class-variance-authority clsx tailwind-merge lucide-react tw-animate-css
+```
 
 ## Configure path aliases
 
 Configure the path aliases in your tsconfig.json file.
 
-<br />
-<CodeSnippet
-	title="tsconfig.json"
-	showLineNumber
-	code={`{
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./*"]
-    }
-  }
-}`}
-/>
+```json title="tsconfig.json" showLineNumbers
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./*"]
+		}
+	}
+}
+```
 
 ## Configure styles
 
 Add the following to your styles/globals.css file.
 
-<br />
-<CodeSnippet
-	title="globals.css"
-	collapsible
-	showLineNumber
-	code={`
+<CodeCollapsibleWrapper>
+
+```css title="globals.css" showLineNumbers
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark \*));
 
 @theme {
-
     --color-primary: oklch(0.528 0.2539 282.58);
     --color-primary-accent: oklch(0.94 0.0271 295.05);
     --color-primary-focus: oklch(0.9169 0.0383 295.46);
@@ -127,11 +115,9 @@ Add the following to your styles/globals.css file.
     --color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
     --color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
     --color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
-
 }
 
 .dark {
-
     --color-primary: oklch(0.528 0.2539 282.58);
     --color-primary-accent: oklch(0.2622 0.0915 289.13);
     --color-primary-focus: oklch(0.2827 0.1227 284.67);
@@ -195,11 +181,9 @@ Add the following to your styles/globals.css file.
     --color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
     --color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
     --color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-
 }
 
 @layer base {
-
     {
         border-color: var(--color-border);
     }
@@ -230,19 +214,14 @@ Add the following to your styles/globals.css file.
 }
 
 @utility font-heading {
-
     font-family: var(--heading-font);
-
 }
 
 @utility font-body {
-
     font-family: var(--body-font);
-
 }
 
 @utility heading-1 {
-
     @apply font-heading text-[2.25rem] font-bold leading-[2.75rem];
 
     @media (width >=theme(--breakpoint-sm)) {
@@ -254,11 +233,9 @@ Add the following to your styles/globals.css file.
     	font-size: 4rem;
     	line-height: 4.5rem;
     }
-
 }
 
 @utility heading-2 {
-
     @apply font-heading text-[2rem] font-bold leading-[2.5rem];
 
     @media (width >=theme(--breakpoint-sm)) {
@@ -270,11 +247,9 @@ Add the following to your styles/globals.css file.
     	font-size: 3rem;
     	line-height: 3.5rem;
     }
-
 }
 
 @utility heading-3 {
-
     @apply font-heading text-[1.875rem] font-bold leading-[2.375rem];
 
     @media (width >=theme(--breakpoint-sm)) {
@@ -290,7 +265,6 @@ Add the following to your styles/globals.css file.
 }
 
 @utility heading-4 {
-
     @apply font-heading text-[1.75rem] font-bold leading-[2.25rem];
 
     @media (width >=theme(--breakpoint-sm)) {
@@ -306,7 +280,6 @@ Add the following to your styles/globals.css file.
 }
 
 @utility heading-5 {
-
     @apply font-heading text-[1.5rem] font-bold leading-[2rem];
 
     @media (width >=theme(--breakpoint-sm)) {
@@ -318,11 +291,9 @@ Add the following to your styles/globals.css file.
     	font-size: 1.5rem;
     	line-height: 2rem;
     }
-
 }
 
 @utility heading-6 {
-
     @apply font-heading text-[1.25rem] font-bold leading-[1.75rem];
 
     @media (width >=theme(--breakpoint-sm)) {
@@ -338,25 +309,18 @@ Add the following to your styles/globals.css file.
 }
 
 @utility body-15 {
-
     @apply font-body text-[0.9375rem] leading-[1.375];
-
 }
 
 @utility text-sm-p {
-
     @apply font-body text-sm leading-[1.25rem];
-
 }
 
 @utility body-13 {
-
     @apply font-body text-[0.8125rem] leading-[1.125rem];
-
 }
 
 @utility no-scrollbar {
-
     -ms-overflow-style: none;
     scrollbar-width: none;
 
@@ -364,41 +328,39 @@ Add the following to your styles/globals.css file.
     	display: none;
     	/* Chrome, Safari and Opera */
     }
-
 }
-`}
-/>
+```
+
+</CodeCollapsibleWrapper>
 
 ## Add a cn helper
 
-<CodeSnippet
- title="lib/utils.ts"
-code={`import { clsx, type ClassValue } from "clsx"
+```tsx showLineNumbers title="lib/utils.ts"
+import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}`} 
-/>
+	return twMerge(clsx(inputs))
+}
+```
 
 ## Create a components.json file
 
 Create the file in root of your project
 
-<br />
-<CodeSnippet
-	title="components.json"
-	code={`{
-    "$schema": "https://radianos.com/schema.json",
-    "aliases": {
-      "components": "@/components",
-      "utils": "@/lib/utils",
-      "ui": "@/components/ui",
-      "animated": "@/components/animated",
-      "lib": "@/lib",
-      "hooks": "@/hooks"
-    },
-    "hasSrcDir": true
-}`}
-/>
+```json showLineNumbers title="components.json"
+{
+	"$schema": "https://radianos.com/schema.json",
+	"aliases": {
+		"components": "@/components",
+		"utils": "@/lib/utils",
+		"ui": "@/components/ui",
+		"animated": "@/components/animated",
+		"lib": "@/lib",
+		"hooks": "@/hooks"
+	},
+	"hasSrcDir": true
+}
+```
+
 Now you are good to go and you can add components.

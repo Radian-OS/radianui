@@ -10,27 +10,20 @@ links:
 
 ## Installation
 
-<InstallationTabs defaultValue="cli">
+<InstallationTabs>
 	<InstallTabsList>
 		<InstallTabsTrigger value="cli">CLI</InstallTabsTrigger>
 		<InstallTabsTrigger value="manual">Manual</InstallTabsTrigger>
 	</InstallTabsList>
-	<InstallTabsContent value="cli" className="p-0">
-		<PackageManagerTabs
-			commands={{
-				pnpm: "pnpm dlx radianui@latest add input",
-				npm: "npx radianui@latest add input",
-				yarn: "yarn dlx radianui@latest add input",
-				bun: "bunx radianui@latest add input",
-			}}
-		/>
+	<InstallTabsContent value="cli">
+		```bash
+		npx radianui@latest add input
+		```
 	</InstallTabsContent>
 	<InstallTabsContent value="manual" className="p-0">
 	<Steps>
-
-    	<Step>Copy and paste the following code into your project.</Step>
+	    <Step>Copy and paste the following code into your project.</Step>
     	<ComponentSource name="input" title="components/ui/input.tsx" collapsible />
-
     	<Step>Update the import paths as per your project structure.</Step>
     </Steps>
     </InstallTabsContent>
@@ -41,32 +34,32 @@ links:
 
 ### Imports
 
-<CodeSnippet
-	title="components/ui/input.tsx"
-	code={`import { 
-Input, 
-InputAddon, 
-InputGroup, 
-InputWrapper 
-} from "@/components/ui/input"`}
-/>
+```tsx showLineNumbers title="components/ui/input.tsx"
+import {
+	Input,
+	InputAddon,
+	InputGroup,
+	InputWrapper,
+} from "@/components/ui/input"
+```
 
 ### Code
 
-<CodeSnippet title="components/ui/input.tsx" code={`<Input placeholder="Enter username" />
+```tsx showLineNumbers title="components/ui/input.tsx"
+<Input placeholder="Enter username" />
 
 <InputGroup>
-	<InputAddon mode="icon">
-		<Mail />
-	</InputAddon>
-	<Input type="email" placeholder="designer@radianos.com" />
+    <InputAddon mode="icon">
+        <Mail />
+    </InputAddon>
+    <Input type="email" placeholder="designer@radianos.com" />
 </InputGroup>
 
 <InputWrapper>
-	<Mail />
-	<Input type="email" placeholder="designer@radianos.com" />
+    <Mail />
+    <Input type="email" placeholder="designer@radianos.com" />
 </InputWrapper>
-`} />
+```
 
 ---
 
@@ -178,7 +171,8 @@ InputWrapper
 			defaultValue: "default",
 			values: ["default", "icon"],
 			required: false,
-			description: "Determines the styling mode - icon mode centers content and removes horizontal padding",
+			description:
+				"Determines the styling mode - icon mode centers content and removes horizontal padding",
 		},
 	]}
 />
