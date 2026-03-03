@@ -40,12 +40,8 @@ const FigmaCard = () => {
 				<ArrowUpRight size={20} className="text-fg-tertiary" />
 			</div>
 			<div className="flex flex-col gap-1 px-0.5">
-				<p className="text-fg font-medium leading-5">
-					Get Radian Design System Kit Figma
-				</p>
-				<p className="text-fg-tertiary font-normal leading-5">
-					radianos.com/figma
-				</p>
+				<p className="text-fg font-medium leading-5">Get Radian Design System Kit Figma</p>
+				<p className="text-fg-tertiary font-normal leading-5">radianos.com/figma</p>
 			</div>
 		</Link>
 	)
