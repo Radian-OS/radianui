@@ -9,7 +9,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export const useTheme = () => {
+export const useThemeForColorTable = () => {
 	const context = useContext(ThemeContext)
 	if (context === undefined) {
 		throw new Error("useTheme must be used within a ThemeProvider")
@@ -17,7 +17,11 @@ export const useTheme = () => {
 	return context
 }
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const ThemeProviderForColorTable = ({
+	children,
+}: {
+	children: ReactNode
+}) => {
 	const [isDark, setIsDark] = useState(false)
 
 	const toggleTheme = () => {

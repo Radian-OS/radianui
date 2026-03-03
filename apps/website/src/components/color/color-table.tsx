@@ -2,7 +2,7 @@
 
 import React from "react"
 import { Palette } from "lucide-react"
-import { useTheme } from "@/contexts/theme-context"
+import { useThemeForColorTable } from "@/contexts/theme-context"
 import { Badge } from "@/registry/ui/badge"
 import {
 	Table,
@@ -22,7 +22,7 @@ export type ColorData = {
 }
 
 export const ColorTable = ({ data }: { data: ColorData[] }) => {
-	const isDark = useTheme()
+	const isDark = useThemeForColorTable()
 
 	return (
 		<div className="flex flex-col gap-2">

@@ -1,10 +1,10 @@
 "use client"
 
 import { Moon, Sun } from "lucide-react"
-import { useTheme } from "@/contexts/theme-context"
+import { useThemeForColorTable } from "@/contexts/theme-context"
 
 export default function ColorTableThemeToggle() {
-	const { isDark, toggleTheme } = useTheme()
+	const { isDark, toggleTheme } = useThemeForColorTable()
 	return (
 		<div
 			onClick={toggleTheme}

@@ -23,6 +23,7 @@ import DarkModePlayground from "@/components/theme/dark-mode-playground"
 import BodyFontSpecs from "@/components/typography/body-font-specs"
 import HeadingFontSpecs from "@/components/typography/heading-font-specs"
 import TypographyPlayground from "@/components/typography/typography-playground"
+import { ThemeProviderForColorTable } from "@/contexts/theme-context"
 import { cn } from "@/lib/utils"
 import BadgeExamplePreview from "@/registry/example/badge/badge-color-example"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
@@ -438,4 +439,5 @@ export const components = {
 		)
 	},
 	CodeCollapsibleWrapper,
+	ThemeProviderForColorTable,
 }
