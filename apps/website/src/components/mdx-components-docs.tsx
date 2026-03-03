@@ -27,7 +27,7 @@ import { cn } from "@/lib/utils"
 import BadgeExamplePreview from "@/registry/example/badge/badge-color-example"
 import DatePickerPresetsExample from "@/registry/example/date-picker/date-picker-range-example"
 import DatePickerWithTimeExample from "@/registry/example/date-picker/date-picker-with-time"
-import Examples from "@/registry/example/example.json"
+import examples from "@/registry/example/example.json"
 import ProgressPreview from "@/registry/example/progress/progress-preview"
 import {
 	Accordion,
@@ -52,7 +52,7 @@ import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import ColorTableThemeToggle from "./color/color-table-theme-toggle"
 import { CopyButton } from "./copy-button"
 
-export const components = (examples: typeof Examples | undefined) => ({
+export const components = {
 	PropsTable,
 	ColorTable,
 	ColorTableThemeToggle,
@@ -95,7 +95,9 @@ export const components = (examples: typeof Examples | undefined) => ({
 		type?: "component" | "block"
 	}) => {
 		const code =
-			examples?.[0]?.files.find((file) => file.name === path)?.content || ""
+			examples
+				?.find((e) => e.files.some((file) => file.name === path))
+				?.files.find((file) => file.name === path)?.content || ""
 
 		return (
 			<ComponentPreview
@@ -436,4 +438,4 @@ export const components = (examples: typeof Examples | undefined) => ({
 		)
 	},
 	CodeCollapsibleWrapper,
-})
+}

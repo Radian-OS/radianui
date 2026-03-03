@@ -1,51 +1,22 @@
-"use client"
-
-import React from "react"
-import { allDocs } from "contentlayer/generated"
-import { usePathname } from "next/navigation"
 import CommunityCard from "@/components/community-card"
 import TableOfContent from "@/components/table-of-contents"
-import { getHeadingsFromMdx } from "@/lib/get-mdx-headings"
+import { MdxHeading } from "@/lib/get-mdx-headings"
 
-const AsideBar = () => {
-	const pathname = usePathname()
-
-	// Get current doc based on pathname
-	const getCurrentDoc = () => {
-		if (!pathname.startsWith("/docs/")) return null
-		const slug = pathname.replace("/docs/", "")
-		return allDocs.find((doc) => doc.slugAsParams === slug) || null
-	}
-
-	const currentDoc = getCurrentDoc()
-	const [headings, setHeadings] = React.useState<
-		{ id: string; text: string; level: number }[]
-	>([])
-
-	// Load headings when doc changes
-	React.useEffect(() => {
-		if (currentDoc) {
-			getHeadingsFromMdx(currentDoc.rawMdx).then(setHeadings)
-		}
-	}, [currentDoc])
+const AsideBar = ({ headings }: { headings: MdxHeading[] }) => {
 	return (
-		<>
-			{pathname.startsWith("/docs/") && (
-				<aside className="bg-bg w-65 not-custom:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] py-10">
-					<div className="flex h-full flex-col gap-10">
-						{/* TOC takes remaining space and allows internal scrolling */}
-						<div className="min-h-0 overflow-hidden">
-							<TableOfContent headings={headings} />
-						</div>
+		<aside className="bg-bg w-65 not-custom:hidden sticky top-[4.3rem] z-30 h-[calc(100vh-4.3rem)] py-10">
+			<div className="flex h-full flex-col gap-10">
+				{/* TOC takes remaining space and allows internal scrolling */}
+				<div className="min-h-0 overflow-hidden">
+					<TableOfContent headings={headings} />
+				</div>
 
-						{/* Community card with fixed size */}
-						<div className="flex-shrink-0">
-							<CommunityCard />
-						</div>
-					</div>
-				</aside>
-			)}
-		</>
+				{/* Community card with fixed size */}
+				<div className="flex-shrink-0">
+					<CommunityCard />
+				</div>
+			</div>
+		</aside>
 	)
 }
 

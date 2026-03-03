@@ -8,14 +8,13 @@ import { Mdx } from "@/components/mdx"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { ThemeProvider } from "@/contexts/theme-context"
-import Examples from "@/registry/example/example.json"
 import { Badge } from "@/registry/ui/badge"
 
 interface DocPageProps {
-	params: Promise<{ slug: string[] }> // 👈 Promise-based!
+	params: Promise<{ slug: string[] }>
 }
 
-// ✅ Await `params` inside the function
+// Await `params` inside the function
 async function getDocFromParams({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const slug = resolvedParams.slug.join("/") || ""
@@ -23,7 +22,7 @@ async function getDocFromParams({ params }: DocPageProps) {
 	return doc ?? null
 }
 
-// ✅ Static path generation
+// Static path generation
 export async function generateStaticParams() {
 	return allDocs.map((doc) => ({
 		slug: doc.slugAsParams.split("/"),
@@ -69,13 +68,12 @@ export async function generateMetadata({
 	}
 }
 
-// ✅ Await `params` in the page itself
+// Await `params` in the page itself
 export default async function Page({ params }: DocPageProps) {
 	const resolvedParams = await params
 	const doc = await getDocFromParams({ params })
 	const currentPath = `/docs/${resolvedParams.slug.join("/")}`
 	const category = doc?.slugAsParams.split("/")[0].replace("-", " ")
-	const componentName = doc?.slugAsParams.split("/").pop() || ""
 
 	if (!doc) return notFound()
 
@@ -153,12 +151,7 @@ export default async function Page({ params }: DocPageProps) {
 				)}
 			</div>
 			<ThemeProvider>
-				<Mdx
-					code={doc.body.code}
-					examples={Examples.filter(
-						(example) => example.name === componentName
-					)}
-				/>
+				<Mdx code={doc.body.code} />
 			</ThemeProvider>
 
 			<PreviousNextButtons currentPath={currentPath} className="mt-10" />
