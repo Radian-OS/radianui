@@ -18,11 +18,10 @@ export type ColorData = {
 	dark?: string
 	light?: string
 	usage?: string
-	isDark?: boolean
 }
 
 export const ColorTable = ({ data }: { data: ColorData[] }) => {
-	const isDark = useThemeForColorTable()
+	const { isDark } = useThemeForColorTable()
 
 	return (
 		<div className="flex flex-col gap-2">

@@ -1,39 +1,41 @@
-export default function Logo() {
+export default function MageLogo() {
 	return (
 		<svg
-			width="24"
-			height="24"
-			viewBox="0 0 24 24"
+			width="20"
+			height="20"
+			viewBox="0 0 20 20"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">
-			<g filter="url(#filter0_iii_13964_1836)">
+			<g filter="url(#filter0_iii_1081_3475)">
 				<path
-					d="M0 6C0 2.68629 2.68629 0 6 0H18C21.3137 0 24 2.68629 24 6V18C24 21.3137 21.3137 24 18 24H6C2.68629 24 0 21.3137 0 18V6Z"
-					fill="#3D99F5"
+					d="M0 6C0 2.68629 2.68629 0 6 0H14C17.3137 0 20 2.68629 20 6V14C20 17.3137 17.3137 20 14 20H6C2.68629 20 0 17.3137 0 14V6Z"
+					fill="#623DF5"
 				/>
 				<path
-					d="M0 6C0 2.68629 2.68629 0 6 0H18C21.3137 0 24 2.68629 24 6V18C24 21.3137 21.3137 24 18 24H6C2.68629 24 0 21.3137 0 18V6Z"
-					fill="url(#paint0_linear_13964_1836)"
+					d="M0 6C0 2.68629 2.68629 0 6 0H14C17.3137 0 20 2.68629 20 6V14C20 17.3137 17.3137 20 14 20H6C2.68629 20 0 17.3137 0 14V6Z"
+					fill="url(#paint0_linear_1081_3475)"
 				/>
 				<path
-					d="M6 0.5H18C21.0376 0.5 23.5 2.96243 23.5 6V18C23.5 21.0376 21.0376 23.5 18 23.5H6C2.96243 23.5 0.5 21.0376 0.5 18V6C0.5 2.96243 2.96243 0.5 6 0.5Z"
-					stroke="url(#paint1_linear_13964_1836)"
+					d="M6 0.5H14C17.0376 0.5 19.5 2.96243 19.5 6V14C19.5 17.0376 17.0376 19.5 14 19.5H6C2.96243 19.5 0.5 17.0376 0.5 14V6C0.5 2.96243 2.96243 0.5 6 0.5Z"
+					stroke="url(#paint1_linear_1081_3475)"
 				/>
-				<g filter="url(#filter1_d_13964_1836)">
+				<g filter="url(#filter1_d_1081_3475)">
 					<path
-						d="M8.75 12H8.77539L7.125 10.3242L5.5 8.75V5.5H8.75L12 8.75V15.25L10.375 16.8242L8.72461 18.5H5.5V15.25L8.75 12ZM18.5 8.75V15.25L16.875 16.8242L15.2246 18.5H12V15.25L15.25 12H15.2754L13.625 10.3242L12 8.75V5.5H15.25L18.5 8.75Z"
-						fill="url(#paint2_linear_13964_1836)"
-						shapeRendering="crispEdges"
+						fill-rule="evenodd"
+						clip-rule="evenodd"
+						d="M4.375 8.4375V13.4375H5.9375C6.10165 13.4375 6.26419 13.4698 6.41586 13.5327C6.5675 13.5955 6.70532 13.6875 6.82137 13.8036C6.93745 13.9197 7.02953 14.0575 7.09236 14.2092C7.15515 14.3608 7.1875 14.5233 7.1875 14.6875V16.25H10.9375L15.625 11.5625V6.5625H14.0625C13.8983 6.5625 13.7358 6.53017 13.5841 6.46735C13.4325 6.40453 13.2947 6.31246 13.1786 6.19638C13.0626 6.08031 12.9705 5.94251 12.9076 5.79085C12.8448 5.6392 12.8125 5.47666 12.8125 5.3125V3.75H9.0625L4.375 8.4375ZM9.6875 13.125H7.5V9.6875L10.3125 6.875H12.5V10.3125L9.6875 13.125Z"
+						fill="url(#paint2_linear_1081_3475)"
+						shape-rendering="crispEdges"
 					/>
 				</g>
 			</g>
 			<defs>
 				<filter
-					id="filter0_iii_13964_1836"
+					id="filter0_iii_1081_3475"
 					x="0"
 					y="-1"
-					width="24"
-					height="26"
+					width="20"
+					height="22"
 					filterUnits="userSpaceOnUse"
 					colorInterpolationFilters="sRGB">
 					<feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -53,7 +55,7 @@ export default function Logo() {
 						radius="0.5"
 						operator="erode"
 						in="SourceAlpha"
-						result="effect1_innerShadow_13964_1836"
+						result="effect1_innerShadow_1081_3475"
 					/>
 					<feOffset />
 					<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
@@ -64,7 +66,7 @@ export default function Logo() {
 					<feBlend
 						mode="normal"
 						in2="shape"
-						result="effect1_innerShadow_13964_1836"
+						result="effect1_innerShadow_1081_3475"
 					/>
 					<feColorMatrix
 						in="SourceAlpha"
@@ -81,8 +83,8 @@ export default function Logo() {
 					/>
 					<feBlend
 						mode="normal"
-						in2="effect1_innerShadow_13964_1836"
-						result="effect2_innerShadow_13964_1836"
+						in2="effect1_innerShadow_1081_3475"
+						result="effect2_innerShadow_1081_3475"
 					/>
 					<feColorMatrix
 						in="SourceAlpha"
@@ -99,16 +101,16 @@ export default function Logo() {
 					/>
 					<feBlend
 						mode="normal"
-						in2="effect2_innerShadow_13964_1836"
-						result="effect3_innerShadow_13964_1836"
+						in2="effect2_innerShadow_1081_3475"
+						result="effect3_innerShadow_1081_3475"
 					/>
 				</filter>
 				<filter
-					id="filter1_d_13964_1836"
-					x="4.54031"
-					y="5.26008"
-					width="14.9194"
-					height="14.9194"
+					id="filter1_d_1081_3475"
+					x="3.41531"
+					y="3.51008"
+					width="13.1694"
+					height="14.4194"
 					filterUnits="userSpaceOnUse"
 					colorInterpolationFilters="sRGB">
 					<feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -122,7 +124,7 @@ export default function Logo() {
 						radius="0.479847"
 						operator="erode"
 						in="SourceAlpha"
-						result="effect1_dropShadow_13964_1836"
+						result="effect1_dropShadow_1081_3475"
 					/>
 					<feOffset dy="0.719771" />
 					<feGaussianBlur stdDeviation="0.719771" />
@@ -134,41 +136,41 @@ export default function Logo() {
 					<feBlend
 						mode="normal"
 						in2="BackgroundImageFix"
-						result="effect1_dropShadow_13964_1836"
+						result="effect1_dropShadow_1081_3475"
 					/>
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
-						in2="effect1_dropShadow_13964_1836"
+						in2="effect1_dropShadow_1081_3475"
 						result="shape"
 					/>
 				</filter>
 				<linearGradient
-					id="paint0_linear_13964_1836"
-					x1="12"
-					y1="2.98023e-07"
-					x2="13"
-					y2="24"
+					id="paint0_linear_1081_3475"
+					x1="10"
+					y1="2.48353e-07"
+					x2="10.8333"
+					y2="20"
 					gradientUnits="userSpaceOnUse">
 					<stop stopColor="white" stopOpacity="0" />
 					<stop offset="1" stopColor="white" stopOpacity="0.15" />
 				</linearGradient>
 				<linearGradient
-					id="paint1_linear_13964_1836"
-					x1="12"
+					id="paint1_linear_1081_3475"
+					x1="10"
 					y1="0"
-					x2="12"
-					y2="24"
+					x2="10"
+					y2="20"
 					gradientUnits="userSpaceOnUse">
 					<stop stopColor="white" stopOpacity="0.2" />
 					<stop offset="1" stopColor="white" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
-					id="paint2_linear_13964_1836"
-					x1="12"
-					y1="5.5"
-					x2="12"
-					y2="18.5"
+					id="paint2_linear_1081_3475"
+					x1="10"
+					y1="3.75"
+					x2="10"
+					y2="16.25"
 					gradientUnits="userSpaceOnUse">
 					<stop stopColor="white" />
 					<stop offset="1" stopColor="white" stopOpacity="0.5" />
