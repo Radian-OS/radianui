@@ -2,6 +2,10 @@ import { allDocs } from "contentlayer/generated"
 import AsideBar from "@/components/aside-bar"
 import { getHeadingsFromMdx } from "@/lib/get-mdx-headings"
 
+export const revalidate = false
+export const dynamic = "force-static"
+export const dynamicParams = false
+
 interface Props {
 	params: Promise<{ slug: string[] }>
 }

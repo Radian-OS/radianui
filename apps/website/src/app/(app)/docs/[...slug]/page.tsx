@@ -9,6 +9,10 @@ import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { websiteMetadata } from "@/config/website-metadata-config"
 import { Badge } from "@/registry/ui/badge"
 
+export const revalidate = false
+export const dynamic = "force-static"
+export const dynamicParams = false
+
 interface DocPageProps {
 	params: Promise<{ slug: string[] }>
 }

@@ -89,7 +89,12 @@ export default async function RootLayout({
 					dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
 				/>
 			</head>
-			<body className={cn("relative min-h-svh antialiased", geist.variable, inter.variable)}>
+			<body
+				className={cn(
+					"relative min-h-svh antialiased",
+					geist.variable,
+					inter.variable
+				)}>
 				<PostHogProvider>
 					<ToastProvider>
 						<ThemeProvider
