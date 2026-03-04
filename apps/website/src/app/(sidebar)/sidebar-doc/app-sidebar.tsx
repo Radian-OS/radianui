@@ -9,6 +9,7 @@ import {
 	FileChartColumn,
 	Headset,
 	Inbox,
+	Info,
 	Search,
 	Settings,
 	TvMinimal,
@@ -16,6 +17,12 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
+import { IconButton } from "@/registry/ui/button"
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "@/registry/ui/hover-card"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import {
 	Sidebar,
@@ -35,9 +42,11 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 	SidebarSeparator,
+	useSidebar,
 } from "@/registry/ui/sidebar"
 import AcmeLogo from "./acme-logo"
-import Logo from "./logo"
+import { InfoCard } from "./info-card"
+import MageLogo from "./mage-logo"
 import RadianCoreLogo from "./radian-core-logo"
 import { SidebarFooterUser } from "./sidebar-footer-user"
 
@@ -119,7 +128,7 @@ const mainData: NavGroup[] = [
 		title: "Projects",
 		items: [
 			{
-				icon: Box,
+				icon: MageLogo,
 				label: "Mage Icons",
 			},
 			{
@@ -153,24 +162,43 @@ const footerData: NavGroup[] = [
 ]
 
 export function AppSidebar() {
+	const { setOpen } = useSidebar()
+	const inputRef = React.useRef<HTMLInputElement>(null)
+
 	return (
 		<Sidebar collapsible="icon">
-			<SidebarHeader>
+			<SidebarHeader className="p-0">
 				<div className="flex items-center gap-2 px-1.5 py-1">
-					<Logo />
+					<span className="w-6" />
 					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
 						Debcon
 					</span>
 				</div>
 
-				<div className="w-full px-3 py-2 group-data-[state=collapsed]:hidden">
-					<InputWrapper className="w-full">
-						<Search className="text-fg-tertiary size-5" />
-						<Input type="search" placeholder="Search" />
+				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-2">
+					<InputWrapper
+						className="group-data-[state=collapsed]:hidden"
+						size="32">
+						<Search className="text-fg-tertiary" />
+						<Input ref={inputRef} type="search" placeholder="Search" />
 						<Badge size="20" color="neutral" variant="outline">
 							⌘ /
 						</Badge>
 					</InputWrapper>
+
+					<IconButton
+						onClick={() => {
+							setOpen(true)
+							setTimeout(() => {
+								inputRef.current?.focus()
+							}, 200)
+						}}
+						size="32"
+						variant="outline"
+						color="neutral"
+						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
+						<Search className="text-fg-tertiary" />
+					</IconButton>
 				</div>
 			</SidebarHeader>
 			<SidebarContent>
@@ -228,6 +256,24 @@ export function AppSidebar() {
 			</SidebarContent>
 
 			<SidebarFooter className="gap-0 p-0">
+				<div className="p-2 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
+					<HoverCard>
+						<HoverCardTrigger asChild>
+							<IconButton size="32" variant="ghost" color="neutral">
+								<Info className="text-fg-secondary" />
+							</IconButton>
+						</HoverCardTrigger>
+						<HoverCardContent
+							side="right"
+							sideOffset={4}
+							className="w-60 rounded-lg border-none p-0">
+							<InfoCard className="p-0" />
+						</HoverCardContent>
+					</HoverCard>
+				</div>
+
+				<InfoCard className="group-data-[state=collapsed]:hidden" />
+
 				<SidebarGroup>
 					<SidebarGroupContent>
 						<SidebarMenu>

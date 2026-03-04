@@ -5,12 +5,10 @@
  */
 import { useMemo } from "react"
 import { getMDXComponent } from "mdx-bundler/client"
-import Examples from "@/registry/example/example.json"
 import { components } from "./mdx-components-docs"
 
 type MdxProps = {
 	code: string
-	examples: typeof Examples
 }
 
 /**
@@ -21,7 +19,7 @@ function ErrorComponent() {
 	return <div className="text-error-text">Error rendering content</div>
 }
 
-export function Mdx({ code, examples }: MdxProps) {
+export function Mdx({ code }: MdxProps) {
 	const Component = useMemo(() => {
 		if (!code) return () => null
 		try {
@@ -32,5 +30,5 @@ export function Mdx({ code, examples }: MdxProps) {
 		}
 	}, [code])
 
-	return <Component components={components(examples)} />
+	return <Component components={components} />
 }

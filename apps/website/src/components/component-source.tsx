@@ -3,6 +3,7 @@ import { TerminalIcon } from "lucide-react"
 import path from "path"
 import components from "@/app/api/components/components.json"
 import { CodeCollapsibleWrapper } from "@/components/code-collapsible-wrapper"
+import { formatCode } from "@/lib/format-code"
 import { highlightCode } from "@/lib/highligh-code"
 import { cn } from "@/lib/utils"
 import { CopyButton } from "./copy-button"
@@ -50,6 +51,8 @@ async function ComponentSource({
 	if (!code) {
 		throw new Error(`No source code found for component "${name}"`)
 	}
+
+	code = await formatCode(code)
 
 	const lang = language ?? title?.split(".").pop() ?? "tsx"
 	const highlightedCode = await highlightCode(code)
