@@ -5,19 +5,19 @@ import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { PanelLeftIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Badge } from "@/registry/ui/badge"
 import { CompactButton } from "@/registry/ui/button"
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from "@/registry/ui/collapsible"
+import { DialogTitle } from "@/registry/ui/dialog"
 import { Divider } from "@/registry/ui/divider"
 import { Drawer, DrawerContent } from "@/registry/ui/drawer"
 import { Input } from "@/registry/ui/input"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
-import { Badge } from "./badge"
-import { DialogTitle } from "./dialog"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
