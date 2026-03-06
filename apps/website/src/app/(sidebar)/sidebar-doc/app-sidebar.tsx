@@ -19,6 +19,13 @@ import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import {
+	Dropdown,
+	DropdownContent,
+	DropdownItem,
+	DropdownLabel,
+	DropdownTrigger,
+} from "@/registry/ui/dropdown"
+import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
@@ -46,6 +53,7 @@ import {
 } from "@/registry/ui/sidebar"
 import AcmeLogo from "./acme-logo"
 import { InfoCard } from "./info-card"
+import Logo from "./logo"
 import MageLogo from "./mage-logo"
 import RadianCoreLogo from "./radian-core-logo"
 import { SidebarFooterUser } from "./sidebar-footer-user"
@@ -162,14 +170,27 @@ const footerData: NavGroup[] = [
 ]
 
 export function AppSidebar() {
-	const { setOpen } = useSidebar()
+	const { setOpen, state, isMobile } = useSidebar()
 	const inputRef = React.useRef<HTMLInputElement>(null)
+	const [openItem, setOpenItem] = React.useState<string | null>(null)
+	const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+
+	const openMenu = (title: string) => {
+		if (timeoutRef.current) clearTimeout(timeoutRef.current)
+		setOpenItem(title)
+	}
+
+	const closeMenu = () => {
+		timeoutRef.current = setTimeout(() => {
+			setOpenItem(null)
+		}, 150)
+	}
 
 	return (
 		<Sidebar collapsible="icon">
 			<SidebarHeader className="p-0">
-				<div className="flex items-center gap-2 px-1.5 py-1">
-					<span className="w-6" />
+				<div className="flex items-center gap-2 px-2.5 py-2 pt-4">
+					<Logo />
 					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
 						Debcon
 					</span>
@@ -225,10 +246,45 @@ export function AppSidebar() {
 									)
 								}
 
+								if (state === "collapsed" && !isMobile) {
+									return (
+										<Dropdown
+											open={openItem === item.label}
+											onOpenChange={() => {}}
+											modal={false}
+											key={item.label}>
+											<DropdownTrigger className="group/trigger w-full" asChild>
+												<SidebarMenuButton
+													onMouseEnter={() => openMenu(item.label)}
+													onMouseLeave={closeMenu}
+													onPointerDown={(e) => e.preventDefault()}>
+													{item.icon && <item.icon />}
+												</SidebarMenuButton>
+											</DropdownTrigger>
+											<DropdownContent
+												onMouseEnter={() => openMenu(item.label)}
+												onMouseLeave={closeMenu}
+												side="right"
+												className="w-60"
+												align="center">
+												{item.label && (
+													<DropdownLabel>{item.label}</DropdownLabel>
+												)}
+
+												{item.subitems.map((subitem) => (
+													<DropdownItem key={subitem.label}>
+														<a href={subitem.href}>{subitem.label}</a>
+													</DropdownItem>
+												))}
+											</DropdownContent>
+										</Dropdown>
+									)
+								}
+
 								return (
 									<SidebarCollapsible key={item.label}>
 										<SidebarMenuItem>
-											<SidebarCollapsibleTrigger className="w-full">
+											<SidebarCollapsibleTrigger className="w-full" asChild>
 												<SidebarMenuButton tooltip={item.label}>
 													{item.icon && <item.icon />}
 													<span>{item.label}</span>

@@ -1,3 +1,5 @@
+"use client"
+
 import { TextArea, useCharacterLimit } from "@/registry/ui/text-area"
 
 export default function LimitedCharacters() {

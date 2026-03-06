@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react"
 import { Bell, Globe, Palette } from "lucide-react"
 import Image from "next/image"

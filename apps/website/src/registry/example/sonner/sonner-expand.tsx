@@ -1,3 +1,5 @@
+"use client"
+
 import { toast } from "sonner"
 import { useToast } from "@/contexts/toast-context"
 import { Button } from "@/registry/ui/button"

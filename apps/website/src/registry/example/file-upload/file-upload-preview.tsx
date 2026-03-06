@@ -1,3 +1,5 @@
+"use client"
+
 import { TriangleAlert, User, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {

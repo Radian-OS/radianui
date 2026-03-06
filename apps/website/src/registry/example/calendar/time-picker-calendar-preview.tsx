@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { format, parse } from "date-fns"
 import { Check } from "lucide-react"

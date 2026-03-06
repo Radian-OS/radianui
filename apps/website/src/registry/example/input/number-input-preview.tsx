@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { ChevronDown, ChevronUp, Minus, Plus } from "lucide-react"
 import {

@@ -6,30 +6,30 @@ export default function Logo() {
 			viewBox="0 0 24 24"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg">
-			<g filter="url(#filter0_iii_13964_1836)">
+			<g filter="url(#filter0_iii_1082_1465)">
 				<path
 					d="M0 6C0 2.68629 2.68629 0 6 0H18C21.3137 0 24 2.68629 24 6V18C24 21.3137 21.3137 24 18 24H6C2.68629 24 0 21.3137 0 18V6Z"
-					fill="#3D99F5"
+					fill="#F36A25"
 				/>
 				<path
 					d="M0 6C0 2.68629 2.68629 0 6 0H18C21.3137 0 24 2.68629 24 6V18C24 21.3137 21.3137 24 18 24H6C2.68629 24 0 21.3137 0 18V6Z"
-					fill="url(#paint0_linear_13964_1836)"
+					fill="url(#paint0_linear_1082_1465)"
 				/>
 				<path
 					d="M6 0.5H18C21.0376 0.5 23.5 2.96243 23.5 6V18C23.5 21.0376 21.0376 23.5 18 23.5H6C2.96243 23.5 0.5 21.0376 0.5 18V6C0.5 2.96243 2.96243 0.5 6 0.5Z"
-					stroke="url(#paint1_linear_13964_1836)"
+					stroke="url(#paint1_linear_1082_1465)"
 				/>
-				<g filter="url(#filter1_d_13964_1836)">
+				<g filter="url(#filter1_d_1082_1465)">
 					<path
-						d="M8.75 12H8.77539L7.125 10.3242L5.5 8.75V5.5H8.75L12 8.75V15.25L10.375 16.8242L8.72461 18.5H5.5V15.25L8.75 12ZM18.5 8.75V15.25L16.875 16.8242L15.2246 18.5H12V15.25L15.25 12H15.2754L13.625 10.3242L12 8.75V5.5H15.25L18.5 8.75Z"
-						fill="url(#paint2_linear_13964_1836)"
+						d="M12 5.5V12H18.5C18.5 10.2761 17.8152 8.62279 16.5962 7.40381C15.3772 6.18482 13.7239 5.5 12 5.5ZM12 18.5H18.5V12C16.7761 12 15.1228 12.6848 13.9038 13.9038C12.6848 15.1228 12 16.7761 12 18.5ZM5.5 12C5.5 13.7239 6.18482 15.3772 7.40381 16.5962C8.62279 17.8152 10.2761 18.5 12 18.5V12H5.5ZM5.5 12V5.5H12C12 7.22391 11.3152 8.87721 10.0962 10.0962C8.87721 11.3152 7.22391 12 5.5 12Z"
+						fill="url(#paint2_linear_1082_1465)"
 						shapeRendering="crispEdges"
 					/>
 				</g>
 			</g>
 			<defs>
 				<filter
-					id="filter0_iii_13964_1836"
+					id="filter0_iii_1082_1465"
 					x="0"
 					y="-1"
 					width="24"
@@ -53,7 +53,7 @@ export default function Logo() {
 						radius="0.5"
 						operator="erode"
 						in="SourceAlpha"
-						result="effect1_innerShadow_13964_1836"
+						result="effect1_innerShadow_1082_1465"
 					/>
 					<feOffset />
 					<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
@@ -64,7 +64,7 @@ export default function Logo() {
 					<feBlend
 						mode="normal"
 						in2="shape"
-						result="effect1_innerShadow_13964_1836"
+						result="effect1_innerShadow_1082_1465"
 					/>
 					<feColorMatrix
 						in="SourceAlpha"
@@ -81,8 +81,8 @@ export default function Logo() {
 					/>
 					<feBlend
 						mode="normal"
-						in2="effect1_innerShadow_13964_1836"
-						result="effect2_innerShadow_13964_1836"
+						in2="effect1_innerShadow_1082_1465"
+						result="effect2_innerShadow_1082_1465"
 					/>
 					<feColorMatrix
 						in="SourceAlpha"
@@ -99,16 +99,16 @@ export default function Logo() {
 					/>
 					<feBlend
 						mode="normal"
-						in2="effect2_innerShadow_13964_1836"
-						result="effect3_innerShadow_13964_1836"
+						in2="effect2_innerShadow_1082_1465"
+						result="effect3_innerShadow_1082_1465"
 					/>
 				</filter>
 				<filter
-					id="filter1_d_13964_1836"
-					x="4.54031"
-					y="5.26008"
-					width="14.9194"
-					height="14.9194"
+					id="filter1_d_1082_1465"
+					x="4.60886"
+					y="5.27721"
+					width="14.7823"
+					height="14.7823"
 					filterUnits="userSpaceOnUse"
 					colorInterpolationFilters="sRGB">
 					<feFlood floodOpacity="0" result="BackgroundImageFix" />
@@ -119,13 +119,13 @@ export default function Logo() {
 						result="hardAlpha"
 					/>
 					<feMorphology
-						radius="0.479847"
+						radius="0.445572"
 						operator="erode"
 						in="SourceAlpha"
-						result="effect1_dropShadow_13964_1836"
+						result="effect1_dropShadow_1082_1465"
 					/>
-					<feOffset dy="0.719771" />
-					<feGaussianBlur stdDeviation="0.719771" />
+					<feOffset dy="0.668359" />
+					<feGaussianBlur stdDeviation="0.668359" />
 					<feComposite in2="hardAlpha" operator="out" />
 					<feColorMatrix
 						type="matrix"
@@ -134,17 +134,17 @@ export default function Logo() {
 					<feBlend
 						mode="normal"
 						in2="BackgroundImageFix"
-						result="effect1_dropShadow_13964_1836"
+						result="effect1_dropShadow_1082_1465"
 					/>
 					<feBlend
 						mode="normal"
 						in="SourceGraphic"
-						in2="effect1_dropShadow_13964_1836"
+						in2="effect1_dropShadow_1082_1465"
 						result="shape"
 					/>
 				</filter>
 				<linearGradient
-					id="paint0_linear_13964_1836"
+					id="paint0_linear_1082_1465"
 					x1="12"
 					y1="2.98023e-07"
 					x2="13"
@@ -154,7 +154,7 @@ export default function Logo() {
 					<stop offset="1" stopColor="white" stopOpacity="0.15" />
 				</linearGradient>
 				<linearGradient
-					id="paint1_linear_13964_1836"
+					id="paint1_linear_1082_1465"
 					x1="12"
 					y1="0"
 					x2="12"
@@ -164,7 +164,7 @@ export default function Logo() {
 					<stop offset="1" stopColor="white" stopOpacity="0" />
 				</linearGradient>
 				<linearGradient
-					id="paint2_linear_13964_1836"
+					id="paint2_linear_1082_1465"
 					x1="12"
 					y1="5.5"
 					x2="12"

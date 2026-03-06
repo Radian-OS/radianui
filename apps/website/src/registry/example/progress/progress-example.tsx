@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import { Label } from "@/registry/ui/label"
 import { Progress } from "@/registry/ui/progress"

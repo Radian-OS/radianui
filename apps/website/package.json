@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port 3001",
-		"build": "contentlayer2 build && pnpm run generate-component-json && pnpm run generate-examples-json && pnpm run build:llms && next build",
+		"build": "contentlayer2 build && pnpm run generate-component-json && pnpm run generate-examples-json && pnpm run build:llms && pnpm run generate-example-registry && next build",
 		"start": "next start",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
@@ -15,6 +15,8 @@
 		"postbuild": "next-sitemap --config next-sitemap.config.cjs",
 		"generate-component-json": "tsx src/scripts/generate-component-json.ts",
 		"generate-examples-json": "tsx src/scripts/generate-examples-json.ts",
+		"generate-registry": "tsx src/scripts/generate-registry.ts",
+		"generate-example-registry": "tsx src/scripts/generate-example-registry.ts",
 		"build:llms": "tsx src/scripts/generate-llms.ts"
 	},
 	"dependencies": {

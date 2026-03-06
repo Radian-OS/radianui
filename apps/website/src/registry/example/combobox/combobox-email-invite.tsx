@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { Check, ChevronRight, Plus } from "lucide-react"
 import { Avatar, AvatarImage } from "@/registry/ui/avatar"

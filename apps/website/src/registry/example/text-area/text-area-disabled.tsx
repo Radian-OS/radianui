@@ -1,3 +1,5 @@
+"use client"
+
 import { useId } from "react"
 import { Label } from "@/registry/ui/label"
 import { TextArea } from "@/registry/ui/text-area"

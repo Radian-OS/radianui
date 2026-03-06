@@ -242,14 +242,12 @@ export function AppSidebar() {
 							section.items.map((subsection) => (
 								<Dropdown
 									open={openItem === subsection.title}
-									onOpenChange={(open) => {
-										if (!open) setOpenItem(null)
-									}}
 									key={subsection.title}>
-									<DropdownTrigger className="group/trigger w-full" asChild>
+									<DropdownTrigger asChild>
 										<SidebarMenuButton
 											onMouseEnter={() => openMenu(subsection.title)}
-											onMouseLeave={closeMenu}>
+											onMouseLeave={closeMenu}
+											onPointerDown={(e) => e.preventDefault()}>
 											{subsection.icon && (
 												<subsection.icon className="size-5" />
 											)}
