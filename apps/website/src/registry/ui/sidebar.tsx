@@ -720,7 +720,7 @@ function SidebarMenuSub({ className, ...props }: SidebarMenuSubProps) {
 			data-slot="sidebar-menu-sub"
 			data-sidebar="menu-sub"
 			className={cn(
-				"mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 px-2.5 py-0.5 group-data-[slot=sidebar-collapsible-content]:mx-0 group-data-[collapsible=icon]:hidden group-data-[slot=sidebar-collapsible-content]:p-0",
+				"mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 px-2.5 py-0.5 group-data-[collapsible=icon]:hidden",
 				className
 			)}
 			{...props}
