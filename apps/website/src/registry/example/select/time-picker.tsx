@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { Time } from "@internationalized/date"
 import {

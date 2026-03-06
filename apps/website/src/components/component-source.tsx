@@ -11,6 +11,7 @@ import { CopyButton } from "./copy-button"
 type ComponentSourceProps = {
 	name?: string
 	src?: string
+	code?: string
 	title: string
 	collapsible?: boolean
 	className?: string
@@ -21,35 +22,38 @@ type ComponentSourceProps = {
 async function ComponentSource({
 	name,
 	src,
+	code,
 	title,
 	collapsible = true,
 	language,
 	className,
 	codeAreaClassName,
 }: ComponentSourceProps) {
-	let code: string | undefined
+	if (!code) {
+		if (name) {
+			// TODO: This can be replaced by reading from the registry-map.ts file
 
-	if (name) {
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		const component = components.find((comp: any) => comp.name === name)
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const component = components.find((comp: any) => comp.name === name)
 
-		if (!component) {
-			throw new Error(`Component "${name}" not found in registry`)
+			if (!component) {
+				throw new Error(`Component "${name}" not found in registry`)
+			}
+
+			// Get the first file's content (most components have one file)
+			code = component.files[0]?.content
 		}
 
-		// Get the first file's content (most components have one file)
-		code = component.files[0]?.content
-	}
+		if (src) {
+			code = await fs.readFile(
+				path.join(process.cwd(), "src", "registry", "example", `${src}.tsx`),
+				"utf-8"
+			)
+		}
 
-	if (src) {
-		code = await fs.readFile(
-			path.join(process.cwd(), "src", "registry", "example", `${src}.tsx`),
-			"utf-8"
-		)
-	}
-
-	if (!code) {
-		throw new Error(`No source code found for component "${name}"`)
+		if (!code) {
+			return null
+		}
 	}
 
 	code = await formatCode(code)

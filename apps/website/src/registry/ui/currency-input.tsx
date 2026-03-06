@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { type VariantProps } from "class-variance-authority"
 import CurrencyInputField from "react-currency-input-field"

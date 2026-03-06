@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react"
 import { useId } from "react"
 import { Checkbox } from "@/registry/ui/checkbox"

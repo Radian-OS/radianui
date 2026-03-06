@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { format, setHours, setMinutes, setSeconds } from "date-fns"
 import { ClockIcon } from "lucide-react"

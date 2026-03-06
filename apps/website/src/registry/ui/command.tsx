@@ -1,5 +1,13 @@
 import * as React from "react"
-import { Command as CommandPrimitive } from "cmdk"
+import {
+	Command as Cmdk,
+	CommandEmpty as CmdkEmpty,
+	CommandGroup as CmdkGroup,
+	CommandInput as CmdkInput,
+	CommandItem as CmdkItem,
+	CommandList as CmdkList,
+	CommandSeparator as CmdkSeparator,
+} from "cmdk"
 import { SearchIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import {
@@ -10,7 +18,7 @@ import {
 	DialogTitle,
 } from "@/registry/ui/dialog"
 
-type CommandProps = React.ComponentProps<typeof CommandPrimitive>
+type CommandProps = React.ComponentProps<typeof Cmdk>
 
 type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
 	title?: string
@@ -18,25 +26,23 @@ type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
 	className?: string
 } & Pick<React.ComponentProps<typeof DialogContent>, "closeButton">
 
-type CommandInputProps = React.ComponentProps<typeof CommandPrimitive.Input>
+type CommandInputProps = React.ComponentProps<typeof CmdkInput>
 
-type CommandListProps = React.ComponentProps<typeof CommandPrimitive.List>
+type CommandListProps = React.ComponentProps<typeof CmdkList>
 
-type CommandEmptyProps = React.ComponentProps<typeof CommandPrimitive.Empty>
+type CommandEmptyProps = React.ComponentProps<typeof CmdkEmpty>
 
-type CommandGroupProps = React.ComponentProps<typeof CommandPrimitive.Group>
+type CommandGroupProps = React.ComponentProps<typeof CmdkGroup>
 
-type CommandDividerProps = React.ComponentProps<
-	typeof CommandPrimitive.Separator
->
+type CommandDividerProps = React.ComponentProps<typeof CmdkSeparator>
 
-type CommandItemProps = React.ComponentProps<typeof CommandPrimitive.Item>
+type CommandItemProps = React.ComponentProps<typeof CmdkItem>
 
 type CommandShortcutProps = React.ComponentProps<"span">
 
 function Command({ className, ...props }: CommandProps) {
 	return (
-		<CommandPrimitive
+		<Cmdk
 			data-slot="command"
 			className={cn(
 				"bg-bg text-fg border-border flex h-full w-full flex-col overflow-hidden rounded-lg border",
@@ -64,9 +70,9 @@ function CommandDialog({
 			<DialogContent
 				className={cn("overflow-hidden p-0", className)}
 				closeButton={closeButton}>
-				<Command className="[&_[cmdk-group-heading]]:text-fg **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+				<Cmdk className="[&_[cmdk-group-heading]]:text-fg **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
 					{children}
-				</Command>
+				</Cmdk>
 			</DialogContent>
 		</Dialog>
 	)
@@ -78,7 +84,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 			data-slot="command-input-wrapper"
 			className="flex h-10 items-center gap-2 border-b px-3 py-2.5">
 			<SearchIcon className="text-fg-secondary size-4 shrink-0" />
-			<CommandPrimitive.Input
+			<CmdkInput
 				data-slot="command-input"
 				className={cn(
 					"placeholder:text-fg-tertiary outline-hidden flex h-10 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
@@ -92,7 +98,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 
 function CommandList({ className, ...props }: CommandListProps) {
 	return (
-		<CommandPrimitive.List
+		<CmdkList
 			data-slot="command-list"
 			className={cn(
 				"max-h-[300px] scroll-py-1 overflow-y-auto overflow-x-hidden",
@@ -105,7 +111,7 @@ function CommandList({ className, ...props }: CommandListProps) {
 
 function CommandEmpty({ ...props }: CommandEmptyProps) {
 	return (
-		<CommandPrimitive.Empty
+		<CmdkEmpty
 			data-slot="command-empty"
 			className="py-6 text-center text-sm"
 			{...props}
@@ -115,7 +121,7 @@ function CommandEmpty({ ...props }: CommandEmptyProps) {
 
 function CommandGroup({ className, ...props }: CommandGroupProps) {
 	return (
-		<CommandPrimitive.Group
+		<CmdkGroup
 			data-slot="command-group"
 			className={cn(
 				"text-fg [&_[cmdk-group-heading]]:text-fg-secondary overflow-hidden p-1 [&_[cmdk-group-heading]]:p-2 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium",
@@ -128,7 +134,7 @@ function CommandGroup({ className, ...props }: CommandGroupProps) {
 
 function CommandDivider({ className, ...props }: CommandDividerProps) {
 	return (
-		<CommandPrimitive.Separator
+		<CmdkSeparator
 			data-slot="command-separator"
 			className={cn("bg-border -mx-1 h-px", className)}
 			{...props}
@@ -138,7 +144,7 @@ function CommandDivider({ className, ...props }: CommandDividerProps) {
 
 function CommandItem({ className, ...props }: CommandItemProps) {
 	return (
-		<CommandPrimitive.Item
+		<CmdkItem
 			data-slot="command-item"
 			className={cn(
 				"data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",

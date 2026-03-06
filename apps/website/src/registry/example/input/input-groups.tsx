@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react"
 import { Input, InputGroup } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"

@@ -70,3 +70,93 @@ import {
 	</DropdownContent>
 </Dropdown>
 ```
+
+---
+
+## Examples
+
+### User Menu
+
+<ComponentPreview path="dropdown/user-profile-dropdown-example" />
+
+### With Checkbox
+
+<ComponentPreview path="dropdown/dropdown-with-dropdown-checkbox" />
+
+### With Radio Group
+
+<ComponentPreview path="dropdown/dropdown-with-radio" />
+
+---
+
+## Props
+
+<PropsTableWrapper>
+	<PropsTable
+		title="Dropdown"
+		data={[
+			{
+				name: "indicatorPosition",
+				required: false,
+				defaultValue: "right",
+				values: ["left", "right"],
+				description: "Where to show the indicator.",
+			},
+			{
+				name: "indicator",
+				required: false,
+				defaultValue: "null",
+				values: ["ReactNode"],
+				description: "Replace the default indicator with custom indicator",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
+	/>
+	<PropsTable
+		title="DropdownTrigger"
+		data={[
+			{
+				name: "asChild",
+				required: false,
+				defaultValue: "true",
+				description:
+					"Use this prop to render the trigger as a child component.",
+				values: ["boolean"],
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
+	/>
+	<PropsTable
+		title="DropdownContent"
+		data={[
+			{
+				name: "placement",
+				required: false,
+				description: "The placement of the dropdown.",
+				values: ["top", "bottom", "left", "right"],
+				defaultValue: "bottom",
+			},
+			{
+				name: "align",
+				required: false,
+				description: "The alignment of the dropdown content.",
+				values: ["start", "center", "end"],
+				defaultValue: "start",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
+	/>
+	<PropsTable
+		title="DropdownItem"
+		data={[
+			{
+				name: "inset",
+				required: false,
+				description: "If true, the item will be inset.",
+				values: ["boolean"],
+				defaultValue: "false",
+			},
+		]}
+		externalReference="https://www.radix-ui.com/primitives/docs/components/dropdown-menu"
+	/>
+</PropsTableWrapper>

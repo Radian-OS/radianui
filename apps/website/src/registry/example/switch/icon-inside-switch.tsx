@@ -1,3 +1,5 @@
+"use client"
+
 import { useId, useState } from "react"
 import { Moon, Sun } from "lucide-react"
 import { Label } from "@/registry/ui/label"

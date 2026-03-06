@@ -19,6 +19,15 @@ const nextConfig = {
 				],
 			},
 			{
+				source: "/docs/:path*",
+				headers: [
+					{
+						key: "Cache-Control",
+						value: "public, max-age=31536000, immutable",
+					},
+				],
+			},
+			{
 				source: "/:path*", // HTML pages and other
 				headers: [
 					// {
@@ -44,15 +53,6 @@ const nextConfig = {
 					{
 						key: "Cache-Control",
 						value: "public, max-age=60, stale-while-revalidate=30",
-					},
-				],
-			},
-			{
-				source: "/docs/:path*",
-				headers: [
-					{
-						key: "Cache-Control",
-						value: "public, max-age=31536000, immutable",
 					},
 				],
 			},

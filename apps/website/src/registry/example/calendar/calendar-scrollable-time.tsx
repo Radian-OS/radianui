@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { format, parse } from "date-fns"
 import { cn } from "@/lib/utils"

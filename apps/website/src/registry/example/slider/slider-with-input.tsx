@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { Input } from "@/registry/ui/input"
 import { Slider, SliderThumb } from "@/registry/ui/slider"

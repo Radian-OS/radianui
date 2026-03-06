@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { FolderCog, Ghost, LogOut, Settings, UserCog } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"

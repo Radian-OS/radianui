@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import { X } from "lucide-react"
 import { Input, InputWrapper } from "@/registry/ui/input"

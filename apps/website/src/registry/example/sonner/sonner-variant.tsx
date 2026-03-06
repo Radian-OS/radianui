@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { Box, XIcon } from "lucide-react"
 import { toast } from "sonner"

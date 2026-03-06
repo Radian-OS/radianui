@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react"
 import { EmojiPicker } from "frimousse"
 import { Search, SmilePlus } from "lucide-react"
