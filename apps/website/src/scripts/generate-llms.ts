@@ -1,4 +1,3 @@
-import { config } from "dotenv"
 import { promises as fs } from "node:fs"
 import { app } from "@/config/llms-config"
 import {
@@ -7,7 +6,7 @@ import {
 	navigationItems,
 } from "@/config/navigation-config"
 
-config({ path: ".env" })
+const NEXT_PUBLIC_WEBSITE_URL = "https://radianos.com"
 
 // ===== Helpers =====
 
@@ -22,7 +21,7 @@ function buildItemLine(item: NavigationItem): string {
 		? `${item.description}`
 		: `Detailed documentation for ${item.title}`
 	const url = item.isExternal ? item.url : `${item.url}.md`
-	return `- [${label}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${url}): ${description}`
+	return `- [${label}](${NEXT_PUBLIC_WEBSITE_URL}${url}): ${description}`
 }
 
 // ===== Builders =====
@@ -62,7 +61,7 @@ async function buildLlmsTxt(sections: NavigationSection[]) {
 				for (const sub of item.subItems) {
 					const subDescription = `Detailed documentation for ${item.title} (${sub.title})`
 					lines.push(
-						`- [${item.title} — ${sub.title}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): ${subDescription}`
+						`- [${item.title} — ${sub.title}](${NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): ${subDescription}`
 					)
 				}
 			}
@@ -94,7 +93,7 @@ async function buildLlmsTxt(sections: NavigationSection[]) {
 
 // 			if (item.subItems?.length) {
 // 				for (const sub of item.subItems) {
-// 					lines.push(`  - [${item.title} — ${sub.title}](${process.env.NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): Detailed documentation for ${item.title} (${sub.title})`)
+// 					lines.push(`  - [${item.title} — ${sub.title}](${NEXT_PUBLIC_WEBSITE_URL}${sub.url}.md): Detailed documentation for ${item.title} (${sub.title})`)
 // 				}
 // 			}
 // 		}
