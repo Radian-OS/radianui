@@ -1,20 +1,20 @@
-import { ChevronRight, Info } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { ChevronRight } from "lucide-react"
 
-export function InfoCard({ className }: { className?: string }) {
+export function InfoCard() {
 	return (
-		<div className={cn("px-3 py-1.5", className)}>
-			<div className="bg-bg border-soft flex items-center gap-2 rounded-lg border px-2.5 py-1.5">
-				<Info className="size-6" />
-				<div className="flex flex-col">
-					<span className="text-[13px] font-medium leading-5">
-						Version 1.2 Update
-					</span>
-					<span className="text-fg-tertiary flex cursor-pointer items-center text-sm font-normal">
-						<span>Learn More</span>
-						<ChevronRight className="size-4" />
-					</span>
-				</div>
+		<div className="flex flex-col gap-1">
+			<img
+				className="h-30 rounded-lg"
+				src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=1429&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+			/>
+			<div>
+				<span className="text-[13px] font-medium leading-5">
+					Version 1.2 Update
+				</span>
+				<span className="text-fg-tertiary flex cursor-pointer items-center text-xs font-normal">
+					<span>Learn More</span>
+					<ChevronRight className="size-4" />
+				</span>
 			</div>
 		</div>
 	)

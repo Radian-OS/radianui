@@ -24,7 +24,6 @@ const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = "16rem"
 const SIDEBAR_WIDTH_MOBILE = "18rem"
 const SIDEBAR_WIDTH_ICON = "3rem"
-const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 export type SidebarContextProps = {
 	state: "expanded" | "collapsed"
@@ -40,6 +39,7 @@ export type SidebarProviderProps = React.ComponentProps<"div"> & {
 	defaultOpen?: boolean
 	open?: boolean
 	onOpenChange?: (open: boolean) => void
+	shortcut?: string
 }
 
 export type SidebarProps = React.ComponentProps<"div"> & {
@@ -168,6 +168,7 @@ function SidebarProvider({
 	defaultOpen = true,
 	open: openProp,
 	onOpenChange: setOpenProp,
+	shortcut = "b",
 	className,
 	style,
 	children,
@@ -203,10 +204,7 @@ function SidebarProvider({
 	// Adds a keyboard shortcut to toggle the sidebar.
 	React.useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
-			if (
-				event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
-				(event.metaKey || event.ctrlKey)
-			) {
+			if (event.key === shortcut && (event.metaKey || event.ctrlKey)) {
 				event.preventDefault()
 				toggleSidebar()
 			}
@@ -660,20 +658,26 @@ function SidebarMenuAction({
 	)
 }
 
-function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
+function SidebarMenuBadge({
+	color = "neutral",
+	className,
+	...props
+}: SidebarMenuBadgeProps) {
 	return (
 		<Badge
 			data-slot="sidebar-menu-badge"
 			data-sidebar="menu-badge"
 			className={cn(
-				"pointer-events-none absolute right-1 select-none rounded-md tabular-nums",
+				"pointer-events-none absolute right-2 select-none rounded-md tabular-nums",
 				// "peer-hover/menu-button:text-primary-text peer-data-[active=true]/menu-button:text-fg",
+				"text-fg-secondary border px-1.5 py-0.5",
 				"peer-data-[size=sm]/menu-button:top-1",
 				"peer-data-[size=default]/menu-button:top-1.5",
 				"peer-data-[size=lg]/menu-button:top-2.5",
 				"group-data-[collapsible=icon]:hidden",
 				className
 			)}
+			color={color}
 			{...props}
 		/>
 	)

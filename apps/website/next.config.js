@@ -44,7 +44,7 @@ const nextConfig = {
 					// },
 					{
 						key: "X-Frame-Options",
-						value: "DENY",
+						value: "SAMEORIGIN",
 					},
 					{
 						key: "Permissions-Policy",

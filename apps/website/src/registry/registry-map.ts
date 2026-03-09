@@ -803,6 +803,9 @@ const registry: Record<
 	"sidebar/default-sidebar": React.lazy(
 		() => import("@/registry/example/sidebar/default-sidebar")
 	),
+	"sidebar/sidebar-demo": React.lazy(
+		() => import("@/registry/example/sidebar/sidebar-demo")
+	),
 	"skeleton/skeleton-preview": React.lazy(
 		() => import("@/registry/example/skeleton/skeleton-preview")
 	),
