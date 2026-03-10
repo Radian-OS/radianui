@@ -1015,7 +1015,7 @@ function SidebarFooterUser({
 
 	return (
 		<SidebarMenu>
-			<SidebarMenuItem className="p-2">
+			<SidebarMenuItem className="p-3.5">
 				<Dropdown>
 					<DropdownTrigger asChild>
 						<SidebarMenuButton size="48" variant={menuButtonVariant}>
@@ -1109,7 +1109,7 @@ function InfoCard() {
 
 function InfoCardExpanded() {
 	return (
-		<div className="px-3 py-1.5 group-data-[state=collapsed]:hidden">
+		<div className="mt-auto px-3 py-1.5 group-data-[state=collapsed]:hidden">
 			<div className="bg-bg border-soft flex items-center gap-2 rounded-lg border px-2.5 py-1.5">
 				{/* @ts-expect-error ignore type */}
 				<Image src={InfoIcon} alt="Info icon" className="size-4" />
@@ -1156,17 +1156,23 @@ function AppSidebar({
 	return (
 		<Sidebar collapsible="icon" theme={theme}>
 			<SidebarHeader className="p-0">
-				<div className="flex items-center gap-2 px-2.5 py-2 pt-4">
-					<Logo />
+				<div className="group/header relative flex items-center gap-2 px-3 py-2 pt-4">
+					<div className="z-0 flex size-8 items-center justify-center group-hover/header:group-data-[state=collapsed]:opacity-0">
+						<Logo />
+					</div>
 					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
 						Debcon
 					</span>
+					<SidebarTrigger
+						size="32"
+						className="group-hover/header:opacity-100! z-10 ml-auto group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:left-3 group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
+					/>
 				</div>
 
-				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-2">
+				<div className="w-full px-3 py-2">
 					<InputWrapper
 						className="group-data-[state=collapsed]:hidden"
-						size="32">
+						size="36">
 						<Search className="text-fg-tertiary" />
 						<Input ref={inputRef} type="search" placeholder="Search" />
 						<Badge size="20" color="neutral" variant="outline">
@@ -1181,7 +1187,7 @@ function AppSidebar({
 								inputRef.current?.focus()
 							}, 200)
 						}}
-						size="32"
+						size="36"
 						variant="outline"
 						color="neutral"
 						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
@@ -1286,10 +1292,8 @@ function AppSidebar({
 						</SidebarMenu>
 					</SidebarGroup>
 				))}
-			</SidebarContent>
 
-			<SidebarFooter className="gap-0 p-0">
-				<div className="p-2 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
+				<div className="mt-auto p-2 px-3 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 					<HoverCard>
 						<HoverCardTrigger asChild>
 							<IconButton size="32" variant="ghost" color="neutral">
@@ -1332,7 +1336,9 @@ function AppSidebar({
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
+			</SidebarContent>
 
+			<SidebarFooter className="gap-0 p-0">
 				<SidebarSeparator />
 
 				<SidebarFooterUser menuButtonVariant={menuButtonVariant} />
@@ -1343,7 +1349,7 @@ function AppSidebar({
 
 export default function SidebarDemo() {
 	const [activeVariant, setActiveVariant] = useState<Variant>("neutral")
-	const [activeTheme, setActiveTheme] = useState<Theme>("neutral-dark")
+	const [activeTheme, setActiveTheme] = useState<Theme>("neutral-accent")
 
 	return (
 		<SidebarProvider>
@@ -1351,8 +1357,6 @@ export default function SidebarDemo() {
 			<SidebarInset>
 				<div className="flex w-full flex-1 flex-col">
 					<header className="bg-bg p-4.5 flex shrink-0 items-center gap-2 border-b">
-						<SidebarTrigger className="-ml-1" />
-						<div className="bg-border mr-2 h-4 w-px" />
 						<span className="font-medium">Inbox</span>
 					</header>
 					<div className="flex h-full flex-col items-center justify-center gap-8 p-8">

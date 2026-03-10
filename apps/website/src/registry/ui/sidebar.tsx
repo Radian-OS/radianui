@@ -6,7 +6,7 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { PanelLeftIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
-import { CompactButton } from "@/registry/ui/button"
+import { IconButton } from "@/registry/ui/button"
 import {
 	Collapsible,
 	CollapsibleContent,
@@ -21,9 +21,9 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-const SIDEBAR_WIDTH = "16rem"
+const SIDEBAR_WIDTH = "16.25rem"
 const SIDEBAR_WIDTH_MOBILE = "18rem"
-const SIDEBAR_WIDTH_ICON = "3rem"
+const SIDEBAR_WIDTH_ICON = "3.75rem"
 
 export type SidebarContextProps = {
 	state: "expanded" | "collapsed"
@@ -50,7 +50,7 @@ export type SidebarProps = React.ComponentProps<"div"> & {
 }
 
 export type SidebarTriggerProps = Omit<
-	React.ComponentProps<typeof CompactButton>,
+	React.ComponentProps<typeof IconButton>,
 	"children"
 > & {
 	children?: React.ReactNode
@@ -114,7 +114,7 @@ export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
 }
 
 export const sidebarMenuButtonVariants = cva(
-	"peer/menu-button font-medium cursor-pointer flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left truncate text-sm outline-hidden ring-primary-border transition-[width,height,padding] focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>span:last-child]:min-w-0 [&>a:last-child]:truncate [&>a:last-child]:min-w-0 [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-fg-secondary",
+	"peer/menu-button font-medium cursor-pointer flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left truncate text-sm outline-hidden ring-primary-border transition-[width,height,padding] focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>span:last-child]:min-w-0 [&>a:last-child]:truncate [&>a:last-child]:min-w-0 [&>svg]:size-5 [&>svg]:shrink-0 [&>svg]:text-fg-secondary",
 	{
 		variants: {
 			variant: {
@@ -370,13 +370,13 @@ function SidebarTrigger({
 	const { toggleSidebar } = useSidebar()
 
 	return (
-		<CompactButton
+		<IconButton
 			data-sidebar="trigger"
 			data-slot="sidebar-trigger"
 			aria-label="Sidebar Button"
 			variant="ghost"
 			color="neutral"
-			size="20"
+			size="32"
 			className={className}
 			onClick={(event) => {
 				onClick?.(event)
@@ -389,7 +389,7 @@ function SidebarTrigger({
 					<span className="sr-only">Toggle Sidebar</span>
 				</>
 			)}
-		</CompactButton>
+		</IconButton>
 	)
 }
 
@@ -450,7 +450,7 @@ function SidebarHeader({ className, ...props }: SidebarHeaderProps) {
 		<div
 			data-slot="sidebar-header"
 			data-sidebar="header"
-			className={cn("flex flex-col gap-2 p-2", className)}
+			className={cn("flex flex-col gap-2 p-2 px-3", className)}
 			{...props}
 		/>
 	)
@@ -484,7 +484,7 @@ function SidebarContent({ className, ...props }: SidebarContentProps) {
 			data-slot="sidebar-content"
 			data-sidebar="content"
 			className={cn(
-				"flex min-h-0 flex-1 flex-col gap-2 overflow-auto group-data-[collapsible=icon]:overflow-hidden",
+				"flex min-h-0 flex-1 flex-col overflow-auto group-data-[collapsible=icon]:overflow-hidden",
 				className
 			)}
 			{...props}
@@ -497,7 +497,10 @@ function SidebarGroup({ className, ...props }: SidebarGroupProps) {
 		<div
 			data-slot="sidebar-group"
 			data-sidebar="group"
-			className={cn("relative flex w-full min-w-0 flex-col p-2", className)}
+			className={cn(
+				"relative flex w-full min-w-0 flex-col px-3 py-1.5",
+				className
+			)}
 			{...props}
 		/>
 	)

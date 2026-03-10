@@ -36,7 +36,7 @@ export function ComponentPreview({
 	if (type === "block") {
 		return (
 			<div className="border-soft mb-2 overflow-hidden rounded-xl border">
-				<div className="relative h-[750px] w-[800px] overflow-hidden">
+				<div className="relative h-[800px] w-[800px] overflow-hidden">
 					<iframe src={`/view/${path}`} className="h-full w-full" />
 				</div>
 			</div>
