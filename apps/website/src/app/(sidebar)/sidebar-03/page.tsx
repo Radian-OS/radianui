@@ -20,7 +20,7 @@ export default function Page() {
 			<AppSidebar />
 			<SidebarInset>
 				<header className="py-7.5 flex items-center gap-3 px-3">
-					<SidebarTrigger size="24" />
+					<SidebarTrigger />
 
 					<Breadcrumb>
 						<BreadcrumbList>
