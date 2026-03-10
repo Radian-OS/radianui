@@ -499,7 +499,7 @@ function SidebarGroup({ className, ...props }: SidebarGroupProps) {
 			data-slot="sidebar-group"
 			data-sidebar="group"
 			className={cn(
-				"relative flex w-full min-w-0 flex-col px-3 py-1.5",
+				"relative flex w-full min-w-0 flex-col px-3 py-1.5 group-data-[state=collapsed]:px-3.5",
 				className
 			)}
 			{...props}
@@ -570,7 +570,7 @@ function SidebarMenu({ className, ...props }: SidebarMenuProps) {
 		<ul
 			data-slot="sidebar-menu"
 			data-sidebar="menu"
-			className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+			className={cn("flex w-full min-w-0 flex-col gap-0.5", className)}
 			{...props}
 		/>
 	)
@@ -725,7 +725,7 @@ function SidebarMenuSub({ className, ...props }: SidebarMenuSubProps) {
 			data-slot="sidebar-menu-sub"
 			data-sidebar="menu-sub"
 			className={cn(
-				"ml-3.5 flex min-w-0 translate-x-px flex-col gap-0.5 py-0.5 pl-2.5 group-data-[collapsible=icon]:hidden",
+				"ml-5.5 flex min-w-0 translate-x-px flex-col gap-0.5 group-data-[collapsible=icon]:hidden",
 				className
 			)}
 			{...props}

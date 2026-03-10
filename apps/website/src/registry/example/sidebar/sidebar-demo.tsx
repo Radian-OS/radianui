@@ -33,6 +33,7 @@ import {
 	DropdownGroup,
 	DropdownItem,
 	DropdownLabel,
+	DropdownPortal,
 	DropdownShortcut,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
@@ -1033,55 +1034,58 @@ function SidebarFooterUser({
 							<ChevronsUpDown />
 						</SidebarMenuButton>
 					</DropdownTrigger>
-					<DropdownContent
-						className="min-w-68"
-						side={isMobile ? "top" : "right"}
-						align="end">
-						<DropdownLabel className="p-0 font-normal">
-							<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-								<Avatar className="h-8 w-8 rounded-lg">
-									<AvatarImage src="/media/male-3.jpg" alt="Jim Simmons" />
-									<AvatarFallback className="rounded-lg">JS</AvatarFallback>
-								</Avatar>
-								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="text-fg truncate font-semibold">
-										Jim Simmons
-									</span>
-									<span className="text-fg-secondary truncate text-xs">
-										simmons@radianos.com
-									</span>
+
+					<DropdownPortal>
+						<DropdownContent
+							className="min-w-68"
+							side={isMobile ? "top" : "right"}
+							align="end">
+							<DropdownLabel className="p-0 font-normal">
+								<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+									<Avatar className="h-8 w-8 rounded-lg">
+										<AvatarImage src="/media/male-3.jpg" alt="Jim Simmons" />
+										<AvatarFallback className="rounded-lg">JS</AvatarFallback>
+									</Avatar>
+									<div className="grid flex-1 text-left text-sm leading-tight">
+										<span className="text-fg truncate font-semibold">
+											Jim Simmons
+										</span>
+										<span className="text-fg-secondary truncate text-xs">
+											simmons@radianos.com
+										</span>
+									</div>
 								</div>
-							</div>
-						</DropdownLabel>
-						<DropdownDivider />
-						<DropdownGroup>
+							</DropdownLabel>
+							<DropdownDivider />
+							<DropdownGroup>
+								<DropdownItem>
+									<Sparkles className="size-4" />
+									Upgrade to Pro
+								</DropdownItem>
+							</DropdownGroup>
+							<DropdownDivider />
+							<DropdownGroup>
+								<DropdownItem>
+									<BadgeCheck className="size-4" />
+									Account
+								</DropdownItem>
+								<DropdownItem>
+									<CreditCard className="size-4" />
+									Billing
+								</DropdownItem>
+								<DropdownItem>
+									<Bell className="size-4" />
+									Notifications
+								</DropdownItem>
+							</DropdownGroup>
+							<DropdownDivider />
 							<DropdownItem>
-								<Sparkles className="size-4" />
-								Upgrade to Pro
+								<LogOut className="size-4" />
+								Log out
+								<DropdownShortcut>⌘L</DropdownShortcut>
 							</DropdownItem>
-						</DropdownGroup>
-						<DropdownDivider />
-						<DropdownGroup>
-							<DropdownItem>
-								<BadgeCheck className="size-4" />
-								Account
-							</DropdownItem>
-							<DropdownItem>
-								<CreditCard className="size-4" />
-								Billing
-							</DropdownItem>
-							<DropdownItem>
-								<Bell className="size-4" />
-								Notifications
-							</DropdownItem>
-						</DropdownGroup>
-						<DropdownDivider />
-						<DropdownItem>
-							<LogOut className="size-4" />
-							Log out
-							<DropdownShortcut>⌘L</DropdownShortcut>
-						</DropdownItem>
-					</DropdownContent>
+						</DropdownContent>
+					</DropdownPortal>
 				</Dropdown>
 			</SidebarMenuItem>
 		</SidebarMenu>
@@ -1219,7 +1223,12 @@ function AppSidebar({
 													{item.icon && <item.icon className="size-5" />}
 													<span>{item.label}</span>
 													{item.badge && (
-														<SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
+														<SidebarMenuBadge
+															variant="outline"
+															color="neutral"
+															className="bg-bg!">
+															{item.badge}
+														</SidebarMenuBadge>
 													)}
 												</a>
 											</SidebarMenuButton>
@@ -1243,28 +1252,30 @@ function AppSidebar({
 													{item.icon && <item.icon />}
 												</SidebarMenuButton>
 											</DropdownTrigger>
-											<DropdownContent
-												onMouseEnter={() => openMenu(item.label)}
-												onMouseLeave={closeMenu}
-												side="right"
-												className="w-60"
-												align="center">
-												{item.label && (
-													<DropdownLabel>{item.label}</DropdownLabel>
-												)}
+											<DropdownPortal>
+												<DropdownContent
+													onMouseEnter={() => openMenu(item.label)}
+													onMouseLeave={closeMenu}
+													side="right"
+													className="w-60"
+													align="center">
+													{item.label && (
+														<DropdownLabel>{item.label}</DropdownLabel>
+													)}
 
-												{item.subitems.map((subitem) => (
-													<DropdownItem
-														key={subitem.label}
-														className="[&_svg]:size-5!"
-														asChild>
-														<a href={subitem.href}>
-															<subitem.icon />
-															{subitem.label}
-														</a>
-													</DropdownItem>
-												))}
-											</DropdownContent>
+													{item.subitems.map((subitem) => (
+														<DropdownItem
+															key={subitem.label}
+															className="[&_svg]:size-5!"
+															asChild>
+															<a href={subitem.href}>
+																<subitem.icon />
+																{subitem.label}
+															</a>
+														</DropdownItem>
+													))}
+												</DropdownContent>
+											</DropdownPortal>
 										</Dropdown>
 									)
 								}
