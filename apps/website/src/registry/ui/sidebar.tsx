@@ -114,25 +114,26 @@ export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
 }
 
 export const sidebarMenuButtonVariants = cva(
-	"peer/menu-button font-medium cursor-pointer flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left truncate text-sm outline-hidden ring-primary-border transition-[width,height,padding] focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>span:last-child]:min-w-0 [&>a:last-child]:truncate [&>a:last-child]:min-w-0 [&>svg]:size-5 [&>svg]:shrink-0 [&>svg]:text-fg-secondary",
+	"peer/menu-button hover:bg-fill1 group-data-[theme=neutral-accent]:hover:bg-fill2 font-medium cursor-pointer flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left truncate text-sm outline-hidden ring-primary-border transition-[width,height,padding] focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>span:last-child]:min-w-0 [&>a:last-child]:truncate [&>a:last-child]:min-w-0 [&>svg]:size-5 [&>svg]:shrink-0 [&>svg]:text-fg-secondary",
 	{
 		variants: {
 			variant: {
 				strong:
-					"text-fg hover:bg-fill2 focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary data-[active=true]:text-white  data-[active=true]:[&>svg]:stroke-white",
-				soft: "text-fg hover:bg-fill2 focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent data-[active=true]:text-fg [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-fg",
+					"text-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white  data-[active=true]:[&>svg]:stroke-white",
+				soft: "text-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-fg [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-fg",
 				neutral:
-					"text-fg rounded-md data-[active=true]:bg-fill2 hover:bg-fill1 [&>svg]:text-fg-secondary",
+					"text-fg rounded-md data-[active=true]:bg-fill1-alpha! [&>svg]:text-fg-secondary",
 			},
 			size: {
-				"36": "h-8 text-sm",
 				"28": "h-7 text-xs",
+				"32": "h-8 text-sm group-data-[state=collapsed]:p-1.5!",
 				"48": "h-12 text-sm group-data-[collapsible=icon]:p-0!",
+				"52": "h-13 text-sm group-data-[collapsible=icon]:p-0!",
 			},
 		},
 		defaultVariants: {
 			variant: "strong",
-			size: "36",
+			size: "32",
 		},
 	}
 )
@@ -590,7 +591,7 @@ function SidebarMenuButton({
 	asChild = false,
 	isActive = false,
 	variant = "strong",
-	size = "36",
+	size = "32",
 	tooltip,
 	className,
 	...props
@@ -661,11 +662,7 @@ function SidebarMenuAction({
 	)
 }
 
-function SidebarMenuBadge({
-	color = "neutral",
-	className,
-	...props
-}: SidebarMenuBadgeProps) {
+function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
 	return (
 		<Badge
 			data-slot="sidebar-menu-badge"
@@ -680,7 +677,8 @@ function SidebarMenuBadge({
 				"group-data-[collapsible=icon]:hidden",
 				className
 			)}
-			color={color}
+			color="neutral"
+			size="20"
 			{...props}
 		/>
 	)
@@ -727,7 +725,7 @@ function SidebarMenuSub({ className, ...props }: SidebarMenuSubProps) {
 			data-slot="sidebar-menu-sub"
 			data-sidebar="menu-sub"
 			className={cn(
-				"mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 px-2.5 py-0.5 group-data-[collapsible=icon]:hidden",
+				"ml-3.5 flex min-w-0 translate-x-px flex-col gap-0.5 py-0.5 pl-2.5 group-data-[collapsible=icon]:hidden",
 				className
 			)}
 			{...props}

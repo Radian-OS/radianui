@@ -7,6 +7,7 @@ import {
 	Box,
 	Calendar,
 	ChevronRight,
+	ChevronUp,
 	ChevronsUpDown,
 	ClipboardList,
 	CreditCard,
@@ -1015,10 +1016,10 @@ function SidebarFooterUser({
 
 	return (
 		<SidebarMenu>
-			<SidebarMenuItem className="p-3.5">
+			<SidebarMenuItem className="p-2 group-data-[state=collapsed]:p-3.5">
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<SidebarMenuButton size="48" variant={menuButtonVariant}>
+						<SidebarMenuButton size="52" variant={menuButtonVariant}>
 							<Avatar size="32">
 								<AvatarImage src="/media/male-3.jpg" />
 								<AvatarFallback>JS</AvatarFallback>
@@ -1110,7 +1111,7 @@ function InfoCard() {
 function InfoCardExpanded() {
 	return (
 		<div className="mt-auto px-3 py-1.5 group-data-[state=collapsed]:hidden">
-			<div className="bg-bg border-soft flex items-center gap-2 rounded-lg border px-2.5 py-1.5">
+			<div className="bg-elevation-level2 border-soft-alpha flex items-center gap-2 rounded-lg border px-2.5 py-1.5">
 				{/* @ts-expect-error ignore type */}
 				<Image src={InfoIcon} alt="Info icon" className="size-4" />
 				<div className="flex flex-col">
@@ -1156,8 +1157,8 @@ function AppSidebar({
 	return (
 		<Sidebar collapsible="icon" theme={theme}>
 			<SidebarHeader className="p-0">
-				<div className="group/header relative flex items-center gap-2 px-3 py-2 pt-4">
-					<div className="z-0 flex size-8 items-center justify-center group-hover/header:group-data-[state=collapsed]:opacity-0">
+				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pt-4 group-data-[state=expanded]:pl-5 group-data-[state=expanded]:pr-3">
+					<div className="z-0 group-data-[state=collapsed]:px-2 group-data-[state=collapsed]:py-1 group-hover/header:group-data-[state=collapsed]:opacity-0">
 						<Logo />
 					</div>
 					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
@@ -1165,7 +1166,7 @@ function AppSidebar({
 					</span>
 					<SidebarTrigger
 						size="32"
-						className="group-hover/header:opacity-100! z-10 ml-auto group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:left-3 group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
+						className="group-hover/header:opacity-100! z-10 ml-auto group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
 					/>
 				</div>
 
@@ -1209,14 +1210,18 @@ function AppSidebar({
 									return (
 										<SidebarMenuItem key={item.label}>
 											<SidebarMenuButton
+												size="32"
 												isActive={item.isActive}
 												variant={menuButtonVariant}
-												tooltip={item.label}>
-												{item.icon && <item.icon />}
-												<span>{item.label}</span>
-												{item.badge && (
-													<SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
-												)}
+												tooltip={item.label}
+												asChild>
+												<a href={item.href}>
+													{item.icon && <item.icon className="size-5" />}
+													<span>{item.label}</span>
+													{item.badge && (
+														<SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
+													)}
+												</a>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
 									)
@@ -1249,7 +1254,10 @@ function AppSidebar({
 												)}
 
 												{item.subitems.map((subitem) => (
-													<DropdownItem key={subitem.label} asChild>
+													<DropdownItem
+														key={subitem.label}
+														className="[&_svg]:size-5!"
+														asChild>
 														<a href={subitem.href}>
 															<subitem.icon />
 															{subitem.label}
@@ -1270,7 +1278,7 @@ function AppSidebar({
 													variant={menuButtonVariant}>
 													{item.icon && <item.icon />}
 													<span>{item.label}</span>
-													<ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+													<ChevronUp className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
 												</SidebarMenuButton>
 											</SidebarCollapsibleTrigger>
 											<SidebarCollapsibleContent>
@@ -1296,13 +1304,16 @@ function AppSidebar({
 				<div className="mt-auto p-2 px-3 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 					<HoverCard>
 						<HoverCardTrigger asChild>
-							<IconButton size="32" variant="ghost" color="neutral">
-								{/* @ts-expect-error ignore type */}
-								<Image src={InfoIcon} alt="Info icon" className="size-4" />
+							<IconButton size="36" variant="ghost" color="neutral" asChild>
+								<div className="border-soft-alpha bg-elevation-level2! border">
+									{/* @ts-expect-error ignore type */}
+									<Image src={InfoIcon} alt="Info icon" className="size-4" />
+								</div>
 							</IconButton>
 						</HoverCardTrigger>
 						<HoverCardContent
 							side="right"
+							align="end"
 							sideOffset={4}
 							className="w-60 rounded-xl p-2">
 							<InfoCard />
