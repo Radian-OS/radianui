@@ -320,6 +320,38 @@ function SidebarLogo() {
 }
 ```
 
+## Theming
+
+Modify the `sidebarThemeVars` object inside `sidebar.tsx` file to add custom sidebar themes.
+
+```diff
+const sidebarThemeVars: Record<
+	NonNullable<SidebarProps["theme"]>,
+	React.CSSProperties> = {
+	"neutral-white": {
+		"--color-sidebar": "var(--color-bg)",
+	} as React.CSSProperties,
+	...,
++ 	"your-new-theme": {
++		// custom styles
++	}
+}
+```
+
+<br />
+You can modify the following CSS variables.
+
+```css
+:root {
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-primary-border);
+}
+```
+
 ## Mobile Behavior
 
 Below 768px, `Sidebar` renders as a Drawer automatically. The drawer direction matches the `side` prop.
