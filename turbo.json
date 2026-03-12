@@ -5,7 +5,12 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"env": ["DATABASE_URL", "NEXT_PUBLIC_*", "RESEND_API_KEY", "RESEND_FROM_EMAIL"],
+			"env": [
+				"DATABASE_URL",
+				"NEXT_PUBLIC_*",
+				"RESEND_API_KEY",
+				"RESEND_FROM_EMAIL"
+			],
 			"inputs": ["$TURBO_DEFAULT$", ".env"],
 			"outputs": [".next/**", "!.next/cache/**", "dist/**"]
 		},
@@ -42,9 +47,6 @@
 		},
 		"generate-component-json": {
 			"dependsOn": [],
-			"outputs": []
-		},
-		"build:llms": {
 			"outputs": []
 		}
 	}
