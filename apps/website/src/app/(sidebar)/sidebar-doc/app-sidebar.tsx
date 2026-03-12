@@ -15,7 +15,6 @@ import {
 	TvMinimal,
 	Users2,
 } from "lucide-react"
-import Link from "next/link"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
 import {
@@ -43,6 +42,7 @@ import {
 	SidebarGroupLabel,
 	SidebarHeader,
 	SidebarMenu,
+	SidebarMenuBadge,
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarMenuSub,
@@ -51,16 +51,23 @@ import {
 	SidebarSeparator,
 	useSidebar,
 } from "@/registry/ui/sidebar"
-import AcmeLogo from "./acme-logo"
 import { InfoCard } from "./info-card"
-import Logo from "./logo"
-import MageLogo from "./mage-logo"
-import RadianCoreLogo from "./radian-core-logo"
+import { InfoCardExpanded } from "./info-card-expanded"
+import {
+	AcmeLogo,
+	DiscordLogo,
+	DriveLogo,
+	Logo,
+	MageLogo,
+	NotionLogo,
+	RadianCoreLogo,
+} from "./logos"
 import { SidebarFooterUser } from "./sidebar-footer-user"
 
 interface SubItem {
 	label: string
 	href: string
+	icon: ComponentType<{ className?: string }>
 }
 
 interface NavItem {
@@ -69,6 +76,7 @@ interface NavItem {
 	href?: string
 	subitems?: SubItem[]
 	isActive?: boolean
+	badge?: React.ReactNode
 }
 
 interface NavGroup {
@@ -90,6 +98,7 @@ const mainData: NavGroup[] = [
 				icon: Inbox,
 				href: "#",
 				isActive: true,
+				badge: 4,
 			},
 			{
 				label: "Calendar",
@@ -121,11 +130,18 @@ const mainData: NavGroup[] = [
 				icon: Box,
 				subitems: [
 					{
-						label: "Slack",
+						label: "Notion",
+						icon: NotionLogo,
 						href: "#",
 					},
 					{
 						label: "Google Drive",
+						icon: DriveLogo,
+						href: "#",
+					},
+					{
+						label: "Discord",
+						icon: DiscordLogo,
 						href: "#",
 					},
 				],
@@ -172,6 +188,7 @@ const footerData: NavGroup[] = [
 export function AppSidebar() {
 	const { setOpen, state, isMobile } = useSidebar()
 	const inputRef = React.useRef<HTMLInputElement>(null)
+	// For opening dropdown on hover
 	const [openItem, setOpenItem] = React.useState<string | null>(null)
 	const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
 
@@ -241,6 +258,9 @@ export function AppSidebar() {
 												tooltip={item.label}>
 												{item.icon && <item.icon />}
 												<span>{item.label}</span>
+												{item.badge && (
+													<SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
+												)}
 											</SidebarMenuButton>
 										</SidebarMenuItem>
 									)
@@ -273,6 +293,7 @@ export function AppSidebar() {
 
 												{item.subitems.map((subitem) => (
 													<DropdownItem key={subitem.label}>
+														<subitem.icon />
 														<a href={subitem.href}>{subitem.label}</a>
 													</DropdownItem>
 												))}
@@ -295,8 +316,9 @@ export function AppSidebar() {
 												<SidebarMenuSub>
 													{item.subitems.map((subitem) => (
 														<SidebarMenuSubItem key={subitem.label}>
-															<SidebarMenuButton asChild>
-																<Link href={subitem.href}>{subitem.label}</Link>
+															<SidebarMenuButton>
+																<subitem.icon />
+																<a href={subitem.href}>{subitem.label}</a>
 															</SidebarMenuButton>
 														</SidebarMenuSubItem>
 													))}
@@ -322,13 +344,13 @@ export function AppSidebar() {
 						<HoverCardContent
 							side="right"
 							sideOffset={4}
-							className="w-60 rounded-lg border-none p-0">
-							<InfoCard className="p-0" />
+							className="w-60 rounded-xl p-2">
+							<InfoCard />
 						</HoverCardContent>
 					</HoverCard>
 				</div>
 
-				<InfoCard className="group-data-[state=collapsed]:hidden" />
+				<InfoCardExpanded />
 
 				<SidebarGroup>
 					<SidebarGroupContent>

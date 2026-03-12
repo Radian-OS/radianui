@@ -33,11 +33,23 @@ export function ComponentPreview({
 		type: type ?? "component",
 	}
 
+	if (type === "block") {
+		return (
+			<div className="border-soft mb-2 overflow-hidden rounded-xl border">
+				<div className="relative h-[800px] w-[800px] overflow-hidden">
+					<iframe src={`/view/${path}`} className="h-full w-full" />
+				</div>
+			</div>
+		)
+	}
+
 	const Component = getComponent(path)
 
 	return (
 		<div className="mb-8">
-			<div className="flex min-w-0 flex-col items-stretch">
+			<div
+				data-slot="component-preview"
+				className="relative flex min-w-0 flex-col items-stretch">
 				<Tabs defaultValue="preview" className="w-full">
 					<TabsList size="md">
 						<TabsTrigger value="preview">Preview</TabsTrigger>

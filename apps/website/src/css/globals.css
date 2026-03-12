@@ -61,9 +61,17 @@
 
 	/* border */
 	--color-border: oklch(0.906 0.0046 258.33);
-	--color-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 88%);
+	--color-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 88%
+	);
 	--color-soft: oklch(0.9368 0.0029 264.54);
-	--color-soft-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 92%);
+	--color-soft-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 92%
+	);
 
 	/* background elevation */
 	--color-elevation-negative: oklch(0.9764 0.0013 286.38);
@@ -75,10 +83,33 @@
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
 	/* background fill alpha */
-	--color-fill1-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 96%);
-	--color-fill2-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 92%);
-	--color-fill3-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 88%);
-	--color-fill4-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 84%);
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 96%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 92%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 88%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 84%
+	);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-primary-border);
 }
 
 .dark {
@@ -156,6 +187,13 @@
 	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
 	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 84%);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-soft);
+	--color-sidebar-ring: var(--color-primary-border);
 }
 
 /* Base styles */

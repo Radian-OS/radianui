@@ -146,12 +146,12 @@ export function AppSidebar({
 	return (
 		<Sidebar variant="floating" theme={theme} collapsible="icon">
 			<SidebarHeader className="gap-0 p-0">
-				<div className="p-4 group-data-[state=collapsed]:px-3">
+				<div className="group-data-[state=collapsed]:px-4.5 p-4">
 					<LogoFull className="shrink-0 group-data-[state='collapsed']:hidden" />
 					<Logo className="shrink-0 group-data-[mobile=true]:hidden group-data-[state='expanded']:hidden" />
 				</div>
 
-				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-2">
+				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-3.5">
 					<InputWrapper
 						className="group-data-[state=collapsed]:hidden"
 						size="32">
@@ -202,7 +202,7 @@ export function AppSidebar({
 				))}
 			</SidebarContent>
 			<SidebarFooter className="gap-0 p-0">
-				<div className="p-2 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
+				<div className="p-3.5 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 					<HoverCard>
 						<HoverCardTrigger asChild>
 							<IconButton size="32" variant="ghost" color="neutral">

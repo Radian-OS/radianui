@@ -224,7 +224,7 @@ export function AppSidebar() {
 						<SidebarMenu>
 							{data.navSecondary.map((item) => (
 								<SidebarMenuItem key={item.title}>
-									<SidebarMenuButton asChild size="36">
+									<SidebarMenuButton asChild>
 										<a href={item.url}>
 											<item.icon />
 											<span>{item.title}</span>
