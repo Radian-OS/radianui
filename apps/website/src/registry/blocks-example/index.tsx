@@ -230,4 +230,48 @@ export const Index: Record<string, RegistryItem> = {
 			() => import("@/registry/blocks-example/sidebar-offcanvas/page")
 		),
 	},
+	"sidebar-rail": {
+		name: "sidebar-rail",
+		type: "block",
+		files: [
+			{
+				path: "registry/blocks-example/sidebar-rail/components/app-sidebar.tsx",
+				name: "app-sidebar.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-rail/components/info-card-expanded.tsx",
+				name: "info-card-expanded.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-rail/components/info-card.tsx",
+				name: "info-card.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-rail/components/logos.tsx",
+				name: "logos.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-rail/components/sidebar-footer-user.tsx",
+				name: "sidebar-footer-user.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-rail/page.tsx",
+				name: "page.tsx",
+				type: "page",
+			},
+		],
+		component: React.lazy(
+			() => import("@/registry/blocks-example/sidebar-rail/page")
+		),
+	},
 }

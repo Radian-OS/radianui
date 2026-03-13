@@ -103,6 +103,10 @@ export default function AppLayout({ children }) {
 
 <ComponentPreview path="sidebar-offcanvas" type="block" />
 
+### Sidebar with Rail
+
+<ComponentPreview path="sidebar-rail" type="block" />
+
 ## SidebarProvider
 
 The root context component. Must wrap the entire layout, both the `Sidebar` and the `SidebarInset`. It manages open/closed state, persists it in a cookie (`sidebar_state`), registers the `Cmd+B` keyboard shortcut, and exposes everything via the `useSidebar` hook.
