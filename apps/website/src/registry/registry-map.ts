@@ -6,978 +6,962 @@ const registry: Record<
 	string,
 	React.LazyExoticComponent<React.ComponentType>
 > = {
-	"accordion/accordion-indicator": React.lazy(
+	"accordion-indicator": React.lazy(
 		() => import("@/registry/example/accordion/accordion-indicator")
 	),
-	"accordion/accordion-large": React.lazy(
+	"accordion-large": React.lazy(
 		() => import("@/registry/example/accordion/accordion-large")
 	),
-	"accordion/accordion-nested": React.lazy(
+	"accordion-nested": React.lazy(
 		() => import("@/registry/example/accordion/accordion-nested")
 	),
-	"accordion/accordion-open": React.lazy(
+	"accordion-open": React.lazy(
 		() => import("@/registry/example/accordion/accordion-open")
 	),
-	"accordion/accordion-preview": React.lazy(
+	"accordion-preview": React.lazy(
 		() => import("@/registry/example/accordion/accordion-preview")
 	),
-	"accordion/accordion-small": React.lazy(
+	"accordion-small": React.lazy(
 		() => import("@/registry/example/accordion/accordion-small")
 	),
-	"accordion/accordion-table": React.lazy(
+	"accordion-table": React.lazy(
 		() => import("@/registry/example/accordion/accordion-table")
 	),
-	"accordion/accordion-with-chevron-left": React.lazy(
+	"accordion-with-chevron-left": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-chevron-left")
 	),
-	"accordion/accordion-with-icon": React.lazy(
+	"accordion-with-icon": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-icon")
 	),
-	"accordion/accordion-with-sub-header": React.lazy(
+	"accordion-with-sub-header": React.lazy(
 		() => import("@/registry/example/accordion/accordion-with-sub-header")
 	),
-	"alert/alert-close-example-preview": React.lazy(
+	"alert-close-example-preview": React.lazy(
 		() => import("@/registry/example/alert/alert-close-example-preview")
 	),
-	"alert/alert-colors-example": React.lazy(
+	"alert-colors-example": React.lazy(
 		() => import("@/registry/example/alert/alert-colors-example")
 	),
-	"alert/alert-error-examples": React.lazy(
+	"alert-error-examples": React.lazy(
 		() => import("@/registry/example/alert/alert-error-examples")
 	),
-	"alert/alert-info-examples": React.lazy(
+	"alert-info-examples": React.lazy(
 		() => import("@/registry/example/alert/alert-info-examples")
 	),
-	"alert/alert-preview": React.lazy(
+	"alert-preview": React.lazy(
 		() => import("@/registry/example/alert/alert-preview")
 	),
-	"alert/alert-success-examples": React.lazy(
+	"alert-success-examples": React.lazy(
 		() => import("@/registry/example/alert/alert-success-examples")
 	),
-	"alert/alert-variants-example": React.lazy(
+	"alert-variants-example": React.lazy(
 		() => import("@/registry/example/alert/alert-variants-example")
 	),
-	"alert/alert-warning-example": React.lazy(
+	"alert-warning-example": React.lazy(
 		() => import("@/registry/example/alert/alert-warning-example")
 	),
-	"alert-dialog/alert-dialog-preview": React.lazy(
+	"alert-dialog-preview": React.lazy(
 		() => import("@/registry/example/alert-dialog/alert-dialog-preview")
 	),
-	"alert-dialog/backdrop-blur": React.lazy(
+	"backdrop-blur": React.lazy(
 		() => import("@/registry/example/alert-dialog/backdrop-blur")
 	),
-	"alert-dialog/backdrop-transparent": React.lazy(
+	"backdrop-transparent": React.lazy(
 		() => import("@/registry/example/alert-dialog/backdrop-transparent")
 	),
-	"alert-dialog/destructive-alert-dialog": React.lazy(
+	"destructive-alert-dialog": React.lazy(
 		() => import("@/registry/example/alert-dialog/destructive-alert-dialog")
 	),
-	"alert-dialog/destructive-dialog-center": React.lazy(
+	"destructive-dialog-center": React.lazy(
 		() => import("@/registry/example/alert-dialog/destructive-dialog-center")
 	),
-	"alert-dialog/destructive-dialog-with-divider": React.lazy(
+	"destructive-dialog-with-divider": React.lazy(
 		() =>
 			import("@/registry/example/alert-dialog/destructive-dialog-with-divider")
 	),
-	"aspect-ratio/aspect-ratio-1-1": React.lazy(
+	"aspect-ratio-1-1": React.lazy(
 		() => import("@/registry/example/aspect-ratio/aspect-ratio-1-1")
 	),
-	"aspect-ratio/aspect-ratio-4-3": React.lazy(
+	"aspect-ratio-4-3": React.lazy(
 		() => import("@/registry/example/aspect-ratio/aspect-ratio-4-3")
 	),
-	"aspect-ratio/aspect-ratio-9-16": React.lazy(
+	"aspect-ratio-9-16": React.lazy(
 		() => import("@/registry/example/aspect-ratio/aspect-ratio-9-16")
 	),
-	"aspect-ratio/aspect-ratio-preview-16-9": React.lazy(
+	"aspect-ratio-preview-16-9": React.lazy(
 		() => import("@/registry/example/aspect-ratio/aspect-ratio-preview-16-9")
 	),
-	"auth-blocks/account-verified": React.lazy(
+	"account-verified": React.lazy(
 		() => import("@/registry/example/auth-blocks/account-verified")
 	),
-	"auth-blocks/email-code": React.lazy(
+	"email-code": React.lazy(
 		() => import("@/registry/example/auth-blocks/email-code")
 	),
-	"auth-blocks/email-verofy": React.lazy(
+	"email-verofy": React.lazy(
 		() => import("@/registry/example/auth-blocks/email-verofy")
 	),
-	"auth-blocks/signin": React.lazy(
-		() => import("@/registry/example/auth-blocks/signin")
-	),
-	"auth-blocks/signup": React.lazy(
-		() => import("@/registry/example/auth-blocks/signup")
-	),
-	"avatar/avatar-fallback": React.lazy(
+	signin: React.lazy(() => import("@/registry/example/auth-blocks/signin")),
+	signup: React.lazy(() => import("@/registry/example/auth-blocks/signup")),
+	"avatar-fallback": React.lazy(
 		() => import("@/registry/example/avatar/avatar-fallback")
 	),
-	"avatar/avatar-group": React.lazy(
+	"avatar-group": React.lazy(
 		() => import("@/registry/example/avatar/avatar-group")
 	),
-	"avatar/avatar-preview": React.lazy(
+	"avatar-preview": React.lazy(
 		() => import("@/registry/example/avatar/avatar-preview")
 	),
-	"avatar/avatar-rounded-square": React.lazy(
+	"avatar-rounded-square": React.lazy(
 		() => import("@/registry/example/avatar/avatar-rounded-square")
 	),
-	"avatar/avatar-size": React.lazy(
+	"avatar-size": React.lazy(
 		() => import("@/registry/example/avatar/avatar-size")
 	),
-	"avatar/avatar-status": React.lazy(
+	"avatar-status": React.lazy(
 		() => import("@/registry/example/avatar/avatar-status")
 	),
-	"avatar/custom-avatar-with-badge": React.lazy(
+	"custom-avatar-with-badge": React.lazy(
 		() => import("@/registry/example/avatar/custom-avatar-with-badge")
 	),
-	"avatar/custom-avatar-with-ring": React.lazy(
+	"custom-avatar-with-ring": React.lazy(
 		() => import("@/registry/example/avatar/custom-avatar-with-ring")
 	),
-	"avatar/custom-avatar-with-status": React.lazy(
+	"custom-avatar-with-status": React.lazy(
 		() => import("@/registry/example/avatar/custom-avatar-with-status")
 	),
-	"badge/badge-avatar-example": React.lazy(
+	"badge-avatar-example": React.lazy(
 		() => import("@/registry/example/badge/badge-avatar-example")
 	),
-	"badge/badge-color-example": React.lazy(
+	"badge-color-example": React.lazy(
 		() => import("@/registry/example/badge/badge-color-example")
 	),
-	"badge/badge-cross-example": React.lazy(
+	"badge-cross-example": React.lazy(
 		() => import("@/registry/example/badge/badge-cross-example")
 	),
-	"badge/badge-dot-example": React.lazy(
+	"badge-dot-example": React.lazy(
 		() => import("@/registry/example/badge/badge-dot-example")
 	),
-	"badge/badge-example": React.lazy(
+	"badge-example": React.lazy(
 		() => import("@/registry/example/badge/badge-example")
 	),
-	"badge/badge-icon-example": React.lazy(
+	"badge-icon-example": React.lazy(
 		() => import("@/registry/example/badge/badge-icon-example")
 	),
-	"badge/badge-nested-example": React.lazy(
+	"badge-nested-example": React.lazy(
 		() => import("@/registry/example/badge/badge-nested-example")
 	),
-	"badge/badge-rounded-example": React.lazy(
+	"badge-rounded-example": React.lazy(
 		() => import("@/registry/example/badge/badge-rounded-example")
 	),
-	"badge/badge-size-example": React.lazy(
+	"badge-size-example": React.lazy(
 		() => import("@/registry/example/badge/badge-size-example")
 	),
-	"badge/badge-variants-example": React.lazy(
+	"badge-variants-example": React.lazy(
 		() => import("@/registry/example/badge/badge-variants-example")
 	),
-	"banner/banner-black-friday-example": React.lazy(
+	"banner-black-friday-example": React.lazy(
 		() => import("@/registry/example/banner/banner-black-friday-example")
 	),
-	"banner/banner-color-example": React.lazy(
+	"banner-color-example": React.lazy(
 		() => import("@/registry/example/banner/banner-color-example")
 	),
-	"banner/banner-error-example": React.lazy(
+	"banner-error-example": React.lazy(
 		() => import("@/registry/example/banner/banner-error-example")
 	),
-	"banner/banner-example-preview": React.lazy(
+	"banner-example-preview": React.lazy(
 		() => import("@/registry/example/banner/banner-example-preview")
 	),
-	"banner/banner-floating-example": React.lazy(
+	"banner-floating-example": React.lazy(
 		() => import("@/registry/example/banner/banner-floating-example")
 	),
-	"banner/banner-primary-example": React.lazy(
+	"banner-primary-example": React.lazy(
 		() => import("@/registry/example/banner/banner-primary-example")
 	),
-	"banner/banner-success-example": React.lazy(
+	"banner-success-example": React.lazy(
 		() => import("@/registry/example/banner/banner-success-example")
 	),
-	"banner/banner-variants-example": React.lazy(
+	"banner-variants-example": React.lazy(
 		() => import("@/registry/example/banner/banner-variants-example")
 	),
-	"breadcrumb/breadcrumb-card-design": React.lazy(
+	"breadcrumb-card-design": React.lazy(
 		() => import("@/registry/example/breadcrumb/breadcrumb-card-design")
 	),
-	"breadcrumb/breadcrumb-preview": React.lazy(
+	"breadcrumb-preview": React.lazy(
 		() => import("@/registry/example/breadcrumb/breadcrumb-preview")
 	),
-	"breadcrumb/breadcrumb-with-dot": React.lazy(
+	"breadcrumb-with-dot": React.lazy(
 		() => import("@/registry/example/breadcrumb/breadcrumb-with-dot")
 	),
-	"breadcrumb/breadcrumb-with-dropdown": React.lazy(
+	"breadcrumb-with-dropdown": React.lazy(
 		() => import("@/registry/example/breadcrumb/breadcrumb-with-dropdown")
 	),
-	"breadcrumb/breadcrumb-with-icons": React.lazy(
+	"breadcrumb-with-icons": React.lazy(
 		() => import("@/registry/example/breadcrumb/breadcrumb-with-icons")
 	),
-	"breadcrumb/breadcrumb-with-slash": React.lazy(
+	"breadcrumb-with-slash": React.lazy(
 		() => import("@/registry/example/breadcrumb/breadcrumb-with-slash")
 	),
-	"button/button-colors-example": React.lazy(
+	"button-colors-example": React.lazy(
 		() => import("@/registry/example/button/button-colors-example")
 	),
-	"button/button-elevated-example": React.lazy(
+	"button-elevated-example": React.lazy(
 		() => import("@/registry/example/button/button-elevated-example")
 	),
-	"button/button-example-disabled": React.lazy(
+	"button-example-disabled": React.lazy(
 		() => import("@/registry/example/button/button-example-disabled")
 	),
-	"button/button-example-preview": React.lazy(
+	"button-example-preview": React.lazy(
 		() => import("@/registry/example/button/button-example-preview")
 	),
-	"button/button-example-rounded": React.lazy(
+	"button-example-rounded": React.lazy(
 		() => import("@/registry/example/button/button-example-rounded")
 	),
-	"button/button-fancy-example": React.lazy(
+	"button-fancy-example": React.lazy(
 		() => import("@/registry/example/button/button-fancy-example")
 	),
-	"button/button-fancy-preview": React.lazy(
+	"button-fancy-preview": React.lazy(
 		() => import("@/registry/example/button/button-fancy-preview")
 	),
-	"button/button-glossy-example": React.lazy(
+	"button-glossy-example": React.lazy(
 		() => import("@/registry/example/button/button-glossy-example")
 	),
-	"button/button-group-example": React.lazy(
+	"button-group-example": React.lazy(
 		() => import("@/registry/example/button/button-group-example")
 	),
-	"button/button-input-example": React.lazy(
+	"button-input-example": React.lazy(
 		() => import("@/registry/example/button/button-input-example")
 	),
-	"button/button-size-example": React.lazy(
+	"button-size-example": React.lazy(
 		() => import("@/registry/example/button/button-size-example")
 	),
-	"button/button-smooth-example": React.lazy(
+	"button-smooth-example": React.lazy(
 		() => import("@/registry/example/button/button-smooth-example")
 	),
-	"button/button-split-example": React.lazy(
+	"button-split-example": React.lazy(
 		() => import("@/registry/example/button/button-split-example")
 	),
-	"button/button-variants-example": React.lazy(
+	"button-variants-example": React.lazy(
 		() => import("@/registry/example/button/button-variants-example")
 	),
-	"button/button-with-badge-example": React.lazy(
+	"button-with-badge-example": React.lazy(
 		() => import("@/registry/example/button/button-with-badge-example")
 	),
-	"button/button-with-icon-example": React.lazy(
+	"button-with-icon-example": React.lazy(
 		() => import("@/registry/example/button/button-with-icon-example")
 	),
-	"button/compact-button-example": React.lazy(
+	"compact-button-example": React.lazy(
 		() => import("@/registry/example/button/compact-button-example")
 	),
-	"button/icon-button-example": React.lazy(
+	"icon-button-example": React.lazy(
 		() => import("@/registry/example/button/icon-button-example")
 	),
-	"button/link-button-example": React.lazy(
+	"link-button-example": React.lazy(
 		() => import("@/registry/example/button/link-button-example")
 	),
-	"button/loading-button-example": React.lazy(
+	"loading-button-example": React.lazy(
 		() => import("@/registry/example/button/loading-button-example")
 	),
-	"button/social-button-example": React.lazy(
+	"social-button-example": React.lazy(
 		() => import("@/registry/example/button/social-button-example")
 	),
-	"button/svg-button-example": React.lazy(
+	"svg-button-example": React.lazy(
 		() => import("@/registry/example/button/svg-button-example")
 	),
-	"calendar/calendar-footer-preview": React.lazy(
+	"calendar-footer-preview": React.lazy(
 		() => import("@/registry/example/calendar/calendar-footer-preview")
 	),
-	"calendar/calendar-preview": React.lazy(
+	"calendar-preview": React.lazy(
 		() => import("@/registry/example/calendar/calendar-preview")
 	),
-	"calendar/calendar-scrollable-time": React.lazy(
+	"calendar-scrollable-time": React.lazy(
 		() => import("@/registry/example/calendar/calendar-scrollable-time")
 	),
-	"calendar/calendar-time-input": React.lazy(
+	"calendar-time-input": React.lazy(
 		() => import("@/registry/example/calendar/calendar-time-input")
 	),
-	"calendar/calendar-year-month-selector-example": React.lazy(
+	"calendar-year-month-selector-example": React.lazy(
 		() =>
 			import("@/registry/example/calendar/calendar-year-month-selector-example")
 	),
-	"calendar/multiple-months-calendar-example": React.lazy(
+	"multiple-months-calendar-example": React.lazy(
 		() => import("@/registry/example/calendar/multiple-months-calendar-example")
 	),
-	"calendar/quick-selection-preview": React.lazy(
+	"quick-selection-preview": React.lazy(
 		() => import("@/registry/example/calendar/quick-selection-preview")
 	),
-	"calendar/time-picker-calendar-preview": React.lazy(
+	"time-picker-calendar-preview": React.lazy(
 		() => import("@/registry/example/calendar/time-picker-calendar-preview")
 	),
-	"card/card-info-example": React.lazy(
+	"card-info-example": React.lazy(
 		() => import("@/registry/example/card/card-info-example")
 	),
-	"card/card-preview": React.lazy(
+	"card-preview": React.lazy(
 		() => import("@/registry/example/card/card-preview")
 	),
-	"card/card-with-list-example": React.lazy(
+	"card-with-list-example": React.lazy(
 		() => import("@/registry/example/card/card-with-list-example")
 	),
-	"carousel/carousel-autoplay": React.lazy(
+	"carousel-autoplay": React.lazy(
 		() => import("@/registry/example/carousel/carousel-autoplay")
 	),
-	"carousel/carousel-dotbutton": React.lazy(
+	"carousel-dotbutton": React.lazy(
 		() => import("@/registry/example/carousel/carousel-dotbutton")
 	),
-	"carousel/carousel-loop": React.lazy(
+	"carousel-loop": React.lazy(
 		() => import("@/registry/example/carousel/carousel-loop")
 	),
-	"carousel/carousel-orientation": React.lazy(
+	"carousel-orientation": React.lazy(
 		() => import("@/registry/example/carousel/carousel-orientation")
 	),
-	"carousel/carousel-preview": React.lazy(
+	"carousel-preview": React.lazy(
 		() => import("@/registry/example/carousel/carousel-preview")
 	),
-	"carousel/carousel-scale": React.lazy(
+	"carousel-scale": React.lazy(
 		() => import("@/registry/example/carousel/carousel-scale")
 	),
-	"carousel/carousel-size": React.lazy(
+	"carousel-size": React.lazy(
 		() => import("@/registry/example/carousel/carousel-size")
 	),
-	"carousel/carousel-space": React.lazy(
+	"carousel-space": React.lazy(
 		() => import("@/registry/example/carousel/carousel-space")
 	),
-	"checkbox/checkbox-card": React.lazy(
+	"checkbox-card": React.lazy(
 		() => import("@/registry/example/checkbox/checkbox-card")
 	),
-	"checkbox/checkbox-checked": React.lazy(
+	"checkbox-checked": React.lazy(
 		() => import("@/registry/example/checkbox/checkbox-checked")
 	),
-	"checkbox/checkbox-disabled": React.lazy(
+	"checkbox-disabled": React.lazy(
 		() => import("@/registry/example/checkbox/checkbox-disabled")
 	),
-	"checkbox/checkbox-form": React.lazy(
+	"checkbox-form": React.lazy(
 		() => import("@/registry/example/checkbox/checkbox-form")
 	),
-	"checkbox/checkbox-group": React.lazy(
+	"checkbox-group": React.lazy(
 		() => import("@/registry/example/checkbox/checkbox-group")
 	),
-	"checkbox/checkbox-preview": React.lazy(
+	"checkbox-preview": React.lazy(
 		() => import("@/registry/example/checkbox/checkbox-preview")
 	),
-	"checkbox/checkbox-size": React.lazy(
+	"checkbox-size": React.lazy(
 		() => import("@/registry/example/checkbox/checkbox-size")
 	),
-	"checkbox/indeterminate-checkbox": React.lazy(
+	"indeterminate-checkbox": React.lazy(
 		() => import("@/registry/example/checkbox/indeterminate-checkbox")
 	),
-	"code-area/code-area-preview": React.lazy(
+	"code-area-preview": React.lazy(
 		() => import("@/registry/example/code-area/code-area-preview")
 	),
-	"code-area/code-language-example": React.lazy(
+	"code-language-example": React.lazy(
 		() => import("@/registry/example/code-area/code-language-example")
 	),
-	"code-area/code-theme-example": React.lazy(
+	"code-theme-example": React.lazy(
 		() => import("@/registry/example/code-area/code-theme-example")
 	),
-	"code-area/code-with-copy-example": React.lazy(
+	"code-with-copy-example": React.lazy(
 		() => import("@/registry/example/code-area/code-with-copy-example")
 	),
-	"code-area/code-with-tabs-preview": React.lazy(
+	"code-with-tabs-preview": React.lazy(
 		() => import("@/registry/example/code-area/code-with-tabs-preview")
 	),
-	"collapsible/collapsible-form": React.lazy(
+	"collapsible-form": React.lazy(
 		() => import("@/registry/example/collapsible/collapsible-form")
 	),
-	"collapsible/collapsible-menu": React.lazy(
+	"collapsible-menu": React.lazy(
 		() => import("@/registry/example/collapsible/collapsible-menu")
 	),
-	"collapsible/collapsible-preview": React.lazy(
+	"collapsible-preview": React.lazy(
 		() => import("@/registry/example/collapsible/collapsible-preview")
 	),
-	"collapsible/collapsible-text": React.lazy(
+	"collapsible-text": React.lazy(
 		() => import("@/registry/example/collapsible/collapsible-text")
 	),
-	"combobox/combobox-email-invite": React.lazy(
+	"combobox-email-invite": React.lazy(
 		() => import("@/registry/example/combobox/combobox-email-invite")
 	),
-	"combobox/combobox-form": React.lazy(
+	"combobox-form": React.lazy(
 		() => import("@/registry/example/combobox/combobox-form")
 	),
-	"combobox/combobox-multiselect": React.lazy(
+	"combobox-multiselect": React.lazy(
 		() => import("@/registry/example/combobox/combobox-multiselect")
 	),
-	"combobox/combobox-preview": React.lazy(
+	"combobox-preview": React.lazy(
 		() => import("@/registry/example/combobox/combobox-preview")
 	),
-	"combobox/combobox-scrollarea": React.lazy(
+	"combobox-scrollarea": React.lazy(
 		() => import("@/registry/example/combobox/combobox-scrollarea")
 	),
-	"combobox/combobox-timezone": React.lazy(
+	"combobox-timezone": React.lazy(
 		() => import("@/registry/example/combobox/combobox-timezone")
 	),
-	"combobox/virtualized-list": React.lazy(
+	"virtualized-list": React.lazy(
 		() => import("@/registry/example/combobox/virtualized-list")
 	),
-	"command/command-preview": React.lazy(
+	"command-preview": React.lazy(
 		() => import("@/registry/example/command/command-preview")
 	),
-	"currency-input/currency-decimal-separator": React.lazy(
+	"currency-decimal-separator": React.lazy(
 		() => import("@/registry/example/currency-input/currency-decimal-separator")
 	),
-	"currency-input/currency-decimals-limit": React.lazy(
+	"currency-decimals-limit": React.lazy(
 		() => import("@/registry/example/currency-input/currency-decimals-limit")
 	),
-	"currency-input/currency-input-example": React.lazy(
+	"currency-input-example": React.lazy(
 		() => import("@/registry/example/currency-input/currency-input-example")
 	),
-	"currency-input/currency-locale-config": React.lazy(
+	"currency-locale-config": React.lazy(
 		() => import("@/registry/example/currency-input/currency-locale-config")
 	),
-	"currency-input/currency-max-value-example": React.lazy(
+	"currency-max-value-example": React.lazy(
 		() => import("@/registry/example/currency-input/currency-max-value-example")
 	),
-	"currency-input/currency-nodecimal-example": React.lazy(
+	"currency-nodecimal-example": React.lazy(
 		() => import("@/registry/example/currency-input/currency-nodecimal-example")
 	),
-	"currency-input/currency-prefix-example": React.lazy(
+	"currency-prefix-example": React.lazy(
 		() => import("@/registry/example/currency-input/currency-prefix-example")
 	),
-	"currency-input/currency-select-with-custom-prefix": React.lazy(
+	"currency-select-with-custom-prefix": React.lazy(
 		() =>
 			import(
 				"@/registry/example/currency-input/currency-select-with-custom-prefix"
 			)
 	),
-	"currency-input/currency-separators-example": React.lazy(
+	"currency-separators-example": React.lazy(
 		() =>
 			import("@/registry/example/currency-input/currency-separators-example")
 	),
-	"currency-input/currency-step-example": React.lazy(
+	"currency-step-example": React.lazy(
 		() => import("@/registry/example/currency-input/currency-step-example")
 	),
-	"currency-input/currency-with-input-group": React.lazy(
+	"currency-with-input-group": React.lazy(
 		() => import("@/registry/example/currency-input/currency-with-input-group")
 	),
-	"currency-input/currency-with-input-wrapper": React.lazy(
+	"currency-with-input-wrapper": React.lazy(
 		() =>
 			import("@/registry/example/currency-input/currency-with-input-wrapper")
 	),
-	"currency-input/currency-with-prefix": React.lazy(
+	"currency-with-prefix": React.lazy(
 		() => import("@/registry/example/currency-input/currency-with-prefix")
 	),
-	"date-picker/date-picker-form": React.lazy(
+	"date-picker-form": React.lazy(
 		() => import("@/registry/example/date-picker/date-picker-form")
 	),
-	"date-picker/date-picker-preview": React.lazy(
+	"date-picker-preview": React.lazy(
 		() => import("@/registry/example/date-picker/date-picker-preview")
 	),
-	"date-picker/date-picker-range-example": React.lazy(
+	"date-picker-range-example": React.lazy(
 		() => import("@/registry/example/date-picker/date-picker-range-example")
 	),
-	"date-picker/date-picker-with-time": React.lazy(
+	"date-picker-with-time": React.lazy(
 		() => import("@/registry/example/date-picker/date-picker-with-time")
 	),
-	"dialog/dialog-backdrop-blur": React.lazy(
+	"dialog-backdrop-blur": React.lazy(
 		() => import("@/registry/example/dialog/dialog-backdrop-blur")
 	),
-	"dialog/dialog-backdrop-transparent": React.lazy(
+	"dialog-backdrop-transparent": React.lazy(
 		() => import("@/registry/example/dialog/dialog-backdrop-transparent")
 	),
-	"dialog/dialog-close-button-hidden": React.lazy(
+	"dialog-close-button-hidden": React.lazy(
 		() => import("@/registry/example/dialog/dialog-close-button-hidden")
 	),
-	"dialog/dialog-close-button-hover": React.lazy(
+	"dialog-close-button-hover": React.lazy(
 		() => import("@/registry/example/dialog/dialog-close-button-hover")
 	),
-	"dialog/dialog-destructive": React.lazy(
+	"dialog-destructive": React.lazy(
 		() => import("@/registry/example/dialog/dialog-destructive")
 	),
-	"dialog/dialog-preview": React.lazy(
+	"dialog-preview": React.lazy(
 		() => import("@/registry/example/dialog/dialog-preview")
 	),
-	"dialog/dialog-with-form": React.lazy(
+	"dialog-with-form": React.lazy(
 		() => import("@/registry/example/dialog/dialog-with-form")
 	),
-	"divider/divider-badge-preview": React.lazy(
+	"divider-badge-preview": React.lazy(
 		() => import("@/registry/example/divider/divider-badge-preview")
 	),
-	"divider/divider-plain-text-preview": React.lazy(
+	"divider-plain-text-preview": React.lazy(
 		() => import("@/registry/example/divider/divider-plain-text-preview")
 	),
-	"divider/divider-preview": React.lazy(
+	"divider-preview": React.lazy(
 		() => import("@/registry/example/divider/divider-preview")
 	),
-	"divider/divider-text-preview": React.lazy(
+	"divider-text-preview": React.lazy(
 		() => import("@/registry/example/divider/divider-text-preview")
 	),
-	"drawer/drawer-backdrop-example": React.lazy(
+	"drawer-backdrop-example": React.lazy(
 		() => import("@/registry/example/drawer/drawer-backdrop-example")
 	),
-	"drawer/drawer-example-preview": React.lazy(
+	"drawer-example-preview": React.lazy(
 		() => import("@/registry/example/drawer/drawer-example-preview")
 	),
-	"drawer/drawer-handle-preview": React.lazy(
+	"drawer-handle-preview": React.lazy(
 		() => import("@/registry/example/drawer/drawer-handle-preview")
 	),
-	"drawer/drawer-position-example": React.lazy(
+	"drawer-position-example": React.lazy(
 		() => import("@/registry/example/drawer/drawer-position-example")
 	),
-	"drawer/drawer-variant-example": React.lazy(
+	"drawer-variant-example": React.lazy(
 		() => import("@/registry/example/drawer/drawer-variant-example")
 	),
-	"dropdown/dropdown-preview": React.lazy(
+	"dropdown-preview": React.lazy(
 		() => import("@/registry/example/dropdown/dropdown-preview")
 	),
-	"dropdown/dropdown-with-checkbox-example": React.lazy(
+	"dropdown-with-checkbox-example": React.lazy(
 		() => import("@/registry/example/dropdown/dropdown-with-checkbox-example")
 	),
-	"dropdown/dropdown-with-dropdown-checkbox": React.lazy(
+	"dropdown-with-dropdown-checkbox": React.lazy(
 		() => import("@/registry/example/dropdown/dropdown-with-dropdown-checkbox")
 	),
-	"dropdown/dropdown-with-radio": React.lazy(
+	"dropdown-with-radio": React.lazy(
 		() => import("@/registry/example/dropdown/dropdown-with-radio")
 	),
-	"dropdown/user-profile-dropdown-example": React.lazy(
+	"user-profile-dropdown-example": React.lazy(
 		() => import("@/registry/example/dropdown/user-profile-dropdown-example")
 	),
-	"empty/empty-preview": React.lazy(
+	"empty-preview": React.lazy(
 		() => import("@/registry/example/empty/empty-preview")
 	),
-	"empty/no-comments-yet": React.lazy(
+	"no-comments-yet": React.lazy(
 		() => import("@/registry/example/empty/no-comments-yet")
 	),
-	"empty/no-files-uploaded": React.lazy(
+	"no-files-uploaded": React.lazy(
 		() => import("@/registry/example/empty/no-files-uploaded")
 	),
-	"empty/no-internet-connection": React.lazy(
+	"no-internet-connection": React.lazy(
 		() => import("@/registry/example/empty/no-internet-connection")
 	),
-	"empty/no-messages": React.lazy(
+	"no-messages": React.lazy(
 		() => import("@/registry/example/empty/no-messages")
 	),
-	"empty/no-notifications": React.lazy(
+	"no-notifications": React.lazy(
 		() => import("@/registry/example/empty/no-notifications")
 	),
-	"empty/no-projects-yet": React.lazy(
+	"no-projects-yet": React.lazy(
 		() => import("@/registry/example/empty/no-projects-yet")
 	),
-	"empty/no-recent-activity": React.lazy(
+	"no-recent-activity": React.lazy(
 		() => import("@/registry/example/empty/no-recent-activity")
 	),
-	"empty/no-reports-yet": React.lazy(
+	"no-reports-yet": React.lazy(
 		() => import("@/registry/example/empty/no-reports-yet")
 	),
-	"empty/no-search-results": React.lazy(
+	"no-search-results": React.lazy(
 		() => import("@/registry/example/empty/no-search-results")
 	),
-	"empty/no-such-directory": React.lazy(
+	"no-such-directory": React.lazy(
 		() => import("@/registry/example/empty/no-such-directory")
 	),
-	"empty/unexpected-error": React.lazy(
+	"unexpected-error": React.lazy(
 		() => import("@/registry/example/empty/unexpected-error")
 	),
-	"file-upload/document-file": React.lazy(
+	"document-file": React.lazy(
 		() => import("@/registry/example/file-upload/document-file")
 	),
-	"file-upload/document-upload": React.lazy(
+	"document-upload": React.lazy(
 		() => import("@/registry/example/file-upload/document-upload")
 	),
-	"file-upload/file-upload-example": React.lazy(
+	"file-upload-example": React.lazy(
 		() => import("@/registry/example/file-upload/file-upload-example")
 	),
-	"file-upload/file-upload-preview": React.lazy(
+	"file-upload-preview": React.lazy(
 		() => import("@/registry/example/file-upload/file-upload-preview")
 	),
-	"file-upload/image-upload": React.lazy(
+	"image-upload": React.lazy(
 		() => import("@/registry/example/file-upload/image-upload")
 	),
-	"form/form-preview": React.lazy(
+	"form-preview": React.lazy(
 		() => import("@/registry/example/form/form-preview")
 	),
-	"form/sign-in-form": React.lazy(
+	"sign-in-form": React.lazy(
 		() => import("@/registry/example/form/sign-in-form")
 	),
-	"form/sign-up-form": React.lazy(
+	"sign-up-form": React.lazy(
 		() => import("@/registry/example/form/sign-up-form")
 	),
-	"hover-card/hover-card-group-quick-view": React.lazy(
+	"hover-card-group-quick-view": React.lazy(
 		() => import("@/registry/example/hover-card/hover-card-group-quick-view")
 	),
-	"hover-card/hover-card-influencer-profile": React.lazy(
+	"hover-card-influencer-profile": React.lazy(
 		() => import("@/registry/example/hover-card/hover-card-influencer-profile")
 	),
-	"hover-card/hover-card-post-images-and-stats": React.lazy(
+	"hover-card-post-images-and-stats": React.lazy(
 		() =>
 			import("@/registry/example/hover-card/hover-card-post-images-and-stats")
 	),
-	"hover-card/hover-card-preview": React.lazy(
+	"hover-card-preview": React.lazy(
 		() => import("@/registry/example/hover-card/hover-card-preview")
 	),
-	"hover-card/hover-card-user-metrics": React.lazy(
+	"hover-card-user-metrics": React.lazy(
 		() => import("@/registry/example/hover-card/hover-card-user-metrics")
 	),
-	"hover-card/hover-card-user-mini-profile": React.lazy(
+	"hover-card-user-mini-profile": React.lazy(
 		() => import("@/registry/example/hover-card/hover-card-user-mini-profile")
 	),
-	"input/credit-card-input-preview": React.lazy(
+	"credit-card-input-preview": React.lazy(
 		() => import("@/registry/example/input/credit-card-input-preview")
 	),
-	"input/disabled-input": React.lazy(
+	"disabled-input": React.lazy(
 		() => import("@/registry/example/input/disabled-input")
 	),
-	"input/email-input-preview": React.lazy(
+	"email-input-preview": React.lazy(
 		() => import("@/registry/example/input/email-input-preview")
 	),
-	"input/input-clear-button": React.lazy(
+	"input-clear-button": React.lazy(
 		() => import("@/registry/example/input/input-clear-button")
 	),
-	"input/input-color": React.lazy(
+	"input-color": React.lazy(
 		() => import("@/registry/example/input/input-color")
 	),
-	"input/input-form": React.lazy(
-		() => import("@/registry/example/input/input-form")
-	),
-	"input/input-groups": React.lazy(
+	"input-form": React.lazy(() => import("@/registry/example/input/input-form")),
+	"input-groups": React.lazy(
 		() => import("@/registry/example/input/input-groups")
 	),
-	"input/input-preview": React.lazy(
+	"input-preview": React.lazy(
 		() => import("@/registry/example/input/input-preview")
 	),
-	"input/input-search-suggestions": React.lazy(
+	"input-search-suggestions": React.lazy(
 		() => import("@/registry/example/input/input-search-suggestions")
 	),
-	"input/input-search": React.lazy(
+	"input-search": React.lazy(
 		() => import("@/registry/example/input/input-search")
 	),
-	"input/input-size": React.lazy(
-		() => import("@/registry/example/input/input-size")
-	),
-	"input/input-wrapper": React.lazy(
+	"input-size": React.lazy(() => import("@/registry/example/input/input-size")),
+	"input-wrapper": React.lazy(
 		() => import("@/registry/example/input/input-wrapper")
 	),
-	"input/invalid-input": React.lazy(
+	"invalid-input": React.lazy(
 		() => import("@/registry/example/input/invalid-input")
 	),
-	"input/number-input-preview": React.lazy(
+	"number-input-preview": React.lazy(
 		() => import("@/registry/example/input/number-input-preview")
 	),
-	"input/password-preview": React.lazy(
+	"password-preview": React.lazy(
 		() => import("@/registry/example/input/password-preview")
 	),
-	"input/password-toggle-on-focus": React.lazy(
+	"password-toggle-on-focus": React.lazy(
 		() => import("@/registry/example/input/password-toggle-on-focus")
 	),
-	"input/password-toggle-visible": React.lazy(
+	"password-toggle-visible": React.lazy(
 		() => import("@/registry/example/input/password-toggle-visible")
 	),
-	"input/password-validation-example": React.lazy(
+	"password-validation-example": React.lazy(
 		() => import("@/registry/example/input/password-validation-example")
 	),
-	"input/url-input-preview": React.lazy(
+	"url-input-preview": React.lazy(
 		() => import("@/registry/example/input/url-input-preview")
 	),
-	"label/label-preview": React.lazy(
+	"label-preview": React.lazy(
 		() => import("@/registry/example/label/label-preview")
 	),
-	"otp-field/otp-field-auto-submit": React.lazy(
+	"otp-field-auto-submit": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-auto-submit")
 	),
-	"otp-field/otp-field-disabled": React.lazy(
+	"otp-field-disabled": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-disabled")
 	),
-	"otp-field/otp-field-form": React.lazy(
+	"otp-field-form": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-form")
 	),
-	"otp-field/otp-field-preview": React.lazy(
+	"otp-field-preview": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-preview")
 	),
-	"otp-field/otp-field-type-password": React.lazy(
+	"otp-field-type-password": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-type-password")
 	),
-	"otp-field/otp-field-validation-type": React.lazy(
+	"otp-field-validation-type": React.lazy(
 		() => import("@/registry/example/otp-field/otp-field-validation-type")
 	),
-	"otp-field/otp-size": React.lazy(
-		() => import("@/registry/example/otp-field/otp-size")
-	),
-	"pagination/pagination-card-example": React.lazy(
+	"otp-size": React.lazy(() => import("@/registry/example/otp-field/otp-size")),
+	"pagination-card-example": React.lazy(
 		() => import("@/registry/example/pagination/pagination-card-example")
 	),
-	"pagination/pagination-example-preview": React.lazy(
+	"pagination-example-preview": React.lazy(
 		() => import("@/registry/example/pagination/pagination-example-preview")
 	),
-	"pagination/pagination-text-example": React.lazy(
+	"pagination-text-example": React.lazy(
 		() => import("@/registry/example/pagination/pagination-text-example")
 	),
-	"pagination/rows-per-page-example": React.lazy(
+	"rows-per-page-example": React.lazy(
 		() => import("@/registry/example/pagination/rows-per-page-example")
 	),
-	"phone-number-input/exclude-countries-example": React.lazy(
+	"exclude-countries-example": React.lazy(
 		() =>
 			import("@/registry/example/phone-number-input/exclude-countries-example")
 	),
-	"phone-number-input/international-phone-hook-example": React.lazy(
+	"international-phone-hook-example": React.lazy(
 		() =>
 			import(
 				"@/registry/example/phone-number-input/international-phone-hook-example"
 			)
 	),
-	"phone-number-input/national-phone-number-example": React.lazy(
+	"national-phone-number-example": React.lazy(
 		() =>
 			import(
 				"@/registry/example/phone-number-input/national-phone-number-example"
 			)
 	),
-	"phone-number-input/only-countries-phone": React.lazy(
+	"only-countries-phone": React.lazy(
 		() => import("@/registry/example/phone-number-input/only-countries-phone")
 	),
-	"phone-number-input/phone-number-example": React.lazy(
+	"phone-number-example": React.lazy(
 		() => import("@/registry/example/phone-number-input/phone-number-example")
 	),
-	"phone-number-input/phone-number-no-formatting": React.lazy(
+	"phone-number-no-formatting": React.lazy(
 		() =>
 			import("@/registry/example/phone-number-input/phone-number-no-formatting")
 	),
-	"phone-number-input/phone-number-static": React.lazy(
+	"phone-number-static": React.lazy(
 		() => import("@/registry/example/phone-number-input/phone-number-static")
 	),
-	"phone-number-input/preferred-countries-phone": React.lazy(
+	"preferred-countries-phone": React.lazy(
 		() =>
 			import("@/registry/example/phone-number-input/preferred-countries-phone")
 	),
-	"popover/popover-align": React.lazy(
+	"popover-align": React.lazy(
 		() => import("@/registry/example/popover/popover-align")
 	),
-	"popover/popover-emoji": React.lazy(
+	"popover-emoji": React.lazy(
 		() => import("@/registry/example/popover/popover-emoji")
 	),
-	"popover/popover-emoji2": React.lazy(
+	"popover-emoji2": React.lazy(
 		() => import("@/registry/example/popover/popover-emoji2")
 	),
-	"popover/popover-preview": React.lazy(
+	"popover-preview": React.lazy(
 		() => import("@/registry/example/popover/popover-preview")
 	),
-	"popover/popover-side": React.lazy(
+	"popover-side": React.lazy(
 		() => import("@/registry/example/popover/popover-side")
 	),
-	"progress/downloading-progress": React.lazy(
+	"downloading-progress": React.lazy(
 		() => import("@/registry/example/progress/downloading-progress")
 	),
-	"progress/progress-example": React.lazy(
+	"progress-example": React.lazy(
 		() => import("@/registry/example/progress/progress-example")
 	),
-	"progress/progress-preview": React.lazy(
+	"progress-preview": React.lazy(
 		() => import("@/registry/example/progress/progress-preview")
 	),
-	"radio-group/radio-group-disabled": React.lazy(
+	"radio-group-disabled": React.lazy(
 		() => import("@/registry/example/radio-group/radio-group-disabled")
 	),
-	"radio-group/radio-group-form": React.lazy(
+	"radio-group-form": React.lazy(
 		() => import("@/registry/example/radio-group/radio-group-form")
 	),
-	"radio-group/radio-group-preview": React.lazy(
+	"radio-group-preview": React.lazy(
 		() => import("@/registry/example/radio-group/radio-group-preview")
 	),
-	"radio-group/radio-group-size": React.lazy(
+	"radio-group-size": React.lazy(
 		() => import("@/registry/example/radio-group/radio-group-size")
 	),
-	"resizable/handle-on-hover": React.lazy(
+	"handle-on-hover": React.lazy(
 		() => import("@/registry/example/resizable/handle-on-hover")
 	),
-	"resizable/resizable-example": React.lazy(
+	"resizable-example": React.lazy(
 		() => import("@/registry/example/resizable/resizable-example")
 	),
-	"resizable/resizable-preview": React.lazy(
+	"resizable-preview": React.lazy(
 		() => import("@/registry/example/resizable/resizable-preview")
 	),
-	"scroll-area/scroll-area-preview": React.lazy(
+	"scroll-area-preview": React.lazy(
 		() => import("@/registry/example/scroll-area/scroll-area-preview")
 	),
-	"select/custom-indicator": React.lazy(
+	"custom-indicator": React.lazy(
 		() => import("@/registry/example/select/custom-indicator")
 	),
-	"select/indicator-position": React.lazy(
+	"indicator-position": React.lazy(
 		() => import("@/registry/example/select/indicator-position")
 	),
-	"select/select-form": React.lazy(
+	"select-form": React.lazy(
 		() => import("@/registry/example/select/select-form")
 	),
-	"select/select-preview": React.lazy(
+	"select-preview": React.lazy(
 		() => import("@/registry/example/select/select-preview")
 	),
-	"select/select-sizes": React.lazy(
+	"select-sizes": React.lazy(
 		() => import("@/registry/example/select/select-sizes")
 	),
-	"select/select-with-avatar": React.lazy(
+	"select-with-avatar": React.lazy(
 		() => import("@/registry/example/select/select-with-avatar")
 	),
-	"select/select-with-badge": React.lazy(
+	"select-with-badge": React.lazy(
 		() => import("@/registry/example/select/select-with-badge")
 	),
-	"select/time-picker": React.lazy(
+	"time-picker": React.lazy(
 		() => import("@/registry/example/select/time-picker")
 	),
-	"sidebar/default-sidebar": React.lazy(
-		() => import("@/registry/example/sidebar/default-sidebar")
-	),
-	"sidebar/sidebar-demo": React.lazy(
-		() => import("@/registry/example/sidebar/sidebar-demo")
-	),
-	"skeleton/skeleton-preview": React.lazy(
+	"skeleton-preview": React.lazy(
 		() => import("@/registry/example/skeleton/skeleton-preview")
 	),
-	"slider/price-range": React.lazy(
+	"price-range": React.lazy(
 		() => import("@/registry/example/slider/price-range")
 	),
-	"slider/range-slider": React.lazy(
+	"range-slider": React.lazy(
 		() => import("@/registry/example/slider/range-slider")
 	),
-	"slider/slider-preview": React.lazy(
+	"slider-preview": React.lazy(
 		() => import("@/registry/example/slider/slider-preview")
 	),
-	"slider/slider-with-input": React.lazy(
+	"slider-with-input": React.lazy(
 		() => import("@/registry/example/slider/slider-with-input")
 	),
-	"slider/slider-with-marks": React.lazy(
+	"slider-with-marks": React.lazy(
 		() => import("@/registry/example/slider/slider-with-marks")
 	),
-	"slider/slider-with-stepper": React.lazy(
+	"slider-with-stepper": React.lazy(
 		() => import("@/registry/example/slider/slider-with-stepper")
 	),
-	"slider/slider-with-tooltip": React.lazy(
+	"slider-with-tooltip": React.lazy(
 		() => import("@/registry/example/slider/slider-with-tooltip")
 	),
-	"sonner/sonner-expand": React.lazy(
+	"sonner-expand": React.lazy(
 		() => import("@/registry/example/sonner/sonner-expand")
 	),
-	"sonner/sonner-placement": React.lazy(
+	"sonner-placement": React.lazy(
 		() => import("@/registry/example/sonner/sonner-placement")
 	),
-	"sonner/sonner-position": React.lazy(
+	"sonner-position": React.lazy(
 		() => import("@/registry/example/sonner/sonner-position")
 	),
-	"sonner/sonner-preview": React.lazy(
+	"sonner-preview": React.lazy(
 		() => import("@/registry/example/sonner/sonner-preview")
 	),
-	"sonner/sonner-variant": React.lazy(
+	"sonner-variant": React.lazy(
 		() => import("@/registry/example/sonner/sonner-variant")
 	),
-	"spinner/spinner-colors": React.lazy(
+	"spinner-colors": React.lazy(
 		() => import("@/registry/example/spinner/spinner-colors")
 	),
-	"spinner/spinner-preview": React.lazy(
+	"spinner-preview": React.lazy(
 		() => import("@/registry/example/spinner/spinner-preview")
 	),
-	"spinner/spinner-sizes": React.lazy(
+	"spinner-sizes": React.lazy(
 		() => import("@/registry/example/spinner/spinner-sizes")
 	),
-	"switch/icon-inside-switch": React.lazy(
+	"icon-inside-switch": React.lazy(
 		() => import("@/registry/example/switch/icon-inside-switch")
 	),
-	"switch/square-switch": React.lazy(
+	"square-switch": React.lazy(
 		() => import("@/registry/example/switch/square-switch")
 	),
-	"switch/switch-card": React.lazy(
+	"switch-card": React.lazy(
 		() => import("@/registry/example/switch/switch-card")
 	),
-	"switch/switch-disabled": React.lazy(
+	"switch-disabled": React.lazy(
 		() => import("@/registry/example/switch/switch-disabled")
 	),
-	"switch/switch-form": React.lazy(
+	"switch-form": React.lazy(
 		() => import("@/registry/example/switch/switch-form")
 	),
-	"switch/switch-icon-indicator": React.lazy(
+	"switch-icon-indicator": React.lazy(
 		() => import("@/registry/example/switch/switch-icon-indicator")
 	),
-	"switch/switch-on-off": React.lazy(
+	"switch-on-off": React.lazy(
 		() => import("@/registry/example/switch/switch-on-off")
 	),
-	"switch/switch-preview": React.lazy(
+	"switch-preview": React.lazy(
 		() => import("@/registry/example/switch/switch-preview")
 	),
-	"switch/switch-sizes": React.lazy(
+	"switch-sizes": React.lazy(
 		() => import("@/registry/example/switch/switch-sizes")
 	),
-	"switch/text-switch": React.lazy(
+	"text-switch": React.lazy(
 		() => import("@/registry/example/switch/text-switch")
 	),
-	"table/basic-data-table": React.lazy(
+	"basic-data-table": React.lazy(
 		() => import("@/registry/example/table/basic-data-table")
 	),
-	"table/dragable-table": React.lazy(
+	"dragable-table": React.lazy(
 		() => import("@/registry/example/table/dragable-table")
 	),
-	"table/expand-table": React.lazy(
+	"expand-table": React.lazy(
 		() => import("@/registry/example/table/expand-table")
 	),
-	"table/resize-table": React.lazy(
+	"resize-table": React.lazy(
 		() => import("@/registry/example/table/resize-table")
 	),
-	"table/table-example": React.lazy(
+	"table-example": React.lazy(
 		() => import("@/registry/example/table/table-example")
 	),
-	"table/table-preview": React.lazy(
+	"table-preview": React.lazy(
 		() => import("@/registry/example/table/table-preview")
 	),
-	"tabs/tabs-disabled": React.lazy(
+	"tabs-disabled": React.lazy(
 		() => import("@/registry/example/tabs/tabs-disabled")
 	),
-	"tabs/tabs-preview": React.lazy(
+	"tabs-preview": React.lazy(
 		() => import("@/registry/example/tabs/tabs-preview")
 	),
-	"tabs/tabs-size-large": React.lazy(
+	"tabs-size-large": React.lazy(
 		() => import("@/registry/example/tabs/tabs-size-large")
 	),
-	"tabs/tabs-size-medium": React.lazy(
+	"tabs-size-medium": React.lazy(
 		() => import("@/registry/example/tabs/tabs-size-medium")
 	),
-	"tabs/tabs-size-small": React.lazy(
+	"tabs-size-small": React.lazy(
 		() => import("@/registry/example/tabs/tabs-size-small")
 	),
-	"tabs/tabs-variant-ghost": React.lazy(
+	"tabs-variant-ghost": React.lazy(
 		() => import("@/registry/example/tabs/tabs-variant-ghost")
 	),
-	"tabs/tabs-variant-open": React.lazy(
+	"tabs-variant-open": React.lazy(
 		() => import("@/registry/example/tabs/tabs-variant-open")
 	),
-	"tabs/tabs-variant-outline-ghost": React.lazy(
+	"tabs-variant-outline-ghost": React.lazy(
 		() => import("@/registry/example/tabs/tabs-variant-outline-ghost")
 	),
-	"tabs/tabs-variant-outline": React.lazy(
+	"tabs-variant-outline": React.lazy(
 		() => import("@/registry/example/tabs/tabs-variant-outline")
 	),
-	"tabs/tabs-vertical": React.lazy(
+	"tabs-vertical": React.lazy(
 		() => import("@/registry/example/tabs/tabs-vertical")
 	),
-	"tabs/tabs-width-full": React.lazy(
+	"tabs-width-full": React.lazy(
 		() => import("@/registry/example/tabs/tabs-width-full")
 	),
-	"tabs/tabs-with-badge": React.lazy(
+	"tabs-with-badge": React.lazy(
 		() => import("@/registry/example/tabs/tabs-with-badge")
 	),
-	"tabs/tabs-with-icon": React.lazy(
+	"tabs-with-icon": React.lazy(
 		() => import("@/registry/example/tabs/tabs-with-icon")
 	),
-	"text-area/limited-characters": React.lazy(
+	"limited-characters": React.lazy(
 		() => import("@/registry/example/text-area/limited-characters")
 	),
-	"text-area/text-area-disabled": React.lazy(
+	"text-area-disabled": React.lazy(
 		() => import("@/registry/example/text-area/text-area-disabled")
 	),
-	"text-area/text-area-form": React.lazy(
+	"text-area-form": React.lazy(
 		() => import("@/registry/example/text-area/text-area-form")
 	),
-	"text-area/text-area-preview": React.lazy(
+	"text-area-preview": React.lazy(
 		() => import("@/registry/example/text-area/text-area-preview")
 	),
-	"tooltip/tooltip-align": React.lazy(
+	"tooltip-align": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-align")
 	),
-	"tooltip/tooltip-preview": React.lazy(
+	"tooltip-preview": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-preview")
 	),
-	"tooltip/tooltip-side": React.lazy(
+	"tooltip-side": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-side")
 	),
-	"tooltip/tooltip-theme": React.lazy(
+	"tooltip-theme": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-theme")
 	),
-	"tooltip/tooltip-with-arrow": React.lazy(
+	"tooltip-with-arrow": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-with-arrow")
 	),
-	"tooltip/tooltip-with-chart": React.lazy(
+	"tooltip-with-chart": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-with-chart")
 	),
-	"tooltip/tooltip-with-icon-title": React.lazy(
+	"tooltip-with-icon-title": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-with-icon-title")
 	),
-	"tooltip/tooltip-with-image": React.lazy(
+	"tooltip-with-image": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-with-image")
 	),
-	"tooltip/tooltip-with-title-description": React.lazy(
+	"tooltip-with-title-description": React.lazy(
 		() => import("@/registry/example/tooltip/tooltip-with-title-description")
 	),
 }

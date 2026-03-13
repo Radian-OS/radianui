@@ -14,16 +14,11 @@ type Variant = NonNullable<SidebarMenuButtonProps["variant"]>
 type Theme = NonNullable<SidebarProps["theme"]>
 
 const variants: Variant[] = ["strong", "soft", "neutral"]
-const themes: Theme[] = [
-	"neutral-accent",
-	"neutral-white",
-	"white-on-grey",
-	"neutral-dark",
-]
+const themes: Theme[] = ["gray-body", "gray", "default", "inverse"]
 
 export function SidebarPlayground() {
 	const [activeVariant, setActiveVariant] = useState<Variant>("neutral")
-	const [activeTheme, setActiveTheme] = useState<Theme>("white-on-grey")
+	const [activeTheme, setActiveTheme] = useState<Theme>("gray-body")
 
 	return (
 		<SidebarProvider>

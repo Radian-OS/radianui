@@ -138,7 +138,7 @@ interface AppSidebarProps {
 
 export function AppSidebar({
 	menuButtonVariant = "neutral",
-	theme = "neutral-dark",
+	theme = "default",
 }: AppSidebarProps) {
 	const { setOpen } = useSidebar()
 	const inputRef = React.useRef<HTMLInputElement>(null)

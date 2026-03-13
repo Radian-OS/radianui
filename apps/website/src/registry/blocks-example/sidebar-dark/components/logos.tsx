@@ -1,210 +1,6 @@
-"use client"
+import React from "react"
 
-import React, { ComponentType, useState } from "react"
-import {
-	BadgeCheck,
-	Bell,
-	Box,
-	Calendar,
-	ChevronRight,
-	ChevronUp,
-	ChevronsUpDown,
-	ClipboardList,
-	CreditCard,
-	FileChartColumn,
-	Headset,
-	Inbox,
-	LogOut,
-	Search,
-	Settings,
-	Sparkles,
-	TvMinimal,
-	Users2,
-} from "lucide-react"
-import Image from "next/image"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
-import { IconButton } from "@/registry/ui/button"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownDivider,
-	DropdownGroup,
-	DropdownItem,
-	DropdownLabel,
-	DropdownPortal,
-	DropdownShortcut,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import {
-	HoverCard,
-	HoverCardContent,
-	HoverCardTrigger,
-} from "@/registry/ui/hover-card"
-import { Input, InputWrapper } from "@/registry/ui/input"
-import {
-	SidebarMenuBadge,
-	SidebarMenuButtonProps,
-	SidebarProps,
-} from "@/registry/ui/sidebar"
-import {
-	Sidebar,
-	SidebarCollapsible,
-	SidebarCollapsibleContent,
-	SidebarCollapsibleTrigger,
-	SidebarContent,
-	SidebarFooter,
-	SidebarGroup,
-	SidebarGroupContent,
-	SidebarGroupLabel,
-	SidebarHeader,
-	SidebarInset,
-	SidebarMenu,
-	SidebarMenuButton,
-	SidebarMenuItem,
-	SidebarMenuSub,
-	SidebarMenuSubItem,
-	SidebarProvider,
-	SidebarSeparator,
-	SidebarTrigger,
-	useSidebar,
-} from "@/registry/ui/sidebar"
-import InfoIcon from "./info-icon.svg"
-
-interface SubItem {
-	label: string
-	href: string
-	icon: ComponentType<{ className?: string }>
-}
-
-interface NavItem {
-	label: string
-	icon: ComponentType<{ className?: string }>
-	href?: string
-	subitems?: SubItem[]
-	isActive?: boolean
-	badge?: React.ReactNode
-}
-
-interface NavGroup {
-	title: string | null
-	items: NavItem[]
-}
-
-type Variant = NonNullable<SidebarMenuButtonProps["variant"]>
-type Theme = NonNullable<SidebarProps["theme"]>
-
-const variants: Variant[] = ["strong", "soft", "neutral"]
-const themes: Theme[] = [
-	"neutral-accent",
-	"neutral-white",
-	"white-on-grey",
-	"neutral-dark",
-]
-
-const mainData: NavGroup[] = [
-	{
-		title: null,
-		items: [
-			{
-				label: "Home",
-				icon: TvMinimal,
-				href: "#",
-			},
-			{
-				label: "Inbox",
-				icon: Inbox,
-				href: "#",
-				isActive: true,
-				badge: 4,
-			},
-			{
-				label: "Calendar",
-				icon: Calendar,
-				href: "#",
-			},
-			{
-				label: "Analytics",
-				icon: FileChartColumn,
-				href: "#",
-			},
-		],
-	},
-	{
-		title: "Extension",
-		items: [
-			{
-				label: "Subscribers",
-				icon: Users2,
-				href: "#",
-			},
-			{
-				label: "Reports",
-				icon: ClipboardList,
-				href: "#",
-			},
-			{
-				label: "Integrations",
-				icon: Box,
-				subitems: [
-					{
-						label: "Notion",
-						icon: NotionLogo,
-						href: "#",
-					},
-					{
-						label: "Google Drive",
-						icon: DriveLogo,
-						href: "#",
-					},
-					{
-						label: "Discord",
-						icon: DiscordLogo,
-						href: "#",
-					},
-				],
-			},
-		],
-	},
-	{
-		title: "Projects",
-		items: [
-			{
-				icon: MageLogo,
-				label: "Mage Icons",
-			},
-			{
-				icon: AcmeLogo,
-				label: "Acme Inc",
-			},
-			{
-				icon: RadianCoreLogo,
-				label: "Radian Core",
-			},
-		],
-	},
-]
-
-const footerData: NavGroup[] = [
-	{
-		title: null,
-		items: [
-			{
-				label: "Help Center",
-				icon: Headset,
-				href: "#",
-			},
-			{
-				label: "Settings",
-				icon: Settings,
-				href: "#",
-			},
-		],
-	},
-]
-
-function DiscordLogo() {
+export function DiscordLogo() {
 	return (
 		<svg
 			width="20"
@@ -220,7 +16,48 @@ function DiscordLogo() {
 	)
 }
 
-function DriveLogo() {
+export function CircleLogo() {
+	const id = React.useId()
+	return (
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg">
+			<g clipPath={`url(#clip-${id})`}>
+				<path
+					d="M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z"
+					fill={`url(#paint-${id})`}
+				/>
+				<path
+					d="M12 18.6666C15.6819 18.6666 18.6667 15.6819 18.6667 12C18.6667 8.31808 15.6819 5.33331 12 5.33331C8.3181 5.33331 5.33333 8.31808 5.33333 12C5.33333 15.6819 8.3181 18.6666 12 18.6666Z"
+					fill="var(--color-elevation-level2)"
+				/>
+			</g>
+			<defs>
+				<linearGradient
+					id={`paint-${id}`}
+					x1="3.51533"
+					y1="20.4853"
+					x2="20.4853"
+					y2="3.51467"
+					gradientUnits="userSpaceOnUse">
+					<stop stopColor="#FDDFD5" />
+					<stop offset="0.25" stopColor="#FC7284" />
+					<stop offset="0.5" stopColor="#E401A1" />
+					<stop offset="0.75" stopColor="#C639E0" />
+					<stop offset="1" stopColor="#ABD5EE" />
+				</linearGradient>
+				<clipPath id={`clip-${id}`}>
+					<rect width="24" height="24" fill="white" />
+				</clipPath>
+			</defs>
+		</svg>
+	)
+}
+
+export function DriveLogo() {
 	return (
 		<svg
 			width="20"
@@ -286,7 +123,7 @@ export function NotionLogo() {
 	)
 }
 
-function MageLogo() {
+export function MageLogo() {
 	return (
 		<svg
 			width="20"
@@ -468,7 +305,7 @@ function MageLogo() {
 	)
 }
 
-function AcmeLogo() {
+export function AcmeLogo() {
 	return (
 		<svg
 			width="20"
@@ -648,7 +485,7 @@ function AcmeLogo() {
 	)
 }
 
-function RadianCoreLogo() {
+export function RadianCoreLogo() {
 	return (
 		<svg
 			width="20"
@@ -828,7 +665,7 @@ function RadianCoreLogo() {
 	)
 }
 
-function Logo() {
+export function Logo() {
 	return (
 		<svg
 			width="24"
@@ -1005,426 +842,5 @@ function Logo() {
 				</linearGradient>
 			</defs>
 		</svg>
-	)
-}
-
-function SidebarFooterUser({
-	menuButtonVariant = "neutral",
-}: {
-	menuButtonVariant?: Variant
-}) {
-	const { isMobile } = useSidebar()
-
-	return (
-		<SidebarMenu>
-			<SidebarMenuItem className="p-2 group-data-[state=collapsed]:p-3.5">
-				<Dropdown>
-					<DropdownTrigger asChild>
-						<SidebarMenuButton size="52" variant={menuButtonVariant}>
-							<Avatar size="32">
-								<AvatarImage src="/media/male-3.jpg" />
-								<AvatarFallback>JS</AvatarFallback>
-							</Avatar>
-							<div className="flex flex-1 flex-col">
-								<span className="font-medium">Jim Simmons</span>
-								<span className="text-fg-secondary text-xs font-normal">
-									simmons@radianos.com
-								</span>
-							</div>
-							<ChevronsUpDown />
-						</SidebarMenuButton>
-					</DropdownTrigger>
-
-					<DropdownPortal>
-						<DropdownContent
-							className="min-w-68"
-							side={isMobile ? "top" : "right"}
-							align="end">
-							<DropdownLabel className="p-0 font-normal">
-								<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-									<Avatar className="h-8 w-8 rounded-lg">
-										<AvatarImage src="/media/male-3.jpg" alt="Jim Simmons" />
-										<AvatarFallback className="rounded-lg">JS</AvatarFallback>
-									</Avatar>
-									<div className="grid flex-1 text-left text-sm leading-tight">
-										<span className="text-fg truncate font-semibold">
-											Jim Simmons
-										</span>
-										<span className="text-fg-secondary truncate text-xs">
-											simmons@radianos.com
-										</span>
-									</div>
-								</div>
-							</DropdownLabel>
-							<DropdownDivider />
-							<DropdownGroup>
-								<DropdownItem>
-									<Sparkles className="size-4" />
-									Upgrade to Pro
-								</DropdownItem>
-							</DropdownGroup>
-							<DropdownDivider />
-							<DropdownGroup>
-								<DropdownItem>
-									<BadgeCheck className="size-4" />
-									Account
-								</DropdownItem>
-								<DropdownItem>
-									<CreditCard className="size-4" />
-									Billing
-								</DropdownItem>
-								<DropdownItem>
-									<Bell className="size-4" />
-									Notifications
-								</DropdownItem>
-							</DropdownGroup>
-							<DropdownDivider />
-							<DropdownItem>
-								<LogOut className="size-4" />
-								Log out
-								<DropdownShortcut>⌘L</DropdownShortcut>
-							</DropdownItem>
-						</DropdownContent>
-					</DropdownPortal>
-				</Dropdown>
-			</SidebarMenuItem>
-		</SidebarMenu>
-	)
-}
-
-function InfoCard() {
-	return (
-		<div className="flex flex-col gap-1">
-			<img
-				className="h-30 rounded-lg"
-				src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=1429&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-			/>
-			<div>
-				<span className="text-[13px] font-medium leading-5">
-					Version 1.2 Update
-				</span>
-				<span className="text-fg-tertiary flex cursor-pointer items-center text-xs font-normal">
-					<span>Learn More</span>
-					<ChevronRight className="size-4" />
-				</span>
-			</div>
-		</div>
-	)
-}
-
-function InfoCardExpanded() {
-	return (
-		<div className="mt-auto px-3 py-1.5 group-data-[state=collapsed]:hidden">
-			<div className="bg-elevation-level2 border-soft-alpha flex items-center gap-2 rounded-lg border px-2.5 py-1.5">
-				{/* @ts-expect-error ignore type */}
-				<Image src={InfoIcon} alt="Info icon" className="size-4" />
-				<div className="flex flex-col">
-					<span className="text-[13px] font-medium leading-5">
-						Version 1.2 Update
-					</span>
-					<span className="text-fg-tertiary flex cursor-pointer items-center text-xs font-normal">
-						<span>Learn More</span>
-						<ChevronRight className="size-4" />
-					</span>
-				</div>
-			</div>
-		</div>
-	)
-}
-
-interface AppSidebarProps {
-	menuButtonVariant?: Variant
-	theme?: Theme
-}
-
-function AppSidebar({
-	menuButtonVariant = "neutral",
-	theme = "neutral-accent",
-}: AppSidebarProps) {
-	const { setOpen, state, isMobile } = useSidebar()
-	const inputRef = React.useRef<HTMLInputElement>(null)
-	// For opening dropdown on hover
-	const [openItem, setOpenItem] = React.useState<string | null>(null)
-	const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
-
-	const openMenu = (title: string) => {
-		if (timeoutRef.current) clearTimeout(timeoutRef.current)
-		setOpenItem(title)
-	}
-
-	const closeMenu = () => {
-		timeoutRef.current = setTimeout(() => {
-			setOpenItem(null)
-		}, 150)
-	}
-
-	return (
-		<Sidebar collapsible="icon" theme={theme}>
-			<SidebarHeader className="p-0">
-				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pt-4 group-data-[state=expanded]:pl-5 group-data-[state=expanded]:pr-3">
-					<div className="z-0 group-data-[state=collapsed]:px-2 group-data-[state=collapsed]:py-1 group-hover/header:group-data-[state=collapsed]:opacity-0">
-						<Logo />
-					</div>
-					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
-						Debcon
-					</span>
-					<SidebarTrigger
-						size="32"
-						className="group-hover/header:opacity-100! z-10 ml-auto group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
-					/>
-				</div>
-
-				<div className="w-full px-3 py-2">
-					<InputWrapper
-						className="group-data-[state=collapsed]:hidden"
-						size="36">
-						<Search className="text-fg-tertiary" />
-						<Input ref={inputRef} type="search" placeholder="Search" />
-						<Badge size="20" color="neutral" variant="outline">
-							⌘ /
-						</Badge>
-					</InputWrapper>
-
-					<IconButton
-						onClick={() => {
-							setOpen(true)
-							setTimeout(() => {
-								inputRef.current?.focus()
-							}, 200)
-						}}
-						size="36"
-						variant="outline"
-						color="neutral"
-						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
-						<Search className="text-fg-tertiary" />
-					</IconButton>
-				</div>
-			</SidebarHeader>
-			<SidebarContent>
-				{mainData.map((section, idx) => (
-					<SidebarGroup key={idx}>
-						{section.title && (
-							<SidebarGroupLabel className="uppercase">
-								{section.title}
-							</SidebarGroupLabel>
-						)}
-						<SidebarMenu>
-							{section.items.map((item) => {
-								if (!item.subitems) {
-									return (
-										<SidebarMenuItem key={item.label}>
-											<SidebarMenuButton
-												size="32"
-												isActive={item.isActive}
-												variant={menuButtonVariant}
-												tooltip={item.label}
-												asChild>
-												<a href={item.href}>
-													{item.icon && <item.icon className="size-5" />}
-													<span>{item.label}</span>
-													{item.badge && (
-														<SidebarMenuBadge
-															variant="outline"
-															color="neutral"
-															className="bg-bg!">
-															{item.badge}
-														</SidebarMenuBadge>
-													)}
-												</a>
-											</SidebarMenuButton>
-										</SidebarMenuItem>
-									)
-								}
-
-								if (state === "collapsed" && !isMobile) {
-									return (
-										<Dropdown
-											open={openItem === item.label}
-											onOpenChange={() => {}}
-											modal={false}
-											key={item.label}>
-											<DropdownTrigger className="group/trigger w-full" asChild>
-												<SidebarMenuButton
-													variant={menuButtonVariant}
-													onMouseEnter={() => openMenu(item.label)}
-													onMouseLeave={closeMenu}
-													onPointerDown={(e) => e.preventDefault()}>
-													{item.icon && <item.icon />}
-												</SidebarMenuButton>
-											</DropdownTrigger>
-											<DropdownPortal>
-												<DropdownContent
-													onMouseEnter={() => openMenu(item.label)}
-													onMouseLeave={closeMenu}
-													side="right"
-													className="w-60"
-													align="center">
-													{item.label && (
-														<DropdownLabel>{item.label}</DropdownLabel>
-													)}
-
-													{item.subitems.map((subitem) => (
-														<DropdownItem
-															key={subitem.label}
-															className="[&_svg]:size-5!"
-															asChild>
-															<a href={subitem.href}>
-																<subitem.icon />
-																{subitem.label}
-															</a>
-														</DropdownItem>
-													))}
-												</DropdownContent>
-											</DropdownPortal>
-										</Dropdown>
-									)
-								}
-
-								return (
-									<SidebarCollapsible key={item.label}>
-										<SidebarMenuItem>
-											<SidebarCollapsibleTrigger className="w-full" asChild>
-												<SidebarMenuButton
-													tooltip={item.label}
-													variant={menuButtonVariant}>
-													{item.icon && <item.icon />}
-													<span>{item.label}</span>
-													<ChevronUp className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
-												</SidebarMenuButton>
-											</SidebarCollapsibleTrigger>
-											<SidebarCollapsibleContent>
-												<SidebarMenuSub>
-													{item.subitems.map((subitem) => (
-														<SidebarMenuSubItem key={subitem.label}>
-															<SidebarMenuButton variant={menuButtonVariant}>
-																<subitem.icon />
-																<a href={subitem.href}>{subitem.label}</a>
-															</SidebarMenuButton>
-														</SidebarMenuSubItem>
-													))}
-												</SidebarMenuSub>
-											</SidebarCollapsibleContent>
-										</SidebarMenuItem>
-									</SidebarCollapsible>
-								)
-							})}
-						</SidebarMenu>
-					</SidebarGroup>
-				))}
-
-				<div className="mt-auto p-2 px-3 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
-					<HoverCard>
-						<HoverCardTrigger asChild>
-							<IconButton size="36" variant="ghost" color="neutral" asChild>
-								<div className="border-soft-alpha bg-elevation-level2! border">
-									{/* @ts-expect-error ignore type */}
-									<Image src={InfoIcon} alt="Info icon" className="size-4" />
-								</div>
-							</IconButton>
-						</HoverCardTrigger>
-						<HoverCardContent
-							side="right"
-							align="end"
-							sideOffset={4}
-							className="w-60 rounded-xl p-2">
-							<InfoCard />
-						</HoverCardContent>
-					</HoverCard>
-				</div>
-
-				<InfoCardExpanded />
-
-				<SidebarGroup>
-					<SidebarGroupContent>
-						<SidebarMenu>
-							{footerData.map((section, idx) => (
-								<React.Fragment key={idx}>
-									{section.title && (
-										<SidebarGroupLabel>{section.title}</SidebarGroupLabel>
-									)}
-
-									{section.items.map((item) => (
-										<SidebarMenuItem key={item.label}>
-											<SidebarMenuButton
-												tooltip={item.label}
-												variant={menuButtonVariant}>
-												{item.icon && <item.icon />}
-												<span>{item.label}</span>
-											</SidebarMenuButton>
-										</SidebarMenuItem>
-									))}
-								</React.Fragment>
-							))}
-						</SidebarMenu>
-					</SidebarGroupContent>
-				</SidebarGroup>
-			</SidebarContent>
-
-			<SidebarFooter className="gap-0 p-0">
-				<SidebarSeparator />
-
-				<SidebarFooterUser menuButtonVariant={menuButtonVariant} />
-			</SidebarFooter>
-		</Sidebar>
-	)
-}
-
-export default function SidebarDemo() {
-	const [activeVariant, setActiveVariant] = useState<Variant>("neutral")
-	const [activeTheme, setActiveTheme] = useState<Theme>("neutral-accent")
-
-	return (
-		<SidebarProvider>
-			<AppSidebar menuButtonVariant={activeVariant} theme={activeTheme} />
-			<SidebarInset>
-				<div className="flex w-full flex-1 flex-col">
-					<header className="bg-bg p-4.5 flex shrink-0 items-center gap-2 border-b">
-						<span className="font-medium">Inbox</span>
-					</header>
-					<div className="flex h-full flex-col items-center justify-center gap-8 p-8">
-						<div className="flex flex-col items-center gap-3">
-							<span className="text-fg-secondary text-xs font-medium uppercase tracking-widest">
-								SidebarMenuButton Variant
-							</span>
-							<span className="text-fg text-xl font-semibold">
-								{activeVariant}
-							</span>
-							<div className="flex flex-wrap justify-center gap-2">
-								{variants.map((variant) => (
-									<Button
-										key={variant}
-										variant={activeVariant === variant ? "strong" : "outline"}
-										color="neutral"
-										size="32"
-										onClick={() => setActiveVariant(variant)}>
-										{variant}
-									</Button>
-								))}
-							</div>
-						</div>
-						<div className="flex flex-col items-center gap-3">
-							<span className="text-fg-secondary text-xs font-medium uppercase tracking-widest">
-								Sidebar Theme
-							</span>
-							<span className="text-fg text-xl font-semibold">
-								{activeTheme}
-							</span>
-							<div className="flex flex-wrap justify-center gap-2">
-								{themes.map((theme) => (
-									<Button
-										key={theme}
-										variant={activeTheme === theme ? "strong" : "outline"}
-										color="neutral"
-										size="32"
-										onClick={() => setActiveTheme(theme)}>
-										{theme}
-									</Button>
-								))}
-							</div>
-						</div>
-					</div>
-				</div>
-			</SidebarInset>
-		</SidebarProvider>
 	)
 }

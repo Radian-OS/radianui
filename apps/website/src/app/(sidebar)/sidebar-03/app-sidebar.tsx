@@ -138,7 +138,7 @@ export function AppSidebar() {
 	}
 
 	return (
-		<Sidebar theme="white-on-grey" variant="floating" collapsible="icon">
+		<Sidebar theme="gray-body" variant="floating" collapsible="icon">
 			<SidebarHeader className="gap-0 p-0">
 				<div className="flex justify-between gap-1 p-4 group-data-[state=collapsed]:px-3">
 					<div className="flex items-center gap-2">

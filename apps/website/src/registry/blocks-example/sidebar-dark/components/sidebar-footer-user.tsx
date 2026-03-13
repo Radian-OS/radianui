@@ -31,10 +31,10 @@ export function SidebarFooterUser() {
 
 	return (
 		<SidebarMenu>
-			<SidebarMenuItem className="p-2">
+			<SidebarMenuItem className="p-2 group-data-[state=collapsed]:p-3.5">
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<SidebarMenuButton size="48">
+						<SidebarMenuButton size="52">
 							<Avatar size="32">
 								<AvatarImage src="/media/male-3.jpg" />
 								<AvatarFallback>JS</AvatarFallback>
@@ -48,6 +48,7 @@ export function SidebarFooterUser() {
 							<ChevronsUpDown />
 						</SidebarMenuButton>
 					</DropdownTrigger>
+
 					<DropdownContent
 						className="min-w-68"
 						side={isMobile ? "top" : "right"}

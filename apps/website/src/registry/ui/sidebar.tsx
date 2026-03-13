@@ -43,7 +43,7 @@ export type SidebarProviderProps = React.ComponentProps<"div"> & {
 }
 
 export type SidebarProps = React.ComponentProps<"div"> & {
-	theme?: "neutral-accent" | "neutral-white" | "white-on-grey" | "neutral-dark"
+	theme?: "gray" | "default" | "gray-body" | "inverse"
 	side?: "left" | "right"
 	variant?: "sidebar" | "floating" | "inset"
 	collapsible?: "offcanvas" | "icon" | "none"
@@ -132,7 +132,7 @@ export const sidebarMenuButtonVariants = cva(
 			},
 		},
 		defaultVariants: {
-			variant: "strong",
+			variant: "neutral",
 			size: "32",
 		},
 	}
@@ -245,7 +245,7 @@ function SidebarProvider({
 						} as React.CSSProperties
 					}
 					className={cn(
-						"group/sidebar-wrapper bg-bg has-data-[theme=neutral-white]:bg-bg has-data-[theme=neutral-accent]:has-data-[variant=inset]:bg-fill1 has-data-[theme=neutral-dark]:has-data-[variant=inset]:bg-black flex min-h-svh w-full",
+						"group/sidebar-wrapper bg-bg has-data-[theme=default]:bg-bg has-data-[theme=gray]:has-data-[variant=inset]:bg-fill1 has-data-[theme=inverse]:has-data-[variant=inset]:bg-black flex min-h-svh w-full",
 						className
 					)}
 					{...props}>
@@ -260,17 +260,17 @@ const sidebarThemeVars: Record<
 	NonNullable<SidebarProps["theme"]>,
 	React.CSSProperties
 > = {
-	"neutral-white": {
+	default: {
 		"--color-sidebar": "var(--color-bg)",
 	} as React.CSSProperties,
-	"neutral-accent": {
+	gray: {
 		"--color-sidebar": "var(--color-fill1)",
 		"--color-sidebar-accent": "var(--color-fill2)",
 	} as React.CSSProperties,
-	"white-on-grey": {
+	"gray-body": {
 		"--color-sidebar": "var(--color-bg)",
 	} as React.CSSProperties,
-	"neutral-dark": {
+	inverse: {
 		"--color-sidebar": "var(--color-black)",
 	} as React.CSSProperties,
 }
@@ -279,7 +279,7 @@ function Sidebar({
 	side = "left",
 	variant = "sidebar",
 	collapsible = "offcanvas",
-	theme = "neutral-accent",
+	theme = "default",
 	className,
 	children,
 	...props
@@ -313,7 +313,7 @@ function Sidebar({
 					data-mobile="true"
 					className={cn(
 						"bg-sidebar text-sidebar-fg w-(--sidebar-width) group p-0",
-						theme === "neutral-dark" && "dark"
+						theme === "inverse" && "dark"
 					)}
 					style={
 						{
@@ -333,7 +333,7 @@ function Sidebar({
 			style={sidebarThemeVars[theme]}
 			className={cn(
 				"text-sidebar-fg group peer hidden md:block",
-				theme === "neutral-dark" && "dark"
+				theme === "inverse" && "dark"
 			)}
 			data-state={state}
 			data-collapsible={state === "collapsed" ? collapsible : ""}
@@ -364,7 +364,7 @@ function Sidebar({
 					variant === "floating" || variant === "inset"
 						? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
 						: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
-					"group-data-[theme=white-on-grey]:group-data-[variant=floating]:bg-fill1",
+					"group-data-[theme=gray-body]:group-data-[variant=floating]:bg-fill1",
 					className
 				)}
 				{...props}>
@@ -445,7 +445,7 @@ function SidebarInset({ className, ...props }: SidebarInsetProps) {
 			data-slot="sidebar-inset"
 			className={cn(
 				"bg-bg relative flex w-full flex-1 flex-col",
-				"peer-data-[theme=neutral-white]:border-sidebar-border peer-data-[theme=white-on-grey]:bg-fill1 peer-data-[theme=neutral-white]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
+				"peer-data-[theme=neutral-white]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
 				className
 			)}
 			{...props}
@@ -504,7 +504,7 @@ function SidebarContent({ className, ...props }: SidebarContentProps) {
 			data-slot="sidebar-content"
 			data-sidebar="content"
 			className={cn(
-				"flex min-h-0 flex-1 flex-col overflow-auto group-data-[collapsible=icon]:overflow-hidden",
+				"group-data-[collapsible=icon]:no-scrollbar flex min-h-0 flex-1 flex-col overflow-auto group-data-[collapsible=icon]:overflow-y-auto group-data-[collapsible=icon]:overflow-x-hidden",
 				className
 			)}
 			{...props}
@@ -609,7 +609,7 @@ function SidebarMenuItem({ className, ...props }: SidebarMenuItemProps) {
 function SidebarMenuButton({
 	asChild = false,
 	isActive = false,
-	variant = "strong",
+	variant = "neutral",
 	size = "32",
 	tooltip,
 	className,
@@ -668,10 +668,10 @@ function SidebarMenuAction({
 				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg peer-hover/menu-button:text-sidebar-accent-fg outline-hidden absolute right-1 top-1.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				// Increases the hit area of the button on mobile.
 				"after:absolute after:-inset-2 md:after:hidden",
-				// "peer-data-[size=sm]/menu-button:top-1",
-				// "peer-data-[size=default]/menu-button:top-1.5",
-				// "peer-data-[size=lg]/menu-button:top-2.5",
-				// "group-data-[collapsible=icon]:hidden",
+				"peer-data-[size=28]/menu-button:top-1",
+				"peer-data-[size=32]/menu-button:top-1.5",
+				"peer-data-[size=48]/menu-button:top-2.5",
+				"group-data-[collapsible=icon]:hidden",
 				showOnHover &&
 					"peer-data-[active=true]/menu-button:text-sidebar-accent-fg group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",
 				className
@@ -689,9 +689,9 @@ function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
 			className={cn(
 				"pointer-events-none absolute right-2 select-none rounded-md tabular-nums",
 				"text-fg-secondary border px-1.5 py-0.5",
-				"peer-data-[size=sm]/menu-button:top-1",
-				"peer-data-[size=default]/menu-button:top-1.5",
-				"peer-data-[size=lg]/menu-button:top-2.5",
+				"peer-data-[size=28]/menu-button:top-1",
+				"peer-data-[size=32]/menu-button:top-1.5",
+				"peer-data-[size=48]/menu-button:top-2.5",
 				"group-data-[collapsible=icon]:hidden",
 				className
 			)}
@@ -743,7 +743,7 @@ function SidebarMenuSub({ className, ...props }: SidebarMenuSubProps) {
 			data-slot="sidebar-menu-sub"
 			data-sidebar="menu-sub"
 			className={cn(
-				"ml-5.5 flex min-w-0 translate-x-px flex-col gap-0.5 group-data-[collapsible=icon]:hidden",
+				"ml-5.5 flex min-w-0 translate-x-px flex-col gap-0.5 p-1 group-data-[collapsible=icon]:hidden",
 				className
 			)}
 			{...props}

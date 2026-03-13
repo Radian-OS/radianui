@@ -3,9 +3,10 @@ import registry from "@/registry/registry-map"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { ComponentPreviewDemo } from "./component-preview-demo"
 import { ComponentSource } from "./component-source"
+import { DisplayBlock } from "./display-block"
 
-export function getComponent(path: string) {
-	const loader = registry[path]
+export function getComponent(name: string) {
+	const loader = registry[name]
 	if (!loader) return () => null
 	return loader
 }
@@ -34,16 +35,10 @@ export function ComponentPreview({
 	}
 
 	if (type === "block") {
-		return (
-			<div className="border-soft mb-2 overflow-hidden rounded-xl border">
-				<div className="relative h-[800px] w-[800px] overflow-hidden">
-					<iframe src={`/view/${path}`} className="h-full w-full" />
-				</div>
-			</div>
-		)
+		return <DisplayBlock name={path} />
 	}
 
-	const Component = getComponent(path)
+	const Component = getComponent(path.split("/")[1])
 
 	return (
 		<div className="mb-8">

@@ -109,7 +109,7 @@
 	--color-sidebar-accent: var(--color-fill1);
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
-	--color-sidebar-ring: var(--color-primary-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
 }
 
 .dark {
@@ -192,16 +192,12 @@
 	--color-sidebar-fg: var(--color-fg);
 	--color-sidebar-accent: var(--color-fill1);
 	--color-sidebar-accent-fg: var(--color-fg);
-	--color-sidebar-border: var(--color-soft);
-	--color-sidebar-ring: var(--color-primary-border);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
 }
 
 /* Base styles */
 @layer base {
-	* {
-		border-color: var(--color-border);
-	}
-
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
@@ -302,31 +298,11 @@
 /* Heading 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-semibold leading-[2rem];
-
-	@media (width >=theme(--breakpoint-sm)) {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
-
-	@media (width >=theme(--breakpoint-lg)) {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
 }
 
 /* Heading 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-semibold leading-[1.75rem];
-
-	@media (width >=theme(--breakpoint-sm)) {
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-	}
-
-	@media (width >=theme(--breakpoint-lg)) {
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-	}
 }
 
 /* Additional body fonts */

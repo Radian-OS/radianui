@@ -138,7 +138,7 @@ interface AppSidebarProps {
 
 export function AppSidebar({
 	menuButtonVariant = "neutral",
-	theme = "white-on-grey",
+	theme = "gray-body",
 }: AppSidebarProps) {
 	const { isMobile, setOpen } = useSidebar()
 	const inputRef = React.useRef<HTMLInputElement>(null)

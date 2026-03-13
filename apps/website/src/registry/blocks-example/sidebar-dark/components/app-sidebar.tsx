@@ -4,12 +4,11 @@ import React, { ComponentType } from "react"
 import {
 	Box,
 	Calendar,
-	ChevronRight,
+	ChevronDown,
 	ClipboardList,
 	FileChartColumn,
 	Headset,
 	Inbox,
-	Info,
 	Search,
 	Settings,
 	TvMinimal,
@@ -47,14 +46,15 @@ import {
 	SidebarMenuItem,
 	SidebarMenuSub,
 	SidebarMenuSubItem,
-	SidebarRail,
 	SidebarSeparator,
+	SidebarTrigger,
 	useSidebar,
 } from "@/registry/ui/sidebar"
 import { InfoCard } from "./info-card"
 import { InfoCardExpanded } from "./info-card-expanded"
 import {
 	AcmeLogo,
+	CircleLogo,
 	DiscordLogo,
 	DriveLogo,
 	Logo,
@@ -154,14 +154,17 @@ const mainData: NavGroup[] = [
 			{
 				icon: MageLogo,
 				label: "Mage Icons",
+				href: "#",
 			},
 			{
 				icon: AcmeLogo,
 				label: "Acme Inc",
+				href: "#",
 			},
 			{
 				icon: RadianCoreLogo,
 				label: "Radian Core",
+				href: "#",
 			},
 		],
 	},
@@ -204,19 +207,25 @@ export function AppSidebar() {
 	}
 
 	return (
-		<Sidebar collapsible="icon">
+		<Sidebar collapsible="icon" theme="inverse">
 			<SidebarHeader className="p-0">
-				<div className="flex items-center gap-2 px-2.5 py-2 pt-4">
-					<Logo />
+				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pt-4 group-data-[state=expanded]:pl-5 group-data-[state=expanded]:pr-3">
+					<div className="z-0 group-data-[state=collapsed]:px-2 group-data-[state=collapsed]:py-1 group-hover/header:group-data-[state=collapsed]:opacity-0">
+						<Logo />
+					</div>
 					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
 						Debcon
 					</span>
+					<SidebarTrigger
+						size="32"
+						className="group-hover/header:opacity-100! z-10 ml-auto group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
+					/>
 				</div>
 
-				<div className="w-full px-3 py-2 group-data-[state=collapsed]:px-2">
+				<div className="w-full px-3 py-2">
 					<InputWrapper
 						className="group-data-[state=collapsed]:hidden"
-						size="32">
+						size="36">
 						<Search className="text-fg-tertiary" />
 						<Input ref={inputRef} type="search" placeholder="Search" />
 						<Badge size="20" color="neutral" variant="outline">
@@ -231,7 +240,7 @@ export function AppSidebar() {
 								inputRef.current?.focus()
 							}, 200)
 						}}
-						size="32"
+						size="36"
 						variant="outline"
 						color="neutral"
 						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
@@ -253,14 +262,22 @@ export function AppSidebar() {
 									return (
 										<SidebarMenuItem key={item.label}>
 											<SidebarMenuButton
+												size="32"
 												isActive={item.isActive}
-												variant="soft"
-												tooltip={item.label}>
-												{item.icon && <item.icon />}
-												<span>{item.label}</span>
-												{item.badge && (
-													<SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
-												)}
+												tooltip={item.label}
+												asChild>
+												<a href={item.href}>
+													{item.icon && <item.icon className="size-5" />}
+													<span>{item.label}</span>
+													{item.badge && (
+														<SidebarMenuBadge
+															variant="outline"
+															color="neutral"
+															className="bg-bg!">
+															{item.badge}
+														</SidebarMenuBadge>
+													)}
+												</a>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
 									)
@@ -292,9 +309,14 @@ export function AppSidebar() {
 												)}
 
 												{item.subitems.map((subitem) => (
-													<DropdownItem key={subitem.label}>
-														<subitem.icon />
-														<a href={subitem.href}>{subitem.label}</a>
+													<DropdownItem
+														key={subitem.label}
+														className="[&_svg]:size-5!"
+														asChild>
+														<a href={subitem.href}>
+															<subitem.icon />
+															{subitem.label}
+														</a>
 													</DropdownItem>
 												))}
 											</DropdownContent>
@@ -309,16 +331,18 @@ export function AppSidebar() {
 												<SidebarMenuButton tooltip={item.label}>
 													{item.icon && <item.icon />}
 													<span>{item.label}</span>
-													<ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+													<ChevronDown className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-180" />
 												</SidebarMenuButton>
 											</SidebarCollapsibleTrigger>
 											<SidebarCollapsibleContent>
 												<SidebarMenuSub>
 													{item.subitems.map((subitem) => (
 														<SidebarMenuSubItem key={subitem.label}>
-															<SidebarMenuButton>
-																<subitem.icon />
-																<a href={subitem.href}>{subitem.label}</a>
+															<SidebarMenuButton asChild>
+																<a href={subitem.href}>
+																	<subitem.icon />
+																	{subitem.label}
+																</a>
 															</SidebarMenuButton>
 														</SidebarMenuSubItem>
 													))}
@@ -331,18 +355,19 @@ export function AppSidebar() {
 						</SidebarMenu>
 					</SidebarGroup>
 				))}
-			</SidebarContent>
 
-			<SidebarFooter className="gap-0 p-0">
-				<div className="p-2 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
+				<div className="mt-auto p-2 px-3 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 					<HoverCard>
 						<HoverCardTrigger asChild>
-							<IconButton size="32" variant="ghost" color="neutral">
-								<Info className="text-fg-secondary" />
+							<IconButton size="36" variant="ghost" color="neutral" asChild>
+								<div className="border-soft-alpha bg-elevation-level2! border">
+									<CircleLogo />
+								</div>
 							</IconButton>
 						</HoverCardTrigger>
 						<HoverCardContent
 							side="right"
+							align="end"
 							sideOffset={4}
 							className="w-60 rounded-xl p-2">
 							<InfoCard />
@@ -374,12 +399,13 @@ export function AppSidebar() {
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
+			</SidebarContent>
 
-				<SidebarSeparator />
+			<SidebarFooter className="gap-0 p-0">
+				<SidebarSeparator className="w-full" />
 
 				<SidebarFooterUser />
 			</SidebarFooter>
-			<SidebarRail />
 		</Sidebar>
 	)
 }

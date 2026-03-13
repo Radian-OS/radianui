@@ -68,26 +68,34 @@ export const GLOBAL_CSS_V4 = `
 
 	/* background */
 	--color-bg: oklch(1 0 0);
-	--color-fill1: oklch(0.9843 0.0011 197.14);
-	--color-fill2: oklch(0.9677 0.0027 286.35);
+	--color-fill1: oklch(0.9764 0.0013 286.38);
+	--color-fill2: oklch(0.9519 0.0029 264.54);
 	--color-fill3: oklch(0.9368 0.0029 264.54);
-	--color-fill4: oklch(0.904 0.0055 274.96);
+	--color-fill4: oklch(0.906 0.0046 258.33);
 
 	/* foreground */
-	--color-fg: oklch(0.2738 0.0093 276.77);
-	--color-fg-secondary: oklch(0.527 0.0238 276.59);
-	--color-fg-tertiary: oklch(0.6683 0.0194 275.5);
-	--color-fg-disabled: oklch(0.7366 0.0159 277.76);
+	--color-fg: oklch(0.2764 0.0079 264.44);
+	--color-fg-secondary: oklch(0.5338 0.0202 264.39);
+	--color-fg-tertiary: oklch(0.6726 0.0172 266.22);
+	--color-fg-disabled: oklch(0.7408 0.0137 266.67);
 	--color-fg-inverse: oklch(1 0 0);
 
 	/* border */
-	--color-border: oklch(0.904 0.0055 274.96);
-	--color-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 88%);
+	--color-border: oklch(0.906 0.0046 258.33);
+	--color-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 88%
+	);
 	--color-soft: oklch(0.9368 0.0029 264.54);
-	--color-soft-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 92%);
+	--color-soft-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 92%
+	);
 
 	/* background elevation */
-	--color-elevation-negative: oklch(0.9677 0.0027 286.35);
+	--color-elevation-negative: oklch(0.9764 0.0013 286.38);
 	--color-elevation-level1: oklch(1 0 0);
 	--color-elevation-level2: oklch(1 0 0);
 
@@ -96,10 +104,33 @@ export const GLOBAL_CSS_V4 = `
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
 	/* background fill alpha */
-	--color-fill1-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 98%);
-	--color-fill2-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 96%);
-	--color-fill3-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 92%);
-	--color-fill4-alpha: color-mix(in srgb, oklch(0.1452 0.0021 286.13), transparent 88%);
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 96%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 92%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 88%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0018 211),
+		transparent 84%
+	);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
 }
 
 .dark {
@@ -145,51 +176,54 @@ export const GLOBAL_CSS_V4 = `
 
 	/* background */
 	--color-bg: oklch(0.144 0.0028 247.09);
-	--color-fill1: oklch(0.1652 0.0062 285.7);
-	--color-fill2: oklch(0.1881 0.006 285.81);
-	--color-fill3: oklch(0.2314 0.0078 274.6);
-	--color-fill4: oklch(0.2738 0.0093 276.77);
+	--color-fill1: oklch(0.191 0.0043 264.47);
+	--color-fill2: oklch(0.2342 0.0065 258.36);
+	--color-fill3: oklch(0.2764 0.0079 264.44);
+	--color-fill4: oklch(0.3162 0.0099 260.71);
 
 	/* foreground */
-	--color-fg: oklch(0.9843 0.0011 197.14);
-	--color-fg-secondary: oklch(0.6683 0.0194 275.5);
-	--color-fg-tertiary: oklch(0.562 0.0249 277.15);
-	--color-fg-disabled: oklch(0.4585 0.0198 274.46);
-	--color-fg-inverse: oklch(0.2314 0.0078 274.6);
+	--color-fg: oklch(0.9764 0.0013 286.38);
+	--color-fg-secondary: oklch(0.6726 0.0172 266.22);
+	--color-fg-tertiary: oklch(0.5686 0.0213 265.87);
+	--color-fg-disabled: oklch(0.4632 0.0174 264.39);
+	--color-fg-inverse: oklch(0.2342 0.0065 258.36);
 
 	/* border */
-	--color-border: oklch(0.2738 0.0093 276.77);
+	--color-border: oklch(0.2764 0.0079 264.44);
 	--color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-	--color-soft: oklch(0.2314 0.0078 274.6);
+	--color-soft: oklch(0.2342 0.0065 258.36);
 	--color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
 
 	/* background elevation */
 	--color-elevation-negative: oklch(0 0 0);
-	--color-elevation-level1: oklch(0.1881 0.006 285.81);
-	--color-elevation-level2: oklch(0.2314 0.0078 274.6);
+	--color-elevation-level1: oklch(0.191 0.0043 264.47);
+	--color-elevation-level2: oklch(0.2342 0.0065 258.36);
 
 	/* inverse */
 	--color-white-inverse: oklch(0.144 0.0028 247.09);
 	--color-black-inverse: oklch(1 0 0);
 
 	/* background fill alpha */
-	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 98%);
-	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
-	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
-	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
+	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 84%);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
 }
 
 /* Base styles */
 @layer base {
-	* {
-		border-color: var(--color-border);
-	}
-
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
-		--heading-font: "Geist", system-ui, sans-serif;
-		--body-font: "Inter", system-ui, sans-serif;
+		--heading-font: var(--font-geist), system-ui, sans-serif;
+		--body-font: var(--font-inter), system-ui, sans-serif;
 	}
 
 	/* Safari button fix - prevents shrinking on hover */
@@ -285,31 +319,11 @@ export const GLOBAL_CSS_V4 = `
 /* Heading 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-semibold leading-[2rem];
-
-	@media (width >=theme(--breakpoint-sm)) {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
-
-	@media (width >=theme(--breakpoint-lg)) {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
 }
 
 /* Heading 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-semibold leading-[1.75rem];
-
-	@media (width >=theme(--breakpoint-sm)) {
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-	}
-
-	@media (width >=theme(--breakpoint-lg)) {
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-	}
 }
 
 /* Additional body fonts */
