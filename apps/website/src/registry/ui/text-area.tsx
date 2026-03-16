@@ -51,7 +51,7 @@ function TextArea({
 		/>
 	)
 }
-TextArea.display = "TextArea"
+TextArea.displayName = "TextArea"
 
 function useCharacterLimit({
 	maxLength,
