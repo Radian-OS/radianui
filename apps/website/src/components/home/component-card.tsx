@@ -22,7 +22,7 @@ export default function ComponentCard({
 		<Link href={url} className="flex w-full flex-col items-center">
 			<span className="sr-only">{title}</span>
 			<div className="flex w-full flex-col items-start gap-3">
-				<div className="bg-fill2 flex w-full justify-center rounded-md">
+				<div className="flex w-full justify-center rounded-md bg-[#F4F4F6] dark:bg-[#131316]">
 					<Image
 						width={282}
 						height={228}
