@@ -5,7 +5,6 @@ import {
 	Box,
 	Calendar,
 	ChevronDown,
-	ChevronRight,
 	ClipboardList,
 	FileChartColumn,
 	Headset,
@@ -16,19 +15,6 @@ import {
 	Users2,
 } from "lucide-react"
 import { Badge } from "@/registry/ui/badge"
-import { IconButton } from "@/registry/ui/button"
-import {
-	Dropdown,
-	DropdownContent,
-	DropdownItem,
-	DropdownLabel,
-	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import {
-	HoverCard,
-	HoverCardContent,
-	HoverCardTrigger,
-} from "@/registry/ui/hover-card"
 import { Input, InputWrapper } from "@/registry/ui/input"
 import {
 	Sidebar,
@@ -48,13 +34,10 @@ import {
 	SidebarMenuSub,
 	SidebarMenuSubItem,
 	SidebarSeparator,
-	SidebarTrigger,
-	useSidebar,
 } from "@/registry/ui/sidebar"
-import { InfoCard } from "./info-card"
+import { InfoCardExpanded } from "./info-card-expanded"
 import {
 	AcmeLogo,
-	CircleLogo,
 	DiscordLogo,
 	DriveLogo,
 	Logo,
@@ -189,67 +172,32 @@ const footerData: NavGroup[] = [
 ]
 
 export function AppSidebar() {
-	const { setOpen, state, isMobile } = useSidebar()
-	const inputRef = React.useRef<HTMLInputElement>(null)
-	// For opening dropdown on hover
-	const [hoverOpen, setHoverOpen] = React.useState(false)
-	const [openItem, setOpenItem] = React.useState<string | null>(null)
-	const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
-
-	const openMenu = (title: string) => {
-		if (timeoutRef.current) clearTimeout(timeoutRef.current)
-		setOpenItem(title)
-	}
-
-	const closeMenu = () => {
-		timeoutRef.current = setTimeout(() => {
-			setOpenItem(null)
-		}, 150)
-	}
-
 	return (
-		<Sidebar className="px-0" collapsible="icon" variant="inset">
-			<SidebarHeader className="p-0 group-data-[state=collapsed]:pl-3">
-				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pt-4 group-data-[state=expanded]:pl-5 group-data-[state=expanded]:pr-3">
-					<div className="z-0 group-data-[state=collapsed]:px-2 group-data-[state=collapsed]:py-1 group-hover/header:group-data-[state=collapsed]:opacity-0">
+		<Sidebar
+			variant="sidebar"
+			collapsible="offcanvas"
+			resizable
+			minWidth={250}
+			maxWidth={500}>
+			<SidebarHeader className="p-0">
+				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pl-5 pt-4">
+					<div>
 						<Logo />
 					</div>
-					<span className="truncate font-semibold group-data-[collapsible=icon]:hidden">
-						Debcon
-					</span>
-					<SidebarTrigger
-						size="32"
-						className="group-hover/header:opacity-100! z-10 ml-auto group-data-[collapsible=icon]:absolute group-data-[collapsible=icon]:left-4 group-data-[collapsible=icon]:top-4 group-data-[collapsible=icon]:ml-0 group-data-[state=collapsed]:opacity-0"
-					/>
+					<span className="truncate font-semibold">Debcon</span>
 				</div>
 
 				<div className="w-full px-3 py-2">
-					<InputWrapper
-						className="group-data-[state=collapsed]:hidden"
-						size="36">
+					<InputWrapper size="36">
 						<Search className="text-fg-tertiary" />
-						<Input ref={inputRef} type="search" placeholder="Search" />
+						<Input type="search" placeholder="Search" />
 						<Badge size="20" color="neutral" variant="outline">
 							⌘ /
 						</Badge>
 					</InputWrapper>
-
-					<IconButton
-						onClick={() => {
-							setOpen(true)
-							setTimeout(() => {
-								inputRef.current?.focus()
-							}, 200)
-						}}
-						size="36"
-						variant="outline"
-						color="neutral"
-						className="group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
-						<Search className="text-fg-tertiary" />
-					</IconButton>
 				</div>
 			</SidebarHeader>
-			<SidebarContent className="group-data-[state=collapsed]:pl-3">
+			<SidebarContent>
 				{mainData.map((section, idx) => (
 					<SidebarGroup key={idx}>
 						{section.title && (
@@ -281,47 +229,6 @@ export function AppSidebar() {
 												</a>
 											</SidebarMenuButton>
 										</SidebarMenuItem>
-									)
-								}
-
-								if (state === "collapsed" && !isMobile) {
-									return (
-										<Dropdown
-											open={openItem === item.label}
-											onOpenChange={() => {}}
-											modal={false}
-											key={item.label}>
-											<DropdownTrigger className="group/trigger w-full" asChild>
-												<SidebarMenuButton
-													onMouseEnter={() => openMenu(item.label)}
-													onMouseLeave={closeMenu}
-													onPointerDown={(e) => e.preventDefault()}>
-													{item.icon && <item.icon />}
-												</SidebarMenuButton>
-											</DropdownTrigger>
-											<DropdownContent
-												onMouseEnter={() => openMenu(item.label)}
-												onMouseLeave={closeMenu}
-												side="right"
-												className="w-60"
-												align="center">
-												{item.label && (
-													<DropdownLabel>{item.label}</DropdownLabel>
-												)}
-
-												{item.subitems.map((subitem) => (
-													<DropdownItem
-														key={subitem.label}
-														className="[&_svg]:size-5!"
-														asChild>
-														<a href={subitem.href}>
-															<subitem.icon />
-															{subitem.label}
-														</a>
-													</DropdownItem>
-												))}
-											</DropdownContent>
-										</Dropdown>
 									)
 								}
 
@@ -357,38 +264,7 @@ export function AppSidebar() {
 					</SidebarGroup>
 				))}
 
-				<div className="mt-auto p-2 px-3 pb-1.5 group-data-[state=collapsed]:px-3.5">
-					<HoverCard open={state === "expanded" ? false : hoverOpen}>
-						<HoverCardTrigger
-							onMouseEnter={() => setHoverOpen(true)}
-							onMouseLeave={() => setHoverOpen(false)}
-							asChild>
-							<SidebarMenuButton
-								className="bg-elevation-level2! h-auto border px-2.5 py-1.5 group-data-[state=expanded]:cursor-default"
-								asChild>
-								<div>
-									<CircleLogo />
-									<div className="flex flex-col">
-										<span className="text-[13px] font-medium leading-5">
-											Version 1.2 Update
-										</span>
-										<span className="text-fg-tertiary flex cursor-pointer items-center truncate text-xs font-normal">
-											<span>Learn More</span>
-											<ChevronRight className="size-4" />
-										</span>
-									</div>
-								</div>
-							</SidebarMenuButton>
-						</HoverCardTrigger>
-						<HoverCardContent
-							side="right"
-							align="end"
-							sideOffset={4}
-							className="w-60 rounded-xl p-2">
-							<InfoCard />
-						</HoverCardContent>
-					</HoverCard>
-				</div>
+				<InfoCardExpanded />
 
 				<SidebarGroup>
 					<SidebarGroupContent>

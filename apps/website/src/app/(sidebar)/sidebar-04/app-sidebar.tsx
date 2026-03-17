@@ -30,7 +30,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	SidebarTrigger,
-} from "@/registry/ui/sidebar"
+} from "@/registry/ui/sidebar-old"
 import Logo from "./logo"
 
 const data = [

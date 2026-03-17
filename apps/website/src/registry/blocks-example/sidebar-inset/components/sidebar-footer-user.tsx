@@ -31,7 +31,7 @@ export function SidebarFooterUser() {
 
 	return (
 		<SidebarMenu>
-			<SidebarMenuItem className="p-2 group-data-[state=collapsed]:p-3.5">
+			<SidebarMenuItem className="group-data-[state=collapsed]:pl-6.5 p-2 group-data-[state=collapsed]:p-3.5">
 				<Dropdown>
 					<DropdownTrigger asChild>
 						<SidebarMenuButton size="52">

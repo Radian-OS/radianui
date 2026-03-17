@@ -1,5 +1,8 @@
 import { Bot, ImageUp, WandSparkles } from "lucide-react"
-import { SidebarMenuButton, SidebarMenuSubItem } from "@/registry/ui/sidebar"
+import {
+	SidebarMenuButton,
+	SidebarMenuSubItem,
+} from "@/registry/ui/sidebar-old"
 
 const tools = [
 	{

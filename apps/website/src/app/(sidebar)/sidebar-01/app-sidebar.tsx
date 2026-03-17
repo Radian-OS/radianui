@@ -31,7 +31,7 @@ import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
-} from "@/registry/ui/sidebar"
+} from "@/registry/ui/sidebar-old"
 import Logo from "./logo"
 
 interface SidebarItem {

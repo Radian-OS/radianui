@@ -8,7 +8,7 @@ links:
 
 <ComponentPreview type="block" path="sidebar-doc" />
 
-A composable and accessible sidebar. Supports four themes, three variants, collapsible modes, a mobile drawer, and a keyboard shortcut out of the box.
+A composable and accessible sidebar. Supports four themes, three variants, collapsible modes, resizable mode, a mobile drawer, and a keyboard shortcut out of the box.
 
 > Keyboard shortcut: `Ctrl + B` toggles the sidebar from anywhere.
 
@@ -103,6 +103,10 @@ export default function AppLayout({ children }) {
 
 <ComponentPreview path="sidebar-offcanvas" type="block" />
 
+### Resizable Sidebar
+
+<ComponentPreview path="sidebar-resize" type="block" />
+
 ### Sidebar with Rail
 
 <ComponentPreview path="sidebar-rail" type="block" />
@@ -136,6 +140,9 @@ The sidebar panel itself. Renders as a fixed-position column on desktop and as a
 | `side`        | `left` \| `right`                                                               | `left`           | Which edge to anchor to |
 | `variant`     | `sidebar` \| `floating` \| `inset`                                              | `sidebar`        | Visual shape            |
 | `collapsible` | `offcanvas` \| `icon` \| `none`                                                 | `offcanvas`      | Collapse behavior       |
+| `resizable`   | `boolean`                                                                       | `false`          | Resizable behavior      |
+| `minWidth`    | `number`                                                                        | `250`            | Minimum width(in px)    |
+| `maxWidth`    | `number`                                                                        | `500`            | Maximum width(in px)    |
 
 ## SidebarHeader
 

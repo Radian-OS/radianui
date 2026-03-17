@@ -36,7 +36,7 @@ import {
 	SidebarMenuItem,
 	SidebarMenuSub,
 	SidebarSeparator,
-} from "@/registry/ui/sidebar"
+} from "@/registry/ui/sidebar-old"
 import { AiTools } from "./ai-tools"
 import Logo from "./logo"
 import { SidebarFooterUser } from "./sidebar-footer-user"

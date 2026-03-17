@@ -1,4 +1,4 @@
-import { SidebarInset, SidebarProvider } from "@/registry/ui/sidebar"
+import { SidebarInset, SidebarProvider } from "@/registry/ui/sidebar-old"
 import { AppSidebar } from "./app-sidebar"
 
 export default function Page() {

@@ -24,19 +24,19 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	useSidebar,
-} from "@/registry/ui/sidebar-old"
+} from "@/registry/ui/sidebar"
 
 export function SidebarFooterUser() {
 	const { isMobile } = useSidebar()
 
 	return (
-		<SidebarMenu className="group-data-[state=collapsed]:pl-4">
+		<SidebarMenu>
 			<SidebarMenuItem className="p-2">
 				<Dropdown>
 					<DropdownTrigger asChild>
-						<SidebarMenuButton size="48">
+						<SidebarMenuButton size="52">
 							<Avatar size="32">
-								<AvatarImage src="/media/male-1.jpg" />
+								<AvatarImage src="/media/male-3.jpg" />
 								<AvatarFallback>JS</AvatarFallback>
 							</Avatar>
 							<div className="flex flex-1 flex-col">
@@ -48,6 +48,7 @@ export function SidebarFooterUser() {
 							<ChevronsUpDown />
 						</SidebarMenuButton>
 					</DropdownTrigger>
+
 					<DropdownContent
 						className="min-w-68"
 						side={isMobile ? "top" : "right"}
@@ -55,7 +56,7 @@ export function SidebarFooterUser() {
 						<DropdownLabel className="p-0 font-normal">
 							<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
 								<Avatar className="h-8 w-8 rounded-lg">
-									<AvatarImage src="/media/male-1.jpg" alt="Jim Simmons" />
+									<AvatarImage src="/media/male-3.jpg" alt="Jim Simmons" />
 									<AvatarFallback className="rounded-lg">JS</AvatarFallback>
 								</Avatar>
 								<div className="grid flex-1 text-left text-sm leading-tight">
