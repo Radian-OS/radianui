@@ -23,8 +23,8 @@ type OTPHiddenInputProps = React.ComponentPropsWithoutRef<
 const otpInputVariants = cva(
 	cn(
 		"group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary inline-flex text-center appearance-none items-center justify-center rounded-lg bg-bg p-0 leading-none text-fg outline-none shadow-2xs font-semibold outline-hidden border border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover ",
-		"group-aria-invalid:border-error/60 group-aria-invalid:ring-error/10 dark:group-aria-invalid:border-error dark:group-aria-invalid:ring-error/20 group-aria-invalid:focus-visible:ring-error-focus group-aria-invalid:focus-visible:border-error-hover",
-		"[[data-invalid=true]_&]:border-error/60 [[data-invalid=true]_&]:ring-error/10  dark:[[data-invalid=true]_&]:border-error dark:[[data-invalid=true]_&]:ring-error/20 [[data-invalid=true]_&]:focus-visible:ring-error-focus [[data-invalid=true]_&]:focus-visible:border-error-hover"
+		"group-aria-invalid:border-error group-aria-invalid:ring-error group-aria-invalid:focus-visible:ring-error-focus group-aria-invalid:focus-visible:border-error-hover",
+		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error [[data-invalid=true]_&]:focus-visible:ring-error-focus [[data-invalid=true]_&]:focus-visible:border-error-hover"
 	),
 	{
 		variants: {
