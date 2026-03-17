@@ -29,7 +29,7 @@ import {
 	SidebarMenuSub,
 	SidebarMenuSubItem,
 	SidebarRail,
-} from "@/registry/ui/sidebar-old"
+} from "@/registry/ui/sidebar"
 import Logo from "./logo"
 
 // This is sample data.

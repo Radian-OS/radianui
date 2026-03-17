@@ -24,7 +24,7 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 	useSidebar,
-} from "@/registry/ui/sidebar-old"
+} from "@/registry/ui/sidebar"
 
 export function SidebarFooterUser() {
 	const { isMobile } = useSidebar()

@@ -41,7 +41,7 @@ import {
 	SidebarProps,
 	SidebarSeparator,
 	useSidebar,
-} from "@/registry/ui/sidebar-old"
+} from "@/registry/ui/sidebar"
 import { InfoCard } from "./info-card"
 import Logo from "./logo"
 import LogoFull from "./logo-full"

@@ -2,7 +2,7 @@ import {
 	SidebarInset,
 	SidebarProvider,
 	SidebarTrigger,
-} from "@/registry/ui/sidebar-old"
+} from "@/registry/ui/sidebar"
 import { AppSidebar } from "./app-sidebar"
 
 export default function Page() {

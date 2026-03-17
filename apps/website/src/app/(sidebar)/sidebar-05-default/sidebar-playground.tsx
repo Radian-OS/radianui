@@ -2,12 +2,12 @@
 
 import { useState } from "react"
 import { Button } from "@/registry/ui/button"
-import { SidebarMenuButtonProps, SidebarProps } from "@/registry/ui/sidebar-old"
+import { SidebarMenuButtonProps, SidebarProps } from "@/registry/ui/sidebar"
 import {
 	SidebarInset,
 	SidebarProvider,
 	SidebarTrigger,
-} from "@/registry/ui/sidebar-old"
+} from "@/registry/ui/sidebar"
 import { AppSidebar } from "./app-sidebar"
 
 type Variant = NonNullable<SidebarMenuButtonProps["variant"]>
