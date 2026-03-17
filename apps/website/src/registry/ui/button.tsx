@@ -212,7 +212,7 @@ export const buttonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 font-medium text-fg border border-border hover:bg-fill2 focus-visible:ring-border  dark:hover:bg-fill3",
+					"bg-elevation-level1 font-medium text-fg border border-border hover:bg-fill1-alpha focus-visible:ring-border",
 			},
 
 			// Ghost variant + colors
@@ -695,7 +695,7 @@ export const compactButtonVariants = cva(
 				variant: "outline",
 				color: "neutral",
 				className:
-					"bg-elevation-level1 font-medium text-fg-secondary border border-border hover:bg-fill2 focus-visible:ring-border dark:hover:bg-fill3",
+					"bg-elevation-level1 font-medium text-fg-secondary border border-border hover:bg-fill1-alpha focus-visible:ring-border",
 			},
 
 			// Ghost variant + colors
