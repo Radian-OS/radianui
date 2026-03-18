@@ -27,12 +27,6 @@ export const Index: Record<string, RegistryItem> = {
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-dark/components/info-card-expanded.tsx",
-				name: "info-card-expanded.tsx",
-				type: "components",
-				target: "",
-			},
-			{
 				path: "registry/blocks-example/sidebar-dark/components/info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
@@ -67,12 +61,6 @@ export const Index: Record<string, RegistryItem> = {
 			{
 				path: "registry/blocks-example/sidebar-doc/components/app-sidebar.tsx",
 				name: "app-sidebar.tsx",
-				type: "components",
-				target: "",
-			},
-			{
-				path: "registry/blocks-example/sidebar-doc/components/info-card-expanded.tsx",
-				name: "info-card-expanded.tsx",
 				type: "components",
 				target: "",
 			},
@@ -115,12 +103,6 @@ export const Index: Record<string, RegistryItem> = {
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-floating/components/info-card-expanded.tsx",
-				name: "info-card-expanded.tsx",
-				type: "components",
-				target: "",
-			},
-			{
 				path: "registry/blocks-example/sidebar-floating/components/info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
@@ -155,12 +137,6 @@ export const Index: Record<string, RegistryItem> = {
 			{
 				path: "registry/blocks-example/sidebar-inset/components/app-sidebar.tsx",
 				name: "app-sidebar.tsx",
-				type: "components",
-				target: "",
-			},
-			{
-				path: "registry/blocks-example/sidebar-inset/components/info-card-expanded.tsx",
-				name: "info-card-expanded.tsx",
 				type: "components",
 				target: "",
 			},
@@ -241,12 +217,6 @@ export const Index: Record<string, RegistryItem> = {
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-rail/components/info-card-expanded.tsx",
-				name: "info-card-expanded.tsx",
-				type: "components",
-				target: "",
-			},
-			{
 				path: "registry/blocks-example/sidebar-rail/components/info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
@@ -272,6 +242,44 @@ export const Index: Record<string, RegistryItem> = {
 		],
 		component: React.lazy(
 			() => import("@/registry/blocks-example/sidebar-rail/page")
+		),
+	},
+	"sidebar-resize": {
+		name: "sidebar-resize",
+		type: "block",
+		files: [
+			{
+				path: "registry/blocks-example/sidebar-resize/components/app-sidebar.tsx",
+				name: "app-sidebar.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-resize/components/info-card-expanded.tsx",
+				name: "info-card-expanded.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-resize/components/logos.tsx",
+				name: "logos.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-resize/components/sidebar-footer-user.tsx",
+				name: "sidebar-footer-user.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry/blocks-example/sidebar-resize/page.tsx",
+				name: "page.tsx",
+				type: "page",
+			},
+		],
+		component: React.lazy(
+			() => import("@/registry/blocks-example/sidebar-resize/page")
 		),
 	},
 }

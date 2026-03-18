@@ -5,6 +5,7 @@ import {
 	Box,
 	Calendar,
 	ChevronDown,
+	ChevronRight,
 	ClipboardList,
 	FileChartColumn,
 	Headset,
@@ -51,7 +52,6 @@ import {
 	useSidebar,
 } from "@/registry/ui/sidebar"
 import { InfoCard } from "./info-card"
-import { InfoCardExpanded } from "./info-card-expanded"
 import {
 	AcmeLogo,
 	CircleLogo,
@@ -194,6 +194,7 @@ export function AppSidebar() {
 	// For opening dropdown on hover
 	const [openItem, setOpenItem] = React.useState<string | null>(null)
 	const timeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+	const [hoverOpen, setHoverOpen] = React.useState(false)
 
 	const openMenu = (title: string) => {
 		if (timeoutRef.current) clearTimeout(timeoutRef.current)
@@ -356,14 +357,28 @@ export function AppSidebar() {
 					</SidebarGroup>
 				))}
 
-				<div className="mt-auto p-2 px-3 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
-					<HoverCard>
-						<HoverCardTrigger asChild>
-							<IconButton size="36" variant="ghost" color="neutral" asChild>
-								<div className="border-soft-alpha bg-elevation-level2! border">
+				<div className="mt-auto p-2 px-3 pb-1.5 group-data-[state=collapsed]:px-3.5">
+					<HoverCard open={state === "expanded" ? false : hoverOpen}>
+						<HoverCardTrigger
+							onMouseEnter={() => setHoverOpen(true)}
+							onMouseLeave={() => setHoverOpen(false)}
+							asChild>
+							<SidebarMenuButton
+								className="bg-elevation-level2! h-auto border px-2.5 py-1.5 group-data-[state=expanded]:cursor-default"
+								asChild>
+								<div>
 									<CircleLogo />
+									<div className="flex flex-col">
+										<span className="text-[13px] font-medium leading-5">
+											Version 1.2 Update
+										</span>
+										<span className="text-fg-tertiary flex cursor-pointer items-center truncate text-xs font-normal">
+											<span>Learn More</span>
+											<ChevronRight className="size-4" />
+										</span>
+									</div>
 								</div>
-							</IconButton>
+							</SidebarMenuButton>
 						</HoverCardTrigger>
 						<HoverCardContent
 							side="right"
@@ -374,8 +389,6 @@ export function AppSidebar() {
 						</HoverCardContent>
 					</HoverCard>
 				</div>
-
-				<InfoCardExpanded />
 
 				<SidebarGroup>
 					<SidebarGroupContent>

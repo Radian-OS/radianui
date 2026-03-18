@@ -6,6 +6,7 @@ export function InfoCard() {
 			<img
 				className="h-30 rounded-lg"
 				src="https://images.unsplash.com/photo-1557682250-33bd709cbe85?q=80&w=1429&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+				alt="Abstract Image"
 			/>
 			<div>
 				<span className="text-[13px] font-medium leading-5">
