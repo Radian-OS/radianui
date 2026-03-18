@@ -144,7 +144,12 @@ export function AppSidebar({
 	const inputRef = React.useRef<HTMLInputElement>(null)
 
 	return (
-		<Sidebar theme={theme} variant="inset" collapsible="icon" className="p-0">
+		<Sidebar
+			theme={theme}
+			variant="inset"
+			collapsible="none"
+			className="p-0"
+			resizable>
 			<SidebarHeader className="gap-0 p-0">
 				<div className="p-4 group-data-[state=collapsed]:pl-8">
 					<LogoFull className="shrink-0 group-data-[state='collapsed']:hidden" />

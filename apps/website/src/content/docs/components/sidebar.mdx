@@ -1,16 +1,12 @@
 ---
 title: Sidebar
-description: A flexible, responsive, collapsible navigation sidebar with themes, variants, mobile drawer support, and keyboard accessibility.
+description: A sidebar menu that collapses, works on mobile, and supports themes.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/sidebar.tsx
 ---
 
 <ComponentPreview type="block" path="sidebar-doc" />
-
-A composable and accessible sidebar. Supports four themes, three variants, collapsible modes, resizable mode, a mobile drawer, and a keyboard shortcut out of the box.
-
-> Keyboard shortcut: `Ctrl + B` toggles the sidebar from anywhere.
 
 ## Installation
 
@@ -36,28 +32,30 @@ A composable and accessible sidebar. Supports four themes, three variants, colla
 
 </InstallationTabs>
 
-## Anatomy
+## Usage
 
-`SidebarProvider` must wrap everything, it owns the state and exposes the useSidebar hook to all descendants.
+### Imports
 
 ```tsx showLineNumbers
-<SidebarProvider>
-	<Sidebar>
-		<SidebarHeader />
-		<SidebarContent>
-			<SidebarGroup />
-		</SidebarContent>
-		<SidebarFooter />
-		<SidebarRail />
-	</Sidebar>
-	<SidebarInset>
-		<SidebarTrigger />
-		{/* Page content goes here */}
-	</SidebarInset>
-</SidebarProvider>
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarGroupLabel,
+	SidebarHeader,
+	SidebarInset,
+	SidebarMenu,
+	SidebarMenuBadge,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/registry/ui/sidebar"
 ```
 
-## Basic Usage
+### Code
 
 ```tsx showLineNumbers
 export default function AppLayout({ children }) {
@@ -113,15 +111,7 @@ export default function AppLayout({ children }) {
 
 ## SidebarProvider
 
-The root context component. Must wrap the entire layout, both the `Sidebar` and the `SidebarInset`. It manages open/closed state, persists it in a cookie (`sidebar_state`), registers the `Cmd+B` keyboard shortcut, and exposes everything via the `useSidebar` hook.
-
-<br />
-Uncontrolled — sidebar manages its own open/closed state internally. State is
-persisted in a cookie so it survives page reloads.
-<br />
-Controlled — you own the state. Useful when you need to open/close the sidebar
-in response to external events, like a route change or a keyboard shortcut you
-manage yourself.
+The root context component. Must wrap the entire layout, both the `Sidebar` and the `SidebarInset`.
 
 | Prop           | Type                      | Description                     |
 | -------------- | ------------------------- | ------------------------------- |
@@ -146,7 +136,7 @@ The sidebar panel itself. Renders as a fixed-position column on desktop and as a
 
 ## SidebarHeader
 
-A div pinned to the top of the sidebar layout. It sits outside SidebarContent so it never scrolls — it's always visible. Typically holds your logo, app name, or a workspace/team switcher.
+A sticky header component to add to the sidebar.
 
 ```tsx showLineNumbers
 <SidebarHeader>
@@ -165,7 +155,7 @@ A div pinned to the top of the sidebar layout. It sits outside SidebarContent so
 
 ## SidebarContent
 
-The scrollable body of the sidebar. Expands to fill all space between `SidebarHeader` and `SidebarFooter`. Long nav lists scroll independently of the page content.
+The scrollable body of the sidebar.
 
 ```tsx showLineNumbers
 <SidebarContent>
@@ -198,7 +188,7 @@ The scrollable body of the sidebar. Expands to fill all space between `SidebarHe
 
 ## SidebarFooter
 
-Stays anchored at the bottom regardless of how much content is in `SidebarContent`. Typically holds a user profile button, account switcher, or help/feedback links.
+A sticky footer component to add to the sidebar.
 
 ```tsx showLineNumbers
 <SidebarFooter>
@@ -400,6 +390,8 @@ function AppHeader() {
 	)
 }
 ```
+
+<br />
 
 Override mobile drawer width
 

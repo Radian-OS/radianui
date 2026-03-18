@@ -209,7 +209,7 @@ export function AppSidebar() {
 
 	return (
 		<Sidebar className="px-0" collapsible="icon" variant="inset">
-			<SidebarHeader className="p-0 group-data-[state=collapsed]:pl-3">
+			<SidebarHeader className="p-0">
 				<div className="group/header relative flex items-center gap-2 px-2.5 pb-2 pt-4 group-data-[state=expanded]:pl-5 group-data-[state=expanded]:pr-3">
 					<div className="z-0 group-data-[state=collapsed]:px-2 group-data-[state=collapsed]:py-1 group-hover/header:group-data-[state=collapsed]:opacity-0">
 						<Logo />
@@ -249,7 +249,7 @@ export function AppSidebar() {
 					</IconButton>
 				</div>
 			</SidebarHeader>
-			<SidebarContent className="group-data-[state=collapsed]:pl-3">
+			<SidebarContent>
 				{mainData.map((section, idx) => (
 					<SidebarGroup key={idx}>
 						{section.title && (
