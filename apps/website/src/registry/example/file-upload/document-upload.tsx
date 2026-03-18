@@ -83,7 +83,7 @@ export default function DocumentUpload() {
 				onDragOver={handleDragOver}
 				onDrop={handleDrop}
 				data-dragging={isDragging || undefined}
-				className="border-border hover:bg-fill1 data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary-focus has-[input:focus]:ring-primary has-disabled:pointer-events-none has-disabled:opacity-50 flex min-h-40 flex-col items-center justify-center rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
+				className="border-border bg-fill1-alpha hover:bg-fill1 data-[dragging=true]:bg-primary-accent has-[input:focus]:border-primary-focus has-[input:focus]:ring-primary has-disabled:pointer-events-none has-disabled:opacity-50 flex min-h-40 flex-col items-center justify-center rounded-xl border border-dashed p-4 transition-colors has-[input:focus]:ring-[3px]">
 				<input
 					{...getInputProps()}
 					className="sr-only"

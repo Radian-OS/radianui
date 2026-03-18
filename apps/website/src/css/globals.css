@@ -85,22 +85,22 @@
 	/* background fill alpha */
 	--color-fill1-alpha: color-mix(
 		in srgb,
-		oklch(0.144 0.0018 211),
+		oklch(0.3146 0.0336 248.94),
 		transparent 96%
 	);
 	--color-fill2-alpha: color-mix(
 		in srgb,
-		oklch(0.144 0.0018 211),
+		oklch(0.3146 0.0336 248.94),
 		transparent 92%
 	);
 	--color-fill3-alpha: color-mix(
 		in srgb,
-		oklch(0.144 0.0018 211),
+		oklch(0.3146 0.0336 248.94),
 		transparent 88%
 	);
 	--color-fill4-alpha: color-mix(
 		in srgb,
-		oklch(0.144 0.0018 211),
+		oklch(0.3146 0.0336 248.94),
 		transparent 84%
 	);
 
@@ -183,10 +183,26 @@
 	--color-black-inverse: oklch(1 0 0);
 
 	/* background fill alpha */
-	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
-	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
-	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 84%);
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 90%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 88%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 84%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 80%
+	);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
