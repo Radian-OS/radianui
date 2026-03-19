@@ -359,11 +359,10 @@ export function AppSidebar() {
 				))}
 
 				<div className="mt-auto p-2 px-3 pb-1.5 group-data-[state=collapsed]:px-3.5">
-					<HoverCard open={state === "expanded" ? false : hoverOpen}>
-						<HoverCardTrigger
-							onMouseEnter={() => setHoverOpen(true)}
-							onMouseLeave={() => setHoverOpen(false)}
-							asChild>
+					<HoverCard
+						open={state === "expanded" ? false : hoverOpen}
+						onOpenChange={setHoverOpen}>
+						<HoverCardTrigger asChild>
 							<SidebarMenuButton
 								className="bg-elevation-level2! h-auto border px-2.5 py-1.5 group-data-[state=expanded]:cursor-default"
 								asChild>
