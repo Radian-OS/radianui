@@ -1,3 +1,5 @@
+import { DesktopThemeToggler } from "@/components/theme-toggler"
+
 export const metadata = {
 	robots: {
 		index: false,
@@ -8,5 +10,10 @@ export const metadata = {
 export default function BlocksLayout({
 	children,
 }: Readonly<{ children: React.ReactNode }>) {
-	return <>{children}</>
+	return (
+		<>
+			<DesktopThemeToggler />
+			{children}
+		</>
+	)
 }
