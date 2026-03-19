@@ -353,3 +353,455 @@ export const GLOBAL_CSS_V4 = `
 }
 
 `
+
+export const THEME_PROVIDER_VITE = `
+/* eslint-disable react-refresh/only-export-components */
+import * as React from "react"
+
+type Theme = "dark" | "light" | "system"
+type ResolvedTheme = "dark" | "light"
+
+type ThemeProviderProps = {
+  children: React.ReactNode
+  defaultTheme?: Theme
+  storageKey?: string
+  disableTransitionOnChange?: boolean
+}
+
+type ThemeProviderState = {
+  theme: Theme
+  setTheme: (theme: Theme) => void
+}
+
+const COLOR_SCHEME_QUERY = "(prefers-color-scheme: dark)"
+const THEME_VALUES: Theme[] = ["dark", "light", "system"]
+
+const ThemeProviderContext = React.createContext<
+  ThemeProviderState | undefined
+>(undefined)
+
+function isTheme(value: string | null): value is Theme {
+  if (value === null) {
+    return false
+  }
+
+  return THEME_VALUES.includes(value as Theme)
+}
+
+function getSystemTheme(): ResolvedTheme {
+  if (window.matchMedia(COLOR_SCHEME_QUERY).matches) {
+    return "dark"
+  }
+
+  return "light"
+}
+
+function disableTransitionsTemporarily() {
+  const style = document.createElement("style")
+  style.appendChild(
+    document.createTextNode(
+      "*,*::before,*::after{-webkit-transition:none!important;transition:none!important}"
+    )
+  )
+  document.head.appendChild(style)
+
+  return () => {
+    window.getComputedStyle(document.body)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        style.remove()
+      })
+    })
+  }
+}
+
+function isEditableTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) {
+    return false
+  }
+
+  if (target.isContentEditable) {
+    return true
+  }
+
+  const editableParent = target.closest(
+    "input, textarea, select, [contenteditable='true']"
+  )
+  if (editableParent) {
+    return true
+  }
+
+  return false
+}
+
+export function ThemeProvider({
+  children,
+  defaultTheme = "system",
+  storageKey = "theme",
+  disableTransitionOnChange = true,
+  ...props
+}: ThemeProviderProps) {
+  const [theme, setThemeState] = React.useState<Theme>(() => {
+    const storedTheme = localStorage.getItem(storageKey)
+    if (isTheme(storedTheme)) {
+      return storedTheme
+    }
+
+    return defaultTheme
+  })
+
+  const setTheme = React.useCallback(
+    (nextTheme: Theme) => {
+      localStorage.setItem(storageKey, nextTheme)
+      setThemeState(nextTheme)
+    },
+    [storageKey]
+  )
+
+  const applyTheme = React.useCallback(
+    (nextTheme: Theme) => {
+      const root = document.documentElement
+      const resolvedTheme =
+        nextTheme === "system" ? getSystemTheme() : nextTheme
+      const restoreTransitions = disableTransitionOnChange
+        ? disableTransitionsTemporarily()
+        : null
+
+      root.classList.remove("light", "dark")
+      root.classList.add(resolvedTheme)
+
+      if (restoreTransitions) {
+        restoreTransitions()
+      }
+    },
+    [disableTransitionOnChange]
+  )
+
+  React.useEffect(() => {
+    applyTheme(theme)
+
+    if (theme !== "system") {
+      return undefined
+    }
+
+    const mediaQuery = window.matchMedia(COLOR_SCHEME_QUERY)
+    const handleChange = () => {
+      applyTheme("system")
+    }
+
+    mediaQuery.addEventListener("change", handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange)
+    }
+  }, [theme, applyTheme])
+
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.repeat) {
+        return
+      }
+
+      if (event.metaKey || event.ctrlKey || event.altKey) {
+        return
+      }
+
+      if (isEditableTarget(event.target)) {
+        return
+      }
+
+      if (event.key.toLowerCase() !== "d") {
+        return
+      }
+
+      setThemeState((currentTheme) => {
+        const nextTheme =
+          currentTheme === "dark"
+            ? "light"
+            : currentTheme === "light"
+              ? "dark"
+              : getSystemTheme() === "dark"
+                ? "light"
+                : "dark"
+
+        localStorage.setItem(storageKey, nextTheme)
+        return nextTheme
+      })
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [storageKey])
+
+  React.useEffect(() => {
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.storageArea !== localStorage) {
+        return
+      }
+
+      if (event.key !== storageKey) {
+        return
+      }
+
+      if (isTheme(event.newValue)) {
+        setThemeState(event.newValue)
+        return
+      }
+
+      setThemeState(defaultTheme)
+    }
+
+    window.addEventListener("storage", handleStorageChange)
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange)
+    }
+  }, [defaultTheme, storageKey])
+
+  const value = React.useMemo(
+    () => ({
+      theme,
+      setTheme,
+    }),
+    [theme, setTheme]
+  )
+
+  return (
+    <ThemeProviderContext.Provider {...props} value={value}>
+      {children}
+    </ThemeProviderContext.Provider>
+  )
+}
+
+export const useTheme = () => {
+  const context = React.useContext(ThemeProviderContext)
+
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider")
+  }
+
+  return context
+}
+`
+
+export const THEME_PROVIDER_NEXT = `
+"use client"
+
+import * as React from "react"
+import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+
+function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return (
+    <NextThemesProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+      {...props}
+    >
+      <ThemeHotkey />
+      {children}
+    </NextThemesProvider>
+  )
+}
+
+function isTypingTarget(target: EventTarget | null) {
+  if (!(target instanceof HTMLElement)) {
+    return false
+  }
+
+  return (
+    target.isContentEditable ||
+    target.tagName === "INPUT" ||
+    target.tagName === "TEXTAREA" ||
+    target.tagName === "SELECT"
+  )
+}
+
+function ThemeHotkey() {
+  const { resolvedTheme, setTheme } = useTheme()
+
+  React.useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.defaultPrevented || event.repeat) {
+        return
+      }
+
+      if (event.metaKey || event.ctrlKey || event.altKey) {
+        return
+      }
+
+      if (event.key.toLowerCase() !== "d") {
+        return
+      }
+
+      if (isTypingTarget(event.target)) {
+        return
+      }
+
+      setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    }
+
+    window.addEventListener("keydown", onKeyDown)
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown)
+    }
+  }, [resolvedTheme, setTheme])
+
+  return null
+}
+
+export { ThemeProvider }
+`
+
+export const LAYOUT_NEXT = `
+import type { Metadata } from "next";
+import { ThemeProvider } from "@/app/components/theme-provider";
+import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body
+        className="antialiased"
+      >
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  );
+}
+`
+
+export const NEXT_PAGE_TSX = `
+import Image from "next/image";
+
+export default function Home() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={100}
+          height={20}
+          priority
+        />
+        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+		  <h1>
+            Press <kbd>d</kbd> to change theme
+          </h1>
+          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+            To get started, edit the page.tsx file.
+          </h1>
+          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+            Looking for a starting point or more instructions? Head over to{" "}
+            <a
+              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              Templates
+            </a>{" "}
+            or the{" "}
+            <a
+              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              Learning
+            </a>{" "}
+            center.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+          <a
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={16}
+              height={16}
+            />
+            Deploy Now
+          </a>
+          <a
+            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Documentation
+          </a>
+        </div>
+      </main>
+    </div>
+  );
+}
+`
+
+export const LAYOUT_VITE = `
+import * as React from "react"
+import { ThemeProvider } from "@/components/theme-provider";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="antialiased font-sans">
+        <ThemeProvider>{children}</ThemeProvider>
+    </div>
+  );
+}
+`
+
+export const VITE_PAGE = `
+import * as React from "react"
+
+export default function Home() {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+		  <h1>
+            Press <kbd>d</kbd> to change theme
+          </h1>
+          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+            To get started, edit the App.tsx file.
+          </h1>
+          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+            Looking for a starting point or more instructions? Head over to{" "}
+            <a
+              href="https://vitejs.dev"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              Vite Documentation
+            </a>
+          </p>
+        </div>
+      </main>
+    </div>
+  );
+}
+`

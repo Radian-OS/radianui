@@ -15,14 +15,18 @@ export const installDependencies = async (projectDir: string, dependencies: stri
 	}
 
 	const dependencySpinner = spinner("Installing dependencies").start()
+	const args = [dependencyInstaller!, ...dependencies]
+	if (packageManager === "npm") args.push("--legacy-peer-deps")
+
 	try {
-		await execa(packageManager, [dependencyInstaller!, ...dependencies], {
+		await execa(packageManager, args, {
 			cwd: projectDir,
 		})
 		dependencySpinner.succeed()
 	} catch (error) {
 		dependencySpinner.fail()
-		handleError("Failed to install dependencies.")
+		const errorMsg = error instanceof Error ? error.message : String(error);
+		handleError(`Failed to install dependencies in ${projectDir} for [${dependencies.join(", ")}]: ${errorMsg}`)
 	}
 }
 
