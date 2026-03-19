@@ -24,7 +24,7 @@ const switchVariants = cva(
 	`
   relative peer inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors 
   focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg 
-  disabled:cursor-not-allowed disabled:opacity-50 bg-fill3
+  disabled:cursor-not-allowed disabled:opacity-50 bg-fill2-alpha
   aria-invalid:border aria-invalid:border-error aria-invalid:ring-error
   [[data-invalid=true]_&]:border [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error
   `,
