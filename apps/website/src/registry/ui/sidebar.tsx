@@ -292,7 +292,7 @@ function SidebarProvider({
 	const [_open, _setOpen] = React.useState(defaultOpen)
 	const open = openProp ?? _open
 
-	// Sidebar width state — desktop only, persisted in a cookie
+	// Sidebar width state — desktop only
 	const [sidebarWidth, _setSidebarWidth] = React.useState(defaultWidth)
 	const [isResizing, setIsResizing] = React.useState(false)
 
