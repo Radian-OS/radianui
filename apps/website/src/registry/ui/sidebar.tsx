@@ -564,7 +564,7 @@ function Sidebar({
 						? "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
 						: variant === "floating"
 							? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-							: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
+							: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) border-sidebar-border group-data-[side=left]:border-r group-data-[side=right]:border-l",
 					"group-data-[theme=gray-body]:group-data-[variant=floating]:bg-fill1",
 					className
 				)}
@@ -652,7 +652,7 @@ function SidebarInset({ className, ...props }: SidebarInsetProps) {
 			data-slot="sidebar-inset"
 			className={cn(
 				"bg-bg relative flex w-full flex-1 flex-col",
-				"peer-data-[theme=neutral-white]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
+				"peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
 				className
 			)}
 			{...props}

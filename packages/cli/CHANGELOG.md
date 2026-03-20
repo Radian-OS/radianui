@@ -1,5 +1,11 @@
 # radianui
 
+## 0.2.0
+
+### Minor Changes
+
+- - Initialize with theme-provider by default
+
 ## 0.1.4
 
 ### Patch Changes
