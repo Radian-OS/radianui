@@ -106,7 +106,7 @@
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
-	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent: var(--color-fill1-alpha);
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
 	--color-sidebar-ring: var(--color-fg-secondary);
@@ -206,7 +206,7 @@
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
-	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent: var(--color-fill1-alpha);
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
 	--color-sidebar-ring: var(--color-fg-secondary);

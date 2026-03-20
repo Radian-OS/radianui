@@ -20,7 +20,6 @@ import { Skeleton } from "@/registry/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
-const SIDEBAR_WIDTH_COOKIE_NAME = "sidebar_width"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 
 const SIDEBAR_WIDTH_DEFAULT = "16.25rem"
@@ -115,7 +114,7 @@ export type SidebarMenuSubProps = React.ComponentProps<"ul">
 export type SidebarMenuSubItemProps = React.ComponentProps<"li">
 export type SidebarMenuSubButtonProps = React.ComponentProps<"a"> & {
 	asChild?: boolean
-	size?: "sm" | "md"
+	size?: "28" | "32"
 	isActive?: boolean
 }
 
@@ -312,7 +311,6 @@ function SidebarProvider({
 
 	const setSidebarWidth = React.useCallback((width: string) => {
 		_setSidebarWidth(width)
-		document.cookie = `${SIDEBAR_WIDTH_COOKIE_NAME}=${width}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`
 	}, [])
 
 	const toggleSidebar = React.useCallback(() => {
@@ -321,6 +319,13 @@ function SidebarProvider({
 
 	React.useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
+			const tag = (event.target as HTMLElement)?.tagName
+			if (
+				tag === "INPUT" ||
+				tag === "TEXTAREA" ||
+				(event.target as HTMLElement)?.isContentEditable
+			)
+				return
 			if (event.key === shortcut && (event.metaKey || event.ctrlKey)) {
 				event.preventDefault()
 				toggleSidebar()
@@ -952,7 +957,7 @@ function SidebarMenuSubItem({ className, ...props }: SidebarMenuSubItemProps) {
 
 function SidebarMenuSubButton({
 	asChild = false,
-	size = "md",
+	size = "32",
 	isActive = false,
 	className,
 	...props
@@ -965,9 +970,9 @@ function SidebarMenuSubButton({
 			data-size={size}
 			data-active={isActive}
 			className={cn(
-				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-active:bg-sidebar-accent data-active:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg outline-hidden flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
-				size === "sm" && "text-xs",
-				size === "md" && "text-sm",
+				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-active:bg-sidebar-accent data-active:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg outline-hidden flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+				size === "28" && "h-7 text-xs",
+				size === "32" && "h-8 text-sm",
 				"group-data-[collapsible=icon]:hidden",
 				className
 			)}
