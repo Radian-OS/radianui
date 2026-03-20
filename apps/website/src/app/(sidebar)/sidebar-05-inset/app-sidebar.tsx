@@ -144,14 +144,19 @@ export function AppSidebar({
 	const inputRef = React.useRef<HTMLInputElement>(null)
 
 	return (
-		<Sidebar theme={theme} variant="inset" collapsible="icon" className="p-0">
+		<Sidebar
+			theme={theme}
+			variant="inset"
+			collapsible="none"
+			className="p-0"
+			resizable>
 			<SidebarHeader className="gap-0 p-0">
-				<div className="p-4 group-data-[state=collapsed]:pl-6">
+				<div className="p-4 group-data-[state=collapsed]:pl-8">
 					<LogoFull className="shrink-0 group-data-[state='collapsed']:hidden" />
 					<Logo className="shrink-0 group-data-[mobile=true]:hidden group-data-[state='expanded']:hidden" />
 				</div>
 
-				<div className="w-full px-3 py-2 group-data-[state=collapsed]:pl-5">
+				<div className="w-full px-3 py-2 group-data-[state=collapsed]:pl-7">
 					<InputWrapper
 						className="group-data-[state=collapsed]:hidden"
 						size="32">
@@ -202,7 +207,7 @@ export function AppSidebar({
 				))}
 			</SidebarContent>
 			<SidebarFooter className="gap-0 p-0">
-				<div className="p-2 pl-5 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
+				<div className="p-2 pl-7 group-data-[mobile=true]:hidden group-data-[state=expanded]:hidden">
 					<HoverCard>
 						<HoverCardTrigger asChild>
 							<IconButton size="32" variant="ghost" color="neutral">

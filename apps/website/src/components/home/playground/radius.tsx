@@ -5,6 +5,7 @@ import { IconButton } from "@/registry/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
+	DropdownPortal,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
@@ -23,16 +24,18 @@ export default function Radius() {
 					<CircleDashed size={18} />
 				</IconButton>
 			</DropdownTrigger>
-			<DropdownContent sideOffset={10}>
-				<DropdownRadioGroup
-					value={radius}
-					onValueChange={(value) => setRadius(value as RadiusOption)}>
-					<DropdownRadioItem value="default">Default</DropdownRadioItem>
-					<DropdownRadioItem value="rounded">Rounded</DropdownRadioItem>
-					<DropdownRadioItem value="flat">Flat</DropdownRadioItem>
-					<DropdownRadioItem value="fun">Fun</DropdownRadioItem>
-				</DropdownRadioGroup>
-			</DropdownContent>
+			<DropdownPortal>
+				<DropdownContent sideOffset={10}>
+					<DropdownRadioGroup
+						value={radius}
+						onValueChange={(value) => setRadius(value as RadiusOption)}>
+						<DropdownRadioItem value="default">Default</DropdownRadioItem>
+						<DropdownRadioItem value="rounded">Rounded</DropdownRadioItem>
+						<DropdownRadioItem value="flat">Flat</DropdownRadioItem>
+						<DropdownRadioItem value="fun">Fun</DropdownRadioItem>
+					</DropdownRadioGroup>
+				</DropdownContent>
+			</DropdownPortal>
 		</Dropdown>
 	)
 }

@@ -1,0 +1,1047 @@
+# Radian
+
+> Radian is an open-source React UI component library and design system built on Radix Primitives and Tailwind CSS. It uses an open code system — components are copied directly into your codebase via CLI, giving you full ownership and customization. Currently supports Next.js (with Vite support available). TypeScript-native, with a companion Figma design system.
+
+Radian is currently in alpha. Components are installed via `npx radianui@latest add [component]` and live in your project at `@/components/ui/`. New projects can be scaffolded with `npx radianui@latest init`. All components use Radian's semantic color tokens (e.g. `bg-bg`, `text-fg`, `border-border`, `text-primary-text`) defined as CSS custom properties in OKLCH format in your `globals.css`. Dark mode is built-in via a `.dark` class. Default fonts are Inter (body) and Geist (headings), configurable via `--body-font` and `--heading-font` CSS variables.
+
+When generating code with Radian components: import from `@/components/ui/[component]`. Use the `color` prop for semantic colors (primary, neutral, error, success, info, warning) and the `variant` prop for visual styles (strong, soft, outline, ghost, link, glossy, smooth). Most components accept standard Tailwind classes for additional styling. Use `asChild` to render a component as a different element (e.g. wrapping a Next.js `<Link>`).
+
+Key dependencies: Radix UI primitives, Tailwind CSS, lucide-react for icons, react-hook-form + zod for form validation, date-fns for date formatting, sonner for toasts, embla-carousel for carousels, vaul for drawers, cmdk for command palette, react-day-picker for calendar, shiki for syntax highlighting, react-international-phone for phone inputs, react-currency-input-field for currency inputs.
+
+---
+
+## CLI
+
+Initialize a new project:
+```bash
+npx radianui@latest init
+```
+
+Add a component:
+```bash
+npx radianui@latest add [component]
+```
+
+Add all components:
+```bash
+npx radianui@latest add --all
+```
+
+---
+
+## Color System
+
+Colors are organized by usage. The main semantic tokens:
+
+Background: `bg-bg`, `bg-fill1`, `bg-fill2`, `bg-fill3`, `bg-fill4`
+Text: `text-fg`, `text-fg-secondary`, `text-fg-tertiary`, `text-fg-disabled`, `text-fg-inverse`
+Border: `border-border`, `border-soft`, `border-alpha`, `border-soft-alpha`
+Elevation: `bg-elevation-negative`, `bg-elevation-level1`, `bg-elevation-level2`
+Utility: `white-inverse`, `black-inverse`
+
+Each semantic color (primary, success, error, warning, info) has sub-tokens: `key`, `accent`, `focus`, `border`, `hover`, `text`. For example: `bg-primary`, `bg-primary-accent`, `text-primary-text`, `border-primary-border`.
+
+Alpha variants are also available: `bg-fill1-alpha`, `bg-fill2-alpha`, `bg-fill3-alpha`, `bg-fill4-alpha`.
+
+Dark mode is activated by adding the `.dark` class. All tokens auto-switch.
+
+---
+
+## Typography
+
+Default fonts: Inter (body, `--body-font`), Geist (headings, `--heading-font`).
+
+Utility classes: `heading-1` through `heading-6` (responsive), `body-15`, `text-sm-p`, `body-13`.
+Font classes: `font-heading`, `font-body`.
+
+To change fonts, override CSS variables in `globals.css`:
+```css
+body {
+  --heading-font: "Your Heading Font", system-ui, sans-serif;
+  --body-font: "Your Body Font", system-ui, sans-serif;
+}
+```
+
+---
+
+## Accordion
+
+Install: `npx radianui@latest add accordion`
+Dependency: `@radix-ui/react-accordion`
+
+```tsx
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+```
+
+```tsx
+<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>First Item</AccordionTrigger>
+    <AccordionContent>Content of the first item.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+Variants: default, `variant="open"`, `variant="table"`. Sizes: default, small.
+
+---
+
+## Alert
+
+Install: `npx radianui@latest add alert`
+
+```tsx
+import { Alert, AlertContent, AlertDescription, AlertIcon, AlertTitle, AlertToolbar } from "@/components/ui/alert"
+```
+
+```tsx
+<Alert color="success">
+  <AlertIcon><CircleCheckBig size={20} /></AlertIcon>
+  <AlertContent>
+    <AlertTitle>Payment Successful</AlertTitle>
+    <AlertDescription>Your payment has been transferred.</AlertDescription>
+  </AlertContent>
+</Alert>
+```
+
+Colors: primary, success, error, warning, info, neutral. Variants: strong, soft, outline.
+Supports `close` prop with `onClose` handler for dismissible alerts.
+
+---
+
+## Alert Dialog
+
+Install: `npx radianui@latest add alert-dialog`
+Dependency: `@radix-ui/react-alert-dialog`
+
+```tsx
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
+```
+
+```tsx
+<AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button variant="outline" color="neutral">Show Dialog</Button>
+  </AlertDialogTrigger>
+  <AlertDialogContent className="max-w-100">
+    <AlertDialogHeader>
+      <AlertDialogTitle>Unsaved Changes</AlertDialogTitle>
+      <AlertDialogDescription>Do you want to save or discard?</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel asChild><Button variant="outline" color="neutral">Discard</Button></AlertDialogCancel>
+      <AlertDialogAction asChild><Button>Save Changes</Button></AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+---
+
+## Aspect Ratio
+
+Install: `npx radianui@latest add aspect-ratio`
+Dependency: `@radix-ui/react-aspect-ratio`
+
+```tsx
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+```
+
+```tsx
+<AspectRatio ratio={16 / 9}>
+  <Image src="/image.png" alt="Example" fill />
+</AspectRatio>
+```
+
+---
+
+## Avatar
+
+Install: `npx radianui@latest add avatar`
+Dependency: `@radix-ui/react-avatar`
+
+```tsx
+import { Avatar, AvatarFallback, AvatarImage, AvatarIndicator, AvatarStatus } from "@/components/ui/avatar"
+```
+
+```tsx
+<Avatar size="48" rounded="circle">
+  <AvatarImage src="/profile.jpg" />
+  <AvatarFallback>JD</AvatarFallback>
+</Avatar>
+```
+
+Props: `size` (pixel values like "24", "32", "48"), `rounded` ("circle", "square", etc.).
+
+---
+
+## Badge
+
+Install: `npx radianui@latest add badge`
+Dependency: `@radix-ui/react-slot`
+
+```tsx
+import { Badge, BadgeDot } from "@/components/ui/badge"
+```
+
+```tsx
+<Badge color="success" variant="strong" size="20">New</Badge>
+<Badge color="neutral" variant="outline" size="24"><BadgeDot className="bg-fg-disabled" />Neutral</Badge>
+```
+
+Colors: primary, neutral, error, success, info, warning. Variants: strong, soft, outline. Sizes: "20", "24", default.
+
+---
+
+## Banner
+
+Install: `npx radianui@latest add banner`
+
+```tsx
+import { Banner, BannerContent, BannerDescription, BannerIcon, BannerTitle } from "@/components/ui/banner"
+```
+
+```tsx
+<Banner variant="strong" color="primary" onClose={() => setBannerVisible(false)}>
+  <BannerIcon><Sparkles /></BannerIcon>
+  <BannerTitle>New Feature!</BannerTitle>
+  <BannerDescription>Check it out</BannerDescription>
+</Banner>
+```
+
+Variants: strong, soft, outline. Colors: primary, success, error, warning, info, neutral.
+
+---
+
+## Breadcrumb
+
+Install: `npx radianui@latest add breadcrumb`
+
+```tsx
+import { Breadcrumb, BreadcrumbEllipsis, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
+```
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink asChild><Link href="/">Home</Link></BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Current Page</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+---
+
+## Button
+
+Install: `npx radianui@latest add button`
+Dependency: `@radix-ui/react-slot`
+
+```tsx
+import { Button, ButtonGroup, CompactButton, IconButton } from "@/components/ui/button"
+```
+
+```tsx
+<Button>Click Me</Button>
+<Button variant="outline" color="neutral">Cancel</Button>
+<Button color="error" variant="soft">Delete</Button>
+<Button variant="glossy">Glossy</Button>
+
+<IconButton aria-label="Settings" color="neutral" variant="outline"><Settings /></IconButton>
+
+<CompactButton size="20" variant="outline" color="neutral"><ChevronDown /></CompactButton>
+
+<ButtonGroup>
+  <Button>Day</Button>
+  <Button>Week</Button>
+  <Button>Month</Button>
+</ButtonGroup>
+```
+
+Variants: strong (default), soft, outline, ghost, link, glossy, glossy-inverted, smooth, smooth-inverted.
+Colors: primary (default), neutral, error, success, info, warning.
+Sizes: "28", "32", "36", "40", "44", "48".
+Props: `loading` (shows spinner), `disabled`, `asChild` (polymorphic).
+
+---
+
+## Calendar
+
+Install: `npx radianui@latest add calendar`
+Dependency: `react-day-picker`
+
+```tsx
+import { Calendar } from "@/components/ui/calendar"
+```
+
+```tsx
+<Calendar mode="single" />
+<Calendar mode="range" />
+```
+
+Modes: "single", "range", "multiple". Used internally by DatePicker.
+
+---
+
+## Card
+
+Install: `npx radianui@latest add card`
+
+```tsx
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+```
+
+```tsx
+<Card className="w-100">
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+    <CardDescription>Description</CardDescription>
+  </CardHeader>
+  <CardContent>Content here</CardContent>
+  <CardFooter>Footer actions</CardFooter>
+</Card>
+```
+
+---
+
+## Carousel
+
+Install: `npx radianui@latest add carousel`
+Dependency: `embla-carousel-react`
+
+```tsx
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+```
+
+```tsx
+<Carousel className="w-full max-w-xs">
+  <CarouselContent>
+    <CarouselItem>Slide 1</CarouselItem>
+    <CarouselItem>Slide 2</CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+```
+
+---
+
+## Checkbox
+
+Install: `npx radianui@latest add checkbox`
+Dependency: `@radix-ui/react-checkbox`
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+```
+
+```tsx
+<div className="flex items-center gap-2">
+  <Checkbox id="terms" />
+  <Label htmlFor="terms">I agree to the Terms</Label>
+</div>
+```
+
+---
+
+## Code Area
+
+Install: `npx radianui@latest add code-area`
+Dependency: `shiki`
+
+```tsx
+import { CodeArea } from "@/components/ui/code-area"
+```
+
+```tsx
+<CodeArea
+  code={`const greeting = "Hello World";`}
+  language="tsx"
+  theme="github-dark-default"
+  lineNumbers={false}
+/>
+```
+
+---
+
+## Collapsible
+
+Install: `npx radianui@latest add collapsible`
+Dependency: `@radix-ui/react-collapsible`
+
+```tsx
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+```
+
+```tsx
+<Collapsible>
+  <CollapsibleTrigger>Toggle</CollapsibleTrigger>
+  <CollapsibleContent>Hidden content</CollapsibleContent>
+</Collapsible>
+```
+
+---
+
+## Combobox
+
+Install: `npx radianui@latest add combobox`
+Uses Command + Popover internally.
+
+```tsx
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+```
+
+Pattern: Popover trigger (Button) → PopoverContent → Command with CommandInput, CommandList, CommandGroup, CommandItem.
+
+---
+
+## Command
+
+Install: `npx radianui@latest add command`
+Dependency: `cmdk`
+
+```tsx
+import { Command, CommandDivider, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandShortcut } from "@/components/ui/command"
+```
+
+```tsx
+<Command className="w-full max-w-md">
+  <CommandInput placeholder="Type command or search..." />
+  <CommandList>
+    <CommandEmpty>No results found</CommandEmpty>
+    <CommandGroup heading="Create">
+      <CommandItem><FileText /><span>Create document</span><CommandShortcut>⌘D</CommandShortcut></CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>
+```
+
+---
+
+## Currency Input
+
+Install: `npx radianui@latest add currency-input`
+Dependency: `react-currency-input-field`
+
+```tsx
+import { CurrencyInput } from "@/components/ui/currency-input"
+```
+
+```tsx
+<CurrencyInput id="amount" className="md:w-80" placeholder="Enter Amount" />
+```
+
+---
+
+## Date Picker
+
+Install: `npx radianui@latest add date-picker`
+Uses Calendar + Popover + date-fns internally.
+
+```tsx
+import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+```
+
+```tsx
+const [date, setDate] = useState<Date>()
+
+<Popover>
+  <PopoverTrigger asChild>
+    <Button variant="outline" color="neutral">
+      {date ? format(date, "PPP") : "Pick a date"}
+      <CalendarIcon className="ml-auto size-4" />
+    </Button>
+  </PopoverTrigger>
+  <PopoverContent className="w-auto p-0">
+    <Calendar mode="single" selected={date} onSelect={setDate} />
+  </PopoverContent>
+</Popover>
+```
+
+---
+
+## Dialog
+
+Install: `npx radianui@latest add dialog`
+Dependency: `@radix-ui/react-dialog`
+
+```tsx
+import { Dialog, DialogBody, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+```
+
+```tsx
+<Dialog>
+  <DialogTrigger asChild>
+    <Button variant="outline" color="neutral">Open Dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Dialog Title</DialogTitle>
+      <DialogDescription>Description text</DialogDescription>
+    </DialogHeader>
+    <DialogBody>Body content</DialogBody>
+    <DialogFooter>
+      <DialogClose asChild><Button color="neutral" variant="outline">Cancel</Button></DialogClose>
+      <Button>Continue</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+---
+
+## Divider
+
+Install: `npx radianui@latest add divider`
+
+```tsx
+import { Divider } from "@/components/ui/divider"
+```
+
+```tsx
+<Divider />
+<Divider orientation="vertical" />
+```
+
+---
+
+## Drawer
+
+Install: `npx radianui@latest add drawer`
+Dependency: `vaul`
+
+```tsx
+import { Drawer, DrawerBody, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
+```
+
+```tsx
+<Drawer variant="default" direction="right" handle={false} backdrop="overlay">
+  <DrawerTrigger><Button>Open</Button></DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Title</DrawerTitle>
+      <DrawerDescription>Description</DrawerDescription>
+    </DrawerHeader>
+    <DrawerBody>Content</DrawerBody>
+    <DrawerFooter>
+      <DrawerClose asChild><Button variant="outline">Close</Button></DrawerClose>
+    </DrawerFooter>
+  </DrawerContent>
+</Drawer>
+```
+
+Props: `direction` ("right", "left", "top", "bottom"), `backdrop` ("overlay", "blur"), `handle` (boolean).
+
+---
+
+## Dropdown
+
+Install: `npx radianui@latest add dropdown`
+Dependency: `@radix-ui/react-dropdown-menu`
+
+```tsx
+import { Dropdown, DropdownContent, DropdownDivider, DropdownItem, DropdownLabel, DropdownShortcut, DropdownSub, DropdownSubContent, DropdownSubTrigger, DropdownTrigger } from "@/components/ui/dropdown"
+```
+
+```tsx
+<Dropdown>
+  <DropdownTrigger asChild>
+    <Button color="neutral" variant="outline">Menu</Button>
+  </DropdownTrigger>
+  <DropdownContent className="w-80">
+    <DropdownLabel>My Account</DropdownLabel>
+    <DropdownItem><UserRound />View Profile<DropdownShortcut>⌘P</DropdownShortcut></DropdownItem>
+    <DropdownDivider />
+    <DropdownItem><LogOut />Log Out</DropdownItem>
+  </DropdownContent>
+</Dropdown>
+```
+
+---
+
+## Empty
+
+Install: `npx radianui@latest add empty`
+
+```tsx
+import { Empty, EmptyAction, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
+```
+
+```tsx
+<Empty>
+  <EmptyMedia variant="icon"><Database /></EmptyMedia>
+  <EmptyHeader>
+    <EmptyTitle>No Data Found</EmptyTitle>
+    <EmptyDescription>Create your first entry to get started.</EmptyDescription>
+  </EmptyHeader>
+  <EmptyAction><Button variant="outline">Create New</Button></EmptyAction>
+</Empty>
+```
+
+---
+
+## File Upload
+
+Install: `npx radianui@latest add file-upload`
+
+```tsx
+import { formatBytes, useFileUpload } from "@/components/ui/file-upload"
+```
+
+Provides a `useFileUpload` hook for managing file upload state, plus `formatBytes` utility.
+
+---
+
+## Form
+
+Install: `npx radianui@latest add form`
+Dependencies: `@radix-ui/react-slot`, `react-hook-form`, `zod`, `@hookform/resolvers`
+
+```tsx
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+```
+
+```tsx
+const FormSchema = z.object({
+  email: z.string().check(z.email("Please enter a valid email.")),
+})
+
+const form = useForm<z.infer<typeof FormSchema>>({
+  resolver: zodResolver(FormSchema),
+  defaultValues: { email: "" },
+})
+
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)}>
+    <FormField
+      control={form.control}
+      name="email"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Email</FormLabel>
+          <FormControl><Input placeholder="Email address" {...field} /></FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+    <Button type="submit">Submit</Button>
+  </form>
+</Form>
+```
+
+---
+
+## Hover Card
+
+Install: `npx radianui@latest add hover-card`
+Dependency: `@radix-ui/react-hover-card`
+
+```tsx
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
+```
+
+```tsx
+<HoverCard>
+  <HoverCardTrigger asChild><Button variant="link">Hover me</Button></HoverCardTrigger>
+  <HoverCardContent>Card content on hover</HoverCardContent>
+</HoverCard>
+```
+
+---
+
+## Input
+
+Install: `npx radianui@latest add input`
+
+```tsx
+import { Input, InputAddon, InputGroup, InputWrapper } from "@/components/ui/input"
+```
+
+```tsx
+<Input placeholder="Enter username" />
+
+<InputGroup>
+  <InputAddon mode="icon"><Mail /></InputAddon>
+  <Input placeholder="Email" />
+</InputGroup>
+```
+
+---
+
+## Label
+
+Install: `npx radianui@latest add label`
+Dependency: `@radix-ui/react-label`
+
+```tsx
+import { Label } from "@/components/ui/label"
+```
+
+```tsx
+<Label htmlFor="email">Enter your email</Label>
+```
+
+---
+
+## OTP Field
+
+Install: `npx radianui@latest add otp-field`
+Dependency: `@radix-ui/react-one-time-password-field`
+
+```tsx
+import { OTPField, OTPHiddenInput, OTPInput } from "@/components/ui/otp-field"
+```
+
+```tsx
+<OTPField autoFocus id="otp">
+  {Array.from({ length: 6 }).map((_, i) => (
+    <OTPInput key={i} />
+  ))}
+  <OTPHiddenInput />
+</OTPField>
+```
+
+---
+
+## Pagination
+
+Install: `npx radianui@latest add pagination`
+
+```tsx
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from "@/components/ui/pagination"
+```
+
+```tsx
+<Pagination>
+  <PaginationContent>
+    <PaginationItem>Previous</PaginationItem>
+    <PaginationItem>1</PaginationItem>
+    <PaginationEllipsis />
+    <PaginationItem>Next</PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+---
+
+## Phone Number Input
+
+Install: `npx radianui@latest add phone-number-input`
+Dependency: `react-international-phone`
+
+Uses `usePhoneInput` hook from react-international-phone combined with Input, Command, and Popover components for country selection.
+
+---
+
+## Popover
+
+Install: `npx radianui@latest add popover`
+Dependency: `@radix-ui/react-popover`
+
+```tsx
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+```
+
+```tsx
+<Popover>
+  <PopoverTrigger asChild>
+    <Button color="neutral" variant="outline">Open</Button>
+  </PopoverTrigger>
+  <PopoverContent>Popover content here</PopoverContent>
+</Popover>
+```
+
+---
+
+## Progress
+
+Install: `npx radianui@latest add progress`
+Dependency: `@radix-ui/react-progress`
+
+```tsx
+import { Progress } from "@/components/ui/progress"
+```
+
+```tsx
+<Progress value={50} />
+```
+
+---
+
+## Radio Group
+
+Install: `npx radianui@latest add radio-group`
+Dependency: `@radix-ui/react-radio-group`
+
+```tsx
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+```
+
+```tsx
+<RadioGroup defaultValue="option-1">
+  <div className="flex items-center gap-2">
+    <RadioGroupItem id="1" value="option-1" />
+    <Label htmlFor="1">Option 1</Label>
+  </div>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem id="2" value="option-2" />
+    <Label htmlFor="2">Option 2</Label>
+  </div>
+</RadioGroup>
+```
+
+---
+
+## Resizable
+
+Install: `npx radianui@latest add resizable`
+Dependency: `react-resizable-panels`
+
+```tsx
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
+```
+
+```tsx
+<ResizablePanelGroup direction="horizontal">
+  <ResizablePanel defaultSize={50}>Left panel</ResizablePanel>
+  <ResizableHandle />
+  <ResizablePanel defaultSize={50}>Right panel</ResizablePanel>
+</ResizablePanelGroup>
+```
+
+---
+
+## Scroll Area
+
+Install: `npx radianui@latest add scroll-area`
+Dependency: `@radix-ui/react-scroll-area`
+
+```tsx
+import { ScrollArea } from "@/components/ui/scroll-area"
+```
+
+```tsx
+<ScrollArea className="h-72 w-48 rounded-md border">
+  Long scrollable content here...
+</ScrollArea>
+```
+
+---
+
+## Select
+
+Install: `npx radianui@latest add select`
+Dependency: `@radix-ui/react-select`
+
+```tsx
+import { Select, SelectContent, SelectDivider, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
+```
+
+```tsx
+<Select defaultValue="node-js">
+  <SelectTrigger className="w-60">
+    <SelectValue />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Frameworks</SelectLabel>
+      <SelectItem value="node-js">Node.js</SelectItem>
+      <SelectItem value="django">Django</SelectItem>
+      <SelectItem disabled value="laravel">Laravel</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
+
+Props: `indicatorPosition` ("right", "left").
+
+---
+
+## Skeleton
+
+Install: `npx radianui@latest add skeleton`
+
+```tsx
+import { Skeleton } from "@/components/ui/skeleton"
+```
+
+```tsx
+<Skeleton className="h-8 w-8 rounded-full" />
+<Skeleton className="h-4 w-24 rounded-lg" />
+```
+
+---
+
+## Slider
+
+Install: `npx radianui@latest add slider`
+Dependency: `@radix-ui/react-slider`
+
+```tsx
+import { Slider, SliderThumb } from "@/components/ui/slider"
+```
+
+```tsx
+<Slider className="w-[320px]">
+  <SliderThumb />
+</Slider>
+```
+
+---
+
+## Sonner (Toast)
+
+Install: `npm install sonner`
+Requires wrapping app with `<Toaster />` from sonner in layout.
+
+```tsx
+import { toast } from "sonner"
+```
+
+```tsx
+toast("Toast Title", {
+  description: "Description message",
+  action: {
+    label: "Undo",
+    onClick: () => console.log("Undo"),
+  },
+})
+```
+
+Setup in layout:
+```tsx
+import { Toaster } from "sonner"
+// In your layout's <body>:
+<Toaster />
+```
+
+---
+
+## Spinner
+
+Install: `npx radianui@latest add spinner`
+
+```tsx
+import { Spinner } from "@/components/ui/spinner"
+```
+
+```tsx
+<Spinner variant="activity" />
+<Spinner variant="default" />
+<Spinner variant="simple" />
+<Spinner variant="wave" />
+```
+
+---
+
+## Switch
+
+Install: `npx radianui@latest add switch`
+Dependency: `@radix-ui/react-switch`
+
+```tsx
+import { Switch } from "@/components/ui/switch"
+```
+
+```tsx
+<div className="flex items-center gap-2">
+  <Switch id="notifications" />
+  <Label htmlFor="notifications">Enable Notifications</Label>
+</div>
+```
+
+Props: `size` ("16", "20", "24").
+
+---
+
+## Table
+
+Install: `npx radianui@latest add table`
+
+```tsx
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+```
+
+```tsx
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Email</TableHead>
+      <TableHead>Status</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell>Sarah Chen</TableCell>
+      <TableCell>sarah@company.com</TableCell>
+      <TableCell><Badge color="success">Active</Badge></TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+---
+
+## Tabs
+
+Install: `npx radianui@latest add tabs`
+Dependency: `@radix-ui/react-tabs`
+
+```tsx
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+```
+
+```tsx
+<Tabs defaultValue="products">
+  <TabsList>
+    <TabsTrigger value="products">Products</TabsTrigger>
+    <TabsTrigger value="orders">Orders</TabsTrigger>
+  </TabsList>
+  <TabsContent value="products">Products content</TabsContent>
+  <TabsContent value="orders">Orders content</TabsContent>
+</Tabs>
+```
+
+---
+
+## Text Area
+
+Install: `npx radianui@latest add text-area`
+
+```tsx
+import { TextArea } from "@/components/ui/text-area"
+```
+
+```tsx
+<TextArea placeholder="Type your message here..." />
+```
+
+---
+
+## Tooltip
+
+Install: `npx radianui@latest add tooltip`
+Dependency: `@radix-ui/react-tooltip`
+
+```tsx
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+```
+
+```tsx
+<Tooltip>
+  <TooltipTrigger asChild>
+    <Button color="neutral" variant="outline">Hover me</Button>
+  </TooltipTrigger>
+  <TooltipContent>
+    <p>Tooltip description text.</p>
+  </TooltipContent>
+</Tooltip>
+```

@@ -72,6 +72,10 @@ export type DropdownDividerProps = React.ComponentProps<
 	typeof DropdownMenuPrimitive.Separator
 >
 
+export type DropdownPortalProps = React.ComponentProps<
+	typeof DropdownMenuPrimitive.DropdownMenuPortal
+>
+
 const DropdownContext = React.createContext<DropdownContextType | null>(null)
 
 function useDropdown() {
@@ -107,20 +111,22 @@ function DropdownTrigger({ className, ...props }: DropdownTriggerProps) {
 
 function DropdownContent({ className, ...props }: DropdownContentProps) {
 	return (
-		<DropdownMenuPrimitive.Portal>
-			<DropdownMenuPrimitive.Content
-				data-slot="dropdown-menu-content"
-				align="start"
-				className={cn(
-					"no-scrollbar border-border bg-elevation-level2 drop-shadow-xs z-50 flex min-w-[var(--radix-dropdown-menu-trigger-width)] flex-col gap-0.5 overflow-x-visible overflow-y-scroll rounded-lg border p-1",
-					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-					className
-				)}
-				sideOffset={4}
-				{...props}
-			/>
-		</DropdownMenuPrimitive.Portal>
+		<DropdownMenuPrimitive.Content
+			data-slot="dropdown-menu-content"
+			align="start"
+			className={cn(
+				"no-scrollbar border-border bg-elevation-level2 drop-shadow-xs z-50 flex min-w-[var(--radix-dropdown-menu-trigger-width)] flex-col gap-0.5 overflow-x-visible overflow-y-scroll rounded-lg border p-1.5",
+				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+				className
+			)}
+			sideOffset={4}
+			{...props}
+		/>
 	)
+}
+
+function DropdownPortal({ ...props }: DropdownPortalProps) {
+	return <DropdownMenuPrimitive.Portal {...props} />
 }
 
 function DropdownItem({ className, inset, ...props }: DropdownItemProps) {
@@ -128,7 +134,7 @@ function DropdownItem({ className, inset, ...props }: DropdownItemProps) {
 		<DropdownMenuPrimitive.Item
 			data-slot="dropdown-menu-item"
 			className={cn(
-				"focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
+				"focus:bg-fill1-alpha data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled outline-hidden relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm",
 				"[&_svg]:text-fg-secondary transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				inset && "pl-9",
 				className
@@ -256,7 +262,7 @@ function DropdownSubTrigger({
 		<DropdownMenuPrimitive.SubTrigger
 			data-slot="dropdown-menu-sub-trigger"
 			className={cn(
-				"data-[state=open]:bg-fill2-alpha focus:bg-fill2-alpha outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:text-fg-secondary flex cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:text-fg-secondary flex cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				{ "pl-8": inset },
 				className
 			)}
@@ -337,4 +343,5 @@ export {
 	DropdownTrigger,
 	DropdownLabel,
 	DropdownShortcut,
+	DropdownPortal,
 }

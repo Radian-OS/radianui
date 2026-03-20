@@ -61,9 +61,17 @@
 
 	/* border */
 	--color-border: oklch(0.906 0.0046 258.33);
-	--color-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 88%);
+	--color-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 88%
+	);
 	--color-soft: oklch(0.9368 0.0029 264.54);
-	--color-soft-alpha: color-mix(in srgb, oklch(0.144 0.0028 247.09), transparent 92%);
+	--color-soft-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 92%
+	);
 
 	/* background elevation */
 	--color-elevation-negative: oklch(0.9764 0.0013 286.38);
@@ -75,10 +83,33 @@
 	--color-black-inverse: oklch(0.144 0.0028 247.09);
 
 	/* background fill alpha */
-	--color-fill1-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 96%);
-	--color-fill2-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 92%);
-	--color-fill3-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 88%);
-	--color-fill4-alpha: color-mix(in srgb, oklch(0.144 0.0018 211), transparent 84%);
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 96%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 92%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 88%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 84%
+	);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1-alpha);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
 }
 
 .dark {
@@ -152,18 +183,37 @@
 	--color-black-inverse: oklch(1 0 0);
 
 	/* background fill alpha */
-	--color-fill1-alpha: color-mix(in srgb, oklch(1 0 0), transparent 96%);
-	--color-fill2-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
-	--color-fill3-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
-	--color-fill4-alpha: color-mix(in srgb, oklch(1 0 0), transparent 84%);
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 90%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 88%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 84%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 80%
+	);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1-alpha);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
 }
 
 /* Base styles */
 @layer base {
-	* {
-		border-color: var(--color-border);
-	}
-
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
@@ -264,31 +314,11 @@
 /* Heading 5 */
 @utility heading-5 {
 	@apply font-heading text-[1.5rem] font-semibold leading-[2rem];
-
-	@media (width >=theme(--breakpoint-sm)) {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
-
-	@media (width >=theme(--breakpoint-lg)) {
-		font-size: 1.5rem;
-		line-height: 2rem;
-	}
 }
 
 /* Heading 6 */
 @utility heading-6 {
 	@apply font-heading text-[1.25rem] font-semibold leading-[1.75rem];
-
-	@media (width >=theme(--breakpoint-sm)) {
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-	}
-
-	@media (width >=theme(--breakpoint-lg)) {
-		font-size: 1.25rem;
-		line-height: 1.75rem;
-	}
 }
 
 /* Additional body fonts */

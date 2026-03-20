@@ -1,7 +1,17 @@
 {
-	"extends": ["next/core-web-vitals", "next/typescript"],
+	"extends": [
+		"next/core-web-vitals",
+		"next/typescript"
+	],
 	"rules": {
 		"@next/next/no-img-element": "off",
-		"react-hooks/exhaustive-deps": "off"
+		"react-hooks/exhaustive-deps": "off",
+		"@typescript-eslint/no-explicit-any": "warn",
+		"@typescript-eslint/ban-ts-comment": [
+			"warn",
+			{
+				"ts-nocheck": false
+			}
+		]
 	}
 }

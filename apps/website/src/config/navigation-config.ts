@@ -87,6 +87,7 @@ const COMPONENTS_DATA = [
 	"Resizable",
 	"Scroll Area",
 	"Select",
+	"Sidebar",
 	"Skeleton",
 	"Slider",
 	"Sonner",

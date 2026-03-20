@@ -1,0 +1,14 @@
+import Link from "next/link"
+
+export function SupportFooter() {
+	return (
+		<p className="text-fg-tertiary text-sm">
+			Having trouble? Contact our team at{" "}
+			<Link
+				href="mailto:support@radian.os"
+				className="text-primary font-medium">
+				support@radian.os
+			</Link>
+		</p>
+	)
+}

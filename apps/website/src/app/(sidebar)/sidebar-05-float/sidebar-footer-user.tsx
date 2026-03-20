@@ -16,6 +16,7 @@ import {
 	DropdownGroup,
 	DropdownItem,
 	DropdownLabel,
+	DropdownPortal,
 	DropdownShortcut,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
@@ -31,7 +32,7 @@ export function SidebarFooterUser() {
 
 	return (
 		<SidebarMenu>
-			<SidebarMenuItem className="p-2">
+			<SidebarMenuItem className="p-2 group-data-[state=collapsed]:p-3.5">
 				<Dropdown>
 					<DropdownTrigger asChild>
 						<SidebarMenuButton size="48">
@@ -48,55 +49,57 @@ export function SidebarFooterUser() {
 							<ChevronsUpDown />
 						</SidebarMenuButton>
 					</DropdownTrigger>
-					<DropdownContent
-						className="min-w-68"
-						side={isMobile ? "top" : "right"}
-						align="end">
-						<DropdownLabel className="p-0 font-normal">
-							<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-								<Avatar className="h-8 w-8 rounded-lg">
-									<AvatarImage src="/media/male-1.jpg" alt="Jim Simmons" />
-									<AvatarFallback className="rounded-lg">JS</AvatarFallback>
-								</Avatar>
-								<div className="grid flex-1 text-left text-sm leading-tight">
-									<span className="text-fg truncate font-semibold">
-										Jim Simmons
-									</span>
-									<span className="text-fg-secondary truncate text-xs">
-										simmons@radianos.com
-									</span>
+					<DropdownPortal>
+						<DropdownContent
+							className="min-w-68"
+							side={isMobile ? "top" : "right"}
+							align="end">
+							<DropdownLabel className="p-0 font-normal">
+								<div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+									<Avatar className="h-8 w-8 rounded-lg">
+										<AvatarImage src="/media/male-1.jpg" alt="Jim Simmons" />
+										<AvatarFallback className="rounded-lg">JS</AvatarFallback>
+									</Avatar>
+									<div className="grid flex-1 text-left text-sm leading-tight">
+										<span className="text-fg truncate font-semibold">
+											Jim Simmons
+										</span>
+										<span className="text-fg-secondary truncate text-xs">
+											simmons@radianos.com
+										</span>
+									</div>
 								</div>
-							</div>
-						</DropdownLabel>
-						<DropdownDivider />
-						<DropdownGroup>
+							</DropdownLabel>
+							<DropdownDivider />
+							<DropdownGroup>
+								<DropdownItem>
+									<Sparkles className="size-4" />
+									Upgrade to Pro
+								</DropdownItem>
+							</DropdownGroup>
+							<DropdownDivider />
+							<DropdownGroup>
+								<DropdownItem>
+									<BadgeCheck className="size-4" />
+									Account
+								</DropdownItem>
+								<DropdownItem>
+									<CreditCard className="size-4" />
+									Billing
+								</DropdownItem>
+								<DropdownItem>
+									<Bell className="size-4" />
+									Notifications
+								</DropdownItem>
+							</DropdownGroup>
+							<DropdownDivider />
 							<DropdownItem>
-								<Sparkles className="size-4" />
-								Upgrade to Pro
+								<LogOut className="size-4" />
+								Log out
+								<DropdownShortcut>⌘L</DropdownShortcut>
 							</DropdownItem>
-						</DropdownGroup>
-						<DropdownDivider />
-						<DropdownGroup>
-							<DropdownItem>
-								<BadgeCheck className="size-4" />
-								Account
-							</DropdownItem>
-							<DropdownItem>
-								<CreditCard className="size-4" />
-								Billing
-							</DropdownItem>
-							<DropdownItem>
-								<Bell className="size-4" />
-								Notifications
-							</DropdownItem>
-						</DropdownGroup>
-						<DropdownDivider />
-						<DropdownItem>
-							<LogOut className="size-4" />
-							Log out
-							<DropdownShortcut>⌘L</DropdownShortcut>
-						</DropdownItem>
-					</DropdownContent>
+						</DropdownContent>
+					</DropdownPortal>
 				</Dropdown>
 			</SidebarMenuItem>
 		</SidebarMenu>
