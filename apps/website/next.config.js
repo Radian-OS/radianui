@@ -115,6 +115,33 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "images.unsplash.com",
 			},
+			{
+				protocol: "https",
+				hostname: "www.google.com",
+				pathname: "/s2/favicons/**",
+			},
+			{
+				protocol: "https",
+				hostname: "authjs.dev",
+				pathname: "/img/providers/**",
+			},
+			{
+				protocol: "https",
+				hostname: "cdn.jsdelivr.net",
+				pathname: "/gh/devicons/**",
+			},
+			{
+				protocol: "https",
+				hostname: "radianos.com",
+			},
+			{
+				protocol: "https",
+				hostname: "images.pexels.com",
+			},
+			{
+				protocol: "https",
+				hostname: "img.freepik.com",
+			},
 		],
 	},
 	compiler: {
