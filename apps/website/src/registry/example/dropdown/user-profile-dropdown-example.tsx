@@ -34,7 +34,7 @@ const UserMenuDropdownExample = () => {
 					</Avatar>
 					<div className="flex-1">
 						<p className="text-sm-p font-medium">Wames Magar</p>
-						<p className="body-12 text-fg-tertiary font-normal">
+						<p className="text-fg-tertiary text-xs font-normal">
 							wames@radian.com
 						</p>
 					</div>
@@ -46,7 +46,7 @@ const UserMenuDropdownExample = () => {
 				<div className="flex w-full items-center gap-2.5 p-2">
 					<div className="flex-1">
 						<p className="text-sm-p font-medium">Account Storage</p>
-						<p className="body-12 text-fg-tertiary font-normal">
+						<p className="text-fg-tertiary text-xs font-normal">
 							Your account has 2GB storage
 						</p>
 					</div>
