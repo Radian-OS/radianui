@@ -2,38 +2,36 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 
-type ThemeOption = "system" | "light" | "dark"
+const themeOptions = [
+	{ id: "system", label: "System Default" },
+	{ id: "light", label: "Light" },
+	{ id: "dark", label: "Dark" },
+] as const
 
 function ThemePreviewLight() {
 	return (
-		<div className="border-soft bg-fill2 flex flex-col gap-3 rounded-xl border p-3">
-			{/* Dots */}
+		<div className="flex h-full flex-col gap-3 rounded-xl bg-[#eeeff1] p-3">
 			<div className="flex gap-1">
-				<div className="bg-primary size-1.5 rounded-full" />
-				<div className="bg-primary size-1.5 rounded-full" />
-				<div className="bg-primary size-1.5 rounded-full" />
+				{[0, 1, 2].map((i) => (
+					<div key={i} className="size-[6px] rounded-full bg-[#dee0e3]" />
+				))}
 			</div>
-			{/* Lines */}
-			<div className="flex flex-col gap-1.5">
-				<div className="flex items-center gap-1.5">
-					<div className="bg-primary size-2.5 rounded-full" />
-					<div className="bg-fill4 h-1 w-7 rounded-full" />
-				</div>
-				<div className="flex items-center gap-1.5">
-					<div className="bg-primary size-2.5 rounded-full" />
-					<div className="bg-fill4 h-1 w-7 rounded-full" />
-				</div>
-				<div className="flex items-center gap-1.5">
-					<div className="bg-success size-2.5 rounded-full" />
-					<div className="bg-fill4 h-1 w-7 rounded-full" />
-				</div>
-				<div className="flex items-center gap-1.5">
-					<div className="bg-info size-2.5 rounded-full" />
-					<div className="bg-fill4 h-1 w-7 rounded-full" />
-				</div>
+			<div className="flex flex-col gap-1">
+				{[0, 1, 2, 3, 4].map((i) => (
+					<div key={i} className="flex items-center gap-1.5">
+						<div
+							className={cn(
+								"size-2.5 rounded-full",
+								i < 2 ? "bg-primary" : i === 2 ? "bg-success" : "bg-warning"
+							)}
+						/>
+						<div className="h-1 w-10 rounded bg-[#dee0e3]" />
+					</div>
+				))}
 			</div>
 		</div>
 	)
@@ -41,31 +39,24 @@ function ThemePreviewLight() {
 
 function ThemePreviewDark() {
 	return (
-		<div className="flex flex-col gap-3 rounded-xl border border-[#1c1e21] bg-[#1c1e21] p-3">
-			{/* Dots */}
+		<div className="flex h-full flex-col gap-3 rounded-xl bg-[#1c1e21] p-3">
 			<div className="flex gap-1">
-				<div className="bg-primary size-1.5 rounded-full" />
-				<div className="bg-primary size-1.5 rounded-full" />
-				<div className="bg-primary size-1.5 rounded-full" />
+				{[0, 1, 2].map((i) => (
+					<div key={i} className="size-[6px] rounded-full bg-[#3a3d42]" />
+				))}
 			</div>
-			{/* Lines */}
-			<div className="flex flex-col gap-1.5">
-				<div className="flex items-center gap-1.5">
-					<div className="size-2.5 rounded-full bg-[#7c5cf5]" />
-					<div className="h-1 w-7 rounded-full bg-[#2f3237]" />
-				</div>
-				<div className="flex items-center gap-1.5">
-					<div className="size-2.5 rounded-full bg-[#7c5cf5]" />
-					<div className="h-1 w-7 rounded-full bg-[#2f3237]" />
-				</div>
-				<div className="flex items-center gap-1.5">
-					<div className="bg-success size-2.5 rounded-full" />
-					<div className="h-1 w-7 rounded-full bg-[#2f3237]" />
-				</div>
-				<div className="flex items-center gap-1.5">
-					<div className="bg-info size-2.5 rounded-full" />
-					<div className="h-1 w-7 rounded-full bg-[#2f3237]" />
-				</div>
+			<div className="flex flex-col gap-1">
+				{[0, 1, 2, 3, 4].map((i) => (
+					<div key={i} className="flex items-center gap-1.5">
+						<div
+							className={cn(
+								"size-2.5 rounded-full",
+								i < 2 ? "bg-primary" : i === 2 ? "bg-success" : "bg-warning"
+							)}
+						/>
+						<div className="h-1 w-10 rounded bg-[#2f3237]" />
+					</div>
+				))}
 			</div>
 		</div>
 	)
@@ -75,29 +66,52 @@ function SystemPreview() {
 	return (
 		<div className="relative h-[143px] w-full overflow-hidden rounded-2xl">
 			{/* Light half */}
-			<div className="absolute inset-0 w-1/2 bg-[#dee0e3]">
-				<div className="absolute left-6 top-4">
-					<ThemePreviewLight />
+			<div className="absolute inset-0 w-1/2 overflow-hidden bg-[#dee0e3]">
+				<div className="absolute left-[50%] top-0 w-[180px] origin-top-left rotate-[30deg] -skew-x-[30deg] scale-y-[0.87]">
+					<div className="flex h-[100px] overflow-hidden rounded-xl border border-[#e9eaec] bg-white shadow-md">
+						<ThemePreviewLight />
+						<div className="flex-1 bg-white" />
+					</div>
 				</div>
 			</div>
 			{/* Dark half */}
-			<div className="absolute right-0 top-0 h-full w-1/2 bg-[#2f3237]">
-				<div className="absolute right-6 top-4">
-					<ThemePreviewDark />
+			<div className="absolute inset-0 left-1/2 w-1/2 overflow-hidden bg-[#2f3237]">
+				<div className="absolute right-[50%] top-0 w-[180px] origin-top-right rotate-[30deg] -skew-x-[30deg] scale-y-[0.87]">
+					<div className="flex h-[100px] overflow-hidden rounded-xl border border-[#1c1e21] bg-[#131416] shadow-md">
+						<ThemePreviewDark />
+						<div className="flex-1 bg-[#1c1e21]" />
+					</div>
 				</div>
 			</div>
 		</div>
 	)
 }
 
-const themeOptions: {
-	id: ThemeOption
-	label: string
-}[] = [
-	{ id: "system", label: "System Default" },
-	{ id: "light", label: "Light" },
-	{ id: "dark", label: "Dark" },
-]
+function LightPreview() {
+	return (
+		<div className="relative h-[143px] w-full overflow-hidden rounded-2xl bg-[#dee0e3]">
+			<div className="absolute left-[48px] top-0 w-[180px] origin-top-left rotate-[30deg] -skew-x-[30deg] scale-y-[0.87]">
+				<div className="flex h-[100px] overflow-hidden rounded-xl border border-[#e9eaec] bg-white shadow-md">
+					<ThemePreviewLight />
+					<div className="flex-1 bg-white" />
+				</div>
+			</div>
+		</div>
+	)
+}
+
+function DarkPreview() {
+	return (
+		<div className="relative h-[143px] w-full overflow-hidden rounded-2xl bg-[#2f3237]">
+			<div className="absolute left-[48px] top-0 w-[180px] origin-top-left rotate-[30deg] -skew-x-[30deg] scale-y-[0.87]">
+				<div className="flex h-[100px] overflow-hidden rounded-xl border border-[#1c1e21] bg-[#131416] shadow-md">
+					<ThemePreviewDark />
+					<div className="flex-1 bg-[#1c1e21]" />
+				</div>
+			</div>
+		</div>
+	)
+}
 
 export default function ThemeStep({
 	onNext,
@@ -106,7 +120,13 @@ export default function ThemeStep({
 	onNext: () => void
 	onSkip: () => void
 }) {
-	const [selectedTheme, setSelectedTheme] = useState<ThemeOption>("system")
+	const [selectedTheme, setSelectedTheme] = useState<string>("system")
+
+	const previews: Record<string, React.ReactNode> = {
+		system: <SystemPreview />,
+		light: <LightPreview />,
+		dark: <DarkPreview />,
+	}
 
 	return (
 		<div className="flex w-full max-w-[480px] flex-col gap-8">
@@ -117,7 +137,7 @@ export default function ThemeStep({
 					alt="Radian Logo"
 					width={32}
 					height={32}
-					className="rounded-md"
+					className="rounded-lg"
 				/>
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Personalize your experience</h1>
@@ -129,63 +149,50 @@ export default function ThemeStep({
 
 			{/* Theme Options */}
 			<div className="flex gap-3">
-				{themeOptions.map((option) => {
-					const isSelected = selectedTheme === option.id
-					return (
-						<button
-							key={option.id}
-							type="button"
-							onClick={() => setSelectedTheme(option.id)}
-							className="flex flex-1 flex-col items-center gap-4">
-							<div
-								className={`w-full overflow-hidden rounded-2xl ${
-									isSelected
-										? "ring-primary ring-offset-bg ring-[3px] ring-offset-2"
-										: ""
-								} ${
-									option.id === "dark" ? "bg-[#2f3237]" : "bg-fill4"
-								} h-[143px]`}>
-								{option.id === "system" && <SystemPreview />}
-								{option.id === "light" && (
-									<div className="flex h-full items-start justify-center pt-4">
-										<ThemePreviewLight />
-									</div>
-								)}
-								{option.id === "dark" && (
-									<div className="flex h-full items-start justify-center pt-4">
-										<ThemePreviewDark />
-									</div>
-								)}
-							</div>
-							{isSelected ? (
-								<Badge variant="strong" color="primary" size="24">
-									{option.label}
-								</Badge>
-							) : (
-								<span className="text-fg text-[13px] font-medium">
-									{option.label}
-								</span>
-							)}
-						</button>
-					)
-				})}
+				{themeOptions.map((theme) => (
+					<button
+						key={theme.id}
+						type="button"
+						onClick={() => setSelectedTheme(theme.id)}
+						className="flex flex-1 flex-col items-center gap-4">
+						<div
+							className={cn(
+								"w-full overflow-hidden rounded-2xl transition-all",
+								selectedTheme === theme.id &&
+									"ring-primary ring-offset-bg ring-[3px] ring-offset-2"
+							)}>
+							{previews[theme.id]}
+						</div>
+						{selectedTheme === theme.id ? (
+							<Badge variant="strong" color="primary" size="24">
+								{theme.label}
+							</Badge>
+						) : (
+							<span className="text-fg text-[13px] font-medium">
+								{theme.label}
+							</span>
+						)}
+					</button>
+				))}
 			</div>
 
-			{/* Action Buttons */}
+			{/* Actions */}
 			<div className="flex gap-3">
 				<Button
+					type="button"
 					variant="outline"
 					color="neutral"
+					size="36"
 					className="flex-1"
-					type="button"
 					onClick={onSkip}>
 					Skip
 				</Button>
 				<Button
+					type="button"
 					variant="strong"
 					color="primary"
+					size="36"
 					className="flex-1"
-					type="button"
 					onClick={onNext}>
 					Continue
 				</Button>

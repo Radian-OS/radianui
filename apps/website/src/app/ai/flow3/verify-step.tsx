@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Button } from "@/registry/ui/button"
@@ -8,15 +8,10 @@ import { Divider } from "@/registry/ui/divider"
 import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
 
 export default function VerifyStep({ onNext }: { onNext: () => void }) {
-	const [otp, setOtp] = useState("")
-	const [error, setError] = useState("")
+	const formRef = useRef<HTMLFormElement>(null)
 
-	function handleVerify() {
-		if (otp.length < 6) {
-			setError("Please enter the full 6-digit code")
-			return
-		}
-		setError("")
+	function handleSubmit(e: React.FormEvent) {
+		e.preventDefault()
 		onNext()
 	}
 
@@ -39,33 +34,29 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 				</div>
 			</div>
 
-			{/* OTP + Actions */}
+			{/* OTP Form */}
 			<div className="flex flex-col gap-6">
-				<div className="flex flex-col gap-5">
-					<OTPField
-						value={otp}
-						onValueChange={setOtp}
-						size="48"
-						className="justify-between">
+				<form
+					ref={formRef}
+					onSubmit={handleSubmit}
+					className="flex flex-col gap-5">
+					<OTPField size="48" className="flex justify-between">
 						{Array.from({ length: 6 }).map((_, i) => (
-							<OTPInput key={i} index={i} />
+							<OTPInput key={i} />
 						))}
 						<OTPHiddenInput />
 					</OTPField>
 
-					{error && <p className="text-error-text text-xs">{error}</p>}
-
 					<div className="flex flex-col gap-3">
 						<Button
-							type="button"
+							type="submit"
 							variant="strong"
 							color="primary"
 							size="36"
-							className="w-full"
-							onClick={handleVerify}>
+							className="w-full">
 							Verify Code
 						</Button>
-						<p className="text-fg-tertiary text-center text-sm">
+						<p className="text-fg-secondary text-center text-sm">
 							Didn&apos;t receive the code?{" "}
 							<Link
 								href="#"
@@ -74,7 +65,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 							</Link>
 						</p>
 					</div>
-				</div>
+				</form>
 
 				{/* Divider */}
 				<Divider />

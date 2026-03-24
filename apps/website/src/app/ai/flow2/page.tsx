@@ -1,31 +1,31 @@
 "use client"
 
 import { useState } from "react"
-import AuthLayout from "./_components/auth-layout"
-import InviteStep from "./_components/invite-step"
-import PersonalInfoStep from "./_components/personal-info-step"
-import SignupStep from "./_components/signup-step"
-import UsecaseStep from "./_components/usecase-step"
-import VerifyStep from "./_components/verify-step"
+import AuthLayout from "./auth-layout"
+import InviteStep from "./invite-step"
+import PersonalInfoStep from "./personal-info-step"
+import SignupStep from "./signup-step"
+import UseCaseStep from "./use-case-step"
+import VerifyStep from "./verify-step"
 
 export default function Flow2Page() {
 	const [step, setStep] = useState(1)
 
-	function nextStep() {
-		setStep((prev) => Math.min(prev + 1, 5))
-	}
-
 	const showHeader = step >= 3
-	const email = showHeader ? "design@radian.com" : undefined
 
 	return (
-		<AuthLayout showHeader={showHeader} email={email}>
-			{step === 1 && <SignupStep onNext={nextStep} />}
-			{step === 2 && <VerifyStep onNext={nextStep} />}
-			{step === 3 && <PersonalInfoStep onNext={nextStep} />}
-			{step === 4 && <UsecaseStep onNext={nextStep} />}
+		<AuthLayout showHeader={showHeader}>
+			{step === 1 && <SignupStep onNext={() => setStep(2)} />}
+			{step === 2 && <VerifyStep onNext={() => setStep(3)} />}
+			{step === 3 && <PersonalInfoStep onNext={() => setStep(4)} />}
+			{step === 4 && (
+				<UseCaseStep onNext={() => setStep(5)} onSkip={() => setStep(5)} />
+			)}
 			{step === 5 && (
-				<InviteStep onNext={() => console.log("Onboarding complete!")} />
+				<InviteStep
+					onNext={() => alert("Onboarding complete!")}
+					onSkip={() => alert("Onboarding complete!")}
+				/>
 			)}
 		</AuthLayout>
 	)

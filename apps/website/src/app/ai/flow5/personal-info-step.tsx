@@ -1,11 +1,8 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Upload } from "lucide-react"
-import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
 import {
 	Form,
@@ -27,12 +24,22 @@ import {
 const personalInfoSchema = z.object({
 	firstName: z.string().min(1, "First name is required"),
 	lastName: z.string().min(1, "Last name is required"),
+	company: z.string().min(1, "Company name is required"),
+	companySize: z.string().min(1, "Please select company size"),
 	role: z.string().min(1, "Please select your role"),
-	department: z.string().min(1, "Please select your department"),
 	hearAbout: z.string().min(1, "Please select an option"),
 })
 
 type PersonalInfoFormValues = z.infer<typeof personalInfoSchema>
+
+const companySizes = [
+	{ value: "1-10", label: "1-10" },
+	{ value: "11-50", label: "11-50" },
+	{ value: "51-200", label: "51-200" },
+	{ value: "201-500", label: "201-500" },
+	{ value: "501-1000", label: "501-1000" },
+	{ value: "1001+", label: "1001+" },
+]
 
 const roles = [
 	{ value: "designer", label: "Designer" },
@@ -41,18 +48,6 @@ const roles = [
 	{ value: "marketing", label: "Marketing" },
 	{ value: "sales", label: "Sales" },
 	{ value: "founder", label: "Founder / CEO" },
-	{ value: "student", label: "Student" },
-	{ value: "other", label: "Other" },
-]
-
-const departments = [
-	{ value: "engineering", label: "Engineering" },
-	{ value: "design", label: "Design" },
-	{ value: "product", label: "Product" },
-	{ value: "marketing", label: "Marketing" },
-	{ value: "sales", label: "Sales" },
-	{ value: "hr", label: "Human Resources" },
-	{ value: "finance", label: "Finance" },
 	{ value: "other", label: "Other" },
 ]
 
@@ -72,8 +67,9 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 		defaultValues: {
 			firstName: "",
 			lastName: "",
+			company: "",
+			companySize: "",
 			role: "",
-			department: "",
 			hearAbout: "",
 		},
 	})
@@ -83,64 +79,23 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 	}
 
 	return (
-		<div className="flex w-full max-w-[480px] flex-col gap-8">
-			{/* Header */}
-			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
-				<div className="flex flex-col gap-2">
-					<h1 className="heading-5">Personalize your account</h1>
+		<div className="border-soft bg-bg w-full max-w-[480px] rounded-2xl border p-6 md:p-8">
+			<div className="flex flex-col gap-8">
+				{/* Header */}
+				<div className="flex flex-col gap-2 text-center">
+					<h1 className="heading-5">Personal Information</h1>
 					<p className="text-fg-secondary text-sm">
-						Add your details to personalize your experience.
+						A few details about you and your company.
 					</p>
 				</div>
-			</div>
 
-			{/* Form */}
-			<div className="flex flex-col gap-5">
+				{/* Form */}
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="flex flex-col gap-6">
-						{/* Avatar Upload */}
-						<div className="flex items-start gap-3">
-							<Avatar size="64" rounded="square">
-								<AvatarFallback>AB</AvatarFallback>
-							</Avatar>
-							<div className="flex flex-1 flex-col gap-2">
-								<p className="text-fg text-sm font-medium">Profile Picture</p>
-								<div className="flex gap-3">
-									<Button
-										type="button"
-										variant="outline"
-										color="neutral"
-										size="28">
-										<Upload className="size-4" />
-										Upload Image
-									</Button>
-									<Button
-										type="button"
-										variant="outline"
-										color="neutral"
-										size="28"
-										className="opacity-50"
-										disabled>
-										Remove
-									</Button>
-								</div>
-								<p className="text-fg-tertiary text-xs">
-									Preferred size 1:1, up to 5MB
-								</p>
-							</div>
-						</div>
-
-						{/* Form Fields */}
+						className="flex flex-col gap-5">
 						<div className="flex flex-col gap-4">
+							{/* First Name / Last Name */}
 							<div className="grid grid-cols-2 gap-4">
 								<FormField
 									control={form.control}
@@ -170,39 +125,27 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 								/>
 							</div>
 
+							{/* Company / Company Size */}
 							<div className="grid grid-cols-2 gap-4">
 								<FormField
 									control={form.control}
-									name="role"
+									name="company"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>What is your role?</FormLabel>
-											<Select
-												onValueChange={field.onChange}
-												value={field.value}>
-												<FormControl>
-													<SelectTrigger>
-														<SelectValue placeholder="Select..." />
-													</SelectTrigger>
-												</FormControl>
-												<SelectContent>
-													{roles.map((role) => (
-														<SelectItem key={role.value} value={role.value}>
-															{role.label}
-														</SelectItem>
-													))}
-												</SelectContent>
-											</Select>
+											<FormLabel>Company</FormLabel>
+											<FormControl>
+												<Input placeholder="" {...field} />
+											</FormControl>
 											<FormMessage />
 										</FormItem>
 									)}
 								/>
 								<FormField
 									control={form.control}
-									name="department"
+									name="companySize"
 									render={({ field }) => (
 										<FormItem>
-											<FormLabel>Department</FormLabel>
+											<FormLabel>Company Size</FormLabel>
 											<Select
 												onValueChange={field.onChange}
 												value={field.value}>
@@ -212,9 +155,9 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 													</SelectTrigger>
 												</FormControl>
 												<SelectContent>
-													{departments.map((dept) => (
-														<SelectItem key={dept.value} value={dept.value}>
-															{dept.label}
+													{companySizes.map((size) => (
+														<SelectItem key={size.value} value={size.value}>
+															{size.label}
 														</SelectItem>
 													))}
 												</SelectContent>
@@ -225,12 +168,39 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 								/>
 							</div>
 
+							{/* Role */}
+							<FormField
+								control={form.control}
+								name="role"
+								render={({ field }) => (
+									<FormItem>
+										<FormLabel>What&apos;s your role?</FormLabel>
+										<Select onValueChange={field.onChange} value={field.value}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder="Select..." />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												{roles.map((role) => (
+													<SelectItem key={role.value} value={role.value}>
+														{role.label}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+
+							{/* How did you hear about us */}
 							<FormField
 								control={form.control}
 								name="hearAbout"
 								render={({ field }) => (
 									<FormItem>
-										<FormLabel>How did you hear about us ?</FormLabel>
+										<FormLabel>How did you hear about us?</FormLabel>
 										<Select onValueChange={field.onChange} value={field.value}>
 											<FormControl>
 												<SelectTrigger>

@@ -1,6 +1,7 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
@@ -76,7 +77,11 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 									<FormItem>
 										<FormLabel>Email Address</FormLabel>
 										<FormControl>
-											<Input type="email" placeholder="" {...field} />
+											<Input
+												type="email"
+												placeholder="Enter your email"
+												{...field}
+											/>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -89,13 +94,26 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 									<FormItem>
 										<FormLabel>Password</FormLabel>
 										<FormControl>
-											<Input type="password" placeholder="" {...field} />
+											<div className="relative">
+												<Input
+													type="password"
+													placeholder="Enter your password"
+													className="pr-10"
+													{...field}
+												/>
+												<button
+													type="button"
+													className="text-fg-tertiary absolute right-2.5 top-1/2 -translate-y-1/2">
+													<Eye className="size-5" />
+												</button>
+											</div>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
 						</div>
+
 						<Button
 							type="submit"
 							variant="strong"

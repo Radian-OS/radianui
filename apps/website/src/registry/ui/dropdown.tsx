@@ -322,7 +322,7 @@ function DropdownDivider({ className, ...props }: DropdownDividerProps) {
 	return (
 		<DropdownMenuPrimitive.Separator
 			data-slot="dropdown-menu-separator"
-			className={cn("bg-soft-alpha -mx-1 my-1 h-px", className)}
+			className={cn("bg-soft-alpha -mx-1.5 my-1 h-px", className)}
 			{...props}
 		/>
 	)

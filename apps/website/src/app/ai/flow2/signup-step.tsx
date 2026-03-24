@@ -64,6 +64,32 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 
 			{/* Form */}
 			<div className="flex flex-col gap-6">
+				{/* Google Button */}
+				<Button
+					type="button"
+					variant="outline"
+					color="neutral"
+					size="36"
+					className="w-full">
+					<Image
+						src="https://www.google.com/s2/favicons?sz=32&domain=google.com"
+						alt="Google"
+						width={20}
+						height={20}
+					/>
+					Continue with Google
+				</Button>
+
+				{/* Divider */}
+				<div className="flex items-center gap-2">
+					<Divider className="flex-1" />
+					<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">
+						Or
+					</span>
+					<Divider className="flex-1" />
+				</div>
+
+				{/* Email & Password Form */}
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
@@ -96,58 +122,33 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 								)}
 							/>
 						</div>
-						<Button
-							type="submit"
-							variant="strong"
-							color="primary"
-							size="36"
-							className="w-full">
-							Create an account
-						</Button>
+
+						<div className="flex flex-col gap-3">
+							<Button
+								type="submit"
+								variant="strong"
+								color="primary"
+								size="36"
+								className="w-full">
+								Create account
+							</Button>
+							<p className="text-fg-secondary text-[13px]">
+								By signing up, you agree to Radian&apos;s{" "}
+								<Link
+									href="#"
+									className="text-primary font-medium hover:underline">
+									Terms of Service
+								</Link>{" "}
+								and{" "}
+								<Link
+									href="#"
+									className="text-primary font-medium hover:underline">
+									Privacy Policy
+								</Link>
+							</p>
+						</div>
 					</form>
 				</Form>
-
-				{/* Divider */}
-				<div className="flex items-center gap-2">
-					<Divider className="flex-1" />
-					<span className="text-fg-tertiary whitespace-nowrap text-sm font-medium">
-						Or continue with
-					</span>
-					<Divider className="flex-1" />
-				</div>
-
-				{/* Social Buttons */}
-				<div className="flex gap-3">
-					<Button
-						type="button"
-						variant="outline"
-						color="neutral"
-						size="36"
-						className="flex-1">
-						<Image
-							src="https://www.google.com/s2/favicons?sz=32&domain=google.com"
-							alt="Google"
-							width={20}
-							height={20}
-						/>
-						Google
-					</Button>
-					<Button
-						type="button"
-						variant="outline"
-						color="neutral"
-						size="36"
-						className="flex-1">
-						<Image
-							src="https://authjs.dev/img/providers/github.svg"
-							alt="Github"
-							width={20}
-							height={20}
-							className="dark:invert"
-						/>
-						Github
-					</Button>
-				</div>
 			</div>
 		</div>
 	)
