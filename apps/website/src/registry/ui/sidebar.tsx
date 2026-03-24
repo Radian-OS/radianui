@@ -79,7 +79,6 @@ export type SidebarTriggerProps = Omit<
 > & {
 	children?: React.ReactNode
 }
-
 export type SidebarRailProps = React.ComponentProps<"button">
 export type SidebarInsetProps = React.ComponentProps<"main">
 export type SidebarInputProps = React.ComponentProps<typeof Input>
@@ -134,6 +133,7 @@ export const sidebarMenuButtonVariants = cva(
 				"32": "h-8 text-sm group-data-[state=collapsed]:p-1.5!",
 				"48": "h-12 text-sm group-data-[collapsible=icon]:p-0!",
 				"52": "h-13 text-sm group-data-[collapsible=icon]:p-0!",
+				"56": "h-14 p-4 text-sm [&>svg]:size-6! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! group-data-[collapsible=icon]:h-14!",
 			},
 		},
 		defaultVariants: {
@@ -598,6 +598,10 @@ function SidebarTrigger({
 	...props
 }: SidebarTriggerProps) {
 	const { toggleSidebar } = useSidebar()
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		onClick?.(event)
+		toggleSidebar()
+	}
 	return (
 		<IconButton
 			data-sidebar="trigger"
@@ -607,12 +611,11 @@ function SidebarTrigger({
 			color="neutral"
 			size="32"
 			className={className}
-			onClick={(event) => {
-				onClick?.(event)
-				toggleSidebar()
-			}}
+			onClick={handleClick}
 			{...props}>
-			{children || (
+			{children ? (
+				children
+			) : (
 				<>
 					<PanelLeftIcon />
 					<span className="sr-only">Toggle Sidebar</span>
@@ -970,7 +973,7 @@ function SidebarMenuSubButton({
 			data-size={size}
 			data-active={isActive}
 			className={cn(
-				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-active:bg-sidebar-accent data-active:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg outline-hidden flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-fg [&>svg]:text-sidebar-accent-fg outline-hidden flex min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>a:last-child]:min-w-0 [&>a:last-child]:truncate [&>span:last-child]:min-w-0 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
 				size === "28" && "h-7 text-xs",
 				size === "32" && "h-8 text-sm",
 				"group-data-[collapsible=icon]:hidden",
