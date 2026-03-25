@@ -3,6 +3,8 @@
 import { LogOut } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { Button } from "@/registry/ui/button"
+import { Radian } from "../icon/radian"
 
 interface AuthLayoutProps {
 	children: React.ReactNode
@@ -14,23 +16,20 @@ export default function AuthLayout({
 	showHeader = false,
 }: AuthLayoutProps) {
 	return (
-		<div className="flex min-h-screen w-full bg-white">
+		<div className="flex min-h-screen w-full">
 			{/* Left side - Form */}
 			<div className="relative flex flex-1 flex-col">
 				{showHeader && (
 					<div className="flex items-center justify-between p-8">
-						<Image
-							src="https://radianos.com/favicon.ico"
-							alt="Radian Logo"
-							width={32}
-							height={32}
-							className="rounded-lg"
-						/>
+						<Radian />
 						<div className="flex items-center gap-1">
-							<button className="text-fg-secondary flex items-center gap-1 text-sm font-medium">
+							<Button
+								variant="ghost"
+								color="neutral"
+								className="text-fg-secondary flex items-center gap-1 text-sm font-medium">
 								<LogOut className="size-5" />
 								Sign out
-							</button>
+							</Button>
 							<span className="text-fg-tertiary text-sm">
 								(design@radian.com)
 							</span>
@@ -54,7 +53,7 @@ export default function AuthLayout({
 			<div className="hidden p-6 lg:flex lg:flex-1">
 				<div className="relative w-full overflow-hidden rounded-2xl">
 					<Image
-						src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920&q=80"
+						src="/media/background-2.jpg"
 						alt="Decorative gradient"
 						fill
 						className="object-cover"

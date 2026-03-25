@@ -1,21 +1,16 @@
 "use client"
 
-import { Mail } from "lucide-react"
-import Image from "next/image"
+import { GmailIcon } from "@/components/home/gmail-icon"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
+import { OutlookIcon } from "../icon/outlook"
+import { Radian } from "../icon/radian"
 
 export default function VerifyStep({ onNext }: { onNext: () => void }) {
 	return (
 		<div className="flex w-full max-w-[360px] flex-col gap-8">
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<div className="flex flex-col gap-2">
 					<h5 className="heading-5">Verify your email</h5>
 					<p className="text-fg-secondary text-sm">
@@ -56,7 +51,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 						color="neutral"
 						size="36"
 						className="flex-1">
-						<Mail className="size-5" />
+						<GmailIcon />
 						Open Gmail
 					</Button>
 					<Button
@@ -65,12 +60,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 						color="neutral"
 						size="36"
 						className="flex-1">
-						<Image
-							src="https://www.google.com/s2/favicons?sz=32&domain=outlook.com"
-							alt="Outlook"
-							width={20}
-							height={20}
-						/>
+						<OutlookIcon />
 						Open Outlook
 					</Button>
 				</div>

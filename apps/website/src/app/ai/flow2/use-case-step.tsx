@@ -11,6 +11,9 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
+import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
 
 const useCaseOptions = [
 	{
@@ -58,12 +61,17 @@ export default function UseCaseStep({
 	onNext: () => void
 	onSkip: () => void
 }) {
-	const [selected, setSelected] = useState<string | null>(null)
+	const [selected, setSelected] = useState<string>("")
+	const [otherText, setOtherText] = useState("")
 	const [error, setError] = useState("")
 
 	function handleContinue() {
 		if (!selected) {
 			setError("Please select an option")
+			return
+		}
+		if (selected === "other" && !otherText.trim()) {
+			setError("Please tell us more")
 			return
 		}
 		setError("")
@@ -73,46 +81,41 @@ export default function UseCaseStep({
 	return (
 		<div className="flex w-full max-w-[480px] flex-col gap-8">
 			{/* Header */}
-			<div className="flex flex-col gap-2">
-				<h1 className="heading-5">How do you plan to use Radian?</h1>
-				<p className="text-fg-secondary text-sm">
-					If you have multiple reasons for using Radian, pick the key ones.
-				</p>
+			<div className="flex flex-col gap-6">
+				<div className="flex flex-col gap-2">
+					<h1 className="heading-5">What will you use Radian for?</h1>
+					<p className="text-fg-secondary text-sm">
+						If you have multiple reasons for using Radian, pick the key ones.
+					</p>
+				</div>
 			</div>
 
 			{/* Options Grid */}
 			<div className="flex flex-col gap-3">
-				<div className="grid grid-cols-2 gap-3">
+				<RadioGroup
+					value={selected}
+					onValueChange={(value) => {
+						setSelected(value)
+						setError("")
+					}}
+					className="grid grid-cols-2 gap-3">
 					{useCaseOptions.map((option) => {
 						const Icon = option.icon
 						const isSelected = selected === option.id
 						return (
-							<button
+							<Label
 								key={option.id}
-								type="button"
-								onClick={() => {
-									setSelected(option.id)
-									setError("")
-								}}
 								className={cn(
-									"shadow-xs flex flex-col gap-5 rounded-lg border p-4 text-left transition-all",
+									"shadow-xs flex cursor-pointer flex-col gap-5 rounded-lg border p-4 text-left transition-all",
 									isSelected
-										? "border-primary"
+										? "border-primary bg-bg"
 										: "border-soft bg-elevation-level1 hover:border-alpha"
 								)}>
 								<div className="flex w-full items-start justify-between">
-									<Icon className="text-fg size-5" />
-									<div
-										className={cn(
-											"flex size-5 items-center justify-center rounded-full border transition-all",
-											isSelected
-												? "bg-primary border-none"
-												: "border-alpha bg-white"
-										)}>
-										{isSelected && (
-											<div className="size-2.5 rounded-full bg-white" />
-										)}
+									<div className="flex items-center justify-center rounded-lg p-2">
+										<Icon className="size-5" />
 									</div>
+									<RadioGroupItem value={option.id} />
 								</div>
 								<div className="flex flex-col gap-0.5">
 									<span className="text-fg text-sm font-medium">
@@ -122,10 +125,18 @@ export default function UseCaseStep({
 										{option.description}
 									</span>
 								</div>
-							</button>
+							</Label>
 						)
 					})}
-				</div>
+				</RadioGroup>
+
+				{selected === "other" && (
+					<Input
+						placeholder="Tell us more"
+						value={otherText}
+						onChange={(e) => setOtherText(e.target.value)}
+					/>
+				)}
 
 				{error && <p className="text-error-text text-xs">{error}</p>}
 			</div>

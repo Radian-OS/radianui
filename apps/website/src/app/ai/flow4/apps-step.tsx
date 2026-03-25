@@ -46,6 +46,7 @@ export default function AppsStep({
 	onSkip: () => void
 }) {
 	const [selected, setSelected] = useState<string[]>([])
+	const [error, setError] = useState("")
 
 	function toggleApp(appId: string) {
 		setSelected((prev) =>
@@ -53,6 +54,15 @@ export default function AppsStep({
 				? prev.filter((id) => id !== appId)
 				: [...prev, appId]
 		)
+		if (error) setError("")
+	}
+
+	function handleContinue() {
+		if (selected.length === 0) {
+			setError("Please select at least one app")
+			return
+		}
+		onNext()
 	}
 
 	return (
@@ -79,18 +89,30 @@ export default function AppsStep({
 										? "border-primary bg-primary-focus"
 										: "border-soft bg-bg hover:bg-fill1-alpha"
 								}`}>
-								<Image src={app.icon} alt={app.name} width={20} height={20} />
+								<Image
+									src={app.icon}
+									alt={app.name}
+									width={20}
+									height={20}
+									className={
+										app.id === "github" || app.id === "dribbble"
+											? "bg-bg rounded-full"
+											: ""
+									}
+								/>
 								<span className="text-fg flex-1 text-left text-sm">
 									{app.name}
 								</span>
 								<Checkbox
 									checked={isSelected}
+									onClick={() => toggleApp(app.id)}
 									onCheckedChange={() => toggleApp(app.id)}
 								/>
 							</div>
 						)
 					})}
 				</div>
+				{error && <p className="text-error-text text-sm">{error}</p>}
 
 				{/* Actions */}
 				<div className="flex gap-3">
@@ -109,7 +131,7 @@ export default function AppsStep({
 						color="primary"
 						size="36"
 						className="flex-1"
-						onClick={onNext}>
+						onClick={handleContinue}>
 						Continue
 					</Button>
 				</div>

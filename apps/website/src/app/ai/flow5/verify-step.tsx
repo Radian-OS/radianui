@@ -1,11 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
+import { GmailIcon } from "@/components/home/gmail-icon"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { Input } from "@/registry/ui/input"
+import { OutlookIcon } from "../icon/outlook"
 
 export default function VerifyStep({ onNext }: { onNext: () => void }) {
 	const [code, setCode] = useState("")
@@ -82,12 +83,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 							color="neutral"
 							size="36"
 							className="flex-1">
-							<Image
-								src="https://www.google.com/s2/favicons?sz=32&domain=gmail.com"
-								alt="Gmail"
-								width={20}
-								height={20}
-							/>
+							<GmailIcon />
 							Open Gmail
 						</Button>
 						<Button
@@ -96,12 +92,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 							color="neutral"
 							size="36"
 							className="flex-1">
-							<Image
-								src="https://www.google.com/s2/favicons?sz=32&domain=outlook.com"
-								alt="Outlook"
-								width={20}
-								height={20}
-							/>
+							<OutlookIcon />
 							Open Outlook
 						</Button>
 					</div>

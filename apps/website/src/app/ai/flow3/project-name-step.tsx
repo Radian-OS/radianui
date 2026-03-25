@@ -1,7 +1,6 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/registry/ui/button"
@@ -15,10 +14,11 @@ import {
 } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
 import { TextArea } from "@/registry/ui/text-area"
+import { Radian } from "../icon/radian"
 
 const projectNameSchema = z.object({
 	projectName: z.string().min(1, "Project name is required"),
-	projectDescription: z.string().optional(),
+	projectDescription: z.string().min(1, "Project description is required"),
 })
 
 type ProjectNameFormValues = z.infer<typeof projectNameSchema>
@@ -40,13 +40,7 @@ export default function ProjectNameStep({ onNext }: { onNext: () => void }) {
 		<div className="flex w-full max-w-[480px] flex-col gap-8">
 			{/* Header */}
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Set your project name</h1>
 					<p className="text-fg-secondary text-sm">

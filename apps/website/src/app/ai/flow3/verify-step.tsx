@@ -1,17 +1,24 @@
 "use client"
 
-import { useRef } from "react"
-import Image from "next/image"
+import { useState } from "react"
 import Link from "next/link"
+import { GmailIcon } from "@/components/home/gmail-icon"
 import { Button } from "@/registry/ui/button"
 import { Divider } from "@/registry/ui/divider"
 import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
+import { OutlookIcon } from "../icon/outlook"
+import { Radian } from "../icon/radian"
 
 export default function VerifyStep({ onNext }: { onNext: () => void }) {
-	const formRef = useRef<HTMLFormElement>(null)
+	const [otp, setOtp] = useState("")
+	const [error, setError] = useState("")
 
-	function handleSubmit(e: React.FormEvent) {
-		e.preventDefault()
+	function handleVerify() {
+		if (otp.length < 6) {
+			setError("Please enter the full 6-digit code")
+			return
+		}
+		setError("")
 		onNext()
 	}
 
@@ -19,13 +26,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 		<div className="flex w-full max-w-[360px] flex-col gap-8">
 			{/* Header */}
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Verify your email</h1>
 					<p className="text-fg-secondary text-sm">
@@ -36,16 +37,18 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 
 			{/* OTP Form */}
 			<div className="flex flex-col gap-6">
-				<form
-					ref={formRef}
-					onSubmit={handleSubmit}
-					className="flex flex-col gap-5">
-					<OTPField size="48" className="flex justify-between">
+				<div className="flex flex-col gap-5">
+					<OTPField
+						value={otp}
+						onValueChange={setOtp}
+						className="justify-between">
 						{Array.from({ length: 6 }).map((_, i) => (
-							<OTPInput key={i} />
+							<OTPInput className="size-13" key={i} index={i} />
 						))}
 						<OTPHiddenInput />
 					</OTPField>
+
+					{error && <p className="text-error-text text-xs">{error}</p>}
 
 					<div className="flex flex-col gap-3">
 						<Button
@@ -53,7 +56,8 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 							variant="strong"
 							color="primary"
 							size="36"
-							className="w-full">
+							className="w-full"
+							onClick={handleVerify}>
 							Verify Code
 						</Button>
 						<p className="text-fg-secondary text-center text-sm">
@@ -65,7 +69,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 							</Link>
 						</p>
 					</div>
-				</form>
+				</div>
 
 				{/* Divider */}
 				<Divider />
@@ -78,12 +82,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 						color="neutral"
 						size="36"
 						className="flex-1">
-						<Image
-							src="https://www.google.com/s2/favicons?sz=32&domain=gmail.com"
-							alt="Gmail"
-							width={20}
-							height={20}
-						/>
+						<GmailIcon />
 						Open Gmail
 					</Button>
 					<Button
@@ -92,12 +91,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 						color="neutral"
 						size="36"
 						className="flex-1">
-						<Image
-							src="https://www.google.com/s2/favicons?sz=32&domain=outlook.com"
-							alt="Outlook"
-							width={20}
-							height={20}
-						/>
+						<OutlookIcon />
 						Open Outlook
 					</Button>
 				</div>

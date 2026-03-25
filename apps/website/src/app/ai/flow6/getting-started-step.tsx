@@ -9,9 +9,10 @@ import {
 	Smartphone,
 	User,
 } from "lucide-react"
-import Image from "next/image"
 import { Button } from "@/registry/ui/button"
+import { Label } from "@/registry/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
+import { Radian } from "../icon/radian"
 
 const designTemplates = [
 	{
@@ -58,13 +59,7 @@ export default function GettingStartedStep({ onNext }: { onNext: () => void }) {
 	return (
 		<div className="flex w-full max-w-[400px] flex-col gap-8">
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<div className="flex flex-col gap-2">
 					<h5 className="heading-5">Let&apos;s create your first Design!</h5>
 					<p className="text-fg-secondary text-sm">
@@ -82,7 +77,7 @@ export default function GettingStartedStep({ onNext }: { onNext: () => void }) {
 						const Icon = template.icon
 						const isSelected = selected === template.value
 						return (
-							<label
+							<Label
 								key={template.value}
 								className={`flex cursor-pointer flex-col gap-5 rounded-lg border p-4 transition-colors ${
 									isSelected
@@ -105,7 +100,7 @@ export default function GettingStartedStep({ onNext }: { onNext: () => void }) {
 										{template.size}
 									</span>
 								</div>
-							</label>
+							</Label>
 						)
 					})}
 				</RadioGroup>

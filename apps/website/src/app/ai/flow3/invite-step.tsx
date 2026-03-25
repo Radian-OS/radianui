@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Copy, Link2 } from "lucide-react"
-import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/registry/ui/button"
@@ -16,6 +15,7 @@ import {
 	FormMessage,
 } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
+import { Radian } from "../icon/radian"
 
 const inviteSchema = z.object({
 	email: z.string().email("Please enter a valid email").or(z.literal("")),
@@ -43,13 +43,7 @@ export default function InviteStep({
 		<div className="flex w-full max-w-[480px] flex-col gap-8">
 			{/* Header */}
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Invite your Team</h1>
 					<p className="text-fg-secondary text-sm">
@@ -61,8 +55,8 @@ export default function InviteStep({
 			{/* Content */}
 			<div className="flex flex-col gap-5">
 				{/* Share Link Card */}
-				<div className="border-soft flex items-center gap-3 rounded-[10px] border bg-[#fafafa] p-3">
-					<div className="border-alpha shadow-xs flex size-9 shrink-0 items-center justify-center rounded-lg border bg-white">
+				<div className="border-soft bg-fill1 flex items-center gap-3 rounded-[10px] border p-3">
+					<div className="border-alpha shadow-xs flex size-9 shrink-0 items-center justify-center rounded-lg border">
 						<Link2 className="text-fg size-5" />
 					</div>
 					<div className="flex flex-1 flex-col gap-0.5">

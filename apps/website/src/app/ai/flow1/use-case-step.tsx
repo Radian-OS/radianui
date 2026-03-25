@@ -9,10 +9,12 @@ import {
 	Pencil,
 	User,
 } from "lucide-react"
-import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
+import { Radian } from "../icon/radian"
 
 const useCaseOptions = [
 	{ id: "personal", label: "Personal Project", icon: User },
@@ -30,7 +32,7 @@ export default function UseCaseStep({
 	onNext: () => void
 	onSkip: () => void
 }) {
-	const [selected, setSelected] = useState<string | null>(null)
+	const [selected, setSelected] = useState<string>("")
 	const [otherText, setOtherText] = useState("")
 	const [error, setError] = useState("")
 
@@ -51,13 +53,7 @@ export default function UseCaseStep({
 		<div className="flex w-full max-w-[480px] flex-col gap-8">
 			{/* Header */}
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">What will you use Radian for?</h1>
 					<p className="text-fg-secondary text-sm">
@@ -68,20 +64,21 @@ export default function UseCaseStep({
 
 			{/* Options Grid */}
 			<div className="flex flex-col gap-3">
-				<div className="grid grid-cols-2 gap-3">
+				<RadioGroup
+					value={selected}
+					onValueChange={(value) => {
+						setSelected(value)
+						setError("")
+					}}
+					className="grid grid-cols-2 gap-3">
 					{useCaseOptions.map((option) => {
 						const Icon = option.icon
 						const isSelected = selected === option.id
 						return (
-							<button
+							<Label
 								key={option.id}
-								type="button"
-								onClick={() => {
-									setSelected(option.id)
-									setError("")
-								}}
 								className={cn(
-									"shadow-xs flex flex-col gap-5 rounded-lg border p-4 text-left transition-all",
+									"shadow-xs flex cursor-pointer flex-col gap-5 rounded-lg border p-4 text-left transition-all",
 									isSelected
 										? "border-primary bg-bg"
 										: "border-soft bg-elevation-level1 hover:border-alpha"
@@ -90,25 +87,15 @@ export default function UseCaseStep({
 									<div className="bg-primary-accent flex items-center justify-center rounded-lg p-2">
 										<Icon className="text-primary size-6" />
 									</div>
-									<div
-										className={cn(
-											"flex size-5 items-center justify-center rounded-full border transition-all",
-											isSelected
-												? "bg-primary border-none"
-												: "border-alpha bg-bg"
-										)}>
-										{isSelected && (
-											<div className="size-2.5 rounded-full bg-white" />
-										)}
-									</div>
+									<RadioGroupItem value={option.id} />
 								</div>
 								<span className="text-fg text-sm font-medium">
 									{option.label}
 								</span>
-							</button>
+							</Label>
 						)
 					})}
-				</div>
+				</RadioGroup>
 
 				{selected === "other" && (
 					<Input

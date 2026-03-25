@@ -1,9 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Eye, EyeOff } from "lucide-react"
-import Image from "next/image"
+import { EyeIcon, EyeOffIcon } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -17,7 +16,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
+import { Input, InputWrapper } from "@/registry/ui/input"
+import { GithubIcon } from "../icon/github"
+import { GoogleIcon } from "../icon/google"
+import { Radian } from "../icon/radian"
 
 const signupSchema = z.object({
 	firstName: z.string().min(1, "First name is required"),
@@ -36,6 +38,15 @@ type SignupFormValues = z.infer<typeof signupSchema>
 
 export default function SignupStep({ onNext }: { onNext: () => void }) {
 	const [showPassword, setShowPassword] = useState(false)
+	const inputRef = useRef<HTMLInputElement>(null)
+
+	function togglePasswordVisibility(e: React.MouseEvent) {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowPassword(!showPassword)
+	}
+
+	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
 
 	const form = useForm<SignupFormValues>({
 		resolver: zodResolver(signupSchema),
@@ -50,13 +61,7 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 		<div className="flex w-full max-w-[360px] flex-col gap-8">
 			{/* Header */}
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Sign up with email</h1>
 					<p className="text-fg-secondary text-sm">
@@ -127,24 +132,20 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 									<FormItem>
 										<FormLabel>Password</FormLabel>
 										<FormControl>
-											<div className="relative">
+											<InputWrapper>
 												<Input
-													type={showPassword ? "text" : "password"}
-													placeholder="Enter your password"
-													className="pr-10"
 													{...field}
+													id="toggle-visible-password"
+													ref={inputRef}
+													placeholder="Enter your password"
+													className="peer"
+													type={showPassword ? "text" : "password"}
 												/>
-												<button
-													type="button"
-													className="text-fg-tertiary hover:text-fg absolute right-2.5 top-1/2 -translate-y-1/2"
-													onClick={() => setShowPassword(!showPassword)}>
-													{showPassword ? (
-														<EyeOff className="size-5" />
-													) : (
-														<Eye className="size-5" />
-													)}
-												</button>
-											</div>
+												<IconComponent
+													className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
+													onMouseDown={togglePasswordVisibility}
+												/>
+											</InputWrapper>
 										</FormControl>
 										<FormMessage />
 									</FormItem>
@@ -195,12 +196,7 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 						color="neutral"
 						size="36"
 						className="flex-1">
-						<Image
-							src="https://www.google.com/s2/favicons?sz=32&domain=google.com"
-							alt="Google"
-							width={20}
-							height={20}
-						/>
+						<GoogleIcon />
 						Google
 					</Button>
 					<Button
@@ -209,13 +205,7 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 						color="neutral"
 						size="36"
 						className="flex-1">
-						<Image
-							src="https://authjs.dev/img/providers/github.svg"
-							alt="Github"
-							width={20}
-							height={20}
-							className="dark:invert"
-						/>
+						<GithubIcon />
 						Github
 					</Button>
 				</div>

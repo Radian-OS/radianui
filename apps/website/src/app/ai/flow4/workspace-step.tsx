@@ -1,11 +1,14 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Upload } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback } from "@/registry/ui/avatar"
 import { Button } from "@/registry/ui/button"
+import { useFileUpload } from "@/registry/ui/file-upload"
 import {
 	Form,
 	FormControl,
@@ -26,6 +29,8 @@ const workspaceSchema = z.object({
 
 type WorkspaceFormValues = z.infer<typeof workspaceSchema>
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
+
 export default function WorkspaceStep({
 	onNext,
 	onBack,
@@ -43,7 +48,31 @@ export default function WorkspaceStep({
 		},
 	})
 
+	const [avatarError, setAvatarError] = useState<string | null>(null)
+
+	const [
+		{ files, isDragging, errors: fileErrors },
+		{ removeFile, openFileDialog, getInputProps },
+	] = useFileUpload({
+		maxFiles: 1,
+		maxSize: MAX_FILE_SIZE,
+		accept: "image/*",
+		multiple: false,
+	})
+
+	const currentFile = files[0]
+	const previewUrl = currentFile?.preview
+
+	useEffect(() => {
+		if (currentFile) setAvatarError(null)
+	}, [currentFile])
+
 	function onSubmit() {
+		if (files.length === 0) {
+			setAvatarError("Profile picture is required")
+			return
+		}
+		setAvatarError(null)
 		onNext()
 	}
 
@@ -64,9 +93,28 @@ export default function WorkspaceStep({
 					className="flex flex-col gap-5">
 					{/* Avatar Upload */}
 					<div className="flex items-start gap-3">
-						<Avatar size="64" rounded="square">
-							<AvatarFallback>AB</AvatarFallback>
-						</Avatar>
+						<div
+							className={cn(
+								"relative size-16 shrink-0 cursor-pointer overflow-hidden rounded-lg transition-colors",
+								isDragging
+									? "border-primary bg-primary-focus"
+									: "border-fg-secondary hover:border-fg-tertiary",
+								previewUrl && "border-solid border-transparent"
+							)}
+							onClick={openFileDialog}>
+							<input {...getInputProps()} className="sr-only" />
+							{previewUrl ? (
+								<img
+									src={previewUrl}
+									alt="Profile picture"
+									className="h-full w-full object-cover"
+								/>
+							) : (
+								<Avatar size="64" rounded="square">
+									<AvatarFallback>AB</AvatarFallback>
+								</Avatar>
+							)}
+						</div>
 						<div className="flex flex-1 flex-col gap-2">
 							<p className="text-fg text-sm font-medium">Company Logo</p>
 							<div className="flex gap-3">
@@ -74,7 +122,8 @@ export default function WorkspaceStep({
 									type="button"
 									variant="outline"
 									color="neutral"
-									size="28">
+									size="28"
+									onClick={openFileDialog}>
 									<Upload className="size-4" />
 									Upload Image
 								</Button>
@@ -83,14 +132,23 @@ export default function WorkspaceStep({
 									variant="outline"
 									color="neutral"
 									size="28"
-									className="opacity-50"
-									disabled>
+									disabled={!currentFile}
+									className={cn(!currentFile && "opacity-50")}
+									onClick={() => {
+										if (currentFile) removeFile(currentFile.id)
+									}}>
 									Remove
 								</Button>
 							</div>
 							<p className="text-fg-tertiary text-xs">
 								Preferred size 1:1, up to 5MB
 							</p>
+							{fileErrors.length > 0 && (
+								<p className="text-error-text text-xs">{fileErrors[0]}</p>
+							)}
+							{avatarError && !fileErrors.length && (
+								<p className="text-error-text text-xs">{avatarError}</p>
+							)}
 						</div>
 					</div>
 

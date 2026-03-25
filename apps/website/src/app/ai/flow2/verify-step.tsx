@@ -1,7 +1,6 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import Image from "next/image"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -15,6 +14,7 @@ import {
 	FormMessage,
 } from "@/registry/ui/form"
 import { Input } from "@/registry/ui/input"
+import { Radian } from "../icon/radian"
 
 const verifySchema = z.object({
 	code: z
@@ -39,13 +39,8 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 		<div className="flex w-full max-w-[360px] flex-col gap-8">
 			{/* Header */}
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
+
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Verify your email</h1>
 					<p className="text-fg-secondary text-sm">

@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import Link from "next/link"
+import { Radian } from "../icon/radian"
 import PersonalInfoStep from "./personal-info-step"
 import SetupPreferencesStep from "./setup-preferences-step"
 import SignupStep from "./signup-step"
@@ -15,13 +15,7 @@ export default function Flow5Page() {
 		<div className="bg-fill1 relative flex min-h-screen items-center justify-center px-4 py-10">
 			{/* Logo */}
 			<div className="absolute left-6 top-6 flex items-center gap-2.5">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
 				<span className="text-fg font-heading text-lg font-semibold">
 					Radian
 				</span>

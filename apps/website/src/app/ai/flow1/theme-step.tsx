@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { Radian } from "../icon/radian"
 
 const themeOptions = [
 	{ id: "system", label: "System Default" },
@@ -132,13 +132,8 @@ export default function ThemeStep({
 		<div className="flex w-full max-w-[480px] flex-col gap-8">
 			{/* Header */}
 			<div className="flex flex-col gap-6">
-				<Image
-					src="https://radianos.com/favicon.ico"
-					alt="Radian Logo"
-					width={32}
-					height={32}
-					className="rounded-lg"
-				/>
+				<Radian />
+
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Personalize your experience</h1>
 					<p className="text-fg-secondary text-sm">

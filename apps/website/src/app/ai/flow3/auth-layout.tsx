@@ -9,11 +9,11 @@ interface AuthLayoutProps {
 
 export default function AuthLayout({ children }: AuthLayoutProps) {
 	return (
-		<div className="flex min-h-screen w-full bg-white">
+		<div className="flex min-h-screen w-full">
 			{/* Left side - Decorative image (edge-to-edge) */}
 			<div className="relative hidden lg:block lg:flex-1">
 				<Image
-					src="https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=1920&q=80"
+					src="/media/background-2.jpg"
 					alt="Decorative gradient"
 					fill
 					className="object-cover"
