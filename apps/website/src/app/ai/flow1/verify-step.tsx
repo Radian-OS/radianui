@@ -39,17 +39,19 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 			{/* OTP + Actions */}
 			<div className="flex flex-col gap-6">
 				<div className="flex flex-col gap-5">
-					<OTPField
-						value={otp}
-						onValueChange={setOtp}
-						className="justify-between">
-						{Array.from({ length: 6 }).map((_, i) => (
-							<OTPInput className="size-13" key={i} index={i} />
-						))}
-						<OTPHiddenInput />
-					</OTPField>
+					<div className="flex flex-col gap-1.5">
+						<OTPField
+							value={otp}
+							onValueChange={setOtp}
+							className="justify-between">
+							{Array.from({ length: 6 }).map((_, i) => (
+								<OTPInput className="size-13" key={i} index={i} />
+							))}
+							<OTPHiddenInput />
+						</OTPField>
 
-					{error && <p className="text-error-text text-xs">{error}</p>}
+						{error && <p className="text-error-text text-xs">{error}</p>}
+					</div>
 
 					<div className="flex flex-col gap-3">
 						<Button

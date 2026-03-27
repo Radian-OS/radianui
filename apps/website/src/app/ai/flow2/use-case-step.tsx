@@ -113,7 +113,9 @@ export default function UseCaseStep({
 								)}>
 								<div className="flex w-full items-start justify-between">
 									<div className="flex items-center justify-center rounded-lg p-2">
-										<Icon className="size-5" />
+										<Icon
+											className={`size-5 ${isSelected ? "text-primary" : "text-fg-secondary"}`}
+										/>
 									</div>
 									<RadioGroupItem value={option.id} />
 								</div>
@@ -121,7 +123,7 @@ export default function UseCaseStep({
 									<span className="text-fg text-sm font-medium">
 										{option.label}
 									</span>
-									<span className="text-fg-secondary text-[13px]">
+									<span className="text-fg-secondary text-[13px] font-normal">
 										{option.description}
 									</span>
 								</div>

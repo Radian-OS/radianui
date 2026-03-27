@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import z from "zod"
 import { Button } from "@/registry/ui/button"
@@ -27,7 +28,13 @@ const signupSchema = z.object({
 
 type SignupFormValues = z.infer<typeof signupSchema>
 
-const Signup = ({ onNext }: { onNext: () => void }) => {
+type SignupProps = {
+	onNext: () => void
+	condition?: boolean
+	placeholder?: boolean
+}
+
+const Signup = ({ onNext, condition, placeholder }: SignupProps) => {
 	const inputRef = useRef<HTMLInputElement>(null)
 	const [showPassword, setShowPassword] = useState(false)
 
@@ -52,7 +59,7 @@ const Signup = ({ onNext }: { onNext: () => void }) => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col gap-5">
+				className="flex flex-col gap-6">
 				<div className="flex flex-col gap-4">
 					<FormField
 						control={form.control}
@@ -63,7 +70,7 @@ const Signup = ({ onNext }: { onNext: () => void }) => {
 								<FormControl>
 									<Input
 										type="email"
-										placeholder="Enter your email"
+										placeholder={placeholder ? "Enter your email" : ""}
 										{...field}
 									/>
 								</FormControl>
@@ -83,7 +90,7 @@ const Signup = ({ onNext }: { onNext: () => void }) => {
 											{...field}
 											id="toggle-visible-password"
 											ref={inputRef}
-											placeholder="Enter your password"
+											placeholder={placeholder ? "Enter your password" : ""}
 											className="peer"
 											type={showPassword ? "text" : "password"}
 										/>
@@ -99,14 +106,32 @@ const Signup = ({ onNext }: { onNext: () => void }) => {
 					/>
 				</div>
 
-				<Button
-					type="submit"
-					variant="strong"
-					color="primary"
-					size="36"
-					className="w-full">
-					Create an account
-				</Button>
+				<div className="flex flex-col gap-3">
+					<Button
+						type="submit"
+						variant="strong"
+						color="primary"
+						size="36"
+						className="w-full">
+						Create an account
+					</Button>
+					{condition && (
+						<p className="text-fg-secondary text-[13px]">
+							By signing up, you agree to Radian&apos;s{" "}
+							<Link
+								href="#"
+								className="text-primary font-medium hover:underline">
+								Terms of Service
+							</Link>{" "}
+							and{" "}
+							<Link
+								href="#"
+								className="text-primary font-medium hover:underline">
+								Privacy Policy
+							</Link>
+						</p>
+					)}
+				</div>
 			</form>
 		</Form>
 	)

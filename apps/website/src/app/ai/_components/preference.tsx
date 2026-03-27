@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Building2, User, Users } from "lucide-react"
+import { Building2, Group, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/registry/ui/button"
 import { Label } from "@/registry/ui/label"
@@ -18,7 +18,7 @@ const preferenceOptions = [
 		id: "team",
 		label: "For my team",
 		description: "Collaborate with teammates and manage projects together.",
-		icon: Users,
+		icon: Group,
 	},
 	{
 		id: "company",
@@ -68,7 +68,7 @@ const Preference = ({ onNext }: { onNext: () => void }) => {
 								<span className="text-fg text-sm font-medium">
 									{option.label}
 								</span>
-								<span className="text-fg-secondary text-xs">
+								<span className="text-fg-secondary text-xs font-normal">
 									{option.description}
 								</span>
 							</div>
