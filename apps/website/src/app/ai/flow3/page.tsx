@@ -13,11 +13,11 @@ export default function Flow3Page() {
 
 	return (
 		<AuthLayout>
-			{step === 5 && <SignupStep onNext={() => setStep(2)} />}
+			{step === 1 && <SignupStep onNext={() => setStep(2)} />}
 			{step === 2 && <VerifyStep onNext={() => setStep(3)} />}
 			{step === 3 && <PersonalInfoStep onNext={() => setStep(4)} />}
 			{step === 4 && <ProjectNameStep onNext={() => setStep(5)} />}
-			{step === 1 && (
+			{step === 5 && (
 				<InviteStep
 					onNext={() => alert("Onboarding complete!")}
 					onSkip={() => alert("Onboarding complete!")}

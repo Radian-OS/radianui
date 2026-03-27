@@ -38,7 +38,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 
 			{/* OTP + Actions */}
 			<div className="flex flex-col gap-6">
-				<div className="flex flex-col gap-5">
+				<div className="flex flex-col gap-6">
 					<div className="flex flex-col gap-1.5">
 						<OTPField
 							value={otp}

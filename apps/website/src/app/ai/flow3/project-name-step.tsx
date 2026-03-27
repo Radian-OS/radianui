@@ -54,7 +54,7 @@ export default function ProjectNameStep({ onNext }: { onNext: () => void }) {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="flex flex-col gap-5">
+					className="flex flex-col gap-6">
 					<div className="flex flex-col gap-4">
 						{/* Project Name */}
 						<FormField
@@ -81,7 +81,7 @@ export default function ProjectNameStep({ onNext }: { onNext: () => void }) {
 									<FormControl>
 										<TextArea
 											placeholder="e.g. A modern analytics dashboard for design teams"
-											className="min-h-[118px]"
+											className="max-h-[150px] min-h-[118px]"
 											{...field}
 										/>
 									</FormControl>

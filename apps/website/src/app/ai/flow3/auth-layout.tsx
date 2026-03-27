@@ -19,7 +19,6 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 					className="object-cover"
 					priority
 				/>
-				<div className="absolute inset-0 bg-gradient-to-br from-black/70 via-purple-900/50 to-purple-600/60" />
 			</div>
 
 			{/* Right side - Form */}
@@ -27,14 +26,16 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 				<div className="flex flex-1 items-center justify-center p-6">
 					{children}
 				</div>
-				<p className="text-fg-tertiary pb-8 text-center text-sm">
-					Having trouble? Contact our team at{" "}
-					<Link
-						href="mailto:support@radian.os"
-						className="text-primary font-medium hover:underline">
-						support@radian.os
-					</Link>
-				</p>
+				<div className="flex w-full justify-center px-6 sm:p-0">
+					<p className="text-fg-tertiary pb-8 text-sm">
+						Having trouble? Contact our team at{" "}
+						<Link
+							href="mailto:support@radian.os"
+							className="text-primary font-medium hover:underline">
+							support@radian.os
+						</Link>
+					</p>
+				</div>
 			</div>
 		</div>
 	)

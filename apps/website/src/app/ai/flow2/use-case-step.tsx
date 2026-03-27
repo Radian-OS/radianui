@@ -132,15 +132,17 @@ export default function UseCaseStep({
 					})}
 				</RadioGroup>
 
-				{selected === "other" && (
-					<Input
-						placeholder="Tell us more"
-						value={otherText}
-						onChange={(e) => setOtherText(e.target.value)}
-					/>
-				)}
+				<div className="flex flex-col gap-1.5">
+					{selected === "other" && (
+						<Input
+							placeholder="Tell us more"
+							value={otherText}
+							onChange={(e) => setOtherText(e.target.value)}
+						/>
+					)}
 
-				{error && <p className="text-error-text text-xs">{error}</p>}
+					{error && <p className="text-error-text text-xs">{error}</p>}
+				</div>
 			</div>
 
 			{/* Actions */}

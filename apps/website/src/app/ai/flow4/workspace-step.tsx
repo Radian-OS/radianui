@@ -161,7 +161,7 @@ export default function WorkspaceStep({
 									<FormControl>
 										<TextArea
 											placeholder="Briefly describe your company"
-											className="max-h-[200px] min-h-[100px]"
+											className="max-h-[150px] min-h-[100px]"
 											{...field}
 										/>
 									</FormControl>
