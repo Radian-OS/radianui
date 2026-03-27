@@ -206,9 +206,18 @@ const setupNextJsConfig = async (
 					: path.join(projectDir, "app")
 				baseFilePath = path.join(baseDirPath, "layout.tsx")
 
-				await fs.ensureDir(path.join(baseDirPath, "components"))
+				await fs.ensureDir(
+					path.join(
+						hasSrcDir ? path.join(projectDir, "src") : projectDir,
+						"components"
+					)
+				)
 				await fs.writeFile(
-					path.join(baseDirPath, "components", "theme-provider.tsx"),
+					path.join(
+						hasSrcDir ? path.join(projectDir, "src") : projectDir,
+						"components",
+						"theme-provider.tsx"
+					),
 					THEME_PROVIDER_NEXT
 				)
 

@@ -147,7 +147,7 @@ export function AppSidebar({
 		<Sidebar
 			theme={theme}
 			variant="inset"
-			collapsible="none"
+			collapsible="icon"
 			className="p-0"
 			resizable>
 			<SidebarHeader className="gap-0 p-0">

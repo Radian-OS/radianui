@@ -127,7 +127,7 @@ export const GLOBAL_CSS_V4 = `
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
-	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent: var(--color-fill1-alpha);
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
 	--color-sidebar-ring: var(--color-fg-secondary);
@@ -211,7 +211,7 @@ export const GLOBAL_CSS_V4 = `
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
-	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent: var(--color-fill1-alpha);
 	--color-sidebar-accent-fg: var(--color-fg);
 	--color-sidebar-border: var(--color-border);
 	--color-sidebar-ring: var(--color-fg-secondary);
@@ -222,8 +222,8 @@ export const GLOBAL_CSS_V4 = `
 	body {
 		@apply font-body bg-bg text-fg;
 		/* Font Families */
-		--heading-font: var(--font-geist), system-ui, sans-serif;
-		--body-font: var(--font-inter), system-ui, sans-serif;
+		--heading-font: "Geist", system-ui, sans-serif;
+		--body-font: "Inter", system-ui, sans-serif;
 	}
 
 	/* Safari button fix - prevents shrinking on hover */
@@ -663,7 +663,7 @@ export { ThemeProvider }
 
 export const LAYOUT_NEXT = `
 import type { Metadata } from "next";
-import { ThemeProvider } from "@/app/components/theme-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -693,7 +693,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <Image
           className="dark:invert"
@@ -769,7 +769,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="antialiased font-sans">
+    <div className="antialiased">
         <ThemeProvider>{children}</ThemeProvider>
     </div>
   );
@@ -781,7 +781,7 @@ import * as React from "react"
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
 		  <h1>
