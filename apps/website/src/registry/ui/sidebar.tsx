@@ -123,10 +123,10 @@ export const sidebarMenuButtonVariants = cva(
 		variants: {
 			variant: {
 				strong:
-					"text-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white  data-[active=true]:[&>svg]:stroke-white",
-				soft: "text-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-fg [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-fg",
+					"text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white  data-[active=true]:[&>svg]:stroke-white",
+				soft: "text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-fg [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-fg",
 				neutral:
-					"text-fg rounded-md data-[active=true]:bg-fill1-alpha! [&>svg]:text-fg-secondary",
+					"text-sidebar-fg rounded-md data-[active=true]:bg-sidebar-accent!",
 			},
 			size: {
 				"28": "h-7 text-xs",
@@ -143,7 +143,7 @@ export const sidebarMenuButtonVariants = cva(
 	}
 )
 
-function useIsMobile(mobileBreakpoint = 768) {
+export function useIsMobile(mobileBreakpoint = 768) {
 	const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
 
 	React.useEffect(() => {
@@ -379,7 +379,7 @@ function SidebarProvider({
 						} as React.CSSProperties
 					}
 					className={cn(
-						"group/sidebar-wrapper bg-bg has-data-[theme=default]:bg-bg has-data-[theme=gray]:has-data-[variant=inset]:bg-fill1 has-data-[theme=inverse]:has-data-[variant=inset]:bg-black flex min-h-svh w-full",
+						"group/sidebar-wrapper bg-bg has-data-[theme=default]:bg-bg has-data-[theme=gray]:has-data-[variant=inset]:bg-sidebar has-data-[theme=inverse]:has-data-[variant=inset]:bg-black flex min-h-svh w-full",
 						className
 					)}
 					{...props}>
@@ -510,7 +510,8 @@ function Sidebar({
 					data-mobile="true"
 					className={cn(
 						"bg-sidebar text-sidebar-fg w-(--sidebar-width) group p-0",
-						theme === "inverse" && "dark"
+						theme === "inverse" && "dark",
+						className
 					)}
 					style={
 						{
@@ -565,7 +566,7 @@ function Sidebar({
 						: variant === "floating"
 							? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
 							: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) border-sidebar-border group-data-[side=left]:border-r group-data-[side=right]:border-l",
-					"group-data-[theme=gray-body]:group-data-[variant=floating]:bg-fill1",
+					"group-data-[theme=gray-body]:group-data-[variant=floating]:bg-sidebar",
 					className
 				)}
 				{...props}>
@@ -655,7 +656,7 @@ function SidebarInset({ className, ...props }: SidebarInsetProps) {
 			data-slot="sidebar-inset"
 			className={cn(
 				"bg-bg relative flex w-full flex-1 flex-col",
-				"peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
+				"peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-sidebar md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
 				className
 			)}
 			{...props}
@@ -747,7 +748,7 @@ function SidebarGroupLabel({
 			data-slot="sidebar-group-label"
 			data-sidebar="group-label"
 			className={cn(
-				"text-fg-secondary ring-sidebar-ring outline-hidden flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+				"text-sidebar-fg/70 ring-sidebar-ring outline-hidden flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"group-data-[collapsible=icon]:pointer-events-none group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
 				className
 			)}
@@ -767,7 +768,7 @@ function SidebarGroupAction({
 			data-slot="sidebar-group-action"
 			data-sidebar="group-action"
 			className={cn(
-				"text-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg outline-hidden absolute right-3 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg outline-hidden absolute right-3 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"after:absolute after:-inset-2 md:after:hidden",
 				"group-data-[collapsible=icon]:hidden",
 				className
@@ -889,7 +890,7 @@ function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
 			data-sidebar="menu-badge"
 			className={cn(
 				"pointer-events-none absolute right-2 select-none rounded-md tabular-nums",
-				"text-fg-secondary border px-1.5 py-0.5",
+				"text-fg-secondary/70 border px-1.5 py-0.5",
 				"peer-data-[size=28]/menu-button:top-1",
 				"peer-data-[size=32]/menu-button:top-1.5",
 				"peer-data-[size=48]/menu-button:top-2.5",
