@@ -27,7 +27,6 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 			{/* Header */}
 			<div className="flex flex-col gap-6">
 				<Radian />
-
 				<div className="flex flex-col gap-2">
 					<h1 className="heading-5">Verify your email</h1>
 					<p className="text-fg-secondary text-sm">
@@ -36,7 +35,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 				</div>
 			</div>
 
-			{/* OTP + Actions */}
+			{/* OTP Form */}
 			<div className="flex flex-col gap-6">
 				<div className="flex flex-col gap-5">
 					<OTPField
@@ -53,7 +52,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 
 					<div className="flex flex-col gap-3">
 						<Button
-							type="button"
+							type="submit"
 							variant="strong"
 							color="primary"
 							size="36"
@@ -61,7 +60,7 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 							onClick={handleVerify}>
 							Verify Code
 						</Button>
-						<p className="text-fg-tertiary text-center text-sm">
+						<p className="text-fg-secondary text-center text-sm">
 							Didn&apos;t receive the code?{" "}
 							<Link
 								href="#"

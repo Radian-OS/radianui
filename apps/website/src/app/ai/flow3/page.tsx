@@ -1,32 +1,28 @@
 "use client"
 
 import { useState } from "react"
-import InviteStep from "./_components/invite-step"
-import PersonalInfoStep from "./_components/personal-info-step"
-import ProjectNameStep from "./_components/project-name-step"
-import SignupLayout from "./_components/signup-layout"
-import SignupStep from "./_components/signup-step"
-import VerifyStep from "./_components/verify-step"
+import AuthLayout from "./auth-layout"
+import InviteStep from "./invite-step"
+import PersonalInfoStep from "./personal-info-step"
+import ProjectNameStep from "./project-name-step"
+import SignupStep from "./signup-step"
+import VerifyStep from "./verify-step"
 
-export default function SignupFlowPage() {
+export default function Flow3Page() {
 	const [step, setStep] = useState(1)
 
-	function nextStep() {
-		setStep((prev) => Math.min(prev + 1, 5))
-	}
-
 	return (
-		<SignupLayout>
-			{step === 1 && <SignupStep onNext={nextStep} />}
-			{step === 2 && <VerifyStep onNext={nextStep} />}
-			{step === 3 && <PersonalInfoStep onNext={nextStep} />}
-			{step === 4 && <ProjectNameStep onNext={nextStep} />}
+		<AuthLayout>
+			{step === 1 && <SignupStep onNext={() => setStep(2)} />}
+			{step === 2 && <VerifyStep onNext={() => setStep(3)} />}
+			{step === 3 && <PersonalInfoStep onNext={() => setStep(4)} />}
+			{step === 4 && <ProjectNameStep onNext={() => setStep(5)} />}
 			{step === 5 && (
 				<InviteStep
-					onNext={() => console.log("Onboarding complete!")}
-					onSkip={() => console.log("Skipped invite")}
+					onNext={() => alert("Onboarding complete!")}
+					onSkip={() => alert("Onboarding complete!")}
 				/>
 			)}
-		</SignupLayout>
+		</AuthLayout>
 	)
 }

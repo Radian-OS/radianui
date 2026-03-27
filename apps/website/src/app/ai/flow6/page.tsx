@@ -1,28 +1,22 @@
 "use client"
 
 import { useState } from "react"
-import AuthLayout from "./_components/auth-layout"
-import GettingStartedStep from "./_components/getting-started-step"
-import SignupStep from "./_components/signup-step"
-import UsecaseStep from "./_components/usecase-step"
-import VerifyStep from "./_components/verify-step"
+import AuthLayout from "./auth-layout"
+import GettingStartedStep from "./getting-started-step"
+import SignupStep from "./signup-step"
+import UseCaseStep from "./use-case-step"
+import VerifyStep from "./verify-step"
 
 export default function Flow6Page() {
 	const [step, setStep] = useState(1)
 
-	function nextStep() {
-		setStep((prev) => Math.min(prev + 1, 4))
-	}
-
 	return (
 		<AuthLayout>
-			{step === 1 && <SignupStep onNext={nextStep} />}
-			{step === 2 && <VerifyStep onNext={nextStep} />}
-			{step === 3 && <UsecaseStep onNext={nextStep} />}
+			{step === 1 && <SignupStep onNext={() => setStep(2)} />}
+			{step === 2 && <VerifyStep onNext={() => setStep(3)} />}
+			{step === 3 && <UseCaseStep onNext={() => setStep(4)} />}
 			{step === 4 && (
-				<GettingStartedStep
-					onNext={() => console.log("Onboarding complete!")}
-				/>
+				<GettingStartedStep onNext={() => alert("Onboarding complete!")} />
 			)}
 		</AuthLayout>
 	)
