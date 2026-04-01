@@ -27,7 +27,7 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 
 			{/* Form */}
 			<div className="flex flex-col gap-6">
-				<Signup onNext={onNext} />
+				<Signup onNext={onNext} placeholder={true} />
 
 				{/* Divider */}
 				<div className="flex items-center gap-2">

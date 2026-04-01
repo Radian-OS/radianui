@@ -77,42 +77,44 @@ export default function AppsStep({
 
 			{/* App List */}
 			<div className="flex flex-col gap-5">
-				<div className="flex flex-col gap-3">
-					{apps.map((app) => {
-						const isSelected = selected.includes(app.id)
-						return (
-							<div
-								key={app.id}
-								onClick={() => toggleApp(app.id)}
-								className={`flex w-full items-center gap-2 rounded-lg border p-3 transition-colors ${
-									isSelected
-										? "border-primary bg-primary-focus"
-										: "border-soft bg-bg hover:bg-fill1-alpha"
-								}`}>
-								<Image
-									src={app.icon}
-									alt={app.name}
-									width={20}
-									height={20}
-									className={
-										app.id === "github" || app.id === "dribbble"
-											? "bg-bg rounded-full"
-											: ""
-									}
-								/>
-								<span className="text-fg flex-1 text-left text-sm">
-									{app.name}
-								</span>
-								<Checkbox
-									checked={isSelected}
+				<div className="flex flex-col gap-1.5">
+					<div className="flex flex-col gap-3">
+						{apps.map((app) => {
+							const isSelected = selected.includes(app.id)
+							return (
+								<div
+									key={app.id}
 									onClick={() => toggleApp(app.id)}
-									onCheckedChange={() => toggleApp(app.id)}
-								/>
-							</div>
-						)
-					})}
+									className={`flex w-full items-center gap-2 rounded-lg border p-3 transition-colors ${
+										isSelected
+											? "border-primary bg-primary-focus"
+											: "border-soft bg-bg hover:bg-fill1-alpha"
+									}`}>
+									<Image
+										src={app.icon}
+										alt={app.name}
+										width={20}
+										height={20}
+										className={
+											app.id === "github" || app.id === "dribbble"
+												? "bg-bg rounded-full"
+												: ""
+										}
+									/>
+									<span className="text-fg flex-1 text-left text-sm">
+										{app.name}
+									</span>
+									<Checkbox
+										checked={isSelected}
+										onClick={() => toggleApp(app.id)}
+										onCheckedChange={() => toggleApp(app.id)}
+									/>
+								</div>
+							)
+						})}
+					</div>
+					{error && <p className="text-error-text text-xs">{error}</p>}
 				</div>
-				{error && <p className="text-error-text text-sm">{error}</p>}
 
 				{/* Actions */}
 				<div className="flex gap-3">

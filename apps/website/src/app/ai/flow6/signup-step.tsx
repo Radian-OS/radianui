@@ -52,17 +52,7 @@ export default function SignupStep({ onNext }: { onNext: () => void }) {
 					<Divider className="flex-1" />
 				</div>
 
-				<Signup onNext={onNext} />
-				<p className="text-fg-secondary text-[13px] leading-5">
-					By signing up, you agree to Radian&apos;s{" "}
-					<Link href="#" className="text-primary font-medium hover:underline">
-						Terms of Service
-					</Link>{" "}
-					and{" "}
-					<Link href="#" className="text-primary font-medium hover:underline">
-						Privacy Policy
-					</Link>
-				</p>
+				<Signup onNext={onNext} condition={true} />
 			</div>
 		</div>
 	)

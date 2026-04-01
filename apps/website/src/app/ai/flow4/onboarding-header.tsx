@@ -13,7 +13,7 @@ export default function OnboardingHeader() {
 				<span className="text-fg text-lg font-semibold">Radian</span>
 			</Link>
 
-			<div className="flex items-center gap-1">
+			<div className="flex items-center">
 				<Button variant="ghost" color="neutral">
 					<LogOut className="size-5" />
 					Sign out

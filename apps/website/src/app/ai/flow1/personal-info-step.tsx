@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Upload } from "lucide-react"
 import { useForm } from "react-hook-form"
@@ -83,10 +82,8 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 		},
 	})
 
-	const [avatarError, setAvatarError] = useState<string | null>(null)
-
 	const [
-		{ files, isDragging, errors: fileErrors },
+		{ files, errors: fileErrors },
 		{ removeFile, openFileDialog, getInputProps },
 	] = useFileUpload({
 		maxFiles: 1,
@@ -98,16 +95,7 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 	const currentFile = files[0]
 	const previewUrl = currentFile?.preview
 
-	useEffect(() => {
-		if (currentFile) setAvatarError(null)
-	}, [currentFile])
-
 	function onSubmit() {
-		if (files.length === 0) {
-			setAvatarError("Profile picture is required")
-			return
-		}
-		setAvatarError(null)
 		onNext()
 	}
 
@@ -135,9 +123,6 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 							<div
 								className={cn(
 									"relative size-16 shrink-0 cursor-pointer overflow-hidden rounded-lg transition-colors",
-									isDragging
-										? "border-primary bg-primary-focus"
-										: "border-fg-secondary hover:border-fg-tertiary",
 									previewUrl && "border-solid border-transparent"
 								)}
 								onClick={openFileDialog}>
@@ -184,9 +169,6 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 								</p>
 								{fileErrors.length > 0 && (
 									<p className="text-error-text text-xs">{fileErrors[0]}</p>
-								)}
-								{avatarError && !fileErrors.length && (
-									<p className="text-error-text text-xs">{avatarError}</p>
 								)}
 							</div>
 						</div>

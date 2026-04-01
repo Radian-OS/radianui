@@ -63,7 +63,7 @@ export default function UseCaseStep({
 			</div>
 
 			{/* Options Grid */}
-			<div className="flex flex-col gap-3">
+			<div className="flex flex-col gap-5">
 				<RadioGroup
 					value={selected}
 					onValueChange={(value) => {
@@ -97,15 +97,18 @@ export default function UseCaseStep({
 					})}
 				</RadioGroup>
 
-				{selected === "other" && (
-					<Input
-						placeholder="Tell us more"
-						value={otherText}
-						onChange={(e) => setOtherText(e.target.value)}
-					/>
-				)}
-
-				{error && <p className="text-error-text text-xs">{error}</p>}
+				<div className="flex flex-col gap-1.5">
+					{selected === "other" && (
+						<Input
+							placeholder="Tell us more"
+							value={otherText}
+							onChange={(e) => setOtherText(e.target.value)}
+						/>
+					)}
+					{error && (
+						<p className="text-error-text text-xs font-normal">{error}</p>
+					)}
+				</div>
 			</div>
 
 			{/* Actions */}

@@ -84,7 +84,7 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="flex flex-col gap-5">
+					className="flex flex-col gap-6">
 					<div className="flex flex-col gap-4">
 						{/* Full Name */}
 						<FormField

@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Upload } from "lucide-react"
 import { useForm } from "react-hook-form"
@@ -48,8 +47,6 @@ export default function WorkspaceStep({
 		},
 	})
 
-	const [avatarError, setAvatarError] = useState<string | null>(null)
-
 	const [
 		{ files, isDragging, errors: fileErrors },
 		{ removeFile, openFileDialog, getInputProps },
@@ -63,16 +60,7 @@ export default function WorkspaceStep({
 	const currentFile = files[0]
 	const previewUrl = currentFile?.preview
 
-	useEffect(() => {
-		if (currentFile) setAvatarError(null)
-	}, [currentFile])
-
 	function onSubmit() {
-		if (files.length === 0) {
-			setAvatarError("Profile picture is required")
-			return
-		}
-		setAvatarError(null)
 		onNext()
 	}
 
@@ -146,9 +134,6 @@ export default function WorkspaceStep({
 							{fileErrors.length > 0 && (
 								<p className="text-error-text text-xs">{fileErrors[0]}</p>
 							)}
-							{avatarError && !fileErrors.length && (
-								<p className="text-error-text text-xs">{avatarError}</p>
-							)}
 						</div>
 					</div>
 
@@ -176,7 +161,7 @@ export default function WorkspaceStep({
 									<FormControl>
 										<TextArea
 											placeholder="Briefly describe your company"
-											className="min-h-[100px]"
+											className="max-h-[150px] min-h-[100px]"
 											{...field}
 										/>
 									</FormControl>

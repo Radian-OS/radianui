@@ -79,7 +79,7 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 	}
 
 	return (
-		<div className="border-soft bg-bg w-full max-w-[480px] rounded-2xl border p-6 md:p-8">
+		<div className="border-soft bg-bg w-full max-w-[480px] rounded-2xl border px-6 py-8">
 			<div className="flex flex-col gap-8">
 				{/* Header */}
 				<div className="flex flex-col gap-2 text-center">
@@ -93,7 +93,7 @@ export default function PersonalInfoStep({ onNext }: { onNext: () => void }) {
 				<Form {...form}>
 					<form
 						onSubmit={form.handleSubmit(onSubmit)}
-						className="flex flex-col gap-5">
+						className="flex flex-col gap-6">
 						<div className="flex flex-col gap-4">
 							{/* First Name / Last Name */}
 							<div className="grid grid-cols-2 gap-4">

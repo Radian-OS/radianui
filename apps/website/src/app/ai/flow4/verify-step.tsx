@@ -57,7 +57,8 @@ export default function VerifyStep({ onNext }: { onNext: () => void }) {
 						className="flex-1"
 						asChild>
 						<Link href="https://mail.google.com" className="hover:underline">
-							<GmailIcon /> Gmail
+							<GmailIcon />
+							Open Gmail
 						</Link>
 					</Button>
 					<Button

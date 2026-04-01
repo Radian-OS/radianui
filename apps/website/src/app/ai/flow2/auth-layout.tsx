@@ -22,7 +22,7 @@ export default function AuthLayout({
 				{showHeader && (
 					<div className="flex items-center justify-between p-8">
 						<Radian />
-						<div className="flex items-center gap-1">
+						<div className="flex items-center">
 							<Button
 								variant="ghost"
 								color="neutral"
@@ -59,7 +59,6 @@ export default function AuthLayout({
 						className="object-cover"
 						priority
 					/>
-					<div className="absolute inset-0 bg-gradient-to-br from-black/60 via-purple-900/40 to-purple-600/50" />
 				</div>
 			</div>
 		</div>
