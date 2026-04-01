@@ -124,15 +124,16 @@ export const sidebarMenuButtonVariants = cva(
 			variant: {
 				strong:
 					"text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary! data-[active=true]:text-white  data-[active=true]:[&>svg]:stroke-white",
-				soft: "text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-fg [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-fg",
+				soft: "text-sidebar-fg focus-visible:ring-primary-focus focus-visible:outline-none data-[active=true]:bg-primary-accent! data-[active=true]:text-primary-text [&>svg]:text-fg-secondary data-[active=true]:[&>svg]:stroke-primary-text",
 				neutral:
 					"text-sidebar-fg rounded-md data-[active=true]:bg-sidebar-accent!",
 			},
 			size: {
 				"28": "h-7 text-xs",
 				"32": "h-8 text-sm group-data-[state=collapsed]:p-1.5!",
-				"48": "h-12 text-sm group-data-[collapsible=icon]:p-0!",
-				"52": "h-13 text-sm group-data-[collapsible=icon]:p-0!",
+				"36": "h-9 text-sm [&>svg]:size-6 group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5!",
+				"48": "h-12 text-sm group-data-[collapsible=icon]:p-1! group-data-[collapsible=icon]:[&>svg]:size-6!",
+				"52": "h-13 text-sm group-data-[collapsible=icon]:p-1.5!",
 				"56": "h-14 p-4 text-sm [&>svg]:size-6! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! group-data-[collapsible=icon]:h-14!",
 			},
 		},
@@ -566,7 +567,7 @@ function Sidebar({
 						: variant === "floating"
 							? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
 							: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) border-sidebar-border group-data-[side=left]:border-r group-data-[side=right]:border-l",
-					"group-data-[theme=gray-body]:group-data-[variant=floating]:bg-sidebar",
+					"group-data-[theme=gray-body]:group-data-[variant=floating]:bg-fill1",
 					className
 				)}
 				{...props}>
@@ -656,7 +657,7 @@ function SidebarInset({ className, ...props }: SidebarInsetProps) {
 			data-slot="sidebar-inset"
 			className={cn(
 				"bg-bg relative flex w-full flex-1 flex-col",
-				"peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-sidebar md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
+				"peer-data-[theme=default]:border-sidebar-border peer-data-[theme=gray-body]:bg-fill1 md:peer-data-[variant=inset]:not-peer-data-[collapsible=icon]:peer-data-[state=collapsed]:ml-2 peer-data-[theme=default]:peer-data-[variant=inset]:border md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm",
 				className
 			)}
 			{...props}
@@ -681,7 +682,7 @@ function SidebarHeader({ className, ...props }: SidebarHeaderProps) {
 		<div
 			data-slot="sidebar-header"
 			data-sidebar="header"
-			className={cn("flex flex-col gap-2 p-2 px-3", className)}
+			className={cn("flex flex-col gap-2 px-3.5 py-3", className)}
 			{...props}
 		/>
 	)
@@ -768,7 +769,7 @@ function SidebarGroupAction({
 			data-slot="sidebar-group-action"
 			data-sidebar="group-action"
 			className={cn(
-				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg outline-hidden absolute right-3 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+				"text-sidebar-fg ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-fg outline-hidden absolute right-2 top-3.5 flex aspect-square w-5 items-center justify-center rounded-md p-0 transition-transform focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
 				"after:absolute after:-inset-2 md:after:hidden",
 				"group-data-[collapsible=icon]:hidden",
 				className
@@ -890,7 +891,7 @@ function SidebarMenuBadge({ className, ...props }: SidebarMenuBadgeProps) {
 			data-sidebar="menu-badge"
 			className={cn(
 				"pointer-events-none absolute right-2 select-none rounded-md tabular-nums",
-				"text-fg-secondary/70 border px-1.5 py-0.5",
+				"border px-1.5 py-0.5",
 				"peer-data-[size=28]/menu-button:top-1",
 				"peer-data-[size=32]/menu-button:top-1.5",
 				"peer-data-[size=48]/menu-button:top-2.5",
