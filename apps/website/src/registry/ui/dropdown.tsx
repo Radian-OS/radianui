@@ -262,7 +262,7 @@ function DropdownSubTrigger({
 		<DropdownMenuPrimitive.SubTrigger
 			data-slot="dropdown-menu-sub-trigger"
 			className={cn(
-				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:text-fg-secondary flex cursor-pointer select-none items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha outline-hidden data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:text-fg-secondary flex cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm transition-colors [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				{ "pl-8": inset },
 				className
 			)}
