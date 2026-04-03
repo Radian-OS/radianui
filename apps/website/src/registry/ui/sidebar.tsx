@@ -132,7 +132,7 @@ export const sidebarMenuButtonVariants = cva(
 				"28": "h-7 text-xs",
 				"32": "h-8 text-sm group-data-[state=collapsed]:p-1.5!",
 				"36": "h-9 text-sm [&>svg]:size-6 group-data-[collapsible=icon]:size-9! group-data-[collapsible=icon]:p-1.5!",
-				"48": "h-12 text-sm group-data-[collapsible=icon]:p-1! group-data-[collapsible=icon]:[&>svg]:size-6!",
+				"48": "h-12 text-sm group-data-[collapsible=icon]:p-0! group-data-[collapsible=icon]:[&>svg]:size-6!",
 				"52": "h-13 text-sm group-data-[collapsible=icon]:p-1.5!",
 				"56": "h-14 p-4 text-sm [&>svg]:size-6! group-data-[collapsible=icon]:w-full! group-data-[collapsible=icon]:p-4! group-data-[collapsible=icon]:h-14!",
 			},
@@ -548,7 +548,7 @@ function Sidebar({
 					"group-data-[collapsible=offcanvas]:w-0",
 					"group-data-[side=right]:rotate-180",
 					variant === "floating"
-						? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
+						? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(6))+2px)]"
 						: "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
 				)}
 			/>
@@ -565,7 +565,7 @@ function Sidebar({
 					variant === "inset"
 						? "group-data-[collapsible=icon]:w-(--sidebar-width-icon)"
 						: variant === "floating"
-							? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
+							? "p-3 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(6))+2px)]"
 							: "group-data-[collapsible=icon]:w-(--sidebar-width-icon) border-sidebar-border group-data-[side=left]:border-r group-data-[side=right]:border-l",
 					"group-data-[theme=gray-body]:group-data-[variant=floating]:bg-fill1",
 					className
@@ -576,7 +576,7 @@ function Sidebar({
 					data-slot="sidebar-inner"
 					className={cn(
 						"bg-sidebar group-data-[variant=floating]:border-sidebar-border relative flex h-full w-full flex-col",
-						"group-data-[variant=floating]:rounded-lg group-data-[variant=inset]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
+						"group-data-[variant=floating]:rounded-xl group-data-[variant=inset]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:shadow-sm"
 					)}>
 					{children}
 
