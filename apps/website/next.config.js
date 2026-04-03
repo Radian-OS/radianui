@@ -19,7 +19,7 @@ const nextConfig = {
 				],
 			},
 			{
-				source: "/icons/:path*",
+				source: "/blocks/:path*",
 				headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
 			},
 			{
