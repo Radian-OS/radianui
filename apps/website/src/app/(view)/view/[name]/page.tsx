@@ -11,7 +11,6 @@ export default async function Page({
 
 	const Component = registry[name]
 
-	console.log("reading", name)
 	if (!Component) {
 		const block = Index[name]
 		if (!block) return <h1>Not found</h1>

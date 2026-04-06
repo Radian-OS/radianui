@@ -766,14 +766,14 @@ const registry: Record<
 	"scroll-area-preview": React.lazy(
 		() => import("@/registry/example/scroll-area/scroll-area-preview")
 	),
-	"custom-indicator": React.lazy(
-		() => import("@/registry/example/select/custom-indicator")
-	),
-	"indicator-position": React.lazy(
-		() => import("@/registry/example/select/indicator-position")
+	"select-custom-indicator": React.lazy(
+		() => import("@/registry/example/select/select-custom-indicator")
 	),
 	"select-form": React.lazy(
 		() => import("@/registry/example/select/select-form")
+	),
+	"select-indicator-position": React.lazy(
+		() => import("@/registry/example/select/select-indicator-position")
 	),
 	"select-preview": React.lazy(
 		() => import("@/registry/example/select/select-preview")
@@ -781,14 +781,14 @@ const registry: Record<
 	"select-sizes": React.lazy(
 		() => import("@/registry/example/select/select-sizes")
 	),
+	"select-time-picker": React.lazy(
+		() => import("@/registry/example/select/select-time-picker")
+	),
 	"select-with-avatar": React.lazy(
 		() => import("@/registry/example/select/select-with-avatar")
 	),
 	"select-with-badge": React.lazy(
 		() => import("@/registry/example/select/select-with-badge")
-	),
-	"time-picker": React.lazy(
-		() => import("@/registry/example/select/time-picker")
 	),
 	"skeleton-preview": React.lazy(
 		() => import("@/registry/example/skeleton/skeleton-preview")
