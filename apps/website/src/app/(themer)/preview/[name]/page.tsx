@@ -37,6 +37,54 @@ const buildStyleCssText = (config: ProjectConfig) => {
 
 const PRIMARY_COLOR_STYLE_ID = "primary-color-style"
 
+const RADIUS_STYLE_ID = "radius-style"
+
+const RADIUS_PRESETS: Record<string, Record<string, string>> = {
+	none: {
+		xs: "0px",
+		sm: "0px",
+		md: "0px",
+		lg: "0px",
+		xl: "0px",
+		"2xl": "0px",
+	},
+	small: {
+		xs: "1px",
+		sm: "2px",
+		md: "4px",
+		lg: "4px",
+		xl: "6px",
+		"2xl": "8px",
+	},
+	medium: {
+		xs: "2px",
+		sm: "4px",
+		md: "6px",
+		lg: "8px",
+		xl: "12px",
+		"2xl": "16px",
+	},
+	large: {
+		xs: "2px",
+		sm: "4px",
+		md: "8px",
+		lg: "12px",
+		xl: "20px",
+		"2xl": "28px",
+	},
+}
+
+const buildRadiusCssText = (preset: string) => {
+	const radii = RADIUS_PRESETS[preset]
+	if (!radii) return ""
+
+	const declarations = Object.entries(radii)
+		.map(([key, value]) => `  --radius-${key}: ${value};`)
+		.join("\n")
+
+	return `:root {\n${declarations}\n}\n`
+}
+
 export default function Page({}: { params: { name: string } }) {
 	const searchParams = useSearchParams()
 
@@ -46,6 +94,8 @@ export default function Page({}: { params: { name: string } }) {
 	const [componentName, setComponentName] = useState(
 		searchParams.get("component") ?? "button"
 	)
+
+	const [radius, setRadius] = useState<string>("")
 
 	const configOptions: ProjectOptions = {
 		primaryColor: primaryColor as ProjectOptions["primaryColor"],
@@ -90,6 +140,9 @@ export default function Page({}: { params: { name: string } }) {
 			if (event.data.type === "component-change") {
 				setComponentName(event.data.component)
 			}
+			if (event.data.type === "radius-change") {
+				setRadius(event.data.radius)
+			}
 		}
 
 		window.addEventListener("message", handleMessage)
@@ -98,6 +151,34 @@ export default function Page({}: { params: { name: string } }) {
 			window.removeEventListener("message", handleMessage)
 		}
 	}, [])
+
+	useLayoutEffect(() => {
+		let style = document.getElementById(RADIUS_STYLE_ID) as HTMLStyleElement
+
+		if (!radius || radius === "default") {
+			if (style && document.head.contains(style)) {
+				document.head.removeChild(style)
+			}
+			return
+		}
+
+		const cssText = buildRadiusCssText(radius)
+		if (!cssText) return
+
+		if (!style) {
+			style = document.createElement("style")
+			style.id = RADIUS_STYLE_ID
+			document.head.appendChild(style)
+		}
+
+		style.textContent = cssText
+
+		return () => {
+			if (style && document.head.contains(style)) {
+				document.head.removeChild(style)
+			}
+		}
+	}, [radius])
 
 	return (
 		<div className="flex flex-col items-center gap-3 p-3">

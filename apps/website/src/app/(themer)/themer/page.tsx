@@ -13,9 +13,18 @@ import {
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
 
+export const RADII = [
+	{ name: "Default", value: "default" },
+	{ name: "None", value: "none" },
+	{ name: "Small", value: "small" },
+	{ name: "Medium", value: "medium" },
+	{ name: "Large", value: "large" },
+] as const
+
 export default function Page() {
 	const [primaryColor, setPrimaryColor] = useState<string>("purple")
 	const [selectedComponent, setSelectedComponent] = useState<string>("button")
+	const [selectedRadius, setSelectedRadius] = useState<string>("default")
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -31,6 +40,9 @@ export default function Page() {
 		COMPONENTS_DATA.find(
 			(name) => name.toLowerCase().replace(/\s+/g, "-") === selectedComponent
 		) ?? selectedComponent
+
+	const selectedRadiusLabel =
+		RADII.find((r) => r.value === selectedRadius)?.name ?? selectedRadius
 
 	useEffect(() => {
 		const iframe = iframeRef.current
@@ -51,6 +63,16 @@ export default function Page() {
 			"*"
 		)
 	}, [selectedComponent])
+
+	useEffect(() => {
+		const iframe = iframeRef.current
+		if (!iframe?.contentWindow) return
+
+		iframe.contentWindow.postMessage(
+			{ type: "radius-change", radius: selectedRadius },
+			"*"
+		)
+	}, [selectedRadius])
 
 	return (
 		<div className="flex h-screen w-full gap-4 p-3">
@@ -102,6 +124,29 @@ export default function Page() {
 										value={name.toLowerCase().replace(/\s+/g, "-")}
 										onSelect={(e) => e.preventDefault()}>
 										{name}
+									</DropdownRadioItem>
+								))}
+							</DropdownRadioGroup>
+						</DropdownContent>
+					</Dropdown>
+
+					<Dropdown>
+						<DropdownTrigger className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+							<div className="flex flex-col items-start gap-0.5">
+								<span className="text-fg-tertiary text-xs">Radius</span>
+								<span className="text-fg">{selectedRadiusLabel}</span>
+							</div>
+						</DropdownTrigger>
+						<DropdownContent side="right" className="max-h-96 w-56">
+							<DropdownRadioGroup
+								value={selectedRadius}
+								onValueChange={setSelectedRadius}>
+								{RADII.map((radius) => (
+									<DropdownRadioItem
+										key={radius.name}
+										value={radius.value}
+										onSelect={(e) => e.preventDefault()}>
+										{radius.name}
 									</DropdownRadioItem>
 								))}
 							</DropdownRadioGroup>
