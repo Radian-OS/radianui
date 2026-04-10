@@ -236,7 +236,7 @@ export class RegistryParseError extends RegistryError {
 		let message = `Failed to parse registry item: ${item}`
 
 		if (parseError instanceof z.ZodError) {
-			message = `Failed to parse registry item: ${item}\n${parseError.errors
+			message = `Failed to parse registry item: ${item}\n${parseError.issues
 				.map((e) => `  - ${e.path.join(".")}: ${e.message}`)
 				.join("\n")}`
 		}
@@ -274,7 +274,7 @@ export class RegistryMissingEnvironmentVariablesError extends RegistryError {
 
 export class RegistryInvalidNamespaceError extends RegistryError {
 	constructor(public readonly name: string) {
-		const message = `Invalid registry namespace: "${name}". Registry names must start with @ (e.g., @shadcn, @v0).`
+		const message = `Invalid registry namespace: "${name}". Registry names must start with @ (e.g., @radianui, @v0).`
 
 		super(message, {
 			code: RegistryErrorCode.VALIDATION_ERROR,
@@ -294,7 +294,7 @@ export class ConfigMissingError extends RegistryError {
 			code: RegistryErrorCode.NOT_CONFIGURED,
 			context: { cwd },
 			suggestion:
-				"Run 'npx shadcn@latest init' to create a components.json file, or check that you're in the correct directory.",
+				"Run 'npx radianui@latest init' to create a components.json file, or check that you're in the correct directory.",
 		})
 		this.name = "ConfigMissingError"
 	}
@@ -308,7 +308,7 @@ export class ConfigParseError extends RegistryError {
 		let message = `Invalid components.json configuration in ${cwd}.`
 
 		if (parseError instanceof z.ZodError) {
-			message = `Invalid components.json configuration in ${cwd}:\n${parseError.errors
+			message = `Invalid components.json configuration in ${cwd}:\n${parseError.issues
 				.map((e) => `  - ${e.path.join(".")}: ${e.message}`)
 				.join("\n")}`
 		}
@@ -318,7 +318,7 @@ export class ConfigParseError extends RegistryError {
 			cause: parseError,
 			context: { cwd },
 			suggestion:
-				"Check your components.json file for syntax errors or invalid configuration. Run 'npx shadcn@latest init' to regenerate a valid configuration.",
+				"Check your components.json file for syntax errors or invalid configuration. Run 'npx radianui@latest init' to regenerate a valid configuration.",
 		})
 		this.name = "ConfigParseError"
 	}
@@ -331,19 +331,19 @@ export class RegistriesIndexParseError extends RegistryError {
 		let message = "Failed to parse registries index"
 
 		if (parseError instanceof z.ZodError) {
-			const invalidNamespaces = parseError.errors
+			const invalidNamespaces = parseError.issues
 				.filter((e) => e.path.length > 0)
-				.map((e) => `"${e.path[0]}"`)
+				.map((e) => `"${String(e.path[0])}"`)
 				.filter((v, i, arr) => arr.indexOf(v) === i) // remove duplicates
 
 			if (invalidNamespaces.length > 0) {
 				message = `Failed to parse registries index. Invalid registry namespace(s): ${invalidNamespaces.join(
 					", "
-				)}\n${parseError.errors
+				)}\n${parseError.issues
 					.map((e) => `  - ${e.path.join(".")}: ${e.message}`)
 					.join("\n")}`
 			} else {
-				message = `Failed to parse registries index:\n${parseError.errors
+				message = `Failed to parse registries index:\n${parseError.issues
 					.map((e) => `  - ${e.path.join(".")}: ${e.message}`)
 					.join("\n")}`
 			}
@@ -354,7 +354,7 @@ export class RegistriesIndexParseError extends RegistryError {
 			cause: parseError,
 			context: { parseError },
 			suggestion:
-				"The registries index may be corrupted or have invalid registry namespace format. Registry names must start with @ (e.g., @shadcn, @example).",
+				"The registries index may be corrupted or have invalid registry namespace format. Registry names must start with @ (e.g., @radianui, @example).",
 		})
 
 		this.parseError = parseError

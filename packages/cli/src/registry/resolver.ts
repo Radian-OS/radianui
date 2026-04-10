@@ -2,6 +2,12 @@ import { createHash } from "crypto"
 import deepmerge from "deepmerge"
 import path from "path"
 import { z } from "zod"
+import { getRadianuiRegistryIndex, getRegistryBaseColor } from "@/registry/api"
+import {
+	buildUrlAndHeadersForRegistryItem,
+	resolveRegistryUrl,
+} from "@/registry/builder"
+import { setRegistryHeaders } from "@/registry/context"
 import {
 	RegistryNotConfiguredError,
 	RegistryParseError,
@@ -17,18 +23,9 @@ import {
 	registryResolvedItemsTreeSchema,
 } from "@/registry/schema"
 import { deduplicateFilesByTarget, isLocalFile, isUrl } from "@/registry/utils"
-import {
-	getRegistryBaseColor,
-	getShadcnRegistryIndex,
-} from "@/registry/api"
-import {
-	buildUrlAndHeadersForRegistryItem,
-	resolveRegistryUrl,
-} from "@/registry/builder"
-import { setRegistryHeaders } from "@/registry/context"
 import { getProjectTailwindVersionFromConfig } from "@/utils/get-project-info"
-import { buildTailwindThemeColorsFromCssVars } from "@/utils/updaters/update-tailwind-config"
 import { Config, getTargetStyleFromConfig } from "@/utils/getConfig"
+import { buildTailwindThemeColorsFromCssVars } from "@/utils/updaters/update-tailwind-config"
 
 export function resolveRegistryItemsFromRegistries(
 	items: string[],
@@ -217,7 +214,7 @@ export async function resolveRegistryTree(
 
 		// For non-namespaced items, we need the index and style resolution
 		if (nonNamespacedItems.length > 0) {
-			const index = await getShadcnRegistryIndex()
+			const index = await getRadianuiRegistryIndex()
 			if (!index && payload.length === 0) {
 				return null
 			}

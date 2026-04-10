@@ -8,8 +8,9 @@ import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 
 const GITHUB_REPO_URL =
-	process.env.RADIANUI_REPO_URL ??
-	"https://github.com/Radian-os/radianos.git"
+	process.env.RADIANUI_REPO_URL ?? "https://github.com/Radian-os/radianos"
+
+const GITHUB_REPO_BRANCH = process.env.RADIANUI_REPO_BRANCH ?? "feat/cli"
 
 export interface TemplateOptions {
 	projectPath: string
@@ -229,7 +230,7 @@ function defaultScaffold({
 		).start()
 
 		try {
-			const localTemplateDir = process.env.SHADCN_TEMPLATE_DIR
+			const localTemplateDir = process.env.RADIANUI_LOCAL_TEMPLATE_DIR
 			if (localTemplateDir) {
 				// Use local template directory for development.
 				const localTemplatePath = path.resolve(localTemplateDir, templateDir)
@@ -240,7 +241,7 @@ function defaultScaffold({
 				// Clone only the template directory from GitHub using sparse checkout.
 				const templatePath = path.join(
 					os.tmpdir(),
-					`shadcn-template-${Date.now()}`
+					`radianui-template-${Date.now()}`
 				)
 				await execa("git", [
 					"clone",
@@ -248,6 +249,8 @@ function defaultScaffold({
 					"1",
 					"--filter=blob:none",
 					"--sparse",
+					"-b",
+					GITHUB_REPO_BRANCH,
 					GITHUB_REPO_URL,
 					templatePath,
 				])

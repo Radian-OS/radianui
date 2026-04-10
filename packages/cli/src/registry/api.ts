@@ -3,7 +3,7 @@ import { REGISTRY_URL } from "@/registry/constants"
 /**
  * Fetch the registry index (list of all available components).
  */
-export async function getShadcnRegistryIndex(
+export async function getRadianuiRegistryIndex(
 	options: { useCache?: boolean } = {}
 ) {
 	try {
