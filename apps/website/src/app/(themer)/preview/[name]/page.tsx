@@ -2,12 +2,13 @@
 
 import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { useSearchParams } from "next/navigation"
-import {
-	ProjectConfig,
-	ProjectOptions,
-	createProjectConfig,
-} from "@/lib/create-project-config"
+import { DesignSystemConfig, buildProjectInitConfig } from "@/registry/config"
+import { FONTS } from "@/registry/fonts"
 import registry from "@/registry/registry-map"
+
+type RegistryThemeCssVars = NonNullable<
+	ReturnType<typeof buildProjectInitConfig>["cssVars"]
+>
 
 const getComponentsByPrefix = (prefix: string) => {
 	return Object.entries(registry).filter(([key]) =>
@@ -28,11 +29,32 @@ const buildCssRule = (selector: string, cssVars?: Record<string, string>) => {
 	return `${selector} {\n${declarations}\n}\n`
 }
 
-const buildStyleCssText = (config: ProjectConfig) => {
-	const lightVars = buildCssRule(":root", config.cssVars.light)
-	const darkVars = buildCssRule(".dark", config.cssVars.dark)
+const buildStyleCssText = (cssVars: RegistryThemeCssVars) => {
+	const lightVars = buildCssRule(":root", cssVars.light)
+	const darkVars = buildCssRule(".dark", cssVars.dark)
 
 	return [lightVars, darkVars].join("\n")
+}
+
+const useFontLoader = (
+	font: (typeof FONTS)[number] | undefined,
+	cssVar: string
+) => {
+	useEffect(() => {
+		if (!font) return
+
+		const link = document.createElement("link")
+		link.rel = "stylesheet"
+		link.href = font.font.googleFontsUrl
+		document.head.appendChild(link)
+
+		const fontFamily = font.name
+		document.documentElement.style.setProperty(cssVar, fontFamily)
+
+		return () => {
+			document.head.removeChild(link)
+		}
+	}, [font, cssVar])
 }
 
 const PRIMARY_COLOR_STYLE_ID = "primary-color-style"
@@ -46,12 +68,23 @@ export default function Page({}: { params: { name: string } }) {
 	const [componentName, setComponentName] = useState(
 		searchParams.get("component") ?? "button"
 	)
+	const [headingFont, setHeadingFont] = useState(
+		searchParams.get("headingFont")
+	)
+	const [bodyFont, setBodyFont] = useState(searchParams.get("bodyFont"))
 
-	const configOptions: ProjectOptions = {
-		primaryColor: primaryColor as ProjectOptions["primaryColor"],
-	}
+	const selectedHeadingFont = FONTS.find((font) => font.value === headingFont)
+	const selectedBodyFont = FONTS.find((font) => font.value === bodyFont)
 
-	const config = createProjectConfig(configOptions)
+	const config = useMemo(
+		() =>
+			buildProjectInitConfig({
+				primaryColor,
+				headingFont,
+				bodyFont,
+			} as DesignSystemConfig),
+		[primaryColor, headingFont, bodyFont]
+	)
 
 	const components = useMemo(
 		() => getComponentsByPrefix(componentName),
@@ -71,9 +104,8 @@ export default function Page({}: { params: { name: string } }) {
 			document.head.appendChild(style)
 		}
 
-		const styleText = buildStyleCssText(config)
+		const styleText = buildStyleCssText(config.cssVars)
 		style.textContent = styleText
-		console.log(styleText)
 
 		return () => {
 			if (style && document.head.contains(style)) {
@@ -82,6 +114,9 @@ export default function Page({}: { params: { name: string } }) {
 		}
 	}, [config])
 
+	useFontLoader(selectedHeadingFont, "--heading-font")
+	useFontLoader(selectedBodyFont, "--body-font")
+
 	useEffect(() => {
 		const handleMessage = (event: MessageEvent) => {
 			if (event.data.type === "primary-color-change") {
@@ -89,6 +124,12 @@ export default function Page({}: { params: { name: string } }) {
 			}
 			if (event.data.type === "component-change") {
 				setComponentName(event.data.component)
+			}
+			if (event.data.type === "heading-font-change") {
+				setHeadingFont(event.data.headingFont)
+			}
+			if (event.data.type === "body-font-change") {
+				setBodyFont(event.data.bodyFont)
 			}
 		}
 
