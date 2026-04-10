@@ -28,16 +28,23 @@ export const registryConfigSchema = z.record(
 export const rawConfigSchema = z
 	.object({
 		$schema: z.string().optional(),
-		style: z.string(),
+		style: z.string().default("default"),
 		rsc: z.coerce.boolean().default(false),
 		tsx: z.coerce.boolean().default(true),
-		tailwind: z.object({
-			config: z.string().optional(),
-			css: z.string(),
-			baseColor: z.string(),
-			cssVariables: z.boolean().default(true),
-			prefix: z.string().default("").optional(),
-		}),
+		tailwind: z
+			.object({
+				config: z.string().optional(),
+				css: z.string().default("app/globals.css"),
+				baseColor: z.string().default("slate"),
+				cssVariables: z.boolean().default(true),
+				prefix: z.string().default("").optional(),
+			})
+			.default({
+				css: "app/globals.css",
+				baseColor: "slate",
+				cssVariables: true,
+				prefix: "",
+			}),
 		iconLibrary: z.string().optional(),
 		rtl: z.coerce.boolean().default(false).optional(),
 		menuColor: z
@@ -50,10 +57,12 @@ export const rawConfigSchema = z
 			.default("default")
 			.optional(),
 		menuAccent: z.enum(["subtle", "bold"]).default("subtle").optional(),
+		hasSrcDir: z.coerce.boolean().default(false).optional(),
 		aliases: z.object({
 			components: z.string(),
 			utils: z.string(),
 			ui: z.string().optional(),
+			animated: z.string().optional(),
 			lib: z.string().optional(),
 			hooks: z.string().optional(),
 		}),
