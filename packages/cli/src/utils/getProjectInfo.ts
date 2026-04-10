@@ -5,7 +5,13 @@ import { loadConfig } from "tsconfig-paths"
 import { FRAMEWORKS, Framework, FrameworkName } from "@/utils/frameworks"
 import { logger } from "@/utils/logger"
 
-const PROJECT_SHARED_IGNORE = ["**/node_modules/**", "dist", "build", ".next", "public"]
+const PROJECT_SHARED_IGNORE = [
+	"**/node_modules/**",
+	"dist",
+	"build",
+	".next",
+	"public",
+]
 
 export type ProjectInfo = {
 	framework: Framework
@@ -18,7 +24,14 @@ export type ProjectInfo = {
 }
 
 export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
-	const [configFiles, hasSrcDir, isTsx, tailwindConfigFile, tailwindCssFile, aliasPrefix] = await Promise.all([
+	const [
+		configFiles,
+		hasSrcDir,
+		isTsx,
+		tailwindConfigFile,
+		tailwindCssFile,
+		aliasPrefix,
+	] = await Promise.all([
 		getConfigFile(cwd),
 		fs.pathExists(path.resolve(cwd, "src")),
 		getIsTypescriptProject(cwd),
@@ -27,7 +40,9 @@ export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
 		getAliasPrefixFromTsConfigFile(cwd),
 	])
 
-	const isUsingAppDir = await fs.pathExists(path.resolve(cwd, `${hasSrcDir ? "src/" : ""}app`))
+	const isUsingAppDir = await fs.pathExists(
+		path.resolve(cwd, `${hasSrcDir ? "src/" : ""}app`)
+	)
 
 	const projectType: ProjectInfo = {
 		framework: FRAMEWORKS["manual"],
@@ -40,7 +55,9 @@ export const getProjectInfo = async (cwd: string): Promise<ProjectInfo> => {
 	}
 
 	if (configFiles?.startsWith("next.config.")) {
-		projectType.framework = isUsingAppDir ? FRAMEWORKS["next-app"] : FRAMEWORKS["next-pages"]
+		projectType.framework = isUsingAppDir
+			? FRAMEWORKS["next-app"]
+			: FRAMEWORKS["next-pages"]
 		projectType.isRSC = isUsingAppDir
 		return projectType
 	}
@@ -94,7 +111,10 @@ export const getTailwindCssFile = async (cwd: string) => {
 
 	for (const file of files) {
 		const content = await fs.readFile(path.resolve(cwd, file), "utf-8")
-		if (content.includes(`@import "tailwindcss"`) || content.includes(`@import 'tailwindcss'`)) {
+		if (
+			content.includes(`@import "tailwindcss"`) ||
+			content.includes(`@import 'tailwindcss'`)
+		) {
 			return file
 		}
 	}
@@ -133,24 +153,37 @@ export const getAliasPrefixFromTsConfigFile = async (cwd: string) => {
 	}
 
 	for (const [alias, paths] of Object.entries(tsConfigFile.paths)) {
-		if (paths.includes("./*") || paths.includes("./src/*") || paths.includes("./app/*") || paths.includes("./resources/js/*/")) {
+		if (
+			paths.includes("./*") ||
+			paths.includes("./src/*") ||
+			paths.includes("./app/*") ||
+			paths.includes("./resources/js/*/")
+		) {
 			return alias[0] ?? null
 		}
 	}
 	return null
 }
 
-export const getTailwindCssFilePath = (projectRoot: string, hasSrcDir: boolean, framework: FrameworkName) => {
+export const getTailwindCssFilePath = (
+	projectRoot: string,
+	hasSrcDir: boolean,
+	framework: FrameworkName
+) => {
 	let cssPath: string
 	switch (framework) {
 		case "vite":
 			cssPath = path.join(projectRoot, "src", "index.css")
 			break
 		case "next-app":
-			cssPath = hasSrcDir ? path.join(projectRoot, "src", "app", "globals.css") : path.join(projectRoot, "app", "globals.css")
+			cssPath = hasSrcDir
+				? path.join(projectRoot, "src", "app", "globals.css")
+				: path.join(projectRoot, "app", "globals.css")
 			break
 		case "next-pages":
-			cssPath = hasSrcDir ? path.join(projectRoot, "src", "styles", "globals.css") : path.join(projectRoot, "styles", "globals.css")
+			cssPath = hasSrcDir
+				? path.join(projectRoot, "src", "styles", "globals.css")
+				: path.join(projectRoot, "styles", "globals.css")
 			break
 		default:
 			throw new Error(`Unsupported framework: ${framework}`)

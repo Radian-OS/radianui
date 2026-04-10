@@ -4,17 +4,23 @@ import path from "path"
 import prompts from "prompts"
 import z from "zod"
 import { preFlightInit } from "@/preflights/preFlightInit"
+import { COLORS, FONTS } from "@/registry/constants"
+import {
+	templates,
+	getTemplateForFramework,
+	resolveTemplate,
+} from "@/templates"
+import type { TemplateOptions } from "@/templates"
 import { txt } from "@/utils/colors"
-import { COLORS, FONTS } from "@/utils/constants"
 import { FrameworkName } from "@/utils/frameworks"
+import { getPackageManager } from "@/utils/getPackageManager"
 import { getTailwindCssFilePath } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
-import { scaffoldNewProject, setupProjectConfig } from "@/utils/project"
 import { handlePromptCancel, promptForProject } from "@/utils/prompts"
 import { Color, Font } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
-import { GLOBAL_CSS_V4, UTILS } from "@/utils/templates"
+import { COMPONENTS_JSON_CONFIG, GLOBAL_CSS_V4, UTILS } from "@/utils/templates"
 import { updateCssWithTheme } from "@/utils/updaters/update-css"
 
 export const initOptionsSchema = z.object({
@@ -50,7 +56,9 @@ export const init = new Command()
 			// Check if both frameworks are passed
 			if (options.next && options.vite) {
 				logger.break()
-				logger.error("You cannot pass both --next and --vite options together. Please pass only one option.")
+				logger.error(
+					"You cannot pass both --next and --vite options together. Please pass only one option."
+				)
 				logger.break()
 				process.exit(1)
 			}
@@ -58,28 +66,50 @@ export const init = new Command()
 			const { projectName } = await executeInit(options)
 
 			logger.break()
-			logger.info(`${txt.success("Success!")} Project initialization completed.`)
+			logger.info(
+				`${txt.success("Success!")} Project initialization completed.`
+			)
 			logger.break()
 			logger.log("Next steps:")
 			logger.log(`  cd ${txt.info(projectName)}`)
-			logger.log(`  To add all components, run: ${txt.info("npx radianui add -a")}`)
+			logger.log(
+				`  To add all components, run: ${txt.info("npx radianui add -a")}`
+			)
 			logger.break()
 		} catch (error) {
 			handleError(error)
 		}
 	})
 
-export const createGlobalCssFile = async (projectDir: string, hasSrcDir: boolean, framework: FrameworkName) => {
+/**
+ * Write the global CSS file with the full RadianUI theme tokens.
+ */
+export const createGlobalCssFile = async (
+	projectDir: string,
+	hasSrcDir: boolean,
+	framework: FrameworkName
+) => {
 	try {
 		const cssPath = getTailwindCssFilePath(projectDir, hasSrcDir, framework)
 		await fs.ensureFile(cssPath)
 		await fs.writeFile(cssPath, GLOBAL_CSS_V4, "utf-8")
 	} catch (error) {
-		throw new Error(`Failed to create global CSS: ${error.message}`)
+		throw new Error(
+			`Failed to create global CSS: ${error instanceof Error ? error.message : String(error)}`
+		)
 	}
 }
 
-export const updateGlobalCssVariables = async (projectDir: string, hasSrcDir: boolean, framework: FrameworkName, brandColor: Color, font: Font) => {
+/**
+ * Apply brand color and font overrides to the global CSS.
+ */
+export const updateGlobalCssVariables = async (
+	projectDir: string,
+	hasSrcDir: boolean,
+	framework: FrameworkName,
+	brandColor: Color,
+	font: Font
+) => {
 	const updateCssSpinner = spinner("Updating global CSS variables")
 	try {
 		const cssPath = getTailwindCssFilePath(projectDir, hasSrcDir, framework)
@@ -92,9 +122,21 @@ export const updateGlobalCssVariables = async (projectDir: string, hasSrcDir: bo
 	}
 }
 
-export const createUtils = async (projectDir: string, hasSrcDir: boolean, framework: FrameworkName) => {
+/**
+ * Create the lib/utils.ts file with the cn() helper.
+ */
+export const createUtils = async (
+	projectDir: string,
+	hasSrcDir: boolean,
+	framework: FrameworkName
+) => {
 	try {
-		const baseDir = framework === "vite" ? path.join(projectDir, "src") : hasSrcDir ? path.join(projectDir, "src") : projectDir
+		const baseDir =
+			framework === "vite"
+				? path.join(projectDir, "src")
+				: hasSrcDir
+					? path.join(projectDir, "src")
+					: projectDir
 
 		const utilsDir = path.join(baseDir, "lib")
 		await fs.ensureDir(utilsDir)
@@ -102,6 +144,34 @@ export const createUtils = async (projectDir: string, hasSrcDir: boolean, framew
 	} catch (error) {
 		throw new Error(`Failed to create utils.ts: ${error}`)
 	}
+}
+
+/**
+ * Write the components.json configuration file.
+ */
+const writeComponentsJson = async (
+	projectPath: string,
+	hasSrcDir: boolean
+) => {
+	const targetPath = path.resolve(projectPath, "components.json")
+	const componentsJsonConfig = JSON.parse(COMPONENTS_JSON_CONFIG)
+	componentsJsonConfig.hasSrcDir = hasSrcDir
+	await fs.writeFile(
+		targetPath,
+		JSON.stringify(componentsJsonConfig, null, 2),
+		"utf8"
+	)
+}
+
+/**
+ * Resolve template key from framework name.
+ */
+function getTemplateKey(framework: FrameworkName): "next" | "vite" {
+	const key = getTemplateForFramework(framework)
+	if (key && key in templates) {
+		return key as "next" | "vite"
+	}
+	return framework === "vite" ? "vite" : "next"
 }
 
 export const executeInit = async (options: InitOptions) => {
@@ -129,7 +199,11 @@ export const executeInit = async (options: InitOptions) => {
 	}
 
 	// Get project prompts (adapts based on hasExistingProject)
-	const projectPrompts = await promptForProject(options, hasExistingProject, projectInfo)
+	const projectPrompts = await promptForProject(
+		options,
+		hasExistingProject,
+		projectInfo
+	)
 
 	// Handle existing project confirmation
 	if (hasExistingProject) {
@@ -152,28 +226,69 @@ export const executeInit = async (options: InitOptions) => {
 
 	const { projectName, framework, useSrcDir, brandColor, font } = projectPrompts
 
-	// Scaffold new project if needed
+	// --- Scaffold new project using template system ---
 	let projectPath = options.cwd
 	if (!hasExistingProject) {
 		if (!projectName) {
 			throw new Error("Project name is required to scaffold a new project.")
 		}
 
-		const { projectPath: newProjectPath } = await scaffoldNewProject(options, {
-			projectName,
-			useSrcDir,
-			framework,
-			brandColor,
-			font,
+		projectPath = path.join(options.cwd, projectName)
+
+		if (fs.existsSync(projectPath)) {
+			throw new Error(`A project named ${projectName} already exists.`)
+		}
+
+		const packageManager = await getPackageManager(options.cwd, {
+			withFallback: true,
 		})
-		projectPath = newProjectPath
+
+		// Use template system: git sparse-checkout the template skeleton
+		const templateKey = getTemplateKey(framework)
+		const template = resolveTemplate(templates[templateKey], {
+			monorepo: false,
+		})
+
+		const templateOptions: TemplateOptions = {
+			projectPath,
+			packageManager,
+			cwd: options.cwd,
+		}
+
+		await template.scaffold(templateOptions)
 	}
 
-	// Setup project configuration (same for both new and existing projects)
-	await setupProjectConfig(projectPath, framework, useSrcDir)
+	// --- Post-scaffold: CLI writes config, utils, and CSS ---
+	const configSpinner = spinner("Setting up project configuration").start()
 
-	// Update global CSS variables (same for both new and existing projects)
-	await updateGlobalCssVariables(projectPath, useSrcDir, framework, brandColor, font)
+	// Write components.json
+	await writeComponentsJson(projectPath, useSrcDir)
+
+	// Write lib/utils.ts
+	await createUtils(projectPath, useSrcDir, framework)
+
+	// Write the full global CSS (replaces the minimal @import "tailwindcss")
+	await createGlobalCssFile(projectPath, useSrcDir, framework)
+
+	configSpinner.succeed()
+
+	// Apply brand color and font overrides to the CSS
+	await updateGlobalCssVariables(
+		projectPath,
+		useSrcDir,
+		framework,
+		brandColor,
+		font
+	)
+
+	// Run template post-init (git init + initial commit) for new projects
+	if (!hasExistingProject) {
+		const templateKey = getTemplateKey(framework)
+		const template = resolveTemplate(templates[templateKey], {
+			monorepo: false,
+		})
+		await template.postInit({ projectPath })
+	}
 
 	return { projectName, ...projectInfo }
 }

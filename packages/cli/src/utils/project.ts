@@ -2,11 +2,11 @@ import { execa } from "execa"
 import fs from "fs-extra"
 import path from "path"
 import { InitOptions, createGlobalCssFile, createUtils } from "@/commands/init"
-import { txt } from "@/utils/colors"
 import {
 	PROJECT_DEPENDENCIES,
 	VITE_EXTRA_DEPENDENCIES,
-} from "@/utils/constants"
+} from "@/registry/constants"
+import { txt } from "@/utils/colors"
 import { installDependencies } from "@/utils/dependencyInstaller"
 import { FrameworkName } from "@/utils/frameworks"
 import { getPackageManager } from "@/utils/getPackageManager"
