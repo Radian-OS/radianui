@@ -256,6 +256,33 @@ export const executeInit = async (options: InitOptions) => {
 		}
 
 		await template.scaffold(templateOptions)
+
+		// If useSrcDir is true, move template's app/ directory into src/app/
+		// and update tsconfig paths to point to ./src/*
+		if (useSrcDir) {
+			const templateAppDir = path.join(projectPath, "app")
+			const srcAppDir = path.join(projectPath, "src", "app")
+			if (fs.existsSync(templateAppDir)) {
+				await fs.ensureDir(path.join(projectPath, "src"))
+				await fs.move(templateAppDir, srcAppDir, { overwrite: true })
+			}
+
+			// Update tsconfig.json paths for src directory
+			const tsconfigPath = path.join(projectPath, "tsconfig.json")
+			if (fs.existsSync(tsconfigPath)) {
+				const tsconfig = JSON.parse(
+					await fs.readFile(tsconfigPath, "utf-8")
+				)
+				if (tsconfig.compilerOptions?.paths) {
+					tsconfig.compilerOptions.paths["@/*"] = ["./src/*"]
+				}
+				await fs.writeFile(
+					tsconfigPath,
+					JSON.stringify(tsconfig, null, 2) + "\n",
+					"utf-8"
+				)
+			}
+		}
 	}
 
 	// --- Post-scaffold: CLI writes config, utils, and CSS ---
