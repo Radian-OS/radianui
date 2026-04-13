@@ -6,9 +6,9 @@ import z from "zod"
 import { preFlightInit } from "@/preflights/preFlightInit"
 import { COLORS, FONTS } from "@/registry/constants"
 import {
-	templates,
 	getTemplateForFramework,
 	resolveTemplate,
+	templates,
 } from "@/templates"
 import type { TemplateOptions } from "@/templates"
 import { txt } from "@/utils/colors"
@@ -71,7 +71,10 @@ export const init = new Command()
 			)
 			logger.break()
 			logger.log("Next steps:")
-			logger.log(`  cd ${txt.info(projectName)}`)
+			// Only show `cd` if a new project was created
+			if (projectName) {
+				logger.log(`  cd ${txt.info(projectName)}`)
+			}
 			logger.log(
 				`  To add all components, run: ${txt.info("npx radianui add -a")}`
 			)
@@ -150,10 +153,7 @@ export const createUtils = async (
  * Update layout.tsx to replace hardcoded Geist fonts with the user-selected font.
  * Removes next/font/google imports and applies font-body/font-heading via CSS variables instead.
  */
-const updateLayoutFont = async (
-	projectDir: string,
-	hasSrcDir: boolean
-) => {
+const updateLayoutFont = async (projectDir: string, hasSrcDir: boolean) => {
 	const appDir = hasSrcDir
 		? path.join(projectDir, "src", "app")
 		: path.join(projectDir, "app")
@@ -191,10 +191,7 @@ export default function RootLayout({
 /**
  * Write the components.json configuration file.
  */
-const writeComponentsJson = async (
-	projectPath: string,
-	hasSrcDir: boolean
-) => {
+const writeComponentsJson = async (projectPath: string, hasSrcDir: boolean) => {
 	const targetPath = path.resolve(projectPath, "components.json")
 	const componentsJsonConfig = JSON.parse(COMPONENTS_JSON_CONFIG)
 	componentsJsonConfig.hasSrcDir = hasSrcDir
@@ -316,9 +313,7 @@ export const executeInit = async (options: InitOptions) => {
 			// Update tsconfig.json paths for src directory
 			const tsconfigPath = path.join(projectPath, "tsconfig.json")
 			if (fs.existsSync(tsconfigPath)) {
-				const tsconfig = JSON.parse(
-					await fs.readFile(tsconfigPath, "utf-8")
-				)
+				const tsconfig = JSON.parse(await fs.readFile(tsconfigPath, "utf-8"))
 				if (tsconfig.compilerOptions?.paths) {
 					tsconfig.compilerOptions.paths["@/*"] = ["./src/*"]
 				}
@@ -356,10 +351,7 @@ export const executeInit = async (options: InitOptions) => {
 
 	// Update layout.tsx to remove hardcoded next/font imports
 	// so the selected font from CSS @import takes effect
-	if (
-		framework === "next-app" ||
-		framework === "next-pages"
-	) {
+	if (framework === "next-app" || framework === "next-pages") {
 		await updateLayoutFont(projectPath, useSrcDir)
 	}
 
