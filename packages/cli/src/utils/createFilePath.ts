@@ -13,23 +13,29 @@ import { RegistryComponentFile } from "@/utils/registry"
  * @param config
  * @returns
  */
-export const createFilePath = (file: RegistryComponentFile, cwd: string, frameworkName: FrameworkName, config: RawConfig) => {
+export const createFilePath = (
+	file: RegistryComponentFile,
+	cwd: string,
+	frameworkName: FrameworkName,
+	config: RawConfig
+) => {
 	let dir: string
 	let filename: string
 
 	switch (frameworkName) {
 		case "next-app": {
-			dir = file.type === "page" ? path.join("app", `${file.targetDir}`) : path.join(...config.aliases[file.type].split("/").slice(1))
+			dir =
+				file.type === "page"
+					? path.join("app", `${file.targetDir}`)
+					: path.join(...config.aliases[file.type].split("/").slice(1))
 			filename = file.type === "page" ? "page.tsx" : file.name
 			break
 		}
-		case "next-pages": {
-			dir = file.type === "page" ? path.join("pages", `${file.targetDir}`) : path.join(...config.aliases[file.type].split("/").slice(1))
-			filename = file.type === "page" ? "index.tsx" : file.name
-			break
-		}
 		case "vite": {
-			dir = file.type === "page" ? `${file.targetDir}` : path.join(...config.aliases[file.type].split("/").slice(1))
+			dir =
+				file.type === "page"
+					? `${file.targetDir}`
+					: path.join(...config.aliases[file.type].split("/").slice(1))
 			filename = file.name
 			break
 		}

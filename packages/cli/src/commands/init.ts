@@ -20,7 +20,7 @@ import { logger } from "@/utils/logger"
 import { handlePromptCancel, promptForProject } from "@/utils/prompts"
 import { Color, Font } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
-import { COMPONENTS_JSON_CONFIG, GLOBAL_CSS_V4, UTILS } from "@/utils/templates"
+import { GLOBAL_CSS_V4 } from "@/utils/templates"
 import { updateCssWithTheme } from "@/utils/updaters/update-css"
 
 export const initOptionsSchema = z.object({
@@ -123,44 +123,6 @@ export const updateGlobalCssVariables = async (
 		updateCssSpinner.fail()
 		throw new Error(`Failed to update global CSS variables: ${error}`)
 	}
-}
-
-/**
- * Create the lib/utils.ts file with the cn() helper.
- */
-export const createUtils = async (
-	projectDir: string,
-	hasSrcDir: boolean,
-	framework: FrameworkName
-) => {
-	try {
-		const baseDir =
-			framework === "vite"
-				? path.join(projectDir, "src")
-				: hasSrcDir
-					? path.join(projectDir, "src")
-					: projectDir
-
-		const utilsDir = path.join(baseDir, "lib")
-		await fs.ensureDir(utilsDir)
-		await fs.writeFile(path.join(utilsDir, "utils.ts"), UTILS, "utf8")
-	} catch (error) {
-		throw new Error(`Failed to create utils.ts: ${error}`)
-	}
-}
-
-/**
- * Write the components.json configuration file.
- */
-const writeComponentsJson = async (projectPath: string, hasSrcDir: boolean) => {
-	const targetPath = path.resolve(projectPath, "components.json")
-	const componentsJsonConfig = JSON.parse(COMPONENTS_JSON_CONFIG)
-	componentsJsonConfig.hasSrcDir = hasSrcDir
-	await fs.writeFile(
-		targetPath,
-		JSON.stringify(componentsJsonConfig, null, 2),
-		"utf8"
-	)
 }
 
 /**
@@ -289,12 +251,6 @@ export const executeInit = async (options: InitOptions) => {
 
 	// --- Post-scaffold: CLI writes config, utils, and CSS ---
 	const configSpinner = spinner("Setting up project configuration").start()
-
-	// Write components.json
-	await writeComponentsJson(projectPath, useSrcDir)
-
-	// Write lib/utils.ts
-	await createUtils(projectPath, useSrcDir, framework)
 
 	// Write the full global CSS (replaces the minimal @import "tailwindcss")
 	await createGlobalCssFile(projectPath, useSrcDir, framework)

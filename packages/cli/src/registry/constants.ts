@@ -1,6 +1,3 @@
-import z from "zod"
-import { registryConfigSchema } from "./schema"
-
 export const COLORS = [
 	{ title: "Red", value: "red", hex: "#F53D3D" },
 	{ title: "Orange", value: "orange", hex: "#F97316" },
@@ -50,14 +47,7 @@ export const PROJECT_DEPENDENCIES = [
 export const VITE_EXTRA_DEPENDENCIES = ["@tailwindcss/vite", "tailwindcss"]
 export const FALLBACK_PACKAGE_MANAGER = "npm"
 
-export const FALLBACK_STYLE = "new-york-v4"
-
 export const REGISTRY_URL =
 	process.env.NEXT_PUBLIC_WEBSITE_URL ?? "https://radianui.com/r"
 
 export const RADIANUI_URL = REGISTRY_URL.replace(/\/r\/?$/, "")
-
-// Built-in registries that are always available and cannot be overridden
-export const BUILTIN_REGISTRIES: z.infer<typeof registryConfigSchema> = {
-	"@radianui": `${REGISTRY_URL}/styles/{style}/{name}.json`,
-}

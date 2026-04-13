@@ -180,11 +180,6 @@ export const getTailwindCssFilePath = (
 				? path.join(projectRoot, "src", "app", "globals.css")
 				: path.join(projectRoot, "app", "globals.css")
 			break
-		case "next-pages":
-			cssPath = hasSrcDir
-				? path.join(projectRoot, "src", "styles", "globals.css")
-				: path.join(projectRoot, "styles", "globals.css")
-			break
 		default:
 			throw new Error(`Unsupported framework: ${framework}`)
 	}
