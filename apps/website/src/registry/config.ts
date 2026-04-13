@@ -1,10 +1,20 @@
 import z from "zod"
-import { FONTS } from "./fonts"
+import { FONTS, FontValue } from "./fonts"
 import { PRIMARY_COLORS } from "./primary-colors"
+import { RADIUS, RadiusValue } from "./radius"
+import { TEMPLATES } from "./templates"
 
-const fontValues = FONTS.map((font) => font.value) as [string, ...string[]]
+const fontValues = FONTS.map((font) => font.value) as [
+	FontValue,
+	...FontValue[],
+]
+const radiusValues = RADIUS.map((radius) => radius.value) as [
+	RadiusValue,
+	...RadiusValue[],
+]
 
-export const designSystemConfigSchema = z.object({
+export const themerConfigSchema = z.object({
+	name: z.string().optional(),
 	primaryColor: z
 		.enum(PRIMARY_COLORS.map((color) => color.value))
 		.default("violet-blue"),
@@ -16,16 +26,23 @@ export const designSystemConfigSchema = z.object({
 	bodyFont: z
 		.enum(fontValues, { error: "Invalid font value" })
 		.default("inter"),
-	template: z.enum(["next", "vite"]).default("next").optional(),
+	template: z.enum(TEMPLATES).default("next"),
+	radius: z
+		.enum(radiusValues, {
+			error: "Invalid radius value",
+		})
+		.default("medium"),
 })
 
-export type DesignSystemConfig = z.infer<typeof designSystemConfigSchema>
+export type ThemerConfig = z.infer<typeof themerConfigSchema>
 
-export const DEFAULT_CONFIG: DesignSystemConfig = {
+export const DEFAULT_CONFIG: ThemerConfig = {
 	primaryColor: "violet-blue",
 	headingFont: "geist",
 	bodyFont: "inter",
 	template: "next",
+	radius: "medium",
+	name: "my-project",
 }
 
 const BASE_THEME = {
@@ -170,7 +187,27 @@ const BASE_THEME = {
 	},
 } as const
 
-export function buildProjectInitConfig(config: DesignSystemConfig) {
+const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
+
+export const registryConfigSchema = z.object({
+	name: z.string(),
+	cssVars: z.object({
+		light: z.record(z.string(), z.string()),
+		dark: z.record(z.string(), z.string()),
+		theme: z.record(z.string(), z.string()),
+	}),
+	css: z.record(z.string(), cssValueSchema),
+	dependencies: z.array(z.string()),
+	registryDependencies: z.array(z.string()),
+	config: z.object({
+		iconLibrary: z.string(),
+		template: z.enum(TEMPLATES),
+	}),
+})
+
+export type RegistryConfig = z.infer<typeof registryConfigSchema>
+
+export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const colorEntry = PRIMARY_COLORS.find((c) => c.value === config.primaryColor)
 	const lightVars = colorEntry?.cssVars.light
 	const darkVars = colorEntry?.cssVars.dark
@@ -185,6 +222,13 @@ export function buildProjectInitConfig(config: DesignSystemConfig) {
 
 	if (config.bodyFont) theme["--body-font"] = bodyFont?.font.family || ""
 
+	const radius = RADIUS.find((r) => r.value === config.radius)
+	if (radius) {
+		for (const [key, value] of Object.entries(radius.radius)) {
+			theme[`--radius-${key}`] = value
+		}
+	}
+
 	const dependencies = [
 		"class-variance-authority",
 		"tw-animate-css",
@@ -195,7 +239,7 @@ export function buildProjectInitConfig(config: DesignSystemConfig) {
 	const registryDependencies = ["button"]
 
 	const projectConfig = {
-		name: "test",
+		name: config.name ?? DEFAULT_CONFIG.name!,
 		cssVars: {
 			light: { ...(lightVars || {}), ...BASE_THEME.light },
 			dark: { ...(darkVars || {}), ...BASE_THEME.dark },
@@ -244,6 +288,7 @@ export function buildProjectInitConfig(config: DesignSystemConfig) {
 		registryDependencies,
 		config: {
 			iconLibrary: "lucide-react",
+			template: config.template,
 		},
 	}
 

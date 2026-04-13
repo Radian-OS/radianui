@@ -1,8 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import {
-	buildProjectInitConfig,
-	designSystemConfigSchema,
-} from "@/registry/config"
+import { buildRegistryConfig, themerConfigSchema } from "@/registry/config"
 
 export async function GET(request: NextRequest) {
 	try {
@@ -15,7 +12,7 @@ export async function GET(request: NextRequest) {
 			template: searchParams.get("template") ?? undefined,
 		}
 
-		const result = designSystemConfigSchema.safeParse(raw)
+		const result = themerConfigSchema.safeParse(raw)
 
 		if (!result.success) {
 			return NextResponse.json(
@@ -30,7 +27,7 @@ export async function GET(request: NextRequest) {
 			)
 		}
 
-		const projectConfig = buildProjectInitConfig(result.data)
+		const projectConfig = buildRegistryConfig(result.data)
 
 		return NextResponse.json(projectConfig)
 	} catch (error) {

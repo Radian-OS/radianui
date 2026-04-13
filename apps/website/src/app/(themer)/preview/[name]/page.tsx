@@ -1,13 +1,14 @@
 "use client"
 
 import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react"
-import { useSearchParams } from "next/navigation"
-import { DesignSystemConfig, buildProjectInitConfig } from "@/registry/config"
+import { useThemerPreset } from "@/lib/themer-preset"
+import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
+import { RADIUS } from "@/registry/radius"
 import registry from "@/registry/registry-map"
 
 type RegistryThemeCssVars = NonNullable<
-	ReturnType<typeof buildProjectInitConfig>["cssVars"]
+	ReturnType<typeof buildRegistryConfig>["cssVars"]
 >
 
 const getComponentsByPrefix = (prefix: string) => {
@@ -57,34 +58,51 @@ const useFontLoader = (
 	}, [font, cssVar])
 }
 
-const PRIMARY_COLOR_STYLE_ID = "primary-color-style"
+const THEMER_STYLE_ID = "themer-style"
+
+const RADIUS_PRESETS = Object.fromEntries(
+	RADIUS.map((r) => [r.value, r.radius])
+)
+
+const buildRadiusCssText = (preset: string) => {
+	const radii = RADIUS_PRESETS[preset]
+	if (!radii) return ""
+
+	const declarations = Object.entries(radii)
+		.map(([key, value]) => `  --radius-${key}: ${value};`)
+		.join("\n")
+
+	return `:root {\n${declarations}\n}\n`
+}
+
+const buildThemerCssText = (
+	cssVars: RegistryThemeCssVars | undefined,
+	radius: string | undefined
+) => {
+	const parts: string[] = []
+
+	if (cssVars) {
+		parts.push(buildStyleCssText(cssVars))
+	}
+
+	if (radius) {
+		const radiusCss = buildRadiusCssText(radius)
+		if (radiusCss) parts.push(radiusCss)
+	}
+
+	return parts.join("\n")
+}
 
 export default function Page({}: { params: { name: string } }) {
-	const searchParams = useSearchParams()
+	const [params, setParams] = useThemerPreset()
+	const [componentName, setComponentName] = useState("button")
 
-	const [primaryColor, setPrimaryColor] = useState(
-		searchParams.get("primaryColor")
+	const selectedHeadingFont = FONTS.find(
+		(font) => font.value === params.headingFont
 	)
-	const [componentName, setComponentName] = useState(
-		searchParams.get("component") ?? "button"
-	)
-	const [headingFont, setHeadingFont] = useState(
-		searchParams.get("headingFont")
-	)
-	const [bodyFont, setBodyFont] = useState(searchParams.get("bodyFont"))
+	const selectedBodyFont = FONTS.find((font) => font.value === params.bodyFont)
 
-	const selectedHeadingFont = FONTS.find((font) => font.value === headingFont)
-	const selectedBodyFont = FONTS.find((font) => font.value === bodyFont)
-
-	const config = useMemo(
-		() =>
-			buildProjectInitConfig({
-				primaryColor,
-				headingFont,
-				bodyFont,
-			} as DesignSystemConfig),
-		[primaryColor, headingFont, bodyFont]
-	)
+	const config = useMemo(() => buildRegistryConfig(params), [params])
 
 	const components = useMemo(
 		() => getComponentsByPrefix(componentName),
@@ -92,27 +110,22 @@ export default function Page({}: { params: { name: string } }) {
 	)
 
 	useLayoutEffect(() => {
-		if (!config || !config.cssVars) return
-
-		let style = document.getElementById(
-			PRIMARY_COLOR_STYLE_ID
-		) as HTMLStyleElement
+		let style = document.getElementById(THEMER_STYLE_ID) as HTMLStyleElement
 
 		if (!style) {
 			style = document.createElement("style")
-			style.id = PRIMARY_COLOR_STYLE_ID
+			style.id = THEMER_STYLE_ID
 			document.head.appendChild(style)
 		}
 
-		const styleText = buildStyleCssText(config.cssVars)
-		style.textContent = styleText
+		style.textContent = buildThemerCssText(config?.cssVars, params.radius)
 
 		return () => {
 			if (style && document.head.contains(style)) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config])
+	}, [config, params.radius])
 
 	useFontLoader(selectedHeadingFont, "--heading-font")
 	useFontLoader(selectedBodyFont, "--body-font")
@@ -120,16 +133,22 @@ export default function Page({}: { params: { name: string } }) {
 	useEffect(() => {
 		const handleMessage = (event: MessageEvent) => {
 			if (event.data.type === "primary-color-change") {
-				setPrimaryColor(event.data.primaryColor)
+				setParams({ primaryColor: event.data.primaryColor })
 			}
 			if (event.data.type === "component-change") {
 				setComponentName(event.data.component)
 			}
 			if (event.data.type === "heading-font-change") {
-				setHeadingFont(event.data.headingFont)
+				setParams({ headingFont: event.data.headingFont })
 			}
 			if (event.data.type === "body-font-change") {
-				setBodyFont(event.data.bodyFont)
+				setParams({ bodyFont: event.data.bodyFont })
+			}
+			if (event.data.type === "radius-change") {
+				setParams({ radius: event.data.radius })
+			}
+			if (event.data.type === "template-change") {
+				setParams({ template: event.data.template })
 			}
 		}
 
@@ -138,7 +157,7 @@ export default function Page({}: { params: { name: string } }) {
 		return () => {
 			window.removeEventListener("message", handleMessage)
 		}
-	}, [])
+	}, [setParams])
 
 	return (
 		<div className="flex flex-col items-center gap-3 p-3">

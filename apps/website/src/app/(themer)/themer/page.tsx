@@ -8,12 +8,17 @@ import {
 	useRef,
 	useState,
 } from "react"
-import { Check, ChevronDown } from "lucide-react"
+import { useMutation } from "@tanstack/react-query"
+import { Check, ChevronDown, Plus } from "lucide-react"
 import { COMPONENTS_DATA } from "@/config/navigation-config"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { cn } from "@/lib/utils"
+import { buildRegistryConfig } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
+import { RadiusValue } from "@/registry/radius"
+import { TEMPLATES, Template } from "@/registry/templates"
+import { Button } from "@/registry/ui/button"
 import { Card, CardContent } from "@/registry/ui/card"
 import {
 	Command,
@@ -24,12 +29,23 @@ import {
 	CommandList,
 } from "@/registry/ui/command"
 import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/registry/ui/dialog"
+import {
 	Dropdown,
 	DropdownContent,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
 } from "@/registry/ui/dropdown"
+import { Input } from "@/registry/ui/input"
+import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { Spinner } from "@/registry/ui/spinner"
 
@@ -162,6 +178,149 @@ function FontCombobox({
 	)
 }
 
+export const RADII = [
+	{ name: "Default", value: "default" },
+	{ name: "None", value: "none" },
+	{ name: "Small", value: "small" },
+	{ name: "Medium", value: "medium" },
+	{ name: "Large", value: "large" },
+] as const
+
+const PROJECT_NAME_REGEX = /^[a-z0-9][a-z0-9-]*$/
+
+function validateProjectName(name: string): string | null {
+	if (!name) return "Project name is required."
+	if (name.length < 2) return "Name must be at least 2 characters."
+	if (!PROJECT_NAME_REGEX.test(name))
+		return "Use only lowercase letters, numbers, and hyphens. Must start with a letter or number."
+	if (name.endsWith("-")) return "Name cannot end with a hyphen."
+	return null
+}
+
+async function saveConfig(config: ReturnType<typeof buildRegistryConfig>) {
+	const res = await fetch(`${process.env.NEXT_PUBLIC_BLOCKS_URL}/api/config`, {
+		method: "POST",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify(config),
+	})
+
+	if (!res.ok) {
+		throw new Error(`Failed to save config (${res.status})`)
+	}
+
+	return res.json() as Promise<{ id: string }>
+}
+
+function CreateProjectDialog() {
+	const [projectName, setProjectName] = useState("")
+	const [params, setParams] = useThemerPreset()
+	const [touched, setTouched] = useState(false)
+
+	const error = validateProjectName(projectName)
+	const showError = touched && error
+
+	const {
+		mutate,
+		data,
+		isPending,
+		error: mutationError,
+	} = useMutation({
+		mutationFn: saveConfig,
+	})
+
+	const handleCreate = () => {
+		setTouched(true)
+		if (error) return
+
+		const config = buildRegistryConfig({
+			...params,
+			name: projectName,
+		})
+
+		mutate(config)
+	}
+
+	return (
+		<Dialog>
+			<DialogTrigger asChild>
+				<Button className="w-full">
+					<Plus className="size-4" />
+					Create Project
+				</Button>
+			</DialogTrigger>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle>Create Project</DialogTitle>
+					<DialogDescription>
+						Enter a name and choose a template for your new project.
+					</DialogDescription>
+				</DialogHeader>
+				{data?.id ? (
+					<div className="flex flex-col gap-3">
+						<Label>Run this command to get started:</Label>
+						<code className="bg-fill2 text-fg border-border select-all break-all rounded-lg border px-3 py-2 text-sm">
+							pnpm radianos@latest --config={data.id}
+						</code>
+					</div>
+				) : (
+					<>
+						<div className="flex flex-col gap-4">
+							<div className="flex flex-col gap-2">
+								<Label htmlFor="project-name">Project Name</Label>
+								<Input
+									id="project-name"
+									placeholder="my-project"
+									value={projectName}
+									onChange={(e) => setProjectName(e.target.value)}
+									onBlur={() => setTouched(true)}
+									aria-invalid={!!showError}
+								/>
+								{showError && <p className="text-error text-sm">{error}</p>}
+							</div>
+							<div className="flex flex-col gap-2">
+								<Label>Template</Label>
+								<Dropdown>
+									<DropdownTrigger className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+										<span className="text-fg">
+											{params.template.charAt(0).toUpperCase() +
+												params.template.slice(1)}
+										</span>
+										<ChevronDown className="text-fg-secondary size-4 shrink-0" />
+									</DropdownTrigger>
+									<DropdownContent className="w-56">
+										<DropdownRadioGroup
+											value={params.template}
+											onValueChange={(value) =>
+												setParams({ template: value as Template })
+											}>
+											{TEMPLATES.map((t) => (
+												<DropdownRadioItem
+													key={t}
+													value={t}
+													onSelect={(e) => e.preventDefault()}>
+													{t.charAt(0).toUpperCase() + t.slice(1)}
+												</DropdownRadioItem>
+											))}
+										</DropdownRadioGroup>
+									</DropdownContent>
+								</Dropdown>
+							</div>
+						</div>
+						{mutationError && (
+							<p className="text-error text-sm">{mutationError.message}</p>
+						)}
+						<DialogFooter>
+							<Button disabled={!!error || isPending} onClick={handleCreate}>
+								{isPending ? <Spinner size={16} variant="simple" /> : "Create"}
+							</Button>
+						</DialogFooter>
+					</>
+				)}
+			</DialogContent>
+		</Dialog>
+	)
+}
+
 export default function Page() {
 	return (
 		<Suspense>
@@ -179,7 +338,7 @@ function ThemerPage() {
 	// Dependency array is empty so the iframe is only rendered once
 	const iframeSrc = useMemo(
 		() =>
-			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}`,
+			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}`,
 		[]
 	)
 
@@ -194,6 +353,8 @@ function ThemerPage() {
 	const postToIframe = useCallback((message: Record<string, unknown>) => {
 		iframeRef.current?.contentWindow?.postMessage(message, "*")
 	}, [])
+	const selectedRadiusLabel =
+		RADII.find((r) => r.value === params.radius)?.name ?? params.radius
 
 	useEffect(() => {
 		postToIframe({
@@ -216,6 +377,20 @@ function ThemerPage() {
 	useEffect(() => {
 		postToIframe({ type: "body-font-change", bodyFont: params.bodyFont })
 	}, [params.bodyFont])
+
+	useEffect(() => {
+		postToIframe({ type: "template-change", template: params.template })
+	}, [params.template])
+
+	useEffect(() => {
+		const iframe = iframeRef.current
+		if (!iframe?.contentWindow) return
+
+		iframe.contentWindow.postMessage(
+			{ type: "radius-change", radius: params.radius },
+			"*"
+		)
+	}, [params.radius])
 
 	return (
 		<div className="flex h-screen w-full gap-4 p-3">
@@ -290,6 +465,32 @@ function ThemerPage() {
 							setParams({ bodyFont: value as FontValue })
 						}
 					/>
+					<Dropdown>
+						<DropdownTrigger className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+							<div className="flex flex-col items-start gap-0.5">
+								<span className="text-fg-tertiary text-xs">Radius</span>
+								<span className="text-fg">{selectedRadiusLabel}</span>
+							</div>
+						</DropdownTrigger>
+						<DropdownContent side="right" className="max-h-96 w-56">
+							<DropdownRadioGroup
+								value={params.radius}
+								onValueChange={(value) =>
+									setParams({ radius: value as RadiusValue })
+								}>
+								{RADII.map((radius) => (
+									<DropdownRadioItem
+										key={radius.name}
+										value={radius.value}
+										onSelect={(e) => e.preventDefault()}>
+										{radius.name}
+									</DropdownRadioItem>
+								))}
+							</DropdownRadioGroup>
+						</DropdownContent>
+					</Dropdown>
+
+					<CreateProjectDialog />
 				</CardContent>
 			</Card>
 
