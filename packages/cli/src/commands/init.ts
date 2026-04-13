@@ -247,6 +247,20 @@ export const executeInit = async (options: InitOptions) => {
 				)
 			}
 		}
+
+		// Sync components.json with the user's src-dir choice.
+		const componentsJsonPath = path.join(projectPath, "components.json")
+		if (fs.existsSync(componentsJsonPath)) {
+			const componentsJson = JSON.parse(
+				await fs.readFile(componentsJsonPath, "utf-8")
+			)
+			componentsJson.hasSrcDir = useSrcDir
+			await fs.writeFile(
+				componentsJsonPath,
+				JSON.stringify(componentsJson, null, 2) + "\n",
+				"utf-8"
+			)
+		}
 	}
 
 	// --- Post-scaffold: CLI writes config, utils, and CSS ---

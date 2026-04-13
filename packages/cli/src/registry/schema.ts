@@ -1,19 +1,17 @@
 import { z } from "zod"
 
-export const rawConfigSchema = z
-	.object({
-		iconLibrary: z.string().optional(),
-		hasSrcDir: z.coerce.boolean().default(false).optional(),
-		aliases: z.object({
-			components: z.string(),
-			utils: z.string(),
-			ui: z.string().optional(),
-			animated: z.string().optional(),
-			lib: z.string().optional(),
-			hooks: z.string().optional(),
-		}),
-	})
-	.strict()
+export const rawConfigSchema = z.object({
+	$schema: z.string(),
+	hasSrcDir: z.coerce.boolean().default(false).optional(),
+	aliases: z.object({
+		components: z.string(),
+		utils: z.string(),
+		ui: z.string().optional(),
+		animated: z.string().optional(),
+		lib: z.string().optional(),
+		hooks: z.string().optional(),
+	}),
+})
 
 export const configSchema = rawConfigSchema.extend({
 	resolvedPaths: z.object({

@@ -16,14 +16,34 @@ export const explorer = cosmiconfig("components", {
 export type Config = z.infer<typeof configSchema>
 export type RawConfig = z.infer<typeof rawConfigSchema>
 
-export async function getConfig(cwd: string) {
-	const config = await getRawConfig(cwd)
+export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
+	const result = await explorer.search(cwd)
 
-	if (!config) {
-		return null
+	if (!result) {
+		throw new Error(
+			`To add components, make sure you have a ${txt.info("components.json")} file. Run ${txt.info("npx radianui init")} to set it up.`
+		)
 	}
 
-	return await resolveConfigPaths(cwd, config)
+	try {
+		let parsed = rawConfigSchema.parse(result.config)
+
+		// Provide fallback values
+		parsed = {
+			...parsed,
+			aliases: {
+				...parsed.aliases,
+				animated: parsed.aliases.animated ?? "@/components/animated",
+				hooks: parsed.aliases.hooks ?? "@/components/hooks",
+				lib: parsed.aliases.lib ?? "@/components/lib",
+			},
+		}
+		return parsed
+	} catch (error) {
+		throw new Error(
+			`Error loading components.json configuration: Invalid components.json file`
+		)
+	}
 }
 
 export async function resolveConfigPaths(
@@ -39,7 +59,7 @@ export async function resolveConfigPaths(
 		)
 	}
 
-	return configSchema.parse({
+	return rawConfigSchema.parse({
 		...config,
 		resolvedPaths: {
 			cwd,
@@ -86,6 +106,7 @@ export async function getRawConfig(
 
 		return config
 	} catch (error) {
+		console.log(error)
 		const componentPath = `${cwd}/components.json`
 		if (error instanceof Error && error.message.includes("reserved registry")) {
 			throw error
