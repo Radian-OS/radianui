@@ -80,6 +80,7 @@
 		"@types/prompts": "^2.4.9",
 		"@vitest/coverage-istanbul": "^4.0.4",
 		"cross-env": "^7.0.3",
+		"tsx": "^4.19.3",
 		"typescript": "^5.9.3",
 		"vite-tsconfig-paths": "^5.1.4",
 		"vitest": "^4.0.4"
