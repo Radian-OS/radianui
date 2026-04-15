@@ -1,7 +1,33 @@
 export const PRIMARY_COLORS = [
 	{
+		value: "violet-blue",
+		name: "Violet Blue",
+		type: "registry:color",
+		cssVars: {
+			light: {
+				primary: "oklch(0.528 0.2539 282.58)",
+				"primary-accent": "oklch(0.94 0.0271 295.05)",
+				"primary-focus": "oklch(0.9169 0.0383 295.46)",
+				"primary-border": "oklch(0.6784 0.1708 290.38)",
+				"primary-hover": "oklch(0.5768 0.2279 286.25)",
+				"primary-text": "oklch(0.528 0.2539 282.58)",
+				"primary-fg": "oklch(0.2764 0.0079 264.44)",
+			},
+			dark: {
+				primary: "oklch(0.528 0.2539 282.58)",
+				"primary-accent": "oklch(0.2622 0.0915 289.13)",
+				"primary-focus": "oklch(0.2827 0.1227 284.67)",
+				"primary-border": "oklch(0.528 0.2539 282.58)",
+				"primary-hover": "oklch(0.5768 0.2279 286.25)",
+				"primary-text": "oklch(0.6784 0.1708 290.38)",
+				"primary-fg": "oklch(0.9764 0.0013 286.38)",
+			},
+		},
+	},
+	{
 		value: "red",
 		name: "Red",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.64 0.22 26.04)",
@@ -26,6 +52,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "orange",
 		name: "Orange",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6211 0.1686 43.12)",
@@ -50,6 +77,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "amber",
 		name: "Amber",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.8016 0.1705 73.27)",
@@ -74,6 +102,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "yellow",
 		name: "Yellow",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.8 0.1625 94.77)",
@@ -98,6 +127,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "neon",
 		name: "Neon",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.7153 0.1873 128.9)",
@@ -122,6 +152,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "green",
 		name: "Green",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6523 0.2156 142.6)",
@@ -146,6 +177,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "emerald",
 		name: "Emerald",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6334 0.171 148.65)",
@@ -170,6 +202,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "teal",
 		name: "Teal",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6432 0.1255 169.12)",
@@ -194,6 +227,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "cyan",
 		name: "Cyan",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6549 0.1092 194.82)",
@@ -218,6 +252,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "light-blue",
 		name: "Light Blue",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6092 0.2041 255.8)",
@@ -242,6 +277,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "blue",
 		name: "Blue",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.5345 0.223 272.15)",
@@ -264,32 +300,9 @@ export const PRIMARY_COLORS = [
 		},
 	},
 	{
-		value: "violet-blue",
-		name: "Violet Blue",
-		cssVars: {
-			light: {
-				primary: "oklch(0.528 0.2539 282.58)",
-				"primary-accent": "oklch(0.94 0.0271 295.05)",
-				"primary-focus": "oklch(0.9169 0.0383 295.46)",
-				"primary-border": "oklch(0.6784 0.1708 290.38)",
-				"primary-hover": "oklch(0.5768 0.2279 286.25)",
-				"primary-text": "oklch(0.528 0.2539 282.58)",
-				"primary-fg": "oklch(0.2764 0.0079 264.44)",
-			},
-			dark: {
-				primary: "oklch(0.528 0.2539 282.58)",
-				"primary-accent": "oklch(0.2622 0.0915 289.13)",
-				"primary-focus": "oklch(0.2827 0.1227 284.67)",
-				"primary-border": "oklch(0.528 0.2539 282.58)",
-				"primary-hover": "oklch(0.5768 0.2279 286.25)",
-				"primary-text": "oklch(0.6784 0.1708 290.38)",
-				"primary-fg": "oklch(0.9764 0.0013 286.38)",
-			},
-		},
-	},
-	{
 		value: "purple",
 		name: "Purple",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.5554 0.2522 292.8)",
@@ -314,6 +327,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "dark-orchid",
 		name: "Dark Orchid",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.623 0.2799 310.69)",
@@ -338,6 +352,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "fuchsia",
 		name: "Fuchsia",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6901 0.2628 327.97)",
@@ -362,6 +377,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "magenta",
 		name: "Magenta",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6175 0.2503 347.29)",
@@ -386,6 +402,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "rose",
 		name: "Rose",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.6515 0.221 6.33)",
@@ -410,6 +427,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "grey",
 		name: "Grey",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.7 0.011 286.16)",
@@ -434,6 +452,7 @@ export const PRIMARY_COLORS = [
 	{
 		value: "neutral",
 		name: "Neutral",
+		type: "registry:color",
 		cssVars: {
 			light: {
 				primary: "oklch(0.2314 0.0078 274.6)",
@@ -455,4 +474,8 @@ export const PRIMARY_COLORS = [
 			},
 		},
 	},
-]
+] as const
+
+export type PrimaryColor = (typeof PRIMARY_COLORS)[number]
+export type PrimaryColorName = PrimaryColor["name"]
+export type PrimaryColorValue = PrimaryColor["value"]

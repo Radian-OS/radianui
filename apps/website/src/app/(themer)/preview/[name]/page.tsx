@@ -1,13 +1,15 @@
 "use client"
 
 import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react"
-import { useSearchParams } from "next/navigation"
-import {
-	ProjectConfig,
-	ProjectOptions,
-	createProjectConfig,
-} from "@/lib/create-project-config"
+import { useThemerPreset } from "@/lib/themer-preset"
+import { buildRegistryConfig } from "@/registry/config"
+import { FONTS } from "@/registry/fonts"
+import { RADIUS } from "@/registry/radius"
 import registry from "@/registry/registry-map"
+
+type RegistryThemeCssVars = NonNullable<
+	ReturnType<typeof buildRegistryConfig>["cssVars"]
+>
 
 const getComponentsByPrefix = (prefix: string) => {
 	return Object.entries(registry).filter(([key]) =>
@@ -28,51 +30,39 @@ const buildCssRule = (selector: string, cssVars?: Record<string, string>) => {
 	return `${selector} {\n${declarations}\n}\n`
 }
 
-const buildStyleCssText = (config: ProjectConfig) => {
-	const lightVars = buildCssRule(":root", config.cssVars.light)
-	const darkVars = buildCssRule(".dark", config.cssVars.dark)
+const buildStyleCssText = (cssVars: RegistryThemeCssVars) => {
+	const lightVars = buildCssRule(":root", cssVars.light)
+	const darkVars = buildCssRule(".dark", cssVars.dark)
 
 	return [lightVars, darkVars].join("\n")
 }
 
-const PRIMARY_COLOR_STYLE_ID = "primary-color-style"
+const useFontLoader = (
+	font: (typeof FONTS)[number] | undefined,
+	cssVar: string
+) => {
+	useEffect(() => {
+		if (!font) return
 
-const RADIUS_STYLE_ID = "radius-style"
+		const link = document.createElement("link")
+		link.rel = "stylesheet"
+		link.href = font.font.googleFontsUrl
+		document.head.appendChild(link)
 
-const RADIUS_PRESETS: Record<string, Record<string, string>> = {
-	none: {
-		xs: "0px",
-		sm: "0px",
-		md: "0px",
-		lg: "0px",
-		xl: "0px",
-		"2xl": "0px",
-	},
-	small: {
-		xs: "1px",
-		sm: "2px",
-		md: "4px",
-		lg: "4px",
-		xl: "6px",
-		"2xl": "8px",
-	},
-	medium: {
-		xs: "2px",
-		sm: "4px",
-		md: "6px",
-		lg: "8px",
-		xl: "12px",
-		"2xl": "16px",
-	},
-	large: {
-		xs: "2px",
-		sm: "4px",
-		md: "8px",
-		lg: "12px",
-		xl: "20px",
-		"2xl": "28px",
-	},
+		const fontFamily = font.name
+		document.documentElement.style.setProperty(cssVar, fontFamily)
+
+		return () => {
+			document.head.removeChild(link)
+		}
+	}, [font, cssVar])
 }
+
+const THEMER_STYLE_ID = "themer-style"
+
+const RADIUS_PRESETS = Object.fromEntries(
+	RADIUS.map((r) => [r.value, r.radius])
+)
 
 const buildRadiusCssText = (preset: string) => {
 	const radii = RADIUS_PRESETS[preset]
@@ -85,23 +75,34 @@ const buildRadiusCssText = (preset: string) => {
 	return `:root {\n${declarations}\n}\n`
 }
 
-export default function Page({}: { params: { name: string } }) {
-	const searchParams = useSearchParams()
+const buildThemerCssText = (
+	cssVars: RegistryThemeCssVars | undefined,
+	radius: string | undefined
+) => {
+	const parts: string[] = []
 
-	const [primaryColor, setPrimaryColor] = useState(
-		searchParams.get("primaryColor")
-	)
-	const [componentName, setComponentName] = useState(
-		searchParams.get("component") ?? "button"
-	)
-
-	const [radius, setRadius] = useState<string>("")
-
-	const configOptions: ProjectOptions = {
-		primaryColor: primaryColor as ProjectOptions["primaryColor"],
+	if (cssVars) {
+		parts.push(buildStyleCssText(cssVars))
 	}
 
-	const config = createProjectConfig(configOptions)
+	if (radius) {
+		const radiusCss = buildRadiusCssText(radius)
+		if (radiusCss) parts.push(radiusCss)
+	}
+
+	return parts.join("\n")
+}
+
+export default function Page({}: { params: { name: string } }) {
+	const [params, setParams] = useThemerPreset()
+	const [componentName, setComponentName] = useState("button")
+
+	const selectedHeadingFont = FONTS.find(
+		(font) => font.value === params.headingFont
+	)
+	const selectedBodyFont = FONTS.find((font) => font.value === params.bodyFont)
+
+	const config = useMemo(() => buildRegistryConfig(params), [params])
 
 	const components = useMemo(
 		() => getComponentsByPrefix(componentName),
@@ -109,39 +110,45 @@ export default function Page({}: { params: { name: string } }) {
 	)
 
 	useLayoutEffect(() => {
-		if (!config || !config.cssVars) return
-
-		let style = document.getElementById(
-			PRIMARY_COLOR_STYLE_ID
-		) as HTMLStyleElement
+		let style = document.getElementById(THEMER_STYLE_ID) as HTMLStyleElement
 
 		if (!style) {
 			style = document.createElement("style")
-			style.id = PRIMARY_COLOR_STYLE_ID
+			style.id = THEMER_STYLE_ID
 			document.head.appendChild(style)
 		}
 
-		const styleText = buildStyleCssText(config)
-		style.textContent = styleText
-		console.log(styleText)
+		style.textContent = buildThemerCssText(config?.cssVars, params.radius)
 
 		return () => {
 			if (style && document.head.contains(style)) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config])
+	}, [config, params.radius])
+
+	useFontLoader(selectedHeadingFont, "--heading-font")
+	useFontLoader(selectedBodyFont, "--body-font")
 
 	useEffect(() => {
 		const handleMessage = (event: MessageEvent) => {
 			if (event.data.type === "primary-color-change") {
-				setPrimaryColor(event.data.primaryColor)
+				setParams({ primaryColor: event.data.primaryColor })
 			}
 			if (event.data.type === "component-change") {
 				setComponentName(event.data.component)
 			}
+			if (event.data.type === "heading-font-change") {
+				setParams({ headingFont: event.data.headingFont })
+			}
+			if (event.data.type === "body-font-change") {
+				setParams({ bodyFont: event.data.bodyFont })
+			}
 			if (event.data.type === "radius-change") {
-				setRadius(event.data.radius)
+				setParams({ radius: event.data.radius })
+			}
+			if (event.data.type === "template-change") {
+				setParams({ template: event.data.template })
 			}
 		}
 
@@ -150,35 +157,7 @@ export default function Page({}: { params: { name: string } }) {
 		return () => {
 			window.removeEventListener("message", handleMessage)
 		}
-	}, [])
-
-	useLayoutEffect(() => {
-		let style = document.getElementById(RADIUS_STYLE_ID) as HTMLStyleElement
-
-		if (!radius || radius === "default") {
-			if (style && document.head.contains(style)) {
-				document.head.removeChild(style)
-			}
-			return
-		}
-
-		const cssText = buildRadiusCssText(radius)
-		if (!cssText) return
-
-		if (!style) {
-			style = document.createElement("style")
-			style.id = RADIUS_STYLE_ID
-			document.head.appendChild(style)
-		}
-
-		style.textContent = cssText
-
-		return () => {
-			if (style && document.head.contains(style)) {
-				document.head.removeChild(style)
-			}
-		}
-	}, [radius])
+	}, [setParams])
 
 	return (
 		<div className="flex flex-col items-center gap-3 p-3">
