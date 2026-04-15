@@ -6,12 +6,20 @@ import { pipeline } from "stream/promises"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 
-const WEBSITE_URL = "https://radianos.com"
-const BLOCKS_URL = "https://blocks.radianos.com"
-const REGISTRY_COMPONENT_URL = `${WEBSITE_URL}/api/components`
-const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
+export const WEBSITE_URL = "https://radianos.com"
+export const BLOCKS_URL = "https://blocks.radianos.com"
+// export const BLOCKS_URL = "http://localhost:3005"
+export const REGISTRY_COMPONENT_URL = `${WEBSITE_URL}/api/components`
+export const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
+export const PRESET_API_URL = `${BLOCKS_URL}/api/config`
 
-export type RegistryType = "ui" | "components" | "page" | "hooks" | "animated" | "block"
+export type RegistryType =
+	| "ui"
+	| "components"
+	| "page"
+	| "hooks"
+	| "animated"
+	| "block"
 
 export type RegistryComponentFile = {
 	name: string
@@ -45,7 +53,9 @@ export const getRegistryComponents = async (): Promise<RegistryComponents> => {
 			const errorMessage = `Failed to fetch data from ${REGISTRY_COMPONENT_URL}.\nStatus: ${response.status} - ${response.statusText}`
 			throw new Error(errorMessage)
 		}
-		const blockResponse = await fetch(new URL("/api/blocks", REGISTRY_BLOCK_URL).toString())
+		const blockResponse = await fetch(
+			new URL("/api/blocks", REGISTRY_BLOCK_URL).toString()
+		)
 
 		if (!blockResponse.ok) {
 			const errorMessage = `Failed to fetch data from ${REGISTRY_BLOCK_URL}.\nStatus: ${blockResponse.status} - ${blockResponse.statusText}`
@@ -61,9 +71,15 @@ export const getRegistryComponents = async (): Promise<RegistryComponents> => {
 	}
 }
 
-export const downloadAssets = async (assetsDirectory: string, cwd: string): Promise<void> => {
+export const downloadAssets = async (
+	assetsDirectory: string,
+	cwd: string
+): Promise<void> => {
 	try {
-		const url = new URL(`/api/assets?assetsDirectory=${assetsDirectory}`, REGISTRY_BLOCK_URL).toString()
+		const url = new URL(
+			`/api/assets?assetsDirectory=${assetsDirectory}`,
+			REGISTRY_BLOCK_URL
+		).toString()
 		const response = await fetch(url)
 
 		// The block doesn't contain assets so no need to download them
@@ -83,7 +99,10 @@ export const downloadAssets = async (assetsDirectory: string, cwd: string): Prom
 		}
 
 		const tempDir = path.join(cwd, "temp")
-		const tempZipPath = path.join(tempDir, `${assetsDirectory}-${Date.now()}.zip`)
+		const tempZipPath = path.join(
+			tempDir,
+			`${assetsDirectory}-${Date.now()}.zip`
+		)
 
 		if (!fs.existsSync(tempDir)) {
 			fs.mkdirSync(tempDir, { recursive: true })
@@ -124,7 +143,9 @@ export const downloadAssets = async (assetsDirectory: string, cwd: string): Prom
 
 export const getAssets = async (assets: BlockAsset[], cwd: string) => {
 	for (const asset of assets) {
-		const getAssetsSpinner = spinner(`Downloading assets for ${asset.componentName}`).start()
+		const getAssetsSpinner = spinner(
+			`Downloading assets for ${asset.componentName}`
+		).start()
 		await downloadAssets(asset.assetsDirectory, cwd)
 		getAssetsSpinner.succeed()
 	}
@@ -168,7 +189,9 @@ export const getBrandColor = async (color: Color): Promise<ColorData> => {
 		const data: ColorData = await response.json()
 		return data
 	} catch (error) {
-		throw new Error(`Failed to fetch data from ${color}.json: ${error instanceof Error ? error.message : "unknown error"}`)
+		throw new Error(
+			`Failed to fetch data from ${color}.json: ${error instanceof Error ? error.message : "unknown error"}`
+		)
 	}
 }
 
@@ -206,7 +229,9 @@ export const getFont = async (font: Font): Promise<FontData> => {
 		const data: FontData = await response.json()
 		return data
 	} catch (error) {
-		throw new Error(`Failed to fetch data from ${font}.json: ${error instanceof Error ? error.message : "unknown error"}`)
+		throw new Error(
+			`Failed to fetch data from ${font}.json: ${error instanceof Error ? error.message : "unknown error"}`
+		)
 	}
 }
 
@@ -217,24 +242,37 @@ export const getFont = async (font: Font): Promise<FontData> => {
  * @param visited
  * @returns flat list of the components with their dependencies also
  */
-export async function resolveComponents(registryComponents: RegistryComponents, componentNames: string[], visited = new Set<string>()): Promise<RegistryComponents> {
+export async function resolveComponents(
+	registryComponents: RegistryComponents,
+	componentNames: string[],
+	visited = new Set<string>()
+): Promise<RegistryComponents> {
 	const flattenedComponents: RegistryComponents = []
 
 	for (const name of componentNames) {
 		if (visited.has(name)) continue
 		visited.add(name)
 
-		const componentEntry = registryComponents.find((entry) => entry.name === name)
+		const componentEntry = registryComponents.find(
+			(entry) => entry.name === name
+		)
 		if (!componentEntry) continue
 
 		flattenedComponents.push(componentEntry)
 
 		if (componentEntry.registryDependencies?.length) {
-			const dependencies = await resolveComponents(registryComponents, componentEntry.registryDependencies, visited)
+			const dependencies = await resolveComponents(
+				registryComponents,
+				componentEntry.registryDependencies,
+				visited
+			)
 			flattenedComponents.push(...dependencies)
 		}
 	}
 
 	// Ensure unique components by name
-	return flattenedComponents.filter((component, index, self) => self.findIndex((c) => c.name === component.name) === index)
+	return flattenedComponents.filter(
+		(component, index, self) =>
+			self.findIndex((c) => c.name === component.name) === index
+	)
 }

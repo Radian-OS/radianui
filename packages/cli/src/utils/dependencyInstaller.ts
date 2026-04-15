@@ -1,20 +1,31 @@
 import { execa } from "execa"
 import { AddOptions } from "@/commands/add"
-import { getDependencyInstaller, getPackageManager } from "@/utils/getPackageManager"
+import {
+	getDependencyInstaller,
+	getPackageManager,
+} from "@/utils/getPackageManager"
 import { handleError } from "@/utils/handleError"
 import { RegistryComponents } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 
-export const installDependencies = async (projectDir: string, dependencies: string[]) => {
+export const installDependencies = async (
+	projectDir: string,
+	dependencies: string[],
+	label: string = "Installing dependencies"
+) => {
 	if (!dependencies.length) return
-	const packageManager = await getPackageManager(projectDir, { withFallback: true })
+	const packageManager = await getPackageManager(projectDir, {
+		withFallback: true,
+	})
 	const dependencyInstaller = await getDependencyInstaller(projectDir)
 
 	if (!dependencyInstaller) {
-		handleError("Failed to install dependencies: Dependency installer not found")
+		handleError(
+			"Failed to install dependencies: Dependency installer not found"
+		)
 	}
 
-	const dependencySpinner = spinner("Installing dependencies").start()
+	const dependencySpinner = spinner(label).start()
 	const args = [dependencyInstaller!, ...dependencies]
 	if (packageManager === "npm") args.push("--legacy-peer-deps")
 
@@ -25,8 +36,10 @@ export const installDependencies = async (projectDir: string, dependencies: stri
 		dependencySpinner.succeed()
 	} catch (error) {
 		dependencySpinner.fail()
-		const errorMsg = error instanceof Error ? error.message : String(error);
-		handleError(`Failed to install dependencies in ${projectDir} for [${dependencies.join(", ")}]: ${errorMsg}`)
+		const errorMsg = error instanceof Error ? error.message : String(error)
+		handleError(
+			`Failed to install dependencies in ${projectDir} for [${dependencies.join(", ")}]: ${errorMsg}`
+		)
 	}
 }
 
@@ -36,7 +49,10 @@ export const installDependencies = async (projectDir: string, dependencies: stri
  * @param resolvedComponents - The resolved components with their dependencies.
  * @param options - The parsed command options.
  */
-export async function installComponentDependencies(resolvedComponents: RegistryComponents, options: AddOptions): Promise<void> {
+export async function installComponentDependencies(
+	resolvedComponents: RegistryComponents,
+	options: AddOptions
+): Promise<void> {
 	const dependencies = new Set<string>()
 
 	for (const component of resolvedComponents) {
@@ -51,5 +67,9 @@ export async function installComponentDependencies(resolvedComponents: RegistryC
 
 	const dependencyList = Array.from(dependencies)
 
-	await installDependencies(options.cwd, dependencyList)
+	await installDependencies(
+		options.cwd,
+		dependencyList,
+		"Installing component dependencies"
+	)
 }

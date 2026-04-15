@@ -63,3 +63,23 @@ export const registryItemSchema = z.discriminatedUnion("type", [
 ])
 
 export type RegistryItem = z.infer<typeof registryItemSchema>
+
+export interface Preset {
+	id?: string
+	name?: string
+	config: {
+		name?: string
+		cssVars: {
+			light: Record<string, string>
+			dark: Record<string, string>
+			theme?: Record<string, string>
+		}
+		css: Record<string, Record<string, string> | string>
+		dependencies: string[]
+		registryDependencies: string[]
+		config: {
+			iconLibrary: string
+			template: string
+		}
+	}
+}

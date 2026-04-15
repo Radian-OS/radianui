@@ -4,7 +4,13 @@ import path from "path"
 import prompts from "prompts"
 import z from "zod"
 import { preFlightInit } from "@/preflights/preFlightInit"
-import { COLORS, FONTS } from "@/registry/constants"
+import {
+	COLORS,
+	DEFAULT_BRAND_COLOR,
+	DEFAULT_FONT,
+	FONTS,
+} from "@/registry/constants"
+import { type Preset } from "@/registry/schema"
 import {
 	getTemplateForFramework,
 	resolveTemplate,
@@ -12,16 +18,23 @@ import {
 } from "@/templates"
 import type { TemplateOptions } from "@/templates"
 import { txt } from "@/utils/colors"
+import {
+	installComponentDependencies,
+	installDependencies,
+} from "@/utils/dependencyInstaller"
 import { FrameworkName } from "@/utils/frameworks"
+import { generateThemeCss } from "@/utils/generateCss"
 import { getGlobalCssV4 } from "@/utils/getGlobalCss"
 import { getPackageManager } from "@/utils/getPackageManager"
-import { getTailwindCssFilePath } from "@/utils/getProjectInfo"
+import { getProjectInfo, getTailwindCssFilePath } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
+import { fetchPreset } from "@/utils/preset"
 import { handlePromptCancel, promptForProject } from "@/utils/prompts"
-import { Color, Font } from "@/utils/registry"
+import { Color, Font, getRegistryComponents } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { updateCssWithTheme } from "@/utils/updaters/updateCss"
+import { addComponentsToProject } from "./add"
 
 export const initOptionsSchema = z.object({
 	cwd: z.string(),
@@ -33,6 +46,7 @@ export const initOptionsSchema = z.object({
 	useSrc: z.boolean().optional(),
 	color: z.enum(COLORS.map((color) => color.value)).optional(),
 	font: z.enum(FONTS.map((font) => font.value)).optional(),
+	presetCode: z.string().optional(),
 })
 
 export type InitOptions = z.infer<typeof initOptionsSchema>
@@ -46,12 +60,17 @@ export const init = new Command()
 	.option("--useSrc", "use src directory")
 	.option("--color <color>", "set brand color")
 	.option("--font <font>", "set default font")
+	.option("--preset <code>", "generate project from a generated preset")
 	.option("-s, --skipPrompts", "skip confirmation prompts", false)
 	.option("-d, --defaultConfigurations", "use default configurations", false)
 	.option("-c, --cwd <cwd>", "current working directory", process.cwd())
 	.action(async (projectNameArg, opts) => {
 		try {
-			const options = initOptionsSchema.parse({ ...opts, projectNameArg })
+			const options = initOptionsSchema.parse({
+				...opts,
+				projectNameArg,
+				presetCode: opts.preset,
+			})
 
 			// Check if both frameworks are passed
 			if (options.next && options.vite) {
@@ -75,9 +94,11 @@ export const init = new Command()
 			if (projectName) {
 				logger.log(`  cd ${txt.info(projectName)}`)
 			}
-			logger.log(
-				`  To add all components, run: ${txt.info("npx radianui add -a")}`
-			)
+			if (!options.presetCode) {
+				logger.log(
+					`  To add all components, run: ${txt.info("npx radianui add -a")}`
+				)
+			}
 			logger.break()
 		} catch (error) {
 			handleError(error)
@@ -145,8 +166,23 @@ export const executeInit = async (options: InitOptions) => {
 
 	const hasExistingProject = !!projectInfo
 
+	// If a preset code is provided, fetch it up front and skip all prompts.
+	const preset = options.presetCode
+		? await (async () => {
+				const s = spinner(`Fetching preset ${options.presetCode}`).start()
+				try {
+					const p = await fetchPreset(options.presetCode!)
+					s.succeed()
+					return p
+				} catch (err) {
+					s.fail()
+					throw err
+				}
+			})()
+		: undefined
+
 	// Handle new project confirmation
-	if (!hasExistingProject) {
+	if (!hasExistingProject && !preset) {
 		const confirmation = options.skipPrompts
 			? { confirmNewProject: true }
 			: await prompts(
@@ -165,14 +201,19 @@ export const executeInit = async (options: InitOptions) => {
 	}
 
 	// Get project prompts (adapts based on hasExistingProject)
-	const projectPrompts = await promptForProject(
-		options,
-		hasExistingProject,
-		projectInfo
-	)
+	const projectPrompts: Awaited<ReturnType<typeof promptForProject>> = preset
+		? {
+				projectName: preset.name ?? preset.config?.name ?? undefined,
+				useSrcDir: true,
+				framework:
+					preset.config?.config?.template === "vite" ? "vite" : "next-app",
+				brandColor: DEFAULT_BRAND_COLOR,
+				font: DEFAULT_FONT,
+			}
+		: await promptForProject(options, hasExistingProject, projectInfo)
 
 	// Handle existing project confirmation
-	if (hasExistingProject) {
+	if (hasExistingProject && !preset) {
 		const confirmation = options.skipPrompts
 			? { confirmContinue: true }
 			: await prompts(
@@ -270,19 +311,51 @@ export const executeInit = async (options: InitOptions) => {
 	// --- Post-scaffold: CLI writes config, utils, and CSS ---
 	const configSpinner = spinner("Setting up project configuration").start()
 
-	// Write the full global CSS (replaces the minimal @import "tailwindcss")
-	await createGlobalCssFile(projectPath, useSrcDir, framework)
+	if (preset) {
+		// Generate globals.css directly from the preset config.
+		const cssPath = getTailwindCssFilePath(projectPath, useSrcDir, framework)
+		await fs.ensureFile(cssPath)
+		await fs.writeFile(cssPath, generateThemeCss(preset), "utf-8")
+		// Install any extra dependencies required by the preset.
+		if (preset.config.dependencies) {
+			await installDependencies(
+				projectPath,
+				preset.config.dependencies,
+				"Installing preset dependencies"
+			)
+		}
 
-	configSpinner.succeed()
+		// Install all registry components
+		const allComponents = (await getRegistryComponents()).filter(
+			(component) => component.type === "ui"
+		)
+		await addComponentsToProject(
+			allComponents,
+			{
+				overwrite: true,
+				all: true,
+				yes: true,
+				cwd: projectPath,
+			},
+			await getProjectInfo(projectPath)
+		)
 
-	// Apply brand color and font overrides to the CSS
-	await updateGlobalCssVariables(
-		projectPath,
-		useSrcDir,
-		framework,
-		brandColor,
-		font
-	)
+		configSpinner.succeed()
+	} else {
+		// Write the full global CSS (replaces the minimal @import "tailwindcss")
+		await createGlobalCssFile(projectPath, useSrcDir, framework)
+
+		configSpinner.succeed()
+
+		// Apply brand color and font overrides to the CSS
+		await updateGlobalCssVariables(
+			projectPath,
+			useSrcDir,
+			framework,
+			brandColor,
+			font
+		)
+	}
 
 	// Run template post-init (git init + initial commit) for new projects
 	if (!hasExistingProject) {

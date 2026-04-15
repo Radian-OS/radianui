@@ -1,20 +1,7 @@
 /**
  * Generates a Tailwind v4 CSS string from a theme config object.
  */
-
-export interface ThemeConfig {
-	id?: string
-	name?: string
-	config: {
-		name?: string
-		cssVars: {
-			light: Record<string, string>
-			dark: Record<string, string>
-			theme?: Record<string, string>
-		}
-		css: Record<string, Record<string, string> | string>
-	}
-}
+import { type Preset } from "@/registry/schema"
 
 export interface GenerateOptions {
 	/** CSS variable prefix for color tokens. Defaults to "--color-". */
@@ -105,7 +92,7 @@ function renderCssEntry(
 // ── Main ───────────────────────────────────────────────────────────────────
 
 export function generateThemeCss(
-	config: ThemeConfig,
+	preset: Preset,
 	options: GenerateOptions = {}
 ): string {
 	const {
@@ -114,7 +101,7 @@ export function generateThemeCss(
 		darkSelector = ".dark",
 	} = options
 
-	const { cssVars, css } = config.config
+	const { cssVars, css } = preset.config
 	const lines: string[] = []
 
 	// 1. Top-level at-rules first (@import, @custom-variant, …)
