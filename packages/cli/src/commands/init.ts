@@ -21,7 +21,7 @@ import { handlePromptCancel, promptForProject } from "@/utils/prompts"
 import { Color, Font } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { GLOBAL_CSS_V4 } from "@/utils/templates"
-import { updateCssWithTheme } from "@/utils/updaters/update-css"
+import { updateCssWithTheme } from "@/utils/updaters/updateCss"
 
 export const initOptionsSchema = z.object({
 	cwd: z.string(),
