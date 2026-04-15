@@ -1,0 +1,347 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+	/* primary */
+	--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-accent: oklch(0.94 0.0271 295.05);
+	--color-primary-focus: oklch(0.9169 0.0383 295.46);
+	--color-primary-border: oklch(0.6784 0.1708 290.38);
+	--color-primary-hover: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.528 0.2539 282.58);
+
+	/* success */
+	--color-success: oklch(0.6334 0.171 148.65);
+	--color-success-accent: oklch(0.9685 0.0336 157.66);
+	--color-success-focus: oklch(0.9489 0.0556 156.34);
+	--color-success-border: oklch(0.7761 0.2117 148.55);
+	--color-success-hover: oklch(0.6901 0.1748 149.64);
+	--color-success-text: oklch(0.5388 0.1339 149.74);
+
+	/* error */
+	--color-error: oklch(0.64 0.22 26.04);
+	--color-error-accent: oklch(0.9465 0.0252 17.61);
+	--color-error-focus: oklch(0.9133 0.0414 17.93);
+	--color-error-border: oklch(0.719 0.1751 22.5);
+	--color-error-hover: oklch(0.6786 0.2095 24.66);
+	--color-error-text: oklch(0.5716 0.2125 27.27);
+
+	/* warning */
+	--color-warning: oklch(0.8016 0.1705 73.27);
+	--color-warning-accent: oklch(0.9622 0.0384 83.83);
+	--color-warning-focus: oklch(0.946 0.0574 85.03);
+	--color-warning-border: oklch(0.7318 0.1522 75.09);
+	--color-warning-hover: oklch(0.8342 0.1594 79.51);
+	--color-warning-text: oklch(0.5461 0.1088 77.73);
+
+	/* information */
+	--color-info: oklch(0.6092 0.2041 255.8);
+	--color-info-accent: oklch(0.949 0.0213 245.85);
+	--color-info-focus: oklch(0.9135 0.0358 249.52);
+	--color-info-border: oklch(0.829 0.0811 248.83);
+	--color-info-hover: oklch(0.6722 0.1615 251.56);
+	--color-info-text: oklch(0.6092 0.2041 255.8);
+
+	/* background */
+	--color-bg: oklch(1 0 0);
+	--color-fill1: oklch(0.9697 0.0017 247.84);
+	--color-fill2: oklch(0.9519 0.0029 264.54);
+	--color-fill3: oklch(0.9368 0.0029 264.54);
+	--color-fill4: oklch(0.906 0.0046 258.33);
+
+	/* foreground */
+	--color-fg: oklch(0.2764 0.0079 264.44);
+	--color-fg-secondary: oklch(0.5338 0.0202 264.39);
+	--color-fg-tertiary: oklch(0.6726 0.0172 266.22);
+	--color-fg-disabled: oklch(0.7408 0.0137 266.67);
+	--color-fg-inverse: oklch(1 0 0);
+
+	/* border */
+	--color-border: oklch(0.906 0.0046 258.33);
+	--color-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 88%
+	);
+	--color-soft: oklch(0.9368 0.0029 264.54);
+	--color-soft-alpha: color-mix(
+		in srgb,
+		oklch(0.144 0.0028 247.09),
+		transparent 92%
+	);
+
+	/* background elevation */
+	--color-elevation-negative: oklch(0.9764 0.0013 286.38);
+	--color-elevation-level1: oklch(1 0 0);
+	--color-elevation-level2: oklch(1 0 0);
+
+	/* inverse */
+	--color-white-inverse: oklch(1 0 0);
+	--color-black-inverse: oklch(0.144 0.0028 247.09);
+
+	/* background fill alpha */
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 96%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 92%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 88%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.3146 0.0336 248.94),
+		transparent 84%
+	);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1-alpha);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
+}
+
+.dark {
+	/* primary */
+	--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-accent: oklch(0.2622 0.0915 289.13);
+	--color-primary-focus: oklch(0.2827 0.1227 284.67);
+	--color-primary-border: oklch(0.528 0.2539 282.58);
+	--color-primary-hover: oklch(0.5768 0.2279 286.25);
+	--color-primary-text: oklch(0.6784 0.1708 290.38);
+
+	/* success */
+	--color-success: oklch(0.6334 0.171 148.65);
+	--color-success-accent: oklch(0.271 0.0537 151.74);
+	--color-success-focus: oklch(0.3887 0.0924 150.55);
+	--color-success-border: oklch(0.5388 0.1339 149.74);
+	--color-success-hover: oklch(0.6901 0.1748 149.64);
+	--color-success-text: oklch(0.7761 0.2117 148.55);
+
+	/* error */
+	--color-error: oklch(0.64 0.22 26.04);
+	--color-error-accent: oklch(0.2567 0.0648 22.77);
+	--color-error-focus: oklch(0.2973 0.0922 24.71);
+	--color-error-border: oklch(0.4423 0.146 25.48);
+	--color-error-hover: oklch(0.6786 0.2095 24.66);
+	--color-error-text: oklch(0.719 0.1751 22.5);
+
+	/* warning */
+	--color-warning: oklch(0.8016 0.1705 73.27);
+	--color-warning-accent: oklch(0.2663 0.0372 84.34);
+	--color-warning-focus: oklch(0.3744 0.0636 81.14);
+	--color-warning-border: oklch(0.5461 0.1088 77.73);
+	--color-warning-hover: oklch(0.8342 0.1594 79.51);
+	--color-warning-text: oklch(0.8342 0.1594 79.51);
+
+	/* information */
+	--color-info: oklch(0.6092 0.2041 255.8);
+	--color-info-accent: oklch(0.2544 0.0418 249.78);
+	--color-info-focus: oklch(0.3147 0.0668 250.78);
+	--color-info-border: oklch(0.5067 0.1401 252.67);
+	--color-info-hover: oklch(0.6722 0.1615 251.56);
+	--color-info-text: oklch(0.6722 0.1615 251.56);
+
+	/* background */
+	--color-bg: oklch(0.144 0.0028 247.09);
+	--color-fill1: oklch(0.191 0.0043 264.47);
+	--color-fill2: oklch(0.2342 0.0065 258.36);
+	--color-fill3: oklch(0.2764 0.0079 264.44);
+	--color-fill4: oklch(0.3162 0.0099 260.71);
+
+	/* foreground */
+	--color-fg: oklch(0.9764 0.0013 286.38);
+	--color-fg-secondary: oklch(0.6726 0.0172 266.22);
+	--color-fg-tertiary: oklch(0.5686 0.0213 265.87);
+	--color-fg-disabled: oklch(0.4632 0.0174 264.39);
+	--color-fg-inverse: oklch(0.2342 0.0065 258.36);
+
+	/* border */
+	--color-border: oklch(0.2764 0.0079 264.44);
+	--color-alpha: color-mix(in srgb, oklch(1 0 0), transparent 88%);
+	--color-soft: oklch(0.2342 0.0065 258.36);
+	--color-soft-alpha: color-mix(in srgb, oklch(1 0 0), transparent 92%);
+
+	/* background elevation */
+	--color-elevation-negative: oklch(0 0 0);
+	--color-elevation-level1: oklch(0.191 0.0043 264.47);
+	--color-elevation-level2: oklch(0.2342 0.0065 258.36);
+
+	/* inverse */
+	--color-white-inverse: oklch(0.144 0.0028 247.09);
+	--color-black-inverse: oklch(1 0 0);
+
+	/* background fill alpha */
+	--color-fill1-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 90%
+	);
+	--color-fill2-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 88%
+	);
+	--color-fill3-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 84%
+	);
+	--color-fill4-alpha: color-mix(
+		in srgb,
+		oklch(0.8599 0.0294 266.34),
+		transparent 80%
+	);
+
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1-alpha);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-fg-secondary);
+}
+
+/* Base styles */
+@layer base {
+	body {
+		@apply font-body bg-bg text-fg;
+		/* Font Families */
+		--heading-font: var(--font-geist), system-ui, sans-serif;
+		--body-font: var(--font-inter), system-ui, sans-serif;
+	}
+
+	/* Safari button fix - prevents shrinking on hover */
+	button,
+	[role="button"],
+	input[type="button"],
+	input[type="submit"],
+	input[type="reset"] {
+		-webkit-transform: translateZ(0);
+		transform: translateZ(0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		will-change: auto;
+	}
+
+	/* Specific fix for gradient buttons */
+	button[class*="bg-gradient"],
+	[role="button"][class*="bg-gradient"] {
+		will-change: background-image;
+	}
+}
+
+/* Custom heading font */
+@utility font-heading {
+	font-family: var(--heading-font);
+}
+
+/* Custom body font */
+@utility font-body {
+	font-family: var(--body-font);
+}
+
+/* Heading 1 */
+@utility heading-1 {
+	@apply font-heading text-[2.25rem] font-semibold leading-[2.75rem];
+
+	@media (width >=theme(--breakpoint-sm)) {
+		font-size: 3rem;
+		line-height: 3.5rem;
+	}
+
+	@media (width >=theme(--breakpoint-lg)) {
+		font-size: 4rem;
+		line-height: 4.5rem;
+	}
+}
+
+/* Heading 2 */
+@utility heading-2 {
+	@apply font-heading text-[2rem] font-semibold leading-[2.5rem];
+
+	@media (width >=theme(--breakpoint-sm)) {
+		font-size: 2.5rem;
+		line-height: 3rem;
+	}
+
+	@media (width >=theme(--breakpoint-lg)) {
+		font-size: 3rem;
+		line-height: 3.5rem;
+	}
+}
+
+/* Heading 3 */
+@utility heading-3 {
+	@apply font-heading text-[1.875rem] font-semibold leading-[2.375rem];
+
+	@media (width >=theme(--breakpoint-sm)) {
+		font-size: 2.25rem;
+		line-height: 2.75rem;
+	}
+
+	@media (width >=theme(--breakpoint-lg)) {
+		font-size: 2.5rem;
+		line-height: 3rem;
+	}
+}
+
+/* Heading 4 */
+@utility heading-4 {
+	@apply font-heading text-[1.75rem] font-semibold leading-[2.25rem];
+
+	@media (width >=theme(--breakpoint-sm)) {
+		font-size: 1.875rem;
+		line-height: 2.375rem;
+	}
+
+	@media (width >=theme(--breakpoint-lg)) {
+		font-size: 2rem;
+		line-height: 2.5rem;
+	}
+}
+
+/* Heading 5 */
+@utility heading-5 {
+	@apply font-heading text-[1.5rem] font-semibold leading-[2rem];
+}
+
+/* Heading 6 */
+@utility heading-6 {
+	@apply font-heading text-[1.25rem] font-semibold leading-[1.75rem];
+}
+
+/* Additional body fonts */
+@utility body-15 {
+	@apply font-body text-[0.9375rem] leading-[1.375];
+}
+
+@utility text-sm-p {
+	@apply font-body text-sm leading-[1.25rem];
+}
+
+@utility body-13 {
+	@apply font-body text-[0.8125rem] leading-[1.125rem];
+}
+
+/* Hides scrollbar in multiple browsers*/
+@utility no-scrollbar {
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
+
+	&::-webkit-scrollbar {
+		display: none;
+		/* Chrome, Safari and Opera */
+	}
+}

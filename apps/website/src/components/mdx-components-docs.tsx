@@ -49,6 +49,7 @@ import {
 import { Divider } from "@/registry/ui/divider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
 import { CodeBlockCommandServer } from "./code-block-command-server"
+import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 import ColorTableThemeToggle from "./color/color-table-theme-toggle"
 import { CopyButton } from "./copy-button"
@@ -439,5 +440,6 @@ export const components = {
 		)
 	},
 	CodeCollapsibleWrapper,
+	CodeCollapsibleFileWrapper,
 	ThemeProviderForColorTable,
 }
