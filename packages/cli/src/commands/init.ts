@@ -13,6 +13,7 @@ import {
 import type { TemplateOptions } from "@/templates"
 import { txt } from "@/utils/colors"
 import { FrameworkName } from "@/utils/frameworks"
+import { getGlobalCssV4 } from "@/utils/getGlobalCss"
 import { getPackageManager } from "@/utils/getPackageManager"
 import { getTailwindCssFilePath } from "@/utils/getProjectInfo"
 import { handleError } from "@/utils/handleError"
@@ -20,7 +21,6 @@ import { logger } from "@/utils/logger"
 import { handlePromptCancel, promptForProject } from "@/utils/prompts"
 import { Color, Font } from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
-import { GLOBAL_CSS_V4 } from "@/utils/templates"
 import { updateCssWithTheme } from "@/utils/updaters/updateCss"
 
 export const initOptionsSchema = z.object({
@@ -95,7 +95,11 @@ export const createGlobalCssFile = async (
 	try {
 		const cssPath = getTailwindCssFilePath(projectDir, hasSrcDir, framework)
 		await fs.ensureFile(cssPath)
-		await fs.writeFile(cssPath, GLOBAL_CSS_V4, "utf-8")
+		const globalCss = await getGlobalCssV4()
+		if (!globalCss) {
+			throw new Error("Global CSS content is undefined")
+		}
+		await fs.writeFile(cssPath, globalCss, "utf-8")
 	} catch (error) {
 		throw new Error(
 			`Failed to create global CSS: ${error instanceof Error ? error.message : String(error)}`
