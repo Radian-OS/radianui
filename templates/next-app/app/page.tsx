@@ -1,3 +1,7 @@
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
+
 export default function Page() {
 	return (
 		<div className="relative flex min-h-svh items-center justify-center overflow-hidden px-6 py-16">
@@ -8,10 +12,10 @@ export default function Page() {
 			</div>
 
 			<main className="flex w-full max-w-3xl flex-col items-center gap-8 text-center">
-				<div className="border-border bg-fill1-alpha text-fg-secondary inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs backdrop-blur">
+				<Badge size="24" className="rounded-full">
 					<span className="bg-success h-1.5 w-1.5 rounded-full" />
 					Generated with Radianos
-				</div>
+				</Badge>
 
 				<h1 className="heading-1 from-fg to-fg-tertiary bg-gradient-to-br bg-clip-text text-transparent">
 					Welcome to your new project
@@ -24,22 +28,18 @@ export default function Page() {
 				</p>
 
 				<div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-					<a
-						href="https://radianos.com"
-						target="_blank"
-						rel="noreferrer"
-						className="bg-primary text-fg-inverse shadow-primary/20 hover:bg-primary-hover inline-flex h-11 items-center justify-center rounded-full px-6 text-sm font-medium shadow-lg transition"
+					<Button size="44" variant="glossy" className="rounded-full" asChild>
+						<Link href="https://radianos.com">Explore the docs</Link>
+					</Button>
+					<Button
+						size="44"
+						className="rounded-full"
+						variant="soft"
+						color="neutral"
+						asChild
 					>
-						Explore the docs
-					</a>
-					<a
-						href="https://nextjs.org/docs"
-						target="_blank"
-						rel="noreferrer"
-						className="border-border bg-elevation-level1 text-fg hover:bg-fill2 inline-flex h-11 items-center justify-center rounded-full border px-6 text-sm font-medium transition"
-					>
-						Next.js guide
-					</a>
+						<Link href="https://nextjs.org/docs">Next.js guide</Link>
+					</Button>
 				</div>
 
 				<div className="text-fg-tertiary mt-6 text-xs">

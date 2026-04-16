@@ -10,7 +10,6 @@ import {
 	DEFAULT_FONT,
 	FONTS,
 } from "@/registry/constants"
-import { type Preset } from "@/registry/schema"
 import {
 	getTemplateForFramework,
 	resolveTemplate,
@@ -18,6 +17,7 @@ import {
 } from "@/templates"
 import type { TemplateOptions } from "@/templates"
 import { txt } from "@/utils/colors"
+import { createComponentsJson } from "@/utils/createComponentsJson"
 import {
 	installComponentDependencies,
 	installDependencies,
@@ -204,7 +204,7 @@ export const executeInit = async (options: InitOptions) => {
 	const projectPrompts: Awaited<ReturnType<typeof promptForProject>> = preset
 		? {
 				projectName: preset.name ?? preset.config?.name ?? undefined,
-				useSrcDir: true,
+				useSrcDir: projectInfo?.hasSrcDir ?? true,
 				framework:
 					preset.config?.config?.template === "vite" ? "vite" : "next-app",
 				brandColor: DEFAULT_BRAND_COLOR,
@@ -292,21 +292,10 @@ export const executeInit = async (options: InitOptions) => {
 				)
 			}
 		}
-
-		// Sync components.json with the user's src-dir choice.
-		const componentsJsonPath = path.join(projectPath, "components.json")
-		if (fs.existsSync(componentsJsonPath)) {
-			const componentsJson = JSON.parse(
-				await fs.readFile(componentsJsonPath, "utf-8")
-			)
-			componentsJson.hasSrcDir = useSrcDir
-			await fs.writeFile(
-				componentsJsonPath,
-				JSON.stringify(componentsJson, null, 2) + "\n",
-				"utf-8"
-			)
-		}
 	}
+
+	// --- Create components.json ---
+	await createComponentsJson(projectPath, useSrcDir)
 
 	// --- Post-scaffold: CLI writes config, utils, and CSS ---
 	const configSpinner = spinner("Setting up project configuration").start()
@@ -354,6 +343,23 @@ export const executeInit = async (options: InitOptions) => {
 			framework,
 			brandColor,
 			font
+		)
+
+		// Install button and badge only initially
+		const initialComponents = (await getRegistryComponents())
+			.filter((component) => component.type === "ui")
+			.filter(
+				(component) => component.name === "button" || component.name === "badge"
+			)
+		await addComponentsToProject(
+			initialComponents,
+			{
+				overwrite: true,
+				all: true,
+				yes: true,
+				cwd: projectPath,
+			},
+			await getProjectInfo(projectPath)
 		)
 	}
 
