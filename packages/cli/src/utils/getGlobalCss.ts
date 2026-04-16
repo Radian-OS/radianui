@@ -3,7 +3,8 @@ import { logger } from "@/utils/logger"
 export async function getGlobalCssV4() {
 	const url =
 		process.env.RADIANUI_GLOBAL_CSS_V4_URL ??
-		"http://radianos.com/css/globals.css"
+		// "http://radianos.com/css/globals.css"
+		"http://localhost:3001/css/globals.css"
 
 	try {
 		const response = await fetch(url)

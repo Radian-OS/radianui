@@ -31,9 +31,15 @@ import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
 import { fetchPreset } from "@/utils/preset"
 import { handlePromptCancel, promptForProject } from "@/utils/prompts"
-import { Color, Font, getRegistryComponents } from "@/utils/registry"
+import {
+	Color,
+	Font,
+	getRegistryComponents,
+	resolveComponents,
+} from "@/utils/registry"
 import { spinner } from "@/utils/spinner"
 import { updateCssWithTheme } from "@/utils/updaters/updateCss"
+import { updateCssWithPreset } from "@/utils/updaters/updateCssWithPreset"
 import { addComponentsToProject } from "./add"
 
 export const initOptionsSchema = z.object({
@@ -162,7 +168,7 @@ function getTemplateKey(framework: FrameworkName): "next" | "vite" {
 }
 
 export const executeInit = async (options: InitOptions) => {
-	const { projectInfo } = await preFlightInit(options)
+	const { projectInfo, hasComponentsJson } = await preFlightInit(options)
 
 	const hasExistingProject = !!projectInfo
 
@@ -180,6 +186,80 @@ export const executeInit = async (options: InitOptions) => {
 				}
 			})()
 		: undefined
+
+	// Existing project with components.json + preset: update theme in-place
+	if (hasExistingProject && hasComponentsJson && preset) {
+		const framework = projectInfo!.framework.name
+		const useSrcDir = projectInfo!.hasSrcDir
+		const projectPath = options.cwd
+
+		const configSpinner = spinner("Applying preset theme").start()
+
+		// Update existing CSS variables with preset values
+		const cssPath = getTailwindCssFilePath(projectPath, useSrcDir, framework)
+		await updateCssWithPreset(cssPath, preset)
+
+		configSpinner.succeed()
+
+		// Install preset dependencies
+		if (preset.config.dependencies?.length) {
+			await installDependencies(
+				projectPath,
+				preset.config.dependencies,
+				"Installing preset dependencies"
+			)
+		}
+
+		// Collect existing UI components and merge with preset registry dependencies
+		const uiDir = path.resolve(
+			projectPath,
+			useSrcDir ? "src/components/ui" : "components/ui"
+		)
+		const existingComponents: string[] = []
+		if (fs.existsSync(uiDir)) {
+			const entries = await fs.readdir(uiDir)
+			for (const entry of entries) {
+				const name = entry.replace(/\.(tsx?|jsx?)$/, "")
+				if (!existingComponents.includes(name)) {
+					existingComponents.push(name)
+				}
+			}
+		}
+
+		const presetDeps = preset.config.registryDependencies ?? []
+		const allComponentNames = [
+			...new Set([...existingComponents, ...presetDeps]),
+		]
+
+		if (allComponentNames.length > 0) {
+			const { updateComponents } = await prompts({
+				type: "confirm",
+				name: "updateComponents",
+				message: `Update ${txt.bold(String(allComponentNames.length))} UI components (${allComponentNames.join(", ")})?`,
+				initial: true,
+			})
+
+			if (!updateComponents) return { projectName: undefined, ...projectInfo }
+
+			const allRegistry = await getRegistryComponents()
+			const resolvedComponents = await resolveComponents(
+				allRegistry,
+				allComponentNames
+			)
+			await addComponentsToProject(
+				resolvedComponents,
+				{
+					overwrite: true,
+					all: true,
+					yes: true,
+					cwd: projectPath,
+				},
+				await getProjectInfo(projectPath)
+			)
+		}
+
+		return { projectName: undefined, ...projectInfo }
+	}
 
 	// Handle new project confirmation
 	if (!hasExistingProject && !preset) {
@@ -346,13 +426,15 @@ export const executeInit = async (options: InitOptions) => {
 		)
 
 		// Install button and badge only initially
-		const initialComponents = (await getRegistryComponents())
-			.filter((component) => component.type === "ui")
-			.filter(
-				(component) => component.name === "button" || component.name === "badge"
-			)
+		const validComponents = ["button", "badge"]
+
+		const resolvedComponents = await resolveComponents(
+			await getRegistryComponents(),
+			validComponents
+		)
+
 		await addComponentsToProject(
-			initialComponents,
+			resolvedComponents,
 			{
 				overwrite: true,
 				all: true,
