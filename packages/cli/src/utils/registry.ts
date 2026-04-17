@@ -8,7 +8,7 @@ import { spinner } from "@/utils/spinner"
 
 export const WEBSITE_URL = "https://radianos.com"
 // export const BLOCKS_URL = "https://blocks.radianos.com"
-export const BLOCKS_URL = "http://localhost:3005"
+export const BLOCKS_URL = "http://devblocks.radianos.com"
 export const REGISTRY_COMPONENT_URL = `${WEBSITE_URL}/api/components`
 export const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
 export const PRESET_API_URL = `${BLOCKS_URL}/api/config`
