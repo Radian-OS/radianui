@@ -7,10 +7,9 @@ import type { Config } from "@/utils/getConfig"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 
-const GITHUB_REPO_URL =
-	process.env.RADIANUI_REPO_URL ?? "https://github.com/Radian-os/radianos"
+const GITHUB_REPO_URL = "https://github.com/Radian-os/radianos"
 
-const GITHUB_REPO_BRANCH = process.env.RADIANUI_REPO_BRANCH ?? "feat/cli"
+const GITHUB_REPO_BRANCH = "feat/cli"
 
 export interface TemplateOptions {
 	projectPath: string
