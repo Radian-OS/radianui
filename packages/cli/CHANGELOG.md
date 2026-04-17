@@ -1,5 +1,11 @@
 # radianui
 
+## 0.2.2-alpha.0
+
+### Patch Changes
+
+- Add support for initializing projects using preset codes — fetches design system configuration (colors, fonts, radius, utilities) from the RadianUI API and generates the corresponding theme CSS.
+
 ## 0.2.0
 
 ### Minor Changes
