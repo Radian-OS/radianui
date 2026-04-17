@@ -9,7 +9,16 @@ import {
 	useState,
 } from "react"
 import { useMutation } from "@tanstack/react-query"
-import { Check, ChevronDown, Plus } from "lucide-react"
+import {
+	Check,
+	ChevronDown,
+	ClipboardCopy,
+	FolderPlus,
+	Palette,
+	Plus,
+	Rocket,
+	Type,
+} from "lucide-react"
 import { COMPONENTS_DATA } from "@/config/navigation-config"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { cn } from "@/lib/utils"
@@ -19,7 +28,6 @@ import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { TEMPLATES, Template } from "@/registry/templates"
 import { Button } from "@/registry/ui/button"
-import { Card, CardContent } from "@/registry/ui/card"
 import {
 	Command,
 	CommandEmpty,
@@ -32,8 +40,6 @@ import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
-	DialogFooter,
-	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
 } from "@/registry/ui/dialog"
@@ -48,8 +54,17 @@ import { Input } from "@/registry/ui/input"
 import { Label } from "@/registry/ui/label"
 import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
 import { Spinner } from "@/registry/ui/spinner"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
 
 const FONT_PAGE_SIZE = 30
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+	return (
+		<span className="text-fg-tertiary text-[11px] font-medium uppercase tracking-wider">
+			{children}
+		</span>
+	)
+}
 
 function FontCombobox({
 	label,
@@ -127,12 +142,14 @@ function FontCombobox({
 	return (
 		<Popover open={open} onOpenChange={setOpen}>
 			<PopoverTrigger asChild>
-				<button className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+				<button className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 					<div className="flex flex-col items-start gap-0.5">
-						<span className="text-fg-tertiary text-xs">{label}</span>
-						<span className="text-fg">{selectedFont?.name ?? value}</span>
+						<span className="text-fg-tertiary text-[11px]">{label}</span>
+						<span className="text-fg font-medium">
+							{selectedFont?.name ?? value}
+						</span>
 					</div>
-					<ChevronDown className="text-fg-secondary size-4 shrink-0" />
+					<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
 				</button>
 			</PopoverTrigger>
 			<PopoverContent side="right" className="w-56 p-0">
@@ -154,7 +171,6 @@ function FontCombobox({
 									value={font.name}
 									onSelect={() => {
 										onValueChange(font.value)
-										setOpen(false)
 									}}>
 									<span>{font.name}</span>
 									<Check
@@ -211,22 +227,101 @@ async function saveConfig(config: ReturnType<typeof buildRegistryConfig>) {
 	return res.json() as Promise<{ id: string }>
 }
 
+function TemplateCard({
+	template,
+	isSelected,
+	onClick,
+}: {
+	template: Template
+	isSelected: boolean
+	onClick: () => void
+}) {
+	const label = template.charAt(0).toUpperCase() + template.slice(1)
+	return (
+		<button
+			onClick={onClick}
+			className={cn(
+				"relative flex flex-1 flex-col items-center gap-2 rounded-xl border-2 px-4 py-4 transition-all",
+				isSelected
+					? "border-primary bg-primary-accent"
+					: "border-border bg-elevation-level2 hover:border-fg-disabled"
+			)}>
+			{isSelected && (
+				<span className="bg-primary absolute right-2 top-2 flex size-4 items-center justify-center rounded-full">
+					<Check className="text-fg-inverse size-2.5" strokeWidth={3} />
+				</span>
+			)}
+			<span className="text-fg-secondary text-2xl">
+				{template === "next" ? "N" : "V"}
+			</span>
+			<span
+				className={cn(
+					"text-xs font-medium",
+					isSelected ? "text-primary-text" : "text-fg-secondary"
+				)}>
+				{label}
+			</span>
+		</button>
+	)
+}
+
+function ThemeSummaryPill({
+	label,
+	value,
+	colorSwatch,
+}: {
+	label: string
+	value: string
+	colorSwatch?: string
+}) {
+	return (
+		<div className="bg-fill1 border-border flex items-center gap-2 rounded-lg border px-2.5 py-1.5">
+			{colorSwatch && (
+				<span
+					className="size-3 shrink-0 rounded-full border border-black/10"
+					style={{ backgroundColor: colorSwatch }}
+				/>
+			)}
+			<span className="text-fg-tertiary text-[11px]">{label}</span>
+			<span className="text-fg text-xs font-medium">{value}</span>
+		</div>
+	)
+}
+
 function CreateProjectDialog() {
 	const [projectName, setProjectName] = useState("")
 	const [params, setParams] = useThemerPreset()
 	const [touched, setTouched] = useState(false)
+	const [copied, setCopied] = useState(false)
 
 	const error = validateProjectName(projectName)
 	const showError = touched && error
+
+	const selectedColor = PRIMARY_COLORS.find(
+		(c) => c.value === params.primaryColor
+	)
+	const selectedHeadingFont = FONTS.find((f) => f.value === params.headingFont)
+	const selectedBodyFont = FONTS.find((f) => f.value === params.bodyFont)
+	const selectedRadius = RADII.find((r) => r.value === params.radius)
 
 	const {
 		mutate,
 		data,
 		isPending,
 		error: mutationError,
+		reset,
 	} = useMutation({
 		mutationFn: saveConfig,
 	})
+
+	const handleOpenChange = (open: boolean) => {
+		if (open) {
+			setProjectName("")
+			setTouched(false)
+			setCopied(false)
+			reset()
+		}
+	}
 
 	const handleCreate = () => {
 		setTouched(true)
@@ -240,31 +335,109 @@ function CreateProjectDialog() {
 		mutate(config)
 	}
 
+	const command = data?.id
+		? `pnpm dlx radianui@alpha init --preset ${data.id}`
+		: ""
+
+	const handleCopy = () => {
+		navigator.clipboard.writeText(command)
+		setCopied(true)
+		setTimeout(() => setCopied(false), 2000)
+	}
+
 	return (
-		<Dialog>
+		<Dialog onOpenChange={handleOpenChange}>
 			<DialogTrigger asChild>
 				<Button className="w-full">
 					<Plus className="size-4" />
 					Create Project
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
-				<DialogHeader>
-					<DialogTitle>Create Project</DialogTitle>
-					<DialogDescription>
-						Enter a name and choose a template for your new project.
-					</DialogDescription>
-				</DialogHeader>
+			<DialogContent className="gap-0 overflow-hidden p-0">
 				{data?.id ? (
-					<div className="flex flex-col gap-3">
-						<Label>Run this command to get started:</Label>
-						<code className="bg-fill2 text-fg border-border select-all break-all rounded-lg border px-3 py-2 text-sm">
-							pnpm radianos@latest --config={data.id}
-						</code>
+					<div className="flex flex-col">
+						{/* Success header */}
+						<div className="bg-success-accent flex flex-col items-center gap-3 px-6 pb-5 pt-8">
+							<div className="bg-success flex size-10 items-center justify-center rounded-full">
+								<Rocket className="text-fg-inverse size-5" />
+							</div>
+							<div className="flex flex-col items-center gap-1">
+								<h3 className="text-fg text-base font-semibold">
+									Project Ready
+								</h3>
+								<p className="text-fg-secondary text-center text-sm">
+									Run this command to get started
+								</p>
+							</div>
+						</div>
+
+						{/* Command block */}
+						<div className="flex flex-col gap-4 p-5">
+							<div
+								className="bg-fill1 border-border hover:border-fg-disabled group relative flex cursor-pointer items-center rounded-lg border p-3 transition-colors"
+								onClick={handleCopy}>
+								<code className="text-fg flex-1 select-all break-all text-[13px]">
+									{command}
+								</code>
+								<button
+									className="text-fg-tertiary hover:text-fg shrink-0 p-1 transition-colors"
+									aria-label="Copy command">
+									{copied ? (
+										<Check className="text-success size-4" />
+									) : (
+										<ClipboardCopy className="size-4" />
+									)}
+								</button>
+							</div>
+							{copied && (
+								<p className="text-success text-center text-xs font-medium">
+									Copied to clipboard
+								</p>
+							)}
+						</div>
 					</div>
 				) : (
-					<>
-						<div className="flex flex-col gap-4">
+					<div className="flex flex-col">
+						{/* Dialog header with icon */}
+						<div className="flex flex-col items-center gap-3 px-6 pb-4 pt-8">
+							<div className="bg-primary-accent flex size-10 items-center justify-center rounded-full">
+								<FolderPlus className="text-primary size-5" />
+							</div>
+							<div className="flex flex-col items-center gap-1">
+								<DialogTitle className="text-center">
+									Create Project
+								</DialogTitle>
+								<DialogDescription className="text-center">
+									Set up a new project with your current theme.
+								</DialogDescription>
+							</div>
+						</div>
+
+						{/* Theme summary */}
+						<div className="border-border mx-5 flex flex-wrap gap-1.5 rounded-lg border-t pt-4">
+							{selectedColor && (
+								<ThemeSummaryPill
+									label="Color"
+									value={selectedColor.name}
+									colorSwatch={selectedColor.cssVars.light.primary}
+								/>
+							)}
+							{selectedHeadingFont && (
+								<ThemeSummaryPill
+									label="Heading"
+									value={selectedHeadingFont.name}
+								/>
+							)}
+							{selectedBodyFont && (
+								<ThemeSummaryPill label="Body" value={selectedBodyFont.name} />
+							)}
+							{selectedRadius && (
+								<ThemeSummaryPill label="Radius" value={selectedRadius.name} />
+							)}
+						</div>
+
+						{/* Form */}
+						<div className="flex flex-col gap-5 p-5">
 							<div className="flex flex-col gap-2">
 								<Label htmlFor="project-name">Project Name</Label>
 								<Input
@@ -275,49 +448,96 @@ function CreateProjectDialog() {
 									onBlur={() => setTouched(true)}
 									aria-invalid={!!showError}
 								/>
-								{showError && <p className="text-error text-sm">{error}</p>}
+								{showError && <p className="text-error text-xs">{error}</p>}
 							</div>
+
 							<div className="flex flex-col gap-2">
 								<Label>Template</Label>
-								<Dropdown>
-									<DropdownTrigger className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
-										<span className="text-fg">
-											{params.template.charAt(0).toUpperCase() +
-												params.template.slice(1)}
-										</span>
-										<ChevronDown className="text-fg-secondary size-4 shrink-0" />
-									</DropdownTrigger>
-									<DropdownContent className="w-56">
-										<DropdownRadioGroup
-											value={params.template}
-											onValueChange={(value) =>
-												setParams({ template: value as Template })
-											}>
-											{TEMPLATES.map((t) => (
-												<DropdownRadioItem
-													key={t}
-													value={t}
-													onSelect={(e) => e.preventDefault()}>
-													{t.charAt(0).toUpperCase() + t.slice(1)}
-												</DropdownRadioItem>
-											))}
-										</DropdownRadioGroup>
-									</DropdownContent>
-								</Dropdown>
+								<div className="flex gap-2">
+									{TEMPLATES.map((t) => (
+										<TemplateCard
+											key={t}
+											template={t}
+											isSelected={params.template === t}
+											onClick={() => setParams({ template: t as Template })}
+										/>
+									))}
+								</div>
 							</div>
-						</div>
-						{mutationError && (
-							<p className="text-error text-sm">{mutationError.message}</p>
-						)}
-						<DialogFooter>
-							<Button disabled={!!error || isPending} onClick={handleCreate}>
-								{isPending ? <Spinner size={16} variant="simple" /> : "Create"}
+
+							{mutationError && (
+								<p className="text-error text-sm">{mutationError.message}</p>
+							)}
+
+							<Button
+								className="w-full"
+								disabled={!!error || isPending}
+								onClick={handleCreate}>
+								{isPending ? (
+									<Spinner size={16} variant="simple" />
+								) : (
+									<>
+										<Rocket className="size-4" />
+										Create Project
+									</>
+								)}
 							</Button>
-						</DialogFooter>
-					</>
+						</div>
+					</div>
 				)}
 			</DialogContent>
 		</Dialog>
+	)
+}
+
+function ColorSwatch({
+	color,
+	isSelected,
+	onClick,
+}: {
+	color: (typeof PRIMARY_COLORS)[number]
+	isSelected: boolean
+	onClick: () => void
+}) {
+	return (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<button
+					onClick={onClick}
+					className={cn(
+						"size-7 rounded-full border-2 transition-all",
+						isSelected
+							? "border-fg scale-110 ring-2 ring-white"
+							: "hover:border-border border-transparent hover:scale-110"
+					)}
+					style={{ backgroundColor: color.cssVars.light.primary }}
+				/>
+			</TooltipTrigger>
+			<TooltipContent side="top">{color.name}</TooltipContent>
+		</Tooltip>
+	)
+}
+
+function RadiusPill({
+	radius,
+	isSelected,
+	onClick,
+}: {
+	radius: (typeof RADII)[number]
+	isSelected: boolean
+	onClick: () => void
+}) {
+	return (
+		<button
+			onClick={onClick}
+			className={cn(
+				"rounded-md border px-3 py-1.5 text-xs font-medium transition-all",
+				isSelected
+					? "border-primary bg-primary-accent text-primary-text"
+					: "border-border bg-elevation-level2 text-fg-secondary hover:border-fg-disabled hover:text-fg"
+			)}>
+			{radius.name}
+		</button>
 	)
 }
 
@@ -335,16 +555,12 @@ function ThemerPage() {
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
-	// Dependency array is empty so the iframe is only rendered once
 	const iframeSrc = useMemo(
 		() =>
 			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}`,
 		[]
 	)
 
-	const selectedColorName =
-		PRIMARY_COLORS.find((c) => c.value === params.primaryColor)?.name ??
-		params.primaryColor
 	const selectedComponentName =
 		COMPONENTS_DATA.find(
 			(name) => name.toLowerCase().replace(/\s+/g, "-") === selectedComponent
@@ -353,8 +569,6 @@ function ThemerPage() {
 	const postToIframe = useCallback((message: Record<string, unknown>) => {
 		iframeRef.current?.contentWindow?.postMessage(message, "*")
 	}, [])
-	const selectedRadiusLabel =
-		RADII.find((r) => r.value === params.radius)?.name ?? params.radius
 
 	useEffect(() => {
 		postToIframe({
@@ -393,110 +607,122 @@ function ThemerPage() {
 	}, [params.radius])
 
 	return (
-		<div className="flex h-screen w-full gap-4 p-3">
-			<Card className="bg-fill1">
-				<CardContent className="flex flex-col gap-4">
-					<Dropdown>
-						<DropdownTrigger className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
-							<div className="flex flex-col items-start gap-0.5">
-								<span className="text-fg-tertiary text-xs">Primary Color</span>
-								<span className="text-fg">{selectedColorName}</span>
-							</div>
-							<ChevronDown className="text-fg-secondary size-4 shrink-0" />
-						</DropdownTrigger>
-						<DropdownContent side="right" className="max-h-96 w-56">
-							<DropdownRadioGroup
-								value={params.primaryColor}
+		<div className="bg-fill1 flex h-screen w-full">
+			{/* Sidebar */}
+			<aside className="bg-elevation-level1 border-border flex w-80 shrink-0 flex-col border-r">
+				{/* Header */}
+				<div className="border-border flex flex-col gap-1 border-b px-5 py-4">
+					<div className="flex items-center gap-2">
+						<Palette className="text-primary size-4" />
+						<h1 className="text-fg text-sm font-semibold">Theme Builder</h1>
+					</div>
+					<p className="text-fg-tertiary text-xs">
+						Customize your design tokens and preview live.
+					</p>
+				</div>
+
+				{/* Scrollable controls */}
+				<div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 py-5">
+					{/* Color Section */}
+					<div className="flex flex-col gap-3">
+						<SectionLabel>Primary Color</SectionLabel>
+						<div className="flex flex-wrap gap-2">
+							{PRIMARY_COLORS.map((color) => (
+								<ColorSwatch
+									key={color.value}
+									color={color}
+									isSelected={params.primaryColor === color.value}
+									onClick={() =>
+										setParams({
+											primaryColor: color.value as PrimaryColorValue,
+										})
+									}
+								/>
+							))}
+						</div>
+					</div>
+
+					{/* Component Preview */}
+					<div className="flex flex-col gap-3">
+						<SectionLabel>Component</SectionLabel>
+						<Dropdown>
+							<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+								<span className="text-fg font-medium">
+									{selectedComponentName}
+								</span>
+								<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
+							</DropdownTrigger>
+							<DropdownContent side="right" className="max-h-96 w-56">
+								<DropdownRadioGroup
+									value={selectedComponent}
+									onValueChange={setSelectedComponent}>
+									{COMPONENTS_DATA.map((name) => (
+										<DropdownRadioItem
+											key={name}
+											value={name.toLowerCase().replace(/\s+/g, "-")}
+											onSelect={(e) => e.preventDefault()}>
+											{name}
+										</DropdownRadioItem>
+									))}
+								</DropdownRadioGroup>
+							</DropdownContent>
+						</Dropdown>
+					</div>
+
+					{/* Typography */}
+					<div className="flex flex-col gap-3">
+						<div className="flex items-center gap-1.5">
+							<Type className="text-fg-tertiary size-3" />
+							<SectionLabel>Typography</SectionLabel>
+						</div>
+						<div className="flex flex-col gap-2">
+							<FontCombobox
+								label="Heading Font"
+								value={params.headingFont}
 								onValueChange={(value) =>
-									setParams({ primaryColor: value as PrimaryColorValue })
-								}>
-								{PRIMARY_COLORS.map((color) => (
-									<DropdownRadioItem
-										key={color.value}
-										value={color.value}
-										onSelect={(e) => e.preventDefault()}>
-										<span
-											className="size-3 shrink-0 rounded-full border border-black/10"
-											style={{ backgroundColor: color.cssVars.light.primary }}
-										/>
-										{color.name}
-									</DropdownRadioItem>
-								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
-
-					<Dropdown>
-						<DropdownTrigger className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
-							<div className="flex flex-col items-start gap-0.5">
-								<span className="text-fg-tertiary text-xs">Component</span>
-								<span className="text-fg">{selectedComponentName}</span>
-							</div>
-							<ChevronDown className="text-fg-secondary size-4 shrink-0" />
-						</DropdownTrigger>
-						<DropdownContent side="right" className="max-h-96 w-56">
-							<DropdownRadioGroup
-								value={selectedComponent}
-								onValueChange={setSelectedComponent}>
-								{COMPONENTS_DATA.map((name) => (
-									<DropdownRadioItem
-										key={name}
-										value={name.toLowerCase().replace(/\s+/g, "-")}
-										onSelect={(e) => e.preventDefault()}>
-										{name}
-									</DropdownRadioItem>
-								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
-
-					<FontCombobox
-						label="Heading Font"
-						value={params.headingFont}
-						onValueChange={(value) =>
-							setParams({ headingFont: value as FontValue })
-						}
-					/>
-
-					<FontCombobox
-						label="Body Font"
-						value={params.bodyFont}
-						onValueChange={(value) =>
-							setParams({ bodyFont: value as FontValue })
-						}
-					/>
-					<Dropdown>
-						<DropdownTrigger className="border-border bg-elevation-level2 hover:bg-fill1 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
-							<div className="flex flex-col items-start gap-0.5">
-								<span className="text-fg-tertiary text-xs">Radius</span>
-								<span className="text-fg">{selectedRadiusLabel}</span>
-							</div>
-						</DropdownTrigger>
-						<DropdownContent side="right" className="max-h-96 w-56">
-							<DropdownRadioGroup
-								value={params.radius}
+									setParams({ headingFont: value as FontValue })
+								}
+							/>
+							<FontCombobox
+								label="Body Font"
+								value={params.bodyFont}
 								onValueChange={(value) =>
-									setParams({ radius: value as RadiusValue })
-								}>
-								{RADII.map((radius) => (
-									<DropdownRadioItem
-										key={radius.name}
-										value={radius.value}
-										onSelect={(e) => e.preventDefault()}>
-										{radius.name}
-									</DropdownRadioItem>
-								))}
-							</DropdownRadioGroup>
-						</DropdownContent>
-					</Dropdown>
+									setParams({ bodyFont: value as FontValue })
+								}
+							/>
+						</div>
+					</div>
 
+					{/* Radius */}
+					<div className="flex flex-col gap-3">
+						<SectionLabel>Border Radius</SectionLabel>
+						<div className="flex flex-wrap gap-1.5">
+							{RADII.map((radius) => (
+								<RadiusPill
+									key={radius.value}
+									radius={radius}
+									isSelected={params.radius === radius.value}
+									onClick={() =>
+										setParams({ radius: radius.value as RadiusValue })
+									}
+								/>
+							))}
+						</div>
+					</div>
+				</div>
+
+				{/* Footer action */}
+				<div className="border-border border-t px-5 py-4">
 					<CreateProjectDialog />
-				</CardContent>
-			</Card>
+				</div>
+			</aside>
 
-			<div className="flex-1">
-				<iframe ref={iframeRef} src={iframeSrc} className="h-full w-full" />
-			</div>
+			{/* Preview Area */}
+			<main className="flex flex-1 flex-col overflow-hidden p-5">
+				<div className="border-border bg-elevation-level1 flex flex-1 overflow-hidden rounded-xl border shadow-sm">
+					<iframe ref={iframeRef} src={iframeSrc} className="h-full w-full" />
+				</div>
+			</main>
 		</div>
 	)
 }
