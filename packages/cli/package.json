@@ -25,8 +25,9 @@
 		"pub:alpha": "pnpm build && pnpm publish --no-git-checks --access public --tag alpha",
 		"pub:next": "pnpm build && pnpm publish --no-git-checks --access public --tag next",
 		"pub:release": "pnpm build && pnpm publish --no-git-checks --access public",
-		"unit": "vitest run unit",
-		"e2e": "vitest run cli",
+		"unit": "vitest run --project unit",
+		"integration": "vitest run --project integration",
+		"e2e": "vitest run --project e2e",
 		"test": "vitest run",
 		"update-snapshot": "vitest -u",
 		"coverage": "vitest run --coverage"

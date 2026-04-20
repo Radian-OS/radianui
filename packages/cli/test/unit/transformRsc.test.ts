@@ -1,7 +1,7 @@
-import { ProjectInfo } from "@utils/getProjectInfo"
-import { transformRsc } from "@utils/transformers/transformRsc"
 import { Project } from "ts-morph"
 import { describe, expect, it } from "vitest"
+import { ProjectInfo } from "@/utils/getProjectInfo"
+import { transformRsc } from "@/utils/transformers/transformRsc"
 
 const project = new Project({
 	useInMemoryFileSystem: true,
@@ -106,6 +106,8 @@ export default function Page() {
 			tailwindCssFile: "globals.css",
 		}
 
-		expect(transformRsc({ sourceFile: sourceFile, projectInfo })).toMatchSnapshot()
+		expect(
+			transformRsc({ sourceFile: sourceFile, projectInfo })
+		).toMatchSnapshot()
 	})
 })
