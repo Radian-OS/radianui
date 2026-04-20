@@ -14,6 +14,10 @@ export const installDependencies = async (
 	label: string = "Installing dependencies"
 ) => {
 	if (!dependencies.length) return
+	if (process.env.RADIANUI_SKIP_INSTALL === "1") {
+		spinner(`${label} (skipped)`).info()
+		return
+	}
 	const packageManager = await getPackageManager(projectDir, {
 		withFallback: true,
 	})

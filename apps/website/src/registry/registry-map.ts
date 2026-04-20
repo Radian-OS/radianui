@@ -219,9 +219,6 @@ const registry: Record<
 	"button-fancy-example": React.lazy(
 		() => import("@/registry/example/button/button-fancy-example")
 	),
-	"button-fancy-preview": React.lazy(
-		() => import("@/registry/example/button/button-fancy-preview")
-	),
 	"button-glossy-example": React.lazy(
 		() => import("@/registry/example/button/button-glossy-example")
 	),

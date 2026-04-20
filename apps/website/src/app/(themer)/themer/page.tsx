@@ -14,11 +14,14 @@ import {
 	ChevronDown,
 	ClipboardCopy,
 	FolderPlus,
+	MoonIcon,
 	Palette,
 	Plus,
 	Rocket,
+	SunIcon,
 	Type,
 } from "lucide-react"
+import { useTheme } from "next-themes"
 import { COMPONENTS_DATA } from "@/config/navigation-config"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { cn } from "@/lib/utils"
@@ -27,7 +30,7 @@ import { FONTS, FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { TEMPLATES, Template } from "@/registry/templates"
-import { Button } from "@/registry/ui/button"
+import { Button, IconButton } from "@/registry/ui/button"
 import {
 	Command,
 	CommandEmpty,
@@ -552,6 +555,11 @@ export default function Page() {
 function ThemerPage() {
 	const [params, setParams] = useThemerPreset()
 	const [selectedComponent, setSelectedComponent] = useState<string>("button")
+	const { resolvedTheme, setTheme } = useTheme()
+	const [mounted, setMounted] = useState(false)
+	useEffect(() => {
+		setMounted(true)
+	}, [])
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -615,6 +623,22 @@ function ThemerPage() {
 					<div className="flex items-center gap-2">
 						<Palette className="text-primary size-4" />
 						<h1 className="text-fg text-sm font-semibold">Theme Builder</h1>
+						<IconButton
+							aria-label="Toggle light/dark mode"
+							variant="ghost"
+							color="neutral"
+							size="28"
+							className="ml-auto transition-transform duration-200 hover:scale-110"
+							disabled={!mounted}
+							onClick={() =>
+								setTheme(resolvedTheme === "light" ? "dark" : "light")
+							}>
+							{mounted && resolvedTheme === "dark" ? (
+								<SunIcon className="size-4" />
+							) : (
+								<MoonIcon className="size-4" />
+							)}
+						</IconButton>
 					</div>
 					<p className="text-fg-tertiary text-xs">
 						Customize your design tokens and preview live.

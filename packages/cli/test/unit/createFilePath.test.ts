@@ -1,12 +1,13 @@
-import { createFilePath } from "@utils/createFilePath"
-import { RawConfig } from "@utils/getConfig"
-import { RegistryComponentFile } from "@utils/registry"
 import path from "path"
 import { cwd } from "process"
 import { describe, expect, it } from "vitest"
+import { createFilePath } from "@/utils/createFilePath"
+import { RawConfig } from "@/utils/getConfig"
+import { RegistryComponentFile } from "@/utils/registry"
 
 describe("create file path for next-app", () => {
 	const config: RawConfig = {
+		$schema: "",
 		aliases: {
 			components: "@/components",
 			utils: "@/lib/utils",
@@ -56,8 +57,9 @@ describe("create file path for next-app", () => {
 	})
 })
 
-describe("create file path for next-pages", () => {
+describe("create file path for vite", () => {
 	const config: RawConfig = {
+		$schema: "",
 		aliases: {
 			components: "@/components",
 			utils: "@/lib/utils",
@@ -85,11 +87,11 @@ describe("create file path for next-pages", () => {
 			content: "",
 		}
 
-		const filepath = createFilePath(file, currentDir, "next-pages", config)
-		const pagepath = createFilePath(page, currentDir, "next-pages", config)
+		const filepath = createFilePath(file, currentDir, "vite", config)
+		const pagepath = createFilePath(page, currentDir, "vite", config)
 
 		expect(filepath).toBe(path.join(currentDir, "src/components/ui/select.tsx"))
-		expect(pagepath).toBe(path.join(currentDir, "src/pages/hero/index.tsx"))
+		expect(pagepath).toBe(path.join(currentDir, "src/hero/page.tsx"))
 	})
 
 	it("should create file path for a ui component when given no src config", () => {
@@ -101,7 +103,7 @@ describe("create file path for next-pages", () => {
 			content: "",
 		}
 
-		const filepath = createFilePath(file, currentDir, "next-pages", config)
+		const filepath = createFilePath(file, currentDir, "vite", config)
 
 		expect(filepath).toBe(path.join(currentDir, "components/animated/drag.tsx"))
 	})

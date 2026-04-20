@@ -6,9 +6,14 @@ import { pipeline } from "stream/promises"
 import { handleError } from "@/utils/handleError"
 import { spinner } from "@/utils/spinner"
 
-export const WEBSITE_URL = "https://radianos.com"
-// export const BLOCKS_URL = "https://blocks.radianos.com"
-export const BLOCKS_URL = "http://devblocks.radianos.com"
+const stripTrailingSlash = (url: string) => url.replace(/\/+$/, "")
+
+export const WEBSITE_URL = stripTrailingSlash(
+	process.env.RADIANUI_WEBSITE_URL ?? "https://radianos.com"
+)
+export const BLOCKS_URL = stripTrailingSlash(
+	process.env.RADIANUI_BLOCKS_URL ?? "http://devblocks.radianos.com"
+)
 export const REGISTRY_COMPONENT_URL = `${WEBSITE_URL}/api/components`
 export const REGISTRY_BLOCK_URL = `${BLOCKS_URL}/api/blocks`
 export const PRESET_API_URL = `${BLOCKS_URL}/api/config`

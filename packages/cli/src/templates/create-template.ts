@@ -273,12 +273,14 @@ function defaultScaffold({
 			// Adapt workspace config and lockfiles for the target package manager.
 			await adaptWorkspaceConfig(projectPath, packageManager)
 
-			// Run install.
-			const installArgs = getInstallArgs(packageManager)
-			const args = ["install", ...installArgs]
-			await execa(packageManager, args, {
-				cwd: projectPath,
-			})
+			// Run install (unless explicitly skipped).
+			if (process.env.RADIANUI_SKIP_INSTALL !== "1") {
+				const installArgs = getInstallArgs(packageManager)
+				const args = ["install", ...installArgs]
+				await execa(packageManager, args, {
+					cwd: projectPath,
+				})
+			}
 
 			// Write project name to the package.json.
 			const packageJsonPath = path.join(projectPath, "package.json")
