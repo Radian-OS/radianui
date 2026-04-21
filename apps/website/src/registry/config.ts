@@ -244,8 +244,8 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const projectConfig = {
 		name: config.name ?? DEFAULT_CONFIG.name!,
 		cssVars: {
-			light: { ...(lightVars || {}), ...BASE_THEME.light },
-			dark: { ...(darkVars || {}), ...BASE_THEME.dark },
+			light: { ...BASE_THEME.light, ...(lightVars || {}) },
+			dark: { ...BASE_THEME.dark, ...(darkVars || {}) },
 			theme,
 		},
 		css: {
