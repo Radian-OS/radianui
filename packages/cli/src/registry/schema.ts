@@ -80,6 +80,7 @@ export interface Preset {
 		config: {
 			iconLibrary: string
 			template: string
+			useSrcDir: boolean
 		}
 	}
 }

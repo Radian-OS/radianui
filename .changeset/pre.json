@@ -7,6 +7,7 @@
     "@radianos/typescript-config": "0.0.3"
   },
   "changesets": [
+    "bumpy-stars-write",
     "public-bottles-accept"
   ]
 }

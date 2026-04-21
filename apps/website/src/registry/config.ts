@@ -32,6 +32,7 @@ export const themerConfigSchema = z.object({
 			error: "Invalid radius value",
 		})
 		.default("medium"),
+	useSrcDir: z.boolean().default(true),
 })
 
 export type ThemerConfig = z.infer<typeof themerConfigSchema>
@@ -43,6 +44,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	template: "next",
 	radius: "medium",
 	name: "my-project",
+	useSrcDir: true,
 }
 
 const BASE_THEME = {
@@ -202,6 +204,7 @@ export const registryConfigSchema = z.object({
 	config: z.object({
 		iconLibrary: z.string(),
 		template: z.enum(TEMPLATES),
+		useSrcDir: z.boolean().default(true),
 	}),
 })
 
@@ -289,6 +292,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		config: {
 			iconLibrary: "lucide-react",
 			template: config.template,
+			useSrcDir: config.useSrcDir,
 		},
 	}
 

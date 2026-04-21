@@ -1,7 +1,13 @@
 import type { AtRule, Declaration, PluginCreator, Root, Rule } from "postcss"
 import postcss from "postcss"
 import { logger } from "@/utils/logger"
-import { Color, type Font, type FontData, getBrandColor, getFont } from "@/utils/registry"
+import {
+	Color,
+	type Font,
+	type FontData,
+	getBrandColor,
+	getFont,
+} from "@/utils/registry"
 
 export interface ThemeUpdateOptions {
 	color?: Color
@@ -55,7 +61,11 @@ function updateDarkThemeColors(root: Root, colorSet: ColorSet): void {
  * @param colorSet - Object mapping color names to their CSS values
  * @param context - Context string for logging purposes
  */
-function updateColorDeclarations(node: AtRule | Rule, colorSet: ColorSet, context: string): void {
+function updateColorDeclarations(
+	node: AtRule | Rule,
+	colorSet: ColorSet,
+	context: string
+): void {
 	node.walkDecls((decl: Declaration) => {
 		if (!decl.prop.startsWith(CSS_CONSTANTS.COLOR_PRIMARY_PREFIX)) {
 			return
@@ -154,7 +164,10 @@ function updateExistingFontImport(root: Root, importURL: string): boolean {
  * @returns True if this is a Google Fonts import
  */
 function isGoogleFontsImport(params: string): boolean {
-	return params.startsWith("url(") && params.includes(CSS_CONSTANTS.GOOGLE_FONTS_DOMAIN)
+	return (
+		params.startsWith("url(") &&
+		params.includes(CSS_CONSTANTS.GOOGLE_FONTS_DOMAIN)
+	)
 }
 
 /**
@@ -179,14 +192,12 @@ function addNewFontImport(root: Root, importURL: string): void {
  * @param fontData - Font data containing CSS variable definitions
  */
 function updateFontDeclarations(root: Root, fontData: FontData): void {
-	root.walkAtRules("layer", (atRule: AtRule) => {
-		if (atRule.params.trim() === "base") {
-			atRule.walkDecls((decl: Declaration) => {
-				if (decl.prop === "--heading-font" || decl.prop === "--body-font") {
-					updateFontDeclaration(decl, fontData)
-				}
-			})
-		}
+	root.walkAtRules("theme", (atRule: AtRule) => {
+		atRule.walkDecls((decl: Declaration) => {
+			if (decl.prop === "--heading-font" || decl.prop === "--body-font") {
+				updateFontDeclaration(decl, fontData)
+			}
+		})
 	})
 }
 
@@ -199,9 +210,15 @@ function updateFontDeclarations(root: Root, fontData: FontData): void {
 function updateFontDeclaration(decl: Declaration, fontData: FontData): void {
 	const { cssVariables } = fontData
 
-	if (decl.prop === CSS_CONSTANTS.HEADING_FONT_PROP && cssVariables["heading-font"]) {
+	if (
+		decl.prop === CSS_CONSTANTS.HEADING_FONT_PROP &&
+		cssVariables["heading-font"]
+	) {
 		decl.value = buildFontValue(cssVariables["heading-font"])
-	} else if (decl.prop === CSS_CONSTANTS.BODY_FONT_PROP && cssVariables["body-font"]) {
+	} else if (
+		decl.prop === CSS_CONSTANTS.BODY_FONT_PROP &&
+		cssVariables["body-font"]
+	) {
 		decl.value = buildFontValue(cssVariables["body-font"])
 	}
 }
@@ -241,12 +258,19 @@ const themeUpdatePlugin: PluginCreator<ThemeUpdateOptions> = (options = {}) => {
 				validatePluginOptions(color, font)
 
 				// Fetch theme and font data concurrently for better performance
-				const [themeData, fontData] = await Promise.all([getBrandColor(color!), getFont(font!)])
+				const [themeData, fontData] = await Promise.all([
+					getBrandColor(color!),
+					getFont(font!),
+				])
 
 				// Update fonts and colors concurrently
-				await Promise.all([updateThemeFonts(root, fontData, font!), updateThemeColors(root, themeData, color!)])
+				await Promise.all([
+					updateThemeFonts(root, fontData, font!),
+					updateThemeColors(root, themeData, color!),
+				])
 			} catch (error) {
-				const errorMessage = error instanceof Error ? error.message : "Unknown error"
+				const errorMessage =
+					error instanceof Error ? error.message : "Unknown error"
 				throw new Error(`Error updating theme colors: ${errorMessage}`)
 			}
 		},
@@ -262,7 +286,9 @@ const themeUpdatePlugin: PluginCreator<ThemeUpdateOptions> = (options = {}) => {
  */
 function validatePluginOptions(color?: Color, font?: Font): void {
 	if (!color || !font) {
-		throw new Error("Both color and font options are required for theme updates")
+		throw new Error(
+			"Both color and font options are required for theme updates"
+		)
 	}
 }
 
@@ -273,7 +299,11 @@ function validatePluginOptions(color?: Color, font?: Font): void {
  * @param fontData - Font configuration data
  * @param font - Font identifier for error messages
  */
-async function updateThemeFonts(root: Root, fontData: FontData, font: Font): Promise<void> {
+async function updateThemeFonts(
+	root: Root,
+	fontData: FontData,
+	font: Font
+): Promise<void> {
 	if (!fontData?.importURL || !fontData?.cssVariables) {
 		throw new Error(`Invalid or incomplete font data for font: ${font}`)
 	}
@@ -288,7 +318,11 @@ async function updateThemeFonts(root: Root, fontData: FontData, font: Font): Pro
  * @param themeData - Theme color data
  * @param color - Color theme identifier for error messages
  */
-async function updateThemeColors(root: Root, themeData: any, color: Color): Promise<void> {
+async function updateThemeColors(
+	root: Root,
+	themeData: any,
+	color: Color
+): Promise<void> {
 	if (!themeData?.cssVariables) {
 		throw new Error(`No theme color data found for theme: ${color}`)
 	}
@@ -322,7 +356,11 @@ export default themeUpdatePlugin
  * @param font - Font to apply
  * @throws Error if file operations or theme updates fail
  */
-export async function updateCssWithTheme(cssFilePath: string, color: Color, font: Font): Promise<void> {
+export async function updateCssWithTheme(
+	cssFilePath: string,
+	color: Color,
+	font: Font
+): Promise<void> {
 	try {
 		const fs = await import("fs/promises")
 
@@ -330,11 +368,16 @@ export async function updateCssWithTheme(cssFilePath: string, color: Color, font
 		const css = await fs.readFile(cssFilePath, "utf-8")
 
 		// Process CSS with theme updates
-		const result = await postcss([themeUpdatePlugin({ color, font })]).process(css, { from: cssFilePath })
+		const result = await postcss([themeUpdatePlugin({ color, font })]).process(
+			css,
+			{ from: cssFilePath }
+		)
 
 		// Write updated CSS back to file
 		await fs.writeFile(cssFilePath, result.css)
 	} catch (error) {
-		throw new Error(`Error updating CSS file: ${error instanceof Error ? error.message : "Unknown error"}`)
+		throw new Error(
+			`Error updating CSS file: ${error instanceof Error ? error.message : "Unknown error"}`
+		)
 	}
 }

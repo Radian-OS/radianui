@@ -14,7 +14,10 @@ export function mergeConfigs(
 
 	for (const source of sources) {
 		for (const [key, value] of Object.entries(source)) {
-			if (value !== undefined && (result as Record<string, unknown>)[key] === undefined) {
+			if (
+				value !== undefined &&
+				(result as Record<string, unknown>)[key] === undefined
+			) {
 				;(result as Record<string, unknown>)[key] = value
 			}
 		}
