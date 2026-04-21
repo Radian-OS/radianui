@@ -1,5 +1,5 @@
 import { useQueryStates } from "nuqs"
-import { type Options, parseAsStringLiteral } from "nuqs/server"
+import { type Options, parseAsBoolean, parseAsStringLiteral } from "nuqs/server"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
@@ -22,6 +22,7 @@ const designSystemSearchParams = {
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),
+	useSrcDir: parseAsBoolean.withDefault(DEFAULT_CONFIG.useSrcDir),
 }
 
 export function useThemerPreset(options: Options = {}) {

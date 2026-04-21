@@ -1,5 +1,11 @@
 # radianui
 
+## 0.2.2-alpha.1
+
+### Patch Changes
+
+- CLI now handles the useSrcDir configuration option
+
 ## 0.2.2-alpha.0
 
 ### Patch Changes

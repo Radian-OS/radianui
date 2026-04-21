@@ -318,6 +318,7 @@ export async function promptForProject(
 export function handlePromptCancel() {
 	logger.break()
 	logger.error("Aborted.")
+	logger.error(new Error().stack ?? "")
 	logger.break()
 	process.exit(1)
 }
