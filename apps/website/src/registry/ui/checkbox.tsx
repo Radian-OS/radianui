@@ -14,9 +14,9 @@ type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
 // Define the variants for the Checkbox using cva.
 const checkboxVariants = cva(
 	cn(
-		"group peer bg-bg shrink-0 border border-border ring-offset-bg focus-visible:outline-none",
+		"group peer bg-bg text-primary-fg shrink-0 border border-border ring-offset-bg focus-visible:outline-none",
 		"focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-		"data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-white data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-white",
+		"data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-fg data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-fg",
 		"aria-invalid:border-error aria-invalid:ring-error",
 		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error"
 	),

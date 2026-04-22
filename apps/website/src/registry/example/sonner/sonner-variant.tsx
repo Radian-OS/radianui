@@ -45,26 +45,26 @@ const ToastColor = () => {
 				color="primary"
 				onClick={() =>
 					toast.custom((t) => (
-						<div className="bg-primary flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
-							<Box size={20} className="text-white" />
-							<div className="text-white">
+						<div className="bg-primary text-primary-fg flex w-[416px] items-center justify-between gap-2 rounded-lg px-3 py-2.5">
+							<Box size={20} className="text-primary-fg" />
+							<div className="text-primary-fg">
 								<p className="text-sm font-medium">Toast Title</p>
 								<p className="text-sm font-normal">
 									Toast description message.
 								</p>
 							</div>
 							<div className="flex gap-3">
-								<Button className="text-white" variant="link">
+								<Button className="text-primary-fg" variant="link">
 									Learn More
 								</Button>
-								<Button className="text-white" variant="link">
+								<Button className="text-primary-fg" variant="link">
 									Upgrade
 								</Button>
 							</div>
 							<XIcon
 								onClick={() => toast.dismiss(t)}
 								size={16}
-								className="cursor-pointer text-white"
+								className="text-primary-fg cursor-pointer"
 							/>
 						</div>
 					))

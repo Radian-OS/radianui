@@ -43,7 +43,8 @@ const badgeVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "bg-primary text-white font-semibold border border-alpha",
+				className:
+					"bg-primary text-primary-fg font-semibold border border-alpha",
 			},
 			{
 				variant: "strong",
