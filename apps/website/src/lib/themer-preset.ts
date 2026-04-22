@@ -4,6 +4,7 @@ import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
+import { STYLES, Style } from "@/registry/styles"
 import { TEMPLATES, Template } from "@/registry/templates"
 
 const designSystemSearchParams = {
@@ -22,6 +23,7 @@ const designSystemSearchParams = {
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),
+	style: parseAsStringLiteral<Style>(STYLES).withDefault(DEFAULT_CONFIG.style),
 	useSrcDir: parseAsBoolean.withDefault(DEFAULT_CONFIG.useSrcDir),
 }
 

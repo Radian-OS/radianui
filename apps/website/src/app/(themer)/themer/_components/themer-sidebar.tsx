@@ -8,6 +8,7 @@ import { useThemerPreset } from "@/lib/themer-preset"
 import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
+import { STYLES } from "@/registry/styles"
 import { IconButton } from "@/registry/ui/button"
 import {
 	Dropdown,
@@ -22,24 +23,14 @@ import { FontCombobox } from "./font-combobox"
 import { RADII, RadiusPill } from "./radius-pill"
 import { SectionLabel } from "./section-label"
 
-const STYLES = [
-	{ value: "default", label: "Default" },
-	{ value: "lyra", label: "Lyra" },
-	{ value: "nova", label: "Nova" },
-] as const
-
 interface ThemerSidebarProps {
 	selectedComponent: string
 	setSelectedComponent: (value: string) => void
-	selectedStyle: string
-	setSelectedStyle: (value: string) => void
 }
 
 export function ThemerSidebar({
 	selectedComponent,
 	setSelectedComponent,
-	selectedStyle,
-	setSelectedStyle,
 }: ThemerSidebarProps) {
 	const [params, setParams] = useThemerPreset()
 	const { resolvedTheme, setTheme } = useTheme()
@@ -92,20 +83,22 @@ export function ThemerSidebar({
 					<Dropdown>
 						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">
-								{selectedStyle.charAt(0).toUpperCase() + selectedStyle.slice(1)}
+								{params.style.charAt(0).toUpperCase() + params.style.slice(1)}
 							</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
 						</DropdownTrigger>
 						<DropdownContent side="right" className="max-h-96 w-56">
 							<DropdownRadioGroup
-								value={selectedStyle}
-								onValueChange={setSelectedStyle}>
+								value={params.style}
+								onValueChange={(value) =>
+									setParams({ style: value as typeof params.style })
+								}>
 								{STYLES.map((style) => (
 									<DropdownRadioItem
-										key={style.value}
-										value={style.value}
+										key={style}
+										value={style}
 										onSelect={(e) => e.preventDefault()}>
-										{style.label}
+										{style}
 									</DropdownRadioItem>
 								))}
 							</DropdownRadioGroup>

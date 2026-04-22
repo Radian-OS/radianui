@@ -2,6 +2,7 @@ import z from "zod"
 import { FONTS, FontValue } from "./fonts"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS, RadiusValue } from "./radius"
+import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
 
 const fontValues = FONTS.map((font) => font.value) as [
@@ -32,6 +33,11 @@ export const themerConfigSchema = z.object({
 			error: "Invalid radius value",
 		})
 		.default("medium"),
+	style: z
+		.enum(STYLES, {
+			error: "Invalid style valiue",
+		})
+		.default("default"),
 	useSrcDir: z.boolean().default(true),
 })
 
@@ -43,6 +49,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	bodyFont: "inter",
 	template: "next",
 	radius: "medium",
+	style: "default",
 	name: "my-project",
 	useSrcDir: true,
 }
