@@ -1,62 +1,64 @@
-.style-lyra {
+.style-nova {
 	/* MARK: Button */
 	.cn-button {
-		@apply focus-visible:border-info-focus focus-visible:ring-info/50 aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error dark:aria-invalid:border-error/50 aria-invalid:ring-1 active:not-aria-[haspopup]:translate-y-px rounded-xl border border-transparent bg-clip-padding text-xs font-medium focus-visible:ring-1 [&_svg:not([class*='size-'])]:size-4;
+		@apply focus-visible:border-primary-focus focus-visible:ring-primary/40 aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error dark:aria-invalid:border-error/50 aria-invalid:ring-1 active:not-aria-[haspopup]:translate-y-px rounded-2xl border border-transparent bg-clip-padding text-sm font-medium transition-all duration-200 focus-visible:ring-2 [&_svg:not([class*='size-'])]:size-4;
 	}
 
 	.cn-button-variant-default {
-		@apply bg-info text-info-text [a]:hover:bg-info/50;
+		@apply bg-primary text-primary-text hover:bg-primary/90 shadow-sm hover:shadow-md;
 	}
 
 	.cn-button-variant-outline {
-		@apply border-border bg-bg hover:bg-elevation-level1 hover:text-fg dark:bg-info/30 dark:border-info dark:hover:bg-info/50 aria-expanded:bg-elevation-level1 aria-expanded:text-fg;
+		@apply border-border bg-bg hover:bg-elevation-level1 hover:text-fg dark:bg-primary/20 dark:border-primary/50 dark:hover:bg-primary/40 aria-expanded:bg-elevation-level1 aria-expanded:text-fg hover:shadow-sm;
 	}
 
 	.cn-button-variant-secondary {
-		@apply bg-bg text-fg-secondary hover:bg-fill2/80 aria-expanded:bg-fill2 aria-expanded:text-fg-secondary;
+		@apply bg-fill1 text-fg-secondary hover:bg-fill2 hover:text-fg aria-expanded:bg-fill2;
 	}
 
 	.cn-button-variant-ghost {
-		@apply hover:bg-elevation-level1 hover:text-fg dark:hover:bg-bg/50 aria-expanded:bg-elevation-level1 aria-expanded:text-fg;
+		@apply hover:bg-elevation-level1/70 hover:text-fg dark:hover:bg-bg/40 aria-expanded:bg-elevation-level1;
 	}
 
 	.cn-button-variant-error {
-		@apply bg-error/10 hover:bg-error/20 focus-visible:ring-error/20 dark:focus-visible:ring-error/40 dark:bg-error/20 text-error focus-visible:border-error/40 dark:hover:bg-error/30;
+		@apply bg-error/15 hover:bg-error/25 text-error focus-visible:ring-error/30 dark:bg-error/25 dark:hover:bg-error/35;
 	}
 
 	.cn-button-variant-link {
-		@apply text-info underline-offset-4 hover:underline;
+		@apply text-primary underline-offset-4 hover:underline hover:opacity-80;
 	}
 
+	/* Sizes - slightly more breathing space */
+
 	.cn-button-size-xs {
-		@apply has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 h-6 gap-1 rounded-none px-2 text-xs [&_svg:not([class*='size-'])]:size-3;
+		@apply has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 h-6 gap-1 rounded-lg px-2 text-xs [&_svg:not([class*='size-'])]:size-3;
 	}
 
 	.cn-button-size-sm {
-		@apply has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 h-7 gap-1 rounded-none px-2.5 [&_svg:not([class*='size-'])]:size-3.5;
+		@apply has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-7 gap-1 rounded-lg px-3 [&_svg:not([class*='size-'])]:size-3.5;
 	}
 
 	.cn-button-size-default {
-		@apply has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-8 gap-1.5 px-2.5;
+		@apply h-9 gap-2 px-4;
 	}
 
 	.cn-button-size-lg {
-		@apply has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 h-9 gap-1.5 px-2.5;
+		@apply h-10 gap-2 px-5;
 	}
 
 	.cn-button-size-icon-xs {
-		@apply size-6 rounded-none [&_svg:not([class*='size-'])]:size-3;
+		@apply size-6 rounded-lg [&_svg:not([class*='size-'])]:size-3;
 	}
 
 	.cn-button-size-icon-sm {
-		@apply size-7 rounded-none;
+		@apply size-7 rounded-lg;
 	}
 
 	.cn-button-size-icon {
-		@apply size-8;
+		@apply size-9 rounded-xl;
 	}
 
 	.cn-button-size-icon-lg {
-		@apply size-9;
+		@apply size-10 rounded-xl;
 	}
 }

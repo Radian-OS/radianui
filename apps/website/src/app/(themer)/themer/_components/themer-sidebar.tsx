@@ -23,6 +23,7 @@ import { RADII, RadiusPill } from "./radius-pill"
 import { SectionLabel } from "./section-label"
 
 const STYLES = [
+	{ value: "default", label: "Default" },
 	{ value: "lyra", label: "Lyra" },
 	{ value: "nova", label: "Nova" },
 ] as const
