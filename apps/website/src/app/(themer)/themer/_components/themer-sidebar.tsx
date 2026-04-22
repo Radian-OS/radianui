@@ -22,14 +22,23 @@ import { FontCombobox } from "./font-combobox"
 import { RADII, RadiusPill } from "./radius-pill"
 import { SectionLabel } from "./section-label"
 
+const STYLES = [
+	{ value: "lyra", label: "Lyra" },
+	{ value: "nova", label: "Nova" },
+] as const
+
 interface ThemerSidebarProps {
 	selectedComponent: string
 	setSelectedComponent: (value: string) => void
+	selectedStyle: string
+	setSelectedStyle: (value: string) => void
 }
 
 export function ThemerSidebar({
 	selectedComponent,
 	setSelectedComponent,
+	selectedStyle,
+	setSelectedStyle,
 }: ThemerSidebarProps) {
 	const [params, setParams] = useThemerPreset()
 	const { resolvedTheme, setTheme } = useTheme()
@@ -75,6 +84,34 @@ export function ThemerSidebar({
 
 			{/* Scrollable controls */}
 			<div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 py-5">
+				{/* Style Section */}
+
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Styles</SectionLabel>
+					<Dropdown>
+						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+							<span className="text-fg font-medium">
+								{selectedStyle.charAt(0).toUpperCase() + selectedStyle.slice(1)}
+							</span>
+							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
+						</DropdownTrigger>
+						<DropdownContent side="right" className="max-h-96 w-56">
+							<DropdownRadioGroup
+								value={selectedStyle}
+								onValueChange={setSelectedStyle}>
+								{STYLES.map((style) => (
+									<DropdownRadioItem
+										key={style.value}
+										value={style.value}
+										onSelect={(e) => e.preventDefault()}>
+										{style.label}
+									</DropdownRadioItem>
+								))}
+							</DropdownRadioGroup>
+						</DropdownContent>
+					</Dropdown>
+				</div>
+
 				{/* Color Section */}
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Primary Color</SectionLabel>

@@ -96,6 +96,7 @@ const buildThemerCssText = (
 export default function Page({}: { params: { name: string } }) {
 	const [params, setParams] = useThemerPreset()
 	const [componentName, setComponentName] = useState("button")
+	const [selectedStyle, setSelectedStyle] = useState("lyra")
 
 	const selectedHeadingFont = FONTS.find(
 		(font) => font.value === params.headingFont
@@ -150,6 +151,9 @@ export default function Page({}: { params: { name: string } }) {
 			if (event.data.type === "template-change") {
 				setParams({ template: event.data.template })
 			}
+			if (event.data.type === "style-change") {
+				setSelectedStyle(event.data.style)
+			}
 		}
 
 		window.addEventListener("message", handleMessage)
@@ -161,15 +165,19 @@ export default function Page({}: { params: { name: string } }) {
 
 	return (
 		<div className="flex flex-col items-center gap-3 p-3">
-			{components.map(([key, Component]) => (
-				<Suspense
-					key={key}
-					fallback={
-						<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
-					}>
-					<Component />
-				</Suspense>
-			))}
+			{/* Component Preview with Style Applied */}
+			<div
+				className={`style-${selectedStyle} flex w-full flex-col items-center gap-3`}>
+				{components.map(([key, Component]) => (
+					<Suspense
+						key={key}
+						fallback={
+							<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
+						}>
+						<Component />
+					</Suspense>
+				))}
+			</div>
 		</div>
 	)
 }

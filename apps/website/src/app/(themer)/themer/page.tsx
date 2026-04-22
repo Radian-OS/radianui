@@ -22,6 +22,7 @@ export default function Page() {
 function ThemerPage() {
 	const [params] = useThemerPreset()
 	const [selectedComponent, setSelectedComponent] = useState<string>("button")
+	const [selectedStyle, setSelectedStyle] = useState<string>("lyra")
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
@@ -45,6 +46,10 @@ function ThemerPage() {
 	useEffect(() => {
 		postToIframe({ type: "component-change", component: selectedComponent })
 	}, [selectedComponent])
+
+	useEffect(() => {
+		postToIframe({ type: "style-change", style: selectedStyle })
+	}, [selectedStyle])
 
 	useEffect(() => {
 		postToIframe({
@@ -76,6 +81,8 @@ function ThemerPage() {
 			<ThemerSidebar
 				selectedComponent={selectedComponent}
 				setSelectedComponent={setSelectedComponent}
+				selectedStyle={selectedStyle}
+				setSelectedStyle={setSelectedStyle}
 			/>
 
 			{/* Preview Area */}
