@@ -18,7 +18,6 @@ export type BreadcrumbEllipsisType = React.ComponentProps<"span">
 function Breadcrumb({ ...props }: BreadcrumbType) {
 	return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />
 }
-
 Breadcrumb.displayName = "Breadcrumb"
 
 function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
@@ -26,13 +25,14 @@ function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
 		<ol
 			data-slot="breadcrumb-list"
 			className={cn(
-				"text-fg-secondary flex flex-wrap items-center gap-1.5 break-words text-sm",
+				"cn-breadcrumb-list flex flex-wrap items-center break-words",
 				className
 			)}
 			{...props}
 		/>
 	)
 }
+BreadcrumbList.displayName = "BreadcrumbList"
 
 function BreadcrumbItem({ className, ...props }: BreadcrumbItemType) {
 	return (
@@ -47,11 +47,10 @@ BreadcrumbItem.displayName = "BreadcrumbItem"
 
 function BreadcrumbLink({ asChild, className, ...props }: BreadcrumbLinkType) {
 	const Comp = asChild ? SlotPrimitive.Slot : "a"
-
 	return (
 		<Comp
 			data-slot="breadcrumb-link"
-			className={cn("hover:text-fg transition-colors", className)}
+			className={cn("cn-breadcrumb-link transition-colors", className)}
 			{...props}
 		/>
 	)
@@ -65,7 +64,7 @@ function BreadcrumbPage({ className, ...props }: BreadcrumbPageType) {
 			role="link"
 			aria-disabled="true"
 			aria-current="page"
-			className={cn("text-fg font-normal", className)}
+			className={cn("cn-breadcrumb-page", className)}
 			{...props}
 		/>
 	)
@@ -82,7 +81,7 @@ function BreadcrumbSeparator({
 			data-slot="breadcrumb-separator"
 			role="presentation"
 			aria-hidden="true"
-			className={cn("text-fg-tertiary [&>svg]:size-4", className)}
+			className={cn("cn-breadcrumb-separator", className)}
 			{...props}>
 			{children ?? <ChevronRight className="rtl:rotate-180" />}
 		</li>

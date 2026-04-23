@@ -17,7 +17,6 @@ export type CollapsibleContentProps = React.ComponentProps<
 function Collapsible({ ...props }: CollapsibleProps) {
 	return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />
 }
-
 function CollapsibleTrigger({ ...props }: CollapsibleTriggerProps) {
 	return (
 		<CollapsiblePrimitive.CollapsibleTrigger
@@ -36,7 +35,7 @@ function CollapsibleContent({
 		<CollapsiblePrimitive.CollapsibleContent
 			data-slot="collapsible-content"
 			className={cn(
-				"data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down [&>figure]:mt-0! overflow-hidden",
+				"data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down cn-collapsible-content overflow-hidden",
 				className
 			)}
 			{...props}>
