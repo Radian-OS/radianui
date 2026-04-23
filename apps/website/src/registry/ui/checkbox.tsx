@@ -14,8 +14,7 @@ type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
 const checkboxVariants = cva(
 	cn(
 		"group peer shrink-0 border ring-offset-bg focus-visible:outline-none cn-checkbox",
-		"focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-		"data-[state=checked]:text-white data-[state=indeterminate]:text-white"
+		"focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
 	),
 	{
 		variants: {

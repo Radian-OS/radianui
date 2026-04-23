@@ -57,7 +57,7 @@
 		@apply bg-black-inverse text-white-inverse;
 	}
 	.cn-alert-strong-primary {
-		@apply bg-primary text-white;
+		@apply bg-primary text-primary-fg;
 	}
 	.cn-alert-strong-info {
 		@apply bg-info text-white;
@@ -326,7 +326,7 @@
 
 	/* Strong compound variants */
 	.cn-badge-strong-primary {
-		@apply bg-primary border-alpha border font-semibold text-white;
+		@apply bg-primary border-alpha text-primary-fg border font-semibold;
 	}
 	.cn-badge-strong-info {
 		@apply bg-info border-alpha border font-semibold text-white;
@@ -625,10 +625,10 @@
 	/* MARK: Checkbox */
 
 	.cn-checkbox {
-		@apply bg-bg border-border ring-offset-bg;
+		@apply bg-bg border-border ring-offset-bg text-primary-fg;
 		@apply focus-visible:ring-primary;
-		@apply data-[state=checked]:bg-primary data-[state=checked]:border-primary;
-		@apply data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary;
+		@apply data-[state=checked]:bg-primary data-[state=checked]:border-primary data-[state=checked]:text-primary-fg;
+		@apply data-[state=indeterminate]:bg-primary data-[state=indeterminate]:border-primary data-[state=indeterminate]:text-primary-fg;
 		@apply aria-invalid:border-error aria-invalid:ring-error;
 		@apply [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error;
 	}
@@ -1114,7 +1114,7 @@
 	}
 
 	.cn-switch-thumb {
-		@apply bg-white shadow-lg;
+		@apply data-[state=checked]:bg-primary-fg bg-white shadow-lg;
 	}
 
 	.cn-switch-thumb-shape-pill {

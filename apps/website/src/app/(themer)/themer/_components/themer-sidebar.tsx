@@ -98,6 +98,7 @@ export function ThemerSidebar({
 										...(preset && {
 											...preset,
 										}),
+										primaryColor: params.primaryColor,
 									})
 								}}>
 								{STYLES.map((style) => (
