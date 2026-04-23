@@ -4,7 +4,7 @@ import React from "react"
 import { type VariantProps } from "class-variance-authority"
 import CurrencyInputField from "react-currency-input-field"
 import { cn } from "@/lib/utils"
-import { inputVariants } from "@/styles/nova/ui/input"
+import { inputVariants } from "@/styles/sera/ui/input"
 
 export type CurrencyInputProps = Omit<
 	React.ComponentProps<typeof CurrencyInputField>,

@@ -35,16 +35,16 @@ export type AccordionContentProps = React.ComponentProps<
 const AccordionContext = React.createContext<AccordionContextType | null>(null)
 
 // Defining the different variants for the accordion
-const accordionVariants = cva("w-full", {
+const accordionVariants = cva("cn-accordion", {
 	variants: {
 		size: {
-			sm: "text-sm/6",
-			lg: "text-base/7",
+			sm: "cn-accordion-size-sm",
+			lg: "cn-accordion-size-lg",
 		},
 		variant: {
-			box: "",
-			table: "border-stroke rounded-xl border",
-			open: "",
+			box: "cn-accordion-variant-box",
+			table: "cn-accordion-variant-table",
+			open: "cn-accordion-variant-open",
 		},
 	},
 	defaultVariants: {
@@ -53,28 +53,28 @@ const accordionVariants = cva("w-full", {
 	},
 })
 
-const accordionItemVariants = cva("overflow-hidden", {
+const accordionItemVariants = cva("cn-accordion-item", {
 	variants: {
 		variant: {
-			box: "border-stroke border shadow-2xs rounded-lg last:mb-0",
-			table: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
-			open: "border-b last:border-b-0",
+			box: "cn-accordion-item-variant-box",
+			table: "cn-accordion-item-variant-table",
+			open: "cn-accordion-item-variant-open",
 		},
 		size: {
-			sm: "",
-			lg: "",
+			sm: "cn-accordion-item-size-sm",
+			lg: "cn-accordion-item-size-lg",
 		},
 	},
 	compoundVariants: [
 		{
 			variant: "box",
 			size: "sm",
-			class: "mb-1.5",
+			class: "cn-accordion-item-box-sm",
 		},
 		{
 			variant: "box",
 			size: "lg",
-			class: "mb-2",
+			class: "cn-accordion-item-box-lg",
 		},
 	],
 	defaultVariants: {
@@ -83,102 +83,96 @@ const accordionItemVariants = cva("overflow-hidden", {
 	},
 })
 
-const accordionTriggerVariants = cva(
-	"text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all",
-	{
-		variants: {
-			variant: {
-				box: "",
-				table: "",
-				open: "",
-			},
-			size: {
-				sm: "leading-5",
-				lg: "leading-6",
-			},
-			indicator: {
-				chevron: "[&[data-state=open]>.AccordionChevron]:rotate-180",
-				"plus-minus":
-					"[&[data-state=open]>.AccordionPlus>path:last-child]:rotate-90 [&[data-state=open]>.AccordionPlus>path:last-child]:opacity-0 [&[data-state=open]>.AccordionPlus]:rotate-180",
-			},
-		},
-		compoundVariants: [
-			{
-				variant: "open",
-				size: "sm",
-				class: "px-0 py-3",
-			},
-			{
-				variant: "open",
-				size: "lg",
-				class: "px-0 py-4",
-			},
-			{
-				variant: ["box", "table"],
-				size: "sm",
-				class: "p-3",
-			},
-			{
-				variant: ["box", "table"],
-				size: "lg",
-				class: "p-4",
-			},
-			// Indicator sizing
-			{
-				indicator: ["chevron", "plus-minus"],
-				size: "sm",
-				class: "[&>.AccordionChevron]:size-5 [&>.AccordionPlus]:size-5",
-			},
-			{
-				indicator: ["chevron", "plus-minus"],
-				size: "lg",
-				class: "[&>.AccordionChevron]:size-6 [&>.AccordionPlus]:size-6",
-			},
-		],
-		defaultVariants: {
-			variant: "box",
-			size: "sm",
-			indicator: "chevron",
-		},
-	}
-)
-
-const accordionContentVariants = cva(
-	"text-fg-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all"
-)
-
-const accordionContentInnerVariants = cva("pt-0", {
+const accordionTriggerVariants = cva("cn-accordion-trigger", {
 	variants: {
 		variant: {
-			box: "",
-			table: "",
-			open: "",
+			box: "cn-accordion-trigger-variant-box",
+			table: "cn-accordion-trigger-variant-table",
+			open: "cn-accordion-trigger-variant-open",
 		},
 		size: {
-			sm: "",
-			lg: "",
+			sm: "cn-accordion-trigger-size-sm",
+			lg: "cn-accordion-trigger-size-lg",
+		},
+		indicator: {
+			chevron: "cn-accordion-trigger-indicator-chevron",
+			"plus-minus": "cn-accordion-trigger-indicator-plus-minus",
 		},
 	},
 	compoundVariants: [
 		{
 			variant: "open",
 			size: "sm",
-			class: "px-0 pb-3",
+			class: "cn-accordion-trigger-open-sm",
 		},
 		{
 			variant: "open",
 			size: "lg",
-			class: "px-0 pb-4",
+			class: "cn-accordion-trigger-open-lg",
 		},
 		{
 			variant: ["box", "table"],
 			size: "sm",
-			class: "px-3 pb-3",
+			class: "cn-accordion-trigger-box-table-sm",
 		},
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "px-4 pb-4",
+			class: "cn-accordion-trigger-box-table-lg",
+		},
+		// Indicator sizing
+		{
+			indicator: ["chevron", "plus-minus"],
+			size: "sm",
+			class: "cn-accordion-trigger-indicator-sm",
+		},
+		{
+			indicator: ["chevron", "plus-minus"],
+			size: "lg",
+			class: "cn-accordion-trigger-indicator-lg",
+		},
+	],
+	defaultVariants: {
+		variant: "box",
+		size: "sm",
+		indicator: "chevron",
+	},
+})
+
+const accordionContentVariants = cva("cn-accordion-content")
+
+const accordionContentInnerVariants = cva("cn-accordion-content-inner", {
+	variants: {
+		variant: {
+			box: "cn-accordion-content-inner-variant-box",
+			table: "cn-accordion-content-inner-variant-table",
+			open: "cn-accordion-content-inner-variant-open",
+		},
+		size: {
+			sm: "cn-accordion-content-inner-size-sm",
+			lg: "cn-accordion-content-inner-size-lg",
+		},
+	},
+	compoundVariants: [
+		{
+			variant: "open",
+			size: "sm",
+			class: "cn-accordion-content-inner-open-sm",
+		},
+		{
+			variant: "open",
+			size: "lg",
+			class: "cn-accordion-content-inner-open-lg",
+		},
+		{
+			variant: ["box", "table"],
+			size: "sm",
+			class: "cn-accordion-content-inner-box-table-sm",
+		},
+		{
+			variant: ["box", "table"],
+			size: "lg",
+			class: "cn-accordion-content-inner-box-table-lg",
 		},
 	],
 	defaultVariants: {

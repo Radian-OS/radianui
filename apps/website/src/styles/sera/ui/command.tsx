@@ -16,7 +16,7 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-} from "@/styles/lyra/ui/dialog"
+} from "@/styles/sera/ui/dialog"
 
 type CommandProps = React.ComponentProps<typeof Cmdk>
 

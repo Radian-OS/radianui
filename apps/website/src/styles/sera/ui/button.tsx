@@ -51,16 +51,14 @@ export type IconButtonProps = Omit<React.ComponentProps<"button">, "color"> & {
 }
 
 export const buttonVariants = cva(
-	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit focus-visible:border-primary-focus focus-visible:ring-primary/40 aria-invalid:ring-error/20 dark:aria-invalid:ring-error/40 aria-invalid:border-error dark:aria-invalid:border-error/50 aria-invalid:ring-1 active:not-aria-[haspopup]:translate-y-px rounded-2xl border border-transparent bg-clip-padding text-sm font-medium transition-all duration-200 focus-visible:ring-2 [&_svg:not([class*='size-'])]:size-4",
+	"inline-flex whitespace-nowrap items-center justify-center box-border focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:pointer-events-none hover:cursor-pointer w-fit",
 	{
 		variants: {
 			variant: {
 				strong: "",
-				soft: "bg-fill1 text-fg-secondary hover:bg-fill2 hover:text-fg aria-expanded:bg-fill2",
-				outline:
-					"border-border bg-bg hover:bg-elevation-level1 hover:text-fg dark:bg-primary/20 dark:border-primary/50 dark:hover:bg-primary/40 aria-expanded:bg-elevation-level1 aria-expanded:text-fg hover:shadow-sm",
-				ghost:
-					"hover:bg-elevation-level1/70 hover:text-fg dark:hover:bg-bg/40 aria-expanded:bg-elevation-level1",
+				soft: "",
+				outline: "",
+				ghost: "",
 				link: "",
 				glossy: "",
 				"glossy-inverted": "",
@@ -68,7 +66,7 @@ export const buttonVariants = cva(
 				"smooth-inverted": "",
 			},
 			size: {
-				"28": "[&>svg]:size-4 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 h-6 gap-1 rounded-lg px-2 text-xs [&_svg:not([class*='size-'])]:size-3",
+				"28": "[&>svg]:size-4 text-[13px] leading-4.5 px-1 rounded-md",
 				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",

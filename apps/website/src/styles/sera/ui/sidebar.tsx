@@ -5,23 +5,23 @@ import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
 import { PanelLeftIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/styles/lyra/ui/badge"
-import { IconButton } from "@/styles/lyra/ui/button"
+import { Badge } from "@/styles/sera/ui/badge"
+import { IconButton } from "@/styles/sera/ui/button"
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from "@/styles/lyra/ui/collapsible"
-import { DialogTitle } from "@/styles/lyra/ui/dialog"
-import { Divider } from "@/styles/lyra/ui/divider"
-import { Drawer, DrawerContent } from "@/styles/lyra/ui/drawer"
-import { Input } from "@/styles/lyra/ui/input"
-import { Skeleton } from "@/styles/lyra/ui/skeleton"
+} from "@/styles/sera/ui/collapsible"
+import { DialogTitle } from "@/styles/sera/ui/dialog"
+import { Divider } from "@/styles/sera/ui/divider"
+import { Drawer, DrawerContent } from "@/styles/sera/ui/drawer"
+import { Input } from "@/styles/sera/ui/input"
+import { Skeleton } from "@/styles/sera/ui/skeleton"
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
-} from "@/styles/lyra/ui/tooltip"
+} from "@/styles/sera/ui/tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7

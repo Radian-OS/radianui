@@ -11,7 +11,7 @@ import {
 	useFormContext,
 } from "react-hook-form"
 import { cn } from "@/lib/utils"
-import { Label, type LabelProps } from "@/styles/nova/ui/label"
+import { Label, type LabelProps } from "@/styles/sera/ui/label"
 
 export type FormFieldContextValue<
 	TFieldValues extends FieldValues = FieldValues,

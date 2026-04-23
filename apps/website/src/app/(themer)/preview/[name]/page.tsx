@@ -7,6 +7,8 @@ import { FONTS } from "@/registry/fonts"
 import { RADIUS } from "@/registry/radius"
 import registry from "@/registry/registry-map"
 
+const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
+
 type RegistryThemeCssVars = NonNullable<
 	ReturnType<typeof buildRegistryConfig>["cssVars"]
 >
@@ -93,6 +95,16 @@ const buildThemerCssText = (
 	return parts.join("\n")
 }
 
+function removeManagedBodyClasses(body: Element) {
+	for (const className of Array.from(body.classList)) {
+		if (
+			MANAGED_BODY_CLASS_PREFIXES.some((prefix) => className.startsWith(prefix))
+		) {
+			body.classList.remove(className)
+		}
+	}
+}
+
 export default function Page({}: { params: { name: string } }) {
 	const [params, setParams] = useThemerPreset()
 	const [componentName, setComponentName] = useState("button")
@@ -120,12 +132,15 @@ export default function Page({}: { params: { name: string } }) {
 
 		style.textContent = buildThemerCssText(config?.cssVars, params.radius)
 
+		removeManagedBodyClasses(document.body)
+		document.body.classList.add(`style-${params.style}`)
+
 		return () => {
 			if (style && document.head.contains(style)) {
 				document.head.removeChild(style)
 			}
 		}
-	}, [config, params.radius])
+	}, [config, params.radius, params.style])
 
 	useFontLoader(selectedHeadingFont, "--heading-font")
 	useFontLoader(selectedBodyFont, "--body-font")
@@ -165,8 +180,7 @@ export default function Page({}: { params: { name: string } }) {
 	return (
 		<div className="flex flex-col items-center gap-3 p-3">
 			{/* Component Preview with Style Applied */}
-			<div
-				className={`style-${params.style} flex w-full flex-col items-center gap-3`}>
+			<div className="flex w-full flex-col items-center gap-3">
 				{components.map(([key, Component]) => (
 					<Suspense
 						key={key}

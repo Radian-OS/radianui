@@ -5,6 +5,7 @@ import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
 import { COMPONENTS_DATA } from "@/config/navigation-config"
 import { useThemerPreset } from "@/lib/themer-preset"
+import { PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
@@ -90,9 +91,15 @@ export function ThemerSidebar({
 						<DropdownContent side="right" className="max-h-96 w-56">
 							<DropdownRadioGroup
 								value={params.style}
-								onValueChange={(value) =>
-									setParams({ style: value as typeof params.style })
-								}>
+								onValueChange={(value) => {
+									const preset = PRESETS.find((p) => p.name === value)
+									setParams({
+										style: value as typeof params.style,
+										...(preset && {
+											...preset,
+										}),
+									})
+								}}>
 								{STYLES.map((style) => (
 									<DropdownRadioItem
 										key={style}

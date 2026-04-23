@@ -1,2 +1,186 @@
-.style-lyra {
+.style-default {
+	/* MARK: Card */
+	.cn-card {
+		@apply bg-elevation-level1 text-fg gap-6 rounded-xl border py-6 shadow-sm;
+	}
+
+	.cn-card-header {
+		@apply [.border-b]:pb-6 gap-2 px-8;
+	}
+
+	.cn-card-title {
+		@apply font-semibold;
+	}
+
+	.cn-card-description {
+		@apply text-fg-secondary text-sm;
+	}
+
+	.cn-card-content {
+		@apply px-6;
+	}
+
+	.cn-card-footer {
+		@apply [.border-t]:pt-6 px-6;
+	}
+
+	/* MARK: OTPField */
+
+	.cn-otp-field {
+		@apply gap-1.5;
+	}
+
+	.cn-otp-input {
+		@apply bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-lg border font-semibold;
+	}
+
+	.cn-otp-input-28 {
+		@apply size-7 text-[13px];
+	}
+
+	.cn-otp-input-32 {
+		@apply size-8 text-sm;
+	}
+
+	.cn-otp-input-36 {
+		@apply size-9 text-sm;
+	}
+
+	.cn-otp-input-40 {
+		@apply size-10 text-sm;
+	}
+
+	.cn-otp-input-44 {
+		@apply size-11 text-base;
+	}
+
+	.cn-otp-input-48 {
+		@apply size-12 text-base;
+	}
+
+	/* MARK: Progress */
+	.cn-progress {
+		@apply bg-fill3 h-2 rounded-full;
+	}
+
+	.cn-progress-indicator {
+		@apply bg-primary duration-[660ms];
+	}
+
+	/* MARK: ScrollArea */
+	.cn-scrollbar {
+		@apply p-px;
+	}
+
+	.cn-scrollbar-vertical {
+		@apply border-l border-l-transparent;
+	}
+
+	.cn-scrollbar-horizontal {
+		@apply border-t border-t-transparent;
+	}
+
+	.cn-scrollbar-thumb {
+		@apply bg-border rounded-full;
+	}
+
+	/* MARK: Select */
+	.cn-select-trigger {
+		@apply bg-bg border-border shadow-xs text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border shadow-black/5 focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50;
+	}
+
+	.cn-select-trigger-28 {
+		@apply h-7 rounded-md px-2 py-1.5 text-[13px];
+	}
+
+	.cn-select-trigger-32 {
+		@apply h-8 rounded-md px-2 py-1.5 text-sm;
+	}
+
+	.cn-select-trigger-36 {
+		@apply h-9 rounded-lg px-2.5 py-2 text-sm;
+	}
+
+	.cn-select-trigger-40 {
+		@apply h-10 rounded-lg px-3 py-2.5 text-sm;
+	}
+
+	.cn-select-trigger-44 {
+		@apply h-11 rounded-lg px-3 py-2.5 text-base;
+	}
+
+	.cn-select-trigger-48 {
+		@apply h-12 rounded-lg px-3.5 py-3 text-base;
+	}
+
+	.cn-select-scroll-button {
+		@apply py-1;
+	}
+
+	.cn-select-content {
+		@apply border-border bg-elevation-level2 text-fg min-w-[8rem] rounded-md border shadow-md shadow-black/5;
+	}
+
+	.cn-select-viewport {
+		@apply p-1.5;
+	}
+
+	.cn-select-label {
+		@apply text-fg px-2 py-1.5 text-xs font-medium uppercase;
+	}
+
+	.cn-select-item {
+		@apply focus:bg-fill2-alpha data-disabled:pointer-events-none data-disabled:opacity-50 rounded-sm py-1.5 text-sm;
+	}
+
+	.cn-select-divider {
+		@apply bg-border;
+	}
+
+	/* MARK: Slider */
+	.cn-slider {
+		@apply data-disabled:opacity-50;
+	}
+
+	.cn-slider-track {
+		@apply bg-fill3 h-2 rounded-full;
+	}
+
+	.cn-slider-range {
+		@apply bg-primary;
+	}
+
+	.cn-slider-thumb {
+		@apply border-primary bg-bg drop-shadow-xs rounded-full border-2;
+	}
+
+	/* MARK: TextArea */
+	.cn-textarea {
+		@apply text-fg border-alpha bg-bg drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled border px-2.5 py-2 text-sm font-normal placeholder:text-sm focus:ring-2 disabled:cursor-not-allowed disabled:resize-none;
+	}
+
+	.cn-textarea-rounded {
+		@apply rounded-md;
+	}
+
+	.cn-textarea-square {
+		@apply rounded-none;
+	}
+
+	/* MARK: Tooltip */
+	.cn-tooltip-content {
+		@apply max-w-70 rounded-md px-2 py-1.5 text-[13px]/4 shadow-md shadow-black/5;
+	}
+
+	.cn-tooltip-theme-light {
+		@apply bg-elevation-level1 text-fg-secondary border-border border;
+	}
+
+	.cn-tooltip-theme-default {
+		@apply bg-black-inverse text-white-inverse;
+	}
+
+	.cn-tooltip-arrow {
+		@apply data-[theme=light]:fill-elevation-level1 data-[theme=default]:fill-black-inverse -mt-0.5 rounded-md data-[theme=light]:drop-shadow-[0_1px_0_var(--color-border)];
+	}
 }

@@ -35,15 +35,15 @@ export type AccordionContentProps = React.ComponentProps<
 const AccordionContext = React.createContext<AccordionContextType | null>(null)
 
 // Defining the different variants for the accordion
-const accordionVariants = cva("w-full", {
+const accordionVariants = cva("", {
 	variants: {
 		size: {
-			sm: "text-sm/6",
-			lg: "text-base/7",
+			sm: "",
+			lg: "",
 		},
 		variant: {
 			box: "",
-			table: "border-stroke rounded-xl border",
+			table: "",
 			open: "",
 		},
 	},
@@ -53,12 +53,12 @@ const accordionVariants = cva("w-full", {
 	},
 })
 
-const accordionItemVariants = cva("overflow-hidden", {
+const accordionItemVariants = cva("", {
 	variants: {
 		variant: {
-			box: "border-stroke border shadow-2xs rounded-lg last:mb-0",
-			table: "border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0",
-			open: "border-b last:border-b-0",
+			box: "",
+			table: "",
+			open: "",
 		},
 		size: {
 			sm: "",
@@ -69,12 +69,12 @@ const accordionItemVariants = cva("overflow-hidden", {
 		{
 			variant: "box",
 			size: "sm",
-			class: "mb-1.5",
+			class: "cn-accordion-item-box-sm",
 		},
 		{
 			variant: "box",
 			size: "lg",
-			class: "mb-2",
+			class: "cn-accordion-item-box-lg",
 		},
 	],
 	defaultVariants: {
@@ -83,71 +83,65 @@ const accordionItemVariants = cva("overflow-hidden", {
 	},
 })
 
-const accordionTriggerVariants = cva(
-	"text-fg outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all",
-	{
-		variants: {
-			variant: {
-				box: "",
-				table: "",
-				open: "",
-			},
-			size: {
-				sm: "leading-5",
-				lg: "leading-6",
-			},
-			indicator: {
-				chevron: "[&[data-state=open]>.AccordionChevron]:rotate-180",
-				"plus-minus":
-					"[&[data-state=open]>.AccordionPlus>path:last-child]:rotate-90 [&[data-state=open]>.AccordionPlus>path:last-child]:opacity-0 [&[data-state=open]>.AccordionPlus]:rotate-180",
-			},
+const accordionTriggerVariants = cva("", {
+	variants: {
+		variant: {
+			box: "",
+			table: "",
+			open: "",
 		},
-		compoundVariants: [
-			{
-				variant: "open",
-				size: "sm",
-				class: "px-0 py-3",
-			},
-			{
-				variant: "open",
-				size: "lg",
-				class: "px-0 py-4",
-			},
-			{
-				variant: ["box", "table"],
-				size: "sm",
-				class: "p-3",
-			},
-			{
-				variant: ["box", "table"],
-				size: "lg",
-				class: "p-4",
-			},
-			// Indicator sizing
-			{
-				indicator: ["chevron", "plus-minus"],
-				size: "sm",
-				class: "[&>.AccordionChevron]:size-5 [&>.AccordionPlus]:size-5",
-			},
-			{
-				indicator: ["chevron", "plus-minus"],
-				size: "lg",
-				class: "[&>.AccordionChevron]:size-6 [&>.AccordionPlus]:size-6",
-			},
-		],
-		defaultVariants: {
-			variant: "box",
+		size: {
+			sm: "",
+			lg: "",
+		},
+		indicator: {
+			chevron: "",
+			"plus-minus": "",
+		},
+	},
+	compoundVariants: [
+		{
+			variant: "open",
 			size: "sm",
-			indicator: "chevron",
+			class: "cn-accordion-trigger-open-sm",
 		},
-	}
-)
+		{
+			variant: "open",
+			size: "lg",
+			class: "cn-accordion-trigger-open-lg",
+		},
+		{
+			variant: ["box", "table"],
+			size: "sm",
+			class: "cn-accordion-trigger-box-table-sm",
+		},
+		{
+			variant: ["box", "table"],
+			size: "lg",
+			class: "cn-accordion-trigger-box-table-lg",
+		},
+		// Indicator sizing
+		{
+			indicator: ["chevron", "plus-minus"],
+			size: "sm",
+			class: "cn-accordion-trigger-indicator-sm",
+		},
+		{
+			indicator: ["chevron", "plus-minus"],
+			size: "lg",
+			class: "cn-accordion-trigger-indicator-lg",
+		},
+	],
+	defaultVariants: {
+		variant: "box",
+		size: "sm",
+		indicator: "chevron",
+	},
+})
 
-const accordionContentVariants = cva(
-	"text-fg-secondary data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all"
-)
+const accordionContentVariants = cva("")
 
-const accordionContentInnerVariants = cva("pt-0", {
+const accordionContentInnerVariants = cva("", {
 	variants: {
 		variant: {
 			box: "",
@@ -163,22 +157,22 @@ const accordionContentInnerVariants = cva("pt-0", {
 		{
 			variant: "open",
 			size: "sm",
-			class: "px-0 pb-3",
+			class: "cn-accordion-content-inner-open-sm",
 		},
 		{
 			variant: "open",
 			size: "lg",
-			class: "px-0 pb-4",
+			class: "cn-accordion-content-inner-open-lg",
 		},
 		{
 			variant: ["box", "table"],
 			size: "sm",
-			class: "px-3 pb-3",
+			class: "cn-accordion-content-inner-box-table-sm",
 		},
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "px-4 pb-4",
+			class: "cn-accordion-content-inner-box-table-lg",
 		},
 	],
 	defaultVariants: {

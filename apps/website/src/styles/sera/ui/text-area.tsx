@@ -15,11 +15,11 @@ export type UseCharacterLimitOptions = {
 }
 
 const textareaStyles = cva(
-	"peer text-sm placeholder:text-sm text-fg w-full border border-alpha bg-bg px-2.5 py-2 font-normal drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:outline-hidden focus:ring-2 focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled disabled:cursor-not-allowed disabled:resize-none",
+	"peer w-full focus:outline-hidden text-fg border-alpha bg-bg focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled border px-4 py-3 text-sm font-normal drop-shadow-none placeholder:text-sm focus:ring-2 disabled:cursor-not-allowed disabled:resize-none",
 	{
 		variants: {
 			rounded: {
-				rounded: "rounded-md",
+				rounded: "rounded-none",
 				square: "rounded-none",
 			},
 		},
@@ -51,6 +51,7 @@ function TextArea({
 		/>
 	)
 }
+
 TextArea.displayName = "TextArea"
 
 function useCharacterLimit({
@@ -58,7 +59,6 @@ function useCharacterLimit({
 	initialValue = "",
 }: UseCharacterLimitOptions) {
 	const [value, setValue] = useState(initialValue)
-
 	const characterCount = value.length
 	const remainingCharacters = maxLength - characterCount
 

@@ -54,6 +54,39 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	useSrcDir: true,
 }
 
+export type Preset = ThemerConfig & {
+	name: string
+	title: string
+	description: string
+}
+
+export const PRESETS: Preset[] = [
+	{
+		name: "default",
+		title: "Default",
+		description: "Default preset",
+		primaryColor: "violet-blue",
+		headingFont: "geist",
+		bodyFont: "inter",
+		template: "next",
+		radius: "medium",
+		style: "default",
+		useSrcDir: true,
+	},
+	{
+		name: "sera",
+		title: "Sera",
+		description: "Sera preset",
+		primaryColor: "violet-blue",
+		headingFont: "geist",
+		bodyFont: "akatab",
+		template: "next",
+		radius: "medium",
+		style: "sera",
+		useSrcDir: true,
+	},
+]
+
 const BASE_THEME = {
 	light: {
 		success: "oklch(0.6334 0.171 148.65)",

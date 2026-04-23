@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
 
 export function ColorSwatch({
 	color,
