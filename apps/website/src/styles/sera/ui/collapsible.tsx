@@ -17,7 +17,6 @@ export type CollapsibleContentProps = React.ComponentProps<
 function Collapsible({ ...props }: CollapsibleProps) {
 	return <CollapsiblePrimitive.Root data-slot="collapsible" {...props} />
 }
-
 function CollapsibleTrigger({ ...props }: CollapsibleTriggerProps) {
 	return (
 		<CollapsiblePrimitive.CollapsibleTrigger

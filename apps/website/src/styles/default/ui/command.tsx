@@ -27,17 +27,11 @@ type CommandDialogProps = React.ComponentProps<typeof Dialog> & {
 } & Pick<React.ComponentProps<typeof DialogContent>, "closeButton">
 
 type CommandInputProps = React.ComponentProps<typeof CmdkInput>
-
 type CommandListProps = React.ComponentProps<typeof CmdkList>
-
 type CommandEmptyProps = React.ComponentProps<typeof CmdkEmpty>
-
 type CommandGroupProps = React.ComponentProps<typeof CmdkGroup>
-
 type CommandDividerProps = React.ComponentProps<typeof CmdkSeparator>
-
 type CommandItemProps = React.ComponentProps<typeof CmdkItem>
-
 type CommandShortcutProps = React.ComponentProps<"span">
 
 function Command({ className, ...props }: CommandProps) {
@@ -70,7 +64,7 @@ function CommandDialog({
 			<DialogContent
 				className={cn("overflow-hidden p-0", className)}
 				closeButton={closeButton}>
-				<Cmdk className="[&_[cmdk-group-heading]]:text-fg **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+				<Cmdk className="[&_[cmdk-group-heading]]:text-fg-secondary **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
 					{children}
 				</Cmdk>
 			</DialogContent>
@@ -87,7 +81,7 @@ function CommandInput({ className, ...props }: CommandInputProps) {
 			<CmdkInput
 				data-slot="command-input"
 				className={cn(
-					"placeholder:text-fg-tertiary outline-hidden flex h-10 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
+					"outline-hidden placeholder:text-fg-tertiary flex h-10 w-full rounded-md bg-transparent text-sm font-normal disabled:cursor-not-allowed disabled:opacity-50",
 					className
 				)}
 				{...props}
@@ -147,7 +141,7 @@ function CommandItem({ className, ...props }: CommandItemProps) {
 		<CmdkItem
 			data-slot="command-item"
 			className={cn(
-				"data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary outline-hidden relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+				"outline-hidden data-[selected=true]:bg-fill2-alpha data-[selected=true]:text-fg-secondary [&_svg:not([class*='text-'])]:text-fg-tertiary relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
 				className
 			)}
 			{...props}

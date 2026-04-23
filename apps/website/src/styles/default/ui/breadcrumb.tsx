@@ -18,7 +18,6 @@ export type BreadcrumbEllipsisType = React.ComponentProps<"span">
 function Breadcrumb({ ...props }: BreadcrumbType) {
 	return <nav data-slot="breadcrumb" aria-label="breadcrumb" {...props} />
 }
-
 Breadcrumb.displayName = "Breadcrumb"
 
 function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
@@ -33,6 +32,7 @@ function BreadcrumbList({ className, ...props }: BreadcrumbListType) {
 		/>
 	)
 }
+BreadcrumbList.displayName = "BreadcrumbList"
 
 function BreadcrumbItem({ className, ...props }: BreadcrumbItemType) {
 	return (
@@ -47,7 +47,6 @@ BreadcrumbItem.displayName = "BreadcrumbItem"
 
 function BreadcrumbLink({ asChild, className, ...props }: BreadcrumbLinkType) {
 	const Comp = asChild ? SlotPrimitive.Slot : "a"
-
 	return (
 		<Comp
 			data-slot="breadcrumb-link"

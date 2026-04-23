@@ -11,19 +11,25 @@ type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
 		icon?: React.ReactNode
 	}
 
-// Define the variants for the Checkbox using cva.
-const checkboxVariants = cva("cn-checkbox", {
-	variants: {
-		size: {
-			sm: "cn-checkbox-size-sm",
-			md: "cn-checkbox-size-md",
-			lg: "cn-checkbox-size-lg",
+const checkboxVariants = cva(
+	cn(
+		"group peer shrink-0 border ring-offset-bg focus-visible:outline-none cn-checkbox",
+		"focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+		"data-[state=checked]:text-white data-[state=indeterminate]:text-white"
+	),
+	{
+		variants: {
+			size: {
+				sm: "size-4 [&_svg]:size-3.5 cn-checkbox-sm",
+				md: "size-5 [&_svg]:size-4 cn-checkbox-md",
+				lg: "size-6 [&_svg]:size-4.5 cn-checkbox-lg",
+			},
 		},
-	},
-	defaultVariants: {
-		size: "md",
-	},
-})
+		defaultVariants: {
+			size: "md",
+		},
+	}
+)
 
 function Checkbox({ className, size, icon, ...props }: CheckboxProps) {
 	return (
@@ -42,6 +48,6 @@ function Checkbox({ className, size, icon, ...props }: CheckboxProps) {
 		</CheckboxPrimitive.Root>
 	)
 }
-Checkbox.displayName = CheckboxPrimitive.Root.displayName
 
+Checkbox.displayName = CheckboxPrimitive.Root.displayName
 export { Checkbox }

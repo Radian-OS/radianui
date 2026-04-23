@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 
 
+@import "../registry/styles/style-lyra.css";
+@import "../registry/styles/style-nova.css";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {

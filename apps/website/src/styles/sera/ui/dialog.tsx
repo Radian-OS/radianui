@@ -87,7 +87,7 @@ function DialogContent({
 			<DialogPrimitive.Content
 				data-slot="dialog-content"
 				className={cn(
-					"bg-bg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 border-alpha group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-5 rounded-2xl border p-4 shadow-lg duration-200",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 bg-bg border-alpha group fixed left-1/2 top-1/2 z-50 flex w-full max-w-lg -translate-x-1/2 -translate-y-1/2 flex-col gap-6 rounded-none border p-6 shadow-none duration-200",
 					className
 				)}
 				{...props}>
@@ -97,9 +97,8 @@ function DialogContent({
 						<button
 							type="button"
 							className={cn(
-								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute right-3 top-3 box-border inline-flex h-6 w-6 items-center justify-center whitespace-nowrap rounded-md bg-transparent font-medium hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&>svg]:!h-4 [&>svg]:!w-4",
-								closeButton === "hover" &&
-									"opacity-0 transition-opacity group-hover:opacity-100"
+								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute right-3 top-3 box-border inline-flex h-6 w-6 items-center justify-center whitespace-nowrap rounded-none bg-transparent font-medium hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&>svg]:!h-4 [&>svg]:!w-4",
+								closeButton === "hover" && "cn-dialog-close-button-hover"
 							)}
 							aria-label="Close">
 							<X />
@@ -117,7 +116,7 @@ function DialogHeader({ className, ...props }: DialogHeaderProps) {
 		<div
 			data-slot="dialog-header"
 			className={cn(
-				"flex flex-col space-y-1 text-center sm:text-left",
+				"flex flex-col space-y-2 text-center sm:text-left",
 				className
 			)}
 			{...props}
@@ -140,7 +139,7 @@ function DialogFooter({ className, ...props }: DialogFooterProps) {
 	return (
 		<div
 			data-slot="dialog-footer"
-			className={cn("flex justify-end gap-2", className)}
+			className={cn("flex justify-end gap-3", className)}
 			{...props}
 		/>
 	)
@@ -151,7 +150,7 @@ function DialogTitle({ className, ...props }: DialogTitleProps) {
 	return (
 		<DialogPrimitive.Title
 			data-slot="dialog-title"
-			className={cn("text-lg font-semibold", className)}
+			className={cn("text-xl font-semibold", className)}
 			{...props}
 		/>
 	)

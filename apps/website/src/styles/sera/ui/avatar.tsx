@@ -34,7 +34,7 @@ function useAvatarContext() {
 }
 
 const avatarVariants = cva(
-	"flex items-center font-semibold justify-center shrink-0 relative",
+	"flex items-center justify-center shrink-0 relative font-semibold",
 	{
 		variants: {
 			size: {
@@ -49,20 +49,20 @@ const avatarVariants = cva(
 				"80": "size-20 text-2xl",
 			},
 			rounded: {
-				circle: "rounded-full",
+				circle: "rounded-none",
 				square: "",
 			},
 		},
 		compoundVariants: [
-			{ size: "16", rounded: "square", class: "rounded-sm" },
-			{ size: "20", rounded: "square", class: "rounded-sm" },
-			{ size: "24", rounded: "square", class: "rounded-md" },
-			{ size: "32", rounded: "square", class: "rounded-md" },
-			{ size: "36", rounded: "square", class: "rounded-lg" },
-			{ size: "40", rounded: "square", class: "rounded-lg" },
-			{ size: "48", rounded: "square", class: "rounded-[10px]" },
-			{ size: "64", rounded: "square", class: "rounded-xl" },
-			{ size: "80", rounded: "square", class: "rounded-2xl" },
+			{ size: "16", rounded: "square", class: "cn-avatar-square-16" },
+			{ size: "20", rounded: "square", class: "cn-avatar-square-20" },
+			{ size: "24", rounded: "square", class: "cn-avatar-square-24" },
+			{ size: "32", rounded: "square", class: "cn-avatar-square-32" },
+			{ size: "36", rounded: "square", class: "cn-avatar-square-36" },
+			{ size: "40", rounded: "square", class: "cn-avatar-square-40" },
+			{ size: "48", rounded: "square", class: "cn-avatar-square-48" },
+			{ size: "64", rounded: "square", class: "cn-avatar-square-64" },
+			{ size: "80", rounded: "square", class: "cn-avatar-square-80" },
 		],
 		defaultVariants: {
 			size: "40",
@@ -72,7 +72,7 @@ const avatarVariants = cva(
 )
 
 const avatarStatusVariants = cva(
-	"absolute z-10 border-bg rounded-full box-content",
+	"absolute z-10 rounded-full box-content border-bg",
 	{
 		variants: {
 			variant: {

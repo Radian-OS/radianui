@@ -336,10 +336,6 @@
         "content": "import React from \"react\"\nimport { Button } from \"@/components/ui/button\"\n\nconst ButtonFancyExample = () => {\n\treturn (\n\t\t<div className=\"w-50 flex flex-col items-center justify-center gap-4\">\n\t\t\t<Button className=\"from-primary to-primary-hover before:border-white/16 hover:opacity-92 w-full overflow-hidden bg-gradient-to-b before:absolute before:inset-px before:rounded-lg before:border\">\n\t\t\t\tTop Dark\n\t\t\t</Button>\n\t\t\t<Button className=\"from-primary-hover to-primary before:border-white/16 hover:opacity-92 w-full overflow-hidden bg-gradient-to-b before:absolute before:inset-px before:rounded-lg before:border\">\n\t\t\t\tTop Shine\n\t\t\t</Button>\n\t\t</div>\n\t)\n}\n\nexport default ButtonFancyExample\n"
       },
       {
-        "name": "button/button-fancy-preview",
-        "content": "import React from \"react\"\nimport { Button } from \"@/components/ui/button\"\n\nfunction ButtonFancyExample() {\n\treturn (\n\t\t<div className=\"flex flex-col items-center justify-center gap-4\">\n\t\t\t<Button className=\"border-primary-hover w-full border bg-gradient-to-b from-[#6347EB] to-[#5133CF] shadow-lg ring-[1.5px] ring-[#5B3FE0] hover:from-[#6A52F2] hover:to-[#5B3FE0]\">\n\t\t\t\tFancy Button\n\t\t\t</Button>\n\t\t\t<Button className=\"border-primary-hover w-full border bg-gradient-to-b from-[#5133CF] to-[#6347EB] shadow-[0px_4px_4px_rgba(24,25,27,0.16)] ring-[1.5px] ring-[#5B3FE0] hover:from-[#5B3FE0] hover:to-[#6A52F2]\">\n\t\t\t\tFancy Button 2\n\t\t\t</Button>\n\t\t</div>\n\t)\n}\n\nexport default ButtonFancyExample\n"
-      },
-      {
         "name": "button/button-glossy-example",
         "content": "import React from \"react\"\nimport { Button } from \"@/components/ui/button\"\n\nconst ButtonGradientExample = () => {\n\treturn (\n\t\t<div className=\"w-50 flex flex-col items-center justify-center gap-3\">\n\t\t\t<Button className=\"w-full\" variant=\"glossy\">\n\t\t\t\tTop Shine\n\t\t\t</Button>\n\t\t\t<Button className=\"w-full\" variant=\"glossy-inverted\">\n\t\t\t\tTop Dark\n\t\t\t</Button>\n\t\t</div>\n\t)\n}\n\nexport default ButtonGradientExample\n"
       },

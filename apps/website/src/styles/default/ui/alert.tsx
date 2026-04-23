@@ -19,7 +19,7 @@ export type AlertIconProps = React.HTMLAttributes<HTMLDivElement>
 export type AlertToolbarProps = React.HTMLAttributes<HTMLDivElement>
 
 const alertVariants = cva(
-	"flex items-stretch w-full gap-3 p-3 rounded-lg [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm  [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
+	"flex items-stretch w-full gap-3 rounded-lg p-3 [&>[data-slot=alert-title]]:font-medium [&>[data-slot=alert-title]]:text-sm [&>[data-slot=alert-title]]:mt-0.75 [&>[data-slot=alert-description]]:text-sm [&>[data-slot=alert-icon]>svg]:size-5 [&_[data-slot=alert-icon]]:mt-0.75 [&_[data-slot=alert-close]]:mt-0.75",
 	{
 		variants: {
 			color: {
@@ -36,124 +36,100 @@ const alertVariants = cva(
 				"soft-outline":
 					"ring-1 ring-inset [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
 				outline:
-					"border border-soft [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
+					"border-soft border [&_[data-slot=alert-close]]:text-fg-tertiary [&_[data-slot=alert-title]]:text-fg [&_[data-slot=alert-description]]:text-fg",
 			},
 		},
 		compoundVariants: [
 			// Soft variants
-			{ color: "neutral", variant: "soft", className: "bg-fill2" },
-			{
-				color: "primary",
-				variant: "soft",
-				className: "bg-primary-accent text-primary-text",
-			},
-			{
-				color: "info",
-				variant: "soft",
-				className: "bg-info-accent text-info-text",
-			},
-			{
-				color: "success",
-				variant: "soft",
-				className: "bg-success-accent text-success-text",
-			},
-			{
-				color: "error",
-				variant: "soft",
-				className: "bg-error-accent text-error-text",
-			},
-			{
-				color: "warning",
-				variant: "soft",
-				className: "bg-warning-accent text-warning-text",
-			},
+			{ color: "neutral", variant: "soft", className: "cn-alert-soft-neutral" },
+			{ color: "primary", variant: "soft", className: "cn-alert-soft-primary" },
+			{ color: "info", variant: "soft", className: "cn-alert-soft-info" },
+			{ color: "success", variant: "soft", className: "cn-alert-soft-success" },
+			{ color: "error", variant: "soft", className: "cn-alert-soft-error" },
+			{ color: "warning", variant: "soft", className: "cn-alert-soft-warning" },
 
 			// Strong variants
 			{
 				color: "neutral",
 				variant: "strong",
-				className: "bg-black-inverse text-white-inverse",
+				className: "cn-alert-strong-neutral",
 			},
 			{
 				color: "primary",
 				variant: "strong",
-				className: "bg-primary text-white",
+				className: "cn-alert-strong-primary",
 			},
-			{ color: "info", variant: "strong", className: "bg-info text-white" },
+			{ color: "info", variant: "strong", className: "cn-alert-strong-info" },
 			{
 				color: "warning",
 				variant: "strong",
-				className: "bg-warning text-white",
+				className: "cn-alert-strong-warning",
 			},
-			{ color: "error", variant: "strong", className: "bg-error text-white" },
+			{ color: "error", variant: "strong", className: "cn-alert-strong-error" },
 			{
 				color: "success",
 				variant: "strong",
-				className: "bg-success text-white",
+				className: "cn-alert-strong-success",
 			},
 
 			// Soft-outline variants
 			{
 				color: "neutral",
 				variant: "soft-outline",
-				className: "border-border bg-fill2",
+				className: "cn-alert-soft-outline-neutral",
 			},
 			{
 				color: "primary",
 				variant: "soft-outline",
-				className: "bg-primary-accent text-primary-text border-primary-border",
+				className: "cn-alert-soft-outline-primary",
 			},
 			{
 				color: "info",
 				variant: "soft-outline",
-				className: "bg-info-accent text-info-text border-info-border",
+				className: "cn-alert-soft-outline-info",
 			},
 			{
 				color: "success",
 				variant: "soft-outline",
-				className: "bg-success-accent text-success-text border-success-border",
+				className: "cn-alert-soft-outline-success",
 			},
 			{
 				color: "error",
 				variant: "soft-outline",
-				className: "bg-error-accent text-error-text border-error-border",
+				className: "cn-alert-soft-outline-error",
 			},
 			{
 				color: "warning",
 				variant: "soft-outline",
-				className: "bg-warning-accent text-warning-text border-warning-border",
+				className: "cn-alert-soft-outline-warning",
 			},
 
 			// Outline variants
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "bg-transparent text-fg ",
+				className: "cn-alert-outline-neutral",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "bg-transparent text-primary-text",
+				className: "cn-alert-outline-primary",
 			},
-			{
-				color: "info",
-				variant: "outline",
-				className: "bg-transparent text-info-text",
-			},
+			{ color: "info", variant: "outline", className: "cn-alert-outline-info" },
 			{
 				color: "success",
 				variant: "outline",
-				className: "bg-transparent text-success-text",
+				className: "cn-alert-outline-success",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "bg-transparent text-error-text",
+				className: "cn-alert-outline-error",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "bg-transparent text-warning-text",
+				className: "cn-alert-outline-warning",
 			},
 		],
 		defaultVariants: {
