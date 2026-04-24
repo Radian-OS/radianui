@@ -26,7 +26,7 @@ const bannerVariants = cva(
 				warning: "",
 			},
 			variant: {
-				strong: "[&_[data-slot=banner-close]]:text-white",
+				strong: "[&_[data-slot=banner-close]]:text-primary-fg",
 				soft: "[&_[data-slot=banner-close]]:text-[current] [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg",
 				outline:
 					"border-soft border border-l-0 border-r-0 border-t-0 [&_[data-slot=banner-close]]:text-fg-secondary [&_[data-slot=banner-title]]:text-fg [&_[data-slot=banner-description]]:text-fg-secondary",

@@ -222,9 +222,7 @@ function DropdownRadioItem({
 				"focus:bg-fill2-alpha",
 				"data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				indicatorPosition === "left"
-					? "cn-dropdown-radio-item-indicator-left"
-					: "cn-dropdown-radio-item-indicator-right",
+				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
 				className
 			)}
 			{...props}>
@@ -237,9 +235,7 @@ function DropdownRadioItem({
 					className={cn(
 						"cn-dropdown-item-indicator-wrapper",
 						"absolute flex items-center justify-center",
-						indicatorPosition === "left"
-							? "cn-dropdown-item-indicator-left"
-							: "cn-dropdown-item-indicator-right"
+						indicatorPosition === "left" ? "start-2" : "end-2"
 					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
 						<Check size={20} />
