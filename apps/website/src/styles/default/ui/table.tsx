@@ -2,19 +2,12 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 export type TableProps = React.HTMLAttributes<HTMLTableElement>
-
 export type TableHeaderProps = React.HTMLAttributes<HTMLTableSectionElement>
-
 export type TableBodyProps = React.HTMLAttributes<HTMLTableSectionElement>
-
 export type TableFooterProps = React.HTMLAttributes<HTMLTableSectionElement>
-
 export type TableRowProps = React.HTMLAttributes<HTMLTableRowElement>
-
 export type TableHeadProps = React.ComponentProps<"th">
-
 export type TableCellProps = React.ComponentProps<"td">
-
 export type TableCaptionProps = React.HTMLAttributes<HTMLTableCaptionElement>
 
 function Table({ className, ...props }: TableProps) {
@@ -28,7 +21,6 @@ function Table({ className, ...props }: TableProps) {
 		</div>
 	)
 }
-
 Table.displayName = "Table"
 
 function TableHeader({ className, ...props }: TableHeaderProps) {
@@ -40,7 +32,6 @@ function TableHeader({ className, ...props }: TableHeaderProps) {
 		/>
 	)
 }
-
 TableHeader.displayName = "TableHeader"
 
 function TableBody({ className, ...props }: TableBodyProps) {

@@ -1,4 +1,102 @@
 .style-default {
+	/* MARK: Accordion */
+	.cn-accordion-size-sm {
+		@apply text-sm/6;
+	}
+
+	.cn-accordion-size-lg {
+		@apply text-base/7;
+	}
+
+	.cn-accordion-variant-table {
+		@apply border-border rounded-xl border;
+	}
+
+	.cn-accordion-item-variant-box {
+		@apply border-border shadow-2xs rounded-lg border last:mb-0;
+	}
+
+	.cn-accordion-item-variant-table {
+		@apply border-b first:rounded-t-xl last:rounded-b-xl last:border-b-0;
+	}
+
+	.cn-accordion-item-variant-open {
+		@apply border-b last:border-b-0;
+	}
+
+	.cn-accordion-item-box-sm {
+		@apply mb-1.5;
+	}
+
+	.cn-accordion-item-box-lg {
+		@apply mb-2;
+	}
+
+	.cn-accordion-trigger {
+		@apply text-fg;
+	}
+
+	.cn-accordion-trigger-size-sm {
+		@apply leading-5;
+	}
+
+	.cn-accordion-trigger-size-lg {
+		@apply leading-6;
+	}
+
+	.cn-accordion-trigger-open-sm {
+		@apply px-0 py-3;
+	}
+
+	.cn-accordion-trigger-open-lg {
+		@apply px-0 py-4;
+	}
+
+	.cn-accordion-trigger-boxed-sm {
+		@apply p-3;
+	}
+
+	.cn-accordion-trigger-boxed-lg {
+		@apply p-4;
+	}
+
+	.cn-accordion-trigger-indicator-sm {
+		@apply [&>.AccordionChevron]:size-5 [&>.AccordionPlus]:size-5;
+	}
+
+	.cn-accordion-trigger-indicator-lg {
+		@apply [&>.AccordionChevron]:size-6 [&>.AccordionPlus]:size-6;
+	}
+
+	.cn-accordion-content {
+		@apply text-fg-secondary;
+	}
+
+	.cn-accordion-content-inner {
+		@apply pt-0;
+	}
+
+	.cn-accordion-content-open-sm {
+		@apply px-0 pb-3;
+	}
+
+	.cn-accordion-content-open-lg {
+		@apply px-0 pb-4;
+	}
+
+	.cn-accordion-content-boxed-sm {
+		@apply px-3 pb-3;
+	}
+
+	.cn-accordion-content-boxed-lg {
+		@apply px-4 pb-4;
+	}
+
+	.AccordionChevron,
+	.AccordionPlus {
+		@apply text-fg-tertiary;
+	}
+
 	/* MARK: Alert */
 
 	/* Base */
@@ -513,6 +611,406 @@
 
 	.cn-breadcrumb-separator {
 		@apply text-fg-tertiary [&>svg]:size-4;
+	}
+
+	/* MARK: Button */
+
+	/* Base size rounded tokens (extracted from size variant string) */
+	.cn-btn-size-28 {
+		@apply rounded-md;
+	}
+	.cn-btn-size-32 {
+		@apply rounded-md;
+	}
+	.cn-btn-size-36 {
+		@apply rounded-lg;
+	}
+	.cn-btn-size-40 {
+		@apply rounded-lg;
+	}
+	.cn-btn-size-44 {
+		@apply rounded-[10px];
+	}
+	.cn-btn-size-48 {
+		@apply rounded-[10px];
+	}
+
+	/* Strong */
+	.cn-btn-strong-primary {
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary font-medium text-white;
+	}
+	.cn-btn-strong-info {
+		@apply bg-info hover:bg-info-hover focus-visible:ring-info font-medium text-white;
+	}
+	.cn-btn-strong-success {
+		@apply bg-success hover:bg-success-hover focus-visible:ring-success font-medium text-white;
+	}
+	.cn-btn-strong-error {
+		@apply bg-error hover:bg-error-hover focus-visible:ring-error font-medium text-white;
+	}
+	.cn-btn-strong-warning {
+		@apply bg-warning hover:bg-warning-hover focus-visible:ring-warning font-medium text-white;
+	}
+	.cn-btn-strong-neutral {
+		@apply bg-black-inverse text-white-inverse hover:bg-fg-secondary focus-visible:ring-black-inverse font-medium;
+	}
+
+	/* Soft */
+	.cn-btn-soft-primary {
+		@apply bg-primary-accent text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus font-medium;
+	}
+	.cn-btn-soft-info {
+		@apply bg-info-accent text-info-text hover:bg-info-focus focus-visible:ring-info-focus font-medium;
+	}
+	.cn-btn-soft-success {
+		@apply bg-success-accent text-success-text hover:bg-success-focus focus-visible:ring-success-focus font-medium;
+	}
+	.cn-btn-soft-error {
+		@apply bg-error-accent text-error-text hover:bg-error-focus focus-visible:ring-error-focus font-medium;
+	}
+	.cn-btn-soft-warning {
+		@apply bg-warning-accent text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus font-medium;
+	}
+	.cn-btn-soft-neutral {
+		@apply bg-fill2 text-fg hover:bg-fill3 focus-visible:bg-bg focus-visible:ring-border font-medium;
+	}
+
+	/* Outline */
+	.cn-btn-outline-primary {
+		@apply border-primary-border text-primary-text hover:bg-primary-accent focus-visible:ring-primary-hover border bg-transparent font-medium;
+	}
+	.cn-btn-outline-info {
+		@apply border-info-border text-info-text hover:bg-info-accent focus-visible:ring-info-hover border bg-transparent font-medium;
+	}
+	.cn-btn-outline-success {
+		@apply border-success-border text-success-text hover:bg-success-accent focus-visible:ring-success-hover border bg-transparent font-medium;
+	}
+	.cn-btn-outline-error {
+		@apply border-error-border text-error-text hover:bg-error-accent focus-visible:ring-error-hover border bg-transparent font-medium;
+	}
+	.cn-btn-outline-warning {
+		@apply border-warning-border text-warning-text hover:bg-warning-accent focus-visible:ring-warning-hover border bg-transparent font-medium;
+	}
+	.cn-btn-outline-neutral {
+		@apply bg-elevation-level1 text-fg border-border hover:bg-fill1-alpha focus-visible:ring-border border font-medium;
+	}
+
+	/* Ghost */
+	.cn-btn-ghost-primary {
+		@apply text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus bg-transparent font-medium;
+	}
+	.cn-btn-ghost-info {
+		@apply text-info-text hover:bg-info-focus focus-visible:ring-info-focus bg-transparent font-medium;
+	}
+	.cn-btn-ghost-success {
+		@apply text-success-text hover:bg-success-focus focus-visible:ring-success-focus bg-transparent font-medium;
+	}
+	.cn-btn-ghost-error {
+		@apply text-error-text hover:bg-error-focus focus-visible:ring-error-focus bg-transparent font-medium;
+	}
+	.cn-btn-ghost-warning {
+		@apply text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus bg-transparent font-medium;
+	}
+	.cn-btn-ghost-neutral {
+		@apply text-fg hover:bg-fill2 focus-visible:ring-border bg-transparent font-medium;
+	}
+
+	/* Link */
+	.cn-btn-link-primary {
+		@apply text-primary-text focus-visible:ring-primary h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm;
+	}
+	.cn-btn-link-info {
+		@apply text-info-text focus-visible:ring-info h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm;
+	}
+	.cn-btn-link-success {
+		@apply text-success-text focus-visible:ring-success h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm;
+	}
+	.cn-btn-link-error {
+		@apply text-error-text focus-visible:ring-error h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm;
+	}
+	.cn-btn-link-warning {
+		@apply text-warning-text focus-visible:ring-warning h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm;
+	}
+	.cn-btn-link-neutral {
+		@apply text-black-inverse focus-visible:ring-black-inverse h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm;
+	}
+
+	/* Glossy */
+	.cn-btn-glossy-primary {
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
+	}
+	.cn-btn-glossy-info {
+		@apply bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
+	}
+	.cn-btn-glossy-success {
+		@apply bg-success hover:bg-success-hover focus-visible:ring-success relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
+	}
+	.cn-btn-glossy-warning {
+		@apply bg-warning hover:bg-warning-hover focus-visible:ring-warning relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
+	}
+	.cn-btn-glossy-error {
+		@apply bg-error hover:bg-error-hover focus-visible:ring-error relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
+	}
+	.cn-btn-glossy-neutral {
+		@apply bg-black-inverse focus-visible:ring-black-inverse text-white-inverse relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''] hover:brightness-110;
+	}
+
+	/* Glossy-inverted */
+	.cn-btn-glossy-inverted-primary {
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
+	}
+	.cn-btn-glossy-inverted-info {
+		@apply bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
+	}
+	.cn-btn-glossy-inverted-success {
+		@apply bg-success hover:bg-success-hover focus-visible:ring-success relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
+	}
+	.cn-btn-glossy-inverted-warning {
+		@apply bg-warning hover:bg-warning-hover focus-visible:ring-warning relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
+	}
+	.cn-btn-glossy-inverted-error {
+		@apply bg-error hover:bg-error-hover focus-visible:ring-error relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
+	}
+	.cn-btn-glossy-inverted-neutral {
+		@apply bg-black-inverse focus-visible:ring-black-inverse text-white-inverse relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''] hover:brightness-110;
+	}
+
+	/* Smooth */
+	.cn-btn-smooth-primary {
+		@apply focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-info {
+		@apply focus-visible:ring-info bg-info after:from-info-hover after:to-info before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-success {
+		@apply focus-visible:ring-success bg-success after:from-success-hover after:to-success before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-warning {
+		@apply focus-visible:ring-warning bg-warning after:from-warning-hover after:to-warning before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-error {
+		@apply focus-visible:ring-error bg-error after:from-error-hover after:to-error before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-neutral {
+		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:to-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:from-white/20 hover:opacity-95;
+	}
+
+	/* Smooth-inverted */
+	.cn-btn-smooth-inverted-primary {
+		@apply focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-inverted-info {
+		@apply focus-visible:ring-info bg-info after:from-info after:to-info-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-inverted-success {
+		@apply focus-visible:ring-success bg-success after:from-success after:to-success-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-inverted-warning {
+		@apply focus-visible:ring-warning bg-warning after:from-warning after:to-warning-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-inverted-error {
+		@apply focus-visible:ring-error bg-error after:from-error after:to-error-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-btn-smooth-inverted-neutral {
+		@apply text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:from-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:to-white/20 hover:opacity-95;
+	}
+
+	/* CompactButton base */
+	.cn-compact-btn {
+		@apply rounded-md;
+	}
+
+	/* CompactButton — Strong/Soft/Outline/Ghost share identical color tokens to Button, compact prefix only */
+	.cn-compact-btn-strong-primary {
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary font-medium text-white;
+	}
+	.cn-compact-btn-strong-info {
+		@apply bg-info hover:bg-info-hover focus-visible:ring-info font-medium text-white;
+	}
+	.cn-compact-btn-strong-success {
+		@apply bg-success hover:bg-success-hover focus-visible:ring-success font-medium text-white;
+	}
+	.cn-compact-btn-strong-error {
+		@apply bg-error hover:bg-error-hover focus-visible:ring-error font-medium text-white;
+	}
+	.cn-compact-btn-strong-warning {
+		@apply bg-warning hover:bg-warning-hover focus-visible:ring-warning font-medium text-white;
+	}
+	.cn-compact-btn-strong-neutral {
+		@apply bg-black-inverse text-white-inverse hover:bg-fg-secondary focus-visible:ring-black-inverse font-medium;
+	}
+
+	.cn-compact-btn-soft-primary {
+		@apply bg-primary-accent text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus font-medium;
+	}
+	.cn-compact-btn-soft-info {
+		@apply bg-info-accent text-info-text hover:bg-info-focus focus-visible:ring-info-focus font-medium;
+	}
+	.cn-compact-btn-soft-success {
+		@apply bg-success-accent text-success-text hover:bg-success-focus focus-visible:ring-success-focus font-medium;
+	}
+	.cn-compact-btn-soft-error {
+		@apply bg-error-accent text-error-text hover:bg-error-focus focus-visible:ring-error-focus font-medium;
+	}
+	.cn-compact-btn-soft-warning {
+		@apply bg-warning-accent text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus font-medium;
+	}
+	.cn-compact-btn-soft-neutral {
+		@apply bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border font-medium;
+	}
+
+	.cn-compact-btn-outline-primary {
+		@apply border-primary-hover text-primary-text hover:bg-primary-accent focus-visible:ring-primary-hover border bg-transparent font-medium;
+	}
+	.cn-compact-btn-outline-info {
+		@apply border-info-hover text-info-text hover:bg-info-accent focus-visible:ring-info-hover border bg-transparent font-medium;
+	}
+	.cn-compact-btn-outline-success {
+		@apply border-success-hover text-success-text hover:bg-success-accent focus-visible:ring-success-hover border bg-transparent font-medium;
+	}
+	.cn-compact-btn-outline-error {
+		@apply border-error-hover text-error-text hover:bg-error-accent focus-visible:ring-error-hover border bg-transparent font-medium;
+	}
+	.cn-compact-btn-outline-warning {
+		@apply border-warning-hover text-warning-text hover:bg-warning-accent focus-visible:ring-warning-hover border bg-transparent font-medium;
+	}
+	.cn-compact-btn-outline-neutral {
+		@apply bg-elevation-level1 text-fg-secondary border-border hover:bg-fill1-alpha focus-visible:ring-border border font-medium;
+	}
+
+	.cn-compact-btn-ghost-primary {
+		@apply text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus bg-transparent font-medium;
+	}
+	.cn-compact-btn-ghost-info {
+		@apply text-info-text hover:bg-info-focus focus-visible:ring-info-focus bg-transparent font-medium;
+	}
+	.cn-compact-btn-ghost-success {
+		@apply text-success-text hover:bg-success-focus focus-visible:ring-success-focus bg-transparent font-medium;
+	}
+	.cn-compact-btn-ghost-error {
+		@apply text-error-text hover:bg-error-focus focus-visible:ring-error-focus bg-transparent font-medium;
+	}
+	.cn-compact-btn-ghost-warning {
+		@apply text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus bg-transparent font-medium;
+	}
+	.cn-compact-btn-ghost-neutral {
+		@apply text-fg-secondary hover:bg-fill1 focus-visible:ring-border bg-transparent font-medium;
+	}
+
+	.cn-compact-btn-glossy-primary {
+		@apply before:border-white/44 bg-primary hover:bg-primary-hover focus-visible:ring-primary before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+	}
+	.cn-compact-btn-glossy-info {
+		@apply before:border-white/44 bg-info hover:bg-info-hover focus-visible:ring-info before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+	}
+	.cn-compact-btn-glossy-success {
+		@apply before:border-white/44 bg-success hover:bg-success-hover focus-visible:ring-success before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+	}
+	.cn-compact-btn-glossy-warning {
+		@apply before:border-white/44 bg-warning hover:bg-warning-hover focus-visible:ring-warning before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+	}
+	.cn-compact-btn-glossy-error {
+		@apply before:border-white/44 bg-error hover:bg-error-hover focus-visible:ring-error before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110;
+	}
+	.cn-compact-btn-glossy-neutral {
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/0 to-white/20 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:rounded-[inherit] before:border hover:opacity-90;
+	}
+
+	.cn-compact-btn-glossy-inverted-primary {
+		@apply focus-visible:ring-primary hover:bg-primary-hover bg-primary before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+	}
+	.cn-compact-btn-glossy-inverted-info {
+		@apply focus-visible:ring-info hover:bg-info-hover bg-info before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+	}
+	.cn-compact-btn-glossy-inverted-success {
+		@apply focus-visible:ring-success hover:bg-success-hover bg-success before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+	}
+	.cn-compact-btn-glossy-inverted-warning {
+		@apply focus-visible:ring-warning hover:bg-warning-hover bg-warning before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+	}
+	.cn-compact-btn-glossy-inverted-error {
+		@apply focus-visible:ring-error hover:bg-error-hover bg-error before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20;
+	}
+	.cn-compact-btn-glossy-inverted-neutral {
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/20 to-white/0 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:rounded-[inherit] before:border hover:opacity-90;
+	}
+
+	.cn-compact-btn-smooth-primary {
+		@apply before:from-primary-hover before:to-primary before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-info {
+		@apply before:from-info-hover before:to-info before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-success {
+		@apply before:from-success-hover before:to-success before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-warning {
+		@apply before:from-warning-hover before:to-warning before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-error {
+		@apply before:from-error-hover before:to-error before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-neutral {
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-t text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border;
+	}
+
+	.cn-compact-btn-smooth-inverted-primary {
+		@apply before:from-primary before:to-primary-hover before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-inverted-info {
+		@apply before:from-info before:to-info-hover before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-inverted-success {
+		@apply before:from-success before:to-success-hover before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-inverted-warning {
+		@apply before:from-warning before:to-warning-hover before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-inverted-error {
+		@apply before:from-error before:to-error-hover before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110;
+	}
+	.cn-compact-btn-smooth-inverted-neutral {
+		@apply focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-b text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border;
+	}
+
+	/* IconButton size variants */
+	.cn-icon-btn-size-28 {
+		@apply size-7 rounded-md p-1.5;
+	}
+	.cn-icon-btn-size-32 {
+		@apply p-1.75 size-8 rounded-md;
+	}
+	.cn-icon-btn-size-36 {
+		@apply size-9 rounded-lg p-2;
+	}
+	.cn-icon-btn-size-40 {
+		@apply size-10 rounded-lg p-2.5;
+	}
+	.cn-icon-btn-size-44 {
+		@apply size-11 rounded-[10px] p-3;
+	}
+	.cn-icon-btn-size-48 {
+		@apply size-12 rounded-[10px] p-3;
+	}
+
+	/* IconButton outline padding overrides */
+	.cn-icon-btn-outline-28 {
+		@apply p-1.25;
+	}
+	.cn-icon-btn-outline-32 {
+		@apply p-1.5;
+	}
+	.cn-icon-btn-outline-36 {
+		@apply p-1.75;
+	}
+	.cn-icon-btn-outline-40 {
+		@apply p-2.25;
+	}
+	.cn-icon-btn-outline-44 {
+		@apply p-2.75;
+	}
+	.cn-icon-btn-outline-48 {
+		@apply p-2.75;
 	}
 
 	/* MARK: Calendar */

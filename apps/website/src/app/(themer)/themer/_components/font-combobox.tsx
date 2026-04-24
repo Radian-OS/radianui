@@ -11,9 +11,13 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/registry/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-import { Spinner } from "@/registry/ui/spinner"
+} from "@/styles/default/ui/command"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 const FONT_PAGE_SIZE = 30
 

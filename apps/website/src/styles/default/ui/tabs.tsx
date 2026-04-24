@@ -24,7 +24,7 @@ export type TabsContentProps = React.ComponentProps<
 >
 
 const tabsListStyles = cva(
-	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center  data-[orientation=vertical]:flex-col shrink-0 overflow-x-scroll no-scrollbar",
+	"flex data-[orientation=horizontal]:flex-row data-[orientation=horizontal]:items-center data-[orientation=horizontal]:justify-start data-[orientation=vertical]:items-start data-[orientation=vertical]:justify-center data-[orientation=vertical]:flex-col shrink-0 overflow-x-scroll no-scrollbar",
 	{
 		variants: {
 			size: {
@@ -35,7 +35,7 @@ const tabsListStyles = cva(
 			width: {
 				fit: "w-max min-w-max max-w-full",
 				full: "data-[orientation=horizontal]:w-full data-[orientation=horizontal]:items-stretch data-[orientation=horizontal]:*:flex-1",
-			}, // default medium
+			},
 			variant: {
 				default: "bg-fill2",
 				open: "data-[orientation=horizontal]:border-b data-[orientation=vertical]:border-r border-border",
@@ -53,34 +53,32 @@ const tabsListStyles = cva(
 			{
 				size: ["sm", "md", "lg"],
 				variant: "default",
-				className: "p-0.5",
+				className: "cn-tabs-list-default-padded",
 			},
 			{
 				size: "sm",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-lg",
+				className: "cn-tabs-list-rounded-md",
 			},
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-lg",
+				className: "cn-tabs-list-rounded-md",
 			},
 			{
 				size: "lg",
 				variant: ["default", "outline", "ghost"],
-				className: "rounded-xl",
+				className: "cn-tabs-list-rounded-lg",
 			},
 			{
 				size: ["sm", "md"],
 				variant: "open",
-				className:
-					"data-[orientation=horizontal]:gap-3 data-[orientation=vertical]:gap-2",
+				className: "cn-tabs-list-open-gap-sm",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className:
-					"data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3",
+				className: "cn-tabs-list-open-gap-lg",
 			},
 		],
 	}
@@ -97,96 +95,91 @@ const tabsTriggerStyles = cva(
 			},
 			variant: {
 				default:
-					"data-[state=active]:bg-elevation-level2 border border-transparent data-[state=active]:border data-[state=active]:border-soft-alpha data-[state=active]:drop-shadow-xs",
+					"data-[state=active]:border data-[state=active]:border-soft-alpha border border-transparent data-[state=active]:bg-elevation-level2 data-[state=active]:drop-shadow-xs",
 				outline:
-					"data-[state=active]:bg-fill2 data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border",
-				open: "data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 border-transparent data-[state=active][orientation=horizontal]:border-b-2 data-[state=active][orientation=vertical]:border-r-2 data-[state=active]:border-primary",
+					"data-[orientation=horizontal]:not-last:border-r data-[orientation=vertical]:not-last:border-b border-border data-[state=active]:bg-fill2",
+				open: "border-transparent data-[orientation=horizontal]:border-b-2 data-[orientation=vertical]:border-r-2 data-[state=active]:border-primary",
 				ghost: "data-[state=active]:bg-fill2",
 				"outline-ghost":
-					"data-[state=active]:bg-bg border border-transparent data-[state=active]:border-soft data-[state=active]:drop-shadow-xs",
+					"border border-transparent data-[state=active]:border-soft data-[state=active]:bg-bg data-[state=active]:drop-shadow-xs",
 			},
 		},
 		compoundVariants: [
 			{
 				size: "sm",
 				variant: ["default"],
-				className: "rounded-md px-1.5 py-1 h-full",
+				className: "cn-tabs-trigger-default-sm h-full",
 			},
 			{
 				size: "md",
 				variant: ["default"],
-				className: "rounded-md px-2.5 py-1.5 h-full",
+				className: "cn-tabs-trigger-default-md h-full",
 			},
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "rounded-[0.625rem] px-3 py-2 h-full",
+				className: "cn-tabs-trigger-default-lg h-full",
 			},
 			{
 				size: "sm",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "p-1.5 data-[orientation=horizontal]:h-7",
+				className: "cn-tabs-trigger-soft-sm data-[orientation=horizontal]:h-7",
 			},
 			{
 				size: "md",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "p-2",
+				className: "cn-tabs-trigger-soft-md",
 			},
 			{
 				size: "lg",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "p-3",
+				className: "cn-tabs-trigger-soft-lg",
 			},
 			{
 				size: "sm",
 				variant: "open",
-				className:
-					"data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5 h-7",
+				className: "cn-tabs-trigger-open-sm h-7",
 			},
 			{
 				size: "md",
 				variant: "open",
-				className:
-					"data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2 h-9",
+				className: "cn-tabs-trigger-open-md h-9",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className:
-					"data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3 h-11",
+				className: "cn-tabs-trigger-open-lg h-11",
 			},
 			{
 				size: "sm",
 				variant: "outline",
-				className:
-					"data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=vertical]:last:rounded-b-lg",
+				className: "cn-tabs-trigger-outline-sm",
 			},
 			{
 				size: "md",
 				variant: "outline",
-				className:
-					"data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
+				className: "cn-tabs-trigger-outline-md",
 			},
 			{
 				size: "lg",
 				variant: "outline",
 				className:
-					"data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=vertical]:last:roonded-b-xl data-[orientation=horizontal]:h-11",
+					"cn-tabs-trigger-outline-lg data-[orientation=horizontal]:h-11",
 			},
 			{
 				size: "sm",
 				variant: ["ghost", "outline-ghost"],
-				className: "data-[state=active]:rounded-md ",
+				className: "cn-tabs-trigger-ghost-sm",
 			},
 			{
 				size: "md",
 				variant: ["ghost", "outline-ghost"],
-				className: "data-[state=active]:rounded-lg h-full",
+				className: "cn-tabs-trigger-ghost-md h-full",
 			},
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "data-[state=active]:rounded-[0.625rem] h-full",
+				className: "cn-tabs-trigger-ghost-lg h-full",
 			},
 		],
 		defaultVariants: {
@@ -200,9 +193,8 @@ const TabsListContext = React.createContext<TabsListContextType | null>(null)
 
 function useTabsList() {
 	const context = React.use(TabsListContext)
-	if (!context) {
+	if (!context)
 		throw new Error("useTabsList must be used within a Context Provider")
-	}
 	return context
 }
 
@@ -269,7 +261,6 @@ function TabsContent({ className, ...props }: TabsContentProps) {
 		/>
 	)
 }
-
 TabsContent.displayName = TabsPrimitive.Content.displayName
 
-export { Tabs, TabsContent, TabsList, TabsTrigger }
+export { Tabs, TabsList, TabsTrigger, TabsContent }

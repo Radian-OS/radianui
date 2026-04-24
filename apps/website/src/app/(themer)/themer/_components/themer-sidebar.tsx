@@ -10,14 +10,14 @@ import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { STYLES } from "@/registry/styles"
-import { IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 import { ColorSwatch } from "./color-swatch"
 import { CreateProjectDialog } from "./create-project-dialog"
 import { FontCombobox } from "./font-combobox"
@@ -143,7 +143,7 @@ export function ThemerSidebar({
 							</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
 						</DropdownTrigger>
-						<DropdownContent side="right" className="max-h-96 w-56">
+						<DropdownContent side="left" className="max-h-96 w-56">
 							<DropdownRadioGroup
 								value={selectedComponent}
 								onValueChange={setSelectedComponent}>

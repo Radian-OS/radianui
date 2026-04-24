@@ -6,7 +6,6 @@ import { type VariantProps, cva } from "class-variance-authority"
 import { ChevronDownIcon, Plus } from "lucide-react"
 import { cn as classNames } from "@/lib/utils"
 
-// Defining the types for the accordion
 export type AccordionContextType = {
 	size?: VariantProps<typeof accordionVariants>["size"]
 	variant?: VariantProps<typeof accordionVariants>["variant"]
@@ -34,17 +33,16 @@ export type AccordionContentProps = React.ComponentProps<
 
 const AccordionContext = React.createContext<AccordionContextType | null>(null)
 
-// Defining the different variants for the accordion
-const accordionVariants = cva("cn-accordion", {
+const accordionVariants = cva("w-full", {
 	variants: {
 		size: {
 			sm: "cn-accordion-size-sm",
 			lg: "cn-accordion-size-lg",
 		},
 		variant: {
-			box: "cn-accordion-variant-box",
+			box: "",
 			table: "cn-accordion-variant-table",
-			open: "cn-accordion-variant-open",
+			open: "",
 		},
 	},
 	defaultVariants: {
@@ -53,7 +51,7 @@ const accordionVariants = cva("cn-accordion", {
 	},
 })
 
-const accordionItemVariants = cva("cn-accordion-item", {
+const accordionItemVariants = cva("overflow-hidden", {
 	variants: {
 		variant: {
 			box: "cn-accordion-item-variant-box",
@@ -61,8 +59,8 @@ const accordionItemVariants = cva("cn-accordion-item", {
 			open: "cn-accordion-item-variant-open",
 		},
 		size: {
-			sm: "cn-accordion-item-size-sm",
-			lg: "cn-accordion-item-size-lg",
+			sm: "",
+			lg: "",
 		},
 	},
 	compoundVariants: [
@@ -83,96 +81,101 @@ const accordionItemVariants = cva("cn-accordion-item", {
 	},
 })
 
-const accordionTriggerVariants = cva("cn-accordion-trigger", {
+const accordionTriggerVariants = cva(
+	"outline-hidden flex flex-1 cursor-pointer items-center justify-between text-left font-medium transition-all",
+	{
+		variants: {
+			variant: {
+				box: "",
+				table: "",
+				open: "",
+			},
+			size: {
+				sm: "cn-accordion-trigger-size-sm",
+				lg: "cn-accordion-trigger-size-lg",
+			},
+			indicator: {
+				chevron: "[&[data-state=open]>.AccordionChevron]:rotate-180",
+				"plus-minus":
+					"[&[data-state=open]>.AccordionPlus>path:last-child]:rotate-90 [&[data-state=open]>.AccordionPlus>path:last-child]:opacity-0 [&[data-state=open]>.AccordionPlus]:rotate-180",
+			},
+		},
+		compoundVariants: [
+			{
+				variant: "open",
+				size: "sm",
+				class: "cn-accordion-trigger-open-sm",
+			},
+			{
+				variant: "open",
+				size: "lg",
+				class: "cn-accordion-trigger-open-lg",
+			},
+			{
+				variant: ["box", "table"],
+				size: "sm",
+				class: "cn-accordion-trigger-boxed-sm",
+			},
+			{
+				variant: ["box", "table"],
+				size: "lg",
+				class: "cn-accordion-trigger-boxed-lg",
+			},
+			{
+				indicator: ["chevron", "plus-minus"],
+				size: "sm",
+				class: "cn-accordion-trigger-indicator-sm",
+			},
+			{
+				indicator: ["chevron", "plus-minus"],
+				size: "lg",
+				class: "cn-accordion-trigger-indicator-lg",
+			},
+		],
+		defaultVariants: {
+			variant: "box",
+			size: "sm",
+			indicator: "chevron",
+		},
+	}
+)
+
+const accordionContentVariants = cva(
+	"data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden transition-all"
+)
+
+const accordionContentInnerVariants = cva("pt-0", {
 	variants: {
 		variant: {
-			box: "cn-accordion-trigger-variant-box",
-			table: "cn-accordion-trigger-variant-table",
-			open: "cn-accordion-trigger-variant-open",
+			box: "",
+			table: "",
+			open: "",
 		},
 		size: {
-			sm: "cn-accordion-trigger-size-sm",
-			lg: "cn-accordion-trigger-size-lg",
-		},
-		indicator: {
-			chevron: "cn-accordion-trigger-indicator-chevron",
-			"plus-minus": "cn-accordion-trigger-indicator-plus-minus",
+			sm: "",
+			lg: "",
 		},
 	},
 	compoundVariants: [
 		{
 			variant: "open",
 			size: "sm",
-			class: "cn-accordion-trigger-open-sm",
+			class: "cn-accordion-content-open-sm",
 		},
 		{
 			variant: "open",
 			size: "lg",
-			class: "cn-accordion-trigger-open-lg",
+			class: "cn-accordion-content-open-lg",
 		},
 		{
 			variant: ["box", "table"],
 			size: "sm",
-			class: "cn-accordion-trigger-box-table-sm",
+			class: "cn-accordion-content-boxed-sm",
 		},
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "cn-accordion-trigger-box-table-lg",
-		},
-		// Indicator sizing
-		{
-			indicator: ["chevron", "plus-minus"],
-			size: "sm",
-			class: "cn-accordion-trigger-indicator-sm",
-		},
-		{
-			indicator: ["chevron", "plus-minus"],
-			size: "lg",
-			class: "cn-accordion-trigger-indicator-lg",
-		},
-	],
-	defaultVariants: {
-		variant: "box",
-		size: "sm",
-		indicator: "chevron",
-	},
-})
-
-const accordionContentVariants = cva("cn-accordion-content")
-
-const accordionContentInnerVariants = cva("cn-accordion-content-inner", {
-	variants: {
-		variant: {
-			box: "cn-accordion-content-inner-variant-box",
-			table: "cn-accordion-content-inner-variant-table",
-			open: "cn-accordion-content-inner-variant-open",
-		},
-		size: {
-			sm: "cn-accordion-content-inner-size-sm",
-			lg: "cn-accordion-content-inner-size-lg",
-		},
-	},
-	compoundVariants: [
-		{
-			variant: "open",
-			size: "sm",
-			class: "cn-accordion-content-inner-open-sm",
-		},
-		{
-			variant: "open",
-			size: "lg",
-			class: "cn-accordion-content-inner-open-lg",
-		},
-		{
-			variant: ["box", "table"],
-			size: "sm",
-			class: "cn-accordion-content-inner-box-table-sm",
-		},
-		{
-			variant: ["box", "table"],
-			size: "lg",
-			class: "cn-accordion-content-inner-box-table-lg",
+			class: "cn-accordion-content-boxed-lg",
 		},
 	],
 	defaultVariants: {
@@ -181,7 +184,6 @@ const accordionContentInnerVariants = cva("cn-accordion-content-inner", {
 	},
 })
 
-// Defining the hook for the accordion
 function useAccordion() {
 	const context = React.useContext(AccordionContext)
 	if (!context) {
@@ -190,7 +192,6 @@ function useAccordion() {
 	return context
 }
 
-/* Define the components */
 function Accordion({
 	size = "sm",
 	variant = "box",
@@ -232,7 +233,6 @@ function AccordionItem({ children, className, ...props }: AccordionItemProps) {
 		</AccordionPrimitive.Item>
 	)
 }
-
 AccordionItem.displayName = "AccordionItem"
 
 function AccordionTrigger({
@@ -247,6 +247,7 @@ function AccordionTrigger({
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
+					"cn-accordion-trigger",
 					accordionTriggerVariants({ variant, size, indicator }),
 					className
 				)}
@@ -254,13 +255,13 @@ function AccordionTrigger({
 				{children}
 				{indicator === "chevron" && (
 					<ChevronDownIcon
-						className="AccordionChevron text-fg-tertiary shrink-0 transition-transform duration-200"
+						className="AccordionChevron shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>
 				)}
 				{indicator === "plus-minus" && (
 					<Plus
-						className="AccordionPlus text-fg-tertiary shrink-0 transition-transform duration-200"
+						className="AccordionPlus shrink-0 transition-transform duration-200"
 						aria-hidden
 					/>
 				)}
@@ -268,7 +269,6 @@ function AccordionTrigger({
 		</AccordionPrimitive.Header>
 	)
 }
-
 AccordionTrigger.displayName = "AccordionTrigger"
 
 function AccordionContent({
@@ -281,10 +281,11 @@ function AccordionContent({
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames(accordionContentVariants())}
+			className={classNames("cn-accordion-content", accordionContentVariants())}
 			{...props}>
 			<div
 				className={classNames(
+					"cn-accordion-content-inner",
 					accordionContentInnerVariants({ variant, size }),
 					className
 				)}>
@@ -293,8 +294,6 @@ function AccordionContent({
 		</AccordionPrimitive.Content>
 	)
 }
-
 AccordionContent.displayName = "AccordionContent"
 
-/* Export all components*/
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger }
