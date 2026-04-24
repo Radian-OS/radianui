@@ -637,7 +637,7 @@
 
 	/* Strong */
 	.cn-btn-strong-primary {
-		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary font-medium text-white;
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg font-medium;
 	}
 	.cn-btn-strong-info {
 		@apply bg-info hover:bg-info-hover focus-visible:ring-info font-medium text-white;
@@ -737,7 +737,7 @@
 
 	/* Glossy */
 	.cn-btn-glossy-primary {
-		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
 	}
 	.cn-btn-glossy-info {
 		@apply bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
@@ -757,7 +757,7 @@
 
 	/* Glossy-inverted */
 	.cn-btn-glossy-inverted-primary {
-		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
 	}
 	.cn-btn-glossy-inverted-info {
 		@apply bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
@@ -777,7 +777,7 @@
 
 	/* Smooth */
 	.cn-btn-smooth-primary {
-		@apply focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-info {
 		@apply focus-visible:ring-info bg-info after:from-info-hover after:to-info before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
@@ -797,7 +797,7 @@
 
 	/* Smooth-inverted */
 	.cn-btn-smooth-inverted-primary {
-		@apply focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-inverted-info {
 		@apply focus-visible:ring-info bg-info after:from-info after:to-info-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
