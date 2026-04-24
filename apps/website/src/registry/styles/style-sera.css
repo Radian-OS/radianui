@@ -639,7 +639,7 @@
 
 	/* Strong — colors unchanged */
 	.cn-btn-strong-primary {
-		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary font-medium text-white;
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg font-medium;
 	}
 	.cn-btn-strong-info {
 		@apply bg-info hover:bg-info-hover focus-visible:ring-info font-medium text-white;
@@ -739,7 +739,7 @@
 
 	/* Glossy — shadow/gradient effects unchanged, rounded removed */
 	.cn-btn-glossy-primary {
-		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
 	}
 	.cn-btn-glossy-info {
 		@apply bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''];
@@ -759,7 +759,7 @@
 
 	/* Glossy-inverted */
 	.cn-btn-glossy-inverted-primary {
-		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
+		@apply bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
 	}
 	.cn-btn-glossy-inverted-info {
 		@apply bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-[''];
@@ -779,7 +779,7 @@
 
 	/* Smooth */
 	.cn-btn-smooth-primary {
-		@apply focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-info {
 		@apply focus-visible:ring-info bg-info after:from-info-hover after:to-info before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
@@ -799,7 +799,7 @@
 
 	/* Smooth-inverted */
 	.cn-btn-smooth-inverted-primary {
-		@apply focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
+		@apply focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
 	}
 	.cn-btn-smooth-inverted-info {
 		@apply focus-visible:ring-info bg-info after:from-info after:to-info-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110;
@@ -1462,6 +1462,103 @@
 		@apply bg-soft-alpha -mx-2 my-1.5 h-px;
 	}
 
+	/* MARK: HoverCard */
+
+	.cn-hover-card-content {
+		@apply bg-bg text-fg border-soft rounded-none border p-6 shadow-none;
+	}
+
+	/* MARK: Input */
+
+	/* Input sizes */
+	.cn-input {
+		@apply border-b;
+	}
+
+	.cn-input-28 {
+		@apply rounded-none px-3 text-[13px];
+	}
+
+	.cn-input-32 {
+		@apply rounded-none px-3 text-sm;
+	}
+
+	.cn-input-36 {
+		@apply rounded-none px-3.5 text-sm;
+	}
+
+	.cn-input-40 {
+		@apply rounded-none px-4 text-sm;
+	}
+
+	.cn-input-44 {
+		@apply rounded-none px-4 text-base;
+	}
+
+	.cn-input-48 {
+		@apply px-4.5 rounded-none text-base;
+	}
+
+	/* InputAddon base */
+	.cn-input-addon {
+		@apply bg-elevation-level1 border-alpha text-fg-secondary border shadow-none;
+	}
+
+	/* InputAddon sizes */
+	.cn-input-addon-28 {
+		@apply rounded-none px-3 text-[13px];
+	}
+
+	.cn-input-addon-32 {
+		@apply rounded-none px-3 text-sm;
+	}
+
+	.cn-input-addon-36 {
+		@apply rounded-none px-3.5 text-sm;
+	}
+
+	.cn-input-addon-40 {
+		@apply rounded-none px-4 text-sm;
+	}
+
+	.cn-input-addon-44 {
+		@apply rounded-none px-4 text-base;
+	}
+
+	.cn-input-addon-48 {
+		@apply px-4.5 rounded-none text-base;
+	}
+
+	/* InputWrapper sizes */
+	.cn-input-wrapper-28 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-32 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-36 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-40 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-44 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-48 {
+		@apply gap-3;
+	}
+
+	/* InputWrapper disabled */
+	.cn-input-wrapper-disabled {
+		@apply bg-fill1 [&_svg]:text-fg-tertiary cursor-not-allowed opacity-60;
+	}
+
 	/* MARK: OTPField */
 
 	.cn-otp-field {
@@ -1496,6 +1593,12 @@
 		@apply size-12 text-base;
 	}
 
+	/* MARK: Popover */
+
+	.cn-popover-content {
+		@apply text-fg bg-elevation-level1 rounded-none border p-6 shadow-none;
+	}
+
 	/* MARK: Progress */
 	.cn-progress {
 		@apply bg-fill3 h-3 rounded-none;
@@ -1503,6 +1606,16 @@
 
 	.cn-progress-indicator {
 		@apply bg-primary duration-[660ms];
+	}
+
+	/* MARK: Resizable */
+
+	.cn-resizable-handle {
+		@apply bg-border;
+	}
+
+	.cn-resizable-handle-grip {
+		@apply bg-border rounded-none border;
 	}
 
 	/* MARK: ScrollArea */

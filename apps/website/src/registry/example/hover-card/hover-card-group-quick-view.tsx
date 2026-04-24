@@ -37,7 +37,7 @@ export default function HoverCardGroupQuickView() {
 					Algorithm Aces
 				</Button>
 			</HoverCardTrigger>
-			<HoverCardContent className="w-80 space-y-4 rounded-xl">
+			<HoverCardContent className="w-80 space-y-4">
 				<div className="flex items-center justify-between">
 					<Avatar size="48">
 						<AvatarImage src={organization.logo} />
