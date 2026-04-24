@@ -961,6 +961,106 @@
 		@apply bg-soft-alpha -mx-1.5 my-1 h-px;
 	}
 
+	/* MARK: HoverCard */
+
+	.cn-hover-card-content {
+		@apply bg-bg text-fg border-soft rounded-lg border p-4 shadow-md;
+	}
+
+	/* MARK: Input */
+	.cn-input {
+		@apply border focus-visible:ring-2;
+	}
+
+	/* Input sizes */
+	.cn-input-28 {
+		@apply rounded-md px-2 text-[13px];
+	}
+
+	.cn-input-32 {
+		@apply rounded-md px-2 text-sm;
+	}
+
+	.cn-input-36 {
+		@apply rounded-lg px-2.5 text-sm;
+	}
+
+	.cn-input-40 {
+		@apply rounded-lg px-3 text-sm;
+	}
+
+	.cn-input-44 {
+		@apply rounded-lg px-3 text-base;
+	}
+
+	.cn-input-48 {
+		@apply rounded-lg px-3.5 text-base;
+	}
+
+	/* InputAddon base */
+	.cn-input-addon {
+		@apply bg-elevation-level1 border-alpha shadow-xs text-fg-secondary border shadow-[rgba(0,0,0,0.05)];
+	}
+
+	/* InputAddon sizes */
+	.cn-input-addon-28 {
+		@apply rounded-md px-2 text-[13px];
+	}
+
+	.cn-input-addon-32 {
+		@apply rounded-md px-2 text-sm;
+	}
+
+	.cn-input-addon-36 {
+		@apply rounded-lg px-2.5 text-sm;
+	}
+
+	.cn-input-addon-40 {
+		@apply rounded-lg px-3 text-sm;
+	}
+
+	.cn-input-addon-44 {
+		@apply rounded-lg px-3 text-base;
+	}
+
+	.cn-input-addon-48 {
+		@apply rounded-lg px-3.5 text-base;
+	}
+
+	.cn-input-wrapper {
+		@apply has-[:focus-visible]:ring-2;
+	}
+
+	/* InputWrapper sizes */
+	.cn-input-wrapper-28 {
+		@apply gap-1.5;
+	}
+
+	.cn-input-wrapper-32 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-36 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-40 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-44 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-48 {
+		@apply gap-2;
+	}
+
+	/* InputWrapper disabled */
+	.cn-input-wrapper-disabled {
+		@apply bg-fill1 [&_svg]:text-fg-tertiary cursor-not-allowed opacity-60;
+	}
+
 	/* MARK: OTPField */
 
 	.cn-otp-field {
@@ -995,6 +1095,12 @@
 		@apply size-12 text-base;
 	}
 
+	/* MARK: Popover */
+
+	.cn-popover-content {
+		@apply text-fg bg-elevation-level1 rounded-md border p-4 shadow-md;
+	}
+
 	/* MARK: Progress */
 	.cn-progress {
 		@apply bg-fill3 h-2 rounded-full;
@@ -1002,6 +1108,16 @@
 
 	.cn-progress-indicator {
 		@apply bg-primary duration-[660ms];
+	}
+
+	/* MARK: Resizable */
+
+	.cn-resizable-handle {
+		@apply bg-border;
+	}
+
+	.cn-resizable-handle-grip {
+		@apply bg-border rounded-xs border;
 	}
 
 	/* MARK: ScrollArea */

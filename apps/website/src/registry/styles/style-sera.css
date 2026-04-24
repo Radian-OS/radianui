@@ -963,6 +963,103 @@
 		@apply bg-soft-alpha -mx-2 my-1.5 h-px;
 	}
 
+	/* MARK: HoverCard */
+
+	.cn-hover-card-content {
+		@apply bg-bg text-fg border-soft rounded-none border p-6 shadow-none;
+	}
+
+	/* MARK: Input */
+
+	/* Input sizes */
+	.cn-input {
+		@apply border-b;
+	}
+
+	.cn-input-28 {
+		@apply rounded-none px-3 text-[13px];
+	}
+
+	.cn-input-32 {
+		@apply rounded-none px-3 text-sm;
+	}
+
+	.cn-input-36 {
+		@apply rounded-none px-3.5 text-sm;
+	}
+
+	.cn-input-40 {
+		@apply rounded-none px-4 text-sm;
+	}
+
+	.cn-input-44 {
+		@apply rounded-none px-4 text-base;
+	}
+
+	.cn-input-48 {
+		@apply px-4.5 rounded-none text-base;
+	}
+
+	/* InputAddon base */
+	.cn-input-addon {
+		@apply bg-elevation-level1 border-alpha text-fg-secondary border shadow-none;
+	}
+
+	/* InputAddon sizes */
+	.cn-input-addon-28 {
+		@apply rounded-none px-3 text-[13px];
+	}
+
+	.cn-input-addon-32 {
+		@apply rounded-none px-3 text-sm;
+	}
+
+	.cn-input-addon-36 {
+		@apply rounded-none px-3.5 text-sm;
+	}
+
+	.cn-input-addon-40 {
+		@apply rounded-none px-4 text-sm;
+	}
+
+	.cn-input-addon-44 {
+		@apply rounded-none px-4 text-base;
+	}
+
+	.cn-input-addon-48 {
+		@apply px-4.5 rounded-none text-base;
+	}
+
+	/* InputWrapper sizes */
+	.cn-input-wrapper-28 {
+		@apply gap-2;
+	}
+
+	.cn-input-wrapper-32 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-36 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-40 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-44 {
+		@apply gap-2.5;
+	}
+
+	.cn-input-wrapper-48 {
+		@apply gap-3;
+	}
+
+	/* InputWrapper disabled */
+	.cn-input-wrapper-disabled {
+		@apply bg-fill1 [&_svg]:text-fg-tertiary cursor-not-allowed opacity-60;
+	}
+
 	/* MARK: OTPField */
 
 	.cn-otp-field {
@@ -997,6 +1094,12 @@
 		@apply size-12 text-base;
 	}
 
+	/* MARK: Popover */
+
+	.cn-popover-content {
+		@apply text-fg bg-elevation-level1 rounded-none border p-6 shadow-none;
+	}
+
 	/* MARK: Progress */
 	.cn-progress {
 		@apply bg-fill3 h-3 rounded-none;
@@ -1004,6 +1107,16 @@
 
 	.cn-progress-indicator {
 		@apply bg-primary duration-[660ms];
+	}
+
+	/* MARK: Resizable */
+
+	.cn-resizable-handle {
+		@apply bg-border;
+	}
+
+	.cn-resizable-handle-grip {
+		@apply bg-border rounded-none border;
 	}
 
 	/* MARK: ScrollArea */

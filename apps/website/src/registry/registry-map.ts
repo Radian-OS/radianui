@@ -589,9 +589,6 @@ const registry: Record<
 	"hover-card-preview": React.lazy(
 		() => import("@/registry/example/hover-card/hover-card-preview")
 	),
-	"hover-card-user-metrics": React.lazy(
-		() => import("@/registry/example/hover-card/hover-card-user-metrics")
-	),
 	"hover-card-user-mini-profile": React.lazy(
 		() => import("@/registry/example/hover-card/hover-card-user-mini-profile")
 	),

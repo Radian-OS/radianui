@@ -1,15 +1,18 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@import "../registry/styles/style-default.css" layer(base);
+@import "../registry/styles/style-sera.css" layer(base);
 
-@import "../registry/styles/style-lyra.css";
-@import "../registry/styles/style-nova.css";
+@custom-variant style-default (&:where(.style-default *));
+@custom-variant style-sera (&:where(.style-sera *));
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
 	/* primary */
 	--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-fg: oklch(0.9764 0.0013 286.38);
 	--color-primary-accent: oklch(0.94 0.0271 295.05);
 	--color-primary-focus: oklch(0.9169 0.0383 295.46);
 	--color-primary-border: oklch(0.6784 0.1708 290.38);
@@ -121,6 +124,7 @@
 .dark {
 	/* primary */
 	--color-primary: oklch(0.528 0.2539 282.58);
+	--color-primary-fg: oklch(0.9764 0.0013 286.38);
 	--color-primary-accent: oklch(0.2622 0.0915 289.13);
 	--color-primary-focus: oklch(0.2827 0.1227 284.67);
 	--color-primary-border: oklch(0.528 0.2539 282.58);
