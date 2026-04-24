@@ -45,7 +45,7 @@ export const transformStyleMap: TransformerStyle<SourceFile> = async ({
 }
 
 function applyStyleToCvaString(
-	stringNode: StringLiteral,
+	stringNode: StringLiteral | NoSubstitutionTemplateLiteral,
 	styleMap: StyleMap,
 	matchedClasses: Set<string>
 ) {
@@ -56,22 +56,8 @@ function applyStyleToCvaString(
 		return
 	}
 
-	// Process all cn-* classes, not just the first one
-	const unmatchedClasses = cnClasses.filter(
-		(cnClass) => !matchedClasses.has(cnClass)
-	)
-
-	if (unmatchedClasses.length === 0) {
-		// All classes already matched, just clean up non-allowlisted ones
-		const updated = removeCnClasses(stringValue)
-		stringNode.setLiteralValue(updated)
-		return
-	}
-
 	// Skip allowlisted classes — they are handled at CLI install time.
-	const classesToInline = unmatchedClasses.filter(
-		(cnClass) => !ALLOWLIST.has(cnClass)
-	)
+	const classesToInline = cnClasses.filter((cnClass) => !ALLOWLIST.has(cnClass))
 
 	const tailwindClassesToApply = classesToInline
 		.map((cnClass) => styleMap[cnClass])
@@ -81,7 +67,7 @@ function applyStyleToCvaString(
 		const mergedClasses = tailwindClassesToApply.join(" ")
 		const updated = removeCnClasses(mergeClasses(mergedClasses, stringValue))
 		stringNode.setLiteralValue(updated)
-		unmatchedClasses.forEach((cnClass) => matchedClasses.add(cnClass))
+		cnClasses.forEach((cnClass) => matchedClasses.add(cnClass))
 	} else {
 		// No styles to apply, but still need to clean up non-allowlisted classes.
 		const updated = removeCnClasses(stringValue)
@@ -142,17 +128,56 @@ function applyToCvaCalls(
 				return
 			}
 
-			typeObj.getProperties().forEach((variantProp) => {
-				if (!Node.isPropertyAssignment(variantProp)) {
+			typeObj.getProperties().forEach((prop) => {
+				if (!Node.isPropertyAssignment(prop)) {
 					return
 				}
 
-				const variantValue = variantProp.getInitializer()
-				if (variantValue && Node.isStringLiteral(variantValue)) {
-					applyStyleToCvaString(variantValue, styleMap, matchedClasses)
+				const propValue = prop.getInitializer()
+				if (propValue && Node.isStringLiteral(propValue)) {
+					applyStyleToCvaString(propValue, styleMap, matchedClasses)
 				}
 			})
 		})
+
+		const compoundVariantsProp = configArg
+			.getProperties()
+			.find(
+				(prop) =>
+					Node.isPropertyAssignment(prop) &&
+					Node.isIdentifier(prop.getNameNode()) &&
+					prop.getNameNode().getText() === "compoundVariants"
+			)
+
+		if (
+			compoundVariantsProp &&
+			Node.isPropertyAssignment(compoundVariantsProp)
+		) {
+			const compoundVariantsArray = compoundVariantsProp.getInitializer()
+			if (
+				compoundVariantsArray &&
+				Node.isArrayLiteralExpression(compoundVariantsArray)
+			) {
+				compoundVariantsArray.getElements().forEach((element) => {
+					if (Node.isObjectLiteralExpression(element)) {
+						const classNameProp = element
+							.getProperties()
+							.find(
+								(prop) =>
+									Node.isPropertyAssignment(prop) &&
+									Node.isIdentifier(prop.getNameNode()) &&
+									prop.getNameNode().getText() === "className"
+							)
+						if (classNameProp && Node.isPropertyAssignment(classNameProp)) {
+							const classNameValue = classNameProp.getInitializer()
+							if (classNameValue && Node.isStringLiteral(classNameValue)) {
+								applyStyleToCvaString(classNameValue, styleMap, matchedClasses)
+							}
+						}
+					}
+				})
+			}
+		}
 	})
 }
 
@@ -174,113 +199,98 @@ function applyToClassNameAttributes(
 			return
 		}
 
-		const cnClasses = extractCnClassesFromAttribute(initializer)
-
-		if (cnClasses.length === 0) {
-			return
-		}
-
-		const jsxElement = node.getParent()?.getParent()
-		if (
-			!jsxElement ||
-			(!Node.isJsxOpeningElement(jsxElement) &&
-				!Node.isJsxSelfClosingElement(jsxElement))
-		) {
-			return
-		}
-
-		const unmatchedClasses = cnClasses.filter(
-			(cnClass) => !matchedClasses.has(cnClass)
-		)
-
-		if (unmatchedClasses.length === 0) {
-			// Even if all classes are already matched, we still need to clean them up
-			cleanCnClassesFromAttribute(initializer)
-			return
-		}
-
-		// Skip allowlisted classes — they are handled at CLI install time.
-		const classesToInline = unmatchedClasses.filter(
-			(cnClass) => !ALLOWLIST.has(cnClass)
-		)
-
-		const tailwindClassesToApply = classesToInline
-			.map((cnClass) => styleMap[cnClass])
-			.filter((classes): classes is string => Boolean(classes))
-
-		if (tailwindClassesToApply.length > 0) {
-			const mergedClasses = tailwindClassesToApply.join(" ")
-			applyClassesToElement(jsxElement, mergedClasses)
+		const stringLiterals: (StringLiteral | NoSubstitutionTemplateLiteral)[] = []
+		if (isStringLiteralLike(initializer)) {
+			stringLiterals.push(initializer)
 		} else {
-			cleanCnClassesFromAttribute(initializer)
+			initializer.forEachDescendant((descendant) => {
+				if (isStringLiteralLike(descendant)) {
+					stringLiterals.push(descendant)
+				}
+			})
+		}
+
+		for (const stringLiteral of stringLiterals) {
+			applyStyleToCvaString(stringLiteral, styleMap, matchedClasses)
+		}
+
+		if (!isStringLiteralLike(initializer)) {
+			initializer.forEachDescendant((descendant) => {
+				if (Node.isCallExpression(descendant) && isCnCall(descendant)) {
+					removeEmptyArgumentsFromCnCall(descendant)
+				}
+			})
+			if (Node.isCallExpression(initializer) && isCnCall(initializer)) {
+				removeEmptyArgumentsFromCnCall(initializer)
+			}
 		}
 	})
 }
 
-function extractCnClassesFromAttribute(initializer: Node) {
-	const classes: string[] = []
+// function extractCnClassesFromAttribute(initializer: Node) {
+// 	const classes: string[] = []
 
-	if (isStringLiteralLike(initializer)) {
-		return extractCnClasses(initializer.getLiteralText())
-	}
+// 	if (isStringLiteralLike(initializer)) {
+// 		return extractCnClasses(initializer.getLiteralText())
+// 	}
 
-	if (!Node.isJsxExpression(initializer)) {
-		return classes
-	}
+// 	if (!Node.isJsxExpression(initializer)) {
+// 		return classes
+// 	}
 
-	const expression = initializer.getExpression()
-	if (!expression) {
-		return classes
-	}
+// 	const expression = initializer.getExpression()
+// 	if (!expression) {
+// 		return classes
+// 	}
 
-	if (isStringLiteralLike(expression)) {
-		return extractCnClasses(expression.getLiteralText())
-	}
+// 	if (isStringLiteralLike(expression)) {
+// 		return extractCnClasses(expression.getLiteralText())
+// 	}
 
-	if (Node.isCallExpression(expression) && isCnCall(expression)) {
-		for (const argument of expression.getArguments()) {
-			if (isStringLiteralLike(argument)) {
-				classes.push(...extractCnClasses(argument.getLiteralText()))
-			}
-		}
-	}
+// 	if (Node.isCallExpression(expression) && isCnCall(expression)) {
+// 		for (const argument of expression.getArguments()) {
+// 			if (isStringLiteralLike(argument)) {
+// 				classes.push(...extractCnClasses(argument.getLiteralText()))
+// 			}
+// 		}
+// 	}
 
-	return classes
-}
+// 	return classes
+// }
 
-function cleanCnClassesFromAttribute(initializer: Node) {
-	if (isStringLiteralLike(initializer)) {
-		const cleaned = removeCnClasses(initializer.getLiteralText())
-		initializer.setLiteralValue(cleaned)
-		return
-	}
+// function cleanCnClassesFromAttribute(initializer: Node) {
+// 	if (isStringLiteralLike(initializer)) {
+// 		const cleaned = removeCnClasses(initializer.getLiteralText())
+// 		initializer.setLiteralValue(cleaned)
+// 		return
+// 	}
 
-	if (!Node.isJsxExpression(initializer)) {
-		return
-	}
+// 	if (!Node.isJsxExpression(initializer)) {
+// 		return
+// 	}
 
-	const expression = initializer.getExpression()
-	if (!expression) {
-		return
-	}
+// 	const expression = initializer.getExpression()
+// 	if (!expression) {
+// 		return
+// 	}
 
-	if (isStringLiteralLike(expression)) {
-		const cleaned = removeCnClasses(expression.getLiteralText())
-		expression.setLiteralValue(cleaned)
-		return
-	}
+// 	if (isStringLiteralLike(expression)) {
+// 		const cleaned = removeCnClasses(expression.getLiteralText())
+// 		expression.setLiteralValue(cleaned)
+// 		return
+// 	}
 
-	if (Node.isCallExpression(expression) && isCnCall(expression)) {
-		for (const argument of expression.getArguments()) {
-			if (isStringLiteralLike(argument)) {
-				const cleaned = removeCnClasses(argument.getLiteralText())
-				argument.setLiteralValue(cleaned)
-			}
-		}
+// 	if (Node.isCallExpression(expression) && isCnCall(expression)) {
+// 		for (const argument of expression.getArguments()) {
+// 			if (isStringLiteralLike(argument)) {
+// 				const cleaned = removeCnClasses(argument.getLiteralText())
+// 				argument.setLiteralValue(cleaned)
+// 			}
+// 		}
 
-		removeEmptyArgumentsFromCnCall(expression)
-	}
-}
+// 		removeEmptyArgumentsFromCnCall(expression)
+// 	}
+// }
 
 function extractCnClasses(str: string) {
 	const matches = str.matchAll(/\bcn-[\w-]+\b/g)
@@ -330,105 +340,105 @@ function removeEmptyArgumentsFromCnCall(callExpression: CallExpression) {
 	}
 }
 
-function applyClassesToElement(element: Node, tailwindClasses: string) {
-	if (
-		!Node.isJsxOpeningElement(element) &&
-		!Node.isJsxSelfClosingElement(element)
-	) {
-		return
-	}
+// function applyClassesToElement(element: Node, tailwindClasses: string) {
+// 	if (
+// 		!Node.isJsxOpeningElement(element) &&
+// 		!Node.isJsxSelfClosingElement(element)
+// 	) {
+// 		return
+// 	}
 
-	const attribute = element
-		.getAttributes()
-		.find(
-			(attr) =>
-				Node.isJsxAttribute(attr) &&
-				attr.getNameNode().getText() === "className"
-		)
+// 	const attribute = element
+// 		.getAttributes()
+// 		.find(
+// 			(attr) =>
+// 				Node.isJsxAttribute(attr) &&
+// 				attr.getNameNode().getText() === "className"
+// 		)
 
-	if (!attribute || !Node.isJsxAttribute(attribute)) {
-		element.addAttribute({
-			name: "className",
-			initializer: `{cn(${JSON.stringify(tailwindClasses)})}`,
-		})
-		return
-	}
+// 	if (!attribute || !Node.isJsxAttribute(attribute)) {
+// 		element.addAttribute({
+// 			name: "className",
+// 			initializer: `{cn(${JSON.stringify(tailwindClasses)})}`,
+// 		})
+// 		return
+// 	}
 
-	const initializer = attribute.getInitializer()
+// 	const initializer = attribute.getInitializer()
 
-	if (!initializer) {
-		attribute.setInitializer(`{cn(${JSON.stringify(tailwindClasses)})}`)
-		return
-	}
+// 	if (!initializer) {
+// 		attribute.setInitializer(`{cn(${JSON.stringify(tailwindClasses)})}`)
+// 		return
+// 	}
 
-	if (isStringLiteralLike(initializer)) {
-		const existing = initializer.getLiteralText()
-		const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
-		initializer.setLiteralValue(updated)
-		return
-	}
+// 	if (isStringLiteralLike(initializer)) {
+// 		const existing = initializer.getLiteralText()
+// 		const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
+// 		initializer.setLiteralValue(updated)
+// 		return
+// 	}
 
-	if (!Node.isJsxExpression(initializer)) {
-		return
-	}
+// 	if (!Node.isJsxExpression(initializer)) {
+// 		return
+// 	}
 
-	const expression = initializer.getExpression()
+// 	const expression = initializer.getExpression()
 
-	if (!expression) {
-		attribute.setInitializer(`{cn(${JSON.stringify(tailwindClasses)})}`)
-		return
-	}
+// 	if (!expression) {
+// 		attribute.setInitializer(`{cn(${JSON.stringify(tailwindClasses)})}`)
+// 		return
+// 	}
 
-	if (isStringLiteralLike(expression)) {
-		const existing = expression.getLiteralText()
-		const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
-		expression.setLiteralValue(updated)
-		return
-	}
+// 	if (isStringLiteralLike(expression)) {
+// 		const existing = expression.getLiteralText()
+// 		const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
+// 		expression.setLiteralValue(updated)
+// 		return
+// 	}
 
-	if (Node.isCallExpression(expression) && isCnCall(expression)) {
-		const firstArg = expression.getArguments()[0]
-		if (isStringLiteralLike(firstArg)) {
-			const existing = firstArg.getLiteralText()
-			const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
-			firstArg.setLiteralValue(updated)
+// 	if (Node.isCallExpression(expression) && isCnCall(expression)) {
+// 		const firstArg = expression.getArguments()[0]
+// 		if (isStringLiteralLike(firstArg)) {
+// 			const existing = firstArg.getLiteralText()
+// 			const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
+// 			firstArg.setLiteralValue(updated)
 
-			for (let i = 1; i < expression.getArguments().length; i++) {
-				const arg = expression.getArguments()[i]
-				if (isStringLiteralLike(arg)) {
-					const argText = arg.getLiteralText()
-					const cleaned = removeCnClasses(argText)
-					if (cleaned !== argText) {
-						arg.setLiteralValue(cleaned)
-					}
-				}
-			}
+// 			for (let i = 1; i < expression.getArguments().length; i++) {
+// 				const arg = expression.getArguments()[i]
+// 				if (isStringLiteralLike(arg)) {
+// 					const argText = arg.getLiteralText()
+// 					const cleaned = removeCnClasses(argText)
+// 					if (cleaned !== argText) {
+// 						arg.setLiteralValue(cleaned)
+// 					}
+// 				}
+// 			}
 
-			removeEmptyArgumentsFromCnCall(expression)
-			return
-		}
+// 			removeEmptyArgumentsFromCnCall(expression)
+// 			return
+// 		}
 
-		const argumentTexts = expression
-			.getArguments()
-			.map((argument) => {
-				if (isStringLiteralLike(argument)) {
-					const cleaned = removeCnClasses(argument.getLiteralText())
-					return cleaned ? JSON.stringify(cleaned) : null
-				}
-				return argument.getText()
-			})
-			.filter((arg): arg is string => arg !== null)
+// 		const argumentTexts = expression
+// 			.getArguments()
+// 			.map((argument) => {
+// 				if (isStringLiteralLike(argument)) {
+// 					const cleaned = removeCnClasses(argument.getLiteralText())
+// 					return cleaned ? JSON.stringify(cleaned) : null
+// 				}
+// 				return argument.getText()
+// 			})
+// 			.filter((arg): arg is string => arg !== null)
 
-		const updatedArguments = [JSON.stringify(tailwindClasses), ...argumentTexts]
+// 		const updatedArguments = [JSON.stringify(tailwindClasses), ...argumentTexts]
 
-		attribute.setInitializer(`{cn(${updatedArguments.join(", ")})}`)
-		return
-	}
+// 		attribute.setInitializer(`{cn(${updatedArguments.join(", ")})}`)
+// 		return
+// 	}
 
-	attribute.setInitializer(
-		`{cn(${JSON.stringify(tailwindClasses)}, ${expression.getText()})}`
-	)
-}
+// 	attribute.setInitializer(
+// 		`{cn(${JSON.stringify(tailwindClasses)}, ${expression.getText()})}`
+// 	)
+// }
 
 function mergeClasses(newClasses: string, existing: string) {
 	return twMerge(existing, newClasses)
@@ -457,13 +467,11 @@ function applyToMergePropsCalls(
 			return
 		}
 
-		// Look for object literals in mergeProps arguments
 		for (const arg of node.getArguments()) {
 			if (!Node.isObjectLiteralExpression(arg)) {
 				continue
 			}
 
-			// Find className property in the object literal
 			const classNameProp = arg
 				.getProperties()
 				.find(
@@ -482,126 +490,113 @@ function applyToMergePropsCalls(
 				continue
 			}
 
-			// Handle cn() calls in className
-			if (
-				Node.isCallExpression(classNameInitializer) &&
-				isCnCall(classNameInitializer)
-			) {
-				const cnClasses = extractCnClassesFromCnCall(classNameInitializer)
+			const stringLiterals: (StringLiteral | NoSubstitutionTemplateLiteral)[] =
+				[]
+			if (isStringLiteralLike(classNameInitializer)) {
+				stringLiterals.push(classNameInitializer)
+			} else {
+				classNameInitializer.forEachDescendant((descendant) => {
+					if (isStringLiteralLike(descendant)) {
+						stringLiterals.push(descendant)
+					}
+				})
+			}
 
-				if (cnClasses.length === 0) {
-					continue
-				}
+			for (const stringLiteral of stringLiterals) {
+				applyStyleToCvaString(stringLiteral, styleMap, matchedClasses)
+			}
 
-				const unmatchedClasses = cnClasses.filter(
-					(cnClass) => !matchedClasses.has(cnClass)
-				)
-
-				if (unmatchedClasses.length === 0) {
-					// Clean up cn-* classes even if already matched
-					cleanCnClassesFromCnCall(classNameInitializer)
-					continue
-				}
-
-				// Skip allowlisted classes — they are handled at CLI install time.
-				const classesToInline = unmatchedClasses.filter(
-					(cnClass) => !ALLOWLIST.has(cnClass)
-				)
-
-				const tailwindClassesToApply = classesToInline
-					.map((cnClass) => styleMap[cnClass])
-					.filter((classes): classes is string => Boolean(classes))
-
-				if (tailwindClassesToApply.length > 0) {
-					const mergedClasses = tailwindClassesToApply.join(" ")
-					applyClassesToCnCall(
-						classNameInitializer,
-						mergedClasses,
-						matchedClasses,
-						unmatchedClasses
-					)
-				} else {
-					cleanCnClassesFromCnCall(classNameInitializer)
+			if (!isStringLiteralLike(classNameInitializer)) {
+				classNameInitializer.forEachDescendant((descendant) => {
+					if (Node.isCallExpression(descendant) && isCnCall(descendant)) {
+						removeEmptyArgumentsFromCnCall(descendant)
+					}
+				})
+				if (
+					Node.isCallExpression(classNameInitializer) &&
+					isCnCall(classNameInitializer)
+				) {
+					removeEmptyArgumentsFromCnCall(classNameInitializer)
 				}
 			}
 		}
 	})
 }
 
-function extractCnClassesFromCnCall(cnCall: CallExpression): string[] {
-	const classes: string[] = []
+// function extractCnClassesFromCnCall(cnCall: CallExpression): string[] {
+// 	const classes: string[] = []
 
-	for (const argument of cnCall.getArguments()) {
-		if (isStringLiteralLike(argument)) {
-			classes.push(...extractCnClasses(argument.getLiteralText()))
-		}
-	}
+// 	for (const argument of cnCall.getArguments()) {
+// 		if (isStringLiteralLike(argument)) {
+// 			classes.push(...extractCnClasses(argument.getLiteralText()))
+// 		}
+// 	}
 
-	return classes
-}
+// 	return classes
+// }
 
-function cleanCnClassesFromCnCall(cnCall: CallExpression) {
-	for (const argument of cnCall.getArguments()) {
-		if (isStringLiteralLike(argument)) {
-			const cleaned = removeCnClasses(argument.getLiteralText())
-			argument.setLiteralValue(cleaned)
-		}
-	}
+// function cleanCnClassesFromCnCall(cnCall: CallExpression) {
+// 	for (const argument of cnCall.getArguments()) {
+// 		if (isStringLiteralLike(argument)) {
+// 			const cleaned = removeCnClasses(argument.getLiteralText())
+// 			argument.setLiteralValue(cleaned)
+// 		}
+// 	}
 
-	removeEmptyArgumentsFromCnCall(cnCall)
-}
+// 	removeEmptyArgumentsFromCnCall(cnCall)
+// }
 
-function applyClassesToCnCall(
-	cnCall: CallExpression,
-	tailwindClasses: string,
-	matchedClasses: Set<string>,
-	unmatchedClasses: string[]
-) {
-	const firstArg = cnCall.getArguments()[0]
+// function applyClassesToCnCall(
+// 	cnCall: CallExpression,
+// 	tailwindClasses: string,
+// 	matchedClasses: Set<string>,
+// 	unmatchedClasses: string[]
+// ) {
+// 	const firstArg = cnCall.getArguments()[0]
 
-	if (isStringLiteralLike(firstArg)) {
-		const existing = firstArg.getLiteralText()
-		const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
-		firstArg.setLiteralValue(updated)
+// 	if (isStringLiteralLike(firstArg)) {
+// 		const existing = firstArg.getLiteralText()
+// 		const updated = removeCnClasses(mergeClasses(tailwindClasses, existing))
+// 		firstArg.setLiteralValue(updated)
 
-		// Mark classes as matched
-		unmatchedClasses.forEach((cnClass) => matchedClasses.add(cnClass))
+// 		// Mark classes as matched
+// 		unmatchedClasses.forEach((cnClass) => matchedClasses.add(cnClass))
 
-		// Clean up cn-* classes from remaining arguments
-		for (let i = 1; i < cnCall.getArguments().length; i++) {
-			const arg = cnCall.getArguments()[i]
-			if (isStringLiteralLike(arg)) {
-				const argText = arg.getLiteralText()
-				const cleaned = removeCnClasses(argText)
-				if (cleaned !== argText) {
-					arg.setLiteralValue(cleaned)
-				}
-			}
-		}
+// 		// Clean up cn-* classes from remaining arguments
+// 		for (let i = 1; i < cnCall.getArguments().length; i++) {
+// 			const arg = cnCall.getArguments()[i]
+// 			if (isStringLiteralLike(arg)) {
+// 				const argText = arg.getLiteralText()
+// 				const cleaned = removeCnClasses(argText)
+// 				if (cleaned !== argText) {
+// 					arg.setLiteralValue(cleaned)
+// 				}
+// 			}
+// 		}
 
-		removeEmptyArgumentsFromCnCall(cnCall)
-		return
-	}
+// 		removeEmptyArgumentsFromCnCall(cnCall)
+// 		return
+// 	}
 
-	// If first arg is not a string literal, prepend tailwind classes
-	const argumentTexts = cnCall
-		.getArguments()
-		.map((argument) => {
-			if (isStringLiteralLike(argument)) {
-				const cleaned = removeCnClasses(argument.getLiteralText())
-				return cleaned ? JSON.stringify(cleaned) : null
-			}
-			return argument.getText()
-		})
-		.filter((arg): arg is string => arg !== null)
+// 	// If first arg is not a string literal, prepend tailwind classes
+// 	const argumentTexts = cnCall
+// 		.getArguments()
+// 		.map((argument) => {
+// 			if (isStringLiteralLike(argument)) {
+// 				const cleaned = removeCnClasses(argument.getLiteralText())
+// 				return cleaned ? JSON.stringify(cleaned) : null
+// 			}
+// 			return argument.getText()
+// 		})
+// 		.filter((arg): arg is string => arg !== null)
 
-	const updatedArguments = [JSON.stringify(tailwindClasses), ...argumentTexts]
+// 	const updatedArguments = [JSON.stringify(tailwindClasses), ...argumentTexts]
 
-	// Mark classes as matched
-	unmatchedClasses.forEach((cnClass) => matchedClasses.add(cnClass))
+// 	// Mark classes as matched
+// 	unmatchedClasses.forEach((cnClass) => matchedClasses.add(cnClass))
 
-	const parent = cnCall.getParent()
-	if (parent) {
-		cnCall.replaceWithText(`cn(${updatedArguments.join(", ")})`)
-	}
-}
+// 	const parent = cnCall.getParent()
+// 	if (parent) {
+// 		cnCall.replaceWithText(`cn(${updatedArguments.join(", ")})`)
+// 	}
+// }
