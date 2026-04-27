@@ -12,15 +12,7 @@ export type InputWrapperProps = React.ComponentProps<"div"> &
 	VariantProps<typeof inputWrapperVariants>
 
 const inputVariants = cva(
-	`
-	cn-input flex w-full items-center bg-bg border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary
-	focus-visible:ring-primary-focus focus-visible:border-primary focus-visible:outline-none 
-	disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha
-	[&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed
-	file:h-full [&[type=file]]:py-0 file:border-solid file:border-alpha file:bg-transparent
-	file:font-medium file:not-italic file:text-fg file:p-0 file:border-0 file:border-e
-	aria-invalid:border-error aria-invalid:ring-error-focus
-	`,
+	`flex w-full items-center bg-bg border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha [&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed file:h-full [&[type=file]]:py-0 file:border-solid file:border-alpha file:bg-transparent file:font-medium file:not-italic file:text-fg file:p-0 file:border-0 file:border-e aria-invalid:border-error aria-invalid:ring-error-focus border focus-visible:ring-2`,
 	{
 		variants: {
 			size: {
@@ -87,35 +79,7 @@ const inputGroupVariants = cva(
 )
 
 const inputWrapperVariants = cva(
-	`
-	cn-input-wrapper flex items-center gap-1.5
-	has-[:focus-visible]:ring-primary-accent
-	has-[:focus-visible]:border-primary
-	has-[:focus-visible]:outline-none
-	[&_[data-slot=datefield]]:grow
-	[&_:is([data-slot=input],[data-slot=currency-input])]:rounded-none
-	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-transparent
-	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:border-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:flex
-	[&_:is([data-slot=input],[data-slot=currency-input])]:w-full
-	[&_:is([data-slot=input],[data-slot=currency-input])]:outline-none
-	[&_:is([data-slot=input],[data-slot=currency-input])]:transition-colors
-	[&_:is([data-slot=input],[data-slot=currency-input])]:text-fg
-	[&_:is([data-slot=input],[data-slot=currency-input])]:placeholder:text-fg-tertiary
-	[&_:is([data-slot=input],[data-slot=currency-input])]:p-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:border-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:bg-transparent
-	[&_:is([data-slot=input],[data-slot=currency-input])]:shadow-none
-	[&_:is([data-slot=input],[data-slot=currency-input])]:focus-visible:ring-0
-	[&_:is([data-slot=input],[data-slot=currency-input])]:h-auto
-	[&_:is([data-slot=input],[data-slot=currency-input])]:disabled:cursor-not-allowed
-	[&_:is([data-slot=input],[data-slot=currency-input])]:disabled:opacity-50
-	[&_svg]:text-fg-tertiary
-	[&_svg]:shrink-0
-	has-[[aria-invalid=true]]:border-error
-	has-[[aria-invalid=true]]:ring-error-accent
-	`,
+	`flex items-center gap-1.5 has-[:focus-visible]:ring-primary-accent has-[:focus-visible]:border-primary has-[:focus-visible]:outline-none [&_[data-slot=datefield]]:grow [&_:is([data-slot=input],[data-slot=currency-input])]:rounded-none [&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-transparent [&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:ring-0 [&_:is([data-slot=input],[data-slot=currency-input])]:data-focus-within:border-0 [&_:is([data-slot=input],[data-slot=currency-input])]:flex [&_:is([data-slot=input],[data-slot=currency-input])]:w-full [&_:is([data-slot=input],[data-slot=currency-input])]:outline-none [&_:is([data-slot=input],[data-slot=currency-input])]:transition-colors [&_:is([data-slot=input],[data-slot=currency-input])]:text-fg [&_:is([data-slot=input],[data-slot=currency-input])]:placeholder:text-fg-tertiary [&_:is([data-slot=input],[data-slot=currency-input])]:p-0 [&_:is([data-slot=input],[data-slot=currency-input])]:border-0 [&_:is([data-slot=input],[data-slot=currency-input])]:bg-transparent [&_:is([data-slot=input],[data-slot=currency-input])]:shadow-none [&_:is([data-slot=input],[data-slot=currency-input])]:focus-visible:ring-0 [&_:is([data-slot=input],[data-slot=currency-input])]:h-auto [&_:is([data-slot=input],[data-slot=currency-input])]:disabled:cursor-not-allowed [&_:is([data-slot=input],[data-slot=currency-input])]:disabled:opacity-50 [&_svg]:text-fg-tertiary [&_svg]:shrink-0 has-[[aria-invalid=true]]:border-error has-[[aria-invalid=true]]:ring-error-accent has-[:focus-visible]:ring-2`,
 	{
 		variants: {
 			size: {

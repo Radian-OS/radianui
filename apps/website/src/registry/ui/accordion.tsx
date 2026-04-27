@@ -67,12 +67,12 @@ const accordionItemVariants = cva("overflow-hidden", {
 		{
 			variant: "box",
 			size: "sm",
-			class: "cn-accordion-item-box-sm",
+			className: "cn-accordion-item-box-sm",
 		},
 		{
 			variant: "box",
 			size: "lg",
-			class: "cn-accordion-item-box-lg",
+			className: "cn-accordion-item-box-lg",
 		},
 	],
 	defaultVariants: {
@@ -104,32 +104,32 @@ const accordionTriggerVariants = cva(
 			{
 				variant: "open",
 				size: "sm",
-				class: "cn-accordion-trigger-open-sm",
+				className: "cn-accordion-trigger-open-sm",
 			},
 			{
 				variant: "open",
 				size: "lg",
-				class: "cn-accordion-trigger-open-lg",
+				className: "cn-accordion-trigger-open-lg",
 			},
 			{
 				variant: ["box", "table"],
 				size: "sm",
-				class: "cn-accordion-trigger-boxed-sm",
+				className: "cn-accordion-trigger-boxed-sm",
 			},
 			{
 				variant: ["box", "table"],
 				size: "lg",
-				class: "cn-accordion-trigger-boxed-lg",
+				className: "cn-accordion-trigger-boxed-lg",
 			},
 			{
 				indicator: ["chevron", "plus-minus"],
 				size: "sm",
-				class: "cn-accordion-trigger-indicator-sm",
+				className: "cn-accordion-trigger-indicator-sm",
 			},
 			{
 				indicator: ["chevron", "plus-minus"],
 				size: "lg",
-				class: "cn-accordion-trigger-indicator-lg",
+				className: "cn-accordion-trigger-indicator-lg",
 			},
 		],
 		defaultVariants: {
@@ -160,22 +160,22 @@ const accordionContentInnerVariants = cva("pt-0", {
 		{
 			variant: "open",
 			size: "sm",
-			class: "cn-accordion-content-open-sm",
+			className: "cn-accordion-content-open-sm",
 		},
 		{
 			variant: "open",
 			size: "lg",
-			class: "cn-accordion-content-open-lg",
+			className: "cn-accordion-content-open-lg",
 		},
 		{
 			variant: ["box", "table"],
 			size: "sm",
-			class: "cn-accordion-content-boxed-sm",
+			className: "cn-accordion-content-boxed-sm",
 		},
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "cn-accordion-content-boxed-lg",
+			className: "cn-accordion-content-boxed-lg",
 		},
 	],
 	defaultVariants: {
