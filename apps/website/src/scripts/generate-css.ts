@@ -19,21 +19,19 @@ function generate(): void {
 
 	if (fs.existsSync(SRC_CSS)) {
 		content = fs.readFileSync(SRC_CSS, "utf-8")
-		console.log(`📖  Read source: ${SRC_CSS}`)
+		console.log(`Read source: ${SRC_CSS}`)
 	} else {
-		console.warn(
-			`⚠️   Source file not found at ${SRC_CSS}, using empty content.`
-		)
+		console.warn(`  Source file not found at ${SRC_CSS}, using empty content.`)
 		content = ""
 	}
 
-	// ❌ Remove unwanted import
+	//  Remove unwanted import
 	content = content.replace(/@import\s+["']\.\/website\.css["'];?\n?/g, "")
 
 	fs.mkdirSync(DEST_DIR, { recursive: true })
 	fs.writeFileSync(DEST_CSS, content, "utf-8")
 
-	console.log(`✅  Generated: ${DEST_CSS}`)
+	console.log(` Generated: ${DEST_CSS}`)
 }
 
 generate()
