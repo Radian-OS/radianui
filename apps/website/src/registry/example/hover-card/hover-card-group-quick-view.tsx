@@ -1,12 +1,12 @@
 import React, { SVGProps } from "react"
 import { Heart } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/registry/ui/hover-card"
+} from "@/styles/default/ui/hover-card"
 
 const organization = {
 	name: "Algorithm Aces",

@@ -12,8 +12,8 @@ import {
 	VideoIcon,
 	XIcon,
 } from "lucide-react"
-import { Button, IconButton } from "@/registry/ui/button"
-import { formatBytes, useFileUpload } from "@/registry/ui/file-upload"
+import { Button, IconButton } from "@/styles/default/ui/button"
+import { formatBytes, useFileUpload } from "@/styles/default/ui/file-upload"
 
 const getFileIcon = (file: { file: File | { type: string; name: string } }) => {
 	const fileType = file.file instanceof File ? file.file.type : file.file.type

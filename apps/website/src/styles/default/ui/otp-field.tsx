@@ -20,7 +20,7 @@ type OTPHiddenInputProps = React.ComponentPropsWithoutRef<
 
 const otpInputVariants = cva(
 	cn(
-		"cn-otp-input inline-flex appearance-none items-center justify-center text-center p-0 leading-none outline-none outline-hidden",
+		"inline-flex appearance-none items-center justify-center text-center p-0 leading-none outline-none outline-hidden",
 		"group-aria-invalid:border-error group-aria-invalid:ring-error group-aria-invalid:focus-visible:ring-error-focus group-aria-invalid:focus-visible:border-error-hover",
 		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error [[data-invalid=true]_&]:focus-visible:ring-error-focus [[data-invalid=true]_&]:focus-visible:border-error-hover"
 	),
@@ -77,7 +77,11 @@ function OTPInput({ className, ...props }: OTPInputProps) {
 	return (
 		<OneTimePasswordFieldPrimitive.Input
 			data-slot="otp-input"
-			className={cn(otpInputVariants({ size }), className)}
+			className={cn(
+				otpInputVariants({ size }),
+				"bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-lg border font-semibold",
+				className
+			)}
 			{...props}
 		/>
 	)

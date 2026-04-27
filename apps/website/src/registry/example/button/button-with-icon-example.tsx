@@ -1,6 +1,6 @@
 import React from "react"
 import { RefreshCcw, UserPlus } from "lucide-react"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 function ButtonWithIconExample() {
 	return (

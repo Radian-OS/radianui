@@ -2,7 +2,7 @@ import {
 	ResizableHandle,
 	ResizablePanel,
 	ResizablePanelGroup,
-} from "@/registry/ui/resizable"
+} from "@/styles/default/ui/resizable"
 
 const ResizableExample = () => {
 	return (

@@ -1,5 +1,5 @@
 import React from "react"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogClose,
@@ -9,7 +9,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@/registry/ui/dialog"
+} from "@/styles/default/ui/dialog"
 
 export default function DialogDestructive() {
 	return (

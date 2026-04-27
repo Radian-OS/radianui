@@ -1,8 +1,8 @@
 "use client"
 
 import React, { useState } from "react"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 const ColorInput = () => {
 	const [color, setColor] = useState("#623df5")

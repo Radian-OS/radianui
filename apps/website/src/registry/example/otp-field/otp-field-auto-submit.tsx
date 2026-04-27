@@ -13,8 +13,12 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/registry/ui/form"
-import { OTPField, OTPHiddenInput, OTPInput } from "@/registry/ui/otp-field"
+} from "@/styles/default/ui/form"
+import {
+	OTPField,
+	OTPHiddenInput,
+	OTPInput,
+} from "@/styles/default/ui/otp-field"
 
 const FormSchema = z.object({
 	pin: z.string().min(6, {

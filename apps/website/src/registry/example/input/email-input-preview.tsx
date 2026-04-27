@@ -4,8 +4,8 @@ import {
 	InputAddon,
 	InputGroup,
 	InputWrapper,
-} from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+} from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 const EmailPreview = () => {
 	return (

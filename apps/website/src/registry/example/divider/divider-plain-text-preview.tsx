@@ -1,7 +1,7 @@
 import React from "react"
 import { Mail } from "lucide-react"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 
 function DividerTextPreview() {
 	return (

@@ -7,9 +7,9 @@ import Link from "next/link"
 import { FieldValues, useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
-import { Button } from "@/registry/ui/button"
-import { Checkbox } from "@/registry/ui/checkbox"
+import { Alert, AlertIcon, AlertTitle } from "@/styles/default/ui/alert"
+import { Button } from "@/styles/default/ui/button"
+import { Checkbox } from "@/styles/default/ui/checkbox"
 import {
 	Form,
 	FormControl,
@@ -17,8 +17,8 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/registry/ui/form"
-import { Input, InputWrapper } from "@/registry/ui/input"
+} from "@/styles/default/ui/form"
+import { Input, InputWrapper } from "@/styles/default/ui/input"
 
 const FormSchema = z.object({
 	email: z.email("Please enter a valid email address"),

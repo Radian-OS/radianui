@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 import {
 	Table,
 	TableBody,
@@ -8,7 +8,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/registry/ui/table"
+} from "@/styles/default/ui/table"
 
 type PersonData = {
 	name: string

@@ -8,11 +8,9 @@ import { cn } from "@/lib/utils"
 export type ResizablePanelGroupProps = React.ComponentProps<
 	typeof ResizablePrimitive.PanelGroup
 >
-
 export type ResizablePanelProps = React.ComponentProps<
 	typeof ResizablePrimitive.Panel
 >
-
 export type ResizableHandleProps = React.ComponentProps<
 	typeof ResizablePrimitive.PanelResizeHandle
 > & {
@@ -34,13 +32,11 @@ function ResizablePanelGroup({
 		/>
 	)
 }
-
 ResizablePanelGroup.displayName = "ResizablePanelGroup"
 
 function ResizablePanel({ ...props }: ResizablePanelProps) {
 	return <ResizablePrimitive.Panel data-slot="resizable-panel" {...props} />
 }
-
 ResizablePanel.displayName = "ResizablePanel"
 
 function ResizableHandle({
@@ -52,7 +48,7 @@ function ResizableHandle({
 		<ResizablePrimitive.PanelResizeHandle
 			data-slot="resizable-handle"
 			className={cn(
-				"bg-border focus-visible:ring-ring focus-visible:outline-hidden relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90",
+				"focus-visible:outline-hidden bg-border relative flex w-px items-center justify-center after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2 focus-visible:ring-1 focus-visible:ring-offset-1 data-[panel-group-direction=vertical]:h-px data-[panel-group-direction=vertical]:w-full data-[panel-group-direction=vertical]:after:left-0 data-[panel-group-direction=vertical]:after:h-1 data-[panel-group-direction=vertical]:after:w-full data-[panel-group-direction=vertical]:after:-translate-y-1/2 data-[panel-group-direction=vertical]:after:translate-x-0 [&[data-panel-group-direction=vertical]>div]:rotate-90",
 				className
 			)}
 			{...props}>

@@ -3,7 +3,7 @@
 import React from "react"
 import { Box, XIcon } from "lucide-react"
 import { toast } from "sonner"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 const ToastPlacement = () => {
 	return (

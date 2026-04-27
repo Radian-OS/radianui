@@ -32,9 +32,7 @@ function PaginationContent({ className, ...props }: PaginationContentProps) {
 PaginationContent.displayName = "PaginationContent"
 
 function PaginationItem({ className, ...props }: PaginationItemProps) {
-	return (
-		<li data-slot="pagination-item" className={cn("", className)} {...props} />
-	)
+	return <li data-slot="pagination-item" className={cn(className)} {...props} />
 }
 PaginationItem.displayName = "PaginationItem"
 

@@ -1,4 +1,4 @@
-import { Skeleton } from "@/registry/ui/skeleton"
+import { Skeleton } from "@/styles/default/ui/skeleton"
 
 export default function SkeletonPreview() {
 	return (

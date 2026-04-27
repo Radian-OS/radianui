@@ -9,8 +9,8 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from "@/registry/ui/alert-dialog"
-import { Button } from "@/registry/ui/button"
+} from "@/styles/default/ui/alert-dialog"
+import { Button } from "@/styles/default/ui/button"
 
 export default function DestructiveDialogCenter() {
 	return (

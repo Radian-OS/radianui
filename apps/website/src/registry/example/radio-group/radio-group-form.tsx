@@ -5,8 +5,8 @@ import { CheckCircle } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Alert, AlertIcon, AlertTitle } from "@/registry/ui/alert"
-import { Button } from "@/registry/ui/button"
+import { Alert, AlertIcon, AlertTitle } from "@/styles/default/ui/alert"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Form,
 	FormControl,
@@ -15,9 +15,9 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/registry/ui/form"
-import { Label } from "@/registry/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
+} from "@/styles/default/ui/form"
+import { Label } from "@/styles/default/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/styles/default/ui/radio-group"
 
 const options = [
 	{ id: "m3", label: "M3" },

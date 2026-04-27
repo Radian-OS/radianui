@@ -1,8 +1,13 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { CodeArea } from "@/registry/ui/code-area"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { CodeArea } from "@/styles/default/ui/code-area"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 type PackageManager = "pnpm" | "npm" | "yarn" | "bun"
 

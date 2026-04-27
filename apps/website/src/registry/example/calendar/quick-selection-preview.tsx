@@ -4,7 +4,7 @@ import * as React from "react"
 import { subDays, subMonths } from "date-fns"
 import { Check } from "lucide-react"
 import { DateRange } from "react-day-picker"
-import { Calendar } from "@/registry/ui/calendar"
+import { Calendar } from "@/styles/default/ui/calendar"
 
 const today = new Date()
 const SHORTCUTS = [

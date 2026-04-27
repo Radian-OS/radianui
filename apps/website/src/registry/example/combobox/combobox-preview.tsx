@@ -4,7 +4,7 @@ import React from "react"
 import * as Flags from "country-flag-icons/react/3x2"
 import { Check, ChevronDown } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Command,
 	CommandEmpty,
@@ -12,8 +12,12 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/registry/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+} from "@/styles/default/ui/command"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 // const countries = [
 // 	{ code: "AF", name: "Afghanistan", flag: <Flags.AF /> },

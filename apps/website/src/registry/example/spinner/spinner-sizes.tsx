@@ -1,4 +1,4 @@
-import { Spinner } from "@/registry/ui/spinner"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 const sizes = [28, 32, 36, 40, 44, 48]
 

@@ -1,12 +1,12 @@
 import React, { SVGProps } from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/registry/ui/hover-card"
+} from "@/styles/default/ui/hover-card"
 
 const profile = {
 	name: "Zoya Petrova",

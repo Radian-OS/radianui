@@ -98,7 +98,8 @@ function DialogContent({
 							type="button"
 							className={cn(
 								"focus-visible:ring-offset-bg text-fg-tertiary hover:bg-fill2 focus-visible:ring-border absolute right-3 top-3 box-border inline-flex h-6 w-6 items-center justify-center whitespace-nowrap rounded-md bg-transparent font-medium hover:cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 [&>svg]:!h-4 [&>svg]:!w-4",
-								closeButton === "hover" && "cn-dialog-close-button-hover"
+								closeButton === "hover" &&
+									"opacity-0 transition-opacity group-hover:opacity-100"
 							)}
 							aria-label="Close">
 							<X />
@@ -129,9 +130,7 @@ function DialogBody({
 	className,
 	...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-	return (
-		<div data-slot="dialog-body" className={cn("", className)} {...props} />
-	)
+	return <div data-slot="dialog-body" className={cn(className)} {...props} />
 }
 DialogBody.displayName = "DialogBody"
 

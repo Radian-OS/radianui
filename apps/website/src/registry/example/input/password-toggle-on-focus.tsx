@@ -2,8 +2,8 @@
 
 import React, { useState } from "react"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
-import { Input, InputWrapper } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 export default function PasswordToggleOnFocus() {
 	const [showPassword, setShowPassword] = useState(false)

@@ -4,16 +4,16 @@ import React, { useState } from "react"
 import { Check, ChevronDown } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
-import { Badge } from "@/registry/ui/badge"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button, IconButton } from "@/styles/default/ui/button"
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from "@/registry/ui/collapsible"
-import { Divider } from "@/registry/ui/divider"
-import { Progress } from "@/registry/ui/progress"
-import { Spinner } from "@/registry/ui/spinner"
+} from "@/styles/default/ui/collapsible"
+import { Divider } from "@/styles/default/ui/divider"
+import { Progress } from "@/styles/default/ui/progress"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 type TaskStatus = "completed" | "in-progress" | "queued"
 

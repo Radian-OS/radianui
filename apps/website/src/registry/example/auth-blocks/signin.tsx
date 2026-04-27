@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/registry/ui/button"
-import { Checkbox } from "@/registry/ui/checkbox"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Button } from "@/styles/default/ui/button"
+import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 const SignIn = () => {
 	const handleSubmitClick = () => {

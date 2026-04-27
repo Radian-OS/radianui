@@ -1,7 +1,7 @@
 "use client"
 
 import { toast } from "sonner"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 const ToastPreview = () => {
 	return (

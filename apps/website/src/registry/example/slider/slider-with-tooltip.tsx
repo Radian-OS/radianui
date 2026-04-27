@@ -1,8 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { Slider, SliderThumb } from "@/registry/ui/slider"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+import { Slider, SliderThumb } from "@/styles/default/ui/slider"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
 
 export default function SlideWithTooltip() {
 	const [value, setValue] = React.useState(50)

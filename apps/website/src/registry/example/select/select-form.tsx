@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import * as z from "zod"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Form,
 	FormControl,
@@ -13,14 +13,14 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/registry/ui/form"
+} from "@/styles/default/ui/form"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/registry/ui/select"
+} from "@/styles/default/ui/select"
 
 const FormSchema = z.object({
 	role: z.string().min(1, { error: "Please select a role" }),

@@ -1,7 +1,11 @@
 import React from "react"
 import { Moon, Sun } from "lucide-react"
-import { Button } from "@/registry/ui/button"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+import { Button } from "@/styles/default/ui/button"
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from "@/styles/default/ui/tooltip"
 
 export default function TooltipTheme() {
 	return (

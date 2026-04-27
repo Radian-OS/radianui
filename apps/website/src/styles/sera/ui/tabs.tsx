@@ -53,32 +53,34 @@ const tabsListStyles = cva(
 			{
 				size: ["sm", "md", "lg"],
 				variant: "default",
-				className: "cn-tabs-list-default-padded",
+				className: "p-1",
 			},
 			{
 				size: "sm",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-md",
+				className: "rounded-none",
 			},
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-md",
+				className: "rounded-none",
 			},
 			{
 				size: "lg",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-lg",
+				className: "rounded-none",
 			},
 			{
 				size: ["sm", "md"],
 				variant: "open",
-				className: "cn-tabs-list-open-gap-sm",
+				className:
+					"data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "cn-tabs-list-open-gap-lg",
+				className:
+					"data-[orientation=horizontal]:gap-5 data-[orientation=vertical]:gap-4",
 			},
 		],
 	}
@@ -108,78 +110,80 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-sm h-full",
+				className: "h-full rounded-none px-2 py-1",
 			},
 			{
 				size: "md",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-md h-full",
+				className: "h-full rounded-none px-3 py-1.5",
 			},
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-lg h-full",
+				className: "h-full rounded-none px-4 py-2",
 			},
 			{
 				size: "sm",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-sm data-[orientation=horizontal]:h-7",
+				className: "data-[orientation=horizontal]:h-7 p-2",
 			},
 			{
 				size: "md",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-md",
+				className: "p-2.5",
 			},
 			{
 				size: "lg",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-lg",
+				className: "p-3.5",
 			},
 			{
 				size: "sm",
 				variant: "open",
-				className: "cn-tabs-trigger-open-sm h-7",
-			},
-			{
-				size: "md",
-				variant: "open",
-				className: "cn-tabs-trigger-open-md h-9",
-			},
-			{
-				size: "lg",
-				variant: "open",
-				className: "cn-tabs-trigger-open-lg h-11",
-			},
-			{
-				size: "sm",
-				variant: "outline",
-				className: "cn-tabs-trigger-outline-sm",
-			},
-			{
-				size: "md",
-				variant: "outline",
-				className: "cn-tabs-trigger-outline-md",
-			},
-			{
-				size: "lg",
-				variant: "outline",
 				className:
-					"cn-tabs-trigger-outline-lg data-[orientation=horizontal]:h-11",
+					"h-7 data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2",
+			},
+			{
+				size: "md",
+				variant: "open",
+				className:
+					"h-9 data-[orientation=horizontal]:py-2.5 data-[orientation=vertical]:px-2.5",
+			},
+			{
+				size: "lg",
+				variant: "open",
+				className:
+					"h-11 data-[orientation=horizontal]:py-3.5 data-[orientation=vertical]:px-3.5",
+			},
+			{
+				size: "sm",
+				variant: "outline",
+				className: "rounded-none",
+			},
+			{
+				size: "md",
+				variant: "outline",
+				className: "rounded-none",
+			},
+			{
+				size: "lg",
+				variant: "outline",
+				className: "data-[orientation=horizontal]:h-11 rounded-none",
 			},
 			{
 				size: "sm",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-sm",
+				className: "data-[state=active]:rounded-none",
 			},
 			{
 				size: "md",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-md h-full",
+				className: "h-full data-[state=active]:rounded-none",
 			},
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-lg h-full",
+				className: "h-full data-[state=active]:rounded-none",
 			},
 		],
 		defaultVariants: {

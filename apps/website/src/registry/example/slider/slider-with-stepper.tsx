@@ -2,8 +2,8 @@
 
 import * as React from "react"
 import { Minus, Plus } from "lucide-react"
-import { IconButton } from "@/registry/ui/button"
-import { Slider, SliderThumb } from "@/registry/ui/slider"
+import { IconButton } from "@/styles/default/ui/button"
+import { Slider, SliderThumb } from "@/styles/default/ui/slider"
 
 export default function SliderWithStepper() {
 	const [value, setValue] = React.useState(50)

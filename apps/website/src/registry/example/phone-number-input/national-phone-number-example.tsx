@@ -10,7 +10,7 @@ import {
 	usePhoneInput,
 } from "react-international-phone"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Command,
 	CommandEmpty,
@@ -18,11 +18,15 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/registry/ui/command"
-import { Input, InputGroup } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
-import { ScrollArea, ScrollBar } from "@/registry/ui/scroll-area"
+} from "@/styles/default/ui/command"
+import { Input, InputGroup } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
+import { ScrollArea, ScrollBar } from "@/styles/default/ui/scroll-area"
 
 function InternationalPhone() {
 	const [internalValue, setInternalValue] = useState<string>("")

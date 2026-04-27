@@ -3,8 +3,8 @@
 import { useState } from "react"
 import { Check, Clipboard, Terminal } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { IconButton } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
+import { IconButton } from "@/styles/default/ui/button"
+import { CodeArea } from "@/styles/default/ui/code-area"
 
 export function useCopyPaste(code: string) {
 	const [copied, setCopied] = useState(false)

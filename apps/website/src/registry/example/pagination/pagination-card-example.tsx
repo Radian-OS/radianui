@@ -6,14 +6,14 @@ import {
 	ChevronRight,
 } from "lucide-react"
 import Link from "next/link"
-import { IconButton } from "@/registry/ui/button"
-import { Card } from "@/registry/ui/card"
+import { IconButton } from "@/styles/default/ui/button"
+import { Card } from "@/styles/default/ui/card"
 import {
 	Pagination,
 	PaginationContent,
 	PaginationEllipsis,
 	PaginationItem,
-} from "@/registry/ui/pagination"
+} from "@/styles/default/ui/pagination"
 
 const PaginationCardExample = () => {
 	return (

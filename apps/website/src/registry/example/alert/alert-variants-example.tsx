@@ -6,7 +6,7 @@ import {
 	AlertDescription,
 	AlertIcon,
 	AlertTitle,
-} from "@/registry/ui/alert"
+} from "@/styles/default/ui/alert"
 
 const AlertVariantsExample = () => {
 	return (

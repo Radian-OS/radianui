@@ -1,4 +1,4 @@
-import { Slider, SliderThumb } from "@/registry/ui/slider"
+import { Slider, SliderThumb } from "@/styles/default/ui/slider"
 
 const SliderPreview = () => {
 	return (

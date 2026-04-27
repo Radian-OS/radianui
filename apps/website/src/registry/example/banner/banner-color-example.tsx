@@ -12,7 +12,7 @@ import {
 	BannerDescription,
 	BannerIcon,
 	BannerTitle,
-} from "@/registry/ui/banner"
+} from "@/styles/default/ui/banner"
 
 function BannerColorExample() {
 	return (

@@ -7,13 +7,13 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@/registry/ui/breadcrumb"
+} from "@/styles/default/ui/breadcrumb"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 function BreadCrumbPreview() {
 	return (

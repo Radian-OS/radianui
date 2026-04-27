@@ -1,5 +1,5 @@
 import React from "react"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 
 function BadgeSizeExample() {
 	return (

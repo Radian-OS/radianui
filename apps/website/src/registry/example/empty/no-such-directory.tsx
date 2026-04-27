@@ -5,7 +5,7 @@ import {
 	EmptyHeader,
 	EmptyMedia,
 	EmptyTitle,
-} from "@/registry/ui/empty"
+} from "@/styles/default/ui/empty"
 
 export default function NoSuchDirectory() {
 	return (

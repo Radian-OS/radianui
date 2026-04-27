@@ -1,12 +1,12 @@
 import React, { SVGProps } from "react"
 import Image from "next/image"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Button } from "@/styles/default/ui/button"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/registry/ui/hover-card"
+} from "@/styles/default/ui/hover-card"
 
 const profile = {
 	name: "Kaelin Tristian",

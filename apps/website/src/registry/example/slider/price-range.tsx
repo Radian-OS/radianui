@@ -5,7 +5,7 @@ import { PoundSterling } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Form,
 	FormControl,
@@ -13,10 +13,10 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from "@/registry/ui/form"
-import { Input, InputWrapper } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Slider, SliderThumb } from "@/registry/ui/slider"
+} from "@/styles/default/ui/form"
+import { Input, InputWrapper } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
+import { Slider, SliderThumb } from "@/styles/default/ui/slider"
 
 const MIN_PRICE = 100
 const MAX_PRICE = 2000

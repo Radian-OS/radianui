@@ -247,7 +247,7 @@ function AccordionTrigger({
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
-					"cn-accordion-trigger",
+					"text-fg",
 					accordionTriggerVariants({ variant, size, indicator }),
 					className
 				)}
@@ -281,11 +281,11 @@ function AccordionContent({
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames("cn-accordion-content", accordionContentVariants())}
+			className={classNames("text-fg-secondary", accordionContentVariants())}
 			{...props}>
 			<div
 				className={classNames(
-					"cn-accordion-content-inner",
+					"pt-0",
 					accordionContentInnerVariants({ variant, size }),
 					className
 				)}>

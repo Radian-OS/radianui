@@ -3,11 +3,15 @@
 import * as React from "react"
 import { format, setHours, setMinutes, setSeconds } from "date-fns"
 import { Calendar as CalendarIcon, ClockIcon } from "lucide-react"
-import { Button } from "@/registry/ui/button"
-import { Calendar } from "@/registry/ui/calendar"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Button } from "@/styles/default/ui/button"
+import { Calendar } from "@/styles/default/ui/calendar"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 export default function DatePickerWithTimeExample() {
 	const today = new Date()

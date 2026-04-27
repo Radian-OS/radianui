@@ -1,6 +1,6 @@
 import React from "react"
 import { CheckCircle, FileStack, Link, ShieldAlert } from "lucide-react"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Card,
 	CardContent,
@@ -8,7 +8,7 @@ import {
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "@/registry/ui/card"
+} from "@/styles/default/ui/card"
 
 const CardInfoExample = () => {
 	return (

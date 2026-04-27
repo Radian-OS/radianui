@@ -41,95 +41,119 @@ const alertVariants = cva(
 		},
 		compoundVariants: [
 			// Soft variants
-			{ color: "neutral", variant: "soft", className: "cn-alert-soft-neutral" },
-			{ color: "primary", variant: "soft", className: "cn-alert-soft-primary" },
-			{ color: "info", variant: "soft", className: "cn-alert-soft-info" },
-			{ color: "success", variant: "soft", className: "cn-alert-soft-success" },
-			{ color: "error", variant: "soft", className: "cn-alert-soft-error" },
-			{ color: "warning", variant: "soft", className: "cn-alert-soft-warning" },
+			{ color: "neutral", variant: "soft", className: "bg-fill2" },
+			{
+				color: "primary",
+				variant: "soft",
+				className: "bg-primary-accent text-primary-text",
+			},
+			{
+				color: "info",
+				variant: "soft",
+				className: "bg-info-accent text-info-text",
+			},
+			{
+				color: "success",
+				variant: "soft",
+				className: "bg-success-accent text-success-text",
+			},
+			{
+				color: "error",
+				variant: "soft",
+				className: "bg-error-accent text-error-text",
+			},
+			{
+				color: "warning",
+				variant: "soft",
+				className: "bg-warning-accent text-warning-text",
+			},
 
 			// Strong variants
 			{
 				color: "neutral",
 				variant: "strong",
-				className: "cn-alert-strong-neutral",
+				className: "bg-black-inverse text-white-inverse",
 			},
 			{
 				color: "primary",
 				variant: "strong",
-				className: "cn-alert-strong-primary",
+				className: "bg-primary text-primary-fg",
 			},
-			{ color: "info", variant: "strong", className: "cn-alert-strong-info" },
+			{ color: "info", variant: "strong", className: "bg-info text-white" },
 			{
 				color: "warning",
 				variant: "strong",
-				className: "cn-alert-strong-warning",
+				className: "bg-warning text-white",
 			},
-			{ color: "error", variant: "strong", className: "cn-alert-strong-error" },
+			{ color: "error", variant: "strong", className: "bg-error text-white" },
 			{
 				color: "success",
 				variant: "strong",
-				className: "cn-alert-strong-success",
+				className: "bg-success text-white",
 			},
 
 			// Soft-outline variants
 			{
 				color: "neutral",
 				variant: "soft-outline",
-				className: "cn-alert-soft-outline-neutral",
+				className: "bg-fill2 border-border",
 			},
 			{
 				color: "primary",
 				variant: "soft-outline",
-				className: "cn-alert-soft-outline-primary",
+				className: "bg-primary-accent text-primary-text border-primary-border",
 			},
 			{
 				color: "info",
 				variant: "soft-outline",
-				className: "cn-alert-soft-outline-info",
+				className: "bg-info-accent text-info-text border-info-border",
 			},
 			{
 				color: "success",
 				variant: "soft-outline",
-				className: "cn-alert-soft-outline-success",
+				className: "bg-success-accent text-success-text border-success-border",
 			},
 			{
 				color: "error",
 				variant: "soft-outline",
-				className: "cn-alert-soft-outline-error",
+				className: "bg-error-accent text-error-text border-error-border",
 			},
 			{
 				color: "warning",
 				variant: "soft-outline",
-				className: "cn-alert-soft-outline-warning",
+				className: "bg-warning-accent text-warning-text border-warning-border",
 			},
 
 			// Outline variants
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "cn-alert-outline-neutral",
+				className: "text-fg bg-transparent",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "cn-alert-outline-primary",
+				className: "text-primary-text bg-transparent",
 			},
-			{ color: "info", variant: "outline", className: "cn-alert-outline-info" },
+			{
+				color: "info",
+				variant: "outline",
+				className: "text-info-text bg-transparent",
+			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "cn-alert-outline-success",
+				className: "text-success-text bg-transparent",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "cn-alert-outline-error",
+				className: "text-error-text bg-transparent",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "cn-alert-outline-warning",
+				className: "text-warning-text bg-transparent",
 			},
 		],
 		defaultVariants: {

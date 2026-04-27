@@ -5,16 +5,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import { z } from "zod"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Form,
 	FormControl,
 	FormDescription,
 	FormField,
 	FormItem,
-} from "@/registry/ui/form"
-import { Label } from "@/registry/ui/label"
-import { Switch } from "@/registry/ui/switch"
+} from "@/styles/default/ui/form"
+import { Label } from "@/styles/default/ui/label"
+import { Switch } from "@/styles/default/ui/switch"
 
 const FormSchema = z.object({
 	marketing_emails: z.boolean().default(false).optional(),
