@@ -37,7 +37,7 @@ import {
 	AccordionProps,
 	AccordionTrigger,
 	AccordionTriggerProps,
-} from "@/registry/ui/accordion"
+} from "@/styles/default/ui/accordion"
 import {
 	Alert,
 	AlertContent,
@@ -45,9 +45,14 @@ import {
 	AlertIcon,
 	AlertProps,
 	AlertTitle,
-} from "@/registry/ui/alert"
-import { Divider } from "@/registry/ui/divider"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+} from "@/styles/default/ui/alert"
+import { Divider } from "@/styles/default/ui/divider"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 import { CodeBlockCommandServer } from "./code-block-command-server"
 import { CodeCollapsibleFileWrapper } from "./code-collapsible-file-wrapper"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"

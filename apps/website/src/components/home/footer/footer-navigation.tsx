@@ -7,8 +7,8 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@/registry/ui/accordion"
-import { Badge } from "@/registry/ui/badge"
+} from "@/styles/default/ui/accordion"
+import { Badge } from "@/styles/default/ui/badge"
 
 interface LinkItem {
 	href: string

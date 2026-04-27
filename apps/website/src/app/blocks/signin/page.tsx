@@ -3,11 +3,11 @@ import Link from "next/link"
 import { GithubIcon } from "@/components/home/block/components/github-icon"
 import { GoogleIcon } from "@/components/home/block/components/google-icon"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { Checkbox } from "@/registry/ui/checkbox"
-import { Divider } from "@/registry/ui/divider"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Button } from "@/styles/default/ui/button"
+import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Divider } from "@/styles/default/ui/divider"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 interface SigninProps {
 	fullScreen?: boolean

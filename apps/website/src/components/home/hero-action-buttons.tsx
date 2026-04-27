@@ -4,7 +4,7 @@ import { Check } from "lucide-react"
 import Link from "next/link"
 import { toast } from "sonner"
 import { useCopyPasteSimple } from "@/hooks/use-copy-paste-simple"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 const TERMINAL_COMMAND = "pnpm dlx radianui@latest init"
 

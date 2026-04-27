@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { BoxIcon, GitPullRequestArrow, PencilRuler } from "lucide-react"
 import { motion } from "motion/react"
 import Image from "next/image"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
 
 const data = [
 	{

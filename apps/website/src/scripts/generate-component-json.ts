@@ -1,6 +1,7 @@
 import fs from "fs-extra"
 import path from "path"
 import { Project, SourceFile } from "ts-morph"
+import { formatCode } from "@/lib/format-code"
 
 export type RegistryType = "ui" | "component" | "page" | "hook" | "animated"
 
@@ -31,7 +32,7 @@ const IGNORED_DEPENDENCIES = [
 	"next",
 ]
 
-const UI_DIRECTORY_PATH = path.resolve("src/registry/ui")
+const UI_DIRECTORY_PATH = path.resolve("src/styles/default/ui")
 // const ANIMATED_UI_DIRECTORY_PATH = path.resolve("src/registry/animated")
 const REGISTRY_PATH = path.resolve("src/app/api/components/components.json")
 
@@ -157,7 +158,7 @@ async function writeComponentJSON() {
 			// Create the registry file object
 			const registryFile: RegistryFile = {
 				name: component.name,
-				content: content,
+				content: formatCode(content),
 				type: component.type,
 			}
 

@@ -1,6 +1,11 @@
 import React, { Suspense } from "react"
 import registry from "@/registry/registry-map"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 import { ComponentPreviewDemo } from "./component-preview-demo"
 import { ComponentSource } from "./component-source"
 import { DisplayBlock } from "./display-block"

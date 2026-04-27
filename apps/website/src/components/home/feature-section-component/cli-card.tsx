@@ -1,6 +1,6 @@
 import React from "react"
-import { Skeleton } from "@/registry/ui/skeleton"
-import { Spinner } from "@/registry/ui/spinner"
+import { Skeleton } from "@/styles/default/ui/skeleton"
+import { Spinner } from "@/styles/default/ui/spinner"
 import { BentoCardGrid } from "../features-section"
 
 interface FlowCardProps {

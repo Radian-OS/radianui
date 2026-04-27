@@ -2,10 +2,10 @@ import { GmailIcon } from "@/components/home/gmail-icon"
 import { OutlookIcon } from "@/components/home/outlook-icon"
 import Logo from "@/components/home/playground-logo"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 interface VerificationProps {
 	fullScreen?: boolean

@@ -1,6 +1,6 @@
 import React from "react"
 import { ColorOption, usePlayground } from "@/contexts/playground"
-import { IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -8,7 +8,7 @@ import {
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 export const COLORS = [
 	{ title: "Red", value: "red" },

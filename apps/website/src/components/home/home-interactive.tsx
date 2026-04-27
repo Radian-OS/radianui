@@ -8,16 +8,21 @@ import PasswordReset from "@/app/blocks/password-reset/page"
 import Signin from "@/app/blocks/signin/page"
 import Signup from "@/app/blocks/signup/page"
 import Verification from "@/app/blocks/verification/page"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+} from "@/styles/default/ui/dropdown"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 const PAGES = [
 	{

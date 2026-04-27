@@ -1,7 +1,7 @@
 import React from "react"
 import { Rocket } from "lucide-react"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 import InvertedSectionItems from "./inverted-section/inverted-section-items"
 import PlaygroundLogo from "./playground-logo"
 

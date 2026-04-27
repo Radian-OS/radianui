@@ -1,7 +1,7 @@
 import * as React from "react"
 import { SVGProps } from "react"
 import Link from "next/link"
-import { Button, IconButton } from "@/registry/ui/button"
+import { Button, IconButton } from "@/styles/default/ui/button"
 
 const Logo = (props: SVGProps<SVGSVGElement>) => (
 	<svg

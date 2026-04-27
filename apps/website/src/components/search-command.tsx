@@ -3,8 +3,8 @@ import { ArrowDown, ArrowUp, Search, X } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { NavigationItem } from "@/config/navigation-config"
-import { Badge } from "@/registry/ui/badge"
-import { DialogClose } from "@/registry/ui/dialog"
+import { Badge } from "@/styles/default/ui/badge"
+import { DialogClose } from "@/styles/default/ui/dialog"
 
 type Props = {
 	searchTerm: string

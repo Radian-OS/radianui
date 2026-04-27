@@ -3,8 +3,13 @@
 import { useState } from "react"
 import { Maximize } from "lucide-react"
 import Link from "next/link"
-import { IconButton } from "@/registry/ui/button"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { IconButton } from "@/styles/default/ui/button"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 import { BlockCodeTree } from "./block/block-code-tree"
 import { BlockPreview } from "./block/block-preview"
 import { FileTreeNode, FlatFile } from "./file-tree-wrapper"

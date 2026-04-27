@@ -5,8 +5,8 @@ import { Check, Clipboard, Terminal } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useCopyPaste } from "@/hooks/use-copy-paste"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
-import { CodeArea } from "@/registry/ui/code-area"
+import { Button } from "@/styles/default/ui/button"
+import { CodeArea } from "@/styles/default/ui/code-area"
 import { CodeCollapsibleWrapper } from "./code-collapsible-wrapper"
 
 interface CodeSnippetProps {

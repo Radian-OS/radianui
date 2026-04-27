@@ -5,16 +5,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { FieldValues, useForm } from "react-hook-form"
 import { z } from "zod"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
-import { Spinner } from "@/registry/ui/spinner"
+} from "@/styles/default/ui/form"
+import { Input } from "@/styles/default/ui/input"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 const formSchema = z.object({
 	email: z

@@ -77,11 +77,7 @@ function OTPInput({ className, ...props }: OTPInputProps) {
 	return (
 		<OneTimePasswordFieldPrimitive.Input
 			data-slot="otp-input"
-			className={cn(
-				otpInputVariants({ size }),
-				"bg-bg text-fg shadow-2xs border-alpha focus-visible:ring-3 focus-visible:ring-primary-focus focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-lg border font-semibold",
-				className
-			)}
+			className={cn(otpInputVariants({ size }), className)}
 			{...props}
 		/>
 	)

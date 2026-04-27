@@ -13,7 +13,7 @@ type CheckboxProps = React.ComponentProps<typeof CheckboxPrimitive.Root> &
 
 const checkboxVariants = cva(
 	cn(
-		"group peer shrink-0 border ring-offset-bg focus-visible:outline-none cn-checkbox",
+		"flex items-center justify-center group peer shrink-0 border ring-offset-bg focus-visible:outline-none cn-checkbox",
 		"focus-visible:ring-2 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
 	),
 	{

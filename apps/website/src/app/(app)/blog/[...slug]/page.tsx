@@ -4,9 +4,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { MdxBlog } from "@/components/mdx-components-blogs"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Divider } from "@/registry/ui/divider"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Badge } from "@/styles/default/ui/badge"
+import { Divider } from "@/styles/default/ui/divider"
 
 interface BlogPageProps {
 	params: Promise<{ slug: string[] }>
