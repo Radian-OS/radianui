@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
 @import "../registry/styles/style-default.css" layer(base);
 @import "../registry/styles/style-sera.css" layer(base);
 

@@ -130,7 +130,7 @@ async function transformComponentFile({
 // ---------------------------------------------------------------------------
 
 async function main() {
-	console.log("🚀 Starting style generation...")
+	console.log("Starting style generation...")
 
 	// 1. Find styles
 	const styleFiles = await fs.readdir(REGISTRY_STYLES_DIR)
@@ -138,14 +138,14 @@ async function main() {
 		.filter((f) => f.startsWith("style-") && f.endsWith(".css"))
 		.map((f) => f.replace("style-", "").replace(".css", ""))
 
-	console.log(`🎨 Found styles: ${styles.join(", ")}`)
+	console.log(`Found styles: ${styles.join(", ")}`)
 
 	// 2. Find components
 	const components = (await fs.readdir(REGISTRY_UI_DIR)).filter(
 		(f) => f.endsWith(".tsx") || f.endsWith(".ts")
 	)
 
-	console.log(`📦 Found ${components.length} components to transform`)
+	console.log(`Found ${components.length} components to transform`)
 
 	// 2.1 Read component sources once (saves IO per style) and detect cn-* usage
 	const componentSources = new Map<string, string>()
@@ -170,7 +170,7 @@ async function main() {
 
 	// 3. Process each style
 	for (const styleName of styles) {
-		console.log(`\n✨ Processing style: ${styleName}`)
+		console.log(`\n Processing style: ${styleName}`)
 
 		const { styleMap } = await loadStyleMap(styleName)
 		const styleMapSize = Object.keys(styleMap).length
@@ -178,7 +178,7 @@ async function main() {
 			Boolean(styleMap[token])
 		).length
 		console.log(
-			`   🧩 styleMap entries: ${styleMapSize} | cn tokens used: ${cnTokensInRegistry.size} | mapped: ${mappedTokenCount}`
+			`   styleMap entries: ${styleMapSize} | cn tokens used: ${cnTokensInRegistry.size} | mapped: ${mappedTokenCount}`
 		)
 		const targetDir = path.join(OUTPUT_STYLES_DIR, styleName, "ui")
 
@@ -204,7 +204,7 @@ async function main() {
 		}
 	}
 
-	console.log("\n🎉 Style generation complete!")
+	console.log("\n Style generation complete!")
 }
 
 main().catch((err) => {

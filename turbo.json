@@ -49,7 +49,15 @@
 			"dependsOn": [],
 			"outputs": []
 		},
+		"generate-styles": {
+			"dependsOn": [],
+			"outputs": []
+		},
 		"generate-css": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"generate-styles-json": {
 			"dependsOn": [],
 			"outputs": []
 		}
