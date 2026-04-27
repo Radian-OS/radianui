@@ -7,7 +7,7 @@ function AspectRatio({ className, ...props }: AspectRatioProps) {
 	return (
 		<AspectRatioPrimitive
 			data-slot="aspect-ratio"
-			className={cn("", className)}
+			className={cn(className)}
 			{...props}
 		/>
 	)

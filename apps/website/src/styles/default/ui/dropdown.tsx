@@ -143,7 +143,7 @@ function DropdownItem({ className, inset, ...props }: DropdownItemProps) {
 				"focus:bg-fill1-alpha",
 				"data-disabled:pointer-events-none data-disabled:text-fg-disabled data-disabled:[&_*]:text-fg-disabled",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				inset && "cn-dropdown-item-inset",
+				inset && "pl-9",
 				className
 			)}
 			{...props}
@@ -168,9 +168,7 @@ function DropdownCheckboxItem({
 				"focus:bg-fill2-alpha",
 				"data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				indicatorPosition === "left"
-					? "cn-dropdown-checkbox-item-indicator-left"
-					: "cn-dropdown-checkbox-item-indicator-right",
+				indicatorPosition === "left" ? "pe-2 ps-8" : "pe-8 ps-2",
 				className
 			)}
 			{...props}>
@@ -183,9 +181,7 @@ function DropdownCheckboxItem({
 					className={cn(
 						"size-5",
 						"absolute flex items-center justify-center",
-						indicatorPosition === "left"
-							? "cn-dropdown-item-indicator-left"
-							: "cn-dropdown-item-indicator-right"
+						indicatorPosition === "left" ? "start-2" : "end-2"
 					)}>
 					<DropdownMenuPrimitive.ItemIndicator>
 						<Check size={20} />
@@ -296,7 +292,7 @@ function DropdownSubTrigger({
 				"data-[state=open]:bg-fill1-alpha focus:bg-fill2-alpha",
 				"data-disabled:pointer-events-none data-disabled:opacity-50",
 				"[&_svg]:text-fg-secondary [&_svg]:pointer-events-none [&_svg]:shrink-0",
-				inset && "cn-dropdown-sub-trigger-inset",
+				inset && "pl-8",
 				className
 			)}
 			{...props}>
@@ -331,7 +327,7 @@ function DropdownLabel({ className, inset, ...props }: DropdownLabelProps) {
 			data-slot="dropdown-menu-label"
 			className={cn(
 				"text-fg-tertiary px-2 py-1.5 text-xs font-medium",
-				inset && "cn-dropdown-label-inset",
+				inset && "pl-8",
 				className
 			)}
 			{...props}

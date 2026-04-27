@@ -20,7 +20,7 @@ type OTPHiddenInputProps = React.ComponentPropsWithoutRef<
 
 const otpInputVariants = cva(
 	cn(
-		"cn-otp-input inline-flex appearance-none items-center justify-center text-center p-0 leading-none outline-none outline-hidden",
+		"inline-flex appearance-none items-center justify-center text-center p-0 leading-none outline-hidden bg-bg text-fg border-alpha focus-visible:border-primary-hover group-has-disabled:cursor-not-allowed group-has-disabled:text-fg-disabled group-has-disabled:bg-fill2-alpha group-has-disabled:placeholder:text-fg-disabled placeholder:text-fg-tertiary rounded-none border-b font-semibold shadow-none",
 		"group-aria-invalid:border-error group-aria-invalid:ring-error group-aria-invalid:focus-visible:ring-error-focus group-aria-invalid:focus-visible:border-error-hover",
 		"[[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error [[data-invalid=true]_&]:focus-visible:ring-error-focus [[data-invalid=true]_&]:focus-visible:border-error-hover"
 	),

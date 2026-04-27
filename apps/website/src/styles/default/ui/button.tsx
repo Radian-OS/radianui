@@ -105,184 +105,342 @@ export const buttonVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "cn-btn-strong-primary",
+				className:
+					"bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg font-medium",
 			},
-			{ variant: "strong", color: "info", className: "cn-btn-strong-info" },
+			{
+				variant: "strong",
+				color: "info",
+				className:
+					"bg-info hover:bg-info-hover focus-visible:ring-info font-medium text-white",
+			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "cn-btn-strong-success",
+				className:
+					"bg-success hover:bg-success-hover focus-visible:ring-success font-medium text-white",
 			},
-			{ variant: "strong", color: "error", className: "cn-btn-strong-error" },
+			{
+				variant: "strong",
+				color: "error",
+				className:
+					"bg-error hover:bg-error-hover focus-visible:ring-error font-medium text-white",
+			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "cn-btn-strong-warning",
+				className:
+					"bg-warning hover:bg-warning-hover focus-visible:ring-warning font-medium text-white",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "cn-btn-strong-neutral",
+				className:
+					"bg-black-inverse text-white-inverse hover:bg-fg-secondary focus-visible:ring-black-inverse font-medium",
 			},
 
 			// Soft
-			{ variant: "soft", color: "primary", className: "cn-btn-soft-primary" },
-			{ variant: "soft", color: "info", className: "cn-btn-soft-info" },
-			{ variant: "soft", color: "success", className: "cn-btn-soft-success" },
-			{ variant: "soft", color: "error", className: "cn-btn-soft-error" },
-			{ variant: "soft", color: "warning", className: "cn-btn-soft-warning" },
-			{ variant: "soft", color: "neutral", className: "cn-btn-soft-neutral" },
+			{
+				variant: "soft",
+				color: "primary",
+				className:
+					"bg-primary-accent text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus font-medium",
+			},
+			{
+				variant: "soft",
+				color: "info",
+				className:
+					"bg-info-accent text-info-text hover:bg-info-focus focus-visible:ring-info-focus font-medium",
+			},
+			{
+				variant: "soft",
+				color: "success",
+				className:
+					"bg-success-accent text-success-text hover:bg-success-focus focus-visible:ring-success-focus font-medium",
+			},
+			{
+				variant: "soft",
+				color: "error",
+				className:
+					"bg-error-accent text-error-text hover:bg-error-focus focus-visible:ring-error-focus font-medium",
+			},
+			{
+				variant: "soft",
+				color: "warning",
+				className:
+					"bg-warning-accent text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus font-medium",
+			},
+			{
+				variant: "soft",
+				color: "neutral",
+				className:
+					"bg-fill2 text-fg hover:bg-fill3 focus-visible:bg-bg focus-visible:ring-border font-medium",
+			},
 
 			// Outline
 			{
 				variant: "outline",
 				color: "primary",
-				className: "cn-btn-outline-primary",
+				className:
+					"border-primary-border text-primary-text hover:bg-primary-accent focus-visible:ring-primary-hover border bg-transparent font-medium",
 			},
-			{ variant: "outline", color: "info", className: "cn-btn-outline-info" },
+			{
+				variant: "outline",
+				color: "info",
+				className:
+					"border-info-border text-info-text hover:bg-info-accent focus-visible:ring-info-hover border bg-transparent font-medium",
+			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "cn-btn-outline-success",
+				className:
+					"border-success-border text-success-text hover:bg-success-accent focus-visible:ring-success-hover border bg-transparent font-medium",
 			},
-			{ variant: "outline", color: "error", className: "cn-btn-outline-error" },
+			{
+				variant: "outline",
+				color: "error",
+				className:
+					"border-error-border text-error-text hover:bg-error-accent focus-visible:ring-error-hover border bg-transparent font-medium",
+			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "cn-btn-outline-warning",
+				className:
+					"border-warning-border text-warning-text hover:bg-warning-accent focus-visible:ring-warning-hover border bg-transparent font-medium",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "cn-btn-outline-neutral",
+				className:
+					"bg-elevation-level1 text-fg border-border hover:bg-fill1-alpha focus-visible:ring-border border font-medium",
 			},
 
 			// Ghost
-			{ variant: "ghost", color: "primary", className: "cn-btn-ghost-primary" },
-			{ variant: "ghost", color: "info", className: "cn-btn-ghost-info" },
-			{ variant: "ghost", color: "success", className: "cn-btn-ghost-success" },
-			{ variant: "ghost", color: "error", className: "cn-btn-ghost-error" },
-			{ variant: "ghost", color: "warning", className: "cn-btn-ghost-warning" },
-			{ variant: "ghost", color: "neutral", className: "cn-btn-ghost-neutral" },
+			{
+				variant: "ghost",
+				color: "primary",
+				className:
+					"text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus bg-transparent font-medium",
+			},
+			{
+				variant: "ghost",
+				color: "info",
+				className:
+					"text-info-text hover:bg-info-focus focus-visible:ring-info-focus bg-transparent font-medium",
+			},
+			{
+				variant: "ghost",
+				color: "success",
+				className:
+					"text-success-text hover:bg-success-focus focus-visible:ring-success-focus bg-transparent font-medium",
+			},
+			{
+				variant: "ghost",
+				color: "error",
+				className:
+					"text-error-text hover:bg-error-focus focus-visible:ring-error-focus bg-transparent font-medium",
+			},
+			{
+				variant: "ghost",
+				color: "warning",
+				className:
+					"text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus bg-transparent font-medium",
+			},
+			{
+				variant: "ghost",
+				color: "neutral",
+				className:
+					"text-fg hover:bg-fill2 focus-visible:ring-border bg-transparent font-medium",
+			},
 
 			// Link
-			{ variant: "link", color: "primary", className: "cn-btn-link-primary" },
-			{ variant: "link", color: "info", className: "cn-btn-link-info" },
-			{ variant: "link", color: "success", className: "cn-btn-link-success" },
-			{ variant: "link", color: "error", className: "cn-btn-link-error" },
-			{ variant: "link", color: "warning", className: "cn-btn-link-warning" },
-			{ variant: "link", color: "neutral", className: "cn-btn-link-neutral" },
+			{
+				variant: "link",
+				color: "primary",
+				className:
+					"text-primary-text focus-visible:ring-primary h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "info",
+				className:
+					"text-info-text focus-visible:ring-info h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "success",
+				className:
+					"text-success-text focus-visible:ring-success h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "error",
+				className:
+					"text-error-text focus-visible:ring-error h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "warning",
+				className:
+					"text-warning-text focus-visible:ring-warning h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm",
+			},
+			{
+				variant: "link",
+				color: "neutral",
+				className:
+					"text-black-inverse focus-visible:ring-black-inverse h-auto gap-1 bg-transparent px-0 py-0 font-medium hover:underline focus-visible:rounded-sm",
+			},
 
 			// Glossy
 			{
 				variant: "glossy",
 				color: "primary",
-				className: "cn-btn-glossy-primary",
+				className:
+					"bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']",
 			},
-			{ variant: "glossy", color: "info", className: "cn-btn-glossy-info" },
+			{
+				variant: "glossy",
+				color: "info",
+				className:
+					"bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']",
+			},
 			{
 				variant: "glossy",
 				color: "success",
-				className: "cn-btn-glossy-success",
+				className:
+					"bg-success hover:bg-success-hover focus-visible:ring-success relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']",
 			},
 			{
 				variant: "glossy",
 				color: "warning",
-				className: "cn-btn-glossy-warning",
+				className:
+					"bg-warning hover:bg-warning-hover focus-visible:ring-warning relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']",
 			},
-			{ variant: "glossy", color: "error", className: "cn-btn-glossy-error" },
+			{
+				variant: "glossy",
+				color: "error",
+				className:
+					"bg-error hover:bg-error-hover focus-visible:ring-error relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-['']",
+			},
 			{
 				variant: "glossy",
 				color: "neutral",
-				className: "cn-btn-glossy-neutral",
+				className:
+					"bg-black-inverse focus-visible:ring-black-inverse text-white-inverse relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''] hover:brightness-110",
 			},
 
 			// Glossy-inverted
 			{
 				variant: "glossy-inverted",
 				color: "primary",
-				className: "cn-btn-glossy-inverted-primary",
+				className:
+					"bg-primary hover:bg-primary-hover focus-visible:ring-primary text-primary-fg relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "info",
-				className: "cn-btn-glossy-inverted-info",
+				className:
+					"bg-info hover:bg-info-hover focus-visible:ring-info relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "success",
-				className: "cn-btn-glossy-inverted-success",
+				className:
+					"bg-success hover:bg-success-hover focus-visible:ring-success relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "warning",
-				className: "cn-btn-glossy-inverted-warning",
+				className:
+					"bg-warning hover:bg-warning-hover focus-visible:ring-warning relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "error",
-				className: "cn-btn-glossy-inverted-error",
+				className:
+					"bg-error hover:bg-error-hover focus-visible:ring-error relative overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-transparent before:to-white/20 before:content-['']",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "neutral",
-				className: "cn-btn-glossy-inverted-neutral",
+				className:
+					"bg-black-inverse focus-visible:ring-black-inverse text-white-inverse relative overflow-hidden font-medium shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-x-0 before:top-0 before:h-full before:bg-gradient-to-b before:from-white/20 before:to-transparent before:content-[''] hover:brightness-110",
 			},
 
 			// Smooth
 			{
 				variant: "smooth",
 				color: "primary",
-				className: "cn-btn-smooth-primary",
+				className:
+					"focus-visible:ring-primary bg-primary after:from-primary-hover after:to-primary before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
-			{ variant: "smooth", color: "info", className: "cn-btn-smooth-info" },
+			{
+				variant: "smooth",
+				color: "info",
+				className:
+					"focus-visible:ring-info bg-info after:from-info-hover after:to-info before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
+			},
 			{
 				variant: "smooth",
 				color: "success",
-				className: "cn-btn-smooth-success",
+				className:
+					"focus-visible:ring-success bg-success after:from-success-hover after:to-success before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth",
 				color: "warning",
-				className: "cn-btn-smooth-warning",
+				className:
+					"focus-visible:ring-warning bg-warning after:from-warning-hover after:to-warning before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
-			{ variant: "smooth", color: "error", className: "cn-btn-smooth-error" },
+			{
+				variant: "smooth",
+				color: "error",
+				className:
+					"focus-visible:ring-error bg-error after:from-error-hover after:to-error before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
+			},
 			{
 				variant: "smooth",
 				color: "neutral",
-				className: "cn-btn-smooth-neutral",
+				className:
+					"text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:to-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:from-white/20 hover:opacity-95",
 			},
 
 			// Smooth-inverted
 			{
 				variant: "smooth-inverted",
 				color: "primary",
-				className: "cn-btn-smooth-inverted-primary",
+				className:
+					"focus-visible:ring-primary bg-primary after:from-primary after:to-primary-hover before:border-white/16 before:mask-b-from-98% text-primary-fg relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-primary)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "info",
-				className: "cn-btn-smooth-inverted-info",
+				className:
+					"focus-visible:ring-info bg-info after:from-info after:to-info-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-info)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "success",
-				className: "cn-btn-smooth-inverted-success",
+				className:
+					"focus-visible:ring-success bg-success after:from-success after:to-success-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-success)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "warning",
-				className: "cn-btn-smooth-inverted-warning",
+				className:
+					"focus-visible:ring-warning bg-warning after:from-warning after:to-warning-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-warning)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "error",
-				className: "cn-btn-smooth-inverted-error",
+				className:
+					"focus-visible:ring-error bg-error after:from-error after:to-error-hover before:border-white/16 before:mask-b-from-98% relative overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-error)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "neutral",
-				className: "cn-btn-smooth-inverted-neutral",
+				className:
+					"text-white-inverse focus-visible:ring-black-inverse bg-black-inverse after:from-black-inverse before:border-white-inverse/16 before:mask-b-from-98% relative overflow-hidden font-medium shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0_0_1px_var(--color-white-inverse)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border after:absolute after:inset-0 after:-z-10 after:rounded-[inherit] after:bg-gradient-to-b after:to-white/20 hover:opacity-95",
 			},
 
 			// Link loading state
@@ -422,252 +580,304 @@ export const compactButtonVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "cn-compact-btn-strong-primary",
+				className:
+					"bg-primary hover:bg-primary-hover focus-visible:ring-primary font-medium text-white",
 			},
 			{
 				variant: "strong",
 				color: "info",
-				className: "cn-compact-btn-strong-info",
+				className:
+					"bg-info hover:bg-info-hover focus-visible:ring-info font-medium text-white",
 			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "cn-compact-btn-strong-success",
+				className:
+					"bg-success hover:bg-success-hover focus-visible:ring-success font-medium text-white",
 			},
 			{
 				variant: "strong",
 				color: "error",
-				className: "cn-compact-btn-strong-error",
+				className:
+					"bg-error hover:bg-error-hover focus-visible:ring-error font-medium text-white",
 			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "cn-compact-btn-strong-warning",
+				className:
+					"bg-warning hover:bg-warning-hover focus-visible:ring-warning font-medium text-white",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "cn-compact-btn-strong-neutral",
+				className:
+					"bg-black-inverse text-white-inverse hover:bg-fg-secondary focus-visible:ring-black-inverse font-medium",
 			},
 
 			// Soft
 			{
 				variant: "soft",
 				color: "primary",
-				className: "cn-compact-btn-soft-primary",
+				className:
+					"bg-primary-accent text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus font-medium",
 			},
-			{ variant: "soft", color: "info", className: "cn-compact-btn-soft-info" },
+			{
+				variant: "soft",
+				color: "info",
+				className:
+					"bg-info-accent text-info-text hover:bg-info-focus focus-visible:ring-info-focus font-medium",
+			},
 			{
 				variant: "soft",
 				color: "success",
-				className: "cn-compact-btn-soft-success",
+				className:
+					"bg-success-accent text-success-text hover:bg-success-focus focus-visible:ring-success-focus font-medium",
 			},
 			{
 				variant: "soft",
 				color: "error",
-				className: "cn-compact-btn-soft-error",
+				className:
+					"bg-error-accent text-error-text hover:bg-error-focus focus-visible:ring-error-focus font-medium",
 			},
 			{
 				variant: "soft",
 				color: "warning",
-				className: "cn-compact-btn-soft-warning",
+				className:
+					"bg-warning-accent text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus font-medium",
 			},
 			{
 				variant: "soft",
 				color: "neutral",
-				className: "cn-compact-btn-soft-neutral",
+				className:
+					"bg-fill2 text-fg-secondary hover:bg-fill1-alpha focus-visible:bg-bg focus-visible:ring-border font-medium",
 			},
 
 			// Outline
 			{
 				variant: "outline",
 				color: "primary",
-				className: "cn-compact-btn-outline-primary",
+				className:
+					"border-primary-hover text-primary-text hover:bg-primary-accent focus-visible:ring-primary-hover border bg-transparent font-medium",
 			},
 			{
 				variant: "outline",
 				color: "info",
-				className: "cn-compact-btn-outline-info",
+				className:
+					"border-info-hover text-info-text hover:bg-info-accent focus-visible:ring-info-hover border bg-transparent font-medium",
 			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "cn-compact-btn-outline-success",
+				className:
+					"border-success-hover text-success-text hover:bg-success-accent focus-visible:ring-success-hover border bg-transparent font-medium",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "cn-compact-btn-outline-error",
+				className:
+					"border-error-hover text-error-text hover:bg-error-accent focus-visible:ring-error-hover border bg-transparent font-medium",
 			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "cn-compact-btn-outline-warning",
+				className:
+					"border-warning-hover text-warning-text hover:bg-warning-accent focus-visible:ring-warning-hover border bg-transparent font-medium",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "cn-compact-btn-outline-neutral",
+				className:
+					"bg-elevation-level1 text-fg-secondary border-border hover:bg-fill1-alpha focus-visible:ring-border border font-medium",
 			},
 
 			// Ghost
 			{
 				variant: "ghost",
 				color: "primary",
-				className: "cn-compact-btn-ghost-primary",
+				className:
+					"text-primary-text hover:bg-primary-focus focus-visible:ring-primary-focus bg-transparent font-medium",
 			},
 			{
 				variant: "ghost",
 				color: "info",
-				className: "cn-compact-btn-ghost-info",
+				className:
+					"text-info-text hover:bg-info-focus focus-visible:ring-info-focus bg-transparent font-medium",
 			},
 			{
 				variant: "ghost",
 				color: "success",
-				className: "cn-compact-btn-ghost-success",
+				className:
+					"text-success-text hover:bg-success-focus focus-visible:ring-success-focus bg-transparent font-medium",
 			},
 			{
 				variant: "ghost",
 				color: "error",
-				className: "cn-compact-btn-ghost-error",
+				className:
+					"text-error-text hover:bg-error-focus focus-visible:ring-error-focus bg-transparent font-medium",
 			},
 			{
 				variant: "ghost",
 				color: "warning",
-				className: "cn-compact-btn-ghost-warning",
+				className:
+					"text-warning-text hover:bg-warning-focus focus-visible:ring-warning-focus bg-transparent font-medium",
 			},
 			{
 				variant: "ghost",
 				color: "neutral",
-				className: "cn-compact-btn-ghost-neutral",
+				className:
+					"text-fg-secondary hover:bg-fill1 focus-visible:ring-border bg-transparent font-medium",
 			},
 
 			// Glossy
 			{
 				variant: "glossy",
 				color: "primary",
-				className: "cn-compact-btn-glossy-primary",
+				className:
+					"before:border-white/44 bg-primary hover:bg-primary-hover focus-visible:ring-primary before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110",
 			},
 			{
 				variant: "glossy",
 				color: "info",
-				className: "cn-compact-btn-glossy-info",
+				className:
+					"before:border-white/44 bg-info hover:bg-info-hover focus-visible:ring-info before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110",
 			},
 			{
 				variant: "glossy",
 				color: "success",
-				className: "cn-compact-btn-glossy-success",
+				className:
+					"before:border-white/44 bg-success hover:bg-success-hover focus-visible:ring-success before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110",
 			},
 			{
 				variant: "glossy",
 				color: "warning",
-				className: "cn-compact-btn-glossy-warning",
+				className:
+					"before:border-white/44 bg-warning hover:bg-warning-hover focus-visible:ring-warning before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110",
 			},
 			{
 				variant: "glossy",
 				color: "error",
-				className: "cn-compact-btn-glossy-error",
+				className:
+					"before:border-white/44 bg-error hover:bg-error-hover focus-visible:ring-error before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:pointer-events-none before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-white/20 before:to-transparent hover:brightness-110",
 			},
 			{
 				variant: "glossy",
 				color: "neutral",
-				className: "cn-compact-btn-glossy-neutral",
+				className:
+					"focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/0 to-white/20 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:rounded-[inherit] before:border hover:opacity-90",
 			},
 
 			// Glossy-inverted
 			{
 				variant: "glossy-inverted",
 				color: "primary",
-				className: "cn-compact-btn-glossy-inverted-primary",
+				className:
+					"focus-visible:ring-primary hover:bg-primary-hover bg-primary before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-primary),0_3px_4px_-1px_var(--color-primary-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "info",
-				className: "cn-compact-btn-glossy-inverted-info",
+				className:
+					"focus-visible:ring-info hover:bg-info-hover bg-info before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-info),0_3px_4px_-1px_var(--color-info-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "success",
-				className: "cn-compact-btn-glossy-inverted-success",
+				className:
+					"focus-visible:ring-success hover:bg-success-hover bg-success before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-success),0_3px_4px_-1px_var(--color-success-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "warning",
-				className: "cn-compact-btn-glossy-inverted-warning",
+				className:
+					"focus-visible:ring-warning hover:bg-warning-hover bg-warning before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-warning),0_3px_4px_-1px_var(--color-warning-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "error",
-				className: "cn-compact-btn-glossy-inverted-error",
+				className:
+					"focus-visible:ring-error hover:bg-error-hover bg-error before:border-white/44 before:mask-b-from-0% overflow-hidden font-medium text-white shadow-[0_1px_0_0_rgba(255,255,255,0.32)_inset,0_0_0_1px_var(--color-error),0_3px_4px_-1px_var(--color-error-border)] before:absolute before:inset-0 before:rounded-[inherit] before:border before:bg-gradient-to-b before:from-transparent before:to-white/20",
 			},
 			{
 				variant: "glossy-inverted",
 				color: "neutral",
-				className: "cn-compact-btn-glossy-inverted-neutral",
+				className:
+					"focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-0% bg-black-inverse bg-linear-to-t text-white-inverse overflow-hidden from-white/20 to-white/0 font-medium shadow-[0_0_0_1px_var(--color-black-inverse),0_3px_4px_-1px_var(--color-black-inverse)] before:absolute before:inset-0 before:rounded-[inherit] before:border hover:opacity-90",
 			},
 
 			// Smooth
 			{
 				variant: "smooth",
 				color: "primary",
-				className: "cn-compact-btn-smooth-primary",
+				className:
+					"before:from-primary-hover before:to-primary before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth",
 				color: "info",
-				className: "cn-compact-btn-smooth-info",
+				className:
+					"before:from-info-hover before:to-info before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth",
 				color: "success",
-				className: "cn-compact-btn-smooth-success",
+				className:
+					"before:from-success-hover before:to-success before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth",
 				color: "warning",
-				className: "cn-compact-btn-smooth-warning",
+				className:
+					"before:from-warning-hover before:to-warning before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth",
 				color: "error",
-				className: "cn-compact-btn-smooth-error",
+				className:
+					"before:from-error-hover before:to-error before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth",
 				color: "neutral",
-				className: "cn-compact-btn-smooth-neutral",
+				className:
+					"focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-t text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border",
 			},
 
 			// Smooth-inverted
 			{
 				variant: "smooth-inverted",
 				color: "primary",
-				className: "cn-compact-btn-smooth-inverted-primary",
+				className:
+					"before:from-primary before:to-primary-hover before:mask-b-from-98% bg-primary focus-visible:ring-primary before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-primary)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "info",
-				className: "cn-compact-btn-smooth-inverted-info",
+				className:
+					"before:from-info before:to-info-hover before:mask-b-from-98% bg-info focus-visible:ring-info before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-info)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "success",
-				className: "cn-compact-btn-smooth-inverted-success",
+				className:
+					"before:from-success before:to-success-hover before:mask-b-from-98% bg-success focus-visible:ring-success before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-success)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "warning",
-				className: "cn-compact-btn-smooth-inverted-warning",
+				className:
+					"before:from-warning before:to-warning-hover before:mask-b-from-98% bg-warning focus-visible:ring-warning before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-warning)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "error",
-				className: "cn-compact-btn-smooth-inverted-error",
+				className:
+					"before:from-error before:to-error-hover before:mask-b-from-98% bg-error focus-visible:ring-error before:border-white/16 overflow-hidden font-medium text-white shadow-[0_4px_4px_0_rgba(9,10,11,0.16),0_0px_0px_1px_var(--color-error)] before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:border before:bg-gradient-to-b hover:brightness-110",
 			},
 			{
 				variant: "smooth-inverted",
 				color: "neutral",
-				className: "cn-compact-btn-smooth-inverted-neutral",
+				className:
+					"focus-visible:ring-black-inverse before:border-white-inverse/16 before:mask-b-from-98% bg-black-inverse bg-linear-to-b text-white-inverse hover:before:bg-black-inverse/30 overflow-hidden from-white/0 to-white/20 font-medium before:absolute before:inset-px before:rounded-[inherit] before:border",
 			},
 		],
 	}
@@ -716,12 +926,12 @@ export const iconButtonSizeVariants = cva("", {
 		},
 	},
 	compoundVariants: [
-		{ variant: "outline", size: "28", className: "cn-icon-btn-outline-28" },
-		{ variant: "outline", size: "32", className: "cn-icon-btn-outline-32" },
-		{ variant: "outline", size: "36", className: "cn-icon-btn-outline-36" },
-		{ variant: "outline", size: "40", className: "cn-icon-btn-outline-40" },
-		{ variant: "outline", size: "44", className: "cn-icon-btn-outline-44" },
-		{ variant: "outline", size: "48", className: "cn-icon-btn-outline-48" },
+		{ variant: "outline", size: "28", className: "p-1.25" },
+		{ variant: "outline", size: "32", className: "p-1.5" },
+		{ variant: "outline", size: "36", className: "p-1.75" },
+		{ variant: "outline", size: "40", className: "p-2.25" },
+		{ variant: "outline", size: "44", className: "p-2.75" },
+		{ variant: "outline", size: "48", className: "p-2.75" },
 	],
 })
 

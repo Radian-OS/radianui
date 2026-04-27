@@ -37,84 +37,92 @@ const bannerVariants = cva(
 			{
 				color: "neutral",
 				variant: "soft",
-				className: "cn-banner-soft-neutral",
+				className: "bg-fill2",
 			},
 			{
 				color: "primary",
 				variant: "soft",
-				className: "cn-banner-soft-primary",
+				className: "bg-primary-accent text-primary-text",
 			},
-			{ color: "info", variant: "soft", className: "cn-banner-soft-info" },
+			{
+				color: "info",
+				variant: "soft",
+				className: "bg-info-accent text-info-text",
+			},
 			{
 				color: "success",
 				variant: "soft",
-				className: "cn-banner-soft-success",
+				className: "bg-success-accent text-success-text",
 			},
-			{ color: "error", variant: "soft", className: "cn-banner-soft-error" },
+			{
+				color: "error",
+				variant: "soft",
+				className: "bg-error-accent text-error-text",
+			},
 			{
 				color: "warning",
 				variant: "soft",
-				className: "cn-banner-soft-warning",
+				className: "bg-warning-accent text-warning-text",
 			},
 
 			// Strong
 			{
 				color: "neutral",
 				variant: "strong",
-				className: "cn-banner-strong-neutral",
+				className: "bg-black-inverse text-white-inverse",
 			},
 			{
 				color: "primary",
 				variant: "strong",
-				className: "cn-banner-strong-primary",
+				className: "bg-primary text-white",
 			},
-			{ color: "info", variant: "strong", className: "cn-banner-strong-info" },
+			{ color: "info", variant: "strong", className: "bg-info text-white" },
 			{
 				color: "warning",
 				variant: "strong",
-				className: "cn-banner-strong-warning",
+				className: "bg-warning text-white",
 			},
 			{
 				color: "error",
 				variant: "strong",
-				className: "cn-banner-strong-error",
+				className: "bg-error text-white",
 			},
 			{
 				color: "success",
 				variant: "strong",
-				className: "cn-banner-strong-success",
+				className: "bg-success text-white",
 			},
 
 			// Outline
 			{
 				color: "neutral",
 				variant: "outline",
-				className: "cn-banner-outline-neutral",
+				className: "text-fg bg-transparent",
 			},
 			{
 				color: "primary",
 				variant: "outline",
-				className: "cn-banner-outline-primary",
+				className: "text-primary-text bg-transparent",
 			},
 			{
 				color: "info",
 				variant: "outline",
-				className: "cn-banner-outline-info",
+				className: "text-info-text bg-transparent",
 			},
 			{
 				color: "success",
 				variant: "outline",
-				className: "cn-banner-outline-success",
+				className: "text-success-text bg-transparent",
 			},
 			{
 				color: "error",
 				variant: "outline",
-				className: "cn-banner-outline-error",
+				className: "text-error-text bg-transparent",
 			},
 			{
 				color: "warning",
 				variant: "outline",
-				className: "cn-banner-outline-warning",
+				className: "text-warning-text bg-transparent",
 			},
 		],
 		defaultVariants: {

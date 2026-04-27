@@ -95,43 +95,43 @@ const drawerVariants = cva(
 			{
 				handle: true,
 				direction: "top",
-				className: "cn-drawer-handle-padding-top",
+				className: "pb-8 pl-6 pr-6 pt-6",
 			},
 			{
 				handle: true,
 				direction: "bottom",
-				className: "cn-drawer-handle-padding-bottom",
+				className: "pb-6 pl-6 pr-6 pt-8",
 			},
 			{
 				handle: true,
 				direction: "left",
-				className: "cn-drawer-handle-padding-left",
+				className: "pb-6 pl-6 pr-8 pt-6",
 			},
 			{
 				handle: true,
 				direction: "right",
-				className: "cn-drawer-handle-padding-right",
+				className: "pb-6 pl-8 pr-6 pt-6",
 			},
 			// Rounded directional overrides
 			{
 				variant: "rounded",
 				direction: "top",
-				className: "cn-drawer-rounded-top",
+				className: "rounded-none",
 			},
 			{
 				variant: "rounded",
 				direction: "bottom",
-				className: "cn-drawer-rounded-bottom",
+				className: "rounded-none",
 			},
 			{
 				variant: "rounded",
 				direction: "left",
-				className: "cn-drawer-rounded-left",
+				className: "rounded-none",
 			},
 			{
 				variant: "rounded",
 				direction: "right",
-				className: "cn-drawer-rounded-right",
+				className: "rounded-none",
 			},
 		],
 	}

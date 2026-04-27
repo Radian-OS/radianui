@@ -42,59 +42,100 @@ const badgeVariants = cva(
 			{
 				variant: "strong",
 				color: "primary",
-				className: "cn-badge-strong-primary",
+				className:
+					"bg-primary border-alpha text-primary-fg border font-semibold",
 			},
-			{ variant: "strong", color: "info", className: "cn-badge-strong-info" },
+			{
+				variant: "strong",
+				color: "info",
+				className: "bg-info border-alpha border font-semibold text-white",
+			},
 			{
 				variant: "strong",
 				color: "success",
-				className: "cn-badge-strong-success",
+				className: "bg-success border-alpha border font-semibold text-white",
 			},
-			{ variant: "strong", color: "error", className: "cn-badge-strong-error" },
+			{
+				variant: "strong",
+				color: "error",
+				className: "bg-error border-alpha border font-semibold text-white",
+			},
 			{
 				variant: "strong",
 				color: "warning",
-				className: "cn-badge-strong-warning",
+				className: "bg-warning border-alpha border font-semibold text-white",
 			},
 			{
 				variant: "strong",
 				color: "neutral",
-				className: "cn-badge-strong-neutral",
+				className:
+					"bg-black-inverse text-white-inverse border-alpha border font-medium",
 			},
 			// outline
 			{
 				variant: "outline",
 				color: "primary",
-				className: "cn-badge-outline-primary",
+				className:
+					"text-primary-text border-primary-border border bg-transparent",
 			},
-			{ variant: "outline", color: "info", className: "cn-badge-outline-info" },
+			{
+				variant: "outline",
+				color: "info",
+				className: "text-info-text border-info-border border bg-transparent",
+			},
 			{
 				variant: "outline",
 				color: "success",
-				className: "cn-badge-outline-success",
+				className:
+					"text-success-text border-success-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "error",
-				className: "cn-badge-outline-error",
+				className: "text-error-text border-error-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "warning",
-				className: "cn-badge-outline-warning",
+				className:
+					"text-warning-text border-warning-border border bg-transparent",
 			},
 			{
 				variant: "outline",
 				color: "neutral",
-				className: "cn-badge-outline-neutral",
+				className: "text-fg border bg-transparent",
 			},
 			// soft
-			{ variant: "soft", color: "primary", className: "cn-badge-soft-primary" },
-			{ variant: "soft", color: "info", className: "cn-badge-soft-info" },
-			{ variant: "soft", color: "success", className: "cn-badge-soft-success" },
-			{ variant: "soft", color: "error", className: "cn-badge-soft-error" },
-			{ variant: "soft", color: "warning", className: "cn-badge-soft-warning" },
-			{ variant: "soft", color: "neutral", className: "cn-badge-soft-neutral" },
+			{
+				variant: "soft",
+				color: "primary",
+				className: "bg-primary-accent text-primary-text border-soft-alpha",
+			},
+			{
+				variant: "soft",
+				color: "info",
+				className: "bg-info-accent text-info-text border-soft-alpha",
+			},
+			{
+				variant: "soft",
+				color: "success",
+				className: "bg-success-accent text-success-text border-soft-alpha",
+			},
+			{
+				variant: "soft",
+				color: "error",
+				className: "bg-error-accent text-error-text border-soft-alpha",
+			},
+			{
+				variant: "soft",
+				color: "warning",
+				className: "bg-warning-accent text-warning-text border-soft-alpha",
+			},
+			{
+				variant: "soft",
+				color: "neutral",
+				className: "bg-fill2 text-fg border-soft-alpha",
+			},
 		],
 	}
 )

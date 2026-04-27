@@ -53,32 +53,34 @@ const tabsListStyles = cva(
 			{
 				size: ["sm", "md", "lg"],
 				variant: "default",
-				className: "cn-tabs-list-default-padded",
+				className: "p-0.5",
 			},
 			{
 				size: "sm",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-md",
+				className: "rounded-lg",
 			},
 			{
 				size: "md",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-md",
+				className: "rounded-lg",
 			},
 			{
 				size: "lg",
 				variant: ["default", "outline", "ghost"],
-				className: "cn-tabs-list-rounded-lg",
+				className: "rounded-xl",
 			},
 			{
 				size: ["sm", "md"],
 				variant: "open",
-				className: "cn-tabs-list-open-gap-sm",
+				className:
+					"data-[orientation=horizontal]:gap-3 data-[orientation=vertical]:gap-2",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "cn-tabs-list-open-gap-lg",
+				className:
+					"data-[orientation=horizontal]:gap-4 data-[orientation=vertical]:gap-3",
 			},
 		],
 	}
@@ -108,78 +110,83 @@ const tabsTriggerStyles = cva(
 			{
 				size: "sm",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-sm h-full",
+				className: "h-full rounded-md px-1.5 py-1",
 			},
 			{
 				size: "md",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-md h-full",
+				className: "h-full rounded-md px-2.5 py-1.5",
 			},
 			{
 				size: "lg",
 				variant: ["default"],
-				className: "cn-tabs-trigger-default-lg h-full",
+				className: "h-full rounded-[0.625rem] px-3 py-2",
 			},
 			{
 				size: "sm",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-sm data-[orientation=horizontal]:h-7",
+				className: "data-[orientation=horizontal]:h-7 p-1.5",
 			},
 			{
 				size: "md",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-md",
+				className: "p-2",
 			},
 			{
 				size: "lg",
 				variant: ["outline", "ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-soft-lg",
+				className: "p-3",
 			},
 			{
 				size: "sm",
 				variant: "open",
-				className: "cn-tabs-trigger-open-sm h-7",
+				className:
+					"h-7 data-[orientation=horizontal]:py-1.5 data-[orientation=vertical]:px-1.5",
 			},
 			{
 				size: "md",
 				variant: "open",
-				className: "cn-tabs-trigger-open-md h-9",
+				className:
+					"h-9 data-[orientation=horizontal]:py-2 data-[orientation=vertical]:px-2",
 			},
 			{
 				size: "lg",
 				variant: "open",
-				className: "cn-tabs-trigger-open-lg h-11",
+				className:
+					"h-11 data-[orientation=horizontal]:py-3 data-[orientation=vertical]:px-3",
 			},
 			{
 				size: "sm",
 				variant: "outline",
-				className: "cn-tabs-trigger-outline-sm",
+				className:
+					"data-[orientation=horizontal]:first:rounded-l-lg data-[orientation=vertical]:first:rounded-t-lg data-[orientation=horizontal]:last:rounded-r-lg data-[orientation=vertical]:last:rounded-b-lg",
 			},
 			{
 				size: "md",
 				variant: "outline",
-				className: "cn-tabs-trigger-outline-md",
+				className:
+					"data-[orientation=horizontal]:first:rounded-l-[0.625rem] data-[orientation=vertical]:first:rounded-t-[0.625rem] data-[orientation=horizontal]:last:rounded-r-[0.625rem] data-[orientation=vertical]:last:rounded-b-[0.625rem]",
 			},
 			{
 				size: "lg",
 				variant: "outline",
 				className:
-					"cn-tabs-trigger-outline-lg data-[orientation=horizontal]:h-11",
+					"data-[orientation=horizontal]:h-11 data-[orientation=horizontal]:first:rounded-l-xl data-[orientation=vertical]:first:rounded-t-xl data-[orientation=horizontal]:last:rounded-r-xl data-[orientation=vertical]:last:rounded-b-xl",
 			},
 			{
 				size: "sm",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-sm",
+				className: "data-[state=active]:rounded-md",
 			},
 			{
 				size: "md",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-md h-full",
+				className: "h-full data-[state=active]:rounded-lg",
 			},
 			{
 				size: "lg",
 				variant: ["ghost", "outline-ghost"],
-				className: "cn-tabs-trigger-ghost-lg h-full",
+				className: "h-full data-[state=active]:rounded-[0.625rem]",
 			},
 		],
 		defaultVariants: {

@@ -67,12 +67,12 @@ const accordionItemVariants = cva("overflow-hidden", {
 		{
 			variant: "box",
 			size: "sm",
-			class: "cn-accordion-item-box-sm",
+			className: "mb-2",
 		},
 		{
 			variant: "box",
 			size: "lg",
-			class: "cn-accordion-item-box-lg",
+			className: "mb-2.5",
 		},
 	],
 	defaultVariants: {
@@ -104,32 +104,32 @@ const accordionTriggerVariants = cva(
 			{
 				variant: "open",
 				size: "sm",
-				class: "cn-accordion-trigger-open-sm",
+				className: "px-0 py-4",
 			},
 			{
 				variant: "open",
 				size: "lg",
-				class: "cn-accordion-trigger-open-lg",
+				className: "px-0 py-5",
 			},
 			{
 				variant: ["box", "table"],
 				size: "sm",
-				class: "cn-accordion-trigger-boxed-sm",
+				className: "p-4",
 			},
 			{
 				variant: ["box", "table"],
 				size: "lg",
-				class: "cn-accordion-trigger-boxed-lg",
+				className: "p-5",
 			},
 			{
 				indicator: ["chevron", "plus-minus"],
 				size: "sm",
-				class: "cn-accordion-trigger-indicator-sm",
+				className: "[&>.AccordionChevron]:size-5 [&>.AccordionPlus]:size-5",
 			},
 			{
 				indicator: ["chevron", "plus-minus"],
 				size: "lg",
-				class: "cn-accordion-trigger-indicator-lg",
+				className: "[&>.AccordionChevron]:size-6 [&>.AccordionPlus]:size-6",
 			},
 		],
 		defaultVariants: {
@@ -160,22 +160,22 @@ const accordionContentInnerVariants = cva("pt-0", {
 		{
 			variant: "open",
 			size: "sm",
-			class: "cn-accordion-content-open-sm",
+			className: "px-0 pb-4",
 		},
 		{
 			variant: "open",
 			size: "lg",
-			class: "cn-accordion-content-open-lg",
+			className: "px-0 pb-5",
 		},
 		{
 			variant: ["box", "table"],
 			size: "sm",
-			class: "cn-accordion-content-boxed-sm",
+			className: "px-4 pb-4",
 		},
 		{
 			variant: ["box", "table"],
 			size: "lg",
-			class: "cn-accordion-content-boxed-lg",
+			className: "px-5 pb-5",
 		},
 	],
 	defaultVariants: {
@@ -247,7 +247,7 @@ function AccordionTrigger({
 			<AccordionPrimitive.Trigger
 				data-slot="accordion-trigger"
 				className={classNames(
-					"cn-accordion-trigger",
+					"text-fg",
 					accordionTriggerVariants({ variant, size, indicator }),
 					className
 				)}
@@ -281,11 +281,11 @@ function AccordionContent({
 	return (
 		<AccordionPrimitive.Content
 			data-slot="accordion-content"
-			className={classNames("cn-accordion-content", accordionContentVariants())}
+			className={classNames("text-fg-secondary", accordionContentVariants())}
 			{...props}>
 			<div
 				className={classNames(
-					"cn-accordion-content-inner",
+					"pt-0",
 					accordionContentInnerVariants({ variant, size }),
 					className
 				)}>
