@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --port 3001",
-		"build": "contentlayer2 build && pnpm run generate-component-json && pnpm run generate-examples-json && pnpm run generate-example-registry && pnpm run generate-blocks-index && pnpm run generate-styles && pnpm run generate-css && pnpm run generate-styles-json  && next build",
+		"build": "tsx src/scripts/build.ts",
 		"start": "next start",
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
