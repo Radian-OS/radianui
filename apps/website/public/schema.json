@@ -2,6 +2,15 @@
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"type": "object",
 	"properties": {
+		"$schema": {
+			"type": "string",
+			"description": "URL to the JSON schema for validation"
+		},
+		"style": {
+			"type": "string",
+			"enum": ["default", "sera"],
+			"description": "Style of the components"
+		},
 		"aliases": {
 			"type": "object",
 			"properties": {
@@ -9,7 +18,8 @@
 					"type": "string"
 				},
 				"components": {
-					"type": "string"
+					"type": "string",
+					"description": "Alias for the components directory."
 				},
 				"ui": {
 					"type": "string"
@@ -26,7 +36,10 @@
 			},
 			"required": ["utils", "components", "ui"]
 		},
-		"hasSrcDir": { "type": "boolean" }
+		"hasSrcDir": {
+			"type": "boolean",
+			"description": "Whether the project uses a src directory."
+		}
 	},
-	"required": ["aliases", "hasSrcDir"]
+	"required": ["aliases", "hasSrcDir", "style"]
 }

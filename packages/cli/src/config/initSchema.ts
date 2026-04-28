@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { STYLES, Style } from "@/registry/constants"
 import { type Preset } from "@/registry/schema"
 import { type FrameworkName } from "@/utils/frameworks"
 import { type Color, type Font } from "@/utils/registry"
@@ -18,6 +19,7 @@ export type PartialInitConfig = {
 	preset?: Preset
 	isExistingProject?: boolean
 	hasComponentsJson?: boolean
+	style?: Style
 }
 
 /**
@@ -34,6 +36,7 @@ export const initConfigSchema = z.object({
 	preset: z.custom<Preset>().optional(),
 	isExistingProject: z.boolean(),
 	hasComponentsJson: z.boolean(),
+	style: z.enum(STYLES),
 })
 
 export type InitConfig = z.infer<typeof initConfigSchema>

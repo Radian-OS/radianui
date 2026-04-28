@@ -1740,11 +1740,11 @@
 	}
 
 	.cn-switch-indicator-on {
-		@apply text-primary text-[10px] font-medium;
+		@apply text-primary text-lg font-medium;
 	}
 
 	.cn-switch-indicator-off {
-		@apply text-fg-secondary text-[10px] font-medium;
+		@apply text-fg-secondary text-lg font-medium;
 	}
 
 	/* MARK: Table */

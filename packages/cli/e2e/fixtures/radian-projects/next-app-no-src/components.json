@@ -1,12 +1,13 @@
 {
-  "$schema": "https://radianos.com/schema.json",
-  "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "animated": "@/components/animated",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
-  },
-  "hasSrcDir": false
+	"$schema": "https://radianos.com/schema.json",
+	"style": "default",
+	"aliases": {
+		"components": "@/components",
+		"utils": "@/lib/utils",
+		"ui": "@/components/ui",
+		"animated": "@/components/animated",
+		"lib": "@/lib",
+		"hooks": "@/hooks"
+	},
+	"hasSrcDir": false
 }

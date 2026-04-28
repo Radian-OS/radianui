@@ -327,7 +327,7 @@
 		@apply rounded-lg;
 	}
 	.cn-avatar-square-48 {
-		@apply rounded-[10px];
+		@apply rounded-lg;
 	}
 	.cn-avatar-square-64 {
 		@apply rounded-xl;
@@ -629,10 +629,10 @@
 		@apply rounded-lg;
 	}
 	.cn-btn-size-44 {
-		@apply rounded-[10px];
+		@apply rounded-lg;
 	}
 	.cn-btn-size-48 {
-		@apply rounded-[10px];
+		@apply rounded-lg;
 	}
 
 	/* Strong */
@@ -987,10 +987,10 @@
 		@apply size-10 rounded-lg p-2.5;
 	}
 	.cn-icon-btn-size-44 {
-		@apply size-11 rounded-[10px] p-3;
+		@apply size-11 rounded-lg p-3;
 	}
 	.cn-icon-btn-size-48 {
-		@apply size-12 rounded-[10px] p-3;
+		@apply size-12 rounded-lg p-3;
 	}
 
 	/* IconButton outline padding overrides */
@@ -1740,11 +1740,11 @@
 	}
 
 	.cn-switch-indicator-on {
-		@apply text-primary text-[10px] font-medium;
+		@apply text-primary text-lg font-medium;
 	}
 
 	.cn-switch-indicator-off {
-		@apply text-fg-secondary text-[10px] font-medium;
+		@apply text-fg-secondary text-lg font-medium;
 	}
 
 	/* MARK: Table */

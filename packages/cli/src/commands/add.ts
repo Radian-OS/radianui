@@ -76,9 +76,12 @@ export const add = new Command()
 				options.cwd = path.join(options.cwd, projectName!)
 			}
 
+			const projectInfo = await getProjectInfo(options.cwd)
+			const rawConfig = await getConfig(options.cwd)
+
 			// If no components were provided, prompt the user to select
 			if (!options.components?.length) {
-				const selectedComponents = await promptForComponents(options)
+				const selectedComponents = await promptForComponents(options, rawConfig)
 				if (!selectedComponents.length) {
 					logger.warn("No components selected. Exiting.")
 					process.exit(1)
@@ -87,19 +90,16 @@ export const add = new Command()
 			}
 
 			const validComponents = await checkComponentsAvailability(
-				options.components
+				options.components,
+				rawConfig
 			)
 
 			const resolvedComponents = await resolveComponents(
-				await getRegistryComponents(),
+				await getRegistryComponents(rawConfig),
 				validComponents
 			)
 
-			await addComponentsToProject(
-				resolvedComponents,
-				options,
-				await getProjectInfo(options.cwd)
-			)
+			await addComponentsToProject(resolvedComponents, options, projectInfo)
 		} catch (error) {
 			handleError(error)
 		}
@@ -112,11 +112,12 @@ export const add = new Command()
  * @returns A promise resolving to an array of valid component names.
  */
 const checkComponentsAvailability = async (
-	components: string[]
+	components: string[],
+	config: RawConfig
 ): Promise<string[]> => {
 	const componentAvailabilitySpinner = spinner("Checking registry").start()
 
-	const availableComponents = (await getRegistryComponents()).map(
+	const availableComponents = (await getRegistryComponents(config)).map(
 		(components) => components.name
 	)
 

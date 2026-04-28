@@ -10,6 +10,8 @@ import {
 	DEFAULT_PROJECT_NAME,
 	FONTS,
 	MAX_PROJECT_NAME_LENGTH,
+	STYLES,
+	Style,
 } from "@/registry/constants"
 import { txt } from "@/utils/colors"
 import { handleError } from "@/utils/handleError"
@@ -34,6 +36,7 @@ export async function promptForMissing(
 			framework: partial.framework ?? "next-app",
 			useSrcDir: partial.useSrcDir ?? true,
 			brandColor: partial.brandColor ?? DEFAULT_BRAND_COLOR,
+			style: partial.style ?? "default",
 			font: partial.font ?? DEFAULT_FONT,
 			preset: partial.preset,
 			isExistingProject: partial.isExistingProject ?? false,
@@ -111,8 +114,7 @@ export async function promptForMissing(
 						{
 							type: "select",
 							name: "brandColor",
-							message:
-								"Which color would you like to use as your brand color?",
+							message: "Which color would you like to use as your brand color?",
 							choices: COLORS.map((color) => ({
 								title: chalk.hex(color.hex)(color.title),
 								value: color.value,
@@ -124,6 +126,27 @@ export async function promptForMissing(
 				).brandColor
 	}
 
+	// Style (skip if preset provides style)
+	if (!config.style && !partial.preset) {
+		config.style = opts.skipPrompts
+			? "default"
+			: (
+					await prompts(
+						{
+							type: "select",
+							name: "style",
+							message: "Which style would you like to use for your project?",
+							choices: STYLES.map((style) => ({
+								title: style,
+								value: style,
+							})),
+							initial: 0,
+						},
+						{ onCancel: () => handlePromptCancel() }
+					)
+				).style
+	}
+
 	// Font (skip if preset provides theme)
 	if (!config.font && !partial.preset) {
 		config.font = opts.skipPrompts
@@ -133,21 +156,14 @@ export async function promptForMissing(
 						{
 							type: "select",
 							name: "font",
-							message:
-								"Which font would you like to use for your project?",
+							message: "Which font would you like to use for your project?",
 							choices: (() => {
-								const defaultFont = FONTS.find(
-									(f) => f.value === DEFAULT_FONT
-								)
-								const otherFonts = FONTS.filter(
-									(f) => f.value !== DEFAULT_FONT
-								)
+								const defaultFont = FONTS.find((f) => f.value === DEFAULT_FONT)
+								const otherFonts = FONTS.filter((f) => f.value !== DEFAULT_FONT)
 								const sorted = otherFonts.sort((a, b) =>
 									a.title.localeCompare(b.title)
 								)
-								return defaultFont
-									? [defaultFont, ...sorted]
-									: sorted
+								return defaultFont ? [defaultFont, ...sorted] : sorted
 							})().map((f) => ({ title: f.title, value: f.value })),
 							initial: 0,
 						},
@@ -178,6 +194,7 @@ export async function promptForMissing(
 		framework: config.framework as InitConfig["framework"],
 		useSrcDir: config.useSrcDir as boolean,
 		brandColor: (config.brandColor as string) ?? DEFAULT_BRAND_COLOR,
+		style: (config.style as Style) ?? "default",
 		font: (config.font as string) ?? DEFAULT_FONT,
 		preset: partial.preset,
 		isExistingProject: partial.isExistingProject ?? false,

@@ -8,6 +8,7 @@
   },
   "changesets": [
     "bumpy-stars-write",
+    "fuzzy-planes-rule",
     "public-bottles-accept"
   ]
 }

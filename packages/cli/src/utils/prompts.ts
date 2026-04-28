@@ -18,6 +18,7 @@ import { FrameworkName } from "@/utils/frameworks"
 import { handleError } from "@/utils/handleError"
 import { logger } from "@/utils/logger"
 import { Color, Font, getRegistryComponents } from "@/utils/registry"
+import { RawConfig } from "./getConfig"
 
 export type ProjectPrompts = {
 	projectName?: string
@@ -244,10 +245,11 @@ export async function promptForExistingProject(
  * @returns A promise resolving to an array of selected component names.
  */
 export async function promptForComponents(
-	options: AddOptions
+	options: AddOptions,
+	config: RawConfig
 ): Promise<string[]> {
 	try {
-		const registryIndex = await getRegistryComponents()
+		const registryIndex = await getRegistryComponents(config)
 		const componentNames = registryIndex
 			.filter(
 				(component) => component.type === "ui" || component.type === "animated"

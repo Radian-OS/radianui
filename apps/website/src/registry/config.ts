@@ -245,6 +245,7 @@ export const registryConfigSchema = z.object({
 		iconLibrary: z.string(),
 		template: z.enum(TEMPLATES),
 		useSrcDir: z.boolean().default(true),
+		style: z.enum(STYLES).default("default"),
 	}),
 })
 
@@ -333,6 +334,7 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 			iconLibrary: "lucide-react",
 			template: config.template,
 			useSrcDir: config.useSrcDir,
+			style: config.style,
 		},
 	}
 

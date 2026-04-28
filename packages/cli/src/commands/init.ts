@@ -2,7 +2,7 @@ import { Command } from "commander"
 import z from "zod"
 import { mergeConfigs } from "@/config/merge"
 import { executeInitFromConfig } from "@/executor/init"
-import { COLORS, FONTS } from "@/registry/constants"
+import { COLORS, FONTS, STYLES } from "@/registry/constants"
 import { resolveDetect } from "@/resolvers/detect"
 import { resolveFlags } from "@/resolvers/flags"
 import { resolvePreset } from "@/resolvers/preset"
@@ -22,6 +22,7 @@ export const initOptionsSchema = z.object({
 	color: z.enum(COLORS.map((color) => color.value)).optional(),
 	font: z.enum(FONTS.map((font) => font.value)).optional(),
 	presetCode: z.string().optional(),
+	style: z.enum(STYLES).optional(),
 })
 
 export type InitOptions = z.infer<typeof initOptionsSchema>
@@ -36,6 +37,7 @@ export const init = new Command()
 	.option("--color <color>", "set brand color")
 	.option("--font <font>", "set default font")
 	.option("--preset <code>", "generate project from a generated preset")
+	.option("--style <style>", "set style", "default")
 	.option("-s, --skipPrompts", "skip confirmation prompts", false)
 	.option("-d, --defaultConfigurations", "use default configurations", false)
 	.option("-c, --cwd <cwd>", "current working directory", process.cwd())

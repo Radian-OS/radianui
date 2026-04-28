@@ -24,6 +24,7 @@ export async function resolvePreset(
 			framework:
 				preset.config?.config?.template === "vite" ? "vite" : "next-app",
 			useSrcDir: preset.config?.config?.useSrcDir ?? true,
+			style: preset.config?.config?.style ?? "default",
 		}
 	} catch (err) {
 		s.fail()

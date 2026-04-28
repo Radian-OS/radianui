@@ -32,6 +32,10 @@ export const FONTS = [
 	{ title: "IBM Plex Sans", value: "ibm-plex-sans" },
 	{ title: "Figtree", value: "figtree" },
 ]
+
+export const STYLES = ["default", "sera"] as const
+export type Style = (typeof STYLES)[number]
+
 export const DEFAULT_FRAMEWORK = "next-app"
 export const DEFAULT_FONT = "inter"
 export const DEFAULT_BRAND_COLOR = "amber"
