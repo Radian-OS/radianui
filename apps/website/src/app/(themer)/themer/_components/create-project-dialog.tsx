@@ -106,7 +106,7 @@ export function CreateProjectDialog() {
 	}
 
 	const command = data?.id
-		? `RADIANUI_WEBSITE_URL="https://tmp.radianos.com" pnpm dlx radianui@alpha init --preset ${data.id}`
+		? `set RADIANUI_WEBSITE_URL="https://tmp.radianos.com" && pnpm dlx radianui@alpha init --preset ${data.id}`
 		: ""
 
 	const handleCopy = () => {
