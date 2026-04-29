@@ -3,6 +3,6 @@ export function formatCode(code: string) {
 		.replaceAll("@/registry/ui/", "@/components/ui/")
 		.replaceAll("@/registry/hooks/", "@/hooks/")
 		.replaceAll("@/styles/default", "@/components")
-
+		.replaceAll("@/styles/sera", "@/components")
 	return code
 }
