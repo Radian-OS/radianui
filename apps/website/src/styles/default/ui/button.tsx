@@ -70,8 +70,8 @@ export const buttonVariants = cva(
 				"32": "[&>svg]:size-4.5 text-sm px-1 rounded-md",
 				"36": "[&>svg]:size-5 text-sm px-1 rounded-lg",
 				"40": "[&>svg]:size-5 text-sm px-1 rounded-lg",
-				"44": "[&>svg]:size-5 text-base px-1 rounded-[10px]",
-				"48": "[&>svg]:size-6 text-base px-1 rounded-[10px]",
+				"44": "[&>svg]:size-5 text-base px-1 rounded-lg",
+				"48": "[&>svg]:size-6 text-base px-1 rounded-lg",
 			},
 			loading: {
 				true: "",
@@ -917,8 +917,8 @@ export const iconButtonSizeVariants = cva("", {
 			"32": "[&>svg]:size-4.5 p-1.75 size-8 rounded-md",
 			"36": "[&>svg]:size-5 size-9 rounded-lg p-2",
 			"40": "[&>svg]:size-5 size-10 rounded-lg p-2.5",
-			"44": "[&>svg]:size-5 size-11 rounded-[10px] p-3",
-			"48": "[&>svg]:size-6 size-12 rounded-[10px] p-3",
+			"44": "[&>svg]:size-5 size-11 rounded-lg p-3",
+			"48": "[&>svg]:size-6 size-12 rounded-lg p-3",
 		},
 		variant: {
 			outline: "",

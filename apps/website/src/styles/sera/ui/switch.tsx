@@ -69,8 +69,8 @@ const switchIndicatorVariants = cva(
 	{
 		variants: {
 			state: {
-				on: "text-primary text-[10px] font-medium",
-				off: "text-fg-secondary text-[10px] font-medium",
+				on: "text-primary text-lg font-medium",
+				off: "text-fg-secondary text-lg font-medium",
 			},
 		},
 		defaultVariants: {
