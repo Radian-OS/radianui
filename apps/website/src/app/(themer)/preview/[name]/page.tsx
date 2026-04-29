@@ -2,10 +2,10 @@
 
 import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react"
 import { useThemerPreset } from "@/lib/themer-preset"
+import { Index } from "@/registry/blocks-example"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
 import { RADIUS } from "@/registry/radius"
-import registry from "@/registry/registry-map"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
@@ -14,9 +14,7 @@ type RegistryThemeCssVars = NonNullable<
 >
 
 const getComponentsByPrefix = (prefix: string) => {
-	return Object.entries(registry).filter(([key]) =>
-		key.startsWith(`${prefix}-`)
-	)
+	return Object.entries(Index).filter(([key]) => key === prefix)
 }
 
 const buildCssRule = (selector: string, cssVars?: Record<string, string>) => {
@@ -107,7 +105,7 @@ function removeManagedBodyClasses(body: Element) {
 
 export default function Page({}: { params: { name: string } }) {
 	const [params, setParams] = useThemerPreset()
-	const [componentName, setComponentName] = useState("button")
+	const [componentName, setComponentName] = useState("preview")
 
 	const selectedHeadingFont = FONTS.find(
 		(font) => font.value === params.headingFont
@@ -187,7 +185,7 @@ export default function Page({}: { params: { name: string } }) {
 						fallback={
 							<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
 						}>
-						<Component />
+						<Component.component />
 					</Suspense>
 				))}
 			</div>
