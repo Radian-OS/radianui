@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
-import { COMPONENTS_DATA } from "@/config/navigation-config"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
@@ -28,6 +27,8 @@ interface ThemerSidebarProps {
 	selectedComponent: string
 	setSelectedComponent: (value: string) => void
 }
+
+const COMPONENTS_DATA = ["preview", "preview-02"]
 
 export function ThemerSidebar({
 	selectedComponent,

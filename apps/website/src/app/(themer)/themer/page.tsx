@@ -21,7 +21,7 @@ export default function Page() {
 
 function ThemerPage() {
 	const [params] = useThemerPreset()
-	const [selectedComponent, setSelectedComponent] = useState<string>("button")
+	const [selectedComponent, setSelectedComponent] = useState<string>("preview")
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
