@@ -27,12 +27,11 @@ export default function App() {
 				</p>
 
 				<div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-					<Button size="44" variant="glossy" className="rounded-full" asChild>
+					<Button size="44" variant="glossy" asChild>
 						<a href="https://radianos.com">Explore the docs</a>
 					</Button>
 					<Button
 						size="44"
-						className="rounded-full"
 						variant="soft"
 						color="neutral"
 						asChild

@@ -28,12 +28,11 @@ export default function Page() {
 				</p>
 
 				<div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-					<Button size="44" variant="glossy" className="rounded-full" asChild>
+					<Button size="44" variant="glossy" asChild>
 						<Link href="https://radianos.com">Explore the docs</Link>
 					</Button>
 					<Button
 						size="44"
-						className="rounded-full"
 						variant="soft"
 						color="neutral"
 						asChild
