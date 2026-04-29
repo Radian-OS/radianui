@@ -79,7 +79,7 @@ export const PRESETS: Preset[] = [
 		description: "Sera preset",
 		primaryColor: "violet-blue",
 		headingFont: "playfair-display",
-		bodyFont: "noto-sans",
+		bodyFont: "playfair-display",
 		template: "next",
 		radius: "medium",
 		style: "sera",

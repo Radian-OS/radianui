@@ -6929,6 +6929,19 @@ export const FONTS = [
 		},
 	},
 	{
+		value: "plus-jakarta-sans",
+		name: "Plus Jakarta Sans",
+		type: "registry:font",
+		font: {
+			family: "'Plus Jakarta Sans', sans-serif",
+			provider: "google",
+			subsets: ["latin"],
+			import: "Plus_Jakarta_Sans",
+			googleFontsUrl:
+				"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap",
+		},
+	},
+	{
 		value: "playfair-display",
 		name: "Playfair Display",
 		type: "registry:font",
