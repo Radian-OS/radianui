@@ -1,6 +1,7 @@
 import fs from "fs-extra"
 import path from "path"
 import { Project, SourceFile } from "ts-morph"
+import { formatCode } from "@/lib/format-code"
 
 export type RegistryType = "ui" | "component" | "page" | "hook" | "animated"
 
@@ -164,7 +165,7 @@ async function writeStylesJSON() {
 					await Promise.all([
 						getDependencyArray(filePath),
 						getRegistryDependencyArray(filePath),
-						getContent(filePath),
+						formatCode(await getContent(filePath)),
 					])
 
 				// Create the registry file object
