@@ -20,7 +20,7 @@ const getComponentsByPrefix = (prefix: string) => {
 const buildCssRule = (selector: string, cssVars?: Record<string, string>) => {
 	const declarations = Object.entries(cssVars ?? {})
 		.filter(([, value]) => Boolean(value))
-		.map(([key, value]) => `  --color-${key}: ${value};`)
+		.map(([key, value]) => `  ${key}: ${value};`)
 		.join("\n")
 
 	if (!declarations) {
@@ -165,6 +165,9 @@ export default function Page({}: { params: { name: string } }) {
 			}
 			if (event.data.type === "style-change") {
 				setParams({ style: event.data.style })
+			}
+			if (event.data.type === "theme-change") {
+				setParams({ theme: event.data.theme })
 			}
 		}
 

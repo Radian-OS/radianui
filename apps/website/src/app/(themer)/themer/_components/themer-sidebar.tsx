@@ -9,6 +9,7 @@ import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { STYLES } from "@/registry/styles"
+import { THEMES } from "@/registry/themes"
 import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
@@ -78,6 +79,35 @@ export function ThemerSidebar({
 
 			{/* Scrollable controls */}
 			<div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 py-5">
+				{/* Theme Section */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Theme</SectionLabel>
+					<Dropdown>
+						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
+							<span className="text-fg font-medium">
+								{params.theme.charAt(0).toUpperCase() + params.theme.slice(1)}
+							</span>
+							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
+						</DropdownTrigger>
+						<DropdownContent side="right" className="max-h-96 w-56">
+							<DropdownRadioGroup
+								value={params.theme}
+								onValueChange={(value) =>
+									setParams({ theme: value as typeof params.theme })
+								}>
+								{THEMES.map((theme) => (
+									<DropdownRadioItem
+										key={theme.value}
+										value={theme.value}
+										onSelect={(e) => e.preventDefault()}>
+										{theme.label}
+									</DropdownRadioItem>
+								))}
+							</DropdownRadioGroup>
+						</DropdownContent>
+					</Dropdown>
+				</div>
+
 				{/* Style Section */}
 
 				<div className="flex flex-col gap-3">

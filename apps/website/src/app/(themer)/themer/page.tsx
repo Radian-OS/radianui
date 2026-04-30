@@ -27,7 +27,7 @@ function ThemerPage() {
 
 	const iframeSrc = useMemo(
 		() =>
-			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}`,
+			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}&theme=${params.theme}`,
 		[]
 	)
 
@@ -64,6 +64,10 @@ function ThemerPage() {
 	useEffect(() => {
 		postToIframe({ type: "template-change", template: params.template })
 	}, [params.template])
+
+	useEffect(() => {
+		postToIframe({ type: "theme-change", theme: params.theme })
+	}, [params.theme])
 
 	useEffect(() => {
 		const iframe = iframeRef.current
