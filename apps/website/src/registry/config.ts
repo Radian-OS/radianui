@@ -81,7 +81,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	style: "default",
 	name: "my-project",
 	useSrcDir: true,
-	theme: "bubblegum",
+	theme: "default",
 }
 
 export type Preset = ThemerConfig & {
@@ -102,7 +102,7 @@ export const PRESETS: Preset[] = [
 		radius: "medium",
 		style: "default",
 		useSrcDir: true,
-		theme: "bubblegum",
+		theme: "default",
 	},
 	{
 		name: "sera",
@@ -115,7 +115,7 @@ export const PRESETS: Preset[] = [
 		radius: "medium",
 		style: "sera",
 		useSrcDir: true,
-		theme: "bubblegum",
+		theme: "default",
 	},
 ]
 

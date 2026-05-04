@@ -29,7 +29,7 @@ interface ThemerSidebarProps {
 	setSelectedComponent: (value: string) => void
 }
 
-const COMPONENTS_DATA = ["preview", "preview-02"]
+const COMPONENTS_DATA = ["preview-02", "preview-03"]
 
 export function ThemerSidebar({
 	selectedComponent,
@@ -129,6 +129,7 @@ export function ThemerSidebar({
 										...(preset && {
 											...preset,
 										}),
+										theme: params.theme,
 										primaryColor: params.primaryColor,
 									})
 								}}>

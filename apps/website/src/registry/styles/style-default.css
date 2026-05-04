@@ -1016,7 +1016,7 @@
 	/* MARK: Calendar */
 
 	.cn-calendar {
-		@apply bg-elevation-level1 border-border rounded-xl border p-3;
+		@apply bg-card border-border rounded-xl border p-3;
 	}
 
 	.cn-calendar-month-caption {
@@ -1040,7 +1040,7 @@
 		@apply hover:bg-fill1-alpha;
 		@apply hover:group-data-selected:bg-primary;
 		@apply group-data-disabled:line-through;
-		@apply group-data-selected:bg-primary group-data-selected:text-white;
+		@apply group-data-selected:bg-primary group-data-selected:text-primary-fg;
 		@apply hover:group-[.rdp-outside]:group-data-selected:bg-primary;
 		@apply group-[.rdp-outside]:group-data-selected:text-white;
 		@apply group-[.range-middle]:group-[.rdp-outside]:group-data-selected:text-primary-text;
@@ -1048,10 +1048,10 @@
 		@apply group-data-disabled:text-fg-tertiary;
 		@apply group-data-outside:text-fg-tertiary;
 		@apply group-data-today:border group-data-today:border-primary group-data-today:text-primary-text;
-		@apply group-data-today:group-data-selected:text-white;
+		@apply group-data-today:group-data-selected:text-primary-fg;
 		@apply hover:group-[.range-middle]:group-data-selected:bg-primary-accent;
 		@apply group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-primary-text;
-		@apply group-data-selected:group-data-outside:text-primary-text;
+		@apply group-data-selected:group-data-outside:text-primary-fg;
 	}
 
 	.cn-calendar-button-previous,
@@ -1071,7 +1071,7 @@
 
 	/* MARK: Card */
 	.cn-card {
-		@apply bg-elevation-level1 gap-6 rounded-xl border py-6 shadow-sm;
+		@apply bg-card gap-6 rounded-xl border py-6 shadow-sm;
 	}
 
 	.cn-card-header {
@@ -1367,7 +1367,7 @@
 	}
 
 	.cn-dropdown-content {
-		@apply border-border bg-elevation-level2 drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-lg border p-1.5;
+		@apply border-border bg-popover drop-shadow-xs min-w-[var(--radix-dropdown-menu-trigger-width)] gap-0.5 rounded-lg border p-1.5;
 	}
 
 	.cn-dropdown-item {
@@ -1440,7 +1440,7 @@
 	}
 
 	.cn-dropdown-sub-content {
-		@apply border-border bg-elevation-level2 drop-shadow-xs min-w-36 rounded-lg border p-1.5;
+		@apply border-border bg-popover drop-shadow-xs min-w-36 rounded-lg border p-1.5;
 	}
 
 	.cn-dropdown-label {
@@ -1462,12 +1462,12 @@
 	/* MARK: HoverCard */
 
 	.cn-hover-card-content {
-		@apply bg-bg text-fg border-soft rounded-lg border p-4 shadow-md;
+		@apply bg-popover text-fg border-soft rounded-lg border p-4 shadow-md;
 	}
 
 	/* MARK: Input */
 	.cn-input {
-		@apply border focus-visible:ring-2;
+		@apply bg-bg border focus-visible:ring-2;
 	}
 
 	/* Input sizes */
@@ -1596,7 +1596,7 @@
 	/* MARK: Popover */
 
 	.cn-popover-content {
-		@apply text-fg bg-elevation-level1 rounded-md border p-4 shadow-md;
+		@apply text-fg bg-popover rounded-md border p-4 shadow-md;
 	}
 
 	/* MARK: Progress */
@@ -1669,7 +1669,7 @@
 	}
 
 	.cn-select-content {
-		@apply border-border bg-elevation-level2 text-fg min-w-[8rem] rounded-md border shadow-md shadow-black/5;
+		@apply border-border bg-popover text-fg min-w-[8rem] rounded-md border shadow-md shadow-black/5;
 	}
 
 	.cn-select-viewport {
@@ -1912,7 +1912,7 @@
 
 	/* MARK: TextArea */
 	.cn-textarea {
-		@apply text-fg border-alpha bg-bg drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled border px-2.5 py-2 text-sm font-normal placeholder:text-sm focus:ring-2 disabled:cursor-not-allowed disabled:resize-none;
+		@apply text-fg border-alpha drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled bg-bg border px-2.5 py-2 text-sm font-normal placeholder:text-sm focus:ring-2 disabled:cursor-not-allowed disabled:resize-none;
 	}
 
 	.cn-textarea-rounded {

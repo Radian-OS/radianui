@@ -189,7 +189,7 @@ export function CreateProjectDialog() {
 								<ThemeSummaryPill
 									label="Color"
 									value={selectedColor.name}
-									colorSwatch={selectedColor.cssVars.light.primary}
+									colorSwatch={selectedColor.cssVars.light["--color-primary"]}
 								/>
 							)}
 							{selectedHeadingFont && (

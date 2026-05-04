@@ -1018,7 +1018,7 @@
 	/* MARK: Calendar */
 
 	.cn-calendar {
-		@apply bg-elevation-level1 border-border rounded-none border p-4;
+		@apply bg-card border-border rounded-none border p-4;
 	}
 
 	.cn-calendar-month-caption {
@@ -1042,7 +1042,7 @@
 		@apply hover:bg-fill1-alpha;
 		@apply hover:group-data-selected:bg-primary;
 		@apply group-data-disabled:line-through;
-		@apply group-data-selected:bg-primary group-data-selected:text-white;
+		@apply group-data-selected:bg-primary group-data-selected:text-primary-fg;
 		@apply hover:group-[.rdp-outside]:group-data-selected:bg-primary;
 		@apply group-[.rdp-outside]:group-data-selected:text-white;
 		@apply group-[.range-middle]:group-[.rdp-outside]:group-data-selected:text-primary-text;
@@ -1050,10 +1050,10 @@
 		@apply group-data-disabled:text-fg-tertiary;
 		@apply group-data-outside:text-fg-tertiary;
 		@apply group-data-today:border group-data-today:border-primary group-data-today:text-primary-text;
-		@apply group-data-today:group-data-selected:text-white;
+		@apply group-data-today:group-data-selected:text-primary-fg;
 		@apply hover:group-[.range-middle]:group-data-selected:bg-primary-accent;
 		@apply group-[.range-middle]:group-data-selected:bg-primary-accent group-[.range-middle]:group-data-selected:text-primary-text;
-		@apply group-data-selected:group-data-outside:text-primary-text;
+		@apply group-data-selected:group-data-outside:text-primary-fg;
 	}
 
 	.cn-calendar-button-previous,
@@ -1074,7 +1074,7 @@
 	/* MARK: Card */
 
 	.cn-card {
-		@apply bg-elevation-level1 gap-8 rounded-none border py-8 shadow-none;
+		@apply bg-card gap-8 rounded-none border py-8 shadow-none;
 	}
 
 	.cn-card-header {
@@ -1370,7 +1370,7 @@
 	}
 
 	.cn-dropdown-content {
-		@apply border-border bg-elevation-level2 min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 rounded-none border p-2 shadow-none;
+		@apply border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 rounded-none border p-2 shadow-none;
 	}
 
 	.cn-dropdown-item {
@@ -1443,7 +1443,7 @@
 	}
 
 	.cn-dropdown-sub-content {
-		@apply border-border bg-elevation-level2 min-w-36 rounded-none border p-2 shadow-none;
+		@apply border-border bg-popover min-w-36 rounded-none border p-2 shadow-none;
 	}
 
 	.cn-dropdown-label {
@@ -1465,14 +1465,14 @@
 	/* MARK: HoverCard */
 
 	.cn-hover-card-content {
-		@apply bg-bg text-fg border-soft rounded-none border p-6 shadow-none;
+		@apply bg-popover text-fg border-soft rounded-none border p-6 shadow-none;
 	}
 
 	/* MARK: Input */
 
 	/* Input sizes */
 	.cn-input {
-		@apply border-b;
+		@apply border-b bg-transparent;
 	}
 
 	.cn-input-28 {
@@ -1596,7 +1596,7 @@
 	/* MARK: Popover */
 
 	.cn-popover-content {
-		@apply text-fg bg-elevation-level1 rounded-none border p-6 shadow-none;
+		@apply text-fg bg-popover rounded-none border p-6 shadow-none;
 	}
 
 	/* MARK: Progress */
@@ -1637,7 +1637,7 @@
 
 	/* MARK: Select */
 	.cn-select-trigger {
-		@apply bg-bg border-border text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border-b shadow-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
+		@apply border-border text-fg data-placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary aria-invalid:border-error aria-invalid:ring-error [[data-invalid=true]_&]:border-error [[data-invalid=true]_&]:ring-error border-b bg-transparent shadow-none focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50;
 	}
 
 	.cn-select-trigger-28 {
@@ -1669,7 +1669,7 @@
 	}
 
 	.cn-select-content {
-		@apply border-border bg-elevation-level2 text-fg min-w-[8rem] rounded-none border shadow-none;
+		@apply border-border bg-popover text-fg min-w-[8rem] rounded-none border shadow-none;
 	}
 
 	.cn-select-viewport {
@@ -1912,7 +1912,7 @@
 
 	/* MARK: TextArea */
 	.cn-textarea {
-		@apply text-fg border-alpha bg-bg focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled border-b px-2 py-3 text-sm font-normal drop-shadow-none placeholder:text-sm disabled:cursor-not-allowed disabled:resize-none;
+		@apply text-fg border-alpha focus:border-primary-hover aria-invalid:ring-error aria-invalid:border-error focus:ring-primary-hover/30 disabled:border-soft disabled:text-fg-disabled border-b bg-transparent px-2 py-3 text-sm font-normal drop-shadow-none placeholder:text-sm disabled:cursor-not-allowed disabled:resize-none;
 	}
 
 	.cn-textarea-rounded {

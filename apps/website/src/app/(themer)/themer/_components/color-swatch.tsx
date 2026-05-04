@@ -26,7 +26,7 @@ export function ColorSwatch({
 							? "border-fg scale-110 ring-2 ring-white"
 							: "hover:border-border border-transparent hover:scale-110"
 					)}
-					style={{ backgroundColor: color.cssVars.light.primary }}
+					style={{ backgroundColor: color.cssVars.light["--color-primary"] }}
 				/>
 			</TooltipTrigger>
 			<TooltipContent side="top">{color.name}</TooltipContent>
