@@ -262,10 +262,31 @@ const BASE_THEME = {
 	},
 } as const
 
+/**
+ * Normalizes primary color CSS variable keys so they always carry the
+ * `--color-` prefix required by the design system.
+ *
+ * Most entries in `primary-colors.ts` use bare keys like `"primary"` or
+ * `"primary-accent"`.  When those are written directly into a <style> block
+ * they produce invalid declarations (e.g. `primary: oklch(…);`) that browsers
+ * silently ignore.  Entries that already start with `--` (e.g. `--color-primary`)
+ * are kept as-is.
+ */
+function normalizePrimaryColorVars(
+	vars?: Readonly<Record<string, string>>
+): Record<string, string> {
+	if (!vars) return {}
+	const result: Record<string, string> = {}
+	for (const [key, value] of Object.entries(vars)) {
+		result[key.startsWith("--") ? key : `--color-${key}`] = value
+	}
+	return result
+}
+
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 	const colorEntry = PRIMARY_COLORS.find((c) => c.value === config.primaryColor)
-	const lightVars = colorEntry?.cssVars.light
-	const darkVars = colorEntry?.cssVars.dark
+	const lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
+	const darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
 
 	const themeEntry = THEMES.find((t) => t.value === config.theme)
 	const themeCssVars = themeEntry?.cssVars
