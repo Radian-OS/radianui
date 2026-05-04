@@ -29,7 +29,15 @@ interface ThemerSidebarProps {
 	setSelectedComponent: (value: string) => void
 }
 
-const COMPONENTS_DATA = ["preview", "preview-02"]
+const COMPONENTS_DATA = [
+	"preview-01",
+	"preview-02",
+	"signin",
+	"signup",
+	"new-password",
+	"reset-email",
+	"sidebar-inset",
+]
 
 export function ThemerSidebar({
 	selectedComponent,
@@ -166,7 +174,7 @@ export function ThemerSidebar({
 
 				{/* Component Preview */}
 				<div className="flex flex-col gap-3">
-					<SectionLabel>Component</SectionLabel>
+					<SectionLabel>Preview</SectionLabel>
 					<Dropdown>
 						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">

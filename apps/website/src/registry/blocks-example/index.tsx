@@ -16,54 +16,80 @@ export type RegistryItem = {
 }
 
 export const Index: Record<string, RegistryItem> = {
-	preview: {
-		name: "preview",
+	"new-password": {
+		name: "new-password",
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/preview/common/card-first.tsx",
-				name: "card-first.tsx",
+				path: "registry\\blocks-example\\new-password\\components\\brand-logo.tsx",
+				name: "brand-logo.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/preview/common/common-card.tsx",
-				name: "common-card.tsx",
+				path: "registry\\blocks-example\\new-password\\components\\new-password-form.tsx",
+				name: "new-password-form.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/preview/common/cookie-card.tsx",
-				name: "cookie-card.tsx",
-				type: "components",
-				target: "",
-			},
-			{
-				path: "registry/blocks-example/preview/common/dropdown.tsx",
-				name: "dropdown.tsx",
-				type: "components",
-				target: "",
-			},
-			{
-				path: "registry/blocks-example/preview/common/invite-card.tsx",
-				name: "invite-card.tsx",
-				type: "components",
-				target: "",
-			},
-			{
-				path: "registry/blocks-example/preview/common/report-card.tsx",
-				name: "report-card.tsx",
-				type: "components",
-				target: "",
-			},
-			{
-				path: "registry/blocks-example/preview/page.tsx",
+				path: "registry\\blocks-example\\new-password\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
 		],
 		component: React.lazy(
-			() => import("@/registry/blocks-example/preview/page")
+			() => import("@/registry/blocks-example/new-password/page")
+		),
+	},
+	"preview-01": {
+		name: "preview-01",
+		type: "block",
+		files: [
+			{
+				path: "registry\\blocks-example\\preview-01\\common\\card-first.tsx",
+				name: "card-first.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\preview-01\\common\\common-card.tsx",
+				name: "common-card.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\preview-01\\common\\cookie-card.tsx",
+				name: "cookie-card.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\preview-01\\common\\dropdown.tsx",
+				name: "dropdown.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\preview-01\\common\\invite-card.tsx",
+				name: "invite-card.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\preview-01\\common\\report-card.tsx",
+				name: "report-card.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\preview-01\\page.tsx",
+				name: "page.tsx",
+				type: "page",
+			},
+		],
+		component: React.lazy(
+			() => import("@/registry/blocks-example/preview-01/page")
 		),
 	},
 	"preview-02": {
@@ -71,7 +97,7 @@ export const Index: Record<string, RegistryItem> = {
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/preview-02/page.tsx",
+				path: "registry\\blocks-example\\preview-02\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
@@ -80,36 +106,74 @@ export const Index: Record<string, RegistryItem> = {
 			() => import("@/registry/blocks-example/preview-02/page")
 		),
 	},
+	"reset-email": {
+		name: "reset-email",
+		type: "block",
+		files: [
+			{
+				path: "registry\\blocks-example\\reset-email\\components\\brand-logo.tsx",
+				name: "brand-logo.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\reset-email\\components\\gmail-icon.tsx",
+				name: "gmail-icon.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\reset-email\\components\\mail-logo.tsx",
+				name: "mail-logo.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\reset-email\\components\\reset-email.tsx",
+				name: "reset-email.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\reset-email\\page.tsx",
+				name: "page.tsx",
+				type: "page",
+			},
+		],
+		component: React.lazy(
+			() => import("@/registry/blocks-example/reset-email/page")
+		),
+	},
 	"sidebar-dark": {
 		name: "sidebar-dark",
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/sidebar-dark/components/app-sidebar.tsx",
+				path: "registry\\blocks-example\\sidebar-dark\\components\\app-sidebar.tsx",
 				name: "app-sidebar.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-dark/components/info-card.tsx",
+				path: "registry\\blocks-example\\sidebar-dark\\components\\info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-dark/components/logos.tsx",
+				path: "registry\\blocks-example\\sidebar-dark\\components\\logos.tsx",
 				name: "logos.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-dark/components/sidebar-footer-user.tsx",
+				path: "registry\\blocks-example\\sidebar-dark\\components\\sidebar-footer-user.tsx",
 				name: "sidebar-footer-user.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-dark/page.tsx",
+				path: "registry\\blocks-example\\sidebar-dark\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
@@ -123,31 +187,31 @@ export const Index: Record<string, RegistryItem> = {
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/sidebar-doc/components/app-sidebar.tsx",
+				path: "registry\\blocks-example\\sidebar-doc\\components\\app-sidebar.tsx",
 				name: "app-sidebar.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-doc/components/info-card.tsx",
+				path: "registry\\blocks-example\\sidebar-doc\\components\\info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-doc/components/logos.tsx",
+				path: "registry\\blocks-example\\sidebar-doc\\components\\logos.tsx",
 				name: "logos.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-doc/components/sidebar-footer-user.tsx",
+				path: "registry\\blocks-example\\sidebar-doc\\components\\sidebar-footer-user.tsx",
 				name: "sidebar-footer-user.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-doc/page.tsx",
+				path: "registry\\blocks-example\\sidebar-doc\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
@@ -161,31 +225,31 @@ export const Index: Record<string, RegistryItem> = {
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/sidebar-floating/components/app-sidebar.tsx",
+				path: "registry\\blocks-example\\sidebar-floating\\components\\app-sidebar.tsx",
 				name: "app-sidebar.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-floating/components/info-card.tsx",
+				path: "registry\\blocks-example\\sidebar-floating\\components\\info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-floating/components/logos.tsx",
+				path: "registry\\blocks-example\\sidebar-floating\\components\\logos.tsx",
 				name: "logos.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-floating/components/sidebar-footer-user.tsx",
+				path: "registry\\blocks-example\\sidebar-floating\\components\\sidebar-footer-user.tsx",
 				name: "sidebar-footer-user.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-floating/page.tsx",
+				path: "registry\\blocks-example\\sidebar-floating\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
@@ -199,31 +263,31 @@ export const Index: Record<string, RegistryItem> = {
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/sidebar-inset/components/app-sidebar.tsx",
+				path: "registry\\blocks-example\\sidebar-inset\\components\\app-sidebar.tsx",
 				name: "app-sidebar.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-inset/components/info-card.tsx",
+				path: "registry\\blocks-example\\sidebar-inset\\components\\info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-inset/components/logos.tsx",
+				path: "registry\\blocks-example\\sidebar-inset\\components\\logos.tsx",
 				name: "logos.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-inset/components/sidebar-footer-user.tsx",
+				path: "registry\\blocks-example\\sidebar-inset\\components\\sidebar-footer-user.tsx",
 				name: "sidebar-footer-user.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-inset/page.tsx",
+				path: "registry\\blocks-example\\sidebar-inset\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
@@ -237,31 +301,31 @@ export const Index: Record<string, RegistryItem> = {
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/sidebar-offcanvas/components/app-sidebar.tsx",
+				path: "registry\\blocks-example\\sidebar-offcanvas\\components\\app-sidebar.tsx",
 				name: "app-sidebar.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-offcanvas/components/info-card-expanded.tsx",
+				path: "registry\\blocks-example\\sidebar-offcanvas\\components\\info-card-expanded.tsx",
 				name: "info-card-expanded.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-offcanvas/components/logos.tsx",
+				path: "registry\\blocks-example\\sidebar-offcanvas\\components\\logos.tsx",
 				name: "logos.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-offcanvas/components/sidebar-footer-user.tsx",
+				path: "registry\\blocks-example\\sidebar-offcanvas\\components\\sidebar-footer-user.tsx",
 				name: "sidebar-footer-user.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-offcanvas/page.tsx",
+				path: "registry\\blocks-example\\sidebar-offcanvas\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
@@ -275,31 +339,31 @@ export const Index: Record<string, RegistryItem> = {
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/sidebar-rail/components/app-sidebar.tsx",
+				path: "registry\\blocks-example\\sidebar-rail\\components\\app-sidebar.tsx",
 				name: "app-sidebar.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-rail/components/info-card.tsx",
+				path: "registry\\blocks-example\\sidebar-rail\\components\\info-card.tsx",
 				name: "info-card.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-rail/components/logos.tsx",
+				path: "registry\\blocks-example\\sidebar-rail\\components\\logos.tsx",
 				name: "logos.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-rail/components/sidebar-footer-user.tsx",
+				path: "registry\\blocks-example\\sidebar-rail\\components\\sidebar-footer-user.tsx",
 				name: "sidebar-footer-user.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-rail/page.tsx",
+				path: "registry\\blocks-example\\sidebar-rail\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
@@ -313,37 +377,113 @@ export const Index: Record<string, RegistryItem> = {
 		type: "block",
 		files: [
 			{
-				path: "registry/blocks-example/sidebar-resize/components/app-sidebar.tsx",
+				path: "registry\\blocks-example\\sidebar-resize\\components\\app-sidebar.tsx",
 				name: "app-sidebar.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-resize/components/info-card-expanded.tsx",
+				path: "registry\\blocks-example\\sidebar-resize\\components\\info-card-expanded.tsx",
 				name: "info-card-expanded.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-resize/components/logos.tsx",
+				path: "registry\\blocks-example\\sidebar-resize\\components\\logos.tsx",
 				name: "logos.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-resize/components/sidebar-footer-user.tsx",
+				path: "registry\\blocks-example\\sidebar-resize\\components\\sidebar-footer-user.tsx",
 				name: "sidebar-footer-user.tsx",
 				type: "components",
 				target: "",
 			},
 			{
-				path: "registry/blocks-example/sidebar-resize/page.tsx",
+				path: "registry\\blocks-example\\sidebar-resize\\page.tsx",
 				name: "page.tsx",
 				type: "page",
 			},
 		],
 		component: React.lazy(
 			() => import("@/registry/blocks-example/sidebar-resize/page")
+		),
+	},
+	signin: {
+		name: "signin",
+		type: "block",
+		files: [
+			{
+				path: "registry\\blocks-example\\signin\\components\\brand-logo.tsx",
+				name: "brand-logo.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signin\\components\\github-icon.tsx",
+				name: "github-icon.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signin\\components\\google-icon.tsx",
+				name: "google-icon.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signin\\components\\signin-form.tsx",
+				name: "signin-form.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signin\\page.tsx",
+				name: "page.tsx",
+				type: "page",
+			},
+		],
+		component: React.lazy(
+			() => import("@/registry/blocks-example/signin/page")
+		),
+	},
+	signup: {
+		name: "signup",
+		type: "block",
+		files: [
+			{
+				path: "registry\\blocks-example\\signup\\components\\github-icon.tsx",
+				name: "github-icon.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signup\\components\\google-icon.tsx",
+				name: "google-icon.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signup\\components\\radian-logo.tsx",
+				name: "radian-logo.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signup\\components\\signup-form.tsx",
+				name: "signup-form.tsx",
+				type: "components",
+				target: "",
+			},
+			{
+				path: "registry\\blocks-example\\signup\\page.tsx",
+				name: "page.tsx",
+				type: "page",
+			},
+		],
+		component: React.lazy(
+			() => import("@/registry/blocks-example/signup/page")
 		),
 	},
 }

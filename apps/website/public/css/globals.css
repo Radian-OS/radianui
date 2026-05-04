@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
 @import "../registry/styles/style-default.css" layer(base);
 @import "../registry/styles/style-sera.css" layer(base);
 
@@ -119,6 +120,15 @@
 
 	--heading-font: var(--font-geist), system-ui, sans-serif;
 	--body-font: var(--font-inter), system-ui, sans-serif;
+
+	--shadow-2xs: var(--shadow-2xs);
+	--shadow-xs: var(--shadow-xs);
+	--shadow-sm: var(--shadow-sm);
+	--shadow: var(--shadow);
+	--shadow-md: var(--shadow-md);
+	--shadow-lg: var(--shadow-lg);
+	--shadow-xl: var(--shadow-xl);
+	--shadow-2xl: var(--shadow-2xl);
 }
 
 .dark {

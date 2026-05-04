@@ -105,7 +105,7 @@ function removeManagedBodyClasses(body: Element) {
 
 export default function Page({}: { params: { name: string } }) {
 	const [params, setParams] = useThemerPreset()
-	const [componentName, setComponentName] = useState("preview")
+	const [componentName, setComponentName] = useState("preview-01")
 
 	const selectedHeadingFont = FONTS.find(
 		(font) => font.value === params.headingFont
