@@ -117,7 +117,7 @@ function DropdownContent({ className, ...props }: DropdownContentProps) {
 			data-slot="dropdown-menu-content"
 			align="start"
 			className={cn(
-				"border-border bg-elevation-level2 min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 rounded-none border p-2 shadow-none",
+				"border-border bg-popover min-w-[var(--radix-dropdown-menu-trigger-width)] gap-1 rounded-none border p-2 shadow-none",
 				"no-scrollbar z-50 flex flex-col overflow-x-visible overflow-y-scroll",
 				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 				className
@@ -308,7 +308,7 @@ function DropdownSubContent({ className, ...props }: DropdownSubContentProps) {
 			<DropdownMenuPrimitive.SubContent
 				data-slot="dropdown-menu-sub-content"
 				className={cn(
-					"border-border bg-elevation-level2 min-w-36 rounded-none border p-2 shadow-none",
+					"border-border bg-popover min-w-36 rounded-none border p-2 shadow-none",
 					"z-50 flex flex-col items-stretch justify-start",
 					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
 					className

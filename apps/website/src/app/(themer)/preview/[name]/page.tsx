@@ -1,194 +1,31 @@
-"use client"
-
-import { Suspense, useEffect, useLayoutEffect, useMemo, useState } from "react"
-import { useThemerPreset } from "@/lib/themer-preset"
+import { Suspense } from "react"
 import { Index } from "@/registry/blocks-example"
-import { buildRegistryConfig } from "@/registry/config"
-import { FONTS } from "@/registry/fonts"
-import { RADIUS } from "@/registry/radius"
-
-const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
-
-type RegistryThemeCssVars = NonNullable<
-	ReturnType<typeof buildRegistryConfig>["cssVars"]
->
+import { PreviewClient } from "./preview-client"
 
 const getComponentsByPrefix = (prefix: string) => {
 	return Object.entries(Index).filter(([key]) => key === prefix)
 }
 
-const buildCssRule = (selector: string, cssVars?: Record<string, string>) => {
-	const declarations = Object.entries(cssVars ?? {})
-		.filter(([, value]) => Boolean(value))
-		.map(([key, value]) => `  --color-${key}: ${value};`)
-		.join("\n")
+export default async function Page({
+	params: pageParams,
+}: {
+	params: Promise<{ name: string }>
+}) {
+	const { name: componentName } = await pageParams
 
-	if (!declarations) {
-		return `${selector} {}\n`
-	}
-
-	return `${selector} {\n${declarations}\n}\n`
-}
-
-const buildStyleCssText = (cssVars: RegistryThemeCssVars) => {
-	const lightVars = buildCssRule(":root", cssVars.light)
-	const darkVars = buildCssRule(".dark", cssVars.dark)
-
-	return [lightVars, darkVars].join("\n")
-}
-
-const useFontLoader = (
-	font: (typeof FONTS)[number] | undefined,
-	cssVar: string
-) => {
-	useEffect(() => {
-		if (!font) return
-
-		const link = document.createElement("link")
-		link.rel = "stylesheet"
-		link.href = font.font.googleFontsUrl
-		document.head.appendChild(link)
-
-		const fontFamily = font.name
-		document.documentElement.style.setProperty(cssVar, fontFamily)
-
-		return () => {
-			document.head.removeChild(link)
-		}
-	}, [font, cssVar])
-}
-
-const THEMER_STYLE_ID = "themer-style"
-
-const RADIUS_PRESETS = Object.fromEntries(
-	RADIUS.map((r) => [r.value, r.radius])
-)
-
-const buildRadiusCssText = (preset: string) => {
-	const radii = RADIUS_PRESETS[preset]
-	if (!radii) return ""
-
-	const declarations = Object.entries(radii)
-		.map(([key, value]) => `  --radius-${key}: ${value};`)
-		.join("\n")
-
-	return `:root {\n${declarations}\n}\n`
-}
-
-const buildThemerCssText = (
-	cssVars: RegistryThemeCssVars | undefined,
-	radius: string | undefined
-) => {
-	const parts: string[] = []
-
-	if (cssVars) {
-		parts.push(buildStyleCssText(cssVars))
-	}
-
-	if (radius) {
-		const radiusCss = buildRadiusCssText(radius)
-		if (radiusCss) parts.push(radiusCss)
-	}
-
-	return parts.join("\n")
-}
-
-function removeManagedBodyClasses(body: Element) {
-	for (const className of Array.from(body.classList)) {
-		if (
-			MANAGED_BODY_CLASS_PREFIXES.some((prefix) => className.startsWith(prefix))
-		) {
-			body.classList.remove(className)
-		}
-	}
-}
-
-export default function Page({}: { params: { name: string } }) {
-	const [params, setParams] = useThemerPreset()
-	const [componentName, setComponentName] = useState("preview")
-
-	const selectedHeadingFont = FONTS.find(
-		(font) => font.value === params.headingFont
-	)
-	const selectedBodyFont = FONTS.find((font) => font.value === params.bodyFont)
-
-	const config = useMemo(() => buildRegistryConfig(params), [params])
-
-	const components = useMemo(
-		() => getComponentsByPrefix(componentName),
-		[componentName]
-	)
-
-	useLayoutEffect(() => {
-		let style = document.getElementById(THEMER_STYLE_ID) as HTMLStyleElement
-
-		if (!style) {
-			style = document.createElement("style")
-			style.id = THEMER_STYLE_ID
-			document.head.appendChild(style)
-		}
-
-		style.textContent = buildThemerCssText(config?.cssVars, params.radius)
-
-		removeManagedBodyClasses(document.body)
-		document.body.classList.add(`style-${params.style}`)
-
-		return () => {
-			if (style && document.head.contains(style)) {
-				document.head.removeChild(style)
-			}
-		}
-	}, [config, params.radius, params.style])
-
-	useFontLoader(selectedHeadingFont, "--heading-font")
-	useFontLoader(selectedBodyFont, "--body-font")
-
-	useEffect(() => {
-		const handleMessage = (event: MessageEvent) => {
-			if (event.data.type === "primary-color-change") {
-				setParams({ primaryColor: event.data.primaryColor })
-			}
-			if (event.data.type === "component-change") {
-				setComponentName(event.data.component)
-			}
-			if (event.data.type === "heading-font-change") {
-				setParams({ headingFont: event.data.headingFont })
-			}
-			if (event.data.type === "body-font-change") {
-				setParams({ bodyFont: event.data.bodyFont })
-			}
-			if (event.data.type === "radius-change") {
-				setParams({ radius: event.data.radius })
-			}
-			if (event.data.type === "template-change") {
-				setParams({ template: event.data.template })
-			}
-			if (event.data.type === "style-change") {
-				setParams({ style: event.data.style })
-			}
-		}
-
-		window.addEventListener("message", handleMessage)
-
-		return () => {
-			window.removeEventListener("message", handleMessage)
-		}
-	}, [setParams])
+	const components = getComponentsByPrefix(componentName)
 
 	return (
-		<div className="flex flex-col items-center gap-3 p-3">
-			{/* Component Preview with Style Applied */}
-			<div className="flex w-full flex-col items-center gap-3">
-				{components.map(([key, Component]) => (
-					<Suspense
-						key={key}
-						fallback={
-							<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
-						}>
-						<Component.component />
-					</Suspense>
-				))}
-			</div>
-		</div>
+		<PreviewClient>
+			{components.map(([key, Component]) => (
+				<Suspense
+					key={key}
+					fallback={
+						<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
+					}>
+					<Component.component />
+				</Suspense>
+			))}
+		</PreviewClient>
 	)
 }

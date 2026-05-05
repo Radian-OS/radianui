@@ -111,6 +111,10 @@
 		transparent 84%
 	);
 
+	--color-card: var(--color-elevation-level1);
+
+	--color-popover: var(--color-elevation-level2);
+
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
 	--color-sidebar-accent: var(--color-fill1-alpha);
@@ -120,6 +124,15 @@
 
 	--heading-font: var(--font-geist), system-ui, sans-serif;
 	--body-font: var(--font-inter), system-ui, sans-serif;
+
+	--shadow-2xs: var(--shadow-2xs);
+	--shadow-xs: var(--shadow-xs);
+	--shadow-sm: var(--shadow-sm);
+	--shadow: var(--shadow);
+	--shadow-md: var(--shadow-md);
+	--shadow-lg: var(--shadow-lg);
+	--shadow-xl: var(--shadow-xl);
+	--shadow-2xl: var(--shadow-2xl);
 }
 
 .dark {
@@ -214,6 +227,10 @@
 		oklch(0.8599 0.0294 266.34),
 		transparent 80%
 	);
+
+	--color-card: var(--color-elevation-level1);
+
+	--color-popover: var(--color-elevation-level2);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);

@@ -8,6 +8,7 @@ import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
 import { PRIMARY_COLORS } from "@/registry/primary-colors"
 import { TEMPLATES, Template } from "@/registry/templates"
+import { THEMES } from "@/registry/themes"
 import { Button } from "@/styles/default/ui/button"
 import {
 	Dialog,
@@ -72,6 +73,7 @@ export function CreateProjectDialog() {
 	const selectedHeadingFont = FONTS.find((f) => f.value === params.headingFont)
 	const selectedBodyFont = FONTS.find((f) => f.value === params.bodyFont)
 	const selectedRadius = RADII.find((r) => r.value === params.radius)
+	const selectedTheme = THEMES.find((t) => t.value === params.theme)
 
 	const {
 		mutate,
@@ -185,11 +187,11 @@ export function CreateProjectDialog() {
 
 						{/* Theme summary */}
 						<div className="border-border mx-5 flex flex-wrap gap-1.5 rounded-lg border-t pt-4">
-							{selectedColor && (
+							{selectedColor && params.theme === "default" && (
 								<ThemeSummaryPill
 									label="Color"
 									value={selectedColor.name}
-									colorSwatch={selectedColor.cssVars.light.primary}
+									colorSwatch={selectedColor.cssVars.light["--color-primary"]}
 								/>
 							)}
 							{selectedHeadingFont && (
@@ -203,6 +205,9 @@ export function CreateProjectDialog() {
 							)}
 							{selectedRadius && (
 								<ThemeSummaryPill label="Radius" value={selectedRadius.name} />
+							)}
+							{selectedTheme && selectedTheme.value !== "default" && (
+								<ThemeSummaryPill label="Theme" value={selectedTheme.label} />
 							)}
 							<ThemeSummaryPill
 								label="Src Dir"

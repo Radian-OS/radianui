@@ -21,14 +21,15 @@ export default function Page() {
 
 function ThemerPage() {
 	const [params] = useThemerPreset()
-	const [selectedComponent, setSelectedComponent] = useState<string>("preview")
+	const [selectedComponent, setSelectedComponent] =
+		useState<string>("preview-02")
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
 	const iframeSrc = useMemo(
 		() =>
-			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}`,
-		[]
+			`/preview/${selectedComponent}?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}&theme=${params.theme}`,
+		[selectedComponent]
 	)
 
 	const postToIframe = useCallback((message: Record<string, unknown>) => {
@@ -41,10 +42,6 @@ function ThemerPage() {
 			primaryColor: params.primaryColor,
 		})
 	}, [params.primaryColor])
-
-	useEffect(() => {
-		postToIframe({ type: "component-change", component: selectedComponent })
-	}, [selectedComponent])
 
 	useEffect(() => {
 		postToIframe({ type: "style-change", style: params.style })
@@ -64,6 +61,10 @@ function ThemerPage() {
 	useEffect(() => {
 		postToIframe({ type: "template-change", template: params.template })
 	}, [params.template])
+
+	useEffect(() => {
+		postToIframe({ type: "theme-change", theme: params.theme })
+	}, [params.theme])
 
 	useEffect(() => {
 		const iframe = iframeRef.current
