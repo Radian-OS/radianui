@@ -1,5 +1,6 @@
 import z from "zod"
 import { FONTS, FontValue } from "./fonts"
+import { ICON_LIBRARIES } from "./icon-libraries"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS, RadiusValue } from "./radius"
 import { STYLES } from "./styles"
@@ -65,6 +66,7 @@ export const themerConfigSchema = z
 			.default("default"),
 		useSrcDir: z.boolean().default(true),
 		theme: z.enum(THEMES.map((theme) => theme.value)).default("bubblegum"),
+		iconLibrary: z.enum(ICON_LIBRARIES).default("lucide"),
 	})
 	.refine((data) => data.theme !== null || data.primaryColor !== null, {
 		message: "Either theme or primaryColor must be present",
@@ -82,6 +84,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	name: "my-project",
 	useSrcDir: true,
 	theme: "bubblegum",
+	iconLibrary: "lucide",
 }
 
 export type Preset = ThemerConfig & {
@@ -103,6 +106,7 @@ export const PRESETS: Preset[] = [
 		style: "default",
 		useSrcDir: true,
 		theme: "bubblegum",
+		iconLibrary: "lucide",
 	},
 	{
 		name: "sera",
@@ -116,6 +120,7 @@ export const PRESETS: Preset[] = [
 		style: "sera",
 		useSrcDir: true,
 		theme: "bubblegum",
+		iconLibrary: "lucide",
 	},
 ]
 
@@ -377,7 +382,8 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		dependencies,
 		registryDependencies,
 		config: {
-			iconLibrary: "lucide-react",
+			iconLibrary:
+				config.iconLibrary === "hugeicons" ? "hugeicons" : "lucide-react",
 			template: config.template,
 			useSrcDir: config.useSrcDir,
 			style: config.style,

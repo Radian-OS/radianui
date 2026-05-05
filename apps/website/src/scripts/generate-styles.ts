@@ -32,6 +32,10 @@ const OUTPUT_STYLES_DIR = path.join(process.cwd(), "src/styles")
 
 type StyleMap = Record<string, string>
 
+const GENERATED_STYLE_ICON_REPLACEMENTS = [
+	{ themedIcon: "SelectDropdownIcon", lucideIcon: "ChevronDown" },
+] as const
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -77,6 +81,69 @@ async function formatGeneratedSource(content: string, filePath: string) {
 	return prettier.format(content, { ...prettierConfig, filepath: filePath })
 }
 
+function applyLocalLucideIconsInGeneratedStyles(source: string) {
+	let transformed = source
+	const neededLucideIcons = new Set<string>()
+	const generatedThemedIcons = new Set<string>(
+		GENERATED_STYLE_ICON_REPLACEMENTS.map(({ themedIcon }) => themedIcon)
+	)
+
+	for (const { themedIcon, lucideIcon } of GENERATED_STYLE_ICON_REPLACEMENTS) {
+		if (transformed.includes(themedIcon)) {
+			neededLucideIcons.add(lucideIcon)
+		}
+
+		transformed = transformed.replace(
+			new RegExp(`<${themedIcon}\\b`, "g"),
+			`<${lucideIcon}`
+		)
+		transformed = transformed.replace(
+			new RegExp(`</${themedIcon}>`, "g"),
+			`</${lucideIcon}>`
+		)
+	}
+
+	transformed = transformed.replace(
+		/^import\s+\{([^}]*)\}\s+from\s+"@\/styles\/icon-library"\n/gm,
+		(_, imports: string) => {
+			const remainingImports = imports
+				.split(",")
+				.map((importName) => importName.trim())
+				.filter(
+					(importName) => importName && !generatedThemedIcons.has(importName)
+				)
+
+			if (remainingImports.length === 0) return ""
+
+			return `import { ${remainingImports.join(", ")} } from "@/styles/icon-library"\n`
+		}
+	)
+
+	return ensureLucideImports(transformed, neededLucideIcons)
+}
+
+function ensureLucideImports(source: string, iconNames: Set<string>) {
+	if (iconNames.size === 0) return source
+
+	const lucideImportPattern = /import\s+\{([^}]*)\}\s+from\s+"lucide-react"/m
+	const lucideImportMatch = source.match(lucideImportPattern)
+
+	if (lucideImportMatch) {
+		const currentImports = lucideImportMatch[1]
+			.split(",")
+			.map((importName) => importName.trim())
+			.filter(Boolean)
+		const nextImports = Array.from(new Set([...currentImports, ...iconNames]))
+
+		return source.replace(
+			lucideImportPattern,
+			`import { ${nextImports.join(", ")} } from "lucide-react"`
+		)
+	}
+
+	return `import { ${Array.from(iconNames).join(", ")} } from "lucide-react"\n${source}`
+}
+
 // ---------------------------------------------------------------------------
 // STEP 1 & 2 — Read the CSS and call createStyleMap()
 // ---------------------------------------------------------------------------
@@ -118,6 +185,9 @@ async function transformComponentFile({
 		/@\/registry\/ui\//g,
 		`@/styles/${styleName}/ui/`
 	)
+
+	transformedContent =
+		applyLocalLucideIconsInGeneratedStyles(transformedContent)
 
 	// Format with prettier
 	transformedContent = await formatGeneratedSource(transformedContent, filePath)

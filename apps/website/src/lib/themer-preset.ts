@@ -2,6 +2,7 @@ import { useQueryStates } from "nuqs"
 import { type Options, parseAsBoolean, parseAsStringLiteral } from "nuqs/server"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
+import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, Style } from "@/registry/styles"
@@ -29,6 +30,9 @@ const designSystemSearchParams = {
 	theme: parseAsStringLiteral<ThemeValue>(
 		THEMES.map((theme) => theme.value)
 	).withDefault(DEFAULT_CONFIG.theme),
+	iconLibrary: parseAsStringLiteral<IconLibrary>(ICON_LIBRARIES).withDefault(
+		DEFAULT_CONFIG.iconLibrary
+	),
 }
 
 export function useThemerPreset(options: Options = {}) {

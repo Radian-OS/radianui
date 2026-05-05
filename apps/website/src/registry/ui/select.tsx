@@ -6,6 +6,7 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { SelectDropdownIcon } from "@/styles/icon-library"
 
 export type SelectContextType = {
 	indicatorPosition?: "left" | "right"
@@ -109,7 +110,7 @@ function SelectTrigger({
 			{...props}>
 			{children}
 			<SelectPrimitive.Icon asChild>
-				<ChevronDown className="-me-0.5 ml-auto size-5 opacity-60" />
+				<SelectDropdownIcon className="-me-0.5 ml-auto size-5 opacity-60" />
 			</SelectPrimitive.Icon>
 		</SelectPrimitive.Trigger>
 	)

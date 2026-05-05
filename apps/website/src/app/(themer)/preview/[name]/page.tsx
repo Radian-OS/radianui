@@ -6,6 +6,7 @@ import { Index } from "@/registry/blocks-example"
 import { buildRegistryConfig } from "@/registry/config"
 import { FONTS } from "@/registry/fonts"
 import { RADIUS } from "@/registry/radius"
+import { IconLibraryProvider } from "@/styles/icon-library"
 
 const MANAGED_BODY_CLASS_PREFIXES = ["style-"] as const
 
@@ -169,6 +170,9 @@ export default function Page({}: { params: { name: string } }) {
 			if (event.data.type === "theme-change") {
 				setParams({ theme: event.data.theme })
 			}
+			if (event.data.type === "icon-library-change") {
+				setParams({ iconLibrary: event.data.iconLibrary })
+			}
 		}
 
 		window.addEventListener("message", handleMessage)
@@ -179,19 +183,21 @@ export default function Page({}: { params: { name: string } }) {
 	}, [setParams])
 
 	return (
-		<div className="flex flex-col items-center gap-3 p-3">
-			{/* Component Preview with Style Applied */}
-			<div className="flex w-full flex-col items-center gap-3">
-				{components.map(([key, Component]) => (
-					<Suspense
-						key={key}
-						fallback={
-							<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
-						}>
-						<Component.component />
-					</Suspense>
-				))}
+		<IconLibraryProvider value={params.iconLibrary}>
+			<div className="flex flex-col items-center gap-3 p-3">
+				{/* Component Preview with Style Applied */}
+				<div className="flex w-full flex-col items-center gap-3">
+					{components.map(([key, Component]) => (
+						<Suspense
+							key={key}
+							fallback={
+								<div className="bg-fill2 h-10 w-full animate-pulse rounded" />
+							}>
+							<Component.component />
+						</Suspense>
+					))}
+				</div>
 			</div>
-		</div>
+		</IconLibraryProvider>
 	)
 }
