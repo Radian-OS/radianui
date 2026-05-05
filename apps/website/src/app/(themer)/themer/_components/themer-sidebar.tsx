@@ -29,7 +29,15 @@ interface ThemerSidebarProps {
 	setSelectedComponent: (value: string) => void
 }
 
-const COMPONENTS_DATA = ["preview-02", "preview-03"]
+const COMPONENTS_DATA = [
+	"preview-02",
+	"preview-03",
+	"signin",
+	"signup",
+	"new-password",
+	"reset-email",
+	"sidebar-inset",
+]
 
 export function ThemerSidebar({
 	selectedComponent,
@@ -155,6 +163,7 @@ export function ThemerSidebar({
 								key={color.value}
 								color={color}
 								isSelected={params.primaryColor === color.value}
+								disabled={params.theme !== "default"}
 								onClick={() =>
 									setParams({
 										primaryColor: color.value as PrimaryColorValue,
@@ -167,7 +176,7 @@ export function ThemerSidebar({
 
 				{/* Component Preview */}
 				<div className="flex flex-col gap-3">
-					<SectionLabel>Component</SectionLabel>
+					<SectionLabel>Preview</SectionLabel>
 					<Dropdown>
 						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
 							<span className="text-fg font-medium">

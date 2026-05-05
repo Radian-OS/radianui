@@ -27,8 +27,8 @@ export function transformImport(sourceFile: SourceFile, config: RawConfig): stri
 }
 
 function updateImportAliases(moduleSpecifier: string, config: RawConfig): string {
-	if (moduleSpecifier.match(/^@\/registry\/ui/)) {
-		return moduleSpecifier.replace(/^@\/registry\/ui/, config.aliases.ui ?? `${config.aliases.components}/ui`)
+	if (moduleSpecifier.match(/^@\/styles\/[^\/]+\/ui/)) {
+		return moduleSpecifier.replace(/^@\/styles\/[^\/]+\/ui/, config.aliases.ui ?? `${config.aliases.components}/ui`)
 	}
 
 	if (config.aliases.components && moduleSpecifier.match(/^@\/registry\/components/)) {

@@ -12,7 +12,7 @@ export type InputWrapperProps = React.ComponentProps<"div"> &
 	VariantProps<typeof inputWrapperVariants>
 
 const inputVariants = cva(
-	`flex w-full items-center bg-bg border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha [&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed file:h-full [&[type=file]]:py-0 file:border-solid file:border-alpha file:bg-transparent file:font-medium file:not-italic file:text-fg file:p-0 file:border-0 file:border-e aria-invalid:border-error aria-invalid:ring-error-focus border-b`,
+	`flex w-full items-center border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary focus-visible:ring-primary-focus focus-visible:border-primary focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha [&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed file:h-full [&[type=file]]:py-0 file:border-solid file:border-alpha file:bg-transparent file:font-medium file:not-italic file:text-fg file:p-0 file:border-0 file:border-e aria-invalid:border-error aria-invalid:ring-error-focus border-b bg-transparent`,
 	{
 		variants: {
 			size: {

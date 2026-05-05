@@ -168,10 +168,5 @@ export function PreviewClient({ children }: { children: React.ReactNode }) {
 
 	if (!isReady) return null
 
-	return (
-		<div className="flex flex-col items-center gap-3 p-3">
-			{/* Component Preview with Style Applied */}
-			<div className="flex w-full flex-col items-center gap-3">{children}</div>
-		</div>
-	)
+	return children
 }

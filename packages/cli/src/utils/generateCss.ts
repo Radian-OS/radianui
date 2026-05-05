@@ -27,7 +27,7 @@ function varsToDeclarations(
 	prefix = "--color-"
 ): string {
 	return Object.entries(vars)
-		.map(([key, value]) => `${prefix}${key}: ${value};`)
+		.map(([key, value]) => `${key}: ${value};`)
 		.join("\n")
 }
 
