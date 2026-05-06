@@ -12,7 +12,7 @@ export default function Page() {
 			</div>
 
 			<main className="flex w-full max-w-3xl flex-col items-center gap-8 text-center">
-				<Badge size="24" className="rounded-full">
+				<Badge size="24">
 					<span className="bg-success h-1.5 w-1.5 rounded-full" />
 					Generated with Radianos
 				</Badge>

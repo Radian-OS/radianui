@@ -13,7 +13,7 @@ export type InputWrapperProps = React.ComponentProps<"div"> &
 
 const inputVariants = cva(
 	`
-	cn-input flex w-full items-center bg-bg border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary
+	cn-input flex w-full items-center border-alpha transition-[color,box-shadow] text-fg placeholder:text-fg-tertiary
 	focus-visible:ring-primary-focus focus-visible:border-primary focus-visible:outline-none 
 	disabled:cursor-not-allowed disabled:opacity-60 disabled:text-fg-disabled disabled:bg-fill2-alpha
 	[&[readonly]]:bg-fill1 [&[readonly]]:cursor-not-allowed

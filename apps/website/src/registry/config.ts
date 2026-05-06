@@ -1,6 +1,6 @@
 import z from "zod"
+import { ICON_LIBRARIES } from "../lib/icon-libraries"
 import { FONTS, FontValue } from "./fonts"
-import { ICON_LIBRARIES } from "./icon-libraries"
 import { PRIMARY_COLORS } from "./primary-colors"
 import { RADIUS, RadiusValue } from "./radius"
 import { STYLES } from "./styles"
@@ -83,7 +83,7 @@ export const DEFAULT_CONFIG: ThemerConfig = {
 	style: "default",
 	name: "my-project",
 	useSrcDir: true,
-	theme: "bubblegum",
+	theme: "default",
 	iconLibrary: "lucide",
 }
 
@@ -105,7 +105,7 @@ export const PRESETS: Preset[] = [
 		radius: "medium",
 		style: "default",
 		useSrcDir: true,
-		theme: "bubblegum",
+		theme: "default",
 		iconLibrary: "lucide",
 	},
 	{
@@ -119,7 +119,7 @@ export const PRESETS: Preset[] = [
 		radius: "medium",
 		style: "sera",
 		useSrcDir: true,
-		theme: "bubblegum",
+		theme: "default",
 		iconLibrary: "lucide",
 	},
 ]

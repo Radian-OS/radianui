@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
-import { useThemerPreset } from "@/lib/themer-preset"
-import { PRESETS } from "@/registry/config"
-import { FontValue } from "@/registry/fonts"
 import {
 	ICON_LIBRARIES,
 	ICON_LIBRARY_LABELS,
 	IconLibrary,
-} from "@/registry/icon-libraries"
+} from "@/lib/icon-libraries"
+import { useThemerPreset } from "@/lib/themer-preset"
+import { PRESETS } from "@/registry/config"
+import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { STYLES } from "@/registry/styles"
@@ -35,8 +35,8 @@ interface ThemerSidebarProps {
 }
 
 const COMPONENTS_DATA = [
-	"preview-01",
 	"preview-02",
+	"preview-03",
 	"signin",
 	"signup",
 	"new-password",
@@ -142,6 +142,7 @@ export function ThemerSidebar({
 										...(preset && {
 											...preset,
 										}),
+										theme: params.theme,
 										primaryColor: params.primaryColor,
 									})
 								}}>
@@ -167,6 +168,7 @@ export function ThemerSidebar({
 								key={color.value}
 								color={color}
 								isSelected={params.primaryColor === color.value}
+								disabled={params.theme !== "default"}
 								onClick={() =>
 									setParams({
 										primaryColor: color.value as PrimaryColorValue,

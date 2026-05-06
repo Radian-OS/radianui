@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
+import { Calendar } from "@/registry/ui/calendar"
 import {
 	Card,
 	CardContent,
@@ -854,6 +855,75 @@ function PrivacySettingsCard() {
 }
 
 // ──────────────────────────────────────────────
+// Schedule Card (shadcn Calendar)
+// ──────────────────────────────────────────────
+function ScheduleCard() {
+	const [date] = useState<Date | undefined>(new Date())
+
+	const events: Record<string, { name: string; color: string }[]> = {
+		[new Date().toDateString()]: [
+			{ name: "Payout Scheduled", color: "bg-violet-500" },
+		],
+		[new Date(new Date().setDate(new Date().getDate() + 3)).toDateString()]: [
+			{ name: "Savings Review", color: "bg-emerald-500" },
+		],
+		[new Date(new Date().setDate(new Date().getDate() + 7)).toDateString()]: [
+			{ name: "Portfolio Rebalance", color: "bg-amber-500" },
+		],
+	}
+
+	const selectedEvents = date ? (events[date.toDateString()] ?? []) : []
+
+	return (
+		<Card>
+			<CardHeader>
+				<CardTitle className="text-base font-semibold">Schedule</CardTitle>
+				<CardDescription>Upcoming financial events</CardDescription>
+			</CardHeader>
+
+			<CardContent className="flex flex-col items-center gap-4 p-0 pb-4">
+				<Calendar
+					mode="range"
+					modifiers={{
+						hasEvent: Object.keys(events).map((d) => new Date(d)),
+					}}
+				/>
+
+				<div className="w-full space-y-1 px-6">
+					<p className="text-muted-foreground mb-2 text-[10px] font-medium uppercase tracking-widest">
+						{date
+							? date.toLocaleDateString("default", {
+									weekday: "long",
+									month: "long",
+									day: "numeric",
+								})
+							: "Select a date"}
+					</p>
+					{selectedEvents.length > 0 ? (
+						selectedEvents.map((ev) => (
+							<div key={ev.name} className="flex items-center gap-2.5 py-1.5">
+								<span className={`h-2 w-2 shrink-0 rounded-full ${ev.color}`} />
+								<p className="text-sm font-medium">{ev.name}</p>
+							</div>
+						))
+					) : (
+						<p className="text-muted-foreground text-sm">
+							No events scheduled.
+						</p>
+					)}
+				</div>
+			</CardContent>
+
+			<CardFooter>
+				<Button className="w-full" size="32" variant="outline">
+					Add Event
+				</Button>
+			</CardFooter>
+		</Card>
+	)
+}
+
+// ──────────────────────────────────────────────
 // Page
 // ──────────────────────────────────────────────
 export default function DashboardPage() {
@@ -885,6 +955,7 @@ export default function DashboardPage() {
 
 				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 					<ContributionHistoryCard />
+					<ScheduleCard />
 					<PrivacySettingsCard />
 				</div>
 			</div>
