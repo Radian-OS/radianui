@@ -1,8 +1,15 @@
+import React from "react"
+import { ReadonlyURLSearchParams, useSearchParams } from "next/navigation"
 import { useQueryStates } from "nuqs"
-import { type Options, parseAsBoolean, parseAsStringLiteral } from "nuqs/server"
+import {
+	type Options,
+	inferParserType,
+	parseAsBoolean,
+	parseAsStringLiteral,
+} from "nuqs/server"
+import { ICON_LIBRARIES, IconLibrary } from "@/lib/icon-libraries"
 import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
-import { ICON_LIBRARIES, IconLibrary } from "@/registry/icon-libraries"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
 import { STYLES, Style } from "@/registry/styles"
@@ -35,12 +42,49 @@ const designSystemSearchParams = {
 	),
 }
 
+export type DesignSystemSearchParams = inferParserType<
+	typeof designSystemSearchParams
+>
+
+function resolvePresetParams(
+	rawParams: DesignSystemSearchParams,
+	searchParams: ReadonlyURLSearchParams
+) {
+	// Merge rawParams and searchParams, searchParams takes precedence
+	// Extract searchParams first
+	const mergedParams = {
+		primaryColor: searchParams.get("primaryColor") ?? rawParams.primaryColor,
+		headingFont: searchParams.get("headingFont") ?? rawParams.headingFont,
+		bodyFont: searchParams.get("bodyFont") ?? rawParams.bodyFont,
+		radius: searchParams.get("radius") ?? rawParams.radius,
+		template: searchParams.get("template") ?? rawParams.template,
+		style: searchParams.get("style") ?? rawParams.style,
+		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
+		theme: searchParams.get("theme") ?? rawParams.theme,
+		iconLibrary: searchParams.get("iconLibrary") ?? rawParams.iconLibrary,
+	} as DesignSystemSearchParams
+	return mergedParams
+}
+
 export function useThemerPreset(options: Options = {}) {
+	const searchParams = useSearchParams()
 	const [rawParams, setRawParams] = useQueryStates(designSystemSearchParams, {
 		shallow: false,
 		history: "push",
 		...options,
 	})
 
-	return [rawParams, setRawParams] as const
+	const params = React.useMemo(
+		() => resolvePresetParams(rawParams, searchParams),
+		[rawParams, searchParams]
+	)
+
+	const setParams = React.useCallback(
+		(params: Partial<DesignSystemSearchParams>) => {
+			setRawParams(params)
+		},
+		[setRawParams]
+	)
+
+	return [params, setParams] as const
 }

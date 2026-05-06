@@ -4,7 +4,7 @@ import * as React from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { type VariantProps, cva } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { IconSlot } from "@/styles/icon-library"
+import { IconSlot } from "@/registry/icon-library"
 
 export type SelectContextType = {
 	indicatorPosition?: "left" | "right"

@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @import "../registry/styles/style-default.css" layer(base);
 @import "../registry/styles/style-sera.css" layer(base);
 
@@ -110,6 +109,10 @@
 		oklch(0.3146 0.0336 248.94),
 		transparent 84%
 	);
+
+	--color-card: var(--color-elevation-level1);
+
+	--color-popover: var(--color-elevation-level2);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);
@@ -223,6 +226,10 @@
 		oklch(0.8599 0.0294 266.34),
 		transparent 80%
 	);
+
+	--color-card: var(--color-elevation-level1);
+
+	--color-popover: var(--color-elevation-level2);
 
 	--color-sidebar: var(--color-fill1);
 	--color-sidebar-fg: var(--color-fg);

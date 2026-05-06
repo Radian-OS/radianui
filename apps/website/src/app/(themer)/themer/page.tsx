@@ -28,7 +28,7 @@ function ThemerPage() {
 	const iframeSrc = useMemo(
 		() =>
 			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}&theme=${params.theme}&iconLibrary=${params.iconLibrary}`,
-		[]
+		[selectedComponent]
 	)
 
 	const postToIframe = useCallback((message: Record<string, unknown>) => {
@@ -41,10 +41,6 @@ function ThemerPage() {
 			primaryColor: params.primaryColor,
 		})
 	}, [params.primaryColor])
-
-	useEffect(() => {
-		postToIframe({ type: "component-change", component: selectedComponent })
-	}, [selectedComponent])
 
 	useEffect(() => {
 		postToIframe({ type: "style-change", style: params.style })

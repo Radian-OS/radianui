@@ -26,7 +26,7 @@ import {
 import type {
 	IconLibrary,
 	IconSlot as IconSlotName,
-} from "@/registry/icon-libraries"
+} from "@/lib/icon-libraries"
 
 export type ThemedIconProps = Omit<
 	React.SVGProps<SVGSVGElement>,
