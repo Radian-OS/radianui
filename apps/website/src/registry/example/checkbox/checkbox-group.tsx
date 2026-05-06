@@ -1,7 +1,7 @@
 import React from "react"
-import { Button } from "@/registry/ui/button"
-import { Checkbox } from "@/registry/ui/checkbox"
-import { Label } from "@/registry/ui/label"
+import { Button } from "@/styles/default/ui/button"
+import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Label } from "@/styles/default/ui/label"
 
 export default function CheckboxGroup() {
 	return (

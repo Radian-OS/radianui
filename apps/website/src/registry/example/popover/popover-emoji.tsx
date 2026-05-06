@@ -10,9 +10,13 @@ import {
 	AvatarImage,
 	AvatarIndicator,
 	AvatarStatus,
-} from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+} from "@/styles/default/ui/avatar"
+import { Button } from "@/styles/default/ui/button"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 export default function PopoverEmoji() {
 	const [selectedEmoji, setSelectedEmoji] = React.useState<string[]>([])

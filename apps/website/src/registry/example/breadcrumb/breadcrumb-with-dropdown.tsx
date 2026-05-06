@@ -6,15 +6,15 @@ import {
 	BreadcrumbLink,
 	BreadcrumbList,
 	BreadcrumbSeparator,
-} from "@/registry/ui/breadcrumb"
-import { Button } from "@/registry/ui/button"
+} from "@/styles/default/ui/breadcrumb"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownGroup,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 function BreadcrumbWithDropdown() {
 	return (

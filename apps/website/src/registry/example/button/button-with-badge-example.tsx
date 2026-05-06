@@ -1,7 +1,7 @@
 import React from "react"
 import { CloudDownload, Printer } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 
 const ButtonWithBadgeExample = () => {
 	return (

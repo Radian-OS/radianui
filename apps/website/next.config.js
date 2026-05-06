@@ -19,6 +19,10 @@ const nextConfig = {
 				],
 			},
 			{
+				source: "/blocks/:path*",
+				headers: [{ key: "Access-Control-Allow-Origin", value: "*" }],
+			},
+			{
 				source: "/docs/:path*",
 				headers: [
 					{
@@ -44,7 +48,7 @@ const nextConfig = {
 					// },
 					{
 						key: "X-Frame-Options",
-						value: "DENY",
+						value: "SAMEORIGIN",
 					},
 					{
 						key: "Permissions-Policy",
@@ -114,6 +118,33 @@ const nextConfig = {
 			{
 				protocol: "https",
 				hostname: "images.unsplash.com",
+			},
+			{
+				protocol: "https",
+				hostname: "www.google.com",
+				pathname: "/s2/favicons/**",
+			},
+			{
+				protocol: "https",
+				hostname: "authjs.dev",
+				pathname: "/img/providers/**",
+			},
+			{
+				protocol: "https",
+				hostname: "cdn.jsdelivr.net",
+				pathname: "/gh/devicons/**",
+			},
+			{
+				protocol: "https",
+				hostname: "radianos.com",
+			},
+			{
+				protocol: "https",
+				hostname: "images.pexels.com",
+			},
+			{
+				protocol: "https",
+				hostname: "img.freepik.com",
 			},
 		],
 	},

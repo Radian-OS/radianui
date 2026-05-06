@@ -9,9 +9,9 @@ import {
 	Settings,
 	Slack,
 } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Divider } from "@/registry/ui/divider"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Badge } from "@/styles/default/ui/badge"
+import { Divider } from "@/styles/default/ui/divider"
 
 const Dropdown = () => {
 	return (

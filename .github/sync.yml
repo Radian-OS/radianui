@@ -5,3 +5,17 @@ Radian-os/radianos-blocks@dev:
     dest: src/css/
   - source: apps/website/src/registry/animated/
     dest: src/registry/animated/
+  - source: apps/website/src/registry/styles/
+    dest: src/registry/styles/
+  - source: apps/website/src/registry/config.ts
+    dest: src/registry/config.ts
+  - source: apps/website/src/registry/fonts.ts
+    dest: src/registry/fonts.ts
+  - source: apps/website/src/registry/primary-colors.ts
+    dest: src/registry/primary-colors.ts
+  - source: apps/website/src/registry/radius.ts
+    dest: src/registry/radius.ts
+  - source: apps/website/src/registry/styles.ts
+    dest: src/registry/styles.ts
+  - source: apps/website/src/registry/templates.ts
+    dest: src/registry/templates.ts

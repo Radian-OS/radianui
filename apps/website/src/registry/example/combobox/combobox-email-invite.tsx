@@ -2,16 +2,20 @@
 
 import React from "react"
 import { Check, ChevronRight, Plus } from "lucide-react"
-import { Avatar, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
+import { Avatar, AvatarImage } from "@/styles/default/ui/avatar"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Command,
 	CommandGroup,
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/registry/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+} from "@/styles/default/ui/command"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 const DATA = [
 	{ icon: "/media/male-1.jpg", email: "alex@radian.com" },

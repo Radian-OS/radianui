@@ -1,4 +1,4 @@
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 function ButtonSizeExample() {
 	return (

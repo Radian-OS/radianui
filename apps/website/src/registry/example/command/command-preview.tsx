@@ -14,7 +14,7 @@ import {
 	CommandItem,
 	CommandList,
 	CommandShortcut,
-} from "@/registry/ui/command"
+} from "@/styles/default/ui/command"
 
 export default function CommandPreview() {
 	return (

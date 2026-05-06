@@ -18,7 +18,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/registry/ui/table"
+} from "@/styles/default/ui/table"
 
 type Item = {
 	id: string

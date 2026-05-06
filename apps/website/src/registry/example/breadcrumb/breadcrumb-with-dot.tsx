@@ -5,7 +5,7 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 	BreadcrumbSeparator,
-} from "@/registry/ui/breadcrumb"
+} from "@/styles/default/ui/breadcrumb"
 
 export default function BreadcrumbWithDot() {
 	return (

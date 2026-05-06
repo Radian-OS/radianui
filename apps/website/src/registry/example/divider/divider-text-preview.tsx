@@ -1,6 +1,6 @@
 import React from "react"
-import { Divider } from "@/registry/ui/divider"
-import { Skeleton } from "@/registry/ui/skeleton"
+import { Divider } from "@/styles/default/ui/divider"
+import { Skeleton } from "@/styles/default/ui/skeleton"
 
 function DividerTextPreview() {
 	return (

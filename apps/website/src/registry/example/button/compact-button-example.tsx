@@ -1,6 +1,6 @@
 import React from "react"
 import { ChevronDown, X } from "lucide-react"
-import { CompactButton } from "@/registry/ui/button"
+import { CompactButton } from "@/styles/default/ui/button"
 
 function CompactButtonExample() {
 	return (

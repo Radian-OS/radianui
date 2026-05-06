@@ -1,13 +1,14 @@
 import React from "react"
 import { ColorOption, usePlayground } from "@/contexts/playground"
-import { IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
+	DropdownPortal,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 export const COLORS = [
 	{ title: "Red", value: "red" },
@@ -64,27 +65,29 @@ export default function Colors() {
 					<div className="size-4.5 bg-primary border-border rounded-full border" />
 				</IconButton>
 			</DropdownTrigger>
-			<DropdownContent
-				align="end"
-				className="h-69.5 overflow-y-scroll"
-				sideOffset={10}>
-				<DropdownRadioGroup
-					value={color}
-					onValueChange={(value) => setColor(value as ColorOption)}>
-					{COLORS.map((colorOption) => (
-						<DropdownRadioItem
-							key={colorOption.value}
-							value={colorOption.value}>
-							<div className="flex items-center justify-center gap-2">
-								<span
-									className={`inline-block h-4 w-4 rounded-sm ${COLOR_CLASSES[colorOption.value]}`}
-								/>
-								{colorOption.title}
-							</div>
-						</DropdownRadioItem>
-					))}
-				</DropdownRadioGroup>
-			</DropdownContent>
+			<DropdownPortal>
+				<DropdownContent
+					align="end"
+					className="h-69.5 overflow-y-scroll"
+					sideOffset={10}>
+					<DropdownRadioGroup
+						value={color}
+						onValueChange={(value) => setColor(value as ColorOption)}>
+						{COLORS.map((colorOption) => (
+							<DropdownRadioItem
+								key={colorOption.value}
+								value={colorOption.value}>
+								<div className="flex items-center justify-center gap-2">
+									<span
+										className={`inline-block h-4 w-4 rounded-sm ${COLOR_CLASSES[colorOption.value]}`}
+									/>
+									{colorOption.title}
+								</div>
+							</DropdownRadioItem>
+						))}
+					</DropdownRadioGroup>
+				</DropdownContent>
+			</DropdownPortal>
 		</Dropdown>
 	)
 }

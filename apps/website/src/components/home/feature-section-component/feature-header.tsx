@@ -1,5 +1,5 @@
 import { Component } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 
 export const FeatureHeader = () => {
 	return (

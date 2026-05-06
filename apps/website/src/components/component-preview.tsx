@@ -1,11 +1,17 @@
 import React, { Suspense } from "react"
 import registry from "@/registry/registry-map"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 import { ComponentPreviewDemo } from "./component-preview-demo"
 import { ComponentSource } from "./component-source"
+import { DisplayBlock } from "./display-block"
 
-export function getComponent(path: string) {
-	const loader = registry[path]
+export function getComponent(name: string) {
+	const loader = registry[name]
 	if (!loader) return () => null
 	return loader
 }
@@ -33,11 +39,17 @@ export function ComponentPreview({
 		type: type ?? "component",
 	}
 
-	const Component = getComponent(path)
+	if (type === "block") {
+		return <DisplayBlock name={path} />
+	}
+
+	const Component = getComponent(path.split("/")[1])
 
 	return (
 		<div className="mb-8">
-			<div className="flex min-w-0 flex-col items-stretch">
+			<div
+				data-slot="component-preview"
+				className="relative flex min-w-0 flex-col items-stretch">
 				<Tabs defaultValue="preview" className="w-full">
 					<TabsList size="md">
 						<TabsTrigger value="preview">Preview</TabsTrigger>

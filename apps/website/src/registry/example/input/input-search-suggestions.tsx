@@ -2,8 +2,12 @@
 
 import * as React from "react"
 import { Search } from "lucide-react"
-import { Input, InputWrapper } from "@/registry/ui/input"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Input, InputWrapper } from "@/styles/default/ui/input"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 const suggestions = [
 	"Apple",

@@ -1,4 +1,4 @@
-import { Spinner } from "@/registry/ui/spinner"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 export default function SpinnerColors() {
 	return (

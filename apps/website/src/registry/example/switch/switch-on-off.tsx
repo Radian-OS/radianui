@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import { Switch } from "@/registry/ui/switch"
+import { Switch } from "@/styles/default/ui/switch"
 
 export default function SwitchOnOff() {
 	const id = React.useId()

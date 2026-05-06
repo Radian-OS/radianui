@@ -1,7 +1,7 @@
 import React from "react"
 import { useId } from "react"
-import { Checkbox } from "@/registry/ui/checkbox"
-import { Label } from "@/registry/ui/label"
+import { Checkbox } from "@/styles/default/ui/checkbox"
+import { Label } from "@/styles/default/ui/label"
 
 export default function CheckboxSize() {
 	const smId = useId()

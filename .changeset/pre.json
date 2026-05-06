@@ -1,0 +1,14 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "website": "0.0.2",
+    "radianui": "0.2.1",
+    "@radianos/typescript-config": "0.0.3"
+  },
+  "changesets": [
+    "bumpy-stars-write",
+    "fuzzy-planes-rule",
+    "public-bottles-accept"
+  ]
+}

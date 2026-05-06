@@ -21,10 +21,7 @@ function getFiles(dir: string, base: string = dir): string[] {
 }
 
 function toKey(fullPath: string): string {
-	return path
-		.relative(REGISTRY_DIR, fullPath)
-		.replace(/\\/g, "/")
-		.replace(/\.tsx$/, "")
+	return path.basename(fullPath, ".tsx")
 }
 
 function toImportPath(fullPath: string): string {

@@ -1,8 +1,8 @@
 import { Layers } from "lucide-react"
 import Link from "next/link"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Badge } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 import VideoDialogPreview from "./video/video-dialog-preview"
 
 export default function VideoSection() {

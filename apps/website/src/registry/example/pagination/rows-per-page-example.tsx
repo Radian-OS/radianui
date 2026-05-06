@@ -7,21 +7,21 @@ import {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
-import { IconButton } from "@/registry/ui/button"
-import { Label } from "@/registry/ui/label"
+import { Badge } from "@/styles/default/ui/badge"
+import { IconButton } from "@/styles/default/ui/button"
+import { Label } from "@/styles/default/ui/label"
 import {
 	Pagination,
 	PaginationContent,
 	PaginationItem,
-} from "@/registry/ui/pagination"
+} from "@/styles/default/ui/pagination"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/registry/ui/select"
+} from "@/styles/default/ui/select"
 import {
 	Table,
 	TableBody,
@@ -29,7 +29,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/registry/ui/table"
+} from "@/styles/default/ui/table"
 
 // Mock Data
 type UserData = {

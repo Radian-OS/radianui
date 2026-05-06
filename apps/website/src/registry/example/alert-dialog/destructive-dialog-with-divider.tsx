@@ -9,9 +9,9 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from "@/registry/ui/alert-dialog"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
+} from "@/styles/default/ui/alert-dialog"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 
 export default function DestructiveDialogWithDivider() {
 	return (

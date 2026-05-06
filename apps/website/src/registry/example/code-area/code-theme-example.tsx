@@ -1,5 +1,5 @@
 import React from "react"
-import { CodeArea } from "@/registry/ui/code-area"
+import { CodeArea } from "@/styles/default/ui/code-area"
 
 const CodeThemeExample = () => {
 	return (

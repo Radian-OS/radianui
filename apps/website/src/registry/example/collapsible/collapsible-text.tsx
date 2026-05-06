@@ -1,12 +1,12 @@
 "use client"
 
 import React, { useState } from "react"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-} from "@/registry/ui/collapsible"
+} from "@/styles/default/ui/collapsible"
 
 export default function CollapsibleText() {
 	const [isOpen, setIsOpen] = useState(false)

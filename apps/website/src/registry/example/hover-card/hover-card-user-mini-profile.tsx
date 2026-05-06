@@ -5,11 +5,11 @@ import {
 	AvatarFallback,
 	AvatarImage,
 	AvatarIndicator,
-} from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { Button, IconButton } from "@/registry/ui/button"
-import { HoverCard, HoverCardContent } from "@/registry/ui/hover-card"
-import { HoverCardTrigger } from "@/registry/ui/hover-card"
+} from "@/styles/default/ui/avatar"
+import { Badge } from "@/styles/default/ui/badge"
+import { Button, IconButton } from "@/styles/default/ui/button"
+import { HoverCard, HoverCardContent } from "@/styles/default/ui/hover-card"
+import { HoverCardTrigger } from "@/styles/default/ui/hover-card"
 
 const profile = {
 	name: "Tenzn Donar",

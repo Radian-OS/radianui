@@ -25,30 +25,30 @@ import {
 	Settings,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge } from "@/registry/ui/badge"
-import { IconButton } from "@/registry/ui/button"
-import { Checkbox } from "@/registry/ui/checkbox"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Badge } from "@/styles/default/ui/badge"
+import { IconButton } from "@/styles/default/ui/button"
+import { Checkbox } from "@/styles/default/ui/checkbox"
 import {
 	Dropdown,
 	DropdownContent,
 	DropdownItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
-import { Label } from "@/registry/ui/label"
+} from "@/styles/default/ui/dropdown"
+import { Label } from "@/styles/default/ui/label"
 import {
 	Pagination,
 	PaginationContent,
 	PaginationItem,
-} from "@/registry/ui/pagination"
-import { Progress } from "@/registry/ui/progress"
+} from "@/styles/default/ui/pagination"
+import { Progress } from "@/styles/default/ui/progress"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/registry/ui/select"
+} from "@/styles/default/ui/select"
 import {
 	Table,
 	TableBody,
@@ -56,7 +56,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/registry/ui/table"
+} from "@/styles/default/ui/table"
 
 type UserDetails = {
 	name: string

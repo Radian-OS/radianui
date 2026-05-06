@@ -11,8 +11,8 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@/registry/ui/accordion"
-import { IconButton } from "@/registry/ui/button"
+} from "@/styles/default/ui/accordion"
+import { IconButton } from "@/styles/default/ui/button"
 import EarlyAccessButton from "./early-access-button"
 import FigmaPreviewButton from "./figma-preview-button"
 import { WebsiteLogo } from "./website-logo"

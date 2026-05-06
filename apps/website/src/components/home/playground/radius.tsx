@@ -1,14 +1,15 @@
 import React from "react"
 import { CircleDashed } from "lucide-react"
 import { RadiusOption, usePlayground } from "@/contexts/playground"
-import { IconButton } from "@/registry/ui/button"
+import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
+	DropdownPortal,
 	DropdownRadioGroup,
 	DropdownRadioItem,
 	DropdownTrigger,
-} from "@/registry/ui/dropdown"
+} from "@/styles/default/ui/dropdown"
 
 export default function Radius() {
 	const { radius, setRadius } = usePlayground()
@@ -23,16 +24,18 @@ export default function Radius() {
 					<CircleDashed size={18} />
 				</IconButton>
 			</DropdownTrigger>
-			<DropdownContent sideOffset={10}>
-				<DropdownRadioGroup
-					value={radius}
-					onValueChange={(value) => setRadius(value as RadiusOption)}>
-					<DropdownRadioItem value="default">Default</DropdownRadioItem>
-					<DropdownRadioItem value="rounded">Rounded</DropdownRadioItem>
-					<DropdownRadioItem value="flat">Flat</DropdownRadioItem>
-					<DropdownRadioItem value="fun">Fun</DropdownRadioItem>
-				</DropdownRadioGroup>
-			</DropdownContent>
+			<DropdownPortal>
+				<DropdownContent sideOffset={10}>
+					<DropdownRadioGroup
+						value={radius}
+						onValueChange={(value) => setRadius(value as RadiusOption)}>
+						<DropdownRadioItem value="default">Default</DropdownRadioItem>
+						<DropdownRadioItem value="rounded">Rounded</DropdownRadioItem>
+						<DropdownRadioItem value="flat">Flat</DropdownRadioItem>
+						<DropdownRadioItem value="fun">Fun</DropdownRadioItem>
+					</DropdownRadioGroup>
+				</DropdownContent>
+			</DropdownPortal>
 		</Dropdown>
 	)
 }

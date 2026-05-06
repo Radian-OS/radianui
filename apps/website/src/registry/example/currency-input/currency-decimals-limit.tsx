@@ -1,5 +1,5 @@
-import { CurrencyInput } from "@/registry/ui/currency-input"
-import { Label } from "@/registry/ui/label"
+import { CurrencyInput } from "@/styles/default/ui/currency-input"
+import { Label } from "@/styles/default/ui/label"
 
 export default function CurrencyDecimalsLimit() {
 	return (

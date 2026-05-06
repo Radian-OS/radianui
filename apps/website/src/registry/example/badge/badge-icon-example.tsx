@@ -1,5 +1,5 @@
 import { BadgeCheck, Star, TrendingUp, User } from "lucide-react"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 
 function BadgeIconExample() {
 	return (

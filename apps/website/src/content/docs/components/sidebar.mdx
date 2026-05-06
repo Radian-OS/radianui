@@ -1,14 +1,12 @@
 ---
 title: Sidebar
-description: A flexible, responsive, collapsible navigation sidebar with themes, variants, mobile drawer support, and keyboard accessibility.
+description: A sidebar menu that collapses, works on mobile, and supports themes.
 links:
   github:
     href: https://github.com/Radian-os/radianos/blob/main/apps/website/src/registry/ui/sidebar.tsx
 ---
 
-A composable and accessible sidebar. Supports four themes, three variants, collapsible modes, a mobile drawer, and a keyboard shortcut out of the box.
-
-> Keyboard shortcut: `Ctrl + B` toggles the sidebar from anywhere.
+<ComponentPreview type="block" path="sidebar-doc" />
 
 ## Installation
 
@@ -34,95 +32,46 @@ A composable and accessible sidebar. Supports four themes, three variants, colla
 
 </InstallationTabs>
 
-## Anatomy
+## Usage
 
-`SidebarProvider` must wrap everything, it owns the state and exposes the useSidebar hook to all descendants.
+### Imports
 
 ```tsx showLineNumbers
-<SidebarProvider>
-	// State context, wraps entire layout
-	<Sidebar>
-		// The sidebar panel
-		<SidebarHeader /> // Logo, workspace picker
-		<SidebarContent>
-			// Scrollable middle section
-			<SidebarGroup>
-				<SidebarGroupLabel /> // Section heading
-				<SidebarGroupAction /> // Section-level action (e.g. + button)
-				<SidebarGroupContent>
-					<SidebarMenu>
-						<SidebarMenuItem>
-							<SidebarMenuButton /> // Nav link
-							<SidebarMenuBadge /> // optional count
-							<SidebarMenuAction /> // optional icon button
-						</SidebarMenuItem>
-					</SidebarMenu>
-				</SidebarGroupContent>
-			</SidebarGroup>
-		</SidebarContent>
-		<SidebarSeparator /> // Horizontal divider
-		<SidebarFooter /> // User profile, help links
-		<SidebarRail /> // Drag-to-resize rail
-	</Sidebar>
-	<SidebarInset>
-		// Main page content area
-		<SidebarTrigger /> // Hamburger toggle button
-		{/* page content */}
-	</SidebarInset>
-</SidebarProvider>
+import {
+	Sidebar,
+	SidebarContent,
+	SidebarFooter,
+	SidebarGroup,
+	SidebarGroupContent,
+	SidebarGroupLabel,
+	SidebarHeader,
+	SidebarInset,
+	SidebarMenu,
+	SidebarMenuBadge,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	SidebarProvider,
+	SidebarTrigger,
+} from "@/registry/ui/sidebar"
 ```
 
-## Basic Usage
+### Code
 
 ```tsx showLineNumbers
-import { Home, Inbox, Settings } from "lucide-react"
-
-const navItems = [
-	{ title: "Home", icon: Home, href: "/" },
-	{ title: "Inbox", icon: Inbox, href: "/inbox" },
-	{ title: "Settings", icon: Settings, href: "/settings" },
-]
-
 export default function AppLayout({ children }) {
 	return (
 		<SidebarProvider>
 			<Sidebar>
-				<SidebarHeader>
-					<SidebarMenu>
-						<SidebarMenuItem>
-							<SidebarMenuButton size="48">
-								<Logo />
-								<span>Acme Inc.</span>
-							</SidebarMenuButton>
-						</SidebarMenuItem>
-					</SidebarMenu>
-				</SidebarHeader>
-
+				<SidebarHeader />
 				<SidebarContent>
 					<SidebarGroup>
-						<SidebarGroupLabel>Platform</SidebarGroupLabel>
-						<SidebarGroupContent>
-							<SidebarMenu>
-								{navItems.map((item) => (
-									<SidebarMenuItem key={item.title}>
-										<SidebarMenuButton asChild tooltip={item.title}>
-											<a href={item.href}>
-												<item.icon />
-												<span>{item.title}</span>
-											</a>
-										</SidebarMenuButton>
-									</SidebarMenuItem>
-								))}
-							</SidebarMenu>
-						</SidebarGroupContent>
+						<SidebarGroupLabel />
+						<SidebarGroupContent />
 					</SidebarGroup>
 				</SidebarContent>
 
-				<SidebarFooter>
-					<UserMenu />
-				</SidebarFooter>
+				<SidebarFooter />
 			</Sidebar>
-
 			<SidebarInset>
 				<header>
 					<SidebarTrigger />
@@ -134,99 +83,82 @@ export default function AppLayout({ children }) {
 }
 ```
 
-## Themes
+## Examples
 
-Pass theme to `Sidebar`. The neutral-dark theme applies the CSS dark class internally, making it ideal for split light/dark layouts.
+### Floating Sidebar
 
-```tsx
-<Sidebar theme="neutral-accent">   // Slightly tinted surface — default
-<Sidebar theme="neutral-white">    // Pure white surface
-<Sidebar theme="white-on-grey" variant="inset">  // White sidebar on grey page
-<Sidebar theme="neutral-dark">     // Inverted dark sidebar
-```
+<ComponentPreview path="sidebar-floating" type="block" />
 
-## Variants
+### Inset Sidebar
 
-Controls the visual shape and elevation of the sidebar container.
+<ComponentPreview path="sidebar-inset" type="block" />
 
-```tsx
-<Sidebar variant="sidebar">   // Default — flush with page edge
-<Sidebar variant="floating">  // Elevated: shadow + border + rounded corners
-<Sidebar variant="inset">     // Padded and rounded within the parent background
-```
+### Inverse Sidebar
 
-## Collapsible Modes
+<ComponentPreview path="sidebar-dark" type="block" />
 
-Controls what happens when the sidebar collapses. icon mode is popular for dashboards, navigation stays visible as a narrow icon strip.
+### Offcanvas Sidebar
 
-```tsx
-<Sidebar collapsible="offcanvas"> // Default — slides fully off-screen
-<Sidebar collapsible="icon">      // Shrinks to icon-only strip
-<Sidebar collapsible="none">      // Always visible, no toggle
-```
+<ComponentPreview path="sidebar-offcanvas" type="block" />
 
-In icon mode, SidebarMenuButton auto-resizes: height/width → 2rem, padding → 0.5rem, labels and badges are hidden via CSS. Add tooltip as a fallback label
+### Resizable Sidebar
+
+<ComponentPreview path="sidebar-resize" type="block" />
+
+### Sidebar with Rail
+
+<ComponentPreview path="sidebar-rail" type="block" />
 
 ## SidebarProvider
 
-The root context component. Must wrap the entire layout, both the `Sidebar` and the `SidebarInset`. It manages open/closed state, persists it in a cookie (`sidebar_state`), registers the `Cmd+B` keyboard shortcut, and exposes everything via the `useSidebar` hook.
-
-<br />
-Uncontrolled — sidebar manages its own open/closed state internally. State is
-persisted in a cookie so it survives page reloads.
-<br />
-Controlled — you own the state. Useful when you need to open/close the sidebar
-in response to external events, like a route change or a keyboard shortcut you
-manage yourself.
+The root context component. Must wrap the entire layout, both the `Sidebar` and the `SidebarInset`.
 
 | Prop           | Type                      | Description                     |
 | -------------- | ------------------------- | ------------------------------- |
 | `defaultOpen`  | `boolean`                 | Uncontrolled initial open state |
 | `open`         | `boolean`                 | Controlled open state           |
 | `onOpenChange` | `(open: boolean) => void` | Called when open state changes  |
+| `shortcut`     | `string`                  | Shortcut key to open sidebar    |
 
 ## Sidebar
 
 The sidebar panel itself. Renders as a fixed-position column on desktop and as a `Drawer` on mobile. Accepts `theme`, `variant`, `collapsible`, and `side` props to control its appearance and behavior.
 
-| Prop          | Type                                                                     | Default          | Description             |
-| ------------- | ------------------------------------------------------------------------ | ---------------- | ----------------------- |
-| `theme`       | "neutral-accent" or "neutral-white" or "white-on-grey" or "neutral-dark" | "neutral-accent" | Color theme             |
-| `side`        | `left` or `right`                                                        | `left`           | Which edge to anchor to |
-| `variant`     | `sidebar` or `floating` or `inset`                                       | `sidebar`        | Visual shape            |
-| `collapsible` | `offcanvas` or `icon` or `none`                                          | `offcanvas`      | Collapse behavior       |
+| Prop          | Type                                                                            | Default          | Description             |
+| ------------- | ------------------------------------------------------------------------------- | ---------------- | ----------------------- |
+| `theme`       | `neutral-accent` \| `neutral-white` \| <br /> `white-on-grey` \| `neutral-dark` | `neutral-accent` | Color theme             |
+| `side`        | `left` \| `right`                                                               | `left`           | Which edge to anchor to |
+| `variant`     | `sidebar` \| `floating` \| `inset`                                              | `sidebar`        | Visual shape            |
+| `collapsible` | `offcanvas` \| `icon` \| `none`                                                 | `offcanvas`      | Collapse behavior       |
+| `resizable`   | `boolean`                                                                       | `false`          | Resizable behavior      |
+| `minWidth`    | `number`                                                                        | `250`            | Minimum width(in px)    |
+| `maxWidth`    | `number`                                                                        | `500`            | Maximum width(in px)    |
 
 ## SidebarHeader
 
-A div pinned to the top of the sidebar layout. It sits outside SidebarContent so it never scrolls — it's always visible. Typically holds your logo, app name, or a workspace/team switcher.
+A sticky header component to add to the sidebar.
 
 ```tsx showLineNumbers
-// Workspace switcher as a menu button (common pattern)
 <SidebarHeader>
-	<SidebarMenu>
-		<SidebarMenuItem>
-			<SidebarMenuButton size="48" className="justify-between">
-				<div className="flex items-center gap-2">
-					<div className="bg-primary size-6 rounded" />
-					<div>
-						<p className="text-sm font-semibold">Acme Inc.</p>
-						<p className="text-fg-secondary text-xs">Startup plan</p>
-					</div>
-				</div>
-				<ChevronsUpDownIcon />
-			</SidebarMenuButton>
-		</SidebarMenuItem>
-	</SidebarMenu>
+	<SidebarMenuButton size="48" className="justify-between">
+		<div className="flex items-center gap-2">
+			<div className="bg-primary size-6 rounded" />
+			<div>
+				<p className="text-sm font-semibold">Acme Inc.</p>
+				<p className="text-fg-secondary text-xs">Startup plan</p>
+			</div>
+		</div>
+		<ChevronsUpDownIcon />
+	</SidebarMenuButton>
 </SidebarHeader>
 ```
 
 ## SidebarContent
 
-The scrollable body of the sidebar. Expands to fill all space between SidebarHeader and SidebarFooter via flex-1. Long nav lists scroll independently of the page content. In icon collapsible mode, overflow is hidden so content doesn't peek outside the narrow strip.
+The scrollable body of the sidebar.
 
 ```tsx showLineNumbers
 <SidebarContent>
-	{/* Primary navigation */}
 	<SidebarGroup>
 		<SidebarGroupLabel>Platform</SidebarGroupLabel>
 		<SidebarGroupContent>
@@ -251,62 +183,28 @@ The scrollable body of the sidebar. Expands to fill all space between SidebarHea
 			</SidebarMenu>
 		</SidebarGroupContent>
 	</SidebarGroup>
-
-	<SidebarSeparator />
-
-	{/* Secondary navigation pushed to the bottom of the scroll area */}
-
-	<SidebarGroup>
-		<SidebarGroupLabel>Support</SidebarGroupLabel>
-		<SidebarGroupContent>
-			<SidebarMenu>
-				<SidebarMenuItem>
-					<SidebarMenuButton asChild>
-						<a href="/docs">
-							<BookOpen />
-							<span>Docs</span>
-						</a>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
-			</SidebarMenu>
-		</SidebarGroupContent>
-	</SidebarGroup>
 </SidebarContent>
 ```
 
 ## SidebarFooter
 
-Stays anchored at the bottom regardless of how much content is in `SidebarContent`. Typically holds a user profile button, account switcher, or help/feedback links.
+A sticky footer component to add to the sidebar.
 
 ```tsx showLineNumbers
 <SidebarFooter>
-	<SidebarMenu>
-		<SidebarMenuItem>
-			<DropdownMenu>
-				<DropdownMenuTrigger asChild>
-					<SidebarMenuButton size="48" className="justify-between">
-						<div className="flex items-center gap-2">
-							<Avatar className="size-6">
-								<AvatarImage src={user.avatarUrl} />
-								<AvatarFallback>JD</AvatarFallback>
-							</Avatar>
-							<div className="text-left">
-								<p className="text-sm font-medium">{user.name}</p>
-								<p className="text-fg-secondary text-xs">{user.email}</p>
-							</div>
-						</div>
-						<ChevronsUpDownIcon className="size-4" />
-					</SidebarMenuButton>
-				</DropdownMenuTrigger>
-				<DropdownMenuContent side="top" align="start">
-					<DropdownMenuItem>Profile</DropdownMenuItem>
-					<DropdownMenuItem>Settings</DropdownMenuItem>
-					<DropdownMenuSeparator />
-					<DropdownMenuItem>Sign out</DropdownMenuItem>
-				</DropdownMenuContent>
-			</DropdownMenu>
-		</SidebarMenuItem>
-	</SidebarMenu>
+	<Dropdown>
+		<DropdownTrigger asChild>
+			<SidebarMenuButton size="48">
+				<span>{user.name}</span>
+				<ChevronsUpDownIcon className="ml-auto" />
+			</SidebarMenuButton>
+		</DropdownTrigger>
+		<DropdownContent>
+			<DropdownItem>Profile</DropdownItem>
+			<DropdownItem>Settings</DropdownItem>
+			<DropdownItem>Sign out</DropdownItem>
+		</DropdownContent>
+	</Dropdown>
 </SidebarFooter>
 ```
 
@@ -315,39 +213,12 @@ Stays anchored at the bottom regardless of how much content is in `SidebarConten
 A layout wrapper for a logical section of navigation items inside `SidebarContent`. Use multiple groups to organize nav items into sections.
 
 ```tsx
-<SidebarContent>
-	<SidebarGroup>
-		<SidebarGroupLabel>Platform</SidebarGroupLabel>
-		<SidebarGroupContent>
-			<SidebarMenu>
-				<SidebarMenuItem>
-					<SidebarMenuButton asChild isActive>
-						<a href="/dashboard">
-							<Home />
-							<span>Dashboard</span>
-						</a>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
-				<SidebarMenuItem>
-					<SidebarMenuButton asChild>
-						<a href="/analytics">
-							<BarChart />
-							<span>Analytics</span>
-						</a>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
-			</SidebarMenu>
-		</SidebarGroupContent>
-	</SidebarGroup>
-</SidebarContent>
-```
-
-## SidebarGroupLabel
-
-The section heading for a SidebarGroup.
-
-```tsx showLineNumbers
-<SidebarGroupLabel>Settings</SidebarGroupLabel>
+<SidebarGroup>
+	<SidebarGroupLabel>Platform</SidebarGroupLabel>
+	<SidebarGroupContent>
+		<SidebarMenu>...</SidebarMenu>
+	</SidebarGroupContent>
+</SidebarGroup>
 ```
 
 ## SidebarGroupAction
@@ -385,6 +256,38 @@ An element that wraps a single menu item.
 </SidebarMenuItem>
 ```
 
+## SidebarMenuButton
+
+The primary interactive element inside a `SidebarMenuItem`. Accepts `asChild` to render as a link, `isActive` to mark the current page,
+and `tooltip` as a fallback label in icon collapsible mode.
+
+```tsx showLineNumbers
+<SidebarMenuButton asChild isActive tooltip="Dashboard">
+	<a href="/dashboard">
+		<LayoutDashboard />
+		<span>Dashboard</span>
+	</a>
+</SidebarMenuButton>
+```
+
+## SidebarMenuAction
+
+The `SidebarMenuAction` component is used to render a menu action within a `SidebarMenuItem`. Use for item-level actions like renaming, deleting, or opening a context menu.
+
+```tsx showLineNumbers
+<SidebarMenuItem>
+	<SidebarMenuButton asChild>
+		<a href="/project/1">
+			<Folder />
+			<span>Project Alpha</span>
+		</a>
+	</SidebarMenuButton>
+	<SidebarMenuAction>
+		<MoreHorizontalIcon />
+	</SidebarMenuAction>
+</SidebarMenuItem>
+```
+
 ## SidebarMenuSub
 
 The `SidebarMenuSub` component is used to render a submenu within a `SidebarMenu`.
@@ -406,18 +309,14 @@ A component for building expandable nav groups.
 
 ```tsx showLineNumbers
 <SidebarCollapsible defaultOpen>
-	<SidebarCollapsibleTrigger>...</SidebarCollapsibleTrigger>
-	<SidebarCollapsibleContent>...</SidebarCollapsibleContent>
+	<SidebarCollapsibleTrigger>Settings</SidebarCollapsibleTrigger>
+	<SidebarCollapsibleContent>
+		<SidebarMenu>...</SidebarMenu>
+	</SidebarCollapsibleContent>
 </SidebarCollapsible>
 ```
 
-## SidebarCollapsibleTrigger
-
-The clickable trigger that toggles a `SidebarCollapsible` open or closed. Typically placed inside a `SidebarGroupLabel` using asChild.
-
-## SidebarCollapsibleContent
-
-The animated content area that expands/collapses. Adds a group class so child components can react to the open/closed state.
+## SidebarSkeleton
 
 ## useSidebar
 
@@ -440,30 +339,64 @@ function SidebarLogo() {
 }
 ```
 
+## Theming
+
+Modify the `sidebarThemeVars` object inside `sidebar.tsx` file to add custom sidebar themes.
+
+```diff
+const sidebarThemeVars: Record<
+	NonNullable<SidebarProps["theme"]>,
+	React.CSSProperties> = {
+	"neutral-white": {
+		"--color-sidebar": "var(--color-bg)",
+	} as React.CSSProperties,
+	...,
++ 	"your-new-theme": {
++		// custom styles
++	}
+}
+```
+
+<br />
+You can modify the following CSS variables.
+
+```css
+:root {
+	--color-sidebar: var(--color-fill1);
+	--color-sidebar-fg: var(--color-fg);
+	--color-sidebar-accent: var(--color-fill1);
+	--color-sidebar-accent-fg: var(--color-fg);
+	--color-sidebar-border: var(--color-border);
+	--color-sidebar-ring: var(--color-primary-border);
+}
+```
+
 ## Mobile Behavior
 
 Below 768px, `Sidebar` renders as a Drawer automatically. The drawer direction matches the `side` prop.
 
 ```tsx showLineNumbers
-<SidebarTrigger />
-
 function AppHeader() {
-  const { toggleSidebar, isMobile } = useSidebar()
+	const { toggleSidebar, isMobile } = useSidebar()
 
-  return (
-    <header>
-      {isMobile && (
-        <button onClick={toggleSidebar} aria-label="Open menu">
-          <MenuIcon />
-        </button>
-      )}
-    </header>
-  )
+	return (
+		<header>
+			{isMobile && (
+				<Button onClick={toggleSidebar} aria-label="Open menu">
+					<MenuIcon />
+				</Button>
+			)}
+		</header>
+	)
 }
+```
 
-// Override mobile drawer width
+<br />
 
+Override mobile drawer width
+
+```tsx showLineNumbers
 <SidebarProvider style={{ "--sidebar-width-mobile": "22rem" }}>
 ```
 
-> The mobile Drawer includes a visually hidden DialogTitle for screen reader support. Cookie-based persistence only applies on desktop, mobile Drawer state is session-only.
+> The mobile `Drawer` includes a visually hidden `DialogTitle` for screen reader support. Cookie-based persistence only applies on desktop, mobile Drawer state is session-only.

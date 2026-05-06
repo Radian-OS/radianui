@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
 import React, { SVGProps } from "react"
 import { motion } from "motion/react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Badge, BadgeDot } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Badge, BadgeDot } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 
 const COLORS = [
 	{ title: "Red", value: "red" },

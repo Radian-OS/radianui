@@ -1,7 +1,7 @@
 import React from "react"
-import { CurrencyInput } from "@/registry/ui/currency-input"
-import { InputAddon, InputGroup } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { CurrencyInput } from "@/styles/default/ui/currency-input"
+import { InputAddon, InputGroup } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 export default function CurrencyWithInputGroup() {
 	return (

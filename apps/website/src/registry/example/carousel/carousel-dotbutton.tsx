@@ -1,8 +1,8 @@
 import * as React from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { AspectRatio } from "@/registry/ui/aspect-ratio"
-import { CompactButton } from "@/registry/ui/button"
+import { AspectRatio } from "@/styles/default/ui/aspect-ratio"
+import { CompactButton } from "@/styles/default/ui/button"
 import {
 	Carousel,
 	type CarouselApi,
@@ -10,7 +10,7 @@ import {
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious,
-} from "@/registry/ui/carousel"
+} from "@/styles/default/ui/carousel"
 
 export default function CarouselDotButton() {
 	const [api, setApi] = React.useState<CarouselApi>()

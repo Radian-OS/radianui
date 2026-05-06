@@ -11,7 +11,7 @@ import InvertedSection from "@/components/home/inverted-section"
 import PlaygroundSectionWrapper from "@/components/home/playground-section-wrapper"
 import VideoSection from "@/components/home/video-section"
 import { BorderBeam } from "@/registry/animated/border-beam"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 
 export default function Page() {
 	return (

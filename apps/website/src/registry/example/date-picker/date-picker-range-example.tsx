@@ -4,9 +4,13 @@ import * as React from "react"
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
-import { Button } from "@/registry/ui/button"
-import { Calendar } from "@/registry/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+import { Button } from "@/styles/default/ui/button"
+import { Calendar } from "@/styles/default/ui/calendar"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 export default function DatePickerPresetsExample() {
 	const today = new Date()

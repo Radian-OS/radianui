@@ -1,5 +1,5 @@
-import { Button } from "@/registry/ui/button"
-import { Calendar } from "@/registry/ui/calendar"
+import { Button } from "@/styles/default/ui/button"
+import { Calendar } from "@/styles/default/ui/calendar"
 
 const FooterCalendarPreview = () => {
 	return (

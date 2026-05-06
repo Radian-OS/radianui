@@ -7,7 +7,7 @@ import { notFound } from "next/navigation"
 import { Mdx } from "@/components/mdx"
 import { PreviousNextButtons } from "@/components/prev-next-buttons"
 import { websiteMetadata } from "@/config/website-metadata-config"
-import { Badge } from "@/registry/ui/badge"
+import { Badge } from "@/styles/default/ui/badge"
 
 export const revalidate = false
 export const dynamic = "force-static"

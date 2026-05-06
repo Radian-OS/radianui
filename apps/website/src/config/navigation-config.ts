@@ -48,7 +48,7 @@ const FUNDAMENTALS_DATA = [
 	},
 ]
 
-const COMPONENTS_DATA = [
+export const COMPONENTS_DATA = [
 	"Alert",
 	"Alert Dialog",
 	"Accordion",
@@ -87,6 +87,7 @@ const COMPONENTS_DATA = [
 	"Resizable",
 	"Scroll Area",
 	"Select",
+	"Sidebar",
 	"Skeleton",
 	"Slider",
 	"Sonner",

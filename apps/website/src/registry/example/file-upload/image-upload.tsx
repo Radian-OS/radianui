@@ -8,8 +8,8 @@ import {
 	UploadIcon,
 	X,
 } from "lucide-react"
-import { Button, IconButton } from "@/registry/ui/button"
-import { FileMetadata, useFileUpload } from "@/registry/ui/file-upload"
+import { Button, IconButton } from "@/styles/default/ui/button"
+import { FileMetadata, useFileUpload } from "@/styles/default/ui/file-upload"
 
 const initialFiles = [
 	{

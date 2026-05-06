@@ -1,8 +1,13 @@
 "use client"
 
 import React from "react"
-import { Badge } from "@/registry/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/ui/tabs"
+import { Badge } from "@/styles/default/ui/badge"
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from "@/styles/default/ui/tabs"
 
 const fontSpecs = {
 	desktop: [

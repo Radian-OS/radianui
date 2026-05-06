@@ -3,8 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { subscribe } from "@/app/actions/subscribe"
 import { EmailSubscribeBlog } from "@/components/email-subscribe-blog"
-import { Badge } from "@/registry/ui/badge"
-import { Divider } from "@/registry/ui/divider"
+import { Badge } from "@/styles/default/ui/badge"
+import { Divider } from "@/styles/default/ui/divider"
 
 interface BlogListPageProps {
 	params: { slug?: string[] }

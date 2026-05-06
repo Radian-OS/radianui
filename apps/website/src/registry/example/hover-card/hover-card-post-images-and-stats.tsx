@@ -1,12 +1,12 @@
 import React, { SVGProps } from "react"
 import Image from "next/image"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Button } from "@/styles/default/ui/button"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/registry/ui/hover-card"
+} from "@/styles/default/ui/hover-card"
 
 const profile = {
 	name: "Kaelin Tristian",
@@ -53,7 +53,7 @@ export default function HoverCardPostImagesAndStats() {
 					</div>
 				</div>
 			</HoverCardTrigger>
-			<HoverCardContent className="w-80 space-y-4 rounded-xl">
+			<HoverCardContent className="w-80 space-y-4">
 				<div className="flex items-center gap-2">
 					<Avatar size="64">
 						<AvatarImage src={profile.avatar} />

@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 
 const VerifyEmail = () => {
 	const handleSubmitClick = () => {

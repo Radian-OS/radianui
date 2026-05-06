@@ -3,8 +3,8 @@
 import * as React from "react"
 import { Check, ChevronDown, Plus, Squircle, X } from "lucide-react"
 import { cn } from "@/lib/utils"
-import { Badge, BadgeDot } from "@/registry/ui/badge"
-import { Button } from "@/registry/ui/button"
+import { Badge, BadgeDot } from "@/styles/default/ui/badge"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Command,
 	CommandEmpty,
@@ -12,8 +12,12 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@/registry/ui/command"
-import { Popover, PopoverContent, PopoverTrigger } from "@/registry/ui/popover"
+} from "@/styles/default/ui/command"
+import {
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from "@/styles/default/ui/popover"
 
 const companyDepartments = [
 	{ value: "hr", label: "HR", state: "fill-error text-error" },

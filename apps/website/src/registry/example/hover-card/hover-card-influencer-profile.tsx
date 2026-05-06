@@ -1,12 +1,12 @@
 import React, { SVGProps } from "react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/ui/avatar"
-import { Button } from "@/registry/ui/button"
-import { Divider } from "@/registry/ui/divider"
+import { Avatar, AvatarFallback, AvatarImage } from "@/styles/default/ui/avatar"
+import { Button } from "@/styles/default/ui/button"
+import { Divider } from "@/styles/default/ui/divider"
 import {
 	HoverCard,
 	HoverCardContent,
 	HoverCardTrigger,
-} from "@/registry/ui/hover-card"
+} from "@/styles/default/ui/hover-card"
 
 const profile = {
 	name: "Zoya Petrova",
@@ -34,7 +34,7 @@ export default function HoverCardInfluencerProfile() {
 					<p className="text-fg-tertiary text-xs">{profile.description}</p>
 				</div>
 			</HoverCardTrigger>
-			<HoverCardContent className="flex w-80 flex-col overflow-hidden rounded-xl p-0">
+			<HoverCardContent className="flex w-80 flex-col overflow-hidden p-0">
 				<div className="bg-primary-focus relative h-20">
 					<Avatar
 						size="80"

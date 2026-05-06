@@ -1,5 +1,5 @@
 import { CircleAlert } from "lucide-react"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogBody,
@@ -10,7 +10,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@/registry/ui/dialog"
+} from "@/styles/default/ui/dialog"
 
 export default function DialogCloseButtonHover() {
 	return (

@@ -1,44 +1,28 @@
 import { cosmiconfig } from "cosmiconfig"
+import path from "path"
+import { loadConfig } from "tsconfig-paths"
 import { z } from "zod"
-import { txt } from "@/utils/colors"
+import { configSchema, rawConfigSchema } from "@/registry/schema"
+import { resolveImport } from "@/utils/resolveImport"
+import { txt } from "./colors"
 
-const explorer = cosmiconfig("components", {
+export const DEFAULT_COMPONENTS = "@/components"
+export const DEFAULT_UTILS = "@/lib/utils"
+
+export const explorer = cosmiconfig("components", {
 	searchPlaces: ["components.json"],
 })
 
-const rawConfigSchema = z.object({
-	hasSrcDir: z.boolean(),
-	aliases: z.object({
-		components: z.string(),
-		utils: z.string(),
-		ui: z.string(),
-		animated: z.string().optional(),
-		lib: z.string().optional(),
-		hooks: z.string().optional(),
-	}),
-})
-
-export const configSchema = rawConfigSchema.extend({
-	resolvedPaths: z.object({
-		cwd: z.string(),
-		tailwindConfig: z.string(),
-		tailwindCss: z.string(),
-		utils: z.string(),
-		components: z.string(),
-		lib: z.string(),
-		hooks: z.string(),
-		ui: z.string(),
-	}),
-})
-
-export type RawConfig = z.infer<typeof rawConfigSchema>
 export type Config = z.infer<typeof configSchema>
+export type RawConfig = z.infer<typeof rawConfigSchema>
 
 export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
 	const result = await explorer.search(cwd)
 
 	if (!result) {
-		throw new Error(`To add components, make sure you have a ${txt.info("components.json")} file. Run ${txt.info("npx radianui init")} to set it up.`)
+		throw new Error(
+			`To add components, make sure you have a ${txt.info("components.json")} file. Run ${txt.info("npx radianui init")} to set it up.`
+		)
 	}
 
 	try {
@@ -56,6 +40,78 @@ export async function getConfig(cwd = process.cwd()): Promise<RawConfig> {
 		}
 		return parsed
 	} catch (error) {
-		throw new Error(`Error loading components.json configuration: Invalid components.json file`)
+		throw new Error(
+			`Error loading components.json configuration: Invalid components.json file`
+		)
+	}
+}
+
+export async function resolveConfigPaths(
+	cwd: string,
+	config: z.infer<typeof rawConfigSchema>
+) {
+	// Read tsconfig.json.
+	const tsConfig = loadConfig(cwd)
+
+	if (tsConfig.resultType === "failed") {
+		throw new Error(
+			`Failed to load "tsconfig.json". ${tsConfig.message ?? ""}`.trim()
+		)
+	}
+
+	return rawConfigSchema.parse({
+		...config,
+		resolvedPaths: {
+			cwd,
+			utils: await resolveImport(config.aliases["utils"], tsConfig),
+			components: await resolveImport(config.aliases["components"], tsConfig),
+			ui: config.aliases["ui"]
+				? await resolveImport(config.aliases["ui"], tsConfig)
+				: path.resolve(
+						(await resolveImport(config.aliases["components"], tsConfig)) ??
+							cwd,
+						"ui"
+					),
+			// TODO: Make this configurable.
+			// For now, we assume the lib and hooks directories are one level up from the components directory.
+			lib: config.aliases["lib"]
+				? await resolveImport(config.aliases["lib"], tsConfig)
+				: path.resolve(
+						(await resolveImport(config.aliases["utils"], tsConfig)) ?? cwd,
+						".."
+					),
+			hooks: config.aliases["hooks"]
+				? await resolveImport(config.aliases["hooks"], tsConfig)
+				: path.resolve(
+						(await resolveImport(config.aliases["components"], tsConfig)) ??
+							cwd,
+						"..",
+						"hooks"
+					),
+		},
+	})
+}
+
+export async function getRawConfig(
+	cwd: string
+): Promise<z.infer<typeof rawConfigSchema> | null> {
+	try {
+		const configResult = await explorer.search(cwd)
+
+		if (!configResult) {
+			return null
+		}
+
+		const config = rawConfigSchema.parse(configResult.config)
+
+		return config
+	} catch (error) {
+		const componentPath = `${cwd}/components.json`
+		if (error instanceof Error && error.message.includes("reserved registry")) {
+			throw error
+		}
+		throw new Error(
+			`Invalid configuration found in ${txt.info(componentPath)}.`
+		)
 	}
 }

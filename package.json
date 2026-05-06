@@ -7,7 +7,6 @@
 		"dev": "turbo run dev",
 		"website:dev": "turbo run dev --filter=website",
 		"website:build": "turbo run build --filter=website",
-		"website:llms": "turbo run build:llms --filter=website",
 		"website:start": "turbo run start --filter=website",
 		"db:generate": "turbo run db:generate --filter=website",
 		"db:migrate": "turbo run db:migrate --filter=website",
@@ -22,6 +21,10 @@
 		"pub:release": "cd packages/cli && pnpm pub:release",
 		"check-types": "turbo run check-types",
 		"generate-component-json": "turbo run generate-component-json",
+		"generate-styles": "turbo run generate-styles",
+		"generate-css": "turbo run generate-css",
+		"generate-styles-json": "turbo run generate-styles-json",
+				"update-icon-slot": "turbo run update-icon-slot",
 		"lint": "turbo run lint",
 		"prepare": "husky"
 	},

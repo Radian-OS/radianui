@@ -8,23 +8,23 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { subscribe } from "@/app/actions/subscribe"
 import { cn } from "@/lib/utils"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogTitle,
-} from "@/registry/ui/dialog"
+} from "@/styles/default/ui/dialog"
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from "@/registry/ui/form"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
-import { Spinner } from "@/registry/ui/spinner"
+} from "@/styles/default/ui/form"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
+import { Spinner } from "@/styles/default/ui/spinner"
 
 const formSchema = z.object({
 	email: z

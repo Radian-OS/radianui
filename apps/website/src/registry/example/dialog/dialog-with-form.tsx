@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Button } from "@/registry/ui/button"
+import { Button } from "@/styles/default/ui/button"
 import {
 	Dialog,
 	DialogClose,
@@ -9,9 +9,9 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from "@/registry/ui/dialog"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+} from "@/styles/default/ui/dialog"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 export default function DialogWithForm() {
 	return (

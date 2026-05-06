@@ -9,17 +9,17 @@ import {
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
-} from "@/registry/ui/accordion"
-import { Label } from "@/registry/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/registry/ui/radio-group"
+} from "@/styles/default/ui/accordion"
+import { Label } from "@/styles/default/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/styles/default/ui/radio-group"
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "@/registry/ui/select"
-import { Switch } from "@/registry/ui/switch"
+} from "@/styles/default/ui/select"
+import { Switch } from "@/styles/default/ui/switch"
 
 type Appearance = "system" | "dark" | "light"
 type Language = "en" | "es" | "fr" | "de" | "zh"

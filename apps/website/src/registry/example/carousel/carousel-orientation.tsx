@@ -6,7 +6,7 @@ import {
 	CarouselItem,
 	CarouselNext,
 	CarouselPrevious,
-} from "@/registry/ui/carousel"
+} from "@/styles/default/ui/carousel"
 
 export default function CarouselOrientation() {
 	const images = [

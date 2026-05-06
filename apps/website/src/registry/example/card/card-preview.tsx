@@ -1,8 +1,13 @@
 import Image from "next/image"
-import { Button } from "@/registry/ui/button"
-import { Card, CardContent, CardFooter, CardHeader } from "@/registry/ui/card"
-import { Input } from "@/registry/ui/input"
-import { Label } from "@/registry/ui/label"
+import { Button } from "@/styles/default/ui/button"
+import {
+	Card,
+	CardContent,
+	CardFooter,
+	CardHeader,
+} from "@/styles/default/ui/card"
+import { Input } from "@/styles/default/ui/input"
+import { Label } from "@/styles/default/ui/label"
 
 export default function CardPreview() {
 	return (

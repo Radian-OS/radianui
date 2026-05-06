@@ -14,20 +14,17 @@ export type UseCharacterLimitOptions = {
 	initialValue?: string
 }
 
-const textareaStyles = cva(
-	"peer text-sm placeholder:text-sm text-fg w-full border border-alpha bg-bg px-2.5 py-2 font-normal drop-shadow-xs focus:border-primary-hover aria-invalid:ring-error/20 aria-invalid:border-error dark:aria-invalid:ring-error/20 focus:outline-hidden focus:ring-2 focus:ring-primary-hover/30 disabled:border-soft disabled:bg-fill1 disabled:text-fg-disabled disabled:cursor-not-allowed disabled:resize-none",
-	{
-		variants: {
-			rounded: {
-				rounded: "rounded-md",
-				square: "rounded-none",
-			},
+const textareaStyles = cva("cn-textarea peer w-full focus:outline-hidden", {
+	variants: {
+		rounded: {
+			rounded: "cn-textarea-rounded",
+			square: "cn-textarea-square",
 		},
-		defaultVariants: {
-			rounded: "rounded",
-		},
-	}
-)
+	},
+	defaultVariants: {
+		rounded: "rounded",
+	},
+})
 
 function TextArea({
 	className,
@@ -51,14 +48,14 @@ function TextArea({
 		/>
 	)
 }
-TextArea.display = "TextArea"
+
+TextArea.displayName = "TextArea"
 
 function useCharacterLimit({
 	maxLength,
 	initialValue = "",
 }: UseCharacterLimitOptions) {
 	const [value, setValue] = useState(initialValue)
-
 	const characterCount = value.length
 	const remainingCharacters = maxLength - characterCount
 
