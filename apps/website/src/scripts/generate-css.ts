@@ -25,8 +25,21 @@ function generate(): void {
 		content = ""
 	}
 
-	//  Remove unwanted import
+	// Remove unwanted imports
 	content = content.replace(/@import\s+["']\.\/website\.css["'];?\n?/g, "")
+	content = content.replace(
+		/@import\s+["'][^"']*registry\/styles\/style-[^"']+["'][^;\n]*;?\n?/g,
+		""
+	)
+
+	// Remove unwanted @custom-variant declarations
+	content = content.replace(
+		/@custom-variant\s+style-(?:default|sera)\s+[^;]+;?\n?/g,
+		""
+	)
+
+	// Remove leftover blank lines
+	content = content.replace(/^\s*\n/gm, "")
 
 	fs.mkdirSync(DEST_DIR, { recursive: true })
 	fs.writeFileSync(DEST_CSS, content, "utf-8")

@@ -26,7 +26,6 @@ const OUTPUT_STYLES_DIR = path.join(process.cwd(), "src/styles")
 const ICON_SLOT_REPLACEMENTS = [
 	{ slot: "dropdown", lucideIcon: "ChevronDown" },
 	{ slot: "scrollUp", lucideIcon: "ChevronUp" },
-	{ slot: "scrollDown", lucideIcon: "ChevronDown" },
 	{ slot: "check", lucideIcon: "Check" },
 ] as const
 

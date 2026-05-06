@@ -5,6 +5,7 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon-library"
 
 export type SelectContextType = {
 	indicatorPosition?: "left" | "right"
@@ -143,7 +144,7 @@ function SelectScrollDownButton({
 				className
 			)}
 			{...props}>
-			<ChevronDown className="h-4 w-4" />
+			<IconSlot slot="scrollDown" className="h-4 w-4" />
 		</SelectPrimitive.ScrollDownButton>
 	)
 }
