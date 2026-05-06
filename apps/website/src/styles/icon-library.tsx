@@ -7,12 +7,14 @@ import {
 	ArrowLeft01Icon,
 	ArrowRight01Icon,
 	ArrowUp01Icon,
+	CheckListIcon,
 	MoreHorizontalIcon,
 	UnfoldMoreIcon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import type { IconSvgElement } from "@hugeicons/react"
 import {
+	Check,
 	ChevronDown,
 	ChevronLeft,
 	ChevronRight,
@@ -21,7 +23,10 @@ import {
 	MoreHorizontal,
 	Plus,
 } from "lucide-react"
-import type { IconLibrary, IconSlot } from "@/registry/icon-libraries"
+import type {
+	IconLibrary,
+	IconSlot as IconSlotName,
+} from "@/registry/icon-libraries"
 
 export type ThemedIconProps = Omit<
 	React.SVGProps<SVGSVGElement>,
@@ -82,38 +87,36 @@ function createHugeiconsIcon(icon: IconSvgElement): ThemedIconComponent {
 
 const iconComponents = {
 	lucide: {
-		"select.dropdown": createLucideIcon(ChevronDown),
-		"select.scrollUp": createLucideIcon(ChevronUp),
-		"select.scrollDown": createLucideIcon(ChevronDown),
-		"accordion.chevron": createLucideIcon(ChevronDown),
-		"breadcrumb.separator": createLucideIcon(ChevronRight),
-		"calendar.previous": createLucideIcon(ChevronLeft),
-		"calendar.next": createLucideIcon(ChevronRight),
-		"carousel.previous": createLucideIcon(ChevronLeft),
-		"carousel.next": createLucideIcon(ChevronRight),
-		"dropdown.submenu": createLucideIcon(ChevronRight),
-		"common.more": createLucideIcon(MoreHorizontal),
-		"common.plus": createLucideIcon(Plus),
+		dropdown: createLucideIcon(ChevronDown),
+		scrollUp: createLucideIcon(ChevronUp),
+		scrollDown: createLucideIcon(ChevronDown),
+		chevron: createLucideIcon(ChevronDown),
+		separator: createLucideIcon(ChevronRight),
+		previous: createLucideIcon(ChevronLeft),
+		next: createLucideIcon(ChevronRight),
+		submenu: createLucideIcon(ChevronRight),
+		more: createLucideIcon(MoreHorizontal),
+		plus: createLucideIcon(Plus),
+		check: createLucideIcon(Check),
 	},
 	hugeicons: {
-		"select.dropdown": createHugeiconsIcon(UnfoldMoreIcon),
-		"select.scrollUp": createHugeiconsIcon(ArrowUp01Icon),
-		"select.scrollDown": createHugeiconsIcon(ArrowDown01Icon),
-		"accordion.chevron": createHugeiconsIcon(ArrowDown01Icon),
-		"breadcrumb.separator": createHugeiconsIcon(ArrowRight01Icon),
-		"calendar.previous": createHugeiconsIcon(ArrowLeft01Icon),
-		"calendar.next": createHugeiconsIcon(ArrowRight01Icon),
-		"carousel.previous": createHugeiconsIcon(ArrowLeft01Icon),
-		"carousel.next": createHugeiconsIcon(ArrowRight01Icon),
-		"dropdown.submenu": createHugeiconsIcon(ArrowRight01Icon),
-		"common.more": createHugeiconsIcon(MoreHorizontalIcon),
-		"common.plus": createHugeiconsIcon(Add01Icon),
+		dropdown: createHugeiconsIcon(UnfoldMoreIcon),
+		scrollUp: createHugeiconsIcon(ArrowUp01Icon),
+		scrollDown: createHugeiconsIcon(ArrowDown01Icon),
+		chevron: createHugeiconsIcon(ArrowDown01Icon),
+		separator: createHugeiconsIcon(ArrowRight01Icon),
+		previous: createHugeiconsIcon(ArrowLeft01Icon),
+		next: createHugeiconsIcon(ArrowRight01Icon),
+		submenu: createHugeiconsIcon(ArrowRight01Icon),
+		more: createHugeiconsIcon(MoreHorizontalIcon),
+		plus: createHugeiconsIcon(Add01Icon),
+		check: createHugeiconsIcon(CheckListIcon),
 	},
-} satisfies Record<IconLibrary, Record<IconSlot, ThemedIconComponent>>
+} satisfies Record<IconLibrary, Record<IconSlotName, ThemedIconComponent>>
 
-export const ThemedIcon = React.forwardRef<
+export const IconSlot = React.forwardRef<
 	SVGSVGElement,
-	ThemedIconProps & { slot: IconSlot }
+	ThemedIconProps & { slot: IconSlotName }
 >(({ slot, ...props }, ref) => {
 	const iconLibrary = useIconLibrary()
 	const Icon = iconComponents[iconLibrary][slot]
@@ -121,26 +124,13 @@ export const ThemedIcon = React.forwardRef<
 	return <Icon ref={ref} {...props} />
 })
 
-ThemedIcon.displayName = "ThemedIcon"
+IconSlot.displayName = "IconSlot"
 
-export function createIconSlot(slot: IconSlot) {
+export function createIconSlot(slot: IconSlotName) {
 	const IconSlotComponent = React.forwardRef<SVGSVGElement, ThemedIconProps>(
-		(props, ref) => <ThemedIcon ref={ref} slot={slot} {...props} />
+		(props, ref) => <IconSlot ref={ref} slot={slot} {...props} />
 	)
 
 	IconSlotComponent.displayName = `IconSlot(${slot})`
 	return IconSlotComponent
 }
-
-export const SelectDropdownIcon = createIconSlot("select.dropdown")
-export const SelectScrollUpIcon = createIconSlot("select.scrollUp")
-export const SelectScrollDownIcon = createIconSlot("select.scrollDown")
-export const AccordionChevronIcon = createIconSlot("accordion.chevron")
-export const BreadcrumbSeparatorIcon = createIconSlot("breadcrumb.separator")
-export const CalendarPreviousIcon = createIconSlot("calendar.previous")
-export const CalendarNextIcon = createIconSlot("calendar.next")
-export const CarouselPreviousIcon = createIconSlot("carousel.previous")
-export const CarouselNextIcon = createIconSlot("carousel.next")
-export const DropdownSubmenuIcon = createIconSlot("dropdown.submenu")
-export const MoreIcon = createIconSlot("common.more")
-export const PlusIcon = createIconSlot("common.plus")

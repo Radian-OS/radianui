@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { type ReactNode, isValidElement } from "react"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { type VariantProps, cva } from "class-variance-authority"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
@@ -10,7 +9,7 @@ import { cn } from "@/lib/utils"
 export type SelectContextType = {
 	indicatorPosition?: "left" | "right"
 	indicatorVisibility?: boolean
-	indicator?: ReactNode
+	indicator?: React.ReactNode
 }
 
 export type SelectProps = React.ComponentProps<typeof SelectPrimitive.Root> &
@@ -208,7 +207,7 @@ function SelectItem({ className, children, ...props }: SelectItemProps) {
 			)}
 			{...props}>
 			{indicatorVisibility &&
-				(indicator && isValidElement(indicator) ? (
+				(indicator && React.isValidElement(indicator) ? (
 					indicator
 				) : (
 					<span

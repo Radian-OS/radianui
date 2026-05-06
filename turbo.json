@@ -60,6 +60,10 @@
 		"generate-styles-json": {
 			"dependsOn": [],
 			"outputs": []
+		},
+		"update-icon-slot": {
+			"dependsOn": [],
+			"outputs": []
 		}
 	}
 }
