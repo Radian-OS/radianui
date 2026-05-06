@@ -21,13 +21,14 @@ export default function Page() {
 
 function ThemerPage() {
 	const [params] = useThemerPreset()
-	const [selectedComponent, setSelectedComponent] = useState<string>("preview")
+	const [selectedComponent, setSelectedComponent] =
+		useState<string>("preview-02")
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
 	const iframeSrc = useMemo(
 		() =>
-			`/preview/test?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}&theme=${params.theme}&iconLibrary=${params.iconLibrary}`,
+			`/preview/${selectedComponent}?primaryColor=${params.primaryColor}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}&theme=${params.theme}&iconLibrary=${params.iconLibrary}`,
 		[selectedComponent]
 	)
 
