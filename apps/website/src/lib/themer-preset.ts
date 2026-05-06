@@ -11,7 +11,7 @@ import { DEFAULT_CONFIG } from "@/registry/config"
 import { FONTS, FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RADIUS, RadiusValue } from "@/registry/radius"
-import { STYLES, Style } from "@/registry/styles"
+import { STYLES, StyleValue } from "@/registry/styles"
 import { TEMPLATES, Template } from "@/registry/templates"
 import { THEMES, ThemeValue } from "@/registry/themes"
 
@@ -31,7 +31,9 @@ const designSystemSearchParams = {
 	template: parseAsStringLiteral<Template>(TEMPLATES).withDefault(
 		DEFAULT_CONFIG.template
 	),
-	style: parseAsStringLiteral<Style>(STYLES).withDefault(DEFAULT_CONFIG.style),
+	style: parseAsStringLiteral<StyleValue>(
+		STYLES.map((style) => style.value)
+	).withDefault(DEFAULT_CONFIG.style),
 	useSrcDir: parseAsBoolean.withDefault(DEFAULT_CONFIG.useSrcDir),
 	theme: parseAsStringLiteral<ThemeValue>(
 		THEMES.map((theme) => theme.value)

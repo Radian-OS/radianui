@@ -1,8 +1,9 @@
 export const THEMES = [
 	{
 		value: "default",
-		label: "Default",
-		description: "Default theme",
+		name: "Default",
+		description:
+			"Clean, neutral baseline for a familiar and distraction-free interface",
 		cssVars: {
 			light: {},
 			dark: {},
@@ -11,8 +12,9 @@ export const THEMES = [
 	},
 	{
 		value: "bubblegum",
-		label: "Bubblegum",
-		description: "Cartoonish bubble gum",
+		name: "Bubblegum",
+		description:
+			"Playful, candy-colored theme with bold pinks and punchy contrast",
 		cssVars: {
 			light: {
 				"--color-primary": "oklch(0.72 0.19 345)",
@@ -201,8 +203,9 @@ export const THEMES = [
 	},
 	{
 		value: "matcha",
-		label: "Matcha",
-		description: "Matcha latte green",
+		name: "Matcha",
+		description:
+			"Soft, calming green palette inspired by matcha for a fresh and balanced experience",
 		cssVars: {
 			light: {
 				"--color-primary": "oklch(0.62 0.12 145)",

@@ -1,19 +1,14 @@
 import z from "zod"
-import { FONTS, FontValue } from "./fonts"
+import { FONTS } from "./fonts"
 import { PRIMARY_COLORS } from "./primary-colors"
-import { RADIUS, RadiusValue } from "./radius"
+import { RADIUS } from "./radius"
 import { STYLES } from "./styles"
 import { TEMPLATES } from "./templates"
 import { THEMES } from "./themes"
 
-const fontValues = FONTS.map((font) => font.value) as [
-	FontValue,
-	...FontValue[],
-]
-const radiusValues = RADIUS.map((radius) => radius.value) as [
-	RadiusValue,
-	...RadiusValue[],
-]
+const fontValues = FONTS.map((font) => font.value)
+const radiusValues = RADIUS.map((radius) => radius.value)
+const styleValues = STYLES.map((style) => style.value)
 
 const cssValueSchema = z.union([z.string(), z.record(z.string(), z.string())])
 
@@ -31,7 +26,7 @@ export const registryConfigSchema = z.object({
 		iconLibrary: z.string(),
 		template: z.enum(TEMPLATES),
 		useSrcDir: z.boolean().default(true),
-		style: z.enum(STYLES).default("default"),
+		style: z.enum(styleValues).default("default"),
 	}),
 })
 
@@ -59,7 +54,7 @@ export const themerConfigSchema = z
 			})
 			.default("medium"),
 		style: z
-			.enum(STYLES, {
+			.enum(styleValues, {
 				error: "Invalid style valiue",
 			})
 			.default("default"),

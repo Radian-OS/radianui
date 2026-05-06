@@ -8,7 +8,7 @@ import { PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
-import { STYLES } from "@/registry/styles"
+import { STYLES, StyleValue } from "@/registry/styles"
 import { THEMES } from "@/registry/themes"
 import { IconButton } from "@/styles/default/ui/button"
 import {
@@ -55,6 +55,7 @@ export function ThemerSidebar({
 		COMPONENTS_DATA.find(
 			(name) => name.toLowerCase().replace(/\s+/g, "-") === selectedComponent
 		) ?? selectedComponent
+	const selectedStyle = STYLES.find((t) => t.value === params.style)
 
 	return (
 		<aside className="bg-elevation-level1 border-border flex w-80 shrink-0 flex-col border-r">
@@ -108,7 +109,12 @@ export function ThemerSidebar({
 										key={theme.value}
 										value={theme.value}
 										onSelect={(e) => e.preventDefault()}>
-										{theme.label}
+										<div className="flex flex-col gap-1">
+											<span className="text-fg font-medium">{theme.name}</span>
+											<span className="text-fg-tertiary text-xs leading-snug">
+												{theme.description}
+											</span>
+										</div>
 									</DropdownRadioItem>
 								))}
 							</DropdownRadioGroup>
@@ -122,18 +128,16 @@ export function ThemerSidebar({
 					<SectionLabel>Styles</SectionLabel>
 					<Dropdown>
 						<DropdownTrigger className="border-border hover:border-fg-disabled bg-elevation-level2 flex w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-sm transition-colors">
-							<span className="text-fg font-medium">
-								{params.style.charAt(0).toUpperCase() + params.style.slice(1)}
-							</span>
+							<span className="text-fg font-medium">{selectedStyle?.name}</span>
 							<ChevronDown className="text-fg-tertiary size-3.5 shrink-0" />
 						</DropdownTrigger>
-						<DropdownContent side="right" className="max-h-96 w-56">
+						<DropdownContent side="right" className="max-h-96 w-64">
 							<DropdownRadioGroup
-								value={params.style}
+								value={selectedStyle?.value}
 								onValueChange={(value) => {
 									const preset = PRESETS.find((p) => p.name === value)
 									setParams({
-										style: value as typeof params.style,
+										style: value as StyleValue,
 										...(preset && {
 											...preset,
 										}),
@@ -143,10 +147,16 @@ export function ThemerSidebar({
 								}}>
 								{STYLES.map((style) => (
 									<DropdownRadioItem
-										key={style}
-										value={style}
+										key={style.value}
+										value={style.value}
+										className="py-2.5"
 										onSelect={(e) => e.preventDefault()}>
-										{style}
+										<div className="flex flex-col gap-1">
+											<span className="text-fg font-medium">{style.name}</span>
+											<span className="text-fg-tertiary text-xs leading-snug">
+												{style.description}
+											</span>
+										</div>
 									</DropdownRadioItem>
 								))}
 							</DropdownRadioGroup>

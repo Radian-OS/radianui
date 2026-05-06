@@ -207,7 +207,7 @@ export function CreateProjectDialog() {
 								<ThemeSummaryPill label="Radius" value={selectedRadius.name} />
 							)}
 							{selectedTheme && selectedTheme.value !== "default" && (
-								<ThemeSummaryPill label="Theme" value={selectedTheme.label} />
+								<ThemeSummaryPill label="Theme" value={selectedTheme.name} />
 							)}
 							<ThemeSummaryPill
 								label="Src Dir"
