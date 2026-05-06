@@ -8,7 +8,8 @@
 			"primary-focus": "oklch(0.92 0.0391 301.86)",
 			"primary-border": "oklch(0.6963 0.1724 298.93)",
 			"primary-hover": "oklch(0.6106 0.2219 295.95)",
-			"primary-text": "oklch(0.5554 0.2522 292.8)"
+			"primary-text": "oklch(0.5554 0.2522 292.8)",
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		},
 		"dark": {
 			"primary": "oklch(0.5554 0.2522 292.8)",
@@ -16,7 +17,8 @@
 			"primary-focus": "oklch(0.297 0.1224 295.18)",
 			"primary-border": "oklch(0.5554 0.2522 292.8)",
 			"primary-hover": "oklch(0.6106 0.2219 295.95)",
-			"primary-text": "oklch(0.6963 0.1724 298.93)"
+			"primary-text": "oklch(0.6963 0.1724 298.93)",
+			"primary-fg": "oklch(0.9764 0.0013 286.38)"
 		}
 	}
 }

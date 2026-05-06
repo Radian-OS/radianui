@@ -20,7 +20,8 @@
 		"generate-blocks-index": "tsx src/scripts/generate-blocks-index.ts",
 		"generate-css": "tsx src/scripts/generate-css.ts",
 		"generate-styles": "tsx src/scripts/generate-styles.ts",
-		"generate-styles-json": "tsx src/scripts/generate-styles-json.ts"
+		"generate-styles-json": "tsx src/scripts/generate-styles-json.ts",
+		"generate-colors": "tsx src/scripts/generate-colors.ts"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",
