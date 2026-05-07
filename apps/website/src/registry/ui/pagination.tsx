@@ -1,6 +1,6 @@
 import * as React from "react"
-import { MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "../icon-library"
 
 export type PaginationProps = React.ComponentProps<"nav">
 export type PaginationContentProps = React.ComponentProps<"ul">
@@ -45,7 +45,7 @@ function PaginationEllipsis({ className, ...props }: PaginationEllipsisProps) {
 			aria-hidden
 			className={cn("flex h-9 w-9 items-center justify-center", className)}
 			{...props}>
-			<MoreHorizontal className="h-4 w-4" />
+			<IconSlot slot="threeDot" className="h-4 w-4" />
 			<span className="sr-only">More pages</span>
 		</span>
 	)

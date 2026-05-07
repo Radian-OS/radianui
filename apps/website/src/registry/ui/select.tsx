@@ -108,10 +108,7 @@ function SelectTrigger({
 			{...props}>
 			{children}
 			<SelectPrimitive.Icon asChild>
-				<IconSlot
-					slot="dropdown"
-					className="-me-0.5 ml-auto size-5 opacity-60"
-				/>
+				<IconSlot slot="down" className="-me-0.5 ml-auto size-5 opacity-60" />
 			</SelectPrimitive.Icon>
 		</SelectPrimitive.Trigger>
 	)
@@ -129,7 +126,7 @@ function SelectScrollUpButton({
 				className
 			)}
 			{...props}>
-			<IconSlot slot="scrollUp" className="h-4 w-4" />
+			<IconSlot slot="up" className="h-4 w-4" />
 		</SelectPrimitive.ScrollUpButton>
 	)
 }
@@ -146,7 +143,7 @@ function SelectScrollDownButton({
 				className
 			)}
 			{...props}>
-			<IconSlot slot="scrollDown" className="h-4 w-4" />
+			<IconSlot slot="down" className="h-4 w-4" />
 		</SelectPrimitive.ScrollDownButton>
 	)
 }

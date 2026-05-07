@@ -7,9 +7,14 @@ import {
 	ArrowLeft01Icon,
 	ArrowRight01Icon,
 	ArrowUp01Icon,
-	CheckListIcon,
+	Cancel01Icon,
+	CircleIcon,
+	MinusSignIcon,
+	More01Icon,
 	MoreHorizontalIcon,
-	UnfoldMoreIcon,
+	PanelLeftIcon,
+	Search01Icon,
+	Tick01Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 import type { IconSvgElement } from "@hugeicons/react"
@@ -19,14 +24,23 @@ import {
 	ChevronLeft,
 	ChevronRight,
 	ChevronUp,
+	Circle,
+	GripVerticalIcon,
 	type LucideIcon,
+	Minus,
 	MoreHorizontal,
+	PanelLeft,
 	Plus,
+	Search,
+	X,
 } from "lucide-react"
 import type {
+	HugeiconsIconName,
 	IconLibrary,
 	IconSlot as IconSlotName,
+	LucideIconName,
 } from "@/lib/icon-libraries"
+import { ICON_SLOT_REPLACEMENTS } from "@/lib/icon-libraries"
 
 export type ThemedIconProps = Omit<
 	React.SVGProps<SVGSVGElement>,
@@ -85,33 +99,53 @@ function createHugeiconsIcon(icon: IconSvgElement): ThemedIconComponent {
 	return Component
 }
 
+const lucideIcons: Record<LucideIconName, LucideIcon> = {
+	ChevronDown,
+	ChevronUp,
+	ChevronRight,
+	ChevronLeft,
+	MoreHorizontal,
+	Plus,
+	Check,
+	X,
+	Minus,
+	Search,
+	Circle,
+	GripVerticalIcon,
+	PanelLeft,
+}
+
+const hugeiconsIcons: Record<HugeiconsIconName, IconSvgElement> = {
+	ArrowDown01Icon,
+	ArrowUp01Icon,
+	ArrowRight01Icon,
+	ArrowLeft01Icon,
+	MoreHorizontalIcon,
+	Add01Icon,
+	Tick01Icon,
+	Cancel01Icon,
+	MinusSignIcon,
+	Search01Icon,
+	CircleIcon,
+	More01Icon,
+	PanelLeftIcon,
+}
+
+function createIconComponents(iconLibrary: IconLibrary) {
+	return Object.fromEntries(
+		ICON_SLOT_REPLACEMENTS.map(({ slot, lucideIcon, hugeiconsIcon }) => {
+			if (iconLibrary === "lucide") {
+				return [slot, createLucideIcon(lucideIcons[lucideIcon])]
+			}
+
+			return [slot, createHugeiconsIcon(hugeiconsIcons[hugeiconsIcon])]
+		})
+	) as Record<IconSlotName, ThemedIconComponent>
+}
+
 const iconComponents = {
-	lucide: {
-		dropdown: createLucideIcon(ChevronDown),
-		scrollUp: createLucideIcon(ChevronUp),
-		scrollDown: createLucideIcon(ChevronDown),
-		chevron: createLucideIcon(ChevronDown),
-		separator: createLucideIcon(ChevronRight),
-		previous: createLucideIcon(ChevronLeft),
-		next: createLucideIcon(ChevronRight),
-		submenu: createLucideIcon(ChevronRight),
-		more: createLucideIcon(MoreHorizontal),
-		plus: createLucideIcon(Plus),
-		check: createLucideIcon(Check),
-	},
-	hugeicons: {
-		dropdown: createHugeiconsIcon(UnfoldMoreIcon),
-		scrollUp: createHugeiconsIcon(ArrowUp01Icon),
-		scrollDown: createHugeiconsIcon(ArrowDown01Icon),
-		chevron: createHugeiconsIcon(ArrowDown01Icon),
-		separator: createHugeiconsIcon(ArrowRight01Icon),
-		previous: createHugeiconsIcon(ArrowLeft01Icon),
-		next: createHugeiconsIcon(ArrowRight01Icon),
-		submenu: createHugeiconsIcon(ArrowRight01Icon),
-		more: createHugeiconsIcon(MoreHorizontalIcon),
-		plus: createHugeiconsIcon(Add01Icon),
-		check: createHugeiconsIcon(CheckListIcon),
-	},
+	lucide: createIconComponents("lucide"),
+	hugeicons: createIconComponents("hugeicons"),
 } satisfies Record<IconLibrary, Record<IconSlotName, ThemedIconComponent>>
 
 export const IconSlot = React.forwardRef<

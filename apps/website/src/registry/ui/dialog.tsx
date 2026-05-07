@@ -1,8 +1,8 @@
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { type VariantProps, cva } from "class-variance-authority"
-import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "../icon-library"
 
 type Backdrop = VariantProps<typeof dialogOverlayVariants>["backdrop"]
 
@@ -101,7 +101,7 @@ function DialogContent({
 								closeButton === "hover" && "cn-dialog-close-button-hover"
 							)}
 							aria-label="Close">
-							<X />
+							<IconSlot slot="cross" />
 						</button>
 					</DialogPrimitive.Close>
 				)}

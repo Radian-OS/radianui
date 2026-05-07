@@ -3,7 +3,6 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cva } from "class-variance-authority"
-import { PanelLeftIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Badge } from "@/registry/ui/badge"
 import { IconButton } from "@/registry/ui/button"
@@ -18,6 +17,7 @@ import { Drawer, DrawerContent } from "@/registry/ui/drawer"
 import { Input } from "@/registry/ui/input"
 import { Skeleton } from "@/registry/ui/skeleton"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/registry/ui/tooltip"
+import { IconSlot } from "../icon-library"
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
@@ -619,7 +619,7 @@ function SidebarTrigger({
 				children
 			) : (
 				<>
-					<PanelLeftIcon />
+					<IconSlot slot="left-panel" />
 					<span className="sr-only">Toggle Sidebar</span>
 				</>
 			)}
