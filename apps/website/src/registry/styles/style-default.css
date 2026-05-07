@@ -1071,7 +1071,7 @@
 
 	/* MARK: Card */
 	.cn-card {
-		@apply bg-card gap-6 rounded-xl border py-6 shadow-sm;
+		@apply bg-card border-border gap-6 rounded-xl border py-6 shadow-sm;
 	}
 
 	.cn-card-header {
