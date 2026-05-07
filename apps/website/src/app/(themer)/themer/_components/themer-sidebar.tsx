@@ -10,7 +10,6 @@ import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
 import { STYLES, StyleValue } from "@/registry/styles"
 import { THEMES } from "@/registry/themes"
-import { IconButton } from "@/styles/default/ui/button"
 import {
 	Dropdown,
 	DropdownContent,
@@ -18,6 +17,7 @@ import {
 	DropdownRadioItem,
 	DropdownTrigger,
 } from "@/styles/default/ui/dropdown"
+import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
 import { ColorSwatch, ThemeColorSwatch } from "./color-swatch"
 import { CreateProjectDialog } from "./create-project-dialog"
 import { FontCombobox } from "./font-combobox"
@@ -71,22 +71,6 @@ export function ThemerSidebar({
 				<div className="flex items-center gap-2">
 					<Palette className="text-primary size-4" />
 					<h1 className="text-fg text-sm font-semibold">Theme Builder</h1>
-					<IconButton
-						aria-label="Toggle light/dark mode"
-						variant="ghost"
-						color="neutral"
-						size="28"
-						className="ml-auto transition-transform duration-200 hover:scale-110"
-						disabled={!mounted}
-						onClick={() =>
-							setTheme(resolvedTheme === "light" ? "dark" : "light")
-						}>
-						{mounted && resolvedTheme === "dark" ? (
-							<SunIcon className="size-4" />
-						) : (
-							<MoonIcon className="size-4" />
-						)}
-					</IconButton>
 				</div>
 				<p className="text-fg-tertiary text-xs">
 					Customize your design tokens and preview live.
@@ -95,6 +79,26 @@ export function ThemerSidebar({
 
 			{/* Scrollable controls */}
 			<div className="flex flex-1 flex-col gap-6 overflow-y-auto px-5 py-5">
+				{/* Theme Mode Toggle */}
+				<div className="flex flex-col gap-3">
+					<SectionLabel>Theme Mode</SectionLabel>
+					{mounted && (
+						<Tabs
+							value={resolvedTheme === "dark" ? "dark" : "light"}
+							onValueChange={(value) => setTheme(value)}>
+							<TabsList width="full" variant="default" size="md">
+								<TabsTrigger value="light">
+									<SunIcon aria-hidden="true" />
+									Light
+								</TabsTrigger>
+								<TabsTrigger value="dark">
+									<MoonIcon aria-hidden="true" />
+									Dark
+								</TabsTrigger>
+							</TabsList>
+						</Tabs>
+					)}
+				</div>
 				{/* Theme Section */}
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Theme</SectionLabel>
