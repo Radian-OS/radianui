@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useThemerPreset } from "@/lib/themer-preset"
-import { PRESETS } from "@/registry/config"
+import { DEFAULT_CONFIG, PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
 import { PRIMARY_COLORS, PrimaryColorValue } from "@/registry/primary-colors"
 import { RadiusValue } from "@/registry/radius"
@@ -18,7 +18,7 @@ import {
 	DropdownRadioItem,
 	DropdownTrigger,
 } from "@/styles/default/ui/dropdown"
-import { ColorSwatch } from "./color-swatch"
+import { ColorSwatch, ThemeColorSwatch } from "./color-swatch"
 import { CreateProjectDialog } from "./create-project-dialog"
 import { FontCombobox } from "./font-combobox"
 import { RADII, RadiusPill } from "./radius-pill"
@@ -56,6 +56,13 @@ export function ThemerSidebar({
 			(name) => name.toLowerCase().replace(/\s+/g, "-") === selectedComponent
 		) ?? selectedComponent
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
+
+	const handleThemeChange = (value: typeof params.theme) => {
+		setParams({
+			theme: value,
+			primaryColor: value === "default" ? DEFAULT_CONFIG.primaryColor : null,
+		})
+	}
 
 	return (
 		<aside className="bg-elevation-level1 border-border flex w-80 shrink-0 flex-col border-r">
@@ -102,7 +109,7 @@ export function ThemerSidebar({
 							<DropdownRadioGroup
 								value={params.theme}
 								onValueChange={(value) =>
-									setParams({ theme: value as typeof params.theme })
+									handleThemeChange(value as typeof params.theme)
 								}>
 								{THEMES.map((theme) => (
 									<DropdownRadioItem
@@ -168,12 +175,17 @@ export function ThemerSidebar({
 				<div className="flex flex-col gap-3">
 					<SectionLabel>Primary Color</SectionLabel>
 					<div className="flex flex-wrap gap-2">
+						{params.theme !== "default" && (
+							<ThemeColorSwatch
+								isSelected={params.primaryColor === null}
+								onClick={() => setParams({ primaryColor: null })}
+							/>
+						)}
 						{PRIMARY_COLORS.map((color) => (
 							<ColorSwatch
 								key={color.value}
 								color={color}
 								isSelected={params.primaryColor === color.value}
-								disabled={params.theme !== "default"}
 								onClick={() =>
 									setParams({
 										primaryColor: color.value as PrimaryColorValue,

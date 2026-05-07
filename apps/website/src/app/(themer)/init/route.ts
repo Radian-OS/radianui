@@ -10,6 +10,13 @@ export async function GET(request: NextRequest) {
 			headingFont: searchParams.get("headingFont") ?? undefined,
 			bodyFont: searchParams.get("bodyFont") ?? undefined,
 			template: searchParams.get("template") ?? undefined,
+			radius: searchParams.get("radius") ?? undefined,
+			style: searchParams.get("style") ?? undefined,
+			useSrcDir:
+				searchParams.get("useSrcDir") === null
+					? undefined
+					: searchParams.get("useSrcDir") === "true",
+			theme: searchParams.get("theme") ?? undefined,
 		}
 
 		const result = themerConfigSchema.safeParse(raw)

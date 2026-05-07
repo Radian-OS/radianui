@@ -18,7 +18,7 @@ import { THEMES, ThemeValue } from "@/registry/themes"
 const designSystemSearchParams = {
 	primaryColor: parseAsStringLiteral<PrimaryColorValue>(
 		PRIMARY_COLORS.map((color) => color.value)
-	).withDefault(DEFAULT_CONFIG.primaryColor!),
+	),
 	headingFont: parseAsStringLiteral<FontValue>(
 		FONTS.map((font) => font.value)
 	).withDefault(DEFAULT_CONFIG.headingFont),
@@ -50,15 +50,21 @@ function resolvePresetParams(
 ) {
 	// Merge rawParams and searchParams, searchParams takes precedence
 	// Extract searchParams first
+	const theme = searchParams.get("theme") ?? rawParams.theme
+	const primaryColor =
+		searchParams.get("primaryColor") ??
+		rawParams.primaryColor ??
+		(theme === "default" ? DEFAULT_CONFIG.primaryColor : null)
+
 	const mergedParams = {
-		primaryColor: searchParams.get("primaryColor") ?? rawParams.primaryColor,
+		primaryColor,
 		headingFont: searchParams.get("headingFont") ?? rawParams.headingFont,
 		bodyFont: searchParams.get("bodyFont") ?? rawParams.bodyFont,
 		radius: searchParams.get("radius") ?? rawParams.radius,
 		template: searchParams.get("template") ?? rawParams.template,
 		style: searchParams.get("style") ?? rawParams.style,
 		useSrcDir: searchParams.get("useSrcDir") ?? rawParams.useSrcDir,
-		theme: searchParams.get("theme") ?? rawParams.theme,
+		theme,
 	} as DesignSystemSearchParams
 	return mergedParams
 }

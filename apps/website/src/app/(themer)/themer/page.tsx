@@ -26,11 +26,24 @@ function ThemerPage() {
 
 	const iframeRef = useRef<HTMLIFrameElement>(null)
 
-	const iframeSrc = useMemo(
-		() =>
-			`/preview/${selectedComponent}?primaryColor=${params.primaryColor}&component=${selectedComponent}&headingFont=${params.headingFont}&bodyFont=${params.bodyFont}&radius=${params.radius}&template=${params.template}&style=${params.style}&useSrcDir=${params.useSrcDir}&theme=${params.theme}`,
-		[selectedComponent]
-	)
+	const iframeSrc = useMemo(() => {
+		const searchParams = new URLSearchParams({
+			component: selectedComponent,
+			headingFont: params.headingFont,
+			bodyFont: params.bodyFont,
+			radius: params.radius,
+			template: params.template,
+			style: params.style,
+			useSrcDir: String(params.useSrcDir),
+			theme: params.theme,
+		})
+
+		if (params.primaryColor) {
+			searchParams.set("primaryColor", params.primaryColor)
+		}
+
+		return `/preview/${selectedComponent}?${searchParams.toString()}`
+	}, [selectedComponent])
 
 	const postToIframe = useCallback((message: Record<string, unknown>) => {
 		iframeRef.current?.contentWindow?.postMessage(message, "*")

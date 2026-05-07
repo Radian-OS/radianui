@@ -9,32 +9,54 @@ import {
 export function ColorSwatch({
 	color,
 	isSelected,
-	disabled,
 	onClick,
 }: {
 	color: (typeof PRIMARY_COLORS)[number]
 	isSelected: boolean
-	disabled?: boolean
 	onClick: () => void
 }) {
 	return (
-		<Tooltip disableHoverableContent={disabled}>
+		<Tooltip>
 			<TooltipTrigger asChild>
 				<button
+					aria-label={color.name}
 					onClick={onClick}
-					disabled={disabled}
 					className={cn(
 						"size-7 rounded-full border-2 transition-all",
 						isSelected
 							? "border-fg scale-110 ring-2 ring-white"
-							: "hover:border-border border-transparent hover:scale-110",
-						disabled &&
-							"cursor-not-allowed opacity-50 hover:scale-100 hover:border-transparent"
+							: "hover:border-border border-transparent hover:scale-110"
 					)}
 					style={{ backgroundColor: color.cssVars.light["--color-primary"] }}
 				/>
 			</TooltipTrigger>
 			<TooltipContent side="top">{color.name}</TooltipContent>
+		</Tooltip>
+	)
+}
+
+export function ThemeColorSwatch({
+	isSelected,
+	onClick,
+}: {
+	isSelected: boolean
+	onClick: () => void
+}) {
+	return (
+		<Tooltip>
+			<TooltipTrigger asChild>
+				<button
+					aria-label="Theme primary"
+					onClick={onClick}
+					className={cn(
+						"bg-primary before:bg-primary-accent relative size-7 rounded-full border-2 transition-all before:absolute before:inset-1.5 before:rounded-full before:border before:border-white/70",
+						isSelected
+							? "border-fg scale-110 ring-2 ring-white"
+							: "hover:border-border border-transparent hover:scale-110"
+					)}
+				/>
+			</TooltipTrigger>
+			<TooltipContent side="top">Theme primary</TooltipContent>
 		</Tooltip>
 	)
 }

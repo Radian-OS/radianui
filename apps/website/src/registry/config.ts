@@ -37,8 +37,8 @@ export const themerConfigSchema = z
 		name: z.string().optional(),
 		primaryColor: z
 			.enum(PRIMARY_COLORS.map((color) => color.value))
-			.default("violet-blue")
-			.nullable(),
+			.nullable()
+			.default(null),
 		headingFont: z
 			.enum(fontValues, {
 				error: "Invalid font value",
@@ -59,7 +59,7 @@ export const themerConfigSchema = z
 			})
 			.default("default"),
 		useSrcDir: z.boolean().default(true),
-		theme: z.enum(THEMES.map((theme) => theme.value)).default("bubblegum"),
+		theme: z.enum(THEMES.map((theme) => theme.value)).default("default"),
 	})
 	.refine((data) => data.theme !== null || data.primaryColor !== null, {
 		message: "Either theme or primaryColor must be present",
@@ -279,7 +279,10 @@ function normalizePrimaryColorVars(
 }
 
 export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
-	const colorEntry = PRIMARY_COLORS.find((c) => c.value === config.primaryColor)
+	const primaryColor =
+		config.primaryColor ??
+		(config.theme === "default" ? DEFAULT_CONFIG.primaryColor : null)
+	const colorEntry = PRIMARY_COLORS.find((c) => c.value === primaryColor)
 	const lightVars = normalizePrimaryColorVars(colorEntry?.cssVars.light)
 	const darkVars = normalizePrimaryColorVars(colorEntry?.cssVars.dark)
 
@@ -317,13 +320,13 @@ export function buildRegistryConfig(config: ThemerConfig): RegistryConfig {
 		cssVars: {
 			light: {
 				...BASE_THEME.light,
-				...(lightVars || {}),
 				...(themeCssVars?.light || {}),
+				...(lightVars || {}),
 			},
 			dark: {
 				...BASE_THEME.dark,
-				...(darkVars || {}),
 				...(themeCssVars?.dark || {}),
+				...(darkVars || {}),
 			},
 			theme: {
 				...theme,
