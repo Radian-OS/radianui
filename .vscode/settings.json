@@ -50,5 +50,8 @@
   ],
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }

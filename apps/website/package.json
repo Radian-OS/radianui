@@ -21,7 +21,8 @@
 		"generate-css": "tsx src/scripts/generate-css.ts",
 		"generate-styles": "tsx src/scripts/generate-styles.ts",
 		"generate-styles-json": "tsx src/scripts/generate-styles-json.ts",
-		"update-icon-slot": "tsx src/scripts/update-icon-slot.ts"
+		"update-icon-slot": "tsx src/scripts/update-icon-slot.ts",
+		"generate-icon": "tsx src/scripts/generate-icon.ts"
 	},
 	"dependencies": {
 		"@dnd-kit/core": "^6.3.1",

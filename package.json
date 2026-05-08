@@ -24,7 +24,8 @@
 		"generate-styles": "turbo run generate-styles",
 		"generate-css": "turbo run generate-css",
 		"generate-styles-json": "turbo run generate-styles-json",
-				"update-icon-slot": "turbo run update-icon-slot",
+		"update-icon-slot": "turbo run update-icon-slot",
+		"generate-icon": "turbo run generate-icon",
 		"lint": "turbo run lint",
 		"prepare": "husky"
 	},

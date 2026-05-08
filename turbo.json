@@ -1,29 +1,47 @@
 {
 	"$schema": "https://turbo.build/schema.json",
 	"ui": "tui",
-	"globalDependencies": [".env"],
+	"globalDependencies": [
+		".env"
+	],
 	"tasks": {
 		"build": {
-			"dependsOn": ["^build"],
+			"dependsOn": [
+				"^build"
+			],
 			"env": [
 				"DATABASE_URL",
 				"NEXT_PUBLIC_*",
 				"RESEND_API_KEY",
 				"RESEND_FROM_EMAIL"
 			],
-			"inputs": ["$TURBO_DEFAULT$", ".env"],
-			"outputs": [".next/**", "!.next/cache/**", "dist/**"]
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env"
+			],
+			"outputs": [
+				".next/**",
+				"!.next/cache/**",
+				"dist/**"
+			]
 		},
 		"lint": {
-			"dependsOn": ["^lint"]
+			"dependsOn": [
+				"^lint"
+			]
 		},
 		"check-types": {
-			"dependsOn": ["^check-types"]
+			"dependsOn": [
+				"^check-types"
+			]
 		},
 		"dev": {
 			"cache": false,
 			"persistent": true,
-			"inputs": ["$TURBO_DEFAULT$", ".env"]
+			"inputs": [
+				"$TURBO_DEFAULT$",
+				".env"
+			]
 		},
 		"start": {
 			"cache": false,
@@ -62,6 +80,10 @@
 			"outputs": []
 		},
 		"update-icon-slot": {
+			"dependsOn": [],
+			"outputs": []
+		},
+		"generate-icon": {
 			"dependsOn": [],
 			"outputs": []
 		}
