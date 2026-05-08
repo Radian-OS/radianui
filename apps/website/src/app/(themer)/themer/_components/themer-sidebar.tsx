@@ -58,9 +58,13 @@ export function ThemerSidebar({
 	const selectedStyle = STYLES.find((t) => t.value === params.style)
 
 	const handleThemeChange = (value: typeof params.theme) => {
+		const theme = THEMES.find((theme) => theme.value === value)
+
 		setParams({
 			theme: value,
 			primaryColor: value === "default" ? DEFAULT_CONFIG.primaryColor : null,
+			headingFont: theme?.fonts.heading,
+			bodyFont: theme?.fonts.body,
 		})
 	}
 
