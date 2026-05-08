@@ -64,4 +64,11 @@ export const ICON_SLOT_REPLACEMENTS = [
 		lucideIcon: "PanelLeft",
 		hugeiconsIcon: "PanelLeftIcon",
 	},
+
+	// themer playground icon
+	{
+		slot: "setting",
+		lucideIcon: "Settings",
+		hugeiconsIcon: "Setting07Icon",
+	},
 ] as const

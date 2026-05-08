@@ -14,6 +14,7 @@ import {
 	MoreHorizontalIcon,
 	PanelLeftIcon,
 	Search01Icon,
+	Setting07Icon,
 	Tick01Icon,
 } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
@@ -32,15 +33,16 @@ import {
 	PanelLeft,
 	Plus,
 	Search,
+	Settings,
 	X,
 } from "lucide-react"
+import { ICON_SLOT_REPLACEMENTS } from "@/data/icon-slot"
 import type {
 	HugeiconsIconName,
 	IconLibrary,
 	IconSlot as IconSlotName,
 	LucideIconName,
 } from "@/lib/icon-libraries"
-import { ICON_SLOT_REPLACEMENTS } from "@/lib/icon-libraries"
 
 export type ThemedIconProps = Omit<
 	React.SVGProps<SVGSVGElement>,
@@ -113,6 +115,7 @@ const lucideIcons: Record<LucideIconName, LucideIcon> = {
 	Circle,
 	GripVerticalIcon,
 	PanelLeft,
+	Settings,
 }
 
 const hugeiconsIcons: Record<HugeiconsIconName, IconSvgElement> = {
@@ -129,6 +132,7 @@ const hugeiconsIcons: Record<HugeiconsIconName, IconSvgElement> = {
 	CircleIcon,
 	More01Icon,
 	PanelLeftIcon,
+	Setting07Icon,
 }
 
 function createIconComponents(iconLibrary: IconLibrary) {

@@ -1,7 +1,7 @@
 import fs from "fs"
 import path from "path"
+import { ICON_SLOT_REPLACEMENTS } from "@/data/icon-slot"
 
-const filePath = "src/data/icon-slot.ts"
 const outputPath = "public/r/icon/icon.json"
 
 // ensure directory exists
@@ -11,23 +11,10 @@ if (!fs.existsSync(dir)) {
 	console.log("📁 Created directory:", dir)
 }
 
-// read file
-const content = fs.readFileSync(filePath, "utf-8")
-
-// extract ICON_SLOT_REPLACEMENTS only
-const match = content.match(
-	/ICON_SLOT_REPLACEMENTS\s*=\s*(\[[\s\S]*?\])\s*as const/
+const leftPanelIndex = ICON_SLOT_REPLACEMENTS.findIndex(
+	({ slot }) => slot === "left-panel"
 )
-
-if (!match) {
-	throw new Error("ICON_SLOT_REPLACEMENTS not found")
-}
-
-// convert TS → JS
-const arrayString = match[1]
-
-//  safe here (your own file)
-const data = eval(arrayString)
+const data = ICON_SLOT_REPLACEMENTS.slice(0, leftPanelIndex + 1)
 
 // write JSON
 fs.writeFileSync(outputPath, JSON.stringify(data, null, 2))

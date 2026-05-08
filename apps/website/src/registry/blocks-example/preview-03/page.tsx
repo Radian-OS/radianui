@@ -13,6 +13,7 @@ import {
 	Settings,
 	User,
 } from "lucide-react"
+import { IconSlot } from "@/registry/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import {
@@ -1121,7 +1122,7 @@ export function DropdownShowcaseCard() {
 					<Dropdown>
 						<DropdownTrigger asChild>
 							<Button variant="smooth">
-								Open Menu <Settings className="ml-2 h-4 w-4" />
+								Open Menu <IconSlot slot="setting" className="ml-2 h-4 w-4" />
 							</Button>
 						</DropdownTrigger>
 						<DropdownContent className="w-80">

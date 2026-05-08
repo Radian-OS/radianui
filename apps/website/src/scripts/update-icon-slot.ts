@@ -16,7 +16,7 @@
 import { promises as fs } from "fs"
 import path from "path"
 import prettier from "prettier"
-import { ICON_SLOT_REPLACEMENTS } from "@/lib/icon-libraries"
+import { ICON_SLOT_REPLACEMENTS } from "@/data/icon-slot"
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -65,7 +65,12 @@ function replaceIconSlots(source: string): {
 	let transformed = source
 	const neededLucideIcons = new Set<string>()
 
-	for (const { slot, lucideIcon } of ICON_SLOT_REPLACEMENTS) {
+	const SCRIPT_ICON_SLOTS = ICON_SLOT_REPLACEMENTS.slice(
+		0,
+		ICON_SLOT_REPLACEMENTS.findIndex(({ slot }) => slot === "left-panel") + 1
+	)
+
+	for (const { slot, lucideIcon } of SCRIPT_ICON_SLOTS) {
 		const iconSlotPattern = new RegExp(
 			`<IconSlot\\s+slot=["']${slot.replace(".", "\\.")}["']`,
 			"g"
