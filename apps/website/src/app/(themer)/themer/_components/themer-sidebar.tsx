@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { ChevronDown, MoonIcon, Palette, SunIcon, Type } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useThemerLocks } from "@/lib/themer-locks"
 import { useThemerPreset } from "@/lib/themer-preset"
 import { DEFAULT_CONFIG, PRESETS } from "@/registry/config"
 import { FontValue } from "@/registry/fonts"
@@ -21,7 +22,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/styles/default/ui/tabs"
 import { ColorSwatch, ThemeColorSwatch } from "./color-swatch"
 import { CreateProjectDialog } from "./create-project-dialog"
 import { FontCombobox } from "./font-combobox"
-import { RADII, RadiusPill } from "./radius-pill"
+import { RADII, RadiusLockPill, RadiusPill } from "./radius-pill"
 import { SectionLabel } from "./section-label"
 
 interface ThemerSidebarProps {
@@ -44,6 +45,7 @@ export function ThemerSidebar({
 	setSelectedComponent,
 }: ThemerSidebarProps) {
 	const [params, setParams] = useThemerPreset()
+	const { locked, toggleLock } = useThemerLocks()
 	const { resolvedTheme, setTheme } = useTheme()
 	const [mounted, setMounted] = useState(false)
 
@@ -63,8 +65,12 @@ export function ThemerSidebar({
 		setParams({
 			theme: value,
 			primaryColor: value === "default" ? DEFAULT_CONFIG.primaryColor : null,
-			headingFont: theme?.fonts.heading,
-			bodyFont: theme?.fonts.body,
+			...(!locked.headingFont && {
+				headingFont: theme?.fonts.heading,
+			}),
+			...(!locked.bodyFont && {
+				bodyFont: theme?.fonts.body,
+			}),
 		})
 	}
 
@@ -154,10 +160,23 @@ export function ThemerSidebar({
 									setParams({
 										style: value as StyleValue,
 										...(preset && {
-											...preset,
+											headingFont: preset.headingFont,
+											bodyFont: preset.bodyFont,
+											radius: preset.radius,
+											template: preset.template,
+											useSrcDir: preset.useSrcDir,
 										}),
 										theme: params.theme,
 										primaryColor: params.primaryColor,
+										...(locked.headingFont && {
+											headingFont: params.headingFont,
+										}),
+										...(locked.bodyFont && {
+											bodyFont: params.bodyFont,
+										}),
+										...(locked.radius && {
+											radius: params.radius,
+										}),
 									})
 								}}>
 								{STYLES.map((style) => (
@@ -244,6 +263,8 @@ export function ThemerSidebar({
 							onValueChange={(value) =>
 								setParams({ headingFont: value as FontValue })
 							}
+							isLocked={locked.headingFont}
+							onToggleLock={() => toggleLock("headingFont")}
 						/>
 						<FontCombobox
 							label="Body Font"
@@ -251,6 +272,8 @@ export function ThemerSidebar({
 							onValueChange={(value) =>
 								setParams({ bodyFont: value as FontValue })
 							}
+							isLocked={locked.bodyFont}
+							onToggleLock={() => toggleLock("bodyFont")}
 						/>
 					</div>
 				</div>
@@ -269,6 +292,10 @@ export function ThemerSidebar({
 								}
 							/>
 						))}
+						<RadiusLockPill
+							isLocked={locked.radius}
+							onToggle={() => toggleLock("radius")}
+						/>
 					</div>
 				</div>
 			</div>
