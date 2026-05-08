@@ -1,18 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import {
-	AlertCircle,
-	Eye,
-	EyeOff,
-	Lock,
-	LogOut,
-	Mail,
-	Plus,
-	Search,
-	Settings,
-	User,
-} from "lucide-react"
 import { IconSlot } from "@/registry/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
@@ -87,7 +75,10 @@ export function InputShowcaseCard() {
 				<div className="space-y-1.5">
 					<Label htmlFor="input-search">With icon</Label>
 					<div className="relative">
-						<Search className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+						<IconSlot
+							slot="search"
+							className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
+						/>
 						<Input
 							id="input-search"
 							className="pl-9"
@@ -102,7 +93,10 @@ export function InputShowcaseCard() {
 				<div className="space-y-1.5">
 					<Label htmlFor="input-password">Password</Label>
 					<div className="relative">
-						<Lock className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+						<IconSlot
+							slot="lock"
+							className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
+						/>
 						<Input
 							id="input-password"
 							type={showPassword ? "text" : "password"}
@@ -114,9 +108,9 @@ export function InputShowcaseCard() {
 							onClick={() => setShowPassword((v) => !v)}
 							className="text-muted-foreground hover:text-foreground absolute right-3 top-1/2 -translate-y-1/2 transition-colors">
 							{showPassword ? (
-								<EyeOff className="h-4 w-4" />
+								<IconSlot slot="eyeoff" className="h-4 w-4" />
 							) : (
-								<Eye className="h-4 w-4" />
+								<IconSlot slot="eye" className="h-4 w-4" />
 							)}
 						</button>
 					</div>
@@ -130,7 +124,10 @@ export function InputShowcaseCard() {
 						Email
 					</Label>
 					<div className="relative">
-						<Mail className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2" />
+						<IconSlot
+							slot="mail"
+							className="text-muted-foreground absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2"
+						/>
 						<Input
 							id="input-email"
 							type="email"
@@ -142,7 +139,7 @@ export function InputShowcaseCard() {
 					</div>
 					{hasError && (
 						<p className="text-destructive flex items-center gap-1.5 text-xs">
-							<AlertCircle className="h-3 w-3" />
+							<IconSlot slot="alert" className="h-3 w-3" />
 							Please enter a valid email address.
 						</p>
 					)}
@@ -415,7 +412,7 @@ export function TextAreaShowcaseCard() {
 						className="border-destructive focus-visible:ring-destructive"
 					/>
 					<p className="text-destructive flex items-center gap-1.5 text-xs">
-						<AlertCircle className="h-3 w-3" />
+						<IconSlot slot="alert" className="h-3 w-3" />
 						This field is required.
 					</p>
 				</div>
@@ -1128,17 +1125,17 @@ export function DropdownShowcaseCard() {
 						<DropdownContent className="w-80">
 							<DropdownLabel>My Account</DropdownLabel>
 							<DropdownItem>
-								<User className="mr-2 h-4 w-4" />
+								<IconSlot slot="user" className="mr-2 h-4 w-4" />
 								<span>Profile</span>
 								<DropdownShortcut>⇧⌘P</DropdownShortcut>
 							</DropdownItem>
 							<DropdownItem>
-								<Mail className="mr-2 h-4 w-4" />
+								<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 								<span>Billing</span>
 								<DropdownShortcut>⌘B</DropdownShortcut>
 							</DropdownItem>
 							<DropdownItem>
-								<Settings className="mr-2 h-4 w-4" />
+								<IconSlot slot="setting" className="mr-2 h-4 w-4" />
 								<span>Settings</span>
 								<DropdownShortcut>⌘S</DropdownShortcut>
 							</DropdownItem>
@@ -1147,22 +1144,22 @@ export function DropdownShowcaseCard() {
 
 							<DropdownSub>
 								<DropdownSubTrigger>
-									<User className="mr-2 h-4 w-4" />
+									<IconSlot slot="user" className="mr-2 h-4 w-4" />
 									<span>Invite users</span>
 								</DropdownSubTrigger>
 								<DropdownPortal>
 									<DropdownSubContent>
 										<DropdownItem>
-											<Mail className="mr-2 h-4 w-4" />
+											<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 											<span>Email</span>
 										</DropdownItem>
 										<DropdownItem>
-											<Mail className="mr-2 h-4 w-4" />
+											<IconSlot slot="mail" className="mr-2 h-4 w-4" />
 											<span>Message</span>
 										</DropdownItem>
 										<DropdownDivider />
 										<DropdownItem>
-											<Plus className="mr-2 h-4 w-4" />
+											<IconSlot slot="plus" className="mr-2 h-4 w-4" />
 											<span>More...</span>
 										</DropdownItem>
 									</DropdownSubContent>
@@ -1189,7 +1186,7 @@ export function DropdownShowcaseCard() {
 							<DropdownDivider />
 
 							<DropdownItem className="text-red-500 focus:bg-red-50 focus:text-red-600">
-								<LogOut className="mr-2 h-4 w-4" />
+								<IconSlot slot="logout" className="mr-2 h-4 w-4" />
 								<span>Log out</span>
 								<DropdownShortcut>⇧⌘Q</DropdownShortcut>
 							</DropdownItem>

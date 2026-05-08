@@ -2,9 +2,9 @@
 
 import React, { useMemo, useRef, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { CircleCheck, EyeIcon, EyeOffIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 import z from "zod"
+import { IconSlot } from "@/registry/icon-library"
 import { Button } from "@/registry/ui/button"
 import {
 	Form,
@@ -52,7 +52,7 @@ export default function NewPasswordForm() {
 		setShowPassword(!showPassword)
 	}
 
-	const IconComponent = showPassword ? EyeOffIcon : EyeIcon
+	const IconComponent = showPassword ? "eyeoff" : "eye"
 
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -123,7 +123,8 @@ export default function NewPasswordForm() {
 												className="peer"
 												type={showPassword ? "text" : "password"}
 											/>
-											<IconComponent
+											<IconSlot
+												slot={IconComponent}
 												className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 												onMouseDown={togglePasswordVisibility}
 											/>
@@ -153,7 +154,8 @@ export default function NewPasswordForm() {
 													className="peer"
 													type={showPassword ? "text" : "password"}
 												/>
-												<IconComponent
+												<IconSlot
+													slot={IconComponent}
 													className="hover:text-fg peer-disabled:text-fg-disabled cursor-pointer peer-disabled:pointer-events-none"
 													onMouseDown={togglePasswordVisibility}
 												/>
@@ -173,7 +175,8 @@ export default function NewPasswordForm() {
 												<p
 													key={label}
 													className="text-fg-tertiary flex items-center gap-2">
-													<CircleCheck
+													<IconSlot
+														slot="check"
 														className={`size-4 ${isValid(label) ? "text-success-text" : ""}`}
 													/>
 													{label}

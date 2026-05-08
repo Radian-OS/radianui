@@ -1,3 +1,6 @@
+// for themer playground icons put icons below left-panel
+// above left-panel icons are used in components pritimive and for generating icons json file used for cli
+
 export const ICON_SLOT_REPLACEMENTS = [
 	{
 		slot: "down",
@@ -70,5 +73,65 @@ export const ICON_SLOT_REPLACEMENTS = [
 		slot: "setting",
 		lucideIcon: "Settings",
 		hugeiconsIcon: "Setting07Icon",
+	},
+	{
+		slot: "car",
+		lucideIcon: "Car",
+		hugeiconsIcon: "Car03Icon",
+	},
+	{
+		slot: "coffee",
+		lucideIcon: "Coffee",
+		hugeiconsIcon: "Coffee02Icon",
+	},
+	{
+		slot: "cart",
+		lucideIcon: "ShoppingCart",
+		hugeiconsIcon: "ShoppingCart02Icon",
+	},
+	{
+		slot: "tv",
+		lucideIcon: "Tv",
+		hugeiconsIcon: "Tv01Icon",
+	},
+	{
+		slot: "card",
+		lucideIcon: "CreditCard",
+		hugeiconsIcon: "CreditCardIcon",
+	},
+	{
+		slot: "eye",
+		lucideIcon: "Eye",
+		hugeiconsIcon: "EyeIcon",
+	},
+	{
+		slot: "alert",
+		lucideIcon: "AlertCircle",
+		hugeiconsIcon: "AlertCircleIcon",
+	},
+	{
+		slot: "eyeoff",
+		lucideIcon: "EyeOff",
+		hugeiconsIcon: "ViewOffSlashIcon",
+	},
+	{
+		slot: "lock",
+		lucideIcon: "Lock",
+		hugeiconsIcon: "LockPasswordIcon",
+	},
+	{
+		slot: "logout",
+		lucideIcon: "LogOut",
+		hugeiconsIcon: "Logout01Icon",
+	},
+	{
+		slot: "user",
+		lucideIcon: "User",
+		hugeiconsIcon: "User02Icon",
+	},
+	{
+		slot: "mail",
+		lucideIcon: "Mail",
+		hugeiconsIcon: "Mail01Icon",
 	},
 ] as const

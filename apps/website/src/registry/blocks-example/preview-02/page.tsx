@@ -1,16 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import {
-	Car,
-	Coffee,
-	CreditCard,
-	Plus,
-	ShoppingCart,
-	Tv,
-	X,
-} from "lucide-react"
 import { cn } from "@/lib/utils"
+import { IconSlot } from "@/registry/icon-library"
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"
 import { Calendar } from "@/registry/ui/calendar"
@@ -113,7 +105,7 @@ function PayoutThresholdCard() {
 	return (
 		<Card className="relative">
 			<button className="text-muted-foreground hover:text-foreground absolute right-4 top-4 transition-colors">
-				<X className="h-4 w-4" />
+				<IconSlot slot="cross" className="h-4 w-4" />
 			</button>
 
 			<CardHeader className="pr-10">
@@ -309,7 +301,7 @@ function DistributeTrackCard() {
 		<Card className="flex flex-col items-center text-center">
 			<CardContent className="flex flex-col items-center gap-3 pb-4 pt-8">
 				<div className="border-muted-foreground/40 flex h-10 w-10 items-center justify-center rounded-full border-2 border-dashed">
-					<Plus className="text-muted-foreground h-5 w-5" />
+					<IconSlot slot="plus" className="text-muted-foreground h-5 w-5" />
 				</div>
 				<div>
 					<p className="text-sm font-semibold">Distribute Track</p>
@@ -375,7 +367,7 @@ function ClaimableBalanceCard() {
 // ──────────────────────────────────────────────
 const transactions = [
 	{
-		icon: Coffee,
+		icon: "coffee",
 		name: "Blue Bottle Coffee",
 		category: "Food & Drink",
 		date: "Today, 10:24 AM",
@@ -383,7 +375,7 @@ const transactions = [
 		positive: false,
 	},
 	{
-		icon: ShoppingCart,
+		icon: "cart",
 		name: "Whole Foods Market",
 		category: "Groceries",
 		date: "Yesterday",
@@ -391,7 +383,7 @@ const transactions = [
 		positive: false,
 	},
 	{
-		icon: CreditCard,
+		icon: "card",
 		name: "Stripe Payout",
 		category: "Income",
 		date: "Oct 12",
@@ -399,7 +391,7 @@ const transactions = [
 		positive: true,
 	},
 	{
-		icon: Car,
+		icon: "car",
 		name: "Uber Technologies",
 		category: "Transport",
 		date: "Oct 11",
@@ -407,7 +399,7 @@ const transactions = [
 		positive: false,
 	},
 	{
-		icon: Tv,
+		icon: "coffee",
 		name: "Netflix Subscription",
 		category: "Entertainment",
 		date: "Oct 10",
@@ -432,7 +424,10 @@ function RecentTransactionsCard() {
 						{transactions.map((tx) => (
 							<div key={tx.name} className="flex items-center gap-3 px-6 py-3">
 								<div className="bg-muted flex h-9 w-9 shrink-0 items-center justify-center rounded-full">
-									<tx.icon className="text-muted-foreground h-4 w-4" />
+									<IconSlot
+										slot={tx.icon as any}
+										className="text-muted-foreground h-4 w-4"
+									/>
 								</div>
 								<div className="min-w-0 flex-1">
 									<p className="truncate text-sm font-medium">{tx.name}</p>
